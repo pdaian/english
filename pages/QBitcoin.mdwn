@@ -1,0 +1,46 @@
+QBitcoin is a Qt-based C++ bitcoin client written to provide a better API and internals.
+
+Current version: *None* (status: coding)
+
+Support address: 1MGQF37NYdpGnPdJXKksb4uHCQSSJrL86R
+
+## Structure
+
+* Wallet: a separate process (maybe a separate binary) that will handle wallet operations through a dedicated line (create address, delete address, etc)
+* CORE: The bitcoin core itself, handling P2P connections/etc
+* CLI: A cli version of bitcoin with optional interactive terminal
+* GUI: The GUI
+* API Client: a really simple program that will send commands over JSON-RPC or binary api, will also be made available in various languages such as C/C++/PHP and whatever people feel like contributing
+* Miners: the client should be compatible with most common bitcoin miners, however I'll try to at least provide an example CPU miner using the binary API
+
+## Features
+
+### Version 0.1.0
+
+**Please note**: this version is planned for mid-january 2011
+
+* API/GUI/CORE: Use Qt API, for networking and GUI. The CLI version will also depend on Qt (just not on QtGui, so no depency on X/etc)
+* CORE: No included miner (instead we may have an external miner)
+* API: JSON-RPC api compatible with existing API, both in CLI and GUI versions (can be disabled)
+* API: binary api for faster calls (useful for gpu miners, for example)
+* API: Improved API functions (in both binary & JSON-RPC) for coins manipulation
+* CORE: OpenSSL optional, only if you want to enable API SSL (uses Qt's dynamic linking to openssl for binary version, compiling yourself will * depend on how you configured Qt)
+* CORE: DB format will be sqlite3 (using QtSql, except for the wallet)
+* CORE: Wallet DB will be handled by a separate process using a limited internal API (protects the wallet against unauthorized accesses). Also this process will not depend on any external library (everything will be compiled in). The following components will be compiled in:
+	* sqlite3 library (public domain) for wallet database handling
+	* libtomcrypt/libtommath (public domain/WTFPL) for bitcoin address handling/generation/signing/etc and PRNG (fortuna)
+* API/GUI: Automatic update process for binary builds (disabled if compiled from source). Updates will be signed using a RSA key known to the client (or maybe an EC key? to be defined)
+* CORE/API/GUI: Support for multiple chains/wallets in same process (ie. access testnet without starting another bitcoin client)
+* API/GUI: Fee setting interface (configure your own fees as you wish)
+* GUI: Better transactions listing
+* GUI: Ability to re-order history columns
+* GUI: Documentation
+* WALLET: Private key password encryption (AES256), makes the wallet require a password to sign a transaction
+
+### Future
+
+API/GUI: Ability to choose which addresses to send coins from
+CORE: Support for loadable plugins (bitDNS, etc)
+CORE: [uPnP support](http://en.wikipedia.org/wiki/Internet_Gateway_Device_Protocol)
+CORE: Port randomization
+CORE: Append [ECIES](http://www.shoup.net/papers/iso-2_1.pdf) encrypted messages to transactions
