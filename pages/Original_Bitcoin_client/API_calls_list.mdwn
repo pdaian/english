@@ -1,0 +1,34 @@
+Bitcoin API call list (as of version 0.3.19)
+
+
+
+|backupwallet |<destination>|Safely copies wallet.dat to destination, which can be a directory or a path with filename.
+|getaccount |<bitcoinaddress>|Returns the account associated with the given address.
+|getaccountaddress |<account>|Returns the current bitcoin address for receiving payments to this account.
+|getaddressesbyaccount |<account>|Returns the list of addresses for the given account.
+|getbalance |[[account]][[minconf=1]]|If [[account]]is not specified, returns the server's total available balance.<br/>If [[account]]is specified, returns the balance in the account.
+|getblockbycount |height |Dumps the block existing at specified height
+|getblockcount ||Returns the number of blocks in the longest block chain.
+|getblocknumber ||Returns the block number of the latest block in the longest block chain.
+|getconnectioncount ||Returns the number of connections to other nodes.
+|getdifficulty ||Returns the proof-of-work difficulty as a multiple of the minimum difficulty.
+|getgenerate ||Returns true or false wether bitcoind is currently generating hashes
+|gethashespersec ||Returns a recent hashes per second performance measurement while generating.
+|getinfo ||Returns an object containing various state info.
+|getnewaddress |[[account]]|Returns a new bitcoin address for receiving payments.  If [[account]]is specified (recommended), it is added to the address book so payments received with the address will be credited to [[account]].
+|getreceivedbyaccount |<account>[[minconf=1]]|Returns the total amount received by addresses with <account>in transactions with at least [[minconf]]confirmations.
+|getreceivedbyaddress |<bitcoinaddress>[[minconf=1]]|Returns the total amount received by <bitcoinaddress>in transactions with at least [[minconf]]confirmations.
+|gettransaction |<txid>|Get detailed information about <txid>
+|getwork |[[data]]|If [[data]]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf [[data]]is specified, tries to solve the block and returns true if it was successful.
+|help |[[command]]|List commands, or get help for a command.
+|listreceivedbyaccount |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "account" : the account of the receiving addresses* "amount" : total amount received by addresses with this account* "confirmations" : number of confirmations of the most recent transaction included
+|listreceivedbyaddress |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "address" : receiving address* "account" : the account of the receiving address* "amount" : total amount received by the address* "confirmations" : number of confirmations of the most recent transaction included
+|listtransactions |<account>[[count=10]]|Returns up to [[count]]most recent transactions for account <account>.
+|move |<fromaccount><toaccount><amount>[[minconf=1]][[comment]]|Move from one account in your wallet to another.
+|sendfrom |<fromaccount><tobitcoinaddress><amount>[[minconf=1]][[comment]][[comment-to]]|<amount>is a real and is rounded to the nearest 0.01
+|sendtoaddress |<bitcoinaddress><amount>[[comment]][[comment-to]]|<amount>is a real and is rounded to the nearest 0.01
+|setaccount |<bitcoinaddress><account>|Sets the account associated with the given address.
+|setgenerate |<generate>[[genproclimit]]|<generate>is true or false to turn generation on or off.<br/>Generation is limited to [[genproclimit]]processors, -1 is unlimited.
+|stop ||Stop bitcoin server.
+|validateaddress |<bitcoinaddress>|Return information about <bitcoinaddress>.
+
