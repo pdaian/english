@@ -98,55 +98,49 @@ The JSON::RPC package from CPAN can be used to communicate with Bitcoin.  You mu
 The communication with rpc service can be achieved using the standard httprequest/response objects.
 A library for serialising and deserialising Json will make your life a lot easier:
 
-- Use JayRock for .NET 4.0
-
-- Use Json.Net for .NET 2.0 and above 
+* JayRock for .NET 4.0
+* Json.Net for .NET 2.0 and above 
 
 The following example uses Json.Net:
 
-<code>
- HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://localhost.:8332");
- webRequest.Credentials = new NetworkCredential("user", "pwd");
- /// important, otherwise the service can't desirialse your request properly
- webRequest.ContentType = "application/json-rpc";
- webRequest.Method = "POST";
+	HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://localhost.:8332");
+	webRequest.Credentials = new NetworkCredential("user", "pwd");
+	/// important, otherwise the service can't desirialse your request properly
+	webRequest.ContentType = "application/json-rpc";
+	webRequest.Method = "POST";
 
- JObject joe = new JObject();
- joe.Add(new JProperty("jsonrpc", "1.0"));
- joe.Add(new JProperty("id", "1"));
- joe.Add(new JProperty("method", Method));
- // params is a collection values which the method requires..
- if (Params.Keys.Count == 0)
- {
-  joe.Add(new JProperty("params", new JArray()));
- }
- else
- {
-     JArray props = new JArray();
-     // add the props in the reverse order!
-     for (int i = Params.Keys.Count - 1; i >= 0; i--)
-     {
-        .... // add the params
-     }
-     joe.Add(new JProperty("params", props));
-     }
+	JObject joe = new JObject();
+	joe.Add(new JProperty("jsonrpc", "1.0"));
+	joe.Add(new JProperty("id", "1"));
+	joe.Add(new JProperty("method", Method));
+	// params is a collection values which the method requires..
+	if (Params.Keys.Count == 0)
+	{
+	joe.Add(new JProperty("params", new JArray()));
+	}
+	else
+	{
+	JArray props = new JArray();
+	// add the props in the reverse order!
+	for (int i = Params.Keys.Count - 1; i >= 0; i--)
+	{
+	.... // add the params
+	}
+	joe.Add(new JProperty("params", props));
+	}
 
-     // serialize json for the request
-     string s = JsonConvert.SerializeObject(joe);
-     byte[] byteArray = Encoding.UTF8.GetBytes(s);
-     webRequest.ContentLength = byteArray.Length;
-     Stream dataStream = webRequest.GetRequestStream();
-     dataStream.Write(byteArray, 0, byteArray.Length);
-     dataStream.Close();
-
-
-     WebResponse webResponse = webRequest.GetResponse();
-
-     ... // deserialze the response
-
-</code>
+	// serialize json for the request
+	string s = JsonConvert.SerializeObject(joe);
+	byte[] byteArray = Encoding.UTF8.GetBytes(s);
+	webRequest.ContentLength = byteArray.Length;
+	Stream dataStream = webRequest.GetRequestStream();
+	dataStream.Write(byteArray, 0, byteArray.Length);
+	dataStream.Close();
 
 
+	WebResponse webResponse = webRequest.GetResponse();
+
+	... // deserialze the response
 
 ## Command line (curl)
 
