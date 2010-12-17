@@ -128,7 +128,7 @@ The following example uses Json.Net:
 	}
 	joe.Add(new JProperty("params", props));
 	}
-
+	
 	// serialize json for the request
 	string s = JsonConvert.SerializeObject(joe);
 	byte[] byteArray = Encoding.UTF8.GetBytes(s);
