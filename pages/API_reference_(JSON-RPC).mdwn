@@ -23,7 +23,7 @@ A list of RPC calls will be shown.
 Running Bitcoin with the -server argument (or running bitcoind) tells it to function as a [HTTP JSON-RPC](http://json-rpc.org/wiki/specification) server, but 
 [HTTP Basic access authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) must be used when communicating with it, and, for security, by default, the server only accepts connections from other processes on the same machine.  If your HTTP or JSON library requires you to specify which 'realm' is authenticated, use 'jsonrpc'.
 
-Bitcoin supports SSL (https) JSON-RPC connections beginning with version 0.3.14.  See the [[rpcssl wiki page|rpcssl]] for setup instructions and a list of all bitcoin.conf configuration options.
+Bitcoin supports SSL (https) JSON-RPC connections beginning with version 0.3.14.  See the [[rpcssl wiki page|Enabling_SSL_on_original_client_daemon]] for setup instructions and a list of all bitcoin.conf configuration options.
 
 To access the server you should find a [suitable library](http://json-rpc.org/wiki/implementations) for your language.
 
