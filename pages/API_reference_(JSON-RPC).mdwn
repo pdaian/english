@@ -70,30 +70,29 @@ Once that is done, any JSON-RPC library for Java (or ordinary URL POSTs) may be 
 
 The JSON::RPC package from CPAN can be used to communicate with Bitcoin.  You must set the client's credentials; for example:
 
-<code>use JSON::RPC::Client;
-use Data::Dumper;
- 
-my $client = new JSON::RPC::Client;
-
-$client->ua->credentials(
-   'localhost:8332', 'jsonrpc', 'user' => 'password'  # REPLACE WITH YOUR bitcoin.conf rpcuser/rpcpassword
-    );
-
-my $uri = 'http://localhost:8332/';
-my $obj = {
-    method  => 'getinfo',
-    params  => [],
- };
- 
-my $res = $client->call( $uri, $obj );
- 
-if ($res){
-    if ($res->is_error) { print "Error : ", $res->error_message; }
-    else { print Dumper($res->result); }
-} else {
-    print $client->status_line;
-}
-</code>
+	use JSON::RPC::Client;
+	use Data::Dumper;
+	
+	my $client = new JSON::RPC::Client;
+	
+	$client->ua->credentials(
+	'localhost:8332', 'jsonrpc', 'user' => 'password'  # REPLACE WITH YOUR bitcoin.conf rpcuser/rpcpassword
+	);
+	
+	my $uri = 'http://localhost:8332/';
+	my $obj = {
+	method  => 'getinfo',
+	params  => [],
+	};
+	
+	my $res = $client->call( $uri, $obj );
+	
+	if ($res){
+	if ($res->is_error) { print "Error : ", $res->error_message; }
+	else { print Dumper($res->result); }
+	} else {
+	print $client->status_line;
+	}
 
 ## .NET (C#)
 The communication with rpc service can be achieved using the standard httprequest/response objects.
