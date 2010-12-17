@@ -1,6 +1,31 @@
-This is a node list, taken from [the original wiki](http://www.bitcoin.org/wiki/doku.php?id=fallback_nodes).
+This is a list of nodes which are considered reliable. Nodes from this list which are down for more than 24 hours will be automatically removed and status of each node is displayed and updated every hour by [WikiBot](User:WikiBot).
 
-The nodes list will be updated every hour by [WikiBot](User:WikiBot) to show the status of the network. You are not allowed to add an ip which is not yours here. A node offline for more than 48 hours will be removed from the listing automatically.
+## How to use this list
+
+### Connect to nodes
+
+You can connect to these nodes with the *-addnode=ip* switch instead of the usual node harvesting process (through IRC or via the embedded nodelist). You can connect to more than one node by using *-addnode=ip* more than once. It is usually a good idea to connect to more than one of these nodes.
+
+#### Nodes without a fixed ip
+
+If the node IP is not fixed (see "Fixed" column), you will have to resolve the node's name (first column) each time the IP changes. Some nodes may have their ip change once a day, some others once a month, and some others may stay on the same IP for years. Still, as long as the IP is not fixed, there is no guarantee it will stay the same.
+
+The [[Official_Bitcoin_Client]] do not support hostnames to the *-addnode* parameter, so you must do the resolving part for it. For example on linux:
+	bitcoind -addnode=$(host theymos.ath.cx sed s/"^.*has address "//)
+
+### IP Transactions
+
+You can also send [[IP_Transactions]] to these nodes. If you include your bitcoin address in the "message" field, you may have your coins back.
+
+### Tor network
+
+To use tor .onion addresses, you need to map virtual ips via the *torrc* file:
+
+	mapaddress 192.0.2.2 ijzt2eeizty3p5xe.onion
+	mapaddress 192.0.2.3 j43z65b6r2usg3vk.onion
+	mapaddress 192.0.2.4 pvuif6nonbhj3o3r.onion
+
+Once you have configured and restarted tor, 192.0.2.2 will connect to ijzt2eeizty3p5xe.onion when accessed through the Tor proxy (and likewise for the other IPs/onions). You can then run Bitcoin with -addnode=192.0.2.2, or even send bitcoins to that IP address. You can use any arbitrary IP addresses with MapAddress, though some of the common non-routable ranges (10.*, 192.168.*) will not work due to a Bitcoin bug. 192.0.2.1-192.0.2.255 is the recommended range because it is both non-routable and compatible with Bitcoin.
 
 ## Nodes list
 
@@ -48,7 +73,7 @@ The nodes list will be updated every hour by [WikiBot](User:WikiBot) to show the
 
 ## Adding a node
 
-Before adding yourself as a fallback node, you should be sure your node will stay online for a long time. If a node is offline for more than 24 hours it will be removed from the list.
+Before adding yourself as a fallback node, you should be sure your node will stay online for a long time. If a node is offline for more than 24 hours it will be removed from the list. To accept IP transactions you will have to add the *-allowreceivebyip* flag to your command line parameters.
 
 To add a node in this list, you just need the ip/hostname and your name, the other fields will be filled automatically. Insert the following lines before the <tt>END NODELIST</tt> line:
 
