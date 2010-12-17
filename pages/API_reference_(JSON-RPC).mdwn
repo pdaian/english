@@ -147,7 +147,7 @@ The following example uses Json.Net:
 You can also send commands and see results using //curl// or some other command-line HTTP-fetching utility; for example:
 
 	curl --user user --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' 
-	-H 'content-type: text/plain;' http://127.0.0.1:8332/
+	-H 'content-type: text/plain;' <nowiki>http://127.0.0.1:8332/</nowiki>
 
 You will be prompted for your rpcpassword, and then will see something like:
 
