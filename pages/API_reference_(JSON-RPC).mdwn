@@ -46,10 +46,10 @@ require_once 'jsonRPCClient.php';
 
 	$bitcoin = new jsonRPCClient(<nowiki>'http://user:pass@127.0.0.1:8332/'); </nowiki>
 	
-	echo "<pre>\n";
-  print_r($bitcoin->getinfo()); echo "\n";
-  echo "Received: ".$bitcoin->getreceivedbylabel("Your Address")."\n";
-  echo "</pre>";
+	echo <nowiki>"<pre>\n";</nowiki>
+	print_r($bitcoin->getinfo()); echo "\n";
+	echo "Received: ".$bitcoin->getreceivedbylabel("Your Address")."\n";
+	echo <nowiki>"</pre>";</nowiki>
 
 ## Java
 
