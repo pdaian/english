@@ -108,7 +108,7 @@ The following example uses Json.Net:
 	/// important, otherwise the service can't desirialse your request properly
 	webRequest.ContentType = "application/json-rpc";
 	webRequest.Method = "POST";
-
+	
 	JObject joe = new JObject();
 	joe.Add(new JProperty("jsonrpc", "1.0"));
 	joe.Add(new JProperty("id", "1"));
@@ -136,10 +136,10 @@ The following example uses Json.Net:
 	Stream dataStream = webRequest.GetRequestStream();
 	dataStream.Write(byteArray, 0, byteArray.Length);
 	dataStream.Close();
-
-
+	
+	
 	WebResponse webResponse = webRequest.GetResponse();
-
+	
 	... // deserialze the response
 
 ## Command line (curl)
