@@ -18,7 +18,7 @@ A list of RPC calls will be shown.
 	$ ./bitcoind getbalance
 	2000.00000
 
-====== JSON-RPC ======
+## JSON-RPC
 
 Running Bitcoin with the -server argument (or running bitcoind) tells it to function as a [HTTP JSON-RPC](http://json-rpc.org/wiki/specification) server, but 
 [HTTP Basic access authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) must be used when communicating with it, and, for security, by default, the server only accepts connections from other processes on the same machine.  If your HTTP or JSON library requires you to specify which 'realm' is authenticated, use 'jsonrpc'.
@@ -27,7 +27,7 @@ Bitcoin supports SSL (https) JSON-RPC connections beginning with version 0.3.14.
 
 To access the server you should find a [suitable library](http://json-rpc.org/wiki/implementations) for your language.
 
-====== Python ======
+## Python
 
 For Python, [python-jsonrpc](http://json-rpc.org/wiki/python-json-rpc) is perfect.  Python-jsonrpc auto-magically generates Python methods corresponding to the functions above.  For example:
 
@@ -39,7 +39,7 @@ access.listreceivedbyaddress(6)
 access.sendtoaddress("11yEmxiMso2RsFVfBcCa616npBvGgxiBX", 10)
 </code>
 
-====== PHP ======
+## PHP
 
 The [JSON-RPC PHP](http://jsonrpcphp.org/) library also makes it very easy to connect to Bitcoin.  For example:
 
@@ -53,7 +53,7 @@ echo "Received: ".$bitcoin->getreceivedbylabel("Your Address")."\n";
 echo "</pre>";
 </code>
 
-====== Java ======
+## Java
 
 The easiest way to tell Java to use HTTP Basic authentication is to set a default Authenticator:
 <code>final String rpcuser ="...";
@@ -66,7 +66,8 @@ Authenticator.setDefault(new Authenticator() {
 });
 </code>
 Once that is done, any JSON-RPC library for Java (or ordinary URL POSTs) may be used to communicate with the Bitcoin server.
-====== Perl ======
+
+## Perl
 
 The JSON::RPC package from CPAN can be used to communicate with Bitcoin.  You must set the client's credentials; for example:
 
@@ -95,7 +96,7 @@ if ($res){
 }
 </code>
 
-====== .NET (C#) ======
+## .NET (C#)
 The communication with rpc service can be achieved using the standard httprequest/response objects.
 A library for serialising and deserialising Json will make your life a lot easier:
 
@@ -149,7 +150,7 @@ The following example uses Json.Net:
 
 
 
-====== Command line (curl) ======
+## Command line (curl)
 
 You can also send commands and see results using //curl// or some other command-line HTTP-fetching utility; for example:
 <code>curl --user user --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
