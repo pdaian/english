@@ -1,9 +1,21 @@
-## What is Bitcoin?
+Here you will find answers to the most commonly asked questions.
+
+## General
+
+### What is Bitcoin?
 
 Bitcoin is a peer-to-peer digital currency. Peer-to-peer (P2P) means that there is no central authority to issue new money or keep track of transactions. Instead, these tasks are managed collectively by the nodes of the network.
 
-## How does Bitcoin work?
+### How does Bitcoin work?
 
 Bitcoin utilizes public/private key digital signatures (ECDSA). A coin has its owner's public key on it. When a coin is transferred from user A to user B, A adds B’s public key to the coin and signs it with his own private key. Now B owns the coin and can transfer it further. To prevent A from transferring the already used coin to another user C, a public list of all the previous transactions is collectively maintained by the network of Bitcoin nodes, and before each transaction the coin’s unusedness will be checked.
+
+## Networking
+
+### Do I need to configure my firewall to run bitcoin?
+
+Bitcoin will connect to other nodes, usually on tcp port 8333. You will need to allow outgoing TCP connections to port 8333 if you want to allow your bitcoin client to connect to many nodes. Bitcoin will also try to connect to IRC (tcp port 6667) to meet other nodes to connect to.
+
+If you want to restrict your firewall rules to a few ips and/or don't want to allow IRC connection, you can find stable nodes in the [[fallback nodes list|Fallback_Nodes]].
 
 [[fr:FAQ]]
