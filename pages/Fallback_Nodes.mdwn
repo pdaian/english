@@ -1,11 +1,10 @@
 This is a node list, taken from [the original wiki](http://www.bitcoin.org/wiki/doku.php?id=fallback_nodes).
 
-The nodes list will be updated by [WikiBot](User:WikiBot) to show the status of the network. You are not allowed to add an ip which is not yours here. A node offline for more than 48 hours will be removed from the listing automatically.
+The nodes list will be updated every hour by [WikiBot](User:WikiBot) to show the status of the network. You are not allowed to add an ip which is not yours here. A node offline for more than 48 hours will be removed from the listing automatically.
 
-To add a node in this list, you just need the ip/hostname and your name, the other fields will be filled automatically. Add on the line before the <tt>END NODELIST</tt>:
+## Nodes list
 
-	<nowiki>|-
-| ip || your name</nowiki>
+### IPv4 Nodes
 
 
 
@@ -29,12 +28,29 @@ To add a node in this list, you just need the ip/hostname and your name, the oth
 |94.209.188.239 |Xunie |94.209.188.239 |Down |2010-12-17 14:52:04 |?
 |bitcoin.modernjob.info |db |94.247.169.108 |Down |2010-12-17 14:52:05 |?
 |lzsaver.dlinkddns.com |lzsaver |188.122.255.83 |Down |2010-12-17 14:52:21 |?<!-- END NODELIST -->
-<!-- tor nodes cannot be checked by the bot yet -->|ijzt2eeizty3p5xe.onion |? |N/A |? |2010-11-13 |Yes
-|j43z65b6r2usg3vk.onion |Dybbuk |N/A |? |2010-11-13 |Yes
-|pvuif6nonbhj3o3r.onion |? |N/A |? |2010-11-13 |Yes
-|c5qvugpewwyyy5oz.onion |? |N/A |? |2010-11-13 |Yes
-|xqzfakpeuvrobvpj.onion |? |N/A |? |2010-11-13 |No
-|vso3r6cmjoomhhgg.onion |echelon |N/A |? |2010-11-13 |Yes
-|rnam4cxam62nkcyf.onion |BitLex |N/A |? |2010-11-13 |Yes
-|lhkz56zqrjo3jsmp.onion |fuzzylogic |N/A |? |2010-11-14 |Yes
 
+
+### Tor nodes
+
+
+
+|ijzt2eeizty3p5xe.onion |? |? |2010-11-13 |Yes
+|j43z65b6r2usg3vk.onion |Dybbuk |? |2010-11-13 |Yes
+|pvuif6nonbhj3o3r.onion |? |? |2010-11-13 |Yes
+|c5qvugpewwyyy5oz.onion |? |? |2010-11-13 |Yes
+|xqzfakpeuvrobvpj.onion |? |? |2010-11-13 |No
+|vso3r6cmjoomhhgg.onion |echelon |? |2010-11-13 |Yes
+|rnam4cxam62nkcyf.onion |BitLex |? |2010-11-13 |Yes
+|lhkz56zqrjo3jsmp.onion |fuzzylogic |? |2010-11-14 |Yes
+
+
+## Adding a node
+
+Before adding yourself as a fallback node, you should be sure your node will stay online for a long time. If a node is offline for more than 24 hours it will be removed from the list.
+
+To add a node in this list, you just need the ip/hostname and your name, the other fields will be filled automatically. Add on the line before the <tt>END NODELIST</tt>:
+
+	<nowiki>|-
+| ip || your name</nowiki>
+
+Please note that a bot will connect to your node every hour to check its status and version.
