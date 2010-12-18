@@ -1,0 +1,31 @@
+Bitcoin transactions send bitcoins to a specific public key. A Bitcoin address is an encoded hash of a public key. In order to use received bitcoins, you need to have the private key matching the public key you received with. This is sort of like a super long password associated with an account (public key). Your Bitcoin wallet contains all of the private keys necessary for spending your received transactions. If you delete your wallet without a backup, then you no longer have the authorization information necessary to claim your coins, and the coins associated with those keys are lost forever.
+
+Creating a new address generates a new pair of public and private keys, which are added to your wallet. Each keypair is mostly random numbers, so they cannot be known prior to generation. If you backup your wallet and then create a new address, the keypair associated with the new address will not be in the old wallet because the new keypair is only know after creating it. Any coins received at this address will be lost if you restore from the backup.
+
+The situation is made somewhat more confusing because the receiving addresses shown in the UI are not the only keys in your wallet. Each Bitcoin generation is given a new public key, and, more importantly, each sent transaction also sends a random number of bitcoins back to yourself at a new key. When sending bitcoins to anyone, you generate a new keypair for yourself and simultaneously send bitcoins to your new public key and the actual recipient's public key. This is an anonymity feature – it makes tracking Bitcoin transactions much more difficult.
+
+So if you create a backup, send some bitcoins, and then restore from the backup, some bitcoins will be lost. Bitcoin has not deleted any keys (keys are never deleted) – it has created a new key that is not in your old backup and then sent bitcoins to it.
+
+To mitigate this problem, the wallet contains a pool of 100 queued keys. When you need an address for whatever reason (send, “new address”, generation, etc.), the key is not actually generated freshly, but taken from this pool. A brand new address is generated to fill the pool back to 100. So when a backup is first created, it has all of your old keys plus 100 unused keys. After sending a transaction, it has 99 unused keys. After a total of 100 new-key actions, you will start using keys that are not in your backup. Since the backup does not have the private keys necessary for authorizing spends of these coins, restoring from the old backup will cause you to lose bitcoins.
+
+Linux users can setup cron by running 'crontab -e' and adding this line: 01 */1 * * * /usr/local/bin/backupwallet.sh
+
+backupwallet.sh:
+
+	#!/bin/bash
+	
+	TS=$(date "+%Y%m%d-%H-%M")
+	
+	WALLET=/tmp/wallet${TS}
+	WALLET_E=/tmp/wallet${TS}.crypt
+	
+	bitcoind backupwallet $WALLET
+	gpg -r genjix --output $WALLET_E --encrypt $WALLET
+	scp $WALLET_E user@myserver.org:~/wallets/
+	rm $WALLET $WALLET_E
+
+The shell script does:
+
+* Call bitcoind backupwallet to create a time/date-stamped wallet file.
+* GPG encrypt the wallet with your public key.
+* Copy the result to an off-machine backup location.
