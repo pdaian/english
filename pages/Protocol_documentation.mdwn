@@ -134,6 +134,8 @@ Payload (maximum payload length: 1000 bytes):
 |26x? |addr_list |net_addr[]|Address of other nodes on the network. version < 209 will only read the first one
 
 
+**Note**: Starting version 31402, addresses are prefixed with a timestamp. If no timestamp is present, the addresses should not be relayed to other peers, unless it is indeed confirmed they are up.
+
 ### inv
 
 Allows a node to advertise its knowledge of one or more objects. It can be received unsolicited, or in reply to *getblocks*.
