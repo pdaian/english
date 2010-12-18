@@ -1,0 +1,317 @@
+Protocol specification as used in [[QBitcoin]].
+
+Sources:
+
+* [[Original_Bitcoin_client]] source
+* [Draft spec on bitcoin wiki](http://www.bitcoin.org/wiki/doku.php?id=bitcoins_draft_spec_0_0_1)
+
+Type names used in this documentation are from the C99 standard.
+
+## Common structures
+
+Almost all integers are encoded in little endian. Only IP or port number are encoded big endian.
+
+### Message structure
+
+
+
+|4 |magic |uint32_t |Magic value indicating message origin network, and used to seek to next message when stream state is unknown
+|12 |command |char[[12]]|ASCII string identifying the packet content, NULL padded (non-NULL padding results in packet rejected)
+|4 |length |uint32_t |Length of payload
+|4 |checksum |uint32_t |First 4 bytes of sha256(sha256(payload))
+|? |payload |char[]|The actual data (can be empty, in which case checksum is excluded, and length is set to 0
+
+
+Known magic values:
+
+
+
+|main |F9BEB4D9
+|testnet |FABFB5DA
+
+
+### Variable length integer
+
+Integer can be encoded depending on the represented value to save space.
+
+
+
+|< 0xfd |1 |uint8_t
+|< 0xffff |3 |0xfd + uint16_t
+|< 0xffffffff |5 |0xfe + uint32_t
+|- |9 |0xff + uint64_t
+
+
+### Variable length string
+
+Variable length string can be stored using a variable length integer followed by the string itself.
+
+
+
+|? |length |var_int |Length of the string
+|? |string |char[]|The string itself (can be empty)
+
+
+### Network address
+
+When a network address is needed somewhere, this structure is used (currently only supports ipv4).
+
+
+
+|8 |services |uint64_t |?
+|12 |reserved |char[[12]]|Reserved for ipv6 support
+|4 |ipv4 |uint32_t |IPv4 address, network byte order
+|2 |port |uint16_t |port number, network byte order
+
+
+### Inventory Vectors
+
+Inventory vectors are used for notifying other nodes about objects they have or data which is being requested.
+
+Inventory vectors consist of the following data format:
+
+
+
+|4 |type |uint32_t |Identifies the object type linked to this inventory
+|32 |hash |char[[32]]|Hash of the object
+
+
+
+The object type is currently defined as one of the following possibilities:
+
+
+
+|0 |ERROR |Any data of with this number may be ignored
+|1 |MSG_TX |Hash is related to a transaction
+|2 |MSG_BLOCK |Hash is related to a data block
+
+
+Other Data Type values are considered reserved for future implementations.
+
+## Message types
+
+### version
+
+When a node receives an incoming connection, it will immediatly advertise its version. No futher communication is possible until both peers have exchanged their version.
+
+Payload:
+
+
+
+|4 |version |uint32_t |Identifies protocol version being used by the node
+|8 |services |uint64_t |bitfield of features to be enabled for this connection
+|8 |timestamp |uint64_t |standard UNIX timestamp in seconds
+|26 |addr_me |net_addr |The network address of the node emitting this message
+|colspan="4"version >= 106
+|26 |addr_you |net_addr |The network address seen by the node emitting this message (ie, the address of the receiving node)
+|8 |nonce |uint64_t |Node random unique id. This id is used to detect connections to self
+|? |sub_version_num |var_str |Secondary Version information (null terminated?)
+|colspan="4"version >= 209
+|4 |start_height |uint32_t |The last block received by the emitting node
+
+
+If the emitter of the packet has version >= 209, a "verack" packet shall be sent if the version packet was accepted.
+
+The following services are currently assigned:
+
+{!
+! Value !! Name !! Description
+-
+ 1  NODE_NETWORK  This node can be asked for full blocks instead of just headers.
+}
+
+### verack
+
+The *verack* packet is sent in reply to *version* for clients >= 209.
+
+### addr
+
+Provide informations on known nodes of the network. Non-advertised nodes should be forgotten after typically 3 hours
+
+Payload (maximum payload length: 1000 bytes):
+
+
+
+|26x? |addr_list |net_addr[]|Address of other nodes on the network. version < 209 will only read the first one
+
+
+### inv
+
+Allows a node to advertise its knowledge of one or more objects. It can be received unsolicited, or in reply to *getblocks*.
+
+Payload (maximum payload length: 50000 bytes):
+
+
+
+|? |count |var_int |Number of inventory entries
+|36x? |inventory |inv_vect[]|Inventory vectors
+
+
+### getdata
+
+getdata is used in response to inv, to retrieve the content of a specific object, and is usually sent after receiving an *inv* packet, after filtering known elements.
+
+Payload (maximum payload length: 50000 bytes):
+
+
+
+|? |count |var_int |Number of inventory entries
+|36x? |inventory |inv_vect[]|Inventory vectors
+
+
+### getblocks
+
+Return an *inv* packet containing the list of blocks starting at hash_start, up to hash_stop or 500 blocks, whichever comes first. To receive the next blocks hashes, one needs to issue getblocks again with the last known hash.
+
+Payload:
+
+
+
+|4 |version |uint32_t |only present if nType has SER_GETHASH set (purpose unknown)
+|32 |hash_start |char[[32]]|hash of the last known block of the emitting node
+|32 |hash_stop |char[[32]]|hash of the last desired block. Set to zero to get as many blocks as possible (500)
+
+
+### tx
+
+*tx* describes a bitcoin transaction, in reply to *getdata*
+
+
+
+
+|4 |version |uint32_t |Transaction data format version
+|41+ |tx_in |tx_in[]|A list of 1 or more transaction inputs or sources for coins
+|8+ |tx_out |tx_out[]|A list of 1 or more transaction outputs or destinations for coins
+|4 |lock_time |uint32_t |The block number or timestamp at which this transaction is locked, or 0 if the transaction is always locked. A non-locked transaction must not be included in blocks, and it can be modified by broadcasting a new version before the time has expired (replacement is currently disabled in Bitcoin, however, so this is useless).
+
+
+TxIn consists of the following fields:
+
+
+
+|36 |previous_output |outpoint |The previous output transaction reference, as an OutPoint structure
+|? |signature |script |Computational Script for confirming transaction authorization
+|4 |sequence |uint32_t |Transaction version as defined by the sender. Intended for "replacement" of transactions when information is updated before inclusion into a block.
+
+
+The OutPoint structure consists of the following fields:
+
+
+
+|32 |hash |char[[32]]|The hash of the referenced transaction.
+|4 |index |uint32_t |The index of the specific output in the transaction. The first output is 0, etc.
+
+
+The Script structure consists of a series of pieces of information and operations related to the value of the transaction.
+
+(Structure to be expanded in the future… see script.h and script.cpp for more information)
+
+The TxOut structure consists of the following fields:
+
+
+
+|8 |value |uint64_t |Transaction Value
+|? |pk_script |script |Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
+
+
+### block
+
+The **block** message is sent in response to a getdata message which requests transaction information from a block hash.
+
+
+
+|4 |version |uint32_t |Block version information, based upon the software version creating this block
+|32 |prev_block |char[[32]]|The hash value of the previous block this particular block references
+|32 |merkle_root |char[[32]]|The reference to a Merkle tree collection which is a hash of all transactions related to this block
+|4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2038!)
+|4 |bits |uint32_t |The calculated difficulty target being used for this block
+|4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
+
+
+### getaddr
+
+The getaddr message sends a request to a node asking for information about known active peers to help with identifying potential nodes in the network. The response to receiving this message is to transmit an addr message with one or more peers from a database of known active peers. The typical presumption is that a node is likely to be active if it has been sending a message within the last three hours.
+
+No additional data is transmitted with this message.
+
+### checkorder
+
+This message is used for [[IP_Transactions]], to ask the peer if it accepts such transactions and allow it to look at the content of the order.
+
+It contains a CWalletTx object
+
+Payload:
+
+
+
+|colspan="4"Fields from CMerkleTx
+|? |hashBlock
+|? |vMerkleBranch
+|? |nIndex
+|colspan="4"Fields from CWalletTx
+|? |vtxPrev
+|? |mapValue
+|? |vOrderForm
+|? |fTimeReceivedIsTxTime
+|? |nTimeReceived
+|? |fFromMe
+|? |fSpent
+
+
+### submitorder
+
+Confirms an order has been submitted. 
+
+Payload:
+
+
+
+|32 |hash |char[[32]]|Hash of the transaction
+|? |wallet_entry |CWalletTx |Same payload as checkorder
+
+
+### reply
+
+Generic reply for [[IP_Transactions]]
+
+Payload:
+
+
+
+|4 |reply |uint32_t |reply code
+
+
+Possible values:
+
+
+
+|0 |SUCCESS |The IP Transaction can proceed (*checkorder*), or has been accepted (*submitorder*)
+|1 |WALLET_ERROR |AcceptWalletTransaction() failed
+|2 |DENIED |IP Transactions are not accepted by this node
+
+
+### ping
+
+The *ping* message is sent primarily to confirm that the TCP/IP connection is still valid. An error in transmission is presumed to be a closed connection and the address is removed as a current peer. No reply is expected as a result of this message being sent nor any sort of action expected on the part of a client when it is used.
+
+### alert
+
+An **alert** is sent between nodes to send a general notification message throughout the network. If the alert can be confirmed with the signature as having come from the the core development group of the Bitcoin software, the message is suggested to be displayed for end-users. Attempts to perform transactions, particularly automated transactions through the client, are suggested to be halted. The text in the Message string should be relayed to log files and any user interfaces.
+
+Payload:
+
+
+
+|? |message |var_str |System message which is coded to convey some information to all nodes in the network
+|? |signature |var_str |A signature which can be confirmed with a public key verifying that it is Satoshi (the originator of Bitcoins) who has "authorized" or created the message
+
+
+The signature is to be compared to this ECDSA public key:
+
+	04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284
+
+Source: [(1)](http://www.bitcoin.org/smf/index.php?topic=898.0)
+
+## Scripting
+
+See [(1)](http://www.bitcoin.org/wiki/doku.php?id=script) (TODO)
