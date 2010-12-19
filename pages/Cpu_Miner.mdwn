@@ -1,5 +1,5 @@
 [[!template id=stub]]
-**cpu-miner** is a Bitcoin miner created by jgarzik. It mines through a proprietary JSON-based remote protocol, and supports several algorithms for doing encryption required to build a block.
+**cpu-miner** is a Bitcoin miner created by jgarzik. It mines through a proprietary JSON-RPC pooled mining protocol, and supports several algorithms for doing encryption required to build a block.
 
 ##Algorithms
 
@@ -7,5 +7,9 @@
 * **4way:** SSE optimizations available as a compile-time option on the classic Bitcoin client.
 * **padlock:** Implementation of the Padlock encryption optimizations on VIA CPUs.
 * **cryptopp:** (Experimental) algorithm which uses the Crypto++ library.
+
+##Pooled mining servers
+
+* [slush's server](http://mining.bitcoin.cz)
 
 [[!tag "Bitcoin_miners"]]
