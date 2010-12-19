@@ -24,7 +24,7 @@ backupwallet.sh:
 	WALLET_E=/tmp/wallet${TS}.crypt
 	
 	bitcoind backupwallet $WALLET
-	gpg -r genjix --output $WALLET_E --encrypt $WALLET
+	gpg -r myusername --output $WALLET_E --encrypt $WALLET
 	scp $WALLET_E user@myserver.org:~/wallets/
 	rm $WALLET $WALLET_E
 
