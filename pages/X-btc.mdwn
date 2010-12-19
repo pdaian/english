@@ -1,0 +1,54 @@
+x-btc is a proposed URI scheme for Bitcoin. The first version of the specification was created by Zarutian, but the first version of this wiki page included modifications by theymos. The main design goal is to produce URIs that are concise enough to fit in a size-limited QR code, but clear enough to be easily human-readable.
+
+## Specification
+
+<pre>uri := schema (":" item)+
+schema := ["x-"] "btc"
+item := (thing [("?" label)+] ";")+ [action]
+thing := address | private_key | public_key | raw_transaction | value | hash160
+    | ip | ip_comment | custom
+address := "addr=" bitcoin_address
+hash160 := "hash=" hash160
+ip := "ip=" ip_address
+ip_comment := "ipmsg=" ip_comment
+private_key := "privkey=" encoded_private_key
+public_key := "pubkey=" encoded_public_key
+raw_transaction := "rawtxn=" encoded_raw_transaction
+value := "value=" decimal
+action := "send" | "store"
+custom := "x-" customParam "=" customParamValue</pre>
+
+Except where specified above, URIs may contain only alphanumeric characters (A-Za-z0-9), plus the special characters "-_.~" (double quotes not included). All other characters must be URI encoded per RFC 3986.
+
+Binary data should be specified in base64url. This is the same as normal base64, but + becomes -, / becomes _, and there is no padding.
+
+* encoded_raw_transaction is a base64url encoded transaction in Bitcoin network format.
+* encoded_private_key is a base64url encoded private key used by Bitcoin.
+* encoded_public_key is a base64url encoded public key used by Bitcoin.
+* hash160 is a Bitcoin hash160 public key hash. Bitcoin addresses can be losslessly converted to and from hash160s.
+* address is a Bitcoin address, as used by Bitcoin.
+* value is the number of bitcoins associated with the data. This MUST be specified in the same way as 0.3.x versions of Bitcoin: nValue / 100,000,000.
+* label is a short string describing the previous "thing".
+* action is "send" when the user is expected to send bitcoins to the specified public key or address, and "store" when the user is expected to store or import the data.
+
+If two of the same type of parameter are given in one "item", the Bitcoin client SHOULD give the user a choice of which value to actually use.
+
+##Examples
+
+<pre>x-btc:addr=1NXYoJ5xU91Jp83XfVMHwwTUyZFK64BoAD?theymos;value=50;send</pre>
+Send 50 BTC to address 1NX... (label "theymos").
+<pre>x-btc:hash=7CGqAmLHqbgsQlKyugh-zgAVL9o?theymos;value=50;send</pre>
+This is exactly the same as above.
+<pre>x-btc:addr=1NXYoJ5xU91Jp83XfVMHwwTUyZFK64BoAD;value=50;value=0.01;send</pre>
+Send 50 BTC OR 0.01 BTC to 1NX...
+<pre>x-btc:addr=1NXYoJ5xU91Jp83XfVMHwwTUyZFK64BoAD?theymos;value=50;send:addr=
+1Gxy2mmsEdYYQ3Lve4kyNfvzHNfdvKP2fj?abc?def;value=100.2;send</pre>
+Send 50 BTC to address 1NX... (label "theymos") AND 100.20 BTC to address 1Gxy... (label "abc" OR "def").
+<pre>x-btc:addr=1NXYoJ5xU91Jp83XfVMHwwTUyZFK64BoAD?theymos;store</pre>
+Store 1NXY... in your address book with the label "theymos".
+<pre>x-btc:pubkey=Ad0a...;send</pre>
+Open a "Send bitcoins" dialog for the public key Ad0a... You need to fill in any value and label information.
+<pre>x-btc:pubkey=Pm_W...;privkey=AJC86...;store</pre>
+Add public key Pm_W... to your wallet and rescan the block chain for transactions to it. Any bitcoins gotten with this keypair SHOULD be immediately and automatically sent to a new, secret address.
+<pre>x-btc:rawtxn=AeOc...;store</pre>
+Act as though you received the transaction AeOc... from one of your network peers.
