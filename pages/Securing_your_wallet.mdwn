@@ -10,7 +10,9 @@ To mitigate this problem, the wallet contains a pool of 100 queued keys. When yo
 
 ## Linux solution
 
-Linux users can setup cron by running 'crontab -e' and adding this line: 01 */1 * * * /usr/local/bin/backupwallet.sh
+Linux users can setup cron by running 'crontab -e' and adding this line:
+
+	01 */1 * * * /usr/local/bin/backupwallet.sh
 
 backupwallet.sh:
 
@@ -26,8 +28,8 @@ backupwallet.sh:
 	scp $WALLET_E user@myserver.org:~/wallets/
 	rm $WALLET $WALLET_E
 
-The shell script does:
+The shell script:
 
-* Call bitcoind backupwallet to create a time/date-stamped wallet file.
-* GPG encrypt the wallet with your public key.
-* Copy the result to an off-machine backup location.
+* Calls bitcoind backupwallet to create a time/date-stamped wallet.
+* GPG encrypts the wallet with your public key.
+* Copies the result to a backup location.
