@@ -5,6 +5,39 @@ Sources:
 
 Type names used in this documentation are from the C99 standard.
 
+## Common standards
+
+### Hashes
+
+Usually, when a hash is computed within bitcoin, it is computed twice. Most of the time [SHA-256](http://en.wikipedia.org/wiki/SHA-2) hashes are used, however [RIPEMD-160](http://en.wikipedia.org/wiki/RIPEMD) is also used when a shorter hash is desireable (for example when creating a bitcoin address).
+
+Example of double-SHA-256 encoding of string "hello":
+
+	hello
+	2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 (first round of sha-256)
+	9595c9df90075148eb06860365df33584b75bff782a510c6cd4883a419833d50 (second round of sha-256)
+
+For bitcoin addresses (RIPEMD-160) this would give:
+
+	hello
+	2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 (first round is sha-256)
+	b6a9c8c230722b7c748331a8b450f05566dc7d0f (with ripemd-160)
+
+### Encryption
+
+Bitcoin uses [Elliptic Curve](http://en.wikipedia.org/wiki/Elliptic_curve_cryptography) [Digital Signature Algorithm](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) (ECDSA) to sign transactions. 
+
+For ECDSA the secp256k1 curve from http://www.secg.org/collateral/sec2_final.pdf is used.
+Public keys (in scripts) are given as 04 <x> <y> where x and y are 32 byte strings representing the coordinates of a point on the curve.
+
+### Addresses
+
+A bitcoin address is in fact the hash of a ECDSA public key, computed this way:
+
+	Bitcoin Address = Base58Encode(RIPEMD-160(SHA-256(public key)))
+
+The Base58 encoding used is home made, and has some differences. Especially, leading zeroes are kept as single zeroes when conversion happens.
+
 ## Common structures
 
 Almost all integers are encoded in little endian. Only IP or port number are encoded big endian.
@@ -312,9 +345,6 @@ The signature is to be compared to this ECDSA public key:
 	(hash) 1AGRxqDa5WjUKBwHB9XYEjmkv1ucoUUy1s
 
 Source: [(1)](http://www.bitcoin.org/smf/index.php?topic=898.0)
-
-For ECDSA the secp256k1 curve from http://www.secg.org/collateral/sec2_final.pdf is used.
-Public keys (in scripts) are given as 04 <x> <y> where x and y are 32 byte strings representing the coordinates of a point on the curve.
 
 ## Scripting
 
