@@ -1,0 +1,66 @@
+Because all of your bitcoins are stored in a file, it's important to back up regularly. To avoid loss, you should back up at least once every time you perform a total of 100 of any of these actions:
+
+* **Send bitcoins**
+* Generate bitcoins
+* Receive bitcoins via IP address
+* Create a new address
+
+Receiving bitcoins via Bitcoin address doesn't count toward the 100.
+
+If you don't back up after performing 100 of those actions, it's possible for you to lose your entire balance, no matter how few coins you actually sent or received.
+
+Bitcoin stores 100 queued addresses in wallet.dat. Once you use them all, a backup is necessary. All of the actions above use an address. If you don't want to back up so often, you can increase the number of addresses in the pool by always running Bitcoin with the *-keypool=number* switch. For example, with -keypool=500 you will be able to safely back up after every 500 actions. If you set this to a huge number, the next time you start Bitcoin it will take a while to generate all of the keys. Also, the wallet.dat file will permanently grow by about 1 kilobyte per key.
+
+You need to back up after sending bitcoins because Bitcoin can only send entire previous [[transaction|transactions]] credits. If your wallet is made of 50 BTC that was gotten from one generation, then you can only send exactly 50 BTC -- no less. If you want to send 10 BTC, then Bitcoin will make a single transaction with two "outputs": one to the real destination, and one back to a *new address* that you own. Since the new address is not in your old backups (if you don't back up every 100 actions), you will lose this "change". Usually the amount lost is small, but it can destroy your entire balance if, for example, your balance is composed of a single 20,000 BTC transaction that was just sent to you. Bitcoin chooses previous transactions somewhat unpredictably when sending, so you should not guess about what the change will be.
+
+## Locating BitCoin's data directory
+
+### Windows
+
+Go to Start -> Run (or press WinKey+R) and run this:
+
+	explorer %APPDATA%\BitCoin
+
+BitCoin's data folder will open. For most users, this is the following locations:
+
+	C:\Documents and Settings\YourUserName\Application data\BitCoin (XP)
+	
+	C:\Users\YourUserName\Appdata\Roaming\BitCoin (Vista and 7)
+
+"AppData" and "Application data" are hidden by default.
+
+### Linux
+
+By default BitCoin will put its data here:
+
+	~/.bitcoin/
+
+You need to do a "ls -a" to see directories that start with a dot.
+
+If that's not it, you can do a search like this:
+
+	find / -name wallet.dat -print 2>/dev/null
+
+### Mac
+
+By default BitCoin will put its data here:
+
+	~/Library/Application Support/Bitcoin/
+
+## Backing up
+
+The only file you need to back up is "wallet.dat". Ensure that BitCoin is closed, copy this file somewhere else, encrypt it, and put it somewhere safe. Ideally, you would put this file in two places: one nearby, and one 100+ miles away.
+
+You can use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin.
+
+## Encryption
+
+Your wallet.dat file is not encrypted by BitCoin. Anyone who can access it can easily steal all of your coins. Use one of these encryption programs if there is any chance someone might stumble upon your wallet.
+
+* [7-zip](http://www.7-zip.org/) - Supports strongly-encrypted archives.
+* [AxCrypt](http://www.axantum.com/axcrypt/)
+* [TrueCrypt](http://www.truecrypt.org/) - Volume-based on-the-fly encryption (for advanced users)
+
+[[!template id=fromold address]]
+
+[[!tag "Technical"]]
