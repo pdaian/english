@@ -1,0 +1,90 @@
+## Might be a problem
+
+### Tracing a coin's history
+Tracing a coin's history can be used to connect identities to addresses. [[More info|Anonymity]].
+
+### Cancer nodes
+It's trivial for an attacker to fill the network with clients controlled by him. This might be helpful in the execution of other attacks.
+
+For example, an attacker might connect 100,000 IP addresses to the IRC bootstrap channel. You would then be very likely to connect only to attacker nodes. This state can be exploited in (at least) the following ways:
+
+* The attacker can refuse to relay blocks and transactions from everyone, disconnecting you from the network.
+* The attacker can relay only blocks that he creates, putting you on a separate network. You're then open to double-spending attacks.
+* If you rely on transactions with 0 confirmations, the attacker can just filter out certain transactions to execute a double-spending attack.
+* Low-latency encryption/anonymization of Bitcoin's transmissions (With Tor, JAP, etc.) can be defeated relatively easy with a timing attack if you're connected to several of the attacker's nodes and the attacker is watching your transmissions at your ISP.
+
+Bitcoin makes these attacks more difficult by only making an outbound connection to one IP address per /16 (x.y.0.0). Incoming connections are unlimited and unregulated, but this is generally only a problem in the anonymity case, where you're probably already unable to accept incoming connections.
+
+### No authentication for IP transfers
+Since there's no authentication when sending to an [[IP_address]], executing a man-in-the-middle attack and stealing the sent BitCoins is trivial. This attack is downright *likely* if you're using Tor.
+
+### Packet sniffing
+Someone who can see all of your Internet traffic can easily see when you send a transaction that you didn't receive (which means that it's yours). This would be made more difficult (but not impossible) if node-to-node encryption was used.
+
+## Probably not a problem
+
+###Breaking the cryptography
+SHA-256 and ECDSA are considered very strong currently, but they might be broken in the far future. If that happens, BitCoin can shift to a stronger algorithm. [More info](http://www.bitcoin.org/smf/index.php?topic=191.msg1585#msg1585).
+
+###Segmentation
+If there is even a "trickle" of a connection between two sides of a segmented network, things should still work perfectly. When block chains are combined, all of the non-generation transactions in the shorter chain are re-added to the transaction pool -- they'll start over at 0/unconfirmed, but they'll still be valid. No mature transactions will be lost unless the segmentation persists for longer than ~120 blocks. Then generations will start to mature, and any transactions based on those generations will become invalid when recombined with the longer chain. [More info](http://www.bitcoin.org/smf/index.php?topic=241.msg2071#msg2071).
+
+### Attacking all users
+The IP addresses of most users are totally public. You can use Tor to hide this, but the network won't work if everyone does this. BitCoin requires that *some* country is still free.
+
+### Dropping transactions
+Nodes that generate blocks can choose not to include a transaction in their blocks. When this happens, the transaction remains "active" and can be included in a later block. Two things discourage this:
+
+* Nodes only hash a fixed-size *header*, so there is no speed advantage to dropping transactions.
+* Satoshi has [said](http://www.bitcoin.org/smf/index.php?topic=165.msg1595#msg1595) that he will write code to stop this kind of thing if it becomes a problem.
+
+### Attacker has a lot of CPU power
+An attacker that controls more than 50% of the network's CPU power can, for the time that he is in control, exclude and modify the ordering of transactions. This allows him to:
+
+* Reverse transactions that he sends while he's in control
+* Prevent some or all transactions from gaining any confirmations
+* Prevent some or all other generators from getting any generations
+The attacker *can't*:
+
+* Reverse other people's transactions
+* Prevent transactions from being sent at all (they'll show as 0/unconfirmed)
+* Change the number of coins generated per block
+* Create coins out of thin air
+* Send coins that never belonged to him
+
+It's much more difficult to change historical blocks, and it becomes exponentially more difficult the further back you go. As above, changing historical blocks only allows you to exclude and change the ordering of transactions. It's impossible to change blocks created before the last checkpoint.
+
+Since this attack doesn't permit all that much power over the network, it is expected that no one will attempt it. A profit-seeking person will always gain more by just following the rules, and even someone trying to destroy the system will probably find other attacks more attractive. However, if this attack is successfully executed, it will be difficult or impossible to "untangle" the mess created -- any changes the attacker makes might become permanent.
+
+### Spamming transactions
+
+It is easy to send transactions to yourself repeatedly. If these transactions fill blocks to the maximum size (1MB), other transactions would be delayed until the next block.
+
+This is made expensive by the [[fees|transaction_fee]] that would be required after the 50KB of free transactions per block are exhausted. An attacker will eventually eliminate free transactions, but Bitcoin fees will always be low because raising fees above 0.01 BTC per KB would require spending transaction fees. An attacker will eventually run out of money. Even if an attacker wants to waste money, transactions are further prioritized by the time since the coins were last spent, so attacks spending the same coins repeatedly are less effective.
+
+## Definitely not a problem
+
+###Coin destruction
+BitCoin has 8 decimals of precision, so the entire network could operate on just a handful of BitCoins. An attacker could never destroy them all. If deflation gets to the point where transactions of more than 10BC are unheard of, the client can just shift the decimal point over so that, for example, people with 0.001 BitCoins have 1.000 BitCents.
+
+###Generating tons of addresses
+Generating an address doesn't touch the network at all. You'd only be wasting your CPU resources and disk space.
+
+###Rival/malicious client code
+Any rival client must follow BitCoin's rules or else all current BitCoin cilents will ignore it. You'd have to actually get people to *use* your client.
+
+###Everyone calculates at the same rate
+If everyone began with identical blocks and started their nonce at 1 and incremented, the fastest machine would always win. However, each block contains a new, random public key known only to you in the list of transactions.  The 256-bit "merkle tree" hash of this is part of the block header.
+
+So everyone begins with slightly different blocks and everyone truly has a random chance of winning (modified by CPU power).
+
+###Generate "valid" blocks with a lower difficulty than normal
+Using unmodified Bitcoin code, an attacker could segment himself from the main network and generate a long block chain with a lower difficulty than the real network. These blocks would be totally valid for his network. However, it would be impossible to combine the two networks (and the "false" chain would be destroyed in the process).
+
+* Even though your network's difficulty can be less than the real difficulty, this doesn't give you any advantage over the real network. You'll gain ground when the real network is taking more than 10 minutes to generate a block, but you'll lose ground when the network takes less than 10 minutes.
+* Every few releases of Bitcoin, a recent block hash is hardcoded into the source code. Any blocks before that point can't be changed. An attacker starting at that point would have to reduce the difficulty, but this would require him to generate blocks at a much slower rate than once per 10 minutes. By the time he finally gets to a difficulty of 1, a new version of Bitcoin with an updated hardcoded block will probably have been released.
+* "Block chain length" is calculated from the combined difficulty of all the blocks, not just the number of blocks in the chain. The one that represents the most CPU usage will win.
+
+[[!template id=fromold weaknesses]]
+
+[[!tag "Technical"]]
