@@ -1,9 +1,38 @@
-[[!template id=stub]]
+Data is permanently recorded in the Bitcoin network through **blocks**. Each block contains all recent [[transactions]], a nonce (random number), and the [[hash]] of the previous block. A block is "solved" (published and considered valid by peers) when the SHA-256 hash of the entire block is below the current [[target]]. This is very unlikely to occur after being hashed only once, so the nonce must be incremented and the block re-hashed millions of times until it does. 
 
-A bitcoin block is a group of transactions for which a [[proof-of-work]] has been successfully submitted.
+Bitcoin transactions are broadcast to the [[network]] by the sender, and all peers generating coins collect them and add them to the block they're working on. If the transaction is much larger than the average transaction size, a small [[transaction_fee]] may be charged.
 
-Bitcoin will adjust the work [[difficulty]] every 2016 blocks so generating one block will take an average of 10 minutes.
+The first transaction in the block is special: it creates new [[Bitcoins]] for the person who generated it. Other peers will only accept the block if this transaction is of the correct amount. The number of [[Bitcoins]] generated per block starts at 50 and is halved every 210,000 blocks (four years).
 
-[[!tag "Bitcoin_Jargon"]]
+The network tries to create 6 blocks per hour. Every 2016 blocks (two weeks), all Bitcoin clients compare the actual number created with this goal and modify the target by the percentage that it varied. This increases (or decreases) the difficulty of generating blocks.
+
+The client accepts the 'longest' chain of blocks as valid. The 'length' of the entire [[block_chain]] refers to the chain with the most combined difficulty, not the one with the most blocks. That is, the longest chain is ensured to have taken the most amount of work to create.
+
+## Common Questions about Blocks
+
+### How many blocks are there?
+[Current block count](http://blockexplorer.com/q/getblockcount)
+
+### What is the maximum number of blocks?
+There is no maximum number, blocks just keep getting added to the end of the chain.
+
+#### Even when all 21 million coins have been generated?
+Yes. The blocks are for proving that transactions existed at a particular time. Transactions will still occur once all the coins have been generated, so blocks will still be created as long as people are trading Bitcoins.
+
+### How long will it take me to generate a block?
+No-one can say exactly. There is a calculator that will tell you how long it **might** take [here](http://www.alloscomp.com/Bitcoin/calculator.php).
+
+### What if I'm 1% towards calculating a block and...?
+There's no such thing as being 1% towards solving a block.  You don't make progress towards solving it.  After working on it for 24 hours, your chances of solving it are equal to what your chances were at the start or at any moment.
+
+It's like trying to flip 37 coins at once and have them all come up heads.  Each time you try, your chances of success are the same.
+
+### Where can I find more technical detail?
+More technical detail on the [[block_hashing_algorithm]] page.
+
+[[!template id=fromold block]]
+
+[[!tag "Technical"]]
+[[!tag "Vocabulary"]]
 
 [[fr:Blocs]]
