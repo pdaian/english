@@ -1,0 +1,22 @@
+When generating, you constantly hash the block header. The block is also occasionally updated as you are working on it. A block header contains these fields:
+
+
+|Field|Purpose|Updated when...
+|---|---|---
+|Version|Block version number|You upgrade the software and it specifies a new version
+|Previous hash|Hash of the previous block|A new block comes in
+|Merkle root|256-bit hash based on all of the transactions|A transaction is accepted
+|Timestamp|Current timestamp|Every few seconds
+|"Bits"|Current [[target]]in compact format|The difficulty is adjusted
+|Nonce|32-bit number (starts at 0)|A hash is tried (increments)
+
+
+The body of the block contains the transactions. These are hashed only indirectly through the Merkle root. Because transactions aren't hashed directly, hashing a block with 1 transaction takes exactly the same amount of effort as hashing a block with 10,000 transactions.
+
+Most of these fields will be the same for all users. There might be some minor variation in the timestamps. The nonce will usually be different, but it increases in a strictly linear way. "Nonce" starts at 0 and is incremented for each hash. Whenever Nonce overflows (which it does frequently), the extraNonce portion of the generation transaction is incremented, which changes the Merkle root.
+
+Given just those fields, people would frequently generate the exact same sequence of hashes as each other and the fastest CPU would almost always win. However, it is (nearly) impossible for two people to have the same Merkle root because the first transaction in your block is a generation "sent" to one of *your* unique Bitcoin addresses. Since your block is different from everyone else's blocks, you are guaranteed to produce different hashes. Every hash you calculate has the same chance of winning as every other hash calculated by the network.
+
+[[!template id=fromold block_hashing_algorithm]]
+
+[[!tag "Technical"]]
