@@ -1,0 +1,69 @@
+A transaction is a signed section of data that is broadcast to the [[network]] and collected into [[blocks|block]]. They reference a previous transaction and dedicate a certain number of bitcoins from it to a new public key (Bitcoin address). They are not encrypted (nothing in Bitcoin is encrypted).
+
+Here is a typical Bitcoin transaction.
+<pre>Input:
+Previous tx: f5d8ee39a430901c91a5917b9f2dc19d6d1a0e9cea205b009ca73dd04470b9a6
+Index: 0
+scriptSig: 304502206e21798a42fae0e854281abd38bacd1aeed3ee3738d9e1446618c4571d10
+90db022100e2ac980643b0b82c0e88ffdfec6b64e3e6ba35e7ba5fdd7d5d6cc8d25c6b241501
+
+Output:
+Value: 5000000000
+scriptPubKey: OP_DUP OP_HASH160 404371705fa9bd789a2fcd52d2c580b65d35549d
+OP_EQUALVERIFY OP_CHECKSIG</pre>
+
+The input in this transaction imports 50 BTC from output #0 in transaction f5d8... Then the output sends 50 BTC to a Bitcoin address (expressed here in hexadecimal 4043... instead of the normal base58). When the recipient wants to spend this money, he will reference output #0 of this transaction in an input of his own transaction.
+
+An **input** is a reference to an output in a different transaction. Multiple inputs are often listed in a transaction. The values of the referenced outputs are added up, and the total is usable in the outputs of this transaction. **Previous tx** is a [[hash]] of a previous transaction. **Index** is the specific output in the referenced transaction. **ScriptSig** is the first half of a script (discussed later).
+
+An **output** contains instructions for sending bitcoins. **Value** is the number of nanocoins that this output will be worth when claimed (1 bitcoin = 100,000,000 nanocoins). **ScriptPubKey** is the second half of a script (discussed later). There can be more than one output, and they share the combined value of the inputs. Because an output can only ever be referenced by a single input, the entire combined input value needs to be sent in an output if you don't want to lose it. If the input is worth 50 BTC but you only want to send 25 BTC, Bitcoin will create two outputs worth 25 BTC: one to the destination, and one back to you (known as "change", though you send it to yourself). Any input bitcoins not redeemed in an output is considered a [[transaction_fee]]; whoever generates the block will get it.
+[[!img "transaction.png" size=120x120 title="A sends 100 BTC to C and C generates 50 BTC. C sends 101 BTC to D, and he needs to send himself some change. D sends the 101 BTC to someone else, but they haven't redeemed it yet. Only D's output and B's change are capable of being spent in the current state."]]
+
+To verify that inputs are authorized to collect the values of referenced outputs, Bitcoin uses a custom Forth-like [[scripting|script]] system. The input's scriptSig and the *referenced* output's scriptPubKey are concatenated (in that order), the script is evaluated, and the input is authorized if the script returns true. Through the scripting system, the sender can create very complex conditions that people have to meet in order to claim the output's value. For example, it's possible to create an output that can be claimed by anyone without any authorization. It's also possible to require that an input be signed by ten different keys, or be redeemable with a password instead of a key.
+
+Bitcoin currently only creates three different scriptSig/scriptPubKey pairs, however. These are:
+
+**Transfer to IP address**
+
+	scriptPubKey: <pubKey> OP_CHECKSIG
+	scriptSig: <sig>
+The sender gets the public key when talking to the recipient over IP. When redeeming coins that have been sent to an IP address, the recipient provides only a signature. The signature is checked against the public key in scriptPubKey.
+
+Checking process:
+
+
+|Stack |Script |Description 
+|---|---|---
+|Empty.|<sig><pubKey>OP_CHECKSIG|scriptSig and scriptPubKey are combined.
+|<sig><pubKey>|OP_CHECKSIG|Constants are added to the stack.
+|true|Empty.|Signature is checked for top two stack items.
+
+
+**Transfer to Bitcoin address**
+
+	scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
+	scriptSig: <sig> <pubKey>
+A Bitcoin [[address]] is only a hash, so the sender can't provide a full public key in scriptPubKey. When redeeming coins that have been sent to a Bitcoin address, the recipient provides both the signature and the public key. The script verifies that the provided public key does hash to the hash in scriptPubKey, and then it also checks the signature against the public key.
+
+Checking process:
+
+
+|Stack |Script |Description 
+|---|---|---
+|Empty.|<sig><pubKey>OP_DUP OP_HASH160 <pubKeyHash>OP_EQUALVERIFY OP_CHECKSIG |scriptSig and scriptPubKey are combined.
+|<sig><pubKey>|OP_DUP OP_HASH160 <pubKeyHash>OP_EQUALVERIFY OP_CHECKSIG |Constants are added to the stack.
+|<sig><pubKey><pubKey>|OP_HASH160 <pubKeyHash>OP_EQUALVERIFY OP_CHECKSIG |Top stack item is duplicated.
+|<sig <pubKey><pubHashA>|<pubKeyHash>OP_EQUALVERIFY OP_CHECKSIG|Top stack item is hashed.
+|<sig <pubKey><pubHashA><pubKeyHash>|OP_EQUALVERIFY OP_CHECKSIG|Constant added.
+|<sig <pubKey>|OP_CHECKSIG|Equality is checked between the top two stack items.
+|true|Empty.|Signature is checked for top two stack items.
+
+
+**Generation**
+
+Generations have a single input, and this input has a "coinbase" parameter instead of a scriptSig. The data in "coinbase" can be anything; it isn't used. Bitcoin puts the current compact-format [[target]] and the arbitrary-precision "extraNonce" number there, which increments every time the Nonce field in the [[block header|block_hashing_algorithm]] overflows. Outputs can be anything, but Bitcoin creates one exactly like an IP address transaction.
+
+[[!template id=fromold transactions]]
+
+[[!tag "Technical"]]
+[[!tag "Vocabulary"]]
