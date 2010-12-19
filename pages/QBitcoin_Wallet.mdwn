@@ -1,0 +1,37 @@
+The QBitcoin Wallet is a separate process allowing wallet manipulations. It is meant to be lightweight, and portable. It depends on no external library and only manages what needs to be managed: the wallet.
+
+Unlike the [[Original_Bitcoin_client]] wallet, the [[QBitcoin]] wallet contains no informations on the amount stored on each address (this is up to the frontend).
+
+## Technical Specifications
+
+### Communications with front end
+
+When the wallet is launched, it will open the SQLite database file passed as first argument and output "READY". Starting there it is possible to send various commands to the wallet.
+
+#### SEED x
+
+This command allows giving more randomness to the generated bitcoin addresses. As the wallet is portable, it may not be able to take advantage of the best randomness sources, and thru one may be able to predict the generated bitcoin private keys. The front end should, from times to times, provide randomness to the wallet.
+
+The parameter is a hexadecimal random string (max 32 bytes). Example:
+
+	SEED F48701ECC9
+
+When the wallet shuts down, it will save its entropy to the wallet db file, and seeding is added to the existing entropy.
+
+#### RAND x
+
+Should the front end need some random bytes, it can ask that to the wallet. The x parameter is the number of bytes. Example:
+
+	RAND 32
+
+### Wallet Encryption
+
+Wallet encryption is achevied by storing a 4096 bytes RSA key pair in the wallet. The private key is encrypted with AES (rijndael) using sha256(sha256(public key + user passphrase)).
+
+Using RSA allows creation of new addresses without requiring a password, while requiring one to send transactions. Public keys are kept in the wallet so the balance can be displayed properly.
+
+### Wallet Backups
+
+When generating a wallet backup (with the "Export wallet" option of the frontend), only the RSA key (encrypted-private & public) and the ECC private keys are stored. This means someone with a wallet backup cannot even know which keys are in there.
+
+The RSA public key is required as it is used as salt to decrypt the RSA private key.
