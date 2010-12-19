@@ -1,0 +1,172 @@
+This page is for frequently asked questions that do not yet appear in the [main FAQ](http://www.bitcoin.org/faq)
+
+It's also a place for questions in progress, so feel free to ask new questions, or answer and/or refine existing answers.
+
+## Ask your question here:
+
+
+## Answered Questions
+
+### How does it work (for non-geeks)
+
+####Why can't somebody just create a version of the software that gives you extra bitcoins?
+
+When you spend some bitcoins, the software on your machine has to prove to the software running on everybody else's machine that those bitcoins are valid.
+
+How does it do that?  Well, it is a little bit complicated; you've got to understand how bitcoins are created, and how they are traded.
+
+First, how they're created:  50 bitcoins are created approximately every 10 minutes.  Everybody who is trying to create bitcoins is in a race to try to find those 50 bitcoins; they are really hard to find, but, once found, it is easy to verify that, yes, indeed, your bitcoin software found them, so you get to spend them.
+
+Second, how they're traded:  Imagine you did find 50 bitcoins (well, your computer found them by running the bitcoin software for a few months or a year-- they are not easy to find, and are harder to find the more people who are looking for them).  You trade them to me by sending them to my bitcoin address.  Inside the software, a messages is created and then broadcast to everybody that says "These 50 bitcoins that we all agree are valid are hereby officially traded to somebody else (me-- well, one of my bitcoin receiving addresses, actually)."
+
+Now I've got them.  If you try to trade those same 50 bitcoins to somebody else, it won't work-- everybody running Bitcoin sees all the trades, so if you try to spend the same coins a second time everybody else's software will reject your attempt to cheat.
+
+And that's it-- that's how it works.  Bitcoins are scarce because only about 50 are created every ten minutes.  And you can't claim to have more than you really have because everybody else can check to see if your coins really were created by the "race" process, or if they were from valid trades.
+
+### Uncatagorized
+
+#### Why did this generation give me more bitcoins than normal (like 50.07)?
+
+You collected a [[transaction_fee]].
+
+#### Why must users back up their wallets every 100 actions?
+
+Bitcoin transactions send bitcoins to a specific public key. A Bitcoin address is an encoded hash of a public key. In order to use received bitcoins, you need to have the private key matching the public key you received with. This is sort of like a super long password associated with an account (public key). Your Bitcoin wallet contains all of the private keys necessary for spending your received transactions. If you delete your wallet without a backup, then you no longer have the authorization information necessary to claim your coins, and the coins associated with those keys are lost forever.
+
+Creating a new address generates a new pair of public and private keys, which are added to your wallet. Each keypair is mostly random numbers, so they cannot be known prior to generation. If you backup your wallet and then create a new address, the keypair associated with the new address will not be in the old wallet because the new keypair is only know *after* creating it. Any coins received at this address will be lost if you restore from the backup.
+
+The situation is made somewhat more confusing because the receiving addresses shown in the UI are not the only keys in your wallet. Each Bitcoin generation is given a new public key, and, more importantly, each sent transaction also sends a random number of bitcoins back to yourself at a new key. When sending bitcoins to anyone, you generate a new keypair for yourself and simultaneously send bitcoins to your new public key and the actual recipient's public key. This is an anonymity feature -- it makes tracking Bitcoin transactions much more difficult.
+
+So if you create a backup, send some bitcoins, and then restore from the backup, some bitcoins will be lost. Bitcoin has not deleted any keys (keys are *never* deleted) -- it has created a new key that is not in your old backup and then sent bitcoins to it.
+
+To mitigate this problem, the wallet contains a pool of 100 queued keys. When you need an address for whatever reason (send, "new address", generation, etc.), the key is not actually generated freshly, but taken from this pool. A brand new address is generated to fill the pool back to 100. So when a backup is first created, it has all of your old keys plus 100 unused keys. After sending a transaction, it has 99 unused keys. After a total of 100 new-key actions, you will start using keys that are not in your backup. Since the backup does not have the private keys necessary for authorizing spends of these coins, restoring from the old backup will cause you to lose bitcoins.
+
+Linux users can setup cron by running 'crontab -e' and adding this line:
+	01 */1 * * * /usr/local/bin/backupwallet.sh
+
+backupwallet.sh:
+<pre>#!/usr/bin/env bash
+
+GPGU="My GPG User"
+
+TS=$(date "+%Y%m%d-%H-%M")
+
+WALLET=/tmp/wallet${TS}
+WALLET_E=/tmp/wallet${TS}.crypt
+
+~/bin/bitcoind backupwallet $WALLET
+/usr/bin/gpg -r "$GPGU" --output $WALLET_E --encrypt $WALLET
+~/bin/s3cmd put $WALLET_E s3://NAME_OF_MY_S3_BUCKET
+rm $WALLET $WALLET_E</pre>
+
+The shell script does:
+
+* Call bitcoind backupwallet to create a time/date-stamped wallet file.
+* GPG encrypt the wallet with my public key.
+* Copy the result to an off-machine backup location.
+
+It's using Amazon S3, which is itself redundantly backed up to multiple geographic locations automatically. Replace the s3cmd with an scp to copy somewhere if you're not an S3 user; you could even ftp somewhere, since the wallet is encrypted it doesn't matter if somebody is eavesdropping
+
+#### How many nodes are there?
+
+You can get a rough estimate by counting the number of users on the [#bitcoin](irc://irc.lfnet.org/bitcoin) channel at irc.lfnet.org. Most Bitcoin nodes are constantly connected to this channel while running, though Bitcoin can be configured not to do so. A more accurate number can be gotten by running Bitcoin nonstop for a few days and then using [bitcointools](https://github.com/gavinandresen/bitcointools) to analyze your addr.dat file. This shows the "last seen" times for *all* Bitcoin nodes.
+
+### Economics
+
+####  I've lost my wallet, is there a way to recreate the lost coins in the system?
+No, coins that are lost are lost forever.
+The lost coins will not be recovered or regenerated at any time.
+
+#### Where does the value of Bitcoin stem from? What backs up Bitcoin?
+
+Bitcoin has value because it is accepted as payment by many. The initial market value was achieved when people speculated, that because of its properties, the currency would be accepted by others later on.
+
+When we say that a currency is backed up by gold, we mean that there's a promise in place that you can exchange the currency for gold. In a sense, you could say that Bitcoin is "backed up" by the price tags of merchants and currency exchangers - a price tag is a promise to exchange goods for a specified amount of currency. Of course, price tags may or may not be as long-term promises as those made by central banks or governments.
+
+It's a common misconception that Bitcoins gain their value from the cost of electricity required to generate them. Cost doesn't equal value - hiring 1,000 men to shovel a big hole in the ground may be costly, but not valuable. Also, even though scarcity is a critical requirement for a currency to be useful, it alone doesn't make anything valuable. Your fingerprints are scarce, but that doesn't mean they have any exchange value.
+
+At the time of this writing, Bitcoin's chain of proof is the result of over 6 quadrillion cryptographically secure, verified calculations carried out by many independent computers. This large and growing input of energy and technology is part of Bitcoin's value, and represents a substantial investment of resources by Bitcoin users in creating the benefits of a trustworthy medium of exchange.
+
+#### Isn't the minting process a waste of resources?
+
+All currencies need a method for regulating the money supply and creating circulation. To make Bitcoin secure, a large amount of computer work is required. The Bitcoin process for introducing new coins into circulation is designed to make the currency secure by encouraging users to perform the necessary computational work by awarding the role of introducing new coins into circulation in rough proportion the amount of computer power contributed to this goal.
+
+### Technical
+
+#### Can generating nodes charge different transaction fees, or is this enforced by the network?
+
+Currently a generating node can charge whatever [[transaction_fee]] they want. A transaction that doesn't pay the fee won't be included in any blocks produced by that node, but it will appear in later blocks by cheaper generators.
+
+It is [possible](http://www.bitcoin.org/smf/index.php?topic=165.msg1595#msg1595) for the network to enforce a fee rate, but this is not currently implemented. If [[Satoshi]] tried to implement this, only *generating* nodes would have a vote in whether the change would be accepted, so the change would have to be beneficial in some way to generators (ie, not too low).
+
+#### Does including more transactions in your block slow down your hashing rate?
+
+Not at all. You're hashing the block header, which contains only a fixed-size hash of all the transactions.
+
+#### Why is it using so much CPU?
+
+If you have "Generate coins" turned on, Bitcoin will calculate millions of [[hashes|hash]] per second in an attempt to solve the current [[block]]. This will use all of your idle CPU time, but Bitcoin runs at a low priority, so none of your other programs should be slowed down. Turning off coin generation should eliminate most CPU usage.
+
+#### Why can't it be doing something useful for humanity instead?
+
+[[SHA-256 hashing|hash]] has very specific properties that we need. In particular, it generates (with predictable CPU required) numbers that are for all practical purposes purely random, but in a way that is easily verifiable. There are no known "beneficial" calculations that could replace this.
+
+This CPU time and electricity is not entirely wasted, though: it helps protect the network from attack.
+
+#### How much network traffic does the bitcoin client generate?
+
+Almost none. These statistics were recorded before the outgoing connection limit was reduced from 15 to 8, so the current usage is probably even lower:
+
+* Bytes sent without Bitcoin: 2475590 (2.4MiB) per day
+* Bytes received without Bitcoin: 2798454 (2.7MiB) per day
+* Bytes sent with Bitcoin (not port forwarded): 2210854 (2.1MiB) per day
+* Bytes received with Bitcoin (not port forwarded): 4699445 (4.5MiB) per day
+* Bytes sent with Bitcoin (port forwarded): 20879040 (19.9MiB) per day
+* Bytes received with Bitcoin (port forwarded): 10954438 (10.4MiB) per day
+
+#### Can we expand the transaction protocol so it includes a message as well as an amount?
+
+The current implementation already supports processing arbitrary data in transactions through the complex transaction scripting mechanism. However:
+
+* You will be charged 0.01 BTC per kilobyte, just like all other transactions.
+* ECDSA (the public-key algorithm used by Bitcoin) doesn't support encryption, so you'll have to use something else if you want encryption.
+* The ability to actually use this feature to send messages will probably never be implemented in Bitcoin. It's not what the block chain was designed for.
+
+#### What happens when two nodes generate a block at the same time?
+
+This is very unlikely to happen but if it does: The tiebreak is which block the NEXT block builds on.
+
+Each node sends out it's 'winning' block. Some nodes on the network will hear about 'block A' first and assume it is the winning block, and some will hear about 'block B' first and assume it is the winning block. Then each 'half' will proceed hashing from there trying to generate the next block as normal.
+If a machine with 'block B' as its predecessor wins the next race by generating 'block C', it becomes the official winner, and the nodes who were working on A give up and start on C. (In this case the generator of 'block A' might be disappointed, because he thought he generated some coins, but he didn't because the network decided his block was no longer valid.)
+
+Note: block A and block B will usually contain the same list of transactions.  Transactions not included will be made available to other future blocks for inclusion into the chain.
+
+#### What happens if someone sends me some coins but I am not connected?
+
+Any transfer to a 'valid' address should be successful. 
+You don't need to have a client running to receive bitcoins.
+Once you create an address, any coins sent to it will just sit there waiting for you to spend them.
+
+### Technical (Windows)
+
+#### Why am I not downloading any blocks?
+
+Add bitcoin.exe to the "Excluded processes" list of Microsoft Security Essentials.
+
+### Developing
+
+#### Is there a mailing list?
+Yes. http://sourceforge.net/mailarchive/forum.php?forum_name=bitcoin-list
+
+#### Is there a test network?
+Yes, run Bitcoin or bitcoind with the -testnet switch (beginning with version 0.3.14).
+
+There is a -testnet version of the Bitcoin Faucet at https://freebitcoins.appspot.com/TEST/.
+
+#### How do I build bitcoin?
+Forum thread on building v0.3: http://www.bitcoin.org/smf/index.php?topic=298.msg2366#msg2366
+There are some [Build notes for linux type systems (pdf)](http://heliacal.net/~solar/bitcoin/bitcoin-linuxbuild.pdf)
+
+[[!template id=fromold more_faqs]]
+
+[[!tag "Technical"]]
