@@ -1,0 +1,15 @@
+A **Bitcoin Address** is a 160-bit hash of the public portion of a public/private keypair ([ECDSA](Wikipedia:Elliptic_Curve_DSA)). Using some mathemagic, you can "sign" data with your private key and anyone who knows your public key can verify that the signature is valid. See the [Wikipedia article](Wikipedia:Public-key_cryptography) for more information about how this works.
+
+A new keypair is generated for each receiving address. Bitcoin addresses (the public keys) and their associated private keys are stored in the wallet.dat file. This is the only file you need to [[back up|backup]]. A "send" transaction to a specific Bitcoin address requires that the corresponding private key exist in the recipient's wallet. This has the implication that if you create a receiving address and receive coins to that address, then restore the wallet from an earlier backup, before the address was generated, then the coins associated with that address are lost. If you lose your wallet entirely, all of your coins are lost and can never be recovered.
+
+"Generate" transactions happen in the same way as a send transaction: each batch of 50 generated coins is "sent" to a unique address that you generate just for that purpose. These addresses are also stored in your wallet, but they are not shown in the "your receiving addresses" section.
+
+Bitcoin allows you to create as many addresses as you want, and each one is completely separate. There is no "master address": the "Your Bitcoin address" area in the Bitcoin UI has no special importance. It's only there for your convenience, and it will change automatically from time to time to enhance your anonymity. All of your other addresses will continue to work forever. They're listed in the "your receiving addresses" section. Each address takes up only about 500 bytes, so having a large number of addresses in your wallet is generally not a problem.
+
+Bitcoin addresses contain a built-in check code, so it's generally not possible to send Bitcoins to a mistyped address. However, if the address is well-formed but no one owns it (or the owner lost their wallet.dat), any coins sent to that address will be lost forever.
+
+It is also possible to send Bitcoins directly to an [[IP_address]].
+
+Since Bitcoin addresses are basically random numbers, it is possible, although extremely unlikely, for two people to independently generate the same address. This is called a [collision](Wikipedia:Collision_(computer_science)). If this happens, then  both the original owner of the address and the colliding owner could spend money sent to that address. It would not be possible for the colliding person to spend the original owner's entire wallet (or vice versa). If you were to intentionally try to make a collision, it would currently take 2^126 times longer to generate a colliding Bitcoin address than to generate a block. As long as the signing and hashing algorithms remain cryptographically strong, it will likely always be more profitable to collect generations and [[transaction fees|transaction_fee]] than to try to create collisions.
+
+[[!template id=fromold address]]
