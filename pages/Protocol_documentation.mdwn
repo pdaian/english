@@ -23,12 +23,22 @@ For bitcoin addresses (RIPEMD-160) this would give:
 	2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 (first round is sha-256)
 	b6a9c8c230722b7c748331a8b450f05566dc7d0f (with ripemd-160)
 
-### Encryption
+### Signatures
 
 Bitcoin uses [Elliptic Curve](http://en.wikipedia.org/wiki/Elliptic_curve_cryptography) [Digital Signature Algorithm](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) (ECDSA) to sign transactions. 
 
 For ECDSA the secp256k1 curve from http://www.secg.org/collateral/sec2_final.pdf is used.
 Public keys (in scripts) are given as 04 <x> <y> where x and y are 32 byte strings representing the coordinates of a point on the curve.
+
+### Transaction Verification
+
+The first transaction of a block is usually the generating transaction, which do not include any "in" transaction, and generate bitcoins (from fees for example) usually received by whoever solved the block containing this transaction.
+Such transactions are called a "coinbase transaction" and are accepted by bitcoin clients without any need to execute scripts, provided there is only one per block.
+
+If a transaction is not a coinbase, it references previous transaction hashes as input, and the index of the other transaction's output used as input for this transaction.
+The script from the in part of this transaction is executed.
+Then the script from the out part of the referenced transaction is executed.
+It is considered valid if the top element of the stack is true.
 
 ### Addresses
 
