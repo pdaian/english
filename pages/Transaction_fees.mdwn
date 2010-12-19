@@ -1,0 +1,42 @@
+[[!img "fee.png" size=120x120 title="Receiving a transaction fee of 0.44 BC"]]
+Transaction fees may be included with any transfer of bitcoins from one address to another.  At the moment, many transactions are typically processed in a way where no fee is expected at all, but for transactions which draw coins from many bitcoin addresses and therefore have a large data size, a small transaction fee is usually expected.
+
+The transaction fee is processed by and received by the bitcoin miner.  When a new bitcoin block is generated with a successful hash, the information for all of the transactions is included with the block and all transaction fees are collected by that user creating the block, who is free to assign those fees to himself.
+
+Transaction fees are voluntary on the part of the person making the bitcoin transaction, as the person attempting to make a transaction can include any fee or none at all in the transaction. On the other hand, nobody mining new bitcoins necessarily needs to accept the transactions and include them in the new block being created.  The transaction fee is therefore an incentive on the part of the bitcoin user to make sure that a particular transaction will get included into the next block which is generated.
+
+It is envisioned that over time the cumulative effect of collecting transaction fees will allow somebody creating new blocks to "earn" more bitcoins than will be "mined" from new bitcoins created by the new block itself.  This is also an incentive to keep trying to create new blocks even if the value of the newly created block from the "mining" activity is zero.
+
+It works like this:
+
+* Whoever sends the transaction is often able to guess what the appropriate fee will be based on their own fee rules.  The official client will always assess the transaction, and if a fee will typically be expected, it will not allow you to send the transaction without the calculated fee.
+* The user is prompted to confirm the fee before the transaction is sent.
+* The sender makes a transaction with more coins in the "In" portion than the "Out" portion so that there are "leftovers" not assigned to any address.
+* Whoever ends up publishing the [[block]] which contains this transaction will take these (and any) "leftover" coins. They are included with their normal generated coins and is an extra "bonus" for creating the block.
+* If a generating node receives a transaction that should include a transaction fee but doesn't, they refuse to include it in their blocks. It might be included in a later block if someone is willing to accept it. Generators can't force a certain fee on transactions -- they can only accept or reject the transaction's "fee offer".
+[[!img "lfm_fee.png" size=120x120 title="This balance is made entirely of 0.01 BTC "cents". Since sending them requires a lot of data, a very large fee is required."]]
+
+Different versions of Bitcoin have different rules for determining which transactions to accept and how large of a fee to send.
+
+Current "Default" Rules for the regular Bitcoin client (Bitcoin 0.3.17)
+
+* 0.01 BTC fee if sending any transaction less than 0.01 BTC. This is to help prevent DoS attacks against the network. Remember: fees are not network-enforced, so it's still *possible* to send these small transactions without the fee -- you just have to generate the blocks that contain them yourself (after modifying Bitcoin).
+* 0.01 BTC fee per kilobyte of transaction, but:
+	* If the blocksize (size of all transactions currently waiting to be included in a block) is less than 27 kB, transactions are free.
+	* If the blocksize is more than 250 kB, transactions get increasingly more expensive as the blocksize approaches the limit of 500 kB. Sending a transaction when the blocksize is 400 kB will cost 5 times the normal amount; sending when it's 499 kB will cost 500x, etc.
+* Transactions within each fee tier are prioritized based on several factors. Most importantly, a transaction has more priority if the coins it is using have a lot of confirmations. Someone spamming the network will almost certainly be re-using the same coins, which will lower the priority of their transactions. Priority is also increased for transactions with more BTC, and reduced for transactions with more data.
+* If the blocksize is over 4kB, free transactions in the above rules are only allowed if the transaction's priority is above a certain level.
+
+An advantage for bitcoin users to include a transaction fee is that the likelihood of getting a transaction included into the next block is going to be higher than if a transaction fee is not included.  This is a trade off of time vs. money put forward on the transaction fees, as you can be patient with a low or non-existent fee included in a transaction, or you can make sure that the transaction is processed immediately by including a higher fee than is typical.
+
+The rules are far from set in stone, and the network can support many different rules simultaneously. If there are 10 generating nodes that never require a transaction fee and your client is modified to never send any transaction fee, then your transactions will eventually be picked up by one of those free nodes when they generate a block, though it will probably take a very long time. In the far future, different rules about transaction fees among generating nodes will probably create a clear choice between fees and transaction speed. For example, you might choose to spend 2% for a guaranteed spot in the next block or 0.01% for the transaction to be sent in a few hours.
+
+As an example, clients that have block generation turned off don't know what the current blocksize is, and will therefore never pay a fee on transactions under 10 kilobytes. If you notice that your sent transactions take a very long time to accrue confirmations, this is possibly the cause. If this happens a lot (probably because the network is under attack), run Bitcoin with the -paytxfee switch: -paytxfee=0.01 will force a minimum fee of 0.01 per kilobyte for all sent transactions, which will prioritize your transactions over all free transactions.
+[[!img "feesend.png" size=120x120 title="Sending a transaction when the sender doesn't have enough money to actually pay the fee"]]
+
+ArtForz, who makes up a large percentage of the network's CPU power, never charged transaction fees (even for micro-transactions) for a period of several months.
+
+[[!template id=fromold transaction_fee]]
+
+[[!tag "Technical"]]
+[[!tag "Vocabulary"]]
