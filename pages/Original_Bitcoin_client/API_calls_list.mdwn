@@ -1,5 +1,13 @@
 Bitcoin API call list (as of version 0.3.19)
 
+## Common operation
+
+### Listing my bitcoin addresses
+
+Listing the bitcoin addresses in your wallet is easily done via *listreceivedbyaddress*. It normally lists only addresses which already have received transactions, however you can list all the addresses by setting the first argument to 0, and the second one to true
+
+## Full list
+
 
 
 |backupwallet |<destination>|Safely copies wallet.dat to destination, which can be a directory or a path with filename.
