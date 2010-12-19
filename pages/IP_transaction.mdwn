@@ -1,0 +1,14 @@
+Sending bitcoins to an IP address is just a convenient way of sending bitcoins to a Bitcoin address along with additional information.
+
+* You contact the IP address to find out if they're actually running Bitcoin and accepting IP transactions. If not, no transaction occurs.
+* Your additional information ("from", "message", etc.) is exchanged with the server.
+* The server generates a brand new Bitcoin address and sends it to you.
+* You send coins to this [[address]] in the normal way
+
+Unfortunately, the current implementation provides no authentication, so any "man in the middle" can intercept your Bitcoins during the transaction. When they see that you're sending a Bitcoin payment by IP address, they pretend to be the actual destination and send back *their* Bitcoin address. You end up sending Bitcoins to the wrong person. It's therefore not a good idea to send Bitcoins in this way, *especially* if you're using a proxy.
+
+Receiving transactions by IP address is disabled by default because hardly anyone uses it. You can enable it by running Bitcoin with the *-allowreceivebyip* switch.
+
+[[!template id=fromold ip_address]]
+
+[[!tag "Technical"]]
