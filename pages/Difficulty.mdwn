@@ -1,0 +1,44 @@
+*See also: [[target]]*
+
+### What is "difficulty"?
+
+Difficulty is a measure of how difficult it is to find a new [[block]] compared to the easiest it can ever be.
+
+### How often does the difficulty change?
+
+Every 2016 [[blocks|block]].
+
+### What is the formula for difficulty?
+
+difficulty = minimum_target / current_target 
+
+(target is a 256 bit number)
+
+### What is the current difficulty?
+[Current difficulty](http://blockexplorer.com/q/getdifficulty), as output by BitCoin's getDifficulty.
+
+### What is the maximum difficulty?
+The maximum difficulty is roughly: minimum_target / 1, which is a ridiculously huge number (about 2^224). 
+
+The actual maximum difficulty is when current_target=0, but we would not be able to calculate the difficulty if that happened. (fortunately it never will, so we're ok.)
+
+### Can the difficulty go down?
+Yes it can. See discussion in [[target]].
+
+### What is the minimum difficulty?
+The minimum difficulty, when the target is at the maximum allowed value, is 1.
+
+### How soon might I expect to generate a block?
+(The [eternal question](https://www.bitcoin.org/smf/index.php?topic=1682.0).)
+
+* Any one grinding of the hash stands the same chance of "winning" as any other.  The numbers game is how many attempts your hardware can make per second.
+* You need to know the difficulty (above) and your khash/sec rate (reported by the client).
+	* [[bitcoin_miners]] has some stats that may help you predict what you could get.
+* Visit a calculator or perform the maths yourself,
+	* http://www.alloscomp.com/bitcoin/calculator.php
+* Remember it's just probability!  There are no guarantees you will win every N days.
+
+[[!template id=fromold difficulty]]
+
+[[!tag "Technical"]]
+[[!tag "Vocabulary"]]
