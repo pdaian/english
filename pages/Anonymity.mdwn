@@ -1,0 +1,63 @@
+While the Bitcoin technology [can support](http://www.bitcoin.org/smf/index.php?topic=241.0) strong anonymity, the current implementation is usually not very anonymous.
+
+The main problem is that every transaction is publicly logged. Anyone can see the flow of Bitcoins from address to address (see first image). Alone, this information can't identify anyone because the addresses are just random numbers. However, if *any* of the addresses in a transaction's past or future can be tied to an actual identity, it might be possible to work from that point and figure out who owns all of the other addresses. This identity information might come from network analysis, surveillance, or just Googling the address. The officially-encouraged practice of using a new address for every transaction is designed to make this attack more difficult.
+[[!img "Unknownaddress.png" size=120x120 title="The flow of Bitcoins from address to address is public."]]
+
+The second image shows a simple example. Someone runs both a money exchanger and a site meant to trap people. When Mr. Doe buys from the exchanger and uses those same coins to buy something from the trap site, the attacker can **prove** that these two transactions were made by the same person. The block chain would show:
+[[!img "knownaddress.png" size=120x120 title="Finding an "identity anchor" allows you to ruin the anonymity of the system."]]
+
+* Import coins from address A. Send 100 to B. Authorized by (signature).
+* Import coins from address B. Send 100 to C. Authorized by (signature).
+You can't change your "sending address"; Mr. Doe *must* send coins from the same address that he received them on: address B. The attacker knows for a fact that address B is Mr. Doe because the attacker received $5 from Mr. Doe's Paypal account and then sent 100 BTC to that very same address.
+
+Another example: someone is scammed and posts the address they were using on the Bitcoin forum. It is possible to see which address they sent coins to. When coins are sent from this (the scammer's) address, the addresses that receive them can also be easily found and posted on the forum. In this way, all of these coins are marked as "dirty", potentially over an infinite number of future transactions. When some smart and honest person notices that his address is now listed, he can reveal who he received those coins from. The Bitcoin community can now break some legs, asking, "Who did you receive these coins from? What did you create this address for?" Eventually the original scammer will be found. Clearly, this becomes more difficult the more addresses that exist between the "target" and the "identity point".
+
+You might be thinking that this attack is not feasible. But consider this case:
+
+* You live in China and want to buy a "real" newspaper for Bitcoins.
+* You join the Bitcoin forum and use your address as a signature. Since you are very helpful, you manage to get 30 BTC after a few months.
+* Unfortunately, you choose poorly in who you buy the newspaper from: you've chosen a government agent! Maybe you are under the mistaken impression that Bitcoin is perfectly anonymous.
+* The government agent looks at the block chain and Googles (or Baidus) every address in it. He finds your address in your signature on the Bitcoin forum. You've left enough personal information in your posts to be identified, so you are now scheduled to be "reeducated".
+
+You need to protect yourself from both forward attacks (getting something that identifies you using coins that you got with methods that must remain secret, like the scammer example) and reverse attacks (getting something that must remain secret using coins that identify you, like the newspaper example).
+
+#### Staying anonymous
+
+While you must send from an address that you have received with, you could choose which of these addresses to send from. Choosing generated coins or an address that you know doesn't reveal information would protect you. Unfortunately, the Bitcoin client doesn't support this currently, so you must assume that your entire balance can identify you if any of the addresses can. (Bitcoin sends the smallest coins first, though you shouldn't rely on this.)
+
+If your balance has been "dirtied" by containing both anonymous and non-anonymous coins, it is difficult to make it "clean". These methods are **not** recommended:
+
+* Sending coins to a different address under your control will give you some plausible deniability. However, an investigator is still likely to find you and demand to know who you sent the coins to. It will be difficult to hide the fact that you sent them to yourself if you're searched: Bitcoin keeps logs of every transaction you make, and there will probably be evidence of any other computers you control. If the attacker is not law enforcement (or maybe even if they are), they might kill you "just in case". If you use this method, send bitcoins in small increments (no more than 50 BTC, but as small as you're willing to use) to avoid combining coins, which reduces anonymity.
+* Tor prevents network analysis and should be used, but it won't help make your Bitcoin balance "clean" The attacker isn't talking to you over the Internet; they're looking at your changes to the [[block]] chain. This is similar to posting a threat and your street address on a message board using Tor -- Tor doesn't stop the police from finding you.
+
+This is the recommended way of anonymizing your balance:
+
+* Send however many coins you want to anonymize to a new [MyBitcoin](https://www.mybitcoin.com/) account as a lump sum. Use Tor for both your client and your Web connection to MyBitcoin.
+* Set up a brand new (empty) Bitcoin installation somewhere. Use Tor with it.
+* Every day, withdraw 5% of the transaction amount to the new installation. Bonus points: add some randomization to the amount of Bitcoins you withdraw and the time between doing it.
+
+With this method, MyBitcoin acts like an encrypted proxy to your Bitcoin transfer. An attacker will have to gain access to MyBitcoin's transaction logs to continue to follow you in the transaction history.
+
+To further enhance your anonymity, you can:
+
+* Send fewer coins from MyBitcoin to your new installation over a longer period of time.
+* Send Bitcoins from MyBitcoin to [Vekja](https://vekja.net/) (Vekja offers a free MyBitcoin-like service in addition to hosting) and *then* to yourself. This is like chaining encrypted proxies: both will need to be compromised for you to be identified.
+
+The protection that this method offers is significantly reduced if you are trying to anonymize more than about 10% of the total number of Bitcoins that MyBitcoin holds. You'll end up getting your own coins back instead of other users' coins. Withdrawing Bitcoins more slowly and in smaller increments will help reduce this problem. Sending coins to MyBitcoin in the largest single transfer possible will also help.
+
+Once you have an anonymous balance set up, be sure to keep your anonymous and non-anonymous balances completely separate. You can only move coins from the anonymous balance to the non-anonymous balance if none of the anonymous coins were gotten in ways that should not be connected to your identity. You can move one of your balances to a (new) MyBitcoin account if you'd like; this is not an anonymity problem if you use Tor while accessing MyBitcoin.
+
+#### Help other people stay anonymous
+
+* Set up a real [external mixing service](http://www.bitcoin.org/smf/index.php?topic=241.0). Make it like MyBitcoin, but make sure that a user never withdraws the same coins that he puts in. Also delete empty addresses and transaction logs. This requires modifications to Bitcoin.
+* Even if you're not a programmer, you can make a slightly less secure version of an external mixing service (as a Tor hidden service, preferably):
+	* Set up two Bitcoin installations.
+	* Put some amount of BTC in installation B. This is the maximum amount of BTC you can deal with at once (for all customers).
+	* Customers send BTC to installation A. You send them an equal number of coins (or minus a fee) from installation B. Send as 10-50 BTC increments.
+	* Send all coins from A to B when **all** orders are satisfied. You can't send coins from A to B if you have any orders that have not been satisfied from B.
+	* This can be automated, or you can do everything manually.
+* Put lots of Bitcoins in MyBitcoin and keep it there. If anyone uses the anonymization method described in "staying anonymous" above, this will enhance it. Send in small increments: less than 200 BTC.
+
+[[!template id=fromold address]]
+
+[[!tag "Technical"]]
