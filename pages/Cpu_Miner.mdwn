@@ -1,0 +1,11 @@
+[[!template id=stub]]
+**cpu-miner** is a Bitcoin miner created by jgarzik. It mines through a proprietary JSON-based remote protocol, and supports several algorithms for doing encryption required to build a block.
+
+##Algorithms
+
+* **c:** Linux kernel (but can also be used on Windows) implementation of SHA256.
+* **4way:** SSE optimizations available as a compile-time option on the classic Bitcoin client.
+* **padlock:** Implementation of the Padlock encryption optimizations on VIA CPUs.
+* **cryptopp:** (Experimental) algorithm which uses the Crypto++ library.
+
+[[!tag "Bitcoin_miners"]]
