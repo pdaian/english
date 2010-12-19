@@ -313,6 +313,9 @@ The signature is to be compared to this ECDSA public key:
 
 Source: [(1)](http://www.bitcoin.org/smf/index.php?topic=898.0)
 
+For ECDSA the secp256k1 curve from http://www.secg.org/collateral/sec2_final.pdf is used.
+Public keys (in scripts) are given as 04 <x> <y> where x and y are 32 byte strings representing the coordinates of a point on the curve.
+
 ## Scripting
 
 See [(1)](http://www.bitcoin.org/wiki/doku.php?id=script) (TODO)
