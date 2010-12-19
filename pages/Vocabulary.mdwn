@@ -1,0 +1,46 @@
+**Bitcoin**
+>  The name of a decentralized p2p crypto-currency application.
+**[[Bitcoins]]**
+>  The currency used and generated within the Bitcoin system.
+**[[Block]]**
+>  Blocks are links in a chain of transaction verifications. Outstanding transactions get bundled into a block and are verified roughly every ten minutes on average. Each subsequent block strengthens the verification of previous blocks. Each block contains one or more transactions.
+**Block Chain**
+>  Each block includes the difficult-to-produce verification hash of the previous block. This allows each subsequent block to be linked to all previous blocks. These blocks which are linked together for the purpose of verifying transactions within blocks is called the block chain.
+**Branching Point**
+>  The block at which the block chain diverges into multiple chain branches
+**Chain Branching**
+**Checkpoint lockin**
+>  Every once in a while, a recent block hash is hardcoded into Bitcoin. This prevents pretty much any possible attack from affecting transactions made up to this point. No matter what happens (except perhaps if SHA-256 is broken), these transactions will survive.
+**Coinbase**
+>  "Coinbase" is another name for a generation transaction. The input of such a transaction contains some arbitrary data where the scriptSig would go in normal transactions -- this data is sometimes called the "coinbase", as well.
+**[[Difficulty]]**
+>  Every 2016 blocks, Bitcoin adjusts the difficulty of verifying blocks based on the time it took to verify the previous 2016 blocks. The difficulty is adjusted so that given the average estimated computing power of the whole bitcoin network, only one block will verified on average every ten minutes for the next 2016 blocks. The difficulty is usually expressed as a number, optionally accurate to to many decimal places. Sometimes it is expressed as a very very long number preceded by many zeros which is the number under which a block's generated hash must be to qualify as an officially verified block. Difficulty is also often called block difficulty, hash difficulty, hash target, verification difficulty or the difficulty of generating bitcoins.
+**Discouraged block**
+>  A discouraged [[block]] is considered to be a valid part of the chain, but blocks you generate will build onto the block before it instead of that block. If most of the network is discouraging a block, then it will almost always be replaced by another block and not end up making it into the final [[block_chain]]. Unlike rejecting a block, discouraging a block has no risk of splitting the network. Bitcoin currently doesn't discourage any blocks, but the mechanism may be used in the future to handle certain issues such as unreasonably high or low fees.
+**Double Spending**
+>  Submitting to the network for verification a transaction which relies in whole or in part on previously spent crediting transactions as the source of the money for the new transaction.
+**Generate Bitcoins**
+>  The phrase generating bitcoins comes from the file menu option 'Generate Coins' in the Bitcoin which enables or disables the CPU intensive process of verifying blocks. When Bitcoin verifies a block before any other Bitcoin client, it receives newly minted bitcoins and the transaction fees which may or may not be included in the verified block. The amount of bitcoins awarded for verifying a block is ?50.00 for the first 210,000 blocks and half the previous amount of bitcoins for each subsequent 210,000 blocks. On average, 210,000 blocks take about 4 years to verify. The total amount of bitcoins that will ever be minted is roughly 21,000,000.00000000. Currently the decimal places more than two to the right of the decimal point are not displayed in the official Bitcoin client.
+**[[Hash]]**
+>  A computer algorithm which produces an identification key that can be used to easily verify that data has not been altered. If you change any single bit of the original data and run the hash algorithm, the hash will completely change. Because the hash is seemingly random, it is prohibitively difficult to try to produce a specific hash by changing the data which is being hashed.
+**Memory pool**
+>  Generators store [[transactions]] waiting to get into a block in their memory pool after receiving them. Received transactions are stored even if they are invalid to prevent nodes from constantly requesting transactions that they've already seen. The memory pool is cleared when Bitcoin is shut down, causing the [[network]] to gradually forget about transactions that haven't been included in a [[block]].
+**Merkle root**
+>  Every [[transaction|transactions]] has a [[hash]] associated with it. In a [[block]], all of the transaction hashes in the block are themselves hashed (sometimes several times -- the exact process is complex), and the result is the Merkle root. In other words, the Merkle root is the hash of all the hashes of all the transactions in the block. The Merkle root is included in the [[block header|block_hashing_algorithm]]. With this scheme, it is possible to securely verify that a transaction has been accepted by the network (and get the number of confirmations) by downloading just the tiny block headers and [Merkle tree](Wikipedia:Merkle tree) -- downloading the entire block chain is unnecessary. This feature is currently not used in Bitcoin, but it will be in the future.
+** Miner**
+>  Computer software which is designed to create hashes with the intention to create a successful block and earn coins from transaction fees and new coins created with the block itself.  The term references an analogy of gold miners who dig gold out of the ground and thus "discover" new gold that can be used to create new coins with a similar kind of discovery occurring with a successful hash to create new Bitcoins.
+**Node**
+>  Each Bitcoin client currently running within the network is referred to as a Node of the system.
+**Nonce**
+>  A nonce is an otherwise meaningless number which is used to alter the outcome of a hash. Each time Bitcoin hashes a block, it increments a nonce within the block which it is trying verify. If the numeric value of the effectively random hash is below a certain amount determined by the block generation difficulty, then the block is accepted by other clients and gets added to the chain.
+**Subsidy**
+>  The block subsidy is the BTC created for generating a block. The subsidy is halved every four years.
+**Super Nodes**
+>  A participant in a p2p network which connects to as many other nodes as possible.
+**[[Transaction_Fee]]**
+>  A voluntary fee which can be added to a transaction which is use as an incentive to add the bitcoin transaction to a block.  The fee determines the likelihood of inclusion in any given block, where a high fee included with a transaction has a priority over transactions with a lower fee included or no fee at all.
+
+[[!template id=fromold address]]
+
+[[!tag "Technical"]]
+ [[!tag "Vocabulary"]]
