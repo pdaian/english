@@ -7,6 +7,39 @@ The situation is made somewhat more confusing because the receiving addresses sh
 So if you create a backup, send some bitcoins, and then restore from the backup, some bitcoins will be lost. Bitcoin has not deleted any keys (keys are never deleted) – it has created a new key that is not in your old backup and then sent bitcoins to it.
 
 To mitigate this problem, the wallet contains a pool of 100 queued keys. When you need an address for whatever reason (send, “new address”, generation, etc.), the key is not actually generated freshly, but taken from this pool. A brand new address is generated to fill the pool back to 100. So when a backup is first created, it has all of your old keys plus 100 unused keys. After sending a transaction, it has 99 unused keys. After a total of 100 new-key actions, you will start using keys that are not in your backup. Since the backup does not have the private keys necessary for authorizing spends of these coins, restoring from the old backup will cause you to lose bitcoins.
+## Locating BitCoin's data directory
+
+### Windows
+
+Go to Start -> Run (or press WinKey+R) and run this:
+
+	explorer %APPDATA%\BitCoin
+
+BitCoin's data folder will open. For most users, this is the following locations:
+
+	C:\Documents and Settings\YourUserName\Application data\BitCoin (XP)
+	
+	C:\Users\YourUserName\Appdata\Roaming\BitCoin (Vista and 7)
+
+"AppData" and "Application data" are hidden by default.
+
+### Linux
+
+By default BitCoin will put its data here:
+
+	~/.bitcoin/
+
+You need to do a "ls -a" to see directories that start with a dot.
+
+If that's not it, you can do a search like this:
+
+	find / -name wallet.dat -print 2>/dev/null
+
+### Mac
+
+By default BitCoin will put its data here:
+
+	~/Library/Application Support/Bitcoin/
 
 ## Linux solution
 
