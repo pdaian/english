@@ -64,11 +64,13 @@ Your wallet.dat file is not encrypted by BitCoin. Anyone who can access it can e
 Brute-force password cracking has come a long distance, a previously thought secure password of random [[a-Z]] [[0-9]] [[!-~]] of 8 characters long can be trivially solved now (using appropriate hardware)... The recommended length is **at least** 12 charters long.
 
 #### Storage of Archive
-One of the most simple places to store a appropriately encrypted archive of your wallet.dat file is to email yourself the archive.  Services like gmail.com use very comprehensive distributed networks that make the loss of data very unlikely.  One can even encrypt the name of the files withing the archive, and name the archive something less inviting, such as: 'personal notes' or 'car insurance'
+One of the most simple places to store a appropriately encrypted archive of your wallet.dat file is to email yourself the archive.  Services like gmail.com use very comprehensive distributed networks that make the loss of data very unlikely.  One can even encrypt the name of the files withing the archive, and name the archive something less inviting, such as: 'personal notes' or 'car insurance'.
+
+Another solution is to use a file storage service like [Dropbox](http://www.dropbox.com) or [others](http://en.wikipedia.org/wiki/Comparison_of_online_backup_services).
 
 ### Linux solution
 
-Linux users can setup cron by running 'crontab -e' and adding this line:
+Linux users can setup cron by running 'crontab -e' and adding this line (with a newline after the last line):
 
 	01 */1 * * * /usr/local/bin/backupwallet.sh
 
