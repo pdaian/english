@@ -43,7 +43,7 @@ Checking process:
 
 	scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 	scriptSig: <sig> <pubKey>
-A Bitcoin [[address]] is only a hash, so the sender can't provide a full public key in scriptPubKey. When redeeming coins that have been sent to a Bitcoin address, the recipient provides both the signature and the public key. The script verifies that the provided public key does hash to the hash in scriptPubKey, and then it also checks the signature against the public key.
+A Bitcoin address is only a hash, so the sender can't provide a full public key in scriptPubKey. When redeeming coins that have been sent to a Bitcoin address, the recipient provides both the signature and the public key. The script verifies that the provided public key does hash to the hash in scriptPubKey, and then it also checks the signature against the public key.
 
 Checking process:
 
@@ -62,8 +62,6 @@ Checking process:
 **Generation**
 
 Generations have a single input, and this input has a "coinbase" parameter instead of a scriptSig. The data in "coinbase" can be anything; it isn't used. Bitcoin puts the current compact-format [[target]] and the arbitrary-precision "extraNonce" number there, which increments every time the Nonce field in the [[block header|block_hashing_algorithm]] overflows. Outputs can be anything, but Bitcoin creates one exactly like an IP address transaction.
-
-[[!template id=fromold transactions]]
 
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
