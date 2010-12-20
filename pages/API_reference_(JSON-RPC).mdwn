@@ -31,12 +31,14 @@ To access the server you should find a [suitable library](http://json-rpc.org/wi
 
 For Python, [python-jsonrpc](http://json-rpc.org/wiki/python-json-rpc) is perfect.  Python-jsonrpc auto-magically generates Python methods corresponding to the functions above.  For example:
 
+<source lang="python">
 	from jsonrpc import ServiceProxy
 	
 	access = ServiceProxy(<nowiki>"http://user:password@127.0.0.1:8332")</nowiki>
 	access.getinfo()
 	access.listreceivedbyaddress(6)
 	access.sendtoaddress("11yEmxiMso2RsFVfBcCa616npBvGgxiBX", 10)
+</source>
 
 ## PHP
 
