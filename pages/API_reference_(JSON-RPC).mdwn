@@ -42,14 +42,16 @@ For Python, [python-jsonrpc](http://json-rpc.org/wiki/python-json-rpc) is perfec
 
 The [JSON-RPC PHP](http://jsonrpcphp.org/) library also makes it very easy to connect to Bitcoin.  For example:
 
+<source lang="php">
 	require_once 'jsonRPCClient.php';
 	
 	$bitcoin = new jsonRPCClient(<nowiki>'http://user:pass@127.0.0.1:8332/'); </nowiki>
 	
-	echo <nowiki>"<pre>\n";</nowiki>
-	print_r($bitcoin->getinfo()); echo "\n";
-	echo "Received: ".$bitcoin->getreceivedbylabel("Your Address")."\n";
-	echo <nowiki>"</pre>";</nowiki>
+	echo "<pre>\n";
+  print_r($bitcoin->getinfo()); echo "\n";
+  echo "Received: ".$bitcoin->getreceivedbylabel("Your Address")."\n";
+  echo "</pre>";
+</source>
 
 ## Java
 
