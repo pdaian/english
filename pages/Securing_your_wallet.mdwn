@@ -121,3 +121,5 @@ The "savings account" wallet should be backed up in encrypted form only and all 
 In most operating systems, including Windows, Linux, and Mac OS X, simply deleting a wallet.dat file will *not* generally destroy it. It is likely that advanced tools can still be used to recover the wallet.dat file, even after it has been deleted.
 
 The Linux **shred** command can be used to overwrite the wallet file with random data prior to deleting; this particular copy of the file will then be practically impossible to recover.  Using shred (and similar tools on Windows) however does not guarantee that still other copies don't exist somewhere hidden on your HD. That will depend on your system configuration and what packages you have installed. Some system restore and backup tools, for instance, create periodic snapshots of your  filesystem, duplicating your wallet.dat.
+
+For Windows, the built-in command *cipher /w* will shred all previously-deleted files. [CyberShredder](http://www.cylog.org/utilities/cybershredder.jsp) can securely deleted individual files.
