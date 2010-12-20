@@ -70,11 +70,11 @@ Another solution is to use a file storage service like [Dropbox](http://www.drop
 
 ### Linux solution
 
-Linux users can setup cron by running 'crontab -e' and adding this line (with a newline after the last line):
+Linux users can setup cron by running 'crontab -e' and adding this line:
 
 	01 */1 * * * /usr/local/bin/backupwallet.sh
 
-The cron line runs backupwallet.sh at the 01 minute of every hour.
+This cron line runs backupwallet.sh at the 01 minute of every hour. Remember to add a newline after the last line of the crontab file, or else the last line won't run.
 
 backupwallet.sh:
 
