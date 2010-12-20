@@ -114,6 +114,10 @@ The shell script:
 
 ##Erasing Plain Text Wallets
 
-A good practice is to keep at least two wallets, one as a "current account" for everyday transactions and one as a "savings account" where you store the majority of your Bitcoins.  The "savings account" wallet should be backed up in encrypted form only and all plaintext copies of this wallet should be erased. In case someone gains unauthorised access to your computer (either by physically stealing it or by exploiting a system vulnerability via the internet), they will only be able to spend the coins in your "current account" wallet.
+A good practice is to keep at least two wallets, one as a "current account" for everyday transactions and one as a "savings account" where you store the majority of your Bitcoins.  
+
+The "savings account" wallet should be backed up in encrypted form only and all plaintext copies of this wallet should be erased. In case someone gains unauthorised access to your computer (either by physically stealing it or by exploiting a system vulnerability via the internet), they will only be able to spend the coins in your "current account" wallet.
 
 In most operating systems, including Windows, Linux, and Mac OS X, simply deleting a wallet.dat file will *not* generally destroy it. It is likely that advanced tools can still be used to recover the wallet.dat file, even after it has been deleted.
+
+The Linux **shred** command can be used to overwrite the wallet file with random data prior to deleting; this particular copy of the file will then be practically impossible to recover.  Using shred (and similar tools on Windows) however does not guarantee that still other copies don't exist somewhere hidden on your HD. That will depend on your system configuration and what packages you have installed. Some system restore and backup tools, for instance, create periodic snapshots of your  filesystem, duplicating your wallet.dat.
