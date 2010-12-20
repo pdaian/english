@@ -6,6 +6,12 @@ It was suggested on IRC to produce a map similar to torservers' one, using Googl
 
 Then other resources were made available, including the number of online nodes.
 
+## Nodes status
+
+* **Up (green) nodes** are nodes accepting external connections. Those node are verified bitcoin nodes and their version is known to the system.
+* **Down (red) nodes** are nodes we couldn't connect to. We know they are probably alive as the bitcoin network reported activity from those less than 3 hours ago, but we couldn't connect (either it is now down, or the firewall is not accepting connections, or someone is sending fake ips on the bitcoin network to attack it)
+* **Unknown (white) nodes** are nodes we haven't verified yet. Since new nodes are always discovered, it might take time for them to be scanned. In the meantime since the IP is known, it is possible to locate them on the map.
+
 ## Bitcoin nodes over time
 
 It is currently still unknown how reliable this information is. It represent the total number of unique IPs seen within the last 3 hours on the network.
