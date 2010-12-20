@@ -105,6 +105,7 @@ A library for serialising and deserialising Json will make your life a lot easie
 
 The following example uses Json.Net:
 
+<source lang="csharp">
 	HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://localhost.:8332");
 	webRequest.Credentials = new NetworkCredential("user", "pwd");
 	/// important, otherwise the service can't desirialse your request properly
@@ -143,6 +144,7 @@ The following example uses Json.Net:
 	WebResponse webResponse = webRequest.GetResponse();
 	
 	... // deserialze the response
+</source>
 
 ## Command line (curl)
 
