@@ -74,6 +74,8 @@ Linux users can setup cron by running 'crontab -e' and adding this line (with a 
 
 	01 */1 * * * /usr/local/bin/backupwallet.sh
 
+The cron line runs backupwallet.sh at the 01 minute of every hour.
+
 backupwallet.sh:
 
 	#!/bin/bash
