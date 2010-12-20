@@ -43,16 +43,29 @@ By default BitCoin will put its data here:
 
 ##Backup
 
+
+
+
+
 The only file you need to back up is "wallet.dat". Ensure that BitCoin is closed, copy this file somewhere else, encrypt it, and put it somewhere safe. Ideally, you would put this file in two places: one nearby, and one 100+ miles away.
 
 You can use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin.
 
+### General Solutions
 
 Your wallet.dat file is not encrypted by BitCoin. Anyone who can access it can easily steal all of your coins. Use one of these encryption programs if there is any chance someone might stumble upon your wallet.
 
 * [7-zip](http://www.7-zip.org/) - Supports strongly-encrypted archives.
 * [AxCrypt](http://www.axantum.com/axcrypt/)
 * [TrueCrypt](http://www.truecrypt.org/) - Volume-based on-the-fly encryption (for advanced users)
+* [[http://www.rarlab.com/]] - Commonly used archive software that supports verification records and encryption.
+
+#### Password Strength
+Brute-force password cracking has come a long distance, a previously thought secure password of random [[a-Z]] [[0-9]] [[!-~]] of 8 characters long can be trivially solved now (using appropriate hardware)... The recommended length is **at least** 12 charters long.
+
+#### Storage of Archive
+One of the most simple places to store a appropriately encrypted archive of your wallet.dat file is to email yourself the archive.  Services like gmail.com use very comprehensive distributed networks that make the loss of data very unlikely.  One can even encrypt the name of the files withing the archive, and name the archive something less inviting, such as: 'personal notes' or 'car insurance'
+
 ### Linux solution
 
 Linux users can setup cron by running 'crontab -e' and adding this line:
