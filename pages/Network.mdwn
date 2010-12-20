@@ -17,6 +17,8 @@ Bitcoin uses a simple broadcast network to propagate transactions and blocks. Al
 * *alert* - Send a network alert.
 * *ping* - Does nothing. Used to check that the connection is still online. A TCP error will occur if the connection has died.
 
+More informations and in-depth technical informations in the [[Protocol_Specification]].
+
 #### Connection
 
 To connect to a peer, you send a *version* message containing your version number, block count, and current time. The remote peer will send back a *verack* message and his own *version* message if he is accepting connections from your version. You will respond with your own *verack* if you are accepting connections from his version.
