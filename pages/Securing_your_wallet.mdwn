@@ -42,6 +42,10 @@ By default BitCoin will put its data here:
 	~/Library/Application Support/Bitcoin/
 
 ##Backup
+
+The only file you need to back up is "wallet.dat". Ensure that BitCoin is closed, copy this file somewhere else, encrypt it, and put it somewhere safe. Ideally, you would put this file in two places: one nearby, and one 100+ miles away.
+
+You can use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin.
 ### Linux solution
 
 Linux users can setup cron by running 'crontab -e' and adding this line:
