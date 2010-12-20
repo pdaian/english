@@ -13,40 +13,6 @@ Bitcoin stores 100 queued addresses in wallet.dat. Once you use them all, a back
 
 You need to back up after sending bitcoins because Bitcoin can only send entire previous [[transaction|transactions]] credits. If your wallet is made of 50 BTC that was gotten from one generation, then you can only send exactly 50 BTC -- no less. If you want to send 10 BTC, then Bitcoin will make a single transaction with two "outputs": one to the real destination, and one back to a *new address* that you own. Since the new address is not in your old backups (if you don't back up every 100 actions), you will lose this "change". Usually the amount lost is small, but it can destroy your entire balance if, for example, your balance is composed of a single 20,000 BTC transaction that was just sent to you. Bitcoin chooses previous transactions somewhat unpredictably when sending, so you should not guess about what the change will be.
 
-## Locating BitCoin's data directory
-
-### Windows
-
-Go to Start -> Run (or press WinKey+R) and run this:
-
-	explorer %APPDATA%\BitCoin
-
-BitCoin's data folder will open. For most users, this is the following locations:
-
-	C:\Documents and Settings\YourUserName\Application data\BitCoin (XP)
-	
-	C:\Users\YourUserName\Appdata\Roaming\BitCoin (Vista and 7)
-
-"AppData" and "Application data" are hidden by default.
-
-### Linux
-
-By default BitCoin will put its data here:
-
-	~/.bitcoin/
-
-You need to do a "ls -a" to see directories that start with a dot.
-
-If that's not it, you can do a search like this:
-
-	find / -name wallet.dat -print 2>/dev/null
-
-### Mac
-
-By default BitCoin will put its data here:
-
-	~/Library/Application Support/Bitcoin/
-
 ## Backing up
 
 The only file you need to back up is "wallet.dat". Ensure that BitCoin is closed, copy this file somewhere else, encrypt it, and put it somewhere safe. Ideally, you would put this file in two places: one nearby, and one 100+ miles away.
