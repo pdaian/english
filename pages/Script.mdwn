@@ -200,7 +200,7 @@ Here is how each word is processed:
 |<sig><pubKey><pubKey>|OP_HASH160 <pubKeyHash>OP_EQUALVERIFY OP_CHECKSIG |Top stack item is duplicated.
 |<sig <pubKey><pubHashA>|<pubKeyHash>OP_EQUALVERIFY OP_CHECKSIG|Top stack item is hashed.
 |<sig <pubKey><pubHashA><pubKeyHash>|OP_EQUALVERIFY OP_CHECKSIG|Constant added.
-|<sig <pubKey>|OP_CHECKSIG||Equality is checked between the top two stack items.
+|<sig <pubKey>|OP_CHECKSIG|Equality is checked between the top two stack items.
 |true|Empty.|Signature is checked for top two stack items.
 
 
@@ -232,7 +232,7 @@ It's possible to add arbitrary data to any transaction by just adding some data 
 |---|---|---
 |Empty.|<sig><pubKey>OP_CHECKSIG|scriptSig and scriptPubKey are combined.
 |<sig><pubKey><message>|OP_DROP OP_CHECKSIG|Constants are added to the stack.
-|<sig><pubKey>|OP_CHECKSIG||Top item in the stack is removed.
+|<sig><pubKey>|OP_CHECKSIG|Top item in the stack is removed.
 |true|Empty.|Signature is checked for top two stack items.
 
 
