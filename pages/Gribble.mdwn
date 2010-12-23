@@ -1,0 +1,42 @@
+[gribble](http://gribble.sourceforge.net/) is a modified Supybot IRC bot, carrying some useful bitcoin-related commands and factoids. The bot's command sequence is ';;', to issue any command just start a line with two semicolons. You can also issue inline commands with two commas.
+
+It is present on #bitcoin-dev (bitcoin information queries), #bitcoin-market (real time streaming quotes from bitcoinmarket.com and mtgox.com), #bitcoin-otc (facilitate over-the-counter trading, with the OTC order book and OTC web of trust). You can also PM commands to gribble and it will PM back.
+
+See also [[bitbot]] (though bitbot is dead for the foreseeable future...).
+
+##General Info
+
+To get help on any command, try 'help <command>', to get a list of bitcoin-related commands, run 'apropos bc', and to get a list of factoids, run command 'facts', and click on the link supplied.
+
+##List of commands
+
+* **bc,bcm** - show the market snapshot from bitcoinmarket.com
+* **bc,blocks** - show the current number of blocks in the bitcoin block chain
+* **bc,btcex** - show the market snapshot from btcex.com
+* **bc,calc** - given a hash rate in Khps, calculate the expected average time to generate a block. For example, to see the average time for 1000 Khps, run 'bc,calc 1000'.
+* **bc,diff** - show the current generation difficulty
+* **bc,estimate** - show the estimate of the next difficulty
+* **bc,mtgox** - show the market snapshot for mtgox.com
+* **bc,markets** - show market snapshot for various markets. (thanks tcatm and http://bitcoincharts.com for the data feed)
+* **bc,nexttarget** - show the block at which the next difficulty change will take place
+* **bc,stats** - show some statistics about the block chain - number of blocks, difficulty, estimated next difficulty target, time to next difficulty
+* **bc,timetonext** - show estimated time to reach the next difficulty target
+* **bc,totalbc** - show total number of bitcoins in existence.
+* **bc,help** - show the list of all 'bc,*' commands. same as 'apropos bc'.
+* **bc,poolstats** - show the statistics about the [slush mining pool](http://mining.bitcoin.cz).
+* **bc,hextarget** - show the current difficulty target in hex.
+
+Big kudos goes out to theymos for providing a web interface to [real time statistics about the bitcoin block chain](http://blockexplorer.com/q/).
+
+##Factoids
+
+Here's a [web view of existing factoids](http://gribble.dreamhosters.com/viewfactoids.php?db=%23bitcoin-dev) for the #bitcoin-dev channel
+
+##Examples
+
+	<me> ;;bc,blocks
+	<gribble> 96009
+	<me> Check out the current difficulty! ,,bc,diff
+	<gribble> 8078.19525793
+	<me> Here is a list of all gribble bitcoin commands: ,,(apropos bc)
+	<gribble> Alias bc,bcm, Alias bc,blocks, Alias bc,btcex, Alias bc,calc, Alias bc,diff, Alias bc,estimate, Alias bc,mtgox, Alias bc,nexttarget, Alias bc,stats, Alias bc,timetonext, and Alias bc,totalbc
