@@ -1,3 +1,14 @@
 ## Skip IRC bootstrap?
 
 As [said in the earlier stages of bitcoin](http://www.bitcoin.org/smf/index.php?topic=84.0) IRC is only a temporary solution for bootstrapping. Since I do not feel like implementing something that will be dropped soon after, I'd guess I should just skip the IRC bootstrap part and implement various other way to harvest initial nodes. I'm thinking of storing known peers in a database, and keeping those that stay most of the time (ie, got a fixed ip and provide bitcoin service). Any comment? [MagicalTux](User:MagicalTux) 07:32, 18 December 2010 (GMT)
+> If the file is large and releases are often, then there should be at least a few bootstrap clients in the file that work. [Genjix](User:Genjix) 03:04, 24 December 2010 (GMT)
+
+## Suggestions
+
+I've had various ideas for improvements for improving Bitcoin, but because I haven't written them down I've forgotten most of them. I'll try to keep a list here of ideas:
+
+* Show small denominations of bitcoins using SI-notation. i.e 0.001 BTC = 1 mBTC, 100000 BTC = 0.1 GBTC
+* Do not have accounts. Instead allow more flexible tree based method of organising addresses with ability to tag them in groups or categories.
+* Basic libbitcoin so others can make clients for gtk, KDE ...
+* Ability to generate at lower speeds
+* Same one column for transaction amounts. Money sent is like -10 BTC and the row's background is highlighted red. Money received, the row is highlighed green and shown as +10 BTC.
