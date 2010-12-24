@@ -12,7 +12,7 @@ I've had various ideas for improvements for improving Bitcoin, but because I hav
 * Do not have accounts. Instead allow more flexible tree based method of organising addresses with ability to tag them in groups or categories.
 * Basic libbitcoin so others can make clients for gtk, KDE ...
 * Ability to generate at lower speeds
-* Same one column for transaction amounts. Money sent is like -10 BTC and the row's background is highlighted red. Money received, the row is highlighed green and shown as +10 BTC.
+* Same one column for transaction amounts. Money sent is like -10 BTC and the row's background is highlighted red. Money received, the row is highlighed green and shown as +10 BTC. [Genjix](User:Genjix) 17:35, 24 December 2010 (GMT)
 >  Ok let's see...
 > * SI denomination: mostly cosmetic, why not. The difficult part will be to choose the right unit
 > * Accounts-in-a-tree, that sounds interesting :) I was already planning to give one "account" the ability to hold more than one address so returns can be kept together
@@ -20,3 +20,21 @@ I've had various ideas for improvements for improving Bitcoin, but because I hav
 > * The client itself will not include any generator, generation will be handled by external binaries via a specific API. Still I'll include a CPU miner in the distro, giving it the ability to generate at lower speeds should be possible (result may vary depending on OS)
 > * This one is already planned in the UI :p
 >  [MagicalTux](User:MagicalTux) 03:17, 24 December 2010 (GMT)
+> * SI denominations are already a standard. So you don't need to pick a unit.
+> * Maybe you could have 2 components- core network with API as a library, and thin client GUI on top.
+> * Not including a generator in the application is a *great idea*.
+> [Genjix](User:Genjix) 17:35, 24 December 2010 (GMT)
+
+Another idea. The main list view should look something like this:
+
+
+
+|style="background-color:#ff9999;"Processing (2)|style="background-color:#ff9999;"20 Dec 10|style="background-color:#ff9999;"hello jon|style="background-color:#ff9999;"-10|style="background-color:#ff9999;"170
+|style="background-color:#99ff99;"Confirmed (10)|style="background-color:#99ff99;"18 Dec 10|style="background-color:#99ff99;"bls djdsksd sdls|style="background-color:#99ff99;"+20|style="background-color:#99ff99;"180
+
+
+The date should be in that format, as it's confusing for non-Americans as they write the date wrong as MM/DD/YY instead of the usual DD/MM/YY.
+
+Also here's a link to a list of [SI prefixes](http://en.wikipedia.org/wiki/SI_prefix).
+
+Another idea would be that it'd be nice to associate bitcoin addresses with people's names like with email. So if I wanted to send money to my friend John, then I just click his name. [Genjix](User:Genjix) 17:35, 24 December 2010 (GMT)
