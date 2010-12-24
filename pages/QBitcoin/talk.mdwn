@@ -2,6 +2,7 @@
 
 As [said in the earlier stages of bitcoin](http://www.bitcoin.org/smf/index.php?topic=84.0) IRC is only a temporary solution for bootstrapping. Since I do not feel like implementing something that will be dropped soon after, I'd guess I should just skip the IRC bootstrap part and implement various other way to harvest initial nodes. I'm thinking of storing known peers in a database, and keeping those that stay most of the time (ie, got a fixed ip and provide bitcoin service). Any comment? [MagicalTux](User:MagicalTux) 07:32, 18 December 2010 (GMT)
 > If the file is large and releases are often, then there should be at least a few bootstrap clients in the file that work. [Genjix](User:Genjix) 03:04, 24 December 2010 (GMT)
+> Even if not often, some nodes are probably going to stay for years (the nodelist will start with the most long-established nodes). Once one node has been reached, things are easy [MagicalTux](User:MagicalTux) 03:17, 24 December 2010 (GMT)
 
 ## Suggestions
 
@@ -12,3 +13,10 @@ I've had various ideas for improvements for improving Bitcoin, but because I hav
 * Basic libbitcoin so others can make clients for gtk, KDE ...
 * Ability to generate at lower speeds
 * Same one column for transaction amounts. Money sent is like -10 BTC and the row's background is highlighted red. Money received, the row is highlighed green and shown as +10 BTC.
+>  Ok let's see...
+> * SI denomination: mostly cosmetic, why not. The difficult part will be to choose the right unit
+> * Accounts-in-a-tree, that sounds interesting :) I was already planning to give one "account" the ability to hold more than one address so returns can be kept together
+> * This one is not going to get easy since I'm using Qt net libs. The core component do not use QtGui so it can be easily connected to a gtk UI, but the networking will still be done by Qt
+> * The client itself will not include any generator, generation will be handled by external binaries via a specific API. Still I'll include a CPU miner in the distro, giving it the ability to generate at lower speeds should be possible (result may vary depending on OS)
+> * This one is already planned in the UI :p
+>  [MagicalTux](User:MagicalTux) 03:17, 24 December 2010 (GMT)
