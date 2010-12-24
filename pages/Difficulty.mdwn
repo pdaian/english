@@ -10,7 +10,7 @@ Every 2016 [[blocks|block]].
 
 ### What is the formula for difficulty?
 
-difficulty = minimum_target / current_target 
+difficulty = maximum_target / current_target 
 
 (target is a 256 bit number)
 
@@ -18,7 +18,7 @@ difficulty = minimum_target / current_target
 [Current difficulty](http://blockexplorer.com/q/getdifficulty), as output by BitCoin's getDifficulty.
 
 ### What is the maximum difficulty?
-The maximum difficulty is roughly: minimum_target / 1, which is a ridiculously huge number (about 2^224). 
+The maximum difficulty is roughly: maximum_target / 1, which is a ridiculously huge number (about 2^224). 
 
 The actual maximum difficulty is when current_target=0, but we would not be able to calculate the difficulty if that happened. (fortunately it never will, so we're ok.)
 
