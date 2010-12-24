@@ -16,16 +16,24 @@ The problem with pooled mining is that steps must be taken to prevent cheating b
 
 Server cheating, by way of the pool operator fraudulently granting himself extra 'shares', is not addressed. Thus the clients have to trust the pool operator to fairly distribute the proceeds. 
 
+Balances accumulate on the server, and are sent out when a user-set threshold balance is reached. 
+
 ###The puddinpop approach
 
 Another approach is the 'metahash' technique, used by [puddinpop's miner](http://www.bitcoin.org/smf/index.php?topic=1458.0). Clients generate hashes, and also submit 'metahashes', which are hashes of a large chunk of generated hashes. The server checks that the metahashes are correct (in a round-robin fashion, picking up a metahash from a client that hasn't been checked on the longest), thus preventing clients from simply claiming that they have done work without actually doing the work. The withholding of good blocks by the clients is prevented via the server being in possession of the private key, just as in the previous approach. Rewards are distributed based on the number of metahashes submitted by the clients.
 
 Cheating by the server, by way of the pool operator fraudulently granting himself extra shares, is also not addressed, requiring the clients to trust the operator.
 
+The generated blocks contain multiple keys in the generation transaction, giving fractional bitcoin amounts to each key, in proportion to their hashing contribution for that block. 
+
 ###Comparison
 
 The slush approach uses a lot fewer resources on the pool server, since rather than continuously checking metahashes, all that has to be checked is the validity of submitted shares. The number of shares sent can be adjusted by adjusting the artificial difficulty level.
 
-Further, the slush approach allows the clients to use existing miners without any modification, while the puddinpop approach requires the custom pool miner.
+Further, the slush approach allows the clients to use existing miners without any modification, while the puddinpop approach requires the custom pool miner, which are as of now not as efficient on GPU mining as the existing GPU miners.
+
+Additionally, the puddinpop approach of distributing the earnings by way of including precise sub-cent amounts in the generation transaction for the participants, results in the presence of sub-cent bitcoin amounts in your wallet, which are likely to disappear later due to [[transaction_fees]]. (E.g., if you have a transaction with 0.055 in your wallet, and you later send .05 to someone, your .005 will disappear. This is because the current schedule of fees requires a fee of .01 if any transaction output is less than .01. The client thus decides, correctly, that it would be cheaper to just throw away the .005 to tx fee, than it would to contribute an extra .01 as a fee, to keep the .005). 
+
+This all seems to point to the slush approach being the better one. Its only downside is that the server software is not open source, while the puddinpop software is. 
 
 [[!tag "Mining"]]
