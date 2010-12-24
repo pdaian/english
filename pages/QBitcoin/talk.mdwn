@@ -52,3 +52,5 @@ Another idea would be that it'd be nice to associate bitcoin addresses with peop
 
 > Ah, good point. That was a bad idea. Your idea while feasible sounds waayyyy complex (for the beginning :p)... I'll keep adding more points here as I remember. Will you be using a private git repo that you'll share with me to spy on you? I'm curious how Bitcoin works internally.
 > According to [this thread](http://www.bitcoin.org/smf/index.php?topic=2294.0), it's possible to share a wallet between many parties, so that permission is required to use it. So in my poker software, we could have several independent servers who own all the players money. Cashing out and adding money to table requires permission from all 8 holders of that wallet. Do you think something like this could be possible in your client? =) [Genjix](User:Genjix) 23:20, 24 December 2010 (GMT)
+
+> Why not drop the JSON API? If you have a small core which supports basic commands, and the client is a wrapper on top then if someone wants to make the JSON API then they can program their own intermediate layer. Or use system() calls.
