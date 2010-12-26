@@ -30,7 +30,7 @@ Let's say our base work is "Hello world" and our work is to find a hash starting
 	Hello world ! 96 : 447ca2fa886965af084808d22116edde4383cbaa16fd1fbcf3db61421b9990b9
 	Hello world ! 97 : 000ba61ca46d1d317684925a0ef070e30193ff5fa6124aff76f513d96f49349d
 
-And here we are. Now we just have to let the network know our block, made of "Hello world" and 97, won. In bitcoin things are a bit more complex, especially since the header contains the [[merkle_hash]] which depends on the included transactions, which includes the transaction to ourself (which uses a different address each time, thru making the header unique).
+And here we are. Now we just have to let the network know our block, made of "Hello world" and 97, won. In bitcoin things are a bit more complex, especially since the header contains the [merkle tree](http://en.wikipedia.org/wiki/Merkle_tree) which depends on the included transactions, which includes the transaction to ourself (which uses a different address each time, thru making the header unique).
 
 [[!tag "Vocabulary"]]
 
