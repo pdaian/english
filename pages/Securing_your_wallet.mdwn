@@ -63,10 +63,6 @@ By default BitCoin will put its data here:
 
 ##Backup
 
-
-
-
-
 The only file you need to back up is "wallet.dat". Ensure that BitCoin is closed, copy this file somewhere else, encrypt it, and put it somewhere safe. Ideally, you would put this file in two places: one nearby, and one 100+ miles away.
 
 You can use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin.
@@ -121,6 +117,15 @@ The shell script:
 * Copies the result to a backup location.
 
 [[!tag "Technical"]]
+
+##Restore
+
+Assuming your backup is recent enough that you haven't used up all of your keypool... restoring a wallet no a new (or old) location and rescanning the block chain should leave you with all your coins. Just follow these steps:
+
+* Quit bitcoin(d).
+* Copy your backed up wallet.dat into your bitcoin profile directory.
+* If copying into existing profile, delete file *blkindex.dat*, to make the client rescan the block chain.
+And you'll be good as new.
 
 ##Erasing Plain Text Wallets
 
