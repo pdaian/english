@@ -5,6 +5,10 @@ Wallet security can be broken down into two independent goals:
 1. Protecting your wallet against loss.
 1. Protecting your wallet against theft.
 
+In the case that your current wallet hasn't been protected adequately (e.g. put online with a weaker password):
+
+1. Making a new secure wallet, using appropriate long-term protection.
+
 ##Technical Background
 
 Bitcoin transactions send bitcoins to a specific public key. A Bitcoin address is an encoded hash of a public key. In order to use received bitcoins, you need to have the private key matching the public key you received with. This is sort of like a super long password associated with an account (public key). Your Bitcoin wallet contains all of the private keys necessary for spending your received transactions. If you delete your wallet without a backup, then you no longer have the authorization information necessary to claim your coins, and the coins associated with those keys are lost forever.
@@ -16,6 +20,13 @@ The situation is made somewhat more confusing because the receiving addresses sh
 So if you create a backup, send some bitcoins, and then restore from the backup, some bitcoins will be lost. Bitcoin has not deleted any keys (keys are never deleted) – it has created a new key that is not in your old backup and then sent bitcoins to it.
 
 To mitigate this problem, the wallet contains a pool of 100 queued keys. When you need an address for whatever reason (send, “new address”, generation, etc.), the key is not actually generated freshly, but taken from this pool. A brand new address is generated to fill the pool back to 100. So when a backup is first created, it has all of your old keys plus 100 unused keys. After sending a transaction, it has 99 unused keys. After a total of 100 new-key actions, you will start using keys that are not in your backup. Since the backup does not have the private keys necessary for authorizing spends of these coins, restoring from the old backup will cause you to lose bitcoins.
+
+## Making a new wallet
+
+In the case that a wallet has been distributed, or stored, in a  potential compromisable state, it is wise to create a new wallet and transfer the full balance of bitcoins to an address contained only in the newly created wallet.
+
+For example, this will be necessary if one created a wallet with the suggested 12 charters password... However a few years have passed and the wallet is now more easily compromisable.  Just re-encrypting isn't secure.  One needs to make a new wallet and make the old wallet worthless (spending the funds to the new wallet).
+
 ## Locating BitCoin's data directory
 
 ### Windows
