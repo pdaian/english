@@ -44,7 +44,8 @@ It is considered valid if the top element of the stack is true.
 
 A bitcoin address is in fact the hash of a ECDSA public key, computed this way:
 
-	Key hash = RIPEMD-160(SHA-256(public key))
+	Version = 1 byte of 0 (zero); on the test network, this is 1 byte of 111
+	Key hash = Version concatenated with RIPEMD-160(SHA-256(public key))
 	Checksum = 1st 4 bytes of SHA-256(SHA-256(Key hash))
 	Bitcoin Address = Base58Encode(Key hash concatenated with Checksum)
 
