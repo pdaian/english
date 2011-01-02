@@ -1,0 +1,37 @@
+[[!template id=stub]]
+
+##About this page
+
+This page explains the basic framework of how Bitcoin works. Ideally, it'll be accessible to the "literate layman". 
+
+##Bitcoin essentials
+
+There are several cryptographic technologies that make up the essence of Bitcoin. 
+
+First is [public key cryptography](http://en.wikipedia.org/wiki/Public-key_cryptography). Each coin is associated with its current owner's public [ECDSA](http://en.wikipedia.org/wiki/Elliptic_Curve_DSA) key. When you send some bitcoins to someone, you create a message ([[transaction]]), attaching the new owner's public key to this amount of coins, and sign it with your private key. When this transaction is broadcast to the bitcoin network, this lets everyone know that the new owner of these coins in the owner of the new key. Your signature on the message verifies for everyone that the message is authentic. The complete history of transactions is kept by the network, so everyone can verify who is the current owner of any particular group of coins. 
+
+This complete record of transactions is kept in the [[block_chain]]. The block chain is like a distributed database containing the information on bitcoin transactions. Each sequential record in the database (called a [[block]]), contains a group of transactions that have been sent since the previous block. In order to preserve the integrity of the database, each block in the chain has a reference to the previous one, all the way back to the first one, the [[genesis_block]]. To make record insertion costly (so that one party can't overwrite previous records by just forking the chain), each block must meet certain requirements that make it [[difficult|difficulty]] to generate a valid block. 
+
+Both the chaining, and the difficulty, are achieved via the [SHA256](http://en.wikipedia.org/wiki/SHA-2) [cryptographic hash function](http://en.wikipedia.org/wiki/Cryptographic_hash_function). The hash function essentially takes the data, and transforms it, in an effectively-impossible to reverse or to predict way, into a large integer. The 'reference to the previous block' is the inclusion of the hash of the data in that block into the block following it. The [[difficulty]] factor in achieved by requiring that this integer is below a certain threshold - the data in the block is perturbed by a [[nonce]] value, until the data in the block hashes to produce an integer below the threshold - which takes a lot of processing power. This low hash value for the block serves as an easily-verifiable [[proof_of_work]] - every node on the network can instantly verify that the block meets the required criteria.
+
+With this framework, we are able to achieve the essential functions of the Bitcoin system. We have verifiable ownership of bitcoins, and a distributed database of all transactions, which prevents [[double spending|#Double_spending]].
+
+##Bitcoin mining
+
+We have mentioned in the previous section that inserting a record into the database is difficult, requiring time and processing power to accomplish. So what incentive does anyone have to spend the effort to produce a block, if it takes up all these resources? The answer is that the person who manages to produce a block gets a reward. This reward is two-fold. First, the block producer gets a bounty of some number of bitcoins, which is agreed-upon by the network. (Currently this bounty is 50 bitcoins; this value will halve every 210,000 blocks.) Second, any [[transaction_fees]] that may be present in the transactions included in the block, get claimed by the block producer. 
+
+This gives rise to the activity known as "bitcoin mining" - using processing power to try to produce a valid block, and as a result 'mine' some bitcoins. The network rules are such that the [[difficulty]] is adjusted to keep block production to approximately 1 block per 10 minutes. Thus, the more miners engage in the mining activity, the more difficult it becomes for each individual miner to produce a block. The higher the total difficulty, the harder it is for an attacker to overwrite the tip of the block chain with his own blocks (which enables him to double-spend his coins. See the [[weaknesses]] page for more details).
+
+Besides being important for maintaining the transaction database, mining is also the mechanism by which bitcoins get created and distributed among the people in the bitcoin economy. The network rules are such that over the next hundred years, give or take a few decades, a total of 21 million bitcoins will be created. Rather than dropping money out of a helicopter, the bitcoins are awarded to those who contribute to the network by creating [[block]]s in the [[block_chain]]. 
+
+##Double spending
+
+Talk about double spending here. Also talk about how the deeper in the block chain the transaction is, the harder it is for an attacker to overwrite the block chain to 'undo' the transaction, thus making it more trustworthy. This is why 'blocks' also serve as 'confirmations' for a transaction.
+
+##See also
+
+* [[Getting_started]]
+
+##External links
+
+* http://www.bitcoin.org/smf/index.php?topic=2487.0 A forum thread with some good 'for-the-layperson' explanations of how bitcoin works.
