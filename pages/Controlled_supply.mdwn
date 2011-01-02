@@ -1,0 +1,75 @@
+The term [money supply](http://en.wikipedia.org/wiki/Money_supply) refers 
+to the total amount of money in circulation in an economy. 
+
+##Central banks
+
+In a centralized economy, currency is issued by a central bank, at a rate 
+that is supposed to match the growth of the amount of physical goods that 
+are exchanged, so that these goods can be traded with stable prices. The 
+money supply is controlled by the central bank, mostly via its interest 
+rates. Lowering the interest rates tends to increase the money supply ; 
+raising them tends to decrease the money supply.
+
+##Decentralized currency
+
+If the currency emission system is fully decentralized, there is no central authority that regulates the amount of currency in
+circulation. Instead, currency is created by the nodes of a peer-to-peer network. It is therefore necessary to define in advance 
+how currency will be created, and to build the creation rules into the protocol used by the nodes of the network. 
+
+###Finite supply and deflation
+
+[[!img "total_bitcoins_over_time_graph.png" size=120x120 title="Number of bitcoins over time"]]
+
+Satoshi Nakamoto's answer to this problem has been to authorize the creation of a finite 
+amount of Bitcoins. Bitcoins are created each time a user discovers a new [[block]]. 
+The rate of block creation is set to be approximately constant over time. However, the 
+number of Bitcoins generated per block is set to decrease geometrically, at a rate of 
+approximately 50% every 4 years. The result is that the amount of Bitcoins created will 
+never exceed 21 million. 
+
+A consequence of finite supply is that economic growth will cause price deflation : 
+the value of Bitcoins will increase when more goods and services are traded using them.
+
+However, there are economic arguments against [[deflation|Deflationary_spiral]] ; 
+in particular, deflation tends to reward the people who save their coins instead 
+of spending or investing them, and it does not favor trade and wealth redistribution. 
+
+###Controlled inflation
+
+There is no theoretical reason why a peer-to-peer and decentralized currency emission system 
+should use a limited amount of currency. Instead, the limited money supply of Bitcoin seems 
+to be a choice of its creator. It is not a limitation of peer-to-peer currencies.
+
+It would be possible to create a variant of Bitcoin with a controlled inflation rate. 
+Instead of geometrically decreasing the amount of coins attributed to new blocks, this 
+amount would be increased each year, at a predefined rate.
+
+For example, if the initial value of a block is 50 coins, and if 
+the increase rate is 2%, then the money supply would increase as 
+follows:
+
+
+|year |value of new blocks |(money supply)/(new blocks per year)|money supply increase (%)
+|0    |50.00 |50.00|- 
+|1    |51.10|101.10 |102.00%
+|2    |52.02 |153.02|51.50%
+|3    |53.06|206.08|34.68%
+|...    |...|...|...
+|10    |60.95|608.43|11.13%
+|100|362.23|15973.84|2.32%
+
+
+As the money supply grows, its rate of increase will tend towards the rate used to increase 
+the value of new blocks (2% in this example). The increase of the money supply is not decided 
+by a central authority or government; instead it is known in advance, and economic agents can 
+integrate it to their expectations.
+
+####Choice of the increase rate
+
+It is important to note that the choice of a predefined increase rate does not guarantee that 
+deflation will never occur; if the economy grows faster than the money supply, price deflation 
+might still be observed. 
+
+In theory, it would be possible to create several currencies with various 
+increase rates, and to let markets decide their relative values ; in practice, however, having to 
+deal with multiple currencies might be confusing and unpractical.
