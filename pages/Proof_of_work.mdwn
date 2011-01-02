@@ -1,12 +1,12 @@
 [[!template id=stub]]
 
-A **proof-of-work** is the verifiable result obtained through a given work. Anyone should be able to make sure that a given share of work was accomplished.
+A **proof of work** is the verifiable result obtained through a given work. Anyone should be able to make sure that a given share of work was accomplished.
 
-This is used in bitcoin for blocks generation. The block hash itself is a proof-of-work, proving whoever generated that block deserves the associated transaction fees and reward.
+This is used in bitcoin for block generation. The block hash itself is a proof of work, proving that whoever generated that block deserves the associated transaction fees and reward.
 
 ## Example
 
-Let's say our base work is "Hello world" and our work is to find a hash starting with "000". We are going to increase a value hashes alongside "Hello world" (nonce) until we reach our goal.
+Let's say our base work is "Hello world" and our work is to find a hash starting with "000". We are going to increase an integer value (nonce) hashed alongside "Hello world", until we reach our goal.
 
 	Hello world ! 0 : 3f6fc92516327a1cc4d3dca5ab2b27aeedf2d459a77fa06fd3c6b19fb609106a
 	Hello world ! 1 : b5690c48c2d0a09481186aaa99e4e090901ff2ac4d572e6706dfd30eefc22a27
@@ -30,8 +30,11 @@ Let's say our base work is "Hello world" and our work is to find a hash starting
 	Hello world ! 96 : 447ca2fa886965af084808d22116edde4383cbaa16fd1fbcf3db61421b9990b9
 	Hello world ! 97 : 000ba61ca46d1d317684925a0ef070e30193ff5fa6124aff76f513d96f49349d
 
-And here we are. Now we just have to let the network know our block, made of "Hello world" and 97, won. In bitcoin things are a bit more complex, especially since the header contains the [merkle tree](http://en.wikipedia.org/wiki/Merkle_tree) which depends on the included transactions, which includes the transaction to ourself (which uses a different address each time, thru making the header unique).
+And here we are. Now we just have to let the network know our block, made of "Hello world" and 97, won. 
+
+In bitcoin things are a bit more complex, especially since the header contains the [merkle tree](http://en.wikipedia.org/wiki/Merkle_tree) which depends on the included transactions. This includes the generation transaction, a transaction "out of nowhere" to our own address, which in addition to providing the miner with incentive to do the work, also ensures that every miner hashes a unique data set.
 
 [[!tag "Vocabulary"]]
 
 [[fr:Preuve de travail]]
+[[!template id=ns:file]][[:Example.jpg]]
