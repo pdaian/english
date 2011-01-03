@@ -1,6 +1,3 @@
-[[!tag "Articles_using_content_from_the_old_wiki"]]
-[[!tag "Technical"]]
-[[!tag "Developer"]]
 ## Introduction
 
 You can have different addresses in order to receive payments. Think of addresses as multiple postboxes around the outside of your house. Bitcoin allows accounts too. Each account owns a bunch of addresses. Taking our earlier analogy, you can imagine separate accounts as different houses. You (Bitcoin user) receive all the mail (balance shown in Bitcoin). Mail goes to a postbox (address) at one of your houses (accounts).
@@ -66,3 +63,7 @@ This section describes how typical web site code running on a web server uses th
 * You **make a sale**, paid for with bitcoins in the customer's account:  *move "userid" "" <amount> 6 "purchased item"*, and if it succeeds, send them the product.
 * Customer is **charged a fee** for use of the service:  *move "userid" "FEES" <amount>*  (using special accounts like "FEES" can make your application's logic much simpler)
 * Customer **purchases bitcoins** from you:  *move "AVAILABLE" "userid" <amount>* (assuming the bitcoins you are selling are kept track of in an "AVAILABLE" account)
+
+[[!tag "Articles_using_content_from_the_old_wiki"]]
+[[!tag "Technical"]]
+[[!tag "Developer"]]
