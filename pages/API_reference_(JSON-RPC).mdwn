@@ -13,63 +13,10 @@ Now run:
 	bitcoin server starting
 	$ ./bitcoind help
 
-The following list of RPC calls will be shown:
+A list of RPC calls will be shown.
 
-backupwallet<destination>
-
-getaccount<bitcoinaddress>
-
-getaccountaddress<account>
-
-getaddressesbyaccount<account>
-
-getbalance [[account]] [[minconf:1]]
-
-getblockcount
-
-getblocknumber
-
-getconnectioncount
-
-getditficulty
-
-getgenerate
-
-gethashespersec
-
-getinfo
-
-getnewaddress[[account]]
-
-getreceivedbyaccount<account> [[minconf:1]]
-
-getreceivedbyaddress<bitcoinaddress> [[minconf:1]]
-
-gettransaction <id>
-
-getwork[[data]]
-
-help [[command]]
-
-Iistreceivedbyaccount [[minconf:1]] [[includeemptyzfalse]]
-
-Iistreceivedbyaddress [[minconf:1]] [[includeemptyzfalse]]
-
-listtransactions<account> [[count:1G]]
-
-move <fromaccount> <toaccount> <amount> [[minconf:1]][[comment]]
-
-sendfrom <fromaccount> <tobitcoinaddress> <amount> [[minconf:1]][[comment]] [[comment-to]]
-
-sendtoaddress <bitcoinaddress> <amount> [[comment]] [[comment-to]]
-
-setaccount<bitcoinaddress> <account>
-
-setgenerate <generate> [[genproclimit]]
-
-stop
-
-validateaddress<bitcoinaddress>
+	$ ./bitcoind getbalance
+	2000.00000
 
 ## JSON-RPC
 
