@@ -5,3 +5,63 @@
 You can have different addresses in order to receive payments. Think of addresses as multiple postboxes around the outside of your house. Bitcoin allows accounts too. Each account owns a bunch of addresses. Taking our earlier analogy, you can imagine separate accounts as different houses. You (Bitcoin user) receive all the mail (balance shown in Bitcoin). Mail goes to a postbox (address) at one of your houses (accounts).
 
 The balance you see displayed is a total from all your accounts.
+
+## Accounts
+
+Bitcoin version 0.3.18 and later implements several RPC methods to maintain separate account balances in a single Bitcoin wallet.  The accounts feature makes it easy to create web services that maintain a separate bitcoin balance for each customer.
+
+## Account Names
+
+Accounts are named with arbitrary strings; you may use any [JSON](http://www.json.org/) string (JSON strings are sent and returned as UTF-8 encoded Unicode).  *Note: at the time of this writing, it is expected that a future version of Bitcoin will not allow an account to be named **
+
+Bitcoin creates two accounts automatically:  it implicitly creates a default account with the empty string as its name, and it explicitly creates an account named **Your Address** when a new wallet is created.
+
+## The Default Account
+
+The default account is named with the empty string ("" in JSON).  Generated coins are always credited to the default account, and the *sendtoaddress* method always debits the default account.
+
+## Accounts and Receiving Addresses
+
+Each account is associated with zero or more receiving addresses, and every receiving address is associated with exactly one account.  Coins sent to a receiving address in the wallet are credited to the associated account.
+
+Accounts are associated with receiving addresses by using the *getaccountaddress*, *getnewaddress* or *setaccount* methods.
+
+*getaccountaddress* will return the same address until coins are received on that address; once coins have been received, it will generate and return a new address.
+
+*getnewaddress* always generates and returns a new address.
+
+*setaccount* changes the account associated with an existing address.  Coins previously received on that address (if any) will be debited from the previous account's balance and credited to the address' new account.  Note that doing so may make the previous account's balance negative.
+
+Use the *getaddressesbyaccount* method to list all addresses associated with an account.
+
+## Sending
+
+The *sendfrom* method sends coins and debits the specified account.  It does **not** change Bitcoin's algorithm for selecting which coins in the wallet are sent-- you should think of the coins in the wallet as being mixed together when they are received.  There is no way to ask Bitcoin to "create a payment transaction using the coins received from these previously received transactions."
+
+The *sendtoaddress* method works like *sendfrom*, but always debits the default account.
+
+The send will fail if the account has insufficient funds, with two exceptions:
+	- Sends from the default account always succeed if there are sufficient funds in the server's wallet.  For example, if your wallet account balances were 100 BTC in account 'foo' and 0 BTC in the default account, then the balances after *sendtoaddress 15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC 10.00* would be 100 in account 'foo' and -10.00 in the default account (and the overall server balance would go from 100 to 90 BTC).
+	- The check for sufficient funds is done before paying transaction fees (if any); if a [[transaction_fee]] is needed, and there are sufficient funds in the wallet, then the transaction fee will be paid and debited from the account.  For example, if account 'foo' contains 10 bitcoins, you *sendfrom foo 15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC 10*, and the transaction costs 0.01, 'foo's balance will be -0.01 bitcoins.
+
+## Account -> Account Transfers
+
+Use the *move* method to transfer balances from one account to another.  Moves from the default account to any other account always succeed; moves from any other account will fail if the account has insufficient funds.  Moves are not broadcast to the network, and never incur transaction fees; they just adjust account balances in the wallet.
+
+## Account Balance and History
+
+The *getbalance* method returns the bitcoin balance for either the entire wallet (if no argument is given) or for a particular account.  The *listtransactions <account> [[N]]* method returns the last N (default 10) transactions that affected the account's balance.
+
+## Typical Uses
+
+This section describes how typical web site code running on a web server uses the JSON-RPC api to keep track of customers' accounts.
+
+	* Customer **creates an account** on the website:  web server either assigns them a unique customer id number or uses their email address or other unique identifier, calls *getaccountaddress "userid"* and tells the customer to send to that address to fund their account.
+	* Customer **receives coins** to fund their account: web server isn't involved.
+	* Customer is shown their **current balance**:  *getbalance "userid" 1* to get their 'confirmed' balance, and subtracts it from *getbalance "userid" 0* to get their 'unconfirmed' balance.
+	* Show the customer a **itemized list** of transactions:  *listtransactions "userid"*
+	* Customer **sends coins** to another bitcoin address: *sendfrom "userid" <address> <amount>*
+	* Customer **transfers coins** to another customer:  *move "userid1" "userid2" <amount>*
+	* You **make a sale**, paid for with bitcoins in the customer's account:  *move "userid" "" <amount> 6 "purchased item"*, and if it succeeds, send them the product.
+	* Customer is **charged a fee** for use of the service:  *move "userid" "FEES" <amount>*  (using special accounts like "FEES" can make your application's logic much simpler)
+	* Customer **purchases bitcoins** from you:  *move "AVAILABLE" "userid" <amount>* (assuming the bitcoins you are selling are kept track of in an "AVAILABLE" account)
