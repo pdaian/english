@@ -273,6 +273,8 @@ The **block** message is sent in response to a getdata message which requests tr
 |4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2038!)
 |4 |bits |uint32_t |The calculated difficulty target being used for this block
 |4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
+|? |txn_count |var_int |Number of transaction entries
+|? |txns |tx[]|Block transactions, in format of "tx" command
 
 
 ### getaddr
