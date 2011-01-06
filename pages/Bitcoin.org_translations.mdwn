@@ -1,4 +1,7 @@
-This is a translation template for the [bitcoin.org](http://bitcoin.org) front page. All translations should be updated to match this. The download links aren't included because updating every translation after every release is a pain in the butt.
+This is a translation template for the [bitcoin.org](http://bitcoin.org) front page. All translations should be updated to match the English page. The download links aren't included because updating every translation after every release is a pain in the butt. The page is nicer to edit when you click "edit" on a subsection.
+
+##English
+All translations should be updated to match this.
 
 <source lang="html4strict"><i>If you have version 0.3.9 or lower, please upgrade for an important security update!</i>
 
@@ -30,4 +33,371 @@ The total eventual circulation will be 21 million bitcoins.  There will never be
 You can get a few free bitcoins from the <a href="http://freebitcoins.appspot.com/">Bitcoin Faucet</a>. If Bitcoin is running when you receive a transaction, you can see it immediately, otherwise it may take 10 minutes or more after it was sent, and all blocks need to have finished downloading.  As of December 2010, there are 97000 blocks.
 
 To receive incoming connections, set your firewall to forward port 8333 (TCP) to your computer. This increases the number of nodes you can connect with.
+</source>
+
+##Russian
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin: P2P-криптовалюта</h2>
+
+Bitcoin - это основанная на системе peer-to-peer цифровая валюта. Использование системы peer-to-peer (P2P) обозначает, что в данной системе нет центральной власти, которая выдает новые деньги или записывает все транзакции. Вместо этого, эти задачи выполняются коллективно всеми узлами сети. Выгоды этого подхода:
+
+<ul>
+<li>Простая передача денег через интернет, без необходимости доверять посредникам.</li>
+<li>Третьи лица не могут предотвратить или контролировать ваши транзакции.</li>
+<li><strong>Переводы денег посредством Bitcoin практически бесплатны</strong>, в то время как кредитные карты и системы онлайновых платежей обычно требуют комиссию в 1-5% суммы каждого перевода + дополнительные торговые затраты, (которые могут достигать несколько сот долларов).</li>
+<li>Отсутсвтие нестабильности, которую вызывают банковская мультипликация (fractional reserve banking) и политика центральных банков. Ограниченная инфляция денежной поддержки в системе Bitcoin распределяется поровну (по мощности процессора) через всю сеть, а не монополизируется банками.</li>
+</ul>
+
+Bitcoin - это проект с открытыми исходниками (open source), созданный Сатоши Накамото. Данный проект сейчас находится в стадии beta. Разработка Bitcoin обеспечивается сервисом <a href="http://sourceforge.net/projects/bitcoin/">SourceForge</a>.
+
+Скриншоты:
+
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Main window screenshot" /></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Sending dialog screenshot" /></a></p>
+
+Использование Bitcoin:
+
+Включите флажок Options->Generate Coins, чтобы получить некоторое количество монет, в то же время помогая работе сети. Bitcoin запускается в фоновом режиме и работает в то время, когда ваш компьютер простаивает, и следовательно не должен замедлять работу других программ. "Генерация" монеты может затратить до нескольких дней, так что будьте терпеливы. Требуемое время зависит от того, сколько времени простоя вашего процессора вы затрачиваете.  
+
+Итоговая циркуляция (количество) денег в системе Bitcoin будет равно 21 000 000 монет.  Дальше этой суммы монеты создаваться не будут.  Монеты входят в циркуляцию постепенно в течение множества лет, раздаваясь узлам, поддерживающим сеть пропорционально затрачиваемому ими процессорному времени.
+
+Для того, чтобы получать входящие соединения, вам может понадобиться настроить ваш брандмауэр(firewall) для перенаправления порта 8333 (по протоколу TCP) на ваш компьютер.  Таким образом вы можете увеличить количество узлов, с которыми сможете соединиться.
+
+Bitcoin может быть использован с Tor при использовании командной строки:
+bitcoin -proxy=127.0.0.1:9050
+
+Если вы хотите остаться анонимным, будьте осторожны: не раскрывайте информацию, которая может связать ваши адреса Bitcoin с вашей личностью и используйте отдельный адрес Bitcoin для каждого платежа, который вы получаете.
+</source>
+
+##Spanish
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin P2P Criptodivisa</h2>
+
+Bitcoin es una red punto a punto (P2P) basada en una divisa digital. Punto a punto (P2P) significa que no hay una autoridad central que emita nuevo dinero o registre las transacciones. Sin embargo, estas tareas son realizadas colectivamente por los nodos de la red. Ventajas:
+
+<ul>
+<li>Transferir dinero facilmente mediante Internet,  sin tener que confiar en intermediarios.</li>
+<li>Terceros no pueden prevenir o controlar sus transacciones.</li>
+<li><strong>Las transacciones de Bitcoin son practicamente gratuitas</strong>, mientras que los sistemas de pago online o con tarjetas de credito cuestan entre un 1-5% adicional junto con otras comisiones adicionales, elevando la cantidad de dinero a pagar.</li>
+<li>Permanezca a salvo de la inestabilidad causada por las reservas bancarias y las malas politicas de los bancos centrales. La inflación limitada de la oferta monetaria del sistema Bitcoin se distribuye de manera uniforme (por CPU) a través de la red, no monopolizada por los bancos.</li>
+</ul>
+
+Bitcoin es un proyecto open source creado por Satoshi Nakamoto, y actualmente se encuentra en un estado beta de desarrollo. El desarrollo de Bitcoin se encuentra en <a href="http://sourceforge.net/projects/bitcoin/">SourceForge</a>.
+
+Capturas de pantalla:
+
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Captura de la ventana principal" /></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Captura del dialogo de envio" /></a></p>
+
+Usando Bitcoin:
+
+Entre en Opciones->Generar monedas para conseguir unas cuentas mientras ayuda a expandir la red.  Bitcoin se ejecuta en segundo plano cuando su ordenador no tiene tareas y no deberia ralentizar otros programas. Puede tardar dias en generar un moneda satisfactoriamente, sea paciente. El tiempo varia y depende de los tiempos de CPU con los que usted contribuya.  
+
+El total de monedas en circulacion en Bitcoin sera de 21.000.000 monedas. Nunca habra un numero superior a este.  Las monedas entran en circulacion de manera gradual, a un ritmo constante, en los nodos en proporcion al tiempo de CPU con el que contribuyen.
+
+Para recibir conexiones entrantes, necesita configurar su firewall para redirigir el puerto 8333 (TCP) a su ordenador.  Esto incrementa el numero de nodos a los que se puede conectar.
+
+Bitcoin puede usarse mediante Tor con la linea de comandos:
+bitcoin -proxy=127.0.0.1:9050
+
+Si desea permanecer en el anonimato (bajo seudonimo, en realidad), tenga cuidado de no revelar ninguna informacion que vincule su direccion Bitcoin a su identidad, y utilice una direccion Bitcoin nueva por cada pago que usted reciba.
+</source>
+
+##German
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Die Bitcoin P2P Krypto-W&auml;hrung</h2>
+
+Bitcoin ist eine digitale W&auml;hrung, die auf einem Peer-to-Peer-Netzwerk aufbaut. Peer-to-peer (P2P) bedeutet hier, dass es keine zentrale Autorit&auml;t gibt, die daf&uuml;r zust&auml;ndig ist neues Geld in Umlauf zu bringen oder den Zahlungsverkehr zu regeln. Stattdessen werden diese Aufgaben kollektiv von den Teilnehmern des Netzwerkes &uuml;bernommen.
+
+Vorteile:
+
+<ul>
+<li>Man kann Geld einfach per Internet &uuml;berweisen, ohne sich auf Banken oder andere Dienstleister verlassen zu m&uuml;ssen.</li>
+<li>&Uuml;berweisungen k&ouml;nnen von Dritten nicht kontrolliert oder verhindert werden.</li>
+<li><strong>Bitcoin-&Uuml;berweisungen sind praktisch kostenlos</strong>, w&auml;hrend man bei Kreditkarten und Online-Zahlungssystemen normalerweise 1-5% der &Uuml;berweisungssumme als Geb&uuml;hr bezahlt.</li>
+<li>Man vermeidet die Instabilit&auml;ten, die durch das partielle Reservesystem und schlechte Entscheidungen der Zentralbanken verursacht werden k&ouml;nnen. Die begrenzte Inflation der Geldmenge im Bitcoin-System findet dezentral und gerecht (nach Prozessor-Leistung verteilt) im ganzen Netzwerk statt, anstatt zentral, von den Banken allein, bestimmt zu werden.</li>
+</ul>
+
+Bitcoin ist ein Open-Source-Projekt, das von Satoshi Nakamoto ins Leben gerufen wurde. Es wird auf <a href="http://sourceforge.net/projects/bitcoin/">Sourceforge</a> entwickelt und befindet sich derzeit in der Beta-phase.
+
+Screenshots:
+
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Screenshot des Programmfensters" /></a></p>
+
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Screenshot des &Uuml;berweisungsfensters" /></a></p>
+
+Bitcoin verwenden:
+
+Aktivieren Sie im Men&uuml; Options->Generate Coins um ein paar M&uuml;nzen zu verdienen indem Sie dabei helfen das Netzwerk am laufen zu halten. Bitcoin l&auml;uft im Hintergrund w&auml;hrend der eigene Computer sich im Leerlauf befindet und sollte andere Programme nicht verlangsamen. Abh&auml;ngig davon, wieviel Rechenzeit Sie beitragen k&ouml;nnen, kann es einige Tage dauern bis die ersten M&uuml;nzen erzeugt werden &ndash; haben Sie also bitte etwas Geduld.
+
+Insgesamt wird es am Schlu&szlig; 21.000.000 M&uuml;nzen geben. Das ist eine harte Obergrenze, die nicht &uuml;berschritten wird. Die M&uuml;nzen werden &uuml;ber Jahre hinweg nach und nach in Umlauf gebracht: Sie werden an die einzelnen Teilnehmer ausgesch&uuml;ttet, proportional zu der Menge Rechenzeit die diese beitragen.
+
+Um eingehende Verbindungen empfangen zu k&ouml;nnen, m&uuml;ssen Sie evtl. Ihre Firewall oder Ihren Router so einstellen, dass Port 8333 (TCP) weitergeleitet wird. Dadurch erh&ouml;ht sich die Anzahl der anderen Teilnehmer, mit denen Sie Verbindung aufnehmen k&ouml;nnen.
+</source>
+
+##Italian
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin P2P Cryptomoneta</h2> 
+Bitcoin e una moneta digitale basata su network peer-to-peer. Peer-to-peer (P2P) significa che non c'è un'autorita centrale che rilasci nuova moneta o che tenga traccia dei trasferimenti. In questo caso invece, queste operazioni sono gestite collettivamente dai nodi del network.  Vantaggi:
+
+<ul> 
+<li>Trasferire soldi facilmente attraverso Internet, senza aver bisogno di trovare e fidarsi di intermediari.</li> 
+<li>Enti terzi non potranno prevenire o controllare i vostri trasferimenti</li> 
+<li><strong>I trasferimenti di Bitcoin sono praticamente gratuiti</strong>, dove invece carte di credito o altri sistemi di pagamento online costano tipicamente il 1-5% per operazione, più altri costi aggiuntivi dell'ordine di centinaia di euro.</li> 
+<li>Si trova al riparo dall'instabilità delle riserve bancarie frazionate e dalle cattive politiche fatte dalle banche centrali. La limitata inflazione del sistem Bitcoin è distribuita uniformamente ( dal calcolo delle CPU ) attraverso il network, senza essere monopolizzata dalle banche.</li> 
+</ul>
+
+<p>Bitcoin è un progetto open source creato da Satoshi Nakamoto, e si trova attualmente nello stato di sviluppo di beta. Le sorgenti di Bitcoin sono mantenute dall'hosting fornito da <a href="http://sourceforge.net/projects/bitcoin/">SourceForge</a>. 
+
+Immagini:
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Main window screenshot"/></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Sending dialog screenshot" /></a> </p>
+
+Usare Bitcoin:
+<p>Dovete andare ad attivare l'opzione <b>Options->Generate Coins</b> per ottenere alcune monete ( coins ) per aver aiutato a mantenere il network. Bitcoin lavora in background quando il computer è fermo e non dovrebbe rallentare l'uso di altri programmi. Potrebbe richiedere giorni per generare correttamente una moneta ( coin ), quindi siate pazienti. Questo tempo può variare e dipende anche da quanto contibuirete offrendo la vostra CPU.</p> 
+
+Il massimo possibile di Bitcoin in circolazione sarà 21,000,000.  Non ci sara mai una quantità maggiore di moneta oltre a questa. Queste monete ( coins ) entrano in circolazione gradualmente, per un ritmo costante di diversi anni, basato dai nodi che parteciperanno al network e dall'uso delle loro CPU.
+
+Per poter ricevere le connessioni in entrata, dovrete impostare il vostro firewall/router per aprire la porta 8333 ( TCP ) del vostro computer. Questo aumenterà il numero di nodi a cui riuscirete a connettervi.
+</source>
+
+##French
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin, cryptodevise en pair-à-pair</h2>
+
+<p>Bitcoin est une devise électronique basée sur un réseau de type peer-to-peer.  Peer-to-peer (P2P) signifie qu'il n'existe pas d'autorité centrale habilitée à émettre de la monnaie ou à tenir un journal des transactions.  Au lieu de cela, ces tâches sont gérées de façon collective par l'ensemble des noeuds du réseau.   Parmi les avantages :</p>
+<ul>
+<li>Les transfers peuvent être effectués facilement via Internet, sans avoir à passer par un tiers de confiance.</li>
+<li>Aucun tiers ne peut empêcher ou contrôler vos transactions.</li>
+<li><strong>Les transactions par Bitcoin sont quasiment gratuites</strong>, tandis que les cartes de crédit et autres moyens de paiement en ligne coutent typiquement de 1 à 5% par transaction, sans compter divers prélèvements effectués par les marchands, qui peuvent s'élever à plusieurs centaines de dollars.</li>
+<li>Le système est à l'abri de l'instabilité causée par le système des réserves fractionnaires ainsi que par les mauvaise politiques monétaires des banques centrales.  L'inflation limitée du système Bitcoin est distribuée de façon homogène (par puissance de calcul [[CPU]]) à travers le réseau, et non monopolisée par les banques.</li>
+</ul>
+<p>Bitcoin est un projet logiciel libre créé par Satoshi Nakamoto, actuellement en phase de développement béta.  Le développement de Bitcoin est hébergé par <a href="http://sourceforge.net/projects/bitcoin/">SourceForge</a>.</p>
+
+<p>Screenshots:</p>
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Main window screenshot" /></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Sending dialog screenshot" /></a></p>
+<p>Utilisation de Bitcoin:</p>
+<p>Activez l'option "Option->Generate Coins" afin d'obtenir des pièces en aidant au fonctionnement du réseau.  Bitcoin tourne en arrière-plan lorsque l'ordinateur est inactif et il ne devrait pas ralentir vos programmes.  La génération d'un bitcoin peut prendre plusieurs jours, soyez-donc patient.  La durée exacte dépend de la quantité de temps CPU que vous pouvez apporter. </p>
+<p>Le nombre total de bitcoins en circulation sera à terme de 21 millions.  Il n'y aura jamais plus de bitcoins que cela.   Les bitcoins entrent en circulation graduellement, à un rythme constant pendant de nombreuses années, vers les noeuds supportant le réseau et en proportion du temps CPU qu'il procurent.</p>
+<p>Pour recevoir des connexions entrantes, vous devez configurer votre pare-feu afin de lui faire rediriger le port TCP 8333 vers votre machine.  Cela améliore le nombre de noeuds avec lesquels vous pouvez vous connecter.</p>
+<p>Bitcoin peut être utilisé en conjonction avec Tor grâce à la commande suivante :<br />
+bitcoin -proxy=127.0.0.1:9050</p>
+<p>Si vous essayez de garder l'anonymat (pseudonymat, pour être exact), prenez garde de ne pas révéler d'information permettant de relier votre adresse bitcoin à votre identité.  Vous devriez utiliser une adresse bitcoin différente pour chaque paiement que vous recevez.</p>
+</source>
+
+##Finnish
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin P2P Digivaluutta</h2>
+Bitcoin on vertaisverkkoon perustuva digitaalinen valuutta. Vertaisverkkoon (peer-to-peer network) perustuva toiminta tarkoittaa sitä, että mikään keskitetty taho ei hallinnoi rahan liikkeellelaskua tai maksutapahtumia, vaan verkon tietokoneet hoitavat nämä tehtävät kollektiivisesti.  Etuja:
+
+<ul>
+<li>Siirrä rahaa helposti Internetin ylitse ilman välikäsiä.</li>
+<li>Kolmannet osapuolet eivät voi koskea rahoihisi tai estää niiden käyttöä.</li>
+<li><strong>Maksut Bitcoinilla ovat käytännössä ilmaisia</strong>, kun taas luottokorttien ja verkkomaksujärjestelmien kustannukset kauppiaalle ovat tyypillisesti 1-5% jokaisesta maksusta ja satojen eurojen kiinteät käyttömaksut.</li>
+<li>Suojaudu osittaisen kassavarannon pankkijärjestelmän aiheuttamalta epävakaudelta ja keskuspankkien huonolta rahapolitiikalta. Bitcoin-rahakannan rajallinen kasvu jakautuu tasaisesti (käytetyn prosessoriajan mukaan) koko verkkoon, ei keskitetysti pankeille.</li>
+</ul>
+
+Bitcoin on Satoshi Nakamoton aloittama avoimen lähdekoodin projekti, joka on tällä hetkellä betakehitysvaiheessa. Projektin kehityssivut ovat <a href="http://sourceforge.net/projects/bitcoin/">SourceForgessa</a>.
+
+Kuvia:
+
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Main window screenshot" /></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Sending dialog screenshot" /></a></p>
+
+Ohjelman käyttö:
+
+Valitse Options->Generate Coins niin osallistut verkon pyörittämiseen ja saat itsellesi kolikoita. Ohjelma käyttää prosessoria silloin kun muut ohjelmat eivät, joten muiden ohjelmien toiminnan ei pitäisi hidastua. Ensimmäisen kolikon luontiin voi mennä useita päiviä, ole siis kärsivällinen. Aika vaihtelee riippuen siitä miten paljon prosessoriaikaa käytät.
+
+Bitcoineja tulee aikanaan olemaan yhteensä 21 000 000. Sen enempää rahaa ei koskaan tule. Rahamäärä tulee kiertoon asteittain, tasaiseen tahtiin useiden vuosien aikana, ja jakautuu verkon tietokoneille suhteessa niiden lahjoittamaan prosessoriaikaan.
+
+Sisääntulevien yhteyksien vastaanottamiseksi porttiin 8333 (TCP) saapuvien yhteyksien tulee reitittyä koneellesi. Tämä lisää niiden verkon koneiden määrää, joihin voit olla yhteydessä.
+</source>
+
+##Swedish
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin P2P Cryptocurrency</h2>
+
+Bitcoin är en digital valuta baserad på peer-to-peer-nätverk. Peer-to-peer (P2P) innebär att det inte finns någon central myndighet som utfärdar nya pengar eller håller reda på transaktioner. Istället sköts dessa uppgifter kollektivt av noderna i nätverket. Fördelar:
+
+<ul>
+<li>Överför pengar enkelt via Internet, utan att behöva lita på mellanhänder.</li>
+<li>Tredje part kan inte förhindra eller kontrollera dina transaktioner.</li>
+<li><strong>Bitcoin transaktioner är praktiskt taget gratis</strong>, medan kreditkort och online-betalningssystem normalt kostar 1-5% per transaktion plus diverse andra handelsavgifter upp till hundratals dollar.</li>
+<li>Skydd från den instabilitet som orsakas av fractional-reserve banking och centralbankernas dåliga politiker. Den begränsade inflationen av Bitcoin-systemets penningsmängd fördelas jämnt (enligt processorkraft) över hela nätet i stället för att den skulle monopoliseras av bankerna.</li>
+</ul>
+
+Bitcoin är ett open source -projekt skapat av Satoshi Nakamoto, och är för tillfället i betastadiet. Bitcoin-utvecklingen finns på <a href="http://sourceforge.net/projects/bitcoin/">SourceForge</a>.
+
+Bilder:
+
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Main window screenshot" /></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Sending dialog screenshot" /></a></p>
+
+Använding av Bitcoin:
+
+Välj Options -> Generate coins för att få några slantar genom att hjälpa driva nätverket. Bitcoin körs i bakgrunden när datorn är inaktiv och så borde inte försena andra program. Det kan ta dagar att generera ett bitcoin, så ha tålamod. Tiden varierar och beror på hur mycket processortid du använder.
+
+Till sluts kommer det att finnas 21 000 000 bitcoins. Det kommer aldrig att finnas fler bitcoins en så. Mynten kommer i cirkulation gradvis, med jämn takt under många år, till noder som stödjer nätverket (i proportion till den processortid de använder).
+
+För att ta emot inkommande anslutningar, måste du ställa in din brandvägg att vidarebefordra port 8333 (TCP) till din dator. Detta ökar antalet noder du kan ansluta med.
+</source>
+
+##Chinese (simplified)
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin P2P Cryptocurrency</h2>
+
+Bitcoin是点对点(peer-to-peer)基于网络的匿名数字货币。点对点(peer-to-peer)的意思是指没有中央权威控制货币的汇款通道。相反，这些货币转帐的任务是由网络节点进行的集体管理。匿名就意味着交易各方可以隐藏自己的真实身份。优势：
+
+<ul>
+<li>无需信托中间人，能够方便的进行互联网上的汇款。</li>
+<li>第三方不能够控制或者阻止您的交易。</li>
+<li><strong>Bitcoin 交易几乎免费</strong>, 而信用卡的网上在线支付系统通常收取 1-5% 的交易费用，加上其他各种费用高达数百美元。</li>
+<li>避免了中央储备银行的不良政策和不稳定性所造成的安全隐患. Bitcoin系统的有限货币通胀是均匀分布(由CPU决定)于整个网络, 而不是由银行垄断.</li>
+</ul>
+
+Bitcoin 是一个由Satoshi Nakamoto 制作的开源项目, 目前处于开发测试阶段. Bitcoin 研发网址位于<a href="http://sourceforge.net/projects/bitcoin/">SourceForge</a>.
+
+截图:
+
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Main window screenshot" /></a></p>
+
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Sending dialog screenshot" /></a></p>
+
+使用 Bitcoin:
+
+在 选项(Options)->生成(Generate) 货币(Coins) 获得帮助网络运行的几个货币.  Bitcoin 在计算机的后台运行，因此不会影响其他程序的运行. 它可能需要数天时间产生一个货币, 请耐性等待.  随着时间的长短而不同, 你的贡献决定于CPU的空闲挂载时间.
+
+最终的Bitcoins总量将达到21,000,000货币单位，这是货币量的上限. 在支持网络的节点上, 以CPU的负载时间决定他们的贡献量, 这套货币将以稳定的步伐在数年间逐渐进入流通渠道.
+
+如需接受传入连接, 请将您计算机的防火墙映射到8333(TCP) 端口. 此操作将增加您电脑的网络节点连接数.
+</source>
+
+##Chinese (traditional)
+<source lang="html4strict">
+<h2 class=\"homepage-title page-title\">Bitcoin P2P Cryptocurrency</h2>
+
+Bitcoin是點對點(peer-to-peer)基於網絡的匿名數字貨幣。點對點(peer-to-peer)的意思是指沒有中央權威控制貨幣的匯款通道。相反，這些貨幣轉帳的任務是由網絡節點進行的集體管理。匿名就意味著交易各方可以隱藏自己的真實身份。優勢：
+
+<ul>
+<li>無需信托中間人，能夠方便的進行互聯網上的匯款。</li>
+<li>第三方不能夠控制或者阻止您的交易。</li>
+<li><strong>Bitcoin 交易幾乎免費</strong>, 而信用卡的網上在線支付系統通常收取 1-5% 的交易費用，加上其他各種費用高達數百美元。</li>
+<li>避免了中央儲備銀行的不良政策和不穩定性所造成的安全隱患. Bitcoin系統的有限貨幣通脹是均勻分布(由CPU決定)於整個網絡, 而不是由銀行壟斷.</li>
+</ul>
+
+Bitcoin 是一個由Satoshi Nakamoto 制作的開源項目, 目前處於開發測試階段. Bitcoin 研發網址位於<a href="http://sourceforge.net/projects/bitcoin/">SourceForge</a>.
+
+截圖:
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Main window screenshot"/></a></p>
+
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Sending dialog screenshot"/></a></p>
+
+使用 Bitcoin:
+
+在 選項(Options)->生成(Generate) 貨幣(Coins) 獲得幫助網絡運行的幾個貨幣.  Bitcoin 在計算機的后台運行，因此不會影響其他程序的運行. 它可能需要數天時間產生一個貨幣, 請耐性等待.  隨著時間的長短而不同, 你的貢獻決定於CPU的空閑挂載時間.
+
+最終的Bitcoins總量將達到21,000,000貨幣單位，這是貨幣量的上限. 在支持網絡的節點上, 以CPU的負載時間決定他們的貢獻量, 這套貨幣將以穩定的步伐在數年間逐漸進入流通渠道.
+
+如需接受傳入連接, 請將您計算機的防火牆映射到8333(TCP) 端口. 此操作將增加您電腦的網絡節點連接數.
+</source>
+
+##Czech
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin P2P Kryptopeníze</h2>
+<p>Bitcoin je měna založena na peer-to-peer sítích. Peer-to-peer (P2P) znamená, že neexistuje žádná centrální autorita pro vydávání nových peněz, nebo sledování transakcí. Místo toho jsou tyto úkoly spravovány kolektivně uzly v síti. Výhody:</p>
+<ul>
+<li>Transfer peněz jednoduše přes Internet, bez nutnosti věřit prostředníkům.</li>
+<li>Třetí strany nemohou zabránit, nebo kontrolovat vaše transakce.</li>
+<li><strong>Bitcoin transakce jsou prakticky zdarma</strong>, zatímco kreditní karty a online platební systémy běžně stojí 1-5% za transakci, plus různé další poplatky obchodníkům, až do stovek dolarů.</li>
+<li>Uchraňte se před nestabilitou způsobenou špatnou politikou centrálních bank. Omezená inflace peněžních zásob Bitcoin systému je distribuovaná rovnoměrně (silou CPU) skrz síť, nikoliv monopolizovaná bankami.</li>
+</ul>
+<p>Bitcoin je open source projekt, který vytvořil Satoshi Nakamoto a nyní se nachází v beta vývojovém stádiu. Vývoj Bitcoin je hostován na <a href="http://sourceforge.net/projects/bitcoin/">SourceForge</a>.</p>
+<p>Screenshoty:</p>
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Screenshot hlavního okna" /></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Screenshot odesílacího dialogu" /></a></p>
+<p>Použití Bitcoin:</p>
+<p>Zapněte Možnosti->Generovat mince, abyste získali několik mincí a pomohli fungování sítě.  Bitcoin běží na pozadí když je váš počítač nečinný a neměl by zpomalovat ostatní programy.  Může to trvat dny, než úspěšně vygenerujete minci, takže buďte trpěliví.  Načasování závisí na tom, kolik volného času vašeho CPU přispějete.  </p>
+<p>Celkem by mělo být v Bitcoin systému v oběhu 21 milionů mincí.  Nikdy se tam nebude nacházet více mincí.  Mince vstupují do oběhu postupně stálým tempem po mnoho let, do uzlů podporujících síť v poměru k času CPU, kterým přispěly.</p>
+<p>Pro přijetí přicházejících spojení musíte nastavit svůj firewall na přeposílání portu (port forwarding) 8333 (TCP) na váš počítač.  Toto zvýší počet uzlů, se kterými se můžete spojit.</p>
+<p>Bitcoin může být používán skrz Tor pomocí příkazové řádky:<br />
+bitcoin -proxy=127.0.0.1:9050</p>
+<p>Pokud zkoušíte zůstat anonymní (ve skutečnosti pseudoanonymní), buďte opatrní a neprozrazujte žádné informace spojením své Bitcoin adresy se svou identitou.  Pro každou platbu kterou obdržíte byste měli použít novou Bitcoin adresu.</p>
+</source>
+
+##Polish
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin P2P waluta kryptograficzna</h2>
+
+Bitcoin jest opartą o sieć peer-to-peer (P2P) cyfrową walutą. Peer-to-peer (P2P) gwarantuje, że nie ma centralnej instytucji która miałaby wpływ na nowe pieniądze oraz nikt nie może śledzić tranzakcji. Rolę tej instytucji przejmują węzły sieci które współpracują  wspólnie w sieci.
+Zalety:
+
+<ul>
+<li>Transfer pieniędzy przez sieć jest łatwy i prosty, bez ingerencji osób trzecich (np. Banków)</li>
+<li>Osoby trzecie nie mogą zapobiec ani kontrolować tranzakcji</li>
+<li>Tranzakcje Bitcoin są praktycznie bezpłatne , podczas gdy karty kredytowe oraz płatności online zazwyczaj kosztują od 1 – 5% od tranzakcji plus inne dodatkowe opłaty manipulacyjne nawet to kilkuset dolarów</li>
+<li>Jesteś zabezpieczony przed niestabilnością rezerw banków oraz złej polityki banków centralnych. Ograniczona inflacja systemu monetarnego Bitcoin oraz równomierna dystrybucja pieniądza (przez moc CPU) w obrębie sieci bitcoin, nie zmonopolizowana przez banki.</li>
+</ul>
+
+Bitcoin jest projektem open source stworzonym przez Satoshi Nakamoto, a obecnie jest na etapie rozwoju. Rozwianie projektu jest wspierane przez SourceForge.
+
+Zrzuty ekranu:
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Main window screenshot" /></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Sending dialog screenshot" /></a></p>
+	
+Jak używać bitcoin:
+
+Przejdź do Options->Generate Coins  by wygenerować kilka monet oraz wspierać działanie sieci. Bitcoin działa w tle kiedy twój komputer jest w stanie bezczynności i nie powinien spowalniać innych programów. Generowanie bitcoin może zająć wiele dni, więc musisz uzbroić się w cierpliwość. Czas generowania może być różny i zależeć od tego ile czasu procesora jest efektywnie wykorzystane. Docelowo całkowita ilość pieniędzy w obiegu nie przekroczy 21 milionów i nigdy nie będzie więcej monet powyżej tej wartości. Pieniądze będą wprowadzane do obiegu stopniowo i równomiernie przez wiele lat przez węzły tworzące sieć, proporcjonalnie do wniesionego czasu pracy CPU.
+
+By program mógł odbierać połączenia musisz odblokować port 8333 TCP na twoim firewallu/ routerze. To znacznie zwiększy liczbę węzłów z którymi będziesz się mógł połączyć.
+
+Bitcoin może używać sieci TOR. Opcja ta dostępna jest z linii komend:
+bitcoin -proxy=127.0.0.1:9050
+
+Jeżeli chcesz pozostać anonimowy, nie wyjawiaj żadnych informacji łączących twój adres konta bitcoin z twoimi danymi osobowymi. Zamiast tego powinieneś użyć nowego adresu konta dla każdej płatności (tranzakcji) którą otrzymujesz.
+</source>
+
+##Dutch
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin P2P Cryptovaluta</h2>
+<p>Bitcoin is een op peer-to-peer gebaseerde, digitale valuta. Peer-to-peer (P2P) houdt in dat er geen centraal gezag is dat nieuw geld kan uitgeven of de transacties kan volgen. Integendeel, deze taken worden collectief beheerd door de knooppunten in het netwerk. Voordelen:</p>
+<ul>
+<li>Boek gemakkelijk geld over via het Internet, zonder te hoeven vertrouwen op derden.</li>
+<li>Derden kunnen jouw transacties niet tegenhouden of controleren.</li>
+<li><strong>Bitcointransacties zijn vrijwel gratis</strong>, daar waar credit cards en online betaalsystemen normaal gesproken 1-5% kosten per transactie in rekening brengen plus verschillende andere toeslagen die kunnen oplopen tot honderden euro's.</li>
+<li>Wees beschermd tegen de instabiliteit die veroorzaakt wordt door &quot;fractional-reserve banking&quot; en slecht beleid van centrale banken. De inflatie van de geldvoorraad van het Bitcoinsysteem is gelimiteerd en gelijk verdeeld (CPU kracht) over het gehele netwerk en niet gemonopoliseerd door banken.</li>
+</ul>
+<p>Bitcoin is een open source project gecreeërd door Satoshi Nakamoto en is op dit moment in een bèta ontwikkelfase. Haal de nieuwste versie van Bitcoin vanaf de <a href="http://sourceforge.net/projects/bitcoin/">SourceForge projectpagina</a>.</p>
+<p>Schermafdrukken:</p>
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Main window screenshot" /></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Sending dialog screenshot" /></a></p>
+<p>Bitcoin gebruiken:</p>
+<p>Zet de optie aan in het menu Options -> Generate Coins om een aantal coins te krijgen voor het helpen om het netwerk te laten draaien. Bitcoin draait op de achtergrond als je computer niets doet is en het zou je computer niet moeten vertragen. Het kan soms dagen duren voordat je succesvol een Bitcoin gegenereerd hebt, dus wees geduldig. De tijd varieërt and hangt af van de hoeveelheid CPU tijd je bijdraagt.</p>
+<p>In totaal zullen er 21.000.000 Bitcoins in circulatie komen. Er zullen nooit meer Bitcoins komen. De Bitcoins komen geleidelijk in circulatie, gestaag gedurende meerdere jaren en via de knooppunten in het network in verhouding tot de CPU tijd die zij bijdragen.</p>
+<p>Om binnenkomende connecties te kunnen ontvangen, moet je de firewall instellen zodat poort 8333 (TCP) doorgestuurd wordt naar je computer. Hierdoor kan je met meer knooppunten verbinding maken.</p>
+</source>
+
+##Esperanto
+<source lang="html4strict">
+<h2 class="homepage-title page-title">Bitcoin P2P Cxifromono</h2>
+<p>Bitcoin estas mono bazita sur reto de samtavola ŝutado. Samtavola ŝutado signifas ke estas nenia centra aŭtoritato por doni novajn monerojn aŭ kontroli transdonojn. Anstataŭe, tiuj taskoj estas manipulataj de la nodoj de la reto. Avantaĝoj:</p>
+<ul>
+<li>Transdoni monon facile tra la Interreto, sen devo fidi je mezulo.</li>
+<li>Triaj partioj ne povas antaŭmalhelpi aŭ regi viajn transdonojn.</li>
+<li><strong>Transdonoj per Bitcoin estas efektive senpagaj</strong>, dum kreditkartoj kaj surretaj pagosistemoj tipe postulas po 1-5% por unu transdono kaj variajn aliajn kostojn ĝis centoj da dolaroj.</li>
+
+<li>Estu sekura, for de la malstabileco de frakcia konservo-bankado kaj malbonaj politikoj de centraj bankoj. La limigita inflacio de la provizo de mono en la sistemo de Bitcoin estas ebene distribuata (laŭ la potenco de procesoroj) tra la reto, kaj ne monopoliigita de la bankoj.</li>
+</ul>
+<p>La projekto de Bitcoin havas malfermitan kodon kaj estas kreita de Satoshi Nakamoto. Ĝi nuntempe estas en beta stato. La kodo de Bitcoin estas gastigita ĉe <a href="http://sourceforge.net/projects/bitcoin/">SourceForge</a>.</p>
+<p>Ekrankopioj:</p>
+<p><a href="/sites/default/files/screen3.png"><img src="/sites/default/files/screen3_thumb.png" alt="Bildo de la ĉeffenestro" /></a></p>
+<p><a href="/sites/default/files/screen4.png"><img src="/sites/default/files/screen4_thumb.png" alt="Bildo de la transdonilo" /></a></p>
+<p>Kiel uzi Bitcoin:</p>
+<p>Ŝaltu Options->Generate Coins (Opcioj->Generu Monerojn) por ricevi kelkajn monerojn pro via helpado funkciigi la reton. La softvaro de Bitcoin funkcias en la fono dum via komputilo nenion faras kaj devus ne malrapidigi aliajn softvarojn. Vi eble bezonos kelkajn tagojn generi moneron, do estu pacienca. La tempo bezonata varias kaj dependas de kiom da tempo vi kontribuas funkciigante la reton. </p>
+<p>La tuta iama cirkulado de moneroj estos 21 milionoj. Neniam estos pli da moneroj ol tio. La moneroj malrapide eniras la cirkuladon, je ebena rapideco, dum multaj jaroj, al nodoj kiuj subtenas la reton laŭ la proporcio de tempo iliaj procesoroj kontribuas.</p>
+
+<p>Por ricevi envenajn konektojn, vi devas agordi vian fajroŝirmilon por plusendi pordon 8333 (TCP) al via komputilo. Tio pliigos la nombron da nodoj kun kiuj vi povos konekti.</p>
+<p>Bitcoin povas esti uzata per Tor per la komandlineo:<br />
+bitcoin -proxy=127.0.0.1:9050</p>
+<p>Se vi penas resti anonima (pseŭdanonima, verdire), estu zorga ne malkaŝi ian informon kiu ligas vin kun viaj adresoj de Bitcoin. Vi devus uzi novan adreson de Bitcoin por ĉiu nova pago kiun vi ricevas.</p>
 </source>
