@@ -4,35 +4,21 @@ A **proof of work** is the verifiable result that can only be obtained through a
 
 One application of this idea is a proposed [method for preventing email spam](http://en.wikipedia.org/wiki/Hashcash), requiring a proof of work on the email's contents (including the To address), on every email. Legitimate emails will be able to do the work to generate the proof easily (not much work is required for a single email), but mass spam emailers will have difficulty generating the required proofs (which would require huge computational resources).
 
-This concept is used in bitcoin for block generation. For a block to be valid it must hash to a value less than the current [[target]], this means that each block indicates that work has been done generating it. Each block contains the hash a predecessor block, thus each block has a [block chain](chain) of blocks that together contain a large amount of work. Changing a block (which can only be done by making a new block containing the same predecessor) requires regenerating all successors and redoing the work they contain. This protects the block chain from tampering.
+This concept is used in bitcoin for block generation. For a block to be valid it must hash to a value less than the current [[target]], this means that each block indicates that work has been done generating it. Each block contains the hash a predecessor block, thus each block has a [[chain|block_chain]] of blocks that together contain a large amount of work. Changing a block (which can only be done by making a new block containing the same predecessor) requires regenerating all successors and redoing the work they contain. This protects the block chain from tampering.
 
 ## Example
 
-Let's say our base work is "Hello world" and our work is to find a hash starting with "000". We are going to increase an integer value (nonce) hashed alongside "Hello world", until we reach our goal.
+Lets say the base string that we are going to do work on is "Hello, World". Our target is to find a variation of it that hashes to a value beginning with '000'. We vary the string by adding a integer value to the end called a [[nonce]] and incrementing it each time. Finding a match for "Hello, World" takes us 98 tries:
 
 	Hello world ! 0 : 3f6fc92516327a1cc4d3dca5ab2b27aeedf2d459a77fa06fd3c6b19fb609106a
 	Hello world ! 1 : b5690c48c2d0a09481186aaa99e4e090901ff2ac4d572e6706dfd30eefc22a27
 	Hello world ! 2 : 5b6fd9c27fcb54ca23404d9428f081b7c9280ba6370e33a6a20b16f40ce76320
-	Hello world ! 3 : 9c5d769416aa0ca894abf22bd17bd30fbb6959291423ae1903a9f86a1fe7ce78
-	Hello world ! 4 : 4efc65df7933e4f5cc21947c61d5cc6bd11d644794bfa210603b0547c4b1cc3e
-	Hello world ! 5 : 441b15b67d791620cd50ea537144e3115422e33bdb1b1b9b110d3265f7a9199b
-	Hello world ! 6 : d368331386f0cf773ad53910fefcef4bdceeb526e408d3fbc9408d6f6e481ca4
-	Hello world ! 7 : 013cc9722f38d2eb6186b75e2e7cbe6e7818e0612a2774d4400416b17ae03b87
-	Hello world ! 8 : 3a92631799b478c3bcc554df8401b09900fbdb58cc0e58efe711cc475ee097b3
-	Hello world ! 9 : 66658881696164fcb04f32ec505bb5e515000a85baf691beb63fc9d3f4d0fee2
 	....
-	Hello world ! 88 : 80d009db72c6ad35241bb3dbac77cbe177c6a803fe67527c159dbfaf2cbf9f5c
-	Hello world ! 89 : a5b1e789f691f9793f8a84f8ebae3d8e28d49cbe0eeea2da621cd409e3bdee2b
-	Hello world ! 90 : 4eba5b2459caac3d9ff3b787aaa5cac481aaa4a0232fbbe02a8ee4d1101c2ca2
-	Hello world ! 91 : c811722c68b53614d58d37dcad9d540c2bce9f85b5ccae94424ff4716eea1765
-	Hello world ! 92 : e30c716fccda22f394a8e80a2670b97968b5416b8b39e2061a7b7d1a9f41e0a9
-	Hello world ! 93 : 965425c39d4e24c532721d7f7b77a00b31b0c0d0e316d46240c4e6bec9c09f65
-	Hello world ! 94 : 7090a0e5d88cff635e42ea33fcd6091a058e9cdd58ab8cd5c21c1c70421e35c6
 	Hello world ! 95 : b74f3b2cf1061895f880a99d1d0249a8cedf223d3ed061150548aa6212c88d43
 	Hello world ! 96 : 447ca2fa886965af084808d22116edde4383cbaa16fd1fbcf3db61421b9990b9
 	Hello world ! 97 : 000ba61ca46d1d317684925a0ef070e30193ff5fa6124aff76f513d96f49349d
 
-And here we are. Now we just have to let the network know our block, made of "Hello world" and 97, won. 
+98 hashes on a modern computer is not very much work (most computers can achieve at least 4 million hashes per second). Bitcoin automatically varies the target (and thus the amount of work required to generate a block) to keep a roughly constant rate of block generation. The probability of a single hash succeeding can be found [here](http://blockexplorer.com/q/probability).
 
 In bitcoin things are a bit more complex, especially since the header contains the [merkle tree](http://en.wikipedia.org/wiki/Merkle_tree) which depends on the included transactions. This includes the generation transaction, a transaction "out of nowhere" to our own address, which in addition to providing the miner with incentive to do the work, also ensures that every miner hashes a unique data set.
 
