@@ -2,9 +2,9 @@
 
 A **proof of work** is the verifiable result that can only be obtained through a given work. Proofs of work are hard to obtain (i.e. require work), but trivial to check. Proofs of work can be applied to information, you can prove that you did work on a particular number.
 
-One application of this idea is a proposed [method for preventing email spam](http://en.wikipedia.org/wiki/Hashcash), requiring a proof of work on the email's contents (including the To address), on every email. Legitimate emails will be able to do the work to generate the proof easily (not much work is required for a single email), but mass spam emailers will have difficulty generating the required proofs (which will require huge computational resources).
+One application of this idea is a proposed [method for preventing email spam](http://en.wikipedia.org/wiki/Hashcash), requiring a proof of work on the email's contents (including the To address), on every email. Legitimate emails will be able to do the work to generate the proof easily (not much work is required for a single email), but mass spam emailers will have difficulty generating the required proofs (which would require huge computational resources).
 
-This concept is used in bitcoin for block generation. The block hash itself is a proof of work, proving that whoever generated that block deserves the associated transaction fees and reward.
+This concept is used in bitcoin for block generation. For a block to be valid it must hash to a value less than the current [[target]], this means that each block indicates that work has been done generating it. Each block contains the hash a predecessor block, thus each block has a [block chain](chain) of blocks that together contain a large amount of work. Changing a block (which can only be done by making a new block containing the same predecessor) requires regenerating all successors and redoing the work they contain.
 
 ## Example
 
