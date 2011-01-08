@@ -3,6 +3,8 @@
 **Tor** is a distributed 'onion' network, that makes it more difficult for an adversary to track any one peer on the network.  Tor also is very useful to access the 'uncensored' internet in countries such as China and Iran.
 
 Bitcoin can run easily on the Tor network. 
+
+#GUI
 From Bitcoin client menu select Settings -> Options<br />
 [[!template id=ns:file]][[:20110108-btc-options.png]]<br />
 
@@ -13,14 +15,18 @@ Configuring an application to use Tor is also called to torify it.
 
 Conducting business using [[bitcoin-otc]] can be done more anonymously when directly connected to a Freenode IRC hidden service.
 
-##Hidden services
-These services are running within the tor network. You can connect to them for example using the -connect= parameter to bitcoind.
+#bitcoind
+
+Run bitcoind with -proxy=127.0.0.1:9050 (or whatever your SocksPort is).
+
+#Hidden services
+These services are running within the tor network. You can connect to them for example using the -connect= parameter to bitcoind. Note that you do not need to use them - tor can also anonymize your normal internet traffic, including bitcoin connections. There are some technical reasons why hidden services may be beneficial, see the tor documentation if you're really interested.
 
 Please add your service here if you run a stable bitcoin node under a tor hidden service.
 
 * iy6ni3wkqazp4ytu.onion
 
-##External links
+#External links
 
 * [Tor project](http://tor.eff.org/)
 * [Freenode over Tor info](http://freenode.net/irc_servers.shtml#tor)
