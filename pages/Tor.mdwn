@@ -2,7 +2,12 @@
 
 **Tor** is a distributed 'onion' network, that makes it more difficult for an adversary to track any one peer on the network.  Tor also is very useful to access the 'uncensored' internet in countries such as China and Iran.
 
-Bitcoin can run easily on the Tor network. (needs a brief howto here)
+Bitcoin can run easily on the Tor network. 
+From Bitcoin client menu select Settings -> Options
+
+and check "Connect through socks 4 proxy" with the address 127.0.0.1 and port 9050
+(the Tor default port number; making an application to use Tor is also called to torify it)
+(needs a brief howto here)
 
 Conducting business using [[bitcoin-otc]] can be done more anonymously when directly connected to a Freenode IRC hidden service.
 
@@ -10,3 +15,7 @@ Conducting business using [[bitcoin-otc]] can be done more anonymously when dire
 
 * [Tor project](http://tor.eff.org/)
 * [Freenode over Tor info](http://freenode.net/irc_servers.shtml#tor)
+* [howto enable SASL in mIRC](http://wiki.honk-honk.org/wiki/SaslServ#mIRC)
+* [SASL.dll library for mIRC](http://honk-honk.org/SASL/SASL.dll)
+* [sasl script for mIRC](http://honk-honk.org/SASL/sasl.mrc)
+* [Freenode resources on SASL](http://freenode.net/sasl/)
