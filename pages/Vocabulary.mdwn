@@ -18,7 +18,7 @@
 **Discouraged block**
 >  A discouraged [[block]] is considered to be a valid part of the chain, but blocks you generate will build onto the block before it instead of that block. If most of the network is discouraging a block, then it will almost always be replaced by another block and not end up making it into the final [[block_chain]]. Unlike rejecting a block, discouraging a block has no risk of splitting the network. Bitcoin currently doesn't discourage any blocks, but the mechanism may be used in the future to handle certain issues such as unreasonably high or low fees.
 **Double Spending**
->  Submitting to the network for verification a transaction which relies in whole or in part on previously spent crediting transactions as the source of the money for the new transaction.
+>  Attempting to spend coins that have already been spent in another transaction
 **Generate Bitcoins**
 >  The phrase generating bitcoins comes from the file menu option 'Generate Coins' in the Bitcoin which enables or disables the CPU intensive process of verifying blocks. When Bitcoin verifies a block before any other Bitcoin client, it receives newly minted bitcoins and the transaction fees which may or may not be included in the verified block. The amount of bitcoins awarded for verifying a block is ?50.00 for the first 210,000 blocks and half the previous amount of bitcoins for each subsequent 210,000 blocks. On average, 210,000 blocks take about 4 years to verify. The total amount of bitcoins that will ever be minted is roughly 21,000,000.00000000. Currently the decimal places more than two to the right of the decimal point are not displayed in the official Bitcoin client.
 **[[Hash]]**
