@@ -30,14 +30,16 @@ Please add your service here if you run a stable bitcoin node under a tor hidden
 
 mIRC is a popular IRC client. This is a guide how to connect to Freenode IRC using Tor + SASL + mIRC.<br />
 ##Register your nick with freenode nickserv<br />
+Freenode only allows SASL authenticated users to connect to the onion IRC server. SASL authentication works only with a registered nickname.<br />
 Connect to Freenode IRC without using tor & execute<br />
 /msg nickserv register <password> <email><br />
 <br />
+You will see something like this<br />
 -NickServ- An email containing nickname activation instructions has been sent to <email><br />
 -NickServ- If you do not complete registration within one day, your nickname will expire.<br />
 <br />
-go to your email and copy/paste 1 command from e-mail to irc to finish your nick registration.<br />
-	
+To finish your nick registration go the provided email and copy/paste the command from e-mail to irc.<br />
+
 ##Add SASL support to your mIRC installation<br />
 Download the SASL.dll and sasl.mrc files and copy them to your mIRC installation directory<br />
 Load sasl.mrc script (Alt + R to open script editor, Ctrl + L to load file, browse to sasl.mrc, press OK or "save & exit").<br />
