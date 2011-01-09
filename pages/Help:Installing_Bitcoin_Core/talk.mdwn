@@ -10,3 +10,34 @@ Incorporated the work in progress I had on http://wiki.bitcoin-otc.com/wiki/Bitc
 > I understand how those information may not fit exactly into the goal of the [[Getting_started]] page, which as its name implies is just a page to get started with bitcoin and may not need all the extra details. I could have been better however to discuss the issue before rolling back the changes, especially since both of you are on IRC (fast & easy way to discuss this). Maybe we should also include on pages their intended use & writing guidelines on the discussion page (just throwing an idea). [MagicalTux](User:MagicalTux) 00:16, 9 January 2011 (GMT)
 > Do you know how confusing it is for a person who's barely competent and doesn't yet understand Bitcoin? People HATE reading huge paragraphs of text, and if they need that info then they're better served by going elsewhere on this wiki. Providing users with multiple options: you can do this OR this OR this OR this... is incredibly confusing. We want to get them started now at the most basic level, assuming that they have 0 attention (big pretty pictures, simplistic instructions).
 > After they have Bitcoin running, and some BTC to play with, then we can begin to introduce them to alternatives and explain complex things. Simply hurling the thick manual at their head makes people run away. We want to gradually bring them in. Small steps. Push their boundaries slowly rather than quickly. As the page was before, it was too much info, too fast. Remember this is the 'getting started' (begin here, step 1, start here, ...) page for the absolute lowest tier beginner. [Genjix](User:Genjix) 16:13, 9 January 2011 (GMT)
+
+I'm assuming your linked page is the up-to-date version:
+"This is a step-by-step tutorial to help new users start using bitcoin. After you read this page, you'll know the basics of what bitcoin is and how it is structured, how to get and install the bitcoin client, where to get coins, and how to use the client to send and receive transactions."
+
+This is fluff. It's obvious by glancing at the contents that it's a step-by-step. People know it's for bitcoin (they're on a bitcoin website). The rest can be shortened to "use Bitcoin" and is redundant.
+
+"Choose the appropriate link depending on your operating system, and install in the usual manner. For Windows, easiest is probably the executable installer. For Linux, note that the tar.gz contains the binary build, in addition to the source, so if you run a recent distribution, you should be able to just run the binary without compiling yourself."
+
+Linux users will be more saavy. We don't need to mix the Windows and Linux sections. We can add a new section for Linux but I haven't done so yet as I'm sure Linux user know how to unpack a gzip file and run a binary.
+
+"Bitcoin comes with a GUI client called "bitcoin", and a CLI (text-mode) client called "bitcoind". It is probably more user-friendly to start with the GUI, so launch the bitcoin client. [screenshot of client](insert)."
+
+Erm, why do users need to even know about bitcoind? TMI.
+
+"Your starting bitcoin address (you can have as many as you want - we'll talk about addresses later) shows in a text box at the top. Right below it is your total bitcoin balance, which, of course, to start with will be zero. There is a list box below it showing all your transactions, which can be variously filtered with tabs, which again will be empty to start with."
+
+Will merge this into the main text.
+
+"The status bar at the bottom will display some important information. If you have bitcoin generation (block hashing) turned on, on the left the client will display your hash rate. To the right of that, you will see the number of bitcoin nodes your client is connected to, then, the number of blocks your client has in its chain, and finally, the number of transactions you have in your wallet."
+
+Too much too fast. The block chain can be alluded too, but throwing in those words like "generation", "block hashing", "nodes" and "hash rate" = scary. No need for it. Especially since a new user will have no idea what these are because they haven't yet been explained. Pointless to include it here.
+
+"There are few things more exciting than getting your first bitcoins! So once you have all the blocks downloaded, head on over to the bitcoin faucet, fill out the form and put in your bitcoin address, and receive your free bitcoin! (You can do this before finishing the block chain download, but you won't see the coins in your wallet until you finish downloading the blocks... which would put a damper on the whole excitement bit.) Once you submit the form successfully, you should see a new transaction in your client within seconds."
+
+The pictures adequately explain this, and this text would just be extra filler that's uneeded (as already the pictures have guided you through this).
+
+"But it will be grayed out, and have 0/unconfirmed status. What's up with that? Read on."
+
+Already in the main text.
+
+[Genjix](User:Genjix) 16:27, 9 January 2011 (GMT)
