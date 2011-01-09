@@ -26,3 +26,20 @@ also, xchat instructions for using over tor can be nice to have too. not everyon
 ## hidden services
 
 rather than trying to keep a separate list of bitcoind as hidden services, it's probably better to link to the existing list of [[fallback_nodes]], which already has a few tor hidden services listed.
+
+## Configuration tips
+
+In torrc:
+	CircuitBuildTimeout 30 #Picks faster nodes
+	LearnCircuitBuildTimeout 0 #Enables the above setting
+	MaxCircuitDirtiness 1200 #The number of seconds between each enforced IP change.
+	#Increasing it can be good in some cases.
+	WarnUnsafeSocks 0 #Tor doesn't like the way Bitcoin makes requests, and spams
+	#the log about it. This stops that behavior.
+
+* Privoxy is better than Polipo in every way. It has powerful privacy-assisting options (some disabled by default), and it can almost replace Torbutton on non-Firefox browsers. Firefox doesn't need Privoxy *or* Polipo because it can handle SOCKS5 natively.
+* The most secure browser configuration is Firefox + Torbutton. You must use either Privoxy or Torbutton.
+* Use standalone Tor, which outputs Tor's log to a console. *Nearly all problems can be quickly solved by looking at the log.*
+* The official Vidalia bundles install two torrc files in different locations. One of these is useless. (Can't remember which one.)
+
+Summary: The Tor bundles suck. [theymos](User:Theymos) 09:21, 9 January 2011 (GMT)
