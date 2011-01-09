@@ -1,4 +1,6 @@
-This is a step-by-step tutorial to help new users start using bitcoin. After you read this page, you'll know the basics of what bitcoin is and how it is structured, how to get and install the bitcoin client, where to get coins, and how to use the client to send and receive transactions.
+This page is a detailed tutorial to help new users understand and using bitcoin. After you read this page, you'll know the basics of what bitcoin is and how it is structured, how to get and install the bitcoin client, where to get coins, and how to use the client to send and receive transactions.
+
+If you want to ignore all the details of how the system works, and just want to start using it, see the [[Getting_started]] page instead.
 
 #What is Bitcoin
 
@@ -12,12 +14,7 @@ In this section, you'll learn where to get the client, how to install it on diff
 
 ##Download and install the client
 
-First, download the bitcoin client from http://bitcoin.org/. Choose the appropriate link depending on your operating system, and install in the usual manner. For Windows, easiest is probably the executable installer. See screenshots on the right.
-[[!img "Download_it_fin.png" title="Downloading the "Windows (exe)" version"]]
-[[!img "Install_fin.png" title="Windows installation wizard"]]
-
-
-For Linux, note that the tar.gz contains the binary build, in addition to the source, so if you run a recent distribution, you should be able to just run the binary without compiling yourself.
+First, download the bitcoin client from http://bitcoin.org/. Choose the appropriate link depending on your operating system, and install in the usual manner. For Windows, easiest is probably the executable installer. For Linux, note that the tar.gz contains the binary build, in addition to the source, so if you run a recent distribution, you should be able to just run the binary without compiling yourself.
 
 ##Starting the client and connecting to the network
 
@@ -27,8 +24,6 @@ Bitcoin comes with a GUI client called "bitcoin", and a CLI (text-mode) client c
 When you start for the first time, your bitcoin wallet will be created automatically, and the client will attempt to establish connections to other nodes on the network and start downloading the bitcoin [[block_chain]]. You must get all of the blocks in the chain before sending/receiving transactions. [Click here](http://blockexplorer.com/q/getblockcount) to see the current number of blocks in the chain. This download may take as long as several hours.
 
 ##Client features
-
-[[!img "Bitcoin_all_blocks_fin.png" size=400x400 size=120x120 class="right" title="Some bitcoin client features."]]
 
 Your starting bitcoin address (you can have as many as you want - we'll talk about [[addresses|#Bitcoin_addresses]] later) shows in a text box at the top. Right below it is your total bitcoin balance, which, of course, to start with will be zero. There is a list box below it showing all your transactions, which can be variously filtered with tabs, which again will be empty to start with.
 
@@ -41,8 +36,6 @@ In this section you will learn about bitcoin addresses, sending and receiving tr
 ##Getting your first bitcoins
 
 There are few things more exciting than getting your first bitcoins! So once you have all the blocks downloaded, head on over to the [bitcoin faucet](https://freebitcoins.appspot.com/), fill out the form and put in your bitcoin address, and receive some free bitcoin! (You can do this before finishing the block chain download, but you won't see the coins in your wallet until you finish downloading the blocks... which would put a damper on the whole excitement bit.) 
-
-[[!img "Get_some_btc.png" title="Getting free coins from the Faucet"]]
 
 Once you submit the form successfully, you should see a new transaction in your client within seconds. But it will be grayed out, and have 0/unconfirmed status:
 [[!img "First_btc_recv.png"]]
@@ -67,5 +60,10 @@ talk more about addresses here
 ##Generating bitcoins
 
 talk about generation here
+
+#See also
+
+* [[Getting_started]] A brief tutorial for the impatient
+* [[How_bitcoin_works]] Some more details about the underlying bitcoin system
 
 [[!tag "Introduction"]]
