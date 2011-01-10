@@ -18,3 +18,14 @@ This means that instead of counting 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10-- you count
 The total number of Tonal BitCoins ever (analogous to the 21mil BTC) is just under 7.76 song-TBC.
 
 For more information on the Tonal system in general, please see [the book](http://www.lulu.com/product/file-download/tonal-system/10991091).
+
+## Guessing TBC or BTC
+
+Given variable 'value' in base units (uBTCents/TBCᵇ), one can guess whether it is properly Decimal BitCoin or Tonal BitCoin with the following pseudo-code:
+
+	if ( ! ( this % 0x10000 ) )
+	Choose Tonal BitCoin
+	if ( ! ( this % 1000000 ) )
+	Choose Decimal BitCoin
+	if ( ! ( this % 0x100 ) )
+	Choose Tonal BitCoin
