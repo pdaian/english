@@ -1,3 +1,55 @@
+##tcatm
+
+I propose a scheme like this:
+
+() means optional, $* are placeholders
+
+<pre>
+bitcoin:($label@)$address(?$query)(#$message)
+</pre>
+
+### Variables
+
+<pre>
+label: Label for that address (e.g. name of receiver)
+address: bitcoin address
+query: pairs of key=value seperated by &
+message: optional message that is shown to the user after scanning the QR code
+</pre>
+
+### Query keys
+<pre>
+amount: amount of BTC
+
+</pre>
+### Examples
+
+Just the address:
+<pre>
+bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
+</pre>
+
+Address with name:
+<pre>
+bitcoin:tcatm@18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
+</pre>
+
+Request to send 20.30 BTC to me:
+<pre>
+bitcoin:tcatm@18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=20.30
+</pre>
+
+Request to send 50 BTC with message:
+<pre>
+bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=50#Payment%20for%20product%20xyz
+</pre>
+
+Characters must be URI encoded.
+
+
+
+##tcatm, modified by LukeJr
+
 I propose a scheme like this:
 
 [] means optional, <> are placeholders
@@ -12,7 +64,7 @@ I propose a scheme like this:
 * size: amount of $unit
 * unit: BTC, [[ᵗˢᵐᵇ]]TBC[[ᵗˢᵐᵇ]], or null/omitted (which refers to the base unit)
 
-## Examples
+### Examples
 
 Just the address:
 	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
@@ -34,7 +86,7 @@ Request to send 50 BTC with message:
 
 Characters must be URI encoded properly.
 
-## BNF syntax
+### BNF syntax
 
 	bitcoinurn      = "bitcoin:" bitcoinaddress  [bitcoinversion](";version=")  [bitcoinparams]("?")
 	bitcoinaddress  = FIXME :)
