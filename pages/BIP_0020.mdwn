@@ -157,6 +157,14 @@ would initiate a transaction with the amount filled in, but with a blank address
 ###use-cases
 before the URI scheme is finalised one should think long and hard about use-cases. in what circumstances will who use this for what?
 
+* an online shop has a 'buy this'-link, which uses the URI scheme. 
+	* PROBLEM: click on the link opens the application. how does the merchant notice this.
+		* POSSIBLE SOLUTION: javascript can detect the click.
+		* POSSIBLE SOLUTION: the checkout site checks the httprequest 
+	* PROBLEM: the time problem (~10minutes) is very apparent here. nobody wants to wait 10minutes for the transaction to be confirmed.
+* a person only has an online client, no actual application
+	* PROBLEM: how to redirect the URI, so that the online client gets a notice?
+
 ###backwards-compatibility
 we want URIs generated in 2011 to still work in 2036. think about extensibility. of course we can make only educated guesses (and nothing more!) about the future, but don't act as if there is none. this should be the best we can do, but it should not be seen as forever set in stone. make it possible for later generations to improve our work, to mend our errors, without breaking the URIs created now. Version incompatibility is the easiest thing to drive users crazy: "i now upgraded to this shiny new version. what? it doesn't support the old format? AAAAAAARRRGH!"
 
