@@ -131,7 +131,12 @@ Characters must be URI encoded properly.
 
 ##marcusaurelius
 
-
+in my opinion, the most basic idea of the URI scheme (as this is a currency) is to facilitate payment. so the URIs should represent first and foremost payments. if it represents something else, this needs to be specified. Thus
+<code>
+bitcoin:13guMzcGPvdD3qjQvCoNc1w5XAgJ638KaQ
+</code>
+represent a **payment** to me using my bitcoin adress, not my bitcoin adress itself. So after parsing the URI (via link/qr/whatever) the application should open a transaction window with the adress filled in. you then need to add an amount and confirm the payment.
+If your application is smart, it will also have a button "just store the adress". But the point i am trying to make, is that the default use of the URI should be for payment, nor for exchanging adresses.
 
 ##References
 
