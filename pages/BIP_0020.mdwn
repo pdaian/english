@@ -1,6 +1,7 @@
 ##RFC 3986
+**the following is taken from wikipedia**
 
-[[Internet_standard]] [STD 66](http://rfc.net/std0066.html) (also RFC 3986) defines the generic syntax to be used in all URI schemes. Every URI is defined as consisting of four parts, as follows:
+Internet standard [STD 66](http://rfc.net/std0066.html) (also RFC 3986) defines the generic syntax to be used in all URI schemes. Every URI is defined as consisting of four parts, as follows:
 
 	<code><nowiki><scheme name> : <hierarchical part> [ ? <query> ] [ # <fragment> ]</nowiki></code>
 
@@ -8,16 +9,15 @@ The **scheme name** consists of a letter followed by any combination of letters,
 
 The **hierarchical part** of the URI is intended to hold identification information hierarchical in nature. Usually this part begins with a double forward slash ("//"), followed by an *authority* part and an optional *path*.  
 
-* The **authority** part holds an optional user information part terminated with "@" (e.g. <code><nowiki>username:password@</nowiki></code>), a hostname (i.e. [[domain_name]] or [[IP_address]]), and an optional [[port number|TCP_and_UDP_port]] preceded by a colon ":".
+* The **authority** part holds an optional user information part terminated with "@" (e.g. <code><nowiki>username:password@</nowiki></code>), a hostname (i.e. domain name or IP address), and an optional port number preceded by a colon ":".
 
-* The **path** part is a sequence of segments (conceptually similar to [[directories|Directory_(file_systems)]], though not necessarily representing them) separated by a forward slash ("/"). Each segment can contain parameters separated from it using a semicolon (";"), though this is rarely used in practice.
+* The **path** part is a sequence of segments (conceptually similar to directories, though not necessarily representing them) separated by a forward slash ("/"). Each segment can contain parameters separated from it using a semicolon (";"), though this is rarely used in practice.
 
-The **query**  is an optional part separated with a question mark, which contains additional identification information which is not hierarchical in nature. The [[query_string]] syntax is not generically defined, but is commonly organized as a sequence of <code><nowiki><key>=<value></nowiki></code> pairs separated by a semicolon (2.1) (2.2) (2.3) or separated by an ampersand, for example:
+The **query**  is an optional part separated with a question mark, which contains additional identification information which is not hierarchical in nature. The query string syntax is not generically defined, but is commonly organized as a sequence of <code><nowiki><key>=<value></nowiki></code> pairs separated by a semicolon (2.1) (2.2) (2.3) or separated by an ampersand, for example:
 	Semicolon: <code><nowiki>key1=value1;key2=value2;key3=value3</nowiki></code>
 	Ampersand: <code><nowiki>key1=value1&key2=value2&key3=value3</nowiki></code>
 
-The **[[fragment|Fragment_identifier]]** is an optional part separated from the front parts by a [[hash|Number_sign]] ("#"). It holds additional identifying information that provides direction to a secondary resource, e.g. a section heading in an article identified by the remainder of the URI.  When the primary resource is an [[HTML]] document, the **fragment** is often an </code> [[<code>id|HTML#Attributes]] of a specific element and [[web_browser]]s will make sure this element is visible.
-
+The **fragment** is an optional part separated from the front parts by a hash ("#"). It holds additional identifying information that provides direction to a secondary resource, e.g. a section heading in an article identified by the remainder of the URI.  When the primary resource is an HTML document, the **fragment** is often an <code>id</code> attribute of a specific element and web browsers will make sure this element is visible.
 
 ##tcatm
 
