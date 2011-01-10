@@ -2,7 +2,7 @@ I propose a scheme like this:
 
 [] means optional, <> are placeholders
 
-	bitcoin://<host>[]/<address>?amount=<size><unit><label>[[&label=]]<message>[[&message=]]
+	bitcoin:<address>?amount=<size><unit><label>[[&label=]]<message>[[&message=]]
 
 ### Variables
 
@@ -15,36 +15,21 @@ I propose a scheme like this:
 ## Examples
 
 Just the address:
-	bitcoin:///18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
+	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
 
 Address with name:BTC
-	bitcoin:///18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?label=tcatm
+	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?label=tcatm
 
 Request to send 20.30 BTC to tcatm:
-	bitcoin:///18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=20.30BTC&label=tcatm
+	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=20.30BTC&label=tcatm
 
 Request to send 400 TBC to Luke:
-	bitcoin:///1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=400TBC
+	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=400TBC
 
 Request to send 5 uBTC:
-	bitcoin:///18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=500
-
-Request to send 5 uBTC over the LAN to 192.168.1.2:
-	bitcoin://192.168.1.2/18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=500
+	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=500
 
 Request to send 50 BTC with message:
-	bitcoin:///18pnDgDYFMAKsHTA3ZqyAi6t8qztaWWXt?amount=50BTC&label=tcatm&message=Payment%20for%20product%20xyz
+	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8qztaWWXt?amount=50BTC&label=tcatm&message=Payment%20for%20product%20xyz
 
 Characters must be URI encoded properly.
-
-## BNF Syntax
-
-	bitcoinurl         = "bitcoin://"  [[host]] "/" bitcoinaddress  [bitcoinversion](";version=")  [bitcoinparams]("?")
-	bitcoinaddress = FIXME :)
-	bitcoinversion = "1.0"
-	bitcoinparams = *bitcoinparam
-	bitcoinparam = amountparam  labelparam  messageparam
-	amountparam = "amount=" digits bitcoinunit
-	bitcoinunit = "BTC"  "ᵇTBC"  "ᵐTBC"  "ˢTBC"  "ᵗTBC"  "TBC"  "TBCᵗ"  "TBCˢ"  "TBCᵐ"  "TBCᵇ"
-	labelparam = "label=" *uchar
-	messageparam = "label=" *uchar
