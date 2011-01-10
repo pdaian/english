@@ -1,8 +1,8 @@
 I propose a scheme like this:
 
-() means optional, $* are placeholders
+[] means optional, <> are placeholders
 
-	bitcoin://($host)/$address?amount=$size$unit(&label=$label)(&message=$message)
+	bitcoin://<host>[]/<address>?amount=<size><unit><label>[[&label=]]<message>[[&message=]]
 
 ### Variables
 
