@@ -2,44 +2,28 @@ I propose a scheme like this:
 
 () means optional, $* are placeholders
 
-<pre>
-bitcoin:($label@)$address(?$query)(#$message)
-</pre>
+	bitcoin://($host)/$address?amount=$size$unit(&label=$label)(&message=$message)
 
 ### Variables
 
-<pre>
-label: Label for that address (e.g. name of receiver)
-address: bitcoin address
-query: pairs of key=value seperated by &
-message: optional message that is shown to the user after scanning the QR code
-</pre>
+* label: Label for that address (e.g. name of receiver)
+* address: bitcoin address
+* message: optional message that is shown to the user after scanning the QR code
+* size: amount of $unit
+* unit: BTC, [[ᵗˢᵐᵇ]]TBC[[ᵗˢᵐᵇ]], or null/omitted (which refers to the base unit)
 
-### Query keys
-<pre>
-amount: amount of BTC
-
-</pre>
 ## Examples
 
 Just the address:
-<pre>
-bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
-</pre>
+	bitcoin:///18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
 
 Address with name:
-<pre>
-bitcoin:tcatm@18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
-</pre>
+	bitcoin:///18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?label=tcatm
 
 Request to send 20.30 BTC to me:
-<pre>
-bitcoin:tcatm@18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=20.30
-</pre>
+	bitcoin:///18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=20.30&label=tcatm
 
 Request to send 50 BTC with message:
-<pre>
-bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=50#Payment%20for%20product%20xyz
-</pre>
+	bitcoin:///18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=50&label=tcatm&message=Payment%20for%20product%20xyz
 
-Characters must be URI encoded.
+Characters must be URI encoded properly.
