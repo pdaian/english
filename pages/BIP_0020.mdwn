@@ -41,9 +41,14 @@ Characters must be URI encoded properly.
 	bitcoinversion  = "1.0"
 	bitcoinparams   = *bitcoinparam
 	bitcoinparam    = amountparam  labelparam  messageparam
-	amountparam     = "amount=" digits bitcoinunit
-	bitcoinunit     = btcunits  tbcunitsunicode  tbcunitsascii  tbcunitsfull
+	amountparam     = "amount=" amount
+	amount          = amountdecimal  amounthex  amounttonal
+	amountdecimal   = digits btcunits
+	amounthex       = "x" hexdigits bitcoinunit
+	amounttonal     = tonaldigits tbcunits
+	bitcoinunit     = btcunits  tbcunits
 	btcunits        = "BTC"  "BTCents"  "uBTC"  "uBTCents"
+	tbcunits        = tbcunitsunicode  tbcunitsascii  tbcunitsfull
 	tbcunitsunicode = "ᵇTBC"  "ᵐTBC"  "ˢTBC"  "ᵗTBC"  "TBC"  "TBCᵗ"  "TBCˢ"  "TBCᵐ"  "TBCᵇ"
 	tbcunitsascii   = "bTBC"  "mTBC"  "sTBC"  "tTBC"  "TBC"  "TBCt"  "TBCs"  "TBCm"  "TBCb"
 	tbcunitsfull    = "tran-TBC"  "song-TBC"  "tam-TBC"  "bong-TBC"  "mill-TBC"  "san-TBC"  "ton-TBC"  "TBC"  "TBC-ton"  "TBC-san"  "TBC-mill"  "TBC-bong"
