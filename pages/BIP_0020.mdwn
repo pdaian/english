@@ -71,7 +71,11 @@ bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=50#Payment%20for%20product%20x
 
 Characters must be URI encoded.
 
+### Criticism
 
+* Not compliant with URI specification.
+* Biased toward **only** decimal BitCoins
+	* Not future-proof, since the DecimalBitCoin unit (BTC) will be too large for regular trading should bitcoin ever gain large-scale adoption.
 
 ##tcatm, modified by LukeJr
 
@@ -132,6 +136,13 @@ Characters must be URI encoded properly.
 	labelparam      = "label=" *uchar
 	messageparam    = "label=" *uchar
 
+### Criticism
+
+* To support all URIs, an implementer must consider all valid units
+	* Possible solutions:
+		* Allow only base units (uBTCents/TBCᵇ) for amount, and let the UI display it in the user's preferred unit
+		* Allow only fundamental units: base units, BTC, or TBC
+* To support TBC, an implementer must decode and parse Unicode Tonal digits (and possibly multipliers/dividers)
 
 ##marcusaurelius
 
