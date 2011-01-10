@@ -83,15 +83,14 @@ I propose a scheme like this:
 
 [] means optional, <> are placeholders
 
-	bitcoin:<address>?amount=<size><unit><label>[[&label=]]<message>[[&message=]]
+	bitcoin:<address>?amount=<size><label>[[&label=]]<message>[[&message=]]
 
 ### Variables
 
 * label: Label for that address (e.g. name of receiver)
 * address: bitcoin address
 * message: optional message that is shown to the user after scanning the QR code
-* size: amount of $unit
-* unit: BTC, [[ᵗˢᵐᵇ]]TBC[[ᵗˢᵐᵇ]], or null/omitted (which refers to the base unit)
+* size: amount of base bitcoin units (uBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC); this number can be prefixed with the letter "x" to signify a hexadecimal number; it can be appended with "E" <digits> to signify an exponent to the base multiplier (that is, 'E8' moves your number 8 positional places to the left-- if specifying decimal units (without an "x"), this means the standard BTC unit; if specifying hexadecimal units (with an "x"), this means ᵇTBC units)
 
 ### Examples
 
@@ -102,16 +101,16 @@ Address with name:
 	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?label=tcatm
 
 Request to send 20.30 BTC to tcatm:
-	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=20.30BTC&label=tcatm
+	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=20.3E8&label=tcatm
 
 Request to send 400 TBC to Luke:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=400TBC
+	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=x400E4
 
 Request to send 5 uBTC:
 	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=500
 
 Request to send 50 BTC with message:
-	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8qztaWWXt?amount=50BTC&label=tcatm&message=Payment%20for%20product%20xyz
+	bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8qztaWWXt?amount=5E9&label=tcatm&message=Payment%20for%20product%20xyz
 
 Characters must be URI encoded properly.
 
@@ -123,26 +122,13 @@ Characters must be URI encoded properly.
 	bitcoinparams   = *bitcoinparam
 	bitcoinparam    = amountparam  labelparam  messageparam
 	amountparam     = "amount=" amount
-	amount          = amountdecimal  amounthex  amounttonal
-	amountdecimal   = digits btcunits
-	amounthex       = "x" hexdigits bitcoinunit
-	amounttonal     = tonaldigits tbcunits
-	bitcoinunit     = btcunits  tbcunits
-	btcunits        = "BTC"  "BTCents"  "uBTC"  "uBTCents"
-	tbcunits        = tbcunitsunicode  tbcunitsascii  tbcunitsfull
-	tbcunitsunicode = "ᵇTBC"  "ᵐTBC"  "ˢTBC"  "ᵗTBC"  "TBC"  "TBCᵗ"  "TBCˢ"  "TBCᵐ"  "TBCᵇ"
-	tbcunitsascii   = "bTBC"  "mTBC"  "sTBC"  "tTBC"  "TBC"  "TBCt"  "TBCs"  "TBCm"  "TBCb"
-	tbcunitsfull    = "tran-TBC"  "song-TBC"  "tam-TBC"  "bong-TBC"  "mill-TBC"  "san-TBC"  "ton-TBC"  "TBC"  "TBC-ton"  "TBC-san"  "TBC-mill"  "TBC-bong"
+	amount          = amountdecimal  amounthex
+	amountdecimal   = digits  [digits]("E")
+	amounthex       = "x" hexdigits  [hexdigits]("E")
 	labelparam      = "label=" *uchar
 	messageparam    = "label=" *uchar
 
 ### Criticism
-
-* To support all URIs, an implementer must consider all valid units
-	* Possible solutions:
-		* Allow only base units (uBTCents/TBCᵇ) for amount, and let the UI display it in the user's preferred unit
-		* Allow only fundamental units: base units, BTC, or TBC
-* To support TBC, an implementer must decode and parse Unicode Tonal digits (and possibly multipliers/dividers)
 
 ##marcusaurelius
 
