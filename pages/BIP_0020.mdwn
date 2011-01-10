@@ -176,7 +176,7 @@ before the URI scheme is finalised one should think long and hard about use-case
 * an online shop has a 'buy this'-link, which uses the URI scheme. 
 	* PROBLEM: click on the link opens the application. how does the merchant notice this.
 		* POSSIBLE SOLUTION: javascript can detect the click.
-		* POSSIBLE SOLUTION: the checkout site checks the httprequest 
+		* POSSIBLE SOLUTION: the checkout site checks its bitcoin account for payment via httprequest 
 	* PROBLEM: the time problem (~10minutes) is very apparent here. nobody wants to wait 10minutes for the transaction to be confirmed.
 * a person only has an online client, no actual application
 	* PROBLEM: how to redirect the URI, so that the online client gets a notice?
