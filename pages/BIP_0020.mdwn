@@ -130,7 +130,7 @@ Characters must be URI encoded properly.
 
 ### Parsing Amount
 #### ECMAScript
-	reAmount = /^(([[\d.]]+)(X(-?\d+))?x([[\da-f]]*)(\.([[\da-f]]*))?(X(-?[[\da-f]]+))?)$/i;
+	reAmount = /^(([[\d.]]+)(X(\d+))?x([[\da-f]]*)(\.([[\da-f]]*))?(X([[\da-f]]+))?)$/i;
 	function parseAmount(txt) {
 	var m = txt.match(reAmount);
 	return m[[5]] ? (
