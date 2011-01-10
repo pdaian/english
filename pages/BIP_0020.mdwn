@@ -135,12 +135,24 @@ Characters must be URI encoded properly.
 
 ##marcusaurelius
 
+###payment identifiers, not person identifiers
 in my opinion, the most basic idea of the URI scheme (as this is a currency) is to facilitate payment. so the URIs should represent first and foremost payments. if it represents something else, this needs to be specified. Thus
 <code>
 bitcoin:13guMzcGPvdD3qjQvCoNc1w5XAgJ638KaQ
 </code>
 represent a **payment** to me using my bitcoin adress, not my bitcoin adress itself. So after parsing the URI (via link/qr/whatever) the application should open a transaction window with the adress filled in. you then need to add an amount and confirm the payment.
 If your application is smart, it will also have a button "just store the adress". But the point i am trying to make, is that the default use of the URI should be for payment, nor for exchanging adresses.
+
+###accessibility
+**imported from the forum:** I like the simplicity of bitcoin:xxxxxxxxxxxxx plus very much approve of its accessibility. Should someone from the outside happen to see such a uri, the protocol name already gives a description. A quick google search should then do the rest. x-btc sounds much more cryptic, the chance that s/1 gooogles that out of curiosity are much slimmer. Also, very likely, what s/he will find are mostly technical specifications. Not a good introduction to bitcoin.
+
+for the same reason i am for using '&' as a delimiter for key-value-pairs. people know it from urls. make it easy for people to understand what is going on.
+
+###keep it simple
+don't explicitly write down information that can be inferred. don't mark the address as an address. if there is no address, this does lose much of its utility. we could, however, specify 'address' as a reserved word, so that <code>
+bitcoin:address?amount=50
+</code>
+would initiate a transaction with the amount filled in, but with a blank address. I am not convinced that there is a use case, though.
 
 ##References
 
