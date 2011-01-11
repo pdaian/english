@@ -227,7 +227,9 @@ Payload:
 
 
 |4 |version |uint32_t |Transaction data format version
+|1+ |tx_in count |var_int |Number of Transaction inputs
 |41+ |tx_in |tx_in[]|A list of 1 or more transaction inputs or sources for coins
+|1+ |tx_out count |var_int |Number of Transaction outputs
 |8+ |tx_out |tx_out[]|A list of 1 or more transaction outputs or destinations for coins
 |4 |lock_time |uint32_t |The block number or timestamp at which this transaction is locked, or 0 if the transaction is always locked. A non-locked transaction must not be included in blocks, and it can be modified by broadcasting a new version before the time has expired (replacement is currently disabled in Bitcoin, however, so this is useless).
 
