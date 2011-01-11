@@ -7,7 +7,7 @@ A script is essentially a list of instructions recorded with each transaction th
 
 Scripting provides the flexibility to change the parameters of what's needed to spend transferred Bitcoins.  For example, the scripting system could be used to require two private keys, or a combination of several, or even no keys at all.
 
-A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (1).  The party who *sent* Bitcoins dictates the script operations that will occur *last*.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (1).
+A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (1).  The party who originally *sent* the Bitcoins now being spent, dictates the script operations that will occur *last* in order to release them for use in another transaction.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (1).
 
 Scripts are big-endian. (Is all data, also?)
 
