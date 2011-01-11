@@ -1,6 +1,13 @@
 Bitcoin uses a scripting system for [[transactions]]. [Forth](Wikipedia:FORTH)-like, Script is simple, stack-based, and processed from left to right. It is purposefully not Turing-complete, with no loops or nesting *if* statements.
 
-A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (1).
+A script is essentially a list of instructions recorded with each transaction that describe how the next person wanting to spending the Bitcoins being transferred can gain access to them.  The script for a typical Bitcoin transfer to destination Bitcoin address D simply encumbers future spending of the bitcoins with two things: the spender must provide
+
+1. a public key that, when hashed, yields destination address D embedded in the script, and
+1. a signature to show evidence of the private key corresponding to the public key just provided.
+
+Scripting provides the flexibility to change the parameters of what's needed to spend transferred Bitcoins.  For example, the scripting system could be used to require two private keys, or a combination of several, or even no keys at all.
+
+A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (1).  The party who *sent* Bitcoins dictates the script operations that will occur *last*.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (1).
 
 Scripts are big-endian. (Is all data, also?)
 
