@@ -36,7 +36,7 @@ I propose a scheme like this:
 * label: Label for that address (e.g. name of receiver)
 * address: bitcoin address
 * message: optional message that is shown to the user after scanning the QR code
-* size: amount of base bitcoin units (uBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC); this number can be prefixed with the letter "x" to signify a hexadecimal number; it can be appended with "X" <digits> to signify an exponent to the base multiplier (that is, 'X8' moves your number 8 positional places to the left-- if specifying decimal units (without an "x" prefix), this means the standard BTC unit; if specifying hexadecimal units (with an "x" prefix), this means ᵇTBC units)
+* size: amount of base bitcoin units (uBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC); this number can be prefixed with the letter "x" to signify a hexadecimal number; it can be appended with "X" <digits> to signify an exponent to the base multiplier (that is, 'X8' moves your number 8 positional places to the left-- if specifying decimal units (without an "x" prefix), this means the standard BTC unit; if specifying hexadecimal units (with an "x" prefix), this means ᵇTBC units). If exponent is omitted, X8 is assumet. I.e. amount=50.00 is 50 BTC. Use X0 to specify bitcoin base units.
 
 ### Examples
 
@@ -84,12 +84,12 @@ Characters must be URI encoded properly.
 	parseInt(m[[5]], 16) +
 	(m[[7]] ? (parseInt(m[[7]], 16) * Math.pow(16, -(m[[7]].length))) : 0)
 	) * (
-	m[[9]] ? Math.pow(16, parseInt(m[[9]], 16)) : 1
+	m[[9]] ? Math.pow(16, parseInt(m[[9]], 16)) : 1e8
 	)
 	) : (
 	m[[2]]
 	*
-	(m[[4]] ? Math.pow(10, m[[4]]) : 1)
+	(m[[4]] ? Math.pow(10, m[[4]]) : 1e8)
 	);
 	}
 
