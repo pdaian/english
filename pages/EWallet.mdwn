@@ -15,7 +15,7 @@ When bitcoins are stored online the ewallet provider retains full control of tho
 >  <tt>6. OBLIGATIONS OF MYBITCOIN LLC<br>6.1 MYBITCOIN LLC will ensure that for all Bitcoins in circulation in the MyBitcoin System there is at all times an identical quantity of unencumbered Bitcoins held in MYBITCOIN LLC's master Bitcoin wallet.</tt>
 
 * Transactions to a Bitcoin address from the same eWallet provider are completed internally and will not be processed on the Bitcoin P2P network.  Auditing tools such as the [[Block_Explorer]] will not show any activity for this transaction.  Thus the sender cannot prove that an amount of Bitcoins was truly sent to that Bitcoin address.
-	* Some eWallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same eWallet.  For example, MyBitcoin will report an error when attempting to send an amount smaller than 0.01 BTC to a Bitcoin address that is not for another MyBitcoin account:
+	* Some eWallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same eWallet provider.  For example, MyBitcoin will report an error when attempting to send an amount smaller than 0.01 BTC to a Bitcoin address that is not for another MyBitcoin account:
 >  <tt>Payment amount is too small for a Bitcoin P2P payment! Try a BC0.01 or higher!</tt>
 
 * The ewallet provider's security may be vulnerable to theft as well.
