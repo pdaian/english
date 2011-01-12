@@ -23,60 +23,6 @@ The **query**  is an optional part separated with a question mark, which contain
 
 The **fragment** is an optional part separated from the front parts by a hash ("#"). It holds additional identifying information that provides direction to a secondary resource, e.g. a section heading in an article identified by the remainder of the URI.  When the primary resource is an HTML document, the **fragment** is often an <code>id</code> attribute of a specific element and web browsers will make sure this element is visible.
 
-##tcatm
-
-I propose a scheme like this:
-
-() means optional, $* are placeholders
-
-<pre>
-bitcoin:($label@)$address(?$query)(#$message)
-</pre>
-
-### Variables
-
-<pre>
-label: Label for that address (e.g. name of receiver)
-address: bitcoin address
-query: pairs of key=value seperated by &
-message: optional message that is shown to the user after scanning the QR code
-</pre>
-
-### Query keys
-<pre>
-amount: amount of BTC
-
-</pre>
-### Examples
-
-Just the address:
-<pre>
-bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
-</pre>
-
-Address with name:
-<pre>
-bitcoin:tcatm@18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt
-</pre>
-
-Request to send 20.30 BTC to me:
-<pre>
-bitcoin:tcatm@18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=20.30
-</pre>
-
-Request to send 50 BTC with message:
-<pre>
-bitcoin:18pnDgDYFMAKsHTA3ZqyAi6t8q9ztaWWXt?amount=50#Payment%20for%20product%20xyz
-</pre>
-
-Characters must be URI encoded.
-
-### Criticism
-
-* Not compliant with URI specification.
-* Biased toward **only** decimal BitCoins
-	* Not future-proof, since the DecimalBitCoin unit (BTC) will be too large for regular trading should bitcoin ever gain large-scale adoption.
-
 ##tcatm, modified by LukeJr
 
 I propose a scheme like this:
