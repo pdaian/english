@@ -115,10 +115,10 @@ Hexdump example of Network address structure
 </pre>
 
 
-
-|Services |01 00 00 00 00 00 00 00 |NODE_NETWORK? (see services listed in the [[version|#version]]command)
-|IP Address |00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 01 |10.0.0.1 (or ::ffff:10.0.0.1 as an [IPv4-mapped IPv6 address](http://en.wikipedia.org/wiki/IPv6#IPv4-mapped_IPv6_addresses))When reading the message containing an address structure, the official client ignores first 12 bytes and uses last 4 bytes as IPv4 address.
-|Port |20 8D |8333
+|Description/Notes
+|Services |01 00 00 00 00 00 00 00 |1 |NODE_NETWORK? (see services listed in the [[version|#version]]command)
+|IP Address |00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 01 |IPv6: ::ffff:10.0.0.1 ([IPv4-mapped IPv6 address](http://en.wikipedia.org/wiki/IPv6#IPv4-mapped_IPv6_addresses))IPv4: 10.0.0.1|Network byte order. The official client only uses the last 4 bytes as an IPv4 address.
+|Port |20 8D |8333 |Network byte order
 
 
 ### Inventory Vectors
