@@ -71,6 +71,68 @@ Configure mIRC to use a Proxy (your local Tor proxy)<br />
 Now you should be able to connect.<br />
 [Bitcoin forum where this topic is discussed](http://www.bitcoin.org/smf/index.php?topic=2602)
 
+##How Tor works
+Unlike Freenet, I2P, etc., Tor's security is very well-defined. While weaknesses do exist (described below), they have been known since Tor was created, and new weaknesses of significance are not expected.
+
+Tor sends TCP packets over 3 (normal) or 7 (hidden services) Tor relays. This is why it is so slow: your packet might have to go through 100 computers (counting Internet routers) before it reaches its destination. Tor uses multiple *layers* of encryption that are *pulled away* for each node. Hence the name **T**he **O**nion **R**outer, which is always capitalized as **Tor**, and never TOR or t.o.r.
+
+Say that I want to connect to bitcoin.org through Tor. I first select three Tor relays that I know about. Then, I send a message to my ISP that looks like this:
+	Send to this IP: <IP of Relay1>
+	<Encrypted data for Relay1>
+When Relay1 receives this, he decrypts the payload using his private key. The payload contains this:
+	Send to this Tor node: <Relay2>
+	<Encrypted data for Relay2>
+Relay2 decrypts his payload:
+	Send to this Tor node: <Relay3>
+	<Encrypted data for Relay3>
+Relay3 receives the real TCP payload, which he sends to the destination:
+	Send to this IP: <IP of destination>
+	<Unencrypted payload>
+The payload is not and can not be further encrypted by Tor. However, if the protocol itself uses encryption (HTTPS, SSH, etc.), the data will be encrypted. This means that the last node (the *exit node*) can see everything you do on HTTP sites, and can steal your passwords if they are transmitted unencrypted. Many people become exit nodes just so they can view this information -- Tor is much more dangerous than open WiFi for snooping!
+
+The encryption arrangement described above ensures that no single Tor node knows both the sender and the destination. Relay1 and your ISP know that you are using Tor and sending a packet at a certain time, but they don't know what you're sending or who you're sending to. Relay3 knows exactly what you're sending, but he can't determine who is sending it because Relay2 and Relay1 are blocking him. All three relays need to work together in order to conclusively connect the sender and the destination.
+
+However, Tor is weak to a *timing attack* that allows only two participants in certain positions to determine the sender with high accuracy. Consider this Tor connection:
+	Sender <-> S-ISP <-> Relay1 <-> Relay2 <-> Relay3 <-> D-ISP <-> Destination
+If the sender's ISP (S-ISP) and the destination are working together, they can record the size and times of packets sent and received. Over a large number of packets, they can determine with very high accuracy that the sender is, in fact, the person sending packets to the destination. This requires active surveillance or detailed logging by both sides. Relay1 can also perform the same role as S-ISP.
+
+Additionally, more configurations are possible if the underlying connection is not encrypted (normal HTTP, for example):
+
+* S-ISP & Relay3
+* Relay1 & Relay3
+* S-ISP & D-ISP
+* Relay1 & D-ISP
+This second set can always see that the sender is connected to the destination, but they can only see what the sender is doing on the site if the connection is not encrypted. (Pathnames are encrypted in HTTPS.)
+
+Because the first relay (the *entry node*) is a weak point in the connection, Tor takes certain defensive measures. When you first start Tor, it chooses three *entry guards* that don't change for the entire time that you run Tor. You will always use one of those three unless one goes down. If all of those nodes are safe and your ISP is safe, then you are OK.
+
+These timing attacks are of special importance to Bitcoin because anyone can be the "destination" in a connection. Packets are broadcast to every peer in the Bitcoin network. This might allow your ISP alone to associate your transactions to you without much difficulty. However, a timing attack relies on receiving at least several dozen packets from the sender, so the "destination" might actually have to be one of your direct Bitcoin peers. It's not too difficult to flood the Bitcoin network with peers, though. Because of this attack, it is wise to use an [[EWallet]] instead of the Bitcoin client when using Tor.
+
+To discover Tor relays, Tor uses a centralized directory server model. There are nine authoritative directory servers. To become a relay, you register with one of these. The directory servers share their data and produce a *network status consensus* document every so often containing all Tor nodes. Tor clients don't connect directly to the authoritative directory servers -- they connect to one of many *directory mirrors*, which have a copy of the network status consensus. Since there is no peer-to-peer bootstrap mechanism in Tor, the entire network can be destroyed if half of the authoritative directory servers are destroyed, and the entire network can be subverted if half of the authoritative directory servers become evil.
+
+Hidden services allow both the sender and destination to remain anonymous. A hidden service connection is made like this:
+
+* The destination tells several Tor relays to act as *introduction points* for the hidden service. The destination stays connected to all of these introduction points through a regular three-node Tor circuit.
+* The destination registers these introduction points on a Tor DHT. The introduction points are associated with the first 16 characters of an encoded SHA-1 hash of the destination's key. This is the information in .onion addresses. The use of SHA-1 is a possible weakness.
+* The sender creates a four-node Tor circuit. The fourth node is called the *rendezvous point*.
+* The sender searches the DHT for the introduction points of the desired hidden service. The sender connects to one through a regular three-node Tor circuit and, through the introduction point, tells the destination about the rendezvous point he has chosen.
+* The destination connects to the rendezvous point over a three-node Tor circuit. The sender and destination are now in contact over a seven-node connection.
+
+For clients, hidden services are more secure than encrypted Tor HTTPS connections because:
+
+* If the destination remains anonymous, they are less likely to become controlled by an evil party.
+* The destination's ISP isn't involved as they are in the HTTPS case. Only these configurations are possible for a timing attack:
+	* S-ISP & Destination
+	* Relay1 & Destination
+
+Running a hidden service is more dangerous, however. A simple intersection attack can be performed by the destination ISP alone:
+
+* Your Internet service is cut off.
+* If the hidden service went down at that exact moment, you are unmasked.
+The same sort of timing attacks as above are also possible.
+
+See the [Tor design paper](http://www.usenix.org/events/sec04/tech/full_papers/dingledine/dingledine_html/index.html) for more info.
+
 #External Tor Hidden Services
 
 * [MyBitcoin - A web-based transaction processor for Bitcoin](http://xqzfakpeuvrobvpj.onion/)
