@@ -206,7 +206,22 @@ Hexdump example of version message (note the message header for this version mes
 
 ### verack
 
-The *verack* packet is sent in reply to *version* for clients >= 209.
+The *verack* message is sent in reply to *version* for clients >= 209.  This message consists of only a [[message header|#Message_structure]] with the command string "verack".
+
+Hexdump of the verack message:
+
+<pre>
+0000   F9 BE B4 D9 76 65 72 61  63 6B 00 00 00 00 00 00   ....verack......
+0010   00 00 00 00
+</pre>
+
+
+
+|colspan="3"**Message Header**
+|Network |F9 BE B4 D9 |n/a |Main network magic bytes
+|Command |76 65 72 61 63 6B 00 00 00 00 00 00 |"verack" |This is a verack message
+|Length |00 00 00 00 |0 |Payload is 0 bytes long
+
 
 ### addr
 
