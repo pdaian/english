@@ -34,7 +34,18 @@ The **fragment** is an optional part separated from the front parts by a hash ("
 * label: Label for that address (e.g. name of receiver)
 * address: bitcoin address
 * message: optional message that is shown to the user after scanning the QR code
-* size: amount of base bitcoin units (uBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC); this number can be prefixed with the letter "x" to signify a hexadecimal number; it can be appended with "X" <digits> to signify an exponent to the base multiplier (that is, 'X8' moves your number 8 positional places to the left-- if specifying decimal units (without an "x" prefix), this means the standard BTC unit; if specifying hexadecimal units (with an "x" prefix), this means ᵇTBC units). If exponent is omitted, X8 is assumed for decimal numbers, and X4 for hexadecimal numbers. I.e. amount=50.00 is 50 BTC. Use X0 to specify bitcoin base units.
+* size: amount of base bitcoin units (uBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC nor TonalBitCoins/TBC; see below)
+
+#### Transfer amount/size
+
+If an amount is provided, it may be specified either in decimal or, when prefixed with a single "x" character, hexadecimal.
+The number SHOULD be followed by "X" <digits> to signify an exponent to the base multiplier.
+That is, "X8" multiplies your number by 100,000,000.
+For decimal values, this means the standard BTC unit.
+For hexadecimal values, this means ᵇTBC units (which are equivalent to 42.94967296 BTC).
+If exponent is omitted, implementations SHOULD assume X8 for decimal numbers, and X4 for hexadecimal numbers.
+I.e. amount=50.00 is treated as 50 BTC, and amount=x40 is treated as 40 TBC.
+When specifying bitcoin base units, "X0" SHOULD be used.
 
 ### Examples
 
