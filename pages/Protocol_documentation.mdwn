@@ -343,6 +343,8 @@ The getaddr message sends a request to a node asking for information about known
 
 No additional data is transmitted with this message.
 
+**Note: Even though this message does not contain a payload, the official client includes a checksum in the header anyway. Possibly a minor bug?**
+
 ### checkorder
 
 This message is used for [[IP_Transactions]], to ask the peer if it accepts such transactions and allow it to look at the content of the order.
