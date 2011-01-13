@@ -185,24 +185,22 @@ Hexdump example of version message (note the message header for this version mes
 0040   DA F6 01 00 00 00 00 00  00 00 00 00 00 00 00 00   ................
 0050   00 00 00 00 FF FF 0A 00  00 02 20 8D DD 9D 20 2C   .......... ... ,
 0060   3A B4 57 13 00 55 81 01  00                        :.W..U...
+
+Message header:
+F9 BE B4 D9                                                                   - Main network magic bytes
+76 65 72 73 69 6F 6E 00 00 00 00 00                                           - "version" command
+55 00 00 00                                                                   - Payload is 85 bytes long
+                                                                              - No checksum in version message
+Version message:
+9C 7C 00 00                                                                   - 31900 (version 0.3.19)
+01 00 00 00 00 00 00 00                                                       - 1 (NODE_NETWORK services)
+E6 15 10 4D 00 00 00 00                                                       - Mon Dec 20 21:50:14 EST 2010
+01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 01 DA F6 - Sender address info - see Network Address
+01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 02 20 8D - Recipient address info - see Network Address
+DD 9D 20 2C 3A B4 57 13                                                       - Node random unique ID
+00                                                                            - "" sub-version string (string is 0 bytes long)
+55 81 01 00                                                                   - Last block sending node has is block #98645
 </pre>
-
-
-|colspan="4"**Message Header**
-|Network |F9 BE B4 D9 |n/a |Main network magic bytes
-|Command |76 65 72 73 69 6F 6E 00 00 00 00 00 |"version" |This is a version message
-|Length |55 00 00 00 |85 |Payload is 85 bytes long
-|Checksum |n/a |n/a |No checksum in version message
-|colspan="4"**Version payload**
-|Version |9C 7C 00 00 |31900 |version 0.3.19 (client version? protocol version?)
-|Services |01 00 00 00 00 00 00 00 |1 |NODE_NETWORK
-|Timestamp |E6 15 10 4D 00 00 00 00 |1292899814 |1292899814 seconds since 1970 (Dec 20 21:50:14 EST 2010)
-|Sender Address |01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 01 DA F6 |Services: 1IP/port: 10.0.0.1:8333|Address information of node that sent this message (see [[Network address|#Network_address]])
-|Recipient Address |01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 02 20 8D |Services: 1IP/port: 10.0.0.2:8333|Address information of node receiving this message (see [[Network address|#Network_address]])
-|Nonce |DD 9D 20 2C 3A B4 57 13 |n/a |Node random unique id. This id is used to detect connections to self
-|Sub-version number |00 |n/a |Empty sub-version string (sub-version info is 0 bytes long)
-|Start height |55 81 01 00 |98645 |The number of the last block received by the sending node
-
 
 ### verack
 
