@@ -55,3 +55,8 @@ Summary: The Tor bundles suck. [theymos](User:Theymos) 09:21, 9 January 2011 (GM
 
 * for the benefit of all users that run windows, would like to use Bitcoin client + IRC + browse the web via Tor, what would you recommend? 
 [Ptmhd](User:Ptmhd) 23:42, 12 January 2011 (GMT+1)
+> Just download the expert bundle, make the torrc modifications I suggested (except the MaxCircuitDirtiness one), run it, and connect Bitcoin to localhost:9050. Same for IRC. If having the Tor window open all the time annoys you, minimize it to the tray with [PowerMenu](http://www.abstractpath.com/powermenu/). There are also command-line options to tor.exe that [create a Tor NT service](https://trac.torproject.org/projects/tor/wiki/TheOnionRouter/TorFAQ#HowdoIrunmyTorrelayasanNTservice) -- this is a good idea if you run Tor constantly.
+
+> I never tried using IRC over Tor, so I can't recommend any particular IRC client. As a general rule, however, programs meant to be [portable](http://portableapps.com/) provide better anonymity.
+
+> For browsing, download [Firefox Portable](http://portableapps.com/apps/internet/firefox_portable) and install [Torbutton](https://addons.mozilla.org/en-US/firefox/addon/2275/) on it. Privoxy/Polipo are not necessary. [theymos](User:Theymos) 08:45, 13 January 2011 (GMT)
