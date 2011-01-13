@@ -23,7 +23,7 @@ The **query**  is an optional part separated with a question mark, which contain
 
 The **fragment** is an optional part separated from the front parts by a hash ("#"). It holds additional identifying information that provides direction to a secondary resource, e.g. a section heading in an article identified by the remainder of the URI.  When the primary resource is an HTML document, the **fragment** is often an <code>id</code> attribute of a specific element and web browsers will make sure this element is visible.
 
-##tcatm & Luke-Jr
+##Proposed specification
 
 [] means optional, <> are placeholders
 
@@ -105,9 +105,7 @@ Characters must be URI encoded properly.
 	);
 	}
 
-### Criticism
-
-##marcusaurelius
+##Requirements
 
 ###Payment identifiers, not person identifiers
 in my opinion, the most basic idea of the URI scheme (as this is a currency) is to facilitate payment. so the URIs should represent first and foremost payments. if it represents something else, this needs to be specified. Thus
