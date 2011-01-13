@@ -212,16 +212,13 @@ Hexdump of the verack message:
 
 <pre>
 0000   F9 BE B4 D9 76 65 72 61  63 6B 00 00 00 00 00 00   ....verack......
-0010   00 00 00 00
+0010   00 00 00 00                                        ....
+
+Message header:
+F9 BE B4 D9                          - Main network magic bytes
+76 65 72 61  63 6B 00 00 00 00 00 00 - "verack" command
+00 00 00 00                          - Payload is 0 bytes long
 </pre>
-
-
-
-|colspan="4"**Message Header**
-|Network |F9 BE B4 D9 |n/a |Main network magic bytes
-|Command |76 65 72 61 63 6B 00 00 00 00 00 00 |"verack" |This is a verack message
-|Length |00 00 00 00 |0 |Payload is 0 bytes long
-
 
 ### addr
 
