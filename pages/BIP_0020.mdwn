@@ -23,9 +23,7 @@ The **query**  is an optional part separated with a question mark, which contain
 
 The **fragment** is an optional part separated from the front parts by a hash ("#"). It holds additional identifying information that provides direction to a secondary resource, e.g. a section heading in an article identified by the remainder of the URI.  When the primary resource is an HTML document, the **fragment** is often an <code>id</code> attribute of a specific element and web browsers will make sure this element is visible.
 
-##tcatm, modified by LukeJr
-
-I propose a scheme like this:
+##tcatm & Luke-Jr
 
 [] means optional, <> are placeholders
 
@@ -36,7 +34,7 @@ I propose a scheme like this:
 * label: Label for that address (e.g. name of receiver)
 * address: bitcoin address
 * message: optional message that is shown to the user after scanning the QR code
-* size: amount of base bitcoin units (uBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC); this number can be prefixed with the letter "x" to signify a hexadecimal number; it can be appended with "X" <digits> to signify an exponent to the base multiplier (that is, 'X8' moves your number 8 positional places to the left-- if specifying decimal units (without an "x" prefix), this means the standard BTC unit; if specifying hexadecimal units (with an "x" prefix), this means ᵇTBC units). If exponent is omitted, X8 is assumet. I.e. amount=50.00 is 50 BTC. Use X0 to specify bitcoin base units.
+* size: amount of base bitcoin units (uBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC); this number can be prefixed with the letter "x" to signify a hexadecimal number; it can be appended with "X" <digits> to signify an exponent to the base multiplier (that is, 'X8' moves your number 8 positional places to the left-- if specifying decimal units (without an "x" prefix), this means the standard BTC unit; if specifying hexadecimal units (with an "x" prefix), this means ᵇTBC units). If exponent is omitted, X8 is assumed for decimal numbers, and X4 for hexadecimal numbers. I.e. amount=50.00 is 50 BTC. Use X0 to specify bitcoin base units.
 
 ### Examples
 
@@ -47,13 +45,16 @@ Address with name:
 	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?label=Luke-Jr
 
 Request to send 20.30 BTC to Luke-Jr:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=20.3X8&label=Luke-Jr
+	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=20.3&label=Luke-Jr
 
 Request to send 400 TBC to Luke:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=x400X4
+	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=x400
+
+Request to send 4000 TBC to Luke:
+	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=x4X7
 
 Request to send 5 uBTC:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=500
+	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=500X0
 
 Request to send 50 BTC with message:
 	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=5X9&label=Luke-Jr&message=Donation%20for%20project%20xyz
@@ -84,7 +85,7 @@ Characters must be URI encoded properly.
 	parseInt(m[[5]], 16) +
 	(m[[7]] ? (parseInt(m[[7]], 16) * Math.pow(16, -(m[[7]].length))) : 0)
 	) * (
-	m[[9]] ? Math.pow(16, parseInt(m[[9]], 16)) : 1e8
+	m[[9]] ? Math.pow(16, parseInt(m[[9]], 16)) : 0x10000
 	)
 	) : (
 	m[[2]]
