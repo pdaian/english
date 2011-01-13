@@ -2,7 +2,7 @@ Each block contains a [Unix time](http://en.wikipedia.org/wiki/Unix_time) timest
 
 A timestamp is accepted as valid if it is greater than the median timestamp of previous 11 blocks, and less than the network-adjusted time + 2 hours. "Network-adjusted time" is the median of the timestamps returned by all nodes connected to you.
 
-Whenever a node connects to another node, it gets a UTC timestamp from it, and stores its offset from node-local UTC. The network-adjusted time is then the node-local UTC plus the median offset from all connected nodes. A single peer never adjusts your time by more than 70 minutes, however.
+Whenever a node connects to another node, it gets a UTC timestamp from it, and stores its offset from node-local UTC. The network-adjusted time is then the node-local UTC plus the median offset from all connected nodes. Network time is never adjusted more than 70 minutes from local system time, however.
 
 Bitcoin uses an unsigned integer for the timestamp, so the [[year 2038 problem|:Wikipedia:Year_2038_problem]] is delayed for another 68 years.
 
