@@ -98,14 +98,27 @@ Variable length string can be stored using a variable length integer followed by
 
 ### Network address
 
-When a network address is needed somewhere, this structure is used (currently only supports ipv4).
+When a network address is needed somewhere, this structure is used.  This protocol and structure supports IPv6, **but note that the official client currently only supports IPv4**.
 
 
 
-|8 |services |uint64_t |?
-|12 |reserved |char[[12]]|Reserved for ipv6 support
-|4 |ipv4 |uint32_t |IPv4 address, network byte order
+|8 |services |uint64_t |same service(s) listed in [[version|#version]]?
+|16 |IPv6/4 |char[[16]]|IPv6 address. Network byte order. The official client only supports IPv4 and uses the last 4 bytes as the IPv4 address. However, the official client writes the IPv4 address into the message as a 16 byte [IPv4-mapped IPv6 address](http://en.wikipedia.org/wiki/IPv6#IPv4-mapped_IPv6_addresses)(12 bytes *00 00 00 00  00 00 00 00  00 00 FF FF*, followed by the 4 bytes of the IPv4 address).
 |2 |port |uint16_t |port number, network byte order
+
+
+Hexdump example of Network address structure
+
+<pre>
+0000   01 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  ................
+0010   00 00 FF FF 0A 00 00 01  20 8D                    ........ .
+</pre>
+
+
+
+|Services |01 00 00 00 00 00 00 00 |NODE_NETWORK? (see services listed in [[version|#version]])
+|IP Address |00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 01 |10.0.0.1 (or ::ffff:10.0.0.1 as an [IPv4-mapped IPv6 address](http://en.wikipedia.org/wiki/IPv6#IPv4-mapped_IPv6_addresses))When reading the message containing an address structure, the official client ignores first 12 bytes and uses last 4 bytes as IPv4 address.
+|Port |20 8D |8333
 
 
 ### Inventory Vectors
