@@ -22,6 +22,10 @@ Difficulty is stored in blocks as a 4 byte integer, and the actual hexadecimal t
 The highest possible target (difficulty 1) is defined as 0x1d00ffff, which gives us a hex target of
 	0x00ffff << 2**(8*(0x1d - 3)) = 0x00000000FFFF0000000000000000000000000000000000000000000000000000
 
+So the difficulty at 0x1b0404cb is therefore:
+	0x00000000FFFF0000000000000000000000000000000000000000000000000000 / 0x00000000000404CB000000000000000000000000000000000000000000000000 
+	= 16307.420938523983
+
 ### What is the current difficulty?
 [Current difficulty](http://blockexplorer.com/q/getdifficulty), as output by BitCoin's getDifficulty.
 
