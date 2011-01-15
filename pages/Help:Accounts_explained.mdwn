@@ -39,8 +39,18 @@ The *sendfrom* method sends coins and debits the specified account.  It does **n
 The *sendtoaddress* method works like *sendfrom*, but always debits the default account.
 
 The send will fail if the account has insufficient funds, with two exceptions:
-	- Sends from the default account always succeed if there are sufficient funds in the server's wallet.  For example, if your wallet account balances were 100 BTC in account 'foo' and 0 BTC in the default account, then the balances after *sendtoaddress 15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC 10.00* would be 100 in account 'foo' and -10.00 in the default account (and the overall server balance would go from 100 to 90 BTC).
-	- The check for sufficient funds is done before paying transaction fees (if any); if a [[transaction_fee]] is needed, and there are sufficient funds in the wallet, then the transaction fee will be paid and debited from the account.  For example, if account 'foo' contains 10 bitcoins, you *sendfrom foo 15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC 10*, and the transaction costs 0.01, 'foo's balance will be -0.01 bitcoins.
+
+	- Sends from the default account always succeed if there are sufficient funds in the
+	server's wallet.  For example, if your wallet account balances were 100 BTC in account
+	'foo' and 0 BTC in the default account, then the balances after *sendtoaddress
+	15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC 10.00* would be 100 in account 'foo' and -10.00 in
+	the default account (and the overall server balance would go from 100 to 90 BTC).
+
+	- The check for sufficient funds is done before paying transaction fees (if any); if a
+	[[transaction_fee]] is needed, and there are sufficient funds in the wallet, then the
+	transaction fee will be paid and debited from the account.  For example, if account
+	'foo' contains 10 bitcoins, you *sendfrom foo 15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC 10*,
+	and the transaction costs 0.01, 'foo's balance will be -0.01 bitcoins.
 
 ## Account -> Account Transfers
 
