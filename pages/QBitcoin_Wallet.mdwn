@@ -10,7 +10,7 @@ When the wallet is launched, it will open the SQLite database file passed as fir
 
 #### SEED x
 
-This command allows giving more randomness to the generated bitcoin addresses. As the wallet is portable, it may not be able to take advantage of the best randomness sources, and thru one may be able to predict the generated bitcoin private keys. The front end should, from times to times, provide randomness to the wallet.
+This command allows giving more randomness to the generated bitcoin addresses. As the wallet is portable, it may not be able to take advantage of the best sources of randomness, and because of this an attacker may be able to predict the generated bitcoin private keys. The front end should, from time to time, provide randomness to the wallet.
 
 The parameter is a hexadecimal random string (max 32 bytes). Example:
 
