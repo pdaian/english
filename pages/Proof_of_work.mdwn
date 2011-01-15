@@ -10,9 +10,9 @@ This concept is used in bitcoin for block generation. For a block to be valid it
 
 Lets say the base string that we are going to do work on is "Hello, World". Our target is to find a variation of it that hashes to a value beginning with '000'. We vary the string by adding a integer value to the end called a [[nonce]] and incrementing it each time. Finding a match for "Hello, World" takes us 98 tries:
 
-	Hello world ! 0 : 3f6fc92516327a1cc4d3dca5ab2b27aeedf2d459a77fa06fd3c6b19fb609106a
-	Hello world ! 1 : b5690c48c2d0a09481186aaa99e4e090901ff2ac4d572e6706dfd30eefc22a27
-	Hello world ! 2 : 5b6fd9c27fcb54ca23404d9428f081b7c9280ba6370e33a6a20b16f40ce76320
+	Hello world !  0 : 3f6fc92516327a1cc4d3dca5ab2b27aeedf2d459a77fa06fd3c6b19fb609106a
+	Hello world !  1 : b5690c48c2d0a09481186aaa99e4e090901ff2ac4d572e6706dfd30eefc22a27
+	Hello world !  2 : 5b6fd9c27fcb54ca23404d9428f081b7c9280ba6370e33a6a20b16f40ce76320
 	....
 	Hello world ! 95 : b74f3b2cf1061895f880a99d1d0249a8cedf223d3ed061150548aa6212c88d43
 	Hello world ! 96 : 447ca2fa886965af084808d22116edde4383cbaa16fd1fbcf3db61421b9990b9
