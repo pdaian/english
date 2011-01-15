@@ -67,7 +67,7 @@ This section describes how typical web site code running on a web server uses th
 * Customer **creates an account** on the website:  web server either assigns them a unique customer id number or uses their email address or other unique identifier, calls *getaccountaddress "userid"* and tells the customer to send to that address to fund their account.
 * Customer **receives coins** to fund their account: web server isn't involved.
 * Customer is shown their **current balance**:  *getbalance "userid" 1* to get their 'confirmed' balance, and subtracts it from *getbalance "userid" 0* to get their 'unconfirmed' balance.
-* Show the customer a **itemized list** of transactions:  *listtransactions "userid"*
+* Show the customer an **itemized list** of transactions:  *listtransactions "userid"*
 * Customer **sends coins** to another bitcoin address: *sendfrom "userid" <address> <amount>*
 * Customer **transfers coins** to another customer:  *move "userid1" "userid2" <amount>*
 * You **make a sale**, paid for with bitcoins in the customer's account:  *move "userid" "" <amount> 6 "purchased item"*, and if it succeeds, send them the product.
