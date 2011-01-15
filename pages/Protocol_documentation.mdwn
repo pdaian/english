@@ -217,7 +217,7 @@ F9 BE B4 D9                          - Main network magic bytes
 
 ### addr
 
-Provide informations on known nodes of the network. Non-advertised nodes should be forgotten after typically 3 hours
+Provide information on known nodes of the network. Non-advertised nodes should be forgotten after typically 3 hours
 
 Payload (maximum payload length: 1000 bytes):
 
@@ -251,6 +251,7 @@ E2 15 10 4D                                     - Mon Dec 20 21:50:10 EST 2010 (
 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 01 - IPv4: 10.0.0.1, IPv6: ::ffff:10.0.0.1 (IPv4-mapped IPv6 address)
 20 8D                                           - port 8333
 </pre>
+
 ### inv
 
 Allows a node to advertise its knowledge of one or more objects. It can be received unsolicited, or in reply to *getblocks*.
