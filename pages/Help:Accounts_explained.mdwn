@@ -62,7 +62,7 @@ The *getbalance* method returns the bitcoin balance for either the entire wallet
 
 ## Typical Uses
 
-This section describes how typical web site code running on a web server uses the JSON-RPC api to keep track of customers' accounts.
+This section describes how typical web site code running on a web server uses the JSON-RPC API to keep track of customers' accounts.
 
 * Customer **creates an account** on the website:  web server either assigns them a unique customer id number or uses their email address or other unique identifier, calls *getaccountaddress "userid"* and tells the customer to send to that address to fund their account.
 * Customer **receives coins** to fund their account: web server isn't involved.
