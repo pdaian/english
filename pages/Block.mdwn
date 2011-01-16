@@ -2,11 +2,11 @@ Data is permanently recorded in the Bitcoin network through **blocks**. Each blo
 
 Bitcoin transactions are broadcast to the [[network]] by the sender, and all peers generating coins collect them and add them to the block they're working on. If the transaction is much larger than the average transaction size, a small [[transaction_fee]] may be charged.
 
-The first transaction in the block is special: it creates new [[Bitcoins]] for the person who generated it. Other peers will only accept the block if this transaction is of the correct amount. The number of [[Bitcoins]] generated per block starts at 50 and is halved every 210,000 blocks (four years).
+The first transaction in the block is special: it creates new [[Bitcoins]] for the person who generated it. Other peers will only accept the block if this transaction is of the correct amount. The number of [[Bitcoins]] generated per block starts at 50 and is halved every 210,000 blocks (about four years).
 
-The network tries to create 6 blocks per hour. Every 2016 blocks (two weeks), all Bitcoin clients compare the actual number created with this goal and modify the target by the percentage that it varied. This increases (or decreases) the difficulty of generating blocks.
+The network tries to create 6 blocks per hour. Every 2016 blocks (about two weeks), all Bitcoin clients compare the actual number created with this goal and modify the target by the percentage that it varied. This increases (or decreases) the difficulty of generating blocks.
 
-The client accepts the 'longest' chain of blocks as valid. The 'length' of the entire [[block_chain]] refers to the chain with the most combined difficulty, not the one with the most blocks. That is, the longest chain is very likely to have taken the most amount of work to create.
+The client accepts the 'longest' chain of blocks as valid. The 'length' of the entire [[block_chain]] refers to the chain with the most combined difficulty, not the one with the most blocks. This prevents someone from forking the chain and creating a large number of low-difficulty blocks, and having it accepted by the network as 'longest'. 
 
 ## Common Questions about Blocks
 
