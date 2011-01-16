@@ -33,8 +33,7 @@ Given variable 'value' in base units (uBTCents/TBCᵇ), one can guess whether it
 
 ### Python
 
-<pre>s -*- coding: utf-8 -*-
-import math
+<pre>import math
 
 def formatBTC(n, addSign = False):
 	s = "%0.2f BTC" % (math.ceil(n * 100) / 100.,)
