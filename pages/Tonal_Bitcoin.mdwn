@@ -30,3 +30,49 @@ Given variable 'value' in base units (uBTCents/TBCᵇ), one can guess whether it
 	Choose Decimal BitCoin
 	if ( ! ( this % 0x100 ) )
 	Choose Tonal BitCoin
+
+### Python
+
+<pre>s -*- coding: utf-8 -*-
+import math
+
+def formatBTC(n, addSign = False):
+	s = "%0.2f BTC" % (math.ceil(n * 100) / 100.,)
+	if addSign and n >= 0:
+		s = "+" + s
+	return s
+
+def Bitcoin2BTC(n):
+	return n / 100000000.
+
+toTonalDict = dict(((57, u'\ue9d9'), (65, u'\ue9da'), (66, u'\ue9db'), (67, u'\ue9dc'), (68, u'\ue9dd'), (69, u'\ue9de'), (70, u'\ue9df'), (97, u'\ue9da'), (98, u'\ue9db'), (99, u'\ue9dc'), (100, u'\ue9dd'), (101, u'\ue9de'), (102, u'\ue9df')))
+
+def formatTBC(n, addSign = False):
+	s = "%x" % n
+	n %= 1
+	if n:
+		s += '.'
+		while n:
+			n *= 16
+			s += "%x" % n
+			n %= 1
+	s = unicode(s).translate(toTonalDict)
+	s += " TBC"
+	if addSign and n > 0:
+		s = "+" + s
+	return s
+
+def Bitcoin2TBC(n):
+	return n / 65536.
+
+def formatBitcoin(n, addSign = False):
+	if not n % 0x10000:
+		return formatTBC(Bitcoin2TBC(n), addSign);
+	if not n % 1000000:
+		return formatBTC(Bitcoin2BTC(n), addSign);
+	if not n % 0x100:
+		return formatTBC(Bitcoin2TBC(n), addSign);
+	s = "%d uBTCents" % (n,);
+	if addSign and n > 0:
+		s = "+" + s;
+	return s;</pre>
