@@ -17,10 +17,10 @@ difficulty = maximum_target / current_target
 ###How is difficulty stored in blocks?
 
 Difficulty is stored in blocks as a 4 byte integer, and the actual hexadecimal [[target]] is derived from it via a predefined formula. For example, if the difficulty in the block is 0x1b0404cb, the hexadecimal target is
-	0x0404cb << 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000
+	0x0404cb * 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000
 
 The highest possible target (difficulty 1) is defined as 0x1d00ffff, which gives us a hex target of
-	0x00ffff << 2**(8*(0x1d - 3)) = 0x00000000FFFF0000000000000000000000000000000000000000000000000000
+	0x00ffff * 2**(8*(0x1d - 3)) = 0x00000000FFFF0000000000000000000000000000000000000000000000000000
 
 So the difficulty at 0x1b0404cb is therefore:
 	0x00000000FFFF0000000000000000000000000000000000000000000000000000 /
