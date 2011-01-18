@@ -62,8 +62,8 @@ Almost all integers are encoded in little endian. Only IP or port number are enc
 |4 |magic |uint32_t |Magic value indicating message origin network, and used to seek to next message when stream state is unknown
 |12 |command |char[[12]]|ASCII string identifying the packet content, NULL padded (non-NULL padding results in packet rejected)
 |4 |length |uint32_t |Length of payload
-|4 |checksum |uint32_t |First 4 bytes of sha256(sha256(payload))
-|? |payload |char[]|The actual data (can be empty, in which case checksum is excluded, and length is set to 0
+|4 |checksum |uint32_t |First 4 bytes of sha256(sha256(payload)) (not included in version or verack)
+|? |payload |char[]|The actual data
 
 
 Known magic values:
@@ -357,8 +357,6 @@ The **block** message is sent in response to a getdata message which requests tr
 The getaddr message sends a request to a node asking for information about known active peers to help with identifying potential nodes in the network. The response to receiving this message is to transmit an addr message with one or more peers from a database of known active peers. The typical presumption is that a node is likely to be active if it has been sending a message within the last three hours.
 
 No additional data is transmitted with this message.
-
-**Note: Even though this message does not contain a payload, the official client includes a checksum in the header anyway. Possibly a minor bug?**
 
 ### checkorder
 
