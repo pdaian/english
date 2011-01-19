@@ -228,7 +228,7 @@ Checking process:
 
 ### Transaction with a message
 
-It's possible to add arbitrary data to any transaction by just adding some data along with OP_DROP (or ommitting OP_DROP and allowing the value to sit on the stack unused). Scripts are limited to 10,000 bytes and 201 instructions/values, and each individual instruction/value is limited to 520 bytes.
+It's possible to add arbitrary data to any transaction by just adding some data along with OP_DROP (or omitting OP_DROP and allowing the value to sit on the stack unused). Scripts are limited to 10,000 bytes and 201 instructions/values, and each individual instruction/value is limited to 520 bytes.
 
 	scriptPubKey: <message> OP_DROP <pubKey> OP_CHECKSIG
 	scriptSig: <sig>
