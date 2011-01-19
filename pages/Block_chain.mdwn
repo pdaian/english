@@ -2,7 +2,7 @@
 
 Every [[block]] contains a [[hash]] of the previous block. This has the effect of creating a chain of blocks from the [[genesis_block]] to the current block. Each block is guaranteed to come after the previous block chronologically because the previous block's hash would otherwise not be known. The blocks thus form a history of the bitcoin state, with which address each bitcoin was assigned at a given time, it is not possible to change the contents of any block without invalidating the successive blocks (because its hash would change).
 
-Each block contains a [[Proof-of-work]] that protects the block chain. Generators will build on the valid chain that contains the most work (blocks don't neccesarily contain the same amount of work).
+Each block contains a [[Proof-of-work]] that protects the block chain. Generators will build on the valid chain that contains the most work (blocks don't necessarily contain the same amount of work).
 
 When two blocks are generated referencing the same previous block the block chain forks. This can happen for a number of reasons. If two blocks are generated simultaneously, the one that is built on by the next block will form the future chain. More serious forks can occur in a bug is found in the client which allows an invalid block chain to form, the chain will be recognised as invalid by future versions. As long as such invalid chains are recognized as such by at least 50% of computation power, the old block chain will be abandoned when more work has been put into the new one. Malicious clients attempting to fork the block chain (and thus alter transaction history) will not succeed unless they can perform work faster than normal clients (this is very unlikely).
 
