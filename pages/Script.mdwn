@@ -42,7 +42,7 @@ When talking about scripts, these value-pushing words are usually omitted.
 |OP_NOP|97|Nothing|Nothing|Does nothing.
 |OP_IF|99|colspan="2"<expression>if [[statements]][[statements]]endif|If the top stack value is 1, the statements are executed. The top stack value is removed.
 |OP_NOTIF|100|colspan="2"<expression>if [[statements]][[statements]]endif|If the top stack value is 0, the statements are executed. The top stack value is removed.
-|OP_ELSE|103|colspan="2"<expression>if [[statements]][[statements]]endif|If the preceding OP_IF was not executed, these statements are.
+|OP_ELSE|103|colspan="2"<expression>if [[statements]][[statements]]endif|If the preceding OP_IF or OP_NOTIF was not executed then these statements are.
 |OP_ENDIF|104|colspan="2"<expression>if [[statements]][[statements]]endif|Ends an if/else block.
 |OP_VERIFY|105|True / false|Nothing / False|**Marks transaction as invalid**if top stack value is not true. True is removed, but false is not.
 |OP_RETURN|106|Nothing|Nothing|**Marks transaction as invalid**. 
