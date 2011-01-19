@@ -168,9 +168,9 @@ The following example uses Json.Net:
 	... // deserialze the response
 </source>
 
-## Command line (curl)
+## Command line (cURL)
 
-You can also send commands and see results using //curl// or some other command-line HTTP-fetching utility; for example:
+You can also send commands and see results using [cURL](http://curl.haxx.se/) or some other command-line HTTP-fetching utility; for example:
 
 <source lang="bash">
 	curl --user user --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' 
