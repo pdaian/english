@@ -35,7 +35,7 @@ A transaction output. nValue is the the full-precision output value. scriptPubKe
   CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)</pre>
 A transaction. hash is the truncated hash. ver is the transaction version. vout.size is the number of outputs. nLockTime is intended for use with transaction replacement, and is not currently used for anything useful.
 ###CBlock
-A block. Hash is the truncated hash. Version is the block version. HashPrevBlock is the truncated hash of the previous block. HashMerkleRoot is the truncated Merkle root. nTime is the unix timestamp of the block. nBits is the current target in compact format. nNonce is the nonce. vtx is the number of transactions.
+A block. Hash is the truncated hash. Version is the block version. HashPrevBlock is the truncated hash of the previous block. HashMerkleRoot is the truncated Merkle root. nTime is the Unix timestamp of the block. nBits is the current target in compact format. nNonce is the nonce. vtx is the number of transactions.
 
 vMerkleTree is a list of hashes in the Merkle tree. You can see how the tree is constructed by looking at the ordering. The bottom tier is listed first, then the next-higher tier, etc. For example, consider this block:
 <pre>CBlock(hash=00000000009ffdadbb2a, ver=1, hashPrevBlock=0000000000b079382c19, hashMerkleRoot=e81287,
