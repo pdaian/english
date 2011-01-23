@@ -33,8 +33,12 @@
 >  Each Bitcoin client currently running within the network is referred to as a Node of the system.
 **Nonce**
 >  A nonce is an otherwise meaningless number which is used to alter the outcome of a hash. Each time Bitcoin hashes a block, it increments a nonce within the block which it is trying verify. If the numeric value of the effectively random hash is below a certain amount determined by the block generation difficulty, then the block is accepted by other clients and gets added to the chain.
+**Orphan block**
+>  An orphan block is a block that is not in the currently-longest [[block_chain]].
 **[[Proof_of_work]]**
 >  A result that can only be obtained through the use of computational resources. Changing the data in the proof of work requires redoing the work.
+**Reorganize**
+>  A block chain reorganize (or **reorg**) happens when one chain becomes longer than the one you are currently working on. All of the blocks in the old chain that are not in the new one become orphan blocks, and their generations are invalidated. Transactions that use the newly-invalid generated coins also become invalid, though this is only possible in large chain splits because generations can't be spent for 100 blocks. The number of confirmations for transactions may change after a reorg, and transactions that are not in the new chain will become "0/unconfirmed" again. If a transaction in the old chain conflicts with one in the new chain (as a result of double-spending), the old one becomes invalid.
 **Subsidy**
 >  The block subsidy is the BTC created for generating a block. The subsidy is halved every four years.
 **Super Nodes**
