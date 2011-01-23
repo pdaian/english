@@ -1,8 +1,29 @@
 [[!template id=stub]]
 
-The **Bitcoin Block Explorer** (also known as **Block Explorer** or **BBE**) is a service scanning bitcoin blocks and allowing visitors to see their content. It is operated by theymos.
+**Bitcoin Block Explorer** (also known as **Block Explorer** or **BBE**) is a service scanning bitcoin blocks and allowing visitors to see their content. It is operated by theymos.
 
 It is mainly aimed at advanced users who already know what blocks are and what kind of information they contain.
+
+##Interfacing with BBE
+
+Use the [query pages](http://blockexplorer.com/q) such as *getreceivedbyaddress* wherever possible. Note that these pages do not send a trailing newline, which may cause problems with your HTTP-fetching tool. When an error occurs, the result will begin with "ERROR:", followed by the error text. Your detection of "ERROR" must be case-insensitive. An empty result is also an error. Non-fatal errors will print query results on the next line after the error, though using this data is inadvisable.
+
+To get block or transaction info, first find the hash of the item. This is done by using the search tool, which is accessible through a GET/HEAD request. For example, to get the hash of block number 444:
+	$ telnet blockexplorer.com 80
+	HEAD /search/444 HTTP/1.1
+	Host: blockexplorer.com
+	
+	HTTP/1.1 302 Found
+	...
+	Location: http://blockexplorer.com/block/00000000cff43a64ec00bea1...
+The hash is in the URL listed in the "location" header. Use it to get the JSON raw block:
+	http://blockexplorer.com/rawblock/00000000cff43a64ec00bea1...
+Transactions use a URL like this:
+	http://blockexplorer.com/rawtx/cd5a933b2aec79c02f7ce36222930d4c85...
+
+If the search returns any status code other than 302, then the search is bad. A status code of 200 indicates that the search was ambiguous, and the page body will contain links to the choices. [Example of search ambiguity](http://blockexplorer.com/search/111111).
+
+Unfortunately, the JSON raw block/tx pages omit a lot of important information, and there is no similar page for addresses. A full XML interface is planned. Scraping the HTML pages is not recommended, as the layout can change at any time.
 
 ## External Links
 
