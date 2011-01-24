@@ -1,3 +1,20 @@
+##dm-crypt
+###Description
+Dm-crypt is part of the Linux Kernel. Some distributions might not include it in their kernel configurations, however. It is a lot like TrueCrypt: it allows you to mount encrypted files or partitions and decrypt/encrypt them on-the-fly.
+###Manual setup
+Your distro probably comes with a tool to simplify using dm-crypt. However, here is how you would manually mount a file-hosted dm-crypt volume. The [hashalot](http://www.paranoiacs.org/~sluskyb/hacks/hashalot/) tool is used to prompt you for and process your password. This is used both to create the device and access it:
+	losetup /dev/loop0 ~/encrypted
+	HASH=`hashalot -s InsertSaltHere sha256  hexdump -e '32/1 "%02x"'`
+	echo 0 `blockdev --getsize /dev/loop0` crypt aes-cbc-essiv:sha256 \
+	$HASH 0 /dev/loop0 0  dmsetup create dmDevice
+	mount /dev/mapper/dmDevice /mnt/encrypted
+
+* Losetup makes the container file (~/encrypted in this case) act like a device.
+* The hashalot command prompts you for a password and then hashes it, adding the specified salt. The salt should be random, but it mustn't change.
+* The hexdump command puts the binary hashalot output into the format required for dm-crypt
+* Dm-crypt is set up on the /dev/loop0 device created by losetup. It uses the password hash created previously. The aes-cbc-essiv:sha256 encryption method is secure, though probably not as secure as Truecrypt's XTS method, which does not appear to be available in official kernel releases as far as I can tell. The dm-crypt device is created as /dev/mapper/dmDevice in this example.
+* The device is mounted. Before you do this for the first time, you need to run mke2fs. If you ever enter the wrong password, the device will appear to contain random data and attempting to mount it will fail.
+
 ##eCryptfs
 ###Description
 eCryptfs is a POSIX-compliant enterprise-class stacked cryptographic filesystem for Linux.
