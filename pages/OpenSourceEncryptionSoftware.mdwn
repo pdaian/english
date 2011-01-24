@@ -1,0 +1,61 @@
+Open source encryption software descriptions.
+##eCryptfs
+###Description
+eCryptfs is a POSIX-compliant enterprise-class stacked cryptographic filesystem for Linux.
+###Download
+[Latest source link on right side of page.](https://launchpad.net/ecryptfs)
+
+[All downloads.](https://launchpad.net/ecryptfs/+download)
+###Examples
+Examples can be found in Damien Oh's article [How To Encrypt Files in Linux with eCryptfs.](http://www.makeuseof.com/tag/encrypt-your-files-in-linux-with-ecryptfs/)
+###FAQ
+[FAQ](http://ecryptfs.sourceforge.net/ecryptfs-faq.html)
+###HomePage
+[eCryptfs - Enterprise Cryptographic Filesystem](https://launchpad.net/ecryptfs)
+###License
+[GPL 2+](https://launchpad.net/ubuntu/natty/+source/ecryptfs-utils/+copyright)
+
+
+##OpenSSL
+###Description
+The OpenSSL Project is a collaborative effort to develop a robust, commercial-grade, full-featured, and Open Source toolkit implementing the Secure Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) protocols as well as a full-strength general purpose cryptography library.
+###Donation
+[Donation page.](http://www.openssl.org/support/donations.html)
+###Download
+[Source](http://www.openssl.org/source/)
+###Examples
+From Grondilu's [post,](http://www.bitcoin.org/smf/index.php?topic=2458.msg33379#msg33379) to encrypt the wallet, from a terminal in bitcoin parent directory, type:
+
+openssl enc -aes256 -in ./bitcoin/wallet.dat -out wallet.dat.aes256
+
+From [Paul Heinlein's](http://www.madboa.com/people/paul/) [openssl command line how to,](http://www.madboa.com/geek/openssl/) to decode, add the '-d' option, set the '-in' option to the output file name, to type:
+
+openssl enc -d -aes256 -in wallet.dat.aes256 -out wallet.dat
+###FAQ
+[FAQ](http://www.openssl.org/support/faq.html)
+###HomePage
+[OpenSSL Project](http://www.openssl.org)
+###License
+[Dual licensed under two BSD style open source licenses.](http://www.openssl.org/source/license.html)
+
+
+##True Crypt
+###Description
+Free open-source disk encryption software for Windows 7/Vista/XP, Mac OS X, and Linux
+###Documentation
+[Documentation page.](http://www.truecrypt.org/docs/)
+###Donation
+[Donation page.](http://www.truecrypt.org/donations/?lnk=5)
+###Download
+[Binaries](http://www.truecrypt.org/downloads)
+
+[Source](http://www.truecrypt.org/downloads2)
+###FAQ
+[FAQ](http://www.truecrypt.org/faq)
+###HomePage
+[TrueCrypt](http://www.truecrypt.org/)
+###License
+[True Crypt Open Source License.](http://www.truecrypt.org/legal/license)
+
+
+[[!tag "Technical"]]
