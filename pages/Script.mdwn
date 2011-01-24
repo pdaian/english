@@ -149,7 +149,7 @@ When talking about scripts, these value-pushing words are usually omitted.
 |OP_HASH160|169|in|hash|The input is hashed twice: first with SHA-256 and then with RIPEMD-160.
 |OP_HASH256|170|in|hash|The input is hashed two times with SHA-256.
 |OP_CODESEPARATOR|171|Nothing|Nothing|All of the signature checking words will only match signatures to the data after the most recently-executed OP_CODESEPARATOR.
-|OP_CHECKSIG|172|sig pubkey|True / false|The entire transaction's outputs, inputs, and script (from the most recently-executed OP_CODESEPARATOR to the end) are hashed. The signature used by OP_CHECKSIG must be a valid signature for this hash and public key. If it is, 1 is returned, 0 otherwise.
+|[[OP_CHECKSIG]]|172|sig pubkey|True / false|The entire transaction's outputs, inputs, and script (from the most recently-executed OP_CODESEPARATOR to the end) are hashed. The signature used by OP_CHECKSIG must be a valid signature for this hash and public key. If it is, 1 is returned, 0 otherwise.
 |OP_CHECKSIGVERIFY|173|sig pubkey|True / false|Same as OP_CHECKSIG, but OP_VERIFY is executed afterward.
 |OP_CHECKMULTISIG|174|sig1 sig2 ... <number of signatures>pub1 pub2 <number of public keys>|True / False|For each signature and public key pair, OP_CHECKSIG is executed. If more public keys than signatures are listed, some key/sig pairs can fail. All signatures need to match a public key. If all signatures are valid, 1 is returned, 0 otherwise.
 |OP_CHECKMULTISIGVERIFY|175|sig1 sig2 ... <number of signatures>pub1 pub2 ... <number of public keys>|True / False|Same as OP_CHECKMULTISIG, but OP_VERIFY is executed afterward.
