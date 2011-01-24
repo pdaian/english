@@ -24,7 +24,7 @@ Now depending on the hashtype various things can happen to txCopy, these will be
 
 ### Hashtype SIGHASH_SINGLE
 
-1. The output of txCopy is resized to the size of the current input index
+1. The output of txCopy is resized to the size of the current input index+1
 1. All other txCopy outputs aside from the output that is the same as the current input index are set to a blank script and a value of (long) -1;
 1. All other txCopy inputs aside from the current input are set to have an outpoint index of zero
 
