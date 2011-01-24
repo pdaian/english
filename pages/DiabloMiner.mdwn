@@ -1,19 +1,18 @@
 DiabloMiner is a Java GPU bitcoin miner that uses the OpenCL framework to quickly perform the hashing computations.  Works on current Nvidia drivers and ATI Stream SDK 2.1.
 ##Donation
-Bitcoin address in the signature in the [founder's page.](http://www.bitcoin.org/smf/index.php?action=profile;u=1796)
+Bitcoin address in the signature in the [founder's page](http://www.bitcoin.org/smf/index.php?action=profile;u=1796).
 ##Download
-[Newest binary.](http://adterrasperaspera.com/images/DiabloMiner.zip)
+[Newest binary](http://adterrasperaspera.com/images/DiabloMiner.zip)
 
-[Source.](https://github.com/Diablo-D3/DiabloMiner/archives/master)
+[Source](https://github.com/Diablo-D3/DiabloMiner/archives/master)
 ##Examples
-From the introductory [post,](http://www.bitcoin.org/smf/index.php?topic=1721.msg21054#msg21054) to run type:
-
-"./DiabloMiner-YourOS.sh -u youruser -p yourpass" matching the user and pass set in your bitcoin.conf.
+From the introductory [post](http://www.bitcoin.org/smf/index.php?topic=1721.msg21054#msg21054), to run type:
+	./DiabloMiner-YourOS.sh -u youruser -p yourpass
+Where user and pass are what you set in your bitcoin.conf.
 
 
 To run on Windows you have to do something like:
-
-java -cp target\libs\*;target\DiabloMiner-0.0.1-SNAPSHOT.jar -Djava.library.path=target\libs\natives\windows com.diablominer.DiabloMiner.DiabloMiner -u youruser -p yourpassword
+	java -cp target\libs\*;target\DiabloMiner-0.0.1-SNAPSHOT.jar -Djava.library.path=target\libs\natives\windows com.diablominer.DiabloMiner.DiabloMiner -u youruser -p yourpassword
 ##Founder
 [DiabloD3](http://www.bitcoin.org/smf/index.php?action=profile;u=1796)
 ##HomePage
