@@ -1,0 +1,21 @@
+This page is intended as guide to merchants who want accept bitcoin.
+
+##Manual
+
+1. Download a bitcoin client
+1. When a customer wants to buy something issue them with a bitcoin address
+1. * You can do this by clicking "New.." next to your address in the bitcoin client and sending that address to the customer
+1. When payment comes in from that address send the goods to your customer
+1. If you ever need to refund a customer send the bitcoins they sent back to the from address you recieved the bitcoins from.
+
+##Automated
+Setup a system (pointers to easy-to-use packaged systems should be added) that:
+
+1. When a customers orders something on your website it records
+1. * Bitcoin address that payment should be sent to
+1. * Order details (delivery address etc.)
+1. * Payment amount
+1. When payment arrives, checks that they have paid the correct amount (and refunds the from address otherwise) and informs you
+1. * You dispach the goods to the customer and mark the order as fulfilled
+1. * If you cannot dispach the goods you mark the order as denied and the system sends the customer a refund
+1. Pays money made to your bitcoin address
