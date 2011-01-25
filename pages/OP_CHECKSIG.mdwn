@@ -17,16 +17,20 @@ In addition to the script code itself, to operate OP_CHECKSIG needs to know the 
 
 Now depending on the hashtype various things can happen to txCopy, these will be discussed individually
 
+### Hashtype SIGHASH_ALL (default)
+
+No special handling occurs in the default case
+
 ### Hashtype SIGHASH_NONE
 
 1. The output of txCopy is set to a vector of zero size.
-1. All other inputs aside from the current input in txCopy have their outpoint index set to zero
+1. All other inputs aside from the current input in txCopy have their nSequence index set to zero
 
 ### Hashtype SIGHASH_SINGLE
 
 1. The output of txCopy is resized to the size of the current input index+1
 1. All other txCopy outputs aside from the output that is the same as the current input index are set to a blank script and a value of (long) -1;
-1. All other txCopy inputs aside from the current input are set to have an outpoint index of zero
+1. All other txCopy inputs aside from the current input are set to have an nSequence index of zero
 
 ### Hashtype SIGHASH_ANYONECANPAY
 
@@ -35,7 +39,7 @@ Now depending on the hashtype various things can happen to txCopy, these will be
 
 ## Final signature
 
-An array of bytes is constructed from the serialized txCopy + one byte for the hash type. This array is sha256 hashed twice, then the public key is used to to check the supplied signature against the hash. 
+An array of bytes is constructed from the serialized txCopy + four bytes for the hash type. This array is sha256 hashed twice, then the public key is used to to check the supplied signature against the hash. 
 
 ## Return values
 
