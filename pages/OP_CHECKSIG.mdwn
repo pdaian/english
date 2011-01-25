@@ -17,6 +17,16 @@ In addition to the script code itself, to operate OP_CHECKSIG needs to know the 
 
 Now depending on the hashtype various things can happen to txCopy, these will be discussed individually
 
+
+**Hashtype Values (from script.h):**
+
+
+|SIGHASH_ALL |0x01
+|SIGHASH_NONE |0x02
+|SIGHASH_SINGLE |0x03
+|SIGHASH_ANYONECANPAY |0x80
+
+
 ### Hashtype SIGHASH_ALL (default)
 
 No special handling occurs in the default case
