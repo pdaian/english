@@ -40,13 +40,14 @@ The OpenSSL Project is a collaborative effort to develop a robust, commercial-gr
 ###Download
 [Source](http://www.openssl.org/source/)
 ###Examples
-From Grondilu's [post,](http://www.bitcoin.org/smf/index.php?topic=2458.msg33379#msg33379) to encrypt the wallet, from a terminal in bitcoin parent directory, type:
+Based on Grondilu's [post,](http://www.bitcoin.org/smf/index.php?topic=2458.msg33379#msg33379) to encrypt the wallet, from a terminal in the bitcoin parent directory, type:
 
-openssl enc -aes256 -in ./bitcoin/wallet.dat -out wallet.dat.aes256
+openssl enc -aes256 -in ./.bitcoin/wallet.dat -out wallet.aes256
 
 From [Paul Heinlein's](http://www.madboa.com/people/paul/) [openssl command line how to,](http://www.madboa.com/geek/openssl/) to decode, add the '-d' option, set the '-in' option to the output file name, to type:
 
-openssl enc -d -aes256 -in wallet.dat.aes256 -out wallet.dat
+openssl enc -d -aes256 -in wallet.aes256 -out wallet.dat
+
 ###FAQ
 [FAQ](http://www.openssl.org/support/faq.html)
 ###HomePage
