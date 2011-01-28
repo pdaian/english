@@ -43,6 +43,30 @@ Yes it can. See discussion in [[target]].
 ### What is the minimum difficulty?
 The minimum difficulty, when the target is at the maximum allowed value, is 1.
 
+### What network hash rate results in a given difficulty?
+The difficulty is adjusted every 2016 blocks based on the time it took to find the previous 2016 blocks.  At the desired rate of one block each 10 minutes, 2016 blocks would take exactly two weeks to find.  If the previous 2016 blocks took more than two weeks to find, the difficulty is reduced.  If they took less than two weeks, the difficulty is increased.  The change in difficulty is in proportion to the amount of time over or under two weeks the previous 2016 blocks took to find.
+
+To find a block, the hash must be less than the target.  The hash is effectively a random number between 0 and 2**256-1.  The offset for difficulty 1 is
+	0xffff * 2**208
+and for difficulty D is
+	0xffff * 2**208)/D
+
+The expected number of hashes we need to calculate to find a block with difficulty D is therefore
+	D * 2**256 / (0xffff * 2**208)
+or just
+	D * 2**48 / 0xffff
+
+The difficulty is set such that the previous 2016 blocks would have been found at the rate of one every 10 minutes, so we were calculating (D * 2**48 / 0xffff) hashes in 600 seconds.  That means the hash rate of the network was
+	D * 2**48 / 0xffff / 600
+over the previous 2016 blocks.  Can be further simplified to
+	D * 2**32 / 600
+without much loss of accuracy.
+
+At difficulty 1, that is around 7 Mhashes per second.
+
+At the time of writing, the difficulty is 22012.4941572, which means that over the previous set of 2016 blocks found the average network hash rate was
+	22012.4941572 * 2**32 / 600 = around 157 Ghashes per second.
+
 ### How soon might I expect to generate a block?
 (The [eternal question](https://www.bitcoin.org/smf/index.php?topic=1682.0).)
 
