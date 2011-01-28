@@ -1,1 +1,21 @@
 There are two variations of the official bitcoin program available; one with a graphical user interface (usually referred to as just “Bitcoin”), and a 'headless' version (called [[bitcoind]]). They are completely compatible with each other, and take the same command-line arguments, read the same configuration file, and read and write the same data files. You can run one copy of either Bitcoin or bitcoind on your system at a time (if you accidently try to launch another, the copy will let you know that Bitcoin or bitcoind is already running and will exit).
+##Command-line arguments
+Give Bitcoin (or bitcoind) the -? or –help argument and it will print out a list of the most commonly used command-line arguments and then exit:
+
+Usage:
+	bitcoin [[options]]                     
+	bitcoin [[options]] <command> [[params]]  Send command to -server or bitcoind
+	bitcoin [[options]] help                List commands
+	bitcoin [[options]] help <command>      Get help for a command
+Options:
+	-conf=<file>      Specify configuration file (default: bitcoin.conf)
+	-gen              Generate coins
+	-gen=0            Don't generate coins
+	-min              Start minimized
+	-datadir=<dir>    Specify data directory
+	-proxy=<ip:port>  Connect through socks4 proxy
+	-addnode=<ip>     Add a node to connect to
+	-connect=<ip>     Connect only to the specified node
+	-server           Accept command line and JSON-RPC commands
+	-daemon           Run in the background as a daemon and accept commands
+	-?                This help message
