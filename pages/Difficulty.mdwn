@@ -70,6 +70,15 @@ At the time of writing, the difficulty is 22012.4941572, which means that over t
 ### How soon might I expect to generate a block?
 (The [eternal question](https://www.bitcoin.org/smf/index.php?topic=1682.0).)
 
+The average time to find a block can be approximated by calculating:
+	time = difficulty * 2**32 / hashrate
+where difficulty is the current difficulty, hashrate is the number of hashes your miner calculates per second, and time is the average in seconds between the blocks you find.
+
+For example, using Python we calculate the average time to generate a block using a 1Ghash/s mining rig when the difficulty is 20000:
+	$ python -c "print 20000 * 2**32 / 10**9 / 60 / 60.0"
+	23.85
+and find that it takes just under 24 hours on average.
+
 * Any one grinding of the hash stands the same chance of "winning" as any other.  The numbers game is how many attempts your hardware can make per second.
 * You need to know the difficulty (above) and your khash/sec rate (reported by the client).
 	* [[Mining_Hardware_Comparison]] has some stats that may help you predict what you could get.
