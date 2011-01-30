@@ -1,18 +1,37 @@
 The location where Bitcoin's data files are stored, including the [[wallet|Wallet]] data file.
 
 ##Default Location
+### Windows
 
-* Windows XP
-	C:\Documents and Settings\YourUserName\Application data\BitCoin
+Go to Start -> Run (or press WinKey+R) and run this:
 
-* Windows Vista, 7
-	C:\Users\YourUserName\Appdata\Roaming\BitCoin
+	explorer %APPDATA%\Bitcoin
 
-* Mac
-	~/Library/Application Support/Bitcoin
+Bitcoin's data folder will open. For most users, this is the following locations:
 
-* Linux
-	~/.bitcoin
+	C:\Documents and Settings\YourUserName\Application data\Bitcoin (XP)
+	
+	C:\Users\YourUserName\Appdata\Roaming\Bitcoin (Vista and 7)
+
+"AppData" and "Application data" are hidden by default.
+
+### Linux
+
+By default Bitcoin will put its data here:
+
+	~/.bitcoin/
+
+You need to do a "ls -a" to see directories that start with a dot.
+
+If that's not it, you can do a search like this:
+
+	find / -name wallet.dat -print 2>/dev/null
+
+### Mac
+
+By default Bitcoin will put its data here:
+
+	~/Library/Application Support/Bitcoin/
 
 ##Directory Contents
 
