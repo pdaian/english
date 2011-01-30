@@ -27,6 +27,24 @@ In the case that a wallet has been distributed, or stored, in a (real or potenti
 
 For example, this will be necessary if one created a wallet with a password of 12 characters, as suggested. However a few years have passed and the wallet is now more easily compromised.  Just re-encrypting isn't secure.  One needs to make a new wallet and make the old wallet worthless (spending the funds to the new wallet).
 
+##Making a secure workspace
+
+###Linux
+
+The first step is to make a [new user,](http://www.howtogeek.com/howto/ubuntu/add-a-user-on-ubuntu-server/) so type:
+
+sudo adduser new_user_name
+
+when you get to the prompt 'Enter the new value, or press ENTER for the default', just keep hitting ENTER.
+
+Then switch user to the new user.  To get to the new user you can use the switch user icon for your system, which on Ubuntu is in the 'System/Quit' screen, or if there is no switch icon on your system you can log out and log back in as the new user.  Then click on a folder in the new user to display the file browser, then keep going up folders until you see the new user home directory, then right click to bring up the Properties dialog, then click on the Permissions tab, then in the Others section, set the folder access to None.
+
+For secure browsing, open Firefox, and then go into the Edit menu and click Preferences.  Starting from the left, click on the General tab, and in the 'Startup/When Firefox starts' pop up menu, choose 'Show a Blank Page'.  Then click on the Content tab, and deselect 'Load images automatically' and deselect 'Enable Javascript'.  Then click on the Privacy tab, and in the 'History/Firefox will' pop up menu, choose 'Never remember history'.  Then click on the Security tab, and in the Passwords section, deselect 'Remember passwords for sites' and deselect 'Use a master password'.  Then click on the Advanced tab, then click on the Update tab, and then in the 'Automatically check for updates to' section, deselect 'Add-ons' and 'Search Engines'.
+
+When javascript is disabled, the [linux download page](http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.3.19/bitcoin-0.3.19-linux.tar.gz/download) will not download automatically, so you'll have to click on the 'direct link' part of the "Problems with the download? Please use this 'direct link' or try another mirror." line.
+
+After you've made your secure new user, to maintain security you should use it only for bitcoin.
+
 ## Locating BitCoin's data directory
 
 ### Windows
