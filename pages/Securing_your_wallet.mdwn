@@ -119,16 +119,30 @@ This cron line runs backupwallet.sh at the 01 minute of every hour. Remember to 
 backupwallet.sh:
 
 	#!/bin/bash
-	
+
 	TS=$(date "+%Y%m%d-%H-%M")
-	
 	WALLET=/tmp/wallet${TS}
 	WALLET_E=/tmp/wallet${TS}.crypt
-	
-	bitcoind backupwallet $WALLET
-	gpg -r myusername --output $WALLET_E --encrypt $WALLET
-	scp $WALLET_E user@myserver.org:~/wallets/
-	rm $WALLET $WALLET_E
+
+	if
+	echo -n making backup...
+	bitcoind backupwallet $WALLET 
+	 [[!_-s_$WALLET]]
+	then echo failed
+	elif
+	echo done
+	echo -n encrypting....
+	! gpg -r myusername --output $WALLET_E --encrypt $WALLET
+	then echo failed
+	elif
+	echo done
+	echo -n copying to distant server...
+	! scp $WALLET_E user@myserver.org:~/wallets/
+	then echo failed
+	else echo done
+	fi
+
+	rm -f $WALLET $WALLET_E
 
 The shell script:
 
