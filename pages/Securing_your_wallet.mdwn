@@ -119,11 +119,11 @@ This cron line runs backupwallet.sh at the 01 minute of every hour. Remember to 
 backupwallet.sh:
 
 	#!/bin/bash
-
+	
 	TS=$(date "+%Y%m%d-%H-%M")
 	WALLET=/tmp/wallet${TS}
 	WALLET_E=/tmp/wallet${TS}.crypt
-
+	
 	if
 	echo -n making backup...
 	bitcoind backupwallet $WALLET 
@@ -141,7 +141,7 @@ backupwallet.sh:
 	then echo failed
 	else echo done
 	fi
-
+	
 	rm -f $WALLET $WALLET_E
 
 The shell script:
