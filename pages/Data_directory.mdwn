@@ -37,22 +37,26 @@ By default Bitcoin will put its data here:
 
 ###Subdirectories
 
-* database  
+* database
+	* Contains journaling files for the block database  
+* testnet
+	* Contains testnet versions of these files (if running with -testnet)
 
 ###Files
 
 * .lock
-* blk0001.dat
+	* BDB lock file
+* blk*xxxx*.dat
+	* Contains concatenated raw blocks
 * blkindex.dat
-* __db.001
-* __db.002
-* __db.003
-* __db.004
-* __db.005
-* __db.006
+	* Indexing information used with blk*xxxx*.dat
+* __db.*xxx*
+	* Used by BDB
 * db.log
 * debug.log
+	* Bitcoin's verbose log file. Automatically trimmed from time to time.
 * wallet.dat
+	* Storage for keys, transactions, metadata, and options. Does not use BDB (?).
 
 The data, index and log files are used by Oracle [Berkeley DB](http://en.wikipedia.org/wiki/Berkeley_DB), the embedded key/value data store that Bitcoin uses.
 
