@@ -285,7 +285,7 @@ Payload:
 
 
 
-|4 |version |uint32_t |only present if nType has SER_GETHASH set (purpose unknown)
+|4 |version |uint32_t |protocol version number
 |1+ |start count |var_int |number of hash_start entries
 |32+ |hash_start |char[[32]]|hash of the last known block of the emitting node
 |32 |hash_stop |char[[32]]|hash of the last desired block. Set to zero to get as many blocks as possible (500)
