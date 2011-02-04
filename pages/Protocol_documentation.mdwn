@@ -143,15 +143,18 @@ The object type is currently defined as one of the following possibilities:
 
 Other Data Type values are considered reserved for future implementations.
 
-## Message types
+### Block Headers
 
-### version
-
-When a node receives an incoming connection, it will immediatly advertise its version. No futher communication is possible until both peers have exchanged their version.
-
-Payload:
+Block headers are sent in a headers packet in response to a getheaders message.
 
 
+
+|4 |version |uint32_t |Block version information, based upon the software version creating this block
+|32 |prev_block |char[[32]]|The hash value of the previous block this particular block references
+|32 |merkle_root |char[[32]]|The reference to a Merkle tree collection which is a hash of all transactions related to this block
+|4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2038!)
+|4 |bits |uint32_t |The calculated difficulty target being used for this block
+|4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes## Message types### versionWhen a node receives an incoming connection, it will immediatly advertise its version. No futher communication is possible until both peers have exchanged their version.Payload:
 
 |4 |version |uint32_t |Identifies protocol version being used by the node
 |8 |services |uint64_t |bitfield of features to be enabled for this connection
