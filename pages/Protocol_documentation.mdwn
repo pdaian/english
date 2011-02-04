@@ -31,6 +31,7 @@ For ECDSA the secp256k1 curve from http://www.secg.org/collateral/sec2_final.pdf
 Public keys (in scripts) are given as 04 <x> <y> where x and y are 32 byte strings representing the coordinates of a point on the curve.
 
 ### Transaction Verification
+[[!template id=see_also OP_CHECKSIG]]
 
 The first transaction of a block is usually the generating transaction, which do not include any "in" transaction, and generate bitcoins (from fees for example) usually received by whoever solved the block containing this transaction.
 Such transactions are called a "coinbase transaction" and are accepted by bitcoin clients without any need to execute scripts, provided there is only one per block.
