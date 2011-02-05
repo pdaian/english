@@ -1,8 +1,12 @@
-OP_CHECKSIG is used to verify that a signature for a tx output is valid
+OP_CHECKSIG is [[script|Script]] opcode used to verify that the signature for a tx input is valid. OPCHECK_SIG expects two values to be on the stack, these are, in order of stack depth, the public key and the signature of the script. These two values are normally obtained by running the scriptSig script of the transaction input we are attempting to validate. After the scriptSig script is run the script is deleted but the stack is left as is, and then then scriptPubKey script from the previous transaction output that is now being spent is run, generally concluding in an OP_CHECKSIG. 
+
+The standard scriptPubKey checks that the public key (actually a hash of) is a particular value, and that OP_CHECKSIG passes.
+
+For normal transaction input if the creator of the current transaction can successfully create a ScriptSig signature that uses the right public key for the ScriptPubKey of the transaction output they are attempting to spend, that transaction input is considered valid. 
 
 ## Parameters
 
-In addition to the script code itself, to operate OP_CHECKSIG needs to know the current transaction, the current transaction input, and the current hashtype (discussed later)
+In addition to the script code itself and the stack parameters, to operate OP_CHECKSIG needs to know the current transaction, the current transaction input, and the current hashtype (discussed later)
 
 ## How it works
 
