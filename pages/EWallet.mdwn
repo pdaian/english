@@ -10,7 +10,7 @@ An eWallet is an online account with an external provider where bitcoins can be 
 
 When bitcoins are stored online the ewallet provider retains full control of those amounts.
 
-* If a payment is made from an eWallet, the transaction's "from" [[address]] is the eWallet's address and not an address reserved for the sender.  Thus if the recipient were to "return" any bitcoins to the same address they were sent from, the sender would not receive those bitcoins.
+* If a payment is made from an eWallet, the transaction's "from" [[address]] is an address for the eWallet provider and not an address reserved specifically for the sender.  Thus if the recipient were to "return" any bitcoins to the same address they were sent from, the sender would not receive those bitcoins.
 
 * There is no guarantee that the amount of bitcoins showing for the account holder's balance are truly being held in reserve by the ewallet provider.
 	* Some providers describe their reserve policy in their terms of service (TOS). For example, [MyBitcoin's TOS](http://www.mybitcoin.com/legal/terms.php) states:
