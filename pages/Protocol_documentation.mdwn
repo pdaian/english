@@ -156,6 +156,7 @@ Block headers are sent in a headers packet in response to a getheaders message.
 |4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2106!)
 |4 |bits |uint32_t |The calculated difficulty target being used for this block
 |4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
+|1 |txn_count |uint8_t |Number of transaction entries, this value is always 0
 
 
 ## Message types
