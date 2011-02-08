@@ -2,6 +2,13 @@ Shows an estimate of the amount of time, on average, that you will need to do mi
 
 The hash rate refers to the rate that your mining hardware is performing at as reported by your miner software or from an estimate obtained from the [[mining_hardware_comparison]] tables.
 
+The calculation is performed like this:
+
+* Get the current [[target]].
+* Divide by 115792089237316195423570985008687907853269984665640564039457584007913129639935, which is the maximum target. You now have the probability of a single hash solving a block.
+* Take the reciprocal of the probability to get the average number of hashes to solve a block.
+* Divide the average number of hashes by your hash/s (*not* khash/s) to get the average number of seconds required to solve a block.
+
 ##External Links
 
 * [Generation Calculator](http://www.alloscomp.com/bitcoin/calculator.php) website
