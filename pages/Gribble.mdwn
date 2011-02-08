@@ -14,7 +14,7 @@ To get help on any command, try 'help <command>', to get a list of bitcoin-relat
 * **bc,calc** - given a hash rate in Khps, calculate the expected average time to generate a block. For example, to see the average time for 1000 Khps, run 'bc,calc 1000'.
 * **bc,calcd** - given a hash rate in Khps, and a difficulty level, calculate the expected average time to generate a block at that difficulty. For example, to see the average time for 1000 Khps at difficulty 1, run 'bc,calc 1000 1'.
 * **bc,diff** - show the current generation difficulty
-* **bc,estimate** - show the estimate of the next difficulty
+* **bc,estimate** - show the estimate of the next difficulty (3.1)
 * **bc,help** - show the list of all 'bc,*' commands. same as 'apropos bc'.
 * **bc,hextarget** - show the current difficulty target in hex.
 * **bc,mtgox** - show the market snapshot for mtgox.com
@@ -30,6 +30,11 @@ To get help on any command, try 'help <command>', to get a list of bitcoin-relat
 Big kudos goes out to theymos for providing a web interface to [real time statistics about the bitcoin block chain](http://blockexplorer.com/q/).
 
 The above list is specifically for bitcoin-related commands. There are a lot more than this, and you can find more helpful info on the [gribble](http://gribble.sourceforge.net/) project page, or by exploring the bot with 'list' and 'help' commands.  The 'list' command will display the list of plugins.
+
+##References
+
+3.1: [Estimate is often wildly inaccurate](http://www.bitcoin.org/smf/index.php?topic=3247.0)
+
 
 ##Factoids
 
