@@ -34,7 +34,7 @@ An **output** contains instructions for sending bitcoins. **Value** is the numbe
 
 ##### Verification
 
-To verify that inputs are authorized to collect the values of referenced outputs, Bitcoin uses a custom Forth-like [[scripting|script]] system. The input's scriptSig and the *referenced* output's scriptPubKey are concatenated (in that order), the script is evaluated, and the input is authorized if the script returns true. Through the scripting system, the sender can create very complex conditions that people have to meet in order to claim the output's value. For example, it's possible to create an output that can be claimed by anyone without any authorization. It's also possible to require that an input be signed by ten different keys, or be redeemable with a password instead of a key.
+To verify that inputs are authorized to collect the values of referenced outputs, Bitcoin uses a custom Forth-like [[scripting|script]] system. The input's scriptSig and the *referenced* output's scriptPubKey are evaluated (in that order), with scriptPubKey using the values left on the stack by scriptSig. The input is authorized if scriptPubKey returns true. Through the scripting system, the sender can create very complex conditions that people have to meet in order to claim the output's value. For example, it's possible to create an output that can be claimed by anyone without any authorization. It's also possible to require that an input be signed by ten different keys, or be redeemable with a password instead of a key.
 
 ### Types of Transaction
 Bitcoin currently only creates three different scriptSig/scriptPubKey pairs, however. These are:
