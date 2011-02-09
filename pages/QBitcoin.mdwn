@@ -4,6 +4,12 @@ Current version: *None* (status: coding)
 
 Support address: 1MGQF37NYdpGnPdJXKksb4uHCQSSJrL86R
 
+## Core
+
+* getinfo shows state of bitcoin. CONNECTING (to the network), DOWNLOADING (first time downloading of block chain), RUNNING (normal).
+* transaction lists shows current balance *after* transaction.
+* get file size of currently downloaded blocks (to update progress bar).
+
 ## Structure
 
 * [[Wallet|QBitcoin_Wallet]]: a separate process (maybe a separate binary) that will handle wallet operations through a dedicated line (create address, delete address, etc)
