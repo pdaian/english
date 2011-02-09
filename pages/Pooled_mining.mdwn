@@ -26,6 +26,10 @@ Cheating by the server, by way of the pool operator fraudulently granting himsel
 
 The generated blocks contain multiple keys in the generation transaction, giving fractional bitcoin amounts to each key, in proportion to their hashing contribution for that block. 
 
+###BitPenny
+
+The approach BitPenny uses is to offer a flat-payout for each share that is solved.  The service is operated for-profit and thus self-insures against variances from the percent of generation proceeds retained (6.1).
+
 ###Comparison
 
 The slush approach uses a lot fewer resources on the pool server, since rather than continuously checking metahashes, all that has to be checked is the validity of submitted shares. The number of shares sent can be adjusted by adjusting the artificial difficulty level.
@@ -37,7 +41,12 @@ Additionally, the puddinpop approach of distributing the earnings by way of incl
 
 Puddinpop miners receive coins directly, which eliminates the delay in receiving earnings that is required on slush's server. However, bitcoind is incapable of detecting generation transactions, so earnings sent directly to MyBitcoin, MtGox, etc. will disappear.
 
-This all seems to point to the slush approach being the better one. Its only downside is that the server software is not open source, while the puddinpop software is. 
+This all seems to point to the slush approach being the better one. Its only downside is that the server software is not open source, while the puddinpop software is.
+
+##References
+
+6.1: [Instant-Payout Mining - BitPenny.com](http://www.bitcoin.org/smf/index.php?topic=3266.0)
+
 
 ##External links
 
