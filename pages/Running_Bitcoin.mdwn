@@ -1,4 +1,5 @@
 There are two variations of the official bitcoin program available; one with a graphical user interface (usually referred to as just “Bitcoin”), and a 'headless' version (called [[bitcoind]]). They are completely compatible with each other, and take the same command-line arguments, read the same configuration file, and read and write the same data files. You can run one copy of either Bitcoin or bitcoind on your system at a time (if you accidently try to launch another, the copy will let you know that Bitcoin or bitcoind is already running and will exit).
+
 ##Command-line arguments
 Give Bitcoin (or bitcoind) the -? or –help argument and it will print out a list of the most commonly used command-line arguments and then exit:
 
@@ -19,6 +20,7 @@ Options:
 	-server           Accept command line and JSON-RPC commands
 	-daemon           Run in the background as a daemon and accept commands
 	-?                This help message
+
 ##Bitcoin.conf Configuration File
 All command-line options (except for -datadir and -conf) may be specified in a configuration file, and all configuration file options may also be specified on the command line. Command-line options override values set in the configuration file.
 
@@ -30,6 +32,7 @@ The configuration file is not automatically created; you can create it using you
 |Windows|%APPDATA%\Bitcoin\|:\Documents and Settings\username\Application Data\Bitcoin\bitcoin.conf
 |Linux|$HOME/.bitcoin/|/Users/username/.bitcoin/bitcoin.conf
 |Mac OSX|$HOME/Library/Application Support/Bitcoin/|/Users/username/Library/Application Support/Bitcoin/bitcoin.conf
+
 
 ##Sample Bitcoin.conf
 Here is a sample bitcoin.conf file, containing every option set to its default value.
@@ -126,5 +129,6 @@ Here is a sample bitcoin.conf file, containing every option set to its default v
 	
 	# Minimize to the system tray
 	#minimizetotray=1
+
 [[!template id=fromold running_bitcoin]]
 [[!tag "Technical"]][[!tag "Developer"]]
