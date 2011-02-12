@@ -26,6 +26,10 @@ Someone who can see all of your Internet traffic can easily see when you send a 
 ###Breaking the cryptography
 SHA-256 and ECDSA are considered very strong currently, but they might be broken in the far future. If that happens, BitCoin can shift to a stronger algorithm. [More info](http://www.bitcoin.org/smf/index.php?topic=191.msg1585#msg1585).
 
+###Scalability
+
+BitCoin can easily scale beyond the level of traffic VISA sees globally today. See the discussion on the [[scalability]] page for more information.
+
 ###Segmentation
 If there is even a "trickle" of a connection between two sides of a segmented network, things should still work perfectly. When block chains are combined, all of the non-generation transactions in the shorter chain are re-added to the transaction pool -- they'll start over at 0/unconfirmed, but they'll still be valid. No mature transactions will be lost unless the segmentation persists for longer than ~120 blocks. Then generations will start to mature, and any transactions based on those generations will become invalid when recombined with the longer chain. [More info](http://www.bitcoin.org/smf/index.php?topic=241.msg2071#msg2071).
 
