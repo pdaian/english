@@ -37,3 +37,5 @@ If you wanted to run a distributed supernode that held the block chain in flash/
 It's very unlikely that a hypothetical VISA scale BitCoin network would have nodes which win a block every single day, at least, a healthy network would hopefully not have hash power concentrated so tightly into single miner nodes.
 
 It's also possible to optimize the protocol somewhat. A solved block could be broadcast as only its header and merkle tree. Nodes would then check the transaction hashes against their own in-memory lists. If a block contains a transaction the node did not see for some reason, it'd then request only those transactions. For the common case of a node with good, 24/7 network connectivity, this would reduce the size of block broadcasts dramatically.
+
+[[!tag "Technical"]]
