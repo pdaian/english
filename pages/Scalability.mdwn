@@ -2,7 +2,9 @@ The core BitCoin network can scale to very high transaction rates assuming a dis
 
 ##CPU and block chain storage
 
-VISA handles on average around 2000 transactions/sec, so call it a peak rate of 4000/sec. Let's take that as starting goal. Obviously if we want BitCoin to scale to all economic transactions worldwide, including cash, it'd be a lot higher than that, perhaps more in the region of a few hundred thousand transactions/sec.
+VISA handles on average around 2000 transactions/sec, so call it a daily peak rate of 4000/sec. They have burst capacity up to 10,000 transactions per second which they need to handle the busiest points of the holiday period (~8,500tps). [(1)](http://investor.visa.com/phoenix.zhtml?c=215693&p=irol-newsArticle_print&ID=1355716)
+
+Let's take 4000 tps as starting goal. Obviously if we want BitCoin to scale to all economic transactions worldwide, including cash, it'd be a lot higher than that, perhaps more in the region of a few hundred thousand transactions/sec.
 
 The protocol has two parts. Nodes send "inv" messages to other nodes telling them they have a new transaction. If the receiving node doesn't have that transaction it requests it with a getdata.
 
