@@ -25,20 +25,16 @@ Ideally, users should be able to connect to and interact with multiple cores fro
 Users should have the option to display their choice (single or multiple) of currencies in the window:
 Fixed currencies:
 
-* BitCoin (BTC)
-* Nano-BitCent (uBTCent)
+* Decimal BitCoin (BTC) -- **DEFAULT**
+* Milli-BitCoin (mBTC)
+* Micro-BitCoin (μBTC)
 * Mill-TonalBitCoin (ᵐTBC)
 * [[TonalBitCoin (TBC)|Tonal_BitCoin]]
 * TonalBitCoin-bong (TBCᵇ)
 * Custom (Multiply/offset)
 Exchange currencies:
 
-* USD equivalent
-* EUR equivalent
-* Gold equivalent
-* etc...
-
-> By default it comes bundled using SI units, but can be configurable through the configuration file :). [Genjix](User:Genjix) 00:00, 10 February 2011 (GMT)
+* USD/EUR/Gold equivalent via MtGox/Market/Central/etc APIs
 
 ## Separate core from transaction generation
 Transactions should be generated/signed with a library, leaving the core to handle only the p2p network.
