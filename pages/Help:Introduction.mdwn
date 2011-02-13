@@ -1,0 +1,36 @@
+Alice is far away from Bob and wants to buy his Alpaca socks. In return, she wants to send him a dollar. She can use something like paypal with its limitations or she can mail him a dollar bill. But a dollar bill is just an item with very low intrinsic value that is accepted by Alice and Bob to represent something significant in the real world like socks. Instead of mailing the bill itself, Alice could have emailed a number, like the serial number imprinted on her dollar bill, and save on stamps and time, we will call this number a [bitcoin](http://www.bitcoin.org). The bitcoin is used as a unit of account to measure the value of the socks Bob gave to Alice. Once Bob receives the bitcoin he would like to know that there is a good chance that he will be able to use the bitcoin to buy other products of similar value in the immediate future (means of exchange) or in the long term future (asset) and he needs to know if there are any unwanted side effects to using it.
+
+For the transaction to take place, Alice needs to have a bitcoin to start with and Bob needs to decide if he accepts the bitcoin in return for his socks. The value of a bitcoin is affected:
+
+* The bitcoin can’t be replicated (counterfeited) and used again by Alice or someone else eavesdropping to the transaction.
+* Alice can’t create more bitcoins out off thin air without limit
+* However, there should be some mechanism that introduces new bitcoins out of thin air into the system, otherwise there would not be enough bitcoins to make it popular by many people. But this mechanism should be agreed by all (fare) and it should be slow otherwise bitcoins cannot be used to store asset.
+* Bob needs to know that it will be relatively easy for him to find other people that will accept his bitcoin in the same way that he did, this is a circular problem that requires other people to go through the same decision process 
+Bob may consider the following side effects:
+
+* Bob needs to know that it will be hard to steal or confiscate his bitcoin once he received it.
+* Like regular cash, Bob will like to know that his privacy is kept, and other people that will receive the bitcoin in the future will not be able to personally track him.
+
+#Counterfeiting
+##By an Eavesdropper
+How do we guaranty that an eavesdropped, Eve, does not replicate the bit coin:
+
+* We will use a public key system to make digital signatures. In this system a person has a pair of public and private keys. Only the user with his secret private key can sign a document, such as the coins content, but any one can validate the signature using the user’s public key. The coin content, in Alice hands, already contains Alice public key
+* Bob sends his public key to Alice
+* Alice adds Bob’s public key to the coin’s content
+* Alice signs the entire coin’s content with her secret private key.
+As a result the new coin, that Eve may be intercepting, contains the public key of both Alice and Bob. Later on when Bob will transfer the same coin to Charley he will do the same thing: receive from Charley his public key, add it to the coin’s content and sign the new coin with his (Bob) private key. But only Bob can do this last step because only Bob has the private key which is necessary for signing and which is the only private key to match Bob’s public that is already imprinted in the coin’s content. Eve can’t modify the coin’s content and replace Bob’s public key with her public key because the coin was signed with Alice private key that is kept secret from Eve. So if Charley accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
+
+##By the sender
+How to guaranty that Alice does not replicate the coin and use it in more than one transaction:
+
+* The transaction is sent to as many other people (to their computers) as possible
+* At least one of the computers sends back block, which is just a large document that includes details of the transaction and other unrelated transactions. The block is sent to as many other people as possible.
+* Eventually the block reaches Bob that can validate that his transaction was recorded and no other transaction for the same coin was made in the past.
+* In theory, Alice can generate a spoofed block in which her past usage of the same coin does not appear and try to send this block to Bob as an evidence that the coin is OK. But the process of generating a block is designed to take a long time and she is not likely to generate it on time. Keep in mind that Bob is using a new public key for each transaction so Alice can’t prepare in advance. In addition, many other computers are working in parallel to generate an honest block and one of them is more likely to finish before her. In any case, eventually competing blocks will arrive to Bob that will indication that Alice’s coin was already in use.
+
+#Privacy
+In order to protect his privacy, Bob can generate a new public-private key pair for each transaction. So David receiving the coin from Charley will not be able to identify who is the second person in the list of transactions. However, Bob will have to keep the private key of each coin he received until he spends it. 
+
+#Creation of coins
+As we saw, both Bob and Charley need to verify that the original coin that Alice started with is valid. Alice can’t just generate coins out of thin air because the appearance of a coin is also a transaction that needs to be accepted by others (in their blocks.) The only way she can cause a coin to appear in a block is to generate the block herself, and this is exactly how new coins are slowly introduced: every computer that manages to generate a block is allowed to put one transaction in it in which it receives one coin. Other computers receiving the block can validate that only one coin is created and they can then accept this new coin as valid. Generating blocks is a slow process that requires Alice to spend computer hardware, electricity bill and time and it can be compared to gold mining. It is also a constructive work because the created work helps validate the entire bitcoin system.
