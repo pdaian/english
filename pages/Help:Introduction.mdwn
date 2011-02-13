@@ -25,7 +25,7 @@ As a result the new coin, that Eve may be intercepting, contains the public key 
 ##By the sender
 How to guaranty that Alice does not replicate the coin and use it in more than one transaction:
 
-* Details about the [[transaction|Transactions]] is sent to as many other people (to their computers) as possible
+* Details about the [[transaction|Transactions]] is [[sent|Network]] to as many other people (to their computers) as possible
 * At least one of the computers sends back a [[block|Blocks]], which is just a large document that includes details of the transaction and other unrelated transactions. The block is sent to as many other people as possible.
 * Eventually the block reaches Bob that can validate that his transaction was recorded and no other transaction for the same coin was made in the past.
 * In theory, Alice can generate a spoofed block in which her past usage of the same coin does not appear and try to send this block to Bob as an evidence that the coin is OK. But the process of generating a block is designed to take a [[long time|Proof_of_work]] and she is not likely to generate it on time. Keep in mind that Bob is using a new public key for each transaction so Alice can’t prepare in advance. In addition, many other computers are working in parallel to generate an honest block and one of them is more likely to finish before her. In any case, eventually competing blocks will arrive to Bob that will indication that Alice’s coin was already in use.
