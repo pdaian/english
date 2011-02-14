@@ -11,10 +11,12 @@ To get help on any command, try 'help <command>', to get a list of bitcoin-relat
 * **bc,bcm** - show the market snapshot from bitcoinmarket.com
 * **bc,blocks** - show the current number of blocks in the bitcoin block chain
 * **bc,btcex** - show the market snapshot from btcex.com
-* **bc,calc** - given a hash rate in Khps, calculate the expected average time to generate a block. For example, to see the average time for 1000 Khps, run 'bc,calc 1000'.
+* **bc,calc** - given a hash rate in Khps, calculate the expected average time to generate a block, at current difficulty. For example, to see the average time for 1000 Khps, run 'bc,calc 1000'.
 * **bc,calcd** - given a hash rate in Khps, and a difficulty level, calculate the expected average time to generate a block at that difficulty. For example, to see the average time for 1000 Khps at difficulty 1, run 'bc,calc 1000 1'.
 * **bc,diff** - show the current generation difficulty
 * **bc,estimate** - show the estimate of the next difficulty (3.1)
+* **bc,gen** - given the hash rate in Khps, calculate expected BTC generation per day and per hour, at current difficulty.
+* **bc,gend** - given the hash rate in Khps, and a difficulty level, calculate expected BTC generation per day and per hour at that difficulty.
 * **bc,help** - show the list of all 'bc,*' commands. same as 'apropos bc'.
 * **bc,hextarget** - show the current difficulty target in hex.
 * **bc,mtgox** - show the market snapshot for mtgox.com
