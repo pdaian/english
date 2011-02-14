@@ -1,9 +1,3 @@
-## Core
-
-* getinfo shows state of bitcoin. CONNECTING (to the network), DOWNLOADING (first time downloading of block chain), RUNNING (normal).
-* transaction lists shows current balance *after* transaction.
-* get file size of currently downloaded blocks (to update progress bar).
-
 ## Skip IRC bootstrap?
 
 As [said in the earlier stages of bitcoin](http://www.bitcoin.org/smf/index.php?topic=84.0) IRC is only a temporary solution for bootstrapping. Since I do not feel like implementing something that will be dropped soon after, I'd guess I should just skip the IRC bootstrap part and implement various other way to harvest initial nodes. I'm thinking of storing known peers in a database, and keeping those that stay most of the time (ie, got a fixed ip and provide bitcoin service). Any comment? [MagicalTux](User:MagicalTux) 07:32, 18 December 2010 (GMT)
@@ -89,18 +83,3 @@ Another idea would be that it'd be nice to associate bitcoin addresses with peop
 > According to [this thread](http://www.bitcoin.org/smf/index.php?topic=2294.0), it's possible to share a wallet between many parties, so that permission is required to use it. So in my poker software, we could have several independent servers who own all the players money. Cashing out and adding money to table requires permission from all 8 holders of that wallet. Do you think something like this could be possible in your client? =) [Genjix](User:Genjix) 23:20, 24 December 2010 (GMT)
 
 > Why not drop the JSON API? If you have a small core which supports basic commands, and the client is a wrapper on top then if someone wants to make the JSON API then they can program their own intermediate layer. Or use system() calls. [Genjix](User:Genjix) 23:25, 24 December 2010 (GMT)
-
-## First time startup
-
-A modal dialog should appear on QBitcoin's first run showing the block download progress out of total existing blocks. The dialog will say 'Initialising [[XXXXX]] 24 mins' before QBitcoin's main window opens. [Genjix](User:Genjix) 13:59, 4 February 2011 (GMT)
-
-## Python API
-
-* libbitcoin or libbitcoin++ API.
-* Python bindings using Cython.
-* QBitcoin written in PySide.
-[Genjix](User:Genjix) 13:59, 4 February 2011 (GMT)
-
-## Cloud backup
-
-Enable user to create an account on remote service which generates public/prive gpg keys. User then uses QBitcoin and application synchronises encrypted wallet.dat with the remote server. If the user wishes to restore their wallet.dat then they click 'Restore wallet' and it prompts for login/pass and re-downloads gpg keys + wallet. User has the option to enter their own custom SSH server or not use it at all. [Genjix](User:Genjix) 14:03, 4 February 2011 (GMT)
