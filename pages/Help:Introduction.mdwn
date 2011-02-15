@@ -47,7 +47,7 @@ Note how many blocks were generated in the last hour, should be around 6. Also n
 This should give you an indication of how active the system is.
 
 Next, drill into one of these blocks.
-Start by noticing that the block's hash begins with a run of zeros, this is what made making it so difficult.
+Start by noticing that the block's [[hash|hash]] begins with a run of zeros, this is what made making it so difficult.
 The computer that generated this block had to run on many *Nonce* values (also listed on the block's page) until it found one that generated this run of zeros.
 Next notice the line titled *Previous block*, each block contains the hash of the block that came before it, this is what forms the chain of blocks.
 Now notice all the transactions the block contains. The first transaction is the income earned by the computer that generated this block. It includes a fixed amont of coins created out of thin air and possibly fee collected from other transactions in the same block. Several blocks starting from the same block could have been generated in parallel but at the end all the computers in the network agree that only one of these blocks is accepted to be part of the block chain. Other blocks are rejected either because they didn't play according to the rules of the game or  they missed out on some of the transactions.
