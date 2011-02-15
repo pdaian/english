@@ -42,22 +42,6 @@ For Python, [python-jsonrpc](http://json-rpc.org/wiki/python-json-rpc) is perfec
 
 ## PHP
 
-The [bitcoin-php](https://github.com/mikegogulski/bitcoin-php) library provides an abstraction layer around a JSON-RPC-HTTP(S) connection to Bitcoin. Example:
-
-<source lang="php">
-	include_once("bitcoin.inc");
-	$bitcoin_client = new BitcoinClient("https", "username", "password", "localhost", 8332, "/path/to/server.cert");
-
-	if (TRUE !== ($fault = $bitcoin_client->can_connect()))
-	die('Connection to Bitcoin failed. Fault: ', $fault);
-
-	try {
-	$address = $bitcoin_client->query("getnewaddress", $label);
-	} catch (BitcoinClientException $e) {
-	die('getnewaddress failed. Fault: ', $e->getMessage());
-	}
-</source>
-
 The [JSON-RPC PHP](http://jsonrpcphp.org/) library also makes it very easy to connect to Bitcoin.  For example:
 
 <source lang="php">
