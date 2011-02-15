@@ -17,12 +17,12 @@ Bob may consider the following side effects:
 To guarantee that an eavesdropper, Eve, cannot replicate bitcoins we use a [public key system](Wikipedia:Public-key_cryptography) to make digital signatures. In this system, each person, such as Alice and Bob, has a pair of public and private keys which he/she stores in a safe [[wallet|Wallet]]. Only the user with his secret private key can sign a document, such as the transaction to give some of his bitcoins to somebody else, but any one can validate the signature using the user’s public key. The bitcoins, in Alice's hands, already contain a signature by whoever sent her the amount.
 
 * Bob sends his public key to Alice.
-* Alice adds Bob’s public key to the coin’s content.
+* Alice adds Bob’s public key along with the amount she wants to transfer, to the transaction.
 * Alice signs the transaction with her secret private key.
 
-As a result, the new coin, that Eve may be intercepting, contains the public key of both Alice and Bob.
+As a result, anyone who knows the public keys of both Alice and Bob can now see that Alice agreed to transfer the amount to Bob.
 
-Later on, when Bob will transfer the same coins to Charley, he will do the same thing: receive from Charley his public key, add a new transaction to the coin's chain of transactions and sign it with his (Bob) private key. But only Bob can do this, because only Bob has the private key which is necessary for signing and which is the only private key to match Bob’s public key that is already in the chain.
+Later on, when Bob will transfer the same coins to Charley, he will do the same thing: receive from Charley his public key, add a new transaction to the chain of transactions and sign it with his (Bob) private key. But only Bob can do this, because only Bob has the private key which is necessary for signing and which is the only private key to match Bob’s public key that is already in the chain.
 
 Eve cannot change who the coins belong to by replacing Bob’s public key with her public key, because Alice signed the transfer to Bob using her private key, declaring that the coins now belong to Bob, and Alice's private key is kept secret from Eve. So if Charley accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
 
