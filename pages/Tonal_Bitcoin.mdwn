@@ -57,7 +57,7 @@ def formatTBC(n, addSign = False):
 			n %= 1
 	s = unicode(s).translate(toTonalDict)
 	s += " TBC"
-	if addSign and n > 0:
+	if addSign and n >= 0:
 		s = "+" + s
 	return s
 
