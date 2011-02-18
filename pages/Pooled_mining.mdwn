@@ -20,11 +20,13 @@ Balances accumulate on the server, and are sent out when a user-set threshold ba
 
 ###The puddinpop approach
 
+(NOTE. puddinpop [has shut down](http://www.bluishcoder.co.nz/bitcoin-pool/) his server at 2010-12-17)
+
 Another approach is the 'metahash' technique, used by [puddinpop's miner](http://www.bitcoin.org/smf/index.php?topic=1458.0). Clients generate hashes, and also submit 'metahashes', which are hashes of a large chunk of generated hashes. The server checks that the metahashes are correct (in a round-robin fashion, picking up a metahash from a client that hasn't been checked on the longest), thus preventing clients from simply claiming that they have done work without actually doing the work. The withholding of good blocks by the clients is prevented via the server being in possession of the private key, just as in the previous approach. Rewards are distributed based on the number of metahashes submitted by the clients.
 
 Cheating by the server, by way of the pool operator fraudulently granting himself extra shares, is also not addressed, requiring the clients to trust the operator.
 
-The generated blocks contain multiple keys in the generation transaction, giving fractional bitcoin amounts to each key, in proportion to their hashing contribution for that block. 
+The generated blocks contain multiple keys in the generation transaction, giving fractional bitcoin amounts to each key, in proportion to their hashing contribution for that block.
 
 ###BitPenny
 
