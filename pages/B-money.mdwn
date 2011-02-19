@@ -1,5 +1,11 @@
-[[!template id=stub]]
 Wei Dai's **B-money proposal** is the precursor idea to [[Bitcoin]]. In his essay, he proposes two protocol. The first proposal is impracticable as it requires a broadcast channel that is unjammable as well being synchronous. 
+
+In the first protocol in the essay, the [[proof_of_work]] concept is proposed as a means of creating money. Money is transferred by broadcasting the transaction to all participants, all of whom keep accounts of all others. Contracts can be made with possible reparation in case of default, with a third party agreeing to be the arbitrator. If there is no agreement, each party broadcasts arguments or evidence in its favor and each of the participants determines the reparations/fines in his accounts for himself.
+
+The second protocol has only a subset of the participants (the "servers") keeping accounts, which they have to publish, and the participants who do transactions verifying their balances by asking many of them. The participants also verify that the money supply is not being inflated. An amount of money as bail is required to become a server, which is lost if the server is found to be dishonest.
+
+An alternate method of creating money is proposed, via an auction where participants bid on the solution of computational problems of known complexity.
+
 ##External Links
 
 * [B-money proposal](http://weidai.com/bmoney.txt)
