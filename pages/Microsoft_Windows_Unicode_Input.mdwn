@@ -1,0 +1,32 @@
+For Microsoft Windows, Unicode characters can be inputted using the character's decimal value or hexadecimal value.
+The numeric keypad mentioned below is the keypad on the right side of the keyboard of a full size keyboard. On a notebook or laptop, the keypad are the keys with little numbers beside the letters.
+
+Switch 'Num Lock' on first.
+
+Steps to input Unicode characters.
+##Decimal value
+This is the easiest and most universal.
+
+1. . Press and hold down the Alt key.
+1. . Type the decimal value on the numeric keypad.
+1. . Release the Alt key.
+
+For example,
+
+* ALT(Holding...) 0162 then release ALT = ¢ Cent sign
+* ALT(Holding...) 0163 then release ALT = £ British Pound
+* ALT(Holding...) 0164 then release ALT = ¥ Japanese Yen
+* ALT(Holding...) 0165 then release ALT = € Euro currency
+
+##Hexadecimal value (hex)
+Not all Unicode characters can be inputted using decimal value. In that case Hexadecimal value is used.
+Changing Registry is needed for this to work. Under HKEY_CURRENT_USER\Control Panel\Input Method, set EnableHexNumpad to "1". Then, set the type to be REG_SZ.
+
+1. . Press and hold down the Alt key.
+1. . Press the + (plus) key on the numeric keypad.
+1. . Type the hexadecimal unicode value.
+1. . Release the Alt key.
+
+For example,
+
+* ALT(Holding...) +24B7 then release ALT = Ⓑ  CIRCLED LATIN CAPITAL LETTER B
