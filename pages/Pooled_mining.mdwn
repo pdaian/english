@@ -13,10 +13,11 @@ The problem with pooled mining is that steps must be taken to prevent cheating b
 ###The slush approach
 
 [slush's pooled miner](http://mining.bitcoin.cz) <strike>sets an artificially low mining difficulty, and collects generated blocks at the lower difficulty from the miners as "shares" in a block generation. eventually, one of the generated blocks also happens to match the actual network difficulty, and then the 50 btc reward is distributed among the pooled clients, based on how many shares have been contributed by each. Client cheating is prevented, since in order to generate a lower-difficulty block, actual hashing must occur. It is not possible for a client to merely 'claim' that he has mined. Further, a client cannot benefit by withholding any block that actually generates the reward, since the private key necessary to redeem the reward is stored on the server, and is not accessible by the client.</strike>
+follows a score-based method.  Older shares (from beginning of the round) has lower weight than newer shares, which demotivate cheater from switching between pools inside one round (4.1).
 
 Server cheating, by way of the pool operator fraudulently granting himself extra 'shares', is not addressed. Thus the clients have to trust the pool operator to fairly distribute the proceeds. 
 
-Balances accumulate on the server, and are sent out when a user-set threshold balance is reached. 
+Balances accumulate on the server, and are sent out when a user-set threshold balance is reached.
 
 ###The puddinpop approach
 
@@ -47,6 +48,7 @@ This all seems to point to the slush approach being the better one. Its only dow
 
 ##References
 
+4.1: [Cooperative Mining - score-based](http://www.bitcoin.org/smf/index.php?topic=1976.msg50002#msg50002)  
 6.1: [Instant-Payout Mining - BitPenny.com](http://www.bitcoin.org/smf/index.php?topic=3266.0)
 
 
