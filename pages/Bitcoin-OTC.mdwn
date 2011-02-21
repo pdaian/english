@@ -4,6 +4,39 @@ Trading in the market is facilitated by the [[gribble]] bot, which takes care of
 
 The source code for all the related software, including bot plugins and the website, is open, and hosted on [this github repository](https://github.com/nanotube/supybot-bitcoin-marketmonitor).
 
+##Web of trust network
+The OTC Rating System is an irc-based web of trust network. Users can give each other ratings between -10 and +10. User must be identified and cloaked to enter ratings.
+
+Only one rating can exist between two people. The 'rate' command updates the existing rating if it is used multiple times. So as the trust increases or decreases, user can update the trust value for a particular user.
+
+Only users with positive ratings in the system can rate other users. 
+
+The system calculates the cumulative trust received by a user from all ratings. Through the web interface, users can explore the trust ratings and interconnections between users.
+
+##Rating guidelines
+Users are suggested to take the size of transactions, the nature of your relationship and interaction, length of history, etc, into consideration with giving out rating.
+
+The basic guidelines on what ratings to hand out to people.
+
+
+
+style="text-align: center; background-color: #f0f0ff;"|Rating |Guideline
+|---|---
+10 |You trust this person as you trust yourself. Reserve this for close friends and associates you know in person.
+8 |Large number of high-value transactions, long period of association, very trustworthy.
+5 |You've had a number of good transactions with this person.
+1 |One or two good transactions with this person
+-1 |Person strikes you as a bit flaky. Unreasonable/unexpected delays in payment, etc.
+-10 |Person failed to hold up his end of the bargain, took payment and ran, fraudster.
+
+
+##Relying on the rating
+User have several ways to check if the identity of the person is genuine.
+
+* Running a 'whois' in freenode to make sure the user is 'logged in'.
+* Get a PGP signed message from the person, using the list of [[User_GPG_keys]].
+* The 'getrating' command will show what hostmask the user had when he was entered into the WoT, make sure that matches his current hostmask. Explore the [trust network](http://trust.bitcoin-otc.com/viewratings.php) and make sure that the person is well connected to a number of trusted users.
+
 ##See also
 
 * [[Buying_bitcoins]]
