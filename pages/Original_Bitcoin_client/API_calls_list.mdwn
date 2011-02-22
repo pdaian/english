@@ -17,7 +17,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |getaccountaddress |<account>|Returns the current bitcoin address for receiving payments to this account.
 |getaddressesbyaccount |<account>|Returns the list of addresses for the given account.
 |getbalance |[[account]][[minconf=1]]|If [[account]]is not specified, returns the server's total available balance.<br/>If [[account]]is specified, returns the balance in the account.
-|getblockbycount |height |Dumps the block existing at specified height
+|getblockbycount |height |Dumps the block existing at specified height. **Note: this is not available in the official release**
 |getblockcount ||Returns the number of blocks in the longest block chain.
 |getblocknumber ||Returns the block number of the latest block in the longest block chain.
 |getconnectioncount ||Returns the number of connections to other nodes.
