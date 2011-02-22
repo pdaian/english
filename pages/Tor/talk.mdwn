@@ -36,6 +36,9 @@ As for the xchat, I do not do IRC since I left school and installed it after 7 y
 
 rather than trying to keep a separate list of bitcoind as hidden services, it's probably better to link to the existing list of [[fallback_nodes]], which already has a few tor hidden services listed.
 
+
+In addition, the bitcoin client does not resolve dns, so if you have any nodes added whose dns/.onion addresses are not resolved the connection will fail. You can find an explanation and instructions here http://www.bitcoin.org/smf/index.php?topic=59.0;all#msg14635
+
 ## Configuration tips
 
 In torrc:
