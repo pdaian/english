@@ -5,9 +5,13 @@ Please feel free to make edits. If you disagree with something, turn it into a "
 
 * Never use human-formatted data (for example, use base bitcoin units, not Decimal BitCoins nor Tonal BitCoins, which be left to the GUI)
 * Don't require polling (for example, broadcast events for new transactions, or changes to current "work")
+* Cooperative mining (see below)
 
 ### Debates
 #### Binary or plaintext
 
 * Binary is more efficient to parse and create
 * Plaintext is easier for humans to debug
+
+### Cooperative mining
+The protocol should support submitting completed blocks, such that it can get (just) addresses from an upstream pool to generate to, and send all completed blocks to that pool for verification and counting (and possibly submission to the network). This can reduce the pool's load.
