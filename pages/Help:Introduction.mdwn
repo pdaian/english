@@ -23,12 +23,15 @@ Later on, when Bob will transfer the same coins to Charley, he will do the same 
 
 Eve cannot change who the coins belong to by replacing Bob’s public key with her public key, because Alice signed the transfer to Bob using her private key, declaring that the coins now belong to Bob, and Alice's private key is kept secret from Eve. So if Charley accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
 
-##Preventing counterfeiting
+##Preventing double-spending
 This is how we guarantee that Alice cannot replicate the coin and use it in more than one transaction:
 
-* Details about the [[transaction|Transactions]] are [[sent|Network]] to as many other people's computers as possible
-* At least one of the computers sends back a [[block|Blocks]], which is just a large document that includes details of many transactions. The block is sent to as many other people as possible.
-* Eventually the block reaches Bob who can validate that his transaction was recorded and no other transaction for the same coin was made in the past.
+* Details about the [[transaction|Transactions]] are [[sent|Network]] to as many other people's computers as possible.
+* A chain of [[blocks|Blocks]] that contains a record of all transactions is collectively maintained by all computers (each has a full copy).
+* Valid blocks are computationally difficult to create and only valid blocks are allowed in the chain, containing valid transactions.
+* When multiple continuations to this chain appear, the longest such branch is accepted as the correct one.
+
+When Bob sees that his transaction has been included in a block, which has been made part of the longest and constantly growing block chain, he can be confident that the transaction by Alice has been accepted by other computers as valid and has been recorded, preventing Alice from creating a second transaction with the same coin.
 
 In theory, Alice could generate a spoofed block in which her past usage of the same coin does not appear and try to send this block to Bob as evidence that the coin is still hers. However, that past transaction, which contains a signature from Alice, has already been announced and has already been distributed to a very large number of computers in the bitcoin network. Since the process of generating a block is designed to take a [[long time|Proof_of_work]] and all transactions must be given in such blocks, Alice will be unable to compete with all these computers in the rate with which she can generate blocks. Bob will receive much more blocks from third persons than Alice alone will ever be able to generate, and some of these blocks will contain Alice's previous transaction, telling Bob that Alice has already spent her coin. And since, in the presence of multiple parallel chains of blocks of transactions, the longest such chain is taken as the truth, the only way for Alice to "pass" her own version of events is to be in a position to command the majority of the CPU power on the network. We assume nobody can do that, therefore Alice cannot undo what she did and cannot spend her coin twice.
 
