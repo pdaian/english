@@ -1,0 +1,13 @@
+This is a project to define a new wallet protocol addressing problems with the current JSON-RPC implementation in bitcoind.
+Please feel free to make edits. If you disagree with something, turn it into a "debate".
+
+## Requirements
+
+* Never use human-formatted data (for example, use base bitcoin units, not Decimal BitCoins nor Tonal BitCoins, which be left to the GUI)
+* Don't require polling (for example, broadcast events for new transactions, or changes to current "work")
+
+### Debates
+#### Binary or plaintext
+
+* Binary is more efficient to parse and create
+* Plaintext is easier for humans to debug
