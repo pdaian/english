@@ -15,6 +15,12 @@ A GPU is like a CPU, but there are important internal differences that make them
 ## A CPU is an executive
 A CPU is designed primarily to be an executive and make decisions, as directed by the software.  For example, if you type a document and save it, it is the CPU's job to turn your document into the appropriate file type and direct the hard disk to write it as a file.  CPU's can also do all kinds of math, as inside every CPU is one or more "Arithmetic/Logic Units" (ALU's).  CPU's are also highly capable of following instructions of the "if this, do this, otherwise do that".  A large bulk of the structures inside a CPU are concerned with making sure that the CPU is ready to deal with having to switch to a different task on a moment's notice when needed.
 
+CPU's also have to deal with quite a few other things which add complexity, including:
+
+* enforcing privilege levels and the boundaries between user programs and the operating system
+* creating the illusion of "virtual memory" to programs
+* for the most popular processors, being backwards compatible with legacy code
+
 ## A GPU is a laborer
 A GPU is very different.  Yes, a GPU can do math, and can also do "this" and "that" based on specific conditions.  However, GPU's have been designed so they are very good at doing video processing, and less executive work.
 
