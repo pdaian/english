@@ -1,0 +1,23 @@
+Some Bitcoin users might wonder why there is a huge disparity between the mining output of a CPU versus a GPU.
+
+First, just to clarify, the CPU, or *central processing unit*, is the part of the computer that performs the will of the software loaded on the computer.  It's the main executive for the entire machine.  Some computers have multiple CPU's, and some CPU's have multiple cores (which is almost the same thing as having multiple CPU's in a single physical package).
+
+The CPU is usually a removable component that plugs into the motherboard and sits underneath a large metallic heat sink or fan.
+
+The GPU, or *graphics processing unit*, is a part of the video rendering system in a computer.  In many cases, the GPU is located on a video card, which is in turn plugged into the motherboard.  The typical function of a GPU is to assist with the rendering of 3D graphics and visual effects so that the CPU doesn't have to.
+
+Many computers don't have GPU's at all.  A GPU isn't a requirement, it's just that they are appearing as standard equipment in computers nowadays, since newer operating systems support enhanced visual effects that depend on the GPU.  For example, the translucent windows in Windows 7, or the row of icons in Mac OS X that bulges near the mouse pointer - these are effects that are made feasible with a GPU.
+
+A GPU is like a CPU, but there are important internal differences that make them suited toward their special tasks.  These are the differences that make Bitcoin mining far more favorable on a GPU.
+
+A CPU is designed primarily to be an executive and make decisions, as directed by the software.  For example, if you type a document and save it, it is the CPU's job to turn your document into the appropriate file type and direct the hard disk to write it as a file.  CPU's can also do all kinds of math, as inside every CPU is one or more "Arithmetic/Logic Units" (ALU's).  CPU's are also highly capable of following instructions of the "if this, do this, otherwise do that".  A large bulk of the structures inside a CPU are concerned with making sure that the CPU is ready to deal with having to switch to a different task on a moment's notice when needed.
+
+A GPU is very different.  Yes, a GPU can do math, and can also do "this" and "that" based on specific conditions.  However, GPU's have been designed so they are very good at doing video processing, and less executive work.
+
+Video processing is a lot of repetitive work, since it is constantly being told to do the same thing to large groups of pixels on the screen.  In order to make this run efficiency, video processors are far heavier on the ability to do repetitive work, than the ability to rapidly switch tasks.
+
+One way to visualize it is a CPU works like a small group of very smart people who can quickly do any task given to them.  A GPU is a large group of relatively dumb people who aren't individually very fast or smart, but who can be trained to do repetitive tasks, and collectively can be more productive just due to the sheer number of people.
+
+The ATI Radeon 5970 has 3,200 "stream processors", which can be thought of as 3,200 very dumb cores that can be trained to all do the same repetitive task, just so long as they don't have to make any decisions that interrupts their flow.  In addition, each of those stream processors have 5 ALU's - the part that does math.  So an ATI Radeon 5970 has 16,000 ALU's.  Compare that to a 4-core CPU that can switch tasks on a dime, but has ALU's in some small multiple of four, if not just four ALU's alone.
+
+That, in a nutshell, is why GPU's can mine Bitcoins so much faster than CPU's.  Bitcoin mining requires no decision making - it is repetitive mathematical work for a computer.  The only decision making that must be made in Bitcoin mining is, "do I have a valid block" or "do I not".  That's an excellent workload to run on a GPU.
