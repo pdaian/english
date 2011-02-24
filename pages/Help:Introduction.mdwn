@@ -28,8 +28,8 @@ This is how we guarantee that Alice cannot replicate the coin and use it in more
 
 * Details about the [[transaction|Transactions]] are [[sent|Network]] to as many other people's computers as possible.
 * A chain of [[blocks|Blocks]] that contains a record of all transactions is collectively maintained by all computers (each has a full copy).
-* Valid blocks are computationally difficult to create and only valid blocks are allowed in the chain, containing valid transactions.
 * Blocks are chained in a way that does not allow their data to be modified, without all following blocks becoming invalid.
+* Valid blocks are computationally difficult to create and only valid blocks are allowed in the chain, containing valid transactions.
 * When multiple continuations to this chain appear, the longest such branch is accepted as the correct one.
 
 When Bob sees that his transaction has been included in a block, which has been made part of the longest and constantly growing block chain, he can be confident that the transaction by Alice has been accepted by other computers as valid and has been recorded, preventing Alice from creating a second transaction with the same coin.
