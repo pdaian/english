@@ -10,13 +10,18 @@ Many computers don't have GPU's at all.  A GPU isn't a requirement, it's just th
 
 A GPU is like a CPU, but there are important internal differences that make them suited toward their special tasks.  These are the differences that make Bitcoin mining far more favorable on a GPU.
 
+## A CPU is an executive
 A CPU is designed primarily to be an executive and make decisions, as directed by the software.  For example, if you type a document and save it, it is the CPU's job to turn your document into the appropriate file type and direct the hard disk to write it as a file.  CPU's can also do all kinds of math, as inside every CPU is one or more "Arithmetic/Logic Units" (ALU's).  CPU's are also highly capable of following instructions of the "if this, do this, otherwise do that".  A large bulk of the structures inside a CPU are concerned with making sure that the CPU is ready to deal with having to switch to a different task on a moment's notice when needed.
 
+## A GPU is a laborer
 A GPU is very different.  Yes, a GPU can do math, and can also do "this" and "that" based on specific conditions.  However, GPU's have been designed so they are very good at doing video processing, and less executive work.
 
 Video processing is a lot of repetitive work, since it is constantly being told to do the same thing to large groups of pixels on the screen.  In order to make this run efficiency, video processors are far heavier on the ability to do repetitive work, than the ability to rapidly switch tasks.
 
+##Analogy
 One way to visualize it is a CPU works like a small group of very smart people who can quickly do any task given to them.  A GPU is a large group of relatively dumb people who aren't individually very fast or smart, but who can be trained to do repetitive tasks, and collectively can be more productive just due to the sheer number of people.
+
+It's not that a CPU is fat, spoiled, or lazy.  Both CPUs and GPUs are creations made from billions of microscopic transistors crammed on a small piece of silicon.  On silicon chips, size is expensive.  The structures that make CPUs good at what they do take up lots of space.  When those structures are omitted, that leaves plenty of room for many "dumb" ALU's, which individually are very small.  Large groups of ALUs share management, so they cannot be made to work on separate tasks.  They can either all work on nearly identical variations of one single task, or nothing at all.
 
 The ATI Radeon 5970 has 3,200 "stream processors", which can be thought of as 3,200 very dumb cores that can be trained to all do the same repetitive task, just so long as they don't have to make any decisions that interrupts their flow.  In addition, each of those stream processors have 5 ALU's - the part that does math.  So an ATI Radeon 5970 has 16,000 ALU's.  Compare that to a 4-core CPU that can switch tasks on a dime, but has ALU's in some small multiple of four, if not just four ALU's alone.
 
