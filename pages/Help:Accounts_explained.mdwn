@@ -10,7 +10,7 @@ Bitcoin version 0.3.18 and later implements several RPC methods to maintain sepa
 
 ## Account Names
 
-Accounts are named with arbitrary strings; you may use any [JSON](http://www.json.org/) string (JSON strings are sent and returned as UTF-8 encoded Unicode).  *Note: at the time of this writing, it is expected that a future version of Bitcoin will not allow an account to be named **
+Accounts are named with arbitrary strings; you may use any [JSON](http://www.json.org/) string other than "*" (JSON strings are sent and returned as UTF-8 encoded Unicode).
 
 Bitcoin creates two accounts automatically:  it implicitly creates a default account with the empty string as its name, and it explicitly creates an account named **Your Address** when a new wallet is created.
 
