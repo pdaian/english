@@ -23,7 +23,26 @@ Mt. Gox subtracts a 0.65% trading fee from each party of successful trades made 
 ###Adding Funds
 
 ####BTC
-There are no fees incurred when transferring bitcoins to a Mt. Gox account.  Funds are available once [[confirmed|confirmation]] (6 blocks (10.1)  Liberty Reserve will subtract $0.99 ($99 less a 1% fee) leaving a net amount at Liberty Received of $98.01.
+There are no fees incurred when transferring bitcoins to a Mt. Gox account.  Funds are available once [[confirmed|confirmation]] (6 blocks (10.1)), a process that can take roughly an hour.
+
+####LRUSD
+There are no fees incurred when adding LRUSD funds to an account.  Funds are available in minutes.
+
+####ACH
+The exchange can accept transfers made via [ACH](http://en.wikipedia.org/wiki/Automated_Clearing_House) and Mt. Gox reports this as being the least expensive method for funding an account.  Only recently has consumer banking started to provide the ability for an account holder to initiate a payment using ACH to an account other than their own at another financial institution.
+
+####Bank wire
+The exchange is charged $15 for a U.S. bank wire and $50 for an international bank wire.  The exchange requests that you contact them in advance for details. 
+
+###Withdrawing Funds
+
+####BTC
+Bitcoins may be withdrawn at no charge.
+
+####LRUSD
+There are two fees incurred when withdrawing LRUSD.  Mt. Gox themselves subtracts 1% of the transfer amount as a fee before transferring away.  Liberty Reserve then subtracts as a transfer fee 1% from the amount they've received.
+
+For example, to withdraw $100 LRUSD, Mt. Gox will send $99 ($100 less a 1% fee) (16.1)  Liberty Reserve will subtract $0.99 ($99 less a 1% fee) leaving a net amount at Liberty Received of $98.01.
 
 ##Wallet/Banking
 An account at this exchange can be considered to be an [[eWallet]]. This service also offers [[eCommerce|tags/ECommerce]] merchant [payment services](http://mtgox.com/merch/about).
@@ -32,7 +51,7 @@ An account at this exchange can be considered to be an [[eWallet]]. This service
 Mt Gox offers a [trading API](http://mtgox.com/support/tradeAPI) which can be used to automate operations described above.  There is also a [Perl module](http://search.cpan.org/perldoc?Finance::MtGox) for interacting with the API.
 
 ##History
-MtGox went online on July 18, 2010. (13.1)
+MtGox went online on July 18, 2010. (19.1)
 
 On October 10, 2010 MtGox announced that their [[PayPal]] account had been suspended as a result of a scammer using stolen Paypal accounts to transfer funds to MtGox. Fraudulent PayPal transactions and chargebacks were also reported by Bitcoin Market customers around this time. Mtgox switched from PayPal to Liberty Reserve as the main funding option as a result of this attack. Former PayPal customers still had the possibility to withdraw their USD using alternative methods.
 
@@ -47,8 +66,9 @@ On October 10, 2010 MtGox announced that their [[PayPal]] account had been suspe
 
 ##References
 
-10.1: One member of [[Bitcoin-otc]] reports that this appears to be a 0.99% fee, not a 1.0%.  
-13.1: [MtGox announcement on forum](http://www.bitcoin.org/smf/index.php?topic=444.0)
+10.1: [How long does it take to Deposit bitcoins to MtGox?](http://www.bitcoin.org/smf/index.php?topic=3851.msg55220#msg55220)  
+16.1: One member of [[Bitcoin-otc]] reports that this appears to be a 0.99% fee, not a 1.0%.  
+19.1: [MtGox announcement on forum](http://www.bitcoin.org/smf/index.php?topic=444.0)
 
 
 [[!tag "Exchanges"]]
