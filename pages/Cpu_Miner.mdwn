@@ -1,18 +1,15 @@
-[[!template id=stub]]
+**cpuminer** is a client program that performs [[Pooled_Mining]], created by Jeff Garzik (jgarzik). The program receives proposed [[block]] data from the server, for which it tries to guess a [[nonce]] value that will result in a valid block. If a block [[hash]] with at least 32 consecutive zero bits is found, the block data containing the guessed nonce value is sent back to the server. This block is called a "share" because the server is supposed to credit the registered user's account, according to the number of shares that user has contributed, and eventually transfer an amount of bitcoins to the registered user's address.
 
-**cpuminer** is a Bitcoin cpu miner created by jgarzik. It receives work through the standard JSON-RPC 'getwork' command, and supports several algorithms for doing the hashing required to build a block.
+Communication with the server is done using HTTP POST requests on port 8332, containing JSON-encoded data. Users are required to register on such servers (so as to give their Bitcoin address) and HTTP username:password authentication is required.
 
 ##Algorithms
+SHA256 hashes can be calculated in many ways by cpu-miner. Depending on the hardware that is used, one of the following supported algorithms will perform best:
 
 * **c:** Linux kernel (but not restricted to Linux) implementation of SHA256.
 * **4way:** 128-bit SSE2 optimizations which are already available as a compile-time option on the classic Bitcoin client.
 * **via:** Implementation of the Padlock encryption optimizations on VIA CPUs.
 * **cryptopp:** C/C++ Implementation from the Crypto++ library.
 * **cryptopp_asm32:** 32-bit assembly implementation from the Crypto++ library.
-
-##See also
-
-* [[Pooled_Mining]]
 
 ##External Links
 
