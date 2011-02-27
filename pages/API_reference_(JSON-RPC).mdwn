@@ -2,11 +2,7 @@
 
 Run *bitcoind* or *bitcoin -server*. You can control it via the command-line or by HTTP-JSON-RPC commands.
 
-Under Linux create ~/.bitcoin/bitcoin.conf. Under Windows create bitcoin.conf in the Bitcoin data directory. Under OS X in /Users/udi/Library/Application\ Support/Bitcoin/
-
-bitcoin.conf:
-	rpcuser=myusername
-	rpcpassword=secretpassword
+You must create a bitcoin.conf configuration file setting an rpcuser and rpcpassword; see [[Running_Bitcoin]] for details.
 
 Now run:
 	$ ./bitcoind
