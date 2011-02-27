@@ -14,10 +14,10 @@ To get the maximum performance use the 2.1 or 2.2 release of the ATI Stream SDK.
 |Model |Mhash/s |Mhash/W |W |Clock |SP |SDK |Miner |Notes
 |---|---|---|---|---|---|---|---
 |3XXX ||||||||OpenCL Not Supported 
-|4350 |6.93 |0.346 |20 |575 |80 |||
-|4550 |7.23 |0.289 |25 |600 |80 |||
-|4650 |31.33 |0.653 |48 |650 |320 |||
-|4670 |36.14 |0.613 |59 |750 |320 |||
+|4350 |6.93 |0.346 |20 |575 |80 ||poclbm |-w 32, don't use vectors 
+|4550 |7.23 |0.289 |25 |600 |80 ||poclbm |-w 32, don't use vectors 
+|4650 |31.33 |0.653 |48 |650 |320 ||poclbm |-w 32, don't use vectors 
+|4670 |36.14 |0.613 |59 |750 |320 ||poclbm |-w 32, don't use vectors 
 |4730 |72.29 |0.657 |110 |750 |640 |||
 |4770 |72.29 |0.904 |80 |750 |640 |||
 |4830 |55.42 |0.583 |95 |575 |640 |||
@@ -67,9 +67,9 @@ To get the maximum performance use the 2.1 or 2.2 release of the ATI Stream SDK.
 
 |Model |Mhash/s |Mhash/W |W |Clock |SP 
 |---|---|---|---|---|---
-|8600M GT |4.93 |- |- |- |-
-|8600GT |5.66 |- |- |1188 |4
-|8800GT |25 |- |- |1300 |8
+|8600M GT |4.93 |- |- |- |32
+|8600GT |5.66 |- |- |1188 |32
+|8800GT |25 |- |- |1300 |112
 |9300GE |1.57 |- |- |1300 |8
 |9300GS |1.69 |- |- |1400 |8
 |9400GT |3.37 |0.067 |50 |1400 |16
@@ -80,7 +80,7 @@ To get the maximum performance use the 2.1 or 2.2 release of the ATI Stream SDK.
 |9800GT |30.36 |0.289 |105 |1800 |112
 |9800GTX |32.54 |0.232 |140 |1688 |128
 |9800GTX+ |35.39 |0.251 |141 |1836 |128
-|9800GX2 |57.83 |0.294 |197 |1500 |256
+|9800GX2 |57.83 |0.294 |197 |1500 |2x128
 |G210 |3.38 |0.111 |30.5 |1402 |16
 |GT220 |9.83 |0.170 |58 |1360 |48
 |GT240 |19.37 |0.281 |69 |1340 |96
@@ -114,6 +114,7 @@ A lot of nice data can be pulled from [this thread](http://www.bitcoin.org/smf/i
 |Model |nprocs |Mhash/s |Mhash/W |ACP [[W]]|Clock [[MHz]]|Version |Comment
 |---|---|---|---|---|---|---|---
 |2x Opteron 6128 |16 |32.4 |0.203 |160 |2000 |0.3.19 |-4way
+|Athlon X2 4000+ |2 |1.9 |0.02 |65 |2100 |rpc-miner |
 
 
 ##Intel
@@ -123,6 +124,7 @@ A lot of nice data can be pulled from [this thread](http://www.bitcoin.org/smf/i
 |---|---|---|---|---|---|---|---
 |i5-2400 |4/4 |4.5 |0.05 ||Quad 3.1 GHz |cpuminer git (2011-01-22) |cryptopp_asm32
 |i5-550  |2/4 |5.1 |0.04 ||3.2 GHz |cpuminer-0.7  |-4way
+|e7300   |2/2 |7.76 |0.11 |70W |3.33 GHz |ufasoft-0.3 |miner optimized for Intel Core
 
 
 [[!tag "Mining"]]
