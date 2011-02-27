@@ -58,7 +58,9 @@ Use the *move* method to transfer balances from one account to another.  Moves f
 
 ## Account Balance and History
 
-The *getbalance* method returns the bitcoin balance for either the entire wallet (if no argument is given) or for a particular account.  The *listtransactions <account> [[N]]* method returns the last N (default 10) transactions that affected the account's balance.
+The *getbalance* method returns the bitcoin balance for either the entire wallet (if no argument is given) or for a particular account.
+
+The *listtransactions <account> [[N]]* method returns the last N (default 10) transactions that affected the account's balance.  "listtransactions '*' [[N]]" will return the last N transactions for all accounts.
 
 ## Typical Uses
 
