@@ -9,7 +9,7 @@ Type names used in this documentation are from the C99 standard.
 
 ### Hashes
 
-Usually, when a hash is computed within bitcoin, it is computed twice. Most of the time [SHA-256](http://en.wikipedia.org/wiki/SHA-2) hashes are used, however [RIPEMD-160](http://en.wikipedia.org/wiki/RIPEMD) is also used when a shorter hash is desireable (for example when creating a bitcoin address).
+Usually, when a hash is computed within bitcoin, it is computed twice. Most of the time [SHA-256](http://en.wikipedia.org/wiki/SHA-2) hashes are used, however [RIPEMD-160](http://en.wikipedia.org/wiki/RIPEMD) is also used when a shorter hash is desirable (for example when creating a bitcoin address).
 
 Example of double-SHA-256 encoding of string "hello":
 
@@ -163,7 +163,7 @@ Block headers are sent in a headers packet in response to a getheaders message.
 
 ### version
 
-When a node receives an incoming connection, it will immediatly advertise its version. No futher communication is possible until both peers have exchanged their version.
+When a node receives an incoming connection, it will immediately advertise its version. No futher communication is possible until both peers have exchanged their version.
 
 Payload:
 
