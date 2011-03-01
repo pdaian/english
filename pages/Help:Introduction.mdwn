@@ -27,10 +27,10 @@ Eve cannot change who the coins belong to by replacing Bob’s public key with h
 This is how we guarantee that Alice cannot replicate the coin and use it in more than one transaction:
 
 * Details about the [[transaction|Transactions]] are [[sent and forwarded|Network]] to all or as many other computers as possible.
-* A chain of [[blocks|Blocks]] that contains a record of all transactions is collectively maintained by all computers (each has a full copy).
-* Blocks are chained in a way that does not allow their data to be modified, without all following blocks becoming invalid.
+* A constantly growing chain of [[blocks|Blocks]] that contains a record of all transactions is collectively maintained by all computers (each has a full copy).
 * Valid blocks are computationally difficult to create and only valid blocks are allowed in the chain, containing valid transactions.
-* When multiple continuations to this chain appear, the longest such branch is accepted as the correct one and built upon.
+* Blocks are chained in a way that does not allow their data to be modified, without all following blocks becoming invalid.
+* When multiple valid continuations to this chain appear, the longest such branch is accepted as the correct one and built upon.
 
 When Bob sees that his transaction has been included in a block, which has been made part of the longest and constantly growing block chain, he can be confident that the transaction by Alice has been accepted by other computers as valid and has been recorded, preventing Alice from creating a second transaction with the same coin.
 
