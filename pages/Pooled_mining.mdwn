@@ -20,7 +20,7 @@ The problem with pooled mining is that steps must be taken to prevent cheating b
 
 (As of February, 2011, there are no puddinpop pools running.)
 
-Another approach is the 'metahash' technique, used by [[puddinpop's miner|remote_miner]]. Clients generate hashes, and also submit 'metahashes', which are hashes of a large chunk of generated hashes. The server checks that the metahashes are correct (in a round-robin fashion, picking up a metahash from a client that hasn't been checked on the longest), thus preventing clients from simply claiming that they have done work without actually doing the work. The withholding of good blocks by the clients is prevented via the server being in possession of the private key, just as in the previous approach. Rewards are distributed based on the number of metahashes submitted by the clients.
+Another approach is the 'metahash' technique, used by puddinpop's [[remote_miner]]. Clients generate hashes, and also submit 'metahashes', which are hashes of a large chunk of generated hashes. The server checks that the metahashes are correct (in a round-robin fashion, picking up a metahash from a client that hasn't been checked on the longest), thus preventing clients from simply claiming that they have done work without actually doing the work. The withholding of good blocks by the clients is prevented via the server being in possession of the private key, just as in the previous approach. Rewards are distributed based on the number of metahashes submitted by the clients.
 
 Cheating by the server, by way of the pool operator fraudulently granting himself extra shares, is also not addressed, requiring the clients to trust the operator.
 
