@@ -15,7 +15,7 @@ The protocol described herein is to be used for communication between the UI and
 
 ## Requirements
 
-* Never use human-formatted data (for example, use base bitcoin units, not Decimal BitCoins nor Tonal BitCoins, which be left to the GUI)
+* Never use human-formatted data (for example, use base bitcoin units, not Decimal BitCoins nor Tonal BitCoins, which should only be used in formatting for humans)
 * Don't require polling (for example, broadcast events for new transactions, or changes to current "work")
 * Cooperative mining (see below)
 
