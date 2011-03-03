@@ -9,6 +9,9 @@ Bitcoin address in the signature in the [founder's page](http://www.bitcoin.org/
 From the introductory [post](http://www.bitcoin.org/smf/index.php?topic=1721.msg21054#msg21054), to run type:
 	./DiabloMiner-YourOS.sh -u youruser -p yourpass
 Where user and pass are the values for the rpcuser and rpcpassword configuration settings from the bitcoin.conf file located your [[data directory|Data_directory#Files]].
+Newer versions of DiabloMiner support a <code>--url</code> argument, for example:
+	/DiabloMiner-OSX.sh --url <nowiki>http://youruser:yourpass@localhost:8332/</nowiki>
+
 
 To run on Windows you have to do something like:
 	java -cp target\libs\*;target\DiabloMiner-0.0.1-SNAPSHOT.jar -Djava.library.path=target\libs\natives\windows com.diablominer.DiabloMiner.DiabloMiner -u youruser -p yourpassword
