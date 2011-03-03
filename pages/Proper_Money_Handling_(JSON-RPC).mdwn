@@ -1,9 +1,34 @@
 ## Overview
-The original bitcoin client stores all bitcoin values as 64-bit integers, with 1 BTC stored as 100,000,000 (one-hundred-thousand of the smallest possible bitcoin unit).  Values are expressed as double-precision JSON Numbers in the JSON API, with 1 BTC expressed as 1.00000000
+The original bitcoin client stores all bitcoin values as 64-bit integers, with 1 BTC stored as 100,000,000 (one-hundred-thousand of the smallest possible bitcoin unit).  Values are expressed as double-precision Numbers in the JSON API, with 1 BTC expressed as 1.00000000
 
-If you are writing software that uses the JSON-RPC interface you need to be aware of possible floating-point conversion issues.  You, or the JSON library you are using, should convert amounts to either a fixed-point Decimal representation (with 8 digits after the decimal point) or a 64-bit integer representation.  The rest of this page gives sample code for various JSON libraries and programming languages.
+If you are writing software that uses the JSON-RPC interface you need to be aware of possible floating-point conversion issues.  You, or the JSON library you are using, should convert amounts to either a fixed-point Decimal representation (with 8 digits after the decimal point) or a 64-bit integer representation.
 
 Improper value handling can lead to embarrassing errors; for example, if you truncate instead of doing proper rounding and your software will display the value "0.1 BTC" as "0.09999999 BTC" (or, worse, "0.09 BTC").
+
+	The rest of this page gives sample code for various JSON libraries and programming languages.
+
+## JavaScript
+
+The JavaScript Number type is double-precision floating point; JavaScript does not have an integral numeric type.
+
+*JavaScript experts:  what is best practice?  Convert to an integral-like-double, or just do proper rounding on display and do all calculations using doubles?*
+
+## C/C++
+C/C++ JSON libraries return the JavaScript Number type as type 'double'.  To convert, without loss of precision, from a double to a 64-bit integer multiply by 100,000,000 and round to the nearest integer:
+	double dValue = ...from JSON library...;
+	long long int64Value;
+	if (dValue > 0) { int64Value = (long long)(dValue * 10e8 + 0.5);
+	else { int64Value = (long long)(dValue * 10e8 - 0.5);
+
+To convert to a JSON value divide by 100,000,000.0:
+	double dValue = (double) int64Value / 10e8
+
+## Python
+Python's Decimal type is perfect for storing Bitcoin values; bitcoin values require 8 digits of precision:
+	from decimal import Decimal, Context, setcontext
+	btc_context = Context(prec=8)
+	setcontext(btc_context)
+
 
 [[!tag "Technical"]]
 [[!tag "Developer"]]
