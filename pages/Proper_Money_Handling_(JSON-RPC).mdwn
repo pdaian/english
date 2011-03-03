@@ -40,7 +40,7 @@ Pass the parse_float arguments to [python's JSON parsing routines](http://docs.p
 	decimal.setcontext(decimal.Context(prec=8))
 	print json.dumps(decimal.Decimal('10.001'), cls=DecimalEncoder)
 	print json.dumps({ "decimal" : decimal.Decimal('1.1'), "float" : 1.1, "string" : "1.1" }, cls=DecimalEncoder)
-	print json.loads('{"blaa": 0.333331}', parse_float=decimal.Decimal)
+	print json.loads('{"amount": 0.333331}', parse_float=decimal.Decimal)
 
 Output is:
 	10.001
