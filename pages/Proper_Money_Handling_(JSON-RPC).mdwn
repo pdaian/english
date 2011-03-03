@@ -7,11 +7,13 @@ Improper value handling can lead to embarrassing errors; for example, if you tru
 
 The rest of this page gives sample code for various JSON libraries and programming languages.
 
-## JavaScript
+## ECMAScript
 
-The JavaScript Number type is double-precision floating point; JavaScript does not have an integral numeric type.
+The ECMAScript Number type is double-precision floating point; ECMAScript does not have an integral numeric type.
 
 *JavaScript experts:  what is best practice?  Convert to an integral-like-double, or just do proper rounding on display and do all calculations using doubles?*
+
+* This is not ECMAScript specific: all program internals should use raw/base bitcoin amounts, never floats.
 
 ## C/C++
 C/C++ JSON libraries return the JavaScript Number type as type 'double'.  To convert, without loss of precision, from a double to a 64-bit integer multiply by 100,000,000 and round to the nearest integer:
