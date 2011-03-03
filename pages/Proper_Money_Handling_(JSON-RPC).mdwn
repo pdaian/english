@@ -26,10 +26,7 @@ To convert to a JSON value divide by 100,000,000.0, and (somehow) ensure your JS
 	double dValue = (double) int64Value / 10e8
 
 ## Python
-Python's [Decimal type](http://docs.python.org/library/decimal.html) is perfect for storing Bitcoin values; bitcoin values require 8 digits of precision:
-	import decimal
-	decimal.setcontext(decimal.Context(prec=8))
-Pass the parse_float argument to [python's JSON parsing routines](http://docs.python.org/library/json.html) to parse JSON values into Decimal:
+Pass the parse_float and parse_int arguments to [python's JSON parsing routines](http://docs.python.org/library/json.html) to parse JSON values into Decimal:
 	json.loads(json_string, parse_float=lambda x: int(decimal.Decimal(x) * 100000000), parse_int=lambda x: int(x) * 100000000)
 
 [[!tag "Technical"]]
