@@ -1,0 +1,29 @@
+There is one major point that the page overlooks: the limitation on block
+creation.
+
+Block creation is limited to an average of one block every ten minutes.
+Furthermore, block size (which includes the transactions in the block) is limited to 1,000,000 bytes.
+
+Each transaction requires 10 bytes, plus approximately 106 bytes for every
+input and approximately 69 bytes for every output. The exact size depends
+on the size of the public key, which I have not been able to confirm, but
+the keys in my wallet.dat seem to be about 65 bytes each.
+
+If we assume that transactions average two inputs and two outputs, then
+the average transaction size will be about 350 bytes *(note that the main page assumes an average of 1KB per transaction)*. If we further assume
+that the block size will, in practice, be limited to 500,000 bytes because
+the transaction fees increase as the block size increases, then that means
+there will be, on average, approximately 1430 transactions per block. That
+works out to an average of 2.5 transactions per second - **well** below
+the stated goal of at least 4,000 transactions per second.
+
+Even if we assume only one input and one output per transaction, and that
+each block will contain the full 1,000,000 bytes, that still works out to only 5,405
+transactions per block, or 9 transactions per second.
+
+Unfortunately, this is **not** a limitation that can be overcome by
+simply increasing memory, or switching to a different ISP with more
+bandwidth. It is a built-in limitation, designed to **deliberately**
+slow down block creation. One solution is to somehow allow blocks to be freely created, while still keeping the rate of coin creation constant.
+
+The bottom line is that, *as it sits*, this system is not scalable.
