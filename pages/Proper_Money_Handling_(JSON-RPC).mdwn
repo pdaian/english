@@ -30,7 +30,7 @@ Python's [Decimal type](http://docs.python.org/library/decimal.html) is perfect 
 	import decimal
 	decimal.setcontext(decimal.Context(prec=8))
 Pass the parse_float argument to [python's JSON parsing routines](http://docs.python.org/library/json.html) to parse JSON values into Decimal:
-	json.loads(json_string, parse_float=decimal.Decimal)
+	json.loads(json_string, parse_float=lambda x: int(decimal.Decimal(x) * 100000000), parse_int=lambda x: int(x) * 100000000)
 
 [[!tag "Technical"]]
 [[!tag "Developer"]]
