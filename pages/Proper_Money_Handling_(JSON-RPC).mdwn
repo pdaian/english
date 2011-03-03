@@ -26,8 +26,26 @@ To convert to a JSON value divide by 100,000,000.0, and (somehow) ensure your JS
 	double dValue = (double) int64Value / 10e8
 
 ## Python
-Pass the parse_float and parse_int arguments to [python's JSON parsing routines](http://docs.python.org/library/json.html) to parse JSON values into Decimal:
-	json.loads(json_string, parse_float=lambda x: int(decimal.Decimal(x) * 100000000), parse_int=lambda x: int(x) * 100000000)
+Pass the parse_float arguments to [python's JSON parsing routines](http://docs.python.org/library/json.html) to parse JSON values into Decimal:
+	import decimal
+	import json
+	
+	# From http://stackoverflow.com/questions/1960516/python-json-serialize-a-decimal-object
+	class DecimalEncoder(json.JSONEncoder):
+	def _iterencode(self, o, markers=None):
+	if isinstance(o, decimal.Decimal):
+	return (str(o) for o in [[o]])
+	return super(DecimalEncoder, self)._iterencode(o, markers)
+	
+	decimal.setcontext(decimal.Context(prec=8))
+	print json.dumps(decimal.Decimal('10.001'), cls=DecimalEncoder)
+	print json.dumps({ "decimal" : decimal.Decimal('1.1'), "float" : 1.1, "string" : "1.1" }, cls=DecimalEncoder)
+	print json.loads('{"blaa": 0.333331}', parse_float=decimal.Decimal)
+
+Output is:
+	10.001
+	{"decimal": 1.1, "float": 1.1000000000000001, "string": "1.1"}
+	{u'blaa': Decimal('0.333331')}
 
 [[!tag "Technical"]]
 [[!tag "Developer"]]
