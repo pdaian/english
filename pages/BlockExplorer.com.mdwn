@@ -6,6 +6,8 @@ It is mainly aimed at advanced users who already know what blocks are and what k
 
 A listing of "strange transactions" is displayed in the main page, along with listings of the latest and largest transactions.
 
+Bitcoin Block Explorer can also display information from the [[Testnet]].
+
 ##Interfacing with BBE
 
 Use the [query pages](http://blockexplorer.com/q) such as *getreceivedbyaddress* wherever possible. Note that these pages do not send a trailing newline, which may cause problems with your HTTP-fetching tool. When an error occurs, the result will begin with "ERROR:", followed by the error text. Your detection of "ERROR" must be case-insensitive. An empty result is also an error. Non-fatal errors will print query results on the next line after the error, though using this data is inadvisable.
