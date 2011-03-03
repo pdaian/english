@@ -25,7 +25,9 @@ The hash is in the URL listed in the "location" header. Use it to get the JSON r
 Transactions use a URL like this:
 	http://blockexplorer.com/rawtx/cd5a933b2aec79c02f7ce36222930d4c85...
 
-If the search returns any status code other than 302, then the search is bad. A status code of 200 indicates that the search was ambiguous, and the page body will contain links to the choices. [Example of search ambiguity](http://blockexplorer.com/search/111111). A search with no search terms will 302-redirect to the home page.
+If the search returns any status code other than 302, then the search is bad. A status code of 200 indicates that the search was ambiguous, and the page body will contain links to the choices. [Example of search ambiguity](http://blockexplorer.com/search/0x111111). A search with no search terms will 302-redirect to the home page. Searches for valid block numbers will always redirect to the block with that number (ignoring all other search types), though you can force BBE to assume a hex value by preceding it with "0x".
+
+The shortlinks at the top of most pages are similar to searches. It is possible for shortlinks to be ambiguous, and they will likewise return a 200 status code in that case.
 
 Unfortunately, the JSON raw block/tx pages omit a lot of important information, and there is no similar page for addresses. A full XML interface is planned. Scraping the HTML pages is not recommended, as the layout can change at any time.
 
