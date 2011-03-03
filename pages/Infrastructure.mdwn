@@ -1,0 +1,72 @@
+## Overview
+
+### Components
+
+* Peer/Node -- Maintains connections with the BitCoin network, and relays BitCoin traffic based on policies. 
+* Wallet -- Maintains private key database, and controls balances for the user. 
+* UI -- End-user interface. Could be a wx/Qt/GTK GUI, CLI, Android app, iPhone app, etc... 
+* Miner -- Tries to solve blocks for the wallet.
+
+### Protocols
+
+* p2p -- Used for communication between Peers/Nodes, and also between your personal Peer/Node and your Wallet(s)
+* wallet -- Used for communication between your Wallet(s) and your Miner(s) and User Interface(s)
+
+### Diagram
+	___________
+	           --(p2p protocol)---ooooooooooooooo
+	 Peer/Node --(p2p protocol)--o  Other Peers  o
+	___________--(p2p protocol)---ooooooooooooooo
+	
+	(p2p protocol)
+	__________                       _________
+	                                         
+	   Wallet  --(wallet protocol)--  Miner  
+	___________                     _________
+	
+	(wallet protocol)
+	_______________
+	                
+	 User Interface 
+	________________
+
+## Implementations
+### Peer/Node
+
+
+|Software
+|---
+|[[bitcoind]]
+|[[wxBitcoin]]
+
+
+### Wallet
+
+
+|Software |Old JSON-RPC |New [[Wallet_protocol]]
+|---|---|---
+|[[bitcoind]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]
+|[[wxBitcoin]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]
+
+
+### Miner
+
+
+|Software |Old JSON-RPC |New [[Wallet_protocol]]
+|---|---|---
+|[[Cpu_Miner]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]
+|[[DiabloMiner]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]
+|[[Poclbm]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]
+
+
+### User Interface
+
+
+|Software |Old JSON-RPC |New [[Wallet_protocol]]
+|---|---|---
+|[[Bitcoin-js-remote]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]
+|[[BitDroid]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]
+|[[Java_Bitcoin_Client]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]
+|[[Spesmilo]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]
+|[[wxBitcoin]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]
+
