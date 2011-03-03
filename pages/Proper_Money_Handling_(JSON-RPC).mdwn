@@ -22,7 +22,7 @@ C/C++ JSON libraries return the JavaScript Number type as type 'double'.  To con
 	if (dValue > 0) { int64Value = (long long)(dValue * 10e8 + 0.5);
 	else { int64Value = (long long)(dValue * 10e8 - 0.5);
 
-To convert to a JSON value divide by 100,000,000.0:
+To convert to a JSON value divide by 100,000,000.0, and (somehow) ensure your JSON implementation rounds to 8 decimal places:
 	double dValue = (double) int64Value / 10e8
 
 ## Python
