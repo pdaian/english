@@ -1,2 +1,4 @@
 RE: best practices in ECMAScript:
 Just converting to base units doesn't magically fix the issues; if I have 1.0BTC == 100000000.0 base units and I need to divide that value into three equal pieces, I'm going to run into issues whether the result is 0.3333333.... or 3333333.33333...
+
+And the fixes are the same:  either round to the nearest .0000001 or to the nearest 1 before display, etc.
