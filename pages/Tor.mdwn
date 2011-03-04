@@ -71,7 +71,7 @@ Configure mIRC to use a Proxy (your local Tor proxy)<br />
 Now you should be able to connect.<br />
 [Bitcoin forum where this topic is discussed](http://www.bitcoin.org/smf/index.php?topic=2602)
 
-##How Tor works
+#How Tor works
 Unlike Freenet, I2P, etc., Tor's security is very well-defined. While weaknesses do exist (described below), they have been known since Tor was created, and new weaknesses of significance are not expected.
 
 Tor sends TCP packets over 3 (normal) or 7 (hidden services) Tor relays. This is why it is so slow: your packet might have to go through 100 computers (counting Internet routers) before it reaches its destination. Tor uses multiple *layers* of encryption that are *pulled away* for each node. Hence the name **T**he **O**nion **R**outer, which is always capitalized as **Tor**, and never TOR or t.o.r.
