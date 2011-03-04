@@ -26,7 +26,18 @@ To convert to a JSON value divide by 100,000,000.0, and (somehow) ensure your JS
 	double dValue = (double) int64Value / 10e8
 
 ## Python
-Pass the parse_float arguments to [python's JSON parsing routines](http://docs.python.org/library/json.html) to parse JSON values into Decimal:
+If you are using [python-json-rpc](http://json-rpc.org/wiki/python-json-rpc), you should convert its floating point values to and from the python Decimal type, specifying 8 digits of precision.  For example:
+	import decimal
+	from jsonrpc import ServiceProxy
+	
+	access = ServiceProxy("http://user:password@127.0.0.1:8332")
+	info = access.getinfo()
+	decimal.setcontext(decimal.Context(prec=8))
+	balance = decimal.Decimal("%.8f"%info[['balance']])
+	amount_to_send = balance / decimal.Decimal('2')
+	access.sendtoaddress('...bitcoin address...', float(amount_to_send))
+
+If you are using the standard json library, you can use the parse_float arguments to [python's JSON parsing routines](http://docs.python.org/library/json.html) to parse JSON values into Decimal and use the DecimalEncoder class to write out Decimal values:
 	import decimal
 	import json
 	
