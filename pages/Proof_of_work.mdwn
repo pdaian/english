@@ -20,7 +20,7 @@ Let's say the base string that we are going to do work on is "Hello, world!". Ou
 
 4251 hashes on a modern computer is not very much work (most computers can achieve at least 4 million hashes per second). Bitcoin automatically varies the [[difficulty]] (and thus the amount of work required to generate a block) to keep a roughly constant rate of block generation. The probability of a single hash succeeding can be found [here](http://blockexplorer.com/q/probability).
 
-In Bitcoin things are a bit more complex, especially since the header contains the [Merkle tree](http://en.wikipedia.org/wiki/Merkle_tree) which depends on the included transactions. This includes the generation transaction, a transaction "out of nowhere" to our own address, which in addition to providing the miner with incentive to do the work, also ensures that every miner hashes a unique data set.
+In Bitcoin things are a bit more complex, especially since the header contains the [Merkle tree](http://en.wikipedia.org/wiki/Merkle_tree) which depends on the included [[transactions]]. This includes the generation transaction, a transaction "out of nowhere" to our own address, which in addition to providing the miner with incentive to do the work, also ensures that every miner hashes a unique data set.
 
 [[!tag "Vocabulary"]]
 
