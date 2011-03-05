@@ -25,3 +25,5 @@ I don't know if this is the correct place to make these suggestions, but I would
 	1. Select a single coin for payment, with a value much greater than the value of the payment (for some definition of "much greater"). About 2x the payment value is good, because then the payment and the change are about the same, and a snooper won't be able to tell which is which.
 	1. Choose multiple coins such that the value of the payment is greater than the value of the smallest coin, but less than the value of the largest coin. For example, your payment is 7 BTC. Choose coins valued at 5, 8, and 10, giving a payment of 7 and change of 16.
 	1. The existing "best fit" algorithm, modified so that it only selects a single coin with the exact value as a last resort.
+
+> That does sound like an improvement. I don't think most people care much about anonymity right now, though, and it's not *that* easy to track transactions, so the solution needs to be good for average users (or there needs to be an option). Most of those changes will increase transaction sizes, which will increase fees. [theymos](User:Theymos) 05:10, 5 March 2011 (GMT)
