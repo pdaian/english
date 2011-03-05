@@ -4,9 +4,15 @@ The core BitCoin network can scale to very high [[transaction|transactions]] rat
 
 VISA handles on average around 2,000 transactions/sec, so call it a daily peak rate of 4,000/sec. They have burst capacity up to 10,000 transactions per second which they need to handle the busiest points of the holiday period (~8,500tps). [(1)](http://investor.visa.com/phoenix.zhtml?c=215693&p=irol-newsArticle_print&ID=1355716)
 
+PayPal, in contrast, handles around 4 million transactions per day for an average of 46tps or a probably peak rate of 100tps.
+
 Let's take 4,000 tps as starting goal. Obviously if we want BitCoin to scale to all economic transactions worldwide, including cash, it'd be a lot higher than that, perhaps more in the region of a few hundred thousand transactions/sec. And the need to be able to withstand DoS attacks (which VISA does not have to deal with) implies we would want to scale far beyond the standard peak rates. Still, picking a target let's us do some basic calculations even if it's a little arbitrary.
 
-##CPU and block chain storage
+##Current bottlenecks
+
+Today the BitCoin network is limited to about 7 tps by some artificial limits. These were put in place to stop spammers from ballooning the size of the block chain before the network and community was ready for it. Once those limits are lifted, the maximum transaction rate will go up significantly.
+
+##CPU
 
 The protocol has two parts. Nodes send "inv" messages to other nodes telling them they have a new transaction. If the receiving node doesn't have that transaction it requests it with a getdata.
 
@@ -41,5 +47,19 @@ If you wanted to run a distributed supernode that held the block chain in flash/
 It's very unlikely that a hypothetical VISA scale BitCoin network would have nodes which win a block every single day, at least, a healthy network would hopefully not have hash power concentrated so tightly into single miner nodes.
 
 It's also possible to optimize the protocol somewhat. A solved block could be broadcast as only its header and merkle tree. Nodes would then check the transaction hashes against their own in-memory lists. If a block contains a transaction the node did not see for some reason, it'd then request only those transactions. For the common case of a node with good, 24/7 network connectivity, this would reduce the size of block broadcasts dramatically.
+
+##Disk
+
+At very high transaction rates each block can be over a gigabyte in size. Whilst the network protocol can be optimized to avoid sending this much data around, the blocks must still be stored on disk.
+
+Satoshis paper explains how transactions with fully spent outputs can be pruned from long term storage due to how they are stored in a merkle tree. Nodes try to avoid accumulating lots of small unspent outputs as that means to send a reasonable quantity of coins would require transactions with lots of inputs and thus, be large and perhaps requiring a fee. Because nodes fight fragmentation, as time goes by it's likely that many blocks can be completely pruned of all or nearly all transactions, reducing their storage costs in the best case down to 80 bytes.
+
+The software today does not implement pruning and so far, nobody has done studies of the existing block chain to see how much space could be reclaimed.
+
+##Network structure
+
+Today BitCoin is a flat peer to peer network in which all nodes are equal. However the intention is to evolve it towards a more typical two-tier structure in which low powered client nodes connect to long-lived, high powered supernodes. The protocol already has some support for this (see the services flags in the version/address messages). However client mode is only partially implemented and no code exists to decide if and when to switch between supernode/client node status.
+
+As the network scales up, the costs of running a supernode that stores the full block chain and verifies every transaction will get progressively higher, but the two tier structure ensures everyone can still get started quickly. Client nodes only need to download a small number of headers the first time they connect (from their last checkpoint until the chain head), which can be done very quickly.
 
 [[!tag "Technical"]]
