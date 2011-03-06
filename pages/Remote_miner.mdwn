@@ -1,6 +1,13 @@
-[[!template id=stub]]The **remote miner** (1.1) is an open source Bitcoin [[pooled miner|Pooled_Mining]] created by puddinpop.
+An open source Bitcoin [[pooled mining|Pooled_Mining]] server created by puddinpop.
 
-It communicates through a JSON-based protocol with the [[RPC_Miner]] pooled mining server created by puddinpop, and supports mining with [[CPU|Cpu_Miner]] and GPUs ([[OpenCL|OpenCL_miner]] or CUDA).
+The clients connect through a JSON-based protocol with the [[RPC_Miner]] pooled mining clients created by puddinpop.
+
+The distribution includes:
+
+* remoteminer server for CPU
+* remoteminer server for 4Way
+* remoteminer server for ATI OpenCL GPUs
+* remoteminer server for NVidia CUDA GPUs
 
 ##See Also
 
@@ -9,7 +16,8 @@ It communicates through a JSON-based protocol with the [[RPC_Miner]] pooled mini
 
 ##External Links
 
-* [Source code](http://www.mediafire.com/file/ve608cl5mk1ka3l/bitcoin-remote-rpc-20110227-src.zip)
+* [bitcoin-remote-rpc](http://www.mediafire.com/file/ve608cl5mk1ka3l/bitcoin-remote-rpc-20110227-src.zip) source
+* [bitcoin-remote](http://www.mediafire.com/file/0j6dbydld9yzvrw/bitcoin-remote-20101224-win32bin.zip) binaries for Windows
 * [Project Thread](http://www.bitcoin.org/smf/index.php?topic=1458.0)
 
 ##References
@@ -17,4 +25,3 @@ It communicates through a JSON-based protocol with the [[RPC_Miner]] pooled mini
 
 [[!tag "Mining"]]
 [[!tag "Open_Source"]]
-1.1: [client/server release announcement](http://www.bitcoin.org/smf/index.php?topic=1458.0)
