@@ -28,7 +28,9 @@ The generated blocks contain multiple keys in the generation transaction, giving
 
 ###BitPenny
 
-The approach [[BitPenny]] uses is to offer a flat-payout for each share that is solved.  The service is operated for-profit and thus self-insures against variances from the percent of generation proceeds retained.
+The [[BitPenny]] approach is to offer an instant, flat payout for each share that is solved.  The payout is offered from the pool's existing balance and can therefore be withdrawn immediately, without waiting for a block to be solved or confirmed.  The possibility of cheating by the pool operator and by timing attacks is thus completely eliminated. 
+
+This method results in the least possible variance for miners while transferring all risk to the pool operator.  The resulting possibility of loss for the server is offset by setting the payout lower than the full expected value.
 
 ###DeepBit
 
