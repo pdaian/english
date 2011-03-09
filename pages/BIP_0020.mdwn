@@ -136,6 +136,7 @@ Before the URI scheme is finalised one should think long and hard about use case
 	* PROBLEM: the time problem (~10 minutes) is very apparent here; nobody wants to wait 10 minutes for the transaction to be confirmed.
 * a person only has an online client, no actual application
 	* PROBLEM: how to redirect the URI so that the online client gets a notice?
+		* POSSIBLE SOLUTION: Small application and/or browser plugins to redirect the handler call to the designated online wallet.
 
 ###Backwards compatibility
 We want URIs generated in 2011 to still work in 2036. Think about extensibility. Of course we can make only educated guesses (and nothing more!) about the future, but don't act as if there is none. This should be the best we can do, but it should not be seen as set in stone. Make it possible for later generations to improve our work, to mend our errors, without breaking the URIs created now. Version incompatibility is the easiest thing to drive users crazy: "I just upgraded to this shiny new version. What? It doesn't support the old format? AAAAAAARRRGH!"
