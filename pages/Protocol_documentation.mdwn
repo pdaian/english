@@ -64,7 +64,7 @@ Almost all integers are encoded in little endian. Only IP or port number are enc
 |12 |command |char[[12]]|ASCII string identifying the packet content, NULL padded (non-NULL padding results in packet rejected)
 |4 |length |uint32_t |Length of payload
 |4 |checksum |uint32_t |First 4 bytes of sha256(sha256(payload)) (not included in version or verack)
-|? |payload |char[]|The actual data
+|? |payload |uchar[]|The actual data
 
 
 Known magic values:
@@ -342,7 +342,7 @@ TxIn consists of the following fields:
 
 |36 |previous_output |outpoint |The previous output transaction reference, as an OutPoint structure
 |1+ |script length |var_int |The length of the signature script
-|? |signature script |char[]|Computational Script for confirming transaction authorization
+|? |signature script |uchar[]|Computational Script for confirming transaction authorization
 |4 |sequence |uint32_t |Transaction version as defined by the sender. Intended for "replacement" of transactions when information is updated before inclusion into a block.
 
 
@@ -364,7 +364,7 @@ The TxOut structure consists of the following fields:
 
 |8 |value |uint64_t |Transaction Value
 |1+ |pk_script length |var_int |Length of the pk_script
-|? |pk_script |char[]|Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
+|? |pk_script |uchar[]|Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
 
 
 Example *tx* message:
