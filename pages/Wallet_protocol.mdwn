@@ -9,6 +9,7 @@ Please see the [[Infrastructure]] page for an idea of where this protocol fits i
 * Never use human-formatted data (for example, use base bitcoin units, not Decimal BitCoins nor Tonal BitCoins, which should only be used in formatting for humans)
 * Don't require polling (for example, broadcast events for new transactions, or changes to current "work")
 * Cooperative mining (see below)
+* Allow calculating expected minimum fee for transactions, with either (wallet's choice) locking on the used inputs, or prebuilding the tx and error if it becomes invalid before sending
 
 ### Debates
 #### Binary or plaintext
