@@ -164,32 +164,14 @@ function internal_to_numstr($internal)
 }
 </source>
 
-If you need to do a decimal division in GMP, then GMP only supports integer division + a remainder. The work-around for this, is to multiply the quotient by 10^precision, do the division and then insert the decimal point:
+If you need to do a decimal division in GMP, then GMP only supports integer division + a remainder. The work-around for this, is to use the bcmath module:
 <source lang="php">
-
-1. returns a string!
-1. GMP cannot use strings, so be careful when using the value
-1. optionally use numstr_to_internal(gmp_div_dec(...)) to convert the output of this function
-1. into an internal int64 type number (as you should be doing).
-function gmp_div_dec($quot, $divis, $precision=2)
-{
-	# precision = number of decimals
-	$shift = gmp_pow("10", $precision);
-	$quot = gmp_mul($quot, $shift);
-
-	$res = gmp_div_q($quot, $divis);
-	$repr = gmp_strval($res);
-	$dotpos = strlen($repr) - $precision;
-	$repr = substr($repr, 0, $dotpos) . "." . substr($repr, $dotpos);
-	return $repr;
-}
-
 $a = gmp_init("100");
 $b = gmp_init("3");
-echo "<p>".gmp_div_dec($a, $b)."</p>";
+echo "<p>".bcdiv(gmp_strval($a), gmp_strval($b), 3)."</p>";
 </source>
 
-You can put this in a function named gmp_div_dec($a, $b, $precision=2).
+Note that bcdiv only uses strings.
 
 ## Java
 
