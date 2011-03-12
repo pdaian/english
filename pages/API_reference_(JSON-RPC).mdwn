@@ -105,12 +105,10 @@ function internal_to_numstr($num, $precision=2)
 	return bcdiv($repr, pow(10, 8), $precision);
 }
 
-$a = gmp_init("100");
-$b = gmp_init("3");
-$res_internal = numstr_to_internal($res);
-echo "<p>".$res_internal."</p>";
-$res_display = internal_to_numstr($res_internal);
-echo "<p>".$res_display."</p>";
+$num_internal = numstr_to_internal("3.141");
+echo "<p>".$num_internal."</p>";
+$num_display = internal_to_numstr($num_internal);
+echo "<p>".$num_display."</p>";
 </source>
 
 If you need to do a decimal division in GMP, then GMP only supports integer division + a remainder. The work-around for this, is to use the bcmath module:
