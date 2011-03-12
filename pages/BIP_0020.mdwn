@@ -119,7 +119,7 @@ Characters must be URI encoded properly.
 	long hexExponent = 0x10000;
 	if (match.Groups[[9]].Success)
 	hexExponent = (long)Math.Pow(16, Convert.ToInt32(match.Groups[[9]].Value, 16));
-
+	
 	Amount = (Convert.ToInt64(match.Groups[[5]].Value, 16) + hexDecimal) * hexExponent;
 	}
 	else
