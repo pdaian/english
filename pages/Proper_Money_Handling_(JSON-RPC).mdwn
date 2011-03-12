@@ -19,11 +19,11 @@ The ECMAScript Number type is double-precision floating point; ECMAScript does n
 C/C++ JSON libraries return the JavaScript Number type as type 'double'.  To convert, without loss of precision, from a double to a 64-bit integer multiply by 100,000,000 and round to the nearest integer:
 	double dValue = ...from JSON library...;
 	long long int64Value;
-	if (dValue > 0) { int64Value = (long long)(dValue * 10e8 + 0.5);
-	else { int64Value = (long long)(dValue * 10e8 - 0.5);
+	if (dValue > 0) { int64Value = (long long)(dValue * 1e8 + 0.5);
+	else { int64Value = (long long)(dValue * 1e8 - 0.5);
 
 To convert to a JSON value divide by 100,000,000.0, and make sure your JSON implementation outputs doubles with 8 or more digits after the decimal point:
-	double dValue = (double) int64Value / 10e8
+	double dValue = (double) int64Value / 1e8
 
 ## Python
 If you are using [python-json-rpc](http://json-rpc.org/wiki/python-json-rpc), you should convert its floating point values to and from the python Decimal type, specifying 8 digits of precision.  For example:
