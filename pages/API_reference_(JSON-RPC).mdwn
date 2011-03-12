@@ -29,7 +29,39 @@ See the [[proper money handling page|Proper_Money_Handling_(JSON-RPC)]] for note
 
 ## Python
 
-For Python, [python-jsonrpc](http://json-rpc.org/wiki/python-json-rpc) is perfect.  Python-jsonrpc automatically generates Python methods corresponding to the functions above.  For example:
+Save the following file as jsonrpc.py.
+
+<source lang="python">
+import urllib
+import decimal
+import json
+
+class JSONRPCException(Exception):
+	def __init__(self, rpcError):
+	Exception.__init__(self)
+	self.error = rpcError
+	
+class ServiceProxy(object):
+	def __init__(self, serviceURL, serviceName=None):
+	self.__serviceURL = serviceURL
+	self.__serviceName = serviceName
+
+	def __getattr__(self, name):
+	if self.__serviceName != None:
+	name = "%s.%s" % (self.__serviceName, name)
+	return ServiceProxy(self.__serviceURL, name)
+
+	def __call__(self, *args):
+	postdata = json.dumps({"method": self.__serviceName, 'params': args, 'id':'jsonrpc'})
+	respdata = urllib.urlopen(self.__serviceURL, postdata).read()
+	resp = json.loads(respdata, parse_float=decimal.Decimal)
+	if resp[['error']] != None:
+	raise JSONRPCException(resp[['error']])
+	else:
+	return resp[['result']]         
+</source>
+
+Python-jsonrpc automatically generates Python methods corresponding to the functions above.
 
 <source lang="python">
 	from jsonrpc import ServiceProxy
