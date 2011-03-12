@@ -112,17 +112,15 @@ Characters must be URI encoded properly.
 	{
 	if (match.Groups[[5]].Success)
 	{
-	Amount = Convert.ToInt64(match.Groups[[5]].Value, 16);
-	
 	long hexDecimal = 0;
 	if (match.Groups[[7]].Success)
 	hexDecimal = Convert.ToInt64(match.Groups[[7]].Value, 16) * (long)Math.Pow(16, -match.Groups[[7]].Length);
-	Amount += hexDecimal;
 	
 	long hexExponent = 0x10000;
 	if (match.Groups[[9]].Success)
 	hexExponent = (long)Math.Pow(16, Convert.ToInt32(match.Groups[[9]].Value, 16));
-	Amount *= hexExponent;
+
+	Amount = (Convert.ToInt64(match.Groups[[5]].Value, 16) + hexDecimal) * hexExponent;
 	}
 	else
 	{
