@@ -106,6 +106,27 @@ function numstr_to_internal($numstr)
 	else {
 	# remove the dot from the string
 	$significand = substr($numstr, 0, $dotpos);
+	# returns a string!
+
+1. GMP cannot use strings, so be careful when using the value
+1. optionally use numstr_to_internal(gmp_div_dec(...)) to convert the output of this function
+1. into an internal int64 type number (as you should be doing).
+function gmp_div_dec($quot, $divis, $precision=2)
+{
+	# precision = number of decimals
+	$shift = gmp_pow("10", $precision);
+	$quot = gmp_mul($quot, $shift);
+
+	$res = gmp_div_q($quot, $divis);
+	$repr = gmp_strval($res);
+	$dotpos = strlen($repr) - $precision;
+	$repr = substr($repr, 0, $dotpos) . "." . substr($repr, $dotpos);
+	return $repr;
+}
+
+$a = gmp_init("100");
+$b = gmp_init("3");
+echo "<p>".gmp_div_dec($a, $b)."</p>";
 	$decimals = substr($numstr, $dotpos + 1, $slen);
 	$num_decimals = strlen($decimals);
 	if ($num_decimals > 8) {
@@ -145,22 +166,27 @@ function internal_to_numstr($internal)
 
 If you need to do a decimal division in GMP, then GMP only supports integer division + a remainder. The work-around for this, is to multiply the quotient by 10^precision, do the division and then insert the decimal point:
 <source lang="php">
-$quot = gmp_init("5");
-$divis = gmp_init("2");
 
-1. number of decimals
-$precision = 2;
+1. returns a string!
+1. GMP cannot use strings, so be careful when using the value
+1. optionally use numstr_to_internal(gmp_div_dec(...)) to convert the output of this function
+1. into an internal int64 type number (as you should be doing).
+function gmp_div_dec($quot, $divis, $precision=2)
+{
+	# precision = number of decimals
+	$shift = gmp_pow("10", $precision);
+	$quot = gmp_mul($quot, $shift);
 
-$shift = gmp_pow("10", $precision);
-$quot = gmp_mul($quot, $shift);
+	$res = gmp_div_q($quot, $divis);
+	$repr = gmp_strval($res);
+	$dotpos = strlen($repr) - $precision;
+	$repr = substr($repr, 0, $dotpos) . "." . substr($repr, $dotpos);
+	return $repr;
+}
 
-$res = gmp_div_q($quot, $divis);
-$repr = gmp_strval($res);
-$dotpos = strlen($repr) - $precision;
-$repr = substr($repr, 0, $dotpos) . "." . substr($repr, $dotpos);
-
-echo "Number is $repr";
-$res = gmp_init($repr);
+$a = gmp_init("100");
+$b = gmp_init("3");
+echo "<p>".gmp_div_dec($a, $b)."</p>";
 </source>
 
 You can put this in a function named gmp_div_dec($a, $b, $precision=2).
