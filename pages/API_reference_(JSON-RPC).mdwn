@@ -102,7 +102,13 @@ function numstr_to_internal($numstr)
 function internal_to_numstr($num, $precision=2)
 {
 	$repr = gmp_strval($num);
-	return bcdiv($repr, pow(10, 8), $precision);
+	$repr = bcdiv($repr, pow(10, 8), $precision);
+	# now tidy output...
+	# trim trailing 0s
+	$repr = rtrim($repr, '0');
+	# and a trailing . if it exists
+	$repr = rtrim($repr, '.');
+	return $repr;
 }
 
 $num_internal = numstr_to_internal("3.141");
