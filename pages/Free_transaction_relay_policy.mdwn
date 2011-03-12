@@ -1,6 +1,11 @@
 The original client currently refuses to relay transactions it considers "unacceptable". However, there may be miners that are willing to put these in a block. This group is for people who want to send such transactions, and those who want to put them in blocks.
 
-Simply have your node maintain a connection to [[Lightfoot Hosting's node|Fallback_nodes]], which relays indiscriminately. This means that you can broadcast your transaction to it, and it will relay it to any miner who also has a connection to it. If your transaction meets the policies of at least one miner connected, it should eventually get into a block.
+Simply have your node maintain a connection to Lightfoot Hosting's node, which relays indiscriminately. This means that you can broadcast your transaction to it, and it will relay it to any miner who also has a connection to it. If your transaction meets the policies of at least one miner connected, it should eventually get into a block.
+
+## How to use or participate
+
+### Bitcoind/wxBitcoin
+Add the command-line parameter: -addnode=173.242.112.53
 
 ## Participating miners
 
