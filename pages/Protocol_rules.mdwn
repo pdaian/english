@@ -1,0 +1,59 @@
+## Rules for clients
+
+The wiki substantially documents the Bitcoin protocol, but equally important are the rules used by the client to process messages. It's crucial that clients follow certain rules in order to maintain consistency across the network, and to protect the Bitcoin security guarantees.
+
+Here, the focus is on handling tx and block messages, because that is the tricky logic. This will skip over the method of requesting and forwarding these messages for now, and describe what to do when they are received. Also, this will describe the minimal data structures in rather abstract terms, ignoring the client's various indexes, maps and hash tables used for efficiency. This will be a conceptual description. This is all based on a fairly literal reading of the source code.
+
+Mining (block generation) rules are not yet presented.
+
+### Data structures
+
+The main data structures are *transactions* and *blocks*. Blocks are composed of the *block header* followed by transactions in the block. Transactions are identified by their hash; blocks by the hash of their header. Blocks have prev and next pointers that link them into a graph.
+
+Conceptually, the client has the following data structures:
+
+#### Transactions
+
+There are two collections of transactions:
+
+transaction pool
+>  an unordered collection of transactions that are not in blocks in the main chain, but for which we have input transactions
+
+orphan transactions
+>  transactions that can't go into the pool due to one or more missing input transactions
+
+#### Blocks
+
+There are 3 categories of blocks:
+
+blocks in the main chain
+>  the transactions in these blocks are considered at least tentatively confirmed
+
+blocks on side branches off the main chain
+>  these blocks have at least tentatively lost the race to be in the main chain
+
+orphan blocks
+>  these are blocks which don't link into the main chain, normally because of a missing predecessor or nth-level predecessor
+
+Blocks in the first two categories form a tree rooted at the genesis block, linked by the prev pointer, which points toward the root. (It is a very linear tree with few and short branches off the main branch.) Following the next pointers from the root defines the main chain.
+
+
+### "tx" messages
+
+These messages hold a single transaction.
+
+1. Check syntactic correctness
+1. Make sure neither in or out lists are empty
+1. Size in bytes < MAX_BLOCK_SIZE
+1. Each output value, as well as the total, must be in legal money range
+1. Make sure none of the inputs have hash=0, n=-1 (*coinbase* transactions)
+1. Check that nLockTime <= INT_MAX, size in bytes >= 100, and sig opcount <= 2
+1. Reject "nonstandard" transactions: scriptSig doing anything other than pushing numbers on the stack, or scriptPubkey not matching the two usual forms
+1. Reject if we already have matching tx in the pool, or in a block in the main chain
+1. Reject if any other tx in the pool uses the same transaction output as one used by this tx.
+1. For each input, look in the main chain and the transaction pool to find the referenced output transaction. If the output transaction is missing for any input, this will be an orphan transaction. Add to the orphan transactions, if a matching transaction is not in there already.
+
+
+
+
+[[!tag "Technical"]][[!tag "Developer"]]
