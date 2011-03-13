@@ -2,13 +2,11 @@ A common question people have about BitCoin is how it can be used for in-person 
 
 Today, BitCoin is software that runs on your desktop or laptop computer. You can also host your wallet with an online service like MyBitcoin. Neither solution is convenient for the supermarket use case. The most commonly proposed solutions are:
 
-* Smart cards
-* Paper BitCoins
-* Smart phones
+__TOC__
 
 We examine these solutions here.
 
-# Smart cards
+## Smart cards
 
 Today one of the most common ways to pay in supermarkets is with cards you either swipe (magstripe cards) or insert into a reader and enter a PIN (smartcards). It's natural to think of applying the same techniques to BitCoin, for instance by putting the private keys inside the card.
 
@@ -18,13 +16,13 @@ Without central certification of what EMV calls *payment entry devices* (PEDs), 
 
 It's worth noting that the physical smart card form is an accident of history. VISA already offers [keyfobs](http://usa.visa.com/personal/cards/paywave/micro_tag.html) that do the same thing but use near-field communication (NFC) technology.
 
-# Paper BitCoins
+## Paper BitCoins
 
 Another common way to pay at the supermarket is with paper money. There have been various efforts to allow BitCoins to be printed out and passed around, for instance [this one](http://www.bitcoin.org/smf/index.php?topic=3716.0). The private keys are printed on the paper.
 
 But paper money is secure (or secure enough) only through huge anti-counterfeiting efforts by a large central authority, in the USA this is the Secret Service. The techniques of making paper money hard to forge are not widely available. Putting private keys on the paper itself simply means anyone who receives the note can take away the underlying BitCoins backing it.
 
-# Smart phones
+## Smart phones
 
 The best solution is to use smart phones. Communication can be via unencrypted Bluetooth or using NFC. Near field communications is a form of radio that travels only a few centimeters, so to use it devices must be touched together. In such a setup, you touch your phone to another NFC aware device like another phone, or for the supermarket a simple NFC transmitter. That device sends a BitCoin address and a requested amount, which is displayed on the devices screen. Confirming the payment causes the phone to create, sign and broadcast the BitCoin transaction as normal. The supermarkets BitCoin node will receive the transaction a few seconds later.
 
