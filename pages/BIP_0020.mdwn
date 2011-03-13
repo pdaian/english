@@ -105,6 +105,23 @@ Characters must be URI encoded properly.
 	);
 	}
 
+#### Python
+	m = re.match(r'^(([[\d.]]+)(X(\d+))?x([[\da-f]]*)(\.([[\da-f]]*))?(X([[\da-f]]+))?)$', amount, re.IGNORECASE)
+	if m.group(5):
+	amount = float(int(m.group(5), 16))
+	if m.group(7):
+	amount += float(int(m.group(7), 16)) * pow(16, -(len(m.group(7))))
+	if m.group(9):
+	amount *= pow(16, int(m.group(9), 16))
+	else:
+	amount *= 0x10000
+	else:
+	amount = Decimal(m.group(2))
+	if m.group(4):
+	amount *= 10 ** int(m.group(4))
+	else:
+	amount *= 100000000
+
 #### C#
 	Regex amountExpression = new Regex(@"^(([[\d.]]+)(X(\d+))?x([[\da-f]]*)(\.([[\da-f]]*))?(X([[\da-f]]+))?)$", RegexOptions.IgnoreCase);
 	Match match = amountExpression.Match(value);
