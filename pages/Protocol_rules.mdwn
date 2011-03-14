@@ -80,8 +80,9 @@ These messages hold a single block.
 1. For the other transactions, reject if any input has hash=0, n=-1
 1. Reject if sum of transaction sig opcounts > MAX_BLOCK_SIGOPS
 1. Verify Merkle hash
-1. Apply the following tests to all but the coinbase transactions:
-	1. For each input, look in the main chain for the referenced output transaction
-
+1. Check if prev block (matching *prev* hash) is in main chain or side chains. If not, add this to orphan blocks, then query peer we got this from for 1st missing orphan block in *prev* chain; done with block
+1. Check that *nBits* value matches the difficulty rules
+1. Reject if timestamp is before prev block (for a complicated definition of "before")
+1. For certain blocks, on initial block download, check that hash is what it should be
 
 [[!tag "Technical"]][[!tag "Developer"]]
