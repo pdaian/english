@@ -65,4 +65,23 @@ These messages hold a single transaction.
 1. For each orphan transaction that uses this one as one of its inputs, run all these steps (including this one) recursively on that orphan
 
 
+### "block" messages
+
+These messages hold a single block.
+
+1. Check syntactic correctness
+1. Reject if duplicate of block we have in any of the three categories
+1. Transaction list must be non-empty
+1. Block hash must satisfy claimed *nBits* proof of work
+1. Block timestamp must not be more than two hours in the future
+1. First transaction must be coinbase (i.e. only 1 input, with hash=0, n=-1), the rest must not be
+1. For each transaction, apply "tx" checks 2-4
+1. For the coinbase (first) transaction, scriptSig length must be 2-100
+1. For the other transactions, reject if any input has hash=0, n=-1
+1. Reject if sum of transaction sig opcounts > MAX_BLOCK_SIGOPS
+1. Verify Merkle hash
+1. Apply the following tests to all but the coinbase transactions:
+	1. For each input, look in the main chain for the referenced output transaction
+
+
 [[!tag "Technical"]][[!tag "Developer"]]
