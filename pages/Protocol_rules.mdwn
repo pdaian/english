@@ -8,7 +8,7 @@ Mining (block generation) rules are not yet presented.
 
 ### Data structures
 
-The main data structures are *transactions* and *blocks*. Blocks are composed of the *block header* followed by transactions in the block. Transactions are identified by their hash; blocks by the hash of their header. Blocks have prev and next pointers that link them into a graph.
+The main data structures are *transactions* and *blocks*. Blocks are composed of the *block header* followed by transactions in the block. Transactions are identified by their hash; blocks by the hash of their header. Blocks have prev pointers that link them into a graph.
 
 Conceptually, the client has the following data structures:
 
@@ -26,16 +26,16 @@ orphan transactions
 
 There are 3 categories of blocks:
 
-blocks in the main chain
+blocks in the main branch
 >  the transactions in these blocks are considered at least tentatively confirmed
 
-blocks on side branches off the main chain
->  these blocks have at least tentatively lost the race to be in the main chain
+blocks on side branches off the main branch
+>  these blocks have at least tentatively lost the race to be in the main branch
 
 orphan blocks
->  these are blocks which don't link into the main chain, normally because of a missing predecessor or nth-level predecessor
+>  these are blocks which don't link into the main branch, normally because of a missing predecessor or nth-level predecessor
 
-Blocks in the first two categories form a tree rooted at the genesis block, linked by the prev pointer, which points toward the root. (It is a very linear tree with few and short branches off the main branch.) Following the next pointers from the root defines the main chain.
+Blocks in the first two categories form a tree rooted at the genesis block, linked by the prev pointer, which points toward the root. (It is a very linear tree with few and short branches off the main branch.) The main branch is defined as the branch with highest total difficulty, summing the difficulties for each block in the branch.
 
 
 ### "tx" messages
@@ -49,13 +49,13 @@ These messages hold a single transaction.
 1. Make sure none of the inputs have hash=0, n=-1 (*coinbase* transactions)
 1. Check that nLockTime <= INT_MAX, size in bytes >= 100, and sig opcount <= 2
 1. Reject "nonstandard" transactions: scriptSig doing anything other than pushing numbers on the stack, or scriptPubkey not matching the two usual forms
-1. Reject if we already have matching tx in the pool, or in a block in the main chain
+1. Reject if we already have matching tx in the pool, or in a block in the main branch
 1. Reject if any other tx in the pool uses the same transaction output as one used by this tx.
-1. For each input, look in the main chain and the transaction pool to find the referenced output transaction. If the output transaction is missing for any input, this will be an orphan transaction. Add to the orphan transactions, if a matching transaction is not in there already.
+1. For each input, look in the main branch and the transaction pool to find the referenced output transaction. If the output transaction is missing for any input, this will be an orphan transaction. Add to the orphan transactions, if a matching transaction is not in there already.
 1. For each input, if we are using the *n*th output of the earlier transaction, but it has fewer than n+1 outputs, reject this transaction
 1. For each input, if the referenced output transaction is coinbase (i.e. only 1 input, with hash=0, n=-1), it must have at least COINBASE_MATURITY confirmations; else reject this transaction
 1. Verify crypto signatures for each input; reject if any are bad
-1. For each input, if the referenced output has already been spent by a transaction in the main chain or the transaction pool, reject this transaction
+1. For each input, if the referenced output has already been spent by a transaction in the main branch or the transaction pool, reject this transaction
 1. Using the referenced output transactions to get input values, check that each input value, as well as the sum, are in legal money range
 1. Reject if the sum of input values < sum of output values
 1. Reject if transaction fee (defined as sum of input values minus sum of output values) would be too low to get into an empty block
@@ -80,7 +80,7 @@ These messages hold a single block.
 1. For the other transactions, reject if any input has hash=0, n=-1
 1. Reject if sum of transaction sig opcounts > MAX_BLOCK_SIGOPS
 1. Verify Merkle hash
-1. Check if prev block (matching *prev* hash) is in main chain or side chains. If not, add this to orphan blocks, then query peer we got this from for 1st missing orphan block in *prev* chain; done with block
+1. Check if prev block (matching *prev* hash) is in main branch or side branches. If not, add this to orphan blocks, then query peer we got this from for 1st missing orphan block in *prev* chain; done with block
 1. Check that *nBits* value matches the difficulty rules
 1. Reject if timestamp is before prev block (for a complicated definition of "before")
 1. For certain blocks, on initial block download, check that hash is what it should be
