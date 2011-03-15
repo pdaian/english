@@ -1,4 +1,4 @@
-## Rules for clients
+#Rules for clients.
 
 The wiki substantially documents the Bitcoin protocol, but equally important are the rules used by the client to process messages. It's crucial that clients follow certain rules in order to maintain consistency across the network, and to protect the Bitcoin security guarantees.
 
@@ -6,13 +6,13 @@ Here, the focus is on handling tx and block messages, because that is the tricky
 
 Mining (block generation) rules are not yet presented.
 
-### Data structures
+## Data structures
 
 The main data structures are *transactions* and *blocks*. Blocks are composed of the *block header* followed by transactions in the block. Transactions are identified by their hash; blocks by the hash of their header. Blocks have prev pointers that link them into a graph.
 
 Conceptually, the client has the following data structures:
 
-#### Transactions
+### Transactions
 
 There are two collections of transactions:
 
@@ -22,7 +22,7 @@ transaction pool
 orphan transactions
 >  transactions that can't go into the pool due to one or more missing input transactions
 
-#### Blocks
+### Blocks
 
 There are 3 categories of blocks:
 
@@ -38,7 +38,7 @@ orphan blocks
 Blocks in the first two categories form a tree rooted at the genesis block, linked by the prev pointer, which points toward the root. (It is a very linear tree with few and short branches off the main branch.) The main branch is defined as the branch with highest total difficulty, summing the difficulties for each block in the branch.
 
 
-### "tx" messages
+## "tx" messages
 
 These messages hold a single transaction.
 
@@ -65,7 +65,7 @@ These messages hold a single transaction.
 1. For each orphan transaction that uses this one as one of its inputs, run all these steps (including this one) recursively on that orphan
 
 
-### "block" messages
+## "block" messages
 
 These messages hold a single block.
 
