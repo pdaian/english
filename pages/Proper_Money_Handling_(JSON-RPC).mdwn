@@ -1,5 +1,5 @@
 ## Overview
-The original bitcoin client stores all bitcoin values as 64-bit integers, with 1 BTC stored as 100,000,000 (one-hundred-thousand of the smallest possible bitcoin unit).  Values are expressed as double-precision Numbers in the JSON API, with 1 BTC expressed as 1.00000000
+The original bitcoin client stores all bitcoin values as 64-bit integers, with 1 BTC stored as 100,000,000 (one-hundred-million of the smallest possible bitcoin unit).  Values are expressed as double-precision Numbers in the JSON API, with 1 BTC expressed as 1.00000000
 
 If you are writing software that uses the JSON-RPC interface you need to be aware of possible floating-point conversion issues.  You, or the JSON library you are using, should convert amounts to either a fixed-point Decimal representation (with 8 digits after the decimal point) or a 64-bit integer representation.
 
