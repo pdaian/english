@@ -1,4 +1,3 @@
-
 Bitcoin uses a simple broadcast network to propagate transactions and blocks. All communications are done over TCP. Bitcoin is fully able to use ports other than 8333, but there is currently no option to change this. IPv6 is currently not supported.
 
 ## Messages
@@ -65,5 +64,9 @@ Bitcoin comes with an address database already populated by a few addresses. If 
 If thirty minutes or more has passed since the client has transmitted any messages it will transmit a message to keep the connection to the peer node alive.
 
 If ninety minutes has passed since a peer node has communicated any messages, then the client will assume that connection has closed.
+
+## See Also
+
+* [[Protocol_Specification]]
 
 [[!tag "Technical"]]
