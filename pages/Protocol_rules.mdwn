@@ -55,12 +55,12 @@ These messages hold a single transaction.
 1. For each input, if we are using the *n*th output of the earlier transaction, but it has fewer than n+1 outputs, reject this transaction
 1. For each input, if the referenced output transaction is coinbase (i.e. only 1 input, with hash=0, n=-1), it must have at least COINBASE_MATURITY confirmations; else reject this transaction
 1. Verify crypto signatures for each input; reject if any are bad
-1. For each input, if the referenced output has already been spent by a transaction in the main branch or the transaction pool, reject this transaction
+1. For each input, if the referenced output has already been spent by a transaction in the main branch, reject this transaction
 1. Using the referenced output transactions to get input values, check that each input value, as well as the sum, are in legal money range
 1. Reject if the sum of input values < sum of output values
 1. Reject if transaction fee (defined as sum of input values minus sum of output values) would be too low to get into an empty block
 1. Add to transaction pool
-1. Add to wallet if mine
+1. "Add to wallet if mine"
 1. Relay transaction to peers
 1. For each orphan transaction that uses this one as one of its inputs, run all these steps (including this one) recursively on that orphan
 
@@ -83,7 +83,50 @@ These messages hold a single block.
 1. Check if prev block (matching *prev* hash) is in main branch or side branches. If not, add this to orphan blocks, then query peer we got this from for 1st missing orphan block in *prev* chain; done with block
 1. Check that *nBits* value matches the difficulty rules
 1. Reject if timestamp is before prev block (for a complicated definition of "before")
-1. For certain blocks, on initial block download, check that hash is what it should be
+1. For certain old blocks (i.e. on initial block download) check that hash matches known values
+1. Add block into the tree. There are three cases: 1. block further extends the main branch; 2. block extends a side branch but does not add enough difficulty to make it become the new main branch; 3. block extends a side branch and makes it the new main branch.
+1. For case 1, adding to main branch:
+	1. For all but the coinbase transaction, apply the following:
+		1. For each input, look in the main branch to find the referenced output transaction. Reject if the output transaction is missing for any input.
+		1. For each input, if we are using the *n*th output of the earlier transaction, but it has fewer than n+1 outputs, reject.
+		1. For each input, if the referenced output transaction is coinbase (i.e. only 1 input, with hash=0, n=-1), it must have at least COINBASE_MATURITY confirmations; else reject.
+		1. Verify crypto signatures for each input; reject if any are bad
+		1. For each input, if the referenced output has already been spent by a transaction in the main branch, reject
+		1. Using the referenced output transactions to get input values, check that each input value, as well as the sum, are in legal money range
+		1. Reject if the sum of input values < sum of output values
+	1. Reject if coinbase value > sum of block creation fee and transaction fees
+	1. (If we have not rejected):
+	1. For each transaction, "Add to wallet if mine"
+	1. For each transaction in the block, delete any matching transaction from the transaction pool
+	1. Relay block to our peers
+	1. If we rejected, the block is not counted as part of the main branch
+1. For case 2, adding to a side branch, we don't do anything.
+1. For case 3, a side branch becoming the main branch:
+	1. Find the *fork* block on the main branch which this side branch forks off of
+	1. Redefine the main branch to only go up to this *fork* block
+	1. For each block on the side branch, from the child of the *fork* block to the leaf, add to the main branch:
+		1. Do "branch" checks 3-11
+		1. For all but the coinbase transaction, apply the following:
+			1. For each input, look in the main branch to find the referenced output transaction. Reject if the output transaction is missing for any input.
+			1. For each input, if we are using the *n*th output of the earlier transaction, but it has fewer than n+1 outputs, reject.
+			1. For each input, if the referenced output transaction is coinbase (i.e. only 1 input, with hash=0, n=-1), it must have at least COINBASE_MATURITY confirmations; else reject.
+			1. Verify crypto signatures for each input; reject if any are bad
+			1. For each input, if the referenced output has already been spent by a transaction in the main branch, reject
+			1. Using the referenced output transactions to get input values, check that each input value, as well as the sum, are in legal money range
+			1. Reject if the sum of input values < sum of output values
+		1. Reject if coinbase value > sum of block creation fee and transaction fees
+		1. (If we have not rejected):
+		1. For each transaction, "Add to wallet if mine"
+	1. If we reject at any point, leave the main branch as what it was originally, done with block
+	1. For each block in the old main branch, from the leaf down to the child of the *fork* block:
+		1. For each non-coinbase transaction in the block:
+			1. Apply "tx" checks 2-9, except in step 8, only look in the transaction pool for duplicates, not the main branch
+			1. Add to transaction pool if accepted, else go on to next transaction
+	1. For each block in the new main branch, from the child of the *fork* node to the leaf:
+		1. For each transaction in the block, delete any matching transaction from the transaction pool
+	1. Relay block to our peers
+
+
 
 ## See Also
 
