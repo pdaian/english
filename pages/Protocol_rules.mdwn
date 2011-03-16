@@ -125,8 +125,7 @@ These messages hold a single block.
 	1. For each block in the new main branch, from the child of the *fork* node to the leaf:
 		1. For each transaction in the block, delete any matching transaction from the transaction pool
 	1. Relay block to our peers
-
-
+1. For each orphan block for which this block is its *prev*, run all these steps (including this one) recursively on that orphan
 
 ## See Also
 
