@@ -259,7 +259,8 @@ Checking process:
 |<scriptsig><public_key> <randomNumber>|OP_OVER OP_ADD OP_HASH160 <hash160> OP_EQUALVERIFY OP_CHECKSIG|Constants are added to the stack.
 |<scriptsig><public_key> <randomNumber><public_key>|OP_ADD OP_HASH160 <hash160> OP_EQUALVERIFY OP_CHECKSIG|random_number is added to public_key (both treated as big numbers)
 |<scriptsig><public_key> <randomNumber+public_key>|OP_HASH160 <hash160> OP_EQUALVERIFY OP_CHECKSIG|<randomNumber+public_key> is hashed.
-|<scriptsig><public_key> <hash160> <hash160>|OP_EQUALVERIFY OP_CHECKSIG|Constant is pushed onto the stack.
+|<scriptsig><public_key> <hash160>|<hash160> OP_EQUALVERIFY OP_CHECKSIG|Constant is pushed onto the stack.
+|<scriptsig><public_key> <hash160> <hash160>|OP_EQUALVERIFY OP_CHECKSIG|Verify that the hashes match.
 |<scriptsig><public_key>|OP_CHECKSIG|Equality is checked between the top two stack items.
 |true|Empty.|The signature is checked
 
