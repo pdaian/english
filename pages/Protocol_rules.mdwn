@@ -47,10 +47,10 @@ These messages hold a single transaction.
 1. Size in bytes < MAX_BLOCK_SIZE
 1. Each output value, as well as the total, must be in legal money range
 1. Make sure none of the inputs have hash=0, n=-1 (*coinbase* transactions)
-1. Check that nLockTime <= INT_MAX, size in bytes >= 100, and sig opcount <= 2
-1. Reject "nonstandard" transactions: scriptSig doing anything other than pushing numbers on the stack, or scriptPubkey not matching the two usual forms
+1. Check that nLockTime <= INT_MAX (5.1), size in bytes >= 100 (5.2), and sig opcount <= 2 (5.3)
+1. Reject "nonstandard" transactions: scriptSig doing anything other than pushing numbers on the stack, or scriptPubkey not matching the two usual forms (5.4)
 1. Reject if we already have matching tx in the pool, or in a block in the main branch
-1. Reject if any other tx in the pool uses the same transaction output as one used by this tx.
+1. Reject if any other tx in the pool uses the same transaction output as one used by this tx. (5.5)
 1. For each input, look in the main branch and the transaction pool to find the referenced output transaction. If the output transaction is missing for any input, this will be an orphan transaction. Add to the orphan transactions, if a matching transaction is not in there already.
 1. For each input, if we are using the *n*th output of the earlier transaction, but it has fewer than n+1 outputs, reject this transaction
 1. For each input, if the referenced output transaction is coinbase (i.e. only 1 input, with hash=0, n=-1), it must have at least COINBASE_MATURITY confirmations; else reject this transaction
@@ -59,10 +59,20 @@ These messages hold a single transaction.
 1. Using the referenced output transactions to get input values, check that each input value, as well as the sum, are in legal money range
 1. Reject if the sum of input values < sum of output values
 1. Reject if transaction fee (defined as sum of input values minus sum of output values) would be too low to get into an empty block
-1. Add to transaction pool
+1. Add to transaction pool (5.6)
 1. "Add to wallet if mine"
 1. Relay transaction to peers
 1. For each orphan transaction that uses this one as one of its inputs, run all these steps (including this one) recursively on that orphan
+
+###Explanation of Some Rules
+Most rules are self-explanatory. This section explains why some of the less obvious rules are in place.
+
+5.1: nLockTime must not exceed 32 bites, as some clients will interpret it incorrectly  
+5.2: A valid transaction requires at least 100 bytes. If it's any less, the transaction is not valid  
+5.3: The number of signature operands in the signature (no, that is not redundant) for standard transactions will never exceed two  
+5.4: Note that this is not a hard requirement on clients.  
+5.5: This is the protection against double-spending  
+5.6: Note that when the transaction is accepted into the memory pool, an additional check is made to ensure that the coinbase value does not exceed the transaction fees plus the expected BTC value (50BTC as of this writing).
 
 
 ## [["block"|Protocol_specification#block]] messages
