@@ -87,7 +87,6 @@ These messages hold a single block.
 1. First transaction must be coinbase (i.e. only 1 input, with hash=0, n=-1), the rest must not be
 1. For each transaction, apply "tx" checks 2-4
 1. For the coinbase (first) transaction, scriptSig length must be 2-100
-1. For the other transactions, reject if any input has hash=0, n=-1
 1. Reject if sum of transaction sig opcounts > MAX_BLOCK_SIGOPS
 1. Verify Merkle hash
 1. Check if prev block (matching *prev* hash) is in main branch or side branches. If not, add this to orphan blocks, then query peer we got this from for 1st missing orphan block in *prev* chain; done with block
