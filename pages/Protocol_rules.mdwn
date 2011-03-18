@@ -67,7 +67,7 @@ These messages hold a single transaction.
 ###Explanation of Some Rules
 Most rules are self-explanatory. This section explains why some of the less obvious rules are in place.
 
-5.1: nLockTime must not exceed 32 bites, as some clients will interpret it incorrectly  
+5.1: nLockTime must not exceed 31 bits, as some clients will interpret it incorrectly  
 5.2: A valid transaction requires at least 100 bytes. If it's any less, the transaction is not valid  
 5.3: The number of signature operands in the signature (no, that is not redundant) for standard transactions will never exceed two  
 5.4: Note that this is not a hard requirement on clients.  
