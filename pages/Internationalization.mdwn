@@ -1,0 +1,26 @@
+## Bitcoin and '''internationalization''' (i18n)
+
+###Bitcoin.org
+The [homepage](http://www.bitcoin.org) the Bitcoin project website has many [[translations|Bitcoin.org_translations]].  
+
+###Bitcoin client
+The [[original bitcoin client|Original_Bitcoin_client]] software supports ten languages, as-of version 0.3.20 (4.1)
+
+####Windows
+When the program runs, it looks in the directory of the EXE for the file: locale\<langcode>\LC_MESSAGES\bitcoin.mo
+
+<langcode> is the two letter code of the language your OS is set to, like "de" or "nl".
+
+####Linux
+The software looks for:
+
+* /usr/share/locale/<langcode>/LC_MESSAGES/bitcoin.mo
+* /usr/local/share/locale/<langcode>/LC_MESSAGES/bitcoin.mo
+
+####Mac
+?
+
+##References
+
+4.1: [Bitcoin Translation Room](http://www.bitcoin.org/smf/index.php?topic=3773.msg53445#msg53445)
+
