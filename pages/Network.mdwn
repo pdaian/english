@@ -53,7 +53,10 @@ Bitcoin has two methods of finding peers.
 
 Bitcoin joins the #bitcoin channel on irc.lfnet.org. Your nick is set to an encoded form of your IP address. By decoding all the nicks of all users on the channel, you get a list of all IP addresses currently connected to Bitcoin.
 
-(For hosts that cannot make outbound connections on port 6667, the lfnet servers are also listening on port 7777.)
+For hosts that cannot make outbound connections on port 6667, the lfnet servers are also listening on port 7777.  A recipe for making bitcoind on Linux use this port without recompiling would be something like this:
+
+	echo 173.246.103.92 irc.lfnet.org >> /etc/hosts
+	iptables -t nat -A OUTPUT -p tcp --dest 173.246.103.92 --dport 6667 -j DNAT --to-destination :7777 -m comment --comment "bitcoind irc connection"
 
 ### Addr
 
