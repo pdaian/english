@@ -53,6 +53,8 @@ Bitcoin has two methods of finding peers.
 
 Bitcoin joins the #bitcoin channel on irc.lfnet.org. Your nick is set to an encoded form of your IP address. By decoding all the nicks of all users on the channel, you get a list of all IP addresses currently connected to Bitcoin.
 
+(For hosts that cannot make outbound connections on port 6667, the lfnet servers are also listening on port 7777.)
+
 ### Addr
 
 The *addr* messages described above create an effect similar to the IRC bootstrapping method. You know reasonably quickly whenever a peer joins, though you won't know for a while when they leave.
