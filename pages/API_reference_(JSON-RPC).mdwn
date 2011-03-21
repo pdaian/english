@@ -144,10 +144,18 @@ You will need to get a [saner branch](https://github.com/genjix/bitcoin/tree/str
 
 For converting between internal GMP numbers and display/user input, you can use these functions:
 <source lang="php">
+
+1. converts a user supplied number to our internal representation
+1. 3.14 => "314000000"
+1. accepts strings, floats and ints as input
 function numstr_to_internal($numstr)
 {
 	return bcmul($numstr, pow(10, 8), 0);
 }
+
+1. converts an internal number to an end user number for display as defined by precision
+1. 314100000 => "3.14"
+1. accepts GMP numbers, ints and strings as input
 function internal_to_numstr($num, $precision=2)
 {
 	$repr = gmp_strval($num);
@@ -166,7 +174,7 @@ $num_display = internal_to_numstr($num_internal);
 echo "<p>".$num_display."</p>";
 </source>
 
-If you need to do a decimal division in GMP, then GMP only supports integer division + a remainder. The work-around for this, is to use the bcmath module:
+If you need to do a decimal division in GMP, then GMP only supports integer division + a remainder ([gmp_div_qr](http://php.net/manual/en/function.gmp-div-qr.php)). The work-around for this, is to use the bcmath module:
 <source lang="php">
 $a = gmp_init("100");
 $b = gmp_init("3");
@@ -174,6 +182,8 @@ echo "<p>".bcdiv(gmp_strval($a), gmp_strval($b), 3)."</p>";
 </source>
 
 Note that bcdiv only uses strings.
+
+See also: [GMP](http://php.net/manual/en/ref.gmp.php) and [BC Math](http://php.net/manual/en/ref.bc.php) manuals.
 
 ## Java
 
