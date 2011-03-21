@@ -1,0 +1,9 @@
+For the sake of this tutorial we assume an Ubuntu server running with PHP. The use case here is integrating a shopping system to accept Bitcoins. We assume some knowledge of Bitcoin and experience in PHP.
+
+You can substitute any other language here for PHP. See the associated [[API reference|API_reference_(JSON-RPC)]] pages for info on other languages.
+
+## Setting up Bitcoin
+
+You will run Bitcoin in daemon mode. The way PHP communicates is through localhost HTTP requests. You use a library called [JSON-RPC](http://jsonrpcphp.org/) to call the various functions. It will respond back with a [JSON object](http://en.wikipedia.org/wiki/Json).
+
+Bitcoins are stored internally as 64 bit integers. Because
