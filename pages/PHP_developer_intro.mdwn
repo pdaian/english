@@ -6,4 +6,19 @@ You can substitute any other language here for PHP. See the associated [[API ref
 
 You will run Bitcoin in daemon mode. The way PHP communicates is through localhost HTTP requests. You use a library called [JSON-RPC](http://jsonrpcphp.org/) to call the various functions. It will respond back with a [JSON object](http://en.wikipedia.org/wiki/Json).
 
-Bitcoins are stored internally as 64 bit integers. Because
+Bitcoins are stored internally as 64 bit integers. Because PHP's JSON implementation does not provide a way to use custom types for decimal numbers, we must use an alternative branch of Bitcoin which returns all decimal amounts as strings.
+
+<source lang="bash">
+
+1. install needed packages
+$ sudo apt-get install build-essential libboost-all-dev libdb4.7++-dev libssl-dev libglib2.0-dev
+$ git clone git://github.com/genjix/bitcoin.git
+$ cd bitcoin/
+$ make -f makefile.unix bitcoind
+$ ./bitcoind
+
+1. wait a few seconds for it to start up
+$ ./bitcoind getinfo
+</source>
+
+Bitcoin is now initialising and you must wait until "blocks" is at the [current count](http://bitcoinwatch.com/).
