@@ -15,6 +15,16 @@ $ sudo apt-get install build-essential libboost-all-dev libdb4.7++-dev libssl-de
 $ git clone git://github.com/genjix/bitcoin.git
 $ cd bitcoin/
 $ make -f makefile.unix bitcoind
+</source>
+
+Before running bitcoind you will need to create a file in ~/.bitcoin/bitcoin.conf
+<source>
+rpcuser=user
+rpcpassword=password
+</source>
+
+Now run bitcoind:
+<source>
 $ ./bitcoind
 
 1. wait a few seconds for it to start up
@@ -22,3 +32,66 @@ $ ./bitcoind getinfo
 </source>
 
 Bitcoin is now initialising and you must wait until "blocks" is at the [current count](http://bitcoinwatch.com/).
+
+## First steps
+
+Assuming Bitcoin has finished the initialisation process; download the file jsonRPCClient.php from [JSON-RPC PHP](http://jsonrpcphp.org/). The other files can be safely discarded.
+
+<source lang="php">
+	require_once 'jsonRPCClient.php';
+	
+	$bitcoin = new jsonRPCClient('http://user:password@127.0.0.1:8332/');
+	
+	echo "<pre>\n";
+  print_r($bitcoin->getinfo());
+  echo "</pre>";
+</source>
+
+### Precision
+
+Because PHP has no option to JSON decode to accurate decimal class, you should internally use GMP. Treat each number like a large int with 8 decimal places (this can be trimmed for display).
+
+Our version of Bitcoin treats every monetary value as int64 8 decimal strings. So 1 BTC will be "100000000". Use PHP's GMP functions to manipulate these values accurately.
+
+For converting between internal GMP numbers and display/user input, you can use these functions:
+<source lang="php">
+
+1. converts a user supplied number to our internal representation
+1. 3.14 => "314000000"
+1. accepts strings, floats and ints as input
+function numstr_to_internal($numstr)
+{
+	return bcmul($numstr, pow(10, 8), 0);
+}
+
+1. converts an internal number to an end user number for display as defined by precision
+1. 314100000 => "3.14"
+1. accepts GMP numbers, ints and strings as input
+function internal_to_numstr($num, $precision=2)
+{
+	$repr = gmp_strval($num);
+	$repr = bcdiv($repr, pow(10, 8), $precision);
+	# now tidy output...
+	# trim trailing 0s
+	$repr = rtrim($repr, '0');
+	# and a trailing . if it exists
+	$repr = rtrim($repr, '.');
+	return $repr;
+}
+
+$num_internal = numstr_to_internal("3.141");
+echo "<p>".$num_internal."</p>";
+$num_display = internal_to_numstr($num_internal);
+echo "<p>".$num_display."</p>";
+</source>
+
+If you need to do a decimal division in GMP, then GMP only supports integer division + a remainder ([gmp_div_qr](http://php.net/manual/en/function.gmp-div-qr.php)). The work-around for this, is to use the bcmath module:
+<source lang="php">
+$a = gmp_init("100");
+$b = gmp_init("3");
+echo "<p>".bcdiv(gmp_strval($a), gmp_strval($b), 3)."</p>";
+</source>
+
+Note that bcdiv only uses strings.
+
+See also: [GMP](http://php.net/manual/en/ref.gmp.php) and [BC Math](http://php.net/manual/en/ref.bc.php) manuals.
