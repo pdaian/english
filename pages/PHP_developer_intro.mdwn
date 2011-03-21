@@ -49,7 +49,7 @@ Assuming Bitcoin has finished the initialisation process; download the file json
   echo "</pre>";
 </source>
 
-### Precision
+## Precision
 
 Because PHP has no option to JSON decode to accurate decimal class, you should internally use GMP. Treat each number like a large int with 8 decimal places (this can be trimmed for display).
 
