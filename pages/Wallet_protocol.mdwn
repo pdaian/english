@@ -33,6 +33,14 @@ For more secure use by ordinary end users, UIs and Wallets should support commun
 # DRAFT 0
 Everything beyond this point is strictly DRAFT, should NOT be implemented, and is subject to being completely rewritten or modified!
 
+## Conformance requirements
+
+All diagrams, examples, and notes in this specification are non-normative, as are all sections explicitly marked non-normative. Everything else in this specification is normative.
+
+The key words "MUST", "MUST NOT", "REQUIRED",  "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC2119. For readability, these words do not appear in all uppercase letters in this specification.
+
+Requirements phrased in the imperative as part of algorithms (such as "strip any leading space characters" or "return false and abort these steps") are to be interpreted with the meaning of the key word ("must", "should", "may", etc) used in introducing the algorithm.
+
 ## Transport Layer
 Must support at least reliable in-order stream data.
 
@@ -114,12 +122,19 @@ NOTE: To get the id rather than the data itself, use a HEAD request and check th
 ### Events
 #### New Data Available
 
+### p2p protocol encapsulation
+Optional: Establish a WebSocket connection to /p2p to speak direct p2p protocol
+
 ## References
 <references>
- (23.1)
- (23.2)
- (23.3)
+ (25.1)
+ (25.2)
+ (25.3)
+ (25.4)
+ (25.5)
 </references>
-23.1: [The application/json Media Type for JavaScript Object Notation (JSON)](http://tools.ietf.org/html/rfc4627) , D. Crockford. JSON.org.  
-23.2: [Server-Sent Events](http://dev.w3.org/html5/eventsource/) , Ian Hickson, Google, Inc.  
-23.3: [SPDY Protocol](http://www.chromium.org/spdy/spdy-protocol/spdy-protocol-draft2) , various. Google, Inc.
+25.1: [Key words for use in RFCs to Indicate Requirement Levels](http://tools.ietf.org/html/rfc2119) , S. Bradner. IETF.  
+25.2: [Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616) , Fielding, et al, W3C.  
+25.3: [The application/json Media Type for JavaScript Object Notation (JSON)](http://tools.ietf.org/html/rfc4627) , D. Crockford. JSON.org.  
+25.4: [Server-Sent Events](http://dev.w3.org/html5/eventsource/) , Ian Hickson, Google, Inc.  
+25.5: [SPDY Protocol](http://www.chromium.org/spdy/spdy-protocol/spdy-protocol-draft2) , various. Google, Inc.
