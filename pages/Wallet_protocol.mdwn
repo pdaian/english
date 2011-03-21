@@ -23,3 +23,6 @@ Please see the [[Infrastructure]] page for an idea of where this protocol fits i
 
 ### Cooperative mining
 The protocol should support submitting completed blocks, such that it can get (just) addresses from an upstream pool to generate to, and send all completed blocks to that pool for verification and counting (and possibly submission to the network). This can reduce the pool's load.
+
+### UI bundling
+For more secure use by ordinary end users, UIs and Wallets should support communication over standard I/O (stdio). This allows the UI to simply execute a dedicated Wallet, without requiring the user to setup Wallet-side authentication.
