@@ -26,3 +26,97 @@ The protocol should support submitting completed blocks, such that it can get (j
 
 ### UI bundling
 For more secure use by ordinary end users, UIs and Wallets should support communication over standard I/O (stdio). This allows the UI to simply execute a dedicated Wallet, without requiring the user to setup Wallet-side authentication.
+
+# DRAFT 0
+Everything beyond this point is strictly DRAFT, should NOT be implemented, and is subject to being completely rewritten or modified!
+
+## Transport Layer
+Must support at least reliable in-order stream data.
+
+Such as:
+
+* stdio (required for self-contained UI bundling)
+* TLS (recommended)
+* TCP (NOT recommended; see TLS)
+* SSH
+
+## Session Layer
+HTTP or SPDY
+
+## Presentation Layer
+HTTP-with-SSE request semantics
+
+### Formats
+These content types may be specified in the Content-Type header, and Accept header.
+
+* application/x-ripemd-160 (required)
+* application/x-sha (required)
+* multipart/mixed (required)
+* text/event-stream (required for events over HTTP)
+* application/x-bitcoin (required wallet-side)
+* application/json (recommended)
+* application/xml
+
+## Application Layer
+### Security
+Wallets may micro-manage security as they like, but the following are RECOMMENDED security levels:
+
+|"Miner" |Can generate new addresses, get work, and report found blocks
+|Read-only |Can view accounts, addresses, and any public data, and combinations thereof (eg, balances)
+|Financial |Can create new transactions using the wallet's keys
+|Full |Can administrate (download, destroy, etc) wallet keys
+
+
+### Object/Query Schema
+May be provided in multipart/mixed, JSON, XML, etc...
+
+
+
+|id|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|Unique data identifier; only guaranteed to remain the same for a single session
+|type|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|Type of data: 'key', 'tx', 'block', 'account', 'accounting'
+|hash|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|size|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_yes]]
+|time|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|difficulty|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|related|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_unknown]]|[[!template id=table_value_unknown]]|[[!template id=table_value_unknown]]|Can have multiple entries (in JSON, an array value)
+|coinbase|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|inputs|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|outputs|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+
+
+### Data
+
+* Arbitrary data can be accessed with the path /data/<id>
+* GET to fetch
+* To get only block header, use /data/<id>/header
+* To get only actual content (eg, no calculated values), use /data/<id>/raw
+* Optional: PUT to upload
+
+### Requests
+#### Data Search
+
+* GET /dataSearch?<query-object>
+* POST /dataSearch allowed for more complex queries
+
+NOTE: To get the id rather than the data itself, use a HEAD request and check the Location header.
+
+#### Monitor Events
+
+* Always POST
+
+##### New Data Available
+
+* Query
+
+### Events
+#### New Data Available
+
+## References
+<references>
+ (23.1)
+ (23.2)
+ (23.3)
+</references>
+23.1: [The application/json Media Type for JavaScript Object Notation (JSON)](http://tools.ietf.org/html/rfc4627) , D. Crockford. JSON.org.  
+23.2: [Server-Sent Events](http://dev.w3.org/html5/eventsource/) , Ian Hickson, Google, Inc.  
+23.3: [SPDY Protocol](http://www.chromium.org/spdy/spdy-protocol/spdy-protocol-draft2) , various. Google, Inc.
