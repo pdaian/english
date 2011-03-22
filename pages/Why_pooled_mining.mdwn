@@ -1,0 +1,23 @@
+[[!template id=stub]]
+
+This page is an analysis of the costs/benefits of pooled mining.
+
+Some people say that no matter what, over the long run mining solo will provide the same return as mining in a pool. This is true in the case of stable difficulty, or in case of hash power being high enough that difficulty doesn't grow significantly in the 'average time' window to generate a block at your hash rate. Otherwise, as I will show below, it is possible that the probability of generating a block even "at infinity" will be less (far less) than 1.
+
+Let's start with the current difficulty of 76193.9710474, and a hash rate of 1000 Khps (a run of the mill single core cpu). The probability to generate a block under these conditions in the course of 14 days (the target time between difficulty adjustments), is 0.00368942702934, and the 'average time' to generate a block is 10 years, 19 weeks, 4 days, 14 hours, 56 minutes, and 53 seconds.
+
+Now let's assume that difficulty grows at 10% per period - that means that the average time between difficulty adjustments will be about 13 days. So we're looking at a base probability of 0.00342634853731. Further, the probability to generate a block in 13 days will also keep decreasing by about 10%, with every 10% rise in difficulty.
+
+So now, let's find what our cumulative probability will be to generate a block. As a rough approximation, our cumulative probability of generating a block under these conditions, after N difficulty periods, would be sum(probability for individual periods). Actually the approximation will be higher than actual probability, since they're not really additive - though the addition is a pretty good approximation when the probabilities are so low. So, designating p = 0.00342634853731, our cumulative probability approximation will be about: 
+	p + .9p + .9^2 p + .9^3 p ....
+which at infinity sums to 10p. Thus, under these conditions, the upper bound (remember that summing probabilities produces a higher value than the proper multiplicative cumulative probability) is going to be 0.0342634853731. so /at infinity/, your probability of generating a block is only 3.4% or so. And conversely, your probability of /never generating a block even after millions of years/ is about 96+ percent.
+
+Now, let's consider a pooled mining setup. In a fixed-payout mining pool, you get paid for each difficulty-1 share you generate. The probability to generate at least 1 share at difficulty 1, at 1000 khps in 13 days is so close to 1 that my calculator rounds it to 1. :) So with a pool, you have virtually 100% certainty that you will generate at least one share. You will in fact on average generate about 20 shares per day, or 260 shares in the 13 day period. A pool would pay out approximately 0.000656219899 BTC per share, so over the 13 day period you can expect to generate about 0.17 BTC.
+
+So now you have to ask yourself one question (punk), do you want .17 btc with (almost) certainty, (with that amount decreasing by about 9% per period, under our assumptions of 10% difficulty growth per period), or would you like a 96+ percent chance of /never seeing a dime, ever/? And this is a question that every person would answer differently, depending on his risk preference.
+
+Even with losses on pooled mining due to network latency, and pool fees, it is not irrational to choose pooled mining over solo mining, if the ratio of hashrate to difficulty (and difficulty growth) is low enough.
+
+TODO: write in the details of calculating the probabilities, make some pretty charts?, calculate out the hash rate at which you have 25,50,75 percent chance of never generating a block solo under various assumptions.
+
+[[!template id=category:mining]]
