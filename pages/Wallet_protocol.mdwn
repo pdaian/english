@@ -57,9 +57,15 @@ HTTP or SPDY
 ## Presentation Layer
 HTTP-with-SSE request semantics
 
+* GET for read-only access
+* POST for methods (or complex read-only)
+* PUT for uploads
+* HEAD for metadata
+
 ### Formats
 These content types may be specified in the Content-Type header, and Accept header.
 
+* application/x-www-form-urlencoded (required)
 * application/x-ripemd-160 (required)
 * application/x-sha (required)
 * multipart/mixed (required)
@@ -75,24 +81,32 @@ Wallets may micro-manage security as they like, but the following are RECOMMENDE
 |"Miner" |Can generate new addresses, get work, and report found blocks
 |Read-only |Can view accounts, addresses, and any public data, and combinations thereof (eg, balances)
 |Financial |Can create new transactions using the wallet's keys
-|Full |Can administrate (download, destroy, etc) wallet keys
+|Full/Admin |Can administrate (download, destroy, etc) wallet keys
 
+
+Wallets MAY grant full access to username 'admin' with a null password, to requests over stdio.
 
 ### Object/Query Schema
 May be provided in multipart/mixed, JSON, XML, etc...
 
 
 
-|id|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|Unique data identifier; only guaranteed to remain the same for a single session
-|type|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|Type of data: 'key', 'tx', 'block', 'account', 'accounting'
-|hash|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
-|size|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_yes]]
-|time|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
-|difficulty|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|id|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|Unique data identifier; only guaranteed to remain the same for a single session
+|type|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|Type of data: 'key', 'tx', 'coin', 'block', 'account', 'accounting'
+|hash|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|size|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_yes]]
+|time|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|difficulty|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|difficultyNext|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|height|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|confirmations|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_??]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|accepted|[[!template id=table_value_??]]|[[!template id=table_value_yes]]|[[!template id=table_value_??]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|An unconfirmed, accepted tx, is part of the current mining merkle tree
 |related|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_unknown]]|[[!template id=table_value_unknown]]|[[!template id=table_value_unknown]]|Can have multiple entries (in JSON, an array value)
-|coinbase|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
-|inputs|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
-|outputs|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|coinbase|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|inputs|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|outputs|[[!template id=table_value_no]]|[[!template id=table_value_yes]]|[[!template id=table_value_unknown]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_no]]|[[!template id=table_value_yes]]
+|mine|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_??]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_??]]|[[!template id=table_value_yes]]
+|network|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_??]]|[[!template id=table_value_yes]]|[[!template id=table_value_yes]]|[[!template id=table_value_??]]|[[!template id=table_value_yes]]|0xF9BEB4D9 for the main network; 0xFABFB5DA for testnet
 
 
 ### Data
@@ -103,21 +117,73 @@ May be provided in multipart/mixed, JSON, XML, etc...
 * To get only actual content (eg, no calculated values), use /data/<id>/raw
 * Optional: PUT to upload
 
+### Information
+
+* GET /state/<network>/connections
+* Mining info: (required for mining support)
+	* GET /state/<network>/hashesPerSec (optional)
+	* GET /state/<network>/merkle
+* GET /info/protocols
+	* Returns a list of supported protocols/versions and their URIs
+
 ### Requests
-#### Data Search
+#### Address validation
+
+* GET /validate/address?network=<id>&address=<hash>
+
+#### Calculate balance
+
+* GET /balance?<query-object>
+Match transactions to be included in the balance.
+To ignore spends, use matching.
+
+#### Data search
 
 * GET /dataSearch?<query-object>
 * POST /dataSearch allowed for more complex queries
 
 NOTE: To get the id rather than the data itself, use a HEAD request and check the Location header.
 
-#### Monitor Events
+#### Generate new address
+
+* POST /newAddress
+	* Optional parameter: recycle (bool) -- allows wallet to reuse a spent change address; if not supported, wallet should silently ignore
+	* Optional parameter: generate (bool) -- if true, make a new address on the spot, never use a preexisting one; if not supported, throw an error
+	* Optional parameter: account -- associate new address funds with this account id
+
+#### Monitor events
 
 * Always POST
 
-##### New Data Available
+##### New data available
 
 * Query
+
+#### Move between accounts
+
+* POST /accounting/move
+	* dest=<accountId>
+	* query=<query-object> OR amount=<amount>
+	* Optional: comment=<string>
+
+#### Transaction creation
+
+* POST /tx/new
+	* send (bool) -- If true, sign and broadcast the transaction immediately
+	* fee (amount or range) -- If range, the wallet will try to calculate the minimum it expects the network to accept; if omitted, automatic fee range is unlimited unless bound by other factors (eg, input+strict)
+	* Optional: fromAccount (account id)
+	* Optional: input (multiple allowed of: coin id, OR coin id=>scriptSig)
+	* output (multiple allowed of: address=>amount pairs, OR script=>amount)
+	* strict (bool) -- If set, error rather than vary any parameters
+	* Optional: comment=<string>
+
+#### Transaction broadcast
+
+* POST /tx/send?id=<existing-tx-internal-id>
+
+#### Shutdown wallet
+
+* POST /shutdown
 
 ### Events
 #### New Data Available
@@ -125,18 +191,52 @@ NOTE: To get the id rather than the data itself, use a HEAD request and check th
 ### p2p protocol encapsulation
 Optional: Establish a WebSocket connection to /p2p to speak direct p2p protocol
 
+## Appendix A. Useful algorithms
+### Counting confirmations
+Because numerous (most) transactions change confirmation at the same event, the only way to do this efficiently, is to monitor for new block events. When a block arrives, increment the confirmation count of all transactions with at least 1 confirmation already. Then check the new block's introduced transactions (incrementing them from 0 to 1), and delete/invalidate any revoked transactions (eg, from a competing chain).
+
+## Appendix B. JSON-RPC equivalents
+### backupwallet
+### getaccount / getlabel
+### getaddressesbyaccount / getaccountaddress / getaddressesbylabel
+### getbalance
+### getblockcount / getblocknumber
+### getconnectioncount
+### getdifficulty
+### getgenerate
+### gethashespersec
+### getinfo
+### getnewaddress
+### getreceivedbyaccount / getreceivedbylabel
+### getreceivedbyaddress / getamountreceived
+### gettransaction
+### getwork
+### help
+### listaccounts
+### listreceivedbyaccount / listreceivedbylabel
+### listreceivedbyaddress / getallreceived
+### listtransactions
+### move
+### sendfrom
+### sendtoaddress
+### setaccount / setlabel
+### setgenerate
+### settxfee
+### stop
+### validateaddress
+
 ## References
 <references>
- (25.1)
- (25.2)
- (25.3)
- (25.4)
- (25.5)
- (25.6)
+ (64.1)
+ (64.2)
+ (64.3)
+ (64.4)
+ (64.5)
+ (64.6)
 </references>
-25.1: [Key words for use in RFCs to Indicate Requirement Levels](http://tools.ietf.org/html/rfc2119) , S. Bradner. IETF.  
-25.2: [Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616) , Fielding, et al, W3C.  
-25.3: [The application/json Media Type for JavaScript Object Notation (JSON)](http://tools.ietf.org/html/rfc4627) , D. Crockford. JSON.org.  
-25.4: [Server-Sent Events](http://dev.w3.org/html5/eventsource/) , Ian Hickson, Google, Inc.  
-25.5: [SPDY Protocol](http://www.chromium.org/spdy/spdy-protocol/spdy-protocol-draft2) , various. Google, Inc.  
-25.6: [Extensible Markup Language (XML) 1.0 (Second Edition)](http://www.w3.org/TR/REC-xml) , Tim Bray, Jean Paoli, C. M. Sperberg-McQueen and Eve Maler, W3C.
+64.1: [Key words for use in RFCs to Indicate Requirement Levels](http://tools.ietf.org/html/rfc2119) , S. Bradner. IETF.  
+64.2: [Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616) , Fielding, et al, W3C.  
+64.3: [The application/json Media Type for JavaScript Object Notation (JSON)](http://tools.ietf.org/html/rfc4627) , D. Crockford. JSON.org.  
+64.4: [Server-Sent Events](http://dev.w3.org/html5/eventsource/) , Ian Hickson, Google, Inc.  
+64.5: [SPDY Protocol](http://www.chromium.org/spdy/spdy-protocol/spdy-protocol-draft2) , various. Google, Inc.  
+64.6: [Extensible Markup Language (XML) 1.0 (Second Edition)](http://www.w3.org/TR/REC-xml) , Tim Bray, Jean Paoli, C. M. Sperberg-McQueen and Eve Maler, W3C.
