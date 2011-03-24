@@ -28,7 +28,7 @@ Please see the [[Infrastructure]] page for an overview of where this protocol fi
 The protocol should support submitting completed blocks, such that it can get (just) addresses from an upstream pool to generate to, and send all completed blocks to that pool for verification and counting (and possibly submission to the network). This can reduce the pool's load.
 
 ### UI bundling
-For more secure use by ordinary end users, UIs and Wallets should support stream-based communication over standard I/O (stdio). This allows the UI to simply execute a dedicated Wallet, without requiring the user to setup Wallet-side authentication.  This also permits full compatibility with a hardware-based wallet located on a secured device (for example, a cryptographic hardware module, or a wallet device connected via RS232 or USB).
+For more secure use by ordinary end users, UIs and Wallets should support stream-based communication over standard I/O (stdio). This allows the UI to simply execute a dedicated Wallet, without requiring the user to setup Wallet-side authentication.  This also permits full compatibility with a hardware-based wallet located on a secured device (for example, a cryptographic hardware module, or a wallet device connected via RS232 or USB).  (Suggestion, if UI's could talk to any stream, including a child process's stdio, as well as a pipe or a device, the flexibility would be valuable)
 
 # DRAFT 0
 Everything beyond this point is strictly DRAFT, should NOT be implemented, and is subject to being completely rewritten or modified!
