@@ -98,9 +98,15 @@ For a more traditional fractional lending scheme, where you are actually creatin
 
 ## Point of sale with bitcoins isn't possible because of the 10 minute wait for confirmation
 
-More computing power incentivised by equitable transaction fees will make waiting time negligible. In layman's terms, speedy thing goes in, speedy thing comes out.
+Tansactions **can** take tens of minutes to become confirmed, and this won't change for the forseeable future. Even after the computing power of the network is orders of magnitude larger than today, the difficulty of generating a block will self-adjust to maintain a target of 6 blocks per hour. Two potential solutions to allow POS transactions are:
 
-Zero confirmations should be good enough for point of sale purchases, which occur almost instantly.
+1) For small transactions, simply assume the customer isn't ripping you off. Give the customer his latte immediately after the transaction posts to the network. The transaction should propagate through the network almost instantly, allowing the seller to see the transaction within seconds (albeit with zero confirmations.) The cost of a double-spend attack should make small-scale fraud not worthwhile.
+
+2) Create a network of transaction hubs. These entities would communicate using a common API. They would float short-term loans between each other to facilitate instant transactions. 
+
+Imagine that Alice uses Carol's Clearinghouse as her hub, and Bob uses Dave's Anonymous Exchange. Both Alice and Bob have accounts with their respective hubs, and have already deposited some Bitcoins in their accounts. When Alice wants to buy a latte from Bob at a point of sale, Alice tells Carol "I want to send Bob *x* Bitcoins. He uses Dave's Anonymous Exchange." After checking that Alice's account does contain at least *x* Bitcoins, Carol sends a message to Dave, saying "Credit Bob's account with *x* bitcoins immediately; I'll send you the real Bitcoins in the next block."
+
+As always, trust is required - Alice has to trust Carol, and the hubs have to trust each other. Due to competition, various hubs could develop with vastly different fee structures, membership requirements, trustability, etc.
 
 ## After 21 million coins are mined, no one will run network nodes
 When operating costs can't be covered by mining production, which will happen some time before the total amount of BTC is reached, miners are expected to earn profit from transaction fees.
