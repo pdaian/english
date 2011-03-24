@@ -19,7 +19,7 @@ Please see the [[Infrastructure]] page for an overview of where this protocol fi
 #### Binary or plaintext
 
 * Binary is more efficient to parse and create
-* Plaintext is easier for humans to debug
+* Plaintext is easier for humans to debug, and avoids forming a dependency on a specific number of bits, endianness, or precision
 * Binary can include custom transactions as-is for transmission
 * Protobuf (binary) seems efficient and easy to use from all major languages
 * JSON implementations tend to be buggy
