@@ -51,6 +51,8 @@ Such as:
 * TCP (NOT recommended; see TLS)
 * SSH
 
+Consideration: There are many ways to communicate that are desirable for payment processing but which don't inherently offer TCP-like sequencing, specifically things that act like or run over serial ports (including bluetooth, infrared, possibly NFC).  Some mediums like this are prone to corrupting or dropping data, but fortunately mediums like this are also unlikely to deliver data out of sequence.  Some sort of simple error checking and packetizing of messages (even as simple as CRC-16 with STX+ETX wrappers as used in today's payment processing industry) should be required on all serial-like connections.
+
 ## Session Layer
 HTTP or SPDY
 
