@@ -90,6 +90,8 @@ Wallets MAY grant full access to username 'admin' with a null password, to reque
 Wallets SHOULD grant Merchant access to username 'merchant' will a null password, to requests made over direct (ie, physically local, like Bluetooth) connections.
 User interfaces SHOULD monitor for new, unsigned transactions with the 'proposal' flag set, and prompt the user to sign or delete them.
 
+Suggestion: there should also be provisions for PKI in place, so that Joe Walletholder knows he is paying 7-Eleven, a Japanese-owned company, rather than the 7-Eleven clerk, a divorced Wisconsin man.  Such PKI should be functional independent of TLS (which might not be available or commonly implemented over serial-like connections like Bluetooth)
+
 ### Object/Query Schema
 May be provided in multipart/mixed, JSON, XML, etc...
 
