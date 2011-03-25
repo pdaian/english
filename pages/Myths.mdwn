@@ -93,6 +93,8 @@ As the value of the unit of 1 BTC grows too large to be useful for day to day tr
 
 Bitcoin transactions are stored in the block chain. The wallet has your secret keys necessary to spend your money, that is, to enter new transactions into the block chain. Copying the wallet doesn't copy any coins.
 
+For discussion's sake, let's say you tried.  You copy the same wallet to two computers, and spend the coins with the first one.  If the second one is on the network, it will see from the network that coins were spent and would deduct them out of the displayed balance automatically.  If the spend were attempted on the second computer before it was able to detect the spend from the first one, it is pretty unlikely that the recipient would receive anything, and quite certain that they wouldn't receive anything that showed "confirmed".
+
 ## Lost coins can't be replaced and this is bad
 
 Bitcoins are divisible to 0.00000001, so this is not a problem. If you lose your coins, all other coins will go up in value a little. Consider it a donation to all other bitcoin users.
