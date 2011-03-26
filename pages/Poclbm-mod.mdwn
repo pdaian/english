@@ -1,6 +1,13 @@
-A modified version of m0mchill's [[poclbm]] miner.
+A highly efficient, modified version of m0mchill's [[poclbm]] miner.
 
-The modifications improve efficiency when used in a [[mining pool|Pooled_mining]], according the the mining pool operator [[Bitcoin_Pool]], though there no data to support this claim.
+The modifications improve efficiency when used in a [[mining pool|Pooled_mining]], and currently the only mining pool that shows you your efficiency is [[Bitcoin_Pool]].  m0mchill's [[poclbm]] miner will quit searching a getwork when it either finds an answer or when the askrate is reached, which is not at all efficient.  Currently m0mchill's miner averages around 20% efficiency depending on your video card, while [[poclbm-mod]] averages around 100% efficiency.  [[poclbm-mod]] will continue working through a getwork until it has finished the entire work.  Many getwork's from the pool server will contain more than one answer, which would be skipped with m0mchill's [[poclbm]]. 
+
+Screenshot and explanation of the output:
+
+[[!template id=ns:file]][[:Poclbm-mod-explain.png]]
+
+
+Proof of how efficient this miner is compared to the regular [[poclbm]] can be found at [Found-Shares](http://bitcoinpool.com/data/found-share-stats.html) page over at [[Bitcoin_Pool]].com.
 
 ##See Also
 
