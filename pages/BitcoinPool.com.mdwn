@@ -6,6 +6,66 @@ The pool operators also released [[poclbm-mod]] which is a modified version of m
 
 The service was first available for Beta testing starting March 08, 2011 (1.1).
 
+##How to run various miners
+
+**BitcoinPool Miner (Windows):**
+
+poclbm-mod.exe -d 0 -v -w 128 -f 60 -user=USERNAME --pass=PASSWORD
+
+
+**BitcoinPool Miner (*nix OS):**
+
+python poclbm-mod.py -d 0 -v -w 128 -f 60 --user=USERNAME --pass=PASSWORD
+
+
+**m0mchil's GPU miner (*nix OS):**
+
+python poclbm -d 0 -v -w 128 -f 60 -user=USERNAME --pass=PASSWORD
+
+
+**m0mchil's GPU miner (Windows):**
+
+poclbm.exe -d 0 -v -w 128 -f 60 -user=USERNAME --pass=PASSWORD
+
+
+**DiabloMiner (*nix):**
+
+DiabloMiner-YourOS.sh -u USERNAME -p PASSWORD -o bitcoinpool.com -r 8334 -g 10
+
+
+**DiabloMiner (Windows):**
+
+java -cp target\libs\*;target\DiabloMiner-0.0.1-SNAPSHOT.jar -Djava.library.path=target\libs\natives\windows com.diablominer.DiabloMiner.DiabloMiner -u USERNAME -p PASSWORD -o bitcoinpool.com -r 8334 -g 10
+
+
+**puddinpop's RPC miner (*nix OS):**
+
+rpcminer-[[PLATFORM]] -url=http://bitcoinpool.com:8334 -user=USERNAME -password=PASSWORD -workrefreshms=20000
+Note: Replace [[PLATFORM]] with opencl for ATI/AMD cards, or cuda for nVidia cards, and add the -gpu flag if not using cpu.
+
+
+**puddinpop's RPC miner (Windows):**
+
+rpcminer-[[PLATFORM]].exe -url=http://bitcoinpool.com:8334 -user=USERNAME -password=PASSWORD -workrefreshms=20000
+Note: Replace [[PLATFORM]] with opencl for ATI/AMD cards, or cuda for nVidia cards, and add the -gpu flag if not using cpu.
+
+
+**Ufasoft's CPU Miner (Windows):**
+
+bitcoin-miner.exe -a 20 -t # -o http://bitcoinpool.com:8334/ -u USERNAME -p PASSWORD
+Note: The # sign after -t indicates the number of cores in your CPU. i.e an Intel Core 2 Quad would use '-t 4'.
+
+
+**jgarzik's CPU miner (*nix):**
+
+minerd -s 20 -t 2 --url http://bitcoinpool.com:8334 --userpass USERNAME:PASSWORD
+
+
+**jgarzik's CPU miner (Windows):**
+
+minerd.exe -s 20 -t 2 --url http://bitcoinpool.com:8334 --userpass USERNAME:PASSWORD
+
+
 ##See Also
 
 * [[Pooled_Mining]]
