@@ -1,10 +1,19 @@
-A [[mining pool|Pooled_mining]] server which offers shared block payouts.  This pool gives you the most statistics and believes in keeping everything as transparent as possible.  This pool also shows you the efficiency of your bitcoin miner, which is very unique.  The pool operates on the fact that more efficient miners reduce the amount of resources used by server, and with fewer resources being wasted, the server can handle a very large number of users.
+A [[mining pool|Pooled_mining]] server which offers shared block payouts.  This pool gives you the most statistics and believes in keeping everything as transparent as possible.  This pool also shows you the efficiency of your bitcoin miner, which is very unique feature that no other mining pools have.  The pool operates on the fact that more efficient miners reduce the amount of resources used by server, and with fewer resources being wasted, the server can handle a large number of users.
+
+
+The pool operators also released [[poclbm-mod]] which is a modified version of m0mchill's [[poclbm|poclbm]] miner that is 5x more efficient. What this means is that [[poclbm-mod]] searches through the entire work it receives from the pool server before asking for more work, which reduces the amount of wasted resources.  Currently, no other miners are as efficient as [[poclbm-mod]].  In general, all other bitcoin mining programs, including [[poclbm]], ignore the concept of efficiency altogether which have caused an unnecessary amount of strain on the various mining pools.
+
+
+Getwork or Share Efficiency is defined as:
+
+(The # of getwork requested) / (The number of submitted shares) * 100
+
+
+
+The service was first available for Beta testing starting March 08, 2011 (1.1).
 
 Only shares from the current block in the current round are accepted.
 
-The pool operators also released [[poclbm-mod]] which is a modified version of m0mchil's [[poclbm|poclbm]] miner that is 5x more efficient. What this means is that [[poclbm-mod]] searches through the entire work it receives from the server before asking for more work, which reduces the amount of wasted resources.  Currently, no other miners are as efficient as [[poclbm-mod]].
-
-The service was first available for Beta testing starting March 08, 2011 (1.1).
 
 ##How to run various miners
 
