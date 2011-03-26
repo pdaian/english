@@ -9,6 +9,97 @@ Screenshot and explanation of the output:
 
 Proof that more than 1 answer can be found in a single getwork and of how efficient this miner is compared to the regular [[poclbm]] can be found at [Found-Shares](http://bitcoinpool.com/data/found-share-stats.html) page over at [[Bitcoin_Pool]].com.
 
+##Setup and Configuration
+
+1) If you haven't already, download and install/run the Bitcoin core application from www.bitcoin.org.
+
+Once downloaded, launch the bitcoin application and wait for the block count to stop increasing in order for your client to be in sync with the network. This process can take a few hours, but you can start mining in the meantime. 
+
+2) Download our miner [(GUI/Source](Windows), or see the connection methods at the bottom of this page for how to use other supported miners:  http://www.bitcoinpool.com
+
+Windows (GUI/Source) 8.5MB
+- This miner works on ATI/AMD and NVidia graphics cards and CPUs. You must have the Catalyst driver w/ OpenCL Driver & Stream SDK installed. (Both the OpenCL Driver and Stream SDK are packaged with the newest Catalyst Drivers available at http://ati.amd.com)
+
+Win/Linux (Commandline / Source) 7.8MB
+- This miner works on ATI/AMD and NVidia graphics cards and CPUs. You must have the Catalyst driver w/ OpenCL Driver & Stream SDK installed. (Both the OpenCL Driver and Stream SDK are packaged with the newest Catalyst Drivers available at http://ati.amd.com)
+
+3) Create an account on our pool by visiting the New User Sign-up page:
+
+Specify your desired username and password, and copy/paste the "Bitcoin Address" from the Bitcoin client you installed in Step 1 as your Wallet ID on the registration page.
+
+4) Extract the downloaded miner to a folder on your harddrive and follow the steps below to connect:
+
+For Windows (GUI/Source):
+- Double-click on guiminer.exe in the binaries-win32 folder.
+- Expand the window so that the menu-bar is readable.
+- Click File > New Miner and enter a nickname for the miner. (Example: MyMiner)
+- Click on the tab for the miner you just created. 
+- Enter your username and password, and choose your GPU from the dropdown list. 
+(Note: Devices use the internal chipset	names from the manufacturer. i.e. a Radeon HD5770 will show as "Juniper".)
+- In the "Extra Flags" box, type: -v -w128
+- Click File > Save Settings so that your miner is saved for the next time you open the program.
+- Click on [Mining!](Start) and you're done!
+
+
+For Win/Linux (Commandline/Source):
+- View the README included in the zip file for information on running from source.
+- To run from command line on Windows, view the sample-start.bat file located in the binaries-win32 folder and change your username, password and device. 
+(Note: A list of devices can be found by typing poclbm-mod.exe from the command line, while in the binaries-win32 folder.)
+
+
+5) Watch the Current Round Stats to see how many bitcoins you're earning!
+
+##How to use miners
+BitcoinPool Miner (Windows):
+poclbm-mod.exe -d 0 -v -w 128 -f 60 -user=USERNAME --pass=PASSWORD
+
+
+BitcoinPool Miner (*nix OS):
+python poclbm-mod.py -d 0 -v -w 128 -f 60 --user=USERNAME --pass=PASSWORD
+
+
+m0mchil's GPU miner (*nix OS):
+python poclbm -d 0 -v -w 128 -f 60 -user=USERNAME --pass=PASSWORD
+
+
+m0mchil's GPU miner (Windows):
+poclbm.exe -d 0 -v -w 128 -f 60 -user=USERNAME --pass=PASSWORD
+
+
+DiabloMiner (*nix):
+DiabloMiner-YourOS.sh -u USERNAME -p PASSWORD -o bitcoinpool.com -r 8334 -g 10
+
+
+DiabloMiner (Windows):
+java -cp target\libs\*;target\DiabloMiner-0.0.1-SNAPSHOT.jar -Djava.library.path=target\libs\natives\windows com.diablominer.DiabloMiner.DiabloMiner -u USERNAME -p PASSWORD -o bitcoinpool.com -r 8334 -g 10
+
+
+puddinpop's RPC miner (*nix OS):
+rpcminer-[[PLATFORM]] -url=http://bitcoinpool.com:8334 -user=USERNAME -password=PASSWORD -workrefreshms=20000
+Note: Replace [[PLATFORM]] with opencl for ATI/AMD cards, or cuda for nVidia cards, and add the -gpu flag if not using cpu.
+
+
+puddinpop's RPC miner (Windows):
+rpcminer-[[PLATFORM]].exe -url=http://bitcoinpool.com:8334 -user=USERNAME -password=PASSWORD -workrefreshms=20000
+Note: Replace [[PLATFORM]] with opencl for ATI/AMD cards, or cuda for nVidia cards, and add the -gpu flag if not using cpu.
+
+
+Ufasoft's CPU Miner (Windows):
+bitcoin-miner.exe -a 20 -t # -o http://bitcoinpool.com:8334/ -u USERNAME -p PASSWORD
+Note: The # sign after -t indicates the number of cores in your CPU. i.e an Intel Core 2 Quad would use '-t 4'.
+
+
+jgarzik's CPU miner (*nix):
+minerd -s 20 -t 2 --url http://bitcoinpool.com:8334 --userpass USERNAME:PASSWORD
+
+
+jgarzik's CPU miner (Windows):
+minerd.exe -s 20 -t 2 --url http://bitcoinpool.com:8334 --userpass USERNAME:PASSWORD
+
+
+
+
+
 ##See Also
 
 * [[Bitcoin_Pool]] server
