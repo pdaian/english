@@ -1,0 +1,34 @@
+Why wait to extend divisibility until we need it? It's easier to upgrade >50% now.
+
+Note: 1 Satoshi is defined to be the present base unit, or 0.00000001 BTC
+
+## Proposed solutions
+### 62/64-bit
+In these solutions, a 64-bit type is assumed, one of which is reserved for signedness (+/-), and another for an "upgraded" flag to retain compatibility with the existing block chain.
+
+#### "B"
+Each Satoshi is upgraded to 2079 (3 × 3 × 3 × 7 × 11) base units.
+
+* Adds 3 more decimal places
+* Can be divided into exact ⅓, ⅙, ⅐, ⅑, 1⁄11 (in addition to the present ½ and ⅕) and multiples thereof
+
+#### "D"
+Each Satoshi is upgraded to 1296 (3 × 3 × 3 × 3 × 2 × 2 × 2 × 2) base units.
+
+* Adds 3 more decimal places
+* Can be divided into exact ⅓, ⅑, (in addition to the present ½ and ⅕) and multiples thereof
+
+In addition, after the initial 210000 blocks, generation will be reduced to 33.93554406716 BTC (4,398,046,511,104 new-base-units, which divides cleanly by 2 until exhausted) instead of the current 25 BTC.
+
+* Inflation is increased. New mining reward is adjusted for this inflation, but all 50 BTC mining is devalued slightly over a long period of time.
+* There are now a total of 24,752,928.50820579 BTC (3,207,979,534,663,470,000 new-base-units) to ever exist.
+
+## Deprecated solutions
+### 62/64-bit
+#### "A"
+
+* Satoshi × 2304 (2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 × 3 × 3)
+* 21.47483648 BTC rewards
+#### "C"
+
+* Satoshi × 2187 (3 × 3 × 3 × 3 × 3 × 3 × 3)
