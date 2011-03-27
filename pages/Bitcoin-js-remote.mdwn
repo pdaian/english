@@ -21,17 +21,16 @@ First, generate a suitable file for Basic Authentification. See man htpasswd or 
 	htpasswd -b -c my_prefer_filename myuser mypass
 
 Set following Apache directives in the proper context, i.e. server or virtual host configuration:
-
-<Proxy http://127.0.0.1:8332>
+	<Proxy http://127.0.0.1:8332>
 	AuthType Basic
 	AuthName "Bitcoin Access"
 	AuthUserFile my_prefer_filename
 	Require user myuser
 	Order deny,allow
 	Allow from all
-</Proxy>
+	</Proxy>
 
-1. Assuming you want to access Bitcoin JS Remote with http://mydomain/jbc
+Assuming you want to access Bitcoin JS Remote with http://mydomain/jbc
 	Alias /jbc pathabs_to_bitcoin-js-remote
 	ProxyPass /lbc/ http://127.0.0.1:8332/
 	ProxyPassReverse /lbc/ http://127.0.0.1:8332/
