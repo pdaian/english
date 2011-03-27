@@ -55,7 +55,8 @@ To avoid your log file from flooding
 	CustomLog myfile.log combined env=!dontlog
 
 Finally, if you go in trouble, check proper access to bitcoin daemon with curl:
-	curl --trace-time --trace-ascii - --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' --header 'content-type: text/plain;' http://myuser:mypass@127.0.0.1:8332/
+	curl --trace-time --trace-ascii - \
+	--data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' --header 'content-type: text/plain;' http://myuser:mypass@127.0.0.1:8332/
 
 [[!tag "Clients"]]
 [[!tag "Free_Software"]]
