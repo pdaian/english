@@ -9,6 +9,68 @@ This software is released under the MIT/X11 License.
 * [Bitcoin-js-remote](http://tcatm.github.com/bitcoin-js-remote) website
 * [Bitcoin-js-remote](http://github.com/tcatm/bitcoin-js-remote) project page
 
+##Apache HTTPD Configuration for Bitcoin JS Remote
+[am assuming a little knowledge about Apache httpd. You had better read on Apache httpd directives: http://httpd.apache.org/docs/2.2/mod/directives.html](I)
+
+Assuming your bitcoin.conf file includes:
+	rpcuser=myuser
+
+	rpcpassword=mypass
+
+First, generate a suitable file for Basic Authentification. See man htpasswd or execute
+	htpasswd -b -c my_prefer_filename myuser mypass
+
+Set following Apache directives in the proper context, i.e. server or virtual host configuration:
+<Proxy http://127.0.0.1:8332>
+	AuthType Basic
+	AuthName "Bitcoin Access"
+	AuthUserFile my_prefer_filename
+	Require user myuser
+	Order deny,allow
+	Allow from all
+</Proxy>
+
+1. Assuming you want to access Bitcoin JS Remote with http://mydomain/jbc
+	Alias /jbc pathabs_to_bitcoin-js-remote
+	ProxyPass /lbc/ http://127.0.0.1:8332/
+	ProxyPassReverse /lbc/ http://127.0.0.1:8332/
+
+User and Password will be required when accessing with http://mydomain/jbc. Then, set Bitcoind's URL to the desired path: in the above example will be “/lbc/” or by default will be “/”.
+
+Alternatively, create a “settings.json” file in the bitcoin-js-remote directory: (see proper syntax in the settings.json_sample):
+	RPC.url : /lbc/
+	RPC.user : myuser
+	RPC.password : mypass
+
+That's all. Restart your Apache web server.
+
+Other interesting Apache directives:
+
+1. To redirect all HTTP to HTTPS (of course, you need a well-configured ssl site).
+1. !!! SSL access is extremely recommended to protect your Bitcoin data.
+	RewriteCond %{HTTPS} off
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+		1. To avoid your log file from flooding
+	SetEnvIf Request_URI "^/jbc/" dontlog
+	SetEnvIf Request_URI "^/lbc/" dontlog
+	CustomLog myfile.log combined env=!dontlog
+
+Finally, if you go in trouble, check proper access to bitcoin daemon with curl:
+curl \
+
+	--trace-time \
+
+	--trace-ascii - \
+
+	--data-binary \
+
+	'{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' \
+
+	--header 'content-type: text/plain;' \
+
+	http://myuser:mypass@127.0.0.1:8332/
+
 [[!tag "Clients"]]
 [[!tag "Free_Software"]]
 [[!tag "License/MIT-X11"]]
