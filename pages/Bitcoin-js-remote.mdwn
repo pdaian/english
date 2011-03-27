@@ -13,9 +13,8 @@ This software is released under the MIT/X11 License.
 [am assuming a little knowledge about Apache httpd. You had better read on Apache httpd directives: http://httpd.apache.org/docs/2.2/mod/directives.html](I)
 
 Assuming your bitcoin.conf file includes:
-
-rpcuser=myuser
-rpcpassword=mypass
+	rpcuser=myuser
+	rpcpassword=mypass
 
 First, generate a suitable file for Basic Authentification. See man htpasswd or execute
 	htpasswd -b -c my_prefer_filename myuser mypass
@@ -47,19 +46,16 @@ That's all. Restart your Apache web server.
 Other interesting Apache directives:
 To redirect all HTTP to HTTPS (of course, you need a well-configured ssl site).
 !!! SSL access is extremely recommended to protect your Bitcoin data.
-
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+	RewriteCond %{HTTPS} off
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
 To avoid your log file from flooding
-
-SetEnvIf Request_URI "^/jbc/" dontlog
-SetEnvIf Request_URI "^/lbc/" dontlog
-CustomLog myfile.log combined env=!dontlog
+	SetEnvIf Request_URI "^/jbc/" dontlog
+	SetEnvIf Request_URI "^/lbc/" dontlog
+	CustomLog myfile.log combined env=!dontlog
 
 Finally, if you go in trouble, check proper access to bitcoin daemon with curl:
-
-curl --trace-time --trace-ascii - --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' --header 'content-type: text/plain;' http://myuser:mypass@127.0.0.1:8332/
+	curl --trace-time --trace-ascii - --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' --header 'content-type: text/plain;' http://myuser:mypass@127.0.0.1:8332/
 
 [[!tag "Clients"]]
 [[!tag "Free_Software"]]
