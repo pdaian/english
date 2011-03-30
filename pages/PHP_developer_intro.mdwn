@@ -53,7 +53,7 @@ Bitcoin amounts can range from 0.00000001 to 21,000,000.  To avoid rounding erro
 
 See [[Proper_Money_Handling_(JSON-RPC)]] for more information.
 
-If your PHP implementation does not support 64-bit numbers, you must use a version of bitcoind that sends values as strings (genjix maintains a fork at git://github.com/genjix/bitcoin.git) and use the   [GMP](http://php.net/manual/en/ref.gmp.php) and [BC Math](http://php.net/manual/en/ref.bc.php) for all calculations involving bitcoin amounts.
+If your PHP implementation does not support 64-bit numbers, you must use a version of bitcoind that sends values as strings (genjix maintains a fork at http://github.com/genjix/bitcoin) and use the  [GMP](http://php.net/manual/en/ref.gmp.php) and [BC Math](http://php.net/manual/en/ref.bc.php) libraries for all calculations involving bitcoin amounts.
 
 ## Accounts
 
