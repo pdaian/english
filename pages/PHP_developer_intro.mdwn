@@ -8,21 +8,14 @@ You will run Bitcoin in daemon mode. The way PHP communicates is through localho
 
 ## Setting up Bitcoin
 
-Bitcoins are stored internally as 64 bit integers. Because PHP's JSON implementation does not provide a way to use custom types for decimal numbers, we must use an alternative branch of Bitcoin which returns all decimal amounts as strings.
+You need the bitcoind command-line daemon.  You can either compile it from source or download a binary from the bitcoin.org homepage.
 
-<source lang="bash">
+See [[Running_Bitcoin]] for details on configuring bitcoin.
 
-1. install needed packages
-$ sudo apt-get install build-essential libboost-all-dev libdb4.7++-dev libssl-dev libglib2.0-dev
-$ git clone git://github.com/genjix/bitcoin.git
-$ cd bitcoin/
-$ make -f makefile.unix bitcoind
-</source>
-
-Before running bitcoind you will need to create a file in ~/.bitcoin/bitcoin.conf
+Before running bitcoind you will need to create a file in the bitcoin data directory (~/.bitcoin/.bitcoin.conf on Linux):
 <source lang="bash">
 rpcuser=user
-rpcpassword=password
+rpcpassword={you MUST pick a unique password to be secure}
 </source>
 
 Now run bitcoind:
