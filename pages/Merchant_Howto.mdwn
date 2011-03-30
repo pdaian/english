@@ -20,6 +20,10 @@ Setup a system (pointers to easy-to-use packaged systems should be added) that:
 1. * If you cannot dispach the goods you mark the order as denied and the system sends the customer a refund
 1. Pays money made to your bitcoin address
 
+##Common Errors
+
+It has been observed several times that businesses try to funnel all orders through the same bitcoin address, and ask people to send some BTC, then send email describing the timing and the amount of the transaction to 'claim' it. This is **not** secure, since anyone can see the transaction details using a tool such as [[Block_Explorer]], or by inspecting the block chain database directly, and then try to claim someone else's transaction as theirs. Do not do this - give each customer a unique bitcoin address, as suggested in the [[manual|#Manual]] section of this page.
+
 ##See Also
 
 * [[In-store_Transactions]]
