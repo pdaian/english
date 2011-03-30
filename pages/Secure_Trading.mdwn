@@ -1,0 +1,54 @@
+*Secure Trading Online*
+
+This topic is a guide in how to set up your online identity and best practices for trading online in the Bitcoin community.
+
+##Introduction
+Within the Bitcoin community, many are very careful with their security and identity.   This is because of two main reasons:
+
+1. There is no violent body to cover your back for you.  Or more simply there is no courts to go crying to if you have been fucked over.
+1. One’s reputation is the most important thing that any user has; traders will take very little risk with new users who have not proven themselves.  (as they could just be last week’s scammer with a new identity)
+The bitcoin community uses a few tools to help protect their privacy, and thus identity.   The first and most important is a [computer](secure).
+Before proceeding please make sure you have completed the [[Securing_Your_Computer]] guide, this guide assumes that your computer is secure both physically and in software. 
+
+##Creating a secure Identity
+The first step is to create a cryptographically secure public-private key-pair.  This will be uses as the basis of keeping both your wallet secure (see [your Wallet](Securing)), and your identity secure.
+###Creating your first PGP key-pair
+A PGP key-pair dose two very important functions.
+
+1. You cans sign information with an unforgeable signature
+1. You can decrypt things that other people encrypt for you
+This allows you to both conduct business privately (encryption), and give out promises that you cannot deny making (signature).
+
+###Windows:
+Install GPG4Win: http://www.gpg4win.org/
+###All:
+Install Thunderbird: https://www.mozillamessaging.com/en-GB/ 
+Setup you email account with Thunderbird.<br />
+
+Install the Enigmail plugin for Thunderbird: https://addons.mozilla.org/en-US/thunderbird/addon/enigmail/
+Upon loading Enigmail, thunder bird will ask you to make a new ‘identity,’ follow this wizard and you will have created your identity.
+You should backup your private key in a secure place.  Secondary, you should create a revocation certificate and store that in a different secure place (maybe print it out and store it in your fire safe).
+	
+###Register with [#bitcoin-otc]
+Follow the guide here: http://wiki.bitcoin-otc.com/wiki/Using_bitcoin-otc
+
+###Register the same username at the popular places:
+
+* [[Bitcoin_Forum]]
+* [[Bitcoin_Wiki]]
+* [[Freenode_IRC]]
+Use a strong and different password for each of these places, keeping your password in a secure place.  This will allow other people in the community to track you across the different 
+
+##Best Practices with trading
+###Use Bitcoin-OTC
+
+* Always require the user to become registered with #bitcoin-otc
+* require a signed message from the fingerprint quoted at: http://bitcoin-otc.com/viewgpg.php
+###Make sure both parties agree to the terms of the trade with singed messages.
+
+* Get a PGP singed quote, and check the signature.
+* Send a PGP singed recept.
+This allows either party to go public if the trade has become sour.  This will stop your trading partner from claiming the details of the agreement were somehow different.
+Search the Bitcoin Forum for the username of the person that you are trading with, check if the user has provided constructive and usefully advice to other parties.  And importantly check for any claims that the user has scammed.
+###Use an escrow
+such as https://clearcoin.appspot.com/ or any willing respected member of the bitcoin community.
