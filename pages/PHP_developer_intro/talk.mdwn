@@ -1,0 +1,13 @@
+What the hell?
+
+You're saying to do ANY bitcoin/php website you need to:
+
++ Grab a special fork
++ Install the bcmath and gmp libraries into your web server
+
+
+I think you're steering the 90+% of people who are NOT going to be using bitcoin for heavy-duty financial calculations the wrong way.  If I'm using PHP for a shopping cart application where the most complicated financial transaction I'm likely to need is ADDING, then using double-precision floating point for bitcoin amounts is 100% OK.
+
+If you can find a PHP implementation on hardware that runs bitcoin AND stores numbers using too little precision to properly round amounts, let me know.
+
+Otherwise:  you're making a mountain out of a molehill.
