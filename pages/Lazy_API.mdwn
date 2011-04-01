@@ -1,12 +1,13 @@
-For the incredibly lazy and/or incompetent web developer, I present the lazy man's bitcoin API (copied from [a forum post](http://www.bitcoin.org/smf/index.php?topic=4324.msg77187#msg77187))
+For the incredibly lazy and/or incompetent web developer, I present the lazy man's bitcoin API (copied from [a forum post](http://www.bitcoin.org/smf/index.php?topic=4324.msg77187#msg77187)):
 
-Problem: Lazy web designer (me) wants to use bitcoins without dealing with installing bitcoin on a server, installing a shopping card interface, or using ugly merchant services with callbacks.
+**Problem:** Lazy web designer (me) wants to use bitcoins without dealing with installing bitcoin on a server, installing a shopping card interface, or using ugly merchant services with callbacks.
 
-Solution for sending bitcoins:
-Use the MtGox API (https://mtgox.com/support/tradeAPI)
+**Solution for sending bitcoins:**
+Use the [MtGox API](https://mtgox.com/support/tradeAPI)
 
-Solution for receiving bitcoins:
-1) Input a list of bitcoin receiving addresses to your database
+**Solution for receiving bitcoins:**
+
+1. 1) Input a list of bitcoin receiving addresses to your database
 2) Give a bitcoin address to a potential customer
 3) Have the customer tell you when they have sent the coins and have at least 1 confirmation
 4) Check blockexplorer to see if they sent the right amount (i.e. http://blockexplorer.com/address/19hMEAaRMbEhfSkeU4GT8mgSuyR4t4M6TH)
