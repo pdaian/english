@@ -7,13 +7,13 @@ Use the [MtGox API](https://mtgox.com/support/tradeAPI)
 
 **Solution for receiving bitcoins:**
 
-1. 1) Input a list of bitcoin receiving addresses to your database
-2) Give a bitcoin address to a potential customer
-3) Have the customer tell you when they have sent the coins and have at least 1 confirmation
-4) Check blockexplorer to see if they sent the right amount (i.e. http://blockexplorer.com/address/19hMEAaRMbEhfSkeU4GT8mgSuyR4t4M6TH)
-5) Wait for more blocks (confirmations) if paranoid
-6) Give them what they paid for
-7) After a reasonable amount of time has passed, you can re-use the address for another customer
+1. Input a list of bitcoin receiving addresses to your database
+1. Give a bitcoin address to a potential customer
+1. Have the customer tell you when they have sent the coins and have at least 1 confirmation
+1. Check blockexplorer to see if they sent the right amount (i.e. http://blockexplorer.com/address/19hMEAaRMbEhfSkeU4GT8mgSuyR4t4M6TH)
+1. Wait for more blocks (confirmations) if paranoid
+1. Give them what they paid for
+1. After a reasonable amount of time has passed, you can re-use the address for another customer
 
 You could avoid having a list of addresses and reusing them if one of the wallet services someday lets you get a new address via API call, but this will work for now.
 
