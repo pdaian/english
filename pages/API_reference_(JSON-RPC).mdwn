@@ -36,10 +36,10 @@ AuthServiceProxy automatically generates Python methods corresponding to the fun
 <source lang="python">
 	from authproxy import AuthServiceProxy
 	
-	access = AuthServiceProxy("http://user:password@127.0.0.1:8332")
-	access.getinfo()
-	access.listreceivedbyaddress(6)
-	#access.sendtoaddress("11yEmxiMso2RsFVfBcCa616npBvGgxiBX", 10)
+	bitcoin = AuthServiceProxy("http://user:password@127.0.0.1:8332")
+	bitcoin.getinfo()
+	bitcoin.listreceivedbyaddress(6)
+	#bitcoin.sendtoaddress("11yEmxiMso2RsFVfBcCa616npBvGgxiBX", 10)
 </source>
 
 ## Ruby
