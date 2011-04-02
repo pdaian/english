@@ -1,8 +1,21 @@
 [[!template id=stub]]
 
-Exchanging bitcoins for other forms of currency brings up some issues regarding chargeback fraud. Specifically, payment methods such as credit cards, and PayPal, can be reversed up to 90 days after the transaction took place. In contrast, bitcoin is a "hard currency", once you spend bitcoins, you cannot get them back by 'pulling' from your side. Thus, when you trade bitcoin for a 'soft' currency like paypal or credit card, you open yourself up to the risk of chargeback after you send bitcoin. The buyer may initiate a chargeback by claiming non-receipt of goods, or if a stolen account was used, the real account owner will initiate the process once he notices a charge he didn't make. As a result, it is strongly recommended to not trade 'soft' currency for 'hard' currency with people you do not know or trust. 
+Bitcoin currency exchanges work in a manner similar to banks. One first deposits amounts of money in the currencies supported by the exchange, to his own account in the exchange, uses these balances to trade with other users of the exchange and then withdraws that money. Unlike over-the-counter transactions, there is no risk of losing money due to people not fulfilling their part of the deal, as long as the exchange itself does not commit fraud or withhold money.
 
-##History
+Exchanging is done by placing "buy" or "sell" orders, which the exchange system software then matches with each other. "Buy" orders (or "bids") are offers to buy bitcoins in exchange for another currency at a maximum price-per-bitcoin which is set by the offerer. "Sell" orders (or "asks") are offers to sell bitcoins at a minimum price-per-bitcoin. If the bid price of a buy order is higher than the ask price of a sell order, an exchange can be performed and either the bid order, the sell order or both can be removed from the "order book". Thus, at any given time, there is a price above which there are no more buy orders and a slightly higher price below which there are no more sell orders.
+
+Communication with the Bitcoin currency exchanges is commonly done using a standard web browser, over a secure SSL connection.
+
+The payment methods that are most commonly accepted and used by Bitcoin currency exchanges are:
+
+* Bitcoin transfers
+* Liberty Reserve
+* Bank wires
+* Credit cards
+
+##"Soft currencies" and chargebacks
+
+Exchanging bitcoins for other forms of currency brings up some issues regarding chargeback fraud. Specifically, payment methods such as credit cards, and PayPal, can be reversed up to 90 days after the transaction took place. In contrast, bitcoin is a "hard currency", once you spend bitcoins, you cannot get them back by 'pulling' from your side. Thus, when you trade bitcoin for a 'soft' currency like paypal or credit card, you open yourself up to the risk of chargeback after you send bitcoin. The buyer may initiate a chargeback by claiming non-receipt of goods, or if a stolen account was used, the real account owner will initiate the process once he notices a charge he didn't make. As a result, it is strongly recommended to not trade 'soft' currency for 'hard' currency with people you do not know or trust. 
 
 In January, 2010, an open source currency exchange platform was released by the founder of [[Bitcoin_Central]] (2.1).
 
