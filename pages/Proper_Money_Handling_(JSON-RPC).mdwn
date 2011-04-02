@@ -42,14 +42,17 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 	}
 
 ## Python
-If you are using [python-json-rpc](http://json-rpc.org/wiki/python-json-rpc), you should convert its floating point values to and from the python long type.  For example:
-	from jsonrpc import ServiceProxy
+For python, python-jsonrpc should be avoided, due to poor HTTP/1.1 support and lack of support for converting JSON numbers to Decimal().
+
+The recommended [AuthServiceProxy](http://yyz.us/bitcoin/authproxy.py) properly converts all JSON monetary numbers to Decimal().
+
+	from authproxy import AuthServiceProxy
 	
-	access = ServiceProxy("http://user:password@127.0.0.1:8332")
+	access = AuthServiceProxy("http://user:password@127.0.0.1:8332")
 	info = access.getinfo()
-	balance = long(round(info[['balance']] * 1e8))
+	balance = info[['balance']]
 	amount_to_send = balance / 2
-	access.sendtoaddress('...bitcoin address...', float(amount_to_send / 1e8))
+	access.sendtoaddress('...bitcoin address...', amount_to_send)
 
 [[!tag "Technical"]]
 [[!tag "Developer"]]
