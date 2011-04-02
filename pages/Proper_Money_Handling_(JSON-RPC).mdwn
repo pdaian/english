@@ -9,6 +9,13 @@ The original bitcoin client does proper, full-precision rounding for all values 
 
 The rest of this page gives sample code for various JSON libraries and programming languages.
 
+## BASH
+<source lang="bash">
+	function JSONtoAmount() {
+	printf '%.8f' "$1"  tr -d '.'
+	}
+</source>
+
 ## C/C++
 C/C++ JSON libraries return the JavaScript Number type as type 'double'.  To convert, without loss of precision, from a double to a 64-bit integer multiply by 100,000,000 and round to the nearest integer:
 	int64_t JSONtoAmount(double value) {
