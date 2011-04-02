@@ -24,6 +24,11 @@ C/C++ JSON libraries return the JavaScript Number type as type 'double'.  To con
 To convert to a JSON value divide by 100,000,000.0, and make sure your JSON implementation outputs doubles with 8 or more digits after the decimal point:
 	double forJSON = (double)amount / 1e8;
 
+## Perl
+	sub JSONtoAmount {
+	return sprintf '%.0f', shift * 1e8;
+	}
+
 ## Python
 If you are using [python-json-rpc](http://json-rpc.org/wiki/python-json-rpc), you should convert its floating point values to and from the python long type.  For example:
 	from jsonrpc import ServiceProxy
