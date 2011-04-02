@@ -29,6 +29,11 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 	return sprintf '%.0f', 1e8 * shift;
 	}
 
+## PHP
+	function JSONtoAmount($value) {
+	return round(value * 1e8);
+	}
+
 ## Python
 If you are using [python-json-rpc](http://json-rpc.org/wiki/python-json-rpc), you should convert its floating point values to and from the python long type.  For example:
 	from jsonrpc import ServiceProxy
