@@ -6,3 +6,12 @@ Also, consider using SI prefixes. They are standard throughout the world (except
 
 Can someone fix the name of the page? It's "Scheme", not "Schema". [Luke-jr](User:Luke-jr) 15:35, 10 January 2011 (GMT)
 >  maybe even "URI scheme" to be more precise? since there can be many differenct schemes about stuff. :) --[Nanotube](User:Nanotube) 05:48, 12 January 2011 (GMT)
+
+##### Fallback URI
+On Android an app can register to open with a normal web URI.  This has the advantage of acting as a fallback URI in case there is no app that supports **bitcoin:**.  For example we could propose **<nowiki>https://en.bitcoin.it/wiki/Send/<address>[?][amount=<size>][&][label=<label>][&][message=<message>]</nowiki>**.  If the user had a mobile app that supported bitcoin it would have registered **<nowiki>https://en.bitcoin.it/wiki/Send/</nowiki>** and be launched.  If the user did not have such an app their browser would launch and be directed to **https://en.bitcoin.it/wiki/Send/**.  This page could then inform the user about various apps that support bitcoin transfers and possibly have a link to [[MyBitcoin]] as well.  Maybe **https://bitcoin.org/Send/** would be more appropriate, though that one might not be updated often enough.
+
+* iPhone support
+There is even a way to have this work on iOS devices.  Have the web page redirect to the standard **bitcoin:** scheme.  If an app is present to support this the app will launch, if not the browser the will stay open at the explanation page.
+
+* Upshot
+This fallback proposal will make bitcoin QR codes meaningful regardless of if the user has a bitcoin app installed.--[BitMark](User:BitMark) 16:05, 2 April 2011 (GMT)
