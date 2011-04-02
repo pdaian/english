@@ -30,8 +30,42 @@ Please update this section if you find better settings, or good settings for a c
 ###Gentoo
 An poclbm ebuild can be found [here](http://github.com/bitcoin-gentoo/bitcoin_gentoo_ebuild)
 
+##OpenSUSE
+
+This works on 11.4, it might work on other versions (11.3 is more than likely to work) just replace the "11.4" in the repo URLs with your version number.
+
+Add the Python devel repo:
+
+<code># zypper ar -r http://download.opensuse.org/repositories/devel:/languages:/python/openSUSE_11.4/devel:languages:python.repo</code>
+
+and this user repo, which provides PyOpenCL (take a moment to appreciate this because if "scorot" didn't package it this would be a lot harder):
+
+<code># zypper ar -r http://download.opensuse.org/repositories/home:/scorot/openSUSE_11.4/home:scorot.repo</code>
+
+Refresh your repos:
+
+<code># zypper ref</code>
+
+You will asked to accept the repo keys, respond with 'a' each time.
+
+Install PyOpenCL:
+
+<code># zypper in python-pyopencl</code>
+
+Get the latest version of poclbm with git (`zypper in git` if you don't have git installed):
+
+<code>$ git clone git://github.com/m0mchil/poclbm.git</code>
+
+This will create a poclbm folder in your current directory. Change to it:
+
+<code>$ cd poclbm</code>
+
+And run it:
+
+<code>$ python poclbm.py --user=user --pass=pass --device=0 [add whatever other flags you use]</code>
+
 ##License
-public domain (10.1)
+public domain (11.1)
 
 ##See Also
 
@@ -47,7 +81,7 @@ public domain (10.1)
 
 ##References
 
-10.1: [[http://github.com/m0mchil/poclbm/blob/master/LICENSE]] License file on github
+11.1: [[http://github.com/m0mchil/poclbm/blob/master/LICENSE]] License file on github
 
 
 [[!tag "Miners"]]
