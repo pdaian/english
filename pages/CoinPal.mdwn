@@ -1,8 +1,19 @@
-**CoinPal** is an exchange that accepts [[PayPal]] for relatively small order sizes and a weekly limit on purchases. For new customers, the weekly limit is BTC 40. 14 days after a customer's first order, the weekly limit increases to BTC 60. 45 days after the first order, the limit becomes BTC 80.
+**CoinPal** is an exchange that accepts [[PayPal]] for relatively small order sizes and a weekly limit on purchases. The site was first publicly available on December 31, 2010 (1.1).  On January 14th, 2010 CoinPal introduced an API that allows merchants and others seeking payment to use the service to accept micro-payments (1.2). The operator of the site also operates [[CoinCard]] for [[selling_bitcoins]].
 
-The site was first publicly available on December 31, 2010 (1.1).  On January 14th, 2010 CoinPal introduced an API that allows merchants and others seeking payment to use the service to accept micro-payments (1.2). The operator of the site also operates [[CoinCard]] for [[selling_bitcoins]].
+##Weekly Limits
+There is a limit on the number of bitcoins each customer can buy each week. This limit depends on the amount of time that has passed since the customer's first order.
 
-Those trading on [[Bitcoin OTC|Bitcoin-otc]] can increase their weekly purchase limits by connecting CoinPal to the [[OTC web of trust|Bitcoin-otc]] (1.3).
+
+
+|Minimum days since customer's first order|Weekly limit
+|---|---
+|0|20
+|7|40
+|14|60
+|45|80
+
+
+Those trading on [[Bitcoin OTC|Bitcoin-otc]] can increase their weekly purchase limits by connecting CoinPal to the [[OTC web of trust|Bitcoin-otc]] (2.1).
 
 ##See Also
 
@@ -17,7 +28,7 @@ Those trading on [[Bitcoin OTC|Bitcoin-otc]] can increase their weekly purchase 
 
 1.1: [CoinPal beta - Buying bitcoins with PayPal](http://www.bitcoin.org/smf/index.php?topic=2555.0)  
 1.2: [Re: CoinPal beta - Buying bitcoins with PayPal](http://www.bitcoin.org/smf/index.php?topic=2555.msg38148#msg38148)  
-1.3: [Authenticate with a PGP Key](http://coinpal.ndrix.com/user/gpg)
+2.1: [Authenticate with a PGP Key](http://coinpal.ndrix.com/user/gpg)
 
 
 [[!tag "Exchanges"]]
