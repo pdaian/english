@@ -7,7 +7,7 @@ The calculations are performed by multiple concurrent threads, so as to take adv
 ##Algorithms
 SHA256 hashes can be calculated in many ways by cpu-miner. Depending on the hardware that is used, one of the following supported algorithms will perform best:
 
-* **c:** Linux kernel (but not restricted to Linux) implementation of SHA256.
+* **c:** Linux kernel implementation of SHA256 (supported on all platforms, including Windows) .
 * **4way:** 128-bit SSE2 optimizations which are already available as a compile-time option on the classic Bitcoin client.
 * **via:** Implementation of the Padlock encryption optimizations on VIA CPUs.
 * **cryptopp:** C/C++ Implementation from the Crypto++ library.
