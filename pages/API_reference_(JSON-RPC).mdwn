@@ -55,7 +55,7 @@ Make sure to do:
 Usage:
 	h = ServiceProxy.new('http://user:password@127.0.0.1:8332')
 	puts h.getinfo.call
-	puts h.getbalance.call '0'
+	puts h.getbalance.call 'accname'
 #end
 require 'json'
 require 'rest_client'
