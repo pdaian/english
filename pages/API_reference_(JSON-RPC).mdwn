@@ -30,16 +30,12 @@ See the [[proper money handling page|Proper_Money_Handling_(JSON-RPC)]] for note
 
 ## Python
 
-For Python, either [python-jsonrpc](http://json-rpc.org/wiki/python-json-rpc) or [AuthServiceProxy](http://yyz.us/bitcoin/authproxy.py) are perfect.
+For Python, [AuthServiceProxy](http://yyz.us/bitcoin/authproxy.py) are perfect.
 They automatically generate Python methods corresponding to the functions above.
 
 <source lang="python">
-	try:
-	from authproxy import AuthServiceProxy as ServiceProxy
-	except ImportError:
-	from jsonrpc import ServiceProxy
-	
-	access = ServiceProxy("http://user:password@127.0.0.1:8332")
+	import authproxy
+	access = authproxy.AuthServiceProxy("http://user:password@127.0.0.1:8332")
 	access.getinfo()
 	access.listreceivedbyaddress(6)
 	#access.sendtoaddress("11yEmxiMso2RsFVfBcCa616npBvGgxiBX", 10)
