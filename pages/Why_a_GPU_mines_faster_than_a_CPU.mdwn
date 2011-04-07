@@ -57,7 +57,7 @@ This approximate **2x-3x** performance difference exists across the entire range
 
 Secondly, another difference favoring Bitcoin mining on AMD GPUs instead of Nvidia's is that the mining algorithm is based on SHA-256, which makes heavy use of the 32-bit integer right rotate operation. This operation can be implemented as a single hardware instruction on AMD GPUs, but requires three separate hardware instructions to be emulated on Nvidia GPUs (2 shifts + 1 add). This alone gives AMD another **1.7x** performance advantage (~1900 instructions instead of ~3250 to execute the SHA-256 compression function).
 
-Combined together, these 2 factors make AMD GPUs overall a **3x-5x** faster.
+Combined together, these 2 factors make AMD GPUs overall **3x-5x** faster when mining Bitcoins.
 
 ##See Also
 
