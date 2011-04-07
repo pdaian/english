@@ -12,6 +12,10 @@ Many computers don't have GPU's at all.  A GPU isn't a requirement, it's just th
 
 A GPU is like a CPU, but there are important internal differences that make them suited toward their special tasks.  These are the differences that make Bitcoin mining far more favorable on a GPU.
 
+## Short Answer
+
+A typical CPU core can execute *4* 32-bit instructions per clock (using a 128-bit SSE instruction), whereas a GPU like the Radeon HD 5970 can execute *3200* 32-bit instructions per clock (using its 3200 ALUs or shaders). This is a difference of *800 times more instructions per clock*. As of 2011, the fastest CPUs have up to 6, 8, or 12 cores and a somewhat higher frequency clock (2000-3000 MHz vs. 725 MHz for the Radeon HD 5970), but this is far from enough to compensate for this huge difference.
+
 ## A CPU is an executive
 A CPU is designed primarily to be an executive and make decisions, as directed by the software.  For example, if you type a document and save it, it is the CPU's job to turn your document into the appropriate file type and direct the hard disk to write it as a file.  CPU's can also do all kinds of math, as inside every CPU is one or more "Arithmetic/Logic Units" (ALU's).  CPU's are also highly capable of following instructions of the "if this, do this, otherwise do that".  A large bulk of the structures inside a CPU are concerned with making sure that the CPU is ready to deal with having to switch to a different task on a moment's notice when needed.
 
