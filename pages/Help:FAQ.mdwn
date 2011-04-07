@@ -26,7 +26,7 @@ Technically, a Bitcoin can be divided down to 8 decimals using existing data str
 
 The reward will go from 0.00000001 BTC to 0. Then no more coins will likely be created.  
 
-The calculation is done as a right bitwise shift of a 64-bit signed integer. The integer is equal to the value in BTC * 100,000,000. This is how all Bitcoin balances/values are stored internally.
+The calculation is done as a right bitwise shift of a 64-bit signed integer, which means it is divided by 2 and rounded down. The integer is equal to the value in BTC * 100,000,000. This is how all Bitcoin balances/values are stored internally.
 
 Keep in mind that using current rules this will take nearly 100 years before it becomes an issue and Bitcoins may change considerably before that happens.
 
