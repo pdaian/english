@@ -1,0 +1,25 @@
+A site that will show the cost for electrical power to generate a 50 BTC block given a hash rate, power usage and cost of electricity as inputs.
+
+* [[Difficulty_difficulty]] field: BlockExplorer provides the [current difficulty](http://blockexplorer.com/q/getdifficulty).
+* Hash rate field: the value can determined from your [[miner|tags/Miners]] client, or from the [[mining_hardware_comparison]].
+* Power usage field: the value for a GPU card itself can be determined from the [[mining_hardware_comparison]].  More accurate values would come from a measurement such as that provided by a Kill-A-Watt device, for example.
+* Cost of electricity: Because mining adds to your existing electrical consumption, the rate for mining is the cost of the next kWh, not necessarily your average.  Your utility bill will provide the most accurate picture of what rate you'll be charged for additional consumption (your marginal electrical consumption rate).
+	* U.S. [[http://www.eia.doe.gov/cneaf/electricity/epm/table5_6_a.html power costs per state]]
+	* EU: [domestic](http://www.energy.eu/#Domestic) [industrial](http://www.energy.eu/#Industrial)
+
+Example:
+	A typical [[mining_rig]] with a single ATI HD 5970 with the minimum components (PSU, mobo, HD, graphics card) will consume about 380W.  At the difficulty level on April 9, 2011 (82347) using a modern miner that hash about 600MHash/S with that hardware, the cost of electricity to generate a block is $6.84 USD, using the typical U.S. residential rate (about $0.11/kWh).  
+
+Given that a block is 50 BTC and the BTC/USD market rate on that date was about $0.75 USD, then over 18% of the proceeds from mining went to pay the cost of electricity required to mine that block.
+
+##See Also
+
+* [Global electricity price comparison](http://en.wikipedia.org/wiki/Electricity_pricing#Global_electricity_price_comparison) on Wikipedia
+* [Where To Mine - Prices of Electricity](http://www.bitcoinminer.com/post/2361900289)
+* [Time-of-use electric pricing irrelevant — Mining is 24x7](http://www.bitcoinminer.com/post/2858427974)
+
+##External Links
+
+* [Power Calc](http://uni.kaverit.org/calculate.html) web site
+
+[[!tag "Mining"]]
