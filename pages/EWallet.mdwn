@@ -12,6 +12,8 @@ When bitcoins are stored online the ewallet provider retains full control of tho
 
 * If a payment is made from an eWallet, the transaction's "from" [[address]] is an address for the eWallet provider and not an address reserved specifically for the sender.  Thus if the recipient were to "return" any bitcoins to the same address they were sent from, the sender would not receive those bitcoins.
 
+* Not all ewallet providers reserve a bitcoin address for the account holder indefinitely.  Bitcoin addresses generally work best when one is assign for each use.  There is the risk of showing an address from an ewallet provider in a directory or on a web page (for donations, as an example) as there is the possibility that at the future date when those bitcoins are sent that the intended recipient still has the ewallet account.  The same concern applies should the eWallet provider cease operations.
+
 * There is no guarantee that the amount of bitcoins showing for the account holder's balance are truly being held in reserve by the ewallet provider.
 	* Some providers describe their reserve policy in their terms of service (TOS). For example, [MyBitcoin's TOS](http://www.mybitcoin.com/legal/terms.php) states:
 >  <tt>6. OBLIGATIONS OF MYBITCOIN LLC<br>6.1 MYBITCOIN LLC will ensure that for all Bitcoins in circulation in the MyBitcoin System there is at all times an identical quantity of unencumbered Bitcoins held in MYBITCOIN LLC's master Bitcoin wallet.</tt>
