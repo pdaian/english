@@ -51,11 +51,11 @@ The cooperative mining approach uses a lot less resources on the pool server, si
 Further, the cooperative mining approach allows the clients to use existing miners without any modification, while the puddinpop approach requires the custom pool miner, which are as of now not as efficient on GPU mining as the existing GPU miners.
 [[!img "Smallgeneration.png" size=120x120 title="Puddinpop miners receive coins directly."]]
 
-Additionally, the puddinpop approach of distributing the earnings by way of including precise sub-cent amounts in the generation transaction for the participants, results in the presence of sub-cent bitcoin amounts in your wallet, which are likely to disappear later due to bugs in all current (as of February 2011) bitcoin nodes. (E.g., if you have a transaction with 0.052 in your wallet, and you later send .05 to someone, your .002 will disappear.).
+Additionally, the puddinpop approach of distributing the earnings by way of including precise sub-cent amounts in the generation transaction for the participants, results in the presence of sub-cent bitcoin amounts in your wallet, which are liable to disappear (as unnecessary fees) later due to a bug in old (before 0.3.21) bitcoin nodes. (E.g., if you have a transaction with 0.052 in your wallet, and you later send .05 to someone, your .002 will disappear.).
 
-Puddinpop miners receive coins directly, which eliminates the delay in receiving earnings that is required on cooperative mining servers. However, bitcoind is incapable of detecting generation transactions, so earnings sent directly to MyBitcoin, MtGox, etc. will disappear.
+Puddinpop miners receive coins directly, which eliminates the delay in receiving earnings that is required on cooperative mining servers. However, bitcoind is incapable of detecting generation transactions, so earnings sent directly to MyBitcoin, MtGox, etc. will not be accounted for.
 
-This all seems to point to the cooperative mining approach being the better pool choice.
+This all seems to point to the cooperative mining approach being the better pool choice for now.
 
 ##See Also
 
