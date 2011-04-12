@@ -9,7 +9,7 @@ It is envisioned that over time the cumulative effect of collecting transaction 
 
 It works like this:
 
-* Whoever sends the transaction is often able to guess what the appropriate fee will be based on their own fee rules.  The official client will always assess the transaction, and if a fee will typically be expected, it will not allow you to send the transaction without the calculated fee.
+* Whoever sends the transaction is often able to guess what the appropriate fee will be based on their own fee rules.  The [original client](Original Bitcoin client) will always assess the transaction, and if a fee will typically be expected, it will not allow you to send the transaction without the calculated fee.
 * The user is prompted to confirm the fee before the transaction is sent.
 * The sender makes a transaction with more coins in the "In" portion than the "Out" portion so that there are "leftovers" not assigned to any address.
 * Whoever ends up publishing the [[block]] which contains this transaction will take these (and any) "leftover" coins. They are included with their normal generated coins and is an extra "bonus" for creating the block.
@@ -26,6 +26,8 @@ Current "Default" Rules for the regular Bitcoin client (Bitcoin 0.3.20)
 	* If the blocksize is more than 250 kB, transactions get increasingly more expensive as the blocksize approaches the limit of 500 kB. Sending a transaction when the blocksize is 400 kB will cost 5 times the normal amount; sending when it's 499 kB will cost 500x, etc.
 * Transactions within each fee tier are prioritized based on several factors. Most importantly, a transaction has more priority if the coins it is using have a lot of confirmations. Someone spamming the network will almost certainly be re-using the same coins, which will lower the priority of their transactions. Priority is also increased for transactions with more BTC, and reduced for transactions with more data.
 * If the blocksize is over 4kB, free transactions in the above rules are only allowed if the transaction's priority is above a certain level.
+
+Note that if you want to send a transaction with less than the "default" rules, or if you are a miner and want to include them in your blocks, you may need to peer with the [[Free transaction relay network|Free_transaction_relay_policy]].
 
 An advantage for bitcoin users to include a transaction fee is that the likelihood of getting a transaction included into the next block is going to be higher than if a transaction fee is not included.  This is a trade off of time vs. money put forward on the transaction fees, as you can be patient with a low or non-existent fee included in a transaction, or you can make sure that the transaction is processed immediately by including a higher fee than is typical.
 
