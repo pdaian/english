@@ -23,6 +23,7 @@ Please see the [[Infrastructure]] page for an overview of where this protocol fi
 * Binary can include custom transactions as-is for transmission
 * Protobuf (binary) seems efficient and easy to use from all major languages
 * JSON implementations tend to be buggy
+* YAML representation is both human readable and efficient for parser (available for most PLs)
 
 ### Cooperative mining
 The protocol should support submitting completed blocks, such that it can get (just) addresses from an upstream pool to generate to, and send all completed blocks to that pool for verification and counting (and possibly submission to the network). This can reduce the pool's load.
