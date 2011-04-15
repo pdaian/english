@@ -164,17 +164,19 @@ Given the inability of governments to manipulate and monopolize the Bitcoin syst
 
 ## Point of sale with bitcoins isn't possible because of the 10 minute wait for confirmation
 
-Tansactions **can** take tens of minutes to become confirmed, and this won't change for the forseeable future. Even after the computing power of the network is orders of magnitude larger than today, the difficulty of generating a block will self-adjust to maintain a target of 6 blocks per hour. Two potential solutions to allow POS transactions are:
+Transactions **can** take tens of minutes to become confirmed, and this won't change for the forseeable future. Even after the computing power of the network is orders of magnitude larger than today, the difficulty of generating a block will self-adjust to maintain a target of 6 blocks per hour. Three potential solutions to allow POS transactions are:
 
 1) For small transactions, simply assume the customer isn't ripping you off. Give the customer his latte immediately after the transaction posts to the network. The transaction should propagate through the network almost instantly, allowing the seller to see the transaction within seconds (albeit with zero confirmations.) The cost of a double-spend attack should make small-scale fraud not worthwhile.
 
-2) Create a network of transaction hubs. These entities would communicate using a common API. They would float short-term loans between each other to facilitate instant transactions. 
+2) Utilize a ['listening' period](http://www.bitcoin.org/smf/index.php?topic=423.msg3819#msg3819) prior to rendering the service or good.  This has yet to be formally implemented in the standard bitcoin client, but would allow a vendor to receive the transaction and then monitor the bitcoin network for a certain period of time (maybe 10 seconds) for possible double spends.  Vendors might utilize specialized payment processors with multiple well-connected nodes for this purpose.  As explained by Satoshi, the network nodes only accept the first version of a transaction they receive to incorporate into the block they're trying to generate.  When you broadcast a transaction, if someone else broadcasts a double-spend at the same time, it's a race to propagate to the most nodes first.  If one has a slight head start, it'll geometrically spread through the network faster and get most of the nodes.  If a double-spend is detected, the vendor is notified: no latte.
+
+3) Create a network of transaction hubs. These entities would communicate using a common API. They would float short-term loans between each other to facilitate instant transactions. 
 
 Imagine that Alice uses Carol's Clearinghouse as her hub, and Bob uses Dave's Anonymous Exchange. Both Alice and Bob have accounts with their respective hubs, and have already deposited some Bitcoins in their accounts. When Alice wants to buy a latte from Bob at a point of sale, Alice tells Carol "I want to send Bob *x* Bitcoins. He uses Dave's Anonymous Exchange." After checking that Alice's account does contain at least *x* Bitcoins, Carol sends a message to Dave, saying "Credit Bob's account with *x* bitcoins immediately; I'll send you the real Bitcoins in the next block." Bob instantly sees his balance increase, and gives Alice her latte.
 
 As always, trust is required - Alice has to trust Carol, and the hubs have to trust each other. Due to competition, various hubs could develop with vastly different fee structures, membership requirements, trustability, etc.
 
-(But the point of bitcoin is you don't need trust to execute the transaction, in the above you replaced the bitcoins with a trust-based centralized authority.)
+(But the point of bitcoin is you don't need trust to execute the transaction, in the above description of option 3 you replaced the bitcoins with a trust-based centralized authority.)
 
 ## After 21 million coins are mined, no one will generate new blocks
 
