@@ -6,11 +6,11 @@ A **browser-based wallet** or **wallet service** is an online account with an ex
 * An account with a wallet service can generally be established in just minutes.
 * Some bitcoin users store some or all of their bitcoins in a browser-based wallet to avoid having to worry about keeping a local wallet [[secure|Securing_your_wallet]].
 
-##Risks
+##Things to be aware of
 
 When bitcoins are stored online, the provider retains full control of those amounts.
 
-* If a payment is made from an allet, the transaction's "from" [[address]] is an address for the eWallet provider and not an address reserved specifically for the sender.  Thus if the recipient were to "return" any bitcoins to the same address they were sent from, the sender would not receive those bitcoins.
+* If a payment is made from an online wallet, the transaction's "from" [[address]] is an address for the eWallet provider and not an address reserved specifically for the sender.  This is because the wallet service provider may service the payment from any coins in its possession - your balance is not associated with any particular coins, any more than your balance at your local bank is associated with any specific bills.  Thus if the recipient were to "return" any bitcoins to the same address they were sent from, the sender would not receive those bitcoins.
 
 * Not all ewallet providers reserve a bitcoin address for the account holder indefinitely.  Bitcoin addresses generally work best when one is assign for each use.  There is the risk of showing an address from an ewallet provider in a directory or on a web page (for donations, as an example) as there is the possibility that at the future date when those bitcoins are sent that the intended recipient still has the ewallet account.  The same concern applies should the eWallet provider cease operations.
 
@@ -22,7 +22,7 @@ When bitcoins are stored online, the provider retains full control of those amou
 	* Some eWallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same eWallet provider.  For example, MyBitcoin will report an error when attempting to send an amount smaller than 0.01 BTC to a Bitcoin address that is not for another MyBitcoin account:
 >  <tt>Payment amount is too small for a Bitcoin P2P payment! Try a BC0.01 or higher!</tt>
 
-* The eWallet provider's security may be vulnerable to loss or theft as well.
+* The wallet service provider's wallet may be vulnerable to security breaches, loss, or theft.  Because Bitcoin transactions are irreversible, there may be no recovery if a provider's master wallet is compromised.
 
 ##See Also
 
