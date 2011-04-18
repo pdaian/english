@@ -44,6 +44,18 @@ Absolutely!  Even before the creation of coins ends, the use of [[transaction fe
 
 Not at all. Because of the law of supply and demand, when fewer Bitcoins are available the ones that are left will be in higher demand, and therefore will have a higher value. So when Bitcoins are lost, the the remaining Bitcoins will increase in value to compensate. As the value of Bitcoins increase, the number of Bitcoins required to purchase an item **de**creases. This is known as a [[deflationary economic model|Deflationary_spiral]]. Eventually, if and when it gets to the point where the largest transaction is less that 1BTC, then it's a simple matter of shifting the decimal place to the right a few places, and the system continues.
 
+### If every transaction is broadcast via the network, does BitCoin scale?
+
+Yes. With some modifications to the software, BitCoin nodes could easily keep up with both VISA and MasterCard combined, using only fairly modest hardware (a couple of racks of machines using todays hardware). It's worth noting that the MasterCard network is structured somewhat like BitCoin itself - as a peer to peer broadcast network. Learn more about [[Scalability]].
+
+### Do you have to wait 10 minutes in order to buy or sell things with BitCoin?
+
+No, it's reasonable to sell things without waiting for a confirmation as long as the transaction is not of high value.
+
+When people ask this question they are usually thinking about applications like supermarkets or snack machines, as discussed in [this thread from July 2010](http://www.bitcoin.org/smf/index.php?topic=423.msg3819#msg3819). Zero confirmation transactions still show up in the GUI, but you cannot spend them. You can however reason about the risk involved in assuming you *will* be able to spend them in future. In general, selling things that are fairly cheap (like snacks, digital downloads etc) for zero confirmations will not pose a problem if you are running a well connected node.
+
+The reason behind the 10 minutes figure is that's the average time taken to find a block. Each block found shows as a "confirmation" in the BitCoin GUI. The more confirmations you have, the less risk there is of a transaction reversal. Only 6 blocks or 1 hour is enough to make reversal computationally impractical. This is dramatically better than credit cards which can see chargebacks occur up to three months after the original transaction!
+
 ##Economy
 ### Where does the value of Bitcoin stem from? What backs up Bitcoin?
 Bitcoins have value because they are accepted as payment by many. See the [[list of Bitcoin-accepting sites|Trade]].
