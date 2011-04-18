@@ -22,7 +22,7 @@ When bitcoins are stored online, the provider retains full control of those amou
 	* Some eWallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same eWallet provider.  For example, MyBitcoin will report an error when attempting to send an amount smaller than 0.01 BTC to a Bitcoin address that is not for another MyBitcoin account:
 >  <tt>Payment amount is too small for a Bitcoin P2P payment! Try a BC0.01 or higher!</tt>
 
-* The wallet service provider's wallet may be vulnerable to security breaches, loss, or theft.  Because Bitcoin transactions are irreversible, there may be no recovery if a provider's master wallet is compromised.
+* The wallet service provider's wallet may be vulnerable to security breaches, loss, or theft.  Because Bitcoin transactions are irreversible, there may be no recovery if a provider's master wallet is compromised.  Wallet providers who implement preventative controls - such as keeping their reserves in an [[offline_wallet]] - are likely to be safer.
 
 ##See Also
 
