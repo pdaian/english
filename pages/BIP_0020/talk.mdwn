@@ -10,8 +10,7 @@ Can someone fix the name of the page? It's "Scheme", not "Schema". [Luke-jr](Use
 ##### Numerical Syntax
 
 * Wouldn't it be better if we used the more standard "e" to represent the exponent? e.g. 5e8 = 500,000,000. - [Weavejester](User:Weavejester) 11:18 PM, 18 April 2011 (GMT)
-
-* On a similar note, it's more common to use a "0x" prefix to denote hexadecimal numbers, e.g. 0xf00. - [Weavejester](User:Weavejester) 11:29 PM, 18 April 2011 (GMT)
+	* Ah, I see exponents are also allowed for hexadecimals, which would preclude the use of "e". What's the reason for allowing both decimal and hexadecimal value strings? Are there particular use-cases where hex is useful? - [Weavejester](User:Weavejester) 12:25 AM, 19 April 2011 (GMT)
 
 ##### Fallback URI
 On Android an app can register to open with a normal web URI.  This has the advantage of acting as a fallback URI in case there is no app that supports **bitcoin:**.  For example we could propose **<nowiki>https://en.bitcoin.it/wiki/Send/<address>[?][amount=<size>][&][label=<label>][&][message=<message>]</nowiki>**.  If the user had a mobile app that supported bitcoin it would have registered **<nowiki>https://en.bitcoin.it/wiki/Send/</nowiki>** and be launched.  If the user did not have such an app their browser would launch and be directed to **https://en.bitcoin.it/wiki/Send/**.  This page could then inform the user about various apps that support bitcoin transfers and possibly have a link to [[MyBitcoin]] as well.  Maybe **https://bitcoin.org/Send/** would be more appropriate, though that one might not be updated often enough.
