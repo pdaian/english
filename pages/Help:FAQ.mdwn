@@ -48,13 +48,17 @@ Not at all. Because of the law of supply and demand, when fewer Bitcoins are ava
 
 Yes. With some modifications to the software, BitCoin nodes could easily keep up with both VISA and MasterCard combined, using only fairly modest hardware (a couple of racks of machines using todays hardware). It's worth noting that the MasterCard network is structured somewhat like BitCoin itself - as a peer to peer broadcast network. Learn more about [[Scalability]].
 
+### Why do I have to wait 10 minutes before I can spend money I received?
+
+The reason you have to wait 10 minutes is that's the average time taken to find a block. It can be significantly more or less time than that depending on luck, 10 minutes is simply the average case. 
+
+Blocks (shown as "confirmations" in the GUI) are how the BitCoin achieves consensus on who owns what. Once a block is found everyone agrees that you now own those coins, so you can spend them again. Until then it's possible that some network nodes believe otherwise, if somebody is attempting to defraud the system by reversing a transaction. The more confirmations a transaction has, the less risk there is of a reversal. Only 6 blocks or 1 hour is enough to make reversal computationally impractical. This is dramatically better than credit cards which can see chargebacks occur up to three months after the original transaction!
+
 ### Do you have to wait 10 minutes in order to buy or sell things with BitCoin?
 
 No, it's reasonable to sell things without waiting for a confirmation as long as the transaction is not of high value.
 
 When people ask this question they are usually thinking about applications like supermarkets or snack machines, as discussed in [this thread from July 2010](http://www.bitcoin.org/smf/index.php?topic=423.msg3819#msg3819). Zero confirmation transactions still show up in the GUI, but you cannot spend them. You can however reason about the risk involved in assuming you *will* be able to spend them in future. In general, selling things that are fairly cheap (like snacks, digital downloads etc) for zero confirmations will not pose a problem if you are running a well connected node.
-
-The reason you have to wait 10 minutes for a confirmation is that's the average time taken to find a block. The more confirmations you have, the less risk there is of a transaction reversal. Only 6 blocks or 1 hour is enough to make reversal computationally impractical. This is dramatically better than credit cards which can see chargebacks occur up to three months after the original transaction!
 
 ##Economy
 ### Where does the value of Bitcoin stem from? What backs up Bitcoin?
