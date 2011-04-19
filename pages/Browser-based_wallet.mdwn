@@ -9,21 +9,22 @@ A **browser-based wallet** or **wallet service** is an online account with an ex
 
 ##Things to be aware of
 
-When bitcoins are stored online, the provider retains full control of those amounts.
+When bitcoins are stored online, the provider retains full control of those amounts.  You are trusting a third party to maintain your Bitcoin balance on your behalf.  In comparison, if you run the Bitcoin software yourself, you are in full control of your coins so long as the wallet file stored on your computer is kept secret and secure.
 
-* If a payment is made from an online wallet, the transaction's "from" [[address]] is an address for the eWallet provider and not an address reserved specifically for the sender.  This is because the wallet service provider may service the payment from any coins in its possession - your balance is not associated with any particular coins, any more than your balance at your local bank is associated with any specific bills.  Thus if the recipient were to "return" any bitcoins to the same address they were sent from, the sender would not receive those bitcoins.
+Other relevant things:
 
-* Not all ewallet providers reserve a bitcoin address for the account holder indefinitely.  Bitcoin addresses generally work best when one is assign for each use.  There is the risk of showing an address from an ewallet provider in a directory or on a web page (for donations, as an example) as there is the possibility that at the future date when those bitcoins are sent that the intended recipient still has the ewallet account.  The same concern applies should the eWallet provider cease operations.
+* If a payment is made from an online wallet, the transaction's "from" [[address]] is an address for the wallet provider and not an address reserved specifically for the sender.  This is because the wallet service provider may service the payment from any coins in its possession - your balance is not associated with any particular coins, any more than your balance at your local bank is associated with any specific bills.  Thus if the recipient were to "return" any bitcoins to the same address they were sent from, the sender would not receive those bitcoins.
 
-* There is no guarantee that the amount of bitcoins showing for the account holder's balance are truly being held in reserve by the ewallet provider.
+* Not all wallet providers reserve a bitcoin address for the account holder indefinitely.  Bitcoin addresses generally work best when one is assigned for each use.  There is the risk of showing an address from a wallet provider in a directory or on a web page (for donations, as an example) as there is the possibility that at the future date when those bitcoins are sent that the intended recipient still has the wallet account.  The same concern applies should the wallet provider cease operations.
+
+* There is no trivial way to guarantee that the amount of bitcoins showing for the account holder's balance are truly being held in reserve by the wallet provider.
 	* Some providers describe their reserve policy in their terms of service (TOS). For example, [MyBitcoin's TOS](http://www.mybitcoin.com/legal/terms.php) states:
 >  <tt>6. OBLIGATIONS OF MYBITCOIN LLC<br>6.1 MYBITCOIN LLC will ensure that for all Bitcoins in circulation in the MyBitcoin System there is at all times an identical quantity of unencumbered Bitcoins held in MYBITCOIN LLC's master Bitcoin wallet.</tt>
 
-* Transactions to a Bitcoin address from the same eWallet provider are completed internally and will not be processed on the Bitcoin P2P network.  Auditing tools such as the [[Block_Explorer]] will not show any activity for this transaction.  Thus the sender cannot prove that an amount of Bitcoins was truly sent to that Bitcoin address.
-	* Some eWallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same eWallet provider.  For example, MyBitcoin will report an error when attempting to send an amount smaller than 0.01 BTC to a Bitcoin address that is not for another MyBitcoin account:
->  <tt>Payment amount is too small for a Bitcoin P2P payment! Try a BC0.01 or higher!</tt>
+* Transactions to a Bitcoin address from the same wallet provider are usually completed internally and, if so, will not be processed on the Bitcoin P2P network.  Auditing tools such as the [[Block_Explorer]] will not show any activity for this transaction.
+	* Some wallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same wallet provider.  For example, MyBitcoin will report an error when attempting to send an amount smaller than 0.01 BTC to a Bitcoin address that is not for another MyBitcoin account.
 
-* The wallet service provider's wallet may be vulnerable to security breaches, loss, or theft.  Because Bitcoin transactions are irreversible, there may be no recovery if a provider's master wallet is compromised.  Wallet providers who implement preventative controls - such as keeping their reserves in an [[offline_wallet]] - are likely to be safer.
+* The wallet service provider's wallet may be vulnerable to security breaches, loss, or theft.  Because Bitcoin transactions are irreversible, there may be limited or no recovery if a provider's master wallet is compromised.  Wallet providers who implement preventative controls - such as keeping their reserves in an [[offline_wallet]] - are likely to be safer.
 
 ##See Also
 
