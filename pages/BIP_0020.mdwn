@@ -34,7 +34,18 @@ The **fragment** is an optional part separated from the front parts by a hash ("
 * label: Label for that address (e.g. name of receiver)
 * address: bitcoin address
 * message: optional message that is shown to the user after scanning the QR code
-* size: amount of base bitcoin units (cuBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC nor TonalBitCoins/TBC)
+* size: amount of base bitcoin units (cuBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC nor TonalBitCoins/TBC; see below)
+
+#### Transfer amount/size
+
+If an amount is provided, it may be specified either in decimal or, when prefixed with a single "x" character, hexadecimal.
+The number SHOULD be followed by "X" <digits> to signify an exponent to the base multiplier.
+That is, "X8" multiplies your number by 100,000,000.
+For decimal values, this means the standard BTC unit.
+For hexadecimal values, this means ᵇTBC units (which are equivalent to 42.94967296 BTC).
+If exponent is omitted, implementations SHOULD assume X8 for decimal numbers, and X4 for hexadecimal numbers.
+I.e. amount=50.00 is treated as 50 BTC, and amount=x40 is treated as 40 TBC.
+When specifying bitcoin base units, "X0" SHOULD be used.
 
 ### Examples
 
@@ -45,19 +56,19 @@ Address with name:
 	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?label=Luke-Jr
 
 Request to send 20.30 BTC to "Luke-Jr":
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=2030000000&label=Luke-Jr
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=20.3X8&label=Luke-Jr
 
 Request to send 400 TBC:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=26214400
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=x400X4
 
 Request to send 4000 TBC:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=1073741824
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=x4X7
 
 Request to send 5 uBTC:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=500
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=5X2
 
 Request to send 50 BTC with message:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=5000000000&label=Luke-Jr&message=Donation%20for%20project%20xyz
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=50X8&label=Luke-Jr&message=Donation%20for%20project%20xyz
 
 Characters must be URI encoded properly.
 
@@ -69,9 +80,73 @@ Characters must be URI encoded properly.
 	bitcoinparams   = *bitcoinparam
 	bitcoinparam    = amountparam  labelparam  messageparam
 	amountparam     = "amount=" amount
-	amount          = digits
+	amount          = amountdecimal  amounthex
+	amountdecimal   = digits  [digits]("X")
+	amounthex       = "x" hexdigits  [hexdigits]("X")
 	labelparam      = "label=" *uchar
 	messageparam    = "label=" *uchar
+
+### Parsing amount
+#### ECMAScript
+	reAmount = /^(([[\d.]]+)(X(\d+))?x([[\da-f]]*)(\.([[\da-f]]*))?(X([[\da-f]]+))?)$/i;
+	function parseAmount(txt) {
+	var m = txt.match(reAmount);
+	return m[[5]] ? (
+	(
+	parseInt(m[[5]], 16) +
+	(m[[7]] ? (parseInt(m[[7]], 16) * Math.pow(16, -(m[[7]].length))) : 0)
+	) * (
+	m[[9]] ? Math.pow(16, parseInt(m[[9]], 16)) : 0x10000
+	)
+	) : (
+	m[[2]]
+	*
+	(m[[4]] ? Math.pow(10, m[[4]]) : 1e8)
+	);
+	}
+
+#### Python
+	m = re.match(r'^(([[\d.]]+)(X(\d+))?x([[\da-f]]*)(\.([[\da-f]]*))?(X([[\da-f]]+))?)$', amount, re.IGNORECASE)
+	if m.group(5):
+	amount = float(int(m.group(5), 16))
+	if m.group(7):
+	amount += float(int(m.group(7), 16)) * pow(16, -(len(m.group(7))))
+	if m.group(9):
+	amount *= pow(16, int(m.group(9), 16))
+	else:
+	amount *= 0x10000
+	else:
+	amount = Decimal(m.group(2))
+	if m.group(4):
+	amount *= 10 ** int(m.group(4))
+	else:
+	amount *= 100000000
+
+#### C#
+	Regex amountExpression = new Regex(@"^(([[\d.]]+)(X(\d+))?x([[\da-f]]*)(\.([[\da-f]]*))?(X([[\da-f]]+))?)$", RegexOptions.IgnoreCase);
+	Match match = amountExpression.Match(value);
+	if (match.Success)
+	{
+	if (match.Groups[[5]].Success)
+	{
+	long hexDecimal = 0;
+	if (match.Groups[[7]].Success)
+	hexDecimal = Convert.ToInt64(match.Groups[[7]].Value, 16) * (long)Math.Pow(16, -match.Groups[[7]].Length);
+	
+	long hexExponent = 0x10000;
+	if (match.Groups[[9]].Success)
+	hexExponent = (long)Math.Pow(16, Convert.ToInt32(match.Groups[[9]].Value, 16));
+	
+	Amount = (Convert.ToInt64(match.Groups[[5]].Value, 16) + hexDecimal) * hexExponent;
+	}
+	else
+	{
+	long decimalExponent = 100000000;
+	if (match.Groups[[4]].Success)
+	decimalExponent = (long)Math.Pow(10, int.Parse(match.Groups[[4]].Value));
+	Amount = (long)(decimal.Parse(match.Groups[[2]].Value) * decimalExponent);
+	}
+	}
 
 ##Requirements
 
@@ -90,7 +165,7 @@ For the same reason I am for using '&' as a delimiter for key-value pairs. Peopl
 
 ###Keep it simple
 Don't explicitly write down information that can be inferred. Don't mark the address as an address. If there is no address, this does lose much of its utility. We could, however, specify 'address' as a reserved word, so that <code>
-bitcoin:address?amount=5000000000
+bitcoin:address?amount=50X8
 </code>
 would initiate a transaction with the amount filled in, but with a blank address. I am not convinced that there is a use case, though.
 
