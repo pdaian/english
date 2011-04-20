@@ -39,25 +39,25 @@ The **fragment** is an optional part separated from the front parts by a hash ("
 ### Examples
 
 Just the address:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L
 
 Address with name:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?label=Luke-Jr
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?label=Luke-Jr
 
-Request to send 20.30 BTC to Luke-Jr:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=2030000000&label=Luke-Jr
+Request to send 20.30 BTC to "Luke-Jr":
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=2030000000&label=Luke-Jr
 
-Request to send 400 TBC to Luke:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=26214400
+Request to send 400 TBC:
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=26214400
 
-Request to send 4000 TBC to Luke:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=1073741824
+Request to send 4000 TBC:
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=1073741824
 
 Request to send 5 uBTC:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=500
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=500
 
 Request to send 50 BTC with message:
-	bitcoin:1KczVqwopWXQdFLe5sNQbpCq7yGSmXx2oo?amount=5000000000&label=Luke-Jr&message=Donation%20for%20project%20xyz
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=5000000000&label=Luke-Jr&message=Donation%20for%20project%20xyz
 
 Characters must be URI encoded properly.
 
@@ -78,7 +78,7 @@ Characters must be URI encoded properly.
 ###Payment identifiers, not person identifiers
 In my opinion, the most basic idea of the URI scheme (as this is a currency) is to facilitate payment. So the URIs should represent first and foremost payments. If it represents something else, this needs to be specified. Thus
 <code>
-bitcoin:13guMzcGPvdD3qjQvCoNc1w5XAgJ638KaQ
+bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L
 </code>
 represents a **payment** to me using my bitcoin address, not my bitcoin address itself. So after parsing the URI (via link/qr/whatever) the application should open a transaction window with the address filled in. You then need to add an amount and confirm the payment.
 If your application is smart, it will also have a button "just store the address". But the point I am trying to make is that the default use of the URI should be for payment, nor for exchanging addresses.
