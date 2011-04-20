@@ -24,3 +24,6 @@ This fallback proposal will make bitcoin QR codes meaningful regardless of if th
 
 ## Use-cases - buy this link
 On the buy-this link, perhaps we should also incorporate an optional transaction id or something which would be passed along to the bitcoin client. Not really transaction but some sort of arbitrary data, only meaningful to the merchant. Something an online merchant can use to verify which transaction it has received is relevant to a purchase. [Dantman](User:Dantman) 20:45, 18 April 2011 (GMT)
+
+##### Tonal/Hex support
+Why is Tonal/Hex part of the spec?  If a couple users want to use a different unit system that is fine, but that doesn't mean we need to complicate the protocol for them.  Tonal already needs to be converted to normal BTC before transferring, why is that not part of this spec.  Also, jgarzik/others showed no interest in implementing URI in the main bitcoin client as long as there is tonal/hex support in the spec.  [BlueMatt](User:BlueMatt) 12:51, 20 April 2011 (GMT)
