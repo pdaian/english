@@ -1,1 +1,8 @@
 I'm adding some hexdumps of messages and data structures and descriptions of how these are interpreted in order to help others understand these protocol and data structures.  It's a bit redundant, so any ideas as to how to remove some of the redundancy while keeping the knowledge accessible are welcome (feel free to make the changes yourself!). -- [X6763](User:X6763)
+
+Is the checksum in the addr sample correct?  Here's what I get using OpenSSL (sorry for long lines):
+SHA256("\x01\xe2\x15\x10\x4d\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\x0a\x00\x00\x01\x20\x8d") = 
+d6 88 65 c8 20 61 d5 e2 54 52 b5 5b 52 17 98 b1 11 50 85 96 2e 49 e8 fd da b7 f4 fb a3 9c d8 2c
+and SHA256 of that is
+ed 52 39 9b 56 8e d8 d5 9a 83 72 9c 11 6f 87 d0 be f2 84 e9 98 f3 47 7c 98 61 16 9a b1 2e ed 5c
+... I have a similar fault in the tx sample, but one at a time ;-) It could easily be I'm using OpenSSL incorrectly, so wanted to get confirmation -- [AndyParkins](User:AndyParkins)
