@@ -4,7 +4,7 @@ Also, consider using SI prefixes. They are standard throughout the world (except
 
 * SI/decimal is the inferior competition/enemy of the superior Tonal system. That is, to be avoided. (Chinese is a standard language throughout most of the world too! And whatever the currency of China is-- should we not use bitcoins??) [Luke-jr](User:Luke-jr) 15:05, 10 January 2011 (GMT)
 
-##### Exponents
+## Exponents
 
 * Wouldn't it be better if we used the more standard "e" to represent the exponent? e.g. 5e8 = 500,000,000. [Weavejester](User:Weavejester) 11:18 PM, 18 April 2011 (GMT)
 >  An older draft used this, but when implementing, it was quickly noted to conflict with the 'e' hexadecimal digit. --[Luke-jr](User:Luke-jr) 16:04, 19 April 2011 (GMT)
@@ -13,7 +13,7 @@ Also, consider using SI prefixes. They are standard throughout the world (except
 
 * Why are exponents even used to begin with? It is far, far simpler to just use the decimal values and I would almost guarantee that most people will always write their URIs using decimal amounts as its far simpler to write and is still valid.  [BlueMatt](User:BlueMatt) 12:46, 20 April 2011 (GMT)
 
-##### Fallback URI
+## Fallback URI
 On Android an app can register to open with a normal web URI.  This has the advantage of acting as a fallback URI in case there is no app that supports **bitcoin:**.  For example we could propose **<nowiki>https://en.bitcoin.it/wiki/Send/<address>[?][amount=<size>][&][label=<label>][&][message=<message>]</nowiki>**.  If the user had a mobile app that supported bitcoin it would have registered **<nowiki>https://en.bitcoin.it/wiki/Send/</nowiki>** and be launched.  If the user did not have such an app their browser would launch and be directed to **https://en.bitcoin.it/wiki/Send/**.  This page could then inform the user about various apps that support bitcoin transfers and possibly have a link to [[MyBitcoin]] as well.  Maybe **https://bitcoin.org/Send/** would be more appropriate, though that one might not be updated often enough.
 
 * iPhone support
@@ -25,5 +25,5 @@ This fallback proposal will make bitcoin QR codes meaningful regardless of if th
 ## Use-cases - buy this link
 On the buy-this link, perhaps we should also incorporate an optional transaction id or something which would be passed along to the bitcoin client. Not really transaction but some sort of arbitrary data, only meaningful to the merchant. Something an online merchant can use to verify which transaction it has received is relevant to a purchase. [Dantman](User:Dantman) 20:45, 18 April 2011 (GMT)
 
-##### Tonal/Hex support
+## Tonal/Hex support
 Why is Tonal/Hex part of the spec?  If a couple users want to use a different unit system that is fine, but that doesn't mean we need to complicate the protocol for them.  Tonal already needs to be converted to normal BTC before transferring, why is that not part of this spec.  Also, jgarzik/others showed no interest in implementing URI in the main bitcoin client as long as there is tonal/hex support in the spec.  [BlueMatt](User:BlueMatt) 12:51, 20 April 2011 (GMT)
