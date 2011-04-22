@@ -50,7 +50,7 @@ The connection should be successful and you should see the server's
 certificate details.  If you press return twice, you should get a
 'HTTP/1.0 401 Authorization Required' response.
 
-====== Client setup ======
+## Client setup
 
 Once the server is accepting https connections, to be secure you should
 make sure the client is actually connecting to the bitcoin server and
@@ -64,6 +64,7 @@ stream_context_set_default().
 
 If you can't validate using the server certificate, you should connect
 to the server using its IP address instead of its host name.
+
 ====== bitcoin.conf Options ======
 
 All HTTPS-JSON-RPC-related bitcoin.conf options:
