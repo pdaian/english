@@ -1,4 +1,6 @@
-Free software PySide RPC client by [genjix](User:genjix) and [Luke-Jr](User:Luke-Jr).
+Free software PySide RPC client open to a diverse community.
+Additional translations and features are welcome, no matter how obscure.
+Principal authors: [genjix](User:genjix) and [Luke-Jr](User:Luke-Jr)
 
 ##Features
 
@@ -7,6 +9,27 @@ Free software PySide RPC client by [genjix](User:genjix) and [Luke-Jr](User:Luke
 * Supports [[bitcoin: URIs|URI_Scheme]]
 * Can connect to remote JSON-RPC
 * Can run local "embedded" bitcoind
+
+##Current version (0.0.1.beta1)
+
+* [Windows installer](http://luke.dashjr.org/programs/bitcoin/files/Spesmilo_0.0.1.beta1_i386_windows.exe) -- Requires Administrator to install or you will get an error
+* [Source code](http://luke.dashjr.org/programs/bitcoin/files/Spesmilo_0.0.1.beta1_source.tbz2)
+
+###Gentoo install
+	layman -o https://gitorious.org/bitcoin/gentoo/blobs/raw/master/overlay.xml -f -a bitcoin
+	emerge -a spesmilo #(you may need to keyword some packages)
+
+###Quick start (from source)
+	# Dependencies: PySide, ImageMagick
+	make local
+	make
+	./spesmilo
+
+To install:
+	make install
+
+To install with bitcoin: URI support for KDE:
+	make install KDESERVICEDIR="/usr/share/kde4/services"
 
 ##Screenshots
 <gallery>
