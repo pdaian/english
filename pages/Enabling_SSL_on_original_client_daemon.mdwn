@@ -85,6 +85,6 @@ All HTTPS-JSON-RPC-related bitcoin.conf options:
 
 ## Known Problems
 
-As of October 2010, Google's App Engine urlfetch service only supports the following ciphers: RC4-MD5, RC4-SHA, DES-CBC3-SHA  None of those are secure enough to match the default rpcsslciphers list.  The workaround is to specify:
+As of April 2011, Google's App Engine urlfetch service only supports the following ciphers: RC4-MD5, RC4-SHA, DES-CBC3-SHA  None of those are secure enough to match the default rpcsslciphers list.  The workaround is to specify:
 	rpcsslciphers=DEFAULT:@STRENGTH
 in the bitcoin.conf file.
