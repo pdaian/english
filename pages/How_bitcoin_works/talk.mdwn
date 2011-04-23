@@ -1,0 +1,7 @@
+## predict a cryptographic hash function
+
+"Both the chaining, and the difficulty, are achieved via the SHA256 cryptographic hash function. The hash function essentially takes a block of data, and transforms it, in an effectively-impossible to reverse or to predict way, into a large integer. Making the slightest change to a block of data changes its hash unpredictably"
+
+IMO the words "predict", "unpredictably" is misleading. The SHA256 cryptographic hash function is deterministic, so its result can be predicted by... the same function. :)
+
+The key property is that the reverse function is costly, that's all.
