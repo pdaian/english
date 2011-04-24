@@ -28,7 +28,8 @@ For bitcoin addresses (RIPEMD-160) this would give:
 Bitcoin uses [Elliptic Curve](http://en.wikipedia.org/wiki/Elliptic_curve_cryptography) [Digital Signature Algorithm](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) (ECDSA) to sign transactions. 
 
 For ECDSA the secp256k1 curve from http://www.secg.org/collateral/sec2_final.pdf is used.
-Public keys (in scripts) are given as 04 <x> <y> where x and y are 32 byte strings representing the coordinates of a point on the curve.
+
+Public keys (in scripts) are given as 04 <x> <y> where x and y are 32 byte strings representing the coordinates of a point on the curve. Signatures use [DER encoding](http://en.wikipedia.org/wiki/Distinguished_Encoding_Rules) to pack the r and s components into a single byte stream (because this is what OpenSSL produces by default).
 
 ### Transaction Verification
 [[!template id=see_also OP_CHECKSIG]]
