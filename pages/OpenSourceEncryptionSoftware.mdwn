@@ -2,7 +2,7 @@
 ###Description
 Dm-crypt is part of the Linux Kernel. Some distributions might not include it in their kernel configurations, however. It is a lot like TrueCrypt: it allows you to mount encrypted files or partitions and decrypt/encrypt them on-the-fly.
 ###Manual setup
-Your distro probably comes with a tool to simplify using dm-crypt. However, here is how you would manually mount a file-hosted dm-crypt volume. The [hashalot](http://www.paranoiacs.org/~sluskyb/hacks/hashalot/) tool is used to prompt you for and process your password. This is used both to create the device and access it:
+Your distro probably comes with a tool to simplify using dm-crypt (also see Tomb below). However, here is how you would manually mount a file-hosted dm-crypt volume. The [hashalot](http://www.paranoiacs.org/~sluskyb/hacks/hashalot/) tool is used to prompt you for and process your password. This is used both to create the device and access it:
 	losetup /dev/loop0 ~/encrypted
 	HASH=`hashalot -s InsertSaltHere sha256  hexdump -e '32/1 "%02x"'`
 	echo 0 `blockdev --getsize /dev/loop0` crypt aes-cbc-essiv:sha256 \
@@ -55,10 +55,38 @@ openssl enc -d -aes256 -in wallet.aes256 -out wallet.dat
 ###License
 [Dual licensed under two BSD style open source licenses.](http://www.openssl.org/source/license.html)
 
+##Tomb
+###Description
+Tomb is a simple tool to manage encrypted storage on GNU/Linux.
+
+Tomb generates encrypted storage files to be opened and closed using
+their associated keyfiles, which are also protected with a password
+chosen by the user.
+
+A tomb is like a locked folder that can be safely transported and
+hidden in a filesystem; its keys can be kept separate, for instance
+keeping the tomb file on your computer harddisk and the key files on a
+USB stick.
+
+###HomePage
+[Tomb - Crypto Undertaker](http://tomb.dyne.org)
+
+###Donation
+[Donation page](http://dyne.org/donate)
+
+###Download
+[Binaries (WIP: Debian and Ubuntu)](http://apt.dyne.org)
+
+[Source](http://ftp.dyne.org/tomb)
+
+###License
+[True Crypt Open Source License.](http://www.truecrypt.org/legal/license)
+
+
 
 ##True Crypt
 ###Description
-Free open-source disk encryption software for Windows 7/Vista/XP, Mac OS X, and Linux.  True Crypt creates a virtual encrypted disk within a file and mounts it as a real disk.
+Open-source disk encryption software for Windows 7/Vista/XP, Mac OS X, and Linux.  True Crypt creates a virtual encrypted disk within a file and mounts it as a real disk.
 ###Documentation
 [Documentation page.](http://www.truecrypt.org/docs/)
 ###Donation
