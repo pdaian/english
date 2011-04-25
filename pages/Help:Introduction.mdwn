@@ -37,11 +37,11 @@ In theory, Alice could attempt to generate spoofed blocks in which her past usag
 ##Anonymity
 Bitcoin "accounts" do not have people's names on them and do not have to correspond to individuals. Each balance is simply associated with a randomly generated public-private key pair and the money "belongs" to whoever has the private key and can sign transactions with it. The transactions that are signed using those keys also don't have to include names.
 
-A bitcoin [[address|Address]] looks like this:
+A [[Bitcoin address|Address]] mathematically corresponds to a public key and looks like this:
 
 > 15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC
 
-Each person can have many such key pairs, each with its own balance, and this can make it more difficult to identify which person owns what amount. In order to protect his [[privacy|Anonymity]], Bob can even generate a new public-private key pair for each individual transaction. So David receiving the coin from Charley will not be able to identify who is the second person in the list of transactions. The only thing David will know is the address of Bob which is a shortened (hashed) version of his public key.
+Each person can have many such addresses, each with its own balance, and this can make it more difficult to identify which person owns what amount. In order to protect his [[privacy|Anonymity]], Bob can even generate a new public-private key pair for each individual transaction. So David receiving the coin from Charley will not be able to identify who is the second person in the list of transactions (not without asking Charley).
 
 ##Creation of coins
 As we saw, both Bob and Charley need to verify that the original coin from Alice is valid. Alice cannot simply generate coins instantly, out of thin air, because the appearance of a coin is a transaction that needs to be accepted by others. In order for the coin-creation transaction to be accepted, the transaction and the block in which it appears must be part of the longest chain of blocks. For new blocks to be added as continuations to this coin-generating block, it must be considered valid by those who generate blocks. For the chain to remain the longest, the speed at which blocks are added to it must be faster than that of any other chain. Therefore, for the coin-generating transaction to exist, it must be considered valid by the software that is running on the majority of the CPUs on the network.
