@@ -11,17 +11,30 @@ Usage:
 	bitcoin [[options]] help                List commands
 	bitcoin [[options]] help <command>      Get help for a command
 Options:
-	-conf=<file>      Specify configuration file (default: bitcoin.conf)
-	-gen              Generate coins
-	-gen=0            Don't generate coins
-	-min              Start minimized
-	-datadir=<dir>    Specify data directory
-	-proxy=<ip:port>  Connect through socks4 proxy
-	-addnode=<ip>     Add a node to connect to
-	-connect=<ip>     Connect only to the specified node
-	-server           Accept command line and JSON-RPC commands
-	-daemon           Run in the background as a daemon and accept commands
-	-?                This help message
+	-conf=<file>       Specify configuration file (default: bitcoin.conf)
+	-gen               Generate coins
+	-gen=0             Don't generate coins
+	-min               Start minimized
+	-datadir=<dir>     Specify data directory
+	-proxy=<ip:port>   Connect through socks4 proxy
+	-addnode=<ip>      Add a node to connect to
+	-connect=<ip>      Connect only to the specified node
+	-nolisten          Don't accept connections from outside
+	-noupnp            Don't attempt to use UPnP to map the listening port
+	-upnp              Attempt to use UPnP to map the listening port
+	-paytxfee=<amt>    Fee per KB to add to transactions you send
+	-server            Accept command line and JSON-RPC commands
+	-daemon            Run in the background as a daemon and accept commands
+	-testnet           Use the test network
+	-rpcuser=<user>    Username for JSON-RPC connections
+	-rpcpassword=<pw>  Password for JSON-RPC connections
+	-rpcport=<port>    Listen for JSON-RPC connections on <port> (default: 8332)
+	-rpcallowip=<ip>   Allow JSON-RPC connections from specified IP address
+	-rpcconnect=<ip>   Send commands to node running on <ip> (default: 127.0.0.1)
+	-keypool=<n>       Set key pool size to <n> (default: 100)
+	-rescan            Rescan the block chain for missing wallet transactions
+	-rpcssl            Use OpenSSL (https) for JSON-RPC connections
+	-?                 This help message
 
 ##Bitcoin.conf Configuration File
 All command-line options (except for -datadir and -conf) may be specified in a configuration file, and all configuration file options may also be specified on the command line. Command-line options override values set in the configuration file.
