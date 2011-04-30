@@ -1,0 +1,33 @@
+**Eligius**, also sometimes referred to as "Luke-Jr's pool", is a [[mining pool|Pooled_mining]].
+
+To use it, a miner merely needed to be directed to pool.bitcoin.dashjr.org on port 8337, with the username set to a valid bitcoin address to receive the payout.
+
+Donation address: 1RNUbHZwo2PmrEQiuX5ascLEXmtcFpooL
+
+Basic concepts:
+
+* Pool keeps all transaction fees to itself, plus 0.00000001 BTC per second since last-found block.
+* Remaining reward is divided equally among ALL shares contributed since its last-found block.
+* When a block is found, the miner is paid for that block immediately as a Generated transaction, but only if his total balance is over 1 BTC (to help the recipient avoid transaction fees).
+* If a block is orphaned, its shares become part of the next block's reward distribution.
+* No registration. Just send username with the address you want payouts to (password can be anything).
+* Will only include transactions in its blocks if the sender pays a fee of at least 0.00004096 BTC per 512 bytes.
+
+Eligius was announced on April 27, 2011 (1.1).  At the time the service was operated without a name, paying out even tiny coins immediately.
+
+##See Also
+
+* [[Pooled_mining]]
+
+##API Links
+
+* [Total pool hashrate](http://luke.dashjr.org/programs/bitcoin/pool/hashrate.txt) (estimate)
+* [Pool balances](http://luke.dashjr.org/programs/bitcoin/pool/balances.json), including payout for the currently-in-progress block
+* [Actual generation payout for the current block](http://luke.dashjr.org/programs/bitcoin/pool/current_block.json)
+
+##References
+
+1.1: [Please test: New Experimental Pool](https://www.bitcoin.org/smf/index.php?topic=6648.0)
+
+
+[[!tag "Pool_Operators"]]
