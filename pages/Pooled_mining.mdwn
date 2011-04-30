@@ -47,16 +47,14 @@ If a miner does not submit a share for over a week, the pool sends any balance r
 
 ###Comparison
 
-The cooperative mining approach uses a lot less resources on the pool server, since rather than continuously checking metahashes, all that has to be checked is the validity of submitted shares. The number of shares sent can be adjusted by adjusting the artificial difficulty level.
+The cooperative mining approach (slush and Luke-Jr) uses a lot less resources on the pool server, since rather than continuously checking metahashes, all that has to be checked is the validity of submitted shares. The number of shares sent can be adjusted by adjusting the artificial difficulty level.
 
 Further, the cooperative mining approach allows the clients to use existing miners without any modification, while the puddinpop approach requires the custom pool miner, which are as of now not as efficient on GPU mining as the existing GPU miners.
 [[!img "Smallgeneration.png" size=120x120 title="Puddinpop miners receive coins directly."]]
 
-Additionally, the puddinpop approach of distributing the earnings by way of including precise sub-cent amounts in the generation transaction for the participants, results in the presence of sub-cent bitcoin amounts in your wallet, which are liable to disappear (as unnecessary fees) later due to a bug in old (before 0.3.21) bitcoin nodes. (E.g., if you have a transaction with 0.052 in your wallet, and you later send .05 to someone, your .002 will disappear.).
+Additionally, the puddinpop and Luke-Jr approaches of distributing the earnings by way of including precise sub-cent amounts in the generation transaction for the participants, results in the presence of sub-cent bitcoin amounts in your wallet, which are liable to disappear (as unnecessary fees) later due to a bug in old (before 0.3.21) bitcoin nodes. (E.g., if you have a transaction with 0.052 in your wallet, and you later send .05 to someone, your .002 will disappear.).
 
-Puddinpop miners receive coins directly, which eliminates the delay in receiving earnings that is required on cooperative mining servers. However, bitcoind is incapable of detecting generation transactions, so earnings sent directly to MyBitcoin, MtGox, etc. will not be accounted for.
-
-This all seems to point to the cooperative mining approach being the better pool choice for now.
+Puddinpop and Luke-Jr miners receive coins directly, which eliminates the delay in receiving earnings that is required on slush-based mining servers. However, earnings sent directly to some services like MyBitcoin and MtGox will not be accounted for.
 
 ##See Also
 
