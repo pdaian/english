@@ -1,0 +1,29 @@
+## Proposal
+
+This is a proposal for a method that would allow generation of bitcoin addresses tied to one's identity, and not to stored data. This would in theory allow someone to send funds to himself in a way that ensures it will be possible to use those funds at any time in the future.
+
+This should be used by people willing to "save" funds without having to rely on any third party service, and should be implemented in the bitcoin client, and not on a remote site.
+
+## Method
+
+The idea is to generate the ECDSA private key not from a random source, but from a SHA256/SHA512 hash of the previous informations, cut to the appropriate format.
+
+### Data
+
+Each string data is prefixed of 2 bytes (little endian) containing their length, and must be represented as UTF-8
+
+* Last Name
+* First Names
+* Birth name (if not different, skip)
+* Birth date in string format (YYYY-MM-DD)
+* Birth country (country code, 2 letters)
+* Birth city
+* Blood type (one of: A, B, AB, O)
+* Passphrase (up to the user)
+* 8 bytes integer "serial" (little endian), used to generate different keys for a single individual
+
+It is possible to generate multiple addresses for a single individual by incrementing "serial". The software should initially increment "serial" until at least 100 concurrent addresses which have never been broadcasted on the blockchain are found.
+
+### Analysis
+
+This is yet just a proposal, analysis is welcome
