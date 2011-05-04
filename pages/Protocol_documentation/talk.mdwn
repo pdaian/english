@@ -10,3 +10,7 @@ It could easily be I'm using OpenSSL incorrectly, so wanted to get confirmation 
 
 
 The description for the headers command says "77x?" as the size for the block_headers[] returned.  However, the description of the block_header structure is 81 bytes (4+32+32+4+4+4+1).  What exactly is returned by the headers command? -- [AndyParkins](User:AndyParkins)
+
+
+The given magic numbers are the wrong way around.  The magic numbers are little endian 32 bit numbers on the network, so Testnet.Magic = 0xdab5bffa and Prodnet.Magic = 0xd9b4bef9.  The two examples are the order they come in from the wire, so at the very least should be shown with spaces between the bytes.
+[AndyParkins](User:AndyParkins)
