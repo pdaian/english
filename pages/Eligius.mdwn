@@ -6,7 +6,7 @@ Donation address: 1RNUbHZwo2PmrEQiuX5ascLEXmtcFpooL
 
 Basic concepts:
 
-* Pool keeps all transaction fees to itself, plus 0.00000001 BTC per second since last-found block.
+* Pool keeps all transaction fees to itself, plus 0.00000001 BTC per second since last-found block (currently this works out to about 0.0003%, and gets smaller with more miners in the pool).
 * Remaining reward is divided equally among ALL shares contributed since its last-found block.
 * When a block is found, the miner is paid for that block immediately as a Generated transaction, but only if his total balance is over 1 BTC (to help the recipient avoid transaction fees).
 * If a block is orphaned, its shares become part of the next block's reward distribution.
