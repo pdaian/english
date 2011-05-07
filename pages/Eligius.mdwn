@@ -23,6 +23,10 @@ Please be sure to pass a valid address as your username. Incorrect usernames are
 * **DiabloMiner**: java -cp target\libs\*;target\DiabloMiner-0.0.1-SNAPSHOT.jar -Djava.library.path=target\libs\natives\windows com.diablominer.DiabloMiner.DiabloMiner -u **YourAddress** -p x -o pool.bitcoin.dashjr.org -r 8337 -g 5
 * **ufasoft**: bitcoin-miner.exe -a 5 -o http://pool.bitcoin.dashjr.org:8337 -u **YourAddress** -p x
 
+##Troubleshooting
+### warning: job finished, miner is idle
+Try using port 80 instead of 8337, and/or setting your router to prioritize port 8337.
+
 ##API Links
 
 * [Total pool hashrate](http://luke.dashjr.org/programs/bitcoin/pool/hashrate.txt) (estimate)
