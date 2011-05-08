@@ -13,14 +13,15 @@ You can use an existing [[shopping cart interface|tags/Shopping_Cart_Interfaces]
 
 Setup a system that:
 
-1. When a customers orders something on your website it records
+1. When a customer orders something on your website it records
 1. * Bitcoin address that payment should be sent to
 1. * Order details (delivery address etc.)
+1. * Customer's refund address (optional - if you wish you can ask for this later, only in cases a refund is required)
 1. * Payment amount
-1. When payment arrives, checks that they have paid the correct amount (and refunds the from address otherwise) and informs you
+1. When payment arrives, checks that they have paid the correct amount or not, and informs you
 1. * You dispach the goods to the customer and mark the order as fulfilled
-1. * If you cannot dispach the goods you mark the order as denied and the system sends the customer a refund
-1. Pays money made to your bitcoin address
+1. * If you cannot dispach the goods you mark the order as denied and ask the customer for a refund address (unless you already have it from earlier) to send a refund.
+1. Forwards the funds to bitcoin address of your choice
 
 ##Common Errors
 
