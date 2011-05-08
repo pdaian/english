@@ -26,7 +26,7 @@
 **[[Hash]]**
 >  A computer algorithm which produces an identification key that can be used to easily verify that data has not been altered. If you change any single bit of the original data and run the hash algorithm, the hash will completely change. Because the hash is seemingly random, it is prohibitively difficult to try to produce a specific hash by changing the data which is being hashed.
 **Low Priority**
-See Priority.
+>  See Priority.
 **Memory pool**
 >  Generators store [[transactions]] waiting to get into a block in their memory pool after receiving them. Received transactions are stored even if they are invalid to prevent nodes from constantly requesting transactions that they've already seen. The memory pool is cleared when Bitcoin is shut down, causing the [[network]] to gradually forget about transactions that haven't been included in a [[block]].
 **Merkle root**
@@ -39,7 +39,8 @@ See Priority.
 >  A nonce is an otherwise meaningless number which is used to alter the outcome of a hash. Each time Bitcoin hashes a block, it increments a nonce within the block which it is trying verify. If the numeric value of the effectively random hash is below a certain amount determined by the block generation difficulty, then the block is accepted by other clients and gets added to the chain.
 **Orphan block**
 >  An orphan block is a block that is not in the currently-longest [[block_chain]].
-A scoring mechanism to help ensure that expensive data storage isn't consumed by lower quality and spam transactions.  Low priority transactions will not get included by a miner if the limited space is already filled by higher priority transactions.
+**Priority**
+A scoring mechanism to help ensure that expensive data storage isn't consumed by lower quality and spam Low priority transactions will not get included by a miner if the limited space is already filled by higher priority transactions.
 **[[Proof_of_work]]**
 >  A result that can only be obtained through the use of computational resources. Changing the data in the proof of work requires redoing the work.
 **Reorganize**
