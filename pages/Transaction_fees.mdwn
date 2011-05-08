@@ -38,6 +38,15 @@ As an example, clients that have block generation turned off don't know what the
 
 ArtForz, who makes up a large percentage of the network's CPU power, never charged transaction fees (even for micro-transactions) for a period of several months.
 
+##Technical info
+
+Transaction priority is calculated as a value-weighted sum of input age, divided by transaction size in bytes:
+	priority = sum(input_value_in_base_units * input_age)/size_in_bytes
+Transactions need to have a priority of above a certain threshold to avoid the enforced limit (as of client version 0.3.21). (todo: look up threshold in code - is it 57600000?)
+
+So, for example, a transaction that has 2 inputs, one of 5 btc with 10 confirmations, and one of 2 btc with 3 confirmations, and has a size of 500bytes, will have a priority of
+	(500000000 * 10 + 200000000 * 3) / 500 = 11800000
+
 ##See Also
 
 * [[Free_transaction_relay_policy]]
