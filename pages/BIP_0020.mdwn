@@ -34,11 +34,18 @@ The **fragment** is an optional part separated from the front parts by a hash ("
 * label: Label for that address (e.g. name of receiver)
 * address: bitcoin address
 * message: optional message that is shown to the user after scanning the QR code
-* size: amount of bitcoins (full Decimal BitCoins)
+* size: amount of base bitcoin units (cuBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC nor TonalBitCoins/TBC; see below)
 
 #### Transfer amount/size
 
-If an amount is provided, it may be specified in standard BTC decimal units.
+If an amount is provided, it may be specified either in decimal or, when prefixed with a single "x" character, hexadecimal.
+The number SHOULD be followed by "X" <digits> to signify an exponent to the base multiplier.
+That is, "X8" multiplies your number by 100,000,000.
+For decimal values, this means the standard BTC unit.
+For hexadecimal values, this means ᵇTBC units (which are equivalent to 42.94967296 BTC).
+If exponent is omitted, implementations SHOULD assume X8 for decimal numbers, and X4 for hexadecimal numbers.
+I.e. amount=50.00 is treated as 50 BTC, and amount=x40 is treated as 40 TBC.
+When specifying bitcoin base units, "X0" SHOULD be used.
 
 ### Examples
 
@@ -49,16 +56,19 @@ Address with name:
 	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?label=Luke-Jr
 
 Request to send 20.30 BTC to "Luke-Jr":
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=20.3&label=Luke-Jr
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=20.3X8&label=Luke-Jr
 
-Request to send 100 TBC:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=0.16777216
+Request to send 400 TBC:
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=x400X4
+
+Request to send 4000 TBC:
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=x4X7
 
 Request to send 5 uBTC:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=0.000005
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=5X2
 
 Request to send 50 BTC with message:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=50&label=Luke-Jr&message=Donation%20for%20project%20xyz
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=50X8&label=Luke-Jr&message=Donation%20for%20project%20xyz
 
 Characters must be URI encoded properly.
 
@@ -77,7 +87,6 @@ Characters must be URI encoded properly.
 	messageparam    = "label=" *uchar
 
 ### Parsing amount
-Note that most of these have support for more specifiers of amount and have capabilities beyond what is needed to support this specification.
 #### ECMAScript
 	reAmount = /^(([[\d.]]+)(X(\d+))?x([[\da-f]]*)(\.([[\da-f]]*))?(X([[\da-f]]+))?)$/i;
 	function parseAmount(txt) {
