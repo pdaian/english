@@ -22,12 +22,12 @@ Later on, when Bob will transfer the same coins to Charley, he will do the same 
 Eve cannot change who the coins belong to by replacing Bob’s public key with her public key, because Alice signed the transfer to Bob using her private key, declaring that the coins which belonged to her now belong to Bob, and Alice's private key is kept secret from Eve. So if Charley accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
 
 ##Preventing double-spending
-This is how we guarantee that Alice cannot replicate the coin and use it in more than one transaction:
+This is how we guarantee that Alice cannot replicate the coin and use it in more than one transaction (this is the main innovation behind Bitcoin):
 
 * Details about the [[transaction|Transactions]] are [[sent and forwarded|Network]] to all or as many other computers as possible.
 * A constantly growing chain of [[blocks|Blocks]] that contains a record of all transactions is collectively maintained by all computers (each has a full copy).
-* Valid blocks are computationally difficult to create and only valid blocks are allowed in the chain, containing valid transactions.
-* Blocks are chained in a way that does not allow their data to be modified, without all following blocks becoming invalid.
+* Valid blocks require [[proof_of_work]] to create and only valid blocks are allowed in the chain, containing valid transactions.
+* Blocks are chained in a way so that, if any one is modified, all following blocks will have to be recomputed.
 * When multiple valid continuations to this chain appear, the longest such branch is accepted as the correct one and built upon.
 
 When Bob sees that his transaction has been included in a block, which has been made part of the longest and constantly growing block chain, he can be confident that the transaction by Alice has been accepted by other computers as valid and has been permanently recorded, preventing Alice from creating a second transaction with the same coin.
