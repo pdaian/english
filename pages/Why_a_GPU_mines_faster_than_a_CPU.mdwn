@@ -47,17 +47,17 @@ Since ALU's are what do all the work of Bitcoin mining, the number of available 
 
 That, in a nutshell, is why GPU's can mine Bitcoins so much faster than CPU's.  Bitcoin mining requires no decision making - it is repetitive mathematical work for a computer.  The only decision making that must be made in Bitcoin mining is, "do I have a valid block" or "do I not".  That's an excellent workload to run on a GPU.
 
-##Why are ATI GPUs faster than Nvidia GPUs?
+##Why are AMD GPUs faster than Nvidia GPUs?
 
-Firstly, ATI designs GPUs with many simple ALUs/shaders (VLIW design) that run at a relatively low frequency clock (typically 1120-3200 ALUs at 625-900 MHz), whereas Nvidia's microarchitecture consists of fewer more complex ALUs and tries to compensate with a higher shader clock (typically 448-1024 ALUs at 1150-1544 MHz). Because of this VLIW vs. non-VLIW difference, Nvidia uses up more square millimeters of die space per ALU, hence can pack fewer of them per chip, and they hit the frequency wall sooner than ATI which prevents them from increasing the clock high enough to match or surpass ATI's performance. This translates to a raw ALU performance advantage for ATI:
+Firstly, AMD designs GPUs with many simple ALUs/shaders (VLIW design) that run at a relatively low frequency clock (typically 1120-3200 ALUs at 625-900 MHz), whereas Nvidia's microarchitecture consists of fewer more complex ALUs and tries to compensate with a higher shader clock (typically 448-1024 ALUs at 1150-1544 MHz). Because of this VLIW vs. non-VLIW difference, Nvidia uses up more square millimeters of die space per ALU, hence can pack fewer of them per chip, and they hit the frequency wall sooner than AMD which prevents them from increasing the clock high enough to match or surpass AMD's performance. This translates to a raw ALU performance advantage for AMD:
 
-* ATI Radeon HD 6990: 3072 ALUs x 830 MHz = 2550 32-bit instruction per second
+* AMD Radeon HD 6990: 3072 ALUs x 830 MHz = 2550 32-bit instruction per second
 * Nvidia GTX 590: 1024 ALUs x 1214 MHz = 1243 32-bit instruction per second
-This approximate **2x-3x** performance difference exists across the entire range of ATI and Nvidia GPUs. It is noticeably visible in all ALU-bound GPGPU workloads such as Bitcoin, password bruteforcers, etc.
+This approximate **2x-3x** performance difference exists across the entire range of AMD and Nvidia GPUs. It is noticeably visible in all ALU-bound GPGPU workloads such as Bitcoin, password bruteforcers, etc.
 
-Secondly, another difference favoring Bitcoin mining on ATI GPUs instead of Nvidia's is that the mining algorithm is based on SHA-256, which makes heavy use of the 32-bit integer right rotate operation. This operation can be implemented as a single hardware instruction on ATI GPUs, but requires three separate hardware instructions to be emulated on Nvidia GPUs (2 shifts + 1 add). This alone gives ATI another **1.7x** performance advantage (~1900 instructions instead of ~3250 to execute the SHA-256 compression function).
+Secondly, another difference favoring Bitcoin mining on AMD GPUs instead of Nvidia's is that the mining algorithm is based on SHA-256, which makes heavy use of the 32-bit integer right rotate operation. This operation can be implemented as a single hardware instruction on AMD GPUs, but requires three separate hardware instructions to be emulated on Nvidia GPUs (2 shifts + 1 add). This alone gives AMD another **1.7x** performance advantage (~1900 instructions instead of ~3250 to execute the SHA-256 compression function).
 
-Combined together, these 2 factors make ATI GPUs overall **3x-5x** faster when mining Bitcoins.
+Combined together, these 2 factors make AMD GPUs overall **3x-5x** faster when mining Bitcoins.
 
 ##See Also
 
