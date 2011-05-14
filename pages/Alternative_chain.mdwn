@@ -1,0 +1,254 @@
+An **alternative chain** is a system using the block chain algorithm to achieve distributed consensus on a particular topic, whilst sharing miners with the Bitcoin network. Alternative chains have been suggested as ways to implement DNS, SSL certificate authorities, timestamping, file storage and voting systems.
+
+
+
+### Objective
+
+Bitcoin uses the [[block_chain]] algorithm to achieve distributed consensus on who owns what coins. Block chains were invented specifically for the Bitcoin project but they can be applied anywhere a distributed consensus needs to be established in the presence of malicious or untrustworthy actors.
+
+Whilst it's possible to abuse the Bitcoin financial block chain for other purposes, it's better to set up an alternative network and chain which share the same miners. There are several reasons to do this.
+
+* The block chain is a large, complex data structure shared between many people. Verifying its integrity requires many slow (and thus expensive) operations like ECDSA verifications and disk seeks. Everyone who takes part in Bitcoin today runs a node and thus maintains the whole thing. Whilst in future end-users will probably use more efficient but slightly less secure modes (SPV), merchants and miners will probably always pay the full costs for the upkeep of this shared data structure. All these people today are united by a common interest in a new form of payments. They may or may not also be interested in other schemes. So one reason to keep the Bitcoin chain for finance is it's unfair to externalize the costs of unrelated schemes onto people who are interested only in payments - the canonical example being merchants. Increasing the cost of accepting Bitcoins for goods and services hurts everyone who uses the system by reducing the number of merchants or increasing their costs.
+
+* Another reason is that it's just bad engineering to cram every possible distributed quorum into the design constraints of Bitcoin. The transaction format Bitcoin uses is flexible but ultimately designed for finance. You cannot leave out the "value" field. It's always there, even if it'd make no sense for your particular application. Building non-financial applications on top of a financial system results in bizarre protocols and code that are difficult to understand, leading to maintainability problems.
+
+* One final reason is that Satoshi was opposed to putting non-Bitcoin related data into the main chain. As creator of the system, his opinion should carry a lot of weight with anyone serious about extending it.
+
+### Designing a new network
+
+To create a new network that uses Nakamoto block chains, you need to start by defining what a transaction in your new network means. Bitcoin transactions split and combine value using scripts, but yours don't have to do that. They could be anything. Here's an example of a simple DNS style "transaction" described using [Google protocol buffers](http://code.google.com/p/protobuf/) syntax.
+
+	message NameTx {
+	required string name = 1;
+	repeated bytes ip_addresses = 2;
+	required bytes pubkey = 3;
+	enum ClaimType {
+	NEW_NAME,
+	TRANSFER
+	}
+	required ClaimType type = 4;
+	
+	// Only used if type == TRANSFER. The new owner of the name and signature proving current ownership.
+	optional bytes dest_pubkey = 5;
+	optional bytes signature = 6;
+	}
+
+This is very different to a Bitcoin style transaction. There's no concept of inputs, outputs, addresses, values or scripts. It's got what you need for a very simple DNS style scheme (that lacks abuse controls etc) and nothing more. There's also no concept of a "coinbase" transaction.
+
+The block definition is also up to you. It does not have to be formatted in the same way as Satoshi chose, but you need most of the same conceptual parts. You also need to store something else, some data from Bitcoin. Here's a minimal example of what's needed:
+
+	message MyBlock {
+	required bytes prev_block_hash = 1;
+	required uint32 difficulty = 2;
+	required uint32 time = 3; 
+	
+	repeated MyTx transactions = 4;
+	}
+	
+	message SuperBlock {
+	required MyBlock my_data = 1;
+	required BitcoinData bitcoin_data = 2;
+	}
+
+It's important to observe what we don't have as well as what we do. We don't have the following fields from Satoshis format:
+
+1. version: protobufs handles the versioning of binary data formats for us
+1. merkle root: you can choose to arrange your transactions into a merkle root if you like, so you can use the same disk space reclamation trick Satoshi did. But it's strictly optional. If you want to simplify things down you can skip it.
+1. nonce
+
+### Sharing work
+
+The bitcoin_data field is how you share work with miners today (assuming they opt in by installing your software alongside their bitcoin node). It's defined like this:
+
+	message BitcoinData {
+	// A Bitcoin format block header. Because it's in Satoshis custom format we represent this as a byte array.
+	required bytes header = 1;
+	
+	// The first transaction from the block.
+	required bytes coinbase_tx = 2;
+	
+	// The merkle branch linking the coinbase transaction to the header.
+	required bytes coinbase_merkle_branch = 3;
+	
+	// The coinbase scriptSig contains bits of data in order. Which one is our hash?
+	required int coinbase_tx_index = 4;
+	}
+
+All you need to share work is the above four things.
+
+A [[wikipedia:Merkle tree]] is a data structure in which each node in the tree is a hash. The leaf nodes are hashes of the things you want to include in the tree. The interior nodes are hashes of the concatenations of the child nodes. A merkle branch is a part of a merkle tree which allows you to cryptographically prove that something you're given was in the tree, without needing everything that was in the tree. They are calculated by the CBlock::GetMerkleBranch() function in the Bitcoin code.
+
+We store a merkle branch here for efficiency. It means no matter how large the current Bitcoin block is, your alternative network only needs to handle a small amount of data. You could just store the entire Bitcoin block - that would be simpler but inefficient.
+
+The merkle branch links the coinbase transaction to the block header, so you can prove it was in that block. The coinbase TX is a regular Bitcoin coinbase (that makes new coins and claims fees), except the scriptSig on its input contains an extra entry that todays scriptSigs don't. That extra entry is a hash of your block structure. The coinbase scriptSig today is formatted like this:
+
+	void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int& nExtraNonce, int64& nPrevTime)
+	{
+	.....
+	pblock->vtx[[0]].vin[[0]].scriptSig = CScript() << pblock->nBits << CBigNum(nExtraNonce);
+	.....
+	}
+
+Just the difficulty bits and the "extra nonce". But it's actually allowed to contain anything, as long as it's not too big. So in your new blocks it'd be:
+
+	<MyBlock hash> <nBits> <nExtraNonce>
+
+To get the MyBlock hash into Bitcoin requires a presently unimplemented RPC command, "setextrahashes". It'd update a global list and the IncrementExtraNonce function would include the extra hashes when the scriptSig is built. This is a very simple change to Bitcoin.
+
+In the scriptSig above the coinbase_tx_index would be zero. It's possible to work on an arbitrary number of alternative chains simultaneously:
+
+	<MyBlock hash> <SomeOtherChainBlock hash> <nBits> <nExtraNonce>
+
+in which case the BitcoinData message for SomeOtherChain would be 1 rather than zero.
+
+A more complex change is the other new RPC. Because you have your own chain, it has its own difficulty. Most likely it'll be different to Bitcoins own. So you need a way to tell Bitcoin "when you find a block that matches an extradifficulty, please let me know". To mine on multiple difficulties at once, the node vends work (via getwork) matching the easiest difficulty. When a miner reports finding a solution the difficulty is checked to see which chains it is sufficiently difficult for.
+
+### Independent node software
+
+Your new network has its own codebase. It can be written in whatever language you like, use whatever P2P protocol you like, store its data however you like and so on.
+
+When a node on your network receives a message informing it about a new transaction, it verifies that transaction follows the rules of your network. To use our simple DNS example it would verify that if you're claiming a new name, it doesn't already exist and if you're transferring a name that the signatures are correct.
+
+If the transaction is valid, it's added to your current MyBlock message. That message is serialized to binary (protobufs does this for you), hashed and then your node makes an RPC to Bitcoin telling it what the current extra hash is. When Bitcoin finds a Bitcoin-format block of the right difficulty for your network, it informs your software and passes the block header, coinbase transaction and merkle branch to it. Your node combines them together into a BitcoinData message, which is then glued together with your alternative chains block. This "superblock" is then broadcast via your independent P2P network.
+
+When a node on your new network receives a superblock it does the following things:
+
+1. Verifies the MyBlock contents are correct, ie, that the transactions follow the rules.
+1. Verifies that the MyBlock prev hash makes it fit somewhere in the chain and that the difficulty is correct.
+1. Hashes the MyBlock structure and then verifies that this hash appears in the BitcoinData coinbase scriptSig, in the right place.
+1. Extracts the merkle root of the Bitcoin format block from the header and then verifies that the coinbase tx provided did, in fact, exist in that block (using the branch, root, tx and header together).
+1. Verifies that the hash of the Bitcoin format block header is below the difficulty found in the MyBlock structure.
+
+You've now verified that a sufficiently hard proof of work was done over the contents of the MyBlock structure, so your node can relay the newly found block (or if you don't use a P2P network make it available on your server, etc).
+
+On the other side when Bitcoin finds a block that is correct for the Bitcoin network and chain, it broadcasts it and obviously the hash of your MyBlock is included. Fortunately this is only an additional 33 bytes overhead so nobody cares about it - the pollution of the financial chain is both trivial and constant. Note that regular Bitcoin nodes just ignore this extra hash, it doesn't mean anything to them.
+
+### Handling your new block chain
+
+You have to handle re-organizations. This is a standard part of the block chain algorithm. When a re-org occurs you have to verify that the state of your world still makes sense. For example in the new chain maybe somebody else now owns a resource you thought you owned. It's up to you how to inform your users of these events and what app specific logic is appropriate here.
+
+You can choose your own parameters for the new chain. As an example, Satoshi chose to target one new block every ten minutes as a tradeoff between latency and wasted work. You could choose something much larger (hours, days) or much faster if you're willing to tolerate more splits due to blocks being found simultaneously. Bitcoin retargets the difficulty roughly every two weeks. You could choose some other length of time.
+
+To store the block chain, Satoshi chose to use Berkeley DB as a way to index from transactions to the blocks they appeared in (amongst other things). You could use any database you liked.
+
+### Paying for resources on alternative chains with Bitcoins
+
+A commonly cited reason for putting DNS related data into the financial chain is the desire to pay for names with Bitcoins. You can do this with an independent chain too, because you make the rules and can link the two chains together as you see fit.
+
+To start, decide on the purpose of your payments and who will receive the coins - if anyone. In the case of a DNS system, there are two reasons you might want to pay for names:
+
+1. To prevent abuse by people claiming all interesting names via a dictionary attack.
+1. To incentivise people to run your software and mine on your alternative chain.
+
+In the first case really nobody should receive the payment. The money is being put up as a collateral and has no other use, so as long as it's sitting around unspent that is good enough. In the second case the payment should go to the miner working on the DNS chain.
+
+To implement this we extend our hypothetical DNS transaction message like this:
+
+	message NameTx {
+	required string name = 1;
+	repeated bytes ip_addresses = 2;
+	required bytes pubkey = 3;
+	enum ClaimType {
+	NEW_NAME,
+	TRANSFER
+	}
+	required ClaimType type = 4;
+	
+	// Only used if type == TRANSFER. The new owner of the name and signature proving current ownership.
+	optional bytes dest_pubkey = 5;
+	optional bytes signature = 6;
+	
+	// Only used if type == NEW_NAME.
+	optional bytes collateral_signature = 7;
+	optional string miner_address = 8;
+	optional uint64 miner_fee = 9;
+	}
+
+The collateral_signature field contains an ECDSA signature generated from a public key that holds some Bitcoins. The miner address is blank when the name purchaser creates the transaction and is filled out after a miner receives it, but before they begin working on it.
+
+To buy a name that costs 10 BTC with a miner fee of 2 BTC, a user presses the "buy name" button in their DNS software. It talks to their local Bitcoin node via RPC and does the following:
+
+1. Creates a new Bitcoin address (key).
+1. Sends 10 BTC to the new address (a send-to-self transaction).
+1. Extracts the key from Bitcoin, meaning it's no longer available to spend in your wallet.
+1. Stores the key in a local DNS data file ("wallet") somewhere.
+1. Sets the miner_fee field to the pre-agreed value of 2 BTC.
+1. Takes the public key part and uses it to sign a version of the NameTx that lacks collateral_signature (a signature can't sign itself) and miner_address.
+1. The signature is placed in collateral_signature field.
+1. The transaction is sent to a miner who charges 2 BTC.
+
+When the miner receives the transaction, it verifies that the 10 BTC is not spent:
+
+1. The ECDSA public key recovery algorithm is run on the collateral_signature. It can yield several possible keys.
+1. The public keys recovered are used to verify the signature is correct. This step also figures out which of the possible keys is the right one.
+1. The correct public key is turned into a Bitcoin address (by hashing it)
+1. The DNS node software queries Bitcoin to discover whether that address has 10 BTC associated with it, or whether the balance of that address is lower. Note that todays software does not index the balance of every address in the system, but it can be added (the Block Explorer does this).
+1. If the address does indeed have 10 unspent Bitcoins then the collateral is present and it's OK to serve the name
+
+The miner then creates a new Bitcoin address for themselves and sets miner_address to contain it, then includes it into the current block being worked on. After a block matching the DNS chains difficulty is found, it is broadcast. Other nodes do the following:
+
+1. For each transaction, repeat the verification steps to ensure the collateral is not spent.
+1. Check the balance of the miners own address.
+1. If the balance is not yet equal to miner_fee, the name is put into a "pending" state in which it is owned but not served in response to DNS queries.
+
+The user observes the broadcast and sees that their name is now pending payment, so they send 2 BTC to the address they find in their transaction. As nodes notice the payment becoming confirmed they start responding to DNS queries for that name (ie, the ownership process is complete).
+
+When the user gets tired of owning the name, he can simply re-import the collateral key into his wallet and spend the coins. The DNS network will soon observe that the coins are spent and make the name available for purchasing by somebody else.
+
+### Incentivising non-resource based chains
+
+It's possible to incentivise mining on an alt-chain even if that chain does not have any concept of ownership, ie, if the act of finding a block itself is what is being paid for. An example of this is a timestamping chain in which presence in a block alone is sufficient to satisfy the user.
+
+To implement this, set up a new chain as normal. Blocks in this new chain arrange transactions into a merkle tree in the same manner as Bitcoin does. A client that wants something incorporated into a block connects directly to some miners and submits their transaction. The miners add their address to the transaction as normal. Once a miner finds a block, it immediately sends the block to connected clients whose transactions made it in, but does not broadcast the new block to other miners. The clients respond with a valid Bitcoin transaction which pays for block inclusion. Once all clients have paid up the transaction is broadcast. 
+
+If a client has disconnected or does not pay quickly enough, their transaction can be replaced inside the block with its hash. In this way the blocks validity is preserved because the merkle tree is still valid. The newly found alt-block is broadcast, minus the transaction of the delinquent customer. As long as clients are still connected the payment process for all found transactions can be completed quickly: it would only take a few seconds to gather the payments and broadcast those on the Bitcoin network, minimizing the chance of a race that would require you to trust the miner to reinclude your transactions in the next block despite having already been paid.
+
+### Mining on the alt-chain but not Bitcoin
+
+So far we've considered a scheme in which all alt-chain miners simultaneously mine on Bitcoin. It's possible some people may wish to mine on your chain but not Bitcoin, perhaps because the cost of keeping up with the Bitcoin transaction rate has become too high for them to bother.
+
+To mine without an attached Bitcoin node, your software can simply implement the same getwork protocol Bitcoin itself does. When a mining tool requests work your program would generate a correctly formatted but ultimately bogus Bitcoin block. The contents of this block don't need to be correct because it will never be broadcast on the Bitcoin network, for example, the prevBlockHash field can be all zeros. It exists purely for backwards compatibility. Whilst the block needs a valid merkle root and a coinbase transaction, no other transactions are required and the only part of the coinbase tx that matters is the part holding the hash.
+
+### Scaling up
+
+In the simple scheme each alt-chain being worked on needs 33 bytes in the Bitcoin coinbase transaction (1 for the length and 32 for the hash). Note that if there are two independent miners working on two different alt-chains, you still only need 1 hash in the coinbase scriptSig because the hash isn't meaningful to anyone else on the Bitcoin network. If miners only want to work a handful of chains this overhead is trivially dwarfed by the rest of the data in a Bitcoin block. 
+
+But if a miner wishes to work on hundreds, thousands or millions of alternative chains the size of the coinbase scriptSig would balloon and become unworkable. To solve this, the hash stored in the scriptSig can be the root of yet another merkle tree, this time a tree over the hashes of all blocks being worked on. The BitcoinData message is extended like this:
+
+	message MyBlock {
+	required bytes prev_block_hash = 1;
+	required uint32 difficulty = 2;
+	required uint32 time = 3; 
+	
+	repeated MyTx transactions = 4;
+	}
+	
+	message SuperBlock {
+	required MyBlock my_data = 1;
+	required BitcoinData bitcoin_data = 2;
+	}
+	
+	message BitcoinData {
+	// A Bitcoin format block header. Because it's in Satoshis custom format we represent this as a byte array.
+	required bytes header = 1;
+	
+	// The first transaction from the block.
+	required bytes coinbase_tx = 2;
+	
+	// The merkle branch linking the coinbase transaction to the header.
+	required bytes coinbase_merkle_branch = 3;
+	
+	// The merkle branch linking MyBlock to the merkle root in the coinbase_tx.
+	required bytes altblock_merkle_branch = 4;
+	}
+
+The verification step becomes a bit more complex:
+
+1. Verify the header is of sufficient difficulty for the alt-chain
+1. Verify coinbase_tx was a part of that block by checking the coinbase_merkle_branch is linked to the merkle root in the header.
+1. Extract the root of the second merkle tree from the coinbase_tx (call it 2MR).
+1. Hash the alt-chain block (my_data), verify that altblock_merkle_branch links the my_data hash to 2MR.
+
+You have now proven that the MyBlock instance was worked on, along with perhaps thousands of other chains you don't have to know anything about.
+
+This is an advanced technique which is probably not worth implementing unless the additional scalability is required. It can be introduced in a backwards compatible manner for new chains without impacting older networks.
