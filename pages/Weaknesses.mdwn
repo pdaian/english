@@ -23,6 +23,9 @@ Since there's no authentication when sending to an [[IP_address]] (as opposed to
 ### Packet sniffing
 Someone who can see all of your Internet traffic can easily see when you send a transaction that you didn't receive (which means that it's yours). This would be made more difficult (but not impossible) if node-to-node encryption was used.
 
+### Denial of Service (DoS) attacks
+Sending lots of data to a node may make it so busy it cannot process normal bitcoin transactions.  Bitcoin has some denial-of-service prevention built-in (it will drop connections to peers that send it too much data too quickly), but is likely still vulnerable to more sophisticated denial-of-service attacks.
+
 ## Probably not a problem
 
 ###Breaking the cryptography
