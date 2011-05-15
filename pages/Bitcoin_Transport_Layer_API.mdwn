@@ -4,11 +4,11 @@ The BtcFn (The Bitcoin Freeent Project) project is in the process of working on 
 
 These backed layers will be used to transmit various bitcoin data over different protocols,  such possible uses could be:
 
-	Program that saves and reads a copy of the block-chain from a file.  Say used to save the block-chain on a USB key-drive.
-	A radio station could transmit the block-chain over short-wave radio so that everyone in the world has access to it.  The same API could be used for a program to automatically import the block-chain updates in the Bitcoin software.
-	BtcTorrent, a simple application that takes advantage of the API and lib-torrent that allows new clients to quickly download the block chain.
-	The above mentioned bitcoin on freenet project, this project will allow clients to use bitcoin with freenet as a transport layer, for both transmission of the block chain, and transactions.
-	Traditional bitcoin transport layer application.  This application will implement the standard bitcoin p2p protocol, and will be used by default.
+* Program that saves and reads a copy of the block-chain from a file.  Say used to save the block-chain on a USB key-drive.
+* A radio station could transmit the block-chain over short-wave radio so that everyone in the world has access to it.  The same API could be used for a program to automatically import the block-chain updates in the Bitcoin software.
+* BtcTorrent, a simple application that takes advantage of the API and lib-torrent that allows new clients to quickly download the block chain.
+* The above mentioned bitcoin on freenet project, this project will allow clients to use bitcoin with freenet as a transport layer, for both transmission of the block chain, and transactions.
+* Traditional bitcoin transport layer application.  This application will implement the standard bitcoin p2p protocol, and will be used by default.
 
 
 The API should be designed so that multiple applications can connect to the same bitcoin instance at the same time.   The API should be non-blocking and atomic in design... (either something works completely, or it fails completely).  Finally the API should have no access to any function that interacts with the wallet.
