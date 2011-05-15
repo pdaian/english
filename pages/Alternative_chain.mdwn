@@ -103,6 +103,8 @@ in which case the BitcoinData message for SomeOtherChain would be 1 rather than 
 
 A more complex change is the other new RPC. Because you have your own chain, it has its own difficulty. Most likely it'll be different to Bitcoins own. So you need a way to tell Bitcoin "when you find a block that matches an extradifficulty, please let me know". To mine on multiple difficulties at once, the node vends work (via getwork) matching the easiest difficulty. When a miner reports finding a solution the difficulty is checked to see which chains it is sufficiently difficult for.
 
+<b>Important note: Your chain has its <i>own difficulty</i> and as such the block creation rate is independent of how much mining takes place.</b>
+
 ### Independent node software
 
 Your new network has its own codebase. It can be written in whatever language you like, use whatever P2P protocol you like, store its data however you like and so on.
