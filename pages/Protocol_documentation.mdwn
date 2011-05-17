@@ -23,6 +23,16 @@ For bitcoin addresses (RIPEMD-160) this would give:
 	2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 (first round is sha-256)
 	b6a9c8c230722b7c748331a8b450f05566dc7d0f (with ripemd-160)
 
+### Merkle Trees
+
+Merkle trees are binary trees of hashes. Merkle trees in bitcoin use SHA-256, and are built up as so:
+
+	sha256(a) sha256(b) sha256(c)
+	sha256(sha256(a)+sha256(b)) sha256(sha256(c)+sha256(c))
+	sha256(sha256(sha256(a)+sha256(b))+sha256(sha256(c)+sha256(c)))
+
+They are paired up, with the last element being _duplicated_.
+
 ### Signatures
 
 Bitcoin uses [Elliptic Curve](http://en.wikipedia.org/wiki/Elliptic_curve_cryptography) [Digital Signature Algorithm](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) (ECDSA) to sign transactions. 
