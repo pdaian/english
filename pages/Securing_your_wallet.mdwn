@@ -129,7 +129,7 @@ backupwallet.sh:
 	if
 	echo -n making backup...
 	bitcoind backupwallet $WALLET 
-	 [[!_-s_$WALLET]]
+	<nowiki>[[ ! -s "$WALLET" ]]</nowiki>
 	then echo failed
 	elif
 	echo done
