@@ -59,7 +59,9 @@ For hosts that cannot make outbound connections on port 6667, the lfnet servers 
 
 The *addr* messages described above create an effect similar to the IRC bootstrapping method. You know reasonably quickly whenever a peer joins, though you won't know for a while when they leave.
 
-Bitcoin comes with an address database already populated by a few addresses. If you are unable to connect to IRC and you've never connected to the network before, you will get an updated address database by connecting to one of these "seednodes".
+Bitcoin comes with a list of addresses known as "seed nodes". If you are unable to connect to IRC and you've never connected to the network before, the client will update the address database by connecting to one of the nodes from this list.
+
+The -addnode command line option can be used to manually add a node.  The -connect option can force bitcoin to only connect to a specific node.
 
 ## Heartbeat
 
