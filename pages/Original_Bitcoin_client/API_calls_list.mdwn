@@ -38,7 +38,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |listreceivedbyaddress |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "address" : receiving address* "account" : the account of the receiving address* "amount" : total amount received by the address* "confirmations" : number of confirmations of the most recent transaction includedTo get a list of accounts on the system, execute bitcoind listreceivedbyaddress 0 true
 |listtransactions |<account>[[count=10]]|Returns up to [[count]]most recent transactions for account <account>.
 |move |<fromaccount><toaccount><amount>[[minconf=1]][[comment]]|Move from one account in your wallet to another.
-|sendfrom |<fromaccount><tobitcoinaddress><amount>[[minconf=1]][[comment]][[comment-to]]|<amount>is a real and is rounded to the nearest 0.01
+|sendfrom |<fromaccount><tobitcoinaddress><amount>[[minconf=1]][[comment]][[comment-to]]|<amount>is a real and is rounded to the nearest 0.01. Returns the transaction ID if successful.
 |sendtoaddress |<bitcoinaddress><amount>[[comment]][[comment-to]]|<amount>is a real and is rounded to the nearest 0.01
 |setaccount |<bitcoinaddress><account>|Sets the account associated with the given address.
 |setgenerate |<generate>[[genproclimit]]|<generate>is true or false to turn generation on or off.<br/>Generation is limited to [[genproclimit]]processors, -1 is unlimited.
