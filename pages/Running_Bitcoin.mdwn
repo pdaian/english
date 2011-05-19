@@ -63,6 +63,27 @@ Here is a sample bitcoin.conf file, containing every option set to its default v
 	# Connect via a socks4 proxy
 	#proxy=127.0.0.1:9050
 	
+	##############################################################
+	##            Quick Primer on addnode vs connect            ##
+	##  Let's say for instance you use addnode=4.2.2.4          ##
+	##  addnode will connect you to and tell you about the      ##
+	##    nodes connected to 4.2.2.4.  In addition it will tell ##
+	##    the other nodes connected to it that you exist so     ##
+	##    they can connect to you.                              ##
+	##  connect will not do the above when you 'connect' to it. ##
+	##    It will *only* connect you to 4.2.2.4 and no one else.##
+	##                                                          ##
+	##  So if you're behind a firewall, or have other problems  ##
+	##  finding nodes, add some using 'addnode'.                ##
+	##  If you want to stay private, use 'connect' to only      ##
+	##  connect to "trusted" nodes.                             ##
+	##  If you run multiple nodes on a LAN, there's no need for ##
+	##  all of them to open lots of connections.  Instead       ##
+	##  'connect' them all to one node that is port forwarded   ##
+	##  and has lots of connections.                            ##
+	##       Thanks goes to [[Noodle]] on Freenode.               ##
+	##############################################################
+	
 	# Use as many addnode= settings as you like to connect to specific peers
 	#addnode=69.164.218.197
 	#addnode=10.0.0.2:8333
