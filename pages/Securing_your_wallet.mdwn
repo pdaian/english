@@ -45,6 +45,14 @@ When javascript is disabled, the [linux download page](http://sourceforge.net/pr
 
 After you've made your secure new user, to maintain security you should use it only for bitcoin.
 
+###Mac
+
+You can keep your wallet file on an encrypted disk image. Open Disk Utility, click New Image, choose small size (eg. 40MB), 128-bit or 256-bit (faster or more secure) encryption and single partition. Save it somewhere you won't lose it (like your Dropbox, Strongspace or whatever), choose a safe password and there you have it. Move everything from ~/Library/Application Support/Bitcoin/ to the image and symlink it back so the app would be able to use it, eg.
+
+ln -s /Volumes/Bitcoin ~/Library/Application Support/Bitcoin
+
+Don't forget to mount your image before using Bitcoin and unmount after quitting it.
+
 ## Locating BitCoin's data directory
 
 The [[data_directory]] is the location where Bitcoin's data files are stored, including the wallet data file.
