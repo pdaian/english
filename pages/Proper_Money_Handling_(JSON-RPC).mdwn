@@ -43,7 +43,7 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 
 ## Python
 	def JSONtoAmount(value):
-	return long(round(amount * 1e8))
+	return long(round(value * 1e8))
 	def AmountToJSON(amount):
 	return float(amount / 1e8)
 
