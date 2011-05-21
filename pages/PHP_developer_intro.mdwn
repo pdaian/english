@@ -49,11 +49,11 @@ Assuming Bitcoin has finished the initialisation process; download the file json
 
 ## Precision
 
-Bitcoin amounts can range from 0.00000001 to 21,000,000.  To avoid rounding errors, you must make sure your PHP implementation supports the full range of bitcoin values without losing precision.  Most PHP implementations use IEEE 64-bit double-precision floating point numbers, which have 53 bits of precision, which is enough to correctly represent the full range of bitcoin values.
+Bitcoin amounts can range from 1 (0.00000001 BTC) to nearly 2,100,000,000,000,000 (21,000,000 BTC).  To avoid rounding errors, you must make sure your PHP implementation supports the full range of bitcoin values without losing precision.  Most PHP implementations use IEEE 64-bit double-precision floating point numbers, which have 53 bits of precision, which is enough to correctly represent the full range of bitcoin values.
 
 See [[Proper_Money_Handling_(JSON-RPC)]] for more information.
 
-If your PHP implementation does not support 64-bit numbers, you must use a version of bitcoind that sends values as strings (genjix maintains a fork at http://github.com/genjix/bitcoin) and use the  [GMP](http://php.net/manual/en/ref.gmp.php) and [BC Math](http://php.net/manual/en/ref.bc.php) libraries for all calculations involving bitcoin amounts.
+If your PHP implementation does not support 64-bit numbers, you must use a version of bitcoind that sends values as strings (genjix maintains a fork at http://github.com/genjix/bitcoin) and use the  [GMP](http://php.net/manual/en/ref.gmp.php) and [BC Math](http://php.net/manual/en/ref.bc.php) libraries for all calculations involving bitcoin amounts.
 
 ## Accounts
 
