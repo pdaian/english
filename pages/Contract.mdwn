@@ -1,0 +1,73 @@
+A **distributed contract** is a method of using Bitcoin to form agreements with people, anonymously and without the need for trust.
+
+#Theory
+
+Every [[transaction]] in Bitcoin has one or more inputs and outputs. Each input/output has a small pure function associated with it called a [[script]]. Scripts can contain signatures over simplified forms of the transaction itself.
+
+There are two general patterns for safely creating contracts:
+
+1. Transactions are passed around outside of the P2P network, in partially complete or invalid forms.
+1. Two transactions are used: one (the contract) is created and signed but not broadcast right away. Instead the other transaction (the payment) is broadcast after the contract is agreed to lock in the money, and then the contract is broadcast.
+
+This is to ensure people always know what they are agreeing to.
+
+Every transaction can have a lock time associated with it. This allows the transaction to be pending and replaceable until an agreed upon future time, specified either as a block index or as a timestamp.
+
+Signature checking is flexible because the form of transaction that is signed can be controlled through the use of SIGHASH flags, which are stuck on the end of a signature (see [[OP_CHECKSIG]]). In this way contracts can be built in which each party signs only a part of it, allowing other parts to be changed without their involvement. For this to work we can use the CHECKMULTISIG opcode. This opcode provides n-of-m checking: you provide multiple public keys, and specify the number of valid signatures that must be present. The number of signatures can be less than the number of public keys. An output can require two signatures to be spent by setting it to something like this:
+
+	2 <pubkey1> <pubkey2> 2 CHECKMULTISIGVERIFY
+
+Together these features let us build interesting new financial tools on top of the block chain.
+
+#Example 1: Providing a deposit
+
+Imagine you open an account on a website (eg, a forum or wiki) and wish to establish your trustworthyness with the operators, but you don't have any pre-existing reputation to leverage. One solution is to buy trust by paying the website some money. But if at some point you close your account you'd probably like that money back. You may not trust the site enough to give them a deposit which they are tempted to spend. Another risk is that the site might just disappear one day. 
+
+The goal is to prove that you made a sacrifice of some kind so the site knows you're not a spambot, but you don't want them to be able to spend the money. And if the operators disappear you'd eventually like the coins back without needing anything from them.
+
+We can solve this problem with a contract:
+
+1. The user and website send each other a newly generated public key.
+1. The user creates transaction Tx1 (the payment) putting 10 BTC into an output which requires both user and website to sign, but does not broadcast it. They use the key from the previous step for the site.
+1. User sends the hash of Tx1 to the website.
+1. The website creates a transaction Tx2 (the contract).  Tx2 spends Tx1 and pays it back to the user using the address he provided in the first step. Note that Tx1 requires two signatures, so this transaction can't be complete. nLockTime is set to some point in the future (eg, six months). The sequence numbers on the inputs are set to zero instead of the default which is UINT_MAX.
+1. Finally the incomplete (half signed) transaction is sent back to the user. The user checks that the contract is as expected ... that the coins will eventually come back to him but, unless things are changed, only after six months. Because the sequence numbers are zero the contract can be amended in future if both parties agree. The script in the input isn't finished though - where there should be the users signature is only zeros. He fixes that by signing the contract and putting the new signature in the appropriate spot.
+1. The user broadcasts Tx1, then broadcasts Tx2.
+
+At this point, the 10 BTC are in a state where neither the user nor the website can spend them independently. After six months the contract will complete and the user will get the coins back even if the website disappears.
+
+What if the user wishes to close his account early? The website creates a new version of Tx2 with nLockTime set to zero and the input sequence number set to 1, then re-signs it. The site hands the tx back to the user who signs it as well. The user then broadcasts the transaction, terminating the contract early and releasing the coins.
+
+What if the six months is nearly up and the user wishes to keep his account? The same thing applies: the contract can be resigned with a newer nLockTime and rebroadcast 2^32 times. No matter what happens, both parties must agree for the contract to change.
+
+#Example 2: Escrow and dispute mediation
+
+You want to trade with somebody you don't know or trust. In the common case where the transaction goes well, you don't want any third parties involved. If something goes wrong though, you'd like the money to go to a third party - perhaps a professional dispute mediation service. Note that "you" in that sentence can refer to either buyer or seller. The mediator might request proof of postage from the merchant for example.
+
+In other words, you want to lock up some coins so you can send them to one of two addresses. There's no way to write an output script such that it checks the outputs of the spending transaction. Scripts don't have access to that data. Fortunately, we can do it another way:
+
+1. Agree with the merchant on a dispute mediator (eg, ClearCoin).
+1. Ask the merchant for a public key (K1). Ask the mediator for a public key (K2). Create a new key for yourself (K3).
+1. Send the merchant K2. The merchant challenges the mediator with a random nonce, the mediator signs the nonce with the private form of K2 thus proving it really belongs to them.
+1. Create a transaction (Tx1) with an output script as follows and broadcast it:
+
+	<K3> CHECKSIGVERIFY 1 <K1> <K2> 2 CHECKMULTISIGVERIFY
+
+Now the keys are locked in such a way that they can be only spent by you with the co-operation of one of the recipients.
+
+To select which one gets the coins create a new transaction (Tx2) with a single input spending the pre-prepared output. The scriptSig is:
+
+	CODESEPARATOR <your signature>
+
+Your signature should use the SIGHASH_NONE flag. It means that the outputs can be anything, you don't care how the money is spent. The only thing you are signing is the input data: ie, the hash of the input transaction Tx1, the index of the output on that transaction (zero) and the sequence number (UINT_MAX).
+
+Now you have a partially complete transaction, you can send it to one of the two parties. Let's say you never received what you paid for, so you send the half-complete transaction to the dispute mediator who does the following:
+
+1. Adds a regular output to one of their own addresses.
+1. Signs the whole thing (with SIGHASH_ALL) and then prepends their signature to the start of the input. The input scriptSig now reads <tt> <K2 signature from mediator> CODESEPARATOR <your signature></tt>
+1. When run with the Tx1 output appended, firstly your signature will be checked and because you use SIGHASH_NONE it will verify despite you not knowing what the output would be. Then the mediators signature will be combined with the two possible public keys. CHECKMULTISIGVERIFY will pass because only one signature was required.
+1. The mediator then broadcasts the transaction, taking the coins. The dispute mediation can now begin.
+
+The same process applies if you send to the merchant.
+
+It's possible the merchant may worry about you vanishing after they have dispatched the goods you are buying. Whilst you can't take the payment back, the merchant would still be out of pocket. To solve this a transaction can be prepared with the merchant that spends the output to a merchant controlled address, but with an nLockTime of a month from now and the inputs sequence number set to zero. This transaction is broadcast across the network. If your goods never arrive and you want to send to the mediator instead, prepare the transaction as above but with the sequence number of the input set to one. When the mediator broadcasts this transaction it will replace the one that would have sent the coins to the merchant.
