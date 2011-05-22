@@ -10,25 +10,21 @@ Let's take 4,000 tps as starting goal. Obviously if we want BitCoin to scale to 
 
 ##Current bottlenecks
 
-Today the BitCoin network is limited to about 7 tps by some artificial limits. These were put in place to stop spammers from ballooning the size of the block chain before the network and community was ready for it. Once those limits are lifted, the maximum transaction rate will go up significantly.
+Today the BitCoin network is restricted to about 7 tps by some artificial limits. These were put in place to stop people from ballooning the size of the block chain before the network and community was ready for it. Once those limits are lifted, the maximum transaction rate will go up significantly.
 
 ##CPU
 
 The protocol has two parts. Nodes send "inv" messages to other nodes telling them they have a new transaction. If the receiving node doesn't have that transaction it requests it with a getdata.
 
-The big cost is the crypto and block chain lookups involved with verifying the transaction. An ECDSA verification of a transaction input takes around 3msec on a modern Intel core. RIPEMD-160 runs at 106 megabytes/sec (call it 100 for simplicity) and SHA256 is about the same. So hashing 1 megabyte should take around 10 milliseconds and hashing 1 kilobyte would take 0.01 milliseconds, ie it's dwarfed by the cost of the ECDSA.
-
-The bulk of the rest of the time in verifying a transaction today probably goes on disk IO, but in our hypothetical future the entire block chain would surely be stored in RAM (or flash). Reading from RAM or even flash is cheap. Even if you assume a gigantic block chain, it's quite feasible to hold the whole thing in RAM. Consider that Google holds large parts of the web in RAM today if you don't believe me.
+The big cost is the crypto and block chain lookups involved with verifying the transaction. An ECDSA verification of a transaction input takes around 3msec on a modern Intel core. RIPEMD-160 runs at 106 megabytes/sec (call it 100 for simplicity) and SHA256 is about the same. So hashing 1 megabyte should take around 10 milliseconds and hashing 1 kilobyte would take 0.01 milliseconds, ie it's dwarfed by the cost of the ECDSA and thus can be ignored.
 
 So the slowest part of verifying a transaction is verifying its inputs, which is ~3 msec per input on todays hardware. It seems like in the current blockchain most transactions have only one input, and a few have more like 5/6 inputs. Let's call it an average of 2 inputs overall.  However each transaction input is verified twice: once when first received, and a second time when a block containing that transaction is received, so call it 12msec in total per transaction.
 
-So this means a single core today can probably, with tuning and the block chain held in RAM but no special hardware beyond that, verify and accept about 80 transactions/sec. Writing data out over the network to peers is cheap and can be done largely by the NIC itself so that's not a concern. This means a network node capable of keeping up with VISA would need roughly 50 cores + whatever is used for mining (done by separate machines/GPUs). Whilst building a single machine with 50 cores would be kind of a pain load balancing inbound "tx" messages over multiple machines would be very easy. Certainly a single machine could easily load balance all of VISAs transactions to a small group of verification machines which would then send the verified tx hash to the miners for incorporation into the merkle tree.
+This means a single core today can probably, with tuning and the block chain held in RAM but no special hardware beyond that, verify and accept about 80 transactions/sec. This means a network node capable of keeping up with VISA would need roughly 50 cores + whatever is used for mining (done by separate machines/GPUs). Whilst building a single machine with 50 cores would be kind of a pain load balancing inbound "tx" messages over multiple machines would be very easy. Certainly a single machine could easily load balance all of VISAs transactions to a small group of verification machines which would then send the verified tx hash to the miners for incorporation into the merkle tree.
 
-For receiving and handling all the "tx" messages, you could build a rack of 12 4-core machines that would keep up easily. And there are cryptographic techniques that can speed up the type of ECDSA verification BitCoin needs considerably.
+For receiving and handling all the "tx" messages, you therefore could build a rack of 12 4-core machines that would keep up.
 
 That leaves the inbound inv messages. The cost of handling an inv is basically reading a small message from the network and then doing a RAM lookup to see if we already have the transaction. This is really, really fast. A single core could easily handle several thousand inv messages per second before breaking a sweat, even assuming it needs to read from a sharded in-memory block chain index.
-
-So with some adapted software, you could build a distributed BitCoin network node that could keep up with VISA with probably 2 or 3 racks of machines assuming the block chain and associated indexes are either kept in regular RAM or (more likely) flash storage. So something a rich hobbyist could do, but more likely for small company or organization today - not even taking into account the falling cost of computing over time. If BitCoin is ever as large as VISA there'll be plenty of people willing to run such rigs.
 
 ##Network
 
@@ -42,24 +38,34 @@ Shifting 60 gigabytes of data in, say, 60 seconds means an average rate of 1 gig
 
 The real question you want to know is how much does that sort of bandwidth cost? Well, bandwidth prices are a very tricky thing as some of the largest consumers pay the least due to how peering agreements work. The Googles and Akamais of this world will pay way less for a 10G wave than a small operator would. And, you wouldn't be hitting the 8Gbps very frequently .... only when you solve a block, really, as when relaying a block the peers you connect to will likely have already received it from some other peer anyway so only a subset would need to receive it from you. But you can take a look at [(1)](http://icecolo.com/colocation-packages) to get a feel for it.
 
-If you wanted to run a distributed supernode that held the block chain in flash/ram etc, you'd probably buy an 11u quarter rack from them at 250 pound sterling a month, which also gets you 3T of data transfer per month beyond just power and cooling. So you could potentially do a full block broadcast 50 times per month. Certainly you could negotiate that up if you needed to.
+##Storage
 
-It's very unlikely that a hypothetical VISA scale BitCoin network would have nodes which win a block every single day, at least, a healthy network would hopefully not have hash power concentrated so tightly into single miner nodes.
-
-It's also possible to optimize the protocol somewhat. A solved block could be broadcast as only its header and merkle tree. Nodes would then check the transaction hashes against their own in-memory lists. If a block contains a transaction the node did not see for some reason, it'd then request only those transactions. For the common case of a node with good, 24/7 network connectivity, this would reduce the size of block broadcasts dramatically.
-
-##Disk
-
-At very high transaction rates each block can be over a gigabyte in size. Whilst the network protocol can be optimized to avoid sending this much data around, the blocks must still be stored on disk.
-
-Satoshis paper explains how transactions with fully spent outputs can be pruned from long term storage due to how they are stored in a merkle tree. Nodes try to avoid accumulating lots of small unspent outputs as that means to send a reasonable quantity of coins would require transactions with lots of inputs and thus, be large and perhaps requiring a fee. Because nodes fight fragmentation, as time goes by it's likely that many blocks can be completely pruned of all or nearly all transactions, reducing their storage costs in the best case down to 80 bytes.
-
-The software today does not implement pruning and so far, nobody has done studies of the existing block chain to see how much space could be reclaimed.
+At very high transaction rates each block can be over a gigabyte in size. These blocks must be stored somewhere. Whilst for speed it'd be ideal to store the block chain entirely in RAM, for cheapness storing only the hot parts in RAM and the rest on disk is the way to go. A 3 terabyte hard disk costs less than $200 today and will be cheaper still in future, so you'd need one such disk for every 21 days of operation (at 1gb per block).
 
 ##Network structure
 
 Today BitCoin is a flat peer to peer network in which all nodes are equal. However the intention is to evolve it towards a more typical two-tier structure in which low powered client nodes connect to long-lived, high powered supernodes. The protocol already has some support for this (see the services flags in the version/address messages). However client mode is only partially implemented and no code exists to decide if and when to switch between supernode/client node status.
 
-As the network scales up, the costs of running a supernode that stores the full block chain and verifies every transaction will get progressively higher, but the two tier structure ensures everyone can still get started quickly. Client nodes only need to download a small number of headers the first time they connect (from their last checkpoint until the chain head), which can be done very quickly.
+As the network scales up, the costs of running a supernode that stores the full block chain and verifies every transaction will get progressively higher, but the two tier structure ensures everyone can still get started quickly. Client nodes only need to download a small number of headers the first time they connect (from their last checkpoint until the chain head). It's quite possible to run such nodes on a modern smartphone. The security model for lightweight clients is slightly different to a full node: whilst they don't need to talk to a trusted node (ie any network node will do), in that configuration it's important that the network be very difficult to attack as the block contents are not verified.
+
+##Optimizations
+
+The description above applies to the current software. However several optimizations exist that can dramatically cheapen the cost of running a node and these are fairly easy to implement.
+
+###CPU
+
+The CPU cost of a transaction is doubled by the fact that the current software verifies each input twice. There's no need for this. Once a transaction is received the fact that it passed verification can be stored, and when it re-appears in a block the second verification can be skipped. This would roughly double per-core capacity, ie you would need only 25 cores to verify VISA-level traffic loads. This can actually fit into a single high-end server.
+
+###Storage
+
+The storage costs of the block chain calculated above assume transactions are never deleted. Satoshis paper explains how transactions with fully spent outputs can be pruned from long term storage due to how they are arranged in a merkle tree. Nodes try to avoid accumulating lots of small unspent outputs as that means to send a reasonable quantity of coins would require transactions with lots of inputs and thus, be large and perhaps requiring a fee. Because nodes fight fragmentation, as time goes by it's likely that many blocks can be completely pruned of all or nearly all transactions, reducing their storage costs in the best case down to 80 bytes. The software today does not implement pruning and so far, nobody has done studies of the existing block chain to see how much space could be reclaimed.
+
+###Bandwidth
+
+The network costs of distributing blocks can be minimized by changing the protocol to send blocks as a header plus a list of hashes. Because nodes are very likely to have already seen a transaction when it was first broadcast, this means the size of a block to download would be trivial (80 bytes + 32 bytes per transaction). If a node didn't see a transaction broadcast, it can ask the connected node to provide it.
+
+###Network structure
+
+The peer-finding mechanism today relies on IRC. Switching to DNS would give dramatically faster startup times that do not scale with the size of the network.
 
 [[!tag "Technical"]]
