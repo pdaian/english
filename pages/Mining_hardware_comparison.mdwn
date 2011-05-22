@@ -94,6 +94,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |style="background:#FFEFEF;"5870x2 |878    ||1500 |1000 |3200 |2.1 |PCI-E 2.1 x16 |phoenix 1.7 w/ Phtak |AGGRESSION=13 WORKSIZE=128 VECTORS BFI_INT Memory @ 300MHz
 |6310M |9.821 |0.545 |18  |500 |80 |2.4 |Integrated/APU |poclbm-gui -v -w128 |HP DM1z 18W TDP is shared with the CPU
 |6490M |16.289 |0.708 |23  ||||PCI-E 2.1 x16 |poclbm-mod (Mac OS X 10.6.7) |MacBook Pro early 2011
+|6490M |15.37 |||||||[DiabloMiner GUI](http://forum.bitcoin.org/index.php?topic=8994.0)v2011-05-21 / Mac OS X 10.6.7|Model: MacBookPro8,2 VRAM: 256MB
 |6850 |171.59 |1.351 |127 |775 |960 |2.1 |PCI-E 2.1 x16 |clmine |
 |6850 |196 |||850 |960 ||PCI-E 2.1 x16 |poclbm |-v -w 128 -f 0
 |6850 |234.8 |||940 |960 |2.4 |PCI-E 2.1 x16 |Phoenix 1.3 |AGGRESSION=8 WORKSIZE=128 VECTORS BFI_INT
@@ -173,7 +174,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |GTX285 |53.35 |0.262 |204 |1476 |240 |
 |GTX295 |89.78 |0.311 |289 |1242 |480 |
 |GT 320M (MacBook Air) |6.12 |||1212 |48 |
-|GT 320M |7.75 |||||MacBook Pro; 512MB VRAM
+|GT 330M |7.75 |||||Model: MacBookPro6,2 VRAM: 512MB Software: [DiabloMiner GUI](http://forum.bitcoin.org/index.php?topic=8994.0)v2011-05-21 / Mac OS X 10.6.7
 |GT 330M (Sony Vaio Z) |7.8 |0.71 ( 0.3 total) |11 (26w total) |1045 |48 |
 |GT430 |20.24 |0.413 |49 |1400 |96 |
 |GTS450 |45.28 |0.427 |106 |1566 |192 |
@@ -266,11 +267,13 @@ I found the best combination to be is to throttle CPU miner to -5% _AND_ set it 
 |Core i5 ?  |4/? |6.5 ||||client from svn |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg37621#msg37621)
 |Core i5-2400 |4/4 |4.5 |0.05 |95W |3.1 GHz |cpuminer git (2011-01-22) |cryptopp_asm32
 |Core i5-2400 |4/4 |14 |0.15 |95W |3.1 GHz |cpuminer git (2011-03-26) |sse2_64
+|Core i7 620M   |2/4 |1.8 |||2.66 GHz |[RPCMiner GUI](http://forum.bitcoin.org/index.php?topic=8994.0)v2011-05-21 / Mac OS X 10.6.7 |Model: MacBookPro6,2 RAM: 4GB
 |Core i7 920   |4/8 |19.2 |0.10 |195 |4.0 GHz (x21) |[ufasoft](http://www.bitcoin.org/smf/index.php?topic=3486.0)|-a 5
 |Core i7 950   |4/8 |5.88 |0.039 |150W |3.83 GHz (x23) |bitcoin-0.3.20.2 Win7-64 |
 |Core i7 950   |4/8 |18.9 |0.126 |150W |3.83 GHz (x23) |[ufasoft](http://www.bitcoin.org/smf/index.php?topic=3486.0)v0.4 |
 |Core i7 980x   |6/12 |19.2 |0.15 |130 |4.4 GHz (x33) |cpuminer/Win7-64 |
 |Core i7 980x   |6/12 |8.7 |||3.9 GHz (x27) |0.3.17/Win7-64 |
+|Core i7 2635QM   |4/8 |2.83 |||2.00 GHz |[RPCMiner GUI](http://forum.bitcoin.org/index.php?topic=8994.0)v2011-05-21 / Mac OS X 10.6.7 |Model: MacBookPro8,2 RAM: 4GB
 |Core i7 620M   |2/4 |6.3 |0.18 |35 |2.66 GHz |[ufasoft](http://www.bitcoin.org/smf/index.php?topic=3486.0)v0.4 |
 |Core 2 Duo E5200 |2/2 |6.2 |0.086 |72W |2.76 Ghz |Ufasoft/Win7-64 |TDP is 65W + 7W overclock
 |Core 2 Duo E6550 |1/2 |2.45 |? |? |2.33 GHz |cpuminer 0.7.1 (Linux) |--algo=sse2_64
