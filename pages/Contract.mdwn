@@ -1,6 +1,6 @@
 A **distributed contract** is a method of using Bitcoin to form agreements with people, anonymously and without the need for trust.
 
-#Theory
+##Theory
 
 Every [[transaction]] in Bitcoin has one or more inputs and outputs. Each input/output has a small pure function associated with it called a [[script]]. Scripts can contain signatures over simplified forms of the transaction itself.
 
@@ -19,7 +19,7 @@ Signature checking is flexible because the form of transaction that is signed ca
 
 Together these features let us build interesting new financial tools on top of the block chain.
 
-#Example 1: Providing a deposit
+##Example 1: Providing a deposit=
 
 Imagine you open an account on a website (eg, a forum or wiki) and wish to establish your trustworthyness with the operators, but you don't have any pre-existing reputation to leverage. One solution is to buy trust by paying the website some money. But if at some point you close your account you'd probably like that money back. You may not trust the site enough to give them a deposit which they are tempted to spend. Another risk is that the site might just disappear one day. 
 
@@ -40,7 +40,7 @@ What if the user wishes to close his account early? The website creates a new ve
 
 What if the six months is nearly up and the user wishes to keep his account? The same thing applies: the contract can be resigned with a newer nLockTime and rebroadcast 2^32 times. No matter what happens, both parties must agree for the contract to change.
 
-#Example 2: Escrow and dispute mediation
+##Example 2: Escrow and dispute mediation
 
 You want to trade with somebody you don't know or trust. In the common case where the transaction goes well, you don't want any third parties involved. If something goes wrong though, you'd like the money to go to a third party - perhaps a professional dispute mediation service. Note that "you" in that sentence can refer to either buyer or seller. The mediator might request proof of postage from the merchant for example.
 
