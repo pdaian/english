@@ -4,7 +4,29 @@ This page aggregates the changelogs that have been posted on the forum for the B
 
 #Changelogs
 
-##0.3.20.2<ref>[http://www.bitcoin.org/smf/index.php?topic=4167.0 0.3.20.2 release announcement]</ref>=
+##0.3.21<ref>[http://forum.bitcoin.org/?topic=6642.0 0.3.21 release announcement]</ref>=
+Binaries for Bitcoin version 0.3.21 are available at:
+	https://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.3.21/
+
+Changes and new features from the 0.3.20 release include:
+
+* Universal Plug and Play support.  Enable automatic opening of a port for incoming connections by running bitcoin or bitcoind with the - -upnp=1 command line switch or using the Options dialog box.
+
+* Support for full-precision bitcoin amounts.  You can now send, and bitcoin will display, bitcoin amounts smaller than 0.01.  However, sending fewer than 0.01 bitcoins still requires a 0.01 bitcoin fee (so you can send 1.0001 bitcoins without a fee, but you will be asked to pay a fee if you try to send 0.0001).
+
+* A new method of finding bitcoin nodes to connect with, via DNS A records. Use the -dnsseed option to enable.
+
+For developers, changes to bitcoin's remote-procedure-call API:
+
+* New rpc command "sendmany" to send bitcoins to more than one address in a single transaction.
+
+* Several bug fixes, including a serious intermittent bug that would sometimes cause bitcoind to stop accepting rpc requests. 
+
+* -logtimestamps option, to add a timestamp to each line in debug.log.
+
+* Immature blocks (newly generated, under 120 confirmations) are now shown in listtransactions.
+
+##0.3.20.2<ref>[http://forum.bitcoin.org?topic=4167.0 0.3.20.2 release announcement]</ref>=
 The maxsendbuffer bug (0.3.20.1 clients not being able to download the block chain from other 0.3.20.1 clients) was only going to get
 worse as people upgraded, so I cherry-picked the bug fix and created a minor release yesterday.
 
@@ -26,7 +48,7 @@ If you have already downloaded version 0.3.20.1, please either add this to your 
 ##0.3.20.1
 (No known forum post.)
 
-##0.3.20<ref>[http://www.bitcoin.org/smf/index.php?topic=2953.0 0.3.20 release announcement]</ref>=
+##0.3.20<ref>[http://forum.bitcoin.org?topic=2953.0 0.3.20 release announcement]</ref>=
 Please checkout the git integration branch from:
 
 https://github.com/bitcoin/bitcoin
@@ -50,7 +72,7 @@ This needs more testing on Windows!  Please drop me a quick private message, ema
 
 https://github.com/bitcoin/bitcoin/issues
 
-##0.3.19<ref>[http://www.bitcoin.org/smf/index.php?topic=2228.0 0.3.19 release announcement]</ref>=
+##0.3.19<ref>[http://forum.bitcoin.org?topic=2228.0 0.3.19 release announcement]</ref>=
 There's more work to do on DoS, but I'm doing a quick build of what I have so far in case it's needed, before venturing into more complex ideas.  The build for this is version 0.3.19.
 
 - Added some DoS controls
@@ -62,7 +84,7 @@ I'm leaving the -limitfreerelay part as a switch for now and it's there if you n
 "safe mode" alerts was a temporary measure after the 0.3.9 overflow bug.  We can say all we want that users can just run with "-disablesafemode", but it's better just not to have it for the sake of appearances.  It was never intended as a long term feature.  Safe mode can still be triggered by seeing a longer (greater total PoW) invalid block chain.
 
 
-##0.3.18<ref>[http://www.bitcoin.org/smf/index.php?topic=2162.0 0.3.18 release announcement]</ref>=
+##0.3.18<ref>[http://forum.bitcoin.org?topic=2162.0 0.3.18 release announcement]</ref>=
 
 Changes:
 
@@ -78,7 +100,7 @@ The main addition in this release is the Accounts-Based JSON-RPC commands that G
 * getbalance
 * listtransactions
 
-##0.3.17<ref>[http://www.bitcoin.org/smf/index.php?topic=1946.0 0.3.17 release announcement]</ref>=
+##0.3.17<ref>[http://forum.bitcoin.org?topic=1946.0 0.3.17 release announcement]</ref>=
 
 Version 0.3.17 is now available.
 
@@ -98,7 +120,7 @@ The accounts-based commands: move, sendfrom and getbalance <account> will be in 
 
 Never released.
 
-##0.3.15<ref>[http://www.bitcoin.org/smf/index.php?topic=1780.0 0.3.15 release announcement]</ref>=
+##0.3.15<ref>[http://forum.bitcoin.org?topic=1780.0 0.3.15 release announcement]</ref>=
 
 * paytxfee switch is now per KB, so it adds the correct fee for large transactions
 * sending avoids using coins with less than 6 confirmations if it can
@@ -107,7 +129,7 @@ Never released.
 * bugfixes by Dean Gores
 * testnet, keypoololdest and paytxfee added to getinfo
 
-##0.3.14<ref>[http://www.bitcoin.org/smf/index.php?topic=1528.0 0.3.14 release announcement]</ref>=
+##0.3.14<ref>[http://forum.bitcoin.org?topic=1528.0 0.3.14 release announcement]</ref>=
 
 Version 0.3.14 is now available
 http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.3.14/
@@ -124,7 +146,7 @@ eurekafag:
 
 * Russian translation
 
-##0.3.13<ref>[http://www.bitcoin.org/smf/index.php?topic=1327.0 0.3.13 release announcement]</ref>=
+##0.3.13<ref>[http://forum.bitcoin.org?topic=1327.0 0.3.13 release announcement]</ref>=
 
 Version 0.3.13 is now available.  You should upgrade to prevent potential problems with 0/unconfirmed transactions.  Note: 0.3.13 prevents problems if you haven't already spent a 0/unconfirmed transaction, but if that already happened, you need 0.3.13.2.
 
@@ -155,7 +177,7 @@ You can still control the SSE2 use manually with -4way and -4way=0.
 Version 0.3.13.2 (SVN rev 161) has improvements for the case where you already had 0/unconfirmed transactions that you might have already spent.  Here's a Windows build of it:
 http://www.bitcoin.org/download/bitcoin-0.3.13.2-win32-setup.exe
 
-##0.3.12<ref>[http://www.bitcoin.org/smf/index.php?topic=999.0 0.3.12 release announcement]</ref>=
+##0.3.12<ref>[http://forum.bitcoin.org?topic=999.0 0.3.12 release announcement]</ref>=
 
 Version 0.3.12 is now available.
 
