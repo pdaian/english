@@ -58,7 +58,7 @@ The CPU cost of a transaction is doubled by the fact that the current software v
 
 ###Storage
 
-The storage costs of the block chain calculated above assume transactions are never deleted. Satoshis paper explains how transactions with fully spent outputs can be pruned from long term storage due to how they are arranged in a merkle tree. Nodes try to avoid accumulating lots of small unspent outputs as that means to send a reasonable quantity of coins would require transactions with lots of inputs and thus, be large and perhaps requiring a fee. Because nodes fight fragmentation, as time goes by it's likely that many blocks can be completely pruned of all or nearly all transactions, reducing their storage costs in the best case down to 80 bytes. The software today does not implement pruning and so far, nobody has done studies of the existing block chain to see how much space could be reclaimed.
+The storage costs of the block chain calculated above assume transactions are never deleted. Satoshi's paper explains how transactions with fully spent outputs can be pruned from long term storage due to how they are arranged in a Merkle tree. Nodes try to avoid accumulating lots of small unspent outputs as that means to send a reasonable quantity of coins would require transactions with lots of inputs and thus, be large and perhaps requiring a fee. Because nodes fight fragmentation, as time goes by it's likely that many blocks can be completely pruned of all or nearly all transactions, reducing their storage costs in the best case down to 80 bytes. As of May, 2011, the software does not implement pruning, and the savings are [calculated](http://forum.bitcoin.org/index.php?topic=9461.0) at 37% of transactions or 35% of raw block bytes.
 
 ###Bandwidth
 
