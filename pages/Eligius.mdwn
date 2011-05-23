@@ -1,6 +1,6 @@
 **Eligius**, also sometimes referred to as Éloi or "Luke-Jr's pool", is a [[mining pool|Pooled_mining]].
 
-To use it, a miner merely needs to be directed to pool.bitcoin.dashjr.org on port 8337, with the username set to a valid bitcoin address (which receives the payout). **No registration is needed.**
+To use it, a miner merely needs to be directed to mining.eligius.st on port 8337, with the username set to a valid bitcoin address (which receives the payout). **No registration is needed.**
 
 Donation address: 1RNUbHZwo2PmrEQiuX5ascLEXmtcFpooL
 
@@ -15,20 +15,9 @@ Basic concepts:
 
 Eligius was announced on April 27, 2011 (1.1).  At the time the service was operated without a name, paying out even tiny coins immediately.
 
-##To use
-Please be sure to pass a valid address as your username. Incorrect usernames are silently ignored and earnings are kept by the pool.
-
-* **poclbm**: poclbm.exe -d1 --host=pool.bitcoin.dashjr.org --port=8337 --user=**YourAddress** --pass=x
-* **phoenix**: phoenix.exe -u http://**YourAddress**:x@pool.bitcoin.dashjr.org:8337 -k poclbm DEVICE=0 VECTORS BFI_INT FASTLOOP AGGRESSION=6
-* **DiabloMiner**: java -cp target\libs\*;target\DiabloMiner-0.0.1-SNAPSHOT.jar -Djava.library.path=target\libs\natives\windows com.diablominer.DiabloMiner.DiabloMiner -u **YourAddress** -p x -o pool.bitcoin.dashjr.org -r 8337 -g 5
-* **ufasoft**: bitcoin-miner.exe -a 5 -o http://pool.bitcoin.dashjr.org:8337 -u **YourAddress** -p x
-
-##Troubleshooting
-### warning: job finished, miner is idle
-Try using port 80 instead of 8337, and/or setting your router to prioritize port 8337.
-
 ##Eligius-related links
 
+* [Main webpage](http://eligius.st)
 * [Pool statistics (hashrate, found blocks, per-address balance stats)](http://eligius.st/~artefact2/)
 * [Coin Control: view the balance of an address](http://coin-control.appspot.com).
 * [Total pool hashrate (EU + US, estimate)](http://eligius.st/~luke-jr/raw/combined/hashrate.txt)
