@@ -121,6 +121,8 @@ Bitcoin finds peers primarily by connecting to an IRC server (channel #bitcoin o
 ###What is mining?
 Mining is the process of spending computation power to find valid blocks and thus create new Bitcoins.
 
+Technically speaking, mining is the calculation of a [[hash]] of the previous block and a [[nonce]]. If the hash value is found to be less than the current [[difficulty]], a new block is formed and the miner gets 50 newly generated Bitcoins. If the hash is not less than the current difficulty, a new nonce is used, and a new hash is calculated. This is done thousands or millions of times per second by each miner.
+
 ###I've been mining for a long time and haven't created any new Bitcoins. What's wrong?
 
 In the early days of Bitcoin, it was easy for anyone to find new blocks using standard CPUs. As more and more people started mining, the [[difficulty]] of finding new blocks has greatly increased to the point where the average time for a CPU to find a single block can be many years. The only cost- or time-effective method of mining is using a high-end graphics card with special software (see also [[Why_a_GPU_mines_faster_than_a_CPU]]). Since CPU mining is essentially useless, it may be removed from future versions of the Bitcoin software.
