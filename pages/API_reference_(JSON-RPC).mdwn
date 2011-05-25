@@ -1,6 +1,6 @@
 ## Controlling Bitcoin
 
-Run *bitcoind* or *bitcoin -server*. You can control it via the command-line or by HTTP-JSON-RPC commands.
+Run *bitcoind* or *bitcoin -server*. You can control it via the command-line or by  [HTTP JSON-RPC](http://json-rpc.org/wiki/specification) commands.
 
 You must create a bitcoin.conf configuration file setting an rpcuser and rpcpassword; see [[Running_Bitcoin]] for details.
 
@@ -17,7 +17,7 @@ A [[list of RPC calls|Original_Bitcoin_client/API_Calls_list]] will be shown.
 
 ## JSON-RPC
 
-Running Bitcoin with the -server argument (or running bitcoind) tells it to function as a [HTTP JSON-RPC](http://json-rpc.org/wiki/specification) server, but 
+Running Bitcoin with the -server argument (or running bitcoind) tells it to function as a  [HTTP JSON-RPC](http://json-rpc.org/wiki/specification) server, but 
 [Basic access authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) must be used when communicating with it, and, for security, by default, the server only accepts connections from other processes on the same machine.  If your HTTP or JSON library requires you to specify which 'realm' is authenticated, use 'jsonrpc'.
 
 Bitcoin supports SSL (https) JSON-RPC connections beginning with version 0.3.14.  See the [[rpcssl wiki page|Enabling_SSL_on_original_client_daemon]] for setup instructions and a list of all bitcoin.conf configuration options.
