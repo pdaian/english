@@ -1,5 +1,5 @@
 ## How does mining in a pool improve my payouts?
-Pooled mining will not have a significant effect on the [expectation](http://en.wikipedia.org/wiki/Expected_value) of your payouts, but it can dramatically decrease their [variance](http://en.wikipedia.org/wiki/Variance).
+Pooled mining will not have a significant effect on the [expectation](http://en.wikipedia.org/wiki/Expected_value) of your payouts (it can decrease a bit due to fees), but it can dramatically decrease their [variance](http://en.wikipedia.org/wiki/Variance).
 
 ## What reward systems are there?
 All reward systems use the concept of "share", a hash which is easier than the real difficulty and proves you have worked on finding a valid block. Your reward when the pool finds a valid block depends on the shares you submitted.
@@ -23,3 +23,5 @@ On average, one share will be found for every 2^32, or 4.295 billion, hashes cal
 If you constitute a significant part of the pool (say, above 1%), your variance will be roughly proportional to your portion of the pool. If, for example, you are 20% of the pool, your variance will be 20% of solo mining variance (a decrease factor of 5 times).
 
 If not, your variance will not depend on the size of yourself or the pool, but rather on the scoring method used. For proportional, the decrease factor is roughly difficulty/ln(difficulty). For the geometric method the decrease factor is (1 + 2*difficulty*c), where c is the score fee parameter used.
+
+Increasing the size of the pool will always decrease the variance, but at some point you will have diminishing marginal utility.
