@@ -1,0 +1,72 @@
+## Basic formatting
+<!--COMMENT MARKUP. Displays:Edit mode only.-->
+
+
+<!--COLUMN HEADINGS-->|class="header" width="25%" style="text-align:center;"**Description**|class="header" style="text-align:center;"**You type**|class="header" width="25%" style="text-align:center;"**You get**
+<!--1ST ROW 1ST COLUMN-->|Italic text|<!--2ND COLUMN--><tt><nowiki>''italic''</nowiki></tt>|<!--3RD COLUMN-->*italic*
+<!--HORIZONTAL LINE-->|colspan="3" style="border-top:1px solid #FFE4C4;"
+<!--2ND ROW 1ST COLUMN-->|Bold text|<tt><nowiki>'''bold'''</nowiki></tt>|**bold**
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Bold and italic|<tt><nowiki>'''''bold & italic'''''</nowiki></tt>|***bold & italic***
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Internal link<br /><div style="padding: 0em .5em; font-size:0.9em;">*(within the wiki)*</div>|<tt><nowiki>[[Getting started]]</nowiki></tt><br /><tt><nowiki>[[Getting started|How to start]]</nowiki></tt>|[[Getting_started]]<br />[[How to start|Getting_started]]
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Categorization|<nowiki>[[Category:Help]]</nowiki><br /><nowiki> [[Category:Help/fr]]</nowiki>(on French pages)|*Places the page in [[tags/Help]]*<br />*Places the page in [[tags/Help/fr]]*
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|External link<br /><div style="padding: 0em .5em; font-size:0.9em;">*(to other websites)*</div>|<tt><nowiki>[http://www.example.org Text to display]</nowiki></tt><br /><tt><nowiki>[http://www.example.org]</nowiki></tt><br /><tt><nowiki>http://www.example.org</nowiki></tt>|[Text to display](http://www.example.org)<br />[[http://www.example.org]]<br />http://www.example.org
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Citation Needed|<nowiki>{{Citation needed}}</nowiki>|[[!template id=cite]]
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Redirect to another page|<tt><nowiki>#REDIRECT [[Target page]]</nowiki></tt>|[[Redirect arrow.png]][[Target_page]]
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Redirect to a non-english page|<tt><nowiki>#REDIRECT [[Target page/x]] {{R lang|x}}</nowiki></tt>where <code>x</code>is the language's code (de, fr, es, ru...)|[[Redirect arrow.png]][[Target_page/x]]
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Section headings<br /><div style="padding: 0em .5em; font-size:0.9em;">*A Table of Contents will automatically be generated when four headings are added to an article.*</div>|<tt><nowiki>== Level 1 ==</nowiki></tt><br /><tt><nowiki>=== Level 2 ===</nowiki></tt><br /><tt><nowiki>==== Level 3 ====</nowiki></tt><br /><tt><nowiki>===== Level 4 =====</nowiki></tt><br /><tt><nowiki>====== Level 5 ======</nowiki></tt>|## Level 1### Level 2#### Level 3##### Level 4====== Level 5 ======
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Bulleted list|<tt>* One</tt><br /><tt>* Two</tt><br /><tt>** Two point one</tt><br /><tt>* Three</tt>|* One* Two	* Two point one* Three
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Numbered list<br /><div style="padding: 0em .5em; font-size:0.9em;">*Empty lines between list items restarts numbering at 1.*</div>|<tt># One</tt><br /><tt># Two</tt><br /><tt>## Two point one</tt><br /><tt># Three</tt><br />|1. One1. Two	1. Two point one1. Three
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Indenting text|<tt><nowiki>no indent (normal)</nowiki></tt><br/><tt><nowiki>:first indent</nowiki></tt><br/><tt><nowiki>::second indent</nowiki></tt><br/><tt><nowiki>:::third indent</nowiki></tt>|no indent (normal)<br/>> first indent> second indent> third indent
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Image|<tt><nowiki>[[Image:Logo.png‎‎|100px]]</nowiki></tt>|[[!img "Logo.png‎" size=100x100]]
+|colspan="3" style="border-top:1px solid #FFE4C4;"
+|Thumbnail image|<tt><nowiki>[[</nowiki>Image:Logo.png‎thumbCaption text<nowiki>]]</nowiki></tt>|[[!img "Logo.png‎‎" size=120x120 size=100x100 title="Caption text"]]
+
+<!--TALKPAGES-->|colspan="3" style="text-align:center;background:#FFE4C4;" For Talk Pages
+|Sign your posts on talk pages|<tt><nowiki>~~~~</nowiki></tt>|[Username](Special:Mypage)([talk](Special:Mytalk)) [[!template id=currenttime]], [[!template id=currentday]][[!template id=currentmonthname]][[!template id=currentyear]](UTC)
+
+
+## Creating a page
+There are three ways to create a new page on Bitcoin Wiki:
+
+Firstly you can simply type the name of the new page you wish to create into the Search box on the left navigation menu. If the page does not currently exist, the page displayed will advise you that **There is no page titled "*[you searched for](page)*"**. You can <span style="color:red">create this page</span>. Click the <span style="color:red">'create this page'</span> link to create the new page.
+
+Secondly, you can navigate to the [URL](Wikipedia:Uniform Resource Locator) of the new page directly. For example, typing out <tt><nowiki>https://en.bitcoin.it/wiki/New_page</nowiki></tt> into your browser's URL address bar and hitting the enter button will take you to a **New page** document. On that page you can click the **Create** tab to bring up the editing box.
+
+Alternatively any page that contains a red link such as [[Help:Non-existent page]] indicates that the page does not exist. Clicking on the link will take you to a page where the first version can be written and saved. 
+
+## Creating a subpage
+Subpages can be thought of as *children* of articles in the document tree. As such they should be used when you wish to create an article that is intrinsically linked to the parent article. Articles that have been translated into different languages use subpages to store the separate content, for example the [[index]] has a [[Main_Page/pl]] which has the translated content in Polish.
+
+To create a subpage, the same procedure should be used as above using the forward slash (**/**) to indicate the separation between the original page, and the subpage. Example:- **<code><nowiki>Original page name/Subpage name</nowiki></code>**.
+
+## Saving pages
+Once edited, before actually saving your changes, make good use of the **'Show preview**' button to preview the changes. Avoid saving too often or saving just to see what it looks like. Each page save will generate an entry in [recent changes](Special:Recentchanges). Repeated trivial and unnecessary saves tend to clutter up that list and inconvenience users who make use of that list to watch for vandals or misinformed edits. Once you are happy with your changes, enter a brief summary of what changes you have made in the **'Summary:**' text box and click the **'Save page**' button.
+
+The **'This is a minor edit**' tick box should be used if small changes (for example, grammar corrections) have been made. The **'Watch this page**' tick box is useful to keep an eye on changes to that article, these will show up in your **'My Watchlist**' (found at the top right of the wiki when you are logged in) if any changes have been made.
+
+## See also
+
+* [[Help:Contents]] &ndash; main help page
+
+### External
+
+* From [MediaWiki Help](http://www.mediawiki.org/wiki/Help:Contents):
+	* [Formatting](http://www.mediawiki.org/wiki/Help:Formatting)
+	* [Links](http://www.mediawiki.org/wiki/Help:Links)
+	* [Images](http://www.mediawiki.org/wiki/Help:Images)
+	* [Tables](http://www.mediawiki.org/wiki/Help:Tables)
+* [Wikipedia Cheatsheet](wikipedia:Wikipedia:Cheatsheet)
+
+ 
