@@ -1,20 +1,20 @@
 I see the advantage being:
 
-1. I backup my wallet
-2. I sent some money
-3. The 'change' of the transaction is sent to a new address in my pool
-4. My harddrive crashes
-5. I restore wallet from backup
-6. My 'change' is intact because the entire pool was restored.
+	1. I backup my wallet
+	2. I sent some money
+	3. The 'change' of the transaction is sent to a new address in my pool
+	4. My harddrive crashes
+	5. I restore wallet from backup
+	6. My 'change' is intact because the entire pool was restored.
 
 
 Concern:
 
-2.b. I make 300 transactions
-..
-6.b. Have all lost the 'change' to all transactions after the 100th?
+	2.b. I make 300 transactions
+	..
+	6.b. Have all lost the 'change' to all transactions after the 100th?
 
 
 Solution:
 
-3.a. The 'change' is sent to a random (or cycled) address in the pool without generating a new address (key pair).
+	3.a. The 'change' is sent to a random (or cycled) address in the pool without generating a new address (key pair).
