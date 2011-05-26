@@ -78,6 +78,8 @@ Almost all integers are encoded in little endian. Only IP or port number are enc
 |? |payload |uchar[]|The actual data
 
 
+The version and verack messages do not have a checksum, the payload starts 4 bytes earlier.
+
 Known magic values:
 
 
