@@ -22,6 +22,6 @@ On average, one share will be found for every 2^32, or 4.295 billion, hashes cal
 ## How much will the pool decrease my variance?
 If you constitute a significant part of the pool (say, above 1%), your variance will be roughly proportional to your portion of the pool. If, for example, you are 20% of the pool, your variance will be 20% of solo mining variance (a decrease factor of 5 times).
 
-If not, your variance will not depend on the size of yourself or the pool, but rather on the scoring method used. For proportional, the decrease factor is roughly difficulty/ln(difficulty). For the geometric method the decrease factor is (1 + 2*difficulty*c), where c is the score fee parameter used.
+If not, your variance will not depend on the size of yourself or the pool, but rather on the scoring method used. For proportional, the decrease factor is roughly difficulty/ln(difficulty). For the geometric method the decrease factor is roughly (1 + 2*difficulty*c), where c is the score fee parameter used.
 
 Increasing the size of the pool will always decrease the variance, but at some point you will have diminishing marginal utility.
