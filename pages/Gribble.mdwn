@@ -8,31 +8,60 @@ To get help on any command, try 'help <command>', to get a list of bitcoin-relat
 
 ##List of commands
 
-###Bitcoin-related commands
+###Mining/network/hashrate stats
 
-* **bc,bcm** - show the market snapshot from bitcoinmarket.com
 * **bc,blocks** - show the current number of blocks in the bitcoin block chain
-* **bc,btcex** - show the market snapshot from btcex.com
 * **bc,calc** - given a hash rate in Khps, calculate the expected average time to generate a block, at current difficulty. For example, to see the average time for 1000 Khps, run 'bc,calc 1000'.
 * **bc,calcd** - given a hash rate in Khps, and a difficulty level, calculate the expected average time to generate a block at that difficulty. For example, to see the average time for 1000 Khps at difficulty 1, run 'bc,calc 1000 1'.
-* **bc,channels** - gives you a list of the major bitcoin-related irc channels.
 * **bc,diff** - show the current generation difficulty
+* **bc,diffchange** - show estimated percent change in difficulty
 * **bc,estimate** - show the estimate of the next difficulty (4.1)
 * **bc,gen** - given the hash rate in Khps, calculate expected BTC generation per day and per hour, at current difficulty.
 * **bc,gend** - given the hash rate in Khps, and a difficulty level, calculate expected BTC generation per day and per hour at that difficulty.
-* **bc,help** - show the list of all 'bc,*' commands. same as 'apropos bc'.
 * **bc,hextarget** - show the current difficulty target in hex.
-* **bc,mtgox** - show the market snapshot for mtgox.com
-* **bc,markets** - show market snapshot for various markets. (thanks tcatm and http://bitcoincharts.com for the data feed)
 * **bc,nexttarget** - show the block at which the next difficulty change will take place
-* **bc,poolstats** - show the statistics about the [slush mining pool](http://mining.bitcoin.cz).
+* **bc,interval** - show the average time between blocks, over the past 1000 blocks. If given optional integer argument, use that many blocks for the estimate.
 * **bc,prob** - show the probability of getting at least one block at given Khps, in a given time period. E.g., to see probability of getting a block at 1000 Khps, in 2 years and 1 week, try 'bc,prob 1000 2y 1w'. Time takes input in years, weeks, days, hours, minutes, and seconds.
 * **bc,stats** - show some statistics about the block chain - number of blocks, difficulty, estimated next difficulty target, time to next difficulty
 * **bc,timetonext** - show estimated time to reach the next difficulty target
 * **bc,totalbc** - show total number of bitcoins in existence.
-* **bc,wiki** - fetch a link to a page in this wiki, based on a search string. For example, to see a link to this page, try 'bc,wiki gribble'. 
+
 
 Big kudos goes out to theymos for providing a web interface to [real time statistics about the bitcoin block chain](http://blockexplorer.com/q/).
+
+###Markets and exchange rates
+
+* **bc,bcm** - show the market snapshot from bitcoinmarket.com
+* **bc,mtgox** - show the market snapshot for mtgox.com
+* **bc,avgprc** - show average 24h, 7d, and 30d trading prices of BTC in various currencies.
+* **bc,24hprc** - show average 24h price of BTC in USD.
+* **bc,btceur** - show price of BTC in EUR, based on mtgox last trade price.
+* **bc,btcgbp** - show price of BTC in GBP, based on mtgox last trade price.
+* **bc,btcrub** - show price of BTC in RUB, based on mtgox last trade price.
+* **bc,fx** - show various currency exchange rates
+* **bc,xau** - show price of gold in BTC
+* **ticker** - show pretty-printed mtgox ticker. Takes optional argument of '--bid', '--ask', '--last', '--high', or '--low', to show just that numeric value (useful for command nesting in calculations)
+* **bids** - given a numeric argument, shows how many total btc are being demanded on MtGox at or over the given price. If optional '--under' argument given, looks under the price.
+* **asks** - given a numeric argument, shows how many total btc are being offered on MtGox at or below given price. If optional '--over' argument given, looks over the price.
+
+###Mining pool statistics
+
+* **bc,slushpool** - show the mining hash rate of the [slush mining pool](http://mining.bitcoin.cz), in Khps.
+* **bc,eligius** - show the mining hash rate of the Eligius mining pool, in Khps
+* **bc,swepool** - show the mining hash rate of the Swepool mining pool, in Khps
+* **bc,btcguild** - show the mining hash rate of the Btcguild mining pool, in Khps
+* **bc,deepbit** - show the mining hash rate of the Deepbit mining pool, in Khps
+
+###Other
+
+* **bc,help** - show list of 'bc,' commands - same as 'apropos bc'.
+* **bc,wiki** - fetch a link to a page in this wiki, based on a search string. For example, to see a link to this page, try 'bc,wiki gribble'. 
+
+###bitcoin-otc related info
+
+* See [OTC guide](http://wiki.bitcoin-otc.com/wiki/Using_bitcoin-otc) about using the order book
+* See [OTC GPG guide](http://wiki.bitcoin-otc.com/wiki/GPG_authentication) about using the gpg authentication system
+* See [Web of Trust guide](http://wiki.bitcoin-otc.com/wiki/OTC_Rating_System) about using the rating system/web of trust
 
 ###General commands
 
