@@ -9,6 +9,7 @@ The main reward systems used are:
 > It is also vulnerable to sabotage where the miner simply withholds all block-finding shares, causing a loss to the pool operator.
 
 > **Proportional** ("Share-based"): Every time a block is found, its reward is split between participants according to the number of shares they submitted. This method is vulnerable to a form of cheating known as "pool-hopping". In the theoretical limit, this can reduce the payout for honest participants by up to 30% (in practice the decrease would be much less, but can still be significant).
+> It is not known whether pool-hopping has already been implemented.
 
 > **Score-based**: Each share submitted receives a score based on its age, and the block reward is split between participants according to their score. The method used by slush's pool and BTCmine are resistant to pool-hopping, while the one used by Continuum pool ("geometric method") is completely immune.
 > The variance of this method is slightly higher than proportional.
