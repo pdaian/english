@@ -1,0 +1,25 @@
+## How does mining in a pool improve my payouts?
+Pooled mining will not have a significant effect on the [expectation](http://en.wikipedia.org/wiki/Expected_value) of your payouts, but it can dramatically decrease their [variance](http://en.wikipedia.org/wiki/Variance).
+
+## What reward systems are there?
+All reward systems use the concept of "share", a hash which is easier than the real difficulty and proves you have worked on finding a valid block. Your reward when the pool finds a valid block depends on the shares you submitted.
+
+The main reward systems used are:
+> **Pay per share**: Every share submitted receives a fixed BTC reward known in advance. This has virtually 0 variance and is thus good for beginners. However, the operator is subject to enormous variance, and will thus take a large fee to cover his risk. This means the expectation for participants is low, so it's not an attractive long-term solution.
+
+> **Proportional** ("Share-based"): Every time a block is found, its reward is split between participants according to the number of shares they submitted. This method is vulnerable to a form of cheating known as "pool-hopping". In the theoretical limit, this can reduce the payout for honest participants by up to 30% (in practice the decrease would be much less, but can still be significant).
+
+> **Score-based**: Each share submitted receives a score based on its age, and the block reward is split between participants according to their score. The method used by slush's pool and BTCmine are resistant to pool-hopping, while the one used by Continuum pool ("geometric method") is completely immune.
+> The variance of this method is slightly higher than proportional.
+> There is a myth that score-based is disadvantageous if you only mine several hours a day or disconnect in the middle of the round. In fact the expectation (which is the more important part) is exactly the same, and only the variance can slightly increase. The shares already submitted will depreciate the same way whether you disconnect or not, and the newer shares will have the same expectation for any reward method.
+
+## What will be my expected payout per share?
+Every share will give you, on average, the block reward (minus any pool fees) divided by the difficulty. For example, with a block reward of 50 BTC, 2% fee and difficulty of 240000, each share submitted will give on average 0.000204 BTC (204 uBTC).
+
+## How many hashes does it take to find a share?
+On average, one share will be found for every 2^32, or 4.295 billion, hashes calculated. So at 1 MHash/s, you will find a share on average every 72 minutes.
+
+## How much will the pool decrease my variance?
+If you constitute a significant part of the pool (say, above 1%), your variance will be roughly proportional to your portion of the pool. If, for example, you are 20% of the pool, your variance will be 20% of solo mining variance (a decrease factor of 5 times).
+
+If not, your variance will not depend on the size of yourself or the pool, but rather on the scoring method used. For proportional, the decrease factor is roughly difficulty/ln(difficulty). For the geometric method the decrease factor is (1 + 2*difficulty*c), where c is the score fee parameter used.
