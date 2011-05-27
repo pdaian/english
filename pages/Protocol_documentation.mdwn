@@ -73,7 +73,7 @@ Almost all integers are encoded in little endian. Only IP or port number are enc
 
 |4 |magic |uint32_t |Magic value indicating message origin network, and used to seek to next message when stream state is unknown
 |12 |command |char[[12]]|ASCII string identifying the packet content, NULL padded (non-NULL padding results in packet rejected)
-|4 |length |uint32_t |Length of payload
+|4 |length |uint32_t |Length of payload in number of bytes
 |4 |checksum |uint32_t |First 4 bytes of sha256(sha256(payload)) (not included in version or verack)
 |? |payload |uchar[]|The actual data
 
