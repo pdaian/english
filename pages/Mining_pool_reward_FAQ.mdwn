@@ -5,11 +5,11 @@ Pooled mining will not have a significant effect on the [expectation](http://en.
 All reward systems use the concept of "share", a hash which is easier than the real difficulty and proves you have worked on finding a valid block. Your reward when the pool finds a valid block depends on the shares you submitted.
 
 The main reward systems used are:
-> **Pay per share**: Every share submitted receives a fixed BTC reward known in advance. This has virtually 0 variance and is thus good for beginners. However, the operator is subject to enormous variance, and will thus take a large fee to cover his risk. This means the expectation for participants is low, so it's not an attractive long-term solution. It is also vulnerable to sabotage where the miner simply withholds all block-finding shares, causing a loss to the pool operator.
+> **Pay per share**: Every share submitted receives a fixed BTC reward known in advance. This has virtually 0 variance and is thus good for beginners. The Pool Operator often takes a relatively large fee, due to the fact that they cannot know how much will be paid in total to all the miners.
 
-> **Proportional** ("Share-based"): Every time a block is found, its reward is split between participants according to the number of shares they submitted. This method is vulnerable to a type of exploit known as "pool-hopping". In the theoretical limit, this can reduce the payout for non-hopping participants by up to 30% (in practice the decrease would be much less, but can still be significant).
+> **Proportional** ("Share-based"): Every time a block is found, its reward is split between participants according to the number of shares they submitted. 
 
-> **Score-based**: Each share submitted receives a score based on its age, and the block reward is split between participants according to their score. Certain mining pools, like Slush's pool and BTC mine, are designed to be resistant while the one used by Continuum pool ("geometric method") is designed to be completely immune. The amount of bitcoins a miner may recieve from their effors will vary over time, due to the variance of this system.
+> **Score-based**: Each share submitted receives a score based on its age, and the block reward is split between participants according to their score. The variance of this method is slightly higher than proportional.
 
 ## What will be my expected payout per share?
 Every share will give you, on average, the block reward (minus any pool fees) divided by the difficulty. For example, with a block reward of 50 BTC, 2% fee and difficulty of 240000, each share submitted will give on average 0.000204 BTC (204 μBTC).
