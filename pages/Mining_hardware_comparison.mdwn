@@ -7,7 +7,7 @@ The table shows (mostly) stock clock numbers. 10-20% performance improvement can
 ##Graphics cards
 
 ###AMD
-To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wastes CPU time, and 2.3/2.4 drop mining performance by 5-10%.
+To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wastes CPU time, and 2.3/2.4 drop mining performance by 5-10% unless using the Phoenix phatk kernel.
 
 
 
@@ -55,10 +55,9 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |style="background:#FFFFEF;"5770 |180 |1.406 |128[[*]]|950 |800 |2.4RC1 |PCI-E 2.1 x16 |poclbm |-v -w 128 -f 30 (*Overclocked wattage calculated [here](http://bakkap.free.fr/Misc/wCalc.html))
 |style="background:#FFFFEF;"5770 |205.58 |||935 |300 |2.1 |PCI-E 2.1 x16 |poclbm 2011-04-28 |-v -w 256
 |style="background:#FFFFEF;"5770 |223 ||100+ |1050 |300 |2.4 |PCI-E 2.1 x16 |guiminer |-v -w256 [source](http://www.smpake.com/?p=59)
-|style="background:#FFFFFF;"5830 |206.64 |1.181 |175 |800 |1120 ||PCI-E 2.1 x16 ||
-|style="background:#FFFFFF;"5830 |241    |1.377 |175 |1006 ||2.3 |PCI-E 2.1 x16 |poclbm 2011-03-11 / Win7 64 |
-|style="background:#FFFDDD;"5830 |245 |1.4 |175 |880 |900 |2.4 |PCI-E 2.1 x16 |poclbm (guiminer) |-v -w 256
-|style="background:#FFFDDD;"5830 |248 |1.42 |175 |880 |500 |2.4 |PCI-E 2.1 x16 |phoenix 1.46 |-k poclbm VECTORS BFI_INT AGGRESSION=11
+|style="background:#FFFDDD;"5830 |245 |1.28 |192 |880 |900 |2.4 |PCI-E 2.1 x16 |poclbm (guiminer) |-v -w 256
+|style="background:#FFFDDD;"5830 |248 |1.29 |192 |880 |500 |2.4 |PCI-E 2.1 x16 |phoenix 1.46 |-k poclbm VECTORS BFI_INT AGGRESSION=11
+|style="background:#FFFFFF;"5830 |272  |1.52 |179 |875 ||2.4 |PCI-E 2.1 x16 |phoenix 1.48 / phatk / LinuxCoin |275Mhz Memory clock, 1.125 V (from 1.163), VECTORS AGGRESSION=12 BFI_INT
 |style="background:#FFFFFF;"5830 |285   |||960 ||2.4 |PCI-E 2.1 x16 |phoenix 1.47 / poclbm / Win7 64 |VECTORS BFI_INT FASTLOOP=false AGGRESSION=12
 |style="background:#FFFFFF;"5830 |290   |||996 ||2.4 |PCI-E 2.1 x16 |phoenix 1.4 / poclbm / Win7 64 |VECTORS AGGRESSION=12 BFI_INT
 |style="background:#FFFFFF;"5830 |307   |||996 ||2.4 |PCI-E 2.1 x16 |phoenix 1.48 / phatk / Win7 64 |VECTORS AGGRESSION=12 BFI_INT
