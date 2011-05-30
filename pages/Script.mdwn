@@ -237,10 +237,12 @@ It's possible to add arbitrary data to any transaction by just adding some data 
 
 |Stack |Script |Description 
 |---|---|---
-|Empty.|<sig><pubKey>OP_CHECKSIG|scriptSig and scriptPubKey are combined.
-|<sig><pubKey><message>|OP_DROP OP_CHECKSIG|Constants are added to the stack.
-|<sig><pubKey>|OP_CHECKSIG|Top item in the stack is removed.
-|true|Empty.|Signature is checked for top two stack items.
+|Empty.|<sig><message>OP_DROP <pubKey>OP_CHECKSIG|scriptSig is added to the stack.
+|<sig>|<message>OP_DROP <pubKey>OP_CHECKSIG|Now the message is put.
+|<sig><message>|OP_DROP <pubKey>OP_CHECKSIG|Top stack item is removed.
+|<sig>|<pubKey>OP_CHECKSIG|Public key gets pushed on top.
+|<sig><pubKey>|OP_CHECKSIG|Signature is checked for top two stack items.
+|true|Empty.|Stack holds the value of signature check now.
 
 
 ###Hidden recipient address
