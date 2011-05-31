@@ -1,4 +1,12 @@
+The purpose of this page is to provide a general overview of the Bitcoin system and economy.
+
+##Basic Concepts
+
+###Currency
+
 Alice is far away from Bob and wants to buy his [Alpaca socks](http://www.grasshillalpacas.com/alpacaproductsforbitcoinoffer.html). In return, she wants to send him a dollar. A dollar bill is a piece of paper which is very easy to create (by those who can), but which is accepted by people in exchange for valuable products and services in the real world, such as the socks Alice wants to buy. One simple thing Alice can do is to put a dollar bill in an envelope, mail it to Bob, and then wait for Bob to send the socks to her.
+
+###Banks
 
 Another thing Alice can do is to "wire" the money to Bob. She can do that by first giving her dollar bills to an institution called a bank, the job of which is to safe-keep Alice's dollar bills and, in return, to give Alice a written promise (called a "bank statement") that, whenever she wishes, she can come to the bank to take back the same number of dollar bills that she deposited. Since the money is still Alice's, she is entitled to do with it whatever she pleases, and the bank (like most banks), for a small fee, will do Alice the service of "giving" the dollar bills to Bob instead of her. This could be done by sending a person to Bob's door, with Alice's dollar bills in hand (or, better, fresh new dollar bills, if Alice's dollar bills are in bad condition), but usually it is done by Alice's bank by giving the dollar bills to Bob's bank and informing them that the money is for Bob, who will then see the amount in his next statement, or, if he is in a hurry, the next time he contacts his bank asking about how much money they have for him.
 
@@ -8,7 +16,9 @@ However, the fact that machines are used does not change the structure of this s
 
 Bitcoin is a system of owning and voluntarily transferring amounts of so-called bitcoins, in a manner similar to an on-line banking interface, but anonymously and without reliance on a central authority to decide on what is true. These bitcoins are valuable because they require the spending of real resources (CPU time and electricity) to produce, cannot be spent more than once, and cannot be removed from a person's ownership without illicit access to his/her computer.
 
-##Preventing stealing
+##Bitcoin Basics
+
+###Preventing stealing
 To guarantee that an eavesdropper, Eve, cannot access other people's bitcoins by creating transactions in their names we use a [public key system](Wikipedia:Public-key_cryptography) to make digital signatures. In this system, each person, such as Alice and Bob, has a pair of public and private keys which he/she stores in a safe [[wallet|Wallet]]. Only the user with his secret private key can sign a document, such as the transaction to give some of his bitcoins to somebody else, but any one can validate the signature using the user’s public key.
 
 * Bob sends his public key to Alice.
@@ -21,7 +31,7 @@ Later on, when Bob will transfer the same coins to Charley, he will do the same 
 
 Eve cannot change who the coins belong to by replacing Bob’s public key with her public key, because Alice signed the transfer to Bob using her private key, declaring that the coins which belonged to her now belong to Bob, and Alice's private key is kept secret from Eve. So if Charley accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
 
-##Preventing double-spending
+###Preventing double-spending
 This is how we guarantee that Alice cannot replicate the coin and use it in more than one transaction (this is the main innovation behind Bitcoin):
 
 * Details about the [[transaction|Transactions]] are [[sent and forwarded|Network]] to all or as many other computers as possible.
@@ -43,7 +53,7 @@ A [[Bitcoin address|Address]] mathematically corresponds to a public key and loo
 
 Each person can have many such addresses, each with its own balance, and this can make it more difficult to identify which person owns what amount. In order to protect his [[privacy|Anonymity]], Bob can even generate a new public-private key pair for each individual transaction. So David receiving the coin from Charley will not be able to identify who is the second person in the list of transactions (not without asking Charley).
 
-##Creation of coins
+###Creation of coins
 As we saw, both Bob and Charley need to verify that the original coin from Alice is valid. Alice cannot simply generate coins instantly, out of thin air, because the appearance of a coin is a transaction that needs to be accepted by others.
 
 According to current software, the way that new coins are slowly introduced is this: every computer that manages to generate a block is allowed to put one transaction there in which it gains 50 BTC, without this amount having to come from somewhere. This amount is an incentive for people to perform the computation work required for block generation. However, it is currently agreed that the reward for generating a block will be reduced to half every 4 years. Meaning that, at some point in the year 2013, the majority of the CPUs will stop accepting blocks in which the generating transaction adds 50BTC to the sum of money, and they will only accept blocks adding half that amount. The same thing will happen in the years 2017, 2021, 2025 and so on, unless different Bitcoin client software has prevailed in the network.
