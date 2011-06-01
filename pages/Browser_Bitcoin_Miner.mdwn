@@ -1,14 +1,24 @@
-A [[cpu miner|cpu-miner]] that is launched from the browser, requires no installation and runs as a Java application.
+##Overview
+	This concept was first reached by Bitcoin Plus, a [[cpu miner|cpu-miner]] that is launched from the browser, requires no installation, and runs as a Java application. Additionally, this approach was done by [[Bitp.it|Bitp.it]] as javascript which is designed to be embeddable in webpages to create a distributed server farm.
+
+##[[Bitcoin Plus|Bitcoin_Plus]] Implementation 
 
 The miner connects to a pool and the payout method is pay-per-share.  The pool's fee is 3%.
 
 Requires Java 1.5 or higher.  This miner app is not open source.
 
-This software was announced on May 18, 2011 (1.1).
+This software was announced on May 18, 2011 (3.1).
+
+##[[Bitp.it|Bitp.it]] Implementation
+
+A user's computer is used by the website they are viewing, which has added Javascript to the <head> section of the site, as a distributed miner. [[Slush's pool|Bitcoin_Pooled_Mining]] is used as the pool which the distributed computer connects to.
 
 ##See Also
 
 * [[Why_a_GPU_mines_faster_than_a_CPU]] 
+
+* [[Bitp.it]]
+
 
 ##External Links
 
@@ -16,7 +26,7 @@ This software was announced on May 18, 2011 (1.1).
 
 ##References
 
-1.1: [Browser Bitcoin Miner (No setup, no download, no configuration)](http://forum.bitcoin.org/index.php?topic=8780.0)
+3.1: [Browser Bitcoin Miner (No setup, no download, no configuration)](http://forum.bitcoin.org/index.php?topic=8780.0)
 
 
 [[!tag "Miners"]]
