@@ -33,22 +33,6 @@ Unlike any preexisting pool approach, this means that the shares contributed tow
 In order to spare participating miners from transaction fees, rewards are only paid out if a miner has earned at least 1 BTC. If the amount owed is less, it will be added to the earnings of a later block (which may then total over 1 BTC).
 If a miner does not submit a share for over a week, the pool sends any balance remaining, regardless of its size.
 
-###DeepBit
-
-[[DeepBit]] offers both a proportional reward distribution as well as a fixed-rate pay-per-share mode.
-
-###BTCGuild
-
-[[BTCGuild]] runs on a proportional reward system, where your reward is equal to the block reward multiplied by your percentage of the total shares in the round.
-
-###BTCMine
-
-[[BTCMine]] offers a score-based payout method. All valid shares from current round accepted.
-
-###Bitcoin Pool
-
-[[Bitcoin_Pool]] offers shared block payouts.  Only shares from the current block in the current round are accepted.
-
 ###Comparison
 
 The cooperative mining approach (slush and Luke-Jr) uses a lot less resources on the pool server, since rather than continuously checking metahashes, all that has to be checked is the validity of submitted shares. The number of shares sent can be adjusted by adjusting the artificial difficulty level.
