@@ -14,3 +14,6 @@ The description for the headers command says "77x?" as the size for the block_he
 
 The given magic numbers are the wrong way around.  The magic numbers are little endian 32 bit numbers on the network, so Testnet.Magic = 0xdab5bffa and Prodnet.Magic = 0xd9b4bef9.  The two examples are the order they come in from the wire, so at the very least should be shown with spaces between the bytes.
 [AndyParkins](User:AndyParkins)
+
+
+The checksum for "addr" was not working for me neither, and I had the same results "ED 52 39 9B", so I fixed it on the page. --[Robert](User:Robert)
