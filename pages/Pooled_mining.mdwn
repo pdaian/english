@@ -24,6 +24,12 @@ Another approach is the 'metahash' technique, used by puddinpop's [[remote_miner
 
 The generated blocks contain multiple keys in the generation transaction, giving fractional bitcoin amounts to each key, in proportion to their hashing contribution for that block.
 
+###The BitPenny approach
+
+The [[BitPenny]] approach is to offer an instant, flat payout for each share that is solved.  The payout is offered from the pool's existing balance and can therefore be withdrawn immediately, without waiting for a block to be solved or confirmed.  The possibility of cheating by the pool operator and by timing attacks is thus completely eliminated. 
+
+This method results in the least possible variance for miners while transferring all risk to the pool operator.  The resulting possibility of loss for the server is offset by setting the payout lower than the full expected value.
+
 ###Luke-Jr's approach ("[[Eligius]]")
 [Luke](User:Luke-Jr) came up with a third approach borrowing strengths from the earlier two.
 Like slush's approach, miners submit proofs-of-work to earn shares.
