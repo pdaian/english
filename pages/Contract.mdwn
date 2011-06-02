@@ -72,4 +72,8 @@ The same process applies if you send to the merchant.
 
 It's possible the merchant may worry about you vanishing after they have dispatched the goods you are buying. Whilst you can't take the payment back, the merchant would still be out of pocket. To solve this a transaction can be prepared with the merchant that spends the output to a merchant controlled address, but with an nLockTime of a month from now and the inputs sequence number set to zero. This transaction is broadcast across the network. If your goods never arrive and you want to send to the mediator instead, prepare the transaction as above but with the sequence number of the input set to one. When the mediator broadcasts this transaction it will replace the one that would have sent the coins to the merchant.
 
+##See Also
+
+* [[Script]]
+
 [[!tag "Technical"]]
