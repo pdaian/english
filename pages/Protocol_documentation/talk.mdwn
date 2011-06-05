@@ -1,19 +1,23 @@
+# Hexdumps
 I'm adding some hexdumps of messages and data structures and descriptions of how these are interpreted in order to help others understand these protocol and data structures.  It's a bit redundant, so any ideas as to how to remove some of the redundancy while keeping the knowledge accessible are welcome (feel free to make the changes yourself!). -- [X6763](User:X6763)
 
-
+# Checksum wrong?
 Is the checksum in the addr sample correct?  Here's what I get using OpenSSL (sorry for long lines):
 SHA256("\x01\xe2\x15\x10\x4d\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\x0a\x00\x00\x01\x20\x8d") = 
 d6 88 65 c8 20 61 d5 e2 54 52 b5 5b 52 17 98 b1 11 50 85 96 2e 49 e8 fd da b7 f4 fb a3 9c d8 2c
 and SHA256 of that is
 ed 52 39 9b 56 8e d8 d5 9a 83 72 9c 11 6f 87 d0 be f2 84 e9 98 f3 47 7c 98 61 16 9a b1 2e ed 5c
 It could easily be I'm using OpenSSL incorrectly, so wanted to get confirmation -- [AndyParkins](User:AndyParkins)
+	- The checksum for "addr" was not working for me neither, and I had the same results "ED 52 39 9B", so I fixed it on the page. --[Robert](User:Robert)
 
-
+# What is "77x"? Header size wrong?=
 The description for the headers command says "77x?" as the size for the block_headers[] returned.  However, the description of the block_header structure is 81 bytes (4+32+32+4+4+4+1).  What exactly is returned by the headers command? -- [AndyParkins](User:AndyParkins)
 
-
+# Endianess on magic numbers
 The given magic numbers are the wrong way around.  The magic numbers are little endian 32 bit numbers on the network, so Testnet.Magic = 0xdab5bffa and Prodnet.Magic = 0xd9b4bef9.  The two examples are the order they come in from the wire, so at the very least should be shown with spaces between the bytes.
 [AndyParkins](User:AndyParkins)
 
-
-The checksum for "addr" was not working for me neither, and I had the same results "ED 52 39 9B", so I fixed it on the page. --[Robert](User:Robert)
+# Version not advertised?
+Doing some experiments the version seems to be sent by the client, not the server as I think the page currently says.
+"When a node receives an incoming connection, it will immediately advertise its version."
+That is not true. --[Bluecmd](User:Bluecmd) 10:02, 5 June 2011 (GMT)
