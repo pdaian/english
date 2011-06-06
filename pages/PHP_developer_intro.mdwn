@@ -83,7 +83,7 @@ You can check the funds for that customer by doing $bitcoin->getbalance("user889
 
 Using getnewaddress helps increase the anonymity of your customers by making it hard to track their payments from the POV of a malicious agent. However running it too often will cause your wallet to become filled with many empty addresses.
 
-I recommend that you run do something like:
+I recommend that you do something like:
 <source lang="php">
 <?php
 	require_once('jsonRPCClient.php');
