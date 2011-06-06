@@ -21,3 +21,6 @@ The given magic numbers are the wrong way around.  The magic numbers are little 
 Doing some experiments the version seems to be sent by the client, not the server as I think the page currently says.
 "When a node receives an incoming connection, it will immediately advertise its version."
 That is not true. --[Bluecmd](User:Bluecmd) 10:02, 5 June 2011 (GMT)
+
+# Version in getblocks?
+Apparently the official client sends the protocol version in getblocks messages, (possibly even in getheaders). This seems to me to be just weird --[Bluecmd](User:Bluecmd) 14:57, 6 June 2011 (GMT)
