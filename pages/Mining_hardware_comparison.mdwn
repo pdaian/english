@@ -87,13 +87,13 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |style="background:#EFEFFF;"5850 |298  |1.8620 |160 |765 |1440 |2.1 |PCI-E 2.1 x16 |poclbm 2011-04-28 -v -f 1 -w 64 |
 |style="background:#EFEFFF;"5850 |300  |1.5460 |194 |925 (OC) |1440 ||PCI-E 2.1 x16 |m0mchil's OpenCL |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg24699#msg24699)
 |style="background:#EFEFFF;"5850 |314  |1.8362 |171 |820 (OC) |1440 |2.4 |PCI-E 1.0 x8 |poclbm |-v -w128 
-|style="background:#EFEFFF;"5850 |330  |?? |?? |850 @ Stock voltage |1440 |2.1 |PCI-E 2.0 x16 |phoenix |EAH5850, miner arguments: -k poclbm DEVICE=1 VECTORS AGGRESSION=8 WORKSIZE=128 BFI_INT FASTLOOP=false
+|style="background:#EFEFFF;"5850 |330  |||850 @ Stock voltage |1440 |2.1 |PCI-E 2.0 x16 |phoenix |EAH5850, miner arguments: -k poclbm DEVICE=1 VECTORS AGGRESSION=8 WORKSIZE=128 BFI_INT FASTLOOP=false
 |style="background:#EFEFFF;"5850 |335 |1.8611 |180 |890 (OC) |1440 |2.4 |PCI-E 2.0 x8 |poclbm |-v -w128, Memory downclocked to 300Mhz
 |style="background:#EFEFFF;"5850 |344  |1.8594 |185 |890 (OC) |1440 ||PCI-E 2.0 x16 |phoenix |
-|style="background:#EFEFFF;"5850 |354  |? |? |900 (OC) |1440 ||PCI-E 2.0 x16 |diablo -v 2 -w 128 |Ubuntu 11.04 64-bit [Headless](http://forum.bitcoin.org/index.php?topic=9239.0), 2.1 sdk,  catalyst 11.5, memory downclocked to 300mhz, stock voltage. flashed with atiflash [video](http://www.youtube.com/watch?v=U9AxNmOy6_0)
+|style="background:#EFEFFF;"5850 |354  |||900 (OC) |1440 ||PCI-E 2.0 x16 |diablo -v 2 -w 128 |Ubuntu 11.04 64-bit [Headless](http://forum.bitcoin.org/index.php?topic=9239.0), 2.1 sdk,  catalyst 11.5, memory downclocked to 300mhz, stock voltage. flashed with atiflash [video](http://www.youtube.com/watch?v=U9AxNmOy6_0)
 |style="background:#EFEFFF;"5850 |365   |||920  |1440 |2.1 |PCI-E x16 |phoenix 1.48 / phatk / Win7 64 |300Mhz memory clock VECTORS BFI_INT AGGRESSION=13 FASTLOOP=false WORKSIZE=256
 |style="background:#EFEFFF;"5850 |382  |1.8454 |207 |995 (OC) |1440 ||PCI-E 2.0 x8 |phoenix |OC 1.177v on core
-|5870M |152.5 |? |? |750 (OC) |1000 |2.1 |PCI-E 2.1 x16 |gui-miner (win-7) |
+|5870M |152.5 |||750 (OC) |1000 |2.1 |PCI-E 2.1 x16 |gui-miner (win-7) |
 |style="background:#EFFFEF;"5870 |313.65 |1.668 |188 |850 |1600 |2.1 |PCI-E 2.1 x16 |clmine |
 |style="background:#EFFFEF;"5870 |313  |1.665 |188 |900? |1600 |2.3 |PCI-E 2.1 x16 |Diablo/Linux |
 |style="background:#EFFFEF;"5870 |343  |1.824 |188 |900? |1600 |2.1 |PCI-E 2.1 x16 |Diablo/Linux |
@@ -122,8 +122,8 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |style="background:#EFFFEF;"5870x2 (Ares) |826    |1.18  |700 |935 |3200 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 w/ Phatk |AGGRESSION=13 WORKSIZE=256 VECTORS BFI_INT FASTLOOP=false, memory @ 319 MHz, Windows 7 32-bit
 |style="background:#EFFFEF;"5870x2 (Ares) |878    |0.585 |1500 |1000 |3200 |2.1 |PCI-E 2.1 x16 |phoenix 1.7 w/ Phtak |AGGRESSION=13 WORKSIZE=128 VECTORS BFI_INT Memory @ 300MHz
 |6310M |9.821 |0.545 |18  |500 |80 |2.4 |Integrated/APU |poclbm-gui -v -w128 |HP DM1z 18W TDP is shared with the CPU
-|6470M |24.1 |? |? |? |? |2.1 |Integrated/APU |guiminer |
-|6470M |31.0 |? |? |? |? |2.1 |Integrated/APU |phoenix 1.48 |
+|6470M |24.1 |||||2.1 |Integrated/APU |guiminer |
+|6470M |31.0 |||||2.1 |Integrated/APU |phoenix 1.48 |
 |6490M |16.289 |0.708 |23  ||||PCI-E 2.1 x16 |poclbm-mod (Mac OS X 10.6.7) |MacBook Pro early 2011
 |6490M |15.21 |||||||[DiabloMiner GUI](http://forum.bitcoin.org/index.php?topic=8994.0)v2011-05-22 / Mac OS X 10.6.7|Model: MacBookPro8,2 VRAM: 256MB
 |style="background:#FFDD00;"6570 |68.0 |1.133 |60 |650 |480 |2.4 |PCI-E x16 |guiminer 2011-05-21 with poclbm (Win7-32bit)|no extra option for miner . Sapphire 6570 gddr5 512mb
