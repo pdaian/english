@@ -176,7 +176,7 @@ Block headers are sent in a headers packet in response to a getheaders message.
 
 ### version
 
-When a node receives an incoming connection, it will immediately advertise its version. No futher communication is possible until both peers have exchanged their version.
+When a node creates an outgoing connection, it will immediately advertise its version. The remote node will respond with its version. No futher communication is possible until both peers have exchanged their version.
 
 Payload:
 
