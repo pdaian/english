@@ -151,7 +151,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |6950 |340 ||(?) |800 |1536 |(?) |PCI-E 2.1 x16 |guiminer/poclbm 05-21-11  |-v -f30 -w128 default mem 1250,Sapphire 6950 1gb, unlocked shaders
 |6950 |360 ||200 (?) |970 |1536 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |unlocked shaders, default mem 1250
 |6950 |360 ||(?) |870 |1375 |(?) |PCI-E 2.1 x16 |guiminer/poclbm  |flashed with 6970 BIOS, -v -f30 -w128
-|6950x4 |1316 ||870 |840 |1408 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |locked shaders, default mem 1250, dual fan 75C typical
+|6950x4 |1316 |1.513 |870 |840 |1408 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |locked shaders, default mem 1250, dual fan 75C typical
 |6950 |417 ||+200? |975 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 1250, fan @ 77%, temp 64C, -v -w128, gpu core @ 1145mV
 |6950 |428 ||+200? |1000 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 1250, fan @ 80%, temp 64C, -v -w128, gpu core @ 1160mV
 |6950 |432 ||+200? |1000 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 520, fan @ 80%, temp 76C, -v -w128 -f 2, gpu core @ 1275mV
@@ -170,7 +170,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |6990 |790 |||900 |3072 |2.3 |PCI-E 2.1 x16 |mrb's hdminer |BIOS switch at "overclocked" position 1; with "aticonfig --odsc=900,1260" to further overclock the GPU to 900 MHz and mem to 1260 MHz, see [source](http://www.bitcoin.org/smf/index.php?topic=2949)
 |6990 |802 |||915 |3072 |2.3 |PCI-E 2.1 x16 |mrb's hdminer |BIOS switch at "overclocked" position 1; with "aticonfig --odsc=915,1260" to further overclock the GPU to 915 MHz and mem to 1260 MHz, see [source](http://www.bitcoin.org/smf/index.php?topic=2949)
 |6990 |835 |||890/860 |3072 |2.4 |PCI-E 2.1 x16 |phoenix |BIOS switch at "overclocked" position 1; with "aticonfig --adapter=1 --odsc=990,890 and aticonfig --adapter=0 --odsc=960,860" (GPU 0 runs hot).  Currently, aticonfig can only underclock RAM to 100mhz below core speed.  Command line: phoenix.py -k poclbm VECTORS AGGRESSION=13 WORKSIZE=128 BFI_INT
-|6990x2 |1436 ||777 |880 |6144 |2.4 |PCI-E 2.0 x16 x2 |guiminer 2011.05.11 |AUSUM switch set to 1 on both cards; Core left at 880MHz, memory left at 1250MHz; VECTORS AGGRESSION=12 BFI_INT WORKSIZE=128
+|6990x2 |1436 |1.848 |777 |880 |6144 |2.4 |PCI-E 2.0 x16 x2 |guiminer 2011.05.11 |AUSUM switch set to 1 on both cards; Core left at 880MHz, memory left at 1250MHz; VECTORS AGGRESSION=12 BFI_INT WORKSIZE=128
 |6990x3 |2094 |||900 ||2.4 |PCI-E 2.0 x16 x8 x4 |poclbm |GPU 900MHz, Memory 1250MHz; poclbm.py -f 0 -w 256
 |FirePro V4800 |79.7 |||775 |400 |2.4 |PCI-E 2.1 x16 |GUIMiner v2011-05-01 |
 |FirePro V8700 |84.8 |||750 |800 |||poclbm-mod.03.24.2011 |
