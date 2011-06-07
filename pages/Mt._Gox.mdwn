@@ -19,7 +19,11 @@ Can be filled only by other dark pool orders or a single normal order that is la
 Can be filled either partially from the normal orders or the dark pool. 
 
 ###Fees
-Mt. Gox subtracts a 0.65% trading fee from each party of successful trades made through the market.  When buying bitcoins, the fee will cause the number of Bitcoins bought to be 0.65% fewer.  When selling bitcoins, the fee will cause the proceeds of the sale to be 0.065 lower.
+Mt. Gox subtracts a 0.65% trading fee from each party of successful trades made through the market.  
+
+When buying bitcoins, the fee will cause the number of Bitcoins bought to be 0.65% fewer.  In other words, after buying 1.0 BTC the BTC balance for the account will increase by just 0.9935 BTC (1.0 BTC less the 0.0065 BTC fee).  The per-BTC trade price reflected in the account history shows an amount recomputed to reflect the fee.  The Quantity X Trade Price from the buy order will total the same dollar amount as is subtracted from the account after the trade executes.
+
+When selling bitcoins, the fee will cause the proceeds of the sale to be 0.065 lower.  After selling $100 worth of bitcoins the USD balance for the account will increase by just $99.35 USD ($100 USD less the $0.65 USD fee).
 
 ##Adding Funds
 
