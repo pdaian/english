@@ -1,0 +1,9 @@
+Just ignore the midstate until you understand the internals of SHA256.
+
+calculate: hash = SHA256(SHA256(data))
+
+If that meets the difficulty, you win!
+
+If not, increment the portion of the data that starts 640 bits in (bytes 76 to 79), and try again.
+
+If the incremented portion overflows, get new work.
