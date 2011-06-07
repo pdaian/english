@@ -189,7 +189,7 @@ Payload:
 |colspan="4"version >= 106
 |26 |addr_you |net_addr |The network address seen by the node emitting this message (ie, the address of the receiving node)
 |8 |nonce |uint64_t |Node random unique id. This id is used to detect connections to self
-|? |sub_version_num |var_str |Secondary Version information (null terminated?)
+|? |sub_version_num |[[var_str|#Variable_length_string]]|Secondary Version information (0x00 if string is 0 bytes long)
 |colspan="4"version >= 209
 |4 |start_height |uint32_t |The last block received by the emitting node
 
