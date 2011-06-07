@@ -17,6 +17,8 @@ The description for the headers command says "77x?" as the size for the block_he
 The given magic numbers are the wrong way around.  The magic numbers are little endian 32 bit numbers on the network, so Testnet.Magic = 0xdab5bffa and Prodnet.Magic = 0xd9b4bef9.  The two examples are the order they come in from the wire, so at the very least should be shown with spaces between the bytes.
 [AndyParkins](User:AndyParkins)
 
+> I stumbled upon this as well and corrected the page. --[Theo](User:Theo) 10:13, 7 June 2011 (GMT)
+
 # Version not advertised?
 Doing some experiments the version seems to be sent by the client, not the server as I think the page currently says.
 "When a node receives an incoming connection, it will immediately advertise its version."
