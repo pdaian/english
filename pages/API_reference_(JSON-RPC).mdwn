@@ -208,6 +208,20 @@ The following example uses Json.Net:
 	... // deserialze the response
 </source>
 
+There is also a wrapper for Json.NET called Bitnet (https://sourceforge.net/projects/bitnet)
+implementing Bitcoin API in more convenient way:
+
+<source lang="csharp">
+	BitnetClient bc = new BitnetClient("http://127.0.0.1:8332");
+	bc.Credentials = new NetworkCredential("user", "pass");
+
+	var p = bc.GetDifficulty();
+	Console.WriteLine("Difficulty:" + p.ToString());
+
+	var inf = bc.GetInfo();
+	Console.WriteLine("Balance:" + inf[["balance"]]);
+</source>
+
 ## Command line (cURL)
 
 You can also send commands and see results using [cURL](http://curl.haxx.se/) or some other command-line HTTP-fetching utility; for example:
