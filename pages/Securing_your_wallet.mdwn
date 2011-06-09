@@ -53,6 +53,29 @@ ln -s /Volumes/Bitcoin ~/Library/Application Support/Bitcoin
 
 Don't forget to mount your image before using Bitcoin and unmount after quitting it.
 
+###Windows
+
+If you are using Windows XP or Windows 7, you can keep your wallet on an encrypted disk image created by third-party software, such as [TrueCrypt](http://www.truecrypt.org/) (open source) or [Jetico BestCrypt](http://www.jetico.com/encryption-bestcrypt/) (commercial).  You can probably do the same with Windows Vista (but why would you use that?) or Windows 2000.  
+
+**NOTE:** You should configure BitCoin in this manner only on computers where you use BitCoin, but do not use that computer to mine.  For example, this is a good configuration for a notebook or tablet computer.
+
+Assuming that you have installed the Windows BitCoin client and run it at least once, the process is described below.
+
+####To mount the BitCoin data directory on an encrypted drive
+<ol start=1 type=1>
+<li>Use the third-party disk image encryption program of your choice to create and mount an encrypted disk image of at least 100 MB in size.</li>
+<li>Locate the BitCoin data directory, and copy the directory with all contents to the encrypted drive.
+<p>For help finding this directory, see <b>[[Locating BitCoin's Data Directory|Securing_your_wallet#Locating_BitCoin_s_data_directory]]</b>.</p></li>
+<li>Create a Windows shortcut that starts BitCoin with the <code>-datadir</code> parameter and specifies the encrypted drive and directory.
+<p>For example, if you installed Bitcoin in the default directory, mounted your BitCoin encrypted drive as <code>E:\</code>, and stored your BitCoin data directory on it as <code>Bitcoin</code>, you would type the following command as the shortcut Target:</p>
+<blockquote><code>C:\Program Files\Bitcoin\bitcoin.exe -datadir=E:\Bitcoin</code></blockquote></li>
+<li>Open BitCoin's settings and configure it <b>NOT</b> to start automatically when you start Windows.
+<p>This is to allow you to mount the BitCoin encrypted disk image before starting BitCoin.</p></li>
+<li>Shut down Bitcoin, and then restart it from the new shortcut.</li>
+</ol>
+
+After doing this, any time you want to use BitCoin, you must first mount the BitCoin encrypted disk image using the same drive designation, and then run BitCoin from the shortcut that you created, so that it can find its data and your wallet. :-)
+
 ## Locating BitCoin's data directory
 
 The [[data_directory]] is the location where Bitcoin's data files are stored, including the wallet data file.
