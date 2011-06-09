@@ -10,7 +10,7 @@ ed 52 39 9b 56 8e d8 d5 9a 83 72 9c 11 6f 87 d0 be f2 84 e9 98 f3 47 7c 98 61 16
 It could easily be I'm using OpenSSL incorrectly, so wanted to get confirmation -- [AndyParkins](User:AndyParkins)
 	- The checksum for "addr" was not working for me neither, and I had the same results "ED 52 39 9B", so I fixed it on the page. --[Robert](User:Robert)
 
-# What is "77x"? Header size wrong?=
+# What is "77x"? Header size wrong?
 The description for the headers command says "77x?" as the size for the block_headers[] returned.  However, the description of the block_header structure is 81 bytes (4+32+32+4+4+4+1).  What exactly is returned by the headers command? -- [AndyParkins](User:AndyParkins)
 
 # Endianess on magic numbers
@@ -32,6 +32,6 @@ That is not true. --[Bluecmd](User:Bluecmd) 10:02, 5 June 2011 (GMT)
 # Version in getblocks?
 Apparently the official client sends the protocol version in getblocks messages, (possibly even in getheaders). This seems to me to be just weird --[Bluecmd](User:Bluecmd) 14:57, 6 June 2011 (GMT)
 
-## Separate page for hexdumps?
+# Separate page for hexdumps?
 
 Does anyone else think it may be a good idea to put the hexdumps on a separate page?  It'd be nice to have this page just describe the protocol, but at the same time, be able to have examples of each of the different messages and objects.  On that node, would it also be helpful if I were to do a hexdump example of all of the different commands/structures? --[Andrew12](User:Andrew12) 23:26, 9 June 2011 (GMT)
