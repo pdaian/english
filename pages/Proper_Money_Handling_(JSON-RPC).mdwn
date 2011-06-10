@@ -47,5 +47,9 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 	def AmountToJSON(amount):
 	return float(amount / 1e8)
 
+## Common Lisp
+(defun json-to-amount (n)
+	(coerce (round (* n 1e8)) 'integer))
+
 [[!tag "Technical"]]
 [[!tag "Developer"]]
