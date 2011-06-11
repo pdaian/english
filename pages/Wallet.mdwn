@@ -11,6 +11,8 @@ A Bitcoin **wallet** contains (1.1):
 
 The data file for the wallet is wallet.dat and is located in the Bitcoin [[data_directory]].
 
+It is intended that a wallet be used on only one installation of Bitcoin at a time.  Attempting to clone a wallet for use on multiple computers will result in "weird behavior" (1.2).
+
 ##See Also
 
 * [[Securing_your_wallet]]
@@ -18,5 +20,6 @@ The data file for the wallet is wallet.dat and is located in the Bitcoin [[data_
 
 ##References
 
-1.1: [Wallet import/export: bitkeys format](http://www.bitcoin.org/smf/index.php?topic=4448.0)
+1.1: [Wallet import/export: bitkeys format](http://www.bitcoin.org/smf/index.php?topic=4448.0)  
+1.2: [Multiple instance of bitcoin with the same wallet](http://forum.bitcoin.org/index.php?topic=5324.msg77896#msg77896)
 
