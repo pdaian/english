@@ -51,5 +51,10 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 	(defun json-to-amount (n)
 	(coerce (round (* n 1e8)) 'integer))
 
+**CAUTION**: The CL-JSON library parses numbers as *single* precision floating-point by
+default, costing you precision. The default parsing behavior can be overridden as follows:
+
+	(set-custom-vars :real (lambda (n)
+	(json::parse-number (concatenate 'string n "d0"))))
 [[!tag "Technical"]]
 [[!tag "Developer"]]
