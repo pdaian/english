@@ -4,21 +4,27 @@ Trades on Mt. Gox's execute from balances on deposit with the exchange which in 
 
 ##Trading
 ###Buying
+
 A buy order is executed partially or in full when the price bid can be matched against a sell order that is at or below the bid amount.
 
 ###Selling
+
 A sell order is executed partially or in full when the price asked can be matched against a buy order that is at or above the ask amount.
 
 ###Dark Pool
+
 A dark pool allows large quantities to be sold without the orders being visible.  This helps to lessen the price moves that would likely result when the price and size of a large order is known.
 
 ####Dark Pool Only Orders
+
 Can be filled only by other dark pool orders or a single normal order that is larger than the dark pool order. This means that if there is a single normal order that would fill the dark pool order both will be filled.
 
 ####Dark Pool + Normal Orders
+
 Can be filled either partially from the normal orders or the dark pool. 
 
 ###Fees
+
 Mt. Gox subtracts a 0.65% trading fee from each party of successful trades made through the market.
 
 When buying bitcoins, the fee will cause the number of Bitcoins bought to be 0.65% fewer.  In other words, after buying 1.0 BTC the BTC balance for the account will increase by just 0.9935 BTC (1.0 BTC less the 0.0065 BTC fee) (8.1).  The per-BTC trade price reflected in the account history shows an amount recomputed to reflect the fee.  The Quantity X Trade Price from the buy order will total the same dollar amount as is subtracted from the account after the trade executes.
@@ -33,9 +39,11 @@ There are no fees incurred when transferring bitcoins to a Mt. Gox account.  Fun
 Note: Even though the site displays no ads, some browser ad-blocking utilities will interfere with the exchange's web site, specifically with the Add Bitcoins function.
 
 ###LRUSD
+
 There are no fees incurred when adding [[Liberty_Reserve]] LRUSD funds to an account.  Funds are available in minutes.
 
 ###Dwolla
+
 This option is among the fastest and least expensive methods for adding funds to a Mt. Gox account.  The transaction fee on [[Dwolla]] costs just $0.25.  The process is automated and the funds are available for trading shortly after the payment is sent.  [From a matter of minutes to as much as multiples of hours.](Update:)
 
 ###International USD Bank Wire
@@ -44,54 +52,71 @@ Funds in USD may be wired to the exchange's bank in Japan.  Each wire is subject
 
 ###Direct Deposit
 ####EU
+
 Funds in EUR may be added using SEPA Direct Debit for free, with funds convert to USD at the current ECB rate at the time the funds are received (15.1).
 
 ####U.S.
+
 Adding funds to Dwolla from a bank account will use ACH though.  The bank wire funding method has been temporarily disontinued due to difficulties in processing.  Another banking relationship is being pursued. 
 
 ####Australia
+
 Funds may be sent using direct deposit (BPay) for a AU$2.00 per-deposit fee.  The funds will be converted to USD at the current rate.
 
 ##Withdrawing Funds
+
 MtGox imposes a $1,000 USD limit for withdrawals per 24 hours and a $10,000 USD limit for withdrawals per month.  and Bitcoins withdrawn are counted toward this limit as well and the USD value is calculated at the market rate at the time of the attempted withdrawal.  Any [[account-to-account transfers|MtGox#Transfers_to_Other_Customers]] made also count toward this limit as well.
 
 Those in the EU may contact the exchange to arrange for a significantly higher withdrawal limit.
 
 ###Dwolla
+
 [[Dwolla]] is among the fastest and least expensive methods for withdrawing USD funds from a Mt. Gox account. The transaction fee to do so is just $0.25.
 
 ###BTC
+
 Bitcoins may be withdrawn at no charge.
 
 There have been sporadic reports where withdrawing the entire bitcoin balance results in an error message.  This could the be the result of a possible error where the amount available for withdrawal gets miscalculated due to a rounding error.  In at least one instance, a subsequent attempt to withdraw all but the last 1 BTC completed successfully.
 
 ###LRUSD
+
 There are two fees incurred when withdrawing LRUSD.  Mt. Gox themselves subtracts 1% of the transfer amount as a fee before transferring away.  Liberty Reserve then subtracts as a transfer fee 1% from the amount they've received.
 
 For example, to withdraw $100 LRUSD, Mt. Gox will send $99 ($100 less a 1% fee) (21.1)  Liberty Reserve will subtract $0.99 ($99 less a 1% fee) leaving a net amount at Liberty Received of $98.01.
 
 ###Direct Deposit
 ####U.S.
+
 There is currently no option for withdrawing funds through a direct deposit bank transaction.  Funds withdrawn to Dwolla may then, in turn, be withdrawn with bank funds deposited as an ACH transaction.  The direct ACH withdrawal method has been temporarily disontinued due to difficulties in processing.  Another banking relationship is being pursued.
 
 ####EU
+
 You may withdraw any amount as a direct deposit to your bank.  There is a 2% fee on these withdrawals.  Contact the exchange by e-mail for this service.
 
 ##Transfers to Other Customers
+
 Mt. Gox funds, either USD or BTC, may be sent to another Mt. Gox customer using the Send Money form.  The button that links to the form is made visible when an account has "Merchant Services" option enabled.
 
 ##Wallet/Banking
+
 An account at this exchange can be considered to be an [[eWallet]]. This service also offers [[eCommerce|tags/ECommerce]] merchant [payment services](http://mtgox.com/merch/about).
 
 ##API
+
 Mt Gox offers a [trading API](http://mtgox.com/support/tradeAPI) which can be used to automate operations described above.  There is also a [Perl module](http://en.bitcoin.it/wiki/Finance::MtGox) for interacting with the API.
 
+##Criticism
+When adding bitcoin funds from the addFunds page, the prompt asks for the Amount.  It is not obvious why the exchange needs to know this nor is it obvious what, if anything, will happen if an amount larger or smaller than that specified is sent.
+
+After the addFunds form is displayed, it is not apparent to the user how to determine that address again.  An account holder could become confused as to whether or not the correct address was used but after closing that page, there's no way to know at a later time what address "Send Bitcoins" had yielded.
+
 ##History
-The exchange went online on July 18, 2010. (28.1)
+The exchange went online on July 18, 2010. (29.1)
 
 On October 10, 2010 the exchange switched from [[PayPal]] to Liberty Reserve as the main funding option as a result of this attack. Former PayPal customers still had the possibility to withdraw their USD using alternative methods.
 
-On March 6th, 2011 ownership of the exchange changed hands (28.2).
+On March 6th, 2011 ownership of the exchange changed hands (29.2).
 
 ##See Also
 
@@ -112,8 +137,8 @@ On March 6th, 2011 ownership of the exchange changed hands (28.2).
 10.1: [How long does it take to Deposit bitcoins to MtGox?](http://www.bitcoin.org/smf/index.php?topic=3851.msg55220#msg55220)  
 15.1: [MTGox: Euro deposits](http://www.bitcoin.org/smf/index.php?topic=5461.0)  
 21.1: One member of [[Bitcoin-otc]] reports that this appears to be a 0.99% fee, not a 1.0%.  
-28.1: [MtGox announcement on forum](http://www.bitcoin.org/smf/index.php?topic=444.0)  
-28.2: [Mtgox is changing owners](http://www.bitcoin.org/smf/index.php?topic=4187.0)
+29.1: [MtGox announcement on forum](http://www.bitcoin.org/smf/index.php?topic=444.0)  
+29.2: [Mtgox is changing owners](http://www.bitcoin.org/smf/index.php?topic=4187.0)
 
 
 [[!tag "Exchanges"]]
