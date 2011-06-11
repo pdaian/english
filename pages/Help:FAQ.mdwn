@@ -39,14 +39,13 @@ The number of blocks times the coin value of a block is the number of coins in e
 Technically, a Bitcoin can be divided down to 8 decimals using existing data structures, so 0.00000001 BTC is the smallest amount currently possible.  Discussions about and ideas for ways to provide for even smaller quantities of Bitcoins may be created in the future if the need for them ever arises.
 
 ### What do I call the various denominations of Bitcoins?
-There is a lot of discussion about the naming of these fractions of Bitcoins. The leading candidates are the SI unit approach and the normalised approach which are covered in more detail below.
 
-#### The SI unit approach
+There is a lot of discussion about the naming of these fractions of Bitcoins. The leading candidates are:
 
 * 1 BTC = 1 Bitcoin
-* 0.001 BTC = 1 Milli Bitcoin or mbit (pronounced em-bit) or millibit
-* 0.000 001 BTC = 1 Micro Bitcoin or ubit (pronounced yu-bit) or microbit
-* 0.000 000 001 BTC = 1 Nano Bitcoin or nbit (pronounced en-bit) or nanobit (not currently supported but possible in the future)
+* 0.01 BTC = 1 cBTC = 1 Centi-Bitcoin (also referred to as Bitcent)
+* 0.001 BTC = 1 mBTC = 1 Milli-Bitcoin (also referred to as mbit (pronounced em-bit) or millibit)
+* 0.000 001 BTC = 1 μBTC = 1 Micro-Bitcoin (also referred to as ubit (pronounced yu-bit) or microbit)
 
 The above follows the accepted international SI units for thousandths, millionths and billionths. There are many arguments against the special case of 0.01 BTC since it is unlikely to represent anything meaningful as the Bitcoin economy grows (it certainly won't be the equivalent of 0.01 USD, GBP or EUR). Equally, the inclusion of existing national currency denominations such as "cent", "nickel", "dime", "pence", "pound", "kopek" and so on are to be discouraged. This is a worldwide currency.
 
@@ -56,13 +55,7 @@ One exception is the "satoshi" which is smallest denomination currently possible
 
 which is so named in honour of Satoshi Nakamoto the pseudonym of the inventor of Bitcoin.
 
-#### The normalised approach
-In the normalised approach the BTC is redefined to be 100 satoshis. This gives rise to a nomenclature that has the following form
-
-* 0.01 BTC = 1 satoshi
-* 1 BTC = 1 Bitcoin
-
-This has the advantage that it closely follows the behaviour of existing currencies which do not have more than 2 decimal places to describe the smallest unit ( 0.01 USD = 1 cent, 0.01 GBP = 1 penny, 0.01 EUR = 1 eurocent). Further, this approach allows for instant comparison for larger values compared with the SI approach: "The price went from 1 BTC to 100 BTC overnight" against "The price went from 10 microbits to 1 millibit overnight".
+For an overview of all defined units of Bitcoin (including less common and niche units), see [[Units]].
 
 Further discussion on this topic can be found on the forums here:
 
