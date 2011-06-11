@@ -3,7 +3,6 @@ Just converting to base units doesn't magically fix the issues; if I have 1.0BTC
 
 And the fixes are the same:  either round to the nearest .0000001 or to the nearest 1 before display, etc.
 
-> The real solution is not to write money-handling code in ECMAScript. [Sdfdsafsaff](User:Sdfdsafsaff) 23:15, 10 June 2011 (GMT)
 
 For Ruby I think the syntax is:
 
@@ -14,3 +13,5 @@ Correct?
 ## ECMAScript?
 
 Since the value is already in ECMAScript's native representation, why would you use a conversion function?
+
+* The RPC value is passed as an inexact floating point. Money handling should always be done as integers. --[Luke-jr](User:Luke-jr) 00:57, 11 June 2011 (GMT)
