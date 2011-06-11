@@ -23,31 +23,32 @@ You might be thinking that this attack is not feasible. But consider this case:
 
 You need to protect yourself from both forward attacks (getting something that identifies you using coins that you got with methods that must remain secret, like the scammer example) and reverse attacks (getting something that must remain secret using coins that identify you, like the newspaper example).
 
-#### Staying anonymous
+#### Staying Anonymous
 
-While you must send from an address that you have received with, you could choose which of these addresses to send from. Choosing generated coins or an address that you know doesn't reveal information would protect you. Unfortunately, the Bitcoin client doesn't support this currently, so you must assume that your entire balance can identify you if any of the addresses can. (Bitcoin sends the smallest coins first, though you shouldn't rely on this.)
+It is only possible to send bitcoins from the same address with which they have been received. However, if one has bitcoins on several address, one can theoretically choose from which address to send the coins. Choosing personally generated coins or an address that you know doesn't reveal information would protect you. Unfortunately, the default Bitcoin client doesn't support this currently, so you must assume that your entire balance can identify you if any of the addresses can. (Bitcoin sends the smallest coins first, though you shouldn't rely on this.)
 
-If your balance has been "dirtied" by containing both anonymous and non-anonymous coins, it is difficult to make it "clean". These methods are **not** recommended:
+You may consider a bitcoin to be "less-anonymous" when an attacker could feasibly find the true identity of a very recent owner of the bitcoin, perhaps because one of the bitcoin addresses was posted to the Internet, or because he knows some identifying information through other means. 
 
-* Sending coins to a different address under your control will give you some plausible deniability. However, an investigator is still likely to find you and demand to know who you sent the coins to. It will be difficult to hide the fact that you sent them to yourself if you're searched: Bitcoin keeps logs of every transaction you make, and there will probably be evidence of any other computers you control. If the attacker is not law enforcement (or maybe even if they are), they might kill you "just in case". If you use this method, send bitcoins in small increments (no more than 50 BTC, but as small as you're willing to use) to avoid combining coins, which reduces anonymity.
-* Tor prevents network analysis and should be used, but it won't help make your Bitcoin balance "clean" The attacker isn't talking to you over the Internet; they're looking at your changes to the [[block]] chain. This is similar to posting a threat and your street address on a message board using Tor -- Tor doesn't stop the police from finding you.
+If your balance has been contaminated by both anonymous and non-anonymous coins, it is difficult to make it "clean". 
 
-This is the recommended way of anonymizing your balance:
+Methods **not** recommended:
 
-* Send however many coins you want to anonymize to a new [MyBitcoin](https://www.mybitcoin.com/) account as a lump sum. Use Tor for both your client and your Web connection to MyBitcoin.  There are other [[eWallet]] services in addition to MyBitcoin however MyBitcoin is widely used and thus may offer the greatest potential for anonymity. <font color="red">This is not an endorsement of trust in the MyBitcoin service. There are no guarantees that MyBitcoin won't one day take all your bitcoins and disappear. Use at your own risk.</font>
+* Sending coins to a different address under your control will give you some plausible deniability. However, if an investigator finds you, he may demand to know to whom you sent the coins. If the wallet file of your secret account is found- perhaps on another computer that is seized, then the investigator will be able to prove that you sent the coins to yourself and we are back to square-one.
+
+Recommended way of anonymizing your balance:
+
+* Send however many coins you want to anonymize to a new [MyBitcoin](https://www.mybitcoin.com/) account as a lump sum. Use Tor for your Web connection to MyBitcoin in case MyBitcoin itself is taken over by an untrusted authority.  There are other [[eWallet]] services in addition to MyBitcoin however MyBitcoin is widely used and thus may offer the greatest potential for anonymity. <font color="red">This is not an endorsement of trust in the MyBitcoin service. There are no guarantees that MyBitcoin won't one day take all your bitcoins and disappear. Use at your own risk.</font>
 * Set up a brand new (empty) Bitcoin installation somewhere. Use Tor with it.
-* Every day, withdraw 5% of the transaction amount to the new installation. Bonus points: add some randomization to the amount of Bitcoins you withdraw and the time between doing it.
 
 With this method, MyBitcoin acts like an encrypted proxy to your Bitcoin transfer. An attacker will have to gain access to MyBitcoin's transaction logs to continue to follow you in the transaction history.
 
 To further enhance your anonymity, you can:
 
-* Send fewer coins from MyBitcoin to your new installation over a longer period of time.
-* Send Bitcoins from MyBitcoin to another [[eWallet]] servicre and *then* to yourself. This is like chaining encrypted proxies: both will need to be compromised for you to be identified.
+* Send Bitcoins from MyBitcoin to another [[eWallet]] service and *then* to yourself. Each transfer needs to be painstakingly investigated and many transfers will present insurmountable difficulty.
 
 The protection that this method offers is significantly reduced if you are trying to anonymize more than about 10% of the total number of Bitcoins that MyBitcoin holds. You'll end up getting your own coins back instead of other users' coins. Withdrawing Bitcoins more slowly and in smaller increments will help reduce this problem. Sending coins to MyBitcoin in the largest single transfer possible will also help.
 
-Once you have an anonymous balance set up, be sure to keep your anonymous and non-anonymous balances completely separate. You can only move coins from the anonymous balance to the non-anonymous balance if none of the anonymous coins were gotten in ways that should not be connected to your identity. You can move one of your balances to a (new) MyBitcoin account if you'd like; this is not an anonymity problem if you use Tor while accessing MyBitcoin.
+Once you have an anonymous balance set up, be sure to keep your anonymous and non-anonymous balances completely separate.
 
 #### Help other people stay anonymous
 
