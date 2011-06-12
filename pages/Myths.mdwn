@@ -1,6 +1,14 @@
 Let's clear up some common Bitcoin misconceptions.
 
-thereof
+## Bitcoin is just like all other digital currencies; nothing new
+
+Nearly all other digital currencies are centrally controlled. This means that:
+
+* they can be printed at the subjective whims of the controllers
+* they can be destroyed by attacking the central point of control
+* arbitrary rules can be imposed upon their users by the controllers
+
+Being decentralized, Bitcoin solves all of these problems.
 
 ## Bitcoins don't solve any problems that fiat currency and/or gold doesn't solve
 
@@ -19,17 +27,37 @@ Unlike electronic fiat currency systems, bitcoins are:
 * potentially anonymous
 * assets cannot be frozen
 
-thereof
+## Bitcoin is backed by CPU cycles
+
+It is not correct to say that Bitcoin is backed by CPU power. A currency being "backed" by something means that it is pegged to something else via a central party at a certain exchange rate. You cannot exchange bitcoins for the computing power that was used to create them. Bitcoin is in this sense not backed by anything. It is a commodity in its own right. Similar to gold - is gold backed by anything? No! It's just gold. The same applies with Bitcoin. 
+
+The Bitcoin currency is *created* via processing power, and the integrity of the block chain is *protected* by the existence of a large network of computing nodes from certain possible [[attacks|Weaknesses#Attacker_has_a_lot_of_computing_power]]. And that is all.
 
 ## Bitcoins are worthless because they aren't backed by anything
 
 Gold isn't backed by anything either, except its intrinsic, physical value. Bitcoins have properties inherent to its design that are subjectively valued by individuals.  This valuation is demonstrated when individuals freely exchange for or with bitcoins.  Please refer to the [Subjective Theory of Value](http://en.wikipedia.org/wiki/Subjective_theory_of_value). See also myth [Bitcoin is backed by CPU cycles](https://en.bitcoin.it/wiki/Myths#Bitcoin_is_backed_by_CPU_cycles).
 
-thereof
+## Bitcoins value is based on how much electricity and computing power it takes to mine them
 
-thereof
+This statement is an attempt to apply to Bitcoin the [labor theory of value](http://en.wikipedia.org/wiki/Labor_theory_of_value), which is generally accepted as false. Just because something takes X resources to create does not mean that the resulting product will be worth X. It can be worth more, or less, depending on the utility thereof to its users. 
 
-thereof
+In fact the causality is the reverse of that (this applies to the labor theory of value in general). The cost to mine Bitcoins is based on how much they are worth. If Bitcoins go up in value, more people will mine (because mining is profitable), thus [[difficulty]] will go up, thus the cost of mining will go up. The inverse happens if bitcoins go down in value. These effects balance out to cause mining to always cost the amount of bitcoins it produces.
+
+## Bitcoins have no intrinsic value (unlike some other things)
+
+It is true that bitcoins have no intrinsic value, in the [numismatic sense](http://en.wikipedia.org/wiki/Intrinsic_value_%28numismatics%29), in other words, value in any realm outside of being used as a medium of exchange.
+
+However, while some tangible commodities do have intrinsic value, that value is generally much less than its trading price. Consider for example that gold, if it were not used as an inflation-proof store of value, but rather only for its industrial uses, would certainly not be worth what it is today, since the industrial requirements for gold are far smaller than the available supply thereof.
+
+While historically intrinsic value, as well as other attributes like divisibility, fungibility, scarcity, durability, helped establish certain commodities as mediums of exchange, it is certainly not a prerequisite. While bitcoins lack 'intrinsic value' in this sense, they make up for it in spades by possessing the other qualities necessary to make it a good medium of exchange, equal to or better than [commodity money](http://en.wikipedia.org/wiki/Commodity_money).
+
+Value is ultimately determined by what people are willing to trade for - by supply and demand.
+
+## Bitcoins are illegal because they're not legal tender
+
+Short answer: chickens aren't legal tender either, but bartering with chickens is not illegal.
+
+There are a [number of currencies](http://en.wikipedia.org/wiki/Local_currency) in existence that are not official government-backed currencies. A currency is, after all, nothing more than a convenient unit of account. While national laws may vary from country to country, and you should certainly check the laws of your jurisdiction, in general trading in any commodity, including digital commodities like Bitcoin, game currencies like WoW gold or Linden dollars, is not illegal.
 
 ## Bitcoin is a form of domestic terrorism because it only harms the economic stability of the USA and its currency
 
@@ -38,13 +66,17 @@ http://en.wikipedia.org/wiki/Definitions_of_terrorism#United_States according to
 Also, Bitcoin isn't domestic. It's a worldwide community. See this map of Bitcoin nodes 
 http://forum.bitcoin.org/?topic=2346.0
 
-thereof
+## Bitcoin will only enable tax evaders which will lead to the eventual downfall of civilization
+
+Cash transactions hold the same level of anonymity but are still taxed successfully. It is up to you to follow the applicable state laws in your home country, or face the consequences.
 
 ## Bitcoins can be printed/minted by anyone and are therefore worthless
 
 Bitcoins are not printed/minted. Instead, [[Blocks]] are computed by miners and for their efforts they are awarded a specific amount of bitcoins + transaction fees. See [[Blocks]] for more information on how this process works.
 
-thereof
+## Bitcoins are worthless because they're based on unproven cryptography
+
+SHA256 and ECDSA which are used in Bitcoin are well-known industry standard algorithms. If you believe that these algorithms are untrustworthy then you should not trust Bitcoin, credit card transactions or any type of electronic bank transfer.
 
 ## Early adopters are unfairly rewarded
 
@@ -54,13 +86,23 @@ In more pragmatic terms, "fairness" is an arbitrary concept that is improbable t
 
 The vast majority of the 21 million Bitcoins still have not been distributed.  By starting to mine or acquire bitcoins today, you too can become an early adopter.
 
-thereof
+## 21 million coins isn't enough; doesn't scale
+
+One Bitcoin is divisible down to eight decimal places. There are really 2,099,999,997,690,000 (just over 2 quadrillion) maximum possible atomic units in the bitcoin design.
+
+The value of "1 BTC" represents 100,000,000 of these. In other words, each is divisible by up to 10^8. 
+
+As the value of the unit of 1 BTC grows too large to be useful for day to day transactions, people can start dealing in smaller [[units|Units]], such as milli-bitcoins (mBTC) or micro-bitcoins (μBTC).
 
 ## Bitcoins are stored in wallet files, just copy the wallet file to get more coins!
 
 No, your wallet contains your secret keys, giving you the rights to spend your bitcoins. Think of it like having bank details stored in a file. If you give your bank details (or bitcoin wallet) to someone else, that doesn't double the amount of money in your account. You can spend your money or they can spend your money, but not both.
 
-thereof thereof thereofthereof thereof thereofthereof thereof thereofthereof thereof thereofthereof thereof thereofthereof thereof thereofthereof thereof thereofthereof thereof thereofthereof thereof thereofthereof thereof thereof
+## Lost coins can't be replaced and this is bad
+
+Bitcoins are divisible to 0.00000001, so this is not a problem. If you lose your coins, all other coins will go up in value a little. Consider it a donation to all other bitcoin users.
+
+A related question is: Why don't we have a mechanism to replace lost coins? The answer is that it is impossible to distinguish between a 'lost' coin and one that is simply sitting unused in someone's safe.
 
 ## It's a giant ponzi scheme
 In a Ponzi Scheme, the founders persuade investors that they’ll profit. Bitcoin does not make such a guarantee. There is no central entity, just individuals building an economy.
@@ -69,7 +111,8 @@ A ponzi scheme is a zero sum game. Early adopters can only profit at the expense
 
 Not to be confused with the [[Bitcoin Randomizer|Bitcoin_randomizer]] which is a game that really is self-described as a Ponzi scheme.
 
-thereof thereof thereofthereof thereof thereofthereof thereof thereof
+## Finite coins plus lost coins means deflationary spiral
+As deflationary forces may apply, economic factors such as hoarding are offset by human factors that may lessen the chances that a [[Deflationary_spiral]] will occur.
 
 ## Bitcoin can't work because there is no way to control inflation
 
@@ -81,7 +124,9 @@ The key point here is that Bitcoin as a currency can't be inflated by any single
 
 Indeed, the most likely scenario, as Bitcoin becomes more popular and demand increases, is for the currency to increase in value, or deflate, until demand stabilizes.
 
-there of
+## The Bitcoin community consists of anarchist/conspiracy theorist/gold standard 'weenies'
+
+The members of the community vary in their ideological stances.
 
 ## Anyone with enough computing power can take over the network
 
@@ -97,12 +142,35 @@ Name them if you can.
 
 See also the [[legal tender|Myths#Bitcoins_are_illegal_because_it_s_not_legal_tender]] question.
 
-article 2 section 3 thereof
+## Fractional reserve banking is not possible
+
+It is possible. There is no fundamental difference between classical currencies and Bitcoin as it applies to banking. Banks will still be free to take in bitcoins and present them to customers as "available for withdrawal" while still lending most of those bitcoins to a different customer for a profit. Some of those bitcoins will be held in reserves in case of a bank run. It will be up to the bank to hold a sufficient supply of reserves in order to prevent insolvency in the event of a bank run. Central banks were established to enforce reserve requirements and so, with Bitcoin lacking a central bank, some banks will almost surly collapse, taking their customers' deposits with them.
+
+See [Fractional reserve banking](http://en.wikipedia.org/wiki/Fractional-reserve_banking).
+
+Conventional banks in the United States guarantee that account holders can withdraw 100% of their dollars based on their "word" and the fact that they are backed up by the [FDIC](http://en.wikipedia.org/wiki/Federal_Deposit_Insurance_Corporation). This program insures depositors up to a certain amount (currently $250K USD per depositor).  The FDIC is widely known to have reserves sufficient to cover only a very small fraction of the total deposits it insures though the FDIC itself can be considered to be backed up by the US Congress in the event of its insolvency. After politically desired, the FDIC's role could be extended to insure Bitcoin banks and establish a minimum reserve requirement. Such a change would only happen after public outrage occurs after the inevitable collapse of major Bitcoin banks.
+
+Because Fractional Reserve Banking is possible with bitcoins, the money supply of bitcoins (which includes demand deposits) can greatly exceed 21 million.
+
+## Point of sale with bitcoins isn't possible because of the 10 minute wait for confirmation
+
+Transactions **can** take tens of minutes to become *confirmed*, and this won't change for the foreseeable future. Even after the computing power of the network is orders of magnitude larger than today, the difficulty of generating a block will self-adjust to maintain a target of 6 blocks per hour. Three potential solutions to allow POS transactions are:
+
+1) For small transactions, simply assume the customer isn't ripping you off. Give the customer his latte immediately after the transaction posts to the network. The transaction should propagate through the network almost instantly, allowing the seller to see the transaction within seconds (albeit with zero confirmations.) The cost of a double-spend attack should make small-scale fraud not worthwhile.
+
+2) Utilize a ['listening' period](http://www.bitcoin.org/smf/index.php?topic=423.msg3819#msg3819) prior to rendering the service or good.  This has yet to be formally implemented in the standard Bitcoin client, but would allow a vendor to receive the transaction and then monitor the Bitcoin network for a certain period of time (maybe 10 seconds) for possible double spends.  Vendors might utilize specialized payment processors with multiple well-connected nodes for this purpose.  As explained by Satoshi, the network nodes only accept the first version of a transaction they receive to incorporate into the block they're trying to generate.  When you broadcast a transaction, if someone else broadcasts a double-spend at the same time, it's a race to propagate to the most nodes first.  If one has a slight head start, it'll geometrically spread through the network faster and get most of the nodes.  Therefore, the longer the listening period goes without a double spend attempt, the far less likely a double-spend attempt will actually succeed.  If a double-spend is detected, the vendor is notified: no latte.
+
+3) Create a network of transaction hubs. These entities would communicate using a common API. They would float short-term loans between each other to facilitate instant transactions. 
+
+Imagine that Alice uses Carol's Clearinghouse as her hub, and Bob uses Dave's Anonymous Exchange. Both Alice and Bob have accounts with their respective hubs, and have already deposited some bitcoins in their accounts. When Alice wants to buy a latte from Bob at a point of sale, Alice tells Carol "I want to send Bob *x* bitcoins. He uses Dave's Anonymous Exchange." After checking that Alice's account does contain at least *x* bitcoins, Carol sends a message to Dave, saying "Credit Bob's account with *x* bitcoins immediately; I'll send you the real bitcoins in the next block." Bob instantly sees his balance increase, and gives Alice her latte.
+
+As always, trust is required - Alice has to trust Carol, and the hubs have to trust each other. Due to competition, various hubs could develop with vastly different fee structures, membership requirements, trustability, etc.
+
+(But the point of Bitcoin is you don't need trust to execute the transaction, in the above description of option 3 you replaced the bitcoins with a trust-based centralized authority.)
 
 ## After 21 million coins are mined, no one will generate new blocks
 
 When operating costs can't be covered by the block creation bounty, which will happen some time before the total amount of BTC is reached, miners are expected to earn profit from [[transaction_fees]].
-thereof this page is for babbies with authority issues
 
 ## Bitcoin has no built-in chargeback mechanism, and this isn't good
 
@@ -114,7 +182,11 @@ The statement "The person handling your money has a responsibility to prevent fr
 
 ## Quantum computers would break Bitcoin's security
 
-Yes, but quantum computers don't yet exist and probably won't for a while.  Bitcoin's security cthere of there of
+Yes, but quantum computers don't yet exist and probably won't for a while.  Bitcoin's security can be [upgraded](http://en.wikipedia.org/wiki/Post-quantum_cryptography) if this were considered an imminent threat.
+
+See the implications of quantum computers on public key cryptography here http://en.wikipedia.org/wiki/Quantum_computer#Potential
+
+The *risk* of quantum computers is also there for financial institutions, like banks, because they heavily rely on cryptography when doing transactions.
 
 ## Bitcoin mining is a waste of energy and harmful for ecology
 
