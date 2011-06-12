@@ -38,7 +38,7 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 
 ## PHP
 	function JSONtoAmount($value) {
-	return round(value * 1e8);
+	return round($value * 1e8);
 	}
 
 ## Python
