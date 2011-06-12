@@ -47,7 +47,7 @@ After you've made your secure new user, to maintain security you should use it o
 
 ###Mac
 
-You can keep your wallet file on an encrypted disk image. Open Disk Utility, click New Image, choose small size (eg. 100MB), 128-bit or 256-bit (faster or more secure) encryption and single partition. Save it somewhere you won't lose it (like your Dropbox, Strongspace or whatever), choose a safe password and there you have it. Move everything from ~/Library/Application Support/Bitcoin/ to the image and symlink it back so the app would be able to use it, eg.
+You can keep your wallet file on an encrypted disk image. Open Disk Utility, click New Image, choose small size (eg. 100MB (this is much too small for me, see discussion page [Hartrock](User:Hartrock) 18:52, 12 June 2011 (GMT))), 128-bit or 256-bit (faster or more secure) encryption and single partition. Save it somewhere you won't lose it (like your Dropbox, Strongspace or whatever), choose a safe password and there you have it. Move everything from ~/Library/Application Support/Bitcoin/ to the image and symlink it back so the app would be able to use it, eg.
 
 ln -s /Volumes/Bitcoin ~/Library/Application Support/Bitcoin
 
