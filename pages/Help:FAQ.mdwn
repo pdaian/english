@@ -171,7 +171,9 @@ To give a general idea of the mining process, imagine this setup:
 	hash = [SHA2](http://en.wikipedia.org/wiki/SHA2)( [SHA2](http://en.wikipedia.org/wiki/SHA2)( payload + nonce ) )
 
 The work performed by a miner consists of repeatedly increasing "nonce" until
-the hash function yields a value, that starts with a certain number of zeros.
+the hash function yields a value, that has the rare property of being below a certain
+target threshold. (In other words: The hash "starts with a certain number of zeroes",
+if you display it in the fixed-length representation, that is typically used.)
 
 As can be seen, the mining process doesn't compute anything special. It merely
 tries to find a number (also referred to as nonce) which - in combination with the payload -
