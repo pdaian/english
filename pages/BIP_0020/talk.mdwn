@@ -32,3 +32,30 @@ Why is Tonal/Hex part of the spec?  If a couple users want to use a different un
 For some QR applications it might come in handy to add some characters that are not part of the URI any more. Does a space end the URI? Can everything after a # be ignored?
 
 * An "end-of-URI" delimiter would be a QR-Code issue. I'm not sure how the existing implementations would handle a # either, though that seems like it could be logical. Might also try adding &dummy=... --[Luke-jr](User:Luke-jr) 13:25, 26 May 2011 (GMT)
+
+## Incorrect Syntax
+The proposed syntax doesn't seem to capture the intent of the design.  Here's how it reads on the wiki page:
+
+	bitcoin:<address>[[?]]<size>[[amount=]][[&]]<label>[[label=]][[&]]<message>[[message=]]
+
+The above syntax describes the question mark and ampersands as optional, but really they should be mandatory as a separator if multiple parameters are included. According to the proposed specification, above, the following would be an acceptable URI, which I don't believe is a good thing (note the absence of the optional question mark and ampersands):
+
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9Lamount=50X8label=Luke-Jrmessage=Donation%20for%20project%20xyz
+
+Perhaps a more exact/correct way to describe the proposed syntax would be:
+
+	bitcoin:<address><parameters-list>[[?]]
+	where <parameters-list> is one or more of the following, separated by ampersand
+	<size>[[amount=]]
+	<label>[[label=]]
+	<message>[[message=]]
+
+The BNF gets close to describing this, but also has issues.  The most glaring to me is this line:
+
+	messageparam    = "label=" *uchar
+
+(Seems to me that messageparam should have the literal "message=", as opposed to "label=".)
+
+In addition, the BNF includes a parameter named "version" (which is not in the earlier specification), and also doesn't state that parameters are separated by ampersands.
+
+[Jerfelix](User:Jerfelix) 04:09, 13 June 2011 (GMT)
