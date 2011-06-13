@@ -164,6 +164,32 @@ In the early days of Bitcoin, it was easy for anyone to find new blocks using st
 ###Is mining used for some useful computation?
 The computations done when mining are internal to Bitcoin and not related to any other distributed computing projects. They serve the purpose of securing the Bitcoin network, which is useful.
 
+To give a general idea of the mining process, imagine this setup:
+
+	payload = <some data related to things happening on the Bitcoin network>
+	nonce = 1
+	hash = [SHA2](http://en.wikipedia.org/wiki/SHA2)( [SHA2](http://en.wikipedia.org/wiki/SHA2)( payload + nonce ) )
+
+The work performed by a miner consists of repeatedly increasing "nonce" until
+the hash function yields a value, that starts with a certain number of zeros.
+
+As can be seen, the mining process doesn't compute anything special. It merely
+tries to find a number (also referred to as nonce) which - in combination with the payload -
+results in a hash with special properties.
+
+The advantage of using such a mechanism consists of the fact, that it is very easy to check a result: Given
+the payload and a specific nonce, only a single call of the hashing function
+is needed to verify that the hash has the required properties. Since there is no
+known way to find these hashes other than brute force, this can be used as a "proof of work"
+that someone invested a lot of computing power to find the correct nonce for this payload.
+
+This feature is then used in the Bitcoin network to secure various aspects. An attacker
+that wants to introduce malicious payload data into the network, will need to do the
+required proof of work before it will be accepted. And as long as honest miners have more
+computing power, they can always outpace an attacker.
+
+Also see [SHA2](http://en.wikipedia.org/wiki/SHA2) and [Proof-of-work system](http://en.wikipedia.org/wiki/Proof-of-work_system) on Wikipedia.
+
 ###Is it not a waste of energy?
 Spending energy on creating a free monetary system is hardly a waste. Also, services necessary for the operation of currently widespread monetary systems, such as banks and credit card companies, also spend energy, arguably more than Bitcoin would.
 
