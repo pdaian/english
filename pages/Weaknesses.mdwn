@@ -85,6 +85,11 @@ BitCoin has 8 decimals of precision, so the entire network could operate on just
 ###Generating tons of addresses
 Generating an address doesn't touch the network at all. You'd only be wasting your CPU resources and disk space.
 
+Also, a collision is highly unlikely.
+Keys are 256 bit in length and are hashed in a 160 bit address.(2^160th power)
+Divide it by the world population and you have about 215,000,000,000,000,000,000,000,000,000,000,000,000 addresses per capita.(2.15 x 10^38)[(1)](http://www.wolframalpha.com/input/?i=2^160+%2F+world+population)
+I just thought you wanted to know that. You know, for your evil diabolical plan.
+
 ###Rival/malicious client code
 Any rival client must follow BitCoin's rules or else all current BitCoin clients will ignore it. You'd have to actually get people to *use* your client.
 
