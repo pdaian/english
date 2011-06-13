@@ -47,7 +47,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |style="background:#F8F8FF;"4870x2 |180.6 |0.632 |286 |800 |1600 |- |PCI-E 2.0 x16 |- |
 |4890 |97.1 |0.511 |190 |870(OC) |1050 |2.4 |PCI-E 2.0 x16 |GUIMiner v2011-01-21 Solo settings |Sapphire fab. No flags options helped. Close all browsers and do full restart of GUIMiner and then Bitcoin via GUIMiner server starter or the browsers GPU accl. will limit to 56~ ish Mhash/s - I can now start browser without slowdowns
 |4890 |102.41 |0.539 |190 |850 |800 |- |PCI-E 2.0 x16 |- |
-|4890 |108.3 |- |190 |975 |800 |- |PCI-E 2.0 x16 |- |
+|4890 |108.3 |0.57 |190 |975 |800 |- |PCI-E 2.0 x16 |- |
 |style="background:#FFF8EF;"5450 |11.99 |0.631 |19 |650 |80 |- |PCI-E 2.1 x16 |- |
 |style="background:#FFF8EF;"5450 |13.74 |- |- |700 |- |- |PCI-E 2.1 x16 |poclbm/Linuxcoin v0.2 |-v -w128 tried several options, seems to work best.
 |style="background:#FFF8EF;"5450 |14.12 |- |- |700 |- |- |PCI-E 2.1 x16 |Phoenix/Linuxcoin v0.2 |Flags: "DEVICE=0 VECTORS AGGRESSION=4 -v FASTLOOP BFI_INT WORKSIZE=64" Kernel: "phatk"
@@ -56,7 +56,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |style="background:#FFFFEF;"5570 |64 |1.641 |39 |650 |- |- |PCI-E 2.1 x16 |m0mchil's OpenCL/WinXP |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg24699#msg24699)
 |style="background:#FFFFEF;"5570 |62 |1.59 |39 |650 |400 |2.4 |PCI-E 2.1 x16 |Phoenix 1.48 OpenCL/Linux x86_64 |-k phatk DEVICE=0 VECTORS AGGRESSION=4 -v FASTLOOP BFI_INT WORKSIZE=64
 |style="background:#FFFFEF;"5570 |73 |1.872 |39 |700 |400 |2.4 |PCI-E 2.1 x16 |Phoenix 1.48 OpenCL/Linux x86_64 |-k phatk DEVICE=0 VECTORS AGGRESSION=4 -v FASTLOOP BFI_INT WORKSIZE=64
-|style="background:#FFFFEF;"5570 |102 |- |75(-) |950 |400 |2.4 |PCI-E 2.1 x16 |Phoenix 1.48 OpenCL/Windows 7 x86 (no Aero) |-k phatk DEVICE=0 VECTORS AGGRESSION=7 -v FASTLOOP BFI_INT WORKSIZE=256 (Reference Sapphire card, 2 additional 120mm coolers, temperature is 79-82C)
+|style="background:#FFFFEF;"5570 |102 |1.46(+) |75(-) |950 |400 |2.4 |PCI-E 2.1 x16 |Phoenix 1.48 OpenCL/Windows 7 x86 (no Aero) |-k phatk DEVICE=0 VECTORS AGGRESSION=7 -v FASTLOOP BFI_INT WORKSIZE=256 (Reference Sapphire card, 2 additional 120mm coolers, temperature is 79-82C)
 |5650 |48 |1.37 |35(?) |- |- |- |PCI-E 2.1 x16 |m0mchil's OpenCL/Win7-64 |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg26292#msg26292)[source](http://www.notebookcheck.net/ATI-Mobility-Radeon-HD-5650.23697.0.html)-- not TDP but load
 |style="background:#EEFFEE;"5670 |71.49 |1.117 |64 |775 |400 |- |PCI-E 2.1 x16 |- |
 |style="background:#EEFFEE;"5670 |72 |1.64 |44 |850 |- |- |PCI-E 2.0 x16 |poclbm-mod (Win7-64) |Sapphire 100287VGAL card is low power
@@ -152,15 +152,15 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |6750 |167.59 |- |- |870 |- |- |PCI-E 2.1 x16 |guiminer |-v -f30 -w128
 |6770 |180 |- |- |850 |1200 |- |- |guiminer |-v -w128 , this was an XFX (OEM) model, GPU @ 850 MHz, mem @ 1200 MHz; I pushed it up to 190 Mhash/s briefly by overclocking, but it crashed the system above that
 |6770 |202 |- |- |960 |800 |- |PCI-E 2.1 x1,x4,x8,x16 |phoenix 1.48 |Sapphire 6770 (standard) -q2 -k poclbm DEVICE=0 AGGRESSION=10 VECTORS WORKSIZE=128 BFI_INT FASTLOOP (The PCI-E speed does not affect the mining speed)
-|6790 |220 |- |150 |800 |- |- |PCI-E 2.1 x16 |Phoenix 1.48 |-k phatk BFI_INT FASTLOOP AGGRESSION=12 VECTORS OC'd to 1ghz, underclocked mem to 300, voltage at 1175
+|6790 |220 |1.467 |150 |800 |- |- |PCI-E 2.1 x16 |Phoenix 1.48 |-k phatk BFI_INT FASTLOOP AGGRESSION=12 VECTORS OC'd to 1ghz, underclocked mem to 300, voltage at 1175
 |style="background:#EFEFFF;"6850 |171.59 |1.351 |127 |775 |960 |2.1 |PCI-E 2.1 x16 |clmine |
 |style="background:#EFEFFF;"6850 |196 |- |- |850 |960 |- |PCI-E 2.1 x16 |poclbm |-v -w 128 -f 0
-|style="background:#EFEFFF;"6850 |220 |1.236 |178[[*]]|1000 |960 |2.4RC1 |PCI-E 2.1 x16 |poclbm |-v -w 128 -f 30 (*Overclocked wattage calculated [here](http://bakkap.free.fr/Misc/wCalc.html))
+|style="background:#EFEFFF;"6850 |220 |1.236 |178(*) |1000 |960 |2.4RC1 |PCI-E 2.1 x16 |poclbm |-v -w 128 -f 30 (*: Overclocked wattage calculated [here](http://bakkap.free.fr/Misc/wCalc.html))
 |style="background:#EFEFFF;"6850 |234.8 |- |- |940 |960 |2.4 |PCI-E 2.1 x16 |Phoenix 1.3 |AGGRESSION=8 WORKSIZE=128 VECTORS BFI_INT
 |style="background:#EFEFFF;"6850 |244.2 |- |- |960 |960 |2.1 |PCI-E 2.0 x16 |poclbm june-2011 |-v -w 128
 |style="background:#FFFF00;"6870 |232.47 |1.540 |151 |900 |1120 |- |PCI-E 2.1 x16 |poclbm -v -w 128 |
 |style="background:#FFFF00;"6870 |277.47 |- |- |940 |1120 |- |PCI-E 2.1 x16 |Phoenix 1.3 |AGGRESSION=8 WORKSIZE=128 VECTORS BFI_INT
-|style="background:#FFFF00;"6870 |271 |- |150 |940 |1100 |2.4 |PCI-E 2.0 x16 |poclbm -v -w 128 |Debian 6.0.1 x86_64
+|style="background:#FFFF00;"6870 |271 |1.807 |150 |940 |1100 |2.4 |PCI-E 2.0 x16 |poclbm -v -w 128 |Debian 6.0.1 x86_64
 |style="background:#FFFF00;"6870 |260.1 |1.611 |175 |1001 |1150 |2.2 |PCI-E 2.1 x16 |poclbm-gui windows7x86 cat 11.3 |-v -w 128 -f 1
 |style="background:#FFFF00;"6870 |276 |1.828(?) |151(?) |900 |1120 |2.4 |PCI-E 2.1 x16 |hashkill-0.2.5 alpha cat 11.4 sdk 2.4 |-G2 -D stock clocks, debian linux 64bit
 |style="background:#FFFF00;"6870 |300.06 |1.830 |164 |1020 |1120 |2.4 |PCI-E 2.1 x16 |Phoenix 1.4 cat 11.4 |VECTORS BFI_INT AGGRESSION=8 fastloop mem clock 344
@@ -174,24 +174,24 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |6950 |291 |- |- |920 |1408 |2.4 |PCI-E 2.1 x16 |phoenix 1.48/poclbm |max stable @ 1200mV, AGGRESSION = 7, BFI_INT, MSI 6950
 |6950 |295 |- |- |930 |1408 |2.4 |PCI-E 2.1 x16 |phoenix 1.48/poclbm |max stable @ 1275mV, AGGRESSION = 7, BFI_INT, MSI 6950
 |6950 |300 |- |- |940 |1408 |2.4 |PCI-E 2.1 x16 |phoenix 1.48/poclbm |max stable @ 1300mV, AGGRESSION = 7, BFI_INT, MSI 6950
-|6950 |295 |- |160(?) |810 |1536 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |unlocked shaders, default mem 1250
-|6950 |314 |- |(?) |800 |1408 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm 05-01-11 |-v -f30 -w128 default mem 1250 Stock Sapphire 6950 1gb
-|6950 |325 |- |200(?) |885 |1536 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |unlocked shaders, default mem 1250
+|6950 |295 |1.844(?) |160(?) |810 |1536 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |unlocked shaders, default mem 1250
+|6950 |314 |- |- |800 |1408 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm 05-01-11 |-v -f30 -w128 default mem 1250 Stock Sapphire 6950 1gb
+|6950 |325 |1.635(?) |200(?) |885 |1536 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |unlocked shaders, default mem 1250
 |6950 |340 |- |- |895 |1408 |2.4 |PCI-E 2.1 x16 |guiminer/poclbm 05-21-11 |-v -w 128, mem @ 500, 1200 mV, MSI 6950
-|6950 |340 |- |(?) |800 |1536 |(?) |PCI-E 2.1 x16 |guiminer/poclbm 05-21-11 |-v -f30 -w128 default mem 1250,Sapphire 6950 1gb, unlocked shaders
-|6950 |349 |1.74(?) |200(?) |800 |1408 |- |PCI-E 2.1 x16 |guiminer/poclbm 05-21-11 |-v -f30 -w128, xfx 6950 xxx 1gb, locked shaders, core 900, mem 650, 79° C
+|6950 |340 |- |- |800 |1536 |(?) |PCI-E 2.1 x16 |guiminer/poclbm 05-21-11 |-v -f30 -w128 default mem 1250,Sapphire 6950 1gb, unlocked shaders
+|6950 |349 |1.745(?) |200(?) |800 |1408 |- |PCI-E 2.1 x16 |guiminer/poclbm 05-21-11 |-v -f30 -w128, xfx 6950 xxx 1gb, locked shaders, core 900, mem 650, 79° C
 |6950 |360 |1.8(?) |200(?) |970 |1536 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |unlocked shaders, default mem 1250
-|6950 |360 |- |- |870 |1375 |(?) |PCI-E 2.1 x16 |guiminer/poclbm |flashed with 6970 BIOS, -v -f30 -w128
-|6950 |417 |2.085 ? |200 ? |975 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 1250, fan @ 77%, temp 64C, -v -w128, gpu core @ 1145mV
-|6950 |428 |2.14 ? |200 ? |1000 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 1250, fan @ 80%, temp 64C, -v -w128, gpu core @ 1160mV
-|6950 |432 |2.16 ? |200 ? |1000 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 520, fan @ 80%, temp 76C, -v -w128 -f 2, gpu core @ 1275mV
+|6950 |360 |- |- |870 |1375 |- |PCI-E 2.1 x16 |guiminer/poclbm |flashed with 6970 BIOS, -v -f30 -w128
+|6950 |417 |2.085(?) |200(?) |975 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 1250, fan @ 77%, temp 64C, -v -w128, gpu core @ 1145mV
+|6950 |428 |2.14(?) |200(?) |1000 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 1250, fan @ 80%, temp 64C, -v -w128, gpu core @ 1160mV
+|6950 |432 |2.16(?) |200(?) |1000 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 520, fan @ 80%, temp 76C, -v -w128 -f 2, gpu core @ 1275mV
 |6950x4 |1316 |1.513 |870 |840 |1408 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |locked shaders, default mem 1250, dual fan 75C typical
 |style="background:#F0FF0F;"6970 |323 |1.468 |220 |880 |1536 |2.3 |PCI-E 2.1 x16 |poclbm |-w 64, SDK 2.1 not supported on 69xx.
-|style="background:#F0FF0F;"6970 |372 |- |220(?) |900 |1536 |2.4 |PCI-E 2.1 x16 |phoenix (svn trunk 05.14.2011) |clock 900/1375, VECTORS BFI_INT AGGRESSION=11 WORKSIZE=128, fan 45% (auto) / temp 90C
+|style="background:#F0FF0F;"6970 |372 |1.691(?) |220(?) |900 |1536 |2.4 |PCI-E 2.1 x16 |phoenix (svn trunk 05.14.2011) |clock 900/1375, VECTORS BFI_INT AGGRESSION=11 WORKSIZE=128, fan 45% (auto) / temp 90C
 |style="background:#F0FF0F;"6970 |385 |1.964 |196 |900 |1536 |2.4 |PCI-E 2.1 x16 |guiminer/poclbm |-v -w128, memory downclocked to 684Mhz, fan @ 70%/temp 81C
 |style="background:#F0FF0F;"6970 |380 |- |- |- |- |2.4 |PCI-E 2.1 x16 |poclbm |-v -w128<br>export GPU_USE_SYNC_OBJECTS=1 # to reduce poclbm CPU from 100% to 2%
 |style="background:#F0FF0F;"6970 |402 |- |- |- |1536 |2.4 |PCI-E 2.1 x16 |guiminer/poclbm |-v -w128, fan 75%/75C, voltage +10% (via CCC), clocks 940MHz/600MHz (via TriXX)
-|style="background:#F0FF0F;"6970 |403 |- |(?) |MAX |1536 |2.4 |PCI-E 2.1 x16 |guiminer/poclbm |clock Max/50%+stock, -v -w128, fan= 100%/temp 72C (Note: Overclocked using CCC utility under Windows 7, Clock set to Max value w/ 50% increase to memory and 5% increase to voltage)
+|style="background:#F0FF0F;"6970 |403 |- |- |MAX |1536 |2.4 |PCI-E 2.1 x16 |guiminer/poclbm |clock Max/50%+stock, -v -w128, fan= 100%/temp 72C (Note: Overclocked using CCC utility under Windows 7, Clock set to Max value w/ 50% increase to memory and 5% increase to voltage)
 |style="background:#F0FF0F;"6970 |423 |- |- |995 |- |2.4 |PCI-E 2.1 x16 |phoenix 1.48/poclbm |ATI Tray Tools, Clocks=995/331.25, WORKSIZE=128 BFI_INT AGGRESSION=11 VECTORS ,68C @ 65% Fan, HAF932 Case
 |style="background:#F0FF0F;"6970x2 |710 |- |- |900/880 |1536 |2.2 |PCI-E 2.1 x16 |poclbm |-w 256
 |6990 |670 |1.94 |346 |830 |3072 |2.4 |PCI-E 2.1 x16 |poclbm |Catalyst 11.4 [source](http://forum.bitcoin.org/index.php?topic=2949.msg106238#msg106238).
@@ -273,7 +273,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |GTX260c216 |50.00 |||1050 |216 |m0mchil GPU client, Windows 7 64-bit, x6 @ 3.5ghz
 |GTX260c216 OC |52.0 |||1461 |216 |"poclbm -w 256 -f 1"
 |GTX260c216 OC |58.9 |||756/400 |216 |Core overclocked, Memory underclocked, Ubuntu 11.04 Classic Session(No Effects) "poclbm -w 256 -f 1"
-|GTX260c216 OC |60.5 |||1692 |216 |Core: 364 MHz, Shaders: 1692 MHz, Memory: 594 MHz, VDDC: 1.1800V. "poclbm-mod -w 256 -f 0"
+|GTX260c216 OC |60.1 |||1706 |216 |Core: 364 MHz, Shaders: 1706 MHz, Memory: 594 MHz, VDDC: 1.1800V. "poclbm-mod -w 256 -f 1"
 |GTX275 |50.75 |0.232 |219 |1404 |240 |
 |GTX275 |58 |||729/1458 |240 |poclbm -f 0 -w 256
 |GTX280 |46.84 |0.198 |236 |1296 |240 |
