@@ -10,11 +10,11 @@ Let's start with the current conditions...
 <tr><th style="width: 15em; text-align: right;">Current Difficulty</th><td><code>D = 567358.224571</code></td></tr>
 <tr><th style="width: 15em; text-align: right;">Typical mining-rig speed</th><td><code>R<sub>typ</sub> = 500 MHash/s</code></td></tr>
 <tr><th style="width: 15em; text-align: right; vertical-align: top;">Probability of generating within fourteen days</th><td><code>P<sub>single-hash</sub> = 0.0000000000000004104346850315179415225053105586994206532
-<br />P<sub>single-second</sub> = 1-(P'<sub>single-hash</sub> ^ 500 MHash/s)
+<br />P<sub>single-second</sub> = 1-(P'<sub>single-hash</sub> ^ R<sub>typ</sub>)
 <br /><span style="color: white;">P<sub>single-second</sub> </span>= 0.0000002052173214586726479267
-<br />P<sub>single-day</sub> = 1-(P'<sub>single-hash</sub> ^ (500 MHash/s * 3600 s/h * 24 h/day)
+<br />P<sub>single-day</sub> = 1-(P'<sub>single-hash</sub> ^ (R<sub>typ</sub> * 3600 s/h * 24 h/day)
 <br /><span style="color: white;">P<sub>single-day</sub> </span>= 0.0175745130737448462862083548
-<br />P<sub>fourteen-days</sub> = 1-(P'<sub>single-day</sub> ^ (500 MHash/s * ... * 14 day)
+<br />P<sub>fourteen-days</sub> = 1-(P'<sub>single-day</sub> ^ (R<sub>typ</sub> * ... * 14 day)
 <br /><span style="color: white;">P<sub>fourteen-days</sub> </span>= 0.2198202190871503615128815272
 <br /><span style="color: white;">P<sub>fourteen-days</sub> </span>= <strong>21.98%</strong></code></td></tr>
 <tr><th style="width: 15em; text-align: right;">Average time to generate</th><td>56 days, 9 hours, 47 minutes</td></tr>
