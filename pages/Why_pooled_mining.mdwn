@@ -4,7 +4,23 @@ This page is an analysis of the costs/benefits of pooled mining.
 
 Some people say that no matter what, over the long run mining solo will provide the same return as mining in a pool. This is true in the case of stable difficulty, or in case of hash power being high enough that difficulty doesn't grow significantly in the 'average time' window to generate a block at your hash rate. Otherwise, as I will show below, it is possible that the probability of generating a block even "at infinity" will be less (far less) than 1.
 
-Let's start with the current difficulty of 76193.9710474, and a hash rate of 1000 Khps (a run of the mill single core cpu). The probability to generate a block under these conditions in the course of 14 days (the target time between difficulty adjustments), is 0.00368942702934, and the 'average time' to generate a block is 10 years, 19 weeks, 4 days, 14 hours, 56 minutes, and 53 seconds.
+Let's start with the current conditions...
+
+<table>
+<tr><th style="width: 15em; text-align: right;">Current Difficulty</th><td><code>D = 567358.224571</code></td></tr>
+<tr><th style="width: 15em; text-align: right;">Typical mining-rig speed</th><td><code>R<sub>typ</sub> = 500 MHash/s</code></td></tr>
+<tr><th style="width: 15em; text-align: right; vertical-align: top;">Probability of generating within fourteen days</th><td><code>P<sub>single-hash</sub> = 0.0000000000000004104346850315179415225053105586994206532
+<br />P<sub>single-second</sub> = 1-(P'<sub>single-hash</sub> ^ 500 MHash/s)
+<br /><span style="color: white;">P<sub>single-second</sub> </span>= 0.0000002052173214586726479267
+<br />P<sub>single-day</sub> = 1-(P'<sub>single-hash</sub> ^ (500 MHash/s * 3600 s/h * 24 h/day)
+<br /><span style="color: white;">P<sub>single-day</sub> </span>= 0.0175745130737448462862083548
+<br />P<sub>fourteen-days</sub> = 1-(P'<sub>single-day</sub> ^ (500 MHash/s * ... * 14 day)
+<br /><span style="color: white;">P<sub>fourteen-days</sub> </span>= 0.2198202190871503615128815272
+<br /><span style="color: white;">P<sub>fourteen-days</sub> </span>= <strong>21.98%</strong></code></td></tr>
+<tr><th style="width: 15em; text-align: right;">Average time to generate</th><td>56 days, 9 hours, 47 minutes</td></tr>
+</table>
+
+<strike style="color: #777;">difficulty of 76193.9710474, and a hash rate of 1000 Khps (a run of the mill single core cpu). The probability to generate a block under these conditions in the course of 14 days (the target time between difficulty adjustments), is 0.00368942702934, and the 'average time' to generate a block is 10 years, 19 weeks, 4 days, 14 hours, 56 minutes, and 53 seconds.</strike>
 
 Now let's assume that difficulty grows at 10% per period - that means that the average time between difficulty adjustments will be about 13 days. So we're looking at a base probability of 0.00342634853731. Further, the probability to generate a block in 13 days will also keep decreasing by about 10%, with every 10% rise in difficulty.
 
