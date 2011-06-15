@@ -47,11 +47,33 @@ After you've made your secure new user, to maintain security you should use it o
 
 ###Mac
 
-You can keep your wallet file on an encrypted disk image. Open Disk Utility, click New Image, choose small size (eg. 100MB (this is much too small for me, see discussion page [Hartrock](User:Hartrock) 18:52, 12 June 2011 (GMT))), 128-bit or 256-bit (faster or more secure) encryption and single partition. Save it somewhere you won't lose it (like your Dropbox, Strongspace or whatever), choose a safe password and there you have it. Move everything from ~/Library/Application Support/Bitcoin/ to the image and symlink it back so the app would be able to use it, eg.
+#####Backup all data (500MB)
+Follow these instructions to backup all the bitcoin data (wallet and block chains) to an encrypted disk image.
 
-ln -s /Volumes/Bitcoin ~/Library/Application Support/Bitcoin
+1. Open Disk Utility
+1. Click New Image and choose 500MB, 128-bit or 256-bit (faster or more secure) encryption and single partition.
+1. Save it somewhere you won't lose it (like your Dropbox, Strongspace or whatever)
+1. Choose a safe and strong password
+1. Move everything from ~/Library/Application Support/Bitcoin/ to the image
+1. Symlink it back so the app would be able to use it
+> ln -s /Volumes/Bitcoin ~/Library/Application Support/Bitcoin
 
 Don't forget to mount your image before using Bitcoin and unmount after quitting it.
+
+#####Backup just wallet.dat (40MB)
+Follow these instructions to backup just the wallet.dat file. This results in a smaller disk image, but it's more complicated to do.
+
+1. Open Disk Utility
+1. Click New Image and choose 40MB, 128-bit or 256-bit (faster or more secure) encryption and single partition.
+1. Save it somewhere you won't lose it (like your Dropbox, Strongspace or whatever)
+1. Choose a safe and strong password
+1. Move your wallet.dat file to the image
+1. Symlink it back so the app would be able to use it
+> ln -s /Volumes/Bitcoin/wallet.dat ~/Library/Application Support/Bitcoin/wallet.dat
+
+Don't forget to mount your image before using Bitcoin and unmount after quitting it.
+
+**Note**: If you start the Bitcoin application without having the image mounted, the application will overwrite your symlink with a new wallet. If that happens, don't panic. Just delete the new wallet.dat, mount the image, and recreate the symlink like above.
 
 ###Windows
 
