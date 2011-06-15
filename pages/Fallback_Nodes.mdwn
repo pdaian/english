@@ -11,7 +11,7 @@ You can connect to these nodes with the *-addnode=ip* switch instead of the usua
 If the node IP is not fixed (see "Fixed" column), you will have to resolve the node's name (first column) each time the IP changes. Some nodes may have their ip change once a day, some others once a month, and some others may stay on the same IP for years. Still, as long as the IP is not fixed, there is no guarantee it will stay the same.
 
 The [[Original_Bitcoin_client]] do not support hostnames to the *-addnode* parameter, so you must do the resolving part for it. For example on linux:
-	bitcoind -addnode=$(host theymos.ath.cx sed s/"^.*has address "//)
+	bitcoind -addnode=$(host ndrix.com sed s/"^.*has address "//)
 
 ### IP Transactions
 
@@ -49,7 +49,6 @@ Once you have configured and restarted tor, 192.0.2.2 will connect to ijzt2eeizt
 |BiddingPond.com |BiddingPond |184.106.111.41 |[[!template id=table_value_yes]]|[[!template id=fallback_nodes/node_up version=0.3.20[.2]]]|2011-04-17 12:00:10 |?
 |zack.home.chrishowie.com |cdhowie |98.222.140.181 |[[!template id=table_value_no]]|[[!template id=fallback_nodes/node_up version=0.3.21]]|2011-04-17 12:00:11 |No
 |178.63.15.200 |hendi |178.63.15.200 |[[!template id=table_value_yes]]|[[!template id=fallback_nodes/node_up version=0.3.20[.1]]]|2011-04-17 12:00:11 |?
-|theymos.ath.cx |theymos |99.27.237.13 |[[!template id=table_value_unknown]]|[[!template id=fallback_nodes/node_up version=0.3.19[.2]]]|2011-04-17 12:00:12 |Yes
 |fallback1.bitcoin.me.uk |Vladimir |91.85.220.84 |[[!template id=table_value_yes]]|[[!template id=fallback_nodes/node_up version=0.3.19]]|2011-04-17 12:00:12 |No
 |109.75.176.193 |MagicalTux [[DE]]|109.75.176.193 |[[!template id=table_value_yes]]|[[!template id=fallback_nodes/node_up version=0.3.19]]|2011-04-17 12:00:12 |No
 |173.224.125.222 |MagicalTux [[US]]|173.224.125.222 |[[!template id=table_value_yes]]|[[!template id=fallback_nodes/node_up version=0.3.19]]|2011-04-17 12:00:12 |No
