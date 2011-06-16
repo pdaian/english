@@ -1,0 +1,7 @@
+Excellent article!  Two suggestions:
+
+The fields coinbase_tx, coinbase_merkle_branch, altblock_merkle_branch, and the yet-to-be-specified Merkle branch format are a lot of complexity.  They could be generalized, with perhaps added flexibility, by supplying a new kind of script to link the alt chain header hash to the Bitcoin header hash.  The script would start with the alt chain header hash on the stack and have access to a "concatenate" instruction (already implemented as OP_CAT) that pops the top stack item and appends it to the next one.  Merkle branch navigation from the leaf hash to the root would be expressed as constants (stubs), concatenations, and sometimes swaps (when the branch goes left vs. right).
+
+All the extra bytes (the script as just described) impose some burdens on the alternative chain.  They must be stored even in SPV mode for proof of work.  They must be transmitted along with block headers.  They require additional verification steps.  We would like to encourage miners to mine our block "first" or at least in such a way as to minimize this overhead.  Alternative chains' block acceptance rules could impose a lower target (higher difficulty) on blocks with longer scripts.  For example, if the normal block header size is 80 and the current target is T, a block of size S+80 (S bytes in the script) could require a hash below T * 80 / (S+80).
+
+[JohnTobey253](User:JohnTobey253) 03:07, 16 June 2011 (GMT)
