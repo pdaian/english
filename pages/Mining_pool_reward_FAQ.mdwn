@@ -23,3 +23,46 @@ If you constitute a significant part of the pool (say, above 1%), your variance 
 If not, your variance will not depend on the size of yourself or the pool, but rather on the scoring method used. For proportional, the decrease factor is roughly difficulty/ln(difficulty). For the geometric method the decrease factor is roughly (1 + 2*difficulty*c), where c is the score fee parameter used.
 
 Increasing the size of the pool will always decrease the variance, but at some point you will have diminishing marginal utility.
+
+## Show me some examples and assist in clarifying what it all means...
+
+##### [http://forum.bitcoin.org/index.php?topic=6667.msg233175#msg233175 Quote from: SoreGums on 2011/06/18 at 05:09:43 pm]=
+
+so what am i missing with this:
+
+* miner1 does 9 shares, mining the whole time
+* miner2 does 1 share then leaves, spent 3mins doing this at the start of the round
+* miner3 does 3 shares, working in the last 5mins of this block
+* miner4 does 7 shares, mining the whole time, and finds the block after 30mins
+* total shares = 20, each share is worth 50/20=2.5
+* miners get [1*2.5, 3*2.5, 7*2.5](9*2.5,) after block has 120 confirmations if it turns out to be invalid then shares go into current block solving round
+	
+having typed that out, I'm guessing that this is PPS...
+how does this promote pool hoping?
+if reward is only given after a block is found how is the operator out of pocket?
+	
+sorry if this has all been covered elsewhere - most everything else I've read regarding payouts is not as simple as what I have put above
+
+##### [http://forum.bitcoin.org/index.php?topic=6667.msg233652#msg233652 Quote from: ewal on 2011/06/18 at 06:48:11 pm]=
+
+What you described is a transitional proportional payout scheme.  Your payout is proportional to the amount of work that you did for any given block.
+
+In your example, miner1 got 22.5 BTC (9*2.5).  That is 22.5 BTC for 30 minutes of work = 45BTC per hour.
+
+If you compare to an unlucky block that takes 100 times as long to find:
+
+* miner1 does 900 shares, mining the whole time
+* miner2 does 100 share then leaves, spent 300mins doing this at the start of the round
+* miner3 does 300 shares, working in the last 500mins of this block
+* miner4 does 700 shares, mining the whole time, and finds the block after 3000mins
+* total shares = 2000, each share is worth 50/2000=0.025
+
+In this example miner1 still gets 22.5 BTC (900*0.025) except this time it took 100 times longer to get it.  Now it was 22.5 BTC for 3000 minutes of work or 0.45 BTC per hour.  Way less per hour because the block was very unlucky.
+
+Traditional Pay-per-share (PPS) is a different system where you get paid by the number of shares you submit regardless of if a block is found.  The payout per share is determined by taking 50/difficulty.
+
+Say difficulty is 20, so the price per share is 2.5 or 50/20.  In scenario 1, miner1 makes 22.5BTC in 30 minutes (9*2.5) or 45BTC per hour.  In scenario 2, miner1 makes 2,250 BTC in 3000 minutes or the same 45BTC per hour.  
+
+In PPS, your pay per hour is always the same even in the short term, but the drawback is that the pool might go bankrupt if there are too many long blocks.  
+In proportional, your pay per hour in any given 24 hours varies based on if blocks are lucky or unlucky and the drawback is that pool hoppers skip town on long blocks.  
+In MaxPPS, your pay per hour in any given 24 hours may also vary if the pool is small enough that it isn't reliably finding multiple blocks per day, but the variation will lower than in proportional because the pool has withheld some of the payment you would have received from short blocks so that it can pay you more on long blocks.  The benefits are that the pool can't go bankrupt, and there is no longer any incentive for pool hoppers to switch to another pool on long blocks.
