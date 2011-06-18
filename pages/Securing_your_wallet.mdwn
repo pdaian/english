@@ -71,9 +71,12 @@ Follow these instructions to backup just the wallet.dat file. This results in a 
 1. Symlink it back so the app would be able to use it
 > ln -s /Volumes/Bitcoin/wallet.dat ~/Library/Application Support/Bitcoin/wallet.dat
 
+[[!img "MountWalletAndLauchnBitcoin_OSX_Automator.png" title="thumbnail" size=150x150 title="Mount Wallet and launch Bitcoin"]]
 Don't forget to mount your image before using Bitcoin and unmount after quitting it.
 
 **Note**: If you start the Bitcoin application without having the image mounted, the application will overwrite your symlink with a new wallet. If that happens, don't panic. Just delete the new wallet.dat, mount the image, and recreate the symlink like above.
+
+**Automation**: You can create a small application using [Automator](http://en.wikipedia.org/wiki/Automator_%28software%29) (included in OS X) to automatically mount the wallet and then launch Bitcoin App. See the Screenshot on how to do this.
 
 ###Windows
 
