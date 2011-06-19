@@ -68,4 +68,16 @@ The network costs of distributing blocks can be minimized by changing the protoc
 
 The peer-finding mechanism today relies on IRC. Switching to DNS would give dramatically faster startup times that do not scale with the size of the network.
 
+###Simplified payment verification
+
+It's possible to build a Bitcoin implementation that does not verify everything, but instead relies on either connecting to a trusted node, or puts its faith in high difficulty as a proxy for proof of validity. [[BitCoinJ]] is an implementation of this mode.
+
+In SPV mode, named after the section of Satoshis paper that describes it, clients connect to an arbitrary full node and download only the block headers. They verify the chain headers connect together correctly and that the difficulty is high enough. They then request transactions matching particular patterns from the remote node (ie, payments to your addresses), which provides copies of those transactions along with a Merkle branch linking them to the block in which they appeared. This exploits the Merkle tree structure to allow proof of inclusion without needing the full contents of the block. The pattern matching protocol message isn't implemented yet, [a proposal](http://forum.bitcoin.org/index.php?topic=7972.msg116285#msg116285) was discussed in May 2011.
+
+As a further optimization, block headers that are buried sufficiently deep can be thrown away after some time (eg, you only really need to store say 1000 blocks).
+
+The level of difficulty required to obtain confidence the remote node is not feeding you fictional transactions depends on your threat model. If you are connecting to a node that is known to be reliable, the difficulty doesn't matter. If you want to pick a random node, the cost for an attacker to mine a block sequence containing a bogus transaction should be higher than the value to be obtained by defrauding you. By changing how deeply buried the block must be, you can trade off confirmation time vs cost of an attack.
+
+Programs implementing this approach can have fixed storage/network overhead in the null case of no usage, and resource usage proportional to received/sent transactions.
+
 [[!tag "Technical"]]
