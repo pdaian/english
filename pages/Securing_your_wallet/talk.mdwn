@@ -23,3 +23,15 @@ This section isn't helpful; it tells you when to create a new wallet, but not ho
 For me space needed in ~/Library/Application Support/Bitcoin (Mac) is more than 400MB (!) after having loaded all blocks from bitcoin app. So 100MB is much too small (may be sufficient for just wallet.dat, but then the steps to do had to be changed). [Hartrock](User:Hartrock) 18:48, 12 June 2011 (GMT)
 
 I updated the wiki steps to just backup wallet.dat --[ChocoboLee](User:ChocoboLee) 19:18, 15 June 2011 (GMT)
+
+## Flaws with argument regarding encryption
+
+Can someone please explain to me how encrypting your wallet will actually protect against a trojan stealing it.  Because once you mount the encrypted file, and decrypt it not only can bitcoin see it but the trojan can as well.  This strategy seems to work only in the following circumstances:
+1. The wallet that has the majority of your cash you never decrypt when you have an open internet connection.
+2. Assumes that a trojan only operates when an internet connection is present and it can transmit the wallet data file.
+
+So if the trojan seeks to copy your wallet file to another location on your computer as soon as you decrypt the drive for transmission once you reencrypt the wallet file and connect to the internet this would defeat the purpose of encryption.
+
+Also how in the world could you ever use this wallet to transfer cash to another user if you are offline?  Maybe I don't understand how bitcoin works but don't you need to be online in order to transfer bitcoins?  Basically the bottom line is that bitcoin cannot read an encrypted wallet file which means that in order to use the wallet you need to decrypt it which means its vulnerable to trojans who can steal it the moment you want to use it.
+
+This seems to be a fundamental flaw in this discussion "securing your wallet"  Why doesn't bitcoin just address this in the software allowing for the wallet to always be encrypted and require a password upon startup.  If you want bitcoin to go mainstream I don't understand why you can't address this fundamental flaw.
