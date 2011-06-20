@@ -24,11 +24,13 @@ For bitcoin addresses (RIPEMD-160) this would give:
 
 ### Merkle Trees
 
-Merkle trees are binary trees of hashes. Merkle trees in bitcoin use SHA-256, and are built up as so:
-
-	sha256(a) sha256(b) sha256(c)
-	sha256(sha256(a)+sha256(b)) sha256(sha256(c)+sha256(c))
-	sha256(sha256(sha256(a)+sha256(b))+sha256(sha256(c)+sha256(c)))
+Merkle trees are binary trees of hashes. Merkle trees in bitcoin use **Double** SHA-256, and are built up as so:
+	
+	hash(a) = sha256(sha256(a))
+	
+	hash(a) hash(b) hash(c)
+	hash(hash(a)+hash(b)) hash(hash(c)+hash(c))
+	hash(hash(hash(a)+hash(b))+hash(hash(c)+hash(c)))
 
 They are paired up, with the last element being _duplicated_.
 
