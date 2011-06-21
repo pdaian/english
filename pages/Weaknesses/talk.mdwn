@@ -3,3 +3,20 @@ I don't know if the vulnerable to loss from no backup is something that should f
 ### Wallet Vulnerable To Loss
 
 If a computer problem such as a disk crash occurs or for whatever reason there is no longer access to the wallet, and backups are either unavailable or not current enough, loss of coins can result.  Though backups are recommended, the client itself does not manage backups.
+
+## Pools
+
+On the forum I have been discussing threats from pools and I would like to see those presented here. Sorry for not being bold enough to just add it. I just registered in the wiki so maybe it can be found elsewhere. My addition would be in the context of the 50%-attack a subsection on feasibility of obtaining the necessary computational power (20.000 PCs with several high end video cards each ...) and the ways to get that computational power for a small budget via a pool.
+
+Imagine the following scenario:
+
+* Pool (E)vil registers as a miner with Pool (G)ood.
+* G assigns work to E as to any other miner.
+* E assigns it on to its miners.
+* The miners provide proof of work and found blocks.
+* E hands on the proof of work part to G but not the found blocks.
+* Other miners at G still find some blocks.
+* G distributes the reward among all according to their proof of work.
+This way G will be less profitable and even compensates part of E's effort to attack them.
+This way E could stay the biggest <s>shark in the pool</s> pool in the network once it got there by dedicating some miners to each pool with a potential to compete.
+With the biggest pool at more than 50% we are back at above described problem of one player being able to control what gets in to the chain and what not.
