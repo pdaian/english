@@ -5,20 +5,20 @@ The transaction fee is processed by and received by the bitcoin miner.  When a n
 
 Transaction fees are voluntary on the part of the person making the bitcoin transaction, as the person attempting to make a transaction can include any fee or none at all in the transaction. On the other hand, nobody mining new bitcoins necessarily needs to accept the transactions and include them in the new block being created.  The transaction fee is therefore an incentive on the part of the bitcoin user to make sure that a particular transaction will get included into the next block which is generated.
 
-It is envisioned that over time the cumulative effect of collecting transaction fees will allow somebody creating new blocks to "earn" more bitcoins than will be "mined" from new bitcoins created by the new block itself.  This is also an incentive to keep trying to create new blocks even if the value of the newly created block from the "mining" activity is zero.
+It is envisioned that over time the cumulative effect of collecting transaction fees will allow somebody creating new blocks to "earn" more bitcoins than will be mined from new bitcoins created by the new block itself.  This is also an incentive to keep trying to create new blocks even if the value of the newly created block from the mining activity is zero in the far future.
 
 It works like this:
 
-* Whoever sends the transaction is often able to guess what the appropriate fee will be based on their own fee rules.  The [[original client|Original_Bitcoin_client]] will always assess the transaction, and if a fee will typically be expected, it will not allow you to send the transaction without the calculated fee.
+* Whoever sends the transaction is often able to guess an appropriate fee based on their own fee rules.  The [[original client|Original_Bitcoin_client]] will always assess the transaction, and if a fee will typically be expected, it will not allow you to send the transaction without the calculated fee.
 * The user is prompted to confirm the fee before the transaction is sent.
-* The sender makes a transaction with more coins in the "In" portion than the "Out" portion so that there are "leftovers" not assigned to any address.
-* Whoever ends up publishing the [[block]] which contains this transaction will take these (and any) "leftover" coins. They are included with their normal generated coins and is an extra "bonus" for creating the block.
-* If a generating node receives a transaction that should include a transaction fee but doesn't, they refuse to include it in their blocks. It might be included in a later block if someone is willing to accept it. Generators can't force a certain fee on transactions -- they can only accept or reject the transaction's "fee offer".
-[[!img "lfm_fee.png" size=120x120 title="This balance is made entirely of 0.01 BTC "cents". Since sending them requires a lot of data, a very large fee is required."]]
+* The sender makes a transaction with more coins in the *In* portion than the *Out* portion so that there are “leftovers” not assigned to any address.
+* Whoever ends up publishing the [[block]] which contains this transaction will take these (and any other) leftover coins. They are included with their normal generated coins and is an extra bonus for creating the block.
+* If a generating node receives a transaction that should include a transaction fee but doesn't, they may refuse to include it in their blocks. It might be included in a later block if someone is willing to accept it. Generators can't force a certain fee on transactions -- they can only accept or reject the transaction's “fee offer”.
+[[!img "lfm_fee.png" size=120x120 title="This balance is made entirely of 0.01 BTC cents. Since sending them requires a lot of data, a very large fee is required."]]
 
-Different versions of Bitcoin have different rules for determining which transactions to accept and how large of a fee to send.
+Different bitcoin clients and different versions have different rules for determining which transactions to accept and how large of a fee to send.
 
-Current "Default" Rules for the regular Bitcoin client (Bitcoin 0.3.20)
+Current default rules for the original Bitcoin client (Bitcoin 0.3.20)
 
 * 0.01 BTC fee if sending any transaction less than 0.01 BTC. This is to help prevent DoS attacks against the network. Remember: fees are not network-enforced, so it's still *possible* to send these small transactions without the fee -- you just have to generate the blocks that contain them yourself (after modifying Bitcoin).
 * 0.01 BTC fee per kilobyte of transaction, but:
@@ -27,7 +27,7 @@ Current "Default" Rules for the regular Bitcoin client (Bitcoin 0.3.20)
 * Transactions within each fee tier are prioritized based on several factors. Most importantly, a transaction has more priority if the coins it is using have a lot of confirmations. Someone spamming the network will almost certainly be re-using the same coins, which will lower the priority of their transactions. Priority is also increased for transactions with more BTC, and reduced for transactions with more data.
 * If the blocksize is over 4kB, free transactions in the above rules are only allowed if the transaction's priority is above a certain level.
 
-Note that if you want to send a transaction with less than the "default" rules, or if you are a miner and want to include them in your blocks, you may need to peer with the [[Free transaction relay network|Free_transaction_relay_policy]].
+Note that if you want to send a transaction with less than the default rules, or if you are a miner and want to include them in your blocks, you may need to peer with the [[Free transaction relay network|Free_transaction_relay_policy]].
 
 An advantage for bitcoin users to include a transaction fee is that the likelihood of getting a transaction included into the next block is going to be higher than if a transaction fee is not included.  This is a trade off of time vs. money put forward on the transaction fees, as you can be patient with a low or non-existent fee included in a transaction, or you can make sure that the transaction is processed immediately by including a higher fee than is typical.
 
