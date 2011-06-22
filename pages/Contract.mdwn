@@ -11,7 +11,9 @@ There are two general patterns for safely creating contracts:
 
 This is to ensure people always know what they are agreeing to.
 
-Every transaction can have a lock time associated with it. This allows the transaction to be pending and replaceable until an agreed upon future time, specified either as a block index or as a timestamp.
+Every transaction can have a lock time associated with it. This allows the transaction to be pending and replaceable until an agreed upon future time, specified either as a block index or as a timestamp (the same field is used for both, but values less than 500 million are interpreted as a block index). If a transactions lock time has been reached we say it is final.
+
+Each transaction input has a sequence number. In a normal transaction that just moves value around, the sequence numbers are all UINT_MAX and the lock time is zero. If the lock time has not yet been reached, but all the sequence numbers are UINT_MAX, the transaction is also considered final. Sequence numbers can be used to issue new versions of a transaction without invalidating other inputs signatures, eg, in the case where each input on a transaction comes from a different party each input may start with a sequence number of zero, and those numbers can be incremented independently.
 
 Signature checking is flexible because the form of transaction that is signed can be controlled through the use of SIGHASH flags, which are stuck on the end of a signature (see [[OP_CHECKSIG]]). In this way contracts can be built in which each party signs only a part of it, allowing other parts to be changed without their involvement. For this to work we can use the CHECKMULTISIG opcode. This opcode provides n-of-m checking: you provide multiple public keys, and specify the number of valid signatures that must be present. The number of signatures can be less than the number of public keys. An output can require two signatures to be spent by setting it to something like this:
 
@@ -29,16 +31,18 @@ We can solve this problem with a contract:
 
 1. The user and website send each other a newly generated public key.
 1. The user creates transaction Tx1 (the payment) putting 10 BTC into an output which requires both user and website to sign, but does not broadcast it. They use the key from the previous step for the site.
-1. User sends the hash of Tx1 to the website.
-1. The website creates a transaction Tx2 (the contract).  Tx2 spends Tx1 and pays it back to the user using the address he provided in the first step. Note that Tx1 requires two signatures, so this transaction can't be complete. nLockTime is set to some point in the future (eg, six months). The sequence numbers on the inputs are set to zero instead of the default which is UINT_MAX.
-1. Finally the incomplete (half signed) transaction is sent back to the user. The user checks that the contract is as expected ... that the coins will eventually come back to him but, unless things are changed, only after six months. Because the sequence numbers are zero the contract can be amended in future if both parties agree. The script in the input isn't finished though - where there should be the users signature is only zeros. He fixes that by signing the contract and putting the new signature in the appropriate spot.
+1. User sends Tx1 to the website.
+1. The website creates a transaction Tx2 (the contract).  Tx2 spends Tx1 and pays it back to the user using the address he provided in the first step. Note that Tx1 requires two signatures, so this transaction can't be complete. nLockTime is set to some point in the future (eg, six months). The sequence number on the input is set to zero.
+1. Finally the incomplete (half signed) transaction is sent back to the user. The user checks that the contract is as expected ... that the coins will eventually come back to him but, unless things are changed, only after six months. Because the sequence number is zero the contract can be amended in future if both parties agree. The script in the input isn't finished though - where there should be the users signature is only zeros. He fixes that by signing the contract and putting the new signature in the appropriate spot.
 1. The user broadcasts Tx1, then broadcasts Tx2.
 
 At this point, the 10 BTC are in a state where neither the user nor the website can spend them independently. After six months the contract will complete and the user will get the coins back even if the website disappears.
 
-What if the user wishes to close his account early? The website creates a new version of Tx2 with nLockTime set to zero and the input sequence number set to 1, then re-signs it. The site hands the tx back to the user who signs it as well. The user then broadcasts the transaction, terminating the contract early and releasing the coins.
+What if the user wishes to close his account early? The website creates a new version of Tx2 with nLockTime set to zero and the input sequence number set to UINT_MAX, then re-signs it. The site hands the tx back to the user who signs it as well. The user then broadcasts the transaction, terminating the contract early and releasing the coins.
 
-What if the six months is nearly up and the user wishes to keep his account? The same thing applies: the contract can be resigned with a newer nLockTime and rebroadcast 2^32 times. No matter what happens, both parties must agree for the contract to change.
+What if the six months is nearly up and the user wishes to keep his account? The same thing applies: the contract can be resigned with a newer nLockTime, a sequence number 1 higher than the previous and rebroadcast 2^32 times. No matter what happens, both parties must agree for the contract to change.
+
+Obviously, if the user turns out to be abusive (ie a spammer), the website will not allow an early close of the contract. If too much abuse is getting through, the size of the deposit can be raised or the length of the contract can be increased.
 
 ##Example 2: Escrow and dispute mediation
 
@@ -51,26 +55,15 @@ In other words, you want to lock up some coins so you can send them to one of tw
 1. Send the merchant K2. The merchant challenges the mediator with a random nonce, the mediator signs the nonce with the private form of K2 thus proving it really belongs to them.
 1. Create a transaction (Tx1) with an output script as follows and broadcast it:
 
-	<K3> CHECKSIGVERIFY 1 <K1> <K2> 2 CHECKMULTISIGVERIFY
+	2 <K1> <K2> <K3> 3 CHECKMULTISIGVERIFY
 
-Now the keys are locked in such a way that they can be only spent by you with the co-operation of one of the recipients.
+Now the coins are locked in such a way that they can be only spent by the following methods:
 
-To select which one gets the coins create a new transaction (Tx2) with a single input spending the pre-prepared output. The scriptSig is:
+1. You and the merchant agree (either a successful trade, or merchant agrees to reimburse you without mediation)
+1. You and the mediator agree (failed trade, mediator sides with you, like a chargeback)
+1. The mediator and the merchant agree (goods delivered, merchant gets your coins despite the dispute)
 
-	CODESEPARATOR <your signature>
-
-Your signature should use the SIGHASH_NONE flag. It means that the outputs can be anything, you don't care how the money is spent. The only thing you are signing is the input data: ie, the hash of the input transaction Tx1, the index of the output on that transaction (zero) and the sequence number (UINT_MAX).
-
-Now you have a partially complete transaction, you can send it to one of the two parties. Let's say you never received what you paid for, so you send the half-complete transaction to the dispute mediator who does the following:
-
-1. Adds a regular output to one of their own addresses.
-1. Signs the whole thing (with SIGHASH_ALL) and then prepends their signature to the start of the input. The input scriptSig now reads <tt> <K2 signature from mediator> CODESEPARATOR <your signature></tt>
-1. When run with the Tx1 output appended, firstly your signature will be checked and because you use SIGHASH_NONE it will verify despite you not knowing what the output would be. Then the mediators signature will be combined with the two possible public keys. CHECKMULTISIGVERIFY will pass because only one signature was required.
-1. The mediator then broadcasts the transaction, taking the coins. The dispute mediation can now begin.
-
-The same process applies if you send to the merchant.
-
-It's possible the merchant may worry about you vanishing after they have dispatched the goods you are buying. Whilst you can't take the payment back, the merchant would still be out of pocket. To solve this a transaction can be prepared with the merchant that spends the output to a merchant controlled address, but with an nLockTime of a month from now and the inputs sequence number set to zero. This transaction is broadcast across the network. If your goods never arrive and you want to send to the mediator instead, prepare the transaction as above but with the sequence number of the input set to one. When the mediator broadcasts this transaction it will replace the one that would have sent the coins to the merchant.
+When signing an input, the contents is set to the connected output. Thus, to redeem this transaction, you create a scriptSig containing zeros where the other signature should be, sign it, and then set one of the slots to your new signature. The partially complete transaction can then be sent to the merchant or mediator for the second signature.
 
 ##See Also
 
