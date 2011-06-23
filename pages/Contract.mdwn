@@ -15,9 +15,17 @@ Every transaction can have a lock time associated with it. This allows the trans
 
 Each transaction input has a sequence number. In a normal transaction that just moves value around, the sequence numbers are all UINT_MAX and the lock time is zero. If the lock time has not yet been reached, but all the sequence numbers are UINT_MAX, the transaction is also considered final. Sequence numbers can be used to issue new versions of a transaction without invalidating other inputs signatures, eg, in the case where each input on a transaction comes from a different party each input may start with a sequence number of zero, and those numbers can be incremented independently.
 
-Signature checking is flexible because the form of transaction that is signed can be controlled through the use of SIGHASH flags, which are stuck on the end of a signature (see [[OP_CHECKSIG]]). In this way contracts can be built in which each party signs only a part of it, allowing other parts to be changed without their involvement. For this to work we can use the CHECKMULTISIG opcode. This opcode provides n-of-m checking: you provide multiple public keys, and specify the number of valid signatures that must be present. The number of signatures can be less than the number of public keys. An output can require two signatures to be spent by setting it to something like this:
+Signature checking is flexible because the form of transaction that is signed can be controlled through the use of SIGHASH flags, which are stuck on the end of a signature. In this way contracts can be built in which each party signs only a part of it, allowing other parts to be changed without their involvement. For this to work we can use the CHECKMULTISIG opcode. This opcode provides n-of-m checking: you provide multiple public keys, and specify the number of valid signatures that must be present. The number of signatures can be less than the number of public keys. An output can require two signatures to be spent by setting it to something like this:
 
 	2 <pubkey1> <pubkey2> 2 CHECKMULTISIGVERIFY
+
+The SIGHASH flags have two parts, a mode and the ANYONECANPAY modifier:
+
+1. SIGHASH_ALL: This is the default. It indicates that everything about the transaction is signed, except for the input scripts. Signing the input scripts as well would obviously make it impossible to construct a transaction, so they are always blanked out. Note though that other properties of the input, like the connected output and sequence numbers, [[i]]are[[/i]] signed: it's only the scripts which are not. Intuitively it means "I agree to put my money in, if everyone puts their money in and the outputs are this".
+1. SIGHASH_NONE: The outputs are not signed and can be anything. Use this to indicate "I agree to put my money in, as long as everyone puts their money in, but I don't care what's done with the output". This mode allows others to update the transaction by changing their inputs sequence numbers.
+1. SIGHASH_SINGLE: Like SIGHASH_NONE the inputs are signed but the sequence numbers are blanked so others can create new versions of the transaction. However the only output that is signed is the one at the same position as the input. Use this to indicate "I agree, as long as my output is what I want, I don't care about the others".
+
+The SIGHASH_ANYONECANPAY modifier can be combined with the above three modes. When set, only that input is signed, and the other inputs can be anything.
 
 Together these features let us build interesting new financial tools on top of the block chain.
 
@@ -64,6 +72,32 @@ Now the coins are locked in such a way that they can be only spent by the follow
 1. The mediator and the merchant agree (goods delivered, merchant gets your coins despite the dispute)
 
 When signing an input, the contents is set to the connected output. Thus, to redeem this transaction, you create a scriptSig containing zeros where the other signature should be, sign it, and then set one of the slots to your new signature. The partially complete transaction can then be sent to the merchant or mediator for the second signature.
+
+##Example 3: Assurance contracts
+
+An [assurance contract](http://en.wikipedia.org/wiki/Assurance_contract) is a way of funding the creation of a [public good](http://www.auburn.edu/~johnspm/gloss/public_goods), that is, a good which once created anyone can benefit from for free. The standard example is a lighthouse: whilst everyone may agree that one should be built, it’s too expensive for an individual sailor to justify building one given that it will also benefit all his competitors. 
+
+One solution is for everyone to pledge money towards the creation of the public good, such that the pledges are only committed if the total value of all pledges is above the cost of creation. If not enough people contribute, nobody has to pay anything.
+
+We can model this in Bitcoin as follows:
+
+1. An entrepreneur creates a new address and announces that the good will be created if at least 1000 BTC is raised. Anyone can contribute.
+1. Each party wishing to pledge creates a new transaction spending some of their coins to the announced address, but they do not broadcast it. The transaction is the similar to a regular transaction except for three differences. Firstly, there cannot be any change. If you don’t have any outputs of the right size, you must create one first by spending to one of your own addresses. Secondly the input script signature  is signed with SIGHASH_ALL  SIGHASH_ANYONECANPAY. Finally, the output value is set to 1000 BTC. Note that this is not a valid transaction because the output value is larger than the input value.
+1. The transaction is uploaded to the entrepreneurs server, which saves it to disk and updates its count of how many coins have been pledged.
+1. Once the server has enough coins, it merges the separate transactions together into a new transaction. The new transaction has a single output which simply spends to the announced address - it is the same as the outputs on each contributed transaction. The inputs to the transaction are collected from the contributed pledges.
+1. The finished transaction is broadcast, sending the pledged coins to the announced address.
+
+This scheme relies on several aspects of the protocol. The first is the SIGHASH flags used. SIGHASH_ALL is the default and means the entire contents of the transaction is signed, except for the input scripts. SIGHASH_ANYONECANPAY is an additional modifier that means the signature only covers the input it’s found in - the other inputs are not signed and thus can be anything.
+
+By combining these flags together, we are able to create a signature that is valid even when other inputs are added, but breaks if the outputs or other properties of the transaction are changed.
+
+The second aspect we exploit is the fact that a transaction in which the output values are larger than the input values is invalid (for obvious reasons). This means it’s safe to send the entrepreneur a transaction that spends such coins - it’s impossible for him to claim the coins unless he has other transactions that sum to the output value or more.
+
+An assurance contract can be prepared that funds network security. Instead of a single announced address for everyone to contribute to, the entrepreneur provides a set of outputs which are signed by each party in their pledge. The entrepreneur also prepares a number of transactions equivalent to the number of outputs, each one spending a single contract output to a null output of zero value and an OP_FALSE script, ie the entire value is consumed as fees. The lock time of each transaction is set to N+M, where N is a pre-agreed time at which the contract becomes valid (measured in block numbers) and M is the index of a contract output. In this way an array of transactions are prepared that do nothing but incentivize mining in a series of blocks. 
+
+The incentive transactions are broadcast before the assurance contract. They are considered to be orphan transactions because their referenced input (the contract) hasn’t been seen yet by the network, but pre-broadcasting them lets pledgers know what they are signing for and prevents the entrepreneur stealing the coins. Once the contract is broadcast, the orphan transactions become valid and can be claimed by miners once their block number is reached.
+
+An elaboration of this concept is the dominant assurance contract, as described by Tabarrok in  his paper, [“The private provision of public goods via dominant assurance contracts”](http://mason.gmu.edu/~atabarro/PrivateProvision.pdf). In a dominant assurance contract, if a contract fails (not enough pledges within a set time window) the entrepreneur pays a fee to those who pledged so far. This type of contract attempts to arrange incentives such that taking part is always the right strategy. The implementation of dominant assurance contracts is left as an exercise for the reader.
 
 ##See Also
 
