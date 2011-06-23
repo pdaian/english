@@ -4,28 +4,28 @@ A **distributed contract** is a method of using Bitcoin to form agreements with 
 
 Every [[transaction]] in Bitcoin has one or more inputs and outputs. Each input/output has a small pure function associated with it called a [[script]]. Scripts can contain signatures over simplified forms of the transaction itself.
 
-There are two general patterns for safely creating contracts:
-
-1. Transactions are passed around outside of the P2P network, in partially complete or invalid forms.
-1. Two transactions are used: one (the contract) is created and signed but not broadcast right away. Instead the other transaction (the payment) is broadcast after the contract is agreed to lock in the money, and then the contract is broadcast.
-
-This is to ensure people always know what they are agreeing to.
-
 Every transaction can have a lock time associated with it. This allows the transaction to be pending and replaceable until an agreed upon future time, specified either as a block index or as a timestamp (the same field is used for both, but values less than 500 million are interpreted as a block index). If a transactions lock time has been reached we say it is final.
 
 Each transaction input has a sequence number. In a normal transaction that just moves value around, the sequence numbers are all UINT_MAX and the lock time is zero. If the lock time has not yet been reached, but all the sequence numbers are UINT_MAX, the transaction is also considered final. Sequence numbers can be used to issue new versions of a transaction without invalidating other inputs signatures, eg, in the case where each input on a transaction comes from a different party each input may start with a sequence number of zero, and those numbers can be incremented independently.
 
-Signature checking is flexible because the form of transaction that is signed can be controlled through the use of SIGHASH flags, which are stuck on the end of a signature. In this way contracts can be built in which each party signs only a part of it, allowing other parts to be changed without their involvement. For this to work we can use the CHECKMULTISIG opcode. This opcode provides n-of-m checking: you provide multiple public keys, and specify the number of valid signatures that must be present. The number of signatures can be less than the number of public keys. An output can require two signatures to be spent by setting it to something like this:
-
-	2 <pubkey1> <pubkey2> 2 CHECKMULTISIGVERIFY
-
-The SIGHASH flags have two parts, a mode and the ANYONECANPAY modifier:
+Signature checking is flexible because the form of transaction that is signed can be controlled through the use of SIGHASH flags, which are stuck on the end of a signature. In this way contracts can be built in which each party signs only a part of it, allowing other parts to be changed without their involvement.  The SIGHASH flags have two parts, a mode and the ANYONECANPAY modifier:
 
 1. SIGHASH_ALL: This is the default. It indicates that everything about the transaction is signed, except for the input scripts. Signing the input scripts as well would obviously make it impossible to construct a transaction, so they are always blanked out. Note though that other properties of the input, like the connected output and sequence numbers, [[i]]are[[/i]] signed: it's only the scripts which are not. Intuitively it means "I agree to put my money in, if everyone puts their money in and the outputs are this".
 1. SIGHASH_NONE: The outputs are not signed and can be anything. Use this to indicate "I agree to put my money in, as long as everyone puts their money in, but I don't care what's done with the output". This mode allows others to update the transaction by changing their inputs sequence numbers.
 1. SIGHASH_SINGLE: Like SIGHASH_NONE the inputs are signed but the sequence numbers are blanked so others can create new versions of the transaction. However the only output that is signed is the one at the same position as the input. Use this to indicate "I agree, as long as my output is what I want, I don't care about the others".
 
 The SIGHASH_ANYONECANPAY modifier can be combined with the above three modes. When set, only that input is signed, and the other inputs can be anything.
+
+Scripts can contain the CHECKMULTISIG opcode. This opcode provides n-of-m checking: you provide multiple public keys, and specify the number of valid signatures that must be present. The number of signatures can be less than the number of public keys. An output can require two signatures to be spent by setting it to something like this:
+
+	2 <pubkey1> <pubkey2> 2 CHECKMULTISIGVERIFY
+
+There are two general patterns for safely creating contracts:
+
+1. Transactions are passed around outside of the P2P network, in partially complete or invalid forms.
+1. Two transactions are used: one (the contract) is created and signed but not broadcast right away. Instead the other transaction (the payment) is broadcast after the contract is agreed to lock in the money, and then the contract is broadcast.
+
+This is to ensure people always know what they are agreeing to.
 
 Together these features let us build interesting new financial tools on top of the block chain.
 
