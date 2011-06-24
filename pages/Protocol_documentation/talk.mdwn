@@ -35,3 +35,20 @@ Apparently the official client sends the protocol version in getblocks messages,
 # Separate page for hexdumps?
 
 Does anyone else think it may be a good idea to put the hexdumps on a separate page?  It'd be nice to have this page just describe the protocol, but at the same time, be able to have examples of each of the different messages and objects.  On that node, would it also be helpful if I were to do a hexdump example of all of the different commands/structures? --[Andrew12](User:Andrew12) 23:26, 9 June 2011 (GMT)
+
+## Proposing additional potocol messages
+
+According to the Bitcoin paper in order to do the simplified verification the client needs to store all headers of the entire chain but needs data only for those blocks that contain transactions of interest.
+
+For this I propose the following new message types:
+
+* **setfilter** this message contains a list of bitcoin addresses. After receiving this messaage on a connection the client will stop broadcasting any inv messages for transactions which don't have a matching address in its inputs or outputs. inv for new blocks will not be filtered. 
+	
+* **getblocksfiltered** this message works exactly like getblocks but it will be answered with a filtered list of only those blocks that contain transactions with unspent outputs matching the filter list.
+
+and the following new inventory type for getdata
+
+* **MSG_BLOCK_PRUNED** this will be answered like a MSG_BLOCK but all transactions not matching the filter list and transactions that are already spent will be stripped from the block before transmitting it to the client.
+
+When a client requests such filtering then all new blocks will still be advertised like normal but the client will have the opportunity to request only the absolute minumum necessary data to perform the simplified verification as outlined in the paper and new transactions will only be sent to it if they match the filter list. This should save a LOT of bandwidth.
+[Prof7bit](User:Prof7bit) 21:03, 24 June 2011 (GMT)
