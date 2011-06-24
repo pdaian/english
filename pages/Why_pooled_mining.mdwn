@@ -36,4 +36,70 @@ Even with losses on pooled mining due to network latency, and pool fees, it is n
 
 TODO: write in the details of calculating the probabilities, make some pretty charts?, calculate out the hash rate at which you have 25,50,75 percent chance of never generating a block solo under various assumptions.
 
+## Alternative Perspective
+Mathematically the profit is the same for these conditions:
+
+* chance to make 10,000$ is 0.01%
+* chance to make 1$ is 100%
+
+### What are the chances to not ever get a block?
+While a mathematician toying around with bitCoin mining might be fine with knowing it is mathematically fine to not see a BTC forever as the lucky case of getting 50 at a time will totally balance the odds of not finding it, others, especially those who want to get their hands on first bitCoins, might have a different feeling about it.
+
+So what are the odds of never finding a BTC?
+
+#### How BitCoin Works / Simplifications
+The bitCoin block chain readjusts its [[difficulty]] every 2016 blocks trying to make the next 2016 blocks be processed in 10 minutes each given an average performance of the past 2016 blocks.
+This process brings in some unsteadiness but to be conform with above equations time frame, we also look at periods of 2016 blocks but take difficulty only into consideration to determine the time frame for 2016 blocks and look at bitCoin as a lottery.
+
+#### The Maths
+
+* [[block 0|genesis_block]] was created January 3rd 2009
+* [block 2160](http://blockexplorer.com/b/20160) was created **July 25th 2009**
+* block 0 to 2160 took 202 days at difficulty 1.
+* 202 days / 20160 blocks = 14 minutes / block
+* hashrate = difficulty * 2**32 / time
+* The Average hashing speed back then was (2**32 / 14 minutes) 5Mh/s
+* Today is June 24th 2011
+* Since block 20160 there have been [133056](http://blockexplorer.com/b/133056) - 20160 = 112896 blocks in 689 days.
+* There were **163** blocks created per day.
+* Net performance increase was on average ((1+p)**112896=(11Th/s)/(5Mh/s)) **0.00013 per block**
+
+#### Assumptions
+
+* 500Mh/s
+* total net performance of 11Th/s
+* total net performance increase of i=0.013% per block over a long time
+* 163 blocks per day over a long time
+
+#### Results for not finding a single block in 10 years
+
+* For each block odds are o(#block)=1-500M/(11T*(1+i)**#block)
+* For all blocks odds are the product of o(0) to o(3600*163)
+Until someone brings up the analytic solution to this product, here is a code snipped to calculate it:
+	private double calculate() {
+	double odds = 1.0d;
+	for (int i = 0; i < 3600 * 163; i++) {
+	if (i % (360 * 163) == 0)
+	Log.d("", Double.toString(odds));
+	odds *= odds(i);
+	}
+	return odds;
+	}
+	
+	private double odds(int i) {
+	return 1.0d - 5E8 / (11E12 * Math.pow(1.00013d, i));
+	}
+Probability for finding no block at all after n years are:
+
+|year|probability of not finding a single block
+|0|100%
+|1|70.50196610996503%
+|2|70.4899742485864%
+|3|70.48996841288616%
+|4-10|70.48996841004953%
+
+
+### Conclusion
+500Mh/s are definitely not worth mining for a long time but chances to find at least one block are well beyond the above stated 4%.
+
 [[!tag "Mining"]]
