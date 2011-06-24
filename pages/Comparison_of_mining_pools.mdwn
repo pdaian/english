@@ -2,8 +2,8 @@ Reward types & explanation:
 
 * **PPS** - Pay Per Share. Each submitted share is worth certain amount of BTC. Since finding a block requires <current difficulty> shares *on average*, a PPS method with 0% fee would be 50 BTC divided by <current difficulty>. It is risky for pool operators, hence the fee is highest.
 * **Prop.** - Proportional. When block is found, the reward is distributed among all workers proportionally to how much shares each of them has found. This method is vulnerable to *pool swapping* cheat, where a worker would swap to another pool, if this one didn't find a block quickly. Then he would have extra profit on fast rounds, and normal profit on long rounds (because he would be mining on another pool by then). To mitigate this problem pools must introduce extra fees, and hide statistics, so that it is unknown when a block is found.
-* **MaxPPS** - Maximum Pay Per Share. Like Proportional, but with a protection against *pool swapping*, which gives it some PPS-like characteristics. [(1)](http://eligius.st/wiki/index.php/Maximum_PPS)
 * **Score** - Score based system, the most advanced one. It is a proportional reward, but it is impossible to cheat as described above. Each submitted share is worth more in the function of time *t* since start of current round. For each share score is updated by: score += exp(t/C). This makes later shares worth more than earlier shares, thus swapping away to another pool on longer rounds makes the cheater's score to quickly diminish. Rewards are calculated proportionally to scores (and not to shares). Statistics can be shown "live" without fear. The score based method is perfect for 24/7 miners. (at slush's pool C=300 seconds, and every hour scores are normalized)
+* **SMPPS** - Shared Maximum Pay Per Share. Like Pay Per Share, but never pays more than the pool earns. [(1)](http://eligius.st/wiki/index.php/SMaximum_PPS)
 
 
 
@@ -21,7 +21,7 @@ Reward types & explanation:
 |[[Continuum]]|Canada |7 |Score |kept by pool |5% |- |? |RPC (+LP) |2011-05-17 |[Link](http://forum.bitcoin.org/index.php?topic=8660.0)|[Link](http://www.continuumpool.com/)
 |[[DeepBit]]|Germany |2661 |PPS / Prop. |kept by pool |10% |3% |? |RPC (+LP) |2011-02-26 |[Link](http://forum.bitcoin.org/index.php?topic=3889.0)|[Link](http://deepbit.net/)
 |[[Eclipse_Mining_Consortium]]|USA / Europe / AU / Asia |25 |Prop / Score |kept by pool |0% |0% |? |RPC (+LP) |2011-06-14 |[Link](http://forum.bitcoin.org/index.php?topic=16385.0)|[Link](https://eclipsemc.com)
-|[[Eligius]]|USA / Europe |353 |MaxPPS / Prop. |kept by pool |~0.0003% (1.8)|~0.0003% (1.9)|Yes (1.10)|RPC (+LP) |2011-04-27 |[Link](http://forum.bitcoin.org/index.php?topic=6667.0)|[Link](http://eligius.st)
+|[[Eligius]]|USA / Europe |353 |SMPPS |kept by pool |~0.0003% (1.8)|~0.0003% (1.9)|Yes (1.10)|RPC (+LP) |2011-04-27 |[Link](http://forum.bitcoin.org/index.php?topic=6667.0)|[Link](http://eligius.st)
 |[[Mineco.in]]|UK |35 |Prop |Shared |- |0% |? |RPC (+LP) |2011-06-15 |[Link](http://forum.bitcoin.org/index.php?topic=17310.0)|[Link](https://mineco.in/)
 |[[Mining_Team_Reddit]]|USA, EU |200 |Prop |kept by pool |- |0% (1.11)|? |RPC (+LP) |2011-05-25 |[Link](http://forum.bitcoin.org/index.php?topic=15929.0)|[Link](http://www.mtred.com/)
 |[[NoFeeMining]]|USA |14 |Prop |Shared |- |0% |? |RPC (+LP) |2011-06-17 |[Link](http://forum.bitcoin.org/index.php?topic=18301.0)|[Link](http://www.nofeemining.com/)
