@@ -272,10 +272,10 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 
 |Model |Mhash/s |Mhash/J |Watts |Clock |SP |Comment
 |---|---|---|---|---|---|---
-|ION |1.8 ||27 ||16 |poclbm;  power consumption incl. CPU
+|ION |1.8 |0.067 |27 ||16 |poclbm;  power consumption incl. CPU
 |8200 mGPU |1.2 |||1200 |16 |128 MB shared memory, "poclbm -w 128 -f 0"
 |8400 GS |2.3 |||||"poclbm -w 128"
-|8400 GS |1.6 ||128 |1238 ||DiabloMiner -w 128 -f 1 [source](https://en.bitcoin.it/wiki/User:Knightmb)
+|8400 GS |1.6 |0.013 |128 |1238 ||DiabloMiner -w 128 -f 1 [source](https://en.bitcoin.it/wiki/User:Knightmb)
 |8400M GS |2.0 |||||
 |8500GT |2.4 |||918 |16 |poclbm under GUIMiner
 |8600M GT |4.93 ||||32 |
@@ -283,8 +283,8 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |8600GT OC |7.3 |||1602 |32 |[poclbm](http://www.bitcoin.org/smf/index.php?topic=1334.0)-w 128 [source](http://www.bitcoin.org/smf/index.php?topic=4967.msg72833#msg72833)
 |8800GT |25   |0.24 |105 |1300 ||
 |8800GT |24.5 |0.23 |105 |1300 ||[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg37592#msg37592)
-|8800GT |31.1   ||105 |1855 ||Overclocked 715 GPU / 1030 Memory / 1855 Shader; GuiMiner v2011-05-21
-|8800GT |31.8   ||105 |1836 |112 |713 gpu, 1026 memory. win7x86, phoenix 1.48, -k poclbm WORKSIZE=64 AGGRESSION=5
+|8800GT |31.1   |0.296 |105 |1855 ||Overclocked 715 GPU / 1030 Memory / 1855 Shader; GuiMiner v2011-05-21
+|8800GT |31.8   |0.303 |105 |1836 |112 |713 gpu, 1026 memory. win7x86, phoenix 1.48, -k poclbm WORKSIZE=64 AGGRESSION=5
 |8800GTS |16.8 |0.109 |154 |||[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg25069#msg25069)[source](http://www.techspot.com/review/79-geforce-8800-gts-512/page11.html)
 |8800 GTS |18.7 |0.124 |150 |1200 ||poclbm -w 64 no vectors
 |8800 GTX |27.5 |||1404 ||phoenix 1.48, poclbm, no vectors, 83C with 50C ambient  
@@ -303,22 +303,23 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |9600GT OC |18.8 |<0.198 |>95 |1981 |64 |[poclbm](http://www.bitcoin.org/smf/index.php?topic=1334.0)-w 128 -f 10 [source](http://www.bitcoin.org/smf/index.php?topic=4967.msg74610#msg74610)[source](http://www.bitcoin.org/smf/index.php?topic=4967.msg73353#msg73353)
 |9600M GS |4.0 |||1075 |32 |rpcminer-cuda
 |9800GT |30.36 |0.289 |105 |1800 |112 |
-|9800GT EE |19.7 ||75 |1375 |112 |rpcminer-cuda
+|9800GT EE |19.7 |0.263 |75 |1375 |112 |rpcminer-cuda
 |9800GT OC |29.5 |0.283 |105 |1836 |112 |poclbm.py, no options. Memory underclocked to 850Mhz, GPU overclocked to 733Mhz
 |9800GTX |32.54 |0.232 |140 |1688 |128 |
 |9800GTX+ |35.39 |0.251 |141 |1836 |128 |
 |9800GTX+ |36 |||||factory OC ubuntu polclbm.py -w 128 -f 10 -a 10 (DO NOT USE -v)
 |9800GTX+ |37.23 |0.266 |140 |1890 |128 |win7x64 275.27 phoenix(1.48) -k poclbm AGGRESSION=3 WORKSIZE=64
-|9800GTX+ |40.20 ||140 |835 |128 |lowered memory clock higher core, unstable if going higher
+|9800GTX+ |40.20 |0.287 |140 |835 |128 |lowered memory clock higher core, unstable if going higher
 |style="background-color:#FFEFEF"9800GX2 |57.83 |0.294 |197 ||2x128 |
 |style="background-color:#FFEFEF"9800GX2 |28 |0.142 |197 ||2x128 |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg37620#msg37620)
 |G210 |3.38 |0.111 |30.5 |1402 |16 |
 |G210 |3.79 |0.124 |30.5 |1402 |16 |poclbm -f 1
-|GT220 |10.8 ||128 |1360 ||DiabloMiner -w 128 -f 1000 [source](https://en.bitcoin.it/wiki/User:Knightmb)
+|GT220 |10.8 |0.084 |128 |1360 ||DiabloMiner -w 128 -f 1000 [source](https://en.bitcoin.it/wiki/User:Knightmb)
 |GT230 |15.5 |0.161 |96 |650 |64 |(9600GT rebranded one from in a medion pc)
 |GT240 |19.37 |0.281 |69 |1340 |96 |
 |GT240 |21.24 ||||96 |[poclbm-mod](http://www.bitcoin.org/smf/index.php?topic=4291.0)-f 0 -v [source](http://www.bitcoin.org/smf/index.php?topic=4967.msg73383#msg73383)
 |GT240 |28.1 ||||96 |poclbm -f0 -v (Gainward GT240 1024DDR5 OC core@670/stockmem@1700/shader@1700 - stable; max.temp=73)
+|GT240M |9.8 |0.426 |23 |550 |48 |poclbm -f 0 -w 256 
 |GT330 |21.65 |||||poclbm -f 0 -w 256
 |GTS250 |35.39 |0.244 |145 |1836 |128 |
 |GTS250 |35.2 |0.243 |145 |1836 |128 |
@@ -327,7 +328,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |GTX260 |35.91 |0.178 |202 |1242 |192 |
 |GTX260 |44 |0.242 |182 |1242 |216 |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg24699#msg24699)
 |GTX260c216 |40.40 |0.236 |171 |1242 |216 |
-|GTX260c216 |47.4 ||182 |1348 |216 |poclbm -w 256
+|GTX260c216 |47.4 |0.260 |182 |1348 |216 |poclbm -w 256
 |GTX260c216 |50.00 |||1050 |216 |m0mchil GPU client, Windows 7 64-bit, x6 @ 3.5ghz
 |GTX260c216 OC |52.0 |||1461 |216 |"poclbm -w 256 -f 1"
 |GTX260c216 OC |58.9 |||756/400 |216 |Core overclocked, Memory underclocked, Ubuntu 11.04 Classic Session(No Effects) "poclbm -w 256 -f 1"
@@ -340,14 +341,14 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 
 |GTX285 |53.35 |0.262 |204 |1476 |240 |
 |GTX295 |89.78 |0.311 |289 |1242 |480 |
-|GTX295 |120.70 ||289 |1242 |480 |GUIMiner no oc.
-|GTX295 |117.30 ||289 |1476 |490 |
+|GTX295 |120.70 |0.418 |289 |1242 |480 |GUIMiner no oc.
+|GTX295 |117.30 |0.406 |289 |1476 |490 |
 |GT 320M (MacBook Air) |6.12 |||1212 |48 |
 |320M (Mac mini 2010) |7.0 |0.35 |20 |450 |32 |poclbm no extra options, windows 7 x64
 |GT 325M |7.5 |||990 |48 |rpcminer-cuda
 |GT 330M |7.97 |||||Model: MacBookPro6,2 VRAM: 512MB Software: [DiabloMiner GUI](http://forum.bitcoin.org/index.php?topic=8994.0)v2011-05-22 / Mac OS X 10.6.7
 |GT 330M (Sony Vaio Z) |7.8 |0.71 ( 0.3 total) |11 (26w total) |1045 |48 |
-|GTS 350M (Toshiba A665-3DV) |17.0 ||14 |1080 ||DiabloMiner-Windows.exe
+|GTS 350M (Toshiba A665-3DV) |17.0 |1.214 |14 |1080 ||DiabloMiner-Windows.exe
 |GTS 360M |25.0 |||||[qosmio laptop, ~150-165*F stock fans](toshiba)
 |GTS 360M (ASUS G60jx) |20.0 |||||everythins is stock, it cannot sustain. it reaches 90 degrees and freezes.
 |GT430 |20.24 |0.413 |49 |1400 |96 |
@@ -364,7 +365,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |GTX465 |64.41 |0.322 |200 |1215 |352 |
 |GTX470 |81.98 |0.381 |215 |1215 |448 |
 |GTX470 |94.7 |||1414 ||
-|GTX470 |111.9 ||215 |1650 |448 |
+|GTX470 |111.9 |0.520 |215 |1650 |448 |
 |GTX470 |115 |||1616 ||phoenix 1.46 poclbm VECTORS BFI_INT FASTLOOP AGGRESSION=6
 |GTX480 |101.28 |0.405 |250 |1401 |480 |
 |GTX480 |140.43 |||1700 |480 |rpcminer-cuda -gpugrid=512 -gputhreads=480
@@ -372,22 +373,22 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |GTX560 Ti |74.8 |0.41  |180 |1700 |384 |gigabyte 900Mhz clock; -w 512 -v
 |GTX560 OC |86.7 |<0.51 |>170 |1800 |384 |[rpcminer-cuda](http://www.bitcoin.org/smf/index.php?topic=2444.0)[source](http://www.bitcoin.org/smf/index.php?topic=4967.msg72816#msg72816)
 |GTX570 |105.83 |0.483 |219 |1464 |480 |
-|GTX570 |140 |--- |219 |750 |480 |rpcminer-cuda.exe -aggression=10 -gpugrid=480 -gputhreads=960; display driver stops working with aggression=11 under win7 x64 driver 270.61
-|GTX570 |157 |--- |219 |850 |480 |rpcminer-cuda.exe -aggression=11 -gpugrid=120 -gputhreads=960
-|GTX580 |140.05 |--- |244 |1544 |512 |
+|GTX570 |140 |0.639 |219 |750 |480 |rpcminer-cuda.exe -aggression=10 -gpugrid=480 -gputhreads=960; display driver stops working with aggression=11 under win7 x64 driver 270.61
+|GTX570 |157 |0.717 |219 |850 |480 |rpcminer-cuda.exe -aggression=11 -gpugrid=120 -gputhreads=960
+|GTX580 |140.05 |0.574 |244 |1544 |512 |
 |GTX590 |193.1 |--- |--- |1215 |2x 512 |poclbm -v -w 256, Win
 |Quadro FX 580 |5.7 |0.14 |40 |1125 |4 |rpcminer-cuda, Win, -gpugrid=128 -gputhreads=512
 |Quadro FX 770M |5.75 |||500 |32 |DiabloMiner-Windows.exe BFI_INT FASTLOOP AGGRESSION=6, Win
 |Quadro FX 770M |6.39 |||500 |32 |DiabloMiner-Windows.exe BFI_INT FASTLOOP AGGRESSION=6 w 64, Win 7x64
 |Quadro FX 880M |9.6 |||||poclbm/guiminer
 |Quadro FX 1600M |6 |0.12 |50 |625 |32 |rpcminer-cuda, Win
-|Quadro FX 2000M |23 ||58 |||phoenix 1.48, -k poclbm, VECTORS, AGGRESION=6, Lenovo W520 platform
-|Quadro FX 2800M |22 |? |75 |600 |96 |DiabloMiner, win
-|Quadro FX 3600M |36 |-- |70 |500 |96 |
+|Quadro FX 2000M |23 |0.397 |58 |||phoenix 1.48, -k poclbm, VECTORS, AGGRESION=6, Lenovo W520 platform
+|Quadro FX 2800M |22 |0.293 |75 |600 |96 |DiabloMiner, win
+|Quadro FX 3600M |36 |0.514 |70 |500 |96 |
 |Quadro NVS 135M |1.05 |0.1 |10 |800 |1 |
 |Quadro NVS 295 |1.7 |0.07 |23 |567 |8 |phoenix
 |Quadro NVS 3100M |3.6 |0.257 |14 |600 |16 |rpcminer-cuda, Win, CUDA 3.1.1
-|Quadro 5000 |67.7 |--- |152 |513 |352 |rpcminer-cuda.exe -aggression=7 gpugrid=352 gputhreads=704;
+|Quadro 5000 |67.7 |0.445 |152 |513 |352 |rpcminer-cuda.exe -aggression=7 gpugrid=352 gputhreads=704;
 |Tesla C1060 |52.5 |||1296 |240 |poclbm, Win7x64
 |Tesla M2050 |79.8 |||1550 |448 |DiabloMiner
 |Tesla M2050 |[100](http://glennfrancismurray.com/cost-defective-mining-with-gpu-clusters-amazo)|0 |0 |- |512 |Amazon AWS [CUDA RPC Miner & CUDA 2.0](http://glennfrancismurray.com/cost-defective-mining-with-gpu-clusters-amazo)
