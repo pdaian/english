@@ -1,0 +1,17 @@
+# Proposed Recommended Rule Changes
+
+## Transaction override
+
+### Change
+
+
+
+|Before|Tx |9 |Reject if any other tx in the pool uses the same transaction output as one used by this tx.
+|After |Tx |9 |Reject if any other tx in the pool uses the same transaction output as one used by this tx, and has a greater or equal transaction fee
+
+
+### Rationale
+
+When the default client sends a transaction without a sufficient transaction fee to complete, the coin ends up in limbo.  The default client won't allow spending of any of the input coins, but the network won't forward the coin to any neighbours.  This means that miners never add the coin to the chain.
+
+This change would allow the client to re-send the transaction with an increased fee.  Clients which already saw the old transaction will still forward the new transaction, since it has a higher fee.  The client could even prompt the user about any transaction which has been pending for more than an hour or 2.
