@@ -17,7 +17,7 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 
 
 
-|Model |Mhash/s |Mhash/J |Mhash/$  |Watts |Clock |SP |SDK |Slot |Miner |Notes
+|Model |Mhash/s |Mhash/J |Mhash / $/€|Watts |Clock |SP |SDK |Slot |Miner |Notes
 |---|---|---|---|---|---|---|---|---|---|---
 |3XXX |- |- |- |- |- |- |- |- |- |OpenCL Not Supported
 |42XX |- |- |- |- |- |- |- |- |- |OpenCL Not Supported (integrated/mobile GPU)
@@ -269,6 +269,11 @@ To get the maximum performance use the 2.1 release of the ATI Stream SDK. 2.2 wa
 |FirePro M7820 |150.0 |-||- |700 |800 |2.1 |PCI-E 2.1 x16 |GUIMiner v2011-06-09 / poclbm |Memory downclocked to 500 from 1000MHz, 169MH/s@800MHz, 181MH/s@860Mhz (max.), only SDK2.1 works, Windows 7 x86
 
 
+<references>
+ (3.1)
+ (3.2)
+</references>
+
 ###Nvidia
 
 
@@ -454,10 +459,9 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 
 
 ###Intel
-(References 4-5)
 
 
-|Model |p/t |Mhash/s |Mhash/J |Mhash/ $ / € |ACP [[W]]|Clock [[GHz]]|Version |Comment
+|Model |p/t |Mhash/s |Mhash/J |Mhash / $/€|ACP [[W]]|Clock [[GHz]]|Version |Comment
 |---|---|---|---|---|---|---|---|---
 |Pentium III mobile ? |1 |0.3 |0.014 ||21 |1.07 |0.3.1x/Win2K |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg24699#msg24699)[source](http://ark.intel.com/Product.aspx?id=27380)
 |Pentium M 1.6ghz |1 |.4 ||||1.6 |minerd (jgarzik's 1.0) |cryppto, Windows 7
@@ -536,6 +540,11 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 |Atom D510 |4/4 |2.3 |0.07 ||30  |1.6 |bitcoin-miner 0.10 |Ubuntu 11.04 Server
 
 
+<references>
+ (8.1)
+ (8.2)
+</references>
+
 ###Other
 
 
@@ -549,20 +558,35 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 
 
 ###FPGA Devices
-(References 1-3)	 
 	
 
 
-|FPGA Model |Cores |Mhash/s |Mhash/ J |Mhash/$ |Power [[W]]|Clock |Version |Board |Comment	
-|---|---|---|---|---|---|---|---|---|---
-|Altera EP4CE115C7 |1 |80 |18.18 |0.13 |4.4 |80 MHz |fpgaminer 0.03 |Terasic DE2-115 |Unoptimized Pipelined version
-|Altera EP4CE115C7 |1 |109 ||0.18 ||109 MHz |fpgaminer 0.03-makomk |Terasic DE2-115 |makomk's improvements
-|Xilinx XC5VLX110T-1FF1136 |1 |120 ||0.06 ||120 MHz |fpgaminer virtex5 |XUPV5-LX110T |Original non-configurable fully-unrolled Xilinx VHDL design
-|Xilinx XC3S500E-FG320-5 |1 |3 ||0.01 ||100 MHz |fpgaminer Verilog Xilinx port |Digilent Nexys 2 500K |
+|FPGA Model |Cores |Mhash/s |Mhash/J |Mhash/$ |Power [[W]]|Board price |Clock |Version |Board |Comment	
+|---|---|---|---|---|---|---|---|---|---|---
+|Altera EP4CE115C7 |1 |80 |18.18 |0.13 |4.4 |$595 ($299 academic)  (10.1)|80 MHz |fpgaminer 0.03 |Terasic DE2-115 |Unoptimized Pipelined version
+|Altera EP4CE115C7 |1 |109 ||0.18 ||$595 ($299 academic)  (10.2)|109 MHz |fpgaminer 0.03-makomk |Terasic DE2-115 |makomk's improvements
+|Xilinx XC5VLX110T-1FF1136 |1 |120 ||0.06 ||$1999 ($750 academic)  (10.3)|120 MHz |fpgaminer virtex5 |XUPV5-LX110T |Original non-configurable fully-unrolled Xilinx VHDL design
+|Xilinx XC3S500E-FG320-5 |1 |3 ||0.02 ||$149 ($99 academic)  (10.4)|100 MHz |fpgaminer Verilog Xilinx port |Digilent Nexys 2 500K |
 
 
-##References
-	
-	
+<references>
+</references>
 
-###Hardware Prices####GPU (AMD)	[]	[]####CPU (Intel)	[]	[]####Other####FPGA Devices	[]	[]	[]##See Also* [[]]* [[]]* [[]]* [[]]* []* [][[]]
+##See Also
+
+* [[Mining_rig]]
+* [[Generation_Calculator]]
+* [[Power_Calc]]
+* [[OpenCL_miner]]
+* [ATI Stream vs. NVIDIA CUDA - GPGPU computing battle royale](http://www.pcper.com/article.php?aid=745) 
+* [Bitminer.info](http://bitminer.info/) 
+
+[[!tag "Mining"]]
+3.1: $ Prices from http://www.amazon.com on 2011-06-25  
+3.2: € Prices from http://geizhals.at/eu on 2011-06-25  
+8.1: $ Prices from http://www.amazon.com on 2011-06-25  
+8.2: € Prices from http://geizhals.at/eu on 2011-06-25  
+10.1: Price from http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=502 on 2011-06-26  
+10.2: Price from http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=502 on 2011-06-26  
+10.3: Price from http://www.digilentinc.com/Products/Detail.cfm?NavPath=2,400,795&Prod=XUPV5 on 2011-06-26  
+10.4: Price from http://www.digilentinc.com/Products/Detail.cfm?Prod=NEXYS2 on 2011-06-26
