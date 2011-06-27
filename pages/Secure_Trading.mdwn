@@ -24,14 +24,24 @@ A PGP key-pair serves two very important functions:
 1. To decrypt things that other people encrypt for you
 
 This allows you to both conduct business privately (encryption), and give out promises that you cannot deny making (signature).
+#### Installing GPG
+Virtually all Linux distributions include GPG in their default configurations. However windows doesn't provide it by default.
 
-#### Microsoft Windows:
+##### Microsoft Windows:
+On windows, the recommend package that contains gpg is the 'Git' package by the msysgit project.  This package contains a group of unix tools that are very useful for any windows installation.
 
-* Install GPG4Win: http://www.gpg4win.org/<br />
+* Got to [[msysgit]] https://code.google.com/p/msysgit/downloads/list
+* Select the latest 'Git' package. (Git-1.7.4-preview20110204.exe)
+* When installing Git on the 'Adjusting your PATH environment' screen select 'Run Git and included Unix tools from the Windows Command Prompt'<br />
+This option will install both Git and its supporting tools that include [[gpg]] into the windows PATH file.  This will enable any windows application to access gpg.<br />
+On some (rare) systems this option that replaces the default windows tools will cause issues... However on most it should be fine.
 
-This contains all the key management and generation tools for Microsoft Windows.
+* After installation, gpg will be able to be used just by entering 'gpg' into any windows cmd shell.
 
-####All:
+#### Setting up OpenPGP email
+Once you have GPG installed on your system, it is recommended that you use Thunderbird (that works on both Windows and Linux systems:
+
+##### All:
 
 1. Install Thunderbird: https://www.mozillamessaging.com/en-GB/ 
 1. Setup your email account with Thunderbird.
