@@ -6,12 +6,27 @@ The service was launched on June 28, 2011 (1.1).
 
 ### How It Works
 
-* A buyer clicks your 'Buy with BTC' button / link.
-* After they have selected to purchase your offer, they will be prompted to enter their Bitcoin client and transfer the BTC.
-* Once we have received enough confirmations, we will POST the purchase information to a URL your specify.
-* Upon receiving a POST notification, you will simply verify the message came from BitWillet and redirect the user to the URL for the digital goods you are selling.
-* Optionally, you can record the purchase information for future reference!
+* A buyer clicks a 'Buy with BTC' button / link.
+* After they have selected to purchase the digital goods, they will be prompted to enter their Bitcoin client and transfer the BTC.
+* Once BitWillet has received enough confirmations, BitWillet POSTs the purchase information to a specified URL.
+* Upon receiving a POST notification, a seller simply verifies the message came from BitWillet and redirect sthe user to the URL for the digital goods!
+* Optionally, sellers can record the purchase information for future reference!
 
+### Integration Details
+Integration is really easy!
+
+#### Client-Side
+
+* Include: <script src="http://www.bitwillet.com/plugin/bitwillet.js" type="text/javascript"></script> on your site.
+* Create a BitWillet button or link as follows: 
+<a onClick="bitwillet( 'OFFER_ID' );" href="#"> 
+	Purchase "OFFER_TITLE" with Bitcoins!
+</a> 
+<noscript> Please enable Javascript to access "OFFER_TITLE". </noscript> 
+
+#### Seller-Side
+
+* Implement a POST handler to receive BitWillet's callback and redirect a buyer to the digital goods!
 
 ##See Also
 
