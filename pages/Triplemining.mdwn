@@ -5,8 +5,15 @@ This pool aims to provide a simple reward sharing scheme and fast payments.
 The service was first available for beta testing starting June 28, 2011 (1.1).
 
 ##Reward distribution
+With bitcoin mining, pool hash rate (= speed), mining difficulty and a little bit of luck play a central part. Big pools can be depressing, especially if your hash rate is not that great while too small pools with a streak of bad luck leave you with some kind of a stomachache.
 
-* Proportional: 
+To counter this, Triplemining aims to bring together a medium-sized pool with no fees and clever redistribution of 1% of every found block to allow your share to grow more rapidly than on any other bitcoin mining pool.
+
+How do we achieve this?
+
+For every found block, we redistribute 1% of the profits to all minipool owners (people with 1 or more friends mining with them). The redistribution is connected to the shares found by your friends, not yours! So if the hash rate of your friends equals or is bigger than yours, your part in the redistribution will be equally bigger.
+
+For every found block we increase our jackpot by the 1% taken from people who are not part of someone else's mini-pool. Once per week the jackpot is paid-out, randomly connected to the find of a block, to one miner active at the moment of the find.
 
 ##See Also
 
