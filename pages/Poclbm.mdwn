@@ -7,6 +7,30 @@ Poclbm (PyOpenCL bitcoin miner) is a python GPU bitcoin miner that uses the [[Op
 
 ##Flags to Use
 
+###Flags List
+
+
+|Command line flags   |Flags descriptions
+|---|---
+|-version |Show program's version number and exit
+|-h, --help |Show help message and exit
+|-u USER, --user=USER |Set user name
+|--pass=PASSWORD |Set password
+|-o HOST, --host=HOST |Set RPC host (without 'http://')
+|-p PORT, --port=PORT |Set RPC port
+|-r RATE, --rate=RATE |Set hash rate display interval in seconds, default=1
+|-f FRAMES, --frames=FRAMES |Will try to bring single kernel execution to 1/frames seconds, default=30. Increase this for less desktop lag
+|-d DEVICE, --device=DEVICE |Set used device by id, by default asks for device
+|-a ASKRATE, --askrate=ASKRATE |Set how many seconds between getwork requests, default 5, max 10
+|-w WORKSIZE, --worksize=WORKSIZE |Set work group size, default is maximum returned by opencl
+|-v, --vectors |Enable vectors, which is faster on some cards.
+|--verbose |Enable verbose output, suitable for redirection to log file
+|--platform=PLATFORM |Set used platform by id
+|-s SLEEPTIME |Sleep for the specified number of seconds between iterations (default 0). Increase this to reduce hashing performance if your temperatures are too high.
+
+
+###Usage Tips
+
 ATI/AMD Radeon HD 5xxx cards (for example, HD 5770): use '-v -w128'
 
 ('-v -f10 -w128' works even better for HD5770.)
@@ -67,7 +91,7 @@ And run it:
 <code>$ python poclbm.py --user=user --pass=pass --device=0 [add whatever other flags you use]</code>
 
 ##License
-public domain (11.1)
+public domain (13.1)
 
 ##See Also
 
@@ -83,7 +107,7 @@ public domain (11.1)
 
 ##References
 
-11.1: [[http://github.com/m0mchil/poclbm/blob/master/LICENSE]] License file on github
+13.1: [[http://github.com/m0mchil/poclbm/blob/master/LICENSE]] License file on github
 
 
 [[!tag "Miners"]]
