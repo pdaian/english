@@ -39,6 +39,11 @@ Unlike any preexisting pool approach, this means that the shares contributed tow
 In order to spare participating miners from transaction fees, rewards are only paid out if a miner has earned at least 1 BTC. If the amount owed is less, it will be added to the earnings of a later block (which may then total over 1 BTC).
 If a miner does not submit a share for over a week, the pool sends any balance remaining, regardless of its size.
 
+###The Triplemining approach
+The [[Triplemining]] approach is to bring together a medium-sized pool with no fees and clever redistribution of 1% of every found block to allow your share to grow more rapidly than on any other bitcoin mining pool. 
+
+For every found block, we redistribute 1% of the profits to all minipool owners (people with 1 or more friends mining with them). The redistribution is connected to the shares found by your friends, not yours! So if the hash rate of your friends equals or is bigger than yours, your part in the redistribution will be equally bigger.
+
 ###Comparison
 
 The cooperative mining approach (slush and Luke-Jr) uses a lot less resources on the pool server, since rather than continuously checking metahashes, all that has to be checked is the validity of submitted shares. The number of shares sent can be adjusted by adjusting the artificial difficulty level.
