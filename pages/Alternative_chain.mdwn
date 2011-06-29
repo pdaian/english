@@ -255,4 +255,16 @@ You have now proven that the MyBlock instance was worked on, along with perhaps 
 
 This is an advanced technique which is probably not worth implementing unless the additional scalability is required. It can be introduced in a backwards compatible manner for new chains without impacting older networks.
 
+### Generalized proof of work
+
+Hashes embedded in transactions, merkle branches, and [[nonces|Nonce]] all contribute to the goal of [[proving work|Proof_of_work]] on a block header.  One can express all three as sequences of these basic operations:
+
+* prepend a byte string to the current data
+* append a byte string to the current data
+* hash the current data
+
+For maximum flexibility, a work-sharing chain's block acceptance algorithm might accept proof in the form of a script using just these operations.  The script would receive as input an alternative chain block, and the hash of its output would have to match the chain's difficulty.
+
+This design would even support plain Bitcoin proof of work, where the "header" consists of all [[Bitcoin block header fields|Protocol_Specification#block]] except the nonce, and the proof-of-work script would simply append the nonce.  Thus, one can think of the work-sharing rules as an extension of the original Bitcoin rules.
+
 [[!tag "Technical"]]
