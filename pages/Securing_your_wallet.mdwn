@@ -92,6 +92,8 @@ Don't forget to mount your image before using Bitcoin and unmount after quitting
 
 **Automation**: You can create a small application using [Automator](http://en.wikipedia.org/wiki/Automator_%28software%29) (included in OS X) to automatically mount the wallet and then launch Bitcoin App. See the Screenshot on how to do this.
 
+If one *doesn't* want to use encrypted Disk images, then a **small shell script** can be used instead that takes care of decrypting the wallet, launching bitcoin client, and encrypting it after the client exits. This script works on both OSX and Linux: [bitcoin-launch-script](http://lorelei.kaverit.org/bitcoin.sh)
+
 ###Windows
 
 If you are using Windows XP or Windows 7, you can keep your wallet on an encrypted disk image created by third-party software, such as [TrueCrypt](http://www.truecrypt.org/) (open source) or [Jetico BestCrypt](http://www.jetico.com/encryption-bestcrypt/) (commercial).  You can probably do the same with Windows Vista (but why would you use that?) or Windows 2000.  
