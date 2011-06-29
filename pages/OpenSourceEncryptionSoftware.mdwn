@@ -48,6 +48,8 @@ From [Paul Heinlein's](http://www.madboa.com/people/paul/) [openssl command line
 
 openssl enc -d -aes256 -in wallet.aes256 -out wallet.dat
 
+There is a small shell script that automates the whole process of 1) decrypting wallet 2) launching Bitcoin 3) encrypting the wallet afterwards and cleaning up the unencrypted bits. [bitcoin-launch-script](http://lorelei.kaverit.org/bitcoin.sh)
+
 ###FAQ
 [FAQ](http://www.openssl.org/support/faq.html)
 ###HomePage
