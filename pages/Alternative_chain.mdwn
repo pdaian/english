@@ -265,6 +265,6 @@ Hashes embedded in transactions and headers, merkle branches, and [[nonces|Nonce
 
 For maximum flexibility, a work-sharing chain's block acceptance algorithm might accept proof in the form of a script using just these operations.  The script would receive as input an alternative chain block header, and the hash of its output would have to satisfy the chain's difficulty.
 
-This design would even support plain Bitcoin proof of work, where the "header" consists of all [[Bitcoin block header fields|Protocol_Specification#block]] except the nonce, and the proof-of-work script would simply append the nonce.  Thus, one can think of the work-sharing rules as an extension of the original Bitcoin rules.
+This design would even support plain Bitcoin proof of work, where the "header" consists of all [[Bitcoin block header fields|Protocol_Specification#block]] except the nonce, and the proof-of-work script simply appends the nonce.  Thus, one can think of the work-sharing rules as an extension of the original Bitcoin rules.
 
 [[!tag "Technical"]]
