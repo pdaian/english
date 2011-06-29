@@ -180,6 +180,8 @@ Your wallet.dat file is not encrypted by BitCoin. Anyone who can access it can e
 
 There is also a list of [[open source encryption software.|OpenSourceEncryptionSoftware]]
 
+Decrypting and encrypting the wallet.dat every time you start or quit the Bitcoin client can be *tedious* (and outright error-prone). If you want to keep your wallet encrypted (except while you're actually running the Bitcoin client), it's better to relegate the automation to a [small shell script](http://lorelei.kaverit.org/bitcoin.sh) that handles the en/decryption and starting up Bitcoin client for you (Linux and OSX). 
+
 There is also a method to Print out and encrypt your Wallet.dat as a special barcode. See details here: [[WalletPaperbackup]]
 
 #### Password Strength
