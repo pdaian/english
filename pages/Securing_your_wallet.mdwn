@@ -220,7 +220,7 @@ Linux users can setup backups using cron by telling it to run a backup script at
 
 	01 */1 * * * /usr/local/bin/backupwallet.sh
 
-This cron line will run the /usr/local/bin/backupwallet.sh script at the 01 minute of every hour. Remember to add a newline after the last line of the crontab file, or else the last line won't run.
+This cron line will run the /usr/local/bin/backupwallet.sh script at the 01 minute of every hour. Remember to add a newline after the last line of the crontab file, or else the last line won't run. You may also wish to ignore the scripts output by appending " > /dev/null 2>&1" to the line.
 
 Create backupwallet.sh:
 
