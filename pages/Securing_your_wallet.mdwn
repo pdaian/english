@@ -262,35 +262,37 @@ Create backupwallet.sh:
 	#CP=s3cmd put
 	#CP_DEST=s3://bucket
 	
-	# Perform the backup.
-	if
-	echo -n Making backup...
-	bitcoind backupwallet $WALLET
-	test ! -s "$WALLET"
-	then
-	echo failed!
-	elif
-	echo done.
-	echo -n Encrypting backup....
-	! gpg -r $USERNAME --output $WALLET_E --encrypt $WALLET
-	then
-	echo failed!
-	elif
-	echo done.
-	echo -n Copying to backup location...
-	! $CP $WALLET_E $CP_DEST
-	then
-	echo failed!
-	else
-	echo done.
-	fi
-	
+	do_clean() {
 	# Remove temporary wallets.
 	if  [-eq $USE_SHRED](1); then
 	$SHRED $SHRED_OPTS $WALLET $WALLET_E
 	else
 	$RM $RM_OPTS $WALLET $WALLET_E
 	fi
+	}
+	
+	do_fail() {
+	echo failed!
+	do_clean
+	exit 1
+	}
+	
+	# Perform the backup.
+	echo -n Making backup...
+	bitcoind backupwallet $WALLET
+	 [-s "$WALLET"](!) && do_fail  # If the backup does not exist or is empty, fail.
+	echo done.
+	echo -n Encrypting backup....
+	gpg -r $USERNAME --output $WALLET_E --encrypt $WALLET
+	 [-ne $?](0) && do_fail  # If gpg returned a non-zero result, fail.
+	echo done.
+	echo -n Copying to backup location...
+	$CP $WALLET_E $CP_DEST
+	 [-ne $?](0) && do_fail  # If the $CP command returns a non-zero result, fail.
+	echo done.
+	do_clean
+	
+	exit 0
 
 The shell script:
 
