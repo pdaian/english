@@ -216,45 +216,92 @@ Another solution is to use a file storage service like [Wuala](http://www.wuala.
 
 ### Linux solution
 
-Linux users can setup cron by running 'crontab -e' and adding this line:
+Linux users can setup backups using cron by telling it to run a backup script at set intervals of time. Run 'crontab -e' and add this line near the bottom:
 
 	01 */1 * * * /usr/local/bin/backupwallet.sh
 
-This cron line runs backupwallet.sh at the 01 minute of every hour. Remember to add a newline after the last line of the crontab file, or else the last line won't run.
+This cron line will run the /usr/local/bin/backupwallet.sh script at the 01 minute of every hour. Remember to add a newline after the last line of the crontab file, or else the last line won't run.
 
-backupwallet.sh:
+Create backupwallet.sh:
 
 	#!/bin/bash
+	# /usr/local/bin/backupwallet.sh
+	#
+	# Performs backup of bitcoin wallet.
+	#
+	# Written by: https://en.bitcoin.it/wiki/Securing_your_wallet
 	
-	TS=$(date "+%Y%m%d-%H-%M")
+	#
+	# Standard Options
+	#
+	TS=$(date "+%Y%m%d-%H%M")
 	WALLET=/tmp/wallet${TS}
 	WALLET_E=/tmp/wallet${TS}.crypt
+	USERNAME=username  # Update to your bitcoin Linux username.
+	RM=rm
+	RM_OPTS=--force
+	USE_SHRED=0  # Flip to 1 to use `shred` instead of `rm`.
+	SHRED=shred
+	SHRED_OPTS=--force --iterations=9 --zero --remove
 	
+	#
+	# Storage Options
+	# Only 1 option should be un-commented (the last one will be used).
+	# Update CP_DEST paths as neccessary.
+	#
+	# CP - Storage on a local (or networked) machine. Could be Dropbox/Wuala folder.
+	#CP=cp
+	#CP_DEST=smb://machine/share/folder/  # /var/data/backups/, ~/Dropbox/, etc.
+	#
+	# SSH - Storage on a remote machine.
+	CP=scp
+	CP_DEST="remoteuser@example.com:~/wallets/"
+	#
+	# S3 - Storage on Amazon's S3. Be sure s3cmd is installed and properly setup.
+	# You may need "s3cmd put --force" if you use a sub-directory in CP_DEST.
+	#CP=s3cmd put
+	#CP_DEST=s3://bucket
+	
+	# Perform the backup.
 	if
-	echo -n making backup...
-	bitcoind backupwallet $WALLET 
-	<nowiki>[[ ! -s "$WALLET" ]]</nowiki>
-	then echo failed
+	echo -n Making backup...
+	bitcoind backupwallet $WALLET
+	 [[!_-s_$WALLET]]
+	then
+	echo failed!
 	elif
-	echo done
-	echo -n encrypting....
-	! gpg -r myusername --output $WALLET_E --encrypt $WALLET
-	then echo failed
+	echo done.
+	echo -n Encrypting backup....
+	! gpg -r $USERNAME --output $WALLET_E --encrypt $WALLET
+	then
+	echo failed!
 	elif
-	echo done
-	echo -n copying to distant server...
-	! scp $WALLET_E user@myserver.org:~/wallets/
-	then echo failed
-	else echo done
+	echo done.
+	echo -n Copying to backup location...
+	! $CP $WALLET_E $CP_DEST
+	then
+	echo failed!
+	else
+	echo done.
 	fi
 	
-	rm -f $WALLET $WALLET_E
+	# Remove temporary wallets.
+	if  [-eq $USE_SHRED](1); then
+	$SHRED $SHRED_OPTS $WALLET $WALLET_E
+	else
+	$RM $RM_OPTS $WALLET $WALLET_E
+	fi
 
 The shell script:
 
 * Calls bitcoind backupwallet to create a time/date-stamped wallet.
 * GPG encrypts the wallet with your public key.
-* Copies the result to a backup location.
+* Copies the result using one of several storage options (cp, scp, and s3cmd).
+* Uses the rm or shred command to remove the temporary wallet files.
+
+Be sure to modify the script options to fit your setup. After you save, make sure the file can be executed properly by the cron user. Common permissions for /usr/local/bin can be applied using (verify with your distribution!):
+
+	cd /usr/local/bin/ && chown root:root backupwallet.sh && chmod 755 backupwallet.sh
 
 [[!tag "Technical"]]
 
