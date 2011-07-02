@@ -266,7 +266,7 @@ Create backupwallet.sh:
 	if
 	echo -n Making backup...
 	bitcoind backupwallet $WALLET
-	 [[!_-s_$WALLET]]
+	test ! -s "$WALLET"
 	then
 	echo failed!
 	elif
