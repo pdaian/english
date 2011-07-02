@@ -284,7 +284,7 @@ Create backupwallet.sh:
 	echo done.
 	echo -n Encrypting backup....
 	gpg -r $USERNAME --output $WALLET_E --encrypt $WALLET
-	 [-ne $?](0) && do_fail  # If gpg returned a non-zero result, fail.
+	 [-ne $?](0) && do_fail  # If gpg returns a non-zero result, fail.
 	echo done.
 	echo -n Copying to backup location...
 	$CP $WALLET_E $CP_DEST
