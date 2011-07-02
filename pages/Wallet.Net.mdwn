@@ -1,0 +1,31 @@
+#Overview
+This is just a simply summary page for now.
+
+I built Wallet.Net because I had a specific set of features in mind for a frontend that I wanted. This is my attempt at fulfilling those requirements.
+
+It's still very early in development, and so I would appreciate any help anyone can offer with testing. 
+#Features
+
+* Full Featured GUI
+* Ability to view/sort/filter transactions
+* A full address book capability
+* Ability to use the "Accounts" feature of bitcoin
+* Sending Money
+	* Using memos/notes
+	* Using address book
+	* With variable optional fee
+* A full "RPC Shell" as I call it, providing a commandline like interface to the bitcoin JSON-RPC API.
+* Built-in SSH Functionality (not requiring outside SSH client or certificate app). That provides the following: (note SSH is disabled currently due to some bugs)
+	* Secure Encrypted Tunnel to the remote bitcoin host
+	* Uses an already trusted service (SSH), and the associated daemon, which are typically very secure.
+	* Limits potential attack vectors since on the bitcoin host, only SSH need be exposed. Making it virtually invisible (bitcoin is undetectable) to a potential attacker.
+	* Your authentication through the tunnel is done over the encrypted channel.
+#Links
+
+* [(1)](https://github.com/Glasswalker/Wallet.Net) - Git Hub Page
+* [(2)](https://github.com/downloads/Glasswalker/Wallet.Net/Wallet_Net_Release_0.1_07022011.zip) - Current Beta Release (zip containing windows installer)
+[[!tag "User_Interfaces"]]
+[[!tag "Frontends"]]
+[[!tag "Free_Software"]]
+[[!tag "License/GPLv3"]]
+[[!tag "Open_Source"]]
