@@ -299,7 +299,7 @@ The shell script:
 * Copies the result using one of several storage options (cp, scp, and s3cmd).
 * Uses the rm or shred command to remove the temporary wallet files.
 
-Be sure to modify the script options to fit your setup. After you save, make sure the file can be executed properly by the cron user. Common permissions for /usr/local/bin can be applied using (verify with your distribution!):
+Be sure to modify the script options to fit your setup. After you save, make sure the file can be executed properly by the cron user. Common permissions for files in /usr/local/bin/ can be applied using (verify with your distribution!):
 
 	cd /usr/local/bin/ && chown root:root backupwallet.sh && chmod 755 backupwallet.sh
 
