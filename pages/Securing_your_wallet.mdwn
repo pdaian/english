@@ -284,7 +284,7 @@ Create /usr/local/bin/backupwallet.sh:
 	$BITCOIN backupwallet $WALLET
 	 [-s "$WALLET"](!) && do_fail  # If the backup does not exist or is empty, fail.
 	echo done.
-	echo -n Encrypting backup....
+	echo -n Encrypting backup...
 	$GPG -r $GPG_USER --output $WALLET_E --encrypt $WALLET
 	 [-ne $?](0) && do_fail  # If gpg returns a non-zero result, fail.
 	echo done.
