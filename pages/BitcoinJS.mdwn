@@ -1,0 +1,49 @@
+A reimplementation of Bitcoin using Node.js and web technologies.
+
+It currently implements the basics of the Bitcoin protocol, enough to send and receive transactions via the [[Webcoin]] frontend. All official BitcoinJS components are released under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
+
+## Components
+
+BitcoinJS consists of several loosely coupled component that can be used in different combinations to solve different problems.
+
+### node-bitcoin-p2p
+
+The main component implementing the Bitcoin P2P [[protocol|Protocol]] and parts of the [[JSON-RPC API|API_reference_(JSON-RPC)]]. You can think of it as the counterpart to the [[original client's|Original_Bitcoin_client]] CLI daemon, bitcoind.
+
+As the name implies, node-bitcoin-p2p is built using the [Node.js framework](http://nodejs.org). It also uses [MongoDB](http://www.mongodb.org/) for storage and indexing of the block chain data.
+
+### node-bitcoin-exit
+
+Builds on top of node-bitcoin-p2p to provide access to balances and transaction information on a per-account basis. It also allows the upload of new transactions to the network. These two functions are enough to allow a client to access the network only through this server.
+
+### Other
+
+Various other software builds on top of the basic BitcoinJS infrastructure. Notable examples include [[Webcoin]] and [[BitcoinJS Explorer|BitcoinJS/Explorer]].
+
+## History
+
+* First commit was uploaded on March 12th, 2011  (6.1)
+* Repository moved to separate BitcoinJS account on April 30th, 2011  (6.2)
+* Official announcement including screencast on May 5th, 2011  (6.3)
+
+## See Also
+
+* [[Webcoin]]
+
+## External Links
+
+* [Official project website](http://bitcoinjs.org/)
+* [BitcoinJS project on Github](https://github.com/bitcoinjs)
+
+## References
+
+6.1: ["Initial commit."](https://github.com/justmoon/node-bitcoin-p2p/commit/aaad1406cfc652560abb708619e201898672f1db)  committed, March 12th 2011  
+6.2: ["Added new README with link to new repo."](https://github.com/justmoon/node-bitcoin-p2p/commit/a585bbae384a523c3d2ee19973daffd8db3d199a)  committed, April 30, 2011  
+6.3: ["Webcoin Alpha Sneak Preview"](http://forum.bitcoin.org/?topic=7357.0)  on Bitcoin.org forums, May 5, 2011
+
+
+[[!tag "Nodes"]]
+[[!tag "Clients"]]
+[[!tag "Free_Software"]]
+[[!tag "License/MIT-X11"]]
+[[!tag "Open_Source"]]
