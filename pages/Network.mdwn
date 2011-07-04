@@ -35,7 +35,7 @@ Anyone who is generating will collect valid received transactions and work on in
 
 Everyone broadcasts an *addr* containing their own IP address every 24 hours. Nodes relay these messages to a couple of their peers and store the address if it's new to them. Through this system, everyone has a reasonably clear picture of which IPs are connected to the network at the moment. After connecting to the network, you get added to everyone's address database almost instantly because of your initial *addr*.
 
-Network alerts are broadcast with *alert* messages. No *inv*-like system is used; these contain the entire alert. If a received alert is valid (signed by Satoshi), it is relayed to all peers. For as long as an alert is still in effect, it is rebroadcast at the start of every new connection.
+Network alerts are broadcast with *alert* messages. No *inv*-like system is used; these contain the entire alert. If a received alert is valid (signed by one of the people with the private key), it is relayed to all peers. For as long as an alert is still in effect, it is rebroadcast at the start of every new connection.
 
 ## Initial block download
 
