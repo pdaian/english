@@ -46,6 +46,16 @@ Use a brand new address for each invoice whenever possible, and use it only once
 
 You should also consider the possible risk that fraudsters could send counterfeit invoices to your customers, and entice them to make a payment to a Bitcoin address they control, instead of you.  While that isn't likely in general - it depends on how well a fraudster could find out who your customers are in the first place - it would certainly be an unpleasant situation if it ever happened.  One way you could control that is, whenever possible, never let people try to type Bitcoin addresses off payment stubs - instead, force people to get the full Bitcoin address from your website via secure SSL.  But, still print *most* of the address on the payment stub (perhaps with four or five characters starred out), so that the customer's need for a paper trail can be satisfied, so they can prove they paid if there is ever a dispute.
 
+##Setting Prices
+
+When a business accepts bitcoins for payment, there generally is the need to convert them to the currencies used for paying suppliers, employees and shareholders.  Some merchants set prices based on the current market rate at the time the price quote is presented to the customer.  The exchange rate could change if enough time passes before the sale is booked so it would be prudent for the business to add a time limit to the quotation so that exposure to significant changes to the rates become less likely.
+
+[[Bitcoin_Prices]] lists the exchange rate for many currencies on multiple exchanges.
+
+When prices are determined using an automated process, the current market rate can be based on either a current price or on a weighted average basis.  [[Bitcoin_Charts]] provides a [data feed that provides weighted prices](http://bitcoincharts.com/about/markets-api).
+
+When bitcoin funds for purchases are received, some merchants instantly exchange those proceeds into the preferred currency used.  Hedging for each transaction can nearly entirely eliminate exchange rate risk that the business is exposed to when accepting bitcoins for payment.
+
 ##Paying taxes on Bitcoin income
 [[Tax_compliance]] is a topic of concern for small businesses.  We aren't accountants or lawyers, and can't give legal or accounting advice.
 
