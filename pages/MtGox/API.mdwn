@@ -20,7 +20,11 @@ Parameters:
 ## Websocket API
 See: http://forum.bitcoin.org/index.php?topic=5855.0 (will be ported here soon)
 
+##Connecting
+
 You can connect via: ws://websocket.mtgox.com/mtgox
+
+##Channels
 
 The websocket will subscribe you to some channels automatically:
 
@@ -31,3 +35,38 @@ The websocket will subscribe you to some channels automatically:
 |d5f06780-30a8-4a48-a2f8-7ed181b4a13f |the mtgox ticker (lots of updates, with often the same data)
 |24e67e0d-1cad-4cc0-9e7a-f8523ef460fe |depth information in realtime (price + amount + type... type=1=Ask, type=2=Bid)
 
+
+Additionally each user has a "own" channel which streams informations about orders (new order, deleted order, etc) and trades only the user's trades).
+
+Each message is a JSON-encoded object, with at least "op" element. The "op" element contains the operation to be done (for outgoing messages), or the type of message (for incoming messages).
+
+##Possible outgoing commands
+
+**unsubscribe** Stop receiving messages from a channel (parameter "channel")
+
+##Incoming Data
+
+###Ticker
+> {"channel":"d5f06780-30a8-4a48-a2f8-7ed181b4a13f","op":"private","origin":"broadcast","private":"ticker","ticker":"buy":0.9515,"high":1,"low":0.91,"sell":0.9697,"vol":34349}}
+
+###Trade
+> {"channel":"dbf1dee9-4f2e-4a08-8cb7-748919a71b21","op":"private","origin":"broadcast","private":"trade","trade":"amount":2.71,"amount_int":"271000000","date":1310279340,"item":"BTC","price":14.43,"price_currency":"USD","price_int":"1443000","tid":"1310279340877902","trade_type":"bid","type":"trade"}}
+
+> 
+
+|Name |Value
+|---|---
+|amount |the traded amount in item (BTC), float, deprecated
+|amount_int |the traded amount * 10000
+|date |unix timestamp of trade
+|item |What was this trade about
+|price |price per unit, float, deprecated
+|price_int |price in smallest unit as integer (5 decimals of USD, 3 in case of JPY)
+|price_currency |currency in which trade was completed
+|tid |Trade id (big integer, which is in fact trade timestamp in microseconds)
+|trade_type |Did this trade result from the execution of a bid or a ask?
+
+
+
+
+#MOLECULAR EDITING...
