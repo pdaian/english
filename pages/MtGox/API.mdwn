@@ -64,9 +64,9 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 }
 </source>
 
-> The **ticker** field contains the following:
+**ticker** contains the following:
 
-> 
+
 
 |Name |Value
 |---|---
@@ -99,7 +99,9 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 }
 </source>
 
-> 
+**trade** contains the following:
+
+
 
 |Name |Value
 |---|---
@@ -136,6 +138,8 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 	"private":"depth"
 }</source>
 
+**depth** contains the following:
+
 > 
 
 |Name |Value
@@ -169,7 +173,7 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 	"private":"order_upd"
 }</source>
 
-> order_upd cointains the following:
+**order_upd** cointains the following:
 
 > 
 
