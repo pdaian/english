@@ -20,11 +20,11 @@ Parameters:
 ## Websocket API
 See: http://forum.bitcoin.org/index.php?topic=5855.0 (will be ported here soon)
 
-##Connecting
+###Connecting
 
 You can connect via: ws://websocket.mtgox.com/mtgox
 
-##Channels
+###Channels
 
 The websocket will subscribe you to some channels automatically:
 
@@ -40,16 +40,29 @@ Additionally each user has a "own" channel which streams informations about orde
 
 Each message is a JSON-encoded object, with at least "op" element. The "op" element contains the operation to be done (for outgoing messages), or the type of message (for incoming messages).
 
-##Possible outgoing commands
+###Possible outgoing commands
 
 **unsubscribe** Stop receiving messages from a channel (parameter "channel")
 
-##Incoming Data
+###Incoming Data
 
-###Ticker
+####Ticker
 > {"channel":"d5f06780-30a8-4a48-a2f8-7ed181b4a13f","op":"private","origin":"broadcast","private":"ticker","ticker":"buy":0.9515,"high":1,"low":0.91,"sell":0.9697,"vol":34349}}
 
-###Trade
+> The **ticker** field contains the following:
+
+> 
+
+|Name |Value
+|---|---
+|buy |lowest bid as float
+|sell |highest ask as float
+|high |maximum rate since last close as float
+|low |minimum rate since last close as float
+|vol |traded volume since last close
+
+
+####Trade
 > {"channel":"dbf1dee9-4f2e-4a08-8cb7-748919a71b21","op":"private","origin":"broadcast","private":"trade","trade":"amount":2.71,"amount_int":"271000000","date":1310279340,"item":"BTC","price":14.43,"price_currency":"USD","price_int":"1443000","tid":"1310279340877902","trade_type":"bid","type":"trade"}}
 
 > 
@@ -68,7 +81,7 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 
 
 
-###Depth
+####Depth
 
 Changes to the market depth data are broadcast so an up-to-date market depth can be kept by clients.
 
@@ -76,7 +89,7 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 
 > 
 
-|Header text |Header text
+|Name |Value
 |---|---
 |currency |the currency affected
 |item |the item (BTC)
@@ -90,4 +103,19 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 ||
 
 
-#MOLECULAR EDITING...
+####Order update (private)
+
+> {"channel":"(partial key)","op":"private","order_upd":{"amount":1000,"darkStatus":0,"date":1302836027,"oid":"(oid)","price":0.9899,"status":1},"origin":"broadcast","private":"order_upd"}
+
+> order_upd cointains the following:
+
+> 
+
+|Name |Value
+|---|---
+|amount |change in volume of the order
+|darkStatus |
+|oid |ID of the affected order
+|price |
+|status |
+
