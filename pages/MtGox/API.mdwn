@@ -2,20 +2,20 @@ The [[MtGox]] API provides various methods to access different informations from
 
 ##Number Formats
 
-In the "old API", currency- and amount-values (price, volume,...) where given as **float**. These values are likely being deprecated and replaced by fields of the same name with "_int" as postfix. These are **fixed-decimal**, so you have to move the decimal point yourself (divide). The exponent differs based on the kind of the value as follows:
+In the "old API", currency- and amount-values (price, volume,...) where given as **float**. These values are likely being deprecated and replaced by fields of the same name with "_int" as postfix. These are **fixed-decimal**, so you have to move the decimal point yourself (divide). The exponent differs based on the kind of the value.
+
+In order to convert the **int** to a **decimal** you can...
 
 
 
-|Kind of Field |divide by |Smallest possible value
+|kind of field |...divide by |...multiply by
 |---|---|---
 |BTC (volume, amount) |1E8 (10,000,000) |0.00000001
 |USD (price) |1E5 (100,000) |0.00001
 |JPY (price) |1E3 (1,000) |0.001
 
 
-
-
-Two APIs are available at this point: the HTTP api (available by posting to mtgox.com/code/*) and the websocket API.
+Implementation advice: it's probably best to use **int** or **Decimal** (if your language/db offers such a type) in your clients. Using **float** will likely lead to nasty rounding problems.
 
 ## Legacy API
 This API is available in <nowiki>https://mtgox.com/code/*</nowiki>, and provides various informations. It also supports making an order, a withdraw, a deposit, etc.
