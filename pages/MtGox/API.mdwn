@@ -104,7 +104,7 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 |Name |Value
 |---|---
 |amount |the traded amount in item (BTC), float, deprecated
-|amount_int |the traded amount * 100000
+|amount_int |the traded amount * 1E8
 |date |unix timestamp of trade
 |item |What was this trade about
 |price |price per unit, float, deprecated
@@ -143,11 +143,11 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 |currency |the currency affected
 |item |the item (BTC)
 |price |price as a float, deprecated
-|price_int |the price at which volume change happened * 100000
+|price_int |the price at which volume change happened (5 decimal for USD, 3 for JPY)
 |type |1=ask, 2=bid. deprecated, use type_str
 |type_str |type of order at this depth, either "ask" or "bid"
 |volume |the volume change as float, deprecated
-|volume_int |volume change * 100000
+|volume_int |volume change * 1E8
 ||
 ||
 
@@ -167,7 +167,7 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 	},
 	"origin":"broadcast",
 	"private":"order_upd"
-}
+}</source>
 
 > order_upd cointains the following:
 
