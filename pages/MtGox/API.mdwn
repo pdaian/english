@@ -19,3 +19,15 @@ Parameters:
 
 ## Websocket API
 See: http://forum.bitcoin.org/index.php?topic=5855.0 (will be ported here soon)
+
+You can connect via: ws://websocket.mtgox.com/mtgox
+
+The websocket will subscribe you to some channels automatically:
+
+
+|Channel ID |Description
+|---|---
+|dbf1dee9-4f2e-4a08-8cb7-748919a71b21 |trades (each time a trade happens, you get something here)
+|d5f06780-30a8-4a48-a2f8-7ed181b4a13f |the mtgox ticker (lots of updates, with often the same data)
+|24e67e0d-1cad-4cc0-9e7a-f8523ef460fe |depth information in realtime (price + amount + type... type=1=Ask, type=2=Bid)
+
