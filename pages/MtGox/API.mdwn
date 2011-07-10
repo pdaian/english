@@ -29,6 +29,7 @@ You can connect via: ws://websocket.mtgox.com/mtgox
 The websocket will subscribe you to some channels automatically:
 
 
+
 |Channel ID |Description
 |---|---
 |dbf1dee9-4f2e-4a08-8cb7-748919a71b21 |trades (each time a trade happens, you get something here)
@@ -47,7 +48,21 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 ###Incoming Data
 
 ####Ticker
-	{"channel":"d5f06780-30a8-4a48-a2f8-7ed181b4a13f","op":"private","origin":"broadcast","private":"ticker","ticker":"buy":0.9515,"high":1,"low":0.91,"sell":0.9697,"vol":34349}}
+<source lang="javascript">
+{
+	"channel":"d5f06780-30a8-4a48-a2f8-ed181b4a13f",
+	"op":"private",
+	"origin":"broadcast",
+	"private":"ticker",
+	"ticker":{
+	"buy":0.9515,
+	"high":1,
+	"low":0.91,
+	"sell":0.9697,
+	"vol":34349
+	}
+}
+</source>
 
 > The **ticker** field contains the following:
 
@@ -63,14 +78,33 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 
 
 ####Trade
-	{"channel":"dbf1dee9-4f2e-4a08-8cb7-748919a71b21","op":"private","origin":"broadcast","private":"trade","trade":"amount":2.71,"amount_int":"271000000","date":1310279340,"item":"BTC","price":14.43,"price_currency":"USD","price_int":"1443000","tid":"1310279340877902","trade_type":"bid","type":"trade"}}
+
+<source lang="javascript">{
+	"channel":"dbf1dee9-4f2e-4a08-8cb7-748919a71b21",
+	"op":"private",
+	"origin":"broadcast",
+	"private":"trade",
+	"trade":{
+	"amount":2.71,
+	"amount_int":"271000000",
+	"date":1310279340,
+	"item":"BTC",
+	"price":14.43,
+	"price_currency":"USD",
+	"price_int":"1443000",
+	"tid":"1310279340877902",
+	"trade_type":"bid",
+	"type":"trade"
+	}
+}
+</source>
 
 > 
 
 |Name |Value
 |---|---
 |amount |the traded amount in item (BTC), float, deprecated
-|amount_int |the traded amount * 10000
+|amount_int |the traded amount * 100000
 |date |unix timestamp of trade
 |item |What was this trade about
 |price |price per unit, float, deprecated
@@ -109,18 +143,31 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 |currency |the currency affected
 |item |the item (BTC)
 |price |price as a float, deprecated
-|price_int |the price at which volume change happened * 10000
+|price_int |the price at which volume change happened * 100000
 |type |1=ask, 2=bid. deprecated, use type_str
 |type_str |type of order at this depth, either "ask" or "bid"
 |volume |the volume change as float, deprecated
-|volume_int |volume change * 10000
+|volume_int |volume change * 100000
 ||
 ||
 
 
 ####Order update (private)
 
-	{"channel":"(partial key)","op":"private","order_upd":{"amount":1000,"darkStatus":0,"date":1302836027,"oid":"(oid)","price":0.9899,"status":1},"origin":"broadcast","private":"order_upd"}
+<source lang="javascript">
+{
+	"channel":"(partial key)",
+	"op":"private",
+	"order_upd":{
+	"amount":1000,
+	"darkStatus":0,
+	"date":1302836027,
+	"oid":"(oid)",
+	"price":0.9899,"status":1
+	},
+	"origin":"broadcast",
+	"private":"order_upd"
+}
 
 > order_upd cointains the following:
 
