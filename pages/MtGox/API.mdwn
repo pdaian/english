@@ -47,7 +47,7 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 ###Incoming Data
 
 ####Ticker
-> {"channel":"d5f06780-30a8-4a48-a2f8-7ed181b4a13f","op":"private","origin":"broadcast","private":"ticker","ticker":"buy":0.9515,"high":1,"low":0.91,"sell":0.9697,"vol":34349}}
+	{"channel":"d5f06780-30a8-4a48-a2f8-7ed181b4a13f","op":"private","origin":"broadcast","private":"ticker","ticker":"buy":0.9515,"high":1,"low":0.91,"sell":0.9697,"vol":34349}}
 
 > The **ticker** field contains the following:
 
@@ -63,7 +63,7 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 
 
 ####Trade
-> {"channel":"dbf1dee9-4f2e-4a08-8cb7-748919a71b21","op":"private","origin":"broadcast","private":"trade","trade":"amount":2.71,"amount_int":"271000000","date":1310279340,"item":"BTC","price":14.43,"price_currency":"USD","price_int":"1443000","tid":"1310279340877902","trade_type":"bid","type":"trade"}}
+	{"channel":"dbf1dee9-4f2e-4a08-8cb7-748919a71b21","op":"private","origin":"broadcast","private":"trade","trade":"amount":2.71,"amount_int":"271000000","date":1310279340,"item":"BTC","price":14.43,"price_currency":"USD","price_int":"1443000","tid":"1310279340877902","trade_type":"bid","type":"trade"}}
 
 > 
 
@@ -85,7 +85,7 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 
 Changes to the market depth data are broadcast so an up-to-date market depth can be kept by clients.
 
-> {"channel":"24e67e0d-1cad-4cc0-9e7a-f8523ef460fe","depth":{"currency":"USD","item":"BTC","price":"14.43","price_int":"1443000","type":1,"type_str":"ask","volume":"-2.71","volume_int":"-271000000"},"op":"private","origin":"broadcast","private":"depth"}
+	{"channel":"24e67e0d-1cad-4cc0-9e7a-f8523ef460fe","depth":{"currency":"USD","item":"BTC","price":"14.43","price_int":"1443000","type":1,"type_str":"ask","volume":"-2.71","volume_int":"-271000000"},"op":"private","origin":"broadcast","private":"depth"}
 
 > 
 
@@ -105,7 +105,7 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 
 ####Order update (private)
 
-> {"channel":"(partial key)","op":"private","order_upd":{"amount":1000,"darkStatus":0,"date":1302836027,"oid":"(oid)","price":0.9899,"status":1},"origin":"broadcast","private":"order_upd"}
+	{"channel":"(partial key)","op":"private","order_upd":{"amount":1000,"darkStatus":0,"date":1302836027,"oid":"(oid)","price":0.9899,"status":1},"origin":"broadcast","private":"order_upd"}
 
 > order_upd cointains the following:
 
