@@ -8,6 +8,12 @@ A listing of "strange transactions" is displayed in the main page, along with li
 
 Bitcoin Block Explorer can also display information from the [[Testnet]].
 
+##History
+
+Many of the real-time stats pages existed before Bitcoin Block Explorer at http://theymos.ath.cx:64150/q. *getdifficulty* and *getblockcount* were created around July 2010, with *decimaltarget*, *probability*, *hashestowin*, *nextretarget*, *totalbc*, and *bcperblock* coming soon after. These pages were made in response to block and difficulty values being "hard-coded" into text on the old wiki, which quickly made the information obsolete.
+
+Bitcoin Block Explorer was first made available around November 2010 at http://theymos.ath.cx:64150/bbe. It was initially meant to be the Bitcoin equivalent of [TorStatus](http://torstatus.blutmagie.de/), dumping all important data about the network. After it became much more popular than the real-time stats pages, BBE was moved to http://blockexplorer.com/, and real-time-stats were moved to http://blockexplorer.com/q.
+
 ##Interfacing with BBE
 
 Use the [query pages](http://blockexplorer.com/q) such as *getreceivedbyaddress* wherever possible. Note that these pages do not send a trailing newline, which may cause problems with your HTTP-fetching tool. When an error occurs, the result will begin with "ERROR:", followed by the error text. Your detection of "ERROR" must be case-insensitive. An empty result is also an error. Non-fatal errors will print query results on the next line after the error, though using this data is inadvisable.
