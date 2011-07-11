@@ -20,7 +20,7 @@ In order to convert the **int** to a **decimal** you can...
 Implementation advice: it's probably best to use **int** or **Decimal** (if your language/db offers such a type) in your clients. Using **float** will likely lead to nasty rounding problems.
 
 ## Legacy API
-This API is available in <nowiki>https://mtgox.com/code/*</nowiki>, and provides various informations. It also supports making an order, a withdraw, a deposit, etc.  There is also a [Perl module](Finance::MtGox) for interacting with the API.
+This API is available in <nowiki>https://mtgox.com/code/*</nowiki>, and provides various informations. It also supports making an order, a withdraw, a deposit, etc.  There is also a [Perl module](Finance::MtGox) for interacting with the Legacy API.
 
 ### Authentication
 Authentication is performed by posting a username and a password in variables "name" and "pass". Some methods do not require authentication.
