@@ -80,10 +80,13 @@ This is made expensive by the [[fees|transaction_fee]] that would be required af
 ### The "Finney" attack
 Named for Hal Finney, who first described this variation of a double-spend attack involving accepting [0-confirmation transactions](http://www.bitcoin.org/smf/index.php?topic=3441.msg48384#msg48384).  Accepting 0-confirmation large-value transactions is problem; accepting them for low-value transactions (after waiting several seconds to detect an ordinary double-spend attempt) is probably not a problem.
 
-## Definitely not a problem
-
 ###Coin destruction
-BitCoin has 8 decimals of precision, so the entire network could operate on just a handful of BitCoins. An attacker could never destroy them all. If deflation gets to the point where transactions of more than 10BC are unheard of, the client can just shift the decimal point over so that, for example, people with 0.01 BitCoins have 1.000 BitCents.
+Bitcoin has 2.1 quadrillion raw units, making up 8 decimals of BTC precision, so the entire network could potentially operate on much less than the full quantity of Bitcoins. If deflation gets to the point where transactions of more than 10 BTC are unheard of, clients can just switch to another unit so that, for example, it shows 10 mBTC rather than 0.01 BTC. However, the problem can be exasperated if Bitcoin ever gains global adoption: even with the full 2.1 quadrillion units, this is only enough for each human living in 2009 to hold 309,952 (0.00309952 BTC) each. 
+
+###Rival/malicious client code
+Any rival client must follow Bitcoin's rules or else all current BitCoin clients will ignore it. You'd have to actually get people to *use* your client. A better client that pretends to follow the same rules, but with an exception known only to the author (possibly by making it closed source), might conceivably be able to gain widespread adoption. At that point, its author could use his exception and go largely unnoticed.
+
+## Definitely not a problem
 
 ###Generating tons of addresses
 Generating an address doesn't touch the network at all. You'd only be wasting your CPU resources and disk space.
@@ -92,11 +95,6 @@ Also, a collision is highly unlikely.
 
 Keys are 256 bit in length and are hashed in a 160 bit address.(2^160th power)
 Divide it by the world population and you have about 215,000,000,000,000,000,000,000,000,000,000,000,000 addresses per capita.(2.15 x 10^38)[(1)](http://www.wolframalpha.com/input/?i=2^160+%2F+world+population)
-
-I just thought you wanted to know that. You know, for your evil diabolical plan.
-
-###Rival/malicious client code
-Any rival client must follow BitCoin's rules or else all current BitCoin clients will ignore it. You'd have to actually get people to *use* your client.
 
 ###Everyone calculates at the same rate
 If everyone began with identical blocks and started their nonce at 1 and incremented, the fastest machine would always win. However, each block contains a new, random public key known only to you in the list of transactions.  The 256-bit "Merkle tree" hash of this is part of the block header.
