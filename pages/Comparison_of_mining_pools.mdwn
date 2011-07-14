@@ -5,6 +5,7 @@ Reward types & explanation:
 * **Prop.** - Proportional. When block is found, the reward is distributed among all workers proportionally to how much shares each of them has found.
 * **PPLNS** - Pay Per Last N Shares. Similar to proportional, but instead of looking at the number of shares in the round, instead looks at the last N shares, regardless of round boundaries.
 * **Score** - Score based system: a proportional reward, but weighed by time submitted. Each submitted share is worth more in the function of time *t* since start of current round. For each share score is updated by: score += exp(t/C). This makes later shares worth much more than earlier shares, thus the miner's score quickly diminishes when they stop mining on the pool. Rewards are calculated proportionally to scores (and not to shares). (at slush's pool C=300 seconds, and every hour scores are normalized)
+[Graphical explenation](http://eligius.st/~luke-jr/samples/800MH/)
 
 
 
