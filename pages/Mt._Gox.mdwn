@@ -11,30 +11,18 @@ A buy order is executed partially or in full when the price bid can be matched a
 
 A sell order is executed partially or in full when the price asked can be matched against a buy order that is at or above the ask amount.
 
-###Dark Pool
-
-A dark pool allows large quantities to be sold without the orders being visible.  This helps to lessen the price moves that would likely result when the price and size of a large order is known.
-
-####Dark Pool Only Orders
-
-Can be filled only by other dark pool orders or a single normal order that is larger than the dark pool order. This means that if there is a single normal order that would fill the dark pool order both will be filled.
-
-####Dark Pool + Normal Orders
-
-Can be filled either partially from the normal orders or the dark pool. 
-
 ###Fees
 
 Mt. Gox subtracts a 0.65% trading fee from each party of successful trades made through the market.
 
-When buying bitcoins, the fee will cause the number of Bitcoins bought to be 0.65% fewer.  In other words, after buying 1.0 BTC the BTC balance for the account will increase by just 0.9935 BTC (1.0 BTC less the 0.0065 BTC fee) (8.1).  The per-BTC trade price reflected in the account history shows an amount recomputed to reflect the fee.  The Quantity X Trade Price from the buy order will total the same dollar amount as is subtracted from the account after the trade executes.
+When buying bitcoins, the fee will cause the number of Bitcoins bought to be 0.65% fewer.  In other words, after buying 1.0 BTC the BTC balance for the account will increase by just 0.9935 BTC (1.0 BTC less the 0.0065 BTC fee) (5.1).  The per-BTC trade price reflected in the account history shows an amount recomputed to reflect the fee.  The Quantity X Trade Price from the buy order will total the same dollar amount as is subtracted from the account after the trade executes.
 
 When selling bitcoins, the fee will cause the proceeds of the sale to be 0.065 lower.  After selling $100 worth of bitcoins the USD balance for the account will increase by just $99.35 USD ($100 USD less the $0.65 USD fee).
 
 ##Adding Funds
 
 ###BTC
-There are no fees incurred when transferring bitcoins to a Mt. Gox account.  Funds are available once [[confirmed|confirmation]] (6 blocks) (10.1), a process that can take roughly an hour.
+There are no fees incurred when transferring bitcoins to a Mt. Gox account.  Funds are available once [[confirmed|confirmation]] (6 blocks) (7.1), a process that can take roughly an hour.
 
 Note: Even though the site displays no ads, some browser ad-blocking utilities will interfere with the exchange's web site, specifically with the Add Bitcoins function.
 
@@ -44,7 +32,7 @@ There are no fees incurred when adding [[Liberty_Reserve]] LRUSD funds to an acc
 
 ###Dwolla
 
-This option is among the fastest and least expensive methods for adding funds to a Mt. Gox account.  The transaction fee on [[Dwolla]] costs just $0.25.  The process is automated and the funds are available for trading within an hour (12.1).
+This option is among the fastest and least expensive methods for adding funds to a Mt. Gox account.  The transaction fee on [[Dwolla]] costs just $0.25.  The process is automated and the funds are available for trading within an hour (9.1).
 
 ###International USD Bank Wire
 
@@ -53,7 +41,7 @@ Funds in USD may be wired to the exchange's bank in Japan.  Each wire is subject
 ###Direct Deposit
 ####EU
 
-Funds in EUR may be added using SEPA Direct Debit for free, with funds convert to USD at the current ECB rate at the time the funds are received (15.1).
+Funds in EUR may be added using SEPA Direct Debit for free, with funds convert to USD at the current ECB rate at the time the funds are received (12.1).
 
 ####U.S.
 
@@ -88,7 +76,7 @@ There have been sporadic reports where withdrawing the entire bitcoin balance re
 
 There are two fees incurred when withdrawing LRUSD.  Mt. Gox themselves subtracts 1% of the transfer amount as a fee before transferring away.  Liberty Reserve then subtracts as a transfer fee 1% from the amount they've received.
 
-For example, to withdraw $100 LRUSD, Mt. Gox will send $99 ($100 less a 1% fee) (22.1)  Liberty Reserve will subtract $0.99 ($99 less a 1% fee) leaving a net amount at Liberty Received of $98.01.
+For example, to withdraw $100 LRUSD, Mt. Gox will send $99 ($100 less a 1% fee) (19.1)  Liberty Reserve will subtract $0.99 ($99 less a 1% fee) leaving a net amount at Liberty Received of $98.01.
 
 ###Direct Deposit
 ####U.S.
@@ -150,13 +138,13 @@ After the addFunds form is displayed, it is not apparent to the user how to dete
 * [[MtGox_Live]] Bitcoin Trader with buy, sell, send, chart and depth for Android and iOS
 
 ##History
-The exchange went online on July 18, 2010. (37.1)
+The exchange went online on July 18, 2010. (34.1)
 
 On October 10, 2010 the exchange switched from [[PayPal]] to Liberty Reserve as the main funding option as a result of this attack. Former PayPal customers still had the possibility to withdraw their USD using alternative methods.
 
-On March 6th, 2011 ownership of the exchange changed hands (37.2).
+On March 6th, 2011 ownership of the exchange changed hands (34.2).
 
-On June 19, 2011 the service experienced a significant security breach (37.3).  The incident caused a selloff down to BTC/USD of $0.01 due to fraudulent trading.  The site was disabled and all trading following the point that fraudulent trading began was rolled back. Complicating this breach was the release of a list of the exchange's accounts including username, email address and a password hash, which forced the exchange to implement an account recovery method for customers to regain control of their accounts.
+On June 19, 2011 the service experienced a significant security breach (34.3).  The incident caused a selloff down to BTC/USD of $0.01 due to fraudulent trading.  The site was disabled and all trading following the point that fraudulent trading began was rolled back. Complicating this breach was the release of a list of the exchange's accounts including username, email address and a password hash, which forced the exchange to implement an account recovery method for customers to regain control of their accounts.
 
 In July, 2011 it was observed that the exchange no longer allows new registrations to occur without having a valid e-mail address.
 
@@ -175,14 +163,14 @@ In July, 2011 it was observed that the exchange no longer allows new registratio
 ##References
 
 1.1: 2011-06-07 on #bitcoin-otc: "MagicalTux: you could use the count of users on mtgox (went over 30k recently)"  
-8.1: [Dear Mt. Gox. Please make your accounting easier to understand.](http://forum.bitcoin.org/index.php?topic=12793.0)  
-10.1: [How long does it take to Deposit bitcoins to MtGox?](http://www.bitcoin.org/smf/index.php?topic=3851.msg55220#msg55220)  
-12.1: [Dwolla to Mt. Gox vs. Dwolla to TradeHill](http://forum.bitcoin.org/index.php?topic=15107.msg205622#msg205622)  
-15.1: [MTGox: Euro deposits](http://www.bitcoin.org/smf/index.php?topic=5461.0)  
-22.1: One member of [[Bitcoin-otc]] reports that this appears to be a 0.99% fee, not a 1.0%.  
-37.1: [MtGox announcement on forum](http://www.bitcoin.org/smf/index.php?topic=444.0)  
-37.2: [Mtgox is changing owners](http://www.bitcoin.org/smf/index.php?topic=4187.0)  
-37.3: [Huge Bitcoin sell off due to a compromised account - rollback](https://support.mtgox.com/entries/20224998-huge-bitcoin-sell-off-due-to-a-compromised-account-rollback)
+5.1: [Dear Mt. Gox. Please make your accounting easier to understand.](http://forum.bitcoin.org/index.php?topic=12793.0)  
+7.1: [How long does it take to Deposit bitcoins to MtGox?](http://www.bitcoin.org/smf/index.php?topic=3851.msg55220#msg55220)  
+9.1: [Dwolla to Mt. Gox vs. Dwolla to TradeHill](http://forum.bitcoin.org/index.php?topic=15107.msg205622#msg205622)  
+12.1: [MTGox: Euro deposits](http://www.bitcoin.org/smf/index.php?topic=5461.0)  
+19.1: One member of [[Bitcoin-otc]] reports that this appears to be a 0.99% fee, not a 1.0%.  
+34.1: [MtGox announcement on forum](http://www.bitcoin.org/smf/index.php?topic=444.0)  
+34.2: [Mtgox is changing owners](http://www.bitcoin.org/smf/index.php?topic=4187.0)  
+34.3: [Huge Bitcoin sell off due to a compromised account - rollback](https://support.mtgox.com/entries/20224998-huge-bitcoin-sell-off-due-to-a-compromised-account-rollback)
 
 
 [[!tag "Exchanges"]]
