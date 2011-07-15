@@ -18,7 +18,11 @@ It works like this:
 
 Different bitcoin clients and different versions have different rules for determining which transactions to accept and how large of a fee to send.
 
-Current default rules for the original Bitcoin client (Bitcoin 0.3.20)
+Current default rules for the original Bitcoin client (Bitcoin 0.3.23):
+
+* minimum TX fee for new transactions reduced to 0.0005 BTC.
+
+Original Bitcoin client version 0.3.20:
 
 * 0.01 BTC fee if sending any transaction less than 0.01 BTC. This is to help prevent DoS attacks against the network. Remember: fees are not network-enforced, so it's still *possible* to send these small transactions without the fee -- you just have to generate the blocks that contain them yourself (after modifying Bitcoin).
 * 0.01 BTC fee per kilobyte of transaction, but:
