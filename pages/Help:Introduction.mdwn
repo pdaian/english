@@ -21,13 +21,23 @@ Bitcoin is a system of owning and voluntarily transferring amounts of so-called 
 ###Preventing stealing
 To guarantee that an eavesdropper, Eve, cannot access other people's bitcoins by creating transactions in their names we use a [public key system](Wikipedia:Public-key_cryptography) to make digital signatures. In this system, each person, such as Alice and Bob, has a pair of public and private keys which he/she stores in a safe [[wallet|Wallet]]. Only the user with his secret private key can sign a document, such as the transaction to give some of his bitcoins to somebody else, but any one can validate the signature using the user’s public key.
 
+Suppose Alice wants to send a bitcoin to Bob.
+
 * Bob sends his public key to Alice.
-* Alice adds Bob’s public key along with the amount she wants to transfer, to the transaction.
+* Alice adds Bob’s public key along with the amount she wants to transfer to the transaction.
 * Alice signs the transaction with her secret private key.
+* Alice broadcasts the transaction out over the bitcoin network for all to see.
 
-As a result, anyone who knows the public keys of both Alice and Bob can now see that Alice agreed to transfer the amount to Bob, because nobody other than Alice has Alice's private key. Alice would be foolish to give her private key to other people, as this would allow them to sign transactions in her name, removing funds from her balance.
+As a result, anyone who knows the public keys of both Alice and Bob can now see that Alice agreed to transfer the amount to Bob, because nobody other than Alice has Alice's private key. Alice would be foolish to give her private key to other people, as this would allow them to sign transactions in her name, removing funds from her control.
 
-Later on, when Bob will transfer the same coins to Charley, he will do the same thing: receive from Charley his public key, add a new transaction to the chain of transactions and sign it with his (Bob) private key. But only Bob can do this, because only Bob has the private key which is necessary for signing and which is the only private key to match Bob’s public key that is already in the chain.
+Later on, when Bob wishes to transfer the same bitcoin to Charley, he will do the same thing:
+
+* Charlie sends Bob his public key.
+* Bob adds Charlie's public key along with the amount hi wants to transfer to a message: a 'transaction'.
+* Bob signs the transaction with his private key.
+* Bob broadcasts the transaction out over the bitcoin network for all to see. 
+
+Only Bob can do this because only Bob has the private key that corresponds with the public key Alice included in the previous transaction. 
 
 Eve cannot change who the coins belong to by replacing Bob’s public key with her public key, because Alice signed the transfer to Bob using her private key, declaring that the coins which belonged to her now belong to Bob, and Alice's private key is kept secret from Eve. So if Charley accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
 
