@@ -36,7 +36,11 @@ But you only have to transmit a solved block to your connected peers. If we assu
 
 Shifting 60 gigabytes of data in, say, 60 seconds means an average rate of 1 gigabyte per second, or 8 gigabits per second.
 
-The real question you want to know is how much does that sort of bandwidth cost? Well, bandwidth prices are a very tricky thing as some of the largest consumers pay the least due to how peering agreements work. The Googles and Akamais of this world will pay way less for a 10G wave than a small operator would. And, you wouldn't be hitting the 8Gbps very frequently .... only when you solve a block, really, as when relaying a block the peers you connect to will likely have already received it from some other peer anyway so only a subset would need to receive it from you. But you can take a look at [(1)](http://icecolo.com/colocation-packages) to get a feel for it.
+The real question you want to know is how much does that sort of bandwidth cost? Well, bandwidth prices are a very tricky thing as some of the largest consumers pay the least due to how peering agreements work. The Googles and Akamais of this world will pay way less for a 10G wave than a small operator would. And, you wouldn't be hitting the 8Gbps very frequently .... only when you solve a block, really, as when relaying a block the peers you connect to will likely have already received it from some other peer anyway so only a subset would need to receive it from you. 
+
+Luckily, a node would very likely not have to transfer this much data this quickly. Assuming all nodes are equally well connected to other nodes with the same number of connections, each node would only have to send one copy of each block received, on average. Even if you are the first node to become aware of a block, once you send the block to 3 or 4 others, it would propagate among the others in exponentially growing numbers, similar to the bit-torrent protocol. 
+
+Take a look at [(1)](http://icecolo.com/colocation-packages) to get a feel for data transfer costs.
 
 ##Storage
 
