@@ -1,6 +1,37 @@
-There is no official Bitcoin symbol as of December 2010, however the *BTC* abbreviation is the most universally accepted form.
+## Currency code
+The [currency code](https://secure.wikimedia.org/wikipedia/en/wiki/ISO_4217) for Bitcoin is **BTC**. However, at the moment it is an [unofficial code](https://secure.wikimedia.org/wikipedia/en/wiki/ISO_4217#Without_currency_code) according to the ISO 4217 standard but the official code according to the Bitcoin community.
 
-## Unicode symbol
+A [request](https://forum.bitcoin.org/index.php?topic=7205.msg112577) has been made at the [organization](http://www.six-group.com/) maintaining the currency codes in the ISO 4217 standard to support BTC. This has been declined mainly on bases that organizations such as [Reuters](https://secure.wikimedia.org/wikipedia/en/wiki/Reuters) and [Bloomberg](https://secure.wikimedia.org/wikipedia/en/wiki/Bloomberg) are not reporting on the Bitcoin currency. when this changes a request can be resubmitted.
+
+## Currency sign
+
+There is no official currency sign for Bitcoin as of December 2010. As an alternative, the BTC currency code can be used. Some existing Unicode symbols have been proposed but also serious work is being done on creating a custom Bitcoin sign with its own official [Unicode](https://secure.wikimedia.org/wikipedia/en/wiki/Unicode) that is recognized by the [Unicode Consortium](https://secure.wikimedia.org/wikipedia/en/wiki/Unicode_Consortium). Note that a currency sign is more complex than creating a logo as will be explained below.
+
+### New Unicode symbol
+
+In some discussions [41](https://forum.bitcoin.org/index.php?topic=41.0), [369](http://forum.bitcoin.org/index.php?topic=369.0) and [7215](https://forum.bitcoin.org/index.php?topic=7215.0) on the bitcoin forum several designs of an official Bitcoin sign have been proposed. This section on the Wiki is intended to streamline the process of arriving at an official Bitcoin currency sign with its own Unicode character code.
+
+#### Goal
+Having a unique Bitcoin currency sign will allow typographers to add their currency sign design in their fonts. This is similar as implementing support for the euro sign. Each font has its own version of the euro sign that fits with the style observed in the characters in the rest of the fonts of their typefaces. Note that the Unicode Consortium does not endorse Bitcoin in any way by assigning a Unicode character code, however, having a Unicode for the Bitcoin sign will also be good for PR and help having Bitcoin be taken more seriously.
+
+#### Requirements
+
+A reference Bitcoin sign could/should/must be:
+
+* recognizable as a currency sign such as $ € ¥ £ ¢ (with one or two vertical or horzontal bars)
+* not confusing with existing currency sign such as Thai Bath ฿
+* build from recognizable existing characters such as bar , minus -, capital B referring to currencies and **B**itcoin
+* easy to use in handwriting
+* easy to compose with one or more [compose seuquences](https://help.ubuntu.com/community/GtkComposeTable#The%20Gtk%20Compose%20Table) that are still free and refer to the elements recognisable in the sign (For example the euro sign can be composed from = and C even though the = and C are not part of how it is pronounced.)
+* possible to implement in [serif and sans-serif](https://secure.wikimedia.org/wikipedia/en/wiki/Serif) (Most of the [Unicode reference implementations](http://www.unicode.org/charts/PDF/U20A0.pdf) are made with serifs but sans-serif also exist in sans-serif fonts.)
+* possible to implement in regular, italic, bold and bold italic (for sans-serif the italic will simply be a slanted version)
+
+Note that a reference Bitcoin sign will only be used as a reference by the Unicode Consortium and it is up to typographers to implement their version matching the style of their typefaces and fonts.
+
+#### Submissions
+
+
+### Existing Unicode symbol
 
 There is a discussion over [which Unicode symbol might be the best suited](http://www.bitcoin.org/smf/index.php?topic=369.0) for bitcoin.
 
@@ -46,5 +77,4 @@ It has led to the following options:
 |☺||WHITE SMILING FACE||Alt +263A
 |☻||BLACK SMILING FACE||Alt +263B
 |㋡||CIRCLED KATAKANA TU' (Japanese)||Alt +32E1
-|||||
 
