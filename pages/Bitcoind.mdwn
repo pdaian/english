@@ -24,9 +24,13 @@ Bitcoind is both a headless daemon and a client for the same daemon.  It also pr
 To use locally, first start the program in daemon mode:
 > bitcoind -daemon
 
+
 Then you can use the same program to execute [[API commands|Original_Bitcoin_client/API_Calls_list]], e.g.:
 > bitcoind listreceivedbyaddress 0 true
 > bitcoind getbalance
+
+To stop the bitcoin daemon, execute:
+> bitcoind stop
 
 ##History
 
