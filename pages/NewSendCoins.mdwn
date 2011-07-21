@@ -1,0 +1,14 @@
+Proposal for an updated, more feature-full 'sendcoins/sendmany' command.
+
+This command requires a confirmation or else it will be forgotten on the next NewSendCoins request.
+
+## NewSendCoins
+
+*Request*
+newsendcoins <send list{Address, Amount}>, <fee> (optional)
+
+*Reply*
+newsendcoins <status:goodwarningerror>, <in list{Private Key, Amount}>, <out list{Address or Private Key, Amount}>,  <fee>, <error/warning text>, <tx id>
+
+*Confirmation*
+newsendcoins <tx id>, <confirm, reject>
