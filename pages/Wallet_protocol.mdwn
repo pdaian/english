@@ -45,11 +45,16 @@ Requirements phrased in the imperative as part of algorithms (such as "strip any
 ## Transport/Session Layer
 Must support at least reliable in-order stream data.
 
+These include ALL types of streams that can be assigned a file descriptor. 
+
+[Unix, for better and worse, maps all forms of IO to file descriptors supporting a standardized set of operations](comment:) 
+
 Such as:
 
 * stdio (required for self-contained UI bundling)
-* serial
-* TCP
+* pipes
+* character devices such as RS232 serial ports. 
+* TCP sockets. 
 
 ## Presentation Layer
 ### Encryption
