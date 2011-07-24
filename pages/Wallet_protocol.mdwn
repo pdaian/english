@@ -27,8 +27,7 @@ Please see the [[Infrastructure]] page for an overview of where this protocol fi
 
 #### Plaintext wire formats
 
-* [JSON](http://www.json.org/) implementations tend to be buggy. The biggest problem with JSON for financial applications is that many implementations allow only up to 53 bits of precision in numbers (see [Twitter snowflake discussion](http://groups.google.com/group/twitter-development-talk/browse_thread/thread/6a16efa375532182?pli=1)). The alternative is to represent numbers as strings, but this moves parsing to the application layer which is undesirable.
-* [YAML](http://www.yaml.org/) is both human readable and efficient for parser (available for most PLs)
+* [JSON](http://www.json.org/) implementations tend to be buggy.
 
 ### Cooperative mining
 The protocol should support submitting completed blocks, such that it can get (just) addresses from an upstream pool to generate to, and send all completed blocks to that pool for verification and counting (and possibly submission to the network). This can reduce the pool's load.
