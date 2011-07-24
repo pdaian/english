@@ -19,8 +19,8 @@ In order to convert the **int** to a **decimal** you can...
 
 Implementation advice: it's probably best to use **int** or **Decimal** (if your language/db offers such a type) in your clients. Using **float** will likely lead to nasty rounding problems.
 
-## Legacy API
-This API is available in <nowiki>https://mtgox.com/api/0/*</nowiki>, and provides various informations. It also supports making an order, a withdraw, a deposit, etc.  There is also a [Perl module](Finance::MtGox) for interacting with the Legacy API.
+## HTTP API
+This API is available in <nowiki>https://mtgox.com/api/*</nowiki>, and provides various informations. It also supports making an order, a withdraw, a deposit, etc.  There is also a [Perl module](Finance::MtGox) for interacting with the HTTP API.
 
 ### Authentication
 Authentication is performed by signing each request using HMAC-SHA512. The request must contain an extra value "nonce" which must be an always incrementing numeric value. A reference implementation is provided here:
@@ -76,12 +76,15 @@ var_dump(mtgox_query('0/getFunds.php'));
 
 ### Methods
 
-#### data/getTrades.php
+#### 0/data/getTrades.php
 This allows retrieving all trades which happened in the last 24 hours. The returned data is cached and may not reflect latest activity.
 
 Parameters:
 
 * since: Passing a tid in "since" allows retrieving all trades since that trade. The passed id is may not exist. Ie. to get all trades from the very beginning one would just call https://mtgox.com/code/data/getTrades.php?since=0 . since returns only 100 trades, and you can call the method again by passing the latest trade you have imported in since.
+
+#### 0/history_[CUR].csv
+Allows downloading the activity history for a given currency (BTC or USD for now).
 
 ## Websocket API
 ported on 7/10/2011 from http://forum.bitcoin.org/index.php?topic=5855.0
