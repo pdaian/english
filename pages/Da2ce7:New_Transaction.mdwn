@@ -3,7 +3,7 @@
 *txnumber* is a random string given to every transaction for identification purposes.<br />
 *pubkey* is assumed to be owned by the client that preforms the 'readying' of the transition (build > ready states)
 
-States:
+### States:
 *build* this state a transaction doesn't need to fulfil any rules. The user just defines what she wants in the transaction.<br />
 *ready* this state is after a client that has (or knows of the), private keys checks the transaction, checking and adding more inputs or change output if necessary.<br />
 *done* the transaction has been signed by and all the inputs are vaild.<br />
