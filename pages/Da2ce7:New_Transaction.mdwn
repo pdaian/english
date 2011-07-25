@@ -11,11 +11,11 @@ response:  {txnumber} {inid}
 ## addoutput {txnumber} {address} {amount} ({comment})
 response:  {txnumber} {outid}
 
-## addoutputlist {txnumber} list:({address} {amount})
-response: {txnumber}  list:{outid}
+## addoutputlist {txnumber} [({address},{amount}]
+response: {txnumber}  {}[[outid]]
 
-## remove: {txnumber} list:{inid} list:{outid}
-response: {txnumber} droped: list:{inid} list:{outid} 
+## remove: {txnumber} [inid] [{outid}]
+response: {txnumber} droped: {}[[inid]] {}[[outid]] 
 
 ## addtxfee {txnumber} {amount} {forced:suggested:optional}
 
@@ -23,7 +23,7 @@ response: {txnumber} droped: list:{inid} list:{outid}
 response: {txnumber} {building:ready:done:submitted}
 
 ## shownewtransation {txnumber}
-response: {txnumber} in: list:({pubkey} {amount}) out: list:({address} {amount}) fee: {txid} {amount} state: {building:ready:done:submitted}
+response: {txnumber} in: {}{}[[amount]] out: {}{}[[amount]] fee: {txid} {amount} state: {building:ready:done:submitted}
 
 ## submitnewtransation {txnumber}
 response: {txnumber} {txid}
