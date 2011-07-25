@@ -107,13 +107,23 @@ Please not this draft doesn't include all possible error responses.
 
 	
 	/// sign *ready* transaction
-	signtransaction {txnumber}
+	signtransaction {txnumber}  (1 override)
+	
+	// calls reddytransaction before hand if needed
+	signtransaction -r {txnumber}
 	
 	response {txnumber} {done:failed}
 
 	
 	/// publish a *done* transaction to peers
 	submittransaction {txnumber}
+	
+	response {txnumber} {txid}
+
+	
+	/// complete transaction from any stage and publish it
+	completeransaction {txnumber}
+	
 	response {txnumber} {txid}
 
 	
