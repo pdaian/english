@@ -41,55 +41,55 @@ Please not this draft doesn't include all possible error responses.
 	newtransaction
 	newtransaction {name}
 	
-	newtransaction {unique_id}
-	newtransaction {unique_id} {name}
+	newtransaction {txuniqueid}
+	newtransaction {txuniqueid} {name}
 	
 	newtransaction {txid}
 	newtransaction {txid} {name}
 	
-	response {unique_id}
+	response {txtxuniqueid}
 
 	
 	/// add an input to the transaction. (1 overrides)
-	addinput {unique_id} {txid} {index}
-	addinput {unique_id} {txid} {index} {comment}
+	addinput {txuniqueid} {txid} {index}
+	addinput {txuniqueid} {txid} {index} {comment}
 	
-	response {unique_id} {inid}
+	response {txuniqueid} {iouniqueid}
 
 	
 	/// add outputs to the transaction (6 overrides)
 	/// add fee to transaction
-	addoutput {unique_id} {amount} {forcedsuggestedoptional}
-	addoutput {unique_id} {amount} {forcedsuggestedoptional} {comment}
+	addoutput {txuniqueid} {amount} {forcedsuggestedoptional}
+	addoutput {txuniqueid} {amount} {forcedsuggestedoptional} {comment}
 	
 	// add change address to transaction
-	addoutput {unique_id} {pubkey}
-	addoutput {unique_id} {pubkey} {comment}
+	addoutput {txuniqueid} {pubkey}
+	addoutput {txuniqueid} {pubkey} {comment}
 	
 	// add send outputs
-	addoutput {unique_id} {address} {amount}
-	addoutput {unique_id} {address} {amount} {comment}
+	addoutput {txuniqueid} {address} {amount}
+	addoutput {txuniqueid} {address} {amount} {comment}
 	
-	response  {unique_id} {outid}
+	response  {txuniqueid} {iouniqueid}
 	
 	// add many send outputs
-	addoutputlist {unique_id} {}{}[[amount]]
+	addoutputlist {txuniqueid} {}{}[[amount]]
 	
-	response {unique_id}  {}[[outid]]
+	response {txuniqueid}  {}[[iouniqueid]]
 
 	
 	/// remove input or outpus (1 override)
-	remove {unique_id} {unique_id}
-	remove {unique_id} {}[[unique_id]]
+	remove {txuniqueid} {iouniqueid}
+	remove {txuniqueid} {}[[iouniqueid]]
 	
-	response {unique_id} droped: {unique_id}
-	response {unique_id} droped: {}[[unique_id]]
+	response {txuniqueid} droped: {iouniqueid}
+	response {txuniqueid} droped: {}[[iouniqueid]]
 
 	
 	/// prints out human readable information about the tranaction
-	shownewtransaction {unique_id} (1 override)
+	shownewtransaction {txuniqueid} (1 override)
 	
-	response {unique_id}
+	response {txuniqueid}
 	in: {}{}{}[[,(comment)]]
 	in total: {amount}
 	out: {}{}{}[[,(comment)]]
@@ -111,15 +111,15 @@ Please not this draft doesn't include all possible error responses.
 
 	
 	/// demote a transaction (1 override)
-	demotetransaction {unique_id}
-	demotetransaction {unique_id} {buildreadydone}
+	demotetransaction {txuniqueid}
+	demotetransaction {txuniqueid} {buildreadydone}
 	
-	response {unique_id} {buildingreadydone}
+	response {txuniqueid} {buildingreadydone}
 
 	
 	/// exports a binary encoded transition (4 override)
-	exporttransaction {unique_id}
-	exporttransaction [[unique_id]]
+	exporttransaction {txuniqueid}
+	exporttransaction [[txuniqueid]]
 	exporttransaction {txid}
 	exporttransaction [[txid]]
 	
@@ -130,27 +130,27 @@ Please not this draft doesn't include all possible error responses.
 	inporttransaction {binary data}
 	inporttransaction {}[data](binary)
 	
-	response {}[[unique_id]]
+	response {}[[txuniqueid]]
 
 	
 	/// check and complete *build* translation (1 override)
-	reddytransaction {unique_id}
-	reddytransaction {}[[unique_id]]
+	reddytransaction {txuniqueid}
+	reddytransaction {}[[txuniqueid]]
 	
-	response {}[[unique_id]] {has made changesno changes needednot enough coinsinvalid transaction}
+	response {}[[txuniqueid]] {has made changesno changes needednot enough coinsinvalid transaction}
 
 	
 	/// sign *ready* transaction (6 override)
-	signtransaction {unique_id}
-	signtransaction {}[[unique_id]]
+	signtransaction {txuniqueid}
+	signtransaction {}[[txuniqueid]]
 	
 	// calls reddytransaction before hand if needed
-	signtransaction -r {unique_id}
-	signtransaction -r {}[[unique_id]]
+	signtransaction -r {txuniqueid}
+	signtransaction -r {}[[txuniqueid]]
 	
 	// sign a pre-signed/partial transaction (signs for owned private keys)
-	signtransaction -o {unique_id}
-	signtransaction -o {}[[unique_id]]
+	signtransaction -o {txuniqueid}
+	signtransaction -o {}[[txuniqueid]]
 	
 	response {}{}[failed](done)
 
@@ -160,21 +160,21 @@ Please not this draft doesn't include all possible error responses.
 	submittransaction -a
 	
 	// submits a single  'done'  transaction
-	submittransaction {unique_id}
+	submittransaction {txuniqueid}
 	
 	//  submits a list of 'done'  transaction
-	submittransaction {}[[unique_id]]
+	submittransaction {}[[txuniqueid]]
 	
 	response {}{}[[txid]]
 
 	
 	/// complete transaction from any stage and publish it (1 override)
-	completeransaction {unique_id}
+	completeransaction {txuniqueid}
 	
-	response {unique_id} {txid}
+	response {txuniqueid} {txid}
 
 	
 	/// delete a transaction from local client
-	droptransaction {unique_id}
+	droptransaction {txuniqueid}
 	
-	responce dropped: {unique_id}
+	responce dropped: {txuniqueid}
