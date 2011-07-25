@@ -37,9 +37,15 @@ Please not this draft doesn't include all possible error responses.
 
 ## commands:
 	
-	/// make a new transaction (1 override)
+	/// make a new transaction (6 override)
 	newtransaction
 	newtransaction {name}
+	
+	newtransaction {unique_id}
+	newtransaction {unique_id} {name}
+	
+	newtransaction {txid}
+	newtransaction {txid} {name}
 	
 	response {unique_id}
 
