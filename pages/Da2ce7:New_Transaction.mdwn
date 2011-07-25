@@ -9,6 +9,8 @@ States:
 *done* the transaction has been signed by and all the inputs are vaild.
 *submited* the transaction has successfully publicly announced.
 
+**This entire processing is lazy!  Bitcoin will automatically fill-out everything just as it dose at-the-moment with the *readytransaction* stage.**
+
 Please not this draft doesn't include all possible error responses.
 
 ## commands:
@@ -61,7 +63,9 @@ Please not this draft doesn't include all possible error responses.
 	
 	response {txnumber}
 	in: {}{}{}[[,(comment)]]
+	in total: {amount}
 	out: {}{}{}[[,(comment)]]
+	out total: {amount}
 	fee: {amount}
 	state: {building:ready:done:submitted}
 	
@@ -69,7 +73,9 @@ Please not this draft doesn't include all possible error responses.
 	
 	response {txid}
 	in: {}{}{}[[,(comment)]]
+	in total: {amount}
 	out: {}{}{}[[,(comment)]]
+	out total: {amount}
 	fee: {amount}
 	block: {block number}
 
