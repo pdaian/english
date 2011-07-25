@@ -1,0 +1,17 @@
+#Abstract
+Transactions could be treated as non atomic entities. 
+
+#Influences
+This page proposes a command line interface based to transactions based on the "Object" lifecycle from ObjectOriented programming. It also borrows from RESTful architecture design (get, put, update, delete, resources via URI). The "Functional design" influences are inspired by [[Da2ce7:New_Transaction]] and Erlang.
+
+#New Concepts
+Transactions can be represented as a list containing 
+
+#Interface
+
+* [[transaction_id]] create_transaction {params}
+	* atomic "new", "save","broadcast" operation
+	* if the transaction created by new_transaction {params} would be invalid, create_transaction will throw an error
+				* {transaction} new_transaction
+* {transaction} get_transaction {transaction_id}
+	* returns comma seperated ...
