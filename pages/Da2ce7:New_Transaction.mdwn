@@ -31,8 +31,8 @@ Please not this draft doesn't include all possible error responses.
 	
 	/// add outputs to the transaction (6 overrides)
 	/// add fee to transaction
-	addoutput {txnumber} {amount} {forced:suggested:optional}
-	addoutput {txnumber} {amount} {forced:suggested:optional} {comment}
+	addoutput {txnumber} {amount} {forcedsuggestedoptional}
+	addoutput {txnumber} {amount} {forcedsuggestedoptional} {comment}
 	
 	// add change address to transaction
 	addoutput {txnumber} {pubkey}
@@ -67,6 +67,7 @@ Please not this draft doesn't include all possible error responses.
 	out: {}{}{}[[,(comment)]]
 	out total: {amount}
 	fee: {amount}
+	size: {readytxn bit}
 	state: {building:ready:done:submitted}
 	
 	shownewtransaction {txid} (1 override)
@@ -77,51 +78,65 @@ Please not this draft doesn't include all possible error responses.
 	out: {}{}{}[[,(comment)]]
 	out total: {amount}
 	fee: {amount}
+	size: {readytxn bit}
 	block: {block number}
 
 	
 	/// demote a transaction (1 override)
 	demotetransaction {txnumber}
-	demotetransaction {txnumber} {build:ready:done}
+	demotetransaction {txnumber} {buildreadydone}
 	
-	response {txnumber} {building:ready:done}
+	response {txnumber} {buildingreadydone}
 
 	
-	/// exports a binary encoded transition (1 override)
+	/// exports a binary encoded transition (4 override)
 	exporttransaction {txnumber}
+	exporttransaction [[txnumber]]
 	exporttransaction {txid}
+	exporttransaction [[txid]]
 	
-	response {binary data base 64 (or 58?) encoded}
+	response {binary data}
 
 	
-	/// import a binary encoded transition
-	exporttransaction {binary data base 64 (or 58?) encoded}
+	/// import binary encoded transition(s) (1 override)
+	inporttransaction {binary data}
+	inporttransaction {}[data](binary)
 	
-	response {txnumber}
+	response {}[[txnumber]]
 
 	
-	/// check and complete *build* translation
+	/// check and complete *build* translation (1 override)
 	reddytransaction {txnumber}
+	reddytransaction {}[[txnumber]]
 	
-	response {txnumber} {has made changes:no changes needed:not enough coins:invalid transaction}
+	response {}[[txnumber]] {has made changesno changes needednot enough coinsinvalid transaction}
 
 	
-	/// sign *ready* transaction
-	signtransaction {txnumber}  (1 override)
+	/// sign *ready* transaction (4 override)
+	signtransaction {txnumber}
+	signtransaction {}[[txnumber]]
 	
 	// calls reddytransaction before hand if needed
 	signtransaction -r {txnumber}
+	signtransaction -r {}[[txnumber]]
 	
-	response {txnumber} {done:failed}
+	response {}{}[failed](done)
 
 	
-	/// publish a *done* transaction to peers
+	/// publish a *done* transaction to peers (2 override)
+	// submits all 'done'  transactions
+	submittransaction -a
+	
+	// submits a single  'done'  transaction
 	submittransaction {txnumber}
 	
-	response {txnumber} {txid}
+	//  submits a list of 'done'  transaction
+	submittransaction {}[[txnumber]]
+	
+	response {}{}[[txid]]
 
 	
-	/// complete transaction from any stage and publish it
+	/// complete transaction from any stage and publish it (1 override)
 	completeransaction {txnumber}
 	
 	response {txnumber} {txid}
