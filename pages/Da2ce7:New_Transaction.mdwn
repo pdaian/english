@@ -73,11 +73,11 @@ Please not this draft doesn't include all possible error responses.
 
 	
 	/// remove input or outpus (1 override)
-	remove {unique_id} {inid or outid}
-	remove {unique_id} {}[or outid](inid)
+	remove {unique_id} {unique_id}
+	remove {unique_id} {}[[unique_id]]
 	
-	response {unique_id} droped: {inid or outid}
-	response {unique_id} droped: {}[or outid](inid)
+	response {unique_id} droped: {unique_id}
+	response {unique_id} droped: {}[[unique_id]]
 
 	
 	/// prints out human readable information about the tranaction
