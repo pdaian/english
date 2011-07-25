@@ -31,11 +31,6 @@ On the buy-this link, perhaps we should also incorporate an optional transaction
 ## Tonal/Hex support
 Why is Tonal/Hex part of the spec?  If a couple users want to use a different unit system that is fine, but that doesn't mean we need to complicate the protocol for them.  Tonal already needs to be converted to normal BTC before transferring, why is that not part of this spec.  Also, jgarzik/others showed no interest in implementing URI in the main bitcoin client as long as there is tonal/hex support in the spec.  [BlueMatt](User:BlueMatt) 12:51, 20 April 2011 (GMT)
 
-## URI End / Ignored part
-For some QR applications it might come in handy to add some characters that are not part of the URI any more. Does a space end the URI? Can everything after a # be ignored?
-
-* An "end-of-URI" delimiter would be a QR-Code issue. I'm not sure how the existing implementations would handle a # either, though that seems like it could be logical. Might also try adding &dummy=... --[Luke-jr](User:Luke-jr) 13:25, 26 May 2011 (GMT)
-
 ## Incorrect Syntax
 The proposed syntax doesn't seem to capture the intent of the design.  Here's how it reads on the wiki page:
 
@@ -62,3 +57,10 @@ The BNF gets close to describing this, but also has issues.  The most glaring to
 In addition, the BNF includes a parameter named "version" (which is not in the earlier specification), and also doesn't state that parameters are separated by ampersands.
 
 [Jerfelix](User:Jerfelix) 04:09, 13 June 2011 (GMT)
+
+## URI End / Ignored part
+Edit by OP (phelix): Not necessary - found out a way how to realize this in the QR-Code world.
+
+For some QR applications it might come in handy to add some characters that are not part of the URI any more. Does a space end the URI? Can everything after a # be ignored?
+
+* An "end-of-URI" delimiter would be a QR-Code issue. I'm not sure how the existing implementations would handle a # either, though that seems like it could be logical. Might also try adding &dummy=... --[Luke-jr](User:Luke-jr) 13:25, 26 May 2011 (GMT)
