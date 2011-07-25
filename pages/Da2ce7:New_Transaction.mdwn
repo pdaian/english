@@ -1,13 +1,35 @@
-*make new transaction*
+*New Transaction* is an proposal for a new extendable method of creating transactions.<br />
+Each new transaction is defined by a random *txnumber* that should be unique globally.<br />
+Advanced functions, such as transaction scripts, and importing and exporting can appropriately be done using the group of supporting functions.
+
+### Transaction life-cycle
+Every New Transaction goes through the following steps. (not always in the same order)
+
+#### Build
+In this stage, a transaction is being built:<br />
+
+* Any feature of the transaction may be modified.
+* Users can add, remove, any input, output or script.
+
+#### Ready
+In this stage, only certain features may be modified:<br />
+
+* Only inputs may be changed. (is this correct, or will past signatures be destroyed if we change them?)
+* Any other attribute that doesn't effect the existing signatures.
+
+#### Done
+In this stage, the transaction is complete, and would be accepted by the network:
+
+* User still can add inputs, however all the outputs have already been fulfilled, these new inputs will be counted as fees.
+* After any change, a 'done' transaction gets automatically demoted to 'Ready' state.
+
+#### Submitted
+In this stage the transaction has been published to the bitcoin network and is in/or is awaiting to be included in a block.
+
+### Terms
 
 *txnumber* is a random string given to every transaction for identification purposes.<br />
 *pubkey* is assumed to be owned by the client that preforms the 'readying' of the transition (build > ready states)
-
-### States:
-*build* this state a transaction doesn't need to fulfil any rules. The user just defines what she wants in the transaction.<br />
-*ready* this state is after a client that has (or knows of the), private keys checks the transaction, checking and adding more inputs or change output if necessary.<br />
-*done* the transaction has been signed by and all the inputs are vaild.<br />
-*submited* the transaction has successfully publicly announced.
 
 **This entire processing is lazy!  Bitcoin will automatically fill-out everything just as it dose at-the-moment with the *readytransaction* stage.**
 
@@ -112,13 +134,17 @@ Please not this draft doesn't include all possible error responses.
 	response {}[[txnumber]] {has made changesno changes needednot enough coinsinvalid transaction}
 
 	
-	/// sign *ready* transaction (4 override)
+	/// sign *ready* transaction (6 override)
 	signtransaction {txnumber}
 	signtransaction {}[[txnumber]]
 	
 	// calls reddytransaction before hand if needed
 	signtransaction -r {txnumber}
 	signtransaction -r {}[[txnumber]]
+
+	// sign a pre-signed/partial transaction (signs for owned private keys)
+	signtransaction -o {txnumber}
+	signtransaction -o {}[[txnumber]]
 	
 	response {}{}[failed](done)
 
