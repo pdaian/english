@@ -2,7 +2,7 @@
 
 	commands:
 	
-	newtransction ({name})
+	newtransaction ({name})
 	response: {txnumber}
 	
 	addinput {txnumber} {txid} {pubkey} ({comment})
@@ -19,13 +19,13 @@
 	
 	addtxfee {txnumber} {amount} {forced:suggested:optional}
 	
-	setnewtransation {txnumber} {building:ready:done}
+	setnewtransaction {txnumber} {building:ready:done}
 	response: {txnumber} {building:ready:done:submitted}
 	
-	shownewtransation {txnumber}
+	shownewtransaction {txnumber}
 	response: {txnumber} in: {}{}[[amount]] out: {}{}[[amount]] fee: {txid} {amount} state: {building:ready:done:submitted}
 	
-	submitnewtransation {txnumber}
+	submitnewtransaction {txnumber}
 	response: {txnumber} {txid}
 	
 	clearnewtransaction {txnumber}
