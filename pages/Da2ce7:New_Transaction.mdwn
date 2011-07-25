@@ -45,8 +45,8 @@ Please not this draft doesn't include all possible error responses.
 
 	
 	/// add an input to the transaction. (1 overrides)
-	addinput {txnumber} {txid} {pubkey}
-	addinput {txnumber} {txid} {pubkey} {comment}
+	addinput {txnumber} {txid} {index}
+	addinput {txnumber} {txid} {index} {comment}
 	
 	response {txnumber} {inid}
 
