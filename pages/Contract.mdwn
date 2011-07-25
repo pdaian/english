@@ -118,13 +118,13 @@ The death condition is harder. As Bitcoin nodes cannot measure arbitrary conditi
 
 Here is an example. The man creates a transaction spending his output, and sets the output to:
 
-	2 <oracle pubkey> <grandson pubkey> 2 CHECKMULTISIGVERIFY <hash> OP_TRUE
+	<oracle pubkey> CHECKSIGVERIFY <hash> OP_TRUE
 
-This is the oracle script. It has an unusual form - after signature checking it pushes data to the stack then does not use it. The first pubkey is published on the oracles website and is well known. The hash is set to be the hash of the user-provided expression stating that he has died, written in a form the oracle knows how to evaluate. For example it could be the hash of the string:
+This is the oracle script. It has an unusual form - after signature checking it pushes data to the stack then does not use it. The pubkey is published on the oracles website and is well known. The hash is set to be the hash of the user-provided expression stating that he has died, written in a form the oracle knows how to evaluate. For example it could be the hash of the string:
 
-	has_died('john smith', born_on=1950/01/02)
+	if (has_died('john smith', born_on=1950/01/02)) return 1JxgRXEHBi86zYzHN2U4KMyRCg4LvwNUrp;
 
-This little language is hypothetical, it'd be defined by the oracle and could be anything.
+This little language is hypothetical, it'd be defined by the oracle and could be anything. The return value is an address owned by the grandson.
 
 Once more, the man creates this transaction but gives it directly to his grandson instead of broadcasting it. He also provides the expression that is hashed into the transaction and the name of the oracle that can unlock it.
 
@@ -132,27 +132,29 @@ It is used in the following algorithm:
 
 1. The oracle accepts a measurement request. The request contains the user-provided expression, a copy of the output script and a partially complete transaction provided by the user. Everything in this transaction is finished except for the scriptSig, which contains just one signature (the grandsons) - not enough to unlock the output.
 1. The oracle checks the user-provided expression hashes to the hash in the provided output script. If it doesn't, it returns an error.
-1. The oracle evaluates the expression. If the result is not true, the oracle returns an error.
+1. The oracle evaluates the expression. If the result is not the destination address of the output, it returns an error.
 1. Otherwise the oracle signs the transaction and inserts the signature into the scriptSig. Note that when signing a Bitcoin transaction, the input script is set to the connected output script. The reason is that when OP_CHECKSIG runs, the script containing the opcode is put in the input being evaluated, _not_ the script containing the signature itself. The oracle has never seen the full output it is being asked to sign, but it doesn't have to. It knows the output script, its own public key, and the hash of the user-provided expression, which is everything it needs to check the output script and finish the transaction.
 1. The oracle returns the newly signed, unbroadcast transaction to the user.
 
 If and only if the oracle agrees the man is dead, the grandson can broadcast the two transactions (the contract and the claim) and take the coins.
 
-The trust relationships in this scheme work as follows. The man does not need to trust the grandson to take the inheritance before he is ready. The son does not need to trust the oracle. It has not seen the transaction the grandson is trying to unlock, as it was never broadcast, thus, the oracle cannot hold the grandson to ransom because it does not know if the transaction it's signing for even exists. People can and should regularly challenge the oracle in an automated fashion to ensure it always outputs what is expected. The challenges can be done without spending any coins because the tx to be signed can and should be invalid (ie, connected to transactions that don't exist).
+The oracle does not need to be highly trusted. It has not seen the transaction the grandson is trying to unlock, as it was never broadcast, thus, the oracle cannot hold the grandson to ransom because it does not know if the transaction it's signing for even exists. People can and should regularly challenge the oracle in an automated fashion to ensure it always outputs what is expected. The challenges can be done without spending any coins because the tx to be signed can be invalid (ie, connected to transactions that don't exist). The oracle has no way to know if a request to be signed is random or real. CHECKSIGVERIFY can be replaced with CHECKMULTISIGVERIFY to allow for n-of-m oracles if need be.
 
-Oracles can potentially evaluate anything, yet the output script form in the block chain can always be the same. Consider the following oracle expressions:
+Oracles can potentially evaluate anything, yet the output script form in the block chain can always be the same. Consider the following possibilities:
 
 	today() == 2011/09/25 && exchange_rate(mtgoxUSD) >= 12.5 && exchange_rate(mtgoxUSD) <= 13.5
 	Require exchange rate to be between two values on a given date
 	
 	google_results_count(site:www.google.com/hostednews 'Mike Hearn' olympic gold medal) > 0
 	A bet on me doing something that I will never actually do
+	
+	// Choose between one of two winners of a bet on the outcome of the Eurovision song contest.
+	if (eurovision_winner() == 'Azerbaijan') 
+	return 1Lj9udBVDwptFffGSJSC2sohCfudQgSTPD; 
+	else 
+	return 1JxgRXEHBi86zYzHN2U4KMyRCg4LvwNUrp;
 
-The notion of using the output script to hold commands for the oracle can be extended to route value flexibly:
-
-	<oracle pubkey> CHECKSIGVERIFY <hash> 3 <key1> <key2> <key3> OP_TRUE
-
-The expression can then yield an integer instead of a boolean, and the oracle checks that the output is of the correct form before signing the transaction.
+The conditions that control whether the oracle signs can be arbitrarily complex, but the block chain never needs to contain more than a single hash.
 
 ##See Also
 
