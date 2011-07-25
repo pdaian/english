@@ -1,0 +1,32 @@
+*make new transaction*
+
+commands:
+
+## buildnewtransction {name}
+response: {txnumber}
+
+## addinput {txnumber} {txid} {pubkey} ({comment})
+response:  {txnumber} {inid}
+
+## addoutput {txnumber} {address} {amount} ({comment})
+response:  {txnumber} {outid}
+
+## addoutputlist {txnumber} list:({address} {amount})
+response: {txnumber}  list:{outid}
+
+## remove: {txnumber} list:{inid} list:{outid}
+response: {txnumber} droped: list:{inid} list:{outid} 
+
+## addtxfee {txnumber} {amount} {forced:suggested:optional}
+
+## setnewtransation {txnumber} {building:ready:done}
+response: {txnumber} {building:ready:done:submitted}
+
+## shownewtransation {txnumber}
+response: {txnumber} in: list:({pubkey} {amount}) out: list:({address} {amount}) fee: {txid} {amount} state: {building:ready:done:submitted}
+
+## submitnewtransation {txnumber}
+response: {txnumber} {txid}
+
+## clearnewtransaction {txnumber}
+responce: dropped: {txnumber}
