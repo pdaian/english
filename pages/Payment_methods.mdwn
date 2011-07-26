@@ -11,7 +11,7 @@ style="text-align: center; background-color: #f0f0ff;"|Method |Currencies |Hardn
 |[[PayPal]]- regular |Most world currencies |0 |Extremely easy to charge back. Also, since trading bitcoin is against their ToS, good luck disputing the chargeback. Do not use.
 |Paypal - personal |Most world currencies |1-5 |If funded via bank, requires person to dispute the ACH, which may be more arduous. If funded via credit card, requires person to dispute the CC charge, which is pretty easy. Since there's no way to tell what the funding source was... it's a gamble. Also, if paypal account is reported stolen, paypal will probably attempt to claw back the money.
 |Paypal - masspay |Most world currencies |7 |Mass pay requires funding from paypal balance. Generally much harder to reverse, but not impossible. Probably your biggest worry here is an actual stolen account.
-|[[Dwolla]]|USD |7? |There hasn't been much experience trying to chargeback, but since it is funded via ACH, it should be possible to dispute from the side of the funding bank.  Dwolla will investigate the dispute but there have not yet been any reports of any disputes (1.1).
+|[[Dwolla]]|USD |3? |Since Dwolla amounts are funded via ACH, Dwolla will reverse payments if the funds were the result of fraud.  Additionally, Dwolla's Terms and Conditions now state that peyments received are subject to chargebacks as the result of their internal dispute resolution processK (1.1).
 |[[Serve]]|USD |0 |Extremely easy to charge back.
 |[[AlertPay]]|Many currencies |1 |Because payment may be made using a credit card a charge back is easy.  Doing so hoewver will cause the account to be closed.
 |[[Moneybookers]]||0 |Chargebacks are possible.
@@ -20,13 +20,14 @@ style="text-align: center; background-color: #f0f0ff;"|Method |Currencies |Hardn
 |Money Order ||5 |A money order can be lost or stolen and there are procedures for reporting that.  Losses could occur even weeks after the check has cleared (1.3).
 |[[MoneyPak]]|USD |10 |MoneyPaks are irrevocable.
 |Personal check |Any currency |5 |At least in the USA, once a check clears, it is hard to claw back except when fraud is alleged.
-|Bank ACH |USD |8 |Though not very easily, ACH can actually be clawed back.
+|Bank ACH |USD |5 |Though not very easily, ACH can actually be clawed back if the transaction was the result of fraud.
 |Euro SEPA transfer |||
 |Cash in mail |Any currency |10 |No chargebacks, obviously. Just check for counterfeit paper. 
 |Credit card |Any currency |0 |Dead easy to charge back. Do not use.
 |[[TransferWise]]|GBP to EUR ||
 |Intra-bank transfer |||
-|[[Popmoney]]ACH |||
+|[[Popmoney]]ACH |USD |5 |Since Popmoney transfers occur via ACH, Popmoney will reverse payments if the funds were the result of fraud. 
+|[[ING_Person2Person]]|USD |5 |Since Person2Person transfers occur via ACH, ING will reverse payments if the funds were the result of fraud. 
 |Chase QuickPay |USD |3 |Chase has reversed legitimate transactions as the result of anti-fraud measures (1.4)requiring the sender to be trusted to re-pay.  The sender can also request a reversal after submitting an affidavit alleging that fraud occurred.
 
 
@@ -38,7 +39,7 @@ style="text-align: center; background-color: #f0f0ff;"|Method |Currencies |Hardn
 
 ##References
 
-1.1: [@MtGox 4,401 Dwolla transactions. Not a single problem!](http://twitter.com/#!/MtGox/status/75829234349768705)  
+1.1: [Dwolla's New Terms: "receiving party may be subject to chargebacks"](http://www.bitcoinmoney.com/post/8067352221)  
 1.2: [How to Stop Payment Via Western Union](http://www.ehow.com/how_8059315_stop-payment-via-western-union.html)  
 1.3: [How to Stop Payment on a Money Order](http://www.ehow.com/how_7319971_stop-payment-money-order.html)  
 1.4: [Chase QuickPay NOT RECOMMENDED](http://forum.bitcoin.org/index.php?topic=11494.0)
