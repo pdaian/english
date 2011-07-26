@@ -121,7 +121,7 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 ####Ticker
 <source lang="javascript">
 {
-	"channel":"d5f06780-30a8-4a48-a2f8-ed181b4a13f",
+	"channel":"d5f06780-30a8-4a48-a2f8-7ed181b4a13f",
 	"op":"private",
 	"origin":"broadcast",
 	"private":"ticker",
@@ -141,8 +141,8 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 
 |Name |Value
 |---|---
-|buy |lowest bid as float
-|sell |highest ask as float
+|buy |highest bid as float
+|sell |lowest ask as float
 |high |maximum rate since last close as float
 |low |minimum rate since last close as float
 |vol |traded volume since last close
