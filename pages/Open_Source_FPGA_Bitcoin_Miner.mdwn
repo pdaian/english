@@ -17,7 +17,7 @@ The clock needs to be assigned to a pin. If the clock speed is changed, you need
 
 On linux you need to set udev rules for the UsbBlaster cable to work. Under arch these are under /etc/udev/rules.d/ add a file called 51-altera.rules. 
 
-				1. altera usb blaster
+	#####altera usb blaster
 BUS=="usb", SYSFS{idVendor}=="09fb", SYSFS{idProduct}=="6001", MODE="0666", SYMLINK+="usbblaster"
 
 
