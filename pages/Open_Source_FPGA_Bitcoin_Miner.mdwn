@@ -1,6 +1,10 @@
 A miner that makes use of a compatible FPGA Board.  The miner works either in a [[mining pool|Pooled_Mining]] or solo.
 
-This is the first open source FPGA Bitcion miner.  It was released on May 20, 2011 (1.1).
+This is the first open source FPGA Bitcoin miner.  It was released on May 20, 2011 (1.1).
+
+## Software needed 
+
+Currently programming and running the FPGAminer code requires Quartus II for Altera devices and Xilinx ISE Webpack for Xilinx devices.  Quartus is 32bit only.  The free ISE Webpack does not work on devices larger then Spartan6 LX75.  
 
 ## Compiling 
 
@@ -11,8 +15,25 @@ The clock needs to be assigned to a pin. If the clock speed is changed, you need
 
 ## Programming the FPGA 
 
+On linux you need to set udev rules for the UsbBlaster cable to work. 
+
+1. altera usb blaster
+BUS=="usb", SYSFS{idVendor}=="09fb", SYSFS{idProduct}=="6001", MODE="0666", SYMLINK+="usbblaster"
+
+
+
 ### Altera
 Copy the .sof file from the quartus output directory under your project directory to the scripts/program directory and execute <path>/quartus_stp -t program.tcl, then select the device you want programmed and then the sof file you moved to the directory. 
+
+### Using urjtag 
+
+(unconfirmed to work, lights blink though)
+
+$ sudo jtag
+> cable UsbBlaster
+> bsdl path /usr/share/urjtag/bsdl/EP4CE22F17C6_pre.bsd 
+> detect
+> svf fpgaminer.svf
 
 ## Mining
 
@@ -34,6 +55,8 @@ start_insystem_source_probe -hardware_name "USB-Blaster \[[1-4.6\]]" -device_nam
 To point to the correct device.  The correct data for this can be found with jtagconfig --enum.  Do not forget to add 0x to the beginning of the hex code of the device that you get with jtagconfig. 
 
 Then change the connection details marked with "EDIT THESE" 
+
+Linux tclcurl is not included in the directory, and on some distros like Arch it does not exist in the repositories.  The original authors site is down, but you can get it from debian repositories.  Then just unpack and copy to the same directory as mine.tcl. Remember to get bin32 version, since quartus is 32bit only. 
 
 ##See Also
 
