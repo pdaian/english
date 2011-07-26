@@ -2,6 +2,39 @@ A miner that makes use of a compatible FPGA Board.  The miner works either in a 
 
 This is the first open source FPGA Bitcion miner.  It was released on May 20, 2011 (1.1).
 
+## Compiling 
+
+# Altera
+To get the provided code to compile on a smaller device, you need to set CONFIG_LOOP_LOG2 to a value between 0-5.  Higher values shrink the size in so that 4 does approx. 12000 LUTs large program, while 0 is around 90000 LUTs.  CONFIG_LOOP_LOG2 is set in the file fpgaminer.qsf.  The fpgaminer_top.v file also has a similar setting, but it is an ifdef/it does not get set from there if the setting exists in the qsf.  
+
+The clock needs to be assigned to a pin. If the clock speed is changed, you need to do something with PLLs. (both unconfirmed, someone with more info?)
+
+## Programming the FPGA 
+
+# Altera 
+Copy the .sof file from the quartus output directory under your project directory to the scripts/program directory and execute <path>/quartus_stp -t program.tcl, then select the device you want programmed and then the sof file you moved to the directory. 
+
+## Mining
+
+# Altera 
+
+To mine on a device other then DE115, you need to edit mine.tcl (under scripts/mine) and set the following bits to the correct values.
+
+	proc find_instances {} {
+	global instances
+	foreach instance [[1-4.6\]]" -device_name "@1: EP3C25/EP4CE22 (0x020F30DD)" {
+	dict set instances [$instance 3](lindex) [$instance 0](lindex)
+	}
+}
+
+And 
+
+start_insystem_source_probe -hardware_name "USB-Blaster \[[1-4.6\]]" -device_name "@1: EP3C25/EP4CE22 (0x020F30DD)"
+
+To point to the correct device.  The correct data for this can be found with jtagconfig --enum.  Do not forget to add 0x to the beginning of the hex code of the device that you get with jtagconfig. 
+
+Then change the connection details marked with "EDIT THESE" 
+
 ##See Also
 
 * [[Mining Pool|Pooled_Mining]]
