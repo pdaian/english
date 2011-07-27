@@ -10,7 +10,10 @@ You can connect to these nodes with the *-addnode=ip* switch instead of the usua
 
 If the node IP is not fixed (see "Fixed" column), you will have to resolve the node's name (first column) each time the IP changes. Some nodes may have their ip change once a day, some others once a month, and some others may stay on the same IP for years. Still, as long as the IP is not fixed, there is no guarantee it will stay the same.
 
-The [[Original_Bitcoin_client]] do not support hostnames to the *-addnode* parameter, so you must do the resolving part for it. For example on linux:
+In order to enable hostname lookups for the *-addnode* and *-connect* parameters, you must additionally provide the *-dns* parameter. Example:
+	bitcoind -dns -addnode=bitcoin.es
+
+Versions prior to 0.3.22 do not support hostnames to the *-addnode* parameter, so you must do the resolving part for it. For example on linux:
 	bitcoind -addnode=$(dig +short bitcoin.es)
 
 ### IP Transactions
