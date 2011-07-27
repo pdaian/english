@@ -139,7 +139,7 @@ dc db 8a 01 6b 49 84 0f 8c 53 bc 1e b6 8a 38 2e 97 b1 48 2e ca d7 b1 48 a6 90 9a
 
 To understand where that raw dump has come from, it may be useful to examine tests/ec-key.cpp in libbitcoin,
 
-libbitcoin has a unit test under tests/ec-key.cpp (make ec-key && ./bin/tests/ec-key). There is also a working OP_CHECKSIG implementation in src/script.cpp under script::op_checksig()
+libbitcoin has a unit test under tests/ec-key.cpp (make ec-key && ./bin/tests/ec-key). There is also a working OP_CHECKSIG implementation in src/script.cpp under script::op_checksig(). See also the unit test: tests/script-test.cpp
 
 <source lang="cpp">
 [[code]]#include <iostream>
