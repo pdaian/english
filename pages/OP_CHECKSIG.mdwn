@@ -67,6 +67,8 @@ Taking the first transaction in Bitcoin which is in block number 170, we would g
 * http://blockexplorer.com/block/00000000d1145790a8694403d4063f323d499e655c83426834d4ce2f8dd4a2ee
 * http://blockexplorer.com/tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16
 
+See also [libbitcoin](https://gitorious.org/libbitcoin/libbitcoin) for code samples.
+
 <pre>
 01 00 00 00              version
 01                       number of inputs (var_uint)
@@ -137,9 +139,9 @@ dc db 8a 01 6b 49 84 0f 8c 53 bc 1e b6 8a 38 2e 97 b1 48 2e ca d7 b1 48 a6 90 9a
 43 f6 56 b4 12 a3 ac 00 00 00 00 01 00 00 00
 </pre>
 
-To understand where that raw dump has come from, it may be useful to examine tests/ec-key.cpp in libbitcoin,
+To understand where that raw dump has come from, it may be useful to examine tests/ec-key.cpp in [libbitcoin](https://gitorious.org/libbitcoin/libbitcoin),
 
-libbitcoin has a unit test under tests/ec-key.cpp (make ec-key && ./bin/tests/ec-key). There is also a working OP_CHECKSIG implementation in src/script.cpp under script::op_checksig(). See also the unit test: tests/script-test.cpp
+[libbitcoin](https://gitorious.org/libbitcoin/libbitcoin) has a unit test under tests/ec-key.cpp (make ec-key && ./bin/tests/ec-key). There is also a working OP_CHECKSIG implementation in src/script.cpp under script::op_checksig(). See also the unit test: tests/script-test.cpp
 
 <source lang="cpp">
 [[code]]#include <iostream>
