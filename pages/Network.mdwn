@@ -47,13 +47,7 @@ At the start of a connection, you send a *getblocks* message containing the hash
 
 You choose which peers to connect to by sorting your address database by the time since you last saw the address and then adding a bit of randomization.
 
-Bitcoin has two methods of finding peers.
-
-### IRC
-
-Bitcoin joins the #bitcoin channel on irc.lfnet.org. Your nick is set to an encoded form of your IP address. By decoding all the nicks of all users on the channel, you get a list of all IP addresses currently connected to Bitcoin.
-
-For hosts that cannot make outbound connections on port 6667, the lfnet servers are also [[listening on port 7777|FAQ#Do_I_need_to_configure_my_firewall_to_run_bitcoin?]].
+Bitcoin has three methods of finding peers.
 
 ### Addr
 
@@ -62,6 +56,16 @@ The *addr* messages described above create an effect similar to the IRC bootstra
 Bitcoin comes with a list of addresses known as "seed nodes". If you are unable to connect to IRC and you've never connected to the network before, the client will update the address database by connecting to one of the nodes from this list.
 
 The -addnode command line option can be used to manually add a node.  The -connect option can force bitcoin to only connect to a specific node.
+
+### DNS
+
+Bitcoin looks up the IP Addresses of several host names and adds those to the list of potential addresses.  This is intended to replace the IRC seeding mechanism in future releases.
+
+### IRC
+
+Bitcoin joins a random channel between #bitcoin00 and #bitcoin99 on irc.lfnet.org. Your nick is set to an encoded form of your IP address. By decoding all the nicks of all users on the channel, you get a list of all IP addresses currently connected to Bitcoin.
+
+For hosts that cannot make outbound connections on port 6667, the lfnet servers are also [[listening on port 7777|FAQ#Do_I_need_to_configure_my_firewall_to_run_bitcoin?]].
 
 ## Heartbeat
 
