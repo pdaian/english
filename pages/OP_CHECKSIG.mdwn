@@ -144,8 +144,8 @@ To understand where that raw dump has come from, it may be useful to examine tes
 [libbitcoin](https://gitorious.org/libbitcoin/libbitcoin) has a unit test under tests/ec-key.cpp (make ec-key && ./bin/tests/ec-key). There is also a working OP_CHECKSIG implementation in src/script.cpp under script::op_checksig(). See also the unit test: tests/script-test.cpp
 
 <source lang="cpp">
-[[code]]#include <iostream>
 
+1. include <iostream>
 1. include <iomanip>
 1. include <bitcoin/util/serializer.hpp>
 1. include <bitcoin/util/elliptic_curve_key.hpp>
