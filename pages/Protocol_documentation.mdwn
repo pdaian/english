@@ -96,9 +96,9 @@ Integer can be encoded depending on the represented value to save space.  Variab
 
 
 |< 0xfd |1 |uint8_t
-|<= 0xffff |3 |0xfd + uint16_t
-|<= 0xffffffff |5 |0xfe + uint32_t
-|- |9 |0xff + uint64_t
+|<= 0xffff |3 |0xfd followed by the length as uint16_t
+|<= 0xffffffff |5 |0xfe followed by the length as uint32_t
+|- |9 |0xff followed by the length as uint64_t
 
 
 ### Variable length string
