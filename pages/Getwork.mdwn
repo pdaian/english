@@ -11,3 +11,29 @@ If that meets the [[difficulty]], you win (generated a [[block|Blocks]])!
 If not, increment the [[Nonce]] that is a number stored in portion of the data that starts 640 bits in (bytes 76 to 79), and try again.
 
 If the incremented portion overflows, get new work.
+
+##Extensions
+
+When getting new work, miners should send a X-Mining-Extensions header with a space-delimited list of supported extensions:
+
+### rollntime
+Iff the getwork response includes a "X-Roll-NTime" header, the miner may (within reason) change the ntime field in addition to the nonce.
+The server may send a value of "expire=<N>", where <N> is an integer number of seconds it is willing to accept the other headers for.
+
+Due to network latency, [Luke-Jr](User:Luke-jr) recommends the following design for miners:
+
+1. getwork, record <duration of getwork request> and <time+getwork expire> , and begin mining on it
+1. every second, update ntime and reset nonce to <first nonce>
+1. when a share is found, submit it. record the duration of the submit request.
+1. if a share submission fails due to a network error, save the share and retry it a second later the same as step 3; also immediately (regardless of how long the current work has been active) begin trying to get new work (which is treated the same as step 5+6 when done)
+1. when current time is past <time@1+getwork expire> minus <duration of longest getwork/submit since we started this work> times 4, begin a request for new work
+1. when new work arrives, discard old work and begin using the new work.
+
+### noncerange
+In addition to X-Mining-Extensions, the miner should also send X-Mining-Hashrate, with an integer value of expected hashrate measured in full hashes per second.
+The server may then add an additional field to the JSON response, "noncerange", which contains two 32-bit integers specifying the starting and final nonce the miner is allowed to scan.
+While both values are (as with the rest of the response) big endian, miners should iterate over the range in little endian (presently this is subject to revision).
+The miner should implement rollntime by starting from the first nonce every second.
+
+Example:
+	"noncerange": "000000001fffffff"
