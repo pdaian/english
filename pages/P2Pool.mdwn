@@ -1,5 +1,7 @@
 P2Pool is a decentralized pool that works by creating a P2P network of miner nodes. 
 
+A P2Pool node process is run locally and the miner daemon is then configured to connect to that local P2Pool node.
+
 These nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself. There is no central point of failure, making it DoS resistant.
 
 P2Pool shares form a "sharechain" with each share referencing the previous share's hash. Each share contains a standard Bitcoin block header, some P2Pool-specific data that is used to compute the generation transaction (total subsidy, payout script of this share, a nonce, the previous share's hash, and the current target for shares), and a merkle branch linking that generation transaction to the block header's merkle hash.
