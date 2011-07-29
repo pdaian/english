@@ -19,6 +19,7 @@ When getting new work, miners should send a X-Mining-Extensions header with a sp
 ### rollntime
 Iff the getwork response includes a "X-Roll-NTime" header, the miner may (within reason) change the ntime field in addition to the nonce.
 The server may send a value of "expire=<N>", where <N> is an integer number of seconds it is willing to accept the other headers for.
+Note that if the "X-Roll-NTime" header is NOT present in a work response, that work may NOT be rolled, even if earlier work from the same server allowed it.
 
 Due to network latency, [Luke-Jr](User:Luke-jr) recommends the following design for miners:
 
