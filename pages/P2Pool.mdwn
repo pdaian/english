@@ -2,6 +2,8 @@ P2Pool is a decentralized pool that works by creating a P2P network of miner nod
 
 These nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself. There is no central point of failure, making it DoS resistant.
 
+Miners are configured to connect to a P2Pool node that can be run locally, alongside the miner.
+
 ## Overview
 
 P2Pool shares form a "sharechain" with each share referencing the previous share's hash. Each share contains a standard Bitcoin block header, some P2Pool-specific data that is used to compute the generation transaction (total subsidy, payout script of this share, a nonce, the previous share's hash, and the current target for shares), and a merkle branch linking that generation transaction to the block header's merkle hash.
@@ -158,6 +160,11 @@ The *mode* is 0 for low-bandwidth mode, which sends the hash of a share first be
 
 * Proportional, 0.5% fee. Transaction fees shared.
 
+##History
+
+This project was announced on June 17, 2011 (19.1).
+
+The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (19.2).
 
 ##See Also
 
@@ -169,6 +176,8 @@ The *mode* is 0 for low-bandwidth mode, which sends the hash of a share first be
 
 ##References
 
+19.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
+19.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
 
 
 [[!tag "Pool_Operators"]]
