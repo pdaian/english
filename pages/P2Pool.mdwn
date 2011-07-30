@@ -6,7 +6,7 @@ Join #p2pool channel on freenode to keep up with the latest talk or for help to 
 
 Donation address: *1JvZX38TZu6Jqo7Ce9T7j21yJE11t7m4Z2*
 
-# Overview
+## Overview
 
 P2Pool shares form a "sharechain" with each share referencing the previous share's hash. Each share contains a standard Bitcoin block header, some P2Pool-specific data that is used to compute the generation transaction (total subsidy, payout script of this share, a nonce, the previous share's hash, and the current target for shares), and a merkle branch linking that generation transaction to the block header's merkle hash.
 
@@ -14,7 +14,7 @@ The chain continuously regulates its target to keep generation around one share 
 
 Unlike Bitcoin, nodes do not know the entire chain - instead they only hold the last 17280 shares (the last day's worth). In order to prevent an attacker from working on a chain in secret and then releasing it, overriding the existing chain, chains are judged by how much work they have since a point in the past. To ascertain that the work has been done since that point, nodes look at the Bitcoin blocks the shares reference, establishing a provable timestamp. (If a share points to a block, it was definitely made after that block was made.)
 
-## Payout logic
+### Payout logic
 
 Each share contains a generation transaction that pays out to the previous n shares, where n is the number of shares whose total work is equal to 3 times the average work required to solve a block, or 17280, whichever is smaller. Payouts are weighted based on the amount of work each share took to solve - proportional to the p2pool difficulty at that time.
 
@@ -38,17 +38,17 @@ Follow these steps to join the pool:
 * Run a miner daemon with long polling connecting to 127.0.0.1 (or the IP of the host running p2pool if you're mining remotely) on port 9332 with any username and password
 	* poclbm.exe http://a:b@127.0.0.1:9332
 
-## Miners
+### Miners
 
 This is all for the latest p2pool version, it includes several new workarounds.
 
-### Perfect
+#### Perfect
 
 **cgminer** (with the latest p2pool) works perfectly. A workaround was needed to get long polling to work, but it has no fixed long polling delay.
 
 **ufasoft**, as far as I can tell by looking at the source but not actually running it (I couldn't get it to compile) should work perfectly too.
 
-### Need patch to reduce stales
+#### Need patch to reduce stales
 
 **DiabloMiner** has a bug where it waits half a second after receiving a long polling response. There is a 20% chance that a p2pool share will be generated in that window, resulting in all hashing until the next getwork being useless.
 
@@ -70,11 +70,11 @@ No binary as of yet.
 **Phoenix** has a similar bug (waiting a full second).
 Patch against SVN r112: http://im.forre.st/pb/74595264.txt
 
-### Bad
+#### Bad
 
 **puddinpop's RPC Miners** don't have long polling and so will not work at all.
 
-## Option Reference
+### Option Reference
 <pre>
 usage: run_p2pool.py [-h] [--version] [--testnet] [--debug] [-a ADDRESS]
                      [--p2pool-port PORT] [-n ADDR[:PORT]] [-l] [-w PORT]
@@ -129,7 +129,7 @@ bitcoind interface:
                         bitcoind RPC interface password
 </pre>
 
-# Protocol description
+## Protocol description
 
 P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same framing (prefix, command, length, checksum, payload) and similar commands:
 
@@ -146,21 +146,21 @@ P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same 
 
 The *mode* is 0 for low-bandwidth mode, which sends the hash of a share first before sending the entire share, or 1 for low-latency (default) mode, which forwards the entire (~170 byte) share always. The two nodes on either side of a connection use the minimum of their two preferences for that connection.
 
-#Reward distribution
+##Reward distribution
 
 * Proportional, 0.5% fee. Transaction fees shared.
 
-#See Also
+##See Also
 
 * [[Comparison_of_mining_pools]]
 * [[Pooled_Mining]]
 
-#External Links
+##External Links
 
 * [P2Pool forum](https://forum.bitcoin.org/index.php?topic=18313.0)
 * [GitHub project page](https://github.com/forrestv/p2pool)
 
-#References
+##References
 
 
 
