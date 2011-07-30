@@ -1,43 +1,149 @@
-P2Pool is a decentralized pool that works by creating a P2P network of miner nodes. 
+P2Pool is a decentralized pool that works by creating a P2P network of miner nodes. These nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself. There is no central point of failure, making it DoS resistant.
 
-A P2Pool node process is run locally and the miner daemon is then configured to connect to that local P2Pool node.
+[GitHub project page](https://github.com/forrestv/p2pool)  [Bitcoin Forum thread](https://forum.bitcoin.org/index.php?topic=18313.0)
 
-These nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself. There is no central point of failure, making it DoS resistant.
+Join #p2pool channel on freenode to keep up with the latest talk.
+
+Donation address: *1JvZX38TZu6Jqo7Ce9T7j21yJE11t7m4Z2*
+
+# Idea
 
 P2Pool shares form a "sharechain" with each share referencing the previous share's hash. Each share contains a standard Bitcoin block header, some P2Pool-specific data that is used to compute the generation transaction (total subsidy, payout script of this share, a nonce, the previous share's hash, and the current target for shares), and a merkle branch linking that generation transaction to the block header's merkle hash.
 
 The chain continuously regulates its target to keep generation around one share every five seconds.
 
-Unlike Bitcoin, nodes do not know the entire chain - instead they only hold the last 17280 shares (the last day's worth). In order to prevent an attacker from working on a chain in secret and then releasing it, overriding the existing chain, chains are judged by how much work they have since a point in the past. To ascertain that the work has been done since that point, nodes look at the Bitcoin blocks shares reference, establishing a provable timestamp. (If a share points to a block, it was definitely made after that block was made.)
+Unlike Bitcoin, nodes do not know the entire chain - instead they only hold the last 17280 shares (the last day's worth). In order to prevent an attacker from working on a chain in secret and then releasing it, overriding the existing chain, chains are judged by how much work they have since a point in the past. To ascertain that the work has been done since that point, nodes look at the Bitcoin blocks the shares reference, establishing a provable timestamp. (If a share points to a block, it was definitely made after that block was made.)
 
-##Payout logic
+## Payout logic
 
 Each share contains a generation transaction that pays out to the previous n shares, where n is the number of shares whose total work is equal to 3 times the average work required to solve a block, or 17280, whichever is smaller. Payouts are weighted based on the amount of work each share took to solve - proportional to the p2pool difficulty at that time.
+
+The block reward (currently 50BTC) and the transaction fees are combined and apportioned according to these rules:
 
 A subsidy of 0.5% is sent to the node that solved the block in order to discourage not sharing solutions that qualify as a block. (An evil miner could withhold the block, thereby preventing anybody from getting paid. He can NOT redirect the payout to himself.) In addition, a subsidy of 0.5% is kept as a fee. The remaining 99% is distributed evenly to miners based on work done recently.
 
 In the event that a share qualifies as a block, this generation transaction is exposed to the Bitcoin network and takes effect, transferring each node its payout.
 
-##How-to
-See [Joining the pool](http://wiki.bitcoin-otc.com/wiki/P2Pool#Joining_the_pool) on the project's wiki page for more details.
+# Protocol description
 
-Support and information about latest developments can be found on the #p2pool IRC channel on freenode.
+P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same framing (prefix, command, length, checksum, payload) and similar commands:
 
-##History
+* **version** - sent to establish a connection - contains (*version*, *services*, *addr_to*, *addr_from*, *nonce*, *sub_version*, *mode*, *best_share_hash*)
+* **setmode** - sent to update the *mode* sent in the **version** message - contains (*mode*)
+* **ping** - sent to keep connection alive - contains ()
+* **addrme** - request that the receiving node send out an addr for the sending node - contains (*port*)
+* **addrs** - broadcast list of nodes' addresses - contains (*addrs*)
+* **getaddrs** - request that the receiving node send *count* addrs - contains (*count*)
+* **getshares** - request that the receiving node send the shares referenced by *hashes* and *parents* of their parents, stopping at any share referenced by *stops* - contains (*hashes*, *parents*, *stops*)
+* **share0s** - broadcast message of the hashes of shares - contains (*hashes*)
+* **share1as** - broadcast message of the contents of shares that do not qualify as bitcoin blocks - contains (*share1as*)
+* **share1bs** - broadcast message of the contents of shares that qualify as bitcoin blocks - contains (*share1bs*)
 
-This project was announced on June 17, 2011 (4.1).
+The *mode* is 0 for low-bandwidth mode, which sends the hash of a share first before sending the entire share, or 1 for low-latency (default) mode, which forwards the entire (~170 byte) share always. The two nodes on either side of a connection use the minimum of their two preferences for that connection.
 
-The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (4.2).
+# Joining the pool
 
-##External Links
+Follow these steps to join the pool:
 
-* [P2Pool](https://github.com/forrestv/p2pool) project on GitHub
-* [P2Pool wiki](http://wiki.bitcoin-otc.com/wiki/P2Pool)
+* Run bitcoin with the RPC interface enabled: put rpcuser=USER, rpcpassword=PASS, and server=1 in bitcoin.conf
+* Download p2pool:
+	* Windows py2exe: http://u.forre.st/u/udvegtzv/p2pool_win32_9037c07.zip
+	* git: git clone git://github.com/forrestv/p2pool.git
+* Run p2pool: (See below for additional options.)
+	* Windows py2exe: run_p2pool.exe USER PASS
+	* git: python run_p2pool.py USER PASS
+* Run a miner daemon with long polling connecting to 127.0.0.1 (or the IP of the host running p2pool if you're mining remotely) on port 9332 with any username and password
+	* poclbm.exe http://a:b@127.0.0.1:9332
 
-##References
+## Miners
 
-4.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
-4.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
+This is all for the latest p2pool version, it includes several new workarounds.
 
+### Perfect
+
+**cgminer** (with the latest p2pool) works perfectly. A workaround was needed to get long polling to work, but it has no fixed long polling delay.
+
+**ufasoft**, as far as I can tell by looking at the source but not actually running it (I couldn't get it to compile) should work perfectly too.
+
+### Need patch to reduce stales
+
+**DiabloMiner** has a bug where it waits half a second after receiving a long polling response. There is a 20% chance that a p2pool share will be generated in that window, resulting in all hashing until the next getwork being useless.
+
+I have created a fork of DiabloMiner on GitHub that fixes this: https://github.com/forrestv/DiabloMiner Make sure to get the *fast_long_polling* branch!
+<pre>git clone git://github.com/forrestv/DiabloMiner.git
+cd DiabloMiner
+git checkout fast_long_polling</pre>
+
+Built with JAR and Windows binary: http://u.forre.st/u/xsvenrwa/DiabloMiner_2e73cc.zip
+
+**Poclbm** has a similar bug, but it waits a full second.
+GitHub fork: https://github.com/forrestv/poclbm
+Pull request: https://github.com/m0mchil/poclbm/pull/41
+<pre>git clone git://github.com/forrestv/poclbm.git
+cd poclbm
+git checkout fast_long_polling</pre>
+No binary as of yet.
+
+**Phoenix** has a similar bug (waiting a full second).
+Patch against SVN r112: http://im.forre.st/pb/74595264.txt
+
+### Bad
+
+**puddinpop's RPC Miners** don't have long polling and so will not work at all.
+
+## Option Reference
+<pre>
+usage: run_p2pool.py [-h] [--version] [--testnet] [--debug] [-a ADDRESS]
+                     [--p2pool-port PORT] [-n ADDR[:PORT]] [-l] [-w PORT]
+                     [--bitcoind-address BITCOIND_ADDRESS]
+                     [--bitcoind-rpc-port BITCOIND_RPC_PORT]
+                     [--bitcoind-p2p-port BITCOIND_P2P_PORT]
+                     BITCOIND_RPC_USERNAME BITCOIND_RPC_PASSWORD
+
+p2pool (version a07e25c18d122565793536945c8cc65049eb1cce)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --testnet             use the testnet
+  --debug               debugging mode
+  -a ADDRESS, --address ADDRESS
+                        generate to this address (defaults to requesting one
+                        from bitcoind)
+  -l, --low-bandwidth   trade lower bandwidth usage for higher latency
+                        (reduced efficiency)
+
+p2pool interface:
+  --p2pool-port PORT    use TCP port PORT to listen for connections (default:
+                        9333 normally, 19333 for testnet) (forward this port
+                        from your router!)
+  -n ADDR[:PORT], --p2pool-node ADDR[:PORT]
+                        connect to existing p2pool node at ADDR listening on
+                        TCP port PORT (defaults to 9333 normally, 19333 for
+                        testnet), in addition to builtin addresses
+
+worker interface:
+  -w PORT, --worker-port PORT
+                        listen on PORT for RPC connections from miners asking
+                        for work and providing responses (default: 9332)
+
+bitcoind interface:
+  --bitcoind-address BITCOIND_ADDRESS
+                        connect to a bitcoind at this address (default:
+                        127.0.0.1)
+  --bitcoind-rpc-port BITCOIND_RPC_PORT
+                        connect to a bitcoind at this port over the RPC
+                        interface - used to get the current highest block via
+                        getwork (default: 8332)
+  --bitcoind-p2p-port BITCOIND_P2P_PORT
+                        connect to a bitcoind at this port over the p2p
+                        interface - used to submit blocks and get the pubkey
+                        to generate to via an IP transaction (default: 8333
+                        normally. 18333 for testnet)
+  BITCOIND_RPC_USERNAME
+                        bitcoind RPC interface username
+  BITCOIND_RPC_PASSWORD
+                        bitcoind RPC interface password
+</pre>
 
 [[tags/Pool_Operators]]
