@@ -7,3 +7,10 @@ Under "How it works", we have steps 2 and 6:
 - 6. All OP_CODESEPARATORS are removed from subScript
 
 However, doesn't step 6 seem redundant? [Vegard](User:Vegard)
+	
+Answer:  [sirk390](User:sirk390)
+	See comment for step 6. in the bitcoin sources (script.cpp:882)
+	// In case concatenating two scripts ends up with two codeseparators,
+	// or an extra one at the end, this prevents all those possible incompatibilities.
+
+	In step 2, only OP_CODESEPARATOR before OP_CHECKSIG are removed. In step OP_CODESEPARATOR after OP_CHECKSIG are also removed.
