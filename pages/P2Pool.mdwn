@@ -6,7 +6,7 @@ Join #p2pool channel on freenode to keep up with the latest talk or for help to 
 
 Donation address: *1JvZX38TZu6Jqo7Ce9T7j21yJE11t7m4Z2*
 
-# Idea
+# Overview
 
 P2Pool shares form a "sharechain" with each share referencing the previous share's hash. Each share contains a standard Bitcoin block header, some P2Pool-specific data that is used to compute the generation transaction (total subsidy, payout script of this share, a nonce, the previous share's hash, and the current target for shares), and a merkle branch linking that generation transaction to the block header's merkle hash.
 
@@ -23,23 +23,6 @@ The block reward (currently 50BTC) and the transaction fees are combined and app
 A subsidy of 0.5% is sent to the node that solved the block in order to discourage not sharing solutions that qualify as a block. (An evil miner could withhold the block, thereby preventing anybody from getting paid. He can NOT redirect the payout to himself.) In addition, a subsidy of 0.5% is kept as a fee. The remaining 99% is distributed evenly to miners based on work done recently.
 
 In the event that a share qualifies as a block, this generation transaction is exposed to the Bitcoin network and takes effect, transferring each node its payout.
-
-# Protocol description
-
-P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same framing (prefix, command, length, checksum, payload) and similar commands:
-
-* **version** - sent to establish a connection - contains (*version*, *services*, *addr_to*, *addr_from*, *nonce*, *sub_version*, *mode*, *best_share_hash*)
-* **setmode** - sent to update the *mode* sent in the **version** message - contains (*mode*)
-* **ping** - sent to keep connection alive - contains ()
-* **addrme** - request that the receiving node send out an addr for the sending node - contains (*port*)
-* **addrs** - broadcast list of nodes' addresses - contains (*addrs*)
-* **getaddrs** - request that the receiving node send *count* addrs - contains (*count*)
-* **getshares** - request that the receiving node send the shares referenced by *hashes* and *parents* of their parents, stopping at any share referenced by *stops* - contains (*hashes*, *parents*, *stops*)
-* **share0s** - broadcast message of the hashes of shares - contains (*hashes*)
-* **share1as** - broadcast message of the contents of shares that do not qualify as bitcoin blocks - contains (*share1as*)
-* **share1bs** - broadcast message of the contents of shares that qualify as bitcoin blocks - contains (*share1bs*)
-
-The *mode* is 0 for low-bandwidth mode, which sends the hash of a share first before sending the entire share, or 1 for low-latency (default) mode, which forwards the entire (~170 byte) share always. The two nodes on either side of a connection use the minimum of their two preferences for that connection.
 
 # Joining the pool
 
@@ -146,17 +129,38 @@ bitcoind interface:
                         bitcoind RPC interface password
 </pre>
 
-##See Also
+# Protocol description
+
+P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same framing (prefix, command, length, checksum, payload) and similar commands:
+
+* **version** - sent to establish a connection - contains (*version*, *services*, *addr_to*, *addr_from*, *nonce*, *sub_version*, *mode*, *best_share_hash*)
+* **setmode** - sent to update the *mode* sent in the **version** message - contains (*mode*)
+* **ping** - sent to keep connection alive - contains ()
+* **addrme** - request that the receiving node send out an addr for the sending node - contains (*port*)
+* **addrs** - broadcast list of nodes' addresses - contains (*addrs*)
+* **getaddrs** - request that the receiving node send *count* addrs - contains (*count*)
+* **getshares** - request that the receiving node send the shares referenced by *hashes* and *parents* of their parents, stopping at any share referenced by *stops* - contains (*hashes*, *parents*, *stops*)
+* **share0s** - broadcast message of the hashes of shares - contains (*hashes*)
+* **share1as** - broadcast message of the contents of shares that do not qualify as bitcoin blocks - contains (*share1as*)
+* **share1bs** - broadcast message of the contents of shares that qualify as bitcoin blocks - contains (*share1bs*)
+
+The *mode* is 0 for low-bandwidth mode, which sends the hash of a share first before sending the entire share, or 1 for low-latency (default) mode, which forwards the entire (~170 byte) share always. The two nodes on either side of a connection use the minimum of their two preferences for that connection.
+
+#Reward distribution
+
+* Proportional, 0.5% fee. Transaction fees shared.
+
+#See Also
 
 * [[Comparison_of_mining_pools]]
 * [[Pooled_Mining]]
 
-##External Links
+#External Links
 
 * [P2Pool forum](http://forum.bitcoin.org/index.php?topic=18313)
 
-##References
+#References
 
 
 
-[[tags/Pool_Operators]]
+[[!tag "Pool_Operators"]]
