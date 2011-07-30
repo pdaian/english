@@ -40,22 +40,28 @@ This is all for the latest p2pool version, it includes several new workarounds.
 
 #### Works as-is
 
-**cgminer** (with the latest p2pool) works perfectly. A workaround was needed to get long polling to work, but it has no fixed long polling delay.
+##### cgminer
+A workaround was needed to get long polling to work, but it has no fixed long polling delay.  Works perfectly (with the latest p2pool).
 
-**ufasoft**, as far as I can tell by looking at the source but not actually running it (I couldn't get it to compile) should work perfectly too.
+##### ufasoft 
+By looking at the source but not actually running it (couldn't get it to compile) should work perfectly too.
 
 #### Needs patch to reduce stales
 
-**DiabloMiner** has a bug where it waits half a second after receiving a long polling response. There is a 20% chance that a p2pool share will be generated in that window, resulting in all hashing until the next getwork being useless.
+##### DiabloMiner 
+Has a bug where it waits half a second after receiving a long polling response. There is a 20% chance that a p2pool share will be generated in that window, resulting in all hashing until the next getwork being useless.
 
-I have created a fork of DiabloMiner on GitHub that fixes this: https://github.com/forrestv/DiabloMiner Make sure to get the *fast_long_polling* branch!
+A fork of DiabloMiner on GitHub that fixes this: https://github.com/forrestv/DiabloMiner Make sure to get the *fast_long_polling* branch!
+
 <pre>git clone git://github.com/forrestv/DiabloMiner.git
 cd DiabloMiner
 git checkout fast_long_polling</pre>
 
 Built with JAR and Windows binary: http://u.forre.st/u/xsvenrwa/DiabloMiner_2e73cc.zip
 
-**Poclbm** has a similar bug, but it waits a full second.
+##### Poclbm
+Has a similar bug, but it waits a full second.
+
 GitHub fork: https://github.com/forrestv/poclbm
 Pull request: https://github.com/m0mchil/poclbm/pull/41
 <pre>git clone git://github.com/forrestv/poclbm.git
@@ -63,12 +69,18 @@ cd poclbm
 git checkout fast_long_polling</pre>
 No binary as of yet.
 
-**Phoenix** has a similar bug (waiting a full second).
+##### Phoenix
+Has a similar bug (waiting a full second).
+
 Patch against SVN r112: http://im.forre.st/pb/74595264.txt
 
 #### Not-compatible
 
-**puddinpop's RPC Miners** don't have long polling and so will not work at all.
+##### puddinpop's
+Does not have long polling so will not work at all.
+
+##### RPC Miners
+Does not have long polling so will not work at all.
 
 ### Option Reference
 <pre>
