@@ -44,7 +44,7 @@ This is all for the latest p2pool version, it includes several new workarounds.
 
 **ufasoft**, as far as I can tell by looking at the source but not actually running it (I couldn't get it to compile) should work perfectly too.
 
-#### Need patch to reduce stales
+#### Needs patch to reduce stales
 
 **DiabloMiner** has a bug where it waits half a second after receiving a long polling response. There is a 20% chance that a p2pool share will be generated in that window, resulting in all hashing until the next getwork being useless.
 
