@@ -25,6 +25,12 @@ The miner should implement rollntime by starting from the first nonce every seco
 Example:
 	"noncerange": "000000001fffffff"
 
+### reject-reason
+NOTE: Clients should not need to advertise this feature in X-Mining-Extensions.
+
+When a share is rejected, the server may include a X-Reject-Reason header indicating the reason why it was rejected.
+Values for this header are undefined.
+
 ### rollntime
 Iff the getwork response includes a "X-Roll-NTime" header, the miner may (within reason) change the ntime field in addition to the nonce.
 The server may send a value of "expire=<N>", where <N> is an integer number of seconds it is willing to accept the other headers for.
