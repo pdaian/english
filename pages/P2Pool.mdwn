@@ -36,9 +36,14 @@ Follow these steps to join the pool:
 * Run a miner daemon with long polling connecting to 127.0.0.1 (or the IP of the host running p2pool if you're mining remotely) on port 9332 with any username and password
 	* poclbm.exe http://a:b@127.0.0.1:9332
 
+Dependencies if using version from git:
+
+* python-argparse for Python 2.6 and lower
+* Twisted (Ubuntu package python-twisted)
+
 ### Miners
 
-This is all for the latest p2pool version, it includes several new workarounds.
+This is all for the latest p2pool version, it includes several new workarounds. With all miners, using a high FPS target (100?) or a low aggression, and waiting for p2pool to completely start (line shows > 35000 shares) helps a lot with reducing stales.
 
 #### Works as-is
 
