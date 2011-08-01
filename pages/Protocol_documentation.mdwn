@@ -574,20 +574,35 @@ The *ping* message is sent primarily to confirm that the TCP/IP connection is st
 
 An **alert** is sent between nodes to send a general notification message throughout the network. If the alert can be confirmed with the signature as having come from the the core development group of the Bitcoin software, the message is suggested to be displayed for end-users. Attempts to perform transactions, particularly automated transactions through the client, are suggested to be halted. The text in the Message string should be relayed to log files and any user interfaces.
 
-Payload:
+Alert format:
 
 
 
-|? |message |var_str |System message which is coded to convey some information to all nodes in the network
-|? |signature |var_str |A signature which can be confirmed with a public key verifying that it is Satoshi (the originator of Bitcoins) who has "authorized" or created the message
+|? |payload |var_str |Serialized alert payload
+|? |signature |var_str |An ECDSA signature of the message
 
 
-The signature is to be compared to this ECDSA public key:
-
+The developers of Satoshi's client use this public key for signing alerts:
 	04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284
 	(hash) 1AGRxqDa5WjUKBwHB9XYEjmkv1ucoUUy1s
 
-Source: [(1)](http://www.bitcoin.org/smf/index.php?topic=898.0)
+The payload is serialized into a var_str to ensure that versions using incompatible alert formats can still relay alerts among one another. The current alert payload format is:
+
+
+|4 |Version |int32_t |Alert format version
+|8 |RelayUntil |int64_t |The timestamp beyond which nodes should stop relaying this alert
+|8 |Expiration |int64_t |The timestamp beyond which this alert is no longer in effect and should be ignored
+|4 |ID |int32_t |A unique ID number for this alert
+|4 |Cancel |int32_t |All alerts with an ID number less than or equal to this number should be canceled: deleted and not accepted in the future
+|? |setCancel |set<int>|All alert IDs contained in this set should be canceled as above
+|4 |MinVer |int32_t |This alert only applies to versions greater than or equal to this version. Other versions should still relay it.
+|4 |MaxVer |int32_t |This alert only applies to versions less than or equal to this version. Other versions should still relay it.
+|? |setSubVer |set<string>|If this set contains any elements, then only nodes that have their subVer contained in this set are affected by the alert. Other versions should still relay it.
+|4 |Priority |int32_t |Relative priority compared to other alerts
+|? |Comment |string |A comment on the alert that is not displayed
+|? |StatusBar |string |The alert message that is displayed to the user
+|? |Reserved |string |Reserved
+
 
 ## Scripting
 
