@@ -2,6 +2,8 @@ P2Pool is a decentralized pool that works by creating a P2P network of miner nod
 
 These nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself. There is no central point of failure, making it DoS resistant.
 
+Miners are configured to connect to a P2Pool node that can be run locally, alongside the miner.
+
 ## Overview
 
 P2Pool shares form a "sharechain" with each share referencing the previous share's hash. Each share contains a standard Bitcoin block header, some P2Pool-specific data that is used to compute the generation transaction (total subsidy, payout script of this share, a nonce, the previous share's hash, and the current target for shares), and a merkle branch linking that generation transaction to the block header's merkle hash.
@@ -76,7 +78,10 @@ Patch against SVN r112: http://im.forre.st/pb/74595264.txt
 
 #### Not-compatible
 
-##### puddinpop's RPC Miners
+##### puddinpop's
+Does not have long polling so will not work at all.
+
+##### RPC Miners
 Does not have long polling so will not work at all.
 
 ### Option Reference
@@ -151,24 +156,26 @@ P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same 
 
 The *mode* is 0 for low-bandwidth mode, which sends the hash of a share first before sending the entire share, or 1 for low-latency (default) mode, which forwards the entire (~170 byte) share always. The two nodes on either side of a connection use the minimum of their two preferences for that connection.
 
-##Reward distribution
+##History
 
-* Proportional, 0.5% fee. Transaction fees shared.
+This project was announced on June 17, 2011 (18.1).
 
+The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (18.2).
+
+The software author's address for donations can be found in the signature section of his [forum profile](http://forum.bitcoin.org/index.php?action=profile;u=6447).
 
 ##See Also
 
 * [[Comparison_of_mining_pools]]
 * [[Pooled_Mining]]
-
-##External Links
-
-* [P2Pool forum](http://forum.bitcoin.org/index.php?topic=18313.0)
+1. ##External Links* [P2Pool forum](http://forum.bitcoin.org/index.php?topic=18313.0)
 * [p2pool](https://github.com/forrestv/p2pool) project on GitHub
 * [[!template id=freenode_irc p2pool]] discussion and support
 
 ##References
 
+18.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
+18.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
 
 
 [[!tag "Pool_Operators"]]
