@@ -19,7 +19,7 @@ difficulty = maximum_target / current_target
 Each block stores a packed representation (called "Bits") for its actual hexadecimal [[target]]. The target can be derived from it via a predefined formula. For example, if the packed target in the block is 0x1b0404cb, the hexadecimal target is
 	0x0404cb * 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000
 
-Note that the 0x0404cb value is a signed value in this format. The largest legal value for this field is 0x7fffff. To make a larger value you must shift it down one full byte.
+Note that the 0x0404cb value is a signed value in this format. The largest legal value for this field is 0x7fffff. To make a larger value you must shift it down one full byte. Also 0x008000 is the smallest positive valid value.
 
 The highest possible target (difficulty 1) is defined as 0x1d00ffff, which gives us a hex target of
 	0x00ffff * 2**(8*(0x1d - 3)) = 0x00000000FFFF0000000000000000000000000000000000000000000000000000
