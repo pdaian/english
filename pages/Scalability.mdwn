@@ -49,7 +49,7 @@ That leaves the inbound inv messages. The cost of handling an inv is basically r
 
 Let's assume an average rate of 2000tps, so just VISA. Transactions vary in size from about 0.2 kilobytes to over 1 kilobyte, but from looking at the block explorer it's probably averaging half a kilobyte today. So let's assume the way people use BitCoin gets more complicated and call it 1kb per transaction.
 
-A solved block will then be around (1kb * 2000tps * 60 * 10) / 1024 / 1024 = 1.14 gigabytes per block.
+A solved block will then be around (1kb * 2000tps * 60 * 10) / 1024 / 1024 = 1.14 megabytes per block.
 
 But you only have to transmit a solved block to your connected peers. If we assume these big futuristic supernodes have something like 40 or 50 peered connections, that means in the worst case scenario where you solve a block OR you receive a block but none of your peers have it yet (unlikely), you have to send ~57 gigabytes of data (call it 60).
 
