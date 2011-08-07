@@ -20,7 +20,36 @@ Smartcoin has some unique features that you won't find anywhere else:
 * So much more.  Smartcoin is in continuous development and improving all the time!
 
 ###Installation
-Smartcoin already comes pre-installed on the LinuxCoin distrobution.  
+Smartcoin already comes pre-installed on the LinuxCoin distrobution. Smartcoin is developed and tested on an Ubuntu installation, but should work on any modern linux distrobution.
+
+Installation is easy, but assumes that your machine is **already set up for mining**.  Smartcoin its self is not a miner, and does not install any other software normally associated with a miner. It is made to sit on top of an already working mining machine.  There are plenty of guides and threads on the bitcoin forums regarding this, so I won't touch on it  here.  Right now, smartcoin is known to work on Ubuntu, LinuxCoin and Fedora. It may work on more setups, but many simply haven't been tested yet. This installation should only happen on one machine, which will be your "master node" for controlling and monitoring your mining operation.
+
+**Step 1)** Make sure you have the required dependencies
+
+Requirements: findutils, sqlite3, bc, openssh-server (these should install automatically in debian based distros such as LinuxCoin and Ubuntu, but pre-installing them beforehand is recommended. Fedora users should install these packages via yum before installing smartcoin)
+Example of making sure these exist in Ubuntu:
+	sudo apt-get install sqlite3 findutils bc openssh-server
+
+**Step 2)** Download smartcoin from the svn repository
+	cd ~/
+	mkdir smartcoin
+	cd smartcoin
+	svn checkout http://smartcoin.googlecode.com/svn/branches/beta1/smartcoin ./
+Note: For LinuxCoin users, smartcoin has already been downloaded, but may be out of date.  I recommend updating the LinuxCoin version before continuing by:
+	sudo su
+	cd /opt/miners/smartcoin
+	svn update
+
+**Step 3)** Run the install script
+	./smartcoin_install.sh
+
+Just follow the directions as smartcoin prepares your system and creates the database.
+
+
+**Step 4)** Launch smartcoin and enjoy!
+	smartcoin
+
+Smartcoin is intelligent enough to know if its already running.  By simply typing 'smartcoin' into the terminal window, you will either start a new smartcoin session if it isn't running yet, or rejoin one that is already running in the background. In fact, you can use this trick to monitor many things at once by opening several terminal emulator windows, ssh'ing to your miner and typing 'smartcoin' into each one.  They will all be connected to the same session, and you don't have to worry about smartcoin launching more than once. This also means that you can monitor your machines from multiple computers/smart phones etc all at the same time!
 
 ##History
 This project was announced on June 13, 2011 (4.1).  On June 25, 2011 the Beta was released (4.2).
