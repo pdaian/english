@@ -1,13 +1,29 @@
-Simple Miner Administration for Remote Terminals is a full-blown administration system for miners.
+Smartcoin is a complete mining administration system that runs on Linux.
+The smartcoin name originated from the acronym **S**imple **M**iner **A**dministration through **R**emote **T**erminals.
+As the name implies, smartcoin is designed specifically with administrating your mining machines remotely over SSH.  As such, smartcoin doesn't have fancy gadgets or a fancy UI.  This makes it very easy to administer your mining machines remotely over SSH on standard Linux/Windows terminal emulators, smartphones with terminal emulator software (ConnectBot for Android, for example), and even web-based SSH terminal emulator services (www.gotossh.com, for example).
 
-SmartCoin software run on Linux.
+##Features
+Smartcoin has some unique features that you won't find anywhere else:
 
-A full load-balanced system that tracks all of the miner instances on a machine, and reports everything on one easy to view screen.  The idea is to spread many miner instances across several GPUs for multiple pools (and even solo!) on one machine (i'm mining to 4 concurrent pools as we speak. If any one of them goes down, the system re-balances its self with any remaining good pools, and my hashing power remains the same).
+* A profile system that lets you specify how many instance of a miner runs on each GPU, and which workers to run against. Your profiles are stored, so that you can recall any profile you want to run at any time in just seconds!
+* An Automatic profile, which will get you started by simply entering your worker information into the system
+* A built-in donation system that will allow you to help fund development of smartcoin, by simply donating some hashes each day to special donation pools. Of course, this is optional, and all done in the clear.
+* A simple installer that will attempt to auto-detect system parameters for you.  This includes GPU devices, paths to popular miners, paths the needed software, etc.
+* A unified status display that allows you to watch all of your miner instances across all GPUs. This also includes "totalizers" that will add up the hash rate, acceptions, rejections etc. so that you have a full overview of your operation all on one screen!
+* An update system that makes keeping your local copy of smartcoin up to date.  You can even choose to pull in "stable" or "experimental" changes, depending on whether you want the latest and greatest features, or if you would rather play it safe with tested and stable changes.
+* A full failover system.  You can set a preferred order of your profiles. If a pool in your profile goes down (from a ddos for example), then the next one in line is automatically loaded. When a higher priority profile comes back online, all the lower priority profiles below it go back offline. This all happens automatically!
+* Security.  SSH is the standard when it comes to remote administration over secure connection. While a lot of users have expressed that they would like a web based front end, it simply lacks the security that I feel is needed.
+* Smartcoin is database driven.  This allows for a lot of flexibility in adding features, as the SQL language its self can be leveraged to perform very complex operations quite easily.
+* GPU and miner software lockup detection.  With everyone wanting to squeeze every last hash out of their hardware via overclocking, it is common for GPUs that have been overclocked just a bit too much to "lock up".  These types of conditions are now detected automatically, you can be alerted by email and even have your machine automatically reboot when this happens!
+* Custom script execution - you can define your own initialization script that will be run automatically when smartcoin starts (to set your GPU fan speeds to 100%, for example). You can also define your own lockup script, which will automatically run when a lockup condition is detected.
+* Multi-machine support!  Have smartcoin manage all of your mining machines all from one place!  Smartcoin only needs to be installed on one "master" machine, and all communication is tunneled securely over SSH. 
+* So much more.  Smartcoin is in continuous development and improving all the time!
 
-The author of [[LinuxCoin]] plans to include SmartCoin in that software distribution.
+###Installation
+Smartcoin already comes pre-installed on the LinuxCoin distrobution.  
 
 ##History
-This project was announced on June 13, 2011 (2.1).  On June 25, 2011 the Beta was released (2.2).
+This project was announced on June 13, 2011 (4.1).  On June 25, 2011 the Beta was released (4.2).
 
 ##See Also
 
@@ -19,8 +35,8 @@ This project was announced on June 13, 2011 (2.1).  On June 25, 2011 the Beta wa
 
 ##References
 
-2.1: [SmartCoin - A simple, robust mining system for Linux](http://forum.bitcoin.org/index.php?topic=16548.0)  
-2.2: [BETA Released](http://forum.bitcoin.org/index.php?topic=16548.msg282643#msg282643)
+4.1: [SmartCoin - A simple, robust mining system for Linux](http://forum.bitcoin.org/index.php?topic=16548.0)  
+4.2: [BETA Released](http://forum.bitcoin.org/index.php?topic=16548.msg282643#msg282643)
 
 
 [[!tag "Mining"]]
