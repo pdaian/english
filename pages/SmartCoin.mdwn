@@ -19,7 +19,7 @@ Smartcoin has some unique features that you won't find anywhere else:
 * Multi-machine support!  Have smartcoin manage all of your mining machines all from one place!  Smartcoin only needs to be installed on one "master" machine, and all communication is tunneled securely over SSH. 
 * So much more.  Smartcoin is in continuous development and improving all the time!
 
-###Installation
+##Installation
 Smartcoin already comes pre-installed on the LinuxCoin distrobution. Smartcoin is developed and tested on an Ubuntu installation, but should work on any modern linux distrobution.
 
 Installation is easy, but assumes that your machine is **already set up for mining**.  Smartcoin its self is not a miner, and does not install any other software normally associated with a miner. It is made to sit on top of an already working mining machine.  There are plenty of guides and threads on the bitcoin forums regarding this, so I won't touch on it  here.  Right now, smartcoin is known to work on Ubuntu, LinuxCoin and Fedora. It may work on more setups, but many simply haven't been tested yet. This installation should only happen on one machine, which will be your "master node" for controlling and monitoring your mining operation.
@@ -49,14 +49,14 @@ Just follow the directions as smartcoin prepares your system and creates the dat
 **Step 4)** Launch smartcoin and enjoy!
 	smartcoin
 
-###Uninstalling
+##Uninstalling
 If you need to uninstall smartcoin, simply:
 	sudo rm -r ~/.smartcoin
 	sudo rm /usr/bin/smartcoin
 	sudo rm -r <path/to/your/installation>
 
 
-### How To Use
+## How To Use
 Smartcoin is intelligent enough to know if its already running.  By simply typing 'smartcoin' into the terminal window, you will either start a new smartcoin session if it isn't running yet, or rejoin one that is already running in the background. In fact, you can use this trick to monitor many things at once by opening several terminal emulator windows, ssh'ing to your miner and typing 'smartcoin' into each one.  They will all be connected to the same session, and you don't have to worry about smartcoin launching more than once. This also means that you can monitor your machines from multiple computers/smart phones etc all at the same time!
 
 Smartcoin uses the GNU screen utility for a lot of its functionality.  In order to use smartcoin fully, you must at a least learn a little about GNU screen. There are countless articles, and even books on using GNU screen, but you only need to know a few things to use smartcoin:
@@ -70,7 +70,7 @@ Actions are performed in GNU screen by using the key combination CTRL+A, followe
 * CTRL+a " - Display a list of windows to select from
 * CTRL+a d - Disconnect from smartcoin (smartcoin will continue to run in the background. You can also do this from the menu on the control screen)
 * CTRL+a  
-* * * * * ##History##See Also* [[LinuxCoin]]
+* * * * * ## Keeping Up To Date**** ##History##See Also* [[LinuxCoin]]
 
 ##External Links
 
