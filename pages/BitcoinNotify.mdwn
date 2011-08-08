@@ -6,17 +6,21 @@ Payments go directly from a customer to the merchant's private wallet. Merchant'
 
 BitcoinNotify also delivers HTTP notifications about Bitcoin exchange rates. This allows a store to update its prices instantly as the market moves.
 
-### How it works
+## How it works
 
 * BitcoinNotify POSTs the purchase information to the store's URL.
 	* Store finds order by receiving address and marks it as completed.
 * Optionally, BitcoinNotify POSTs Bitcoin exchange rate updates to the store's URL.
 
-### Integration Details
+## Integration Details
 
 * Merchant pre-generates a number of Bitcoin addresses by copy-pasting them from Bitcoin Client to a text file.
 * Merchant uploads his addresses to his store. The store software is expected to assign a unique address to each order. Once order is completed, address can be released to the pool. Thus, merchant needs as many Bitcoin addresses as simultanously open orders.
 * Merchant subscribes to payment notifications on BitcoinNotify.
+
+##History
+
+This service was announced on August 6, 2011 (4.1).
 
 ##See Also
 
@@ -27,3 +31,4 @@ BitcoinNotify also delivers HTTP notifications about Bitcoin exchange rates. Thi
 * [BitcoinNotify](https://bitcoinnotify.com/accept-bitcoin-payments) web site
 
 [[!tag "Shopping_Cart_Interfaces"]]
+4.1: [BitcoinNotify - payments and prices notifications (HTTP, SMS, e-mail, IM)](http://bitcointalk.org/index.php?topic=34981.0)
