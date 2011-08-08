@@ -48,3 +48,15 @@ This section is for discussing things that can't be done ON TOP of BTC, but whic
 
 ### pseudo-BTC that uses computational power in service of some problem
 If there were a way for someone to purchase a large amount of pseudo-BTC and then could use them to "buy" computing power, in the form of specifying an NP-complete problem, such that solving that problem then becomes a way to encode additional transactions into the blockchain (instead of meaningless hashes), then the price of computing power would be the intrinsic worth of pseudo-BTC.
+
+Obviously, the issue that must be cleverly solved is: whoever poses the question (the purchaser of the computing power) may already know the answer. Therefore, we cannot assume that there is a lower bound on the computational difficulty of the problem posed. 
+
+If the problem is NP-complete and is posed in a standard NP-complete format, however, we can assume an upper bound on the computational difficulty.
+
+One idea: combine this with the current "meaningless hash" system as follows: in order to mine BTC (or, later, to insert transactions into the block chain), nodes must do both of (a) do some hashing, (b) solve an NP-complete problem whose difficulty is upper bounded at 1000 times the amount of hashing that needs to be done. The system includes a way for computing buyers to bid BTC for the right to pose the problem in (b). Bids are encoded into the blockchain, and the highest already-encoded bid is chosen. The money from the bid is transferred to the node that solves the problem.
+
+Now (a) provides a floor for the difficulty, which is needed to keep the blockchain un-pwnable, and and (b) provides a floor for the value of BTC.
+
+I dunno is 1000 is the right value for the proportionality constant.
+
+Are there any flaws in this? Seems to me that the current BTC ecology could be transitioned to this pretty easily if more than 50% of the nodes agreed. A BTC vote could be held as described above to make changes of this sort.
