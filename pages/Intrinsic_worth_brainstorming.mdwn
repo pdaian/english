@@ -53,10 +53,16 @@ Obviously, the issue that must be solved is: whoever poses the question (the pur
 
 If the problem is NP-complete and is posed in a standard NP-complete format, however, we can assume an upper bound on the computational difficulty.
 
-One idea: combine this with the current "meaningless hash" system as follows: in order to mine BTC (or, later, to insert transactions into the block chain), nodes must do both of (a) do some hashing, (b) solve an NP-complete problem whose difficulty is upper bounded at 1000 times the amount of hashing that needs to be done. The system includes a way for computing buyers to bid BTC for the right to pose the problem in (b). Bids are encoded into the blockchain, and the highest already-encoded bid is chosen. The money from the bid is transferred to the node that solves the problem.
+One idea: combine this with the current "meaningless hash" system as follows: in order to mine BTC (or, later, to insert transactions into the block chain), nodes must do both of (a) do some hashing, (b) solve an NP-complete problem whose difficulty is upper bounded at 1000 times the amount of hashing that needs to be done. The system would include a way for computing buyers to bid BTC for the right to pose the problem in (b). Bids are encoded into the blockchain, and the highest already-encoded bid is chosen. The money from the bid is transferred partially to the node that solves the problem (b), but partially to a different node(s) that also solved the hash (a); the money is divided up in proportion with the 1000 constant (this is so that a rich miner can't just make up problems with known answers and bid huge amounts on them, allowing them to always win the bid for computing power and pose the problem, allowing them to undercut everyone else because, knowing the answer to the problem they posed, they only have to solve (a), whereas everyone else would have to solve (a) and (b); this ensures that if they do that, the money they bid doesn't all go back to them, but in fact is bled off to give to other miners too).
 
 Now (a) provides a floor for the difficulty, which is needed to keep the blockchain un-pwnable, and and (b) provides a floor for the value of BTC.
 
 I dunno is 1000 is the right value for the proportionality constant.
 
-Are there any flaws in this? Seems to me that the current BTC ecology could be transitioned to this pretty easily if more than 50% of the nodes agreed. A BTC vote could be held as described above to make changes of this sort.
+Are there any flaws in this? Seems to me that the current BTC ecology could be transitioned to this pretty easily if more than 50% of the miners (weighted by computing power) agreed.
+
+I'm not sure if this would actually cause computing power auctions or not. It may cause:
+
+Miner Q bids unreasonably highly for computing power, then poses a problem for which only they already know the solution; but then eventually, miner R outbids them, then does the same. The prices are too high for others to actually buy computing power. But Q and R themselves generate an enormous demand for bitcoins, because they need to outbid the other in order to monopolize mining.
+
+Hmmm... we don't want mining monopolized.. needs a bit more work..
