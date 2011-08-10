@@ -9,9 +9,13 @@ Currently programming and running the FPGAminer code requires Quartus II for Alt
 ## Compiling 
 
 ### Altera
+
+The compile the code on an different Altera device then DE2-115, you need to set the Device to be the correct one.  Find the correct fpga package number and add it, for the DE0-Nano this is EP4CE22F17C6.  Be sure to select the correct one, because the hardware effects the location of your pins, which you will need in the clock pin step. 
+
 To get the provided code to compile on a smaller device, you need to set CONFIG_LOOP_LOG2 to a value between 0-5.  Higher values shrink the size in so that 4 does approx. 12000 LUTs large program, while 0 is around 90000 LUTs.  CONFIG_LOOP_LOG2 is set in the file fpgaminer.qsf.  The fpgaminer_top.v file also has a similar setting, but it is an ifdef/it does not get set from there if the setting exists in the qsf.  
 
-The clock needs to be assigned to a pin. If the clock speed is changed, you need to do something with PLLs. (both unconfirmed, someone with more info?)
+To make the code compile properly on an different device (not a DE2-115), you need to set the osc_clk pin to the clock pin of your device.  *This can be read from the device manual*! On an DE0-Nano this pin is PIN_R8.  This pin location varies between devices and you *must* look it up in your device manual.  To set the pin location, open the assignment editor add new osc_clk and set its location to the pin *specified in your manual*, ie. for DE0-nano this is R8. For the DE2-115 this is PIN_Y2.
+
 
 ## Programming the FPGA 
 
@@ -43,24 +47,7 @@ $ sudo jtag
 
 ### Altera
 
-To mine on a device other then DE115, you need to edit mine.tcl (under scripts/mine) and set the following bits to the correct values.
-
-	proc find_instances {} {
-	global instances
-	foreach instance [[1-4.6\]]" -device_name "@1: EP3C25/EP4CE22 (0x020F30DD)" {
-	dict set instances [$instance 3](lindex) [$instance 0](lindex)
-	}
-
-
-And 
-
-start_insystem_source_probe -hardware_name "USB-Blaster \[[1-4.6\]]" -device_name "@1: EP3C25/EP4CE22 (0x020F30DD)"
-
-To point to the correct device.  The correct data for this can be found with jtagconfig --enum.  Do not forget to add 0x to the beginning of the hex code of the device that you get with jtagconfig. 
-
-Then change the connection details marked with "EDIT THESE" 
-
-Linux tclcurl is not included in the directory, and on some distros like Arch it does not exist in the repositories.  The original authors site is down, but you can get it from debian repositories.  Then just unpack and copy to the same directory as mine.tcl. Remember to get bin32 version, since quartus is 32bit only. 
+The new mining and programming scripts find the connected devices now.  Just edit the config.tcl to have your details. 
 
 ##See Also
 
