@@ -160,6 +160,10 @@ The fee is added to the payment amount.  For example, if you are sending a 1.234
 
 Because the fee is related to the amount of data that makes up the transaction and not to the amount of bitcoins being sent, the fee may seem extremely low (0.0005 BTC for a 1,000 BTC transfer) or unfairly high (0.004 BTC for a 0.02 BTC payment, or about 20%).  If you are receiving tiny amounts (e.g., as small payments from a mining pool) then fees when sending will be higher than if your activity follows a more normal consumer or business transaction pattern.
 
+### What happens when someone sends me a bitcoin but my computer is powered off?
+
+Bitcoins aren't actually "sent" to your wallet, the software only uses those terms so that we can use the currency without having to learn new concepts.  Your wallet is only needed when you wish to spend the coins you've received.  The coins that were sent will appear as if they were recieved when you later do launch the client and let it catch up by downloading any blocks it doesn't already have.
+
 ##Networking
 ### Do I need to configure my firewall to run bitcoin?
 
