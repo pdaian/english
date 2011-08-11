@@ -16,6 +16,20 @@ To get the provided code to compile on a smaller device, you need to set CONFIG_
 
 To make the code compile properly on an different device (not a DE2-115), you need to set the osc_clk pin to the clock pin of your device.  *This can be read from the device manual*! On an DE0-Nano this pin is PIN_R8.  This pin location varies between devices and you *must* look it up in your device manual.  To set the pin location, open the assignment editor add new osc_clk and set its location to the pin *specified in your manual*, ie. for DE0-nano this is R8. For the DE2-115 this is PIN_Y2.
 
+### Changing the clock speed
+
+NOTE: You can fry your FPGA doing this!  
+
+Edit main_pll.v and find the line:
+altpll_component.clk0_multiply_by = 5,
+
+The way the Mhz is calculated is 50Mhz*multply_by/divide_by.  Setting of 10 with default clk0_divide_by gives Mhz of 100, 8 is 80Mhz.  
+
+Compile the code. 
+
+Watch for critical warnings from synthesis.
+
+Run Powerplay power analyzer tool and set it with the cooling system you have.  If there are no errors, you may at your own risk program the FPGA with the higher Mhz bitfile. 
 
 ## Programming the FPGA 
 
