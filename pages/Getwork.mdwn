@@ -69,3 +69,12 @@ Due to network latency, [Luke-Jr](User:Luke-jr) recommends the following design 
 1. if a share submission fails due to a network error, save the share and retry it a second later the same as step 3; also immediately (regardless of how long the current work has been active) begin trying to get new work (which is treated the same as step 5+6 when done)
 1. when current time is past <time@1+getwork expire> minus <duration of longest getwork/submit since we started this work> times 4, begin a request for new work
 1. when new work arrives, discard old work and begin using the new work.
+
+### switchto
+[Original specification from Deepbit](https://deepbit.net/failover.php)
+
+The server may include a X-Switch-To header containing a single JSON object formatted in the same fashon as items in the [[hostlist array extension|#hostlist]].
+If this header is present, the miner should switch to the specified server for at least ttr minutes after finishing current "getwork" and submitting its results.
+
+Example:
+	X-Switch-To: {"host":"temporary.tld","port":8332,"ttr":10}
