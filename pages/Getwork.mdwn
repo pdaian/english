@@ -16,6 +16,25 @@ If the incremented portion overflows, get new work.
 
 When getting new work, miners should send a X-Mining-Extensions header with a space-delimited list of supported extensions:
 
+### hostlist
+[Original specification from Deepbit](https://deepbit.net/failover.php)
+
+The server may include a X-Host-List header with a list of available servers formatted in JSON as an array of objects with server details.
+"host" specifies the server's hostname or IP address, "port" specifies a TCP port, and "ttr" is "time to return".
+If you use server with non-zero ttr you should try to return to the server with 0 ttr after this number of minutes.
+
+Example:
+	X-Host-List: {}{}[(1)]("host":"backup.tld","port":8332,"ttr":20)
+
+This string says that "server.tld" is the main server.
+When you detect connection problems, you need to try the next server - "backup.tld" for 20 minutes and then try to switch back to "server.tld".
+If the main server is still offline you should continue to use "backup.tld" for another 20 minutes.
+	
+Failover workflow:
+
+1. Choose the first working server while cycling from left to right
+1. if "ttr" of the server is greater than zero, go to 1) after this amount of minutes.
+
 ### longpoll
 [Original specification from Deepbit](https://deepbit.net/longpolling.php)
 
