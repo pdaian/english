@@ -33,29 +33,37 @@ If your balance has been contaminated by both anonymous and non-anonymous coins,
 
 Recommended way of anonymizing your balance:
 
-* Send however many coins you want to anonymize to a new [MyBitcoin](https://www.mybitcoin.com/) account as a lump sum. There are other [[eWallet]] services in addition to MyBitcoin however MyBitcoin is widely used and thus may offer the greatest potential for anonymity. <font color="red">This is not an endorsement of trust in the MyBitcoin service. There are no guarantees that MyBitcoin won't one day take all your bitcoins and disappear. Use at your own risk.</font> With this method an attacker will have to gain access to MyBitcoin's transaction logs to continue to follow you in the transaction history. The protection that this method offers is significantly reduced if you are trying to anonymize more than about 10% of the total number of Bitcoins that MyBitcoin holds. You'll end up getting your own coins back instead of other users' coins. Withdrawing Bitcoins more slowly and in smaller increments will help reduce this problem. Sending coins to MyBitcoin in the largest single transfer possible will also help.
+* Send however many coins you want to anonymize to a new [[eWallet]] account as a lump sum. There are other [[eWallet]] services however the more widely used the greater the potential for anonymity. <font color="red">This is not an endorsement of trust in the use of [[eWallet]] services.  There are no guarantees that any eWallet service won't one day take all your bitcoins and disappear. Use at your own risk.</font> 
+
+With this method an attacker will have to gain access to the eWallet service's transaction logs to continue to follow you in the transaction history. 
+
+The protection that this method offers is significantly reduced if you are trying to anonymize more than about 10% of the total number of Bitcoins that the eWallet service holds. You'll end up getting your own coins back instead of other users' coins.  Withdrawing Bitcoins more slowly and in smaller increments will help reduce this problem. Sending coins to an eWallet service in the largest single transfer possible will also help.
 
 To further enhance your anonymity, you can:
 
-* Send Bitcoins from MyBitcoin to another [[eWallet]] service and *then* to yourself. Each transfer needs to be painstakingly investigated and many transfers will present insurmountable difficulty.
+* Send Bitcoins from one EWallet sevice to another and *then* to yourself. Each transfer needs to be painstakingly investigated and many transfers will present insurmountable difficulty.
 
 Once you have an anonymous balance set up, be sure to keep your anonymous and non-anonymous balances completely separate.
 
+A future version of the client will have coderr's patch which will allow the sender to specify which coins to use in a transaction (2.1).
+
 #### Help other people stay anonymous
 
-* Set up a real [external mixing service](http://www.bitcoin.org/smf/index.php?topic=241.0). Make it like MyBitcoin, but make sure that a user never withdraws the same coins that he puts in. Also delete empty addresses and transaction logs. 
+* Set up a real [external mixing service](http://www.bitcoin.org/smf/index.php?topic=241.0). Make it like an eWallet service but make sure that a user never withdraws the same coins that are put in.  Also delete empty addresses and transaction logs. 
 * Even if you're not a programmer, you can make a slightly less secure version of an external mixing service (as a Tor hidden service, preferably):
 	* Set up two Bitcoin installations.
 	* Put some amount of BTC in installation B. This is the maximum amount of BTC you can deal with at once (for all customers).
 	* Customers send BTC to installation A. You send them an equal number of coins (or minus a fee) from installation B. Send as 10-50 BTC increments.
 	* Send all coins from A to B when **all** orders are satisfied. You can't send coins from A to B if you have any orders that have not been satisfied from B.
 	* This can be automated, or you can do everything manually.
-* Put lots of Bitcoins in MyBitcoin and keep it there. If anyone uses the anonymization method described in "staying anonymous" above, this will enhance it. Send in small increments: less than 200 BTC.
+* Put lots of Bitcoins in an eWallet service and keep it there. If anyone uses the anonymization method described in "staying anonymous" above, this will enhance it. Send in smaller increments if a large amount is transferred.
 
 ##See Also
 
 * [RFC: Bitcoin Mixnet](http://www.bitcoin.org/smf/index.php?topic=2893.0)
 * [anonymity](http://www.bitcoin.org/smf/index.php?topic=241.0)
 * [[Bitcoin_Laundry]] (Does not mix well -- you may get your own coins back.)
+* [Patching The Bitcoin Client To Make It More Anonymous](https://bitcointalk.org/index.php?topic=24784.0)
 
 [[!tag "Technical"]]
+2.1: [Patching The Bitcoin Client To Make It More Anonymous](http://bitcointalk.org/index.php?topic=24784.msg307661#msg307661)
