@@ -85,22 +85,26 @@ Parameters:
 
 #### 0/redeemCode.php
 
-	call with a post parameter "code" containing the code to redeem
+* call with a post parameter "code" containing the code to redeem
 
-	it will return an array with amount (float amount value of code), currency (3 letters, BTC or USD), reference (the transaction id), and status
+* it will return an array with amount (float amount value of code), currency (3 letters, BTC or USD), reference (the transaction id), and status
 
 #### 0/withdraw.php
 
-	pass btca parameter to withdraw to a btc adress
+* pass btca parameter to withdraw to a btc adress
 
-	pass group1 for a coupon : BTC2CODE or USD2CODE
+* pass group1 for a coupon : BTC2CODE or USD2CODE
 
-	return code and status if successful
+* pass group1=DWUSD for a dwolla withdraw
+
+* return code and status if successful
+
+### 0/btcAddress.php
+
+* returns a bitcoin deposit address
 
 #### 0/history_[CUR].csv
 Allows downloading the activity history for a given currency (BTC or USD for now).
-
-
 
 ## Websocket API
 ported on 7/10/2011 from http://forum.bitcoin.org/index.php?topic=5855.0
