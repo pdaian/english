@@ -40,7 +40,7 @@ Bitcoin uses [Elliptic Curve](http://en.wikipedia.org/wiki/Elliptic_curve_crypto
 
 For ECDSA the secp256k1 curve from http://www.secg.org/collateral/sec2_final.pdf is used.
 
-Public keys (in scripts) are given as 04 <x> <y> where x and y are 32 byte strings representing the coordinates of a point on the curve. Signatures use [DER encoding](http://en.wikipedia.org/wiki/Distinguished_Encoding_Rules) to pack the r and s components into a single byte stream (because this is what OpenSSL produces by default).
+Public keys (in scripts) are given as 04 <x> <y> where *x* and *y* are 32 byte big-endian integers representing the coordinates of a point on the curve. Signatures use [DER encoding](http://en.wikipedia.org/wiki/Distinguished_Encoding_Rules) to pack the *r* and *s* components into a single byte stream (this is also what OpenSSL produces by default).
 
 ### Transaction Verification
 [[!template id=see_also OP_CHECKSIG]]
