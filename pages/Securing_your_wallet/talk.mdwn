@@ -75,13 +75,13 @@ I have translated the page to the German Version, expanded it by several points 
 ### Introduction
 The security of the wallet can be divided into two separate objectives:
 
-1st Safeguard against loss
+1. Safeguard against loss
 
-2nd Secure against theft
+2. Secure against theft
 
 In the case of a currently not adequately secured wallet (eg with a weak password uploaded on the Internet):
 
-3rd New, create a mew secure wallet (with a reasonably long password)
+3. New, create a mew secure wallet (with a reasonably long password)
 
 ### Technical background
 The important first objective of the design of the wallet is protection against data loss. The personal bitcoin wallet has a pool of queued keys stored in a file named wallet.dat. The default number is 100 keys in the  [[Key pool.|Key_Pool]] The number of can be adjusted with the "-keypool" parameter in the command line. If for some reason you need a new address, it is not generated on the fly, but taken from the pool. A new key is then created to fill the pool back to 100 keys. If a backup is first created, it contains all used keys plus 100 unused ones. After a transaction, 99 unused keys remain. After 100 operations which require a new key, new keys are used, which are not present in the backup. Because the backup does not have these new keys, this backup can possibly lead to a recovery loss of Bitcoins if the wallet file is destroyed, for example by a head crash.
