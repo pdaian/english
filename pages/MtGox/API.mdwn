@@ -83,6 +83,8 @@ Parameters:
 
 * since: Passing a tid in "since" allows retrieving all trades since that trade. The passed id is may not exist. Ie. to get all trades from the very beginning one would just call https://mtgox.com/code/data/getTrades.php?since=0 . since returns only 100 trades, and you can call the method again by passing the latest trade you have imported in since.
 
+* data is returned in standard json format like :
+
 #### 0/redeemCode.php
 
 * call with a post parameter "code" containing the code to redeem
