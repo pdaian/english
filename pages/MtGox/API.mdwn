@@ -84,7 +84,7 @@ Parameters:
 * since: Passing a tid in "since" allows retrieving all trades since that trade. The passed id is may not exist. Ie. to get all trades from the very beginning one would just call https://mtgox.com/code/data/getTrades.php?since=0 . since returns only 100 trades, and you can call the method again by passing the latest trade you have imported in since.
 
 * data is returned in standard json format like :
-<source lang="json">
+<source lang="php">
 {}{}[(1)]("date":1279424586,"price":"0.05941","amount":"50.01","price_int":"5941","amount_int":"5001000000","tid":"2","price_currency":"USD","item":"BTC","trade_type":"")
 </source>
 
