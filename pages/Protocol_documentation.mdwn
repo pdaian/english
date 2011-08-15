@@ -186,9 +186,9 @@ Payload:
 |4 |version |int32_t |Identifies protocol version being used by the node
 |8 |services |uint64_t |bitfield of features to be enabled for this connection
 |8 |timestamp |int64_t |standard UNIX timestamp in seconds
-|26 |addr_me |net_addr |The network address of the node emitting this message
 |colspan="4"version >= 106
-|26 |addr_you |net_addr |The network address seen by the node emitting this message (ie, the address of the receiving node)
+|26 |addr_you |net_addr |The network address of the node receiving this message
+|26 |addr_me |net_addr |The network address of the node emitting this message
 |8 |nonce |uint64_t |Node random nonce, randomly generated every time a version packet is sent. This nonce is used to detect connections to self.
 |? |sub_version_num |[[var_str|#Variable_length_string]]|Secondary Version information (0x00 if string is 0 bytes long)
 |colspan="4"version >= 209
@@ -210,7 +210,7 @@ Hexdump example of version message (note the message header for this version mes
 0010   55 00 00 00 9C 7C 00 00  01 00 00 00 00 00 00 00   U....|..........
 0020   E6 15 10 4D 00 00 00 00  01 00 00 00 00 00 00 00   ...M............
 0030   00 00 00 00 00 00 00 00  00 00 FF FF 0A 00 00 01   ................
-0040   DA F6 01 00 00 00 00 00  00 00 00 00 00 00 00 00   ................
+0040   20 8D 01 00 00 00 00 00  00 00 00 00 00 00 00 00   ................
 0050   00 00 00 00 FF FF 0A 00  00 02 20 8D DD 9D 20 2C   .......... ... ,
 0060   3A B4 57 13 00 55 81 01  00                        :.W..U...
 
@@ -223,8 +223,8 @@ Version message:
  9C 7C 00 00                                                                   - 31900 (version 0.3.19)
  01 00 00 00 00 00 00 00                                                       - 1 (NODE_NETWORK services)
  E6 15 10 4D 00 00 00 00                                                       - Mon Dec 20 21:50:14 EST 2010
- 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 01 DA F6 - Sender address info - see Network Address
- 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 02 20 8D - Recipient address info - see Network Address
+ 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 01 20 8D - Recipient address info - see Network Address
+ 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 02 20 8D - Sender address info - see Network Address
  DD 9D 20 2C 3A B4 57 13                                                       - Node random unique ID
  00                                                                            - "" sub-version string (string is 0 bytes long)
  55 81 01 00                                                                   - Last block sending node has is block #98645
