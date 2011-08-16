@@ -45,11 +45,13 @@ If mining pool does supports Long Polling, it should include a X-Long-Polling he
 
 In addition to X-Mining-Extensions, the miner should also send X-Mining-Hashrate, with an integer value of expected hashrate measured in full hashes per second.
 The server may then add an additional field to the JSON response, "noncerange", which contains two 32-bit integers specifying the starting and final nonce the miner is allowed to scan.
-While both values are (as with the rest of the response) big endian, miners should iterate over the range in little endian (presently this is subject to revision).
-The miner should implement rollntime by starting from the first nonce every second.
+While both values are (as with the rest of the response) given in big endian, miners should iterate over the range in little endian (as already passed to SHA256).
+The miner should implement rollntime by starting from the first nonce in the range every second.
 
 Example:
-	"noncerange": "000000001fffffff"
+	"noncerange": "00000000ffffff1f"
+
+Note that this specifies a range of 0 through 0x1fffffff (ie, NOT 0xffffff1f).
 
 ### reject-reason
 NOTE: Clients should not need to advertise this feature in X-Mining-Extensions.
