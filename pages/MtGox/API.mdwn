@@ -251,33 +251,3 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 ||
 ||
 
-
-####Order update (private)
-
-<source lang="javascript">
-{
-	"channel":"(partial key)",
-	"op":"private",
-	"order_upd":{
-	"amount":1000,
-	"darkStatus":0,
-	"date":1302836027,
-	"oid":"(oid)",
-	"price":0.9899,"status":1
-	},
-	"origin":"broadcast",
-	"private":"order_upd"
-}</source>
-
-**order_upd** cointains the following:
-
-> 
-
-|Name |Value
-|---|---
-|amount |change in volume of the order
-|darkStatus |
-|oid |ID of the affected order
-|price |
-|status |
-
