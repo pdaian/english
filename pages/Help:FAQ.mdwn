@@ -90,10 +90,10 @@ Because of the law of supply and demand, when fewer bitcoins are available the o
 
 The Bitcoin protocol uses a base unit of one hundred-millionth of a Bitcoin ("a Satoshi"), but unused bits are available in the protocol fields that could be used to denote even smaller subdivisions.
 
-### If every transaction is broadcast via the network, does BitCoin scale?
+### If every transaction is broadcast via the network, does Bitcoin scale?
 The Bitcoin protocol allows lightweight clients that can use Bitcoin without downloading the entire transaction history. As traffic grows and this becomes more critical, implementations of the concept will be developed. Full network nodes will at some point become a more specialized service.
 
-With some modifications to the software, full BitCoin nodes could easily keep up with both VISA and MasterCard combined, using only fairly modest hardware (a couple of racks of machines using todays hardware). It's worth noting that the MasterCard network is structured somewhat like BitCoin itself - as a peer to peer broadcast network.
+With some modifications to the software, full Bitcoin nodes could easily keep up with both VISA and MasterCard combined, using only fairly modest hardware (a couple of racks of machines using todays hardware). It's worth noting that the MasterCard network is structured somewhat like Bitcoin itself - as a peer to peer broadcast network.
 
 Learn more about [[Scalability]].
 
@@ -134,11 +134,11 @@ Yes, in the same way as the euro and dollar are. They only have value in exchang
 
 10 minutes is the average time taken to find a block. It can be significantly more or less time than that depending on luck; 10 minutes is simply the average case. 
 
-Blocks (shown as "confirmations" in the GUI) are how the BitCoin achieves consensus on who owns what. Once a block is found everyone agrees that you now own those coins, so you can spend them again. Until then it's possible that some network nodes believe otherwise, if somebody is attempting to defraud the system by reversing a transaction. The more confirmations a transaction has, the less risk there is of a reversal. Only 6 blocks or 1 hour is enough to make reversal computationally impractical. This is dramatically better than credit cards which can see chargebacks occur up to three months after the original transaction!
+Blocks (shown as "confirmations" in the GUI) are how the Bitcoin achieves consensus on who owns what. Once a block is found everyone agrees that you now own those coins, so you can spend them again. Until then it's possible that some network nodes believe otherwise, if somebody is attempting to defraud the system by reversing a transaction. The more confirmations a transaction has, the less risk there is of a reversal. Only 6 blocks or 1 hour is enough to make reversal computationally impractical. This is dramatically better than credit cards which can see chargebacks occur up to three months after the original transaction!
 
 Why ten minutes specifically? It is a tradeoff chosen by Satoshi between propagation time of new blocks in large networks and the amount of work wasted due to chain splits. If that made no sense to you, don't worry. Reading [the technical paper](http://www.bitcoin.org/bitcoin.pdf) should make things clearer.
 
-### Do you have to wait 10 minutes in order to buy or sell things with BitCoin?
+### Do you have to wait 10 minutes in order to buy or sell things with Bitcoin?
 
 No, it's reasonable to sell things without waiting for a confirmation as long as the transaction is not of high value.
 
