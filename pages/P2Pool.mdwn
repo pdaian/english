@@ -91,28 +91,34 @@ Does not have long polling so will not work at all.
 
 ### Option Reference
 <pre>
-usage: run_p2pool.py [-h] [--version] [--testnet] [--debug] [-a ADDRESS]
-                     [--p2pool-port PORT] [-n ADDR[:PORT]] [-l] [-w PORT]
-                     [--net=NETWORK]
+usage: run_p2pool.py [-h] [--version] [--net {namecoin,bitcoin,ixcoin}]
+                     [--testnet] [--debug] [-a ADDRESS] [--charts]
+                     [--p2pool-port PORT] [-n ADDR[:PORT]] [-l]
+                     [--disable-upnp] [-w PORT]
                      [--bitcoind-address BITCOIND_ADDRESS]
                      [--bitcoind-rpc-port BITCOIND_RPC_PORT]
                      [--bitcoind-p2p-port BITCOIND_P2P_PORT]
                      BITCOIND_RPC_USERNAME BITCOIND_RPC_PASSWORD
 
-p2pool (version a07e25c18d122565793536945c8cc65049eb1cce)
+p2pool (version b324a68)
 
 optional arguments:
   -h, --help            show this help message and exit
   --version             show program's version number and exit
+  --net {namecoin,bitcoin,ixcoin}
+                        use specified network (choices: bitcoin (default),
+                        namecoin, ixcoin)
   --testnet             use the testnet
   --debug               debugging mode
-  --net NETWORK         NETWORK
-                        Participate in which network/blockchain
   -a ADDRESS, --address ADDRESS
                         generate to this address (defaults to requesting one
                         from bitcoind)
+  --charts              generate charts on the web interface (requires PIL and
+                        pygame)
   -l, --low-bandwidth   trade lower bandwidth usage for higher latency
                         (reduced efficiency)
+  --disable-upnp        don't attempt to forward port 9333 (19333 for testnet)
+                        from the WAN to this computer using UPnP
 
 p2pool interface:
   --p2pool-port PORT    use TCP port PORT to listen for connections (default:
@@ -135,7 +141,7 @@ bitcoind interface:
   --bitcoind-rpc-port BITCOIND_RPC_PORT
                         connect to a bitcoind at this port over the RPC
                         interface - used to get the current highest block via
-                        getwork (default: 8332)
+                        getwork (default: 8332, 8338 for ixcoin)
   --bitcoind-p2p-port BITCOIND_P2P_PORT
                         connect to a bitcoind at this port over the p2p
                         interface - used to submit blocks and get the pubkey
