@@ -93,6 +93,7 @@ Does not have long polling so will not work at all.
 <pre>
 usage: run_p2pool.py [-h] [--version] [--testnet] [--debug] [-a ADDRESS]
                      [--p2pool-port PORT] [-n ADDR[:PORT]] [-l] [-w PORT]
+                     [--net=NETWORK]
                      [--bitcoind-address BITCOIND_ADDRESS]
                      [--bitcoind-rpc-port BITCOIND_RPC_PORT]
                      [--bitcoind-p2p-port BITCOIND_P2P_PORT]
@@ -105,6 +106,8 @@ optional arguments:
   --version             show program's version number and exit
   --testnet             use the testnet
   --debug               debugging mode
+  --net NETWORK         NETWORK
+                        Participate in which network/blockchain
   -a ADDRESS, --address ADDRESS
                         generate to this address (defaults to requesting one
                         from bitcoind)
