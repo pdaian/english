@@ -98,26 +98,26 @@ If one *doesn't* want to use encrypted Disk images, then a **small shell script*
 
 If you are using Windows XP or Windows 7, you can keep your wallet on an encrypted disk image created by third-party software, such as [TrueCrypt](http://www.truecrypt.org/) (open source) or [Jetico BestCrypt](http://www.jetico.com/encryption-bestcrypt/) (commercial).  You can probably do the same with Windows Vista or Windows 2000.  
 
-**NOTE:** You should configure BitCoin in this manner only on computers where you use BitCoin, but do not use that computer to mine.  For example, this is a good configuration for a notebook or tablet computer.
+**NOTE:** You should configure Bitcoin in this manner only on computers where you use Bitcoin, but do not use that computer to mine.  For example, this is a good configuration for a notebook or tablet computer.
 
-Assuming that you have installed the Windows BitCoin client and run it at least once, the process is described below.
+Assuming that you have installed the Windows Bitcoin client and run it at least once, the process is described below.
 
-<p><b>To mount the BitCoin data directory on an encrypted drive</b></p>
+<p><b>To mount the Bitcoin data directory on an encrypted drive</b></p>
 <ol start=1 type=1>
 <li>Use the third-party disk image encryption program of your choice to create and mount an encrypted disk image of at least 100 MB in size.</li>
-<li>Locate the BitCoin data directory, and copy the directory with all contents to the encrypted drive.
-<p>For help finding this directory, see <b>[[Locating BitCoin's Data Directory|Securing_your_wallet#Locating_BitCoin_s_data_directory]]</b>.</p></li>
-<li>Create a Windows shortcut that starts BitCoin with the <code>-datadir</code> parameter and specifies the encrypted drive and directory.
-<p>For example, if you installed Bitcoin in the default directory, mounted your BitCoin encrypted drive as <code>E:\</code>, and stored your BitCoin data directory on it as <code>Bitcoin</code>, you would type the following command as the shortcut Target:</p>
+<li>Locate the Bitcoin data directory, and copy the directory with all contents to the encrypted drive.
+<p>For help finding this directory, see <b>[[Locating Bitcoin's Data Directory|Securing_your_wallet#Locating_Bitcoin_s_data_directory]]</b>.</p></li>
+<li>Create a Windows shortcut that starts Bitcoin with the <code>-datadir</code> parameter and specifies the encrypted drive and directory.
+<p>For example, if you installed Bitcoin in the default directory, mounted your Bitcoin encrypted drive as <code>E:\</code>, and stored your Bitcoin data directory on it as <code>Bitcoin</code>, you would type the following command as the shortcut Target:</p>
 <blockquote><code>C:\Program Files\Bitcoin\bitcoin.exe -datadir=E:\Bitcoin</code></blockquote></li>
-<li>Open BitCoin's settings and configure it <b>NOT</b> to start automatically when you start Windows.
-<p>This is to allow you to mount the BitCoin encrypted disk image before starting BitCoin.</p></li>
-<li>Shut down BitCoin, and then restart it from the new shortcut.</li>
+<li>Open Bitcoin's settings and configure it <b>NOT</b> to start automatically when you start Windows.
+<p>This is to allow you to mount the Bitcoin encrypted disk image before starting Bitcoin.</p></li>
+<li>Shut down Bitcoin, and then restart it from the new shortcut.</li>
 </ol>
 
-After doing this, any time you want to use BitCoin, you must first mount the BitCoin encrypted disk image using the same drive designation, and then run BitCoin from the shortcut that you created, so that it can find its data and your wallet. :-)
+After doing this, any time you want to use Bitcoin, you must first mount the Bitcoin encrypted disk image using the same drive designation, and then run Bitcoin from the shortcut that you created, so that it can find its data and your wallet. :-)
 
-## Locating BitCoin's data directory
+## Locating Bitcoin's data directory
 
 The [[data_directory]] is the location where Bitcoin's data files are stored, including the wallet data file.
 
@@ -125,19 +125,19 @@ The [[data_directory]] is the location where Bitcoin's data files are stored, in
 
 Go to Start -> Run (or press WinKey+R) and run this:
 
-	explorer %APPDATA%\BitCoin
+	explorer %APPDATA%\Bitcoin
 
-BitCoin's data folder will open. For most users, this is the following locations:
+Bitcoin's data folder will open. For most users, this is the following locations:
 
-	C:\Documents and Settings\YourUserName\Application data\BitCoin (XP)
+	C:\Documents and Settings\YourUserName\Application data\Bitcoin (XP)
 	
-	C:\Users\YourUserName\Appdata\Roaming\BitCoin (Vista and 7)
+	C:\Users\YourUserName\Appdata\Roaming\Bitcoin (Vista and 7)
 
 "AppData" and "Application data" are hidden by default.
 
 ### Linux
 
-By default BitCoin will put its data here:
+By default Bitcoin will put its data here:
 
 	~/.bitcoin/
 
@@ -149,7 +149,7 @@ If that's not it, you can do a search like this:
 
 ### Mac
 
-By default BitCoin will put its data here:
+By default Bitcoin will put its data here:
 
 	~/Library/Application Support/Bitcoin/
 
@@ -164,13 +164,13 @@ For these reasons, I personally prefer to use Wuala, which does not store your e
 
 In fact, whether you use Dropbox as your backup or not, use what Steve Gibson calls "pre-Internet encryption" (which he actually [discussed in the context of Dropbox's security concerns](http://itknowledgeexchange.techtarget.com/security-corner/cloud-security-and-privacy-do-they-exist/)) and use some form of encryption on the files before you back them up, just in case someone other than yourself ever gains access to that backup. Make sure to pick a password that's memorable but secure.
 
-The only file you need to back up is "wallet.dat". Ensure that BitCoin is closed, copy this file somewhere else, encrypt it, and put it somewhere safe. Ideally, you would put this file in two places: one nearby, and one 100+ miles away.
+The only file you need to back up is "wallet.dat". Ensure that Bitcoin is closed, copy this file somewhere else, encrypt it, and put it somewhere safe. Ideally, you would put this file in two places: one nearby, and one 100+ miles away.
 
 You can use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin.
 
 ### General Solutions
 
-Your wallet.dat file is not encrypted by BitCoin. Anyone who can access it can easily steal all of your coins. Use one of these encryption programs if there is any chance someone might stumble upon your wallet.
+Your wallet.dat file is not encrypted by Bitcoin. Anyone who can access it can easily steal all of your coins. Use one of these encryption programs if there is any chance someone might stumble upon your wallet.
 
 * [7-zip](http://www.7-zip.org/) - Supports strongly-encrypted archives.
 * [AxCrypt](http://www.axantum.com/axcrypt/)
