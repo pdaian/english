@@ -74,6 +74,11 @@ var_dump(mtgox_query('0/getFunds.php'));
 // var_dump(mtgox_query('0/buyBTC.php', array('amount' => 1, 'price' => 15)));
 </source>
 
+### Cache
+
+All of the API methods below have cached results, ticker, depth . . . have a 10 seconds cache .
+No need to poll more often, you wont have more results, you could just be blocked by the prolexic anti ddos features.
+
 ### Methods
 
 #### 0/data/getTrades.php
