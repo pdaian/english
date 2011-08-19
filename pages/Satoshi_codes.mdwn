@@ -1,9 +1,13 @@
 Someone [had the idea](https://bitcointalk.org/?topic=37892) to add numeric codes at the end of transactions to add a special meaning.
 
 Here is the explication that came along with the proposal:
-> One thing to make Bitcoin more sociable would be to add a message to a Bitcoin transfer. Since this is not part of the protocol, one could have a standard to interpret the last digits sent in a Bitcoin amount, the Satoshis. The digits are currently hardly ever being used and it costs nothing for the computer to use these. People want to express emotions in the messages on computers, that's where the use of emoticons came from (namely as just simply an interpretation of certain rarely used key combinations).
-> 
-> Therefore I present hereby, Satoshi Codes, the "emoticons" of Bitcoin. You simply add these Satoshis to an amount you are transferring with the following meanings (since Satoshis are currently worth very little it also costs almost nothing).
+<blockquote>
+One thing to make Bitcoin more sociable would be to add a message to a Bitcoin transfer. Since this is not part of the protocol, one could have a standard to interpret the last digits sent in a Bitcoin amount, the Satoshis. The digits are currently hardly ever being used and it costs nothing for the computer to use these. People want to express emotions in the messages on computers, that's where the use of emoticons came from (namely as just simply an interpretation of certain rarely used key combinations).
+
+Therefore I present hereby, Satoshi Codes, the "emoticons" of Bitcoin. You simply add these Satoshis to an amount you are transferring with the following meanings (since Satoshis are currently worth very little it also costs almost nothing).
+</blockquote>
+
+## Code table
 
 Here is the list of proposed codes so far:
 
@@ -23,6 +27,24 @@ Here is the list of proposed codes so far:
 |**9.**|*unused*|*unused*|*unused*|*unused*|*unused*|*unused*|*unused*|*unused*|*unused*|*unused*
 
 
-Some other codes were proposed in the thread, but it's difficult to tell which ones are serious proposals, so feel free to add yours if it is. :)
+Notes:
 
-Suggestion for adding codes: check your past sent transactions and wonder what message you would have attached to each one. Try to make the message generic enough so that it's useful to many people while being explicit enough.
+* Some other codes were proposed in the thread, but it's difficult to tell which ones are serious proposals, so feel free to add yours if it is. :)
+* Suggestion for adding codes: check your past sent transactions and wonder what message you would have attached to each one. Try to make the message generic enough so that it's useful to many people while being explicit enough.
+
+
+## Code discussion
+### Number of digits
+For the moment, two-digit codes should be enough, but due to the proposed scheme, it should be easy to add more. Let's try to keep the list small though, so that they're easy to memorize without needing software implementation. --[Davux](User:Davux) 22:14, 19 August 2011 (GMT)
+
+### Private codes
+Just like unicode characters, maybe a specific range should be reserved for local/private use. --[Davux](User:Davux) 22:14, 19 August 2011 (GMT)
+
+## sort-of Protocol
+
+From the original idea submitter:
+<blockquote>
+You simply add these [[Satoshis|Units]] to an amount you are transferring with the following meanings (since Satoshis are currently worth very little it also costs almost nothing.
+</blockquote>
+
+Alternative idea: just prepend your code with a given number of 0's (say 4). Backward compatible with the original suggestion, while allowing sub-satoshi amounts when needed.
