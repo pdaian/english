@@ -37,7 +37,8 @@ So the difficulty at 0x1b0404cb is therefore:
 [Graphs](http://bitcoin.sipa.be)
 
 ### What is the maximum difficulty?
-The maximum difficulty is roughly: maximum_target / 1, which is a ridiculously huge number (about 2^224). 
+
+There is no minimum target. The maximum difficulty is roughly: maximum_target / 1 (since 0 would result in infinity), which is a ridiculously huge number (about 2^224). 
 
 The actual maximum difficulty is when current_target=0, but we would not be able to calculate the difficulty if that happened. (fortunately it never will, so we're ok.)
 
