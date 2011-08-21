@@ -29,6 +29,8 @@ So the difficulty at 0x1b0404cb is therefore:
 	0x00000000000404CB000000000000000000000000000000000000000000000000 
 	= 16307.420938523983
 
+Here;s a fast way to calculate difficulty. It uses a modified taylor series for the logarithm (you can see tutorials on flipcode and wikipedia) and relies on logs to transform the difficulty calculation:
+
 <source lang="cpp">
 
 1. include <iostream>
@@ -58,6 +60,24 @@ int main()
 	std::cout << difficulty(0x1b0404cb) << std::endl;
 	return 0;
 }
+</source>
+
+Unfortunately I don't have much use for it in libbitcoin. Maybe some miner will find it useful.
+
+To see the math to go from the normal difficulty calculations (which require large big ints bigger than the space in any normal integer) to the calculation above, here's some python:
+
+<source lang="python">
+import decimal, math
+l = math.log
+e = math.e
+
+print 0x00ffff * 2**(8*(0x1d - 3)) / float(0x0404cb * 2**(8*(0x1b - 3)))
+print l(0x00ffff * 2**(8*(0x1d - 3)) / float(0x0404cb * 2**(8*(0x1b - 3))))
+print l(0x00ffff * 2**(8*(0x1d - 3))) - l(0x0404cb * 2**(8*(0x1b - 3)))
+print l(0x00ffff) + l(2**(8*(0x1d - 3))) - l(0x0404cb) - l(2**(8*(0x1b - 3)))
+print l(0x00ffff) + (8*(0x1d - 3))*l(2) - l(0x0404cb) - (8*(0x1b - 3))*l(2)
+print l(0x00ffff / float(0x0404cb)) + (8*(0x1d - 3))*l(2) - (8*(0x1b - 3))*l(2)
+print l(0x00ffff / float(0x0404cb)) + (0x1d - 0x1b)*l(2**8)
 </source>
 
 ### What is the current difficulty?
