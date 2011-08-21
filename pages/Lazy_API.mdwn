@@ -1,14 +1,14 @@
-For the incredibly lazy and/or incompetent web developer, I present the lazy man's bitcoin API (copied from [a forum post](http://www.bitcoin.org/smf/index.php?topic=4324.msg77187#msg77187)):
+For the incredibly lazy and/or incompetent web developer, present is the lazy man's bitcoin API (copied from [a forum post](http://www.bitcoin.org/smf/index.php?topic=4324.msg77187#msg77187)):
 
-**Problem:** 
+##Problem
 
-Lazy web designer (me) wants to use bitcoins without dealing with installing bitcoin on a server, installing a shopping cart interface, or using ugly merchant services with callbacks.
+Lazy web designer wants to use bitcoins without dealing with installing bitcoin on a server, installing a shopping cart interface, or using ugly merchant services with callbacks.
 
-**Solution for sending bitcoins:**
+##Solution for sending bitcoins
 
 Use the [MtGox API](https://mtgox.com/support/tradeAPI)
 
-**Solution for receiving bitcoins:**
+##Solution for receiving bitcoins
 
 1. Input a list of bitcoin receiving addresses to your database
 1. Give a bitcoin address to a potential customer
@@ -19,19 +19,15 @@ Use the [MtGox API](https://mtgox.com/support/tradeAPI)
 
 You could avoid having a list of addresses and reusing them if one of the wallet services someday lets you get a new address via API call, but this will work for now.
 
-**Bad idea:**
+##Risks
 
-* Selling bars of gold this way (owner of blockexplorer.com could rip you off)
-* Selling anything as part of a serious business
+###External Service
 
-**Good(?) idea:**
+BlockExplorer is a service that is provided by a private party.  There is no guarantee that the information provided by BlockExplorer matches the blockchain.  There have not been any reports that BlockExplorer has reported transaction data incorrectly.
 
-Selling naked pictures of your grandma this way (owner of blockexplorer.com won't bother)
+###Double Spending
 
-**Why this should not be used in a serious setup:**
-
-First of all 1 confirmation is too little. The block-chain can branch off and does often. This is what caused MyBitcoin.com to temporarily close as bitcoins were constantly leaking out.
-Secondly you will become dependent of the proper functioning of MtGox and BlockExplorer. If either is compromised/corrupted/stops you will end up losing money and/or having to reprogram your system.
+A merchant is exposed to a double spending attack when recognizing a payment before it has been [[confirmed]] with a sufficient number of blocks.
 
 **Shameless begging:**
 
