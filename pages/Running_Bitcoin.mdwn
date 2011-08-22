@@ -12,11 +12,14 @@ Usage:
 	bitcoin [[options]] help <command>      Get help for a command
 Options:
 	-conf=<file>       Specify configuration file (default: bitcoin.conf)
+	-pid=<file>        Specify pid file (default: bitcoin.pid)
 	-gen               Generate coins
 	-gen=0             Don't generate coins
 	-min               Start minimized
 	-datadir=<dir>     Specify data directory
+	-timeout=<n>       Specify connection timeout (in milliseconds)
 	-proxy=<ip:port>   Connect through socks4 proxy
+	-dns               Allow DNS lookups for addnode and connect
 	-addnode=<ip>      Add a node to connect to
 	-connect=<ip>      Connect only to the specified node
 	-nolisten          Don't accept connections from outside
@@ -24,7 +27,6 @@ Options:
 	-upnp              Attempt to use UPnP to map the listening port
 	-paytxfee=<amt>    Fee per KB added to transactions you send
 	-server            Accept command line and JSON-RPC commands
-	-daemon            Run in the background as a daemon and accept commands
 	-testnet           Use the test network
 	-port=<port>       Connect to the Network from <port> (default: 8333; 18333 for testnet)
 	-rpcuser=<user>    Username for JSON-RPC connections
@@ -34,8 +36,15 @@ Options:
 	-rpcconnect=<ip>   Send commands to node running on <ip> (default: 127.0.0.1)
 	-keypool=<n>       Set key pool size to <n> (default: 100)
 	-rescan            Rescan the block chain for missing wallet transactions
+SSL-Options:
 	-rpcssl            Use OpenSSL (https) for JSON-RPC connections
+	-rpcsslcertificatechainfile=<file.cert>  Server certificate file (default: server.cert)
+	-rpcsslprivatekeyfile=<file.pem>         Server private key (default: server.pem)
+	-rpcsslciphers=<ciphers>                 Acceptable ciphers (default: TSLv1+HIGH:!SSLv2:!aNULL:!AH:!3DES:@STRENGTH)
 	-?                 This help message
+Additional (not listet by the binaries of actual built):
+	-daemon            Run in the background as a daemon and accept commands
+	-checkblocks       Rescan the whole blockchain (can take very much time)
 
 ##Bitcoin.conf Configuration File
 All command-line options (except for -datadir and -conf) may be specified in a configuration file, and all configuration file options may also be specified on the command line. Command-line options override values set in the configuration file.
@@ -175,12 +184,17 @@ Here is a sample bitcoin.conf file, containing every option set to its default v
 ####Start automatically
 To configure the Bitcoin client to start automatically:
 
+You might use the configuration-file, or the GUI-Settings:
+
 Settings -> Options
 
 then mark the checkbox titled:
 	[[X]] Start Bitcoin on system startup
 
 [[!template id=ns:file]][[:Client_Settings_Options_windows.png]]
+
+####Batch automation
+To work with batch, you have to start the daemon (bitcoind.exe). The bitcoin.exe run with option "-server" will respond with GUI-messages you are not able to process its answers.
 
 ###Mac
 
