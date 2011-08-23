@@ -19,14 +19,10 @@ A buy order is executed partially or in full when the price bid can be matched a
 
 A sell order is executed partially or in full when the price asked can be matched against a buy order that is at or above the ask amount.
 
-###Dark Pool
-No support for dark pools exist.
-
-
 ###Adding Funds
 
 ####BTC
-There are no fees incurred when when transferring bitcoins for deposit.  Funds are available once [[confirmed|confirmation]] (6 confirms), a process that can take roughly an hour.
+There are no fees incurred when when transferring bitcoins for deposit.  Funds are available once [[confirmed|confirmation]] (4 confirms), a process that takes roughly 40 minutes.
 
 #### GBP bank deposit
 You can add funds through their bank account deposit system. The details are available from the sites  page.
@@ -34,21 +30,24 @@ You can add funds through their bank account deposit system. The details are ava
 The exchange charges no fees for a direct bank deposit. Details are available on the exchange's [Deposit](https://britcoin.co.uk/?page=deposit) page.  The reference code uniquely identifies your account.
 
 ###Withdrawing Funds
-You can withdraw your currencies to a major bank account through Wire Transfer and can widthdraw your Bitcoins to a Bitcoin Address. The minimum amount of BTC widthdrawable is 0.50 BTC.
+You can withdraw your GBP to a British bank account and can widthdraw your Bitcoins to a Bitcoin Address. The minimum BTC withdrawal is 0.01 BTC.
 
 ####BTC
 Bitcoins may be withdrawn at no charge.
 
 #### GBP bank deposit
-There is a fee for withdrawing funds.  
-Enter your bank details on the withdraw screen and the money should be credited to your account within 5 days.
+Enter your bank details on the withdraw screen and the money should be credited to your account within 1 business day.
 
 ##API
-Currently the [Britcoin API](https://britcoin.co.uk/api) is undergoing initial development to provide support for trading bots and spiders.
+Currently the [Britcoin API](https://britcoin.co.uk/api) provides market data.
+
+* [Ticker](https://britcoin.co.uk/api/ticker.php)
+* [Trades](https://britcoin.co.uk/api/getTicker.php)
+* [Orderbook](https://britcoin.co.uk/api/getDepth.php)
 
 ##History
 
-The service was opened on March 26, 2011 (13.1).  Intersango, the [[open source|tags/Open_Source]] software that the exchange runs on, was announced on March 17, 2011 (13.2).
+The service was opened on March 26, 2011 (12.1).  Intersango, the [[open source|tags/Open_Source]] software that the exchange runs on, was announced on March 17, 2011 (12.2).
 
 ##See Also
 
@@ -63,8 +62,8 @@ The service was opened on March 26, 2011 (13.1).  Intersango, the [[open source|
 
 ##References
 
-13.1: [UK exchange: Britcoin](http://www.bitcoin.org/smf/index.php?topic=4984.0)  
-13.2: [Free Bitcoin exchange software- Intersango](http://www.bitcoin.org/smf/index.php?topic=4579.0)
+12.1: [UK exchange: Britcoin](http://www.bitcoin.org/smf/index.php?topic=4984.0)  
+12.2: [Free Bitcoin exchange software- Intersango](http://www.bitcoin.org/smf/index.php?topic=4579.0)
 
 
 [[!tag "Exchanges"]]
