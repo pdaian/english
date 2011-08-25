@@ -4,7 +4,7 @@ An RPC method used by a miner to get hashing work to try to solve.
 
 (Just ignore the midstate until you understand the internals of SHA256.)
 
-calculate: hash = SHA256(SHA256(data))
+calculate: hash = SHA256(SHA256(bigEndianToLittleEndianForEach32BitBlock(data)))
 
 If that meets the [[difficulty]], you win (generated a [[block|Blocks]] or share)!
 
