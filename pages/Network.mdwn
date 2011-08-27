@@ -25,7 +25,7 @@ To connect to a peer, you send a *version* message containing your version numbe
 
 The time data from all of your peers is collected, and the median is used by Bitcoin for all network tasks that use the time (except for other version messages).
 
-You then exchange *getaddr* and *addr* messages, storing all addresses that you don't know about. Normally *addr* messages only contain one address, but in this initial exchange it contains many recent peers.
+You then exchange *getaddr* and *addr* messages, storing all addresses that you don't know about. *addr* messages often contain only one address, but sometimes contain up to 1000. This is most common at the beginning of an exchange.
 
 ## Standard relaying
 
