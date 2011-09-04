@@ -100,13 +100,9 @@ It's possible to create assurance contracts without using SIGHASH_ANYONECANPAY. 
 
 An assurance contract can be prepared that funds network security. Instead of a single announced address for everyone to contribute to, the entrepreneur provides a set of outputs which are signed by each party in their pledge. The entrepreneur also prepares a number of transactions equivalent to the number of outputs, each one spending a single contract output to a null output of zero value and an OP_FALSE script, ie the entire value is consumed as fees. The lock time of each transaction is set to N+M, where N is a pre-agreed time at which the contract becomes valid (measured in block numbers) and M is the index of a contract output. In this way an array of transactions are prepared that do nothing but incentivize mining in a series of blocks. 
 
-The incentive transactions are broadcast before the assurance contract. They are considered to be orphan transactions because their referenced input (the contract) hasn’t been seen yet by the network, but pre-broadcasting them lets pledgers know what they are signing for and prevents the entrepreneur stealing the coins. Once the contract is broadcast, the orphan transactions become valid and can be claimed by miners once their block number is reached.
-
 An elaboration of this concept is described by Tabarrok in  his paper, [“The private provision of public goods via dominant assurance contracts”](http://mason.gmu.edu/~atabarro/PrivateProvision.pdf). In a dominant assurance contract, if a contract fails (not enough pledges within a set time window) the entrepreneur pays a fee to those who pledged so far. This type of contract attempts to arrange incentives such that taking part is always the right strategy. The implementation of dominant assurance contracts is left as an exercise for the reader.
 
 ##Example 4: Using external state
-
-*Note: this example originally contained a different proposal, but it would not have worked. This is the second attempt.*
 
 Scripts are, by design, pure functions. They cannot poll external servers or import any state that may change as it would allow an attacker to outrun the block chain. But we can make transactions connected to the world in other ways.
 
