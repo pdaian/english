@@ -36,9 +36,9 @@ We can do this by adding *access keys* to the ownership key. By signing a messag
 
 It would be best if the debtor had an assurance that, on repaying his debt, the cars ownership would indeed revert to his control. We can implement this as follows:
 
-1. The creditor generates k1 and k2. k1 is used to receive the loan repayments. The loan size is L.
-1. The creditor signs Tx1 that takes L coins from k1 and assigns it k2. This transaction also has an input/output re-assigning ownership of the car back to the debtor which is signed with SIGHASH_ALL  SIGHASH_ANYONECANPAY. This transaction is not valid because the loan has not yet been repaid, so the output sums to more value than the inputs. The creditor sends this transaction to the debtor who keeps it.
-1. As the debtor re-earns the money they spent, they add inputs to Tx1 to increase its value. This doesn't break the signature on the ownership key input/output pair because it was signed with SIGHASH_ANYONECANPAY so is independent of other inputs.
+1. The creditor generates k1, which is used to receive the loan repayments. The loan size is L.
+1. The creditor signs Tx1 that has an input/output re-assigning ownership of the car back to the debtor which is signed with SIGHASH_ALL  SIGHASH_ANYONECANPAY, and an output for L coins to k1. This transaction is not valid because the loan has not yet been repaid, so the output sums to more value than the inputs. The creditor sends this transaction to the debtor who keeps it.
+1. As the debtor re-earns the money they spent, they add inputs to Tx1 to increase its value. This doesn't break the signature on the ownership key input/output pair because it was signed with SIGHASH_ANYONECANPAY so is independent of other inputs. They can't adjust the outputs or anything else about the transaction because that would invalidate the ownership input/output (SIGHASH_ALL).
 1. Once the transaction has enough inputs to sum to L, the debtor broadcasts the transaction, thus repaying their debt and simultaneously retaking ownership of the vehicle.
 
 Because access keys can be given time limits, if the debtor does not repay the loan by its maturity period his access key expires and the car will no longer start for him. The new owner can now either come and pick it up himself, or if he doesn't want to (eg he is in another country), he can sell it using the low-trust sales protocol described above and collect the money that way.
