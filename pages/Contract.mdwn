@@ -114,7 +114,7 @@ The death condition is harder. As Bitcoin nodes cannot measure arbitrary conditi
 
 Here is an example. The man creates a transaction spending his output, and sets the output to:
 
-	<oracle pubkey> CHECKSIGVERIFY <hash> OP_TRUE
+	<sons pubkey> CHECKSIGVERIFY <oracle pubkey> CHECKSIGVERIFY <hash> OP_TRUE
 
 This is the oracle script. It has an unusual form - after signature checking it pushes data to the stack then does not use it. The pubkey is published on the oracles website and is well known. The hash is set to be the hash of the user-provided expression stating that he has died, written in a form the oracle knows how to evaluate. For example it could be the hash of the string:
 
@@ -127,7 +127,7 @@ Once more, the man creates this transaction but gives it directly to his grandso
 It is used in the following algorithm:
 
 1. The oracle accepts a measurement request. The request contains the user-provided expression, a copy of the output script and a partially complete transaction provided by the user. Everything in this transaction is finished except for the scriptSig, which contains just one signature (the grandsons) - not enough to unlock the output.
-1. The oracle checks the user-provided expression hashes to the hash in the provided output script. If it doesn't, it returns an error.
+1. The oracle checks the user-provided expression hashes to the value in the provided output script. If it doesn't, it returns an error.
 1. The oracle evaluates the expression. If the result is not the destination address of the output, it returns an error.
 1. Otherwise the oracle signs the transaction and inserts the signature into the scriptSig. Note that when signing a Bitcoin transaction, the input script is set to the connected output script. The reason is that when OP_CHECKSIG runs, the script containing the opcode is put in the input being evaluated, _not_ the script containing the signature itself. The oracle has never seen the full output it is being asked to sign, but it doesn't have to. It knows the output script, its own public key, and the hash of the user-provided expression, which is everything it needs to check the output script and finish the transaction.
 1. The oracle returns the newly signed, unbroadcast transaction to the user.
