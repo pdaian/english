@@ -2,7 +2,7 @@ An **alternative chain** is a system using the block chain algorithm to achieve 
 
 
 
-### Objective
+## Objective
 
 Bitcoin uses the [[block_chain]] algorithm to achieve distributed consensus on who owns what coins. Block chains were invented specifically for the Bitcoin project but they can be applied anywhere a distributed consensus needs to be established in the presence of malicious or untrustworthy actors.
 
@@ -56,7 +56,7 @@ It's important to observe what we don't have as well as what we do. We don't hav
 1. merkle root: you can choose to arrange your transactions into a merkle root if you like, so you can use the same disk space reclamation trick Satoshi did. But it's strictly optional. If you want to simplify things down you can skip it.
 1. nonce
 
-### Sharing work
+## Sharing work
 
 The bitcoin_data field is how you share work with miners today (assuming they opt in by installing your software alongside their bitcoin node). It's defined like this:
 
@@ -105,7 +105,7 @@ A more complex change is the other new RPC. Because you have your own chain, it 
 
 <b>Important note: Your chain has its <i>own difficulty</i> and as such the block creation rate is independent of how much mining takes place.</b>
 
-### Independent node software
+## Independent node software
 
 Your new network has its own codebase. It can be written in whatever language you like, use whatever P2P protocol you like, store its data however you like and so on.
 
@@ -125,7 +125,7 @@ You've now verified that a sufficiently hard proof of work was done over the con
 
 On the other side when Bitcoin finds a block that is correct for the Bitcoin network and chain, it broadcasts it and obviously the hash of your MyBlock is included. Fortunately this is only an additional 33 bytes overhead so nobody cares about it - the pollution of the financial chain is both trivial and constant. Note that regular Bitcoin nodes just ignore this extra hash, it doesn't mean anything to them.
 
-### Handling your new block chain
+## Handling your new block chain
 
 You have to handle re-organizations. This is a standard part of the block chain algorithm. When a re-org occurs you have to verify that the state of your world still makes sense. For example in the new chain maybe somebody else now owns a resource you thought you owned. It's up to you how to inform your users of these events and what app specific logic is appropriate here.
 
@@ -133,7 +133,7 @@ You can choose your own parameters for the new chain. As an example, Satoshi cho
 
 To store the block chain, Satoshi chose to use Berkeley DB as a way to index from transactions to the blocks they appeared in (amongst other things). You could use any database you liked.
 
-### Paying for resources on alternative chains with Bitcoins
+## Paying for resources on alternative chains with Bitcoins
 
 A commonly cited reason for putting DNS related data into the financial chain is the desire to pay for names with Bitcoins. You can do this with an independent chain too, because you make the rules and can link the two chains together as you see fit.
 
@@ -197,7 +197,7 @@ The user observes the broadcast and sees that their name is now pending payment,
 
 When the user gets tired of owning the name, he can simply re-import the collateral key into his wallet and spend the coins. The DNS network will soon observe that the coins are spent and make the name available for purchasing by somebody else.
 
-### Incentivising non-resource based chains
+## Incentivising non-resource based chains
 
 It's possible to incentivise mining on an alt-chain even if that chain does not have any concept of ownership, ie, if the act of finding a block itself is what is being paid for. An example of this is a timestamping chain in which presence in a block alone is sufficient to satisfy the user.
 
@@ -205,7 +205,7 @@ To implement this, set up a new chain as normal. Blocks in this new chain arrang
 
 If a client has disconnected or does not pay quickly enough, their transaction can be replaced inside the block with its hash. In this way the blocks validity is preserved because the merkle tree is still valid. The newly found alt-block is broadcast, minus the transaction of the delinquent customer. As long as clients are still connected the payment process for all found transactions can be completed quickly: it would only take a few seconds to gather the payments and broadcast those on the Bitcoin network, minimizing the chance of a race that would require you to trust the miner to reinclude your transactions in the next block despite having already been paid.
 
-### Mining on the alt-chain but not Bitcoin
+## Mining on the alt-chain but not Bitcoin
 
 So far we've considered a scheme in which all alt-chain miners simultaneously mine on Bitcoin. It's possible some people may wish to mine on your chain but not Bitcoin, perhaps because the cost of keeping up with the Bitcoin transaction rate has become too high for them to bother.
 
@@ -255,7 +255,7 @@ You have now proven that the MyBlock instance was worked on, along with perhaps 
 
 This is an advanced technique which is probably not worth implementing unless the additional scalability is required. It can be introduced in a backwards compatible manner for new chains without impacting older networks.
 
-### Generalized proof of work
+## Generalized proof of work
 
 Hashes embedded in transactions and headers, merkle branches, and [[nonces|Nonce]] all contribute to the goal of [[proving work|Proof_of_work]] on a block header.  One can express all as sequences of these basic operations:
 
