@@ -53,7 +53,7 @@ Firstly, AMD designs GPUs with many simple ALUs/shaders (VLIW design) that run a
 
 * AMD Radeon HD 6990: 3072 ALUs x 830 MHz = 2550 billion 32-bit instruction per second
 * Nvidia GTX 590: 1024 ALUs x 1214 MHz = 1243 billion 32-bit instruction per second
-This approximate **2x-3x** performance difference exists across the entire range of AMD and Nvidia GPUs. It is noticeably visible in all ALU-bound GPGPU workloads such as Bitcoin, password bruteforcers, etc.
+This approximate **2x-3x** performance difference exists across the entire range of AMD and Nvidia GPUs. It is very visible in all ALU-bound GPGPU workloads such as Bitcoin, password bruteforcers, etc.
 
 Secondly, another difference favoring Bitcoin mining on AMD GPUs instead of Nvidia's is that the mining algorithm is based on SHA-256, which makes heavy use of the 32-bit integer right rotate operation. This operation can be implemented as a single hardware instruction on AMD GPUs (BIT_ALIGN_INT), but requires three separate hardware instructions to be emulated on Nvidia GPUs (2 shifts + 1 add). This alone gives AMD another **1.7x** performance advantage (~1900 instructions instead of ~3250 to execute the SHA-256 compression function).
 
