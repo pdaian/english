@@ -5,7 +5,7 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 
 ## Value overflow
 
-On August 15 2010, it was [discovered](http://www.bitcoin.org/smf/index.php?topic=822.0) that block 74638 contained a transaction that created over 184 billion bitcoins for two different addresses. This was possible because the code used for checking transactions before including them in a block didn't account for the case of outputs so large that they overflowed when summed. A new version was published within a few hours of the discovery. The block chain had to be forked. Although many unpatched nodes continued to build on the "bad" block chain, the "good" block chain overtook it at a block height of 74691. The bad transaction no longer exists for people using the longest chain.
+On August 15 2010, it was [discovered](http://bitcointalk.org/index.php?topic=822.0) that block 74638 contained a transaction that created over 184 billion bitcoins for two different addresses. This was possible because the code used for checking transactions before including them in a block didn't account for the case of outputs so large that they overflowed when summed. A new version was published within a few hours of the discovery. The block chain had to be forked. Although many unpatched nodes continued to build on the "bad" block chain, the "good" block chain overtook it at a block height of 74691. The bad transaction no longer exists for people using the longest chain.
 
 The block and transaction:
 <pre>CBlock(hash=0000000000790ab3, ver=1, hashPrevBlock=0000000000606865, hashMerkleRoot=618eba,
