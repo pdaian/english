@@ -21,4 +21,4 @@ To determine whether a string passes the check code, follow these steps:
 1. Ensure it is well-formed (22 characters, base58 alphabet, starts with S).
 1. Add a question mark to the end of the string, and take the SHA256 of that.  If the SHA256 starts with eight zero bits (hex 00), then the string passes the check code.
 1. If it does not, then with the same string (ending in a question mark), do 717 (seven hundred seventeen) rounds of SHA256 on the string.  If the result after the 717th round starts with eight zero bits (hex 00), then the string passes the check code.
-1. If the result doesn't start with eight zero bits, then the check fails.
+1. If the results of SHA256 after both tests don't start with eight zero bits, then the check fails.
