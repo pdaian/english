@@ -1,4 +1,4 @@
-The **mini private key format** is a method of encoding a Bitcoin private key in 22 characters so that it can be embedded in a small space.  This private key format was first used in Casascius physical bitcoins, and is also favorable for use in QR codes which allows use of a lower dot density.  The format offers a built-in check code as a small margin of protection against typos.
+The **mini private key format** is a method of encoding a Bitcoin private key in 22 characters so that it can be embedded in a small space.  This private key format was first used in Casascius physical bitcoins, and is also favorable for use in QR codes.  The fewer characters encoded in a QR code, the lower dot density can be used, as well as more dots allocated to error correcting codes, and hence a QR code that is easier for a machine to read.  The mini private key format offers its own built-in check code as a small margin of protection against typos.
 
 An example key using this encoding is **S4b3N3oGqDqR5jNuxEvDwf**.
 
@@ -29,3 +29,5 @@ Creating mini private keys is relatively simple.  One program which can create s
 Mini private keys must be created "from scratch", as the conversion from mini private key to full-size private key is one-way.  In other words, there is no way to convert an existing full-size private key into a mini private key.
 
 To create mini private keys, simply create random strings that satisfy the well-formedness requirement, and then eliminate the ones that do not pass the typo check.  (This means eliminating more than 99% of the candidates.)  Then use SHA256 to compute the corresponding private key, and in turn, the matching Bitcoin address.  The Bitcoin address can always be computed from just the private key.
+
+In all cases, you should use a secure cryptographic random number generator to eliminate risks of predictability of the random strings.  Also, for stronger security, accept only the strings that pass the typo check on the 717th round rather than the first.
