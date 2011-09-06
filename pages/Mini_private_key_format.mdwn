@@ -22,3 +22,10 @@ To determine whether a string passes the check code, follow these steps:
 1. Add a question mark to the end of the string, and take the SHA256 of that.  If the SHA256 starts with eight zero bits (hex 00), then the string passes the check code.
 1. If it does not, then with the same string (ending in a question mark), do 717 (seven hundred seventeen) rounds of SHA256 on the string.  If the result after the 717th round starts with eight zero bits (hex 00), then the string passes the check code.
 1. If the results of SHA256 after both tests don't start with eight zero bits, then the check fails.
+
+##Creating mini private keys
+Creating mini private keys is relatively simple.  One program which can create such keys is [[Casascius_Bitcoin_Utility]].
+
+Mini private keys must be created "from scratch", as the conversion from mini private key to full-size private key is one-way.  In other words, there is no way to convert an existing full-size private key into a mini private key.
+
+To create mini private keys, simply create random strings that satisfy the well-formedness requirement, and then eliminate the ones that do not pass the typo check.  (This means eliminating more than 99% of the candidates.)  Then use SHA256 to compute the corresponding private key, and in turn, the matching Bitcoin address.  The Bitcoin address can always be computed from just the private key.
