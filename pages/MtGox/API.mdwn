@@ -79,7 +79,7 @@ var_dump(mtgox_query('0/getFunds.php'));
 All of the API methods below have cached results, ticker, depth . . . have a 10 seconds cache .
 No need to poll more often, you wont have more results, you could just be blocked by the prolexic anti ddos features.
 
-### Methods
+### Methods API version 0
 
 #### 0/data/getTrades.php
 This allows retrieving all trades which happened in the last 24 hours. The returned data is cached and may not reflect latest activity.
@@ -177,7 +177,7 @@ https://mtgox.com/api/0/history_BTC.php
 
 https://mtgox.com/api/0/history_USD.php
 
-### API examples
+### API version 0 examples
 
 #### all api shell type CLI
 http://www.goxsh.info/
@@ -195,6 +195,13 @@ http://pastebin.com/raw.php?i=pmhMXZJu
 
 #### ticker
 http://pastebin.com/pd0ZR4WY
+
+### Methods API version 1
+
+https://mtgox.com/api/1/BTCPLN/public/depth?raw
+https://mtgox.com/api/1/BTCAUD/public/depth?raw
+https://mtgox.com/api/1/BTCPLN/public/trades?raw
+https://mtgox.com/api/1/BTCAUD/public/trades?raw
 
 ## Websocket API
 ported on 7/10/2011 from http://forum.bitcoin.org/index.php?topic=5855.0
