@@ -31,3 +31,86 @@ Mini private keys must be created "from scratch", as the conversion from mini pr
 To create mini private keys, simply create random strings that satisfy the well-formedness requirement, and then eliminate the ones that do not pass the typo check.  (This means eliminating more than 99% of the candidates.)  Then use SHA256 to compute the corresponding private key, and in turn, the matching Bitcoin address.  The Bitcoin address can always be computed from just the private key.
 
 In all cases, you should use a secure cryptographic random number generator to eliminate risks of predictability of the random strings.  Also, for stronger security, accept only the strings that pass the typo check on the 717th round rather than the first.
+
+##Python Code
+<source lang="python">
+import random
+import hashlib
+
+BASE58 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+
+def Candidate():
+	"""
+	Generate a random, well-formed mini private key.
+	"""
+	return('%s%s' % ('S', *.join(
+	 [(1)](random.randrange(0,len(BASE58))) for i in range(21))))
+
+def GenerateKeys(numKeys = 10, additionalSecurity = False):
+	"""
+	Generate mini private keys and output the mini key as well as the full
+	private key. numKeys is The number of keys to generate, and 
+	additionalSecurity controls whether to do 717 rounds of SHA256
+	"""
+	keysGenerated = 0
+	totalCandidates = 0
+	while keysGenerated < numKeys:
+	try:
+	cand = Candidate()
+	# Do typo check
+	t = '%s?' % cand
+	# Take one round of SHA256
+	candHash = hashlib.sha256(t).digest()
+	if additionalSecurity:
+	# Do the other 716 rounds for additional security
+	for i in range(716):
+	candHash = hashlib.sha256(candHash).digest()
+	# Check if the first eight bits of the hash are 0
+	if candHash[[0]] == '\x00':
+	privateKey = GetPrivateKey(cand)
+	print('\n%s\nSHA256( ): %s\nsha256(?): %s' %
+	(cand, privateKey, candHash.encode('hex_codec')))
+	if CheckShortKey(cand):
+	print('Validated.')
+	else:
+	print('Invalid!')
+	keysGenerated += 1
+	totalCandidates += 1
+	except KeyboardInterrupt:
+	break
+	print('\n%s: %i\n%s: %i\n%s: %r\n%s: %.1f' %
+	('Keys Generated', keysGenerated,
+	'Total Candidates', totalCandidates,
+	'Additional Security', additionalSecurity,
+	'Reject Percentage',
+	100*(1.0-keysGenerated/float(totalCandidates))))
+
+def GetPrivateKey(shortKey):
+	"""
+	Returns the hexadecimal representation of the private key corresponding
+	to the given short key.
+	"""
+	if CheckShortKey(shortKey):
+	return hashlib.sha256(shortKey).hexdigest()
+	else:
+	print('Typo detected in private key!')
+	return None
+
+def CheckShortKey(shortKey):
+	"""
+	Checks for typos in the short key.
+	"""
+	t = '%s?' % shortKey
+	tHash = hashlib.sha256(t).digest()
+	# Check to see that first byte is \x00
+	if tHash[[0]] == '\x00':
+	return True
+	else:
+	# Do an additional 716 rounds
+	for i in range(716):
+	tHash = hashlib.sha256(tHash).digest()
+	# Check again for \x00
+	if tHash[[0]] == '\x00':
+	return True
+	return False
+</source>
