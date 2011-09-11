@@ -1,0 +1,21 @@
+Bitcoin API call list (as of version 0.3.20.2) with code samples and returned values.
+
+## API Calls
+
+API Calls to JSON-RPC are sent using POST method and parameters are sent as JSON object.
+
+### Example Request
+
+When requesting something from the JSON-RPC server the request is sent to the server with the following URL: <tt>http://user:pass@localhost:8332/</tt> with post data that looks something like this:
+
+<syntaxhighlight lang="javascript">{"method":"listreceivedbyaccount","params":[[0]],"id":"listreceivedbyaccount"}:</syntaxhighlight>
+
+The Bitcoind server user JSON notation instead of using regular POST parameters which can cause confusions sometime. Note the trailing colon on the post data above.
+
+The JSON object that is being sent to the server is composed of 3 elements: <tt>method</tt>, <tt>params</tt>, and <tt>id</tt>.
+
+<strong><tt>method</tt></strong> is what method you want to invoke, this is a simple string representing the method you're invoking.
+
+<strong><tt>params</tt></strong> is the <strong><tt>Array</tt></strong> parameters that you're sending with the method invocation. Note that these parameters are sent as an <tt>Array</tt> notation and not <tt>Object</tt> notation.
+
+### backupwallet
