@@ -18,4 +18,22 @@ The JSON object that is being sent to the server is composed of 3 elements: <tt>
 
 <strong><tt>params</tt></strong> is the <strong><tt>Array</tt></strong> parameters that you're sending with the method invocation. Note that these parameters are sent as an <tt>Array</tt> notation and not <tt>Object</tt> notation.
 
+<strong><tt>id</tt></strong> is used by the app requesting, and I usually just send the method name as the ID
+
+## Calls List
+
+Required arguments are denoted inside < and > Optional arguments are inside  [[and]].
+
 ### backupwallet
+
+Safely copies wallet.dat to destination, which can be a directory or a path with filename.
+
+#### Arguments
+
+<tt>0</tt> <strong>Destination</strong> The destination of the wallet file it will be copied to. This needs to be a valid <tt>directory</tt> in your file system passed in linux style (forward slashes (<tt>/</tt>) as separators - linux style, not backward slashes (<tt>\</tt>) - windows style). The directory <strong>must not have a file named <tt>wallet.dat</tt></strong> otherwise the operation will fail.
+
+#### Example Request
+
+<syntaxhighlight lang="javascript">{"method":"backupwallet","params":[["d:/wallet/"]],"id":"backupwallet"}:</syntaxhighlight>
+
+#### Result
