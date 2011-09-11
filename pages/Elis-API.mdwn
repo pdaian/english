@@ -24,16 +24,197 @@ The JSON object that is being sent to the server is composed of 3 elements: <tt>
 
 Required arguments are denoted inside < and > Optional arguments are inside  [[and]].
 
+
+
+
 ### backupwallet
 
 Safely copies wallet.dat to destination, which can be a directory or a path with filename.
 
 #### Arguments
 
-<tt>0</tt> <strong>Destination</strong> The destination of the wallet file it will be copied to. This needs to be a valid <tt>directory</tt> in your file system passed in linux style (forward slashes (<tt>/</tt>) as separators - linux style, not backward slashes (<tt>\</tt>) - windows style). The directory <strong>must not have a file named <tt>wallet.dat</tt></strong> otherwise the operation will fail.
+<tt>[[0]]</tt> <strong><Destination></strong> <tt>String</tt> The destination of the wallet file it will be copied to. This needs to be a valid <tt>directory</tt> in your file system passed in linux style (forward slashes (<tt>/</tt>) as separators - linux style, not backward slashes (<tt>\</tt>) - windows style). The directory <strong>must not have a file named <tt>wallet.dat</tt></strong> otherwise the operation will fail. Example: <tt>"d:/wallet-backup/"</tt>
 
 #### Example Request
 
-<syntaxhighlight lang="javascript">{"method":"backupwallet","params":[["d:/wallet/"]],"id":"backupwallet"}:</syntaxhighlight>
+<syntaxhighlight lang="javascript">{"method":"backupwallet","params":[["d:/wallet-backup/"]],"id":"backupwallet"}:</syntaxhighlight>
 
 #### Result
+
+##### Success
+<tt>result</tt> = <tt>null</tt>
+
+<syntaxhighlight lang="javascript">{
+	"result": null,
+	"error": null,
+	"id": "backupwallet"
+}</syntaxhighlight>
+
+##### Error
+<syntaxhighlight lang="javascript">{
+	"result": null,
+	"error": {
+	"code": -1,
+	"message": "boost::filesystem::copy_file: The file exists: \"C:\\Users\\Eli\\AppData\\Roaming\\Bitcoin\\testnet\\wallet.dat\", \"d:\\wallet-backup\\wallet.dat\""
+	},
+	"id": "backupwallet"
+}</syntaxhighlight>
+
+There are other errors that can occur, for example if the directory provided is incorrect.
+
+
+
+### getaccount
+
+Returns the account associated with the given address.
+
+#### Arguments
+
+<tt>[[0]]</tt> <strong><Bitcoin Address></strong> <tt>String</tt> The address being checked. Example: <tt>"n3CoNg6qBkJauJq5558PrfEHJd8f1emkQZ</tt>" (note that this a <tt>testnet</tt> address), <tt>""</tt>
+
+#### Example Request
+
+<syntaxhighlight lang="javascript">{"method":"getaccount","params":[(1)]("n3CoNg6qBkJauJq5558PrfEHJd8f1emkQZ"),"id":"getaccount"}:</syntaxhighlight>
+
+#### Result
+<tt>result</tt> = <tt>String</tt> the account that the address is associated with.
+
+Note that some addresses in a bitcoin wallet are not associated with any given account and in those cases the <tt>result</tt> will be an empty string (i.e. the global account).
+
+##### Success
+<syntaxhighlight lang="javascript">{
+	"result": "Testnet Faucet",
+	"error": null,
+	"id": "getaccount"
+}</syntaxhighlight>
+
+##### Error
+The only time that this method returns an error is when the first argument (<tt>[[0]]</tt> <strong>Bitcoin Address</strong>) is not supplied. <ins>In any other case the method will return a successful result</ins> with an empty <tt>"result"</tt> value indicating that the address belongs to the global account, <ins>even if no address supplied</ins> (i.e. empty string: <tt>""</tt>) or a bad address altogether (i.e. <tt>"eli"</tt>).
+
+<syntaxhighlight lang="javascript">{
+	"result": null,
+	"error": {
+	"code": -1,
+	"message": "getaccount <bitcoinaddress>\nReturns the account associated with the given address."
+	},
+	"id": "getaccount"
+}</syntaxhighlight>
+
+
+
+
+
+### getaccountaddress
+
+Returns the current bitcoin address for receiving payments to this account.
+
+#### Arguments
+
+<tt>[[0]]</tt> <strong><Account></strong> <tt>String</tt> The account that you want to get an address for. An empty string is considered as the <tt>global</tt> account and will return a valid address. Example: <tt>"Testnet Faucet"</tt>, <tt>""</tt>
+
+#### Example Request
+
+<syntaxhighlight lang="javascript">{"method":"getaccountaddress","params":[Faucet"]("Testnet),"id":"getaccountaddress"}:</syntaxhighlight>
+
+#### Result
+
+##### Success
+<tt>result</tt> = <tt>String</tt> an address associated with this account.
+
+<syntaxhighlight lang="javascript">{
+	"result": "mpFrRfLZRWCKzG2VmmxajJLcGpchsYiFQo",
+	"error": null,
+	"id": "getaccountaddress"
+}</syntaxhighlight>
+
+##### Error
+<syntaxhighlight lang="javascript">{
+	"result": null,
+	"error": {
+	"code": -1,
+	"message": "getaccountaddress <account>\nReturns the current bitcoin address for receiving payments to this account."
+	},
+	"id": "getaccountaddress"
+}</syntaxhighlight>
+
+This error is only returned if no arguments supplied at all (not even an empty string).
+
+
+
+
+### getaddressesbyaccount
+
+Returns the list of addresses for the given account.
+
+#### Arguments
+
+<tt>[[0]]</tt> <strong><Account></strong> <tt>String</tt> The account that you want to get addresses for. An empty string is considered as the <tt>global</tt> account and will return a valid address. Example: <tt>"Testnet Faucet"</tt>, <tt>""</tt>
+
+#### Example Request
+
+<syntaxhighlight lang="javascript">{"method":"getaddressesbyaccount","params":[Faucet"]("Testnet),"id":"getaddressesbyaccount"}:</syntaxhighlight>
+
+#### Result
+
+##### Success
+<tt>result</tt> = <tt>Array</tt> An array of addresses associated with the account.
+
+<syntaxhighlight lang="javascript">{
+	"result": 			[(1)]("mv97croRs1krPoTXsfoSnxT7YhUn4zECUs"),
+	"error": null,
+	"id": "getaddressesbyaccount"
+}</syntaxhighlight>
+
+##### Error
+<syntaxhighlight lang="javascript">{
+	"result": null,
+	"error": {
+	"code": -1,
+	"message": "getaddressesbyaccount <account>\nReturns the list of addresses for the given account."
+	},
+	"id": "getaddressesbyaccount"
+}</syntaxhighlight>
+
+This error is only returned if no arguments supplied at all (not even an empty string).
+
+
+
+
+### getbalance
+
+If [[Account]] is not specified, returns the server's total available balance. If [[Account]] is specified, returns the balance in the account.
+
+#### Arguments
+
+<tt>[[0]]</tt> <strong>[[Account]]</strong> <tt>String</tt> The account that you want to balance. An empty string is considered as the <tt>global</tt> account and will return a the balance of the <tt>global</tt> account. A <tt>null</tt> value will return the entire balance available for the server. Example: <tt>"Testnet Faucet"</tt>, <tt>""</tt>, <tt>null</tt>
+
+<tt>[[1]]</tt> <strong>[Confirmations](Minimum)</strong> <tt>Integer</tt> The minimum confirmations you want to consider when requesting balance. Default value is <tt>1</tt>. If <tt>0</tt> is supplied even unconfirmed transactions will be considered and will show in the balance. Example: <tt>1</tt>, <tt>0</tt>, <tt>null</tt>
+
+#### Example Request
+
+<syntaxhighlight lang="javascript">{"method":"getbalance","params":[],"id":"getbalance"}:</syntaxhighlight>
+
+#### Result
+
+##### Success
+<tt>result</tt> = <tt>Float</tt> A float representing the balance that the <tt>account</tt> or the <tt>server</tt> has to it's disposal.
+
+<syntaxhighlight lang="javascript">{
+	"result": 256.4985,
+	"error": null,
+	"id": "getbalance"
+}</syntaxhighlight>
+
+##### Error
+No error should be returned with this method.
+
+
+
+
+### getblockbycount
+
+Dumps the block existing at specified height. <strong>Note: this is not available in the official release</strong>
+
+#### Arguments
+
+<tt>[[0]]</tt> <strong>Height</strong>
