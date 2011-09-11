@@ -178,13 +178,17 @@ The chain-trade script could look like this:
 
 The contract input script looks like either:
 
-	1 <sig A> <sig B>
+	<sig A> <sig B> 1
 
 or
 
-	0 <sig B> <secret A> <secret B>
+	<secret B> <secret A> <sig B> 0
 
 ie, the first data element selects which phase is being used.
+
+##Example 6: Smart property
+
+It's possible to make physical property, like houses, cars or phones, be atomically tradeable and lendable via the block chain. This topic has its own article: learn more about [[smart property|Smart_Property]].
 
 ##See Also
 
