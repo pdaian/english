@@ -245,25 +245,6 @@ It's possible to add arbitrary data to any transaction by just adding some data 
 |true|Empty.|Stack holds the value of signature check now.
 
 
-###Hidden recipient
-
-With this script by Gavin, nothing is known about the transaction recipient. "randomNumber" must be known by both the sender and the recipient, and must never be re-used.
-
-	scriptPubKey: OP_HASH160 <hash160> OP_EQUAL
-	scriptSig: <randomNumber>
-
-Checking process:
-
-
-|Stack |Script |Description 
-|---|---|---
-|Empty.|<randomNumber>OP_HASH160 <hash160> OP_EQUAL|
-|<randomNumber>|OP_HASH160 <hash160> OP_EQUAL|Constant put on the stack.
-|<random_numer_hashed> |<hash160> OP_EQUAL|hash random number
-|<random_numer_hashed> <hash160>|OP_EQUAL|Expected hash put on stack
-|true|Empty.|TRUE will be left on the stack if the hash matches the random number.
-
-
 ##See Also
 
 * [[Contracts]]
