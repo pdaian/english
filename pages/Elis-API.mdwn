@@ -10,7 +10,7 @@ When requesting something from the JSON-RPC server the request is sent to the se
 
 <syntaxhighlight lang="javascript">{"method":"listreceivedbyaccount","params":[[0]],"id":"listreceivedbyaccount"}:</syntaxhighlight>
 
-The Bitcoind server user JSON notation instead of using regular POST parameters which can cause confusions sometime. Note the trailing colon on the post data above.
+The Bitcoind server uses JSON notation instead of using regular POST parameters which can cause confusions sometime. Note the trailing colon on the post data above.
 
 The JSON object that is being sent to the server is composed of 3 elements: <tt>method</tt>, <tt>params</tt>, and <tt>id</tt>.
 
