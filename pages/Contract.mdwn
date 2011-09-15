@@ -1,6 +1,6 @@
 A **distributed contract** is a method of using Bitcoin to form agreements with people via the block chain. Contracts don't make anything possible that was previously impossible, but rather they allow you to solve common problems in a way that minimizes trust.
 
-Many of the ideas underlying Bitcoin contracts were first described by Nick Szabó in his seminal paper, 
+Many of the ideas underlying Bitcoin contracts were first described by Nick Szabó in his seminar paper, 
 [Formalizing and Securing Relationships on Public Networks](http://szabo.best.vwh.net/formalize.html).
 
 ##Theory
@@ -44,7 +44,7 @@ We can solve this problem with a contract:
 1. The user creates transaction Tx1 (the payment) putting 10 BTC into an output which requires both user and website to sign, but does not broadcast it. They use the key from the previous step for the site.
 1. User sends Tx1 to the website.
 1. The website creates a transaction Tx2 (the contract).  Tx2 spends Tx1 and pays it back to the user using the address he provided in the first step. Note that Tx1 requires two signatures, so this transaction can't be complete. nLockTime is set to some point in the future (eg, six months). The sequence number on the input is set to zero.
-1. Finally the incomplete (half signed) transaction is sent back to the user. The user checks that the contract is as expected ... that the coins will eventually come back to him but, unless things are changed, only after six months. Because the sequence number is zero the contract can be amended in future if both parties agree. The script in the input isn't finished though - where there should be the users signature is only zeros. He fixes that by signing the contract and putting the new signature in the appropriate spot.
+1. Finally the incomplete (half signed) transaction is sent back to the user. The user checks that the contract is as expected ... that the coins will eventually come back to him but, unless things are changed, only after six months. Because the sequence number is zero the contract can be amended in future if both parties agree. The script in the input isn't finished though - there are only zeros where should be the user's signature. He fixes that by signing the contract and putting the new signature in the appropriate spot.
 1. The user broadcasts Tx1, then broadcasts Tx2.
 
 At this point, the 10 BTC are in a state where neither the user nor the website can spend them independently. After six months the contract will complete and the user will get the coins back even if the website disappears.
