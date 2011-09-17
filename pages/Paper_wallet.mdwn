@@ -1,0 +1,13 @@
+A **paper wallet** is a way to store Bitcoins that involves printing the Bitcoin addresses and private keys directly on a piece of paper.  When done properly, paper wallets are one of the safest ways possible to store Bitcoins.
+
+A Bitcoin [[private_key]] can be represented in several formats, but is typically a string of numbers and letters no more than about 51 characters in length.  This is easy to print on paper, and if kept secret, can securely hold an unlimited quantity of Bitcoins.
+
+##Producing safe paper wallets
+Several tools exist for producing paper wallets, including [[pywallet]], [[vanitygen]], [[btcaddress.net]], [[LinuxCoin]], and [[Bitcoin_Address_Utility]].  Paper wallets must be produced securely in order to be safe, because any leak of the private key constitutes the ability for an attacker to steal any present and future balance of the address.  Consider the following:
+
+* Paper wallets should be produced on a computer not connected to the Internet.
+* Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your paper wallet.  Also consider that antivirus software cannot completely rule out the possibility of malware.  However, using bootable CD's prevents the vast majority of malware from being able to run.  If you can generate a paper wallet with a bootable CD such as [[LinuxCoin]], the likelihood of malware being able to compromise your keys is very low.
+* The private keys of paper wallets should never be saved to a computer hard drive.  You should also never scan your paper wallet into your computer or type the private keys or save them in e-mail, except at the moment you are redeeming the balance.
+* A web-based paper wallet generator should be written so that all of the generation happens on your computer, not the web server.  After you load the paper wallet generating website in your web browser, you should disconnect from the internet, and observe that the paper wallet generator continues to function.  Afterward, you should close your browser before reconnecting to the internet.
+
+In addition, third parties such as [[User:Casascius]] offer pre-generated paper wallets for sale.  Assuming that the provider has properly generated the paper wallet in a secure manner, the only person who can steal balances from the paper wallets is the person who created it.  Depending on your viewpoint, this may or may not be an acceptable risk, depending on the balance you intend to store on the paper wallet and your ability to achieve recourse in the event of a problem.  If you are able to produce your own paper wallets securely, doing so ranks among the most effective of ways to safely store Bitcoins.
