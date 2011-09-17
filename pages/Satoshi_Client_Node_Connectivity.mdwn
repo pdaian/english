@@ -38,9 +38,7 @@ to the regular connection handling code.
 
 ###Outbound Limiting
 
-The connection handling code is one loop that performs various
-
-functions until shutdown. The first thing the loop does is count
+The connection handling code is one loop that performs various functions until shutdown. The first thing the loop does is count
 the number of outbound connections, and if the maximum has been
 reached (8 or -maxconnections), then it goes into a 2 second delay
 loop until the count is below the max.
@@ -80,7 +78,6 @@ specifies a nonstandard port, a 2 hour (7200) penalty is added to the number.
 This is an adjustment number to the retry interval.
 
 The main retry interval is basically the square root of the last time seen
-
 plus the "random" adjustment from the previous paragraph. If the node
 has been seen in the last hour, however, the retry interval is set to
 ten minutes.  The following table is in the code:
@@ -115,7 +112,6 @@ a random adjustment).
 ###Inbound Accepting and Disconnecting
 
 The client handles accepting new inbound connections and disconnecting
-
 nodes when appropriate in a a thread called ThreadSocketHandler2,
 which is in net.cpp.
 
