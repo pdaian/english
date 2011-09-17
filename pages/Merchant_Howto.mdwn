@@ -12,7 +12,7 @@ This page is intended as a guide to assist merchants learn how to accept bitcoin
 ###Simple
 You can accept Bitcoins on your website without needing to use Bitcoin APIs or third party services if you pre-generate a large number of receiving Bitcoin addresses and store them in a database on your web server, and dispense them one-by-one to customers when they are ready to pay.  This way, your web server never actually handles the bitcoins - it simply gives out addresses belonging to a wallet you maintain elsewhere.  By using a unique address per order, you will always know which payment belongs to which order.  [Example of website using this method](https://www.casascius.com)
 
-To pre-generate addresses, use a tool such as [[Pywallet]] (which can generate a wallet.dat file) or [[Bitcoin_Address_Utility]] (which can generate a CSV file).  In both cases, you will be generating a list of [[Bitcoin_address]]es along with their corresponding [[private_key]]s.
+To pre-generate addresses, use a tool such as [[Pywallet]] (which can generate a wallet.dat file) or [[Bitcoin_Address_Utility]] (which can generate a CSV file).  In both cases, you will be generating a list of [[Bitcoin_address]]es along with their corresponding [[private_key]]s.  Only the Bitcoin addresses should be loaded on the web server.
 
 If you are shipping goods manually, you can use the Bitcoin software to check for incoming payments, or alternately consider using [[Block_Explorer]] or [[Abe]] to verify payment when you're about to ship.  To make this easy, make your website provide you a full hyperlink that includes the proper receiving address:  ht<nowiki>tp://www</nowiki>.blockexplorer.com/address/ADDRESSGOESHERE.
 
@@ -23,16 +23,16 @@ If you keep Bitcoins off your web server, this ensures your wallet cannot be sto
 ###Using a third-party API
 You can use an existing [[shopping cart interface|tags/Shopping_Cart_Interfaces]] or utilize the Bitcoin client's [[JSON-RPC API|API_tutorial_(JSON-RPC)]] to automatically accept payments.
 
-Setup a system that:
+Set up a system that:
 
-1. When a customer orders something on your website it records
+1. When a customer orders something on your website it records:
 1. * Bitcoin address that payment should be sent to
 1. * Order details (delivery address etc.)
 1. * Customer's refund address (optional - if you wish you can ask for this later, only in cases a refund is required)
 1. * Payment amount
 1. When payment arrives, checks that they have paid the correct amount or not, and informs you
-1. * You dispach the goods to the customer and mark the order as fulfilled
-1. * If you cannot dispach the goods you mark the order as denied and ask the customer for a refund address (unless you already have it from earlier) to send a refund.
+1. * You dispatch the goods to the customer and mark the order as fulfilled
+1. * If you cannot dispatch the goods you mark the order as denied and ask the customer for a refund address (unless you already have it from earlier) to send a refund.
 1. Forwards the funds to bitcoin address of your choice
 
 ##Common Errors
