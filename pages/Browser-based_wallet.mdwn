@@ -1,6 +1,8 @@
 A **browser-based wallet** or **wallet service** is an online account with an external provider where bitcoins can be stored.  Examples include accounts on currency exchange [[Markets|tags/Markets]], online [[Services|tags/Services]] and with ecommerce transaction processors.
 
-<span style="color:red">Warning: When storing your bitcoins with a browser-based wallet on a third-party website, you are trusting that the operator will not abscond with your bitcoins, and that the bitcoins will not be stolen by a hacker or the operator's employee or agent, beyond the website operator's control.  Ensure you have sufficient recourse and that you can obtain the real-world identity of the website operator.  Storing significant quantities of bitcoins on third party websites is not recommended.</span>  
+Due to an incident with the [[MyBitcoin]] service in July 2011, resulting in the loss of Bitcoins belonging to many of its customers, browser-based wallets are not very popular or favored with the Bitcoin community.
+
+<span style="color:red">Warning: When storing your bitcoins with a browser-based wallet on a third-party website, you are trusting that the operator will not abscond with your bitcoins, and that the bitcoins will not be stolen by a hacker or the operator's employee or agent, beyond the website operator's control.  Ensure you have sufficient recourse and that you can obtain the real-world identity of the website operator.  Consider whether the operator is in a financial position to cover any losses that might occur, and what percentage of holdings are kept offline in [[cold_storage]] as a safety measure from hackers.  Storing significant quantities of bitcoins on third party websites is not recommended.</span>  
 
 ##Benefits
 
@@ -22,8 +24,6 @@ Other relevant things:
 * Not all wallet providers reserve a bitcoin address for the account holder indefinitely.  Bitcoin addresses generally work best when one is assigned for each use.  There is the risk of showing an address from a wallet provider in a directory or on a web page (for donations, as an example) as there is the possibility that at the future date when those bitcoins are sent that the intended recipient still has the wallet account.  The same concern applies should the wallet provider cease operations.
 
 * There is no trivial way to guarantee that the amount of bitcoins showing for the account holder's balance are truly being held in reserve by the wallet provider.
-	* Some providers describe their reserve policy in their terms of service (TOS). For example, [MyBitcoin's TOS](http://www.mybitcoin.com/legal/terms.php) states:
->  <tt>6. OBLIGATIONS OF MYBITCOIN LLC<br>6.1 MYBITCOIN LLC will ensure that for all Bitcoins in circulation in the MyBitcoin System there is at all times an identical quantity of unencumbered Bitcoins held in MYBITCOIN LLC's master Bitcoin wallet.</tt>
 
 * Transactions to a Bitcoin address from the same wallet provider are usually completed internally and, if so, will not be processed on the Bitcoin P2P network.  Auditing tools such as the [[Block_Explorer]] will not show any activity for this transaction.
 	* Some wallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same wallet provider.  For example, MyBitcoin will report an error when attempting to send an amount smaller than 0.01 BTC to a Bitcoin address that is not for another MyBitcoin account.
