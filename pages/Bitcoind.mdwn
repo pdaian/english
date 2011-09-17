@@ -1,5 +1,3 @@
-[[!template id=stub]]
-
 [[!img "Bitcoin_Original_Client.png" size=120x120 size=350x350 class="right" title="The bitcoin original client"]]
 
 The **Original Bitcoin client** is the first [[bitcoin]] client in the network's history. It is also the official client of the bitcoin project. It's available under the [MIT license](http://www.opensource.org/licenses/mit-license.php) for Windows, 32 and 64-bit GNU/Linux-based OSes and Mac OS X.
@@ -39,6 +37,42 @@ To stop the bitcoin daemon, execute:
 * Version 0.3.22 was released for all supported platforms on May 19th, 2011  (5.3).
 * Version 0.3.20 was released for all supported platforms on February 21st, 2011 (5.4).
 
+
+
+##Theory of Operation
+
+Satoshi's Original Bitcoin client is a multithreaded C++ program. It is designed to be portable across Windows, Mac, and Linux systems. The multithreaded aspect leads to some complexity and the use of certain code patterns to deal with concurrency that may be unfamiliar to many programmers. Also, the code is aggressive in the use of C++ constructs, so it will help to be fluent with map, multmap, set, string, vector, iostream, and templates. As typical of a C++ program, l a lot of code tends to end up in the header files so be sure to search both the .cpp and .h files when looking for a function.
+
+The client is oriented around several major operations, which are described in separate detailed articles and summarized in the following sections.
+
+
+###[[Initialization and Startup|Satoshi_Client_Initialization_and_Startup]]
+Upon startup, the client performs various initilization routines including starting multiple threads to handle concurrent operations.
+
+###[[Node Discovery|Satoshi_Client_Node_Discovery]]
+The client uses various techniques find out about other bitcoin nodes that may exist.
+
+###[[Node Connectivity|Satoshi_Client_Node_Connectivity]]
+The client initiates and maintains connections to other nodes.
+
+###[[Sockets and Messages|Satoshi_Client_Sockets_and_Messages]]
+The client processes messages from other nodes and sends messages to other nodes using socket connections.
+
+###[[Block Exchange|Satoshi_Client_Block_Exchange]]
+Nodes advertise their inventory of blocks to each other and exchange blocks to build block chains.
+
+###[[Transaction Exchange|Satoshi_Client_Transaction_Exchange]]
+Nodes exchange and relay transactions with each other. The client associates transactions with bitcoin addresses in the local wallet.
+
+###[[Wallet Services|Satoshi_Client_Wallet_Services]]
+The client can create transactions using the local wallet. The client associates transactions with bitcoin addresses in the local wallet. The client provides a service for managing the local wallet.
+
+###[[RPC Interface|Satoshi_Client_RPC_Interface]]
+The client offers an JSON-RPC interface over HTTP over sockets to perform various operational functions and to manage the local wallet.
+
+###User Interface
+The user interface code is currently based on [wxWidgets](http://www.wxwidgets.org) and is scheduled to be superseded by [[Bitcoin-qt]] in version 0.5.0. 
+
 ##See Also
 
 * [[Original_Bitcoin_client/API_calls_list]]
@@ -63,6 +97,8 @@ To stop the bitcoin daemon, execute:
 [[!tag "Wallets"]]
 [[!tag "User_Interfaces"]]
 [[!tag "Clients"]]
+[[!tag "Developer"]]
+[[!tag "Technical"]]
 [[!tag "Free_Software"]]
 [[!tag "License/MIT-X11"]]
 [[!tag "Open_Source"]]
