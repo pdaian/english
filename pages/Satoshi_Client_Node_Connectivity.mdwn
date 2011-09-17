@@ -1,4 +1,144 @@
-[[!template id=stub]]
+##Overview
+The Satoshi bitcoin client creates a thread to manage making
+connections to other nodes. The code for that thread is in a
+function called ThreadOpenConnections2 in net.cpp.
+
+The client also handles accepting new inbound connections and 
+disconnecting nodes when appropriate in a a thread called
+ThreadSocketHandler2, which is also in net.cpp.
+
+The thread making connections does not discover the addresses of other
+nodes. That information is gathered in various ways (See the article
+on Node Discovery). The connection thread chooses among the available
+addresses and makes connections and disconnects nodes when appropriate.
+That is all it does.
+
+Node addresses are chosen based on the following set of rules.
+
+
+
+
+##Connection Rules
+
+###Outbound Static Addresses
+
+If the user specified addresses with -connect, the node uses 
+those addresses only. It tries to establish a connection to each node
+and then sleeps for a half second, and then repeats that in a loop
+until shut down. The code establishes a connection by calling
+OpenNetworkConnection(addr). If the connection is already open,
+OpenNetworkConnection just returns.
+
+
+If the user specified addresses with -node, then connections are
+made to those nodes (with a half second delay between each) upon
+startup. After those connections are attempted, the code proceeds
+to the regular connection handling code.
+
+
+###Outbound Limiting
+
+The connection handling code is one loop that performs various
+
+functions until shutdown. The first thing the loop does is count
+the number of outbound connections, and if the maximum has been
+reached (8 or -maxconnections), then it goes into a 2 second delay
+loop until the count is below the max.
+
+
+Assuming the number of connections is below the limit, the node attempts
+to connect to another node. See the next section.
+
+
+###Seed Nodes
+
+If the node has not been able to learn about other addresses, presumably
+because those methods have failed, the node will use an internal list
+of 320 node addresses hard coded into the software to populate
+the list of known node addresses.
+
+There is code to move away from seed nodes when possible. The presumption
+is that this is to avoid overloading seed nodes. Once the local node has
+enough addresses (presumably learned from the seed nodes), the
+connection thread will close seed node connections.
+
+
+###Outbound Random Selection
+
+First the code puts the addresses into a.b.c.* buckets so only one
+connection is made to each 24 bit netmasked network.
+
+Next, it loops through every address and determines whether it is "ready",
+and then, using a complex calculation, computes a score for every address.
+The address with the highest score wins and OpenNetworkConnection is
+called for it. Then the code completes the main loop of the thread and
+continues.
+
+In order to determine readiness, the code hashes the IP and other entropy
+into a deterministic random number between 1 and 3600. If the address
+specifies a nonstandard port, a 2 hour (7200) penalty is added to the number.
+This is an adjustment number to the retry interval.
+
+The main retry interval is basically the square root of the last time seen
+
+plus the "random" adjustment from the previous paragraph. If the node
+has been seen in the last hour, however, the retry interval is set to
+ten minutes.  The following table is in the code:
+
+	// Last seen  Base retry frequency
+	//   <1 hour   10 min
+	//    1 hour    1 hour
+	//    4 hours   2 hours
+	//   24 hours   5 hours
+	//   48 hours   7 hours
+	//    7 days   13 hours
+	//   30 days   27 hours
+	//   90 days   46 hours
+	//  365 days   93 hours
+
+After computing the interval, if the address has already been contacted in
+the interval, the address is skipped.
+
+If the address is over a day old, we may skip it. If we are successfully
+getting IRC addresses, and have node connections, then we skip it with
+the assumption that we will see the address advertisement if it is really
+active.
+
+Finally, for all addresses that appear to be ready for a retry, the
+address that has not been contacted the longest is chosen with a maximum
+of 24 hours. However, there is a twist. The calculation for the score is this:
+	int64 nScore = min(nSinceLastTry, (int64)24 * 60 * 60) - nSinceLastSeen - nRandomizer;
+So, the address is penalized for every second since it is last seen (and
+a random adjustment).
+
+
+###Inbound Accepting and Disconnecting
+
+The client handles accepting new inbound connections and disconnecting
+
+nodes when appropriate in a a thread called ThreadSocketHandler2,
+which is in net.cpp.
+
+The socket thread is simply a loop which disconnects sockets that
+have the fDisconnect flag set on them (and have empty buffers),
+prepares all sockets for "select" and calls "select". "select" is 
+a system call which waits for activity on a set of sockets.
+When that call returns, the node accepts any new connections,
+receives and sends on any ready sockets, and marks any inactive sockets
+for disconnect with the fDisconnect flag.
+
+Sockets are disconnected if they are 60 seconds old and have not sent
+or received data.
+
+Sockets are disconnected if they have not sent or received data in
+the last 90 minutes.
+
+Sockets are disconnected if the current inbound data exceeds a buffer limit.
+(Search for: if (nPos > ReceiveBufferSize()) in net.cpp)
+
+Sockets are disconnected if the current outbound data exceeds a buffer limit.
+(Search for: if (vSend.size() > SendBufferSize()) in net.cpp)
+
 
 [[!tag "Developer"]]
 [[!tag "Technical"]]
