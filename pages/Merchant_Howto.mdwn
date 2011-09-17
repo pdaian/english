@@ -10,15 +10,15 @@ This page is intended as a guide to assist merchants learn how to accept bitcoin
 
 ##Automated
 ###Simple
-You can accept Bitcoins on your website without needing to use Bitcoin APIs or third party services if you pre-generate a large number of receiving Bitcoin addresses and store them in a database on your web server, and dispense them one-by-one to customers when they are ready to pay.  This way, your web server never actually handles the bitcoins - it simply gives out addresses belonging to a wallet you maintain elsewhere.
+You can accept Bitcoins on your website without needing to use Bitcoin APIs or third party services if you pre-generate a large number of receiving Bitcoin addresses and store them in a database on your web server, and dispense them one-by-one to customers when they are ready to pay.  This way, your web server never actually handles the bitcoins - it simply gives out addresses belonging to a wallet you maintain elsewhere.  By using a unique address per order, you will always know which payment belongs to which order.  [Example of website using this method](https://www.casascius.com)
 
 To pre-generate addresses, use a tool such as [[Pywallet]] (which can generate a wallet.dat file) or [[Bitcoin_Address_Utility]] (which can generate a CSV file).  In both cases, you will be generating a list of [[Bitcoin_address]]es along with their corresponding [[private_key]]s.
 
-If you are shipping goods manually, you can use the Bitcoin software to check for incoming payments, or alternately consider using [[Block_Explorer]] or [[Abe]] to verify payment when you're about to ship.  To make this easy, make your website provide you a full hyperlink:  ht<nowiki>tp://www</nowiki>.blockexplorer.com/address/ADDRESSGOESHERE.
+If you are shipping goods manually, you can use the Bitcoin software to check for incoming payments, or alternately consider using [[Block_Explorer]] or [[Abe]] to verify payment when you're about to ship.  To make this easy, make your website provide you a full hyperlink that includes the proper receiving address:  ht<nowiki>tp://www</nowiki>.blockexplorer.com/address/ADDRESSGOESHERE.
 
 If you are delivering digital goods or services and want to be able to deliver instantly upon payment and/or confirmation, you can use a third-party service such as [[Bitcoin_Notify]] to tell your website when a payment has been received.  This sort of service requires no significant API implementation - they will simply make a POST to your website or send you an e-mail when a payment has been received on one of your addresses.
 
-If you keep Bitcoins off your web server, this ensures your wallet cannot be stolen if your web server experiences a security intrusion.  Your risk becomes limited to the possibility that a successful intruder could add his own addresses to your address pool and steal funds from a few incoming orders until you detect the problem, however, this is a much more controllable risk.
+If you keep Bitcoins off your web server, this ensures your wallet cannot be stolen if your web server experiences a security intrusion.  Your risk becomes limited to the possibility that a successful intruder could add his own addresses to your address pool and steal funds from a few incoming orders until you detect the problem, however, this is a relatively controllable risk.
 
 ###Using a third-party API
 You can use an existing [[shopping cart interface|tags/Shopping_Cart_Interfaces]] or utilize the Bitcoin client's [[JSON-RPC API|API_tutorial_(JSON-RPC)]] to automatically accept payments.
