@@ -1,4 +1,5 @@
-##Overview
+##<br/>Overview
+
 The Satoshi bitcoin client creates a thread to manage making
 connections to other nodes. The code for that thread is in a
 function called ThreadOpenConnections2 in net.cpp.
@@ -14,7 +15,6 @@ addresses and makes connections and disconnects nodes when appropriate.
 That is all it does.
 
 Node addresses are chosen based on the following set of rules.
-
 
 
 
@@ -42,7 +42,6 @@ The connection handling code is one loop that performs various functions until s
 the number of outbound connections, and if the maximum has been
 reached (8 or -maxconnections), then it goes into a 2 second delay
 loop until the count is below the max.
-
 
 Assuming the number of connections is below the limit, the node attempts
 to connect to another node. See the next section.
