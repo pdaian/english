@@ -1,4 +1,289 @@
-[[!template id=stub]]
+##Overview
+
+The Satoshi client discovers the IP address and port of nodes in several different ways.
+
+1. Nodes discover their own external address by various methods.
+1. Nodes receive the callback address of remote nodes that connect to them.
+1. Nodes connect to IRC to receive addresses.
+1. Nodes makes DNS request to receive IP addresses.
+1. Nodes can use addresses hard coded into the software.
+1. Nodes exchange addresses with other nodes.
+1. Nodes store addresses in a database and read that database on startup.
+1. Nodes can be provided addresses as command line arguments
+1. Nodes read addresses from a user provided text file on startup
+
+A timestamp is kept for each address to keep track of when the node
+address was last seen. The AddressCurrentlyConnected in net.cpp handles
+updating the timestamp whenever a message is received from a node.
+Timestamps are only updated on an address and saved to the database
+when the timestamp is over 20 minutes old.
+
+See the Node Connectivity article for information on which type of
+addresses take precedence when actually connecting to nodes.
+
+In the first section we will cover how a node handles a request for
+addresses via the "getaddr" message. By understanding the role of
+timestamps, it will become more clear why timestamps are kept the way
+they are for each of the different ways an address is discovered.
+
+
+##Handling Message "getaddr"
+
+When a node receives a "getaddr" request, it first figures out how many
+addresses it has that have a timestamp in the last 3 hours.
+Then it sends those addresses, but if there are more than 2500 addresses
+seen in the last 3 hours, it selects around 2500 out of the available
+recent addresses by using random selection.
+
+
+Now lets look at the ways a node finds out about node addresses.
+
+
+
+##Discovery Methods
+
+
+###Local Client's External Address
+The client uses two methods to determine its own external, routable IP
+address: it uses IRC, preferably, and if that does not succeed, it uses
+public web services which return the information.
+
+From a thread created for this work (called ThreadIRCSeed in irc.cpp),
+the client makes an IRC connection to 92.243.23.21 or irc.lfnet.org,
+if the direct IP connection fails. The port is 6667.[[1]]
+If the connection succeeds, the client issues a USERHOST command to
+the IRC server, in order to get their own IP address.[[2]]
+
+The client also runs a thread called ThreadGetMyExternalIP (in net.cpp)
+which attempts to determine the client's IP address as seen from the outside
+world.  It gives the IRC thread a chance to discover the IP address
+first, sleeping and checking periodically for 2 minutes, and then it
+proceeds if the IRC method did not succeed.
+
+First, it attempts to connect to 91.198.22.70 port 80, which should be
+the checkip.dyndns.org server. If connection fails, a DNS request is made
+for checkip.dyndns.org and a connection is attempted to that address.
+Next, it attemps to connect to 74.208.43.192 port 80, which should be
+the www.showmyip.com server. If connection fails, a DNS request is made
+for www.showmyip.com and a connection is attempted to that address.
+
+For each address attempted above, the client attempts to connect,
+send a HTTP request, read the appropriate response line, and parse the
+IP address from it.
+If this succeeds, the IP is returned, it is advertised to any connected
+nodes, and then the thread finishes (without proceeding to the next
+address).
+
+
+
+###Connect Callback Address
+When a node receives an initial "version" message, and that node initiated
+the connection, then the node advertises its address to the remote so
+that it can connect back to the local node if it wants to.[[3]]
+After sending its own address, it sends a "getaddr" request message
+to the remote node to learn about more addresses, if the remote node
+version is recent or if the local node does not yet have 1000 addresses.
+
+
+###IRC Addresses
+
+In addition to learning and sharing its own address, the node
+learns about other node addresses via an IRC channel. See irc.cpp.
+After learning its own address, a node encodes its own address into a string
+to be used as a nickname. Then, it randomly joins an IRC channel named
+between #bitcoin00 and #bitcoin99. Then it issues a WHO command.
+The thread reads the lines as they appear in the channel and decodes
+the IP addresses of other nodes in the channel. It does this in
+a loop, forever, until the node is shutdown.
+
+When the client discovers an address from IRC, it sets the timestamp
+on the address to the current time, but it uses a "penalty"
+of 51 minutes, which means it looks like it was actually seen
+almost an hour ago.
+
+
+###DNS Addresses
+Upon startup, the client makes DNS requests to hard coded DNS names
+in order to learn about the addresses of other nodes.[[4]] As of version
+v0.3.24, these addresses were[[5]]:
+
+bitseed.xf2.org
+bitseed.bitcoin.org.uk
+dnsseed.bluematt.me
+
+A recent query of these addresses returned 48 nodes. Note that a
+DNS reply can contain multiple IP addresses for a requested name.
+
+
+Addresses discovered via DNS are initially given a zero timestamp,
+therefore they are not advertised in response to a "getaddr" request.
+
+
+
+###Hard Coded "Seed" Addresses
+The client contains hard coded IP addresses that represent bitcoin nodes.[[6]]
+These addresses are only used as a last resort, if no other method
+has produced any addresses at all.[[7]]
+When the loop in the connection handling thread ThreadOpenConnections2()
+sees an empty address map, it uses the "seed" IP addresses as backup.
+
+There is code is move away from seed nodes when possible. The presumption
+is that this is to avoid overloading those nodes. Once the local node has
+enough addresses (presumably learned from the seed nodes), the
+connection thread will close seed node connections.[[8]]
+
+Seed Addresses are initially given a zero timestamp,
+therefore they are not advertised in response to a "getaddr" request.
+
+
+
+###Ongoing "addr" advertisements
+Nodes may receive addresses in an "addr" message after having
+sent a "getaddr" request, or "addr" messages may arrive 
+unsolicited, because nodes advertise addresses gratuitously
+when they relay addresses (see below), when they advertise
+their own address periodically, and when a connection is made.
+
+If the address is from a really old version, it is ignored; if from
+a not-so-old version, it is ignored if we have 1000 addresses already.
+
+If the sender sent over 1000 addresses, they are all ignored.
+
+Addresses received from an "addr" message have a timestamp, but the
+timestamp is not necessarily honored directly.
+
+
+For every address in the message:
+
+1. If the timestamp is too low or too high, it is set to 5 days ago.
+1. We subtract 2 hours from the timestamp and add the address.
+
+Note that when any address is added, for any reason, the code that calls
+AddAddress() does not check to see if it already exists. The AddAddresss()
+function in net.cpp will do that, and if the address already exists, further
+processing is done to update the address record. If the advertised services
+of the address have changed, that is updated and stored.
+If the address has been seen in the last 24 hours and the timestamp is
+currently over 60 minutes old, then it is updated to 60 minutes ago.
+If the address has NOT been seen in the last 24 hours, and the timestamp is
+currently over 24 hours old, then it is updated to 24 hours ago.
+
+####Address Relay
+
+Once addresses are added from an "addr" message (see above), they then
+may be relayed to the other nodes. First, the following criteria
+must be set [[9]]:
+
+1. The address timestamp, after processing, is within 60 minutes of the current time
+1. The "addr" message contains 10 addresses or less
+1. And fGetAddr is not set on the node. fGetAddr starts false, is set to true when we request addresses from a node, and it is cleared when we receive less than 1000 addresses from a node.
+1. The address must be routable.
+
+When they meet the above criteria, the node hashes all the eligible
+node IP addresses, as well as the current day in the form of an integer,
+and the two nodes with the lowest hash value are chosen to have
+the address relayed to them.
+
+####Self broadcast
+
+Every 24 hours, the node advertises its own address to all connected nodes.
+It also clears the list of the addresses we think the remote node has, which
+will trigger a refresh of sends to nodes. This code is in SendMessages()
+in main.cpp.
+
+####Old Address Cleanup
+
+In SendMessages() in main.cpp, there is code to remove old addresses.
+This is done every ten minutes, as long as there are 3 active connections.
+The node erases messages that have not been used in 14 days as
+long as there are at least 1000 addresses in the map, and as long
+as the erasing process has not taken more than 20 seconds.
+
+
+
+###Addresses stored in the Database
+Addresses are stored in the database when AddAddress() is called.
+
+Addresses are read on startup when AppInit2() calls LoadAddresses(),
+which is located in db.cpp.
+
+Currently, it appears all addresses are stored all at once whenever
+any address is stored or updated [[10]]. Indeed, AddAddress is seen
+to take over .01 seconds in various testing and is typically called 
+tens of thousands of times in the initial 12 hours of running the
+client.
+
+
+
+###Command Line Provided Addresses
+
+The user can specify nodes to connect to with the -addnode <ip>
+command line argument. Multiple nodes may be specified.
+
+Addresses provided on the command line are initially given a zero
+timestamp, therefore they are not advertised in response to a "getaddr"
+request.
+
+The user can also specify an address to connect to with the -connect <ip>
+command line argument. Multiple nodes may be specified.
+The -connect argument differs from -addnode in that -connect addresses
+are not added to the address database and when -connect is specified,
+only those addresses are used.
+
+
+
+###Text File Provided Addresses
+The client will automatically read a file named "addr.txt" in the
+bitcoin data directory and will add any addresses it finds in there
+as node addresses. These nodes are given no special preference over
+other addresses. They are just added to the pool.
+
+Addresses loaded from the text file are initially given a zero timestamp,
+therefore they are not advertised in response to a "getaddr" request.
+
+
+
+
+##Footnotes
+1. See: 
+	CAddress addrConnect("92.243.23.21", 6667); // irc.lfnet.org
+in ThreadIRCSeed2() in irc.cpp.
+
+2. See:
+	GetIPFromIRC()
+in irc.cpp.
+
+3. See:
+	// Advertise our address
+in ProcessMessage() in main.cpp where strCommand == "version"
+
+4. See 
+	DNSAddressSeed()
+in net.cpp.
+
+5. See 
+	static const char *strDNSSeed[] = {
+in net.cpp
+
+6. See
+	pnSeed 
+in net.cpp
+
+7. See:
+	if (mapAddresses.empty() && (GetTime() - nStart > 60  fTOR) && !fTestNet)
+in ThreadOpenConnections2() in net.cpp.
+
+8. See:
+	if (fSeedUsed && mapAddresses.size() > ARRAYLEN(pnSeed) + 100)
+	{   
+	// Disconnect seed nodes
+in ThreadOpenConnections2() in net.cpp.
+
+9. See:
+	if (addr.nTime > nSince && !pfrom->fGetAddr && vAddr.size() <= 10 && addr.IsRoutable())
+in ProcessMessage() in main.cpp where strCommand == "addr"
+
+10. See [bitcointalk.org](https://bitcointalk.org/index.php?topic=26436.0)
 
 [[!tag "Developer"]]
 [[!tag "Technical"]]
