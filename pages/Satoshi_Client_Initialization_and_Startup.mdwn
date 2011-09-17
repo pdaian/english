@@ -1,4 +1,129 @@
-[[!template id=stub]]
+
+##Startup Process
+
+The client uses a fixed number of threads that are created on startup. All of the reading and writing on active network sockets are handled by one thread.
+
+The main() entry point to the program is in init.cpp. Do not go looking in main.cpp for main() - you will not find it.
+
+The first thing main() does is call AppInit, which calls AppInit2 which performs a bunch of initialization busy work mostly related to how the application handles errors. At some point AppInit2 calls ParseParameters, and then some argument handling code processes some basic arguments.
+
+Now it checks to see if an existing GUI window is already present and if so, brings it to the foreground.
+
+Next it creates a lock file in the bitcoin directory and if bitcoin is already running, displays a message and exits.
+
+Next it attemps to listen on the bitcoin port, and if the port is already in user or other error, displays a message and exits.
+
+Next it loads IP addresses from a database, then it loads the block index, and then it loads the wallet.
+
+Next it gets the top block number from the wallet, or zero if -rescan is used. Then It scans the block chain from the block number above.
+
+Side Note:  printf has been redefined in util.h. So printf is really OutputDebugStringF which directs to a file if appropriate (see util.h and util.cpp). Also "loop" is defined in util.h as for (  ; ;  ).
+
+Then it does a bit more initialization and parameter processing and then it finally opens the GUI main window.
+
+Next it creates two threads:
+
+1. StartNode()
+1. And if acting as server: ThreadRPCServer()
+
+This is the only place where these threads are created.
+
+StartNode() is in net.cpp and ThreadRPCServer() is in rpc.cpp.
+
+Last, if not compiled for the GUI it sleeps for 5 seonds in an infinite loop.
+
+## fClient Mode
+
+It is worth noting that there is code in the client to allow it to operate in a mode where it only downloads block headers. The implementation is intended to be used as a lightweight client mode which can operate without verifying and storing all blocks and transactions. This is controlled by the fClient variable in the code which is currently hard coded to false.  This is currently not considered to be finished code. This mode is known as fClient mode and the phrase Simplified Payment Verification (or SPV) mode has also been used to describe a lightweight client approach.
+
+
+
+##Thread StartNode() in net.cpp
+
+StartNode is sort of a master networking thread.
+
+First it creates a CNode for the localhost 127.0.0.1 internal addresss to
+handle communication.
+
+Next, it gets the local IP address. On windows, its a lookup using the
+local host name. On Linux, it is the first IP address it finds on an
+interface that is up and is not the loopback interface.
+
+Next it creates a thread (ThreadGetMyExternalIP) to confirm the local IP
+address using 3rd party verification. If using a proxy, it does not
+bother, because it will not take incoming connections.
+
+Next, if Universal Plug and Play is used, then a thread (ThreadMapPort)
+to deal with port mapping is created.
+
+Next it creates a thread (ThreadIRCSeed) to exchange IP addresses.
+
+Next it creates a thread (ThreadSocketHandler) to "Send and receive from
+sockets, accept connections".
+
+Next it creates a thread (ThreadOpenConnections) to initiate outbound
+connections.
+
+Next it creates a thread (ThreadMessageHandler) to process messages.
+
+Finally, if you have specified so, it will start a bitcoin mining thread.
+
+
+
+##Thread IRCSeed in net.cpp
+
+Connects to 92.243.23.21 port 6667, JOINs the channel, and then
+reads lines one at a time looking for other users.
+
+
+##Thread ThreadSocketHandler in net.cpp
+
+Goes into an endless loop servicing sockets that need servicing.
+Handles disconnected nodes.
+Prepares "select" descriptor list and then calls select, waiting for
+I/O on all the relevant sockets with a 50ms timeout.
+Process new incoming connection on listening socket. Create a CNode for them.
+Handle receiving and sending.
+Set sockets that have not done anything to disconnected state.
+
+
+##Thread ThreadOpenConnecions in net.cpp
+
+Figures out nodes from parameters, seeds, irc, etc, and then goes into a
+loop, connecting to each one by one.
+
+
+##Thread ThreadMessageHandler in net.cpp
+
+This thread goes through all the nodes and calls ProcessMessages(pnode) in
+main.cpp which looks for valid messages on the node receive
+queue (pFrom->vRecv) and if it finds one, it calls 
+ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv), which
+is also in main.cpp.
+
+Then the thread calls SendMessages for each node (which is in main.cpp)
+which handles creating and sending any messages appropriate for that node.
+
+
+##Thread ThreadRPCServer in rpc.cpp
+
+
+This thread will be rather complicated in that it implements an
+HTTP(S)+JSONRPC server using boost classes that are probably going
+to be unfamiliar to most developers.
+
+You will see lines like this:
+	acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+
+and this:
+	boost::thread api_caller(ReadHTTP, boost::ref(stream), boost::ref(mapHeaders), boost::ref(strRequest));
+	if (!api_caller.timed_join(boost::posix_time::seconds(GetArg("-rpctimeout", 30))))
+
+It appears the code above is creating a thread in order to apply 30
+second timeout to reading an HTTPrequest.  When HTTP requests are
+read, they are parsed, and then a routine corresponding to the
+request command name is called to handle the request. This happens
+in a loop until shutdown.
 
 [[!tag "Developer"]]
 [[!tag "Technical"]]
