@@ -34,6 +34,8 @@ Merkle trees are binary trees of hashes. Merkle trees in bitcoin use **Double** 
 
 They are paired up, with the last element being _duplicated_.
 
+Note: Hashes in Merkle Tree displayed in the [[Block_Explorer]] are of little-endian notation. For some implementations and [calculations](http://www.fileformat.info/tool/hash.htm), the bits need to be reversed before they are hashed, and again after the hashing operation.
+
 ### Signatures
 
 Bitcoin uses [Elliptic Curve](http://en.wikipedia.org/wiki/Elliptic_curve_cryptography) [Digital Signature Algorithm](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) (ECDSA) to sign transactions. 
