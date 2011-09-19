@@ -2,7 +2,7 @@
 
 The purpose of this page is to create plans for the first few days after a catastrophic failure of the network in order to save time should any such failure actually occur.
 
-Only failures that would not allow much time for decision will be covered here. Dealing with future problems will not be discussed.
+Only failures that would not allow much time for discussion will be covered here. *Preventing* future problems will not be discussed.
 
 Once the plans themselves are well-accepted, code implementing the plans can be written and tested in case the code is ever required.
 
@@ -41,7 +41,7 @@ If you run a Bitcoin-related site, shut down the site and replace it with this m
 
 [The following paragraph only applies to certain attacks and may need to be removed.](Note:)
 
-If you are solo mining or running a pool, you must stop mining until you upgrade to the latest version (which may not be released quite yet). If you are mining in a pool, shut down your miner until your pool upgrades.
+If you are solo mining or running a pool, you must stop mining until you upgrade to the latest version (which may not be released quite yet). If you are mining in a pool, shut down your miner until your pool upgrades. If you continue mining, any blocks you solve will end up being rejected eventually, and you will be working against the legitimate chain.
 
 Look to your favorite HTTPS-enabled Bitcoin sites for more news. Before running any software, check that a consensus exists among several sites. Do not trust information from Google, as it can be manipulated by the attacker. Other sites, such as bitcoin.org, can likewise be manipulated, though with more difficulty. The most trustworthy source of information is the text that appears at the bottom of the graphical Bitcoin client.
 
@@ -56,7 +56,7 @@ It is not impossible for an attacker to make #bitcoin-dev unusable, either throu
 
 ####IRC
 
-If #bitcoin-dev becomes unusable due to flooding or other abuse that the Freenode IRC operators are unable/unwilling to handle, then moving #bitcoin-dev to irc.lfnet.org will be useful. The operators of LFnet are Bitcoin users who will be helpful in preventing abuse.
+If #bitcoin-dev becomes unusable due to flooding or other abuse that the Freenode IRC operators are unable/unwilling to handle, then moving #bitcoin-dev to irc.lfnet.org will be useful. The operators of LFnet are Bitcoin users who will be very helpful in fighting abuse.
 
 If Freenode is taken down by a denial-of-service attack, #bitcoin-dev can be moved to one of the larger networks, which will (presumably) be more resistant to attacks.
 
@@ -110,8 +110,6 @@ If more than a few BTC was stolen by the attacker, then the transaction ordering
 
 A lot of time should be taken to decide whether and how to re-order the transactions. It may be a very complex issue, as restoring the original versions of transactions could cause damage many times larger than the original transaction reversal. The network will need to be offline for a week or more after an incident of this scale, anyway.
 
-
-
 ##SHA-256 is broken
 Situation: Severe, 0-day failure of SHA-256. First/second preimage resistance or collision resistance can be defeated with only a few days of work.
 
@@ -130,6 +128,8 @@ Situation: Severe, 0-day failure of SHA-256. First/second preimage resistance or
 * The version-1 chain will be securely hashed into a hash tree. At least the root of the version-1 tree will be hardcoded into the client.
 * All hashing Bitcoin does will use the new hashing algorithm.
 
+[for all of this should be prepared.](Code)
+
 ##ECDSA is broken
 Situation: an attacker can sign for a public key that he does not own the private key for in only a few days of work.
 
@@ -140,7 +140,7 @@ Situation: an attacker can sign for a public key that he does not own the privat
 
 ###Response
 
-If the attacker can't get the private key from the public key easily and a stronger algorithm using the same keypairs is available:
+If the attacker can't get the private key from the public key easily and a stronger algorithm that can use ECDSA keys is available:
 
 * Switch to the stronger algorithm.
 * Get users to update. Alerts will be compromised.
@@ -150,3 +150,25 @@ Otherwise:
 * OP_CHECKSIG should use some other signing algorithm.
 * As soon as the new version of Bitcoin is run, it should automatically send all old transactions somewhere else using the new algorithm.
 * Get users to update immediately. Alerts will be compromised.
+
+[for all of this should be prepared.](Code)
+
+##Remote attacker can execute arbitrary code
+Situation: Due to a bug in Bitcoin, a remote attacker is able to run arbitrary code on the machines of some/all Bitcoin users.
+
+###Impact
+
+* Attacker can install malware, which could be used to steal private keys from wallets that are decrypted while the malware is installed
+
+###Response
+
+* Issue an alert telling people to shut down their clients immediately and look for updates elsewhere. Put special effort into alerting people through other means.
+* Remove critical powers (git push, bitcoin.org update, IRC op, etc.) from people who do not need them, as all Bitcoin users are at a high risk of having their passwords compromised. Trust GPG signatures a bit less than usual.
+
+Stock alert message: "EMERGENCY: SHUT DOWN YOUR CLIENT RIGHT NOW! Look for updates on popular Bitcoin sites. A bug has been discovered that can allow a remote attacker to install malware on your computer through Bitcoin."
+
+Stock statement:
+
+A bug has been discovered in Bitcoin that can allow a remote attacker to execute arbitrary code. The attacker could install malware onto your computer, which could steal your wallet. Shut down Bitcoin now. Under no circumstances should you enter your wallet passphrase until this incident is resolved and you have made absolutely sure that there is no malware on your computer. If possible, carefully copy your wallet to some offline safe location and then securely delete the copy on your computer.
+
+Look to your favorite HTTPS-enabled Bitcoin sites for more news. Before running any software, check that a consensus exists among several sites. Do not trust information from Google, as it can be manipulated by the attacker. Other sites, such as bitcoin.org, can likewise be manipulated, though with more difficulty.
