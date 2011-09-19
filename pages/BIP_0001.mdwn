@@ -126,8 +126,6 @@ While a BEP is in private discussions (usually during the initial Draft phase), 
 
 The Type header specifies the type of BEP: Standards Track, Informational, or Process.
 
-The format of a BEP is specified with a Content-Type header. The acceptable values are "text/plain" for plaintext BEPs (see BEP 9 [[3]]) and "text/x-rst" for reStructuredText BEPs (see BEP 12 [[4]]). Plaintext ("text/plain") is the default if no Content-Type header is present.
-
 The Created header records the date that the BEP was assigned a number, while Post-History is used to record the dates of when new versions of the BEP are posted to bitcoin mailing lists. Both headers should be in dd-mmm-yyyy format, e.g. 14-Aug-2001.
 
 BEPs may have a Requires header, indicating the BEP numbers that this BEP depends on.
