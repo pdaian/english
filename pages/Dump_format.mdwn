@@ -6,7 +6,7 @@ Bitcoin dumps various data structures using a format like this:
     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
   vMerkleTree: 4a5e1e</pre>
 
-The indentation shows "ownership". In the above example, the CTxIn and CTxOut structures are part of the CTransaction structure, which is part of the CBlock structure. Data stored in the structure is displayed in parenthesis.
+The indentation shows membership. In the above example, the CTxIn and CTxOut structures are part of the CTransaction structure, which is part of the CBlock structure. Data stored in the structure is displayed in parenthesis.
 
 All of the names used are names of the associated variables/classes in Bitcoin, though the values of the variables may not be exactly as shown. In particular, long data is sometimes shortened and converted to hex.
 
@@ -15,6 +15,15 @@ It is important to understand this format because it is used extensively in Bitc
 The Bitcoin -printblock switch produces CBlock dumps.
 
 ##Types
+###General note about hashes
+Output from hash functions are usually thought of as big-endian byte strings. So the traditional way of of displaying the SHA-256 hash of 0x00 would be:
+	6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d
+
+Since Bitcoin uses hashes as big numbers and performs calculations with them, however, the standard way of displaying Bitcoin-related hashes is as little-endian numbers. The same hash as above in Bitcoin format:
+	1da0af1706a31185763837b33f1d90782c0a78bbe644a59c987ab3ff9c0b346e
+
+Bitcoin also does two hashes for every hash operation. So the real Bitcoin hash of 0x00 would be:
+	9a538906e6466ebd2617d321f71bc94e56056ce213d366773699e28158e00614
 ###COutPoint
 	COutPoint(000000, -1)
 Part of a CTxIn structure, this references a specific output. The first value is the truncated hash of the transaction, and the second value is an output index.
