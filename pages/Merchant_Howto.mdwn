@@ -1,15 +1,15 @@
-This page is intended as a guide to assist merchants learn how to accept bitcoins for payment.
+Accepting Bitcoins is easy, and there are several ways to do it.
 
-##Manual
+##Manually
 
 1. Download a bitcoin client
-1. When a customer wants to buy something send them a bitcoin address where their payment should be sent.
-1. * You can do this by clicking "New.." next to your address in the bitcoin client and sending that address to the customer.
-1. When payment comes in from that address send the goods to your customer.  Depending on your risk tolerance and the value of the purchase, you may wish to wait until the payment shows enough confirmations to protect against [[double spending|How_bitcoin_works#Double_spending]].
+1. When a customer wants to buy something, send them a Bitcoin address where their payment should be sent.
+1. * You can do this by clicking "New.." next to your address in the Bitcoin client and sending that address to the customer.
+1. When payment comes in to that address, send the goods to your customer.  Depending on the value of what you're selling, you may wish to wait until the payment shows Confirmed.
 1. To issue a refund, obtain from the customer the [[bitcoin address|Address]] where the refund payment should be sent.  The refund address will likely be different from the address used when the customer sent payment, especially if an [[EWallet]] was used by the customer.
 
 ##Automated
-###Simple
+###Pre-generating Bitcoin addresses
 You can accept Bitcoins on your website without needing to use Bitcoin APIs or third party services if you pre-generate a large number of receiving Bitcoin addresses and store them in a database on your web server, and dispense them one-by-one to customers when they are ready to pay.  This way, your web server never actually handles the bitcoins - it simply gives out addresses belonging to a wallet you maintain elsewhere.  By using a unique address per order, you will always know which payment belongs to which order.  [Example of website using this method](https://www.casascius.com)
 
 To pre-generate addresses, use a tool such as [[Pywallet]] (which can generate a wallet.dat file) or [[Bitcoin_Address_Utility]] (which can generate a CSV file).  In both cases, you will be generating a list of [[Bitcoin address|Address]]es along with their corresponding [[private_key]]s.  Only the Bitcoin addresses (not the private keys) should be loaded on the web server.
@@ -36,8 +36,9 @@ Set up a system that:
 1. Forwards the funds to bitcoin address of your choice
 
 ##Common Errors
+It has been observed on occasion that a business funnels all its orders through the same Bitcoin address, and asks people to send some BTC, then send email describing the timing and the amount of the transaction to 'claim' it. This is **not** secure, since anyone can see the transaction details using a tool such as [[Block_Explorer]], and then try to claim someone else's transaction as theirs.
 
-It has been observed several times that businesses try to funnel all orders through the same bitcoin address, and ask people to send some BTC, then send email describing the timing and the amount of the transaction to 'claim' it. This is **not** secure, since anyone can see the transaction details using a tool such as [[Block_Explorer]], or by inspecting the block chain database directly, and then try to claim someone else's transaction as theirs. Do not do this - give each customer a unique bitcoin address, as suggested in the [[manual|#Manual]] section of this page.
+Do not do this.  Give each customer a unique Bitcoin address.
 
 ##Listing your business on the Bitcoin Trade page
 
