@@ -75,6 +75,16 @@ Hmmm... we don't want mining monopolized.. needs a bit more work..
 
 oh, i got it. choose the bid winner stochastically.
 
+
+#### more ruminations on paying for computation
+http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1773169 brings up the idea of "programming" a market to solve an NP-complete problem for you by placing a series of orders. This inspires a better idea than holding an auction to see whose NP-complete problem will be solved next; instead, the system should allow everyone's NP-complete problem to be put out there, and other participants solve the ones they can, being paid for it by the person issuing the question.
+
+Also, the low transaction costs of BTC make one wonder if this is already the case; are there ways that one could make offers to the market such that, by their nature, the market is incentivized to solve NP-complete problems for you? Maymin describes one way (which he terms OCO-3) which is a rather direct encoding of 3-SAT, but it's rather unnatural -- but surely there are others.
+
+One difference is that, in Maymin's scenario, the market can silently yield the "wrong answer" simply by being inefficient, whereas in BTC, nodes either claim to have reversed a given hash, or they don't. 
+
+-- BayleShanks
+
 ##See Also
 
 * [[Ideal_Properties_of_Digital_Commodities]]
