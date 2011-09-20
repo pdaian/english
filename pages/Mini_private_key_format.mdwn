@@ -15,6 +15,8 @@ To obtain the full 256-bit private key, simply take the SHA256 hash of the entir
 
 	SHA256("S4b3N3oGqDqR5jNuxEvDwf") = 0C28FCA386C7A227600B2FE50B7CAE11EC86D3BF1FBE471BE89827E19D72AA1D
 
+This sample key in [[wallet_import_format]] is 5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ, and the corresponding [[Bitcoin_address]] is 1GAehh7TsJAHuUAeKZcXf5CnwuGuGgyX2S.
+
 ##Check code
 The check code is designed to be simple, but relatively computationally expensive so that it cannot be used to quickly reduce the key space in a brute force attack.  It offers seven bits worth of error protection (or, in other words, in the event of a typo, the typo will be caught about 127 out of 128 times, or over 99%).
 
