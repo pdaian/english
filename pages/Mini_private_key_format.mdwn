@@ -33,6 +33,8 @@ To create mini private keys, simply create random strings that satisfy the well-
 In all cases, you should use a secure cryptographic random number generator to eliminate risks of predictability of the random strings.  Also, for stronger security, accept only the strings that pass the typo check on the 717th round rather than the first.
 
 ##Python Code
+The following code produces sample mini private keys in Python.  For real-world use, *random* must be replaced with a better source of entropy, as the Python documentation for *random* states the function *"is completely unsuitable for cryptographic purposes"*.
+
 <source lang="python">
 import random
 import hashlib
