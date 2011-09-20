@@ -22,5 +22,7 @@ Until version 0.3.20, Bitcoin went into safe mode when a valid alert was receive
 
 Even though Bitcoin no longer automatically disables RPC when an alert is live, it is wise for Bitcoin sites to shut down when an alert has been issued. To detect an active alert, poll the "errors" field of *getinfo*.
 
+To test safe mode, run Bitcoin with the -testsafemode switch. To override a real safe mode event, run Bitcoin with the -disablesafemode switch.
+
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
