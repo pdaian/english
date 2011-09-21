@@ -1,101 +1,101 @@
 <pre>
-  BEP: 1
-  Title: BEP Purpose and Guidelines
+  BFC: 1
+  Title: BFC Purpose and Guidelines
   Author: Amir Taaki <genjix@riseup.net>
   Status: Draft
   Type: Standards Track
   Created: 19-08-2011
 </pre>
 
-##What is a BEP?
+##What is a BFC?
 
-BEP stands for Bitcoin Enhancement Proposal. A BEP is a design document providing information to the Bitcoin community, or describing a new feature for Bitcoin or its processes or environment. The BEP should provide a concise technical specification of the feature and a rationale for the feature.
+BFC stands for Bitcoin Request for Comments. A BFC is a design document providing information to the Bitcoin community, or describing a new feature for Bitcoin or its processes or environment. The BFC should provide a concise technical specification of the feature and a rationale for the feature.
 
-We intend BEPs to be the primary mechanisms for proposing new features, for collecting community input on an issue, and for documenting the design decisions that have gone into Bitcoin. The BEP author is responsible for building consensus within the community and documenting dissenting opinions.
+We intend BFCs to be the primary mechanisms for proposing new features, for collecting community input on an issue, and for documenting the design decisions that have gone into Bitcoin. The BFC author is responsible for building consensus within the community and documenting dissenting opinions.
 
-Because the BEPs are maintained as text files in a versioned repository, their revision history is the historical record of the feature proposal
+Because the BFCs are maintained as text files in a versioned repository, their revision history is the historical record of the feature proposal
 .
-##BEP Types
+##BFC Types
 
-There are three kinds of BEP:
+There are three kinds of BFC:
 
-* A Standards Track BEP describes a new feature or implementation for Bitcoin.
-* An Informational BEP describes a Bitcoin design issue, or provides general guidelines or information to the Bitcoin community, but does not propose a new feature. Informational BEPs do not necessarily represent a Bitcoin community consensus or recommendation, so users and implementors are free to ignore Informational BEPs or follow their advice.
-* A Process BEP describes a process surrounding Bitcoin, or proposes a change to (or an event in) a process. Process BEPs are like Standards Track BEPs but apply to areas other than the Bitcoin protocol itself. They may propose an implementation, but not to Bitcoin's codebase; they often require community consensus; unlike Informational BEPs, they are more than recommendations, and users are typically not free to ignore them. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in Bitcoin development. Any meta-BEP is also considered a Process BEP.
+* A Standards Track BFC describes a new feature or implementation for Bitcoin.
+* An Informational BFC describes a Bitcoin design issue, or provides general guidelines or information to the Bitcoin community, but does not propose a new feature. Informational BFCs do not necessarily represent a Bitcoin community consensus or recommendation, so users and implementors are free to ignore Informational BFCs or follow their advice.
+* A Process BFC describes a process surrounding Bitcoin, or proposes a change to (or an event in) a process. Process BFCs are like Standards Track BFCs but apply to areas other than the Bitcoin protocol itself. They may propose an implementation, but not to Bitcoin's codebase; they often require community consensus; unlike Informational BFCs, they are more than recommendations, and users are typically not free to ignore them. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in Bitcoin development. Any meta-BFC is also considered a Process BFC.
 
-##BEP Work Flow
+##BFC Work Flow
 
-The BEP editors assign BEP numbers and change their status. Please send all BEP-related email to <BEPs@Bitcoin.org> (no cross-posting please). Also see BEP Editor Responsibilities & Workflow below.
+The BFC editors assign BFC numbers and change their status. Please send all BFC-related email to <BFCs@Bitcoin.org> (no cross-posting please). Also see BFC Editor Responsibilities & Workflow below.
 
-The BEP process begins with a new idea for Bitcoin. It is highly recommended that a single BEP contain a single key proposal or new idea. Small enhancements or patches often don't need a BEP and can be injected into the Bitcoin development work flow with a patch submission to the Bitcoin issue tracker. The more focussed the BEP, the more successful it tends to be. The BEP editor reserves the right to reject BEP proposals if they appear too unfocussed or too broad. If in doubt, split your BEP into several well-focussed ones.
+The BFC process begins with a new idea for Bitcoin. It is highly recommended that a single BFC contain a single key proposal or new idea. Small enhancements or patches often don't need a BFC and can be injected into the Bitcoin development work flow with a patch submission to the Bitcoin issue tracker. The more focussed the BFC, the more successful it tends to be. The BFC editor reserves the right to reject BFC proposals if they appear too unfocussed or too broad. If in doubt, split your BFC into several well-focussed ones.
 
-Each BEP must have a champion -- someone who writes the BEP using the style and format described below, shepherds the discussions in the appropriate forums, and attempts to build community consensus around the idea. The BEP champion (a.k.a. Author) should first attempt to ascertain whether the idea is BEP-able. Posting to the comp.lang.Bitcoin newsgroup (a.k.a. Bitcoin-list@Bitcoin.org mailing list) or the Bitcoin-ideas mailing list is the best way to go about this.
+Each BFC must have a champion -- someone who writes the BFC using the style and format described below, shepherds the discussions in the appropriate forums, and attempts to build community consensus around the idea. The BFC champion (a.k.a. Author) should first attempt to ascertain whether the idea is BFC-able. Posting to the comp.lang.Bitcoin newsgroup (a.k.a. Bitcoin-list@Bitcoin.org mailing list) or the Bitcoin-ideas mailing list is the best way to go about this.
 
-Vetting an idea publicly before going as far as writing a BEP is meant to save the potential author time. Many ideas have been brought forward for changing Bitcoin that have been rejected for various reasons. Asking the Bitcoin community first if an idea is original helps prevent too much time being spent on something that is guaranteed to be rejected based on prior discussions (searching the internet does not always do the trick). It also helps to make sure the idea is applicable to the entire community and not just the author. Just because an idea sounds good to the author does not mean it will work for most people in most areas where Bitcoin is used.
+Vetting an idea publicly before going as far as writing a BFC is meant to save the potential author time. Many ideas have been brought forward for changing Bitcoin that have been rejected for various reasons. Asking the Bitcoin community first if an idea is original helps prevent too much time being spent on something that is guaranteed to be rejected based on prior discussions (searching the internet does not always do the trick). It also helps to make sure the idea is applicable to the entire community and not just the author. Just because an idea sounds good to the author does not mean it will work for most people in most areas where Bitcoin is used.
 
-Once the champion has asked the Bitcoin community as to whether an idea has any chance of acceptance, a draft BEP should be presented to Bitcoin-ideas. This gives the author a chance to flesh out the draft BEP to make properly formatted, of high quality, and to address initial concerns about the proposal.
+Once the champion has asked the Bitcoin community as to whether an idea has any chance of acceptance, a draft BFC should be presented to Bitcoin-ideas. This gives the author a chance to flesh out the draft BFC to make properly formatted, of high quality, and to address initial concerns about the proposal.
 
-Following a discussion on Bitcoin-ideas, the proposal should be sent to the Bitcoin-dev list with the draft BEP and the BEP editors <BEPs@Bitcoin.org>. This draft must be written in BEP style as described below, else it will be sent back without further regard until proper formatting rules are followed.
+Following a discussion on Bitcoin-ideas, the proposal should be sent to the Bitcoin-dev list with the draft BFC and the BFC editors <BFCs@Bitcoin.org>. This draft must be written in BFC style as described below, else it will be sent back without further regard until proper formatting rules are followed.
 
-If the BEP editor approves, he will assign the BEP a number, label it as Standards Track, Informational, or Process, give it status "Draft", and create and check-in the initial draft of the BEP. The BEP editor will not unreasonably deny a BEP. Reasons for denying BEP status include duplication of effort, being technically unsound, not providing proper motivation or addressing backwards compatibility, or not in keeping with the Bitcoin philosophy.
+If the BFC editor approves, he will assign the BFC a number, label it as Standards Track, Informational, or Process, give it status "Draft", and create and check-in the initial draft of the BFC. The BFC editor will not unreasonably deny a BFC. Reasons for denying BFC status include duplication of effort, being technically unsound, not providing proper motivation or addressing backwards compatibility, or not in keeping with the Bitcoin philosophy.
 
-As updates are necessary, the BEP author can check in new versions if they have SVN commit permissions, or can email new BEP versions to the BEP editor for committing.
+As updates are necessary, the BFC author can check in new versions if they have SVN commit permissions, or can email new BFC versions to the BFC editor for committing.
 
-Standards Track BEPs consist of two parts, a design document and a reference implementation. The BEP should be reviewed and accepted before a reference implementation is begun, unless a reference implementation will aid people in studying the BEP. Standards Track BEPs must include an implementation -- in the form of code, a patch, or a URL to same -- before it can be considered Final.
+Standards Track BFCs consist of two parts, a design document and a reference implementation. The BFC should be reviewed and accepted before a reference implementation is begun, unless a reference implementation will aid people in studying the BFC. Standards Track BFCs must include an implementation -- in the form of code, a patch, or a URL to same -- before it can be considered Final.
 
-BEP authors are responsible for collecting community feedback on a BEP before submitting it for review. However, wherever possible, long open-ended discussions on public mailing lists should be avoided. Strategies to keep the discussions efficient include: setting up a separate SIG mailing list for the topic, having the BEP author accept private comments in the early design phases, setting up a wiki page, etc. BEP authors should use their discretion here.
+BFC authors are responsible for collecting community feedback on a BFC before submitting it for review. However, wherever possible, long open-ended discussions on public mailing lists should be avoided. Strategies to keep the discussions efficient include: setting up a separate SIG mailing list for the topic, having the BFC author accept private comments in the early design phases, setting up a wiki page, etc. BFC authors should use their discretion here.
 
-For a BEP to be accepted it must meet certain minimum criteria. It must be a clear and complete description of the proposed enhancement. The enhancement must represent a net improvement. The proposed implementation, if applicable, must be solid and must not complicate the protocol unduly.
+For a BFC to be accepted it must meet certain minimum criteria. It must be a clear and complete description of the proposed enhancement. The enhancement must represent a net improvement. The proposed implementation, if applicable, must be solid and must not complicate the protocol unduly.
 
-Once a BEP has been accepted, the reference implementation must be completed. When the reference implementation is complete and accepted by the community, the status will be changed to "Final".
+Once a BFC has been accepted, the reference implementation must be completed. When the reference implementation is complete and accepted by the community, the status will be changed to "Final".
 
-A BEP can also be assigned status "Deferred". The BEP author or editor can assign the BEP this status when no progress is being made on the BEP. Once a BEP is deferred, the BEP editor can re-assign it to draft status.
+A BFC can also be assigned status "Deferred". The BFC author or editor can assign the BFC this status when no progress is being made on the BFC. Once a BFC is deferred, the BFC editor can re-assign it to draft status.
 
-A BEP can also be "Rejected". Perhaps after all is said and done it was not a good idea. It is still important to have a record of this fact.
+A BFC can also be "Rejected". Perhaps after all is said and done it was not a good idea. It is still important to have a record of this fact.
 
-BEPs can also be superseded by a different BEP, rendering the original obsolete. This is intended for Informational BEPs, where version 2 of an API can replace version 1.
+BFCs can also be superseded by a different BFC, rendering the original obsolete. This is intended for Informational BFCs, where version 2 of an API can replace version 1.
 
-The possible paths of the status of BEPs are as follows:
+The possible paths of the status of BFCs are as follows:
 
-[[BEP-0001-Process.png]]
+[[BFC-0001-Process.png]]
 
-Some Informational and Process BEPs may also have a status of "Active" if they are never meant to be completed. E.g. BEP 1 (this BEP).
+Some Informational and Process BFCs may also have a status of "Active" if they are never meant to be completed. E.g. BFC 1 (this BFC).
 
-##What belongs in a successful BEP?
+##What belongs in a successful BFC?
 
-Each BEP should have the following parts:
+Each BFC should have the following parts:
 
-* Preamble -- RFC 822 style headers containing meta-data about the BEP, including the BEP number, a short descriptive title (limited to a maximum of 44 characters), the names, and optionally the contact info for each author, etc.
+* Preamble -- RFC 822 style headers containing meta-data about the BFC, including the BFC number, a short descriptive title (limited to a maximum of 44 characters), the names, and optionally the contact info for each author, etc.
 
 * Abstract -- a short (~200 word) description of the technical issue being addressed.
 
-* Copyright/public domain -- Each BEP must either be explicitly labelled as placed in the public domain (see this BEP as an example) or licensed under the Open Publication License [[7]].
+* Copyright/public domain -- Each BFC must either be explicitly labelled as placed in the public domain (see this BFC as an example) or licensed under the Open Publication License [[7]].
 
 * Specification -- The technical specification should describe the syntax and semantics of any new language feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Bitcoin platforms (Satoshi, BitcoinJ, bitcoin-js, libbitcoin).
 
-* Motivation -- The motivation is critical for BEPs that want to change the Bitcoin protocol. It should clearly explain why the existing protocol specification is inadequate to address the problem that the BEP solves. BEP submissions without sufficient motivation may be rejected outright.
+* Motivation -- The motivation is critical for BFCs that want to change the Bitcoin protocol. It should clearly explain why the existing protocol specification is inadequate to address the problem that the BFC solves. BFC submissions without sufficient motivation may be rejected outright.
 
 * Rationale -- The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other languages.
 
 * The rationale should provide evidence of consensus within the community and discuss important objections or concerns raised during discussion.
 
-* Backwards Compatibility -- All BEPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The BEP must explain how the author proposes to deal with these incompatibilities. BEP submissions without a sufficient backwards compatibility treatise may be rejected outright.
+* Backwards Compatibility -- All BFCs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The BFC must explain how the author proposes to deal with these incompatibilities. BFC submissions without a sufficient backwards compatibility treatise may be rejected outright.
 
-* Reference Implementation -- The reference implementation must be completed before any BEP is given status "Final", but it need not be completed before the BEP is accepted. It is better to finish the specification and rationale first and reach consensus on it before writing code.
+* Reference Implementation -- The reference implementation must be completed before any BFC is given status "Final", but it need not be completed before the BFC is accepted. It is better to finish the specification and rationale first and reach consensus on it before writing code.
 
 * The final implementation must include test code and documentation appropriate for the Bitcoin protocol.
 
-##BEP Formats and Templates
+##BFC Formats and Templates
 
-BEPs should be written in mediawiki wiki syntax. Image files should be included in the current subdirectory for that BEP.
+BFCs should be written in mediawiki wiki syntax. Image files should be included in the current subdirectory for that BFC.
 
-##BEP Header Preamble
+##BFC Header Preamble
 
-Each BEP must begin with an RFC 822 style header preamble. The headers must appear in the following order. Headers marked with "*" are optional and are described below. All other headers are required.
+Each BFC must begin with an RFC 822 style header preamble. The headers must appear in the following order. Headers marked with "*" are optional and are described below. All other headers are required.
 
 <pre>
-  BEP: <BEP number>
-  Title: <BEP title>
+  BFC: <BFC number>
+  Title: <BFC title>
   Author: <list of authors' real names and optionally, email addrs>
 * Discussions-To: <email address>
   Status: <Draft | Active | Accepted | Deferred | Rejected |
@@ -103,12 +103,12 @@ Each BEP must begin with an RFC 822 style header preamble. The headers must appe
   Type: <Standards Track | Informational | Process>
   Created: <date created on, in dd-mm-yyyy format>
 * Post-History: <dates of postings to bitcoin mailing list>
-* Replaces: <BEP number>
-* Superseded-By: <BEP number>
+* Replaces: <BFC number>
+* Superseded-By: <BFC number>
 * Resolution: <url>
 </pre>
 
-The Author header lists the names, and optionally the email addresses of all the authors/owners of the BEP. The format of the Author header value must be
+The Author header lists the names, and optionally the email addresses of all the authors/owners of the BFC. The format of the Author header value must be
 
 	Random J. User <address@dom.ain>
 
@@ -120,54 +120,54 @@ if the address is not given.
 
 If there are multiple authors, each should be on a separate line following RFC 2822 continuation line conventions.
 
-Note: The Resolution header is required for Standards Track BEPs only. It contains a URL that should point to an email message or other web resource where the pronouncement about the BEP is made.
+Note: The Resolution header is required for Standards Track BFCs only. It contains a URL that should point to an email message or other web resource where the pronouncement about the BFC is made.
 
-While a BEP is in private discussions (usually during the initial Draft phase), a Discussions-To header will indicate the mailing list or URL where the BEP is being discussed. No Discussions-To header is necessary if the BEP is being discussed privately with the author, or on the bitcoin email mailing lists.
+While a BFC is in private discussions (usually during the initial Draft phase), a Discussions-To header will indicate the mailing list or URL where the BFC is being discussed. No Discussions-To header is necessary if the BFC is being discussed privately with the author, or on the bitcoin email mailing lists.
 
-The Type header specifies the type of BEP: Standards Track, Informational, or Process.
+The Type header specifies the type of BFC: Standards Track, Informational, or Process.
 
-The Created header records the date that the BEP was assigned a number, while Post-History is used to record the dates of when new versions of the BEP are posted to bitcoin mailing lists. Both headers should be in dd-mmm-yyyy format, e.g. 14-Aug-2001.
+The Created header records the date that the BFC was assigned a number, while Post-History is used to record the dates of when new versions of the BFC are posted to bitcoin mailing lists. Both headers should be in dd-mmm-yyyy format, e.g. 14-Aug-2001.
 
-BEPs may have a Requires header, indicating the BEP numbers that this BEP depends on.
+BFCs may have a Requires header, indicating the BFC numbers that this BFC depends on.
 
-BEPs may also have a Superseded-By header indicating that a BEP has been rendered obsolete by a later document; the value is the number of the BEP that replaces the current document. The newer BEP must have a Replaces header containing the number of the BEP that it rendered obsolete.
+BFCs may also have a Superseded-By header indicating that a BFC has been rendered obsolete by a later document; the value is the number of the BFC that replaces the current document. The newer BFC must have a Replaces header containing the number of the BFC that it rendered obsolete.
 Auxiliary Files
 
-BEPs may include auxiliary files such as diagrams. Such files must be named BEP-XXXX-Y.ext, where "XXXX" is the BEP number, "Y" is a serial number (starting at 1), and "ext" is replaced by the actual file extension (e.g. "png").
+BFCs may include auxiliary files such as diagrams. Such files must be named BFC-XXXX-Y.ext, where "XXXX" is the BFC number, "Y" is a serial number (starting at 1), and "ext" is replaced by the actual file extension (e.g. "png").
 
-##Transferring BEP Ownership
+##Transferring BFC Ownership
 
-It occasionally becomes necessary to transfer ownership of BEPs to a new champion. In general, we'd like to retain the original author as a co-author of the transferred BEP, but that's really up to the original author. A good reason to transfer ownership is because the original author no longer has the time or interest in updating it or following through with the BEP process, or has fallen off the face of the 'net (i.e. is unreachable or not responding to email). A bad reason to transfer ownership is because you don't agree with the direction of the BEP. We try to build consensus around a BEP, but if that's not possible, you can always submit a competing BEP.
+It occasionally becomes necessary to transfer ownership of BFCs to a new champion. In general, we'd like to retain the original author as a co-author of the transferred BFC, but that's really up to the original author. A good reason to transfer ownership is because the original author no longer has the time or interest in updating it or following through with the BFC process, or has fallen off the face of the 'net (i.e. is unreachable or not responding to email). A bad reason to transfer ownership is because you don't agree with the direction of the BFC. We try to build consensus around a BFC, but if that's not possible, you can always submit a competing BFC.
 
-If you are interested in assuming ownership of a BEP, send a message asking to take over, addressed to both the original author and the BEP editor <BEPs@bitcoin.org>. If the original author doesn't respond to email in a timely manner, the BEP editor will make a unilateral decision (it's not like such decisions can't be reversed :).
-BEP Editor Responsibilities & Workflow
+If you are interested in assuming ownership of a BFC, send a message asking to take over, addressed to both the original author and the BFC editor <BFCs@bitcoin.org>. If the original author doesn't respond to email in a timely manner, the BFC editor will make a unilateral decision (it's not like such decisions can't be reversed :).
+BFC Editor Responsibilities & Workflow
 
-A BEP editor must subscribe to the <BEPs@bitcoin.org> list. All BEP-related correspondence should be sent (or CC'd) to <BEPs@bitcoin.org> (but please do not cross-post!).
+A BFC editor must subscribe to the <BFCs@bitcoin.org> list. All BFC-related correspondence should be sent (or CC'd) to <BFCs@bitcoin.org> (but please do not cross-post!).
 
-For each new BEP that comes in an editor does the following:
+For each new BFC that comes in an editor does the following:
 
-* Read the BEP to check if it is ready: sound and complete. The ideas must make technical sense, even if they don't seem likely to be accepted.
+* Read the BFC to check if it is ready: sound and complete. The ideas must make technical sense, even if they don't seem likely to be accepted.
 * The title should accurately describe the content.
-* Edit the BEP for language (spelling, grammar, sentence structure, etc.), markup (for reST BEPs), code style (examples should match BEP 8 & 7).
+* Edit the BFC for language (spelling, grammar, sentence structure, etc.), markup (for reST BFCs), code style (examples should match BFC 8 & 7).
 
-If the BEP isn't ready, the editor will send it back to the author for revision, with specific instructions.
+If the BFC isn't ready, the editor will send it back to the author for revision, with specific instructions.
 
-Once the BEP is ready for the repository, the BEP editor will:
+Once the BFC is ready for the repository, the BFC editor will:
 
-* Assign a BEP number (almost always just the next available number, but sometimes it's a special/joke number, like 666 or 3141).
+* Assign a BFC number (almost always just the next available number, but sometimes it's a special/joke number, like 666 or 3141).
 
-* List the BEP in BEP 0 (in two places: the categorized list, and the numeric list).
+* List the BFC in BFC 0 (in two places: the categorized list, and the numeric list).
 
-* Add the BEP to git. For git repository instructions, see the FAQ for Developers.
+* Add the BFC to git. For git repository instructions, see the FAQ for Developers.
 
-* Monitor bitcoin.org to make sure the BEP gets added to the site properly.
+* Monitor bitcoin.org to make sure the BFC gets added to the site properly.
 
-* Send email back to the BEP author with next steps (post to bitcoin mailing list).
+* Send email back to the BFC author with next steps (post to bitcoin mailing list).
 
-Many BEPs are written and maintained by developers with write access to the Bitcoin codebase. The BEP editors monitor BEP changes, and correct any structure, grammar, spelling, or markup mistakes we see.
+Many BFCs are written and maintained by developers with write access to the Bitcoin codebase. The BFC editors monitor BFC changes, and correct any structure, grammar, spelling, or markup mistakes we see.
 
-The editors don't pass judgement on BEPs. We merely do the administrative & editorial part. Except for times like this, there's relatively low volume.
+The editors don't pass judgement on BFCs. We merely do the administrative & editorial part. Except for times like this, there's relatively low volume.
 
 ##History
 
-This document was derived heavily from Python's PEP-0001. In many places text was simply copied and modified. Although the PEP-0001 text was written by Barry Warsaw, Jeremy Hylton, and David Goodger, they are not responsible for its use in the Bitcoin Enhancement Process, and should not be bothered with technical questions specific to Bitcoin or the BEP process. Please direct all comments to the BitTorrent editors or the forums at bitcointalk.org.
+This document was derived heavily from Python's PEP-0001. In many places text was simply copied and modified. Although the PEP-0001 text was written by Barry Warsaw, Jeremy Hylton, and David Goodger, they are not responsible for its use in the Bitcoin Enhancement Process, and should not be bothered with technical questions specific to Bitcoin or the BFC process. Please direct all comments to the BitTorrent editors or the forums at bitcointalk.org.
