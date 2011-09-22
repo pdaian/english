@@ -23,6 +23,11 @@ Implementation advice: it's probably best to use **int** or **Decimal** (if your
 This API is available in <nowiki>https://mtgox.com/api/*</nowiki>, and provides various informations. It also supports making an order, a withdraw, a deposit, etc.  There is also a [Ruby gem](https://rubygems.org/gems/mtgox) and [Perl module](Finance::MtGox) for interacting with the HTTP API.
 
 ### Authentication
+
+
+**Authentication information may be compromised. See [Discussion](https://en.bitcoin.it/wiki/Talk:MtGox/API)** Delete when verified...
+
+
 Authentication is performed by signing each request using HMAC-SHA512. The request must contain an extra value "nonce" which must be an always incrementing numeric value. In addition to the "nonce" value, your POST data must also include your username and password values, named "name" and "pass" respectively.  A reference implementation is provided here:
 <source lang="php">
 <?php
