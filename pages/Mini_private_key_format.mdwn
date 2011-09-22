@@ -36,6 +36,13 @@ To create mini private keys, simply create random strings that satisfy the well-
 
 In all cases, you should use a secure cryptographic random number generator to eliminate risks of predictability of the random strings.  Also, for stronger security, accept only the strings that pass the typo check on the 717th round rather than the first.
 
+##Entropy considerations
+The 22-character mini private key code appears to offer about 123 bits of entropy, determined as log2(58^21).  (Because the first character is fixed, there are 21 symbols which can each have one of 58 values).
+
+The 26-character version offers about 152 bits of entropy by the same calculation, which is nearly the same amount of entropy present in a Bitcoin address.
+
+Each attempt to convert a mini private key to a Bitcoin address requires an elliptic curve multiply operation, which itself is computationally intensive.  This will slow a brute force attack with the same effect as several further bits of "apparent entropy" when compared to a brute force operation of much less complexity, such as hash cracking.
+
 ##Python Code
 The following code produces sample mini private keys in Python.  For real-world use, *random* must be replaced with a better source of entropy, as the Python documentation for *random* states the function *"is completely unsuitable for cryptographic purposes"*.
 
