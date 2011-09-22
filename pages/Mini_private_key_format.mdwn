@@ -1,5 +1,5 @@
 [[!img "QR-privkeys-sidebyside.png" size=120x120 class="right" title="QR codes of the same private key, in mini versus regular private key format.  Both codes have the same dot density and error correction level, but the mini key is 57% of the full code's size."]]
-The **mini private key format** is a method of encoding a Bitcoin private key in 22 characters so that it can be embedded in a small space.  This private key format was first used in Casascius physical bitcoins, and is also favorable for use in QR codes.  The fewer characters encoded in a QR code, the lower dot density can be used, as well as more dots allocated to error correction in the same space, significantly improving readability and resistance to damage.  The mini private key format offers its own built-in check code as a small margin of protection against typos.
+The **mini private key format** is a method of encoding a Bitcoin private key in as few as 22 characters so that it can be embedded in a small space.  This private key format was first used in Casascius physical bitcoins, and is also favorable for use in QR codes.  The fewer characters encoded in a QR code, the lower dot density can be used, as well as more dots allocated to error correction in the same space, significantly improving readability and resistance to damage.  The mini private key format offers its own built-in check code as a small margin of protection against typos.
 
 An example key using this encoding is **S4b3N3oGqDqR5jNuxEvDwf**.
 
@@ -9,7 +9,7 @@ The way it might appear within a physical bitcoin is on a round card printed as 
 <center>S4b3N<br/>3oGqDq<br/>R5jNux<br/>EvDwf</center>
 
 ##Decoding
-The private key encoding consists of 22 alphanumeric characters from the [[base58]] alphabet used in Bitcoin.  The first of the 22 characters is always the uppercase letter S.
+The private key encoding consists of 22 or 26 alphanumeric characters from the [[base58]] alphabet used in Bitcoin.  The first of the characters is always the uppercase letter S.
 
 To obtain the full 256-bit private key, simply take the SHA256 hash of the entire string.  There is no encoding for breaks in the string even if printed that way - the SHA256 should be taken of exactly twenty-two bytes.
 
@@ -22,7 +22,7 @@ The check code is designed to be simple, but relatively computationally expensiv
 
 To determine whether a string passes the check code, follow these steps:
 
-1. Ensure it is well-formed (22 characters, base58 alphabet, starts with S).
+1. Ensure it is well-formed (22 or 26 characters, base58 alphabet, starts with S).
 1. Add a question mark to the end of the string, and take the SHA256 of that.  If the SHA256 starts with eight zero bits (hex 00), then the string passes the check code.
 1. If it does not, then with the same string (ending in a question mark), do 717 (seven hundred seventeen) rounds of SHA256 on the string.  If the result after the 717th round starts with eight zero bits (hex 00), then the string passes the check code.
 1. If the results of SHA256 after both tests don't start with eight zero bits, then the check fails.
