@@ -1,4 +1,41 @@
-[[!template id=stub]]
+##Overview
+The original bitcoin client uses a multithreaded approach to socket
+handling and messages processing. There is one thread that handles
+socket communication (ThreadSocketHandler) and one (ThreadMessageHandler)
+which handles pulling messages off sockets and calling the
+processing routines. Both of these threads are in net.cpp.
+The message processing routines are in main.cpp, however.
+
+##Socket Thread
+The socket thread reads the sockets and places data into a CDataStream
+associated with each node called vRecv. The Satoshi client uses C++
+serialization operators >> and << to read and write to a CDataStream
+and then it uses generic routines to move the data between the streams
+and sockets.
+
+##Message Thread
+The message thread reads and processes all messages from each node in
+sequence, and then it sends messages to each node that should be sent
+messages. That is all it does.
+
+Specifically, ThreadMessageHandler2 calls ProcessMessages(), which is
+located in main.cpp, to pull messages off each node's socket and
+process them. Then it calls SendMessages(), which is also located
+in main.cpp to create and send any messages appropriate for each node.
+
+ProcessMessages() attempts to find a message start signature in the
+vRecv stream. If it finds a message start, it deletes everything
+prior to the start. Then it reads the header, extracts the message
+type, and calls ProcessMessage on the message.
+
+SendMessages() actually creates and sends messages; it does not
+just send preexisting queued messages. It goes through various
+maps looking for work to do and produces a message and calls
+PushMessage method of CNode to send the message. PushMessage
+queues outbound data in the vSend data stream. (See PushMessage() in
+net.cpp). The socket thread handler then pulls data off the
+vSend data stream and calls send on the socket to send the data.
+
 
 [[!tag "Developer"]]
 [[!tag "Technical"]]
