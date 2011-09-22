@@ -39,7 +39,7 @@ In all cases, you should use a secure cryptographic random number generator to e
 ##Entropy considerations
 The 22-character mini private key code appears to offer about 123 bits of entropy, determined as log2(58^21).  (Because the first character is fixed, there are 21 symbols which can each have one of 58 values).
 
-The 26-character version offers about 152 bits of entropy by the same calculation, which is nearly the same amount of entropy present in a Bitcoin address.
+The 26-character version offers about 146 bits of entropy by the same calculation.
 
 Each attempt to convert a mini private key to a Bitcoin address requires an elliptic curve multiply operation, which itself is computationally intensive.  This will slow a brute force attack with the same effect as several further bits of "apparent entropy" when compared to a brute force operation of much less complexity, such as hash cracking.
 
