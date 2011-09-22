@@ -1,0 +1,4 @@
+I believe some of the inexperienced api users may have unintentionally compromised the Authentication section and examples by removing the details regarding api key & secret as recommended by MtGox at https://mtgox.com/support/tradeAPI. 
+The change now describes the need for user name and password. Though this old model still works in the new api model, it is not the recommended strategy because it gives applications information which would compromise the user's private account. The application SHOULD ONLY have access to the the api calls as granted by them by the user's specified api rights associated to the api key and secret.
+
+[Automtgox](User:Automtgox) 00:18, 22 September 2011 (GMT)
