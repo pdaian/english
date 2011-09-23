@@ -196,9 +196,16 @@ https://mtgox.com/api/0/history_BTC.php
 https://mtgox.com/api/0/history_USD.php
 
 #### 0/info.php
-returns info about your account, funds, fees, API privileges . . . 
 
 https://mtgox.com/api/0/info.php
+
+returns info about your account, funds, fees, API privileges . . . 
+
+#### 0/ticker
+
+http://mtgox.com/api/0/data/ticker.php
+
+returns the current ticker
 
 ### API version 0 examples
 
@@ -227,6 +234,23 @@ perl : http://pastebin.com/raw.php?i=pmhMXZJu
 #### ticker
 
 http://pastebin.com/pd0ZR4WY
+
+returns the current ticker :
+
+<source lang="php">
+{"ticker":
+	{
+	"high":5.70653,
+	"low":5.4145,
+	"avg":5.561388723,
+	"vwap":5.610932845,
+	"vol":55698,
+	"last":5.56915,
+	"buy":5.51326,
+	"sell":5.5672
+	}
+}
+</source>
 
 ### Methods API version 1
 
