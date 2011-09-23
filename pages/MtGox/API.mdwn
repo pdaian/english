@@ -205,7 +205,23 @@ returns info about your account, funds, fees, API privileges . . .
 
 http://mtgox.com/api/0/data/ticker.php
 
-returns the current ticker
+returns the current ticker :
+
+<source lang="php">
+{"ticker":
+	{
+	"high":5.70653,
+	"low":5.4145,
+	"avg":5.561388723,
+	"vwap":5.610932845,
+	"vol":55698,
+	"last":5.56915,
+	"buy":5.51326,
+	"sell":5.5672
+	}
+}
+</source>
+
 
 ### API version 0 examples
 
@@ -234,23 +250,6 @@ perl : http://pastebin.com/raw.php?i=pmhMXZJu
 #### ticker
 
 http://pastebin.com/pd0ZR4WY
-
-returns the current ticker :
-
-<source lang="php">
-{"ticker":
-	{
-	"high":5.70653,
-	"low":5.4145,
-	"avg":5.561388723,
-	"vwap":5.610932845,
-	"vol":55698,
-	"last":5.56915,
-	"buy":5.51326,
-	"sell":5.5672
-	}
-}
-</source>
 
 ### Methods API version 1
 
