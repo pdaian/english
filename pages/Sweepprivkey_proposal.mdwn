@@ -1,0 +1,30 @@
+The **sweepprivkey** is a PROPOSED Bitcoin RPC command that, given a Bitcoin private key, allows sweeping of some or all of the funds to another address.
+
+This function is useful for merchants who wish to accept typed or scanned Bitcoin private keys as payments, without imposing any specific methodology on how the payments must be processed.  Without affecting any funds or keys or transaction history in the wallet, the function generates a transaction in real-time to sweep the funds to another address, and broadcasts it.
+
+If the address happens to be in the local wallet, the payment appears (initially with zero confirmations), and looks exactly the same as a payment that had arrived from another peer.  A merchant handles this no differently than an outside payment.
+
+##Usage
+
+The syntax of *sweepprivkey* is as follows:
+
+	sweepprivkey <privkey> <minconfirms> <destinationtype> <destination>[] <amount>[] <changeaddress>[]
+
+* *privkey* is required.  It can be in any private key format normally accepted for wallet imports with the [[importprivkey]] function.
+* *minconfirms* determines how many confirmations the private key's prior transactions must have before they are considered eligible for being swept.  Transactions having less than the minimum confirmations will be ignored.  If this is 0, then *sweepprivkey* will also attempt to sweep unconfirmed transactions from the in-memory pool.
+* *destinationtype* is either the word *"address"* or *"account"*, and indicates what *destination* is.  *"address"* means sweep funds to another Bitcoin address, and *"account"* will perform a *"getnewaddress"* to get an address on the local wallet and sweep the funds there.  *destinationtype* and *destination* are optional, but must both be present together when used.  If these are absent, the command is treated as a simple query which returns the total funds available to the private key.
+* *destination* is either a Bitcoin address (if *destinationtype* is *"address"*), or is an account name (if *destinationtype* is account).  Funds are sent here.
+* *amount* is optional.  If not present, the command will attempt to sweep all funds available to the private key.  If present, the command will only sweep that amount, reporting a failure if amount is greater than the funds available.
+* *changeaddress* is optional and must only be provided in conjunction with *amount*.  This address specifies a specific destination for any leftover change that may be the result of sweeping a partial amount.  Not all partial-balance transactions generate change, particularly if the private key's balance arrived as smaller transactions that can be used separately to satisfy the transfer request.  If *changeaddress* is not provided, change is sent back to the original Bitcoin address corresponding to *privkey*.
+
+##Proposed flowchart
+The *sweepprivkey* function depends on the ability to quickly find transactions in the block chain belonging to a given address.  It relies on an in-memory hashtable that is built the first time it is needed, and is maintained in memory until bitcoind is shut down.  As a result, the first time *sweepprivkey* is used, a delay of a few minutes can be expected.  This delay can be avoided by starting bitcoind with the --(whatever) command line switch. *(ideally this should be persistable to disk, as this delay only gets longer as the blockchain grows).*
+
+To conserve resources, the hash table is simple.  It associates the first 32 bits of the Bitcoin address (in hash160 form) with a list of the blocks that contain a reference to that address.  It is created upon first use, and updated each time a block is received.  If blocks are invalidated or replaced in chain splits, entries aren't necessarily removed.
+
+*sweepprivkey* will also scan the in-memory transaction pool and attempt
+
+When the *sweepprivkey* command is run, bitcoind will:
+
+1. Ensure the address hash table is being maintained in memory.  If not, it will be built before continuing.
+1. Scan all of the blocks that
