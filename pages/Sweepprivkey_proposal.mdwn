@@ -26,7 +26,7 @@ The *sweepprivkey* function depends on the ability to quickly find transactions 
 
 To conserve resources, the hash table is simple.  It associates the first 32 bits of the Bitcoin address (in hash160 form) with a list of the blocks that reference addresses with that prefix.  The hashtable is created upon first use, and updated each time a block is received.
 
-*sweepprivkey* will also scan the in-memory transaction pool and attempt
+*sweepprivkey* will also scan the in-memory transaction pool and incorporate unconfirmed transactions when the *minconfirms* parameter is zero.
 
 When the *sweepprivkey* command is run, bitcoind will:
 
