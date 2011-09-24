@@ -1,8 +1,12 @@
 The **sweepprivkey** is a PROPOSED Bitcoin RPC command that, given a Bitcoin private key, allows sweeping of some or all of the funds to another address.
 
-This function is useful for merchants who wish to accept typed or scanned Bitcoin private keys as payments, without imposing any specific methodology on how the payments must be processed.  Without affecting any funds or keys or transaction history in the wallet, the function generates a transaction in real-time to sweep the funds to another address, and broadcasts it.
+This function is useful for merchants who wish to accept typed or scanned Bitcoin private keys as payments, without imposing any specific methodology on how the payments must be processed.  *sweepprivkey* has no direct effect on anything in the local wallet or transaction history --function simply generates a transaction in real-time to sweep the funds to another address, and broadcasts it.  That destination address may or may not be in the local wallet.
 
-If the address happens to be in the local wallet, the payment appears (initially with zero confirmations), and looks exactly the same as a payment that had arrived from another peer.  A merchant handles this no differently than an outside payment.
+The local wallet is only affected if the destination address is in the wallet, and only in an indirect sense: the wallet reacts to the sudden presence of a new transaction referencing it, just the same as if that transaction had been received from a peer.
+
+This allows merchants to offer a "deposit by private key" method with trivial effort, specifically without having to create a separate deposit implementation for accepting the keys.  The merchant can simply expose a way for users to submit private keys, which can then be passed to *sweepprivkey* with minimal validation along with the same deposit address that the merchant would normally have given to their customer in anticipation of payment.
+
+Once the customer has entered a private key and allowed a sweep to take place, the merchant from its perspective will see what looks like a deposit with zero confirmations, and can treat it exactly the same as a normal deposit from outside (including requiring the customer to wait for confirmations as usual, where applicable).
 
 ##Usage
 
