@@ -24,7 +24,7 @@ The syntax of *sweepprivkey* is as follows:
 ##Proposed flowchart
 The *sweepprivkey* function depends on the ability to quickly find transactions in the block chain belonging to a given address.  It relies on an in-memory hashtable that is built the first time it is needed, and is maintained in memory until bitcoind is shut down.  As a result, the first time *sweepprivkey* is used, a delay of a few minutes can be expected.  This delay can be avoided by starting bitcoind with the --(whatever) command line switch. *(ideally this should be persistable to disk, as this delay only gets longer as the blockchain grows).*
 
-To conserve resources, the hash table is simple.  It associates the first 32 bits of the Bitcoin address (in hash160 form) with a list of the blocks that contain a reference to that address.  It is created upon first use, and updated each time a block is received.  If blocks are invalidated or replaced in chain splits, entries aren't necessarily removed.
+To conserve resources, the hash table is simple.  It associates the first 32 bits of the Bitcoin address (in hash160 form) with a list of the blocks that reference addresses with that prefix.  The hashtable is created upon first use, and updated each time a block is received.
 
 *sweepprivkey* will also scan the in-memory transaction pool and attempt
 
