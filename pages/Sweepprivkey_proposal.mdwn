@@ -27,4 +27,10 @@ To conserve resources, the hash table is simple.  It associates the first 32 bit
 When the *sweepprivkey* command is run, bitcoind will:
 
 1. Ensure the address hash table is being maintained in memory.  If not, it will be built before continuing.
-1. Scan all of the blocks that
+1. Scan all of the blocks that might contain unspent transactions belonging to the address.  If minconfirms=0, then scan the in-memory transaction pool as well, to create a list of such transactions.
+1. Confirm that there is a non-zero balance available, and that (if *amount* is specified), that the balance is equal to or greater than it.
+1. Do getnewaddress if a wallet account was specified.
+1. If *amount* is specified, eliminate all transactions from the list from largest to smallest that will not be needed to satisfy the amount.
+1. Construct a new transaction in memory that sends funds from the Bitcoin address represented by *privkey* to the destination address and change address, if necessary.  Sign the transaction with *privkey*.
+1. Treat the signed transaction the same as if it had come from a peer, including relaying it to all connected peers.
+1. Return success with the txid and (if applicable) the new address that was gathered via *getnewaddress*.
