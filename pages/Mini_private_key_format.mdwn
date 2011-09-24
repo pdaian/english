@@ -19,7 +19,7 @@ There are two methods to obtain the full 256-bit private key.  One involves SHA2
 1. Add a question mark to the end of the mini private key string.
 1. Take the SHA256 hash of the entire string.  However, we will only looking at the first two bytes of the result.
 1. If the first byte is 00, then the private key must be computed as simply SHA256(minikey).  The question mark is not part of this computation.
-1. If the first byte is 01, then the private key must be computed using PBKDF2.  The second byte determines the iteration count that will be passed into the PBKDF2 function.  The iteration count is determined as follows: 2 ^ (n/4) rounded to the nearest integer, where n is the second byte.  For example, if the second byte is 0x28, then 4096 iterations will be used.  The salt string is "Satoshi Nakamoto".  The Bitcoin client imposes an upper limit on the value of n, which is currently 0x30, or 16384 iterations, and rejects the key as invalid beyond the limit.
+1. If the first byte is 01, then the private key must be computed using PBKDF2.  The second byte determines the iteration count that will be passed into the PBKDF2 function.  The iteration count is determined as follows: 2 ^ (n/4) rounded to the nearest integer, where n is the second byte.  For example, if the second byte is 0x28, then 4096 iterations will be used.  The salt string is "Satoshi Nakamoto".  The Bitcoin client imposes an upper limit on the value of n, which is currently 0x38, or 65536 iterations, and rejects the key as invalid beyond the limit.
 
 ###Example with SHA256
 Here is an example with the sample private key S4b3N3oGqDqR5jNuxEvDwf.
