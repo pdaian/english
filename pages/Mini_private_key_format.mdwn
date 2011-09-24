@@ -58,9 +58,13 @@ Creating mini private keys is relatively simple.  One program which can create s
 
 Mini private keys must be created "from scratch", as the conversion from mini private key to full-size private key is one-way.  In other words, there is no way to convert an existing full-size private key into a mini private key.
 
-To create mini private keys, simply create random strings that satisfy the well-formedness requirement, and then eliminate the ones that do not pass the typo check.  (This means eliminating more than 99% of the candidates.)  Then use SHA256 to compute the corresponding private key, and in turn, the matching Bitcoin address.  The Bitcoin address can always be computed from just the private key.
+To create mini private keys, simply create random strings that satisfy the well-formedness requirement, and then eliminate the ones that do not pass the typo check.  (This means eliminating more than 99% of the candidates.)  Then use the appropriate algorithm to compute the corresponding private key, and in turn, the matching Bitcoin address.  The Bitcoin address can always be computed from just the private key.
 
-In all cases, you should use a secure cryptographic random number generator to eliminate risks of predictability of the random strings.  Also, for stronger security, accept only the strings that pass the typo check on the 717th round rather than the first.
+It is **highly recommended** to use the PBKDF2 function and select at least 4096 rounds.  (This means selecting strings as keys whose SHA256(string+"?") begins with 0x0128).  Mini private keys offer a minimum of entropy, so the more rounds you choose, the stronger your keys will resist advances in technology to do brute-force cracks.
+
+The SHA256 function is provided for the convenience of hardware and software environments that offer very limited computational power, such as microcontrollers.  It provides for the ability to generate a valid mini private key with, on average, 256 operations of SHA256.  However, it also offers the lowest brute force attack resistance.  Such keys are only suitable for situations where a "throwaway" Bitcoin address is needed, such as on a coupon or ticket where the amount will be spent soon, as opposed to an address where bitcoins will be kept long term.  The strongest possible PBKDF2-based keys should always be preferred in any environment where generating them is possible.
+
+In all cases, you **must** use a secure cryptographic random number generator to eliminate risks of predictability of the random strings.
 
 ##Entropy considerations
 The 22-character mini private key code appears to offer about 123 bits of entropy, determined as log2(58^21).  (Because the first character is fixed, there are 21 symbols which can each have one of 58 values).
