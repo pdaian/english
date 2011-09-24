@@ -1,4 +1,93 @@
-[[!template id=stub]]
+##Overview
+
+The Satoshi client advertises locally generated transactions and relays
+transactions from other nodes. This article describes the operations
+that deal with this exchange of transactions.
+
+See this article for more information on how transactions are validated:
+[Protocol Rules](https://en.bitcoin.it/wiki/Protocol_rules#.22tx.22_messages)
+
+
+## Wallet Send
+
+The client periodically calls SendMessages() (in main.cpp) which calls
+ResendWalletTransactions to send transactions generated locallly.
+This routine looks to see if there has been a new block since last time,
+and if so, and the local transaction are still not in a block,
+then the transactions are sent to all nodes.
+This is done only about every 30 minutes.
+
+Transactions are only rebroadcast if they have a timestamp at least
+5 minutes older than the last block was received. They are sorted
+and sent oldest first.[[1]]
+
+
+## Periodic Advertisement
+
+The client periodically calls SendMessages() (in main.cpp) which
+determines if a message should be sent to a remote node.
+For each message processing iteration, one node is chosen as the
+"trickle node".[[2]]  This node is the only one chosen to receive
+an "addr" message, if appropriate.[[3]]
+
+In the section for inventory, the client sends 1/4 of the transaction
+inventory, determined randomly [[4]], UNLESS they are the trickle node,
+in which case they receive ALL transactions.[[5]] Yes that seems reversed,
+but it is what it is. If the node is to receive 1/4 (not all), then the
+code also avoids sending any transactions that came from the local
+wallet.[[6]]  The comments indicate this is intended to increase privacy.
+
+
+
+## Relay
+
+When the client receives a transaction via a "tx" messages,
+it calls RelayMessage, which calls RelayInventory, which queues the
+inventory to be sent to all other nodes.[[7]]
+
+
+
+##Footnotes
+
+1. See CWallet::ResendWalletTransactions in wallet.cpp.
+
+2. See:
+	pnodeTrickle = vNodesCopy[(1)](GetRand(vNodesCopy.size()));
+and
+	SendMessages(pnode, pnode == pnodeTrickle);
+in ThreadMessageHandler2() in net.cpp.
+
+3. See:
+	//
+	// Message: addr
+	//
+	if (fSendTrickle)
+	{  
+in SendMessages() in main.cpp.
+
+4. See:
+	bool fTrickleWait = ((hashRand & 3) != 0);
+in SendMessages() in main.cpp.
+
+5. See:
+	// trickle out tx inv to protect privacy
+	if (inv.type == MSG_TX && !fSendTrickle)
+	{   
+in SendMessages() in main.cpp.
+
+6. See:
+	// always trickle our own transactions
+	if (!fTrickleWait)
+	{   
+	CWalletTx wtx;
+	if (GetTransaction(inv.hash, wtx))
+	if (wtx.fFromMe)
+	fTrickleWait = true;
+	}
+in SendMessages() in main.cpp.
+
+7. Both RelayMessage and RelayInventory in net.h.
+
 
 [[!tag "Developer"]]
 [[!tag "Technical"]]
