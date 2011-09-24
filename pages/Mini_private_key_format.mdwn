@@ -47,14 +47,11 @@ This sample key in [[wallet_export_format]] is 5HwWUj33XounRKR3jdRwCgUYWqYL24NYs
 The PBKDF2 key derivation algorithm is shared by the WPA-PSK encryption method used on WiFi networks.  It also happens to also use 4096 iterations and 32 bytes of key, so a standard WPA key calculator can be used to test and confirm this particular result, simply by entering "Satoshi Nakamoto" as the SSID and "SmbM4uRBu2mQymCsuMKkiW" as the password.
 
 ##Check code
-The check code is designed to be simple, but relatively computationally expensive so that it cannot be used to quickly reduce the key space in a brute force attack.  It offers seven bits worth of error protection (or, in other words, in the event of a typo, the typo will be caught about 127 out of 128 times, or over 99%).
+The mini private key format offers a simple typo check code.  Mini private keys must be generated in a "brute force" fashion, keeping only keys that conform to the format's rules.  If a key is well-formed (22, 26, or 30 Base58 characters starting with S), but fails the hash check, then it probably contains a typo.
 
-To determine whether a string passes the check code, follow these steps:
+If the SHA256 hash of the string followed by '?' doesn't result in something that begins with 0x00 or 0x01, the mini private key is not valid.
 
-1. Ensure it is well-formed (22 or 26 characters, base58 alphabet, starts with S).
-1. Add a question mark to the end of the string, and take the SHA256 of that.  If the SHA256 starts with eight zero bits (hex 00), then the string passes the check code.
-1. If it does not, then with the same string (ending in a question mark), do 717 (seven hundred seventeen) rounds of SHA256 on the string.  If the result after the 717th round starts with eight zero bits (hex 00), then the string passes the check code.
-1. If the results of SHA256 after both tests don't start with eight zero bits, then the check fails.
+If it starts with 0x01, but the second byte is higher than the allowed maximum (0x30), the mini private key is invalid.  Note that the maximum is likely to be increased as computing power advances.
 
 ##Creating mini private keys
 Creating mini private keys is relatively simple.  One program which can create such keys is [[Casascius_Bitcoin_Utility]].
