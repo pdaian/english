@@ -69,9 +69,7 @@ In all cases, you **must** use a secure cryptographic random number generator to
 ##Entropy considerations
 The 22-character mini private key code appears to offer about 123 bits of entropy, determined as log2(58^21).  (Because the first character is fixed, there are 21 symbols which can each have one of 58 values).
 
-The 26-character version offers about 146 bits of entropy by the same calculation.
-
-Each attempt to convert a mini private key to a Bitcoin address requires an elliptic curve multiply operation, which itself is computationally intensive.  This will slow a brute force attack with the same effect as several further bits of "apparent entropy" when compared to a brute force operation of much less complexity, such as hash cracking.
+The 26-character version offers about 146 bits of entropy by the same calculation.  The 30-character version offers over 169 bits, which exceeds the 160-bits found in a Bitcoin address.
 
 ##Python Code
 The following code produces sample mini private keys in Python.  For real-world use, *random* must be replaced with a better source of entropy, as the Python documentation for *random* states the function *"is completely unsuitable for cryptographic purposes"*.
