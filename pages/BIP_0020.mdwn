@@ -27,7 +27,7 @@ The **fragment** is an optional part separated from the front parts by a hash ("
 
 [] means optional, <> are placeholders
 
-	bitcoin:<address>[[?]]<size>[[amount=]][[&]]<label>[[label=]][[&]]<message>[[message=]]
+	bitcoin:<address>[[?]]<size>[[amount=]][[&]]<label>[[label=]][[&]]<message>[[message=]][[&]]<private key>[[send=]]
 
 ### Query Keys
 
@@ -35,6 +35,7 @@ The **fragment** is an optional part separated from the front parts by a hash ("
 * address: bitcoin address
 * message: optional message that is shown to the user after scanning the QR code
 * size: amount of base bitcoin units (cuBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC nor TonalBitCoins/TBC; see below)
+* private key: used to send bitcoin, rather than to request them
 
 #### Transfer amount/size
 
@@ -55,20 +56,23 @@ Just the address:
 Address with name:
 	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?label=Luke-Jr
 
-Request to send 20.30 BTC to "Luke-Jr":
+Request 20.30 BTC to "Luke-Jr":
 	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=20.3X8&label=Luke-Jr
 
-Request to send 400 TBC:
+Request 400 TBC:
 	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=x400X4
 
-Request to send 4000 TBC:
+Request 4000 TBC:
 	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=x4X7
 
-Request to send 5 uBTC:
+Request 5 uBTC:
 	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=5X2
 
-Request to send 50 BTC with message:
+Request 50 BTC with message:
 	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=50X8&label=Luke-Jr&message=Donation%20for%20project%20xyz
+
+Send 1 BTC:
+	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=1X8&send=S4b3N3oGqDqR5jNuxEvDwf
 
 Characters must be URI encoded properly.
 
@@ -78,13 +82,14 @@ Characters must be URI encoded properly.
 	bitcoinaddress  = FIXME :)
 	bitcoinversion  = "1.0"
 	bitcoinparams   = *bitcoinparam
-	bitcoinparam    = amountparam  labelparam  messageparam
+	bitcoinparam    = amountparam  labelparam  messageparam  pkparam
 	amountparam     = "amount=" amount
 	amount          = amountdecimal  amounthex
 	amountdecimal   = digits  [digits]("X")
 	amounthex       = "x" hexdigits  [hexdigits]("X")
 	labelparam      = "label=" *uchar
 	messageparam    = "label=" *uchar
+	sendparam       = "send=" *uchar
 
 ### Parsing amount
 #### ECMAScript
@@ -155,8 +160,29 @@ In my opinion, the most basic idea of the URI scheme (as this is a currency) is 
 <code>
 bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L
 </code>
-represents a **payment** to me using my bitcoin address, not my bitcoin address itself. So after parsing the URI (via link/qr/whatever) the application should open a transaction window with the address filled in. You then need to add an amount and confirm the payment.
+represents a **request for payment** to me using my bitcoin address, not my bitcoin address itself. So after parsing the URI (via link/qr/whatever) the application should open a transaction window with the address filled in. You then need to add an amount and confirm the payment.
 If your application is smart, it will also have a button "just store the address". But the point I am trying to make is that the default use of the URI should be for payment, nor for exchanging addresses.
+
+###Sending money
+To send a payment to someone else first construct a new keypair. You may want to use a [[mini_private_key_format]], or you may also use a full private key for more security depending on the amount being sent and how long you expect to pass before a claim. Now create and publish a transaction with an output of the amount you wish to send. Use this script in that output:
+
+<code>
+<pubkey> OP_CHECKSIG
+</code>
+
+Construct an address from the public key. Encode the URI as below:
+
+<code>
+bitcoin:<address>?send=<base 58 encoded private key>
+</code>
+
+You may optionally include amount or message fields as well. In a wallet to claim money sent this way search for an incoming transaction with the output script form above, where <address> matches the public key in the script. When you find the transaction create a claim transaction with an input script of this form:
+
+<code>
+<sig>
+</code>
+
+This claims the money you were sent. Until your claim transaction has confirmed the sender may take their money back.
 
 ###Accessibility
 **Imported from the forum:** I like the simplicity of bitcoin:xxxxxxxxxxxxx and very much approve of its accessibility. Should someone from the outside happen to see such a URI, the protocol name already gives a description. A quick google search should then do the rest. x-btc sounds much more cryptic; the chance that someone googles that out of curiosity are much slimmer. Also, very likely, what s/he will find are mostly technical specifications. Not a good introduction to bitcoin.
