@@ -40,7 +40,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |move |<fromaccount><toaccount><amount>[[minconf=1]][[comment]]|Move from one account in your wallet to another.
 |sendfrom |<fromaccount><tobitcoinaddress><amount>[[minconf=1]][[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Returns the transaction ID if successful.
 |sendmany |<fromaccount>{address:amount,...}[[minconf=1]][[comment]]|amounts are double-precision floating point numbers
-|sendtoaddress |<bitcoinaddress><amount>[[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places
+|sendtoaddress |<bitcoinaddress><amount>[[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Returns the transaction ID <txid>if successful.
 |setaccount |<bitcoinaddress><account>|Sets the account associated with the given address. Assigning address that is already assigned to the same account will create a new address associated with that account.
 |setgenerate |<generate>[[genproclimit]]|<generate>is true or false to turn generation on or off.<br/>Generation is limited to [[genproclimit]]processors, -1 is unlimited.
 |settxfee |<amount>|<amount>is a real and is rounded to the nearest 0.00000001
