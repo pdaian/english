@@ -52,3 +52,9 @@ and the following new inventory type for getdata
 
 When a client requests such filtering then all new blocks will still be advertised like normal but the client will have the opportunity to request only the absolute minimum necessary data to perform the simplified verification as outlined in the paper and new transactions will only be sent to it if they match the filter list. This should save a LOT of bandwidth.
 [Prof7bit](User:Prof7bit) 21:03, 24 June 2011 (GMT)
+
+## Error?
+
+https://en.bitcoin.it/wiki/Protocol_specification#version
+
+Under version message there is the field version which has the type of int32_t. Shouldn't it be uint32_t?
