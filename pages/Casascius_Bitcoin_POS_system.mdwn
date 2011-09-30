@@ -113,10 +113,14 @@ Note that the rate for dispensing is the admin-configurable "sell" rate and may 
 * Press **F2 - Dispense to Card** to dispense to a stored value card.
 * Visually ensure you are using an undamaged, unscratched stored value card, and swipe the card through the magstripe reader.
 * Enter the amount to dispense (either in BTC or local currency, choosing the currency via the purple softkeys if allowed), and press Enter.
+* Enter the 10-digit code printed on the upper-right corner of the card.
 * Confirm that the amount entered is correct, and then press Enter.
 * A confirmation receipt will print, and the Dispensing mode will immediately exit.
 
+> ***Warning:** Always ensure that empty stored value cards are kept securely and were received from a trusted supply channel, and do not load cards that have been handled by a customer.  Don't transfer bitcoins to a stored value you cannot be sure is genuine.  It is possible for a fraudster to create stored value cards - or to re-encode real ones - to cause the bitcoins to be sent to his address instead of your customer.  When you receive a shipment of empty stored value cards from Somebody, Inc., you must go online and confirm receipt of the shipment before you can send bitcoins to these cards.*
+
 ###Dispensing to a Bitcoin address
+> *Note: This option is disabled by default, and will not appear on the menu if not enabled.  Use the admin menu to enable it.*
 
 * Press **F3 - Transfer to Address**.
 * Scan the address with the barcode scanner, or enter it on the keypad or with a USB keyboard.
