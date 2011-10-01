@@ -1,9 +1,16 @@
 [[!img "VeriFone_Vx570.jpg" size=120x120 class="right" size=200x200 title="The Bitcoin POS system is based on the VeriFone Vx510 or Vx570 (pictured here) model of point-of-sale bankcard machines."]]
 The **Casascius Bitcoin POS system** is a desktop retail point-of-sale acceptance system for Bitcoin "in a box".  The system is based on a VeriFone Vx510 or Vx570 payment terminal, and allows merchants to easily accept Bitcoin payments from customers.  It can optionally allow merchants to dispense (sell) Bitcoins.
 
-The POS system features an Ethernet network connection, a 128x64 pixel backlit monochrome display, a receipt printer, and a 25-key keypad, all in a compact terminal.  The Vx570 terminal also includes a USB port, to which a QR barcode scanner can be attached.
+The POS system features an Ethernet network connection, a 128x64 pixel backlit monochrome display, a receipt printer, and a 24-key keypad, all in a compact terminal.  The Vx570 terminal also includes a USB port, to which a QR barcode scanner can be attached.
 
 The POS system acts as a client for a central server run by Somebody, Inc.  It does not maintain a Bitcoin block chain, but rather, sends SSL-encrypted queries to servers belonging to Somebody, Inc. in order to retrieve rate quotes and perform transactions.  Consequently, it requires a constant Internet connection in order to function.  Transactions cannot take place and rates cannot be quoted without a functional connection to the Internet.
+
+The POS system and its server are an open source project.
+
+See also:
+
+* [[Casascius_Bitcoin_POS_system/Protocol]]
+* https://www.github.com/casascius/vfbitcoin
 
 ##Functionality
 The POS system offers the following functionality for retail merchants:
