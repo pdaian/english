@@ -1,0 +1,49 @@
+This pages gathers resources for the implementation of a Bitcoin wallet on a smart card.
+
+###Rationale
+
+* Computers and smartphones are target for malware. The software of a smart card can be protected.
+* Smart cards do not need a battery, nor internet connection, they are robust.
+* Adoption: people are already used to pay with smart cards.
+
+###Desired features
+
+* no blockchain, no node; the card contains only private keys, and an algorithm to sign a transaction
+* the smart card should have its own keyboard (for pin code protection) and display (to show the transaction amount)
+* the card should implement a deterministic wallet, so that funds can be recovered if the card is lost.
+
+###Usage scenario
+
+* the reading device may belong to a merchant at a point of sale; it cannot be trusted with private keys. 
+* the reading device is connected to a full bitcoin node; it can be trusted for getting and sending blockchain information.
+* the reading device sends to the card the current balance of its bitcoin addresses. This information can be cached in the card.
+* the reading device sends a bitcoin receiving address and transaction amount to the card.
+* the amount is displayed by the card ; the user confirms the transaction with his pin code.
+* the smart card creates a signed transaction and sends it to the reading device
+* the transaction is checked and broadcast by the bitcoin node.
+
+##Implementation steps
+
+###1. write a bitcoin daemon that can broadcast transactions
+
+* this has been done already, see for example bitcoinjs: https://github.com/bitcoinjs/bitcoinjs-lib
+* See also this pull request: [importexporttx](https://github.com/piotrnar/bitcoin/tree/importexporttx) can be used to broadcast the transaction
+
+###2. write a lightweight wallet
+
+* wallet without blockchain, in order to test the daemon
+* this lightweight wallet will be later implemented on the card 
+* use it to define the communication protocol between card and reading device.
+
+###3. implement wallet on a simple smart card
+
+* http://www.opensc-project.org/opensc openSC : tools and libraries for smart cards. 
+* amadousarr.free.fr/crypto/ECDSAJAVACARD.pdf : A Software Implementation of ECDSA on a Java Smart Card
+* http://www.acs.com.hk : cards, readers, development kits; no display, pincode needs to be typed on the reading device
+
+###4. implement wallet on a smart card with display and pincode
+
+list of vendors:
+
+* http://www.nidsecurity.com/products/solution-enterprise.html (smart cards with LCD displays)
+* http://www.avesodisplays.com/ (smard cards with flexible displays)
