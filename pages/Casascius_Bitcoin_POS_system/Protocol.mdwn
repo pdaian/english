@@ -1,0 +1,31 @@
+DRAFT.  See [[Casascius_Bitcoin_POS_system]].
+
+The following messages are defined as being what can be sent between the Bitcoin POS system and its server.
+
+##Communication format
+To be determined.  JSON-RPC over HTTPS would probably work.  The terminal is capable of holding onto crypto keys in tamper-protected storage that dumps the keys if the device is opened.  This should be used to generate and maintain client-side certificate.
+
+All communications are initiated by the terminal.  It polls every 15-60 seconds.  This avoids problems with firewalls.
+
+##Messages
+
+###checkin
+This is the terminal checking in.  The host should respond to tell the terminal the current time, current exchange rate quotes, and provide information about any new alerts (including incoming transactions, configuration changes, or changes to the confirmation status of recent transactions).
+
+###getaddress
+Gets one or more Bitcoin address known to belong to the merchant's wallet.  These will be used for incoming Bitcoin transactions.  Ideally, the terminal should cache a few of these, since printing an address doesn't need to be a network-dependent operation.
+
+###queryaddress
+This command is sent when the terminal scans a private key.  It is to ask the server about what funds are available.  Only the Bitcoin address is sent to the server, not the private key.  The server responds with an amount.
+
+###sweep
+This command is sent when the terminal confirms a transaction.  It asks the server to capture funds from one or more private keys, with an option for returning a portion of funds as change to the customer.  The server automatically selects an available wallet address belonging to the merchant.
+
+###dispense
+Parameters:
+
+* amount
+* method
+* address
+* authcode
+This command is sent when the terminal wants to dispense bitcoins to an address.  *method* can be one of *printer*, *magcard*, or *address*, and is intended to record how delivery took place.
