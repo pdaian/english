@@ -1,43 +1,15 @@
-# Hexdumps
-I'm adding some hexdumps of messages and data structures and descriptions of how these are interpreted in order to help others understand these protocol and data structures.  It's a bit redundant, so any ideas as to how to remove some of the redundancy while keeping the knowledge accessible are welcome (feel free to make the changes yourself!). -- [X6763](User:X6763)
-
-# Checksum wrong?
-Is the checksum in the addr sample correct?  Here's what I get using OpenSSL (sorry for long lines):
-SHA256("\x01\xe2\x15\x10\x4d\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\x0a\x00\x00\x01\x20\x8d") = 
-d6 88 65 c8 20 61 d5 e2 54 52 b5 5b 52 17 98 b1 11 50 85 96 2e 49 e8 fd da b7 f4 fb a3 9c d8 2c
-and SHA256 of that is
-ed 52 39 9b 56 8e d8 d5 9a 83 72 9c 11 6f 87 d0 be f2 84 e9 98 f3 47 7c 98 61 16 9a b1 2e ed 5c
-It could easily be I'm using OpenSSL incorrectly, so wanted to get confirmation -- [AndyParkins](User:AndyParkins)
-	- The checksum for "addr" was not working for me neither, and I had the same results "ED 52 39 9B", so I fixed it on the page. --[Robert](User:Robert)
-
 # What is "77x"? Header size wrong?
 The description for the headers command says "77x?" as the size for the block_headers[] returned.  However, the description of the block_header structure is 81 bytes (4+32+32+4+4+4+1).  What exactly is returned by the headers command? -- [AndyParkins](User:AndyParkins)
 
-# Endianess on magic numbers
-The given magic numbers are the wrong way around.  The magic numbers are little endian 32 bit numbers on the network, so Testnet.Magic = 0xdab5bffa and Prodnet.Magic = 0xd9b4bef9.  The two examples are the order they come in from the wire, so at the very least should be shown with spaces between the bytes.
-[AndyParkins](User:AndyParkins)
-
-> I stumbled upon this as well and corrected the page. --[Theo](User:Theo) 10:13, 7 June 2011 (GMT)
-
-# Version not advertised?
-Doing some experiments the version seems to be sent by the client, not the server as I think the page currently says.
-"When a node receives an incoming connection, it will immediately advertise its version."
-That is not true. --[Bluecmd](User:Bluecmd) 10:02, 5 June 2011 (GMT)
-
-> You're right, net.h says in CNode constructor: --[Theo](User:Theo) 10:09, 7 June 2011 (GMT)
-	// Be shy and don't send version until we hear
-	if (!fInbound)
-	PushVersion();
-
 # Version in getblocks?
 Apparently the official client sends the protocol version in getblocks messages, (possibly even in getheaders). This seems to me to be just weird --[Bluecmd](User:Bluecmd) 14:57, 6 June 2011 (GMT)
+> Satoshi wanted the protocol to be as forwards compatible as possible. --[Atheros](User:Atheros) 18:54, 2 October 2011 (GMT)
 
 # Separate page for hexdumps?
 
 Does anyone else think it may be a good idea to put the hexdumps on a separate page?  It'd be nice to have this page just describe the protocol, but at the same time, be able to have examples of each of the different messages and objects.  On that node, would it also be helpful if I were to do a hexdump example of all of the different commands/structures? --[Andrew12](User:Andrew12) 23:26, 9 June 2011 (GMT)
 
-
-I think that a page devoted solely to hexdumps wouldn't be a bad idea, especially if there would be multiple variants per each example and some of them would be explained step-by-step. This page needs cleanup.
+> I think that a page devoted solely to hexdumps wouldn't be a bad idea, especially if there would be multiple variants per each example and some of them would be explained step-by-step. This page needs cleanup.
 --[ThePiachu](User:ThePiachu) 14:06, 2 October 2011 (GMT)
 
 # Proposing additional protocol messages
@@ -62,11 +34,6 @@ When a client requests such filtering then all new blocks will still be advertis
 https://en.bitcoin.it/wiki/Protocol_specification#version
 
 Under version message there is the field version which has the type of int32_t. Shouldn't it be uint32_t? Same with the start_height.
---[ThePiachu](User:ThePiachu) 18:04, 30 September 2011 (GMT)
-
-https://en.bitcoin.it/wiki/Protocol_specification#Network_address
-
-The hexdump of the network address doesn't seem to have the time field.
 --[ThePiachu](User:ThePiachu) 18:04, 30 September 2011 (GMT)
 
 https://en.bitcoin.it/wiki/Protocol_specification#getblocks
