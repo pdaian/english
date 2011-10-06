@@ -2,12 +2,16 @@ A **private key** in the context of Bitcoin is a secret number that allows Bitco
 
 Because the private key is the "ticket" that allows someone to spend Bitcoins, it is important that these are kept secure.  Private keys can be kept on computer files, but they are also short enough that they can be printed on paper.  An example of a utility that allows extraction of private keys from your wallet file for printing purposes is [[pywallet]].
 
+As of October 2011, the easiest way to redeem a private key is on [[MtGox]]'s Add Funds screen.  Funds are deposited to the MtGox account after a six-confirmation wait (typically an hour or two).  In addition to MtGox, the following services allow redemption of private keys: 
+
+* [[StrongCoin]]
+
 ##An example private key
 In Bitcoin, a private key is a 256-bit number, which can be represented one of several ways.  Here is a private key in hexadecimal - 256 bits in hexadecimal is 32 bytes, or 64 characters in the range 0-9 or A-F.
 
 	E9 87 3D 79 C6 D8 7D C0 FB 6A 57 78 63 33 89 F4 45 32 13 30 3D A6 1F 20 BD 67 FC 23 3A A3 32 62
 
-##Wallet import format
+##Base 58 Wallet Import format
 When we represent private keys in Bitcoin, however, we use a shorter format known as [[wallet_import_format]], which offers a few advantages.  The wallet import format is shorter, and includes built-in error checking codes so that typos can be automatically detected and/or corrected (which is impossible in hex format).  Wallet import format is the most common way to represent private keys in Bitcoin.  They are 51 characters and always start with the number 5.  This is the same private key in wallet import format.
 
 	5Kb8kLf9zgWQnogidDA76MzPL6TsZZY36hWXMssSzNydYXYB9KF
