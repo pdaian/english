@@ -105,7 +105,7 @@ The difficulty is adjusted every 2016 blocks based on the time it took to find t
 To find a block, the hash must be less than the target.  The hash is effectively a random number between 0 and 2**256-1.  The offset for difficulty 1 is
 	0xffff * 2**208
 and for difficulty D is
-	0xffff * 2**208)/D
+	(0xffff * 2**208)/D
 
 The expected number of hashes we need to calculate to find a block with difficulty D is therefore
 	D * 2**256 / (0xffff * 2**208)
