@@ -1,4 +1,4 @@
-Bitcoin API call list (as of version 0.3.24)
+Bitcoin API call list (as of version 0.4.0)
 
 ## Common operations
 
@@ -15,6 +15,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 
 
 |backupwallet |<destination>|Safely copies wallet.dat to destination, which can be a directory or a path with filename.
+|encryptwallet |<passphrase>|Encrypts the wallet with <passphrase>.
 |getaccount |<bitcoinaddress>|Returns the account associated with the given address.
 |getaccountaddress |<account>|Returns the current bitcoin address for receiving payments to this account.
 |getaddressesbyaccount |<account>|Returns the list of addresses for the given account.
@@ -33,6 +34,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |gettransaction |<txid>|Returns an object about the given transaction containing:* "amount" : total amount of the transaction* "confirmations" :  number of confirmations of the transaction* "txid" : the transaction ID* "time" : time the transaction occurred* "details" - An array of objects containing:	* "account"	* "address"	* "category"	* "amount"
 |[[getwork]]|[[data]]|If [[data]]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf [[data]]is specified, tries to solve the block and returns true if it was successful.
 |help |[[command]]|List commands, or get help for a command.
+|keypoolrefill ||Fills the keypool, requires wallet passphrase to be set.
 |listaccounts |[[minconf=1]]|Returns Object that has account names as keys, account balances as values.
 |listreceivedbyaccount |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "account" : the account of the receiving addresses* "amount" : total amount received by addresses with this account* "confirmations" : number of confirmations of the most recent transaction included
 |listreceivedbyaddress |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "address" : receiving address* "account" : the account of the receiving address* "amount" : total amount received by the address* "confirmations" : number of confirmations of the most recent transaction includedTo get a list of accounts on the system, execute bitcoind listreceivedbyaddress 0 true
@@ -46,6 +48,9 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |settxfee |<amount>|<amount>is a real and is rounded to the nearest 0.00000001
 |stop ||Stop bitcoin server.
 |validateaddress |<bitcoinaddress>|Return information about <bitcoinaddress>.
+|walletlock ||Removes the wallet encryption key from memory, locking the wallet. After calling this method,  you will need to call walletpassphrase again before being able to call any methods which require the wallet to be unlocked.
+|walletpassphrase |<passphrase><timeout>|Stores the wallet decyrption key in memory for <timeout>seconds.
+|walletpassphrasechange |<oldpassphrase><newpassphrase>|Changes the wallet passphrase from <oldpassphrase>to <newpassphrase>.
 
 
 ##See Also
