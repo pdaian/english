@@ -1,0 +1,37 @@
+Beginning with [[bitcoind]] 0.5 (not yet released), you will be able to control the creation of coinbase content in blocks you mine.
+This is split into two parts:
+
+## Coinbaser
+The coinbaser is an external program which tells bitcoind how to distribute generated funds;
+it is called whenever bitcoind wants to build a new coinbase transaction.
+
+### Usage
+To setup a coinbaser, you need to pass a command to bitcoind using the -coinbaser option.
+This command will be executed by your system's default shell.
+If the string '%d' is present in the command line, it will be replaced with the total amount of funds available for distribution (in satoshis).
+For example:
+	bitcoind -coinbaser='/home/user/coinbaser.pl %d'
+
+You can also have bitcoind connect to a TCP socket. In this case, the socket will be sent "total: " followed by the funds available and two newlines. For example:
+	bitcoind -coinbaser='tcp:localhost:8334'
+
+### Output format
+The coinbaser has a simple line-based format for standard output.
+The first line should contain the number of additional destinations for generated funds.
+For each destination, there should be two lines:
+first, the amount of funds to redirect (in satoshis);
+second, the bitcoin address to direct them to.
+
+If there is any error in this format, a reason will be logged to debug.log and bitcoind will abort customization and revert to its default behaviour of taking the full reward+fees for itself.
+Note that not *all* available funds should be redistributed;
+remaining funds are needed for the original generation destination, and treated in the standard way.
+This can, however, be as low as 1 satoshi left not redirected.
+
+## setworkaux
+setworkaux is a new JSON-RPC call to add arbitrary data to your coinbase transaction's "scriptSig".
+Once added, it will be put in all new work (see [[getwork]]) until explicitly replaced or removed.
+The first parameter is required, and must be an arbitrary identifier for the data chunk.
+The second parameter is optional; if present, it must be a hexadecimal-encoded string of the data to be added (or replace older data under the same id).
+If the second parameter is not provided, it will remove the id from future work.
+There is a limit of 100 octets total in the coinbase;
+setworkaux will fail if you try to add more than it can safely insert.
