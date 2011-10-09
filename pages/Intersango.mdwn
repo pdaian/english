@@ -48,7 +48,7 @@ Withdrawals as standard UK GBP bank transfers.
 
 ##API
 
-See [[API page|/API]] for more info.
+See [[https://bitcoinconsultancy.com/wiki/index.php/Intersango/API API page]] for more info.
 
 <source lang="python">
 import httplib
@@ -108,6 +108,21 @@ class Intersango:
 	params = {'account_id': account_id, 
 	'withdrawal_request_id': withdrawal_request_id}
 	return self.make_request('cancelWithdrawalRequest', params)
+</source>
+
+Example usage:
+
+<source lang="python">
+	intersango = Intersango('3223kdkk323h32kj3hkj23233j')
+	print 'Accounts: ', intersango.accounts()
+	print 'Orders: ', \
+	intersango.orders(411289412410, 
+	[Intersango.ORDER_FULFILLED](Intersango.ORDER_CANCELLED,))
+	print 'Deposits: ', intersango.deposits(861502532543)
+	print 'Withdrawals: ', intersango.withdrawals(702703681384)
+	intersango.place_limit_order('1', '2.0', Intersango.BUY, 
+	861502521543, 411982412410)
+	intersango.cancel_order(412989412410, 21724)
 </source>
 
 ##History
