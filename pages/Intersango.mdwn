@@ -46,9 +46,73 @@ Withdrawals are through [[Dwolla]].  There is no fee incurred from the exchange 
 ###GBP
 Withdrawals as standard UK GBP bank transfers.
 
+##API
+
+See [[API page|/API]] for more info.
+
+<source lang="python">
+import httplib
+import urllib
+import json
+
+class Intersango:
+	ORDER_QUEUED = 'queued'
+	ORDER_OPEN = 'open'
+	ORDER_EXPIRED = 'expired'
+	ORDER_CANCELLED = 'cancelled'
+	ORDER_FULFILLED = 'fulfilled'
+
+	BUY = 'false'
+	SELL = 'true'
+
+	def __init__(self, api_key):
+	self.connection = httplib.HTTPSConnection('intersango.com')
+	self.api_key = api_key
+
+	def make_request(self, page, params={}):
+	headers = {"Content-type": "application/x-www-form-urlencoded",
+	"Accept": "text/plain"}
+	params[['api_key']] = self.api_key
+	params = urllib.urlencode(params)
+	base_url = '/api/authenticated/v0.1/%s.php'%page
+	self.connection.request('POST', base_url, params, headers)
+	response = self.connection.getresponse()
+	if response.status == 404:
+	return None
+	return json.loads(response.read())
+
+	def accounts(self):
+	return self.make_request('listAccounts')
+
+	def orders(self, account_id, states):
+	params = {'account_id': account_id, 'states': states}
+	return self.make_request('listOrders', params)
+
+	def deposits(self, account_id):
+	return self.make_request('listDeposits', {'account_id': account_id})
+
+	def withdrawals(self, account_id):
+	return self.make_request('listWithdrawalRequests',
+	{'account_id': account_id})
+
+	def place_limit_order(self, quantity, rate, is_selling, base_id, quote_id):
+	params = {'quantity': quantity, 'rate': rate, 'selling': is_selling,
+	'base_account_id': base_id, 'quote_account_id': quote_id}
+	return self.make_request('placeLimitOrder', params)
+
+	def cancel_order(self, account_id, order_id):
+	params = {'account_id': account_id, 'order_id': order_id}
+	return self.make_request('requestCancelOrder', params)
+
+	def cancel_withdrawal(self, account_id, withdrawal_request_id):
+	params = {'account_id': account_id, 
+	'withdrawal_request_id': withdrawal_request_id}
+	return self.make_request('cancelWithdrawalRequest', params)
+</source>
+
 ##History
 
-The service was launched on July 6, 2011 (15.1).  The Intersango [[open source|tags/Open_Source]] software that the exchange runs on was announced on March 17, 2011 (15.2).  In September, 2011 the exchange begain using a new version of the Intersango open source exchange project with two currency markets (BTC/EUR, BTC/USD) live under the Intersango brand and plans made for the third (BTC/GBP) when [[Britcoin]] accounts are migrated at a future date.
+The service was launched on July 6, 2011 (16.1).  The Intersango [[open source|tags/Open_Source]] software that the exchange runs on was announced on March 17, 2011 (16.2).  In September, 2011 the exchange begain using a new version of the Intersango open source exchange project with two currency markets (BTC/EUR, BTC/USD) live under the Intersango brand and plans made for the third (BTC/GBP) when [[Britcoin]] accounts are migrated at a future date.
 
 ##See Also
 
@@ -62,8 +126,8 @@ The service was launched on July 6, 2011 (15.1).  The Intersango [[open source|t
 
 ##References
 
-15.1: [Intersango.com EUR exchange is now live](http://forum.bitcoin.org/index.php?topic=26543.0)  
-15.2: [Free Bitcoin exchange software- Intersango](http://www.bitcoin.org/smf/index.php?topic=4579.0)
+16.1: [Intersango.com EUR exchange is now live](http://forum.bitcoin.org/index.php?topic=26543.0)  
+16.2: [Free Bitcoin exchange software- Intersango](http://www.bitcoin.org/smf/index.php?topic=4579.0)
 
 
 [[!tag "Exchanges"]]
