@@ -77,8 +77,14 @@ class Intersango:
 
 	def make_request(self, page, params={}):
 	headers = {"Content-type": "application/x-www-form-urlencoded",
+	"Connection": "Keep-Alive", "Keep-Alive": 30,
 	"Accept": "text/plain"}
+	if type(params) == dict:
 	params[['api_key']] = self.api_key
+	elif type(params) == list:
+	params.append(('api_key', self.api_key))
+	else:
+	raise TypeError('Unknown parameter list type')
 	params = urllib.urlencode(params)
 	base_url = '/api/authenticated/v0.1/%s.php'%page
 	self.connection.request('POST', base_url, params, headers)
@@ -90,8 +96,12 @@ class Intersango:
 	def accounts(self):
 	return self.make_request('listAccounts')
 
-	def orders(self, account_id, states):
-	params = {'account_id': account_id, 'states': states}
+	def orders(self, account_id, states=[], last_order_id=None):
+	params = [account_id)](('account_id',)
+	for state in states:
+	params.append(('states[]', state))
+	if last_order_id is not None:
+	params.append(('last_order_id', last_order_id))
 	return self.make_request('listOrders', params)
 
 	def deposits(self, account_id):
