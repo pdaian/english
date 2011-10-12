@@ -1,14 +1,16 @@
-BitPenny was the first [[mining pool|Pooled_mining]] to introduce a fixed-rate, instant-payout model.  The service discontinued service indefinitely as-of April 2, 2011 (1.1).
+BitPenny is a bitcoin mining pool that uses an [open-source client](https://github.com/ForceMajeure/BitPenny-Client) to protect against potential abuses and [[security vulnerabilities|Weaknesses]] resulting from centralized mining power.
 
-Each share submitted to BitPenny was worth a fixed (based on current [[difficulty|Difficulty]]) amount of bitcoins.  The user's account was credited immediately upon submission, and the balance was instantly available for withdrawal from the [BitPenny website](http://www.bitpenny.com).  This approach shifted the risks associated with bad luck, cheating, and transaction-reversal [[attacks|Weaknesses]] from the user to the pool operator, resulting in a virtually zero-variance payout curve.
+Client-side verification prevents the server from executing double-spending and other attacks.  Automatic fail-over to solo mining allows the pool to disintegrate into individual mining nodes and to continue supporting the bitcoin network in a case of server unavailability, preventing a catastrophic slowdown of the entire network.  The instant solo fail-over also works to increase miner efficiency by utilizing time that would normally be spent waiting for work from the server due to network lag or other issues.
 
-The service was operated for-profit and thus self-insured against variances. (1.2).
+BitPenny uses a delayed pay-per-share (CPPSRB) payout model that is immune to pool-hopping.  Shares are paid in last-in-first-out order and never decay in value, with transaction fees included in order to help avoid large backlogs of unpaid shares.  More details can be found at the [BitPenny website](http://www.bitpenny.com).
 
-The service was first available for beta testing starting February 08, 2011.  The second round of testing began on March 2nd, 2011.
+##Background History
+
+BitPenny is the second-oldest mining pool, first available for beta testing starting February 08, 2011.  It was the first pool to introduce the Pay-Per-Share model, instant payouts, and address-only connections that do not require registration or a password.
 
 ##Community
 
-The IRC channel [#bitcoin-bitpenny](irc://irc.freenode.net/bitcoin-penny) ([webchat](http://webchat.freenode.net/?channels=bitcoin-bitpenny&uio=d4)) offers conversation with fellow miners and information from BitPenny's operator.
+The IRC channel [#bitpenny](irc://irc.freenode.net/bitpenny) ([webchat](http://webchat.freenode.net/?channels=bitpenny&uio=d4)) offers conversation with fellow miners and information from BitPenny's operator.
 
 ##See Also
 
@@ -16,12 +18,10 @@ The IRC channel [#bitcoin-bitpenny](irc://irc.freenode.net/bitcoin-penny) ([webc
 
 ##External Links
 
-* [BitPenny](http://www.bitpenny.com) web site (no longer operational)
+* [BitPenny](http://www.bitpenny.com) web site
 
 ##References
 
-1.1: [Re: Instant-Payout Mining - BitPenny.com](http://www.bitcoin.org/smf/index.php?topic=3266.msg78042#msg78042)  
-1.2: [Instant-Payout Mining - BitPenny.com](http://www.bitcoin.org/smf/index.php?topic=3266.0)
 
 
 [[!tag "Pool_Operators"]]
