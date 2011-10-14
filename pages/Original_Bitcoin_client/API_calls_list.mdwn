@@ -43,7 +43,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |sendfrom |<fromaccount><tobitcoinaddress><amount>[[minconf=1]][[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Will send the given amount to the given address, ensuring the account has a valid balance using [[minconf]]confirmations. Returns the transaction ID if successful (not in JSON object). |Y
 |sendmany |<fromaccount>{address:amount,...}[[minconf=1]][[comment]]|amounts are double-precision floating point numbers |Y
 |sendtoaddress |<bitcoinaddress><amount>[[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Returns the transaction ID <txid>if successful. |Y
-|setaccount |<bitcoinaddress><account>|Sets the account associated with the given address. Assigning address that is already assigned to the same account will create a new address associated with that account.
+|setaccount |<bitcoinaddress><account>|Sets the account associated with the given address. Assigning address that is already assigned to the same account will create a new address associated with that account. If the address you are reassigning was earlier assigned to another account, and If that account is now empty (if this address was the last address in that account), then a new address will be automatically created and assigned to that old account.
 |setgenerate |<generate>[[genproclimit]]|<generate>is true or false to turn generation on or off.<br/>Generation is limited to [[genproclimit]]processors, -1 is unlimited.
 |settxfee |<amount>|<amount>is a real and is rounded to the nearest 0.00000001
 |stop ||Stop bitcoin server. |N
