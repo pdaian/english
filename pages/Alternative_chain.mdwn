@@ -261,7 +261,7 @@ The merkle tree approach to scalability comes with a caveat.  If naïvely implem
 
 Namecoin's [solution](http://dot-bit.org/forum/viewtopic.php?f=5&t=269&start=11) is to constrain the paths by which alt-chain blocks may be embedded in Bitcoin blocks.  This works, but it complicates the picture for miners and chain designers in a future with many alternative chains.
 
-Perhaps a better solution for new chains is to prevent the existence of linked series of alt-chain blocks which lack proof of work.  For example, one could require each alt-chain block to refer (perhaps via its own coinbase or a new header field) to the "solution" (target-meeting hash of parent chain block) as well as the hash of the previous block in the alt chain.  (In Bitcoin, these two hashes are the same.)  This would force blocks to refer not just to the previous block in the chain but to the proof of work on that block.  A series of alt-chain blocks all being worked on would not make sense, because the second block in the series would refer to the first block's solution, so the first block would have been solved already.
+A better solution for new chains is to forbid multiple blocks from having the same proof of work hash - the hash measured against the difficulty target would need to be unique over all blocks. This means you can't embed a series of blocks into the same merkle tree and win them all simultaneously as the network would accept only one.
 
 ## Generalized proof of work
 
