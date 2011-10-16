@@ -211,7 +211,7 @@ So far we've considered a scheme in which all alt-chain miners simultaneously mi
 
 To mine without an attached Bitcoin node, your software can simply implement the same getwork protocol Bitcoin itself does. When a mining tool requests work your program would generate a correctly formatted but ultimately bogus Bitcoin block. The contents of this block don't need to be correct because it will never be broadcast on the Bitcoin network, for example, the prevBlockHash field can be all zeros. It exists purely for backwards compatibility. Whilst the block needs a valid merkle root and a coinbase transaction, no other transactions are required and the only part of the coinbase tx that matters is the part holding the hash.
 
-### Scaling up
+## Scaling up
 
 In the simple scheme each alt-chain being worked on needs 33 bytes in the Bitcoin coinbase transaction (1 for the length and 32 for the hash). Note that if there are two independent miners working on two different alt-chains, you still only need 1 hash in the coinbase scriptSig because the hash isn't meaningful to anyone else on the Bitcoin network. If miners only want to work a handful of chains this overhead is trivially dwarfed by the rest of the data in a Bitcoin block. 
 
@@ -255,6 +255,14 @@ You have now proven that the MyBlock instance was worked on, along with perhaps 
 
 This is an advanced technique which is probably not worth implementing unless the additional scalability is required. It can be introduced in a backwards compatible manner for new chains without impacting older networks.
 
+### Protecting against double proof
+
+The merkle tree approach to scalability comes with a caveat.  If naïvely implemented, a miner could cheat the proof-of-work system by putting more than one alt-chain block header into one Bitcoin block.  This "cheating" would not cause a problem if the alt-chain blocks all had the same previous-block hash: one or another would win the race, as happens when competing blocks enter the network.  The problem would arise if a linked series of alt-chain blocks all existed in one Bitcoin block's auxiliary merkle trees.  The miner could work on them all at once, getting more from his hashes than difficulty warrants.
+
+Namecoin's [solution](http://dot-bit.org/forum/viewtopic.php?f=5&t=269&start=11) is to constrain the paths by which alt-chain blocks may be embedded in Bitcoin blocks.  This works, but it complicates the picture for miners and chain designers in a future with many alternative chains.
+
+Perhaps a better solution for new chains is to prevent the existence of linked series of alt-chain blocks which lack proof of work.  For example, one could require each aux chain block to refer (perhaps via its own coinbase or a new header field) to the "solution" (target-meeting hash of parent chain block) as well as the hash of the previous block in the alt chain.  (In Bitcoin, these two hashes are the same.)  This would force blocks to refer not just to the previous block in the chain but to the proof of work on that block.  A series of alt-chain blocks all being worked on would not make sense, because the second block in the series would have to reference the first block's solution, so the first block would have to have been solved.
+
 ## Generalized proof of work
 
 Hashes embedded in transactions and headers, merkle branches, and [[nonces|Nonce]] all contribute to the goal of [[proving work|Proof_of_work]] on a block header.  One can express all as sequences of these basic operations:
@@ -272,5 +280,6 @@ This design would even support plain Bitcoin proof of work, where the "header" c
 * [BitDNS in the words of Satoshi](https://bitcointalk.org/index.php?topic=6197.0)
 * [Merged Mining](http://dot-bit.org/Merged_Mining) in Namecoin
 * [Namecoin forum discussion](http://dot-bit.org/forum/viewtopic.php?f=5&t=269)
+* [Forum thread about double proof](https://bitcointalk.org/index.php?topic=46927.msg572981#msg572981)
 
 [[!tag "Technical"]]
