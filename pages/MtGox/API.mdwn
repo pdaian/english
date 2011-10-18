@@ -19,6 +19,11 @@ In order to convert the **int** to a **decimal** you can...
 
 Implementation advice: it's probably best to use **int** or **Decimal** (if your language/db offers such a type) in your clients. Using **float** will likely lead to nasty rounding problems.
 
+## currency symbols
+	List of the Currency symbols you can use with the API :
+
+USD, AUD, CAD, CHF, CNY, DKK, EUR, GBP, HKD, JPY, NZD, PLN, RUB, SEK, SGD, THB
+
 ## HTTP API
 This API is available in <nowiki>https://mtgox.com/api/*</nowiki>, and provides various informations. It also supports making an order, a withdraw, a deposit, etc.  There is also a [Ruby gem](https://rubygems.org/gems/mtgox) and [Perl module](Finance::MtGox) for interacting with the HTTP API.
 
