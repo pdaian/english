@@ -45,17 +45,11 @@ The counter-argument is that these new multi-signature transactions will be used
 
 A weaker argument is OP_CHECKMULTISIG should not be used because it pops one too many items off the stack during validation. Adding an extra OP_0 placeholder to the scriptSig adds only 1 byte to the transaction, and any alternative that avoids OP_CHECKMULTISIG adds at least several bytes of opcodes.
 
-##Backwards Compatibility
+##Implementation
 
 OP_CHECKMULTISIG is already supported by old clients and miners as a non-standard transaction type.
 
-##Reference Implementation
-
 https://github.com/gavinandresen/bitcoin-git/tree/op_eval
-
-##See Also
-
-OP_EVAL BIP
 
 ## Post History
 
