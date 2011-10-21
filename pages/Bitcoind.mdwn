@@ -42,13 +42,13 @@ To stop the bitcoin daemon, execute:
 
 ##Theory of Operation
 
-Satoshi's Original Bitcoin client is a multithreaded C++ program. It is designed to be portable across Windows, Mac, and Linux systems. The multithreaded aspect leads to some complexity and the use of certain code patterns to deal with concurrency that may be unfamiliar to many programmers. Also, the code is aggressive in the use of C++ constructs, so it will help to be fluent with map, multmap, set, string, vector, iostream, and templates. As typical of a C++ program, l a lot of code tends to end up in the header files so be sure to search both the .cpp and .h files when looking for a function.
+Satoshi's Original Bitcoin client is a multithreaded C++ program. It is designed to be portable across Windows, Mac, and Linux systems. The multithreaded aspect leads to some complexity and the use of certain code patterns to deal with concurrency that may be unfamiliar to many programmers. Also, the code is aggressive in the use of C++ constructs, so it will help to be fluent with map, multimap, set, string, vector, iostream, and templates. As is typical of a C++ program, a lot of code tends to end up in the header files so be sure to search both the .cpp and .h files when looking for a function.
 
 The client is oriented around several major operations, which are described in separate detailed articles and summarized in the following sections.
 
 
 ###[[Initialization and Startup|Satoshi_Client_Initialization_and_Startup]]
-Upon startup, the client performs various initilization routines including starting multiple threads to handle concurrent operations.
+Upon startup, the client performs various initialization routines including starting multiple threads to handle concurrent operations.
 
 ###[[Node Discovery|Satoshi_Client_Node_Discovery]]
 The client uses various techniques find out about other bitcoin nodes that may exist.
