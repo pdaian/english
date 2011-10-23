@@ -27,7 +27,7 @@ From host to terminal:
 * Adjusted market buy rate (e.g. optionally includes configurable markup by merchant)
 * Adjusted market sell rate
 * Alerts with unique ID greater than *lastalert*
-* 256 bytes of cryptographically random data that is used by the terminal to build its entropy pool.
+* Some bytes of cryptographically random data that is used by the terminal to build its entropy pool.
 
 ###getaddress
 Gets one or more Bitcoin address known to belong to the merchant's wallet.  These will be used for incoming Bitcoin transactions.  Ideally, the terminal should cache a few of these, since printing an address doesn't need to be a network-dependent operation.
