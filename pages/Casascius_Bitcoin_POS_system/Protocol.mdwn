@@ -87,7 +87,7 @@ From host to terminal:
 * bitcoin private key (if requested server-side generation)
 
 ###querynonce
-Used so the terminal to follow up on a transaction attempt in case the transaction was sent out but no response was successfully received.  Allows the terminal to determine whether a transaction did or did not happen, and if it did not, poisons the nonce so the transaction can't accidentally be committed later.
+Used so the terminal to follow up on a transaction attempt in case the transaction was sent out but no response was successfully received.  Allows the terminal to determine whether a transaction did or did not happen, and if it did not, poisons the nonce so the transaction can't somehow be committed later.
 
 From terminal to host:
 
