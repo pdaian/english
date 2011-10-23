@@ -98,7 +98,7 @@ From host to terminal:
 If completedflag is false, the transaction never took place.  The nonce cannot be used again - if the transaction is re-attempted, a new nonce must be generated.
 
 ##Alerts
-An alert is a message to the terminal that tells it that a transaction has occurred.
+An alert is a message to the terminal that tells it that a transaction has occurred.  They should be kept by the host in a database so that they can be queried sequentially by the terminal.
 
 Each alert is given an incrementing unique ID.  The same number pool might be used system-wide, so the numbering won't be contiguous.  What's important is that later alerts have higher numbers than earlier alerts, so when the terminal says it has heard about alert *n*, it has also heard about all alerts before it as well.
 
