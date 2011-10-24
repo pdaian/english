@@ -36,6 +36,18 @@ Please add your service here if you run a stable bitcoin node under a tor hidden
 * iy6ni3wkqazp4ytu.onion
 * bxfna6fhddpzduck.onion
 
+#Pooled Mining
+
+Some mining pools are available as a hidden service on the tor network.  Any pool can be reached over tor.  The general methodology here is to tell your mining client to use your local Tor proxy.  This is client specific but there are some helpful hints.
+
+##Linux / BSD
+
+Any client can have its traffic routed via Tor by using the torify command and invoking the miner with that.  Another method is to set the http_proxy environment variable as some miners use libraries which support that.
+
+##Windows / OS X
+
+It is possible to set the http_proxy environment variable as some miners use libraries which support that.
+
 #mIRC
 
 mIRC is a popular IRC client. This is a guide how to connect to Freenode IRC using Tor + SASL + mIRC.<br />
