@@ -160,7 +160,7 @@ Because Fractional Reserve Banking is possible with bitcoins, the money supply o
 
 ## Point of sale with bitcoins isn't possible because of the 10 minute wait for confirmation
 
-Transactions **can** take tens of minutes to become *confirmed*, and this won't change for the foreseeable future. Even after the computing power of the network is orders of magnitude larger than today, the difficulty of generating a block will self-adjust to maintain a target of 6 blocks per hour. Three potential solutions to allow POS transactions are:
+Transactions [[can|FAQ#Why_do_I_have_to_wait_10_minutes_before_I_can_spend_money_I_received.3F]] take tens of minutes to become *confirmed*, and this won't change for the foreseeable future. Even after the computing power of the network is orders of magnitude larger than today, the difficulty of generating a block will self-adjust to maintain a target of 6 blocks per hour. Three potential solutions to allow POS transactions are:
 
 **1.** For small transactions, simply assume the customer isn't ripping you off. Give the customer his latte immediately after the transaction posts to the network. The transaction should propagate through the network almost instantly, allowing the seller to see the transaction within seconds (albeit with zero confirmations.) The cost of a double-spend attack should make small-scale fraud not worthwhile.
 
@@ -170,7 +170,9 @@ Transactions **can** take tens of minutes to become *confirmed*, and this won't 
 
 Imagine that Alice uses Carol's Clearinghouse as her hub, and Bob uses Dave's Anonymous Exchange. Both Alice and Bob have accounts with their respective hubs, and have already deposited some bitcoins in their accounts. When Alice wants to buy a latte from Bob at a point of sale, Alice tells Carol "I want to send Bob *x* bitcoins. He uses Dave's Anonymous Exchange." After checking that Alice's account does contain at least *x* bitcoins, Carol sends a message to Dave, saying "Credit Bob's account with *x* bitcoins immediately; I'll send you the real bitcoins in the next block." Bob instantly sees his balance increase, and gives Alice her latte.
 
-This option requires trust. Alice has to trust Carol's Clearinghouse, and the hubs have to trust each other. Due to competition, various hubs could develop with vastly different fee structures, membership requirements, trustability, etc. The advantage of option 3 is that it is instant. The disadvantage of option 3 is that trust is required. If trust is not established, option 2 can be used.
+Optionally, option 3 allows all parties to circumvent use of the block-chain and its associated fees altogether. If Alice and Bob have accounts with Carol and Dave, then Carol and Dave are effectively functioning as banks. Carol and Dave can credit and debit millions of accounts millions of times daily and only "re-balance" money owed at the end of each business day through a single transaction in the Bitcoin block-chain.
+
+Option 3 requires trust. Alice has to trust Carol's Clearinghouse, and the hubs have to trust each other. Due to competition, various hubs could develop with vastly different fee structures, membership requirements, trustability, etc. The advantage of option 3 is that it is instant. The disadvantage of option 3 is that trust is required. If trust is not established, option 2 can be used.
 
 ## After 21 million coins are mined, no one will generate new blocks
 
