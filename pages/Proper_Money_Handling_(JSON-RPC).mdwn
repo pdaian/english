@@ -28,7 +28,7 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 ## ECMAScript
 
 	function JSONtoAmount(value) {
-	return amount = Math.round(1e8 * value);
+	return Math.round(1e8 * value);
 	}
 
 ## Perl
