@@ -1,4 +1,3 @@
->  ***BIP 13 (Bitcoin Improvement Proposal 13)**  Previous: [[BIP 12|BIP_0012]]  Next: [[BIP 14|BIP_0014]]*
 <pre>
   BIP: 13
   Title: Address Format for OP_EVAL
@@ -9,17 +8,15 @@
 </pre>
 ##Abstract
 
-This BIP describes a new type of [[Bitcoin_address]] to support arbitrarily complex transactions.  Complexity in this context is defined as what information is needed by the recipient to respend the received coins, in contrast to needing a single ECDSA [[private_key]] as in current implementations of Bitcoin.
-
-In essence, an address encoded under this proposal represents the encoded hash of a [[script]], rather than the encoded hash of an ECDSA [[public_key]].
+This BIP describes a new type of Bitcoin address to support arbitrarily complex transactions.
 
 ##Motivation
 
-Enable "end-to-end" secure wallets and payments to fund escrow transactions or other complex transactions.  Enable third-party wallet security services.
+Enable "end-to-end" secure wallets and payments to fund escrow transactions or other complex transactions.
 
 ##Specification
 
-The new bitcoin address type is constructed in the same manner as existing bitcoin addresses (see [[Base58Check_encoding]]):
+The new bitcoin address type is constructed in the same manner as existing bitcoin addresses:
 
 	base58-encode: [version](one-byte)[hash](20-byte)[checksum](4-byte)
 
