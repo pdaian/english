@@ -12,7 +12,7 @@ In the case that your current wallet hasn't been protected adequately (e.g. put 
 *For a brief overview see also: [[Wallet Security Dos and Don'ts|Wallet_Security_Dos_and_Donts_(Windows)]]*
 
 ##Paper Wallets
-[[Paper_wallet]]s are a fairly simple way to store Bitcoins without needing a computer.
+[[Paper_wallet]]s are a fairly simple way to store Bitcoins without needing a computer.  It also puts them outside the reach of hackers and computer viruses.
 
 "Storing" bitcoins is a little bit of a misnomer - what you are actually "storing" is a sequence of secret numbers that is used to prove your right to spend the Bitcoins you have received.  This secret number is called a [[private_key]].  The most common way to write a private key is as a sequence of fifty-one alphanumeric characters.
 
@@ -21,6 +21,8 @@ One way you can print a paper wallet is at the website [[Bitaddress.org]].  This
 To generate a safe paper wallet, you need to "clean-boot" your computer with a bootable CD (such as a Linux Live CD), with your computer not connected to the internet, to ensure that you do not have any active spyware that might steal the private keys you generate.  Disconnecting from the Internet allows you to confirm that the paper wallet generator is truly self-contained and isn't depending on communication with a remote server.  Run the saved paper wallet generator in a web browser, print your paper wallets (do not save them on the computer), and then shut down the computer.  You may need to load an appropriate printer driver in order to print while booted from the Live CD.
 
 A paper wallet lists multiple Bitcoin addresses and the corresponding "private key".  You can send Bitcoins to any address on the page, and they will be inaccessible until the private key is loaded back onto a computer.  The Bitcoin software does not yet have a built-in way to load private keys, but you can use the "Add Funds" - "Private key" screen at [[MtGox]] to recover digital coins from a private key.  Coins are deposited in your MtGox account and can be sent out of MtGox shortly thereafter.
+
+Remember that spyware and viruses often attempt to monitor you in order to commit theft.  If your computer is infected with spyware or viruses - even if there are no symptoms or your antivirus isn't reporting anything - then anything you type, view, or save on your computer could potentially be stolen by someone remotely controlling your computer.  Paper wallets isolate you from much of this risk.  Only enter a Bitcoin private key into your computer when your intent is to redeem its value *immediately*.
 
 ##Securing an online wallet with the Bitcoin software
 
