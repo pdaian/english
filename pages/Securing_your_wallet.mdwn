@@ -11,7 +11,19 @@ In the case that your current wallet hasn't been protected adequately (e.g. put 
 
 *For a brief overview see also: [[Wallet Security Dos and Don'ts|Wallet_Security_Dos_and_Donts_(Windows)]]*
 
-##Technical Background
+##Paper Wallets
+[[Paper_wallet]]s are a fairly simple way to store Bitcoins without needing a computer.
+
+"Storing" bitcoins is a little bit of a misnomer - what you are actually "storing" is a sequence of numbers that is used to prove your right to spend a certain number of Bitcoins that the entire network knows about.  This number is called a [[private_key]].  The most common way to write a private key is as a sequence of fifty-one alphanumeric characters.
+
+One way you can print a paper wallet is at the website [[Bitaddress.org]].  This website features a free client-side paper wallet generator written in Javascript.  This generator can be saved as a file and used on an offline computer.  Using it online is relatively safe, but not airtight unless you take a couple of extra precautions.
+
+To generate a safe paper wallet, you need to "clean-boot" your computer with a bootable CD (such as a Linux Live CD), with your computer not connected to the internet, to ensure that you do not have any spyware that might steal the private keys you generate.  Run the saved paper wallet generator, print your paper wallets (do not save them on the computer), and then shut down the computer.
+
+A paper wallet lists multiple Bitcoin addresses and the corresponding "private key".  You can send Bitcoins to any address on the page, and they will be inaccessible until the private key is loaded back onto a computer.  The Bitcoin software does not yet have a built-in way to load private keys, but you can use the "Add Funds" - "Private key" screen at [[MtGox]] to recover digital coins from a private key.  Coins are deposited in your MtGox account and can be sent out of MtGox shortly thereafter.
+
+
+##Securing an online wallet with the Bitcoin software
 
 Bitcoin transactions send Bitcoins to a specific public key. A Bitcoin address is an encoded hash of a public key. In order to use received Bitcoins, you need to have the private key matching the public key you received with. This is sort of like a super long password associated with an account (the account is the public key). Your Bitcoin wallet contains all of the private keys necessary for spending your received transactions. If you delete your wallet without a backup, then you no longer have the authorization information necessary to claim your coins, and the coins associated with those keys are lost forever.
 
