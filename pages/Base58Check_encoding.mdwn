@@ -36,7 +36,7 @@ A Bitcoin address is based on any [[ECDSA]] [[secp256k1]] public/private [[key_p
 
 A Bitcoin address is the Base58Check encoding of the hash of the associated [[public_key]].  Specifically, it is Base58Check(0,[[RIPEMD160]]([[SHA256]]([[public_key]]))), with the following constraints:
 
-* [[RIPEMD160]] and [[SHA256]] in this case are always exactly 20 and 32 unsigned bytes respectively.  (Beware of [[bignumber]] implementations that clip leading 0x00 bytes, or prepend extra 0x00 bytes to indicate sign.)
+* [[RIPEMD160]] and [[SHA256]] in this case are always exactly 20 and 32 unsigned bytes respectively.  These are big-endian (most significant byte first).  (Beware of [[bignumber]] implementations that clip leading 0x00 bytes, or prepend extra 0x00 bytes to indicate sign - your code must handle these cases properly or else you may generate invalid addresses which could lead to the permanent loss of coins.)
 * 0 refers to the version/application byte.
 * "[[public_key]]" is always represented as 65 bytes: the constant 0x04, followed by a 32-byte x-coordinate, then a 32-byte y-coordinate, both of which are unsigned big-endian integers, extended when necessary to 32 bytes.
 
