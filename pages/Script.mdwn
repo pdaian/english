@@ -23,7 +23,7 @@ When talking about scripts, these value-pushing words are usually omitted.
 
 |Word|Opcode|Input|Output|Description
 |---|---|---|---|---
-|OP_0, OP_FALSE|0|Nothing.|0|The number 0 is pushed onto the stack.
+|OP_0, OP_FALSE|0|Nothing.|(empty value)|An empty array of bytes is pushed onto the stack. (This is not a no-op: an item is added to the stack.)
 |N/A|1-75|(special)|data|The next *opcode*bytes is data to be pushed onto the stack
 |OP_PUSHDATA1|76|(special)|data|The next byte contains the number of bytes to be pushed onto the stack.
 |OP_PUSHDATA2|77|(special)|data|The next two bytes contain the number of bytes to be pushed onto the stack.
