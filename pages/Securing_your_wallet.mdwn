@@ -16,12 +16,11 @@ In the case that your current wallet hasn't been protected adequately (e.g. put 
 
 "Storing" bitcoins is a little bit of a misnomer - what you are actually "storing" is a sequence of numbers that is used to prove your right to spend a certain number of Bitcoins that the entire network knows about.  This number is called a [[private_key]].  The most common way to write a private key is as a sequence of fifty-one alphanumeric characters.
 
-One way you can print a paper wallet is at the website [[Bitaddress.org]].  This website features a free client-side paper wallet generator written in Javascript.  This generator can be saved as a file and used on an offline computer.  Using it online is relatively safe, but not airtight unless you take a couple of extra precautions.
+One way you can print a paper wallet is at the website [[Bitaddress.org]].  This website features a free client-side paper wallet generator written in Javascript.  This generator can be saved as a file and used on an offline computer.  Using it online is relatively safe, but not airtight unless you take a couple of extra precautions to ensure your keys are not stolen by spyware.
 
-To generate a safe paper wallet, you need to "clean-boot" your computer with a bootable CD (such as a Linux Live CD), with your computer not connected to the internet, to ensure that you do not have any spyware that might steal the private keys you generate.  Run the saved paper wallet generator, print your paper wallets (do not save them on the computer), and then shut down the computer.
+To generate a safe paper wallet, you need to "clean-boot" your computer with a bootable CD (such as a Linux Live CD), with your computer not connected to the internet, to ensure that you do not have any active spyware that might steal the private keys you generate.  Disconnecting from the Internet allows you to confirm that the paper wallet generator is truly self-contained and isn't depending on communication with a remote server.  Run the saved paper wallet generator in a web browser, print your paper wallets (do not save them on the computer), and then shut down the computer.  You may need to load an appropriate printer driver in order to print while booted from the Live CD.
 
 A paper wallet lists multiple Bitcoin addresses and the corresponding "private key".  You can send Bitcoins to any address on the page, and they will be inaccessible until the private key is loaded back onto a computer.  The Bitcoin software does not yet have a built-in way to load private keys, but you can use the "Add Funds" - "Private key" screen at [[MtGox]] to recover digital coins from a private key.  Coins are deposited in your MtGox account and can be sent out of MtGox shortly thereafter.
-
 
 ##Securing an online wallet with the Bitcoin software
 
