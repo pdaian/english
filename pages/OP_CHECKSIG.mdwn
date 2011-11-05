@@ -13,7 +13,7 @@ In addition to the script code itself and the stack parameters, to operate OP_CH
 
 1. the public key and the signature are popped from the stack, in that order.
 1. A new subscript is created from the instruction from the most recently parsed OP_CODESEPARATOR (last one in script) to the end of the script. If there is no OP_CODESEPARATOR the entire script becomes the subscript (hereby referred to as subScript)
-1. The sig is deleted from subScript (it's not standard to have signature in the subScript).
+1. The sig is deleted from subScript.
 1. All OP_CODESEPARATORS are removed from subScript
 1. The hashtype is removed from the last byte of the sig and stored
 1. A deep copy is made of the current transaction (hereby referred to txCopy)
