@@ -32,7 +32,7 @@ Insert exactly one of these headers into the scriptSig of the coinbase on the pa
 
 
 ##Aux work merkle tree
-If you're just mining a single auxiliary chain, you don't have to worry about this - just set the merkle tree hash in the coinbase to the aux chain block's hash, the merkle size to 1, and the merkle nonce to 0. If you're not, well have fun because this is a bit broken. It uses the following algorithm to convert the chain ID to a slot at the base of the merkle tree in which that chain's block hash must slot:
+If you're just mining a single auxiliary chain and using getauxblock, you don't have to worry about this - just set the merkle tree hash in the coinbase to the aux chain block's hash as given by getauxblock, the merkle size to 1, and the merkle nonce to 0. If you're mining more than one, this is a bit broken. It uses the following algorithm to convert the chain ID to a slot at the base of the merkle tree in which that chain's block hash must slot:
 
 <pre>unsigned int rand = merkle_nonce;
 rand = rand * 1103515245 + 12345;
@@ -40,7 +40,11 @@ rand += chain_id;
 rand = rand * 1103515245 + 12345;
 slot_num = rand % merkle_size</pre>
 
-The idea is that you can increment merkle_nonce until the chains you're mining don't clash for the same slot. The trouble is that this doesn't work; because it just adds a number derived from the merkle_nonce to the chain_id, if two chains clash for one nonce they'll still clash for all possible nonces. (5.1) New implementers: please pick your chain_id so that not clashing with existing chains requires as small a value of merkle_size as possible, or use a better algorithm for your chain.
+The idea is that you can increment merkle_nonce until the chains you're mining don't clash for the same slot. The trouble is that this doesn't work; because it just adds a number derived from the merkle_nonce to the chain_id, if two chains clash for one nonce they'll still clash for all possible nonces. (5.1) New implementers: please pick your chain_id so that not clashing with existing chains requires as small a value of merkle_size as possible, or use a better algorithm to calculate the slot id for your chain.
+
+Once you know where in the merkle tree the different chains go, *reverse the bytes of each chain's block hash as given you by getauxblock* (so the byte at the start moves to the end, etc) and insert into the appropriate slot. Now build up the merkle tree as usual by taking each pair of hashes in the initial row and double SHA-256 hashing them to give a new row of hashes, repeating this until you only have a single hash. This last hash is the merkle root. You need to *reverse the bytes of this again* before inserting it into the coinbase. If you're not using getauxblock to get the block hash, you can skip the first reversal but still need to reverse the final merkle root when adding it to the coinbase.
+
+The aux proof-of-work also needs a merkle branch, which is built as follows: find the location of the block's hash in the merkle tree, and add the other value that you hashed it with in building the merkle tree. Now add the value you hashed that result with. Keep doing this until you reach the root. The merkle root itself is *never* included in the merkle branch. If you just have a single aux chain, this can be left entirely empty. (It also appears you *don't* need to reverse these hashes.)
 
 ##Notes
 
