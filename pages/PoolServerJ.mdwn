@@ -2,23 +2,23 @@ PoolServerJ is a pure java implementation of a Bitcoin mining pool server.  Itâ€
 
 ####Features
 
-	* Native merged mining support.  Will work with standard bitcoind 0.5
-	* SCrypt blockchain support (e.g litecoin)
-	* Customisable coinbase transaction (pay block rewards to any wallet perhaps an offline secure wallet)
-	* Internal work generation (more than 10x faster than rpc getwork)
-	* Work caching - caches work from bitcoind or internal WorkMaker to handle short term spikes in requests
-	* Database resilience.  Server can keep running if database goes down and shares will be sent to database when connection is reestablished
-	* DoS resilience with QoS support to ensure workers who've submitted valid work are serviced with priority
-	* Capable of pulling work from multiple bitcoin daemons to get around the getwork bottleneck and also to provide some redundancy
-	* Notify of block change via HTTP to a user configurable URL to support event triggered share processing
-	* Cached database handling (optional) to reduce round trips.
-	* Supports Mysql, Postgresql, sqlite3 (JDBC based so others can be added easily - currently only tested on mysql)
-	* Runs as a Windows service
-	* Longpolling support
-	* Integrated block monitoring using all available bitcoin daemon work sources
-	* Dump shares to Database, log file or stdout
-	* Safe restart - shares issued to client are dumped to file on shutdown and reloaded on startup so your miners won't get stale shares if you restart a live server
-	* Only dependency is a Java 6+ JDK.
+* Native merged mining support.  Will work with standard bitcoind 0.5
+* SCrypt blockchain support (e.g litecoin)
+* Customisable coinbase transaction (pay block rewards to any wallet perhaps an offline secure wallet)
+* Internal work generation (more than 10x faster than rpc getwork)
+* Work caching - caches work from bitcoind or internal WorkMaker to handle short term spikes in requests
+* Database resilience.  Server can keep running if database goes down and shares will be sent to database when connection is reestablished
+* DoS resilience with QoS support to ensure workers who've submitted valid work are serviced with priority
+* Capable of pulling work from multiple bitcoin daemons to get around the getwork bottleneck and also to provide some redundancy
+* Notify of block change via HTTP to a user configurable URL to support event triggered share processing
+* Cached database handling (optional) to reduce round trips.
+* Supports Mysql, Postgresql, sqlite3 (JDBC based so others can be added easily - currently only tested on mysql)
+* Runs as a Windows service
+* Longpolling support
+* Integrated block monitoring using all available bitcoin daemon work sources
+* Dump shares to Database, log file or stdout
+* Safe restart - shares issued to client are dumped to file on shutdown and reloaded on startup so your miners won't get stale shares if you restart a live server
+* Only dependency is a Java 6+ JDK.
 
 ####Links
 
