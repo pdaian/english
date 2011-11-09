@@ -23,7 +23,7 @@ You might be thinking that this attack is not feasible. But consider this case:
 
 You need to protect yourself from both forward attacks (getting something that identifies you using coins that you got with methods that must remain secret, like the scammer example) and reverse attacks (getting something that must remain secret using coins that identify you, like the newspaper example).
 
-#### Staying Anonymous
+##Staying Anonymous
 
 It is only possible to send bitcoins from the same address with which they have been received. However, if one has bitcoins on several address, one can theoretically choose from which address to send the coins. Choosing personally generated coins or an address that you know doesn't reveal information would protect you. Unfortunately, the default Bitcoin client doesn't support this currently, so you must assume that your entire balance can identify you if any of the addresses can. (Bitcoin sends the smallest coins first, though you shouldn't rely on this.)
 
@@ -47,7 +47,7 @@ Once you have an anonymous balance set up, be sure to keep your anonymous and no
 
 A future version of the client will have coderr's patch which will allow the sender to specify which coins to use in a transaction (2.1).
 
-#### Help other people stay anonymous
+###Helping other people stay anonymous
 
 * Set up a real [external mixing service](http://www.bitcoin.org/smf/index.php?topic=241.0). Make it like an eWallet service but make sure that a user never withdraws the same coins that are put in.  Also delete empty addresses and transaction logs. 
 * Even if you're not a programmer, you can make a slightly less secure version of an external mixing service (as a Tor hidden service, preferably):
@@ -57,6 +57,9 @@ A future version of the client will have coderr's patch which will allow the sen
 	* Send all coins from A to B when **all** orders are satisfied. You can't send coins from A to B if you have any orders that have not been satisfied from B.
 	* This can be automated, or you can do everything manually.
 * Put lots of Bitcoins in an eWallet service and keep it there. If anyone uses the anonymization method described in "staying anonymous" above, this will enhance it. Send in smaller increments if a large amount is transferred.
+
+##Legality
+Obviously, using Bitcoin anonymity techniques for the purposes of [money laundering](Wikipedia:money laundering) is illegal, but participating or running schemes which others use for money laundering may also be illegal or at least leave the participant vulnerable to accusations of aiding criminals and terrorists. Bitcoin anonymity techniques involving bitcoins worth large amounts of money (over some value between FJ$1,100 and US$58,000, depending on your jurisdiction) is illegal in most jurisdictions, being in violation of [anti-structuring laws](Wikipedia:Structuring).
 
 ##See Also
 
