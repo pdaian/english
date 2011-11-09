@@ -1,23 +1,12 @@
-[[!img "Bitcoin_Original_Client.png" size=120x120 size=350x350 class="right" title="The bitcoin original client"]]
+bitcoind is the first [[bitcoin]] client in the network's history. It's available under the [MIT license](http://www.opensource.org/licenses/mit-license.php) for Windows, 32 and 64-bit GNU/Linux-based OSes and Mac OS X.
 
-The **Original Bitcoin client** is the first [[bitcoin]] client in the network's history. It's available under the [MIT license](http://www.opensource.org/licenses/mit-license.php) for Windows, 32 and 64-bit GNU/Linux-based OSes and Mac OS X.
+This service-provider client used to include a wxWidgets GUI, but as of version 0.5 is bundled with [[Bitcoin-Qt]].
 
-The client comes with two executables, a GUI and an command line interface (CLI).
+### Running
 
-## Executables
-See [[running bitcoin|Running_Bitcoin]] for more detail and an example of the configuration file.
-### Bitcoin (GUI)
+See [[running bitcoind|Running_Bitcoind]] for more detail and an example of the configuration file.
 
-The bitcoin GUI provides an easy to use wxWidgets-based interface. It allows to send coins and to monitor:
-
-* transactions from and to the opened wallet
-* block creations
-* confirmations of transactions
-* balance of the wallet
-
-### Bitcoind (CLI)
-
-Bitcoind is both a headless daemon and a client for the same daemon.  It also provides a JSON-RPC interface, allowing it to be controlled locally (via bitcoind or another CLI client) or remotely.  [[Various commands|Original_Bitcoin_client/API_Calls_list]] are made available by the API.
+bitcoind is a headless daemon, and also bundles a testing tool for the same daemon.  It provides a JSON-RPC interface, allowing it to be controlled locally or remotely.  [[Various commands|Original_Bitcoin_client/API_Calls_list]] are made available by the API.
 
 To use locally, first start the program in daemon mode:
 > bitcoind -daemon
@@ -32,17 +21,17 @@ To stop the bitcoin daemon, execute:
 
 ##History
 
-* Version 0.4.0 was released for all supported platforms on September 23th, 2011  (5.1).
-* Version 0.3.24 was released for all supported platforms on July 8th, 2011  (5.2).
-* Version 0.3.23 was released for all supported platforms on June 13th, 2011  (5.3).
-* Version 0.3.22 was released for all supported platforms on May 19th, 2011  (5.4).
-* Version 0.3.20 was released for all supported platforms on February 21st, 2011 (5.5).
+* Version 0.4.0 was released for all supported platforms on September 23th, 2011  (3.1).
+* Version 0.3.24 was released for all supported platforms on July 8th, 2011  (3.2).
+* Version 0.3.23 was released for all supported platforms on June 13th, 2011  (3.3).
+* Version 0.3.22 was released for all supported platforms on May 19th, 2011  (3.4).
+* Version 0.3.20 was released for all supported platforms on February 21st, 2011 (3.5).
 
 
 
 ##Theory of Operation
 
-Satoshi's Original Bitcoin client is a multithreaded C++ program. It is designed to be portable across Windows, Mac, and Linux systems. The multithreaded aspect leads to some complexity and the use of certain code patterns to deal with concurrency that may be unfamiliar to many programmers. Also, the code is aggressive in the use of C++ constructs, so it will help to be fluent with map, multimap, set, string, vector, iostream, and templates. As is typical of a C++ program, a lot of code tends to end up in the header files so be sure to search both the .cpp and .h files when looking for a function.
+bitcoind is a multithreaded C++ program. It is designed to be portable across Windows, Mac, and Linux systems. The multithreaded aspect leads to some complexity and the use of certain code patterns to deal with concurrency that may be unfamiliar to many programmers. Also, the code is aggressive in the use of C++ constructs, so it will help to be fluent with map, multimap, set, string, vector, iostream, and templates. As is typical of a C++ program, a lot of code tends to end up in the header files so be sure to search both the .cpp and .h files when looking for a function.
 
 The client is oriented around several major operations, which are described in separate detailed articles and summarized in the following sections.
 
@@ -83,16 +72,15 @@ The user interface code is currently based on [wxWidgets](http://www.wxwidgets.o
 
 ##External Links
 
-* [Bitcoin Client project on SourceForge](http://sourceforge.net/projects/bitcoin/)
 * [Bitcoin Client project on Github](https://github.com/bitcoin/bitcoin/)
 
 ##References
 
-5.1: [Bitcoin version 0.4.0 released](https://bitcointalk.org/index.php?topic=45410.0)  
-5.2: [Bitcoin version 0.3.24 released](http://forum.bitcoin.org/index.php?topic=27187.0)  
-5.3: [Bitcoin version 0.3.23 released](http://forum.bitcoin.org/index.php?topic=16553.0)  
-5.4: [Version 0.3.22](http://forum.bitcoin.org/index.php?topic=8894.0)  
-5.5: [Version 0.3.20](http://www.bitcoin.org/smf/index.php?topic=3704.0)
+3.1: [Bitcoin version 0.4.0 released](https://bitcointalk.org/index.php?topic=45410.0)  
+3.2: [Bitcoin version 0.3.24 released](http://forum.bitcoin.org/index.php?topic=27187.0)  
+3.3: [Bitcoin version 0.3.23 released](http://forum.bitcoin.org/index.php?topic=16553.0)  
+3.4: [Version 0.3.22](http://forum.bitcoin.org/index.php?topic=8894.0)  
+3.5: [Version 0.3.20](http://www.bitcoin.org/smf/index.php?topic=3704.0)
 
 
 [[!tag "Nodes"]]
