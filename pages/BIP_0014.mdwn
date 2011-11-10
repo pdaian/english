@@ -10,11 +10,21 @@
   Post-History: 02-11-2011
 </pre>
 
+In this document, bitcoin will be used to refer to the protocol while Satoshi will refer to the current client in order to prevent confusion.
+
 ## Past Situation
 
-* Current status of bitcoin
+Bitcoin as a protocol began life with the Satoshi client. Now that the community is diversifying, a number of alternative clients with their own codebases written in a variety of languages (Java, Python, Javascript, C++) are rapidly developing their own feature-sets.
+
+Embedded in the protocol is a version number. Primarily this version number is in the "version" and "getblocks" messages, but is also in the "block" message to indicate the software version that created that block. Currently this version number is the same version number as that of the client. This document is a proposal to separate the protocol version from the client version, together with a proposed method to do so.
 
 ## Rationale
+
+Every release of the Satoshi client will increase its internal version number currently. Primarily this holds every other client hostage to a game of catch-up with Satoshi version number schemes. This plays against the decentralised nature of bitcoin, by forcing every software release to remain in step with the release schedule of one group of bitcoin developers.
+
+Version bumping can also introduce incompatibilities and fracture the network. In order that the health of the network is maintained, the development of the protocol as a shared common collaborative process should be split off from the implementation of that protocol. Neutral third entities to guide the protocol with representatives from all groups, present the chance for bitcoin to grow in a positive manner with minimal risks.
+
+By using
 
 * Why we need user agents
 	* What they can offer us.
