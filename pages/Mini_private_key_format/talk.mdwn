@@ -29,3 +29,7 @@ For a non-developer it is not obvious whether a certain minikey is the SHA256 or
 The entropy is much lower due to the thrown away candidates, isn't it? So log2(58^21/2^7)?
 
 "The 30-character version offers over 169 bits, which exceeds the 160-bits found in a Bitcoin address." But practically this doesn't make 30-char-minikeys more secure than 160bit bitcoin addresses, as only the 160bit bitcoin addresses are being used within the network anyway, right? --[T X](User:T X) 00:44, 10 November 2011 (GMT)
+
+# PBKDF2
+
+Is HMAC−SHA1 or HMAC−SHA256 being used?
