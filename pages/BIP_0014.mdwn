@@ -47,6 +47,10 @@ The most immediate pieces of information there are the browser product, renderin
 
 ## Proposal
 
+The version field in "version" and "getblocks" packets will become the protocol version number. The version number in the "blocks" reflects the protocol version from when that block was created.
+
+The currently unused sub_version_num field in "version" packets will become the new user-agent string.
+
 Bitcoin user agents are a modified browser user agent with more structure to aid parsers and provide some coherence. In bitcoin, the software usually works like a stack starting from the core code-base up to the end graphical interface. Therefore the user agent strings codify this relationship.
 
 Basic format:
