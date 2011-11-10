@@ -1,1 +1,31 @@
 I'm not sure I like the idea of encouraging people to use less than the current 160bits of entropy in a private key. [Willphase](User:Willphase) 14:15, 25 September 2011 (GMT)
+
+# Python Code
+
+What was the "additionalSecurity" flag supposed to do? It seems unused. --[T X](User:T X) 00:44, 10 November 2011 (GMT)
+
+# Application
+
+When minikeys should or should not be used is not really obvious to me from reading this article. From reading the introduction I'm especially getting the impression that minikeys should always be prefered.
+
+Any disadvantages of minikeys are not directly mentioned - only indirectly via the entropy section, but this might not be understandable to anyone not that familiar with cryptography.
+
+In forum and github posts I however got the impression, that due to the reduced entropy minikeys should be used for smaller amounts only. Is this the case for the SHA256 or also the PBKDF2 computed version?
+
+Are there any other disadvantages? Would it be problematic if 1M (2M/4M/10M/...) bitcoins were stored in 1 (0.1/0.01/...) BTC mini private keys (via for instance Casascius or Casascius alike coins)? Is it really the case that a minikey is always "favorable for use in QR codes", under all circumstances? --[T X](User:T X) 00:44, 10 November 2011 (GMT)
+
+# 717 round SHA256
+
+["I also got rid of the 717-round stuff. I haven't used any such codes on physical bitcoins so it can be scrapped right now."](https://github.com/bitcoin/bitcoin/pull/220#issuecomment-2185128)
+
+Does that mean that the 717 round sha256 version mentioned on this wiki page is deprecated due to a superior PBKDF2 version? --[T X](User:T X) 00:44, 10 November 2011 (GMT)
+
+# Terminology
+
+For a non-developer it is not obvious whether a certain minikey is the SHA256 or stronger PBKDF2 version. So for instance if a user got a receipt saying "minikey: ...", the user does not know whether s/he should hurry to redeem it or not. Maybe two distinct names should be used for the SHA256 and PBKDF2 versions? --[T X](User:T X) 00:44, 10 November 2011 (GMT)
+
+# Entropy Considerations
+
+The entropy is much lower due to the thrown away candidates, isn't it? So log2(58^21/2^7)?
+
+"The 30-character version offers over 169 bits, which exceeds the 160-bits found in a Bitcoin address." But practically this doesn't make 30-char-minikeys more secure than 160bit bitcoin addresses, as only the 160bit bitcoin addresses are being used within the network anyway, right? --[T X](User:T X) 00:44, 10 November 2011 (GMT)
