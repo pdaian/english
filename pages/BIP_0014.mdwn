@@ -35,15 +35,19 @@ In short:
 * Protocol version: way to distinguish between nodes and behave different accordingly.
 * User agent: simple informational tool. Protocol should not be modified depending on user agent.
 
-
-	* Potential problems (people hacking around problems)
-	* Response to those problems
-
 ## Browser User-Agents
 
-* User agents on websites
+[RFC 1945](http://tools.ietf.org/html/rfc1945) vaguely specifies a user agent to be a string of the product with optional comments.
+
+	Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.6) Gecko/20100127 Gentoo Shiretoko/3.5.6
+
+User agents are most often parsed by computers more than humans. The space delimited format, does not provide an easy, fast or efficient way for parsing. The data contains no structure indicating hierarchy in this placement.
+
+The most immediate pieces of information there are the browser product, rendering engine and the build (Gentoo Shiretoko) together with version number. Various other pieces of information as included as comments such as desktop environment, platform, language and revision number of the build.
 
 ## Proposal
+
+Bitcoin user agents are a modified browser user agent with more structure to aid parsers and provide some coherence. In bitcoin, the software usually works like a stack starting from the core code-base up to the end graphical interface. Therefore the user agent strings codify this relationship.
 
 * Modified bitcoin user agent
 	* Why modified?
