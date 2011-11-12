@@ -340,6 +340,49 @@ Doesn't that clearly suggest that FRB with Bitcoin isn't realistically happening
 
 I have asked several questions (this last one being the least important). I look forward to hearing your response.
 
+**--------PeterSurda Response-------**
+
+Let's put our arguments into a formal structure.
+
+Issue 1, definition of money supply:
+
+* Atheros: Zero maturity is a necessary and sufficient condition for a claim to be considered a part of the money supply.
+* PeterSurda: Both parts are incorrect. The necessary and sufficient condition is acceptance of the claim as a means of payment instead of the base.
+
+Proof:
+
+* there are claims which have zero maturity, and are not considered a part of the money supply. The best example I could think of are casino chips. They are zero maturity, but do not increase money supply regardless of whether they are backed by full or fractional reserves. Mt. Gox accounts are the equivalent of the casino chips: you can use them to exchange against other currencies on Mt.Gox' systems, and you can withdraw BTC. Other example I found are certain promissory notes.
+* even demand deposits do not always have zero maturity. Banks typically request a prior notice if you want to withdraw larger amount of cash, however require no such notice if you just want to transfer money out via EFT.
+
+Issue 2, application of the definition of money supply:
+
+* Atheros: money supply is cash (including one held by public and bank reserves) and demand deposits. Fractional reserve banking occurs when banks lend reserves.
+* PeterSurda: these two claims contradict each other.
+
+Proof:
+
+|+ Money supply calculation|Stage |Cash held by public |Demand deposits |Bank reserves |Money supply if demand deposit is not acceptable for payment |Money supply if demand deposit is acceptable for payment |Sum (cash + demand deposits)
+|Prior to deposit |100|0|0|100|100|100
+|Creation of deposit |0|100|100|100|100|200
+|Fractional reserve lending |80|100|20|100|180|200
+|Creation of another deposit |0|180|100|100|180|280
+|Additional fractional reserve lending |60|180|40|100|240|280
+
+
+Clearly, the sums in last two columns are different. So either your description of FRB is wrong, our your definition of money supply.
+
+Issue 3: Usage of services:
+
+* Atheros: People deposit money into Mt. Gox. or mybitcoin (well, at least until it went belly up). These balances are demand deposits and therefore considered part of the money supply.
+* PeterSurda: Being a demand daposit does not mean it increases the money supply. Only if they circulate. As far as I know, Mt.Gox does not even support P2P payments outside of the BTC network, and I think mybitcoin did, but of course this only works among mybitcoin customers. Flexcoin supports this too, but I think Strongcoin does not. Furthermore, acording to your definition of the money supply (see previous table), if Satoshi deposited a million Bitcoins into Mt.Gox, that act of depositing would increase the money supply of bitcoins by about 13%, regardless of what Mt.Gox did with their reserves! Clearly there is something fishy about this.
+
+Issue 4: Effect of FRB on Bitcoin:
+
+* Atheros: PeterSurda claims that FRB with Bitcoin won't happen.
+* PeterSurda: I claim that FRB with Bitcoin has very little effect on money supply and is unprofitable.
+
+--[PeterSurda](User:PeterSurda) 12:23, 12 November 2011 (GMT)
+
 # Bitcoin mining is a waste of energy and harmful for ecology
 
 IMHO this chapter is superficial. Compare Bitcoin to electronic fiat currencies. --[Shrewdwatson](User:Shrewdwatson) 17:57, 23 April 2011 (GMT)
