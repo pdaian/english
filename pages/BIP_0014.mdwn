@@ -70,7 +70,7 @@ Here bitcoin-qt and Spesmilo may use protocol version 5.0, however the internal 
 
 For git repository builds, implementations are free to use the git commitish. However the issue lies in that it is not immediately obvious without the repository which version proceeds another. For this reason, we lightly recommend dates in the format specified above, although this is by no means a requirement.
 
-Optional -r1, -r2, ... can be appended to user agent version numbers. This is another light recommendation, but not a requirement. Implementations are free to specify version numbers in whatever format needed insofar as it does not include [[,]] or / to interfere with the user agent syntax.
+Optional -r1, -r2, ... can be appended to user agent version numbers. This is another light recommendation, but not a requirement. Implementations are free to specify version numbers in whatever format needed insofar as it does not include (, ), : or / to interfere with the user agent syntax.
 
 An optional comments field after the version number is also allowed. Comments should be delimited by brackets (...). The contents of comments is entirely implementation defined although this BIP recommends the use of semi-colons ; as a delimiter between pieces of information.
 
