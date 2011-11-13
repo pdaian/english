@@ -11,7 +11,7 @@ See this article for more information on how transactions are validated:
 ## Wallet Send
 
 The client periodically calls SendMessages() (in main.cpp) which calls
-ResendWalletTransactions to send transactions generated locallly.
+ResendWalletTransactions to send transactions generated locally.
 This routine looks to see if there has been a new block since last time,
 and if so, and the local transaction are still not in a block,
 then the transactions are sent to all nodes.
@@ -20,7 +20,6 @@ This is done only about every 30 minutes.
 Transactions are only rebroadcast if they have a timestamp at least
 5 minutes older than the last block was received. They are sorted
 and sent oldest first.[[1]]
-
 
 ## Periodic Advertisement
 
