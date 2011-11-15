@@ -7,7 +7,7 @@ A script is essentially a list of instructions recorded with each transaction th
 
 Scripting provides the flexibility to change the parameters of what's needed to spend transferred Bitcoins.  For example, the scripting system could be used to require two private keys, or a combination of several, or even no keys at all.
 
-A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (1).  The party who originally *sent* the Bitcoins now being spent, dictates the script operations that will occur *last* in order to release them for use in another transaction.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (1).
+A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (non-zero).  The party who originally *sent* the Bitcoins now being spent, dictates the script operations that will occur *last* in order to release them for use in another transaction.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (non-zero).
 
 Scripts are big-endian. (Is all data, also?)
 
@@ -40,7 +40,7 @@ When talking about scripts, these value-pushing words are usually omitted.
 |Word|Opcode|Input|Output|Description
 |---|---|---|---|---
 |OP_NOP|97|Nothing|Nothing|Does nothing.
-|OP_IF|99|colspan="2"<expression>if [[statements]][[statements]]endif|If the top stack value is 1, the statements are executed. The top stack value is removed.
+|OP_IF|99|colspan="2"<expression>if [[statements]][[statements]]endif|If the top stack value is not 0, the statements are executed. The top stack value is removed.
 |OP_NOTIF|100|colspan="2"<expression>if [[statements]][[statements]]endif|If the top stack value is 0, the statements are executed. The top stack value is removed.
 |OP_ELSE|103|colspan="2"<expression>if [[statements]][[statements]]endif|If the preceding OP_IF or OP_NOTIF was not executed then these statements are.
 |OP_ENDIF|104|colspan="2"<expression>if [[statements]][[statements]]endif|Ends an if/else block.
