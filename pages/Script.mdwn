@@ -108,35 +108,35 @@ When talking about scripts, these value-pushing words are usually omitted.
 
 
 
-|Word|Opcode|Input|Output|Description
-|---|---|---|---|---
-|OP_1ADD|139|in|out|1 is added to the input.
-|OP_1SUB|140|in|out|1 is subtracted from the input.
-|OP_2MUL|141|in|out|The input is multiplied by 2. *Currently disabled.*
-|OP_2DIV|142|in|out|The input is divided by 2. *Currently disabled.*
-|OP_NEGATE|143|in|out|The sign of the input is flipped.
-|OP_ABS|144|in|out|The input is made positive.
-|OP_NOT|145|in|out|If the input is 0 or 1, it is flipped. Otherwise the output will be 0.
-|OP_0NOTEQUAL|146|in|out|Returns 0 if the input is 0. 1 otherwise.
-|OP_ADD|147|a b|out|a is added to b.
-|OP_SUB|148|a b|out|b is subtracted from a.
-|OP_MUL|149|a b|out|a is multiplied by b. *Currently disabled.*
-|OP_DIV|150|a b|out|a is divided by b. *Currently disabled.*
-|OP_MOD|151|a b|out|Returns the remainder after dividing a by b. *Currently disabled.*
-|OP_LSHIFT|152|a b|out|Shifts a left b bits, preserving sign. *Currently disabled.*
-|OP_RSHIFT|153|a b|out|Shifts a right b bits, preserving sign. *Currently disabled.*
-|OP_BOOLAND|154|a b|out|If both a and b are not 0, the output is 1. Otherwise 0.
-|OP_BOOLOR|155|a b|out|If a or b is not 0, the output is 1. Otherwise 0.
-|OP_NUMEQUAL|156|a b|out|Returns 1 if the numbers are equal, 0 otherwise.
-|OP_NUMEQUALVERIFY|157|a b|out|Same as OP_NUMEQUAL, but runs OP_VERIFY afterward.
-|OP_NUMNOTEQUAL|158|a b|out|Returns 1 if the numbers are not equal, 0 otherwise.
-|OP_LESSTHAN|159|a b|out|Returns 1 if a is less than b, 0 otherwise.
-|OP_GREATERTHAN|160|a b|out|Returns 1 if a is greater than b, 0 otherwise.
-|OP_LESSTHANOREQUAL|161|a b|out|Returns 1 if a is less than or equal to b, 0 otherwise.
-|OP_GREATERTHANOREQUAL|162|a b|out|Returns 1 if a is greater than or equal to b, 0 otherwise.
-|OP_MIN|163|a b|out|Returns the smaller of a and b.
-|OP_MAX|164|a b|out|Returns the larger of a and b.
-|OP_WITHIN|165|x min max|out|Returns 1 if x is within the specified range (left-inclusive), 0 otherwise.
+|Word|Opcode|Hex|Input|Output|Description
+|---|---|---|---|---|---
+|OP_1ADD|139|0x8b|in|out|1 is added to the input.
+|OP_1SUB|140|0x8c|in|out|1 is subtracted from the input.
+|OP_2MUL|141|0x8d|in|out|The input is multiplied by 2. *Currently disabled.*
+|OP_2DIV|142|0x8e|in|out|The input is divided by 2. *Currently disabled.*
+|OP_NEGATE|143|0x8f|in|out|The sign of the input is flipped.
+|OP_ABS|144|0x90|in|out|The input is made positive.
+|OP_NOT|145|0x91|in|out|If the input is 0 or 1, it is flipped. Otherwise the output will be 0.
+|OP_0NOTEQUAL|146|0x92|in|out|Returns 0 if the input is 0. 1 otherwise.
+|OP_ADD|147|0x93|a b|out|a is added to b.
+|OP_SUB|148|0x94|a b|out|b is subtracted from a.
+|OP_MUL|149|0x95|a b|out|a is multiplied by b. *Currently disabled.*
+|OP_DIV|150|0x96|a b|out|a is divided by b. *Currently disabled.*
+|OP_MOD|151|0x97|a b|out|Returns the remainder after dividing a by b. *Currently disabled.*
+|OP_LSHIFT|152|0x98|a b|out|Shifts a left b bits, preserving sign. *Currently disabled.*
+|OP_RSHIFT|153|0x99|a b|out|Shifts a right b bits, preserving sign. *Currently disabled.*
+|OP_BOOLAND|154|0x9a|a b|out|If both a and b are not 0, the output is 1. Otherwise 0.
+|OP_BOOLOR|155|0x9b|a b|out|If a or b is not 0, the output is 1. Otherwise 0.
+|OP_NUMEQUAL|156|0x9c|a b|out|Returns 1 if the numbers are equal, 0 otherwise.
+|OP_NUMEQUALVERIFY|157|0x9d|a b|out|Same as OP_NUMEQUAL, but runs OP_VERIFY afterward.
+|OP_NUMNOTEQUAL|158|0x9e|a b|out|Returns 1 if the numbers are not equal, 0 otherwise.
+|OP_LESSTHAN|159|0x9f|a b|out|Returns 1 if a is less than b, 0 otherwise.
+|OP_GREATERTHAN|160|0xa0|a b|out|Returns 1 if a is greater than b, 0 otherwise.
+|OP_LESSTHANOREQUAL|161|0xa1|a b|out|Returns 1 if a is less than or equal to b, 0 otherwise.
+|OP_GREATERTHANOREQUAL|162|0xa2|a b|out|Returns 1 if a is greater than or equal to b, 0 otherwise.
+|OP_MIN|163|0xa3|a b|out|Returns the smaller of a and b.
+|OP_MAX|164|0xa4|a b|out|Returns the larger of a and b.
+|OP_WITHIN|165|0xa5|x min max|out|Returns 1 if x is within the specified range (left-inclusive), 0 otherwise.
 
 
 ### Crypto
