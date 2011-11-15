@@ -94,14 +94,14 @@ When talking about scripts, these value-pushing words are usually omitted.
 
 
 
-|Word|Opcode|Input|Output|Description
-|---|---|---|---|---
-|OP_INVERT|131|in|out|Flips all of the bits in the input. *Currently disabled.*
-|OP_AND|132|x1 x2|out|Boolean *and*between each bit in the inputs. *Currently disabled.*
-|OP_OR|133|x1 x2|out|Boolean *or*between each bit in the inputs. *Currently disabled.*
-|OP_XOR|134|x1 x2|out|Boolean *exclusive or*between each bit in the inputs. *Currently disabled.*
-|OP_EQUAL|135|x1 x2|True / false|Returns 1 if the inputs are exactly equal, 0 otherwise.
-|OP_EQUALVERIFY|136|x1 x2|True / false|Same as OP_EQUAL, but runs OP_VERIFY afterward.
+|Word|Opcode|Hex|Input|Output|Description
+|---|---|---|---|---|---
+|OP_INVERT|131|0x83|in|out|Flips all of the bits in the input. *Currently disabled.*
+|OP_AND|132|0x84|x1 x2|out|Boolean *and*between each bit in the inputs. *Currently disabled.*
+|OP_OR|133|0x85|x1 x2|out|Boolean *or*between each bit in the inputs. *Currently disabled.*
+|OP_XOR|134|0x86|x1 x2|out|Boolean *exclusive or*between each bit in the inputs. *Currently disabled.*
+|OP_EQUAL|135|0x87|x1 x2|True / false|Returns 1 if the inputs are exactly equal, 0 otherwise.
+|OP_EQUALVERIFY|136|0x88|x1 x2|True / false|Same as OP_EQUAL, but runs OP_VERIFY afterward.
 
 
 ### Arithmetic
