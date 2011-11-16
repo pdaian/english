@@ -26,31 +26,31 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |getconnectioncount ||Returns the number of connections to other nodes. |N
 |getdifficulty ||Returns the proof-of-work difficulty as a multiple of the minimum difficulty. |N
 |getgenerate ||Returns true or false whether bitcoind is currently generating hashes |N
-|gethashespersec ||Returns a recent hashes per second performance measurement while generating.
-|getinfo ||Returns an object containing various state info.
-|getnewaddress |[[account]]|Returns a new bitcoin address for receiving payments.  If [[account]]is specified (recommended), it is added to the address book so payments received with the address will be credited to [[account]].
-|getreceivedbyaccount |[[account]][[minconf=1]]|Returns the total amount received by addresses with [[account]]in transactions with at least [[minconf]]confirmations. If [[account]]not provided return will include all transactions to all accounts. (version 0.3.24-beta)
-|getreceivedbyaddress |<bitcoinaddress>[[minconf=1]]|Returns the total amount received by <bitcoinaddress>in transactions with at least [[minconf]]confirmations. While some might consider this obvious, value reported by this only considers *receiving* transactions. It does not check payments that have been made *from* this address. In other words, this is not "getaddressbalance".
-|gettransaction |<txid>|Returns an object about the given transaction containing:* "amount" : total amount of the transaction* "confirmations" :  number of confirmations of the transaction* "txid" : the transaction ID* "time" : time the transaction occurred* "details" - An array of objects containing:	* "account"	* "address"	* "category"	* "amount"
-|[[getwork]]|[[data]]|If [[data]]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf [[data]]is specified, tries to solve the block and returns true if it was successful.
+|gethashespersec ||Returns a recent hashes per second performance measurement while generating. |N
+|getinfo ||Returns an object containing various state info. |N
+|getnewaddress |[[account]]|Returns a new bitcoin address for receiving payments.  If [[account]]is specified (recommended), it is added to the address book so payments received with the address will be credited to [[account]]. |N
+|getreceivedbyaccount |[[account]][[minconf=1]]|Returns the total amount received by addresses with [[account]]in transactions with at least [[minconf]]confirmations. If [[account]]not provided return will include all transactions to all accounts. (version 0.3.24-beta) |N
+|getreceivedbyaddress |<bitcoinaddress>[[minconf=1]]|Returns the total amount received by <bitcoinaddress>in transactions with at least [[minconf]]confirmations. While some might consider this obvious, value reported by this only considers *receiving* transactions. It does not check payments that have been made *from* this address. In other words, this is not "getaddressbalance". |N
+|gettransaction |<txid>|Returns an object about the given transaction containing:* "amount" : total amount of the transaction* "confirmations" :  number of confirmations of the transaction* "txid" : the transaction ID* "time" : time the transaction occurred* "details" - An array of objects containing:	* "account"	* "address"	* "category"	* "amount"|N
+|[[getwork]]|[[data]]|If [[data]]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf [[data]]is specified, tries to solve the block and returns true if it was successful. |N
 |help |[[command]]|List commands, or get help for a command. |N
 |keypoolrefill ||Fills the keypool, requires wallet passphrase to be set. |Y
-|listaccounts |[[minconf=1]]|Returns Object that has account names as keys, account balances as values.
-|listreceivedbyaccount |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "account" : the account of the receiving addresses* "amount" : total amount received by addresses with this account* "confirmations" : number of confirmations of the most recent transaction included
-|listreceivedbyaddress |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "address" : receiving address* "account" : the account of the receiving address* "amount" : total amount received by the address* "confirmations" : number of confirmations of the most recent transaction includedTo get a list of accounts on the system, execute bitcoind listreceivedbyaddress 0 true
-|listtransactions |[[account]][[count=10]][[from=0]]|Returns up to [[count]]most recent transactions skipping the first [[from]]transactions for account [[account]]. If [[account]]not provided will return recent transaction from all accounts.
-|move |<fromaccount><toaccount><amount>[[minconf=1]][[comment]]|Move from one account in your wallet to another.
+|listaccounts |[[minconf=1]]|Returns Object that has account names as keys, account balances as values. |N
+|listreceivedbyaccount |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "account" : the account of the receiving addresses* "amount" : total amount received by addresses with this account* "confirmations" : number of confirmations of the most recent transaction included|N
+|listreceivedbyaddress |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "address" : receiving address* "account" : the account of the receiving address* "amount" : total amount received by the address* "confirmations" : number of confirmations of the most recent transaction includedTo get a list of accounts on the system, execute bitcoind listreceivedbyaddress 0 true|N
+|listtransactions |[[account]][[count=10]][[from=0]]|Returns up to [[count]]most recent transactions skipping the first [[from]]transactions for account [[account]]. If [[account]]not provided will return recent transaction from all accounts.|N
+|move |<fromaccount><toaccount><amount>[[minconf=1]][[comment]]|Move from one account in your wallet to another |N
 |sendfrom |<fromaccount><tobitcoinaddress><amount>[[minconf=1]][[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Will send the given amount to the given address, ensuring the account has a valid balance using [[minconf]]confirmations. Returns the transaction ID if successful (not in JSON object). |Y
 |sendmany |<fromaccount>{address:amount,...}[[minconf=1]][[comment]]|amounts are double-precision floating point numbers |Y
 |sendtoaddress |<bitcoinaddress><amount>[[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Returns the transaction ID <txid>if successful. |Y
-|setaccount |<bitcoinaddress><account>|Sets the account associated with the given address. Assigning address that is already assigned to the same account will create a new address associated with that account. 
-|setgenerate |<generate>[[genproclimit]]|<generate>is true or false to turn generation on or off.<br/>Generation is limited to [[genproclimit]]processors, -1 is unlimited.
-|settxfee |<amount>|<amount>is a real and is rounded to the nearest 0.00000001
+|setaccount |<bitcoinaddress><account>|Sets the account associated with the given address. Assigning address that is already assigned to the same account will create a new address associated with that account. |N
+|setgenerate |<generate>[[genproclimit]]|<generate>is true or false to turn generation on or off.<br/>Generation is limited to [[genproclimit]]processors, -1 is unlimited. |N
+|settxfee |<amount>|<amount>is a real and is rounded to the nearest 0.00000001 |N
 |stop ||Stop bitcoin server. |N
-|validateaddress |<bitcoinaddress>|Return information about <bitcoinaddress>.
-|walletlock ||Removes the wallet encryption key from memory, locking the wallet. After calling this method,  you will need to call walletpassphrase again before being able to call any methods which require the wallet to be unlocked.
+|validateaddress |<bitcoinaddress>|Return information about <bitcoinaddress>. |N
+|walletlock ||Removes the wallet encryption key from memory, locking the wallet. After calling this method,  you will need to call walletpassphrase again before being able to call any methods which require the wallet to be unlocked. |N
 |walletpassphrase |<passphrase><timeout>|Stores the wallet decryption key in memory for <timeout>seconds. |N
-|walletpassphrasechange |<oldpassphrase><newpassphrase>|Changes the wallet passphrase from <oldpassphrase>to <newpassphrase>.
+|walletpassphrasechange |<oldpassphrase><newpassphrase>|Changes the wallet passphrase from <oldpassphrase>to <newpassphrase>. |N
 
 
 ##See Also
