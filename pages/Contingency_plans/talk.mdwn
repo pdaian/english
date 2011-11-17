@@ -1,2 +1,8 @@
 The use of the words "must stop mining" might be more effective stating that continuing to mine may yield coins that will never confirm and adding to the troubled block chain may make it more difficult to reverse once a fix becomes available. - [Sgornick](User:Sgornick) 19:24, 4 September 2011 (GMT)
 > I'll add something like that when I next work on this. (This text is very unfinished: I have done absolutely no editing, and I plan to add more contingencies.) [theymos](User:Theymos) 08:43, 5 September 2011 (GMT)
+----------------------------------------------
+"ECDSA is broken:
+Situation: an attacker can sign for a public key that he does not own the private key for in only a few days of work. "
+
+I can see that the alert system would be compromised, but how could an attacker spend money that is not his? He would not have a public key until a transaction is transmitted. It would then be a race to crack it **and then** get it to miners before the existing transaction, no? The ability to spend money due to ECDSA's failure would only be a problem if a valid signature can be found within seconds of learning of a public key or signature I think. Still worth mentioning though.
+--[Atheros](User:Atheros) 21:20, 17 November 2011 (GMT)
