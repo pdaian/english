@@ -30,10 +30,7 @@ This API is available in <nowiki>https://mtgox.com/api/*</nowiki>, and provides 
 ### Authentication
 
 
-**Authentication information may be compromised. See [Discussion](https://en.bitcoin.it/wiki/Talk:MtGox/API)** Delete when verified...
-
-
-Authentication is performed by signing each request using HMAC-SHA512. The request must contain an extra value "nonce" which must be an always incrementing numeric value. In addition to the "nonce" value, your POST data must also include your username and password values, named "name" and "pass" respectively.  A reference implementation is provided here:
+Authentication is performed by signing each request using HMAC-SHA512. The request must contain an extra value "nonce" which must be an always incrementing numeric value.  A reference implementation is provided here:
 <source lang="php">
 <?php
 
