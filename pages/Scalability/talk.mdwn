@@ -64,3 +64,25 @@ Would also be nice to get some kind of an estimate on how much the crypto-operat
 
 Shouldn't this (under Opimizations -> Network Structure): "*Switching to DNS would give dramatically faster startup times that do not scale with the size of the network.*" read: "*Switching to DNS would give dramatically faster startup times that do scale with the size of the network.*"? ie Remove the "not".
 --[Tokoin](User:Tokoin) 09:24, 21 July 2011 (GMT)
+
+## Moore's law
+
+I think Moore's law should be mentioned.
+
+Even though now the comparison to Visa produces requirements for processing power, data storage or network capacity appear overwhelming for a casual user, the cost/performance ratio decreases all the time. My calculations based on data from wikipedia projected for 2020:
+
+### Disk space
+
+Wikipedia quotes a research article that estimates that "in 2020 a two-platter, 2.5-inch disk drive will be capable of storing more than 14 terabytes(TB) and will cost about $40". This can hold about 85 days of data (~3 months) at "visa-speed". This is a bit pricey, but within the scope of a normal user, and definitely enough for enthusiasts.
+
+### Network capacity
+
+Wikipedia references articles that estimate the "moore's law" equivalent for network to be 50% increase / year. For 9 years (2011-2020), this makes an increase of approximately 38 times. In order to achieve the speed of 1GB/s, this is the equivalent of someone having 27MB/s at the moment, i.e. 215Mbit/s. I think this exceeds a normal user and most enthusiasts. Assuming a casual user has 2Mbit/s at the moment, he'll scale to "visa-speed" in about 16 years, i.e. 2027.
+
+### CPU performance
+
+Moore's law is approximated as "doubling every 18 months". For 9 years this makes 34 times if I'm calculating right. 50/34 = 1.47 cores. A dual-core computer in 2020 should therefore be sufficient to handle relaying/verifying Bitcoin transactions at visa-speed. I'm ignoring mining.
+
+### Summary
+
+I only made very rough estimates. Feel free to recalculate with more accurate data. My conclusion is that CPU would be a no-brainer, disk space would be an annoyance, however network speed would indeed appear to be a problem.
