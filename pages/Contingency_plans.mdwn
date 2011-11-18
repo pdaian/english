@@ -134,7 +134,7 @@ Situation: an attacker can sign for a public key that he does not own the privat
 
 ####Impact
 
-* Attacker can spend money that is not his.
+* Attacker can spend money that is not his in a large number of cases. Transactions to addresses that have never been used before may be protected if SHA-256 and RIPEMD-160 are still strong.
 * Alert system may be compromised.
 
 ####Response
