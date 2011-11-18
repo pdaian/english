@@ -354,39 +354,105 @@ https://mtgox.com/api/1/BTCUSD/public/fulldepth
 
 returns full depth
 
-## Websocket API
-ported on 7/10/2011 from http://forum.bitcoin.org/index.php?topic=5855.0
+## Streaming API
+Real time streaming data may be obtained over the streaming API, implemented in [Socket.io](http://socket.io/) (33.1). The original WebSocket API (33.2) is deprecated as of 11-Nov-2011.
 
 ###Connecting
+The following JavaScript code establishes a connection in the browser:
+<source lang="javascript">
+<script src="https://socketio.mtgox.com/socket.io/socket.io.js"></script>
+<script>
+	var conn = io.connect('https://socketio.mtgox.com/mtgox');
+	conn.on('message', function(data) {
+	// Handle incoming data object.
+	});
+</script>
+</source>
 
-You can connect via: ws://websocket.mtgox.com/mtgox
+###Handling Events
+Socket.io exposes a simple interface for handling events. Handling <tt>message</tt> events is shown above, but there are other events that may be handled:
+<source lang="javascript">
+conn.on('connect',    onConnect);
+conn.on('disconnect', onDisconnect);
+conn.on('error',      onError);
+conn.on('message',    onMessage);
+</source>
 
-The WebSocket protocol version used is that described in [draft-ietf-hybi-thewebsocketprotocol-00](http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-00) (aka draft-00).
+###Incoming Data
+Data arrives as a full object instead of as JSON text, eliminating the need to parse the data in the JavaScript handler. Messages that come across the socket to trigger the <tt>message</tt> event will contain the following minimum components:
+<source lang="javascript">
+{
+	"op":<OPERATION_TYPE>
+}
+</source>
 
-###Channels
+The <tt>OPERATION_TYPE</tt> field may take a few values:
 
-The websocket will subscribe you to some channels automatically:
+> 
+
+|OPERATION_TYPE |Description
+|---|---
+|subscribe |Notification that the user is subscribed to a channel
+|unsubscribe |Messages will no longer arrive over the channel
+|remark |A server message, usually a warning
+|private |The operation for depth, trade, and ticker messages
 
 
+###op:subscribe and op:unsubscribe
+The subscribe and unsubscribe message data are very simple, containing the channel and the operation.
+<source lang="javascript">
+{
+	"channel":<CHANNEL_ID>,
+	"op":"subscribe" OR "unsubscribe"
+}
+</source>
+
+Some of the channels are:
+
+> 
 
 |Channel ID |Description
 |---|---
-|dbf1dee9-4f2e-4a08-8cb7-748919a71b21 |trades (each time a trade happens, you get something here)
-|d5f06780-30a8-4a48-a2f8-7ed181b4a13f |the mtgox ticker (lots of updates, with often the same data)
-|24e67e0d-1cad-4cc0-9e7a-f8523ef460fe |depth information in realtime (price + amount + type... type=1=Ask, type=2=Bid)
+|dbf1dee9-4f2e-4a08-8cb7-748919a71b21 |Trades
+|d5f06780-30a8-4a48-a2f8-7ed181b4a13f |Ticker
+|24e67e0d-1cad-4cc0-9e7a-f8523ef460fe |Depth
 
 
-Additionally each user has a "own" channel which streams informations about orders (new order, deleted order, etc) and trades only the user's trades).
+###op:remark
+The remark operation contains message and success fields.
+<source lang="javascript">
+{
+	"op":"remark",
+	"message":<MESSAGE FROM THE SERVER>,
+	"success":<boolean>
+}
+</source>
 
-Each message is a JSON-encoded object, with at least "op" element. The "op" element contains the operation to be done (for outgoing messages), or the type of message (for incoming messages).
+###op:private
+The payloads of the <tt>op:private</tt> messages contain the real time market information. Each message follows this form:
 
-###Possible outgoing commands
+<source lang="javascript">
+{
+	"channel":<CHANNEL_ID>,
+	"op":"private",
+	"private":<MESSAGE_TYPE>,
+	<MESSAGE_TYPE>:<DATA_PAYLOAD>
+}
+</source>
 
-**unsubscribe** Stop receiving messages from a channel (parameter "channel")
+The <tt>MESSAGE_TYPE</tt> field may take the values:
 
-###Incoming Data
+> 
+
+|MESSAGE_TYPE |Description
+|---|---
+|ticker |Ticker messages
+|trade |Trades, as they occur
+|depth |Orders placed or removed
+
 
 ####Ticker
+Ticker messages contain the current inside Bid and Ask as well as daily highs, lows, and volume. The fields contained in the ticker match those defined in the version 1.0 API above. All fields contain <tt>currency</tt>, <tt>display</tt>, <tt>value</tt>, and <tt>value_int</tt> entries.
 <source lang="javascript">
 {
 	"channel":"d5f06780-30a8-4a48-a2f8-7ed181b4a13f",
@@ -394,30 +460,31 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 	"origin":"broadcast",
 	"private":"ticker",
 	"ticker":{
-	"buy":0.9515,
-	"high":1,
-	"low":0.91,
-	"sell":0.9697,
-	"vol":34349
+	"avg":{
+	"currency":"USD",
+	"display":"$2.26847",
+	"value":"2.26847",
+	"value_int":"226847"
+	},
+	"buy":{...},
+	"high":{...},
+	"last":{..},
+	"last_local":{...},
+	"last_orig":{...},
+	"low":{...},
+	"sell":{...},
+	"vol":{
+	"currency":"BTC",
+	"display":"118,696.02104208",
+	"value":"118696.02104208",
+	"value_int":"11869602104208"
+	},
+	"vwap":{...}
 	}
 }
 </source>
 
-**ticker** contains the following:
-
-
-
-|Name |Value
-|---|---
-|buy |highest bid as float
-|sell |lowest ask as float
-|high |maximum rate since last close as float
-|low |minimum rate since last close as float
-|vol |traded volume since last close
-
-
 ####Trade
-
 <source lang="javascript">{
 	"channel":"dbf1dee9-4f2e-4a08-8cb7-748919a71b21",
 	"op":"private",
@@ -440,7 +507,7 @@ Each message is a JSON-encoded object, with at least "op" element. The "op" elem
 
 **trade** contains the following:
 
-
+> 
 
 |Name |Value
 |---|---
@@ -493,6 +560,9 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 |volume_int |volume change * 1E8
 
 
+###Possible outgoing commands
+**unsubscribe** Stop receiving messages from a channel (parameter "channel")
+
 ### examples
 
 #### ticker
@@ -503,8 +573,6 @@ http://www.youtube.com/watch?v=KD5ljtNK72U
 http://github.com/hookio
 
 http://github.com/cronopio/hook.io-mtgox
-
-
 
 Another node.js project, using plain websockets (largely based on cronopio's work) :
 
@@ -517,3 +585,8 @@ https://github.com/goteppo/ArBit
 https://github.com/cronopio/hook.io-ws
 
 https://github.com/dlanod/node-mtgox-websocket-client
+
+## References
+<references></references>
+33.1: Socket.io forum announcement by MagicalTux: https://bitcointalk.org/index.php?topic=14412.msg613271#msg613271  
+33.2: Original WebSocket thread: https://bitcointalk.org/index.php?topic=5855.msg86219
