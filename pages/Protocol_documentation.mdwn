@@ -378,7 +378,7 @@ TxIn consists of the following fields:
 |36 |previous_output |outpoint |The previous output transaction reference, as an OutPoint structure
 |1+ |script length |[[var_int|Protocol_specification#Variable_length_integer]]|The length of the signature script
 |? |signature script |uchar[]|Computational Script for confirming transaction authorization
-|4 |sequence |uint32_t |Transaction version as defined by the sender. Intended for "replacement" of transactions when information is updated before inclusion into a block.
+|4 |[sequence](http://bitcoin.stackexchange.com/q/2025/323)|uint32_t |Transaction version as defined by the sender. Intended for "replacement" of transactions when information is updated before inclusion into a block.
 
 
 The OutPoint structure consists of the following fields:
