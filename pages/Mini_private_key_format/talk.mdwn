@@ -1,10 +1,5 @@
 I'm not sure I like the idea of encouraging people to use less than the current 160bits of entropy in a private key. [Willphase](User:Willphase) 14:15, 25 September 2011 (GMT)
 
-# Python Code
-
-What was the "additionalSecurity" flag supposed to do? It seems unused. --[T X](User:T X) 00:44, 10 November 2011 (GMT)
-
->  It was to force all codes to only pass the 717th round checksum, which is computationally intensive in slow interpreted languages like Javascript.  But I would favor scrapping the arbitrary 717th round thing in favor of PBKDF2. [Casascius](User:Casascius) 03:32, 10 November 2011 (GMT)
 
 # Application
 
@@ -20,13 +15,6 @@ Are there any other disadvantages? Would it be problematic if 1M (2M/4M/10M/...)
 
 > Also the developers noted that QR codes are much more efficient when they are made strictly from the set of uppercase alphanumerics, as it switches to a QR encoding that spends fewer bits per character.  Mixed case QR codes require a full 8-bit character set (IIRC), which takes up significantly more space than the QR alphanumeric encoding which doesn't support lowercase.  The developers expressed a willingness to entertain an alternate encoding of full Bitcoin private keys that used base36 (or perhaps base44, since that's how many printable characters in the QR alphanumeric set), which would result in a significantly reduced footprint in QR codes. [Casascius](User:Casascius) 03:32, 10 November 2011 (GMT)
 
-# 717 round SHA256
-
-["I also got rid of the 717-round stuff. I haven't used any such codes on physical bitcoins so it can be scrapped right now."](https://github.com/bitcoin/bitcoin/pull/220#issuecomment-2185128)
-
-Does that mean that the 717 round sha256 version mentioned on this wiki page is deprecated due to a superior PBKDF2 version? --[T X](User:T X) 00:44, 10 November 2011 (GMT)
-
->  The 717 round bit was mostly a proposal, I am not aware of any use in the field.  I did not use them in Casascius Coins.  The PBKDF2 version would be preferred long term. [Casascius](User:Casascius) 03:32, 10 November 2011 (GMT)
 
 # Terminology
 
@@ -47,3 +35,24 @@ The entropy is much lower due to the thrown away candidates, isn't it? So log2(5
 Is HMAC−SHA1 or HMAC−SHA256 being used? --[T X](User:T X) 01:01, 10 November 2011 (GMT)
 
 >  I implemented an HMAC-SHA1 on my fork on Github just because the code was readily available.  The developers' response was along the lines of "why should we make use of a hashing algorithm on its way out the door when we don't have to, it makes us look less sophisticated".  I tend to agree and would favor HMAC-SHA256, was just a matter of how much time I had to throw at it. [Casascius](User:Casascius) 03:32, 10 November 2011 (GMT)
+
+----
+
+# (Probably) Finished Discussions
+
+## Python Code
+
+What was the "additionalSecurity" flag supposed to do? It seems unused. --[T X](User:T X) 00:44, 10 November 2011 (GMT)
+
+>  It was to force all codes to only pass the 717th round checksum, which is computationally intensive in slow interpreted languages like Javascript.  But I would favor scrapping the arbitrary 717th round thing in favor of PBKDF2. [Casascius](User:Casascius) 03:32, 10 November 2011 (GMT)
+>  Ok, agreed, also makes sense to me to remove the 717th round sha256 in favour for PBKDF2. I removed it from the python code. --[T X](User:T X) 22:31, 20 November 2011 (GMT)
+
+
+## 717 round SHA256
+
+["I also got rid of the 717-round stuff. I haven't used any such codes on physical bitcoins so it can be scrapped right now."](https://github.com/bitcoin/bitcoin/pull/220#issuecomment-2185128)
+
+Does that mean that the 717 round sha256 version mentioned on this wiki page is deprecated due to a superior PBKDF2 version? --[T X](User:T X) 00:44, 10 November 2011 (GMT)
+
+>  The 717 round bit was mostly a proposal, I am not aware of any use in the field.  I did not use them in Casascius Coins.  The PBKDF2 version would be preferred long term. [Casascius](User:Casascius) 03:32, 10 November 2011 (GMT)
+>  Oki doki, makes sense (as already said above) --[T X](User:T X) 22:31, 20 November 2011 (GMT)
