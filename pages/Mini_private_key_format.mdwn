@@ -35,6 +35,8 @@ To obtain the full 256-bit private key, simply take the SHA256 hash of the entir
 This sample key in [[wallet_export_format]] is 5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ, and the corresponding [[Bitcoin_address]] is 1GAehh7TsJAHuUAeKZcXf5CnwuGuGgyX2S.
 
 ###Example with PBKDF2
+<font color="red">The PBKDF2 format is currently a proposal still in the draft stage.  Specifically, there has been discussion about using an SHA256-based HMAC, rather than SHA1 as is used on WiFi networks, so the example as presented here may be discarded and revised.  All Casascius coins produced in 2011 exclusively use the SHA256 format.  This PBKDF2 key format as documented herein has not been used on Casascius coins or any other projects.</font>
+
 Here is an example with the sample private key SmbM4uRBu2mQymCsuMKkiW.
 
 The string "SmbM4uRBu2mQymCsuMKkiW?" has a SHA256 value that begins with 01 30 (hex), so it will use PBKDF2 with 4096 iterations.
