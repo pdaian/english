@@ -45,8 +45,6 @@ For ECDSA the secp256k1 curve from http://www.secg.org/collateral/sec2_final.pdf
 Public keys (in scripts) are given as 04 <x> <y> where *x* and *y* are 32 byte big-endian integers representing the coordinates of a point on the curve. Signatures use [DER encoding](http://en.wikipedia.org/wiki/Distinguished_Encoding_Rules) to pack the *r* and *s* components into a single byte stream (this is also what OpenSSL produces by default).
 
 ### Transaction Verification
-[[!template id=see_also OP_CHECKSIG]]
-
 Transactions are cryptographically signed records that reassign ownership of Bitcoins to new addresses.  Transactions have *inputs* - records which reference the funds from other previous transactions - and *outputs* - records which determine the new owner of the transferred Bitcoins, and which will be referenced as inputs in future transactions as those funds are respent.
 
 Each *input* must have a cryptographic digital signature that unlocks the funds from the prior transaction.  Only the person possessing the appropriate [[private_key]] is able to create a satisfactory signature; this in effect ensures that funds can only be spent by their owners.
@@ -57,10 +55,7 @@ In a transaction, the sum of all inputs must be equal to or greater than the sum
 
 A special kind of transaction, called a [[coinbase_transaction]], has no inputs.  It is created by [[miners]], and there is one coinbase transaction per block.  Because each block comes with a reward of newly created Bitcoins (e.g. 50 BTC for the first 210,000 blocks), the first transaction of a block is, with few exceptions, the transaction that grants those coins to their recipient (the miner).  In addition to the newly created Bitcoins, the coinbase transaction is also used for assigning the recipient of any transaction fees that were paid within the other transactions being included in the same block.  The coinbase transaction can assign the entire reward to a single Bitcoin address, or split it in portions among multiple addresses, just like any other transaction.  Coinbase transactions always contain outputs totaling the sum of the block reward plus all transaction fees collected from the other transactions in the same block.
 
-If a transaction is not a coinbase, it references previous transaction hashes as input, and the index of the other transaction's output used as input for this transaction.
-The script from the in part of this transaction is executed.
-Then the script from the out part of the referenced transaction is executed.
-It is considered valid if the top element of the stack is true.
+Most Bitcoin outputs encumber the newly transferred coins with a single ECDSA private key.  The actual record saved with inputs and outputs isn't necessarily a key, but a *script*.  Bitcoin uses an interpreted scripting system to determine whether an output's criteria have been satisfied, with which more complex operations are possible, such as outputs that require two ECDSA signatures, or two-of-three-signature schemes.  An output that references a single Bitcoin address is a *typical* output; an output actually contains this information in the form of a script that requires a single ECDSA signature (see [[OP_CHECKSIG]]).  The output script specifies what must be provided to unlock the funds, and the input must provide all of the thing(s) that satisfy the requirements defined by the output script.
 
 ### Addresses
 
