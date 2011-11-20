@@ -89,7 +89,7 @@ def Candidate():
 	return('%s%s' % ('S', *.join(
 	 [(1)](random.randrange(0,len(BASE58))) for i in range(21))))
 
-def GenerateKeys(numKeys = 10, additionalSecurity = False):
+def GenerateKeys(numKeys = 10):
 	"""
 	Generate mini private keys and output the mini key as well as the full
 	private key. numKeys is The number of keys to generate, and 
@@ -143,13 +143,6 @@ def CheckShortKey(shortKey):
 	t = '%s?' % shortKey
 	tHash = hashlib.sha256(t).digest()
 	# Check to see that first byte is \x00
-	if tHash[[0]] == '\x00':
-	return True
-	else:
-	# Do an additional 716 rounds
-	for i in range(716):
-	tHash = hashlib.sha256(tHash).digest()
-	# Check again for \x00
 	if tHash[[0]] == '\x00':
 	return True
 	return False
