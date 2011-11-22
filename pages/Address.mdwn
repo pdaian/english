@@ -1,13 +1,29 @@
-A **Bitcoin address**, or simply **address**, is an identifier of approximately 33 alphanumeric characters, always beginning with the number 1, that represents a possible destination for a Bitcoin payment.  Addresses can be generated at no cost by any user of Bitcoin.  For example, using the Bitcoin software, one can click "Get Address" and be assigned an address.  An example of a Bitcoin address is *175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W*.  
+A **Bitcoin address**, or simply **address**, is an identifier of approximately 33 alphanumeric characters, always beginning with the number 1, that represents a possible destination for a Bitcoin payment.  Addresses can be generated at no cost by any user of Bitcoin.  For example, using the Bitcoin software, one can click "Get Address" and be assigned an address.  An example of a Bitcoin address is *175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W*.
 
-Like e-mail, you can send Bitcoins to a person by sending Bitcoins to their address.  Somewhat unlike e-mail, one person can have an unlimited number of different Bitcoin addresses.  A unique address for each transaction is recommended as a best practice, and enhances anonymity when using the system.
+##A Bitcoin address is like an e-mail address
+Like e-mail, you can send Bitcoins to a person by sending Bitcoins to their address.  Somewhat unlike e-mail, one person can, and is encouraged, to have an unlimited number of different Bitcoin addresses.  A unique address for each transaction is recommended as a best practice, and enhances anonymity when using the system.
 
-Creating addresses can be done without any contact with the Bitcoin network.  Address creation can be done completely offline, even in large batches.  Large batches of addresses are useful in many scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer if they choose a "pay with Bitcoin" option.
+When using a web site that accepts Bitcoins or holds Bitcoin balances on your behalf, that website will create and assign temporary Bitcoin addresses to you.  The temporary addresses might change each time you use them, but the old addresses usually remain valid.  When you send Bitcoins to such a temporary addresses, they typically get credited to your account at that web site within an hour or two (depending on the site's policy).
 
+##Deposits and withdrawals are alike
+Most transfers of Bitcoins are simply transfers to a Bitcoin address.  There is no distinction between a "deposit" or a "withdrawal": every transaction is a "withdrawal" somewhere and a "deposit" somewhere else, all at the same time.  Compatibility is never a concern with Bitcoin.  Any kind of Bitcoin software or website can be used to send Bitcoins to any other kind of Bitcoin software or website, and it will always work reliably.
+
+For example, if you use the Bitcoin client software, you can transfer your Bitcoins to a web site that accepts Bitcoins by clicking "Send Coins" (in your software), then pasting the temporary address (assigned by the website) into your Bitcoin client software.
+
+If the web site allows you to withdraw Bitcoins, you can transfer them back into your Bitcoin client software simply by pasting a new receiving address that you copied from the Bitcoin software, it into the "your address" box on the withdrawal page of the web site.
+
+No client software is ever actually necessary.  If you have Bitcoins in web site A, and you want to transfer some of them to web site B, then you can copy the payment address from web site B, paste it into web site A's withdrawal page, and perform a withdrawal for the exact amount you want to transfer.  Web site B will see the funds from web site A as a deposit, exactly the same as though you had initiated it yourself with the Bitcoin software.
+
+##Addresses can be created offline
+Creating addresses can be done without any Internet connection contact with the Bitcoin network.  Address creation can be done completely offline, even in large batches.  Large batches of addresses are useful in many scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer if they choose a "pay with Bitcoin" option.
+
+##Addresses are case sensitive and exact
 Bitcoin addresses are case-sensitive.  Typically, Bitcoin addresses should be copied and pasted using the computer's clipboard wherever possible.  If a Bitcoin address is hand-keyed, and each character is not transcribed exactly - including capitalization - the incorrect address will typically be rejected.
 
+##Each address has a "private key"
 For every visible address, there is a corresponding secret number known as a [[private_key]].  When using a Bitcoin client, private key numbers are typically stored in the [[wallet_file]].  The private key has a special purpose - it is mathematically needed to create transactions acceptable to the Bitcoin network that respend the funds originally sent to the address.  If the private key to an address is lost (for example, in a hard drive crash and the user didn't have backups of the wallet file), any associated Bitcoins are lost forever.
 
+##What's in an address
 Most Bitcoin addresses are 33 characters.  They consist of random digits and uppercase and lowercase letters, with the exception that the uppercase letter "O", uppercase letter "I", lowercase letter "l", and the number "0" are always avoided.  Bitcoin adheres to a rule of always using the number "1" as the first character - this allows visual discrimination from other types of random character strings that might look like Bitcoin addresses - such as [[private_key]]s which start with "5", or coins from Bitcoin's [[testnet]] (which typically start with "m"), or coins from other cryptocurrency systems derived from Bitcoin's source code (which are not compatible with Bitcoin).
 
 Some Bitcoin addresses can be shorter than 33 characters.  A significant percentage of Bitcoin addresses are only 32 characters - these are completely valid.  Every Bitcoin address stands for a number - somewhat like an account number.  These shorter addresses are valid simply because they stand for numbers that happen to start with zeroes, and when the zeroes are omitted, the encoded address gets shorter.
