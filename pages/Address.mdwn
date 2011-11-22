@@ -1,10 +1,14 @@
-A **Bitcoin address**, or simply **address**, is an identifier of approximately 33 alphanumeric characters, always beginning with the number 1, that represents a possible destination for a Bitcoin payment.  Addresses can be generated at no cost by any user of Bitcoin.  For example, using the Bitcoin software, one can click "Get Address" and be assigned an address.  An example of a Bitcoin address is *175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W*.
+A **Bitcoin address**, or simply **address**, is an identifier of approximately 33 alphanumeric characters, always beginning with the number 1, that represents a possible destination for a Bitcoin payment.  Addresses can be generated at no cost by any user of Bitcoin.  For example, using the Bitcoin software, one can click "Get Address" and be assigned an address.  An example of a Bitcoin address is *175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W*.  
 
 Like e-mail, you can send Bitcoins to a person by sending Bitcoins to their address.  Somewhat unlike e-mail, one person can have an unlimited number of different Bitcoin addresses.  A unique address for each transaction is recommended as a best practice, and enhances anonymity when using the system.
 
-Creating addresses can be done without any contact with the Bitcoin network.
+Creating addresses can be done without any contact with the Bitcoin network.  Address creation can be done completely offline, even in large batches.  Large batches of addresses are useful in many scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer if they choose a "pay with Bitcoin" option.
+
+Bitcoin addresses are case-sensitive.  Typically, Bitcoin addresses should be copied and pasted using the computer's clipboard wherever possible.  If a Bitcoin address is hand-keyed, and each character is not transcribed exactly - including capitalization - the incorrect address will typically be rejected.
 
 For every visible address, there is a corresponding secret number known as a [[private_key]].  When using a Bitcoin client, private key numbers are typically stored in the [[wallet_file]].  The private key has a special purpose - it is mathematically needed to create transactions acceptable to the Bitcoin network that respend the funds originally sent to the address.  If the private key to an address is lost (for example, in a hard drive crash and the user didn't have backups of the wallet file), any associated Bitcoins are lost forever.
+
+Most Bitcoin addresses are 33 characters.  A significant percentage of Bitcoin addresses are only 32 characters - these are completely valid.  Several of the characters inside a Bitcoin address are used as a [[checksum|Base58Check_encoding]] so that typos can be automatically detected and rejected.
 
 > *See also: [[Technical_background_of_Bitcoin_addresses]]
 [[!tag "Vocabulary"]]
