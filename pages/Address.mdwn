@@ -6,7 +6,9 @@ Like e-mail, you can send Bitcoins to a person by sending Bitcoins to their addr
 When using a web site that accepts Bitcoins or holds Bitcoin balances on your behalf, that website will create and assign temporary Bitcoin addresses to you so you can transfer funds into the site.  The temporary addresses might change each time funds come in, but the old addresses usually remain valid.  When you send Bitcoins to such a temporary address, they will usually be credited to your account at that web site within an hour (depending on the site's policy).
 
 ##Addresses can be created offline
-Creating addresses can be done without any Internet connection contact with the Bitcoin network.  Address creation can be done completely offline, even in large batches.  Large batches of addresses are useful in many scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer if they choose a "pay with Bitcoin" option.
+Creating addresses can be done without any Internet connection or contact with the Bitcoin network.  Creating addresses does not consume any resources on the network - the network only knows about an address when it is first used in a transaction.  Because addresses can be created so easily and at no cost, it is trivial to create temporary "throwaway" addresses that can be discarded if never needed.
+
+It is also possible to create large batches of addresses offline, using other software tools.  Generating batches of addresses is useful in several scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer who chooses a "pay with Bitcoin" option.
 
 ##Addresses are case sensitive and exact
 Bitcoin addresses are case-sensitive.  Typically, Bitcoin addresses should be copied and pasted using the computer's clipboard wherever possible.  If a Bitcoin address is hand-keyed, and each character is not transcribed exactly - including capitalization - the incorrect address will typically be rejected.
