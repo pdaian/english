@@ -47,3 +47,28 @@ I suggest adding "services". [Phelix](User:Phelix) 12:30, 15 September 2011 (GMT
 
 This link should be displayed more prominently. Maybe something like: "spend coins". Also "trade" is very misleading because it is easy to think of trading bitcoins on an exchange but not buying goods and services.
 https://en.bitcoin.it/wiki/Trade
+
+## Wiki crash the browser!
+
+More info here:
+https://bitcointalk.org/index.php?topic=52728.0
+
+""
+I dont know if wiki discussion belong here but I could not find a better forum so I post it here.
+Mod is free to move it into right place.
+
+And to the topic. The picture says more than tousands of words, and this appear ONLY if I click a link to the bitcoin wiki at the domain http://bitcoin.it regardless where the link are posted.
+
+Since the wiki are linked pretty often on the forums here, its important that this gets fixed ASAP.
+
+Looks like something on the wiki is REALLY badly coded. Since this appear only when clicking a link to the wiki, be sure to check the referer header coding at the server, it seems to return something (either bad headers, bad HTML or creepy JS) that the browser frowns upon when presented with a referer of something else than the wiki referer.
+Or maybe the redirect from http://bitcoin.it/* to https://en.bitcoin.it/* are b0rked.
+Also since this appears in a transistion from NON-SSL to SSL, it might be a bug in the SSL handshake of the wiki server.
+
+Browser version: 8.0.6001.18702
+
+[[Bitcoinwiki.PNG]]
+"
+
+This really needs to be fixed ASAP. I post a copy of it here in discussion of main page so administrators can pick this up and hopefully fix the problem.
+[Sebastian](User:Sebastian) 01:33, 24 November 2011 (GMT)
