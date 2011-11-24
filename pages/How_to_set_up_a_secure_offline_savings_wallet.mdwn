@@ -14,15 +14,14 @@ The below procedure may seem tedious, but remember that security almost always c
 1. Create a strong and unique password offline (manually).  This password should be at least 20 characters long; it should contain numbers, upper and lower case letters, and symbols. It should be as random as possible, ie it should look something like this: Zr%8qL03&cvwS9@05AatdP71. Never use this password elsewhere.  
 1. **Do not forget this password**. Recite it several times a day.  It is easy to overestimate your ability to remember a password several months in the future. To be on the safe side, write it down and store the piece of paper in a safety deposit box.
 1. Download [Bitcoin Linux binary](http://www.bitcoin.org/) and save it on a USB drive.
-1. Download [Truecrypt for Linux](http://www.truecrypt.org/downloads) and save it on a USB drive.
 1. Shut down your computer, and boot [Ubuntu](http://www.ubuntu.com/) (or Linux distribution of you choice) from a [liveCD](http://www.ubuntu.com/download/ubuntu/download). This will not affect your current operating system. 
 1. **Disconnect machine from the internet**. Unplug any network cables and disable wireless. Verify that wireless is disabled in the icon on the upper right corner (Ubuntu).  Double check that machine is disconnected by opening the web browser.
-1. Insert USB drive. Install and run truecrypt. Create an encrypted file container, using the strong and unique password from step 2. Mount truecrypt container.
 1. Run bitcoin while disconnected to the internet. The client will show 0 connections and 0 blocks, but it will still generate a wallet.dat file and a bitcoin address. 
-1. Copy wallet.dat (found in hidden folder .bitcoin in your home directory) to mounted truecrypt volume. Dismount volume and and copy truecrypt container file to USB drive.
+1. Encrypt your wallet using the strong and unique password from step 2 above. (Bitcoin Client > Settings > Encrypt wallet)
+1. Copy wallet.dat (found in hidden folder .bitcoin in your home directory) to USB drive.
 1. Save bitcoin address to a text file and copy it to USB drive.
 1. Shut down system and turn off computer.  Before switching your computer on again, remove all power sources for about 1 minute. Physically remove battery from laptop.
-1. Backup truecrypt container file in several places: 
+1. Backup encrypted wallet.dat file in several places: 
 1. *Send it to your 5 best friends by email attachment and ask them to save it for you.
 1. *Save it on your Wuala account created in step 1.
 1. *Save it on several USB drives and CDs and store them in different geographic locations.
@@ -31,17 +30,17 @@ The below procedure may seem tedious, but remember that security almost always c
 ##How to retrieve funds
 
 1. Boot from Ubuntu liveCD, as in step 6 above. 
-1. Insert USB drive, install and run truecrypt. Mount truecrypt volume using password from step 2 above. 
+1. Insert USB drive.
 1. Run bitcoin client and close it again.
-1. Replace wallet.dat in ~/.bitcoin directory with wallet.dat from truecrypt volume.
+1. Replace wallet.dat in ~/.bitcoin directory with wallet.dat from USB drive.
 1. Connect to the internet.
 1. Restart bitcoin client.
-1. Wait for blocks to download
+1. Wait for blocks to download (optional).
 1. Send bitcoins.  
 
 ##Notes
 
-* This procedure is only secure if you perform steps 1-14 in this **exact order**.
+* This procedure is only secure if you perform steps 1-13 in this **exact order**.
 
 * Perform one or two trial runs of the above procedure with a few bitcents, and make sure that you know how to successfully retrieve them, before making a bulk transfer.
 
