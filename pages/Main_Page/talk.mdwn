@@ -54,13 +54,9 @@ More info here:
 https://bitcointalk.org/index.php?topic=52728.0
 
 ""
-The picture says more than tousands of words, and this appear ONLY if I click a link to the bitcoin wiki at the domain http://bitcoin.it regardless where the link are posted.
+The picture says more than tousands of words, and this appear ONLY if I click a link or visit bitcoin wiki , regardless of the URL to the bitcoin wiki, if I visit it in a NEW FRESH browser window.
 
-Since the wiki are linked pretty often on the forums here, its important that this gets fixed ASAP.
-
-Looks like something on the wiki is REALLY badly coded. Since this appear only when clicking a link to the wiki, be sure to check the referer header coding at the server, it seems to return something (either bad headers, bad HTML or creepy JS) that the browser frowns upon when presented with a referer of something else than the wiki referer.
-Or maybe the redirect from http://bitcoin.it/* to https://en.bitcoin.it/* are b0rked.
-Also since this appears in a transistion from NON-SSL to SSL, it might be a bug in the SSL handshake of the wiki server.
+Looks like something on the wiki is REALLY badly coded.
 
 Browser version: 8.0.6001.18702
 
