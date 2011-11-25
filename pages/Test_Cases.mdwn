@@ -1,0 +1,24 @@
+Below are listed test cases to be used for checking compliance with the [[Bitcoin Protocol|Protocol_specification]].
+
+Variables listed in quotation marks are string literals, encoded using the ASCII standard. Variables listed without the quotation marks are numbers or hex dumps.
+
+##Hashes
+###SHA-256
+
+
+|Original |First hashing |Second hashing
+|---|---|---
+|"hello" |0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 |0x9595c9df90075148eb06860365df33584b75bff782a510c6cd4883a419833d50
+
+
+###RIPEMD-160
+
+
+|Original |SHA hashing |RIPEMD hashing
+|---|---|---
+|"hello" |0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 |0xb6a9c8c230722b7c748331a8b450f05566dc7d0f
+
+
+##Merkle Trees
+##Variable length integer
+##Variable length string
