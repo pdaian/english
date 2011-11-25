@@ -22,6 +22,21 @@ For a non-developer it is not obvious whether a certain minikey is the SHA256 or
 
 >  I don't think it will be a major issue.  If there's a lot of them out there, they could easily be described by the product.  For example, one could name "all Casascius coins with the 'casacius' misspelling" and accurately describe the set of affected coins, if a fault in 22-char sha256 keys were to be found. [Casascius](User:Casascius) 03:32, 10 November 2011 (GMT)
 
+>  True, that could easily be done through the thing that embeds the minikey if this embedding thing is a fixed product version (like the casacius coins). But what if only the minikey is available without a recognisable product(which could probably easily happen if this format were widely adopted)?
+
+>  But on second thought, even if having two minikey names this problem would still exist. Someone could still just print either minikey version and the user will not know which one that is without doing the first two decoding steps on a computer. So another thought would be:
+
+# Adding a Reserved Minikey Version Character?
+
+What do you think about sacrificing another character to visibly allow knowing the chosen algorithm of this minikey? E.g. the first 'S' will still show that it's a minikey, but the second letter could note the selected algorithm (for instance '0' for sha256, '1' for PBKDF2-SHA256).
+
+Advantages:
+
+* Selected algorithm visibility / minikey 'strength' visibility
+* Easy Extensibility
+
+For instance if sha256 were at some day considered broken or improvements for the algorithm were coming up, we wouldn't need to reserve a new letter instead of the 'S', due to the minikey reserved version character in the second character. --[T X](User:T X) 04:18, 25 November 2011 (GMT)
+
 # Entropy Considerations
 
 The entropy is much lower due to the thrown away candidates, isn't it? So log2(58^21/2^7)?
@@ -35,6 +50,22 @@ The entropy is much lower due to the thrown away candidates, isn't it? So log2(5
 Is HMAC−SHA1 or HMAC−SHA256 being used? --[T X](User:T X) 01:01, 10 November 2011 (GMT)
 
 >  I implemented an HMAC-SHA1 on my fork on Github just because the code was readily available.  The developers' response was along the lines of "why should we make use of a hashing algorithm on its way out the door when we don't have to, it makes us look less sophisticated".  I tend to agree and would favor HMAC-SHA256, was just a matter of how much time I had to throw at it. [Casascius](User:Casascius) 03:32, 10 November 2011 (GMT)
+
+>  Oki doki, makes sense for quick prototyping reasons. However for making it a 'Standard' probably the best available one today should be chosen, shouldn't it? Also kind of in the spirit of [Ian Grigg's hypotheses](http://iang.org/ssl/hn_hypotheses_in_secure_protocol_design.html).
+
+# Tagging Stable Versions
+
+Just as a note and thought: Before including a minikey format in the bitcoin source code and after all questions and considerations have been resolved a fixed version should be tagged so that other people could rely on certain properties of a certain minikey version. Until then the whole thing (including the simple sha256 version?) should be explicitly marked as a draft, stating that any adoption in for instance commercial products should be done on one's own risk. --[T X](User:T X) 04:18, 25 November 2011 (GMT)
+
+# More specific applications for simple SHA256 minikeys
+
+"The SHA256 function is provided for the convenience of hardware and software environments that offer very limited computational power, such as microcontrollers"
+
+Would you mind explaining a little further in which use cases it might be desireable to compute minikeys on for instance microcontrollers? Are they common? Do they justify the necessity of a weaker minikey version?
+
+If you have a certain product like your 'casacius coins', one possible application area, I guess you probably don't do this on microcontrollers. You usually have enough space + money for machines with enough computational power generating minikeys in PBKFD2-SHA256 format.
+
+I saw that you, [Casascius](User:Casascius), were playing with [[POS systems|Casascius_Bitcoin_POS_system]]: Is that the main application for the SHA256 minikey version you had in mind? Won't most embedded devices need an internet connection to be useful anyway, just like such a POS system, which will in most use cases allow the outsourcing of computational intensive tasks, like a PBKFD2-SHA256 generation? Is there really a need to be able to calculate minikeys directly on tiny embedded systems? --[T X](User:T X) 04:18, 25 November 2011 (GMT)
 
 ----
 
