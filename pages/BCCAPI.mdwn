@@ -2,22 +2,26 @@ The BCCAPI (Bitcoin Client API) is a java library designed for making secure lig
 
 Features include:
 
-* Deterministic private keys
-* Zero backup
+* Deterministic private keys, based on seed file.
+* Only the seed file needs to get backed up, or generated from a passphrase.
 * Send/receive Bitcoins
 * Low bandwidth
 * Low CPU usage
-* Server cannot spend your coins
+* Server does not have your private keys and is in no position to spend your coins
+* Allows spending of unconfirmed-change-sent-back-to-self like the Satoshi Client
 * Open source
 * Free service, running on donations
 
 Simply put the API is designed for making it easy to create light-weight secure Bitcoin wallets for handheld devices.
+[BitcoinSpinner](https://market.android.com/details?id=com.miracleas.bitcoin_spinner) is an Android app implemented on top of the BCCAPI and available on the Android Market.
 
-The sources include a very simple console based client, that shows how to use it. I am not an Android developer, and my hope is that the community will pick this up and make some great apps.
+The sources include a very simple console based client, that shows how to use it. 
 
 The donation address for BCCAPI is 143SikKpjzwhBy5Z7Qg5knu5nKXWExSqQi
 
 ##See Also
+
+The first Android wallet based on the BCCAPI: [[BitcoinSpinner]]
 
 More information and the source code: http://code.google.com/p/bccapi/wiki/WhatIsTheBCCAPI
 
