@@ -47,7 +47,7 @@ Once 2016 blocks has been reached we loop back until we hit the 2016th block bef
 
 Then we get the last target for this old 2 week window and multiply it by the ratio of the actual timespan / the target timespan (2 weeks in secs).
 
-new target = old target * time for 2016 blocks / 2 weeks.
+>  new target = old target * time for 2016 blocks / 2 weeks.
 
 If the old set of blocks completed too fast then the target is lowered (difficulty goes up) ensuring it takes longer to solve these new blocks... and vice versa. This way the difficulty oscillates around the ideal of 2 weeks (and 10 mins per block).
 
