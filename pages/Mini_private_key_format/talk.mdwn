@@ -28,6 +28,12 @@ For a non-developer it is not obvious whether a certain minikey is the SHA256 or
 
 >  --[T X](User:T X) 04:19, 25 November 2011 (GMT)
 
+>  Hm, after some more thoughts, I think I might be able to partially answer this to myself: If I were receiving a minikey from an untrusted/unknown party, the minikey is pretty much worthless anyway due to not being able to verify that it is a valid minikey until getting access to a computer. As you said before, if it is a known, public party then I can usually get information probably somewhere online about the used algorithm at any time. If it is a trusted but non-public party I want to get a minikey from then the my trusting that the other party chose a good minikey algorithm is marginal compared to my already given trust in the other party that they have generated a valid minikey in general.
+
+>  Now there's just one scenario left I can come up with: I might have obtained lots of minikeys from trusted, non-public parties which I had all put in my piggy bank at home. Now, five years later some issues came up with certain minikey algorithms which suggests anyone having such minikeys to redeem the value as soon as possible. If only about 5% of the minikeys in my piggy bank were using the broken minikey algorithm, I'd still have to copy and check all of them on my computer.
+
+>  Maybe the conclusion could be that you shouldn't save 'anonymous' minikeys (if any due to the lower entropy). Don't know. --[T X](User:T X) 15:25, 26 November 2011 (GMT)
+
 # Adding a Reserved Minikey Version Character?
 
 What do you think about sacrificing another character to visibly allow knowing the chosen algorithm of this minikey? E.g. the first 'S' will still show that it's a minikey, but the second letter could note the selected algorithm (for instance '0' for sha256, '1' for PBKDF2-SHA256).
