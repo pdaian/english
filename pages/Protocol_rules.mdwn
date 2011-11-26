@@ -39,11 +39,9 @@ Blocks in the first two categories form a tree rooted at the [[genesis_block]], 
 
 ## Difficulty change
 
-The number of intervals between the difficulty recalculation is done by computing:
+The difficulty changes every 2016 blocks.  This choice is designed to occur approximately every two weeks.
 
-time for difficulty to change / time interval between blocks = 2 weeks in seconds / 10 minutes in seconds = 14 * 24 * 60 * 60 / 10 * 60 = 14 * 24 * 6 = 2016
-
-So the difficulty changes every 2016 blocks, otherwise it stays the same.
+>  2 weeks / 10 minutes = 14 * 24 * 60 / 10 = 2016
 
 Once 2016 blocks has been reached we loop back until we hit the 2016th block before the current one. We find the difference in time between the current block and that one. This difference (called the actual timespan) is limited in bounds between [weeks/4, 2 weeks*4](2).
 
