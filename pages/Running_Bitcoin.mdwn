@@ -6,13 +6,13 @@ __TOC__
 Give Bitcoin (or bitcoind) the -? or –-help argument and it will print out a list of the most commonly used command-line arguments and then exit:
 
 Usage:
-	bitcoin [[options]]                     
-	bitcoin [[options]] <command> [[params]]  Send command to -server or bitcoind
-	bitcoin [[options]] help                List commands
-	bitcoin [[options]] help <command>      Get help for a command
+	bitcoind [[options]]                     
+	bitcoind [[options]] <command> [[params]]  Send command to -server or bitcoind
+	bitcoind [[options]] help                List commands
+	bitcoind [[options]] help <command>      Get help for a command
 Options:
 	-conf=<file>       Specify configuration file (default: bitcoin.conf)
-	-pid=<file>        Specify pid file (default: bitcoin.pid)
+	-pid=<file>        Specify pid file (default: bitcoind.pid)
 	-gen               Generate coins
 	-gen=0             Don't generate coins
 	-min               Start minimized
@@ -20,15 +20,23 @@ Options:
 	-timeout=<n>       Specify connection timeout (in milliseconds)
 	-proxy=<ip:port>   Connect through socks4 proxy
 	-dns               Allow DNS lookups for addnode and connect
+	-port=<port>       Listen for connections on <port> (default: 8333 or testnet: 18333)
+	-maxconnections=<n>  Maintain at most <n> connections to peers (default: 125)
 	-addnode=<ip>      Add a node to connect to
 	-connect=<ip>      Connect only to the specified node
 	-nolisten          Don't accept connections from outside
+	-nodnsseed         Don't bootstrap list of peers using DNS
+	-banscore=<n>      Threshold for disconnecting misbehaving peers (default: 100)
+	-bantime=<n>       Number of seconds to keep misbehaving peers from reconnecting (default: 86400)
+	-maxreceivebuffer=<n>  Maximum per-connection receive buffer, <n>*1000 bytes (default: 10000)
+	-maxsendbuffer=<n>  Maximum per-connection send buffer, <n>*1000 bytes (default: 10000)
 	-noupnp            Don't attempt to use UPnP to map the listening port
-	-upnp              Attempt to use UPnP to map the listening port
-	-paytxfee=<amt>    Fee per KB added to transactions you send
-	-server            Accept command line and JSON-RPC commands
+	-paytxfee=<amt>    Fee per KB to add to transactions you send
+	-daemon            Run in the background as a daemon and accept commands
 	-testnet           Use the test network
-	-port=<port>       Connect to the Network from <port> (default: 8333; 18333 for testnet)
+	-debug             Output extra debugging information
+	-logtimestamps     Prepend debug output with timestamp
+	-printtoconsole    Send trace/debug info to console instead of debug.log file
 	-rpcuser=<user>    Username for JSON-RPC connections
 	-rpcpassword=<pw>  Password for JSON-RPC connections
 	-rpcport=<port>    Listen for JSON-RPC connections on <port> (default: 8332)
@@ -36,14 +44,14 @@ Options:
 	-rpcconnect=<ip>   Send commands to node running on <ip> (default: 127.0.0.1)
 	-keypool=<n>       Set key pool size to <n> (default: 100)
 	-rescan            Rescan the block chain for missing wallet transactions
-SSL-Options:
-	-rpcssl            Use OpenSSL (https) for JSON-RPC connections
+
+SSL options: (see the Bitcoin Wiki for SSL setup instructions)
+	-rpcssl                                  Use OpenSSL (https) for JSON-RPC connections
 	-rpcsslcertificatechainfile=<file.cert>  Server certificate file (default: server.cert)
 	-rpcsslprivatekeyfile=<file.pem>         Server private key (default: server.pem)
-	-rpcsslciphers=<ciphers>                 Acceptable ciphers (default: TSLv1+HIGH:!SSLv2:!aNULL:!AH:!3DES:@STRENGTH)
-	-?                 This help message
+	-rpcsslciphers=<ciphers>                 Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)
+
 Additional (Supported but not listed in -? help):
-	-daemon            Run in the background as a daemon and accept commands
 	-checkblocks       Rescan the whole blockchain (can take very much time)
 
 ##Bitcoin.conf Configuration File
