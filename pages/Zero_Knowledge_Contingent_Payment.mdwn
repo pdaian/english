@@ -26,3 +26,9 @@ and I convert that program into a zero knowledge proof. Externally to bitcoin I 
 You then form a bitcoin payment which requires both my public key and password K.  In order to redeem this transaction I must disclose K, the key you need to decrypt Ex and give you your solution. So neither of us can cheat, so no trust is required.
 
 The reason this isn't something people are using yet is because while the academics have proven it to be possible actually converting complicated programs like compositions of ciphers and hash-functions into zero-knowledge proofs is apparently not something anyone has figured out how to do practically.
+
+###But what if they're just anti-social and don't redeem the txn?
+
+If you're concerned that they might rather leave the funds unspent rather than disclose their password, perhaps an effort to extort you, you could construct the payment so that it can alternatively be spent by a "refund transaction" which has a signature from both you and the other party.
+
+You first create the ZKP payment transaction which requires (Password+Their_signature) OR (Their signature plus Your signature).  You keep this transaction private. You then write a new transaction, the refund transaction, which spends the payment back to you but hash a nlocktime set in the future. You sign it, and give it to the other party to sign. He is able to sign it without actually seeing the payment transaction (he only sees its hash). When he returns it, you then release the payment transaction.  If he does not redeem the payment transaction before the locktime expires you transmit the refund and recover it yourself. Because of the locktime you are unable to steal the payment back right after sending it to him.
