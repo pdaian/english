@@ -24,6 +24,6 @@ Ex=AES(X,K);Hk=SHA256(K);H(UNAES(Ex,K))+Ex+Hk==Y+Ex+Hk
 
 and I convert that program into a zero knowledge proof. Externally to bitcoin I tell you Ex,Hk and then prove the above statement to be true.
 
-You then form a bitcoin payment which requires both my public key and passowrd K.  In order to redeem this transaction I must disclose K, the key you need to decrypt Ex and give you your solution. So neither of us can cheat, so no trust is required.
+You then form a bitcoin payment which requires both my public key and password K.  In order to redeem this transaction I must disclose K, the key you need to decrypt Ex and give you your solution. So neither of us can cheat, so no trust is required.
 
 The reason this isn't something people are using yet is because while the academics have proven it to be possible actually converting complicated programs like compositions of ciphers and hash-functions into zero-knowledge proofs is apparently not something anyone has figured out how to do practically.
