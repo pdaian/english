@@ -22,9 +22,14 @@ The merchant reserves the right to temporarily suspend acceptance of Bitcoins if
 Goods and services are priced as a percentage of some other factor.  For example, the MtGox trading fee is priced as a percentage of the trading volume.  Adjustments due to exchange rates are unnecessary or rare under this policy, often because they are balanced out by some other factor (such as trading volume).
 
 ##Last Trade Price (LAST)
-Goods and services are priced in traditional currency (dollars/euro).  Bitcoins are used as a substitute for traditional currency.  A price believed to reflect the most recent trade on the exchanges is used.  A merchant reserves the right to apply this policy only to "typical" size transactions for that merchant.  A price may be locked for up to several minutes to ensure the transaction can be started and completed at a single price.  A merchant may suspend price locking or acceptance of Bitcoins during times of high volatility.
+Goods and services are priced in traditional currency (dollars/euro).  Bitcoins are used as a substitute for traditional currency.  A price believed to reflect the most recent trade on the exchanges is used.  A merchant reserves the right to apply this policy only to "typical" size transactions for that merchant.  A price may be locked for up to several minutes to ensure the transaction can be started and completed at a single price.  During times of high volatility, price locking will be unavailable.
 
-Websites may present LTP pricing in the form of external images that are automatically updated by a web service to compute a BTC price from the exchange rates in real time.
+Websites may present LAST pricing in the form of external images that are automatically updated by a web service to compute a BTC price from the exchange rates in real time.
+
+##Last Trade Price with Reserve (LASTR)
+This policy is like LAST, where the merchant prefers to use the last trade price for simplicity, except that the merchant further reserves the right to use it only during times of stable trading activity where the bid/ask spread is minimal.
+
+Merchants reserve the right to use an alternate policy (e.g. MID, BB) whenever there is a significant bid/ask spread on the exchanges, and to use LIQ or to suspend acceptance of Bitcoins during times of very high volatility.
 
 ##Best Bid (BB)
 Goods and services are priced in traditional currency (dollars/euro).  Bitcoins are used as a substitute for traditional currency.  The highest unsatisfied bid price shown on the exchanges is used as an exchange rate.  A merchant reserves the right to apply this policy only to "typical" size transactions for that merchant, defaulting to Liquidation Price (LIQ) for abnormally large transactions.  A price may be locked for up to several minutes to ensure the transaction can be started and completed at a single price.  A merchant may suspend price locking or acceptance of Bitcoins during high volatility.
