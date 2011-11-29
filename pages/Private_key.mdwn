@@ -11,6 +11,11 @@ In Bitcoin, a private key is a 256-bit number, which can be represented one of s
 
 	E9 87 3D 79 C6 D8 7D C0 FB 6A 57 78 63 33 89 F4 45 32 13 30 3D A6 1F 20 BD 67 FC 23 3A A3 32 62
 
+##Range of valid private keys
+Nearly every 256-bit number is a valid private key.  Specifically, any 256-bit number between 0x1 and 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141 is a valid private key.
+
+The range of valid private keys is governed by the [[secp256k1]] ECDSA standard used by Bitcoin.
+
 ##Base 58 Wallet Import format
 When we represent private keys in Bitcoin, however, we use a shorter format known as [[wallet_import_format]], which offers a few advantages.  The wallet import format is shorter, and includes built-in error checking codes so that typos can be automatically detected and/or corrected (which is impossible in hex format).  Wallet import format is the most common way to represent private keys in Bitcoin.  They are 51 characters and always start with the number 5.  This is the same private key in wallet import format.
 
