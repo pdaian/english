@@ -1,0 +1,9 @@
+**Elliptic Curve Digital Signature Algorithm** or **ECDSA** is a cryptographic algorithm used by Bitcoin to ensure that funds can only be spent by their rightful owners.
+
+A few concepts related to ECDSA:
+
+* [[private_key]]: A secret number, known only to the person that generated it.  A private key is essentially a randomly generated number.  In Bitcoin, someone with the private key that corresponds to funds on the [[public_ledger]] can spend the funds.  In Bitcoin, a private key is a single unsigned 256 bit integer (32 bytes).
+* [[public_key]]: A number that corresponds to a private key, but does not need to be kept secret.  A public key can be calculated from a private key, but not vice versa.  A public key can be used to determine if a signature is genuine (in other words, produced with the proper key) without requiring the private key to be divulged.  In Bitcoin, public keys are 65 bytes, consisting of constant prefix (0x04), followed by two 256-bit integers called *x* and *y* (2 * 32 bytes).
+* [[signature]]: A number that proves that a signing operation took place.  A signature is mathematically generated from a [[hash]] of something to be signed, plus a private key.  The signature itself is two numbers known as *r* and *s*.  With the public key, a mathematical algorithm can be used on the signature to determine that it was originally produced from the hash and the private key, without needing to know the private key.
+
+Read more about ECDSA on Wikipedia: http://en.wikipedia.org/wiki/Elliptic_Curve_DSA
