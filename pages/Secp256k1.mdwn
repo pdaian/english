@@ -1,0 +1,26 @@
+**secp256k1** refers to the parameters of the [[ECDSA]] curve used in Bitcoin, and is defined in *Standards for Efficient Cryptography (SEC)* (Certicom Research, http://www.secg.org/collateral/sec2_final.pdf).
+
+As excerpted from *Standards*: 
+
+The elliptic curve domain parameters over F*<sub>p</sub>* associated with a Koblitz curve secp256k1 are specified
+by the sextuple T = (*p,a,b,G,n,h*) where the finite field F*<sub>p</sub>* is defined by:
+
+* *p* = FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE FFFFFC2F
+* = 2<sup>256</sup> - 2<sup>32</sup> - 2<sup>9</sup> - 2<sup>8</sup> - 2<sup>7</sup> - 2<sup>6</sup> - 2<sup>4</sup> - 1
+
+The curve *E*: *y<sup>2</sup> = x<sup>3</sup>+ax+b* over F*<sub>p</sub>* is defined by:
+
+* *a* = 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+* *b* = 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000007
+
+The base point G in compressed form is:
+
+* *G* = 02 79BE667E F9DCBBAC 55A06295 CE870B07 029BFCDB 2DCE28D9 59F2815B 16F81798
+and in uncompressed form is:
+
+* *G* = 04 79BE667E F9DCBBAC 55A06295 CE870B07 029BFCDB 2DCE28D9 59F2815B 16F81798 483ADA77 26A3C465 5DA4FBFC 0E1108A8 FD17B448
+A6855419 9C47D08F FB10D4B8
+Finally the order *n* of G and the cofactor are:
+
+* *n* = FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE BAAEDCE6 AF48A03B BFD25E8C D0364141
+* *h* = 01
