@@ -1,10 +1,18 @@
 [[!template id=stub]]
 [[!img "Quick-and-dirty-4x5970-cooling.jpg" size=120x120 class="right" title="A quick and dirty mining rig"]]
 ## Introduction
-**Mining** is the process of generating [[blocks]] for the [[block_chain]]. Blocks confirm [[transactions]] and create new bitcoins. Adding a block to the block chain is difficult, requiring much time and processing power to accomplish. 
+**Transaction recording**, or **mining**, is the process of adding transaction records to Bitcoin's public ledger or journal.  The ledger serves as [[confirmations]] for those transactions.
+
+Transaction recording is intentionally designed to be resource-intensive and difficult.  Anyone can add records to Bitcoin's public ledger, it is just not easy.  In order to add a page of transaction records to the public journal (also referred to as adding a *[[block]]* to the *[[block_chain]]*, one must compute the answer to a difficult mathematical problem and include the correct answer into the block.  The answer for each block is different, and depends on all of the transactions that have been included in the block.
+
+The person who successfully records a page is able to collect the transaction fees that are offered in each of the transactions he or she successfully recorded.
+
+As an economic incentive to build the peer-to-peer infrastructure for recording transactions in the absence of fee-paying transaction volume, Bitcoin was designed such that a reward of newly minted Bitcoins would be distributed to each participant who successfully records a page (block) into the public transaction journal.  The reward per page diminishes over time so that the limit of 21 million Bitcoins can take effect, with the expectation that transaction volume will increase and that the efforts of transaction recorders can transition from receiving rewards of new Bitcoins to receiving transaction fees.
+
+Transaction recording is also commonly called **mining** because it resembles gold mining in the sense that it requires exertion and slowly yields new currency.
 
 ## History
-The [[Genesis_block]] was found on January 3rd, 2009 at 18:15 UTC presumably by [[Satoshi_Nakamoto]]. (Please help by expanding this section, keeping in mind that the topic at hand is mining specifically.)
+Bitcoin's public journal was started on January 3rd, 2009 at 18:15 UTC presumably by [[Satoshi_Nakamoto]].  This page (block) is known as the [[genesis_block]].  The first transaction recorded on the first page (block) was a single transaction paying the reward of 50 new Bitcoins to its creator.
 
 Bitcoin mining is so called because the rate at which bitcoins are generated resembles the rate at which commodities like gold are mined from the ground. See [[Controlled_Currency_Supply]]. 
 
