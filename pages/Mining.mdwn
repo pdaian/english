@@ -1,9 +1,11 @@
 [[!template id=stub]]
 [[!img "Quick-and-dirty-4x5970-cooling.jpg" size=120x120 class="right" title="A quick and dirty mining rig"]]
 ## Introduction
-**Transaction recording**, or **mining**, is the process of adding transaction records to Bitcoin's public ledger or journal.  The ledger serves as [[confirmations]] for those transactions.
+**Transaction recording**, or **mining**, is the process of adding transaction records to Bitcoin's public ledger or journal.  The ledger serves to [[confirm|confirmations]] those transactions to the rest of the network as having taken place.  Through the public ledger, Bitcoin nodes can distinguish legitimate Bitcoins from attempts to respend coins that have already been spent elsewhere.
 
-Transaction recording is intentionally designed to be resource-intensive and difficult.  Anyone can add records to Bitcoin's public ledger, it is just not easy.  In order to add a page of transaction records to the public journal (also referred to as adding a *[[block]]* to the *[[block_chain]]*, one must compute the answer to a difficult mathematical problem and include the correct answer into the block.  The answer for each block is different, and depends on all of the transactions that have been included in the block.
+Transaction recording is intentionally designed to be resource-intensive and difficult.  The difficulty allows network nodes to determine which transactions took the most collective effort to acknowledge on the network, and hence, the version of the transaction ledger as seen by the majority of the network.  It also provides a quick and simple way to distinguish between conflicting versions of the ledger, which may occur from time to time due to differences in perspective from different nodes.  In case of conflict, the version that was the most difficult to create is deemed to be the version as witnessed by the majority of the nodes, and becomes the chosen outcome accepted by the entire network.
+
+Anyone can add records to Bitcoin's public ledger, it is just not easy.  In order to add a page of transaction records to the public journal (also referred to as adding a *[[block]]* to the *[[block_chain]]*, one must compute the answer to a difficult mathematical problem and include the correct answer into the block.  The answer for each block is different, and depends on all of the transactions that have been included in the block.
 
 The person who successfully records a page is able to collect the transaction fees that are offered in each of the transactions he or she successfully recorded.
 
