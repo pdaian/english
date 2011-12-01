@@ -17,7 +17,7 @@ Bitcoin addresses are case-sensitive.  Bitcoin addresses should be copied and pa
 
 If you hand-key a Bitcoin address, and each character is not transcribed exactly - including capitalization - the incorrect address will most likely be rejected by the Bitcoin client.  You will have to check your entry and try again.
 
-The Bitcoin address format includes 32 error checking bits, so the probability that a mistyped address is accepted as being valid is 1 in 2<sup>32</sup> or about 1 in 4.29 billion.
+The probability that a mistyped address is accepted as being valid is 1 in 2<sup>32</sup> or approximately 1 in 4.29 billion.
 
 ##Each address has a "private key"
 For every visible address, there is a corresponding secret number known as a [[private_key]].  When using a Bitcoin client, private key numbers are typically stored in the [[wallet_file]].  The private key has a special purpose - it is mathematically needed to create transactions acceptable to the Bitcoin network that respend the funds originally sent to the address.  If the private key to an address is lost (for example, in a hard drive crash and the user didn't have backups of the wallet file), any associated Bitcoins are lost forever.
