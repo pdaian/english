@@ -18,7 +18,7 @@ Each share contains a generation transaction that pays out to the previous n sha
 
 The block reward (currently 50BTC) and the transaction fees are combined and apportioned according to these rules:
 
-A subsidy of 0.5% is sent to the node that solved the block in order to discourage not sharing solutions that qualify as a block. (A miner with the aim to harm others could withhold the block, thereby preventing anybody from getting paid. He can NOT redirect the payout to himself.) In addition, a subsidy of 0.5% is kept as a fee. The remaining 99% is distributed evenly to miners based on work done recently.
+A subsidy of 0.5% is sent to the node that solved the block in order to discourage not sharing solutions that qualify as a block. (A miner with the aim to harm others could withhold the block, thereby preventing anybody from getting paid. He can NOT redirect the payout to himself.) The remaining 99.5% is distributed evenly to miners based on work done recently.
 
 In the event that a share qualifies as a block, this generation transaction is exposed to the Bitcoin network and takes effect, transferring each node its payout.
 
