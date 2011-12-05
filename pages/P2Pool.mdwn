@@ -28,8 +28,8 @@ Follow these steps to join the pool:
 
 * Run bitcoin with the RPC interface enabled: put rpcuser=USER, rpcpassword=PASS, and server=1 in bitcoin.conf
 * Download p2pool:
-	* Windows binary: http://u.forre.st/u/ljordepl/p2pool_win32_19b86ed.zip
-	* Source download: https://github.com/forrestv/p2pool/tarball/19b86ed6d0b3c3a98f6199db7377a0e170365cfd
+	* Windows binary: See http://forum.bitcoin.org/index.php?topic=18313.0
+	* Source download: https://github.com/forrestv/p2pool/tags
 	* git: git clone git://github.com/forrestv/p2pool.git
 * Run p2pool: (See below for additional options.)
 	* Windows py2exe: run_p2pool.exe USER PASS
@@ -93,48 +93,63 @@ Does not have long polling so will not work at all.
 
 ### Option Reference
 <pre>
-usage: run_p2pool.py [-h] [--version] [--net {namecoin,bitcoin,ixcoin}]
-                     [--testnet] [--debug] [-a ADDRESS] [--charts]
-                     [--p2pool-port PORT] [-n ADDR[:PORT]] [-l]
-                     [--disable-upnp] [-w PORT]
-                     [--bitcoind-address BITCOIND_ADDRESS]
+usage: run_p2pool.py [-h] [--version] [--net {bitcoin, litecoin, namecoin}]
+                     [--testnet] [--debug] [-a ADDRESS] [--logfile LOGFILE]
+                     [--merged-url MERGED_URL]
+                     [--merged-userpass MERGED_USERPASS]
+                     [--give-author DONATION_PERCENTAGE] [--p2pool-port PORT]
+                     [-n ADDR[:PORT]] [--disable-upnp] [-w PORT]
+                     [-f FEE_PERCENTAGE] [--bitcoind-address BITCOIND_ADDRESS]
                      [--bitcoind-rpc-port BITCOIND_RPC_PORT]
                      [--bitcoind-p2p-port BITCOIND_P2P_PORT]
-                     BITCOIND_RPC_USERNAME BITCOIND_RPC_PASSWORD
+                     [BITCOIND_RPCUSER] BITCOIND_RPCPASSWORD
 
-p2pool (version b324a68)
+p2pool (version e4255cf)
 
 optional arguments:
   -h, --help            show this help message and exit
   --version             show program's version number and exit
-  --net {namecoin,bitcoin,ixcoin}
-                        use specified network (choices: bitcoin (default),
-                        namecoin, ixcoin)
-  --testnet             use the testnet
+  --net {bitcoin, litecoin, namecoin}
+                        use specified network (default: bitcoin)
+  --testnet             use the network's testnet
   --debug               debugging mode
   -a ADDRESS, --address ADDRESS
                         generate to this address (defaults to requesting one
                         from bitcoind)
-  --charts              generate charts on the web interface (requires PIL and
-                        pygame)
-  -l, --low-bandwidth   trade lower bandwidth usage for higher latency
-                        (reduced efficiency)
-  --disable-upnp        don't attempt to forward port 9333 (19333 for testnet)
-                        from the WAN to this computer using UPnP
+  --logfile LOGFILE     log to specific file (defaults to <network_name>.log
+                        in run_p2pool.py's directory)
+  --merged-url MERGED_URL
+                        call getauxblock on this url to get work for merged
+                        mining
+  --merged-userpass MERGED_USERPASS
+                        merge daemon user and password, separated by a colon.
+                        Example: ncuser:ncpass
+  --give-author DONATION_PERCENTAGE
+                        percentage amount to donate to author of p2pool.
+                        Default: 0.5
+  --disable-upnp        don't attempt to forward p2pool P2P port from the WAN
+                        to this computer using UPnP
 
 p2pool interface:
-  --p2pool-port PORT    use TCP port PORT to listen for connections (default:
-                        9333 normally, 19333 for testnet) (forward this port
-                        from your router!)
+  --p2pool-port PORT    use TCP port PORT to listen for connections (forward
+                        this port from your router!) (default: bitcoin:9333,
+                        litecoin:9338, namecoin:9334)
   -n ADDR[:PORT], --p2pool-node ADDR[:PORT]
                         connect to existing p2pool node at ADDR listening on
-                        TCP port PORT (defaults to 9333 normally, 19333 for
-                        testnet), in addition to builtin addresses
+                        TCP port PORT (defaults to default p2pool P2P port),
+                        in addition to builtin addresses
 
 worker interface:
   -w PORT, --worker-port PORT
                         listen on PORT for RPC connections from miners asking
-                        for work and providing responses (default: 9332)
+                        for work and providing responses
+                        (default:bitcoin:9332, litecoin:9327, namecoin:9331)
+  -f FEE_PERCENTAGE, --fee FEE_PERCENTAGE
+                        charge workers mining to their own bitcoin address (by
+                        setting their miner's username to a bitcoin address)
+                        this percentage fee to mine on your p2pool instance.
+                        Amount displayed at http://127.0.0.1:WORKER_PORT/fee .
+                        default: 0
 
 bitcoind interface:
   --bitcoind-address BITCOIND_ADDRESS
@@ -143,16 +158,15 @@ bitcoind interface:
   --bitcoind-rpc-port BITCOIND_RPC_PORT
                         connect to a bitcoind at this port over the RPC
                         interface - used to get the current highest block via
-                        getwork (default: 8332, 8338 for ixcoin)
+                        getmemorypool (default: bitcoin:8332, litecoin:9332,
+                        namecoin:8332)
   --bitcoind-p2p-port BITCOIND_P2P_PORT
                         connect to a bitcoind at this port over the p2p
                         interface - used to submit blocks and get the pubkey
-                        to generate to via an IP transaction (default: 8333
-                        normally. 18333 for testnet)
-  BITCOIND_RPC_USERNAME
-                        bitcoind RPC interface username
-  BITCOIND_RPC_PASSWORD
-                        bitcoind RPC interface password
+                        to generate to via an IP transaction (default:
+                        bitcoin:8333, litecoin:9333, namecoin:8334)
+  BITCOIND_RPCUSER      bitcoind RPC interface username (default: empty)
+  BITCOIND_RPCPASSWORD  bitcoind RPC interface password
 </pre>
 
 ## Protocol description
