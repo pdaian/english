@@ -314,7 +314,7 @@ Payload (maximum payload length: 50000 bytes):
 
 ### getblocks
 
-Return an *inv* packet containing the list of blocks starting at hash_start, up to hash_stop or 500 blocks, whichever comes first. To receive the next blocks hashes, one needs to issue getblocks again with the last known hash.
+Return an *inv* packet containing the list of blocks starting right after the last known (and correct) hash in the block locator object, up to hash_stop or 500 blocks, whichever comes first. To receive the next blocks hashes, one needs to issue getblocks again with a new block locator object.
 
 Payload:
 
@@ -337,6 +337,8 @@ loop until at genesis block:
         $step *= 2
 store genesis block
 </pre>
+
+Note that it is allowed to send in fewer known hashes down to a minimum of just one hash. However, the purpose of the block locator object is to detect a wrong branch in the caller's main chain. If the peer detects that you are off the main chain, it will send in block hashes which are earlier than your last known block. So if you just send in your last known hash and it is off the main chain, the peer starts over at block #1.
 
 ### getheaders
 
