@@ -1,4 +1,3 @@
-
 ##Startup Process
 
 The client uses a fixed number of threads that are created on startup. All of the reading and writing on active network sockets are handled by one thread.
@@ -11,7 +10,7 @@ Now it checks to see if an existing GUI window is already present and if so, bri
 
 Next it creates a lock file in the bitcoin directory and if bitcoin is already running, displays a message and exits.
 
-Next it attemps to listen on the bitcoin port, and if the port is already in user or other error, displays a message and exits.
+Next it attemps to listen on the bitcoin port, and if the port is already in use or other error, displays a message and exits.
 
 Next it loads IP addresses from a database, then it loads the block index, and then it loads the wallet.
 
