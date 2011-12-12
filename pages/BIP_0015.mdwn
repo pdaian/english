@@ -63,7 +63,7 @@ The service would be responsible for providing the mechanisms for changing and s
 
 This approach has the positive aspect of providing the best flexibility for the implementer to store the records however they wish in a database or plaintext file, and then serve them up quickly using a small server side daemon typically written in C. This approach is highly scalable.
 
-However this approach also suffers the problem of being reliant on DNS and hence also being vulnerable to spoofing. Hence DNSSEC is also required. This approach is slightly better than the DNS TXT records though since it makes inserting new users and modifying aliases very easy which allows people to run this server services more cheaply.
+However this approach also suffers the problem of being reliant on DNS and hence also being vulnerable to spoofing. Hence DNSSEC is also required. This approach is slightly better than the DNS TXT records though since it makes inserting new users and modifying aliases very easy which allows people to run these server services more cheaply.
 
 ### HTTPS Web Service
 
