@@ -69,6 +69,7 @@ However this approach also suffers the problem of being reliant on DNS and hence
 ### HTTPS Web Service
 
 <source lang="cpp">
+// resolv.h
 
 1. ifndef NOMRESOLV_H__
 1. define NOMRESOLV_H__
@@ -137,6 +138,7 @@ private:
 </source>
 
 <source lang="cpp">
+// resolv.cpp
 
 1. include "resolv.h"
 
@@ -278,6 +280,7 @@ curl_httppost* NameResolutionService::PostVariables::operator()() const
 </source>
 
 <source lang="cpp">
+// rpc.cpp
 ...
 
 const Object CheckMaybeThrow(const string& strJsonIn)
