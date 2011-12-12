@@ -1,0 +1,15 @@
+Upload a large collection of public addresses to your server, and go through them for orders. Don't host a bitcoind controlled wallet on your server, as that just creates a reason to attack your server. It also just becomes a potential attack vector if you set it up to respond to api requests.
+
+You can use blockexplorer's api to check the balance on an address and mark it as complete and do whatever you do with your goods for paid orders. Don't recycle public addresses, just make more.
+
+Using this fork of pywallet:
+https://github.com/RobKohr/pywallet
+
+that imports a list of private keys in a text file (option importprivkeyfile). I open a csv in excel that I created from copying a bunch of addresses from http://www.bitaddress.org. The private addresses column I save to one text file, and import it into my wallet using pywallet. The public addresses I import into a database for the server. I use mongodb, but really any database works. Here is the basic table format for the table address_pool:
+
+  public_address - varchar
+  used - boolean, default false
+
+When I create an order, I grab a public address where used is false, and update that row to set used = true. I stick that public address in my order table with the users order info, and then show them the public address to pay to. 
+
+Nice, simple, and secure, and doesn't require any outside payment processer looking to skim a profit off of my sales.
