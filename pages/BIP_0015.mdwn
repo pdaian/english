@@ -22,15 +22,20 @@ FirstBits is a proposal for using the blockchain as an address book.
 
 When bitcoins are sent to an address, that address becomes recorded in the blockchain. It is therefore known that this address exists or did exist by simply seeing that there was a payment to that address. FirstBits is a method to have a memorable alias. One first converts the address to lower-case, then takes the first few unique characters. This is your FirstBits alias.
 
-As an example, brmlab hackerspace in Prague has a donation address:
+As an example, brmlab hackerspace in Prague has an address for purchasing food or drink, or making donations:
 
 	1BRMLAB7nryYgFGrG8x9SYaokb8r2ZwAsX
 
-Their FirstBits address becomes:
+Their FirstBits alias becomes:
 
 	1brmlab
 
-- firstbits / brmlab example
+It is enough information to be given the FirstBits alias *1brmlab*. When someone wishes to make a purchase, without FirstBits, they either have to type out their address laboriously by hand, scan their QR code (which requires a mobile handset that this author does not own) or find their address on the internet to copy and paste into the client to send bitcoins. FirstBits alleviates this impracticality by providing an easy method to make payments.
+
+Together with Vanitygen (vanity generator), it becomes possible to create memorable unique named addresses. Addresses that are meaningful, rather than an odd assemblage of letters and numbers but add context to the destination.
+
+- problem with light clients.
+
 - socket based
 - dns records (needs dnssec)
 - https web service
