@@ -68,6 +68,14 @@ However this approach also suffers the problem of being reliant on DNS and hence
 
 ### HTTPS Web Service
 
+HTTPS provides an additional layer of security by encrypting the connect, providing a more needed privacy for users. Together with using Certificate Authorities, it fixes the issue with using DNSSEC since an error would be thrown up were someone to try to spoof a domain name on the local network.
+
+A web service is trivial to setup and the cost is low. There are many free out of the box providers on the net that allows anyone with the most basic knowledge of web technologies to create their own website. By providing users with a package, anybody can quickly set themselves up with a bitcoin alias. It could be something as simple as a PHP script that the user edits with their custom settings and uploads themselves to their website.
+
+It also scales reasonably- anybody wishing to run a naming service can attach a backend with a variety of database technologies then provide a web frontend for users to customise and create their own aliases.
+
+A naive implementation is provided below as an example.
+
 <source lang="cpp">
 // resolv.h
 
