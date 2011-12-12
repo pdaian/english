@@ -42,6 +42,14 @@ Light clients of the partial merkle root types become dependent on a trusted thi
 
 ### DNS TXT Records
 
+DNS allows TXT records to be created containing arbitrary data. In a bitcoin alias system, a custom format mutually agreed upon by a BIP standard would be used to store mappings to bitcoin addresses from domain names. How such a format would look is out of the scope of this document.
+
+An issue is that it requires people who wish to create such mappings to be familiar with configuring DNS records, and be able to run the necessary toolsets to insert the correct data. Although not a huge concern, it is a usability issue.
+
+Security wise, DNS is unsafe and insecure by design. It is possible to spoof records by being on the same network as another host. A number of revisions to mitigate the issue under the guise of DNSSEC have been in the works since the 1990s and are still being rolled out.
+
+As of Dec 2011, DNSSEC is still not yet a defacto standard on the internet. Should a participant in the bitcoin network wish to use DNS TXT records, they would in addition to having to configure DNS, be able to setup DNSSEC. This may not be feasible, especially where some registrars provide access to DNS through a web interface only.
+
 ### Server Service
 
 ### HTTPS Web Service
