@@ -67,3 +67,275 @@ This approach has the positive aspect of providing the best flexibility for the 
 However this approach also suffers the problem of being reliant on DNS and hence also being vulnerable to spoofing. Hence DNSSEC is also required. This approach is slightly better than the DNS TXT records though since it makes inserting new users and modifying aliases very easy which allows people to run this server services more cheaply.
 
 ### HTTPS Web Service
+
+<source lang="cpp">
+
+1. ifndef NOMRESOLV_H__
+1. define NOMRESOLV_H__
+
+1. include <string>
+1. include "curl/curl.h"
+
+using std::string;
+
+/*
+
+This class resolves against a server to lookup addresses.
+To not conflict with the bitcoin addresses, we refer here to people's handles.
+A handle is of the form:
+
+	genjix@foo.org
+
+Most characters are valid for the username + password (and handled accordingly), but the domain follows usual web standards. It is possible to affix a path if needed,
+
+	genjix@bar.com/path/to/
+
+* /
+
+class NameResolutionService
+{
+public:
+	NameResolutionService();
+	~NameResolutionService();
+
+	// Three main methods map to RPC actions.
+	string FetchAddress(const string& strHandle, string& strAddy);
+	// Push new address to the server
+	string UpdateAddress(const string& strHandle, const string& strNewaddy, string& strStatus);
+
+private:
+	// A POST block
+	class PostVariables
+	{
+	public:
+	PostVariables();
+	~PostVariables();
+	// Add a new key, value pair
+	bool Add(const string& strKey, const string& strVal);
+	curl_httppost* operator()() const;
+	private:
+	// CURL stores POST blocks as linked lists.
+	curl_httppost *pBegin, *pEnd;
+	};
+
+	// Explodes user@domain => user, domain
+	static void ExplodeHandle(const string& strHandle, string& strNickname, string& strDomain);
+	// Perform the HTTP request. Returns true on success.
+	bool Perform();
+	// Make a POST request that will modify the specified variable (strReqname) on the server.
+	string MakeRequest(const string& strHandle, const string& strReqname, const string& strArgument, string& strStatus);
+
+	// CURL error message
+	char pErrorBuffer[[CURL_ERROR_SIZE]];  
+	// CURL response
+	string strBuffer;
+	// CURL handle
+	CURL *curl;
+};
+
+1. endif
+</source>
+
+<source lang="cpp">
+
+1. include "resolv.h"
+
+1. include <boost/lexical_cast.hpp>
+
+1. include "access.h"
+
+// callback used to write response from the server
+static int writer(char *pData, size_t nSize, size_t nNmemb, std::string *pBuffer)  
+{  
+	int nResult = 0;  
+	if (pBuffer != NULL)  
+	{  
+	pBuffer->append(pData, nSize * nNmemb);  
+	// How much did we write?  
+	nResult = nSize * nNmemb;  
+	}  
+	return nResult;  
+}
+
+NameResolutionService::NameResolutionService()
+{
+	// Initialise CURL with our various options.
+	curl = curl_easy_init();
+	// This goes first in case of any problems below. We get an error message.
+	curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, pErrorBuffer);  
+	// fail when server sends >= 404
+	curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1);  
+	curl_easy_setopt(curl, CURLOPT_HEADER, 0);  
+	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);  
+	curl_easy_setopt(curl, CURLOPT_POSTREDIR, CURL_REDIR_POST_302);
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);  
+	curl_easy_setopt(curl, CURLOPT_USE_SSL, CURLUSESSL_TRY);
+	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1);
+	// server response goes in strBuffer
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &strBuffer);  
+	pErrorBuffer[[0]] = '\0';
+}
+NameResolutionService::~NameResolutionService()
+{
+	curl_easy_cleanup(curl);
+}
+
+void NameResolutionService::ExplodeHandle(const string& strHandle, string& strNickname, string& strDomain)
+{
+	// split address at @ furthrest to the right
+	size_t nPosAtsym = strHandle.rfind('@');
+	strNickname = strHandle.substr(0, nPosAtsym);
+	strDomain = strHandle.substr(nPosAtsym + 1, strHandle.size());
+}
+bool NameResolutionService::Perform()
+{
+	// Called after everything has been setup. This actually does the request.
+	CURLcode result = curl_easy_perform(curl);  
+	return (result == CURLE_OK);
+}
+
+string NameResolutionService::FetchAddress(const string& strHandle, string& strAddy)
+{
+	// GET is defined for 'getting' data, so we use GET for the low risk fetching of people's addresses
+	if (!curl)
+	// For some reason CURL didn't start...
+	return pErrorBuffer;
+	// Expand the handle
+	string strNickname, strDomain;
+	ExplodeHandle(strHandle, strNickname, strDomain);
+	// url encode the nickname for get request
+	const char* pszEncodedNick = curl_easy_escape(curl, strNickname.c_str(), strNickname.size());
+	if (!pszEncodedNick)
+	return "Unable to encode nickname.";
+	// construct url for GET request
+	string strRequestUrl = strDomain + "/getaddress/?nickname=" + pszEncodedNick;
+	// Pass URL to CURL
+	curl_easy_setopt(curl, CURLOPT_URL, strRequestUrl.c_str());  
+	if (!Perform())
+	return pErrorBuffer;
+	// Server should respond with a JSON that has the address in.
+	strAddy = strBuffer;
+	return "";  // no error
+}
+
+string NameResolutionService::MakeRequest(const string& strHandle, const string& strReqname, const string& strArgument, string& strStatus)
+{
+	if (!curl)
+	// For some reason CURL didn't start...
+	return pErrorBuffer;
+	// Expand the handle
+	string strNickname, strDomain;
+	ExplodeHandle(strHandle, strNickname, strDomain);
+	// Add a timestamp + Sign our request
+	const string strTime = boost::lexical_cast<string>(time(NULL)),
+	strSig = keypair.Sign(strNickname + strArgument + strTime);
+	// Construct URL for POST request
+	string strRequestUrl = strDomain + "/set" + strReqname + "/";
+	// Pass URL to CURL
+	curl_easy_setopt(curl, CURLOPT_URL, strRequestUrl.c_str());  
+	// Create our variables for POST
+	PostVariables PostRequest;
+	// This method is used by:
+	//    setaddress  which takes a value called address
+	if (!PostRequest.Add("nickname",  strNickname) 
+	!PostRequest.Add("signature", strSig) 
+	!PostRequest.Add("timestamp", strTime) 
+	!PostRequest.Add(strReqname, strArgument))
+	return "Internal error constructing POST request.";
+	curl_easy_setopt(curl, CURLOPT_POST, 1);
+	curl_easy_setopt(curl, CURLOPT_HTTPPOST, PostRequest()); 
+	// Carry out request.
+	if (!Perform())
+	return pErrorBuffer;
+	strStatus = strBuffer;
+	return "";  // no error
+}
+string NameResolutionService::UpdateAddress(const string& strHandle, const string& strNewaddy, string& strStatus)
+{
+	return MakeRequest(strHandle, "address", strNewaddy, strStatus);
+}
+
+NameResolutionService::PostVariables::PostVariables()
+{
+	// pBegin/pEnd *must* be null before calling curl_formadd
+	pBegin = NULL;
+	pEnd = NULL;
+}
+NameResolutionService::PostVariables::~PostVariables()
+{
+	curl_formfree(pBegin);
+}
+bool NameResolutionService::PostVariables::Add(const string& strKey, const string& strVal)
+{
+	// Copy strings to this block. Return true on success.
+	return curl_formadd(&pBegin, &pEnd, CURLFORM_COPYNAME, strKey.c_str(), CURLFORM_COPYCONTENTS, strVal.c_str(), CURLFORM_END) == CURL_FORMADD_OK;
+}
+
+curl_httppost* NameResolutionService::PostVariables::operator()() const
+{
+	return pBegin;
+}
+</source>
+
+<source lang="cpp">
+...
+
+const Object CheckMaybeThrow(const string& strJsonIn)
+{
+	// Parse input JSON
+	Value valRequest;
+	if (!read_string(strJsonIn, valRequest)  valRequest.type() != obj_type)
+	throw JSONRPCError(-32700, "Parse error");
+	const Object& request = valRequest.get_obj();
+	// Now check for a key called "error"
+	const Value& error  = find_value(request, "error");
+	// It's an error JSON! so propagate the error.
+	if (error.type() != null_type)   
+	throw JSONRPCError(-4, error.get_str());
+	// Return JSON object
+	return request;
+}
+
+const string CollectAddress(const string& strIn)
+{
+	// If the handle does not have an @ in it, then it's a normal base58 bitcoin address
+	if (strIn.find('@') == (size_t)-1)
+	return strIn;
+	
+	// Open the lookup service
+	NameResolutionService ns;
+	// We established that the input string is not a BTC address, so we use it as a handle now.
+	string strHandle = strIn, strAddy;
+	string strError = ns.FetchAddress(strHandle, strAddy);
+	if (!strError.empty())
+	throw JSONRPCError(-4, strError);
+
+	const Object& request(CheckMaybeThrow(strAddy));
+	// Get the BTC address from the JSON
+	const Value& address = find_value(request, "address");
+	if (address.type() != str_type)
+	throw JSONRPCError(-32600, "Server responded with malformed reply.");
+	return address.get_str();
+}
+
+// Named this way to prevent possible conflicts.
+Value rpc_send(const Array& params, bool fHelp)
+{
+	if (fHelp  params.size() != 2)
+	throw runtime_error(
+	"send <name@domain or address> <amount>\n"
+	"<amount> is a real and is rounded to the nearest 0.01");
+	
+	// Intelligent function which looks up address given handle, or returns address
+	string strAddy = CollectAddress(params[[0]].get_str());
+	int64 nAmount = AmountFromValue(params[[1]]);
+	// Do the send
+	CWalletTx wtx;
+	string strError = SendMoneyToBitcoinAddress(strAddy, nAmount, wtx);
+	if (!strError.empty())
+	throw JSONRPCError(-4, strError);
+	return wtx.GetHash().GetHex();
+}
+
+...
+</source>
