@@ -1,0 +1,19 @@
+A deterministic wallet is a wallet where private and public keys are all derived from a starting seed value. This could be a long passcode/password, or be a random series of letters and numbers. 
+
+## Benefits
+
+A typical wallet creates private and public keys on demand for the user. This means that the wallet needs to be backed up frequently, otherwise coins may be lost. Also, having multiple machines with wallets on them means it is difficult to manage all of your coins together.
+
+A deterministic wallet can be backed up by simply copying the starting seed value to a secure location, and this only needs to be done once. If the wallet ever gets lost, all private and public keys can be regenerated from the initial seed.
+
+Also, multiple devices could host the same wallet based off of the same seed and automatically stay in sync with eachother. Non-critical information such as address books would need to be stored and copied between wallets.
+
+##Drawbacks
+
+If the initial seed value was either guessed or taken, the attacker could take all of the coins from the wallet. Also, they could retain that seed value, and wait until some future date to take all of the coins. 
+
+##Passwords vs Random Strings
+
+The passcode/password has the benefit of being memorizable by the user, but at the expense of being either forgotten, or weak enough that the password could be guessed or brute forced. If a user used a password such as abc123, and an attacker might simply go through a list of common passwords, create wallets for them, and see if the public addresses match anything currently in the blockchain.
+
+A long string of letters and numbers would be a way to prevent a brute force attack. This has the drawback of having to be actually stored somewhere. If this code was ever lost, the wallet would be lost forever.
