@@ -217,7 +217,7 @@ string NameResolutionService::FetchAddress(const string& strHandle, string& strA
 	if (!pszEncodedNick)
 	return "Unable to encode nickname.";
 	// construct url for GET request
-	string strRequestUrl = strDomain + "/getaddress/?nickname=" + pszEncodedNick;
+	string strRequestUrl = strDomain + "/bitcoin-alias/?alias=" + pszEncodedNick;
 	// Pass URL to CURL
 	curl_easy_setopt(curl, CURLOPT_URL, strRequestUrl.c_str());  
 	if (!Perform())
