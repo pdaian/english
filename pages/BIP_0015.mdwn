@@ -35,7 +35,7 @@ Together with Vanitygen (vanity generator), it becomes possible to create memora
 
 However FirstBits has its own problems. One is that the possible aliases one is able to generate is limited by the available computing power available. It may not be feasible to generate a complete or precise alias that is wanted- only approximates may be possible. It is also computationally resource intensive which means a large expenditure of power for generating unique aliases in the future, and may not scale up to the level of individuals at home or participants with hand-held devices in an environment of ubiquitous computing.
 
-FirstBits scales extremely poorly as the network grows. Each indexer or lookup node needs to keep track of every bitcoin address ever in existence and provide a fast lookup from the aliases to those addresses. As the network grows linearly, the number of addresses should grow exponentially (assuming a networked effect of n!) rapidly making this scheme unfeasible.
+FirstBits scales extremely poorly as the network grows. Each indexer or lookup node needs to keep track of every bitcoin address ever in existence and provide a fast lookup from the aliases to those addresses. As the network grows linearly, the number of addresses should grow exponentially (assuming a networked effect of (n-1)*(n-2)/2) rapidly making this scheme unfeasible.
 
 Light clients of the partial merkle root types become dependent on a trusted third party for their alias lookups. The cost of storing every bitcoin address is too high considering their typical use-case on low-resource devices. This factor more than the others, means this scheme is sub-optimal and must be rejected.
 
