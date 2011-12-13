@@ -108,8 +108,6 @@ public:
 
 	// Three main methods map to RPC actions.
 	string FetchAddress(const string& strHandle, string& strAddy);
-	// Push new address to the server
-	string UpdateAddress(const string& strHandle, const string& strNewaddy, string& strStatus);
 
 private:
 	// A POST block
@@ -130,8 +128,6 @@ private:
 	static void ExplodeHandle(const string& strHandle, string& strNickname, string& strDomain);
 	// Perform the HTTP request. Returns true on success.
 	bool Perform();
-	// Make a POST request that will modify the specified variable (strReqname) on the server.
-	string MakeRequest(const string& strHandle, const string& strReqname, const string& strArgument, string& strStatus);
 
 	// CURL error message
 	char pErrorBuffer[[CURL_ERROR_SIZE]];  
@@ -225,43 +221,6 @@ string NameResolutionService::FetchAddress(const string& strHandle, string& strA
 	// Server should respond with a JSON that has the address in.
 	strAddy = strBuffer;
 	return "";  // no error
-}
-
-string NameResolutionService::MakeRequest(const string& strHandle, const string& strReqname, const string& strArgument, string& strStatus)
-{
-	if (!curl)
-	// For some reason CURL didn't start...
-	return pErrorBuffer;
-	// Expand the handle
-	string strNickname, strDomain;
-	ExplodeHandle(strHandle, strNickname, strDomain);
-	// Add a timestamp + Sign our request
-	const string strTime = boost::lexical_cast<string>(time(NULL)),
-	strSig = keypair.Sign(strNickname + strArgument + strTime);
-	// Construct URL for POST request
-	string strRequestUrl = strDomain + "/set" + strReqname + "/";
-	// Pass URL to CURL
-	curl_easy_setopt(curl, CURLOPT_URL, strRequestUrl.c_str());  
-	// Create our variables for POST
-	PostVariables PostRequest;
-	// This method is used by:
-	//    setaddress  which takes a value called address
-	if (!PostRequest.Add("nickname",  strNickname) 
-	!PostRequest.Add("signature", strSig) 
-	!PostRequest.Add("timestamp", strTime) 
-	!PostRequest.Add(strReqname, strArgument))
-	return "Internal error constructing POST request.";
-	curl_easy_setopt(curl, CURLOPT_POST, 1);
-	curl_easy_setopt(curl, CURLOPT_HTTPPOST, PostRequest()); 
-	// Carry out request.
-	if (!Perform())
-	return pErrorBuffer;
-	strStatus = strBuffer;
-	return "";  // no error
-}
-string NameResolutionService::UpdateAddress(const string& strHandle, const string& strNewaddy, string& strStatus)
-{
-	return MakeRequest(strHandle, "address", strNewaddy, strStatus);
 }
 
 NameResolutionService::PostVariables::PostVariables()
