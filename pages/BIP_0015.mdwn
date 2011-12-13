@@ -73,6 +73,20 @@ A web service is trivial to setup and the cost is low. There are many free out o
 
 It also scales reasonably- anybody wishing to run a naming service can attach a backend with a variety of database technologies then provide a web frontend for users to customise and create their own aliases.
 
+When trying to send to:
+
+	genjix@foo.org
+
+The request is broken into the handle (genjix) and domain (foo.org) at the last occurrence of the @. The client then constructs a request that will query for the address.
+
+	https://foo.org/bitcoin-alias/?handle=genjix
+
+bitcoin-alias has been chosen as the query suffix because it allows this system to co-exist easily within another web root without the fear of name clashes.
+
+The query will then return an address which is used to make the payment.
+
+	1Hd44nkJfNAcPJeZyrGC5sKJS1TzgmCTjjZ
+
 A naive implementation is provided below as an example.
 
 <source lang="cpp">
