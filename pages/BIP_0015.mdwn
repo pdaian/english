@@ -53,6 +53,8 @@ Security wise, DNS is unsafe and insecure by design. It is possible to spoof rec
 
 As of Dec 2011, DNSSEC is still not yet a defacto standard on the internet. Should a participant in the bitcoin network wish to use DNS TXT records, they would in addition to having to configure DNS, be able to setup DNSSEC. This may not be feasible, especially where some registrars provide access to DNS through a web interface only.
 
+The disadvantage of DNS TXT records is that updating a record takes time. This encourages people to not use new addresses per transaction which has certain security issues.
+
 ### Server Service
 
 Aside from using DNS TXT records, another possibility is using the domain name system to lookup hosts and then contact a service running on a predefined port to get the bitcoin address.
