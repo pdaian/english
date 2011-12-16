@@ -22,7 +22,7 @@ The new bitcoin address type is constructed in the same manner as existing bitco
 
 	base58-encode: [version](one-byte)[hash](20-byte)[checksum](4-byte)
 
-Version byte is 2 for a main-network address, 109 for a testnet address.
+Version byte is 5 for a main-network address, 196 for a testnet address.
 The 20-byte hash is the hash of the script that will be used to redeem the coins.
 And the 4-byte checksum is the first four bytes of the SHA256 hash of the version and hash.
 
@@ -38,6 +38,8 @@ This is one piece of the simplest path to a more secure bitcoin infrastructure. 
 
 Assuming that typing in bitcoin addresses manually will become increasingly rare in the future, and given that the existing checksum method for bitcoin addresses seems to work "well enough" in practice and has already been implemented multiple times, the Author believes no change to the checksum algorithm is necessary.
 
+The leading version bytes are chosen so that, after base58 encoding, the leading character is consistent: for the main network, byte 5 becomes the character '3'. For the testnet, byte 192 is encoded into '2'.
+
 ##Backwards Compatibility
 
 This proposal is not backwards compatible, but it fails gracefully-- if an older implementation is given one of these new bitcoin addresses, it will report the address as invalid and will refuse to create a transaction.
@@ -48,4 +50,4 @@ https://github.com/gavinandresen/bitcoin-git/tree/op_eval
 
 ##See Also
 
-The OP_EVAL BIP.
+The [[OP_EVAL BIP|BIP_0012]].
