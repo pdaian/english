@@ -329,13 +329,22 @@ Payload:
 To create the block locator hashes, keep pushing hashes until you go back to the genesis block. After pushing 10 hashes back, the step backwards doubles every loop:
 
 <pre>
-$step = 1
-loop until at genesis block:
-    store current block hash
-    move backwards by $step
-    if number of stored hashes > 10:
-        $step *= 2
-store genesis block
+// From libbitcoin which is under AGPL
+std::vector<size_t> block_locator_indices(int top_depth)
+{
+    // Start at max_depth
+    std::vector<size_t> indices;
+    // Push last 10 indices first
+    size_t step = 1, start = 0;
+    for (int i = top_depth; i > 0; i -= step, ++start)
+    {
+        if (start >= 10)
+            step *= 2;
+        indices.push_back(i);
+    }
+    indices.push_back(0);
+    return indices;
+}
 </pre>
 
 Note that it is allowed to send in fewer known hashes down to a minimum of just one hash. However, the purpose of the block locator object is to detect a wrong branch in the caller's main chain. If the peer detects that you are off the main chain, it will send in block hashes which are earlier than your last known block. So if you just send in your last known hash and it is off the main chain, the peer starts over at block #1.
