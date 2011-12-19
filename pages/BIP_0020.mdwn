@@ -203,6 +203,8 @@ Before the URI scheme is finalised one should think long and hard about use case
 		* POSSIBLE SOLUTION: javascript can detect the click.
 		* POSSIBLE SOLUTION: the checkout site checks its bitcoin account for payment via HTTP request.
 	* PROBLEM: the time problem (~10 minutes) is very apparent here; nobody wants to wait 10 minutes for the transaction to be confirmed.
+		* For micropayment-style digital content (songs, for example) it's probably not necessary to wait for any confirmation at all, since there is low risk of a double-spend attack for payments of a small amount.
+		* For physical goods, the merchant can tell the client that their transaction is pending when it first notices the transaction, and that payment is complete when the number of confirmations is large enough.
 * a person only has an online client, no actual application
 	* PROBLEM: how to redirect the URI so that the online client gets a notice?
 		* POSSIBLE SOLUTION: Small application and/or browser plugins to redirect the handler call to the designated online wallet.
