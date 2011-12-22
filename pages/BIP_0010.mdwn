@@ -25,13 +25,13 @@ The enabling of multi-signature transactions in Bitcoin will introduce a great d
 
 This BIP proposes the following process, with terms in quotes referring to recommended terminology that should be encouraged across all implementations.  
 
-1. 1. One party will initiate this process by creating a "Distribution Proposal", which could be abbreviated DP, or TxDP
-1. 2. Transaction preparation -- the user creating the TxDP will create the transaction as they would like to see it spent (obviously without the signatures).  Then they will go through each input and replace its script with the script of the txout that the input is spending.  The reason for is so that receiving parties can sign with their private key *without* needing access to the blockchain. 
-1. 3. This TxDP will be serialized (see below), which will include a tag identifying the TxDP in the serialization, as well as in the filename, if it is saved to file.
-1. 4. The TxDP will have an "DP ID" which is the hash of the TxDP in Base58 -- the reason for this is to make sure it is not confused with the actual the transaction ID that it will have after it is broadcast (the transaction ID cannot be determined until after all signatures are collected).  The final Tx ID can be referred to as its "Broadcast ID", in order to distinguish it from the pre-signed ID. 
-1. 5. The TxDP will have an unordered list of sig-pubkey pairs which represent collected signatures.  If you receive a TxDP missing only your signature, you can broadcast it as soon as you sign it.
-1. 6. Identical TxDP objects with different signatures can be easily combined
-1. 7. For cases where the TxDP might be put into a file to be sent via email, it should use .txdp or .btcdp suffix
+1. One party will initiate this process by creating a "Distribution Proposal", which could be abbreviated DP, or TxDP
+1. Transaction preparation -- the user creating the TxDP will create the transaction as they would like to see it spent (obviously without the signatures).  Then they will go through each input and replace its script with the script of the txout that the input is spending.  The reason for is so that receiving parties can sign with their private key *without* needing access to the blockchain. 
+1. This TxDP will be serialized (see below), which will include a tag identifying the TxDP in the serialization, as well as in the filename, if it is saved to file.
+1. The TxDP will have an "DP ID" which is the hash of the TxDP in Base58 -- the reason for this is to make sure it is not confused with the actual the transaction ID that it will have after it is broadcast (the transaction ID cannot be determined until after all signatures are collected).  The final Tx ID can be referred to as its "Broadcast ID", in order to distinguish it from the pre-signed ID. 
+1. The TxDP will have an unordered list of sig-pubkey pairs which represent collected signatures.  If you receive a TxDP missing only your signature, you can broadcast it as soon as you sign it.
+1. Identical TxDP objects with different signatures can be easily combined
+1. For cases where the TxDP might be put into a file to be sent via email, it should use .txdp or .btcdp suffix
 
 
 Anyone adopting BIP 0010 for multi-sig transactions will use the following format (without indentation):
