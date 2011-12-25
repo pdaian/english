@@ -10,11 +10,11 @@ VISA handles on average around 2,000 transactions/sec, so call it a daily peak r
 
 PayPal, in contrast, handles around 4 million transactions per day for an average of 46tps or a probably peak rate of 100tps.
 
-Let's take 4,000 tps as starting goal. Obviously if we want BitCoin to scale to all economic transactions worldwide, including cash, it'd be a lot higher than that, perhaps more in the region of a few hundred thousand transactions/sec. And the need to be able to withstand DoS attacks (which VISA does not have to deal with) implies we would want to scale far beyond the standard peak rates. Still, picking a target let us do some basic calculations even if it's a little arbitrary.
+Let's take 4,000 tps as starting goal. Obviously if we want Bitcoin to scale to all economic transactions worldwide, including cash, it'd be a lot higher than that, perhaps more in the region of a few hundred thousand transactions/sec. And the need to be able to withstand DoS attacks (which VISA does not have to deal with) implies we would want to scale far beyond the standard peak rates. Still, picking a target let us do some basic calculations even if it's a little arbitrary.
 
 ##Current bottlenecks
 
-Today the BitCoin network is restricted to a sustained rate of 7 tps by some artificial limits. These were put in place to stop people from ballooning the size of the block chain before the network and community was ready for it. Once those limits are lifted, the maximum transaction rate will go up significantly.
+Today the Bitcoin network is restricted to a sustained rate of 7 tps by some artificial limits. These were put in place to stop people from ballooning the size of the block chain before the network and community was ready for it. Once those limits are lifted, the maximum transaction rate will go up significantly.
 
 ##CPU
 
@@ -32,7 +32,7 @@ That leaves the inbound inv messages. The cost of handling an inv is basically r
 
 ##Network
 
-Let's assume an average rate of 2000tps, so just VISA. Transactions vary in size from about 0.2 kilobytes to over 1 kilobyte, but from looking at the block explorer it's probably averaging half a kilobyte today. So let's assume the way people use BitCoin gets more complicated and call it 1kb per transaction.
+Let's assume an average rate of 2000tps, so just VISA. Transactions vary in size from about 0.2 kilobytes to over 1 kilobyte, but from looking at the block explorer it's probably averaging half a kilobyte today. So let's assume the way people use Bitcoin gets more complicated and call it 1kb per transaction.
 
 A solved block will then be around (1024 bytes * 2000tps * 60 seconds in a minute * 10minutes) / 1024 bytes in a kilobyte / 1024 kilobytes in a megabyte / 1024 megabytes in a gigabyte = 1.14 gigabytes per block.
 
@@ -52,7 +52,7 @@ At very high transaction rates each block can be over a gigabyte in size. These 
 
 ##Network structure
 
-Today BitCoin is a flat peer to peer network in which all nodes are equal. However the intention is to evolve it towards a more typical two-tier structure in which low powered client nodes connect to long-lived, high powered supernodes. The protocol already has some support for this (see the services flags in the version/address messages). However client mode is only partially implemented and no code exists to decide if and when to switch between supernode/client node status.
+Today Bitcoin is a flat peer to peer network in which all nodes are equal. However the intention is to evolve it towards a more typical two-tier structure in which low powered client nodes connect to long-lived, high powered supernodes. The protocol already has some support for this (see the services flags in the version/address messages). However client mode is only partially implemented and no code exists to decide if and when to switch between supernode/client node status.
 
 As the network scales up, the costs of running a supernode that stores the full block chain and verifies every transaction will get progressively higher, but the two tier structure ensures everyone can still get started quickly. Client nodes only need to download a small number of headers the first time they connect (from their last checkpoint until the chain head). It's quite possible to run such nodes on a modern smartphone. The security model for lightweight clients is slightly different to a full node: whilst they don't need to talk to a trusted node (ie any network node will do), in that configuration it's important that the network be very difficult to attack as the block contents are not verified.
 
