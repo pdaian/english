@@ -175,12 +175,12 @@ Any opcode not assigned is also reserved. Using an unassigned opcode makes the t
 
 |Word|Opcode|Hex|When used...
 |---|---|---|---
-|OP_RESERVED|80|0x50|Transaction is invalid
-|OP_VER|98|0x62|Transaction is invalid
-|OP_VERIF|101|0x65|Transaction is invalid
-|OP_VERNOTIF|102|0x66|Transaction is invalid
-|OP_RESERVED1|137|0x89|Transaction is invalid
-|OP_RESERVED2|138|0x8a|Transaction is invalid
+|OP_RESERVED|80|0x50|Transaction is invalid unless occuring in an unexecuted OP_IF branch
+|OP_VER|98|0x62|Transaction is invalid unless occuring in an unexecuted OP_IF branch
+|OP_VERIF|101|0x65|Transaction is invalid even when occuring in an unexecuted OP_IF branch
+|OP_VERNOTIF|102|0x66|Transaction is invalid even when occuring in an unexecuted OP_IF branch
+|OP_RESERVED1|137|0x89|Transaction is invalid unless occuring in an unexecuted OP_IF branch
+|OP_RESERVED2|138|0x8a|Transaction is invalid unless occuring in an unexecuted OP_IF branch
 |OP_NOP1-OP_NOP10|176-185|0xb0-0xb9|The word is ignored.
 
 
