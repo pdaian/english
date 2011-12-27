@@ -6,22 +6,24 @@ I think anything outside the blockchain is an additional security vulnerability.
 Send 0.005 BTCs to 10 consecutive coinbase addresses in one trasaction (concept copied from http://vermorel.com/process/CreateJournalEntryComment?moduleId=5042156&entryId=14193327&finalize=true ). Coins sent from address you want to use and include in script hex encoded address in any format - e.g. MyName or me@company.com then a OP_DROP in the script (as per "bob" in (98*256*256+111*256*256+98=6451042) http://blockexplorer.com/testnet/tx/9b8cf14991f5b401d4356bbf2e11f5f3bb5221bbd947b8be4cf600f5492f974d ).
 This would be called an "Address Initiation" transaction.
 
-**Initially**
+#### Initially
 Clients would when they see an Address Initiation transaction store name/address pair locally. Could then translate names into addresses to send BTCs. Ordered nature of blockchain would ensure you can check your address is valid before telling anyone to use it.
 
-**Once large scale and implemented network wide**
+#### Once large scale and implemented network wide
 Clients send directly to nice addresses and network can lookup real address to receive when trying to spend.
 
-**Advantages**
-There is a cost of creating an address so less spam addresses.
-Cost is paid to miners who secure the network.
-Does not require blockchain fork.
-And address format possible.
-Now people can speculate on Addresses too! (or is that a disadvantage!).
-As secure as Bitcoin.
+#### Advantages
 
-**Disadvantages**
-A number of client changes need to make user friendly.
-Does not seem elegant.
-Storage bloat (although would not be a problem for a long time).
+* There is a cost of creating an address so less spam addresses.
+* Cost is paid to miners who secure the network.
+* Does not require blockchain fork.
+* And address format possible.
+* Now people can speculate on Addresses too! (or is that a disadvantage!).
+* As secure as Bitcoin.
+
+#### Disadvantages
+
+* A number of client changes need to make user friendly.
+* Does not seem elegant.
+* Storage bloat (although would not be a problem for a long time).
 [Nibor](User:Nibor) 00:11 22 December 2011
