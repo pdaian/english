@@ -33,14 +33,7 @@ bitcoind will detect that you are using a proxy on 9050 and will force the "noli
 #Hidden services
 These services are running within the tor network. You can connect to them for example using the -connect= parameter to bitcoind. Note that you do not need to use them - tor can also anonymize your normal internet traffic, including bitcoin connections. There are some technical reasons why hidden services may be beneficial, see the tor documentation if you're really interested.
 
-Please add your service here if you run a stable bitcoin node under a tor hidden service.
-
-* sh4ep6zb6vnoa2h5.onion
-* iy6ni3wkqazp4ytu.onion
-* bxfna6fhddpzduck.onion
-* p2hwc26zdsrqxiix.onion
-
-Note, you do not put these directly in your bitcoin.conf.  Bitcoin does not support remote DNS through a proxy, so you must set a mapaddress in your torrc.  You can find more hidden services and read about how to use them here: [[Fallback_Nodes#Tor_network]]
+Services are listed at [[Fallback_Nodes#Tor_network]] along with instructions for using them.
 
 #Pooled Mining
 
