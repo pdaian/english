@@ -28,7 +28,15 @@ To use tor .onion addresses, you need to map virtual ips via the *torrc* file:
 	mapaddress 192.0.2.3 j43z65b6r2usg3vk.onion
 	mapaddress 192.0.2.4 pvuif6nonbhj3o3r.onion
 
-Once you have configured and restarted tor, 192.0.2.2 will connect to ijzt2eeizty3p5xe.onion when accessed through the Tor proxy (and likewise for the other IPs/onions). You can then run Bitcoin with -addnode=192.0.2.2, or even send bitcoins to that IP address. You can use any arbitrary IP addresses with MapAddress, though some of the common non-routable ranges (10.*, 192.168.*) will not work due to a Bitcoin bug. 192.0.2.1-192.0.2.255 is the recommended range because it is both non-routable and compatible with Bitcoin.
+And then put these IPs in your bitcoin.conf (or run bitcoin with -connect)
+
+	connect=192.0.2.2
+	connect=192.0.2.3
+	connect=192.0.2.4
+
+You can use any arbitrary IP addresses with MapAddress, though some of the common non-routable ranges (10.*, 192.168.*) will not work due to a Bitcoin bug (reference?). 192.0.2.1-192.0.2.255 is the recommended range because it is both non-routable and compatible with Bitcoin.
+
+It is highly recommended that you use "connect" instead of "addnode" so that all of your communications are kept within the tor network.
 
 ## Nodes list
 
