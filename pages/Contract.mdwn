@@ -59,9 +59,9 @@ Obviously, if the user turns out to be abusive (ie a spammer), the website will 
 
 ##Example 2: Escrow and dispute mediation
 
-You want to trade with somebody you don't know or trust. In the common case where the transaction goes well, you don't want any third parties involved. If something goes wrong though, you'd like the money to go to a third party - perhaps a professional dispute mediation service. Note that "you" in that sentence can refer to either buyer or seller. The mediator might request proof of postage from the merchant for example.
+You want to trade with somebody you don't know or trust. In the common case where the transaction goes well, you don't want any third parties involved. If something goes wrong though, you'd like a third party to decide who gets the money - perhaps a professional dispute mediation service. Note that "you" in that sentence can refer to either buyer or seller. The mediator might request proof of postage from the merchant for example.
 
-In other words, you want to lock up some coins so you can send them to one of two addresses. There's no way to write an output script such that it checks the outputs of the spending transaction. Scripts don't have access to that data. Fortunately, we can do it another way:
+In other words, you want to lock up some coins so a third party has to agree in order for them to be spent:
 
 1. Agree with the merchant on a dispute mediator (eg, ClearCoin).
 1. Ask the merchant for a public key (K1). Ask the mediator for a public key (K2). Create a new key for yourself (K3).
