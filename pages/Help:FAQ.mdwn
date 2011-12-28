@@ -180,6 +180,17 @@ Bitcoins aren't actually "sent" to your wallet, the software only uses that term
 
 The coins that were sent to you when the client was not running will later appear as if they were received in your wallet when you later launch the client.  It will download blocks and catch up with any transactions it didn't already have.
 
+### How long does "synchronizing" take when the bitcoin client is first installed? What is it doing?
+
+The popular bitcoin client software from bitcoin.org implements a "full" bitcoin node: It can carry out all the duties of the bitcoin P2P system. One of the principles behind the operation of full bitcoin nodes is that they don't trust that the other participants have followed the rules of the bitcoin system. During synchronization the
+software is processing historical bitcoin transactions and making sure for itself that all of the rules of the system have been correctly followed.
+
+In normal operation, after sync, the software should use a hardly noticeable amount of resources unless you leave it off for a while.
+
+The initial validation is very disk IO intensive so the amount of time to synchronize depend on your disk speed and, to a lesser extent, your cpu speed. It can take anywhere from a few hours to a day or so.  You can use the software while this process is going on, but you may not see recent payments to you until the synchronization has caught up to the point where those transactions happened.
+
+If this is too long for you, you can download a pre-synchronized blockchain from http://eu1.bitcoincharts.com/blockchain/  or you can try an alternative "lite" client such as Multibit or a super-light client like electrum, though these clients have somewhat weaker security and are less mature.
+
 ##Networking
 ### Do I need to configure my firewall to run bitcoin?
 
