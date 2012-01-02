@@ -9,7 +9,7 @@ The more work for which a record contains proof, the more valid that record is c
 
 When a conflict is resolved, transactions from the "losing" version are automatically transplanted into later pages following the "winning" page, assuming there is no conflict with any of the earlier transactions on the "winning" page.  During reconciliation, legitimate transactions are highly unlikely to conflict, but a conflict might occur in the event of a deliberate attempt to spend the same Bitcoins in two different places simultaneously.  Because the transaction on the "winning" page takes precedence, any such conflict will be resolved in favor of the transaction that was successfully recorded on the earliest winning page.
 
-Anyone can add records to Bitcoin's public ledger, it is just not easy.  In order to add a page of transaction records to the public journal (also referred to as adding a *[[block]]* to the *[[block_chain]]*, one must compute the answer to a difficult mathematical problem and include the correct answer into the block.  The answer for each block is different, and depends on all of the transactions that have been included in the block.
+Anyone can add records to Bitcoin's public ledger, it is just not easy.  In order to add a page of transaction records to the public journal (also referred to as adding a *[[block]]* to the *[[block_chain]]*), one must compute the answer to a difficult mathematical problem and include the correct answer into the block.  The answer for each block is different, and depends on all of the transactions that have been included in the block.
 
 The person who successfully records a page is able to collect the transaction fees that are offered in each of the transactions he or she successfully recorded.
 
