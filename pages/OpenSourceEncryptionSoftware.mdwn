@@ -118,6 +118,16 @@ Optionally, each of the backup files can be encrypted with a password.
 ###License
 [the donation address remain unchanged.](that)
 
+###Usage
+xorsplit file   -- splits the file into file.1, file.2, and file.3
+
+xorsplit-p file -- same, but requesting a password (no password means no encryption)
+
+xorsplit file.3 file.1 outfile   -- combine file.1 and file.3 into outfile.
+
+xorsplit-p file.3 file.1 outfile -- same, after using the password to decrypt
+
+
 
 [[!tag "Technical"]]
 [[!tag "Open_Source"]]
