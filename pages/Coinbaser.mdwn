@@ -5,7 +5,7 @@ This is split into two parts:
 The coinbaser is an external program which tells bitcoind how to distribute generated funds;
 it is called whenever bitcoind wants to build a new coinbase transaction.
 
-### Usage
+### Usage (bitcoind 0.6+)
 To setup a coinbaser, you need to pass a command to bitcoind using the -coinbaser option.
 This command will be executed by your system's default shell.
 If the string '%d' is present in the command line, it will be replaced with the total amount of funds available for distribution (in satoshis).
@@ -23,9 +23,9 @@ first, the amount of funds to redirect (in satoshis);
 second, the bitcoin address to direct them to.
 
 If there is any error in this format, a reason will be logged to debug.log and bitcoind will abort customization and revert to its default behaviour of taking the full reward+fees for itself.
-Note that not *all* available funds should be redistributed;
-remaining funds are needed for the original generation destination, and treated in the standard way.
-This can, however, be as low as 1 satoshi left not redirected.
+Note that distributing all the available funds is undefined behaviour;
+remaining funds are generated to the original destination, and treated in the usual way.
+This can, however, safely be as low as 1 satoshi left not redirected.
 
 ## setworkaux
 setworkaux is a new JSON-RPC call to add arbitrary data to your coinbase transaction's "scriptSig".
