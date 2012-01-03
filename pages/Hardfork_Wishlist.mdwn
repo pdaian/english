@@ -17,3 +17,8 @@ Navel gazing / Protocol housekeeping:
 * Byte order consistency
 * Eliminate redundancies in the variable length integer encodings
 * Avoiding hashes covering malleable fields
+
+Bug fixes
+
+* CHECKMULTISIG popping one-too-many items off the stack
+* difficulty adjustment periods should overlap (prevent potential 'timejacking')
