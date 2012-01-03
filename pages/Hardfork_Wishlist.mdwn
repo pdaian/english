@@ -1,24 +1,29 @@
-Major structural changes:
+####Major structural changes
 
 * "Flip the chain", instead of committing to new transactions, commit to the summaries of open transactions: [(1)](https://bitcointalk.org/index.php?topic=505.0) [(2)](https://bitcointalk.org/index.php?topic=21995.0)
 * Increased efficiency for merged mining, restructure the primary header to make the bitcoin specific data non-mandatory. (e.g. the block chain specific stuff would go into second header connected by a header tree), making the primary headers pure timestamps.
 
-Transaction behavior changes:
+####Transaction behavior changes
 
 * Improved signature types to allow for partial malleability of outputs.  (e.g. make it easier to add a fee onto someone elses transaction, or to take fees from a transaction without outputs set aside for that putpose)
 
-Cryptographic changes:
+####Cryptographic changes
 
 * Pervasive ECC public key-recovery to reduce transaction sizes (can be done partially without breaking compatibility completely)
 * Support for a post-quantum signature scheme. [Lamport signatures](http://en.wikipedia.org/wiki/Lamport_signature) have nice intuitive security properties, but it and all other similar schemes have extreme space requirements that would require structural changes to the blockchain to accommodate.
 
-Navel gazing / Protocol housekeeping:
+####Currency changes
+*Please don't list anything here which would significantly change the committed overall economics of the system, these things will _never_ be changed in Bitcoin, because such changes would undermine the trust people have in the system, though they may form the basis of an interesting [[alternative chain|Alternative_Chains]].* 
+
+* Increase currency granularity: three more decimal places would still fit all Bitcoin in 2^62 (e.g. you could sum any two signed bitcoin values without overflow in 64 bits) and would allow for pico-btc.
+
+####Navel gazing / Protocol housekeeping
 
 * Byte order consistency
 * Eliminate redundancies in the variable length integer encodings
 * Avoiding hashes covering malleable fields
 
-Bug fixes
+####Bug fixes
 
 * CHECKMULTISIG popping one-too-many items off the stack
 * difficulty adjustment periods should overlap (prevent potential 'timejacking')
