@@ -1,6 +1,6 @@
 <pre>
   BIP: 13
-  Title: Address Format for OP_EVAL
+  Title: Address Format for pay-to-script-hash
   Author: Gavin Andresen <gavinandresen@gmail.com>
   Status: Draft
   Type: Standards Track
@@ -46,8 +46,8 @@ This proposal is not backwards compatible, but it fails gracefully-- if an older
 
 ##Reference Implementation
 
-https://github.com/gavinandresen/bitcoin-git/tree/op_eval
+See base58.cpp1/base58.h at https://github.com/bitcoin/bitcoin/src
 
 ##See Also
 
-The [[OP_EVAL BIP|BIP_0012]].
+The [[Pay to Script Hash BIP|BIP_0016]].
