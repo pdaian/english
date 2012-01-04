@@ -14,6 +14,7 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 ####Transaction behavior changes
 
 * Improved signature types to allow for partial malleability of outputs.  (e.g. make it easier to add a fee onto someone elses transaction, or to take fees from a transaction without outputs set aside for that putpose)
+* Elimination of output scripts: all transactions pay-to-scripthash.  Other than losing effective output script secrecy (which is not possible without OP_EVAL anyways), this is costless. The motivation here is that data in outputs is far more expensive than inputs because some outputs may be never prunable.
 
 ####Cryptographic changes
 
