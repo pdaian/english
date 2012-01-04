@@ -2,7 +2,9 @@
 ##Proposals which reduce security
 "Difficulty adjustment should adapt to sudden hashrate loss"
 
-It's really hard to construct *general* proofs, but I believe that _all_ such schemes substantially reduce the cost of performing forged chain attacks against isolated nodes.  I given an argument of this here: [(1)](https://bitcointalk.org/index.php?topic=46498.msg556137#msg556137)
+It's really hard to construct *general* proofs, but I believe that _all_ such schemes substantially reduce the cost of performing forged chain attacks against isolated nodes.  I gave an argument of this here, assuming a particular decrease handling improvement: [(1)](https://bitcointalk.org/index.php?topic=46498.msg556137#msg556137)
+
+Beyond those problems schemes with symmetric difficulty creates non-linearities which make it profitable for miners as a group to game the system: e.g. turn off until it falls fast, then turn on until it catches back up. The current mostly linear system doesn't enable this even if the miners conspire.
 
 One of my concerns about this page is that it's lots of ideas sound just fantastic until you consider their costs, or sound great so long as you don't mind their particular costs. Because these changes must be adopted by consensus and because people evaluate costs differently it's hard to find things that win the cost/benefit analysis for almost everyone.
 
