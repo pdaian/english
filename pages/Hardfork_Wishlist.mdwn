@@ -14,7 +14,6 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 ####Transaction behavior changes
 
 * Improved signature types to allow for partial malleability of outputs.  (e.g. make it easier to add a fee onto someone elses transaction, or to take fees from a transaction without outputs set aside for that putpose)
-* Allow division of Satoshi units into smaller pieces.
 
 ####Cryptographic changes
 
@@ -24,18 +23,21 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 ####Currency changes
 *Please don't list anything here which would significantly change the committed overall economics of the system, it's safe to assume anything with significant economic impact will _never_ be changed in Bitcoin, because such changes would undermine the trust people have in the system, though they may form the basis of an interesting [[alternative chain|Alternative_Chains]].* 
 
-* Increase currency granularity: three more decimal places would still fit all Bitcoin in 2^62 (e.g. you could sum any two signed bitcoin values without overflow in 64 bits) and would allow for pico-btc.
+* Increase currency divisibility.
 
 ####Navel gazing / Protocol housekeeping
 
-* Byte order consistency
-* Eliminate redundancies in the variable length integer encodings
+* Byte order consistency (big endian)
+* Eliminate redundancies in the variable length integer encodings, possibly switch to a standard.
 * Avoiding hashes covering malleable fields
 
 ####Bug fixes
 
 * CHECKMULTISIG popping one-too-many items off the stack
-* difficulty adjustment periods should overlap (prevent potential 'timejacking')
+* Difficulty adjustment periods should overlap (prevent potential 'timejacking')
+* Difficulty adjustment should adapt to sudden hashrate loss, or subsidy drops should be made gradual.
+* Scripts should be fully enabled after a careful audit.
+* Miners/relays should not be able to inject extra arbitrary data into transactions?
 
 [[!tag "Technical"]]
 [[!tag "Developer"]]
