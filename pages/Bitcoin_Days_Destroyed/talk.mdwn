@@ -3,3 +3,6 @@
 How does the client's choice of an input's last activity (age) affect the measure of Bitcoin Days Destroyed?
 
 What happens if one client favors inputs that haven't been used for a long period of time over inputs that have just recently been used?
+
+Answer: Obviously, if older coins are chosen BDD will rise more than if newer coins are used.  When using the Bitcoin.org client at this time (January 2012), the choice of which coins are used is not up to the user.  A patch is available to do this though and other clients likely allow this.  A party could attempt to get BDD to show older coins being spent even though that isn't the case.  This can only be done once, however -- as the first time those old coins move, the output becomes new coins.
+;tldr - BDD metrics can be manipulated
