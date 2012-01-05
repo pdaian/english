@@ -104,7 +104,7 @@ usage: run_p2pool.py [-h] [--version] [--net {bitcoin, litecoin, namecoin}]
                      [--bitcoind-p2p-port BITCOIND_P2P_PORT]
                      [BITCOIND_RPCUSER] BITCOIND_RPCPASSWORD
 
-p2pool (version e4255cf)
+p2pool (version 31cbeea)
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -112,60 +112,53 @@ optional arguments:
   --net {bitcoin, litecoin, namecoin}
                         use specified network (default: bitcoin)
   --testnet             use the network's testnet
-  --debug               debugging mode
+  --debug               enable debugging mode
   -a ADDRESS, --address ADDRESS
-                        generate to this address (defaults to requesting one
-                        from bitcoind)
-  --logfile LOGFILE     log to specific file (defaults to <network_name>.log
-                        in run_p2pool.py's directory)
+                        generate payouts to this address (default: <address
+                        requested from bitcoind>)
+  --logfile LOGFILE     log to this file (default: data/<NET>/log)
   --merged-url MERGED_URL
                         call getauxblock on this url to get work for merged
-                        mining
+                        mining (example: http://127.0.0.1:10332/)
   --merged-userpass MERGED_USERPASS
-                        merge daemon user and password, separated by a colon.
-                        Example: ncuser:ncpass
+                        use this user and password when requesting merged
+                        mining work (example: ncuser:ncpass)
   --give-author DONATION_PERCENTAGE
-                        percentage amount to donate to author of p2pool.
-                        Default: 0.5
-  --disable-upnp        don't attempt to forward p2pool P2P port from the WAN
-                        to this computer using UPnP
+                        donate this percentage of work to author of p2pool
+                        (default: 0.5)
+  --disable-upnp        don't attempt to use UPnP to forward p2pool's P2P port
+                        from the Internet to this computer
 
 p2pool interface:
-  --p2pool-port PORT    use TCP port PORT to listen for connections (forward
-                        this port from your router!) (default: bitcoin:9333,
+  --p2pool-port PORT    use port PORT to listen for connections (forward this
+                        port from your router!) (default: bitcoin:9333,
                         litecoin:9338, namecoin:9334)
   -n ADDR[:PORT], --p2pool-node ADDR[:PORT]
                         connect to existing p2pool node at ADDR listening on
-                        TCP port PORT (defaults to default p2pool P2P port),
-                        in addition to builtin addresses
+                        port PORT (defaults to default p2pool P2P port) in
+                        addition to builtin addresses
 
 worker interface:
   -w PORT, --worker-port PORT
-                        listen on PORT for RPC connections from miners asking
-                        for work and providing responses
-                        (default:bitcoin:9332, litecoin:9327, namecoin:9331)
+                        listen on PORT for RPC connections from miners
+                        (default: bitcoin:9332, litecoin:9327, namecoin:9331)
   -f FEE_PERCENTAGE, --fee FEE_PERCENTAGE
                         charge workers mining to their own bitcoin address (by
                         setting their miner's username to a bitcoin address)
                         this percentage fee to mine on your p2pool instance.
-                        Amount displayed at http://127.0.0.1:WORKER_PORT/fee .
-                        default: 0
+                        Amount displayed at http://127.0.0.1:WORKER_PORT/fee
+                        (default: 0)
 
 bitcoind interface:
   --bitcoind-address BITCOIND_ADDRESS
-                        connect to a bitcoind at this address (default:
-                        127.0.0.1)
+                        connect to this address (default: 127.0.0.1)
   --bitcoind-rpc-port BITCOIND_RPC_PORT
-                        connect to a bitcoind at this port over the RPC
-                        interface - used to get the current highest block via
-                        getmemorypool (default: bitcoin:8332, litecoin:9332,
-                        namecoin:8332)
+                        connect to JSON-RPC interface at this port (default:
+                        bitcoin:8332, litecoin:9332, namecoin:8332)
   --bitcoind-p2p-port BITCOIND_P2P_PORT
-                        connect to a bitcoind at this port over the p2p
-                        interface - used to submit blocks and get the pubkey
-                        to generate to via an IP transaction (default:
+                        connect to P2P interface at this port (default:
                         bitcoin:8333, litecoin:9333, namecoin:8334)
-  BITCOIND_RPCUSER      bitcoind RPC interface username (default: empty)
+  BITCOIND_RPCUSER      bitcoind RPC interface username (default: <empty>)
   BITCOIND_RPCPASSWORD  bitcoind RPC interface password
 </pre>
 
