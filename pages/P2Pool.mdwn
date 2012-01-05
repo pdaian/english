@@ -33,11 +33,11 @@ Follow these steps to join the pool:
 	* git: git clone git://github.com/forrestv/p2pool.git
 * Run p2pool: (See below for additional options.)
 	* Windows py2exe: run_p2pool.exe USER PASS
-	* git: python run_p2pool.py USER PASS
+	* Source: python run_p2pool.py USER PASS
 * Run a miner daemon with long polling connecting to 127.0.0.1 (or the IP of the host running p2pool if you're mining remotely) on port 9332 with any username and password
-	* poclbm.exe http://a:b@127.0.0.1:9332
+	* cgminer -O u:p -o http://127.0.0.1:9332/
 
-Dependencies if using version from git:
+Dependencies if running from source:
 
 * Python 2.6 or higher - with sqlite support 
 * python-argparse for Python 2.6 and lower
@@ -45,20 +45,20 @@ Dependencies if using version from git:
 
 ### Miners
 
-This is all for the latest p2pool version, it includes several new workarounds. With all miners, using a high FPS target (100?) or a low aggression, and waiting for p2pool to completely start (line shows > 35000 shares) helps a lot with reducing stales.
+This is all for the latest p2pool version, as it includes several new workarounds. With all miners, using a high FPS target (100?) or a low aggression, and waiting for p2pool to completely start (line shows > 35000 shares) helps a lot with reducing stales.
 
 #### Works as-is
 
 ##### cgminer
-A workaround was needed to get long polling to work, but it has now fixed the long polling delay.  Should work with the latest P2Pool, but has had some reported problems with work being requested too often.
+Works very well as is.
 
 ##### ufasoft 
-By looking at the source but not actually running it (couldn't get it to compile) should work perfectly too.
+Works as is.
 
 #### Needs patch to reduce stales
 
 ##### DiabloMiner 
-Has a bug where it waits half a second after receiving a long polling response. There is a 20% chance that a p2pool share will be generated in that window, resulting in all hashing until the next getwork being useless.
+Has a bug where it waits half a second after receiving a long polling response. There is a 10% chance that a p2pool share will be generated in that window, resulting in that hashing being useless.
 
 A fork of DiabloMiner on GitHub that fixes this: https://github.com/forrestv/DiabloMiner Make sure to get the *fast_long_polling* branch!
 
