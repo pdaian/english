@@ -71,8 +71,8 @@ The signature operation counting rules are intended to be easy and quick to impl
 There is a 1-confirmation attack on old implementations, but it is expensive and difficult in practice. The attack is:
 
 1. Attacker creates a pay-to-script-hash transaction that is valid as seen by old software, but invalid for new implementation, and sends themselves some coins using it.
-2. Attacker also creates a standard transaction that spends the pay-to-script transaction, and pays the victim who is running old software.
-3. Attacker mines a block that contains both transactions.
+1. Attacker also creates a standard transaction that spends the pay-to-script transaction, and pays the victim who is running old software.
+1. Attacker mines a block that contains both transactions.
 
 If the victim accepts the 1-confirmation payment, then the attacker wins because both transactions will be invalidated when the rest of the network overwrites the attacker's invalid block.
 
