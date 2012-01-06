@@ -52,9 +52,11 @@ Signature operations in the {serialized script} shall contribute to the maximum 
 
 Examples:
 
-	{2 [[pubkey1]] [[pubkey2]] [[pubkey3]] 3 OP_CHECKMULTISIG} : +3 signature operations
++3 signature operations:
+	{2 [[pubkey1]] [[pubkey2]] [[pubkey3]] 3 OP_CHECKMULTISIG}
 
-	{OP_CHECKSIG OP_IF OP_CHECKSIGVERIFY OP_ELSE OP_CHECKMULTISIGVERIFY OP_ENDIF} : +22 signature operations
++22 signature operations
+	{OP_CHECKSIG OP_IF OP_CHECKSIGVERIFY OP_ELSE OP_CHECKMULTISIGVERIFY OP_ENDIF}
 
 ##Rationale
 
