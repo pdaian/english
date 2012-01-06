@@ -47,8 +47,8 @@ For example, the scriptPubKey and corresponding scriptSig for a one-signature-re
 Signature operations in the {serialized script} shall contribute to the maximum number allowed per block (20,000) as follows:
 
 1. OP_CHECKSIG and OP_CHECKSIGVERIFY count as 1 signature operation, whether or not they are evaluated.
-2. OP_CHECKMULTISIG and OP_CHECKMULTISIGVERIFY immediately preceded by OP_1 through OP_16 are counted as 1 to 16 signature operation, whether or not they are evaluated.
-3. All other OP_CHECKMULTISIG and OP_CHECKMULTISIGVERIFY are counted as 20 signature operations.
+1. OP_CHECKMULTISIG and OP_CHECKMULTISIGVERIFY immediately preceded by OP_1 through OP_16 are counted as 1 to 16 signature operation, whether or not they are evaluated.
+1. All other OP_CHECKMULTISIG and OP_CHECKMULTISIGVERIFY are counted as 20 signature operations.
 
 Examples:
 
