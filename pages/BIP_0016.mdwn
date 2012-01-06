@@ -9,7 +9,7 @@
 
 ##Abstract
 
-This BIP describes a new "standard" transaction type for the [Bitcoin scripting system](https://en.bitcoin.it/wiki/Script), and defines additional validation rules that apply only to the new transactions.
+This BIP describes a new "standard" transaction type for the Bitcoin scripting system, and defines additional validation rules that apply only to the new transactions.
 
 ##Motivation
 
@@ -34,8 +34,8 @@ Transactions that redeem these pay-to-script outpoints are only considered stand
 The rules for validating these outpoints when relaying transactions or considering them for inclusion in a new block are as follows:
 
 1. Validation fails if there are any operations other than "push data" operations in the scriptSig.
-2. Normal validation is done: an initial stack is created from the signatures and {serialized script}, and the hash of the script is computed and validation fails immediately if it does not match the hash in the outpoint.
-3. {serialized script} is popped off the initial stack, and the transaction is validated again using the popped stack and the deserialized script as the scriptPubKey.
+1. Normal validation is done: an initial stack is created from the signatures and {serialized script}, and the hash of the script is computed and validation fails immediately if it does not match the hash in the outpoint.
+1. {serialized script} is popped off the initial stack, and the transaction is validated again using the popped stack and the deserialized script as the scriptPubKey.
 
 These same rules shall be applied when validating transactions in blocks with timestamps after February 15, 2012 (see the Backwards Compatibility section for details).
 
