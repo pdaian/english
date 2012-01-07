@@ -1,8 +1,10 @@
 P2Pool is a decentralized [[Bitcoin]] [[mining pool|Bitcoin_Pool]] that works by creating a P2P network of miner nodes.
 
-These nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself. There is no central point of failure, making it DoS resistant.
+Decentralized payout pooling solves the problem of centralized mining pools degrading the decentralization of Bitcoin, avoids the risk of difficult to detect theft by pool operators, and is has better fundamental resistance to DOS attacks than centralized pools.
 
-Miners are configured to connect to a P2Pool node that can be run locally, alongside the miner.
+Miners are configured to connect to a P2Pool node that can be run locally, alongside the miner. P2Pool users must run a full bitcoin node which serves the purpose of the purpose of independently validating transactions and the bitcoin blockchain. P2Pool also supports merged mining and several alternative blockchains.
+
+P2Pool nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself.
 
 ## Overview
 
