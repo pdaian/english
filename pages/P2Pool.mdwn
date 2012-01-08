@@ -7,6 +7,8 @@ Miners are configured to connect to a P2Pool node that can be run locally, along
 
 P2Pool nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself.
 
+Because of the importance of strengthening Bitcoin's decentralization some Bitcoin supporters donate to P2Pool miners, resulting in payouts above 100% of the expected reward.  
+
 ## Overview
 
 P2Pool shares form a "sharechain" with each share referencing the previous share's hash. Each share contains a standard Bitcoin block header, some P2Pool-specific data that is used to compute the generation transaction (total subsidy, payout script of this share, a nonce, the previous share's hash, and the current target for shares), and a merkle branch linking that generation transaction to the block header's merkle hash.
