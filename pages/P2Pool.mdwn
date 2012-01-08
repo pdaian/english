@@ -27,6 +27,21 @@ A subsidy of 0.5% is sent to the node that solved the block in order to discoura
 
 In the event that a share qualifies as a block, this generation transaction is exposed to the Bitcoin network and takes effect, transferring each node its payout.
 
+### Stales
+
+P2Pool stales don't work the same way as stales on centralized pools. On a centralized pool a stale is work which is too old to be accepted by the pool's bitcoin node, this kind of stale is very rare in P2Pool because each user runs their own local bitcoin.
+
+On P2Pool stales refer to shares which can't make it into the sharechain.  Because the sharechain is 60 times faster than the bitcoin chain many stales are common and expected. However, because the payout is PPLNS the absolute amount of of stales is irrelevant, only your stale rate relative to other nodes.
+
+The P2Pool console output shows your relative stale rate compared to other P2Pool miners in the 'Own efficiency' column:
+<pre>
+2012-01-07 20:57:51.797420 Pool stales: 13% Own: 13±2% Own efficiency: 100±2%
+</pre>
+
+When you first start P2Pool claimed efficiency will be low and the error bounds on this estimate will be large, but as it runs the numbers will converge to their correct values.
+
+If your efficiency is unusually low, make sure your network connection isn't overloaded, that your miners support long polling and are not set to work for excessive amounts of time, and that your bitcoin has multiple connections.
+
 ## Joining the pool
 
 Follow these steps to join the pool:
@@ -188,9 +203,9 @@ The *mode* is 0 for low-bandwidth mode, which sends the hash of a share first be
 
 ##History
 
-This project was announced on June 17, 2011 by Forrest Voight (17.1).
+This project was announced on June 17, 2011 by Forrest Voight (18.1).
 
-The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (17.2).
+The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (18.2).
 
 The software author's address for donations can be found in the signature section of his [forum profile](http://forum.bitcoin.org/index.php?action=profile;u=6447).
 
@@ -219,8 +234,8 @@ If you decide to donate you should announce it on the forums so that your donati
 
 ##References
 
-17.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
-17.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
+18.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
+18.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
 
 
 [[!tag "Pool_Operators"]]
