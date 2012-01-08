@@ -71,6 +71,8 @@ Dependencies if running from source:
 
 This is all for the latest p2pool version, as it includes several new workarounds. With all miners, using a high FPS target (100?) or a low aggression, and waiting for p2pool to completely start (line shows > 35000 shares) helps a lot with reducing stales.
 
+P2Pool uses higher difficulty shares than most centerlized pools, so you'll see fewer shares reported. This is normal and doesn't reduce your payments.  It's also normal to see longpoll messages once per every ten seconds on average.
+
 #### Works as-is
 
 ##### cgminer
