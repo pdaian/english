@@ -75,12 +75,13 @@ It's also a good idea to encrypt the Home directory of whatever user you run Bit
 (instructions from [(1)](http://bodhizazen.net/Tutorials/Ecryptfs/#Migrate))
 
 ###Mac
+This solution **does not scale**; the amount of needed space can grow beyond the image size.
 
-#####Backup all data (1000MB)
+#####Backup all data
 Follow these instructions to backup all the bitcoin data (wallet and block chains) to an encrypted disk image.
 
 1. Open Disk Utility
-1. Click New Image and choose 1000MB, 128-bit or 256-bit (faster or more secure) encryption and single partition.
+1. Click New Image and choose a big enough size, 128-bit or 256-bit (faster or more secure) encryption and single partition.
 1. Save it somewhere you won't lose it (like your Wuala, Dropbox, Strongspace or whatever)
 1. Choose a safe and strong password
 1. Move everything from ~/Library/Application Support/Bitcoin/ to the image
@@ -89,11 +90,11 @@ Follow these instructions to backup all the bitcoin data (wallet and block chain
 
 Don't forget to mount your image before using Bitcoin and unmount after quitting it.
 
-#####Backup just wallet.dat (40MB)
+#####Backup just wallet.dat
 Follow these instructions to backup just the wallet.dat file. This results in a smaller disk image, but it's more complicated to do.
 
 1. Open Disk Utility
-1. Click New Image and choose 40MB, 128-bit or 256-bit (faster or more secure) encryption and single partition.
+1. Click New Image and choose a big enough size, 128-bit or 256-bit (faster or more secure) encryption and single partition.
 1. Save it somewhere you won't lose it (like your Wuala, Dropbox, Strongspace or whatever)
 1. Choose a safe and strong password
 1. Move your wallet.dat file to the image
