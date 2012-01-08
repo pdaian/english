@@ -1,8 +1,9 @@
+[[!img "P2pool_chain.png‎" size=120x120 size=350x350 class="right" title="Visualization of the P2Pool share chain"]]
 P2Pool is a decentralized [[Bitcoin]] [[mining pool|Bitcoin_Pool]] that works by creating a P2P network of miner nodes.
 
 Decentralized payout pooling solves the problem of centralized mining pools degrading the decentralization of Bitcoin, avoids the risk of difficult to detect theft by pool operators, and is has better fundamental resistance to DOS attacks than centralized pools.
 
-Miners are configured to connect to a P2Pool node that can be run locally, alongside the miner. P2Pool users must run a full bitcoin node which serves the purpose of the purpose of independently validating transactions and the bitcoin blockchain. P2Pool also supports merged mining and several alternative blockchains.
+Miners are configured to connect to a P2Pool node that can be run locally, alongside the miner. P2Pool users must run a full Bitcoin node which serves the purpose of the purpose of independently validating transactions and the bitcoin blockchain. P2Pool also supports merged mining and several alternative blockchains.
 
 P2Pool nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself.
 
@@ -29,6 +30,8 @@ In the event that a share qualifies as a block, this generation transaction is e
 Follow these steps to join the pool:
 
 * Run bitcoin with the RPC interface enabled: put rpcuser=USER, rpcpassword=PASS, and server=1 in bitcoin.conf
+	* Bitcoin 0.5 or later is required
+	* It's important that your Bitcoin client be fully synchronized before starting. It's also better if you have the bitcoin port forwarded
 * Download p2pool:
 	* Windows binary: See http://forum.bitcoin.org/index.php?topic=18313.0
 	* Source download: https://github.com/forrestv/p2pool/tags
