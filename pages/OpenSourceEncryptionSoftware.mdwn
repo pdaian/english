@@ -50,6 +50,28 @@ openssl enc -d -aes256 -in wallet.aes256 -out wallet.dat
 
 There is a small shell script that automates the whole process of 1) decrypting wallet 2) launching Bitcoin 3) encrypting the wallet afterwards and cleaning up the unencrypted bits. [bitcoin-launch-script](http://lorelei.kaverit.org/bitcoin.sh)
 
+##CCrypt
+###Description
+`CCrypt` is a linux command-line utility by Peter Selinger (selinger at [(1)](http://users.sourceforge.net)) that replaces the Unix `crypt` command. `CCrypt` is much more secure than `crypt`, utilizing the same encryption algorithm as AES and SSL (Rijndael block cipher), the algorithm used by the US government and the banking industry. The command line syntax for ccrypt is a bit simpler
+###Download
+Visit [(1)](http://ccrypt.sourceforge.net)
+
+or in a debian linux flavor just execute
+
+	sudo apt-get install ccrypt
+
+###Examples
+To encrypt your wallet:
+
+	ccrypt ~/.bitcoin/wallet.dat
+
+To decrypt the file created above:
+
+	ccdecrypt ~/.bitcoin/wallet.dat.cpt
+
+or 
+	ccrypt -d ~/.bitcoin/wallet.dat.cpt
+
 ###FAQ
 [FAQ](http://www.openssl.org/support/faq.html)
 ###HomePage
