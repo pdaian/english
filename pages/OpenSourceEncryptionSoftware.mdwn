@@ -52,7 +52,8 @@ There is a small shell script that automates the whole process of 1) decrypting 
 
 ##CCrypt
 ###Description
-`CCrypt` is a linux command-line utility by Peter Selinger (selinger at [(1)](http://users.sourceforge.net)) that replaces the Unix `crypt` command. `CCrypt` is much more secure than `crypt`, utilizing the same encryption algorithm as AES and SSL (Rijndael block cipher), the algorithm used by the US government and the banking industry. The command line syntax for ccrypt is a bit simpler
+`CCrypt` is a linux command-line utility by Peter Selinger[(1)](http://users.sourceforge.net) that replaces the Unix `crypt` command. `CCrypt` is much more secure than `crypt`, utilizing the same encryption algorithm as AES and SSL (the Rijndael block cipher). This is the same algorithm used by the US government as well as the commercial banking industry. The command line syntax for ccrypt is a bit simpler than openssl because it doesn't require the user to select an encryption algorithm or name the output file, just specify the encryption direction (encrypt or decrypt).
+
 ###Download
 Download the source code version of your choice at [downloads](http://ccrypt.sourceforge.net) such as [v1.9](http://ccrypt.sourceforge.net/download/ccrypt-1.9.tar.gz)
 
