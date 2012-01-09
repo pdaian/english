@@ -311,6 +311,44 @@ computing power, they can always outpace an attacker.
 
 Also see [SHA2](http://en.wikipedia.org/wiki/SHA2) and [Proof-of-work system](http://en.wikipedia.org/wiki/Proof-of-work_system) on Wikipedia.
 
+##Security
+
+###Could miners collude to give themselves money or to fundamentally change the nature of BitCoin?
+
+There are two questions in here.  Let's look at them separately.
+
+**Could miners gang up and give themselves money?**
+
+Mining itself is the process of creating new blocks in the block chain.  Each block contains a list of all the transactions that have taken place across the entire BitCoin network since the last block was created, as well as a hash of the previous block.  New blocks are 'mined', or rather, generated, by  BitCoin clients correctly guessing sequences of characters in codes called 'hashes,' which are created using information from previous blocks.  BitCoin users may download specialized 'mining' software, which  allows them to dedicate some amount of their processing power – however large or small – to guessing at strings within the hash of the previous block.  Whoever makes the right guess first, thus creating a new block, receives a reward in BitCoins.
+	
+The block chain is one of the two structures that makes BitCoin secure, the other being the public-key encryption system on which BitCoin trade is based.  The block chain assures that not only is every single transaction that ever takes place recorded, but that every single transaction is recorded on the computer of anyone who chooses to store the relevant information.  Many, many users have complete records of every transaction in BitCoins history readily available to them at any point, and anyone who wants in the information can obtain it with ease.  These things make BitCoin very hard to fool.
+
+The BitCoin network takes considerable processing power to run, and since those with the most processing power can make the most guesses, those who put the most power toward to sustaining the network earn the most currency.  Each correct guess yields, at present, fifty BitCoins, and as BitCoins are presently worth something (although the value still fluctuates) every miner who earns any number of BitCoins makes money.  Some miners pull in BitCoins on their own; and some also join or form pools wherein all who contribute earn a share of the profits.  
+	
+Therefore, first answer is a vehement “yes”  – no only can miners collude to get more money, BitCoin is designed to encourage them to do so.  BitCoin pools are communal affairs, and there is nothing dishonest or underhanded about them.
+
+Of course, the real question is:
+
+**Can they do so in ways not sanction by BitCoin developers?  Is there any way to rip off the network and make loads of money dishonestly?**
+
+BitCoin isn't infallible.  It can be cheated.  But doing so is extremely difficult.  BitCoin was designed to evade some of the central problems with modern currencies – namely, that their trustworthiness hinges upon that of people who might not have user's best interests in mind.  Every currency in the world (other than BitCoin) is controlled by large institutions who keep track of what's done with done with it, and who can manipulate it's value.  And every other currency has value because people trust the institutions that control them.
+
+BitCoin doesn't ask that it users trust any institution.  Its security is based on the cryptography that is an integral part of its structure, and that is readily available for any and all to see.  Instead of one entity keeping track of transactions, the entire network does, so BitCoins are astoundingly difficult to steal, or double-spend. BitCoins are created in a regular and predictable fashion, and by many different users, so no one can decide to make a whole lot more and lessen their value.  In short, BitCoin is designed to be inflation-proof, double-spend-proof and completely distributed.
+
+Nonetheless, there are a few ways that one can acquire BitCoins dishonestly.  Firstly, one can steal private keys.  Key theft isn't something that BitCoin security has been designed to prevent: it's up to users to keep their's safe.  But the cryptography is designed so that it is completely impossible to deduce someone's private from their public one.  So long as you keep your private key to yourself, you don't have much to worry about.  Furthermore, one could theoretically create a new block chain, but due to the way in which the block chain is constructed, this would be extremely difficult and require massive amounts of processing power.  A full explanation of the difficulties involved can be found here (link to the block chain article.)
+
+BitCoin can be ripped off – but doing so would be extremely hard and require considerable expertise and a staggering amount of processing power.  And it's only going to get harder with the passage of time.  BitCoin is isn't impenetrable, but it's close enough to put any real worries in the peripherals.
+	
+**Could miners fundamentally change the nature of BitCoin?**
+
+Once again, almost certainly not.
+
+BitCoin is a distributed network, so any changes implemented to the system must be accepted by all users.  Someone trying to change the way BitCoins are generated would have to convince every user to download and use their software – so the only changes that would go through are those that would be equally benefit all users. 
+
+And thus, it is more or less impossible for any person to change the function of BitCoin to their advantage.  If users don't like the changes, they won't take, and if uses do like them, then they'll help everyone equally.  Of course, one can conceive of a situation where someone manages to get a change pushed through that provides them with an advantage that no one notices, but given that BitCoin is structurally relatively simple, it is unlikely that any major changes will go through without someone noticing first.
+
+The fact that such changes are so difficult to make testifies to the fully distributed nature of BitCoin.  Any centrally-controlled currency can be modified by its central agency without the consent of its adherents.  BitCoin has no central authority, so it changes only at the behest of the whole community.  BitCoins development represents a kind of collective evolution; the first of its kind among currencies.  
+
 ##Help
 ###I'd like to learn more.  Where can I get help?
 
