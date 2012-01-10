@@ -366,6 +366,18 @@ https://mtgox.com/api/1/generic/private/orders
 	
 returns information about your current open orders
 
+#### Submit an order
+
+https://mtgox.com/api/1/BTCUSD/private/order/add
+
+parameters: 
+
+* type (bidask)
+* amount_int <amount as int>
+* price_int <price as int> (can be omitted to place market order)
+	
+submits an order and returns info about success or error
+
 #### Currency information
 
 https://mtgox.com/api/1/generic/public/currency
@@ -381,7 +393,7 @@ https://mtgox.com/api/1/generic/public/hotp_gen
 used to generate a new HOTP key ( useful for developpers )
 
 ## Streaming API
-Real time streaming data may be obtained over the streaming API, implemented in [Socket.io](http://socket.io/) (37.1). The original WebSocket API (37.2) is deprecated as of 11-Nov-2011.
+Real time streaming data may be obtained over the streaming API, implemented in [Socket.io](http://socket.io/) (38.1). The original WebSocket API (38.2) is deprecated as of 11-Nov-2011.
 
 ###Connecting
 The following JavaScript code establishes a connection in the browser:
@@ -620,5 +632,5 @@ https://github.com/dlanod/node-mtgox-websocket-client
 
 ## References
 <references></references>
-37.1: Socket.io forum announcement by MagicalTux: https://bitcointalk.org/index.php?topic=14412.msg613271#msg613271  
-37.2: Original WebSocket thread: https://bitcointalk.org/index.php?topic=5855.msg86219
+38.1: Socket.io forum announcement by MagicalTux: https://bitcointalk.org/index.php?topic=14412.msg613271#msg613271  
+38.2: Original WebSocket thread: https://bitcointalk.org/index.php?topic=5855.msg86219
