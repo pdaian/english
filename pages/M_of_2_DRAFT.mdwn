@@ -59,7 +59,7 @@ scriptHash = Hash160((1 + CastToBigNum(pubKey1) + CastToBigNum(pubKey2) + 2);
 
 Although it may appear insecure totalling the sum of the public keys this is not actually the case. 
 
-The resulting target number is a massively large uint256 which you could theoretically brute force using as follows:
+The resulting target is a massively large uint256 number which you could theoretically brute force using as follows:
 
 <pre>uint256 target = 0;
 uint256 nonce = 0;
