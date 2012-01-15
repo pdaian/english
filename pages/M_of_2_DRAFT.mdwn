@@ -53,7 +53,7 @@ This proposal only supports A + B or A or B split key transactions.
 
 Where scriptHash must be constructed in the following manor.
 
-scriptHash = HASH160(1 + BIGNUM(pubKey1) + BIGNUM(pubKey2) + 2);
+scriptHash = Hash160((1 + CastToBigNum(pubKey1) + CastToBigNum(pubKey2) + 2);
 
 ##Rationale
 
