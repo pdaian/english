@@ -1,5 +1,18 @@
 Recently there have been a number of proposals for bitcoin clients which do not store a copy of the entire block chain.  I will refer to all such clients as "thin clients".  This page is meant to be a place to try to make sense of the security and trust implications of the various schemes.
 
+## Thin Client Strategies
+
+### Simplified Payment Verification
+
+This scheme is described in section 8 of the [original bitcoin whitepaper](http://bitcoin.org/bitcoin.pdf).
+
+### BCCAPI
+
+Clients are vulnerable to a double-spend attack against them by the server.  Therefore, they are implicitly trusting it.
+
+### Electrum
+
+Clients are vulnerable to a double-spend attack against them by the server.  Therefore, they are implicitly trusting it.
 
 ## Other
 
