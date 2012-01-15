@@ -77,7 +77,7 @@ while(SHA256(nonce) + SHA256(nonceTwo) != target) {
   nonceTwo = rand();
 } </pre>
 
-What does affect security is ability to adjust M (either 1 or 2) without needing to generate a new SHA256 pair. The effectively halves the key space to 2^255 keys however it is still far far out of the realm of brute force possibility.
+What does affect security is ability to adjust M (either 1 or 2) without needing to generate a new SHA256 pair. This effectively halves the key space to 2^255 keys however it is still far far out of the realm of brute force possibility.
 
 ##Rationale
 
