@@ -2,7 +2,7 @@
   BIP: 17
   Title: OP_NO_SKIP
   Author: Ben Reeves <support@pi.uk.com>
-  Status: Draft
+  Status: Rejected
   Type: Standards Track
   Created: 14-01-2012
 </pre>
@@ -103,6 +103,17 @@ If a majority of hashing power does not support the new validation rules, then r
 ##Reference Implementation
 
 https://github.com/zootreeves/bitcoin/commits/master
+
+##Reason for Rejection
+
+Any miner can easily confiscate transactions by replacing the legitmate signature script:
+
+	OP_0  <sig> OP_NO_SKIP <OP_SWAP {1 [[pubkey1]] [[pubkey2]] 2} >
+
+with 
+
+	<OP_SWAP {1 [[pubkey1]] [[pubkey2]] 2} > OP_0 <miner's_sig> OP_1 <miner's_pubkey> OP_1
+
 ##See Also
 
 * https://bitcointalk.org/index.php?topic=46538
