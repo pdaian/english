@@ -62,7 +62,7 @@ OP_NO_SKIP is designed to be a simple compromise that enables pay to script func
 
 These transactions are non-standard to old implementations, which will (typically) not relay them or include them in blocks.
 
-Old implementations will push the script onto the stack and verify it;s hash value matches, but will do no other validation. New client will push the script on to the stack AND execute it.
+Old implementations will push the script onto the stack and verify it's hash value matches, but will do no other validation. New client will push the script on to the stack AND execute it.
 
 Avoiding a block-chain split by malicious pay-to-script transactions requires careful handling of one case:
 
