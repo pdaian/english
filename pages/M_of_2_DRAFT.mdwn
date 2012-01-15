@@ -74,7 +74,7 @@ Just because you can have two nonces doesn't make it any easier.
 <pre>uint256 target = 0;
 uint256 nonce = 0;
 uint256 nonceTwo = 0;
-while(SHA256(nonce) + SHA256(nonce) != target) {
+while(SHA256(nonce) + SHA256(nonceTwo) != target) {
   ++nonce;
   nonceTwo = rand();
 } </pre>
