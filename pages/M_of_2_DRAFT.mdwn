@@ -19,7 +19,7 @@ The purpose of this proposal is to provide split key wallet functionality withou
 
 A new standard scriptPubKey will be defined:
 
-	OP_2OVER OP_2OVER OP_ADD OP_ADD OP_ADD <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
+	OP_2OVER OP_2OVER OP_ADD OP_ADD OP_ADD OP_HASH160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
 
 Redeemed by a new standard scriptSig
 
