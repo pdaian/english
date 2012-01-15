@@ -13,9 +13,11 @@ These client downloads a complete copy of the headers for all blocks in the enti
 This scheme is described in section 8 of the [original bitcoin whitepaper](http://bitcoin.org/bitcoin.pdf).
 
 
-#### Block Depth as a Transaction Validity Check
+### Block Depth as a Transaction Validity Check
 
-As Satoshi writes, "[thin client](the) can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it."  If we take "X" to be the "number of blocks added after it", then SPV essentially trusts that a transaction X blocks deep in the chain does not have inputs which were already spent further back in the chain.  This is very different from the trust model in the "thick" client: the thick client verifies that a transaction's inputs are unspent by actually checking the whole chain up to that point -- there is no "X blocks deep" involved here.  The thick client uses "X blocks deep" (aka "confirmations") only once it has already decided that a transaction is valid (i.e. no double-spends).  At that point it uses "X blocks deep" to decide how likely it is that a longer fork in the chain will emerge which excludes that transaction.
+As Satoshi writes, "[thin client](the) can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it."  If we take "X" to be the "number of blocks added after it", then SPV essentially trusts that a transaction X blocks deep in the chain does not have inputs which were already spent further back in the chain.  Other thin client protocols also include this assumption.
+
+This is very different from the trust model in the "thick" client: the thick client verifies that a transaction's inputs are unspent by actually checking the whole chain up to that point -- there is no "X blocks deep" involved here.  The thick client uses "X blocks deep" (aka "confirmations") only once it has already decided that a transaction is valid (i.e. no double-spends).  At that point it uses "X blocks deep" to decide how likely it is that a longer fork in the chain will emerge which excludes that transaction.
 
 It is very important to understand how the same property ("X blocks deep") is used to verify two different properties in the thick client and SPV cases.  **The thick client never uses block depth as a measure of transaction validity; the SPV client does**.
 
