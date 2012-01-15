@@ -30,11 +30,11 @@ OP_NOP1 will be redefined as OP_NO_SKIP and will behave as follows:
 
 Additionally a new standard scriptPubKey will be defined:
 
-	OP_HASH160 [[20-byte-hash-value]] OP_EQUAL
+	OP_CHECKMULTISIGVERIFY OP_HASH160 [[20-byte-hash-value]] OP_EQUAL
 
 Redeemed by a new standard scriptSig (M-of-N)
 
-	OP_0  <sig> OP_NO_SKIP <OP_SWAP {1 [[pubkey1]] [[pubkey2]] 2} OP_CHECKMULTISIGVERIFY>
+	OP_0  <sig> OP_NO_SKIP <OP_SWAP {1 [[pubkey1]] [[pubkey2]] 2}>
 
 ##Example Execution
 
