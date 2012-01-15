@@ -70,13 +70,13 @@ Pay to script example:
 
 ##Rationale
 
-This BIP replaces BIP 12 ("P2SH") and BIP 16, ("OP_EVAL").
+This BIP replaces BIP 12 ("OP_EVAL") and BIP 16, ("/P2SH/").
 
 The rationale for pay to script functionality has been discussed in the other proposals, the general consensus is this functionality is desired and should be implemented ASAP.
 
 A number of potential issues have been found with the proposals thus far:
 
-* CHV/CHC require the scriptPubKey interacts with data from scriptSig which has not been push onto the stack
+* CHV require the scriptPubKey interacts with data from scriptSig which has not been push onto the stack
 * OP_EVAL essentially makes the scripting language turing complete, something which Satoshi deliberately avoided during its design. 
 * P2SH requires that standard templates become a mandatory part of the scripting language, meaning they can never be fully depreciated in future.
 
