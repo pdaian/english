@@ -57,12 +57,12 @@ Pay to script example:
 
 |Stack |Code
 |---|---
-||32 <sig>OP_NO_SKIP 22 <OP_SWAP [[pubkey]]OP_CHECKSIG> OP_HASH160 20 <scriptHash>OP_EQUAL 
-|<sig>|OP_NO_SKIP 22 <OP_SWAP [[pubkey]]OP_CHECKSIG> OP_HASH160 20 <scriptHash>OP_EQUAL 
-|<sig>|22 <OP_SWAP [[pubkey]]OP_CHECKSIG> OP_HASH160 20 <scriptHash>OP_EQUAL 
-|<sig><OP_SWAP [[pubkey]]OP_CHECKSIG> |OP_SWAP [[pubkey]]OP_CHECKSIG OP_HASH160 20 <scriptHash>OP_EQUAL 
-|<OP_SWAP [[pubkey]]OP_CHECKSIG> <sig>|[[pubkey]]OP_CHECKSIG OP_HASH160 20 <scriptHash>OP_EQUAL 
-|<OP_SWAP [[pubkey]]OP_CHECKSIG> |OP_HASH160 20 <scriptHash>OP_EQUAL 
+||32 <sig>OP_NO_SKIP 22 <OP_SWAP 1 [[pubkey]]2> OP_CHECKMULTISIGVERIFY OP_HASH160 20 <scriptHash>OP_EQUAL 
+|<sig>|OP_NO_SKIP 22 <OP_SWAP 1 [[pubkey]]2> OP_CHECKMULTISIGVERIFY  OP_HASH160 20 <scriptHash>OP_EQUAL 
+|<sig>|22 <OP_SWAP 1 [[pubkey]]2> OP_CHECKMULTISIGVERIFY OP_HASH160 20 <scriptHash>OP_EQUAL 
+|<sig><OP_SWAP 1 [[pubkey]]2> |OP_SWAP 1 [[pubkey]]2 OP_CHECKMULTISIGVERIFY OP_HASH160 20 <scriptHash>OP_EQUAL 
+|<OP_SWAP 1 [[pubkey]]2> <sig>|1 [[pubkey]]2 OP_CHECKMULTISIGVERIFY OP_HASH160 20 <scriptHash>OP_EQUAL 
+|<OP_SWAP 1 [[pubkey]]2> |OP_HASH160 20 <scriptHash>OP_EQUAL 
 |<scriptHashA>|20 <scriptHash>OP_EQUAL 
 |<scriptHashA><scriptHash>|OP_EQUAL 
 |1 |
