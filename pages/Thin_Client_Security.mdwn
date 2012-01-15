@@ -23,9 +23,9 @@ It is very important to understand how the same property ("X blocks deep") is us
 
 This is a concern in a situation where an SPV client is subjected to a double-spend attack by somebody who controls its network connection.  For example, suppose you are at a wi-fi cafe and are paying for something using your smartphone -- the cafe owner controls your network connection.  Satoshi acknowledges this implicitly when he writes that "the verification is reliable as long as honest nodes control the network" -- to be completely pedantic, this means that the verification is reliable as long as honest nodes control **the part of the network that the SPV client is able to communicate with**.  In an attack-by-ISP scenario this may not be a sufficiently strong security property.  The attacker would not need to overpower "the rest of the network" because the client is unable to communicate with it.
 
-### Unused Output Tree in the Blockchain
+### Unused Output Tree in the Blockchain (UOT)
 
-There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell) to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).
+There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell, who called it an "open transaction tree", although this nomenclature is in conflict with other uses of "open" in the codebase) to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).
 
 If such hashes were included in the blockchain it would let a thin client reduce the question of "is this output unspent" to the question of "is this block super-valid" where "super-valid" means "valid according to the normal blockchain rules and additionally has an Unused Output Tree which is accurate and truthful".  This is still a long way from the low level of trust involved in the thick client, but it is a major improvement over all existing proposals.
 
