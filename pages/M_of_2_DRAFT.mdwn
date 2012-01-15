@@ -57,7 +57,7 @@ scriptHash = Hash160((1 + CastToBigNum(pubKey1) + CastToBigNum(pubKey2) + 2);
 
 ##Security
 
-Although it may appear insecure taking the sum of the to public keys this is not the case. The resulting number is a massively large unit256.
+Although it may appear insecure totalling the sum of the public keys this is not actually the case. The resulting number is a massively large unit256.
 
 For example if you wanted to find a SHA256 public key matching a target number you could theoretically brute force it as follows:
 
