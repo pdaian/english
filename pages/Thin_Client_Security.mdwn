@@ -4,7 +4,7 @@ Recently there have been a number of proposals for bitcoin clients which do not 
 
 The "thick" bitcoin client downloads a copy of the entire chain, including all transactions (not just headers).  It will be used as the reference point for security comparisions below.
 
-## Chain-Header-Only Clients
+## Header-Only Clients
 
 These client downloads a complete copy of the headers for all blocks in the entire blockchain.  This means that the download and storage requirements scale linearly with the amount of time since bitcoin was invented; it would be preferable to have the scaling be logarithmic or even constant.
 
