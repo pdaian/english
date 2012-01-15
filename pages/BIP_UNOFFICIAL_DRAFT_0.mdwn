@@ -42,6 +42,20 @@ or (M-of-N)
 
 ##Example Execution
 
+
+
+
+|Stack |Code
+|---|---
+||OP_NO_SKIP OP_PUSHDATA1 1 OP_1NEGATE OP_EQUAL
+||OP_PUSHDATA1 1 OP_1NEGATE  OP_ADD
+|79 |OP_1NEGATE OP_ADD
+|79 -1 |OP_ADD
+|78 |
+
+
+
+
 http://pastehtml.com/view/bkqo1blp8.html
 
 ##Rationale
