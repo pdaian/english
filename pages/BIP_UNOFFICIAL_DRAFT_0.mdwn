@@ -26,7 +26,7 @@ The benefit is allowing a sender to fund any arbitrary transaction, no matter ho
 OP_NOP1 will be redefined as OP_NO_SKIP and will behave as follows:
 
 * OP_NO_SKIP remains a null op on its own. 
-* Any "push data" operation immediately following an OP_NO_SKIP will push the data onto the stack as normal but will not advance the instruction pointer i.e. the data will be pushed onto the stack and execute after.
+* Any "push data" operation immediately following an OP_NO_SKIP will push the data onto the stack as normal but will not advance the instruction pointer i.e. the data will be pushed onto the stack and executed after.
 
 Additionally a new standard scriptPubKey will be defined:
 
