@@ -24,7 +24,12 @@ This is a concern in a situation where an SPV client is subjected to a double-sp
 
 #### [[BitcoinJ]]
 
-Simplified Payment Verification is the verification mechanism used in [[BitCoinJ]]
+Simplified Payment Verification is the verification mechanism used in [[BitCoinJ]].
+
+A security analysis of some of the issues in BitcoinJ can be found [here](http://code.google.com/p/bitcoinj/wiki/SecurityModel); however:
+
+* The claim that "picking 10 nodes and requiring all of them to be consistent needs much less trust" overlooks the problem of ["cancer nodes"](https://en.bitcoin.it/wiki/Weaknesses#Cancer_nodes) and [Sybil attacks](http://en.wikipedia.org/wiki/Sybil_attack).
+* Many of the security claims are qualified by some form of "if you don't think an attacker controls your internet connection".
 
 ### Unused Output Tree in the Blockchain (UOT)
 
