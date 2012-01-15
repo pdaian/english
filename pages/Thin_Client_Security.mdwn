@@ -12,7 +12,6 @@ These client downloads a complete copy of the headers for all blocks in the enti
 
 This scheme is described in section 8 of the [original bitcoin whitepaper](http://bitcoin.org/bitcoin.pdf).
 
-
 ### Block Depth as a Transaction Validity Check
 
 As Satoshi writes, "[thin client](the) can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it."  If we take "X" to be the "number of blocks added after it", then SPV essentially trusts that a transaction X blocks deep in the chain does not have inputs which were already spent further back in the chain.  Other thin client protocols also include this assumption.
