@@ -1,0 +1,1 @@
+This will not work. You demand from the txin (the one claiming the output) to do his own verification, by requiring the OP_NO_SKIP to be in the input. Verification should be enforced by the output. What your standard transaction output does is only check that a particular script was pushed on the stack. It does not require its execution. -- sipa
