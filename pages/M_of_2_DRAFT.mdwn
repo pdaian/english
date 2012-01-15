@@ -55,9 +55,7 @@ Where scriptHash must be constructed in the following manor:
 
 scriptHash = Hash160((1 + CastToBigNum(pubKey1) + CastToBigNum(pubKey2) + 2);
 
-##Example Execution
-
-Security
+##Security
 
 Although it may appear insecure taking the sum of the to public keys this is not the case. The resulting number is a massively large unit256.
 
