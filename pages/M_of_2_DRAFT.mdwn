@@ -1,0 +1,80 @@
+<pre>
+  BIP: 18 (Unofficial)
+  Title: M-of-2 scriptPubKey
+  Author: Ben Reeves <support@pi.uk.com>
+  Status: Draft
+  Type: Standards Track
+  Created: 15-01-2012
+</pre>
+
+##Abstract
+
+This BIP describes a new standard type of ScriptPubKey designed to allow immediate use of split key wallets.
+
+##Motivation
+
+The purpose of this proposal is to provide split key wallet functionality without requiring changes to block validation rules or risking a fork in the blockchain.
+
+##Specification
+
+A new standard scriptPubKey will be defined:
+
+	OP_2OVER OP_2OVER OP_ADD OP_ADD OP_ADD <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
+
+Redeemed by a new standard scriptSig
+
+	OP_0  <sig> 1 [[pubkey]] [[pubkey]] 2
+
+This proposal only supports A + B or A or B split key transactions.
+
+##Use Cases
+
+* Split key wallets
+
+* Escrow Services - The author does not believe that (A + B) or C scripts are required for escrow transactions. Both parties must trust the holder of C anyway so that can party can instead hold A and B. The holders of A and B can either reach an agreement themselves or party C can act as the final arbitrator using A and B together.
+
+##Example Execution
+
+
+
+|Stack |Code
+|---|---
+||<sig>1 [[pubkey]][[pubkey]]2 OP_2OVER OP_2OVER OP_ADD OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey]][[pubkey]]2 |OP_2OVER OP_2OVER OP_ADD OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey]][[pubkey]]2 1 [[pubkey]]|OP_2OVER OP_ADD OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey]][[pubkey]]2 1 [[pubkey]][[pubkey]]2 |OP_ADD OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey]][[pubkey]]2 1 [[pubkey]]<sumA>|OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey]][[pubkey]]2 1  <sumB>|OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey]][[pubkey]]2 <sumC>|OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey]][[pubkey]]2 <scriptHashA><scriptHash>|OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey]][[pubkey]]2 |OP_CHECKMULTISIG
+|1 |
+
+
+Where scriptHash must be constructed in the following manor.
+
+scriptHash = HASH160(1 + BIGNUM(pubKey1) + BIGNUM(pubKey2) + 2);
+
+##Rationale
+
+This BIP replaces BIP 12 ("OP_EVAL") and BIP 16, ("/P2SH/").
+
+The rationale for"pay to script" functionality has been discussed in the other proposals, the general consensus is this functionality is desired and should be implemented ASAP.
+
+A number of potential issues have been found with the proposals thus far:
+
+* CHV requires the scriptPubKey interacts with data from scriptSig which has not been push onto the stack
+* OP_EVAL essentially makes the scripting language turing complete, something which Satoshi deliberately avoided during its design. 
+* P2SH requires that standard templates become a mandatory part of the scripting language, meaning they can never be fully depreciated in future.
+
+All of the these solutions risk a fork in the blockchain and require at least 50% miners approval. This proposal requires no changes to the block validation rules and can be implemented immediately. However it only allows for the most common use cases of pay to script transactions and has limited flexibility. Additionally the resulting scriptPubKey is 3 bytes larger than the standard "pay to address" scriptPubKey in common use, the author does not believe this will significantly effect transaction fees. 
+
+##Backwards Compatibility
+
+This proposal is fully backward compatible.
+
+##See Also
+
+* https://bitcointalk.org/index.php?topic=46538
+* The [[Address format for Pay to Script Hash BIP|BIP_0013]]
+* M-of-N Multisignature Transactions [[BIP 11|BIP_0011]]
