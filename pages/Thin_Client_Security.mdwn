@@ -21,6 +21,18 @@ It is very important to understand how the same property ("X blocks deep") is us
 
 This is a concern in a situation where an SPV client is subjected to a double-spend attack by somebody who controls its network connection.  For example, suppose you are at a wi-fi cafe and are paying for something using your smartphone -- the cafe owner controls your network connection.  Satoshi acknowledges this implicitly when he writes that "the verification is reliable as long as honest nodes control the network" -- to be completely pedantic, this means that the verification is reliable as long as honest nodes control **the part of the network that the SPV client is able to communicate with**.  In an attack-by-ISP scenario this may not be a sufficiently strong security property.  The attacker would not need to overpower "the rest of the network" because the client is unable to communicate with it.
 
+### Unused Output Tree in the Blockchain
+
+There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell) to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).
+
+If such hashes were included in the blockchain it would let a thin client reduce the question of "is this output unspent" to the question of "is this block super-valid" where "super-valid" means "valid according to the normal blockchain rules and additionally has an Unused Output Tree which is accurate and truthful".  This is still a long way from the low level of trust involved in the thick client, but it is a major improvement over all existing proposals.
+
+It is unlikely that bitcoin would ever arrive at a state where every single block had a UOT, since this would require upgrading 100% of the miners on the network, or else convincing enough miners to reject blocks which do not contain a UOT.  The latter strategy risks creating blockchain forks, which can be expensive (in reward terms) to miners.  Therefore, any UOT strategy would need to cope with the fact that not every block contains a UOT.
+
+Hostile miners may insert blocks into the chain which have what claims to be a UOT, but which is actually invalid.  It is unlikely that such blocks could be kept out of the chain because, again, this would require adding a new block validity criterion, and miners implementing this new criterion would risk "mining on the wrong side" of a fork, which could cost them a lot of money.  Therefore, any UOT strategy would need to cope with the fact that not every block containing a UOT entry can be trusted.
+
+Note that at the present moment no standard format for such Unused Output Tree hashes has been agreed upon, nor are do any of the blocks in the chain contain them.
+
 ## Server-Trusting Clients
 
 These clients involve some (usually low) level of trust in the server they rely upon.  Mechanisms for authenticating the server, and for confirming that the server has not been compromised, are usually not explained.
