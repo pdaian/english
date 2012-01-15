@@ -8,9 +8,11 @@ The "thick" bitcoin client downloads a copy of the entire chain, including all t
 
 These client downloads a complete copy of the headers for all blocks in the entire blockchain.  This means that the download and storage requirements scale linearly with the amount of time since bitcoin was invented; it would be preferable to have the scaling be logarithmic or even constant.
 
-### Simplified Payment Verification (SPV)
+### Simplified Payment Verification (SPV), [[BitcoinJ]]
 
 This scheme is described in section 8 of the [original bitcoin whitepaper](http://bitcoin.org/bitcoin.pdf).
+
+This verification mechanism is implemented in [[BitCoinJ]]
 
 ### Block Depth as a Transaction Validity Check
 
