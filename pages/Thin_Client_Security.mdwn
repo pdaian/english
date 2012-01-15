@@ -1,4 +1,4 @@
-Recently there have been a number of proposals for bitcoin clients which do not store a copy of the entire block chain.  I will refer to all such clients as "thin clients".  This page is meant to be a place to try to make sense of the security and trust implications of the various schemes.
+Recently there have been a number of proposals for bitcoin clients which do not store a complete copy of every block in the entire block chain.  This page will refer to all such clients as "thin clients".  This page is meant to be a place to try to make sense of the security and trust implications of the various schemes.
 
 ## Full-Chain Clients
 
@@ -25,9 +25,11 @@ This is a concern in a situation where an SPV client is subjected to a double-sp
 
 ### Unused Output Tree in the Blockchain (UOT)
 
-There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell, who called it an "open transaction tree", although the term "open" is now taken to mean "not yet mined into the blockchain" rather than "unspent") to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).
+There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell, who called it an "open transaction tree", although the term "open" is now taken to mean "not yet mined into the blockchain" rather than "unspent") to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).  This will be called an Unused Output Tree (UOT).
 
-If such hashes were included in the blockchain it would let a thin client reduce the question of "is this output unspent" to the question of "is this block super-valid" where "super-valid" means "valid according to the normal blockchain rules and additionally has an Unused Output Tree which is accurate and truthful".  This is still a long way from the low level of trust involved in the thick client, but it is a major improvement over all existing proposals.
+If such UOT hashes were included in the blockchain, a client which shipped with a [checkpoint](https://en.bitcoin.it/wiki/Vocabulary) block that had a UOT would only need to download blocks after the checkpoint.  Moreover, once the client had downloaded those blocks and confirmed their UOTs, it could discard all but the most recent block containing a UOT.
+
+This would also let a thin client reduce the question of "is this output unspent" to the question of "is this block super-valid" where "super-valid" means "valid according to the normal blockchain rules and additionally has an Unused Output Tree which is accurate and truthful".  This is still a long way from the low level of trust involved in the thick client, but it is a major improvement over all existing proposals.
 
 It is unlikely that bitcoin would ever arrive at a state where every single block had a UOT, since this would require upgrading 100% of the miners on the network, or else convincing enough miners to reject blocks which do not contain a UOT.  The latter strategy risks creating blockchain forks, which can be expensive (in reward terms) to miners.  Therefore, any UOT strategy would need to cope with the fact that not every block contains a UOT.
 
