@@ -67,7 +67,7 @@ uint256 myKeyA = SHA256();
 uint256 myBogusKeyB = 0;
 </pre>
 
-Initially it might seem that you could use a A or B where B is a invalid key:
+Initially it might seem that you could use an A or B where B is a invalid key:
 	
 <pre>
 while(myKeyA + myBogusKeyB != targetScriptHash) {
