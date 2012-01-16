@@ -62,7 +62,7 @@ scriptHash = HASH160(M + pubKey2 + pubKey1 + N);
 Although it may appear insecure totalling the sum of the public keys this is not actually the case. Because the resulting sum is hashed using HASH160 the target value cannot be deduced.
 
 <pre>
-uint256 targetScriptHash = SHA256(); //Need to for
+uint256 targetScriptHash = HASH160(); //Need to for
 uint256 myKeyA = SHA256();
 uint256 myBogusKeyB = 0;
 </pre>
