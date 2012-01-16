@@ -103,9 +103,9 @@ Old clients will not relay transactions using the new template, however they wil
 
 The following is not part of the specification for this proposal but it is worth mentioning that using the same technique you can support both M-of-2 and M-of-3 transactions.
 
-	OP_2OVER OP_2OVER 3 OP_EQUAL OP_IF 3 OP_PICK OP_ADD OP_HASH256 OP_ENDIF OP_ADD OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
+	OP_2OVER OP_2OVER 3 OP_EQUAL OP_IF t OP_ADD OP_ENDIF OP_ADD OP_ADD OP_ADD OP_RIPEMD160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
 
-However this requires 14 bytes of additional op codes.
+However this requires 8 bytes of additional op codes.
 
 ##See Also
 
