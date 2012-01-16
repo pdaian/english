@@ -65,19 +65,21 @@ Although it may appear insecure totalling the sum of the public keys the author 
 uint256 targetScriptHash = HASH160(); 
 uint256 myKeyA = SHA256();
 uint256 myBogusKeyB = 0;
+int n = 2;
+int m = 1;
 </pre>
 
 Initially it might seem that you could use an A or B where B is a invalid key:
 	
 <pre>
-while(M + myKeyA + myBogusKeyB + N != targetScriptHash) {
+while(m + myKeyA + myBogusKeyB + n != targetScriptHash) {
   ++myBogusKeyB;
 }</pre>
 
 However you actually must additionally hash the sum of myKeyA + myBogusKeyB
 
 <pre>
-while(HASH160(M + myKeyA + myBogusKeyB + N) != targetScriptHash) {
+while(HASH160(m + myKeyA + myBogusKeyB + n) != targetScriptHash) {
   ++myBogusKeyB;
 }</pre>
 
