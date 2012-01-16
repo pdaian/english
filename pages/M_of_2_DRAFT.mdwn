@@ -63,23 +63,32 @@ scriptHash = RIPMED160(M + SH256(SHA256(pubKey2 + 2) + pubKey1));
 
 Although it may appear insecure totalling the sum of the public keys this is not actually the case. 
 
-The resulting target is a massively large uint256 number which you could theoretically brute force using as follows:
+You could deduce the target value by looking at the the sum of M + pubKey1 + pubKey2 + N  from a previous transaction. 
 
-<pre>uint256 target = 0;
-uint256 nonce = 0;
-while(SHA256(nonce) != target) {
-  ++nonce;
+<pre>
+uint256 target = Previously Redeemed Tx Target; 
+uint256 myKeyA = SHA256();
+uint256 myBogusKeyB = 0;
+int n = 2;
+int m = 1;
+</pre>
+
+Initially it might seem that you could use an A or B where B is a invalid key:
+	
+<pre>
+while(m + myKeyA + myBogusKeyB + n != targetScriptHash) {
+  ++myBogusKeyB;
 }</pre>
 
-Just because you can have two nonces doesn't make bruteforcing any easier.
+However the additional SHA256 operations prevent you from doing this:
 
-<pre>uint256 target = 0;
-uint256 nonce = 0;
-uint256 nonceTwo = rand();
-while(SHA256(nonce) + SHA256(nonceTwo) != target) {
-  ++nonce;
-  ++nonceTwo;
-} </pre>
+<pre>
+myKeyA = SHA256(myKeyA);
+while(m + myKeyA + SHA256(myBogusKeyB) + n != targetScriptHash) {
+  ++myBogusKeyB;
+}</pre>
+
+Resulting in equal brute force time.
 
 What does affect security is ability to adjust M (either 1 or 2) without needing to generate a new SHA256 pair. This effectively halves the key space to 2^255 keys however it is still far far out of the realm of brute force possibility. Regardless use of a 20 byte hash limits the key space size to 2^160 so it actually has no effect on security at all.
 
