@@ -83,19 +83,11 @@ Works as is.
 
 #### Needs patch to reduce stales
 
-##### DiabloMiner 
-Has a bug where it waits half a second after receiving a long polling response. There is a 10% chance that a p2pool share will be generated in that window, resulting in that hashing being useless.
-
-A fork of DiabloMiner on GitHub that fixes this: https://github.com/forrestv/DiabloMiner Make sure to get the *fast_long_polling* branch!
-
-<pre>git clone git://github.com/forrestv/DiabloMiner.git
-cd DiabloMiner
-git checkout fast_long_polling</pre>
-
-Built with JAR and Windows binary: http://u.forre.st/u/xsvenrwa/DiabloMiner_2e73cc.zip
+##### DiabloMiner
+Works fine after commit 3b731b9b54.
 
 ##### Poclbm
-Has a similar bug, but it waits a full second.
+Waits a full second between long polls.
 
 GitHub fork: https://github.com/forrestv/poclbm
 Pull request: https://github.com/m0mchil/poclbm/pull/41
