@@ -105,8 +105,6 @@ The following is not part of the specification for this proposal but it is worth
 
 	OP_2OVER OP_2OVER 3 OP_EQUAL OP_IF 3 OP_PICK OP_ADD OP_HASH256 OP_ENDIF OP_ADD OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
 
-	scriptHash = RIPMED160(1 + SH256(SHA256(pubKey2 + 2) + pubKey1));
-
 However this requires 14 bytes of additional op codes.
 
 ##See Also
