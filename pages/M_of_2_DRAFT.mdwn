@@ -61,7 +61,7 @@ scriptHash = RIPMED160(M + SH256(SHA256(pubKey2 + 2) + pubKey1));
 
 ##Security
 
-Although it may appear insecure totalling the sum of the public keys this is not actually the case. 
+Although it may appear insecure totalling the sum of the public keys the author does not believe this to be the case.
 
 You could deduce the target value by looking at the the sum of M + pubKey1 + pubKey2 + N  from a previous transaction. 
 
