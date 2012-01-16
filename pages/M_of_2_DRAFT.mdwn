@@ -91,7 +91,7 @@ There is a general consensus that multi signature transactions need to be implem
 * OP_EVAL essentially makes the scripting language turing complete, something which Satoshi deliberately avoided during its design. 
 * P2SH requires that standard templates become a mandatory part of the scripting language, meaning they can never be fully depreciated in future.
 
-All of the these solutions risk a fork in the blockchain and require at least 50% miners approval. This proposal requires no changes to the block validation rules and can be implemented immediately. However it only allows for the most common use cases of pay to script transactions and has limited flexibility. Additionally the resulting scriptPubKey is 4 bytes larger than the standard "pay to address" scriptPubKey in common use, the author does not believe this will significantly effect transaction fees.
+All of the these solutions risk a fork in the blockchain and require at least 50% miners approval. This proposal requires no changes to the block validation rules and can be implemented immediately. However it only allows for the most common use cases of pay to script transactions and has limited flexibility. Additionally the resulting scriptPubKey is 6 bytes larger than the standard "pay to address" scriptPubKey in common use.
 
 ##Backwards Compatibility
 
