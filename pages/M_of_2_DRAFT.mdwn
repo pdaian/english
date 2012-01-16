@@ -55,7 +55,7 @@ This proposal only supports A + B or A or B split key transactions.
 
 Where scriptHash must be constructed in the following manor:
 
-scriptHash = RIPMED160(1 + SH256(SHA256(pubKey2 + 2) + pubKey1));
+scriptHash = RIPMED160(M + SH256(SHA256(pubKey2 + 2) + pubKey1));
 
 (+ means addition not concatenation)
 
