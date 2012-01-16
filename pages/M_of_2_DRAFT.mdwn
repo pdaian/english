@@ -59,7 +59,7 @@ scriptHash = HASH160(M + pubKey2 + pubKey1 + N);
 
 ##Security
 
-Although it may appear insecure totalling the sum of the public keys this is not actually the case. Because the resulting sum is hashed using HASH160 the target value cannot be deduced.
+Although it may appear insecure totalling the sum of the public keys the author does not believe this to be the case. Because the resulting sum is hashed using HASH160 the target value cannot be deduced.
 
 <pre>
 uint256 targetScriptHash = HASH160(); 
