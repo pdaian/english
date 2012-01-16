@@ -39,15 +39,13 @@ This proposal only supports A + B or A or B split key transactions.
 
 |Stack |Code
 |---|---
-||<sig>1 [[pubkey1]][[pubkey2]]2 OP_2OVER OP_2OVER OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 |OP_2OVER OP_2OVER OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]|OP_2OVER OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]][[pubkey2]]2 |OP_ADD OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]<sumA>|OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]<hashA>|OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1  <sumB>|OP_HASH256 OP_ADD  OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1  <HashB>|OP_ADD  OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 <sumC>|OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+||<sig>1 [[pubkey1]][[pubkey2]]2 OP_2OVER OP_2OVER OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 |OP_2OVER OP_2OVER OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]|OP_2OVER OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]][[pubkey2]]2 |OP_ADD OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]<sumA>|OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1  <sumB>|OP_ADD  OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 <sumC>|OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
 |<sig>1 [[pubkey1]][[pubkey2]]2 <scriptHashA><scriptHash>|OP_EQUALVERIFY OP_CHECKMULTISIG
 |<sig>1 [[pubkey1]][[pubkey2]]2 |OP_CHECKMULTISIG
 |1 |
