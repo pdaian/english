@@ -76,7 +76,7 @@ while(m + myKeyA + myBogusKeyB + n != targetScriptHash) {
   ++myBogusKeyB;
 }</pre>
 
-However you actually must additionally hash the sum of myKeyA + myBogusKeyB
+However you actually must additionally hash the summation:
 
 <pre>
 while(HASH160(m + myKeyA + myBogusKeyB + n) != targetScriptHash) {
