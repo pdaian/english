@@ -1,11 +1,7 @@
 ## Might be a problem
 ### Wallet Vulnerable To Theft
 
-The [[wallet]] is stored unencrypted, thus it becomes a valuable target for theft.  That this is a problem was evidenced by the negative publicity following Allinvain's June 2011 claim that his wallet was stolen. Wallet encryption is slated to be merged into the 0.4 release. Patches are being developed also for other implementations.
-
-### Forcing clock drift against a target node
-
-See [Timejacking](http://culubas.blogspot.com/2011/05/timejacking-bitcoin_802.html) for a description of this attack. It can be fixed by changing how nodes calculate the current time.
+The [[wallet]] is stored unencrypted, by default, and thus becomes a valuable target for theft.  Recent releases of the Bitcoin client now supports encryption to protect the wallet data, though the user must opt-in.
 
 ### Tracing a coin's history
 Tracing a coin's history can be used to connect identities to addresses. [[More info|Anonymity]].
@@ -32,6 +28,10 @@ Someone who can see all of your Internet traffic can easily see when you send a 
 
 ### Denial of Service (DoS) attacks
 Sending lots of data to a node may make it so busy it cannot process normal bitcoin transactions.  Bitcoin has some denial-of-service prevention built-in (it will drop connections to peers that send it too much data too quickly), but is likely still vulnerable to more sophisticated denial-of-service attacks.
+
+### Forcing clock drift against a target node
+
+See [Timejacking](http://culubas.blogspot.com/2011/05/timejacking-bitcoin_802.html) for a description of this attack. It can be fixed by changing how nodes calculate the current time.
 
 ### Illegal content in the block chain
 It is illegal in some countries to possess/distribute certain kinds of data. Since arbitrary data can be included in Bitcoin transactions, and clients must normally have a copy of all unspent transactions, this could cause legal problems.
