@@ -98,8 +98,10 @@ All of the these solutions risk a fork in the blockchain and require at least 50
 This proposal is fully backwards compatible.
 
 ## M-of-3
-	
-OP_2OVER OP_2OVER 3 OP_EQUAL OP_IF 5 OP_PICK OP_ADD OP_HASH256 OP_ENDIF OP_ADD OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
+
+Using the same technique you can support both M-of-2 and M-of-3 transactions:
+
+OP_2OVER OP_2OVER 3 OP_EQUAL OP_IF 4 OP_PICK 4 OP_ROLL OP_ADD OP_HASH256 OP_ENDIF OP_ADD OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
 
 ##See Also
 
