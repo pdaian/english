@@ -87,7 +87,7 @@ What does affect security is ability to adjust M (either 1 or 2) without needing
 
 This BIP replaces BIP 16, ("/P2SH/").
 
-There is a general consensus that multi signature transactions need to be implemented ASAP without requiring the use extremely long "script addresses". A number of potential issues have been found with the proposals thus far:
+There is a general consensus that multi signature transactions need to be implemented ASAP without requiring the use extremely long "script addresses". A number of potential issues have been found with the solutions thus far:
 
 * CHV requires the scriptPubKey interacts with data from scriptSig which has not been push onto the stack
 * OP_EVAL essentially makes the scripting language turing complete, something which Satoshi deliberately avoided during its design. 
