@@ -76,7 +76,7 @@ int m = 1;
 Initially it might seem that you could use an A or B where B is a invalid key:
 	
 <pre>
-while(m + myKeyA + myBogusKeyB + n != targetScriptHash) {
+while(m + myKeyA + myBogusKeyB + n != target) {
   ++myBogusKeyB;
 }</pre>
 
@@ -84,7 +84,7 @@ However the additional SHA256 operations prevent you from doing this:
 
 <pre>
 myKeyA = SHA256(myKeyA);
-while(m + myKeyA + SHA256(myBogusKeyB + n) != targetScriptHash) {
+while(m + myKeyA + SHA256(myBogusKeyB + n) != target) {
   ++myBogusKeyB;
 }</pre>
 
