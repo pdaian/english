@@ -70,14 +70,14 @@ uint256 myBogusKeyB = 0;
 Initially it might seem that you could use an A or B where B is a invalid key:
 	
 <pre>
-while(myKeyA + myBogusKeyB != targetScriptHash) {
+while(1 + myKeyA + myBogusKeyB + 2 != targetScriptHash) {
   ++myBogusKeyB;
 }</pre>
 
 However you actually must additionally hash the sum of myKeyA + myBogusKeyB
 
 <pre>
-while(HASH160(myKeyA + myBogusKeyB) != targetScriptHash) {
+while(HASH160(1 + myKeyA + myBogusKeyB + 2) != targetScriptHash) {
   ++myBogusKeyB;
 }</pre>
 
