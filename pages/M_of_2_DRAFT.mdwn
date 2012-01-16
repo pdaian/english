@@ -19,11 +19,11 @@ The purpose of this proposal is to provide split key wallet functionality withou
 
 A new standard scriptPubKey will be defined:
 
-	OP_2OVER OP_2OVER OP_ADD OP_ADD OP_ADD OP_RIPEMD160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
+	OP_2OVER OP_2OVER OP_ADD OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
 
 Redeemed by a new standard scriptSig
 
-	<sig> 1 [[pubkey]] [[pubkey]] 2
+	OP_0  <sig> 1 [[pubkey]] [[pubkey]] 2
 
 This proposal only supports A + B or A or B split key transactions.
 
@@ -39,13 +39,15 @@ This proposal only supports A + B or A or B split key transactions.
 
 |Stack |Code
 |---|---
-||<sig>1 [[pubkey1]][[pubkey2]]2 OP_2OVER OP_2OVER OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 |OP_2OVER OP_2OVER OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]|OP_2OVER OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]][[pubkey2]]2 |OP_ADD OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]<sumA>|OP_ADD OP_ADD OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 1  <sumB>|OP_ADD  OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
-|<sig>1 [[pubkey1]][[pubkey2]]2 <sumC>|OP_HASH160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+||<sig>1 [[pubkey1]][[pubkey2]]2 OP_2OVER OP_2OVER OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 |OP_2OVER OP_2OVER OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]|OP_2OVER OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]][[pubkey2]]2 |OP_ADD OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]<sumA>|OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1 [[pubkey1]]<hashA>|OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1  <sumB>|OP_HASH256 OP_ADD  OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 1  <HashB>|OP_ADD  OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
+|<sig>1 [[pubkey1]][[pubkey2]]2 <sumC>|OP_RIPEMD160 <scriptHash>OP_EQUALVERIFY OP_CHECKMULTISIG
 |<sig>1 [[pubkey1]][[pubkey2]]2 <scriptHashA><scriptHash>|OP_EQUALVERIFY OP_CHECKMULTISIG
 |<sig>1 [[pubkey1]][[pubkey2]]2 |OP_CHECKMULTISIG
 |1 |
@@ -53,35 +55,31 @@ This proposal only supports A + B or A or B split key transactions.
 
 Where scriptHash must be constructed in the following manor:
 
-scriptHash = HASH160(M + pubKey2 + pubKey1 + N);
+scriptHash = RIPMED160(M + SH256(SHA256(pubKey2 + 2) + pubKey1));
 
 (+ means addition not concatenation)
 
 ##Security
 
-Although it may appear insecure totalling the sum of the public keys the author does not believe this to be the case. Because the resulting sum is hashed using HASH160 the target value cannot be deduced.
+Although it may appear insecure totalling the sum of the public keys this is not actually the case. 
 
-<pre>
-uint256 targetScriptHash = HASH160(); 
-uint256 myKeyA = SHA256();
-uint256 myBogusKeyB = 0;
-int n = 2;
-int m = 1;
-</pre>
+The resulting target is a massively large uint256 number which you could theoretically brute force using as follows:
 
-Initially it might seem that you could use an A or B where B is a invalid key:
-	
-<pre>
-while(m + myKeyA + myBogusKeyB + n != targetScriptHash) {
-  ++myBogusKeyB;
+<pre>uint256 target = 0;
+uint256 nonce = 0;
+while(SHA256(nonce) != target) {
+  ++nonce;
 }</pre>
 
-However you actually must additionally hash the summation:
+Just because you can have two nonces doesn't make bruteforcing any easier.
 
-<pre>
-while(HASH160(m + myKeyA + myBogusKeyB + n) != targetScriptHash) {
-  ++myBogusKeyB;
-}</pre>
+<pre>uint256 target = 0;
+uint256 nonce = 0;
+uint256 nonceTwo = rand();
+while(SHA256(nonce) + SHA256(nonceTwo) != target) {
+  ++nonce;
+  ++nonceTwo;
+} </pre>
 
 What does affect security is ability to adjust M (either 1 or 2) without needing to generate a new SHA256 pair. This effectively halves the key space to 2^255 keys however it is still far far out of the realm of brute force possibility. Regardless use of a 20 byte hash limits the key space size to 2^160 so it actually has no effect on security at all.
 
@@ -89,15 +87,13 @@ What does affect security is ability to adjust M (either 1 or 2) without needing
 
 This BIP replaces BIP 16, ("/P2SH/").
 
-There is a general consensus that multi signature transactions need to be implemented ASAP without requiring the use extremely long "script addresses". A number of potential issues have been found with the solutions thus far:
+There is a general consensus that multi signature transactions need to be implemented ASAP without requiring the use extremely long "script addresses". A number of potential issues have been found with the proposals thus far:
 
 * CHV requires the scriptPubKey interacts with data from scriptSig which has not been push onto the stack
 * OP_EVAL essentially makes the scripting language turing complete, something which Satoshi deliberately avoided during its design. 
 * P2SH requires that standard templates become a mandatory part of the scripting language, meaning they can never be fully depreciated in future.
 
-All of the these solutions risk a fork in the blockchain and require at least 50% miners approval. This proposal requires no changes to the block validation rules and can be implemented immediately. However it only allows for the most common use cases of pay to script transactions and has limited flexibility. Additionally the resulting scriptPubKey is 4 bytes larger than the standard "pay to address" scriptPubKey in common use.
-
-One additional advantage of this proposal is that the order of public keys in a scriptSig does not affect the resulting hash. Therefore a user redeeming such a transaction does not need to know the exact script just each public key and whether the transaction is (A or B) or (A + B).
+All of the these solutions risk a fork in the blockchain and require at least 50% miners approval. This proposal requires no changes to the block validation rules and can be implemented immediately. However it only allows for the most common use cases of pay to script transactions and has limited flexibility. Additionally the resulting scriptPubKey is 6 bytes larger than the standard "pay to address" scriptPubKey in common use.
 
 ##Backwards Compatibility
 
@@ -107,9 +103,9 @@ Old clients will not relay transactions using the new template, however they wil
 
 The following is not part of the specification for this proposal but it is worth mentioning that using the same technique you can support both M-of-2 and M-of-3 transactions.
 
-	OP_2OVER OP_2OVER OP_DUP 3 OP_EQUAL OP_IF 8 OP_PICK OP_ADD OP_ENDIF OP_ADD OP_ADD OP_ADD OP_RIPEMD160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTIS
+	OP_2OVER OP_2OVER 3 OP_EQUAL OP_IF 3 OP_PICK OP_ADD OP_HASH256 OP_ENDIF OP_ADD OP_HASH256 OP_ADD OP_HASH256 OP_ADD OP_RIPEMD160 <scriptHash> OP_EQUALVERIFY OP_CHECKMULTISIG
 
-However this requires 11 bytes of additional op codes.
+However this requires 14 bytes of additional op codes.
 
 ##See Also
 
