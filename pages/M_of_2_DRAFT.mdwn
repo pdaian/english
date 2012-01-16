@@ -75,10 +75,10 @@ Just because you can have two nonces doesn't make bruteforcing any easier.
 
 <pre>uint256 target = 0;
 uint256 nonce = 0;
-uint256 nonceTwo = 0;
+uint256 nonceTwo = rand();
 while(SHA256(nonce) + SHA256(nonceTwo) != target) {
   ++nonce;
-  nonceTwo = rand();
+  ++nonceTwo;
 } </pre>
 
 What does affect security is ability to adjust M (either 1 or 2) without needing to generate a new SHA256 pair. This effectively halves the key space to 2^255 keys however it is still far far out of the realm of brute force possibility. Regardless use of a 20 byte hash limits the key space size to 2^160 so it actually has no effect on security at all.
