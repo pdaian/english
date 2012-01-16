@@ -95,6 +95,8 @@ There is a general consensus that multi signature transactions need to be implem
 
 All of the these solutions risk a fork in the blockchain and require at least 50% miners approval. This proposal requires no changes to the block validation rules and can be implemented immediately. However it only allows for the most common use cases of pay to script transactions and has limited flexibility. Additionally the resulting scriptPubKey is 4 bytes larger than the standard "pay to address" scriptPubKey in common use.
 
+One additional advantage of this proposal is that the order of public keys in a scriptSig does not affect the resulting hash. Therefore a user redeeming such a transaction does not need to know the exact script just each public key and whether the transaction is (A or B) or (A + B).
+
 ##Backwards Compatibility
 
 Old clients will not relay transactions using the new template, however they will preform the same validation as new clients.
