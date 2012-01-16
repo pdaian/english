@@ -84,7 +84,7 @@ However the additional SHA256 operations prevent you from doing this:
 
 <pre>
 myKeyA = SHA256(myKeyA);
-while(m + myKeyA + SHA256(myBogusKeyB) + n != targetScriptHash) {
+while(m + myKeyA + SHA256(myBogusKeyB + n) != targetScriptHash) {
   ++myBogusKeyB;
 }</pre>
 
