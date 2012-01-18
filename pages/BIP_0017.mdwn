@@ -21,7 +21,7 @@ The benefit is allowing a sender to fund any arbitrary transaction, no matter ho
 
 OP_CHECKHASHVERIFY will re-define the existing OP_NOP2 opcode, and will function as follows when executed:
 
-* First, hash the end of the prior script (in the general case, scriptSig; if no prior script, a null string is hashed) beginning from the last OP_CODESEPARATOR onward (or from the beginning of the script, if no OP_CODESEPARATOR was present)
+* First, hash the end of the prior script (in the general case, scriptSig; if no prior script, a null string is hashed) beginning from the last evaluated OP_CODESEPARATOR onward (or from the beginning of the script, if no OP_CODESEPARATOR was present)
 * Then, compare this with the item on the top of the stack (if there is none, the script fails immediately)
 * If the hashes match, do nothing, proceed as if an OP_NOP; if they do not match, the script fails immediately.
 * Note that in the case of a matched hash, the top stack item (the hash being compared with) is <u>not</u> popped off the stack. This is for backward compatibility.
