@@ -87,6 +87,8 @@ On February 3, 2012, the block-chain will be examined to determine the number of
 
 If a majority of hashing power does not support the new validation rules, then rollout will be postponed (or rejected if it becomes clear that a majority will never be achieved).
 
+OP_NOP2 is used, so existing OP_EVAL (BIP 12) transactions in the block chain can still be redeemed.
+
 ##Reference Implementation
 
 http://gitorious.org/~Luke-Jr/bitcoin/luke-jr-bitcoin/commits/checkhashverify (currently incomplete)
