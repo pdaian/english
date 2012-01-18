@@ -47,11 +47,10 @@ For example, the scriptPubKey and corresponding scriptSig for a one-signature-re
 	scriptSig: [[signature]] OP_CODESEPARATOR [[pubkey]] OP_CHECKSIG
 	scriptPubKey: {[[pubkey]] OP_CHECKSIG}  OP_CHECKHASHVERIFY OP_POP
 
-+3 signature operations:
-	2 [[pubkey1]] [[pubkey2]] [[pubkey3]] 3 OP_CHECKMULTISIG
+2-of-3:
 
-+22 signature operations
-	OP_CHECKSIG OP_IF OP_CHECKSIGVERIFY OP_ELSE OP_CHECKMULTISIGVERIFY OP_ENDIF
+	scriptSig: [[signatures...]] OP_CODESEPARATOR 2 [[pubkey1]] [[pubkey2]] [[pubkey3]] 3 OP_CHECKMULTISIG
+	scriptPubKey: {[[pubkey1]] [[pubkey2]] [[pubkey3]] 3 OP_CHECKMULTISIG}  OP_CHECKHASHVERIFY OP_POP
 
 ##Rationale
 
