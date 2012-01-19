@@ -13,7 +13,7 @@ Agents interact with the world via the following mechanisms:
 
 By maintaining their own balance, for the first time it becomes possible for software to exist on a level playing field to humans. It may even be that people find themselves working for the programs because they need the money, rather than programs working for the people. Being a peer rather than a tool is what distinguishes a program that uses Bitcoin from an agent.
 
-Because server capacity is sold in well defined, standardized units (CPU seconds, gigabytes of RAM/disk, megabits of bandwidth) it becomes possible for software to automatically find and negotiate with providers who accept Bitcoin. SSH keys can be treated as [[smart_property]] and traded atomically in return for coins. 
+Because server capacity is sold in well defined, standardized units (CPU seconds, gigabytes of RAM/disk, megabits of bandwidth) it becomes possible for software to automatically find and negotiate with providers who accept Bitcoin.
 
 If a better deal is found, the agent can move itself. An agent that is profitable can be programmed to use some of those profits to bring up a child instance and fund it with a starter pack of coins. If the child instance is able to break even or better, it will survive, otherwise when its bank balance expires the server provider will delete the account and the agent along with it.
 
@@ -43,17 +43,19 @@ Whilst there are companies that provide shell accounts for Bitcoins, most don't.
 
 1. By handling the details of how to interact with providers they offer a useful service, for which agents should be willing to pay.
 1. Brokers can purchase from humans scripts that handle signing up for accounts at new services. They can interact with exchanges to sell Bitcoin for the currencies and payment mechanisms the providers accept.
-1. Brokers can accept other agents and run them inside a sandbox. The sub-agents cannot steal the brokers wallet, or CPU time. Unfortunately the reverse is not true: brokers can potentially steal the sub-agents wallets.
+1. Colo providers can run a modified sshd that understands how to treat SSH keys as [[Smart_Property]]. By pre-creating shell accounts with resource quotas, and then selling the access keys to brokers, brokers can easily re-sell accounts automatically in a zero trust manner using the lock time and transaction input/output features of the Bitcoin protocol. The brokers would automatically handle recruitment of customers and matching agents with servers.
 
 ##Use of trusted computing/TPM chips
 
-To be truly autonomous, an agent should need to trust nobody (and nothing). But to make a trade you often need some assurance that the other side will behave as expected. People rely on the law to enforce contracts, but agents have no such recourse. Whilst clever protocols can configure incentives to ensure in this some cases, trusted computing can be used to provide this assurance in the general case. 
+To be truly autonomous, an agent should need to trust nobody (and nothing). But to make a trade you often need some assurance that the other side will behave as expected. People rely on the law to enforce contracts, but agents have no such recourse. Whilst clever protocols can configure incentives to ensure co-operation in some cases, trusted computing can be used to provide this assurance in the general case. 
 
 For example, agents may need some assurance that the provider of computing time will not attempt to steal the agents profits. Whilst it may be uneconomic in the long term to steal vs revenue share, it's quick and easy to make bogus offers to whatever agents are out there and wait for the money to roll in.
 
 Modern CPUs have the ability to remotely prove what code they are running, and encrypt keys such that they are only available when the hardware is in the same configuration as before. The [Flicker](http://sparrow.ece.cmu.edu/group/flicker.html) project demonstrates how to achieve this on AMD and Intel CPUs running Linux for short term computations (interrupts must be disabled in their simple implementation). Breaking the security requires modification of the TPM chip, which is designed to be tamper resistant. If it is protecting sums of money that are not extremely large, this should be a sufficiently high level of difficulty to discourage fraud.
 
 To use these facilities, a child agent (that is in the process of being created by its parent) would copy its code to the remote server. At this point it has no wallet. It would then enter the protected domain, where it is isolated from the regular operating system, and execute a PAL (piece of application logic) which creates itself a private key, which is then "sealed" to the state of the CPU at that time. Upon leaving the protected domain, it is left with encrypted data that cannot be read by the (possibly malicious) host operating system. The host OS is treated as an untrusted proxy and provider of resources. 
+
+The parent needs to provide its child with a small amount of money to let it get started, but how does it know its sending money truly to the child it just created and not a greedy imposter? The child can use the TPM to remotely prove it was in total control of the CPU at the time it created the private key corresponding to the provided address. The parent can verify that remote attestation and be assured it's sending money to the program it thinks it is.
 
 If the services of an agent are purchased, for example, a file is uploaded to StorJ, the accompanying payment is presented to the secure PAL, along with the merkle branch linking it into the block chain. The PAL then updates its bookkeeping so it knows it needs to pay the host more, and when the host invoices the agent, the secure PAL verifies the bill is as expected and then creates/signs a transaction that pays the bill. The transaction is passed back to the untrusted host which broadcasts it.
 
