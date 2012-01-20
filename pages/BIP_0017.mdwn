@@ -30,7 +30,7 @@ This opcode reassignment shall be applied when validating transactions in blocks
 
 A new standard transaction type that is relayed and included in mined blocks is defined:
 
-	[[20-byte-hash-value]] OP_CHECKHASHVERIFY OP_POP
+	[[20-byte-hash-value]] OP_CHECKHASHVERIFY OP_DROP
 
 [[20-byte-hash-value]] shall be the push-20-bytes-onto-the-stack opcode (0x14) followed by exactly 20 bytes.
 
@@ -45,12 +45,12 @@ Transactions that redeem these pay-to-script outpoints are only considered stand
 For example, the scriptPubKey and corresponding scriptSig for a one-signature-required transaction is:
 
 	scriptSig: [[signature]] OP_CODESEPARATOR [[pubkey]] OP_CHECKSIG
-	scriptPubKey: {[[pubkey]] OP_CHECKSIG}  OP_CHECKHASHVERIFY OP_POP
+	scriptPubKey: {[[pubkey]] OP_CHECKSIG}  OP_CHECKHASHVERIFY OP_DROP
 
 2-of-3:
 
 	scriptSig: [[signatures...]] OP_CODESEPARATOR 2 [[pubkey1]] [[pubkey2]] [[pubkey3]] 3 OP_CHECKMULTISIG
-	scriptPubKey: {[[pubkey1]] [[pubkey2]] [[pubkey3]] 3 OP_CHECKMULTISIG}  OP_CHECKHASHVERIFY OP_POP
+	scriptPubKey: {[[pubkey1]] [[pubkey2]] [[pubkey3]] 3 OP_CHECKMULTISIG}  OP_CHECKHASHVERIFY OP_DROP
 
 ##Rationale
 
