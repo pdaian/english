@@ -45,3 +45,10 @@ In addition, the BNF includes a parameter named "version" (which is not in the e
 Amounthex, amountdec, exponents.. wtf? Why not settle on one normalized representation, this complicates parsing (and testing of parsers) for no good reason --[Witchspace](User:Witchspace) 05:14, 4 August 2011 (GMT)
 
 * An earlier draft used a simple Satoshi count for amount, but some community members thought it needed to use more high-level units so we ended up with a combination of both. Parsing is not very complicated, and doing it this way allows people writing URIs to easily specify the value they want in any existing [[unit|Units]]. The spec also has examples which can be used for testing. --[Luke-jr](User:Luke-jr) 14:04, 10 August 2011 (GMT)
+
+## After Buy URL
+It might be interesting to include an URL the user is directed to after payment.
+
+Use case: buy digital goods for mobile devices.
+
+Example: I want to buy a digital newspaper or app via QR code: I scan the code, pay the amount and am then redirected to a refreshing "waiting for payment" page that will show me the content when it considers the transaction valid.
