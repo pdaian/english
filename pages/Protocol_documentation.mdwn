@@ -42,7 +42,7 @@ Bitcoin uses [Elliptic Curve](http://en.wikipedia.org/wiki/Elliptic_curve_crypto
 
 For ECDSA the secp256k1 curve from http://www.secg.org/collateral/sec2_final.pdf is used.
 
-Public keys (in scripts) are given as 04 <x> <y> where *x* and *y* are 32 byte big-endian integers representing the coordinates of a point on the curve. Signatures use [DER encoding](http://en.wikipedia.org/wiki/Distinguished_Encoding_Rules) to pack the *r* and *s* components into a single byte stream (this is also what OpenSSL produces by default).
+Public keys (in scripts) are given as 04 <x> <y> where *x* and *y* are 32 byte big-endian integers representing the coordinates of a point on the curve or in compressed form given as <sign> <x> where <sign> is 0x02 if *y* is even and 0x03 if *y* is odd. Signatures use [DER encoding](http://en.wikipedia.org/wiki/Distinguished_Encoding_Rules) to pack the *r* and *s* components into a single byte stream (this is also what OpenSSL produces by default).
 
 ### Transaction Verification
 Transactions are cryptographically signed records that reassign ownership of Bitcoins to new addresses.  Transactions have *inputs* - records which reference the funds from other previous transactions - and *outputs* - records which determine the new owner of the transferred Bitcoins, and which will be referenced as inputs in future transactions as those funds are respent.
