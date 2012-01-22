@@ -38,7 +38,7 @@ This new transaction type is redeemed by a standard scriptSig:
 
 	...signatures... OP_CODESEPARATOR {script}
 
-Transactions that redeem these pay-to-script outpoints are only considered standard if the appended *script* is, itself, one of the other standard transaction types.
+Transactions that redeem these pay-to-script outpoints are only considered standard if they contain exactly one OP_CODESEPARATOR and the appended *script* is, itself, one of the other standard transaction types.
 
 ##Example
 
