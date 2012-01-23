@@ -98,6 +98,8 @@ git checkout fast_long_polling</pre>
 Windows binary: http://u.forre.st/u/wodukkea/p2pool-poclbm_win32_5590e7c.zip
 
 ##### Phoenix
+(Works fine after commit 8263f65!)
+
 Has a similar bug (waiting a full second).
 
 GitHub fork: https://github.com/forrestv/phoenix-miner
@@ -191,11 +193,7 @@ P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same 
 * **addrs** - broadcast list of nodes' addresses - contains (*addrs*)
 * **getaddrs** - request that the receiving node send *count* addrs - contains (*count*)
 * **getshares** - request that the receiving node send the shares referenced by *hashes* and *parents* of their parents, stopping at any share referenced by *stops* - contains (*hashes*, *parents*, *stops*)
-* **share0s** - broadcast message of the hashes of shares - contains (*hashes*)
-* **share1as** - broadcast message of the contents of shares that do not qualify as bitcoin blocks - contains (*share1as*)
-* **share1bs** - broadcast message of the contents of shares that qualify as bitcoin blocks - contains (*share1bs*)
-
-The *mode* is 0 for low-bandwidth mode, which sends the hash of a share first before sending the entire share, or 1 for low-latency (default) mode, which forwards the entire (~170 byte) share always. The two nodes on either side of a connection use the minimum of their two preferences for that connection.
+* **shares** - broadcast message of the contents of shares - contains (*shares*)
 
 ##History
 
