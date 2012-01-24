@@ -65,7 +65,7 @@ Values for this header are undefined.
 ### rollntime
 [rollntime expiration discussion forum thread](https://bitcointalk.org/index.php?topic=22561.0)
 
-Iff the getwork response includes a "X-Roll-NTime" header, the miner may (within reason) change the ntime field in addition to the nonce.
+Iff the getwork response includes a "X-Roll-NTime" header with any value other than "N" or the null string, the miner may (within reason) change the ntime field in addition to the nonce.
 The server may send a value of "expire=<N>", where <N> is an integer number of seconds it is willing to accept the other headers for.
 Note that if the "X-Roll-NTime" header is NOT present in a work response, that work may NOT be rolled, even if earlier work from the same server allowed it.
 Also note that the headers of a share submission should not influence the behaviour of work-- specifically, if a share submit does not have the header, it should not disable rollntime for the current work (which did).
