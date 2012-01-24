@@ -79,6 +79,11 @@ Due to network latency, [Luke-Jr](User:Luke-jr) recommends the following design 
 1. when current time is past <time@1+getwork expire> minus <duration of longest getwork/submit since we started this work> times 4, begin a request for new work
 1. when new work arrives, discard old work and begin using the new work.
 
+### submitold
+This feature should only be advertised with a longpoll request. If received with a regular request, it should be ignored.
+
+If supported, the server may include a X-Submit-Old header. If this header is present, the miner should NOT discard the result of old work (default per longpoll specification), but instead submit them to the server. The miner should still stop working on the old work, and begin working on the new work as soon as it can without losing the result of the old work.
+
 ### switchto
 [Original specification from Deepbit](https://deepbit.net/failover.php)
 
