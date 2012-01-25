@@ -31,7 +31,7 @@ In the event that a share qualifies as a block, this generation transaction is e
 
 P2Pool stales don't work the same way as stales on centralized pools. On a centralized pool a stale is work which is too old to be accepted by the pool's Bitcoin node; this kind of stale is very rare in P2Pool because each user runs their own local bitcoind.
 
-On P2Pool stales refer to shares which can't make it into the sharechain.  Because the sharechain is 60 times faster than the Bitcoin chain many stales are common and expected. However, because the payout is PPLNS only your stale rate relative to other nodes is relevant; the absolute rate is not.
+On P2Pool stales refer to shares which can't make it into the sharechain.  Because the sharechain is 60 times faster than the Bitcoin chain many stales are common and expected. However, because the payout is [[PPLNS|Comparison_of_mining_pools]] only your stale rate relative to other nodes is relevant; the absolute rate is not.
 
 There are two reported kinds of stales in P2Pool: "DEAD ON ARRIVAL" shares and orphan shares. Dead shares were too old by the time they arrived at your local P2Pool. Very high dead rates can indicate miner misconfiguration. Orphan shares are shares which were not extended by the rest of the P2Pool network, because some other miner's share was accepted first. Very high orphan rates may indicate network connectivity problems. 
 
