@@ -39,6 +39,7 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * Difficulty adjustment should adapt to sudden hashrate loss. Note: all altchains which have attempted this have created significant security vulnerabilities in the process. Also interested parties could encourage mining by including high fee transactions in every block so avoiding need for this change.
 * Scripts should be fully enabled after a careful audit.
 * Miners/relays should not be able to inject extra arbitrary data into transactions?
+* Use the previous block hash as an explicit or implicit prev_in in coinbases when hashing them to make it ~impossible to get a duplicate coinbase, thus removing the need for a pruning node to remember coinbase hashes to prevent duplicates consistently with the rest of the network
 
 ##References
 
