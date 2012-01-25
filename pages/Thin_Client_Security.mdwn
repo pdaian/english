@@ -49,17 +49,13 @@ Note that at the present moment no standard format for such Unused Output Tree h
 
 These clients involve some (usually low) level of trust in the server they rely upon.  Mechanisms for authenticating the server, and for confirming that the server has not been compromised, are usually not explained.
 
-### [[BCCAPI]]
+All known thin clients that connect to a single server are vulnerable to a double-spend attack against them by the server.  Therefore, they are implicitly trusting it. Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them, mitigating this attack vector. See also [this analysis on Stack Exchange](http://bitcoin.stackexchange.com/questions/2613/how-secure-are-various-models-of-bitcoin-clients).
 
-Clients are vulnerable to a double-spend attack against them by the server.  Therefore, they are implicitly trusting it.
+This applies to all known thin clients:
 
-### [[Electrum]]
-
-Clients are vulnerable to a double-spend attack against them by the server.  Therefore, they are implicitly trusting it.
-
-### [[Stratum]]
-
-Clients are vulnerable to a double-spend attack against them by the server.  Therefore, they are implicitly trusting it.  ([link](https://bitcointalk.org/index.php?topic=55842.0))
+* [[BCCAPI]]
+* [[Electrum]]
+* [[Stratum]]
 
 ## Other
 
