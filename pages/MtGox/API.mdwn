@@ -636,7 +636,8 @@ These commands require an API key and secret pair to sign requests. Any of the "
 <source lang="javascript">{
 	"op":"call",
 	"id":<REQUEST ID>,
-	"call":<BASE-64 ENCODED SIGNED REQUEST>
+	"call":<BASE-64 ENCODED SIGNED REQUEST>,
+	"context":"mtgox.com"
 }</source>
 
 <REQUEST ID> can be any string, it's used to identify the response as belonging to this request when an answer comes back. md5'ing your nonce is a good way to get an id. "call" must be a base-64 encoded string consisting of, in order: an API key, a signed copy of the response, and the response text itself.
