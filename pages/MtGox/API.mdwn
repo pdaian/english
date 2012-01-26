@@ -606,8 +606,12 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 |volume_int |volume change * 1E8
 
 
-###Possible outgoing commands
-#### unsubscribe
+###  Outgoing commands
+#### Direct commands
+
+Commands that can be sent without authentication
+
+##### unsubscribe
 Stop receiving messages from a channel
 
 <source lang="javascript">{
@@ -616,7 +620,7 @@ Stop receiving messages from a channel
 }</source>
 
 Responds with an identical message to confirm
-#### mtgox.subscribe
+##### mtgox.subscribe
 Subscribe to a channel to start receiving messages from it.
 
 <source lang="javascript">{
@@ -624,6 +628,47 @@ Subscribe to a channel to start receiving messages from it.
 	"type": "ticker"
 }</source>
 "type" can be ticker, trades, or depth.
+
+#### Authenticated commands
+
+These commands require an API key and secret pair to sign requests. Any of the "version 1" requests from the HTTP API can be called. 
+
+<source lang="javascript">{
+	"op":"call",
+	"id":<REQUEST ID>,
+	"call":<BASE-64 ENCODED SIGNED REQUEST>
+}</source>
+
+<REQUEST ID> can be any string, it's used to identify the response as belonging to this request when an answer comes back. md5'ing your nonce is a good way to get an id. "call" must be a base-64 encoded string consisting of, in order: an API key, a signed copy of the response, and the response text itself.
+
+The queries themselves look like:
+<source lang="javascript">{
+	"id":<REQUEST ID>,
+	"call":<HTTP API ENDPOINT>,
+	"nonce":<REQUEST NONCE>,
+	"params":<REQUEST PARAMETERS>,
+	"item":"BTC"
+}</source>
+
+<HTTP API ENDPOINT> is the last two path components of any version 1 API endpoint, for example [[private/info|Private_info]], or [[public/cancelledtrades|#Cancelled_Trades]].
+
+<REQUEST PARAMETERS> is optional for any request that doesn't have parameters.
+
+The signing process is similar to the HTTP API, but because we can't send headers in an open websocket, the API key and signed request are simply prepended to the actual query data and base64 encoded. Reference implementations are available at https://github.com/MtGox/websocket
+
+Here's a sample of how to create a valid request in PHP 5.3:
+<source lang="php">$nonce = explode(' ', microtime(false));
+$nonce = $nonce[[1]].substr($nonce[[0]], 2, 6);
+$id = md5($nonce); // id can be anything to recognize this call
+$query = array('call' => $call, 'params' => $params, 'item' => $item, 'currency' => $currency, 'id' => $id, 'nonce' => $nonce);
+$query = json_encode($query);
+// generate signature
+$sign = hash_hmac('sha512', $query, base64_decode($apiSecret), true);
+// prefix signature to query
+$query = pack('H*', str_replace('-',*,$apiKey)).$sign.$query;
+// send query
+$call = array('op' => 'call', 'call' => base64_encode($query), 'id' => $id, 'context' => 'mtgox.com');
+// $call can now be pushed out to the websocket</source>
 
 ### examples
 
