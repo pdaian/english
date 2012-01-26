@@ -3,7 +3,7 @@ This is used to prove work on the aux chain. In vinced's original implementation
 
 
 
-|? |txns |[[txn|Protocol_specification#tx]]|Coinbase transaction linking the aux to its parent block
+|? |coinbase_txn |[[txn|Protocol_specification#tx]]|Coinbase transaction linking the aux to its parent block
 |? |merkle_link |[[mrkllink|#Merkle_link]]|The merkle path linking the coinbase (above) to its block
 |? |aux_branch_count |var_int |Number of merkle branches linking this aux chains to the aux root
 |32* |aux_branch[]|char[[32]]|Linking aux merkle branches
