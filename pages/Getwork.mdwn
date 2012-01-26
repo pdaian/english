@@ -82,7 +82,7 @@ Due to network latency, [Luke-Jr](User:Luke-jr) recommends the following design 
 ### submitold
 This feature should only be advertised with a longpoll request. If received with a regular request, it should be ignored.
 
-If supported, the server may include a X-Submit-Old header. If this header is present and not null or "N", the miner should NOT discard the result of old work (default per longpoll specification), but instead submit them to the server. The miner should still stop working on the old work, and begin working on the new work as soon as it can without losing the result of the old work.
+If supported, the server may include a "submitold" key in the JSON result. If this key is present and true, the miner should NOT discard the result of old work (default per longpoll specification), but instead submit them to the server. The miner should still stop working on the old work, and begin working on the new work as soon as it can without losing the result of the old work.
 
 ### switchto
 [Original specification from Deepbit](https://deepbit.net/failover.php)
