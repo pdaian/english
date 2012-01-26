@@ -607,7 +607,23 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 
 
 ###Possible outgoing commands
-**unsubscribe** Stop receiving messages from a channel (parameter "channel")
+#### unsubscribe
+Stop receiving messages from a channel
+
+	{
+	"op":"unsubscribe", 
+	"channel":<CHANNEL ID>
+	}
+
+Responds with an identical message to confirm
+#### mtgox.subscribe
+Subscribe to a channel to start receiving messages from it.
+
+	{
+	"op": "mtgox.subscribe",
+	"type": "ticker"
+	}
+"type" can be ticker, trades, or depth.
 
 ### examples
 
