@@ -49,7 +49,7 @@ If your efficiency is unusually low, make sure your network connection isn't ove
 Follow these steps to join the pool:
 
 * Run Bitcoin with the RPC interface enabled: put rpcuser=USER, rpcpassword=LONG_RANDOM_SECRET_VALUE, and server=1 in bitcoin.conf
-	* *Replace LONG_RANDOM_SECRET_VALUE with something long and random like the output of smashing your keyboard for a bit like fju4M78yAj3ds39pak92raK*. You don't need to be able to remember it. If your RPC port becomes exposed to the internet a thief could steal your bitcoin if they could guess it.
+	* **Replace LONG_RANDOM_SECRET_VALUE with something long and random like the output of smashing your keyboard for a bit like fju4M78yAj3ds39pak92raK**. You don't need to be able to remember it. If your RPC port becomes exposed to the internet a thief could steal your bitcoin if they could guess it.
 	* Bitcoin 0.5 or later is required
 	* It's important that your Bitcoin client be fully synchronized before starting. It's also better if you have the Bitcoin port forwarded
 * Download p2pool:
@@ -57,8 +57,8 @@ Follow these steps to join the pool:
 	* Source download: https://github.com/forrestv/p2pool/tags
 	* git: git clone git://github.com/forrestv/p2pool.git
 * Run p2pool: (See below for additional options.)
-	* Windows py2exe: run_p2pool.exe USER PASS
-	* Source: python run_p2pool.py USER PASS
+	* Windows py2exe: run_p2pool.exe USER LONG_RANDOM_SECRET_VALUE
+	* Source: python run_p2pool.py USER LONG_RANDOM_SECRET_VALUE
 * Run a miner daemon with long polling connecting to 127.0.0.1 (or the IP of the host running p2pool if you're mining remotely) on port 9332 with any username and password
 	* cgminer -O u:p -o http://127.0.0.1:9332/
 
