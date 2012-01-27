@@ -13,33 +13,6 @@ This fallback proposal will make bitcoin QR codes meaningful regardless of if th
 ## Use-cases - buy this link
 On the buy-this link, perhaps we should also incorporate an optional transaction id or something which would be passed along to the bitcoin client. Not really transaction but some sort of arbitrary data, only meaningful to the merchant. Something an online merchant can use to verify which transaction it has received is relevant to a purchase. [Dantman](User:Dantman) 20:45, 18 April 2011 (GMT)
 
-## Incorrect Syntax
-The proposed syntax doesn't seem to capture the intent of the design.  Here's how it reads on the wiki page:
-
-	bitcoin:<address>[[?]]<size>[[amount=]][[&]]<label>[[label=]][[&]]<message>[[message=]]
-
-The above syntax describes the question mark and ampersands as optional, but really they should be mandatory as a separator if multiple parameters are included. According to the proposed specification, above, the following would be an acceptable URI, which I don't believe is a good thing (note the absence of the optional question mark and ampersands):
-
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9Lamount=50X8label=Luke-Jrmessage=Donation%20for%20project%20xyz
-
-Perhaps a more exact/correct way to describe the proposed syntax would be:
-
-	bitcoin:<address><parameters-list>[[?]]
-	where <parameters-list> is one or more of the following, separated by ampersand
-	<size>[[amount=]]
-	<label>[[label=]]
-	<message>[[message=]]
-
-The BNF gets close to describing this, but also has issues.  The most glaring to me is this line:
-
-	messageparam    = "label=" *uchar
-
-(Seems to me that messageparam should have the literal "message=", as opposed to "label=".)
-
-In addition, the BNF includes a parameter named "version" (which is not in the earlier specification), and also doesn't state that parameters are separated by ampersands.
-
-[Jerfelix](User:Jerfelix) 04:09, 13 June 2011 (GMT)
-
 ## Why all the crazy representation stuff?
 
 Amounthex, amountdec, exponents.. wtf? Why not settle on one normalized representation, this complicates parsing (and testing of parsers) for no good reason --[Witchspace](User:Witchspace) 05:14, 4 August 2011 (GMT)
