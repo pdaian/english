@@ -1,5 +1,5 @@
 <pre>
-  BIP: -1 (pre-BIP)
+  BIP: 20
   Title: URI Scheme
   Author: Luke Dashjr <luke+bip@dashjr.org>
           Nils Schneider <nils.schneider@gmail.com>
@@ -8,54 +8,93 @@
   Created: 10-01-2011
 </pre>
 
-Previous discussion was in [this forum thread](http://www.bitcointalk.org/index.php?topic=55.0).
-x-btc specification is at [[x-btc]].
+##Abstract
+This BIP proposes a URI scheme for making Bitcoin payments.
 
-##RFC 3986
-**the following is taken from wikipedia**
-
-Internet standard [STD 66](http://rfc.net/std0066.html) (also RFC 3986) defines the generic syntax to be used in all URI schemes. Every URI is defined as consisting of four parts, as follows:
-
-	<code><nowiki><scheme name> : <hierarchical part> [ ? <query> ] [ # <fragment> ]</nowiki></code>
-
-The **scheme name** consists of a letter followed by any combination of letters, digits, and the plus ("+"), period ("."), or hyphen ("-") characters; and is terminated by a colon (":").
-
-The **hierarchical part** of the URI is intended to hold identification information hierarchical in nature. Usually this part begins with a double forward slash ("//"), followed by an *authority* part and an optional *path*.  
-
-* The **authority** part holds an optional user information part terminated with "@" (e.g. <code><nowiki>username:password@</nowiki></code>), a hostname (i.e. domain name or IP address), and an optional port number preceded by a colon ":".
-
-* The **path** part is a sequence of segments (conceptually similar to directories, though not necessarily representing them) separated by a forward slash ("/"). Each segment can contain parameters separated from it using a semicolon (";"), though this is rarely used in practice.
-
-The **query**  is an optional part separated with a question mark, which contains additional identification information which is not hierarchical in nature. The query string syntax is not generically defined, but is commonly organized as a sequence of <code><nowiki><key>=<value></nowiki></code> pairs separated by a semicolon (2.1) (2.2) (2.3) or separated by an ampersand, for example:
-	Semicolon: <code><nowiki>key1=value1;key2=value2;key3=value3</nowiki></code>
-	Ampersand: <code><nowiki>key1=value1&key2=value2&key3=value3</nowiki></code>
-
-The **fragment** is an optional part separated from the front parts by a hash ("#"). It holds additional identifying information that provides direction to a secondary resource, e.g. a section heading in an article identified by the remainder of the URI.  When the primary resource is an HTML document, the **fragment** is often an <code>id</code> attribute of a specific element and web browsers will make sure this element is visible.
+##Motivation
+The purpose of this URI scheme is to enable users to easily make payments by simply clicking links on webpages or scanning QR Codes.
 
 ##Specification
 
-[] means optional, <> are placeholders
+### General rules for handling (important!)
 
-	bitcoin:<address>[[?]]<size>[[amount=]][[&]]<label>[[label=]][[&]]<message>[[message=]][[&]]<private key>[[send=]]
+Bitcoin clients MUST NOT act on URIs without getting the user's authorization.
+They SHOULD require the user to manually approve each payment individually, though in some cases they MAY allow the user to automatically make this decision.
+
+### Operating system integration
+Graphical bitcoin clients SHOULD register themselves as the handler for the "bitcoin:" URI scheme by default, if no other handler is already registered. If there is already a registered handler, they MAY prompt the user to change it once when they first run the client.
+
+### BNF grammar
+
+(See also [[a simpler representation of syntax|#Simpler_syntax]])
+
+	bitcoinurn      = "bitcoin:" bitcoinaddress  [bitcoinversion](";version=")  [bitcoinparams]("?")
+	bitcoinaddress  = base58 *base58
+	bitcoinversion  = "1.0"
+	bitcoinparams   = *bitcoinparam
+	bitcoinparam    = amountparam  labelparam  messageparam  sendparam  otherparam
+	amountparam     = "amount=" amount
+	amount          = amountdecimal  amounthex
+	amountdecimal   = *digit  [*digit](".")  [*digit]("X")
+	amounthex       = "x" *hexdigit  [*hexdigit](".")  [*hexdigit]("X")
+	labelparam      = "label=" *pchar
+	messageparam    = "message=" *pchar
+	sendparam       = "send=" *pchar
+	otherparam      = pchar *pchar "=" *pchar
 
 ### Query Keys
 
 * label: Label for that address (e.g. name of receiver)
 * address: bitcoin address
-* message: optional message that is shown to the user after scanning the QR code
-* size: amount of base bitcoin units (cuBTCents/TBCᵇ-- NOT full DecimalBitCoins/BTC nor TonalBitCoins/TBC; see below)
-* private key: used to send bitcoin, rather than to request them
+* message: message that shown to the user after scanning the QR code
+* size: amount of base bitcoin units ([[see below|#Transfer_amount/size]])
+* send: used to send bitcoin, rather than to request them
+* (others): optional, for future extensions
 
 #### Transfer amount/size
 
 If an amount is provided, it may be specified either in decimal or, when prefixed with a single "x" character, hexadecimal.
 The number SHOULD be followed by "X" <digits> to signify an exponent to the base multiplier.
-That is, "X8" multiplies your number by 100,000,000.
+Thus, "X8" multiplies your number by 100,000,000.
 For decimal values, this means the standard BTC unit.
 For hexadecimal values, this means ᵇTBC units (which are equivalent to 42.94967296 BTC).
 If exponent is omitted, implementations SHOULD assume X8 for decimal numbers, and X4 for hexadecimal numbers.
 I.e. amount=50.00 is treated as 50 BTC, and amount=x40 is treated as 40 TBC.
 When specifying bitcoin base units, "X0" SHOULD be used.
+
+Bitcoin clients MAY display the amount in any format that is not intended to deceive the user.
+They SHOULD choose a format that is foremost least confusing, and only after that most reasonable given the amount requested.
+For example, so long as the majority of users work in BTC units, values should always be displayed in BTC by default, even if mBTC or TBC would otherwise be a more logical interpretation of the amount.
+
+## Rationale
+
+###Payment identifiers, not person identifiers
+Current best practices are that a unique address should be used for every transaction.
+Therefore, a URI scheme should not represent an exchange of personal information, but a one-time payment.
+
+###Accessibility (URI scheme name)
+Should someone from the outside happen to see such a URI, the URI scheme name already gives a description.
+A quick search should then do the rest to help them find the resources needed to make their payment.
+Other proposed names sound much more cryptic; the chance that someone googles that out of curiosity are much slimmer.
+Also, very likely, what he will find are mostly technical specifications - not the best introduction to bitcoin.
+
+##Forward compatibility
+We want URIs generated in 2011 to still work in 2036: think about extensibility.
+Of course we can make only educated guesses about the future, but don't act as if there is none.
+This should be the best we can do, but it should not be seen as set in stone.
+Make it possible for later generations to improve our work, to mend our errors, without breaking the URIs created now.
+Version incompatibility is the easiest thing to drive users crazy: "I just upgraded to this shiny new version. What? It doesn't support the old format? AAAAAAARRRGH!"
+
+## Appendix
+
+### Simpler syntax
+
+This section is non-normative and does not cover all possible syntax.
+Please see the [[BNF grammar|#BNF_grammar]] above for the normative syntax.
+
+[[foo]] means optional, <bar> are placeholders
+
+	bitcoin:<address>[[;version=1.0]]<amount>[[?amount=]]<label>[[?label=]]<message>[[?message=]]<private key>[[?send=]]
 
 ### Examples
 
@@ -85,20 +124,25 @@ Send 1 BTC:
 
 Characters must be URI encoded properly.
 
-### BNF syntax
+###Sending money via private key
+To send a payment to someone else first construct a new keypair. You may want to use a [[mini_private_key_format]], or you may also use a full private key for more security depending on the amount being sent and how long you expect to pass before a claim. Now create and publish a transaction with an output of the amount you wish to send. Use this script in that output:
 
-	bitcoinurn      = "bitcoin:" bitcoinaddress  [bitcoinversion](";version=")  [bitcoinparams]("?")
-	bitcoinaddress  = FIXME :)
-	bitcoinversion  = "1.0"
-	bitcoinparams   = *bitcoinparam
-	bitcoinparam    = amountparam  labelparam  messageparam  pkparam
-	amountparam     = "amount=" amount
-	amount          = amountdecimal  amounthex
-	amountdecimal   = digits  [digits]("X")
-	amounthex       = "x" hexdigits  [hexdigits]("X")
-	labelparam      = "label=" *uchar
-	messageparam    = "label=" *uchar
-	sendparam       = "send=" *uchar
+	<pubkey> OP_CHECKSIG
+
+Construct an address from the public key. Encode the URI as below:
+
+	bitcoin:<address>?send=<base 58 encoded private key>
+
+You may optionally include amount or message fields as well. In a wallet to claim money sent this way search for an incoming transaction with the output script form above, where <address> matches the public key in the script. When you find the transaction create a claim transaction with an input script of this form:
+
+	<sig>
+
+This claims the money you were sent. Until your claim transaction has confirmed the sender may take their money back.
+
+## Reference Implementations
+### Bitcoin clients
+
+* [[Spesmilo]] supports all valid Bitcoin URIs, with Windows and KDE integration
 
 ### Parsing amount
 #### ECMAScript
@@ -161,85 +205,6 @@ Characters must be URI encoded properly.
 	Amount = (long)(decimal.Parse(match.Groups[[2]].Value) * decimalExponent);
 	}
 	}
-
-##Requirements
-
-###Payment identifiers, not person identifiers
-In my opinion, the most basic idea of the URI scheme (as this is a currency) is to facilitate payment. So the URIs should represent first and foremost payments. If it represents something else, this needs to be specified. Thus
-<code>
-bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L
-</code>
-represents a **request for payment** to me using my bitcoin address, not my bitcoin address itself. So after parsing the URI (via link/qr/whatever) the application should open a transaction window with the address filled in. You then need to add an amount and confirm the payment.
-If your application is smart, it will also have a button "just store the address". But the point I am trying to make is that the default use of the URI should be for payment, nor for exchanging addresses.
-
-###Sending money
-To send a payment to someone else first construct a new keypair. You may want to use a [[mini_private_key_format]], or you may also use a full private key for more security depending on the amount being sent and how long you expect to pass before a claim. Now create and publish a transaction with an output of the amount you wish to send. Use this script in that output:
-
-<code>
-<pubkey> OP_CHECKSIG
-</code>
-
-Construct an address from the public key. Encode the URI as below:
-
-<code>
-bitcoin:<address>?send=<base 58 encoded private key>
-</code>
-
-You may optionally include amount or message fields as well. In a wallet to claim money sent this way search for an incoming transaction with the output script form above, where <address> matches the public key in the script. When you find the transaction create a claim transaction with an input script of this form:
-
-<code>
-<sig>
-</code>
-
-This claims the money you were sent. Until your claim transaction has confirmed the sender may take their money back.
-
-###Accessibility
-**Imported from the forum:** I like the simplicity of bitcoin:xxxxxxxxxxxxx and very much approve of its accessibility. Should someone from the outside happen to see such a URI, the protocol name already gives a description. A quick google search should then do the rest. x-btc sounds much more cryptic; the chance that someone googles that out of curiosity are much slimmer. Also, very likely, what s/he will find are mostly technical specifications. Not a good introduction to bitcoin.
-
-For the same reason I am for using '&' as a delimiter for key-value pairs. People know it from URLs. Make it easy for people to understand what is going on.
-
-###Keep it simple
-Don't explicitly write down information that can be inferred. Don't mark the address as an address. If there is no address, this does lose much of its utility. We could, however, specify 'address' as a reserved word, so that <code>
-bitcoin:address?amount=50X8
-</code>
-would initiate a transaction with the amount filled in, but with a blank address. I am not convinced that there is a use case, though.
-
-###Use-cases
-Before the URI scheme is finalised one should think long and hard about use cases. in what circumstances will which people use this, and for what?
-
-* an online shop has a 'buy this' link, which uses the URI scheme. 
-	* PROBLEM: click on the link opens the application; how does the merchant notice this?
-		* POSSIBLE SOLUTION: javascript can detect the click.
-		* POSSIBLE SOLUTION: the checkout site checks its bitcoin account for payment via HTTP request.
-	* PROBLEM: the time problem (~10 minutes) is very apparent here; nobody wants to wait 10 minutes for the transaction to be confirmed.
-		* For micropayment-style digital content (songs, for example) it's probably not necessary to wait for any confirmation at all, since there is low risk of a double-spend attack for payments of a small amount.
-		* For physical goods, the merchant can tell the client that their transaction is pending when it first notices the transaction, and that payment is complete when the number of confirmations is large enough.  The buyer isn't going to sit there and wait anyway; nobody sits at their computer until their credit card gets charged when buying physical goods.
-* a person only has an online client, no actual application
-	* PROBLEM: how to redirect the URI so that the online client gets a notice?
-		* POSSIBLE SOLUTION: Small application and/or browser plugins to redirect the handler call to the designated online wallet.
-
-###Backwards compatibility
-We want URIs generated in 2011 to still work in 2036. Think about extensibility. Of course we can make only educated guesses (and nothing more!) about the future, but don't act as if there is none. This should be the best we can do, but it should not be seen as set in stone. Make it possible for later generations to improve our work, to mend our errors, without breaking the URIs created now. Version incompatibility is the easiest thing to drive users crazy: "I just upgraded to this shiny new version. What? It doesn't support the old format? AAAAAAARRRGH!"
-
-##References
-
-<span class="ref-label">2.1:
-<span class="ref-column">
- 
-RFC 1866 section 8.2.1 : by Tim Berners-Lee in 1995 encourages CGI authors to support ';' in addition to '&'.
-</span>  
-<span class="ref-label">2.2:
-<span class="ref-column">
- [HTML 4.01 Specification: Implementation, and Design Notes](http://www.w3.org/TR/REC-html40/appendix/notes.html#h-B.2.2) 
-: "CGI implementors support the use of ";" in place of "&" to save authors the trouble of escaping "&" characters in this manner."
-</span>  
-<span class="ref-label">2.3:
-<span class="ref-column">
- [Hypertext Markup Language - 2.0](http://www.w3.org/MarkUp/html-spec/html-spec_foot.html#FOOT26) 
-
-"CGI implementors are encouraged to support the use of ';' in place of '&' " 
-</span>
-
 
 [[!tag "Developer"]]
 [[!tag "Technical"]]
