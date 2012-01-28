@@ -70,47 +70,18 @@ Dependencies if running from source:
 
 ### Miners
 
-This is all for the latest p2pool version, as it includes several new workarounds. With all miners, using a high FPS target (100?) or a low aggression, and waiting for p2pool to completely start (line shows > 17000 shares) helps a lot with reducing stales.
+
+This is all for the latest p2pool version, as it includes several new workarounds. 
+
+With all miners, using a HIGH FPS target (100?) or a LOW intensity (8 for cgminer?) helps a lot with reducing stales.
+
+* cgminer works perfectly without any extra options. However, using multiple pools might cause problems, because long polling is only done for one pool.
+* ufasoft works perfectly.
+* DiabloMiner works fine after commit 3b731b9.
+* Phoenix works fine after commit a658ef2.
+* Poclbm works fine after commit 5e994e7.
 
 P2Pool uses higher difficulty shares than most centralized pools, so you'll see fewer shares reported. This is normal and doesn't reduce your payments.  It's also normal to see longpoll messages once per every ten seconds on average.
-
-#### Works as-is
-
-##### cgminer
-Works very well as is.
-
-##### ufasoft 
-Works as is.
-
-##### DiabloMiner
-Works fine after commit 3b731b9b54.
-
-#### Needs patch to reduce stales
-
-##### Poclbm
-Waits a full second between long polls.
-
-GitHub fork: https://github.com/forrestv/poclbm
-Pull request: https://github.com/m0mchil/poclbm/pull/41
-<pre>git clone git://github.com/forrestv/poclbm.git
-cd poclbm
-git checkout fast_long_polling</pre>
-
-Windows binary: http://u.forre.st/u/wodukkea/p2pool-poclbm_win32_5590e7c.zip
-
-##### Phoenix
-(Works fine after commit 8263f65!)
-
-Has a similar bug (waiting a full second).
-
-GitHub fork: https://github.com/forrestv/phoenix-miner
-
-Windows binary: http://u.forre.st/u/ycvzejfm/phoenix-miner-fba48d2-5.zip
-
-#### Not-compatible
-
-##### puddinpop's RPC Miners
-Does not have long polling so will not work at all.
 
 ### Option Reference
 <pre>
@@ -198,9 +169,9 @@ P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same 
 
 ##History
 
-This project was announced on June 17, 2011 by Forrest Voight (18.1).
+This project was announced on June 17, 2011 by Forrest Voight (9.1).
 
-The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (18.2).
+The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (9.2).
 
 The software author's address for donations can be found in the signature section of his [forum profile](http://forum.bitcoin.org/index.php?action=profile;u=6447).
 
@@ -224,8 +195,8 @@ If you decide to donate you should announce it on the forums so that your donati
 
 ##References
 
-18.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
-18.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
+9.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
+9.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
 
 
 [[!tag "Pool_Operators"]]
