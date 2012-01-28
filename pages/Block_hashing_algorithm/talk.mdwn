@@ -4,4 +4,4 @@ What is licensing/copyright information on that code? Public domain?
 
 Doesn't it take more effort to calculate the Merkle root for 10,000 transactions than it does than for 1 transaction? Of course, you only have to do this once per block, but it's misleading. It seems you're using "hashing a block" to specifically mean the (iterative) hash calculation, not the process of block generation. I recommend rewording to :
 
-"These are hashed only indirectly through the Merkle root. Because transactions aren't hashed directly, hashing a block with 1 transaction takes exactly the same amount of effort as hashing a block with 10,000 transactions, once the Merkle root of those transactions is calculated."
+"These are hashed only indirectly through the Merkle root. Because transactions aren't hashed directly, hashing a block with 1 transaction takes exactly the same amount of effort as hashing a block with 10,000 transactions, once the Merkle root of those transactions is calculated." [Therealplato](User:Therealplato) 23:41, 28 January 2012 (GMT)
