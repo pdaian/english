@@ -12,7 +12,7 @@
 >  The common decimal [[unit|Units]] of Bitcoins, equal to 100,000,000 satoshis.
 **Chain Branching**
 **Checkpoint Lockin**
->  Every once in a while, an old block hash is hardcoded into Bitcoin. This prevents pretty much any possible attack from affecting transactions made up to this point. This prevents various DOS attacks from nodes flooding unusable chains and attacks involving isolating nodes and giving them fake chains. No matter what happens (except perhaps if SHA-256 is broken), these transactions will survive.  Satoshi announced the feature [here](http://www.bitcoin.org/smf/index.php?topic=437)(broken link) and it was discussed to death [here](http://www.bitcoin.org/smf/index.php?topic=1647) (broken link).
+>  Every once in a while, an old block hash is hardcoded into Bitcoin software. Different implementations choose different checkpoint locations. Checkpoints prevent various DOS attacks from nodes flooding unusable chains and attacks involving isolating nodes and giving them fake chains. Satoshi announced the feature [here](https://bitcointalk.org/index.php?topic=437)(broken link) and it was discussed to death [here](https://bitcointalk.org/index.php?topic=1647) (broken link).
 **Coinbase**
 >  "Coinbase" is another name for a generation transaction. The input of such a transaction contains some arbitrary data where the scriptSig would go in normal transactions -- this data is sometimes called the "coinbase", as well.
 **[[Confirmation]]**
