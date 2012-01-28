@@ -51,7 +51,7 @@ These clients involve some (usually low) level of trust in the server they rely 
 
 All thin clients listed below currently connect to a single server, and are vulnerable to an attack similar to a double-spend. The attack can be run by that single server - the server can just lie to them that they received a Bitcoin transaction, and they, assuming the server does not lie, perform some service, transfer funds or send goods without actually receiving any Bitcoin in exchange. Therefore, they are implicitly trusting it
 
-Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (see offsite link below).
+Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (8.1).
 
 * [[BCCAPI]]
 * [[Electrum]]
@@ -63,7 +63,7 @@ Future enhancements have been suggested that will have the client talk to multip
 * A [question](http://bitcoin.stackexchange.com/questions/2584/is-reclaiming-disk-space-already-implemented-how-effective-will-it-be/2589) on bitcoin.stackexchange.com
 * The ["cancer nodes"](https://en.bitcoin.it/wiki/Weaknesses#Cancer_nodes) paragraph explains some of the issues with thin clients that base security on trusting whatever "a majority of the IP addresses I can see" say.
 * [this analysis on Stack Exchange](http://bitcoin.stackexchange.com/questions/2613/how-secure-are-various-models-of-bitcoin-clients)
-* [Wikipedia article on Sybil attacks](http://en.wikipedia.org/wiki/Sybil_attack)
 
 [[!tag "Technical"]]
 [[!tag "Clients"]]
+8.1: http://en.wikipedia.org/wiki/Sybil_attack
