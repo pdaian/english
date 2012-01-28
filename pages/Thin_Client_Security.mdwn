@@ -49,13 +49,13 @@ Note that at the present moment no standard format for such Unused Output Tree h
 
 These clients involve some (usually low) level of trust in the server they rely upon.  Mechanisms for authenticating the server, and for confirming that the server has not been compromised, are usually not explained.
 
-All thin clients listed below currently connect to a single server, and are vulnerable to an attack similar to a double-spend. The attack can be run by that single server - the server can just lie to them that they received a Bitcoin transaction, and they, assuming the server does not lie, perform some service, transfer funds or send goods without actually receiving any Bitcoin in exchange. Therefore, they are implicitly trusting it
-
-Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (8.1).
+All thin clients listed below currently connect to a single server, and are vulnerable to an attack similar to a double-spend. The attack can be run by that single server - the server can just lie to them that they received a Bitcoin transaction, and they, assuming the server does not lie, perform some service, transfer funds or send goods without actually receiving any Bitcoin in exchange. Therefore, they are implicitly trusting it.
 
 * [[BCCAPI]]
 * [[Electrum]]
 * [[Stratum]]
+
+Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (8.1).
 
 ## Other
 
