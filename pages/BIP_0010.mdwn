@@ -96,3 +96,5 @@ This proposal has been implemented and tested in the *Armory* Bitcoin software f
 One of the reasons TxDPs are versatile, is the ability for a device to "understand" and sign a transaction **without** access to the blockchain.  However, this means that any information included in the TxDP that is not part of the final broadcast transaction (such as input values), cannot be verified by the device.  i.e. Someone could create a TxDP and lie about the values of each input, knowing that the signing device will not be able to verify those values.  Since the final, serialized transaction does not include input values, the subsequent signature will be valid no matter what inputs values were provided.
 
 This is only a minor issue, since developers who are concerned about such "attacks" can choose to ignore non-signed fields in the TxDP.  Or, they can guarantee that all TxDPs will pass through a trusted system that *does* have access to the blockchain and can verify such information.
+
+[[!tag "BIP"]]
