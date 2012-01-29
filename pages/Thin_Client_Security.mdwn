@@ -33,7 +33,7 @@ A security analysis of some of the issues in BitcoinJ can be found [here](http:/
 
 ### Unused Output Tree in the Blockchain (UOT)
 
-There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell, who called it an "open transaction tree", although the term "open" is now taken to mean "not yet mined into the blockchain" rather than "unspent") to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).  This will be called an Unused Output Tree (UOT).
+There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell, who called it an "open transaction tree", although the term "open" is now taken to mean "not yet mined into the blockchain" rather than "unspent") to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).  This will be called an Unused Output Tree (UOT).  The most detailed proposal so far appears to be [Alberto Torres' proposal](https://en.bitcoin.it/wiki/User:DiThi/MTUT).
 
 If such UOT hashes were included in the blockchain, a client which shipped with a [checkpoint](https://en.bitcoin.it/wiki/Vocabulary) block that had a UOT would only need to download blocks after the checkpoint.  Moreover, once the client had downloaded those blocks and confirmed their UOTs, it could discard all but the most recent block containing a UOT.
 
