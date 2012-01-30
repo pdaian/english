@@ -1,0 +1,30 @@
+This page is a Quality Assurance test plan for BIPs 17 and <?>.  If you see a test missing, please add it.
+If you can help test, please edit this page to sign-off on it.
+
+NOTE: new multisig BIP is still in progress; BIP 17 had been tested with BIP 11 multisigs already
+
+
+
+|Testnet |Mainnet |Test Procedure |Tested by
+|---|---|---|---
+style="color:red;"|||Run BIP-17-capable Bitcoin 0.6 on testnet and main net<br />Send coins using GUI, RPC sendtoaddress, and RPC sendmany commands<br />Result: coins sent in all cases|
+style="color:red;"|||Test multisig 1-of-1<br />Run 0.6 bitcoind, get a public key with: ./bitcoind -testnet validateaddress $(./bitcoind -testnet getnewaddress)<br />Generate a multisig 1-of-1 address: ./bitcoind addmultisigaddress 1 {public key from above}<br />Send-to-self some bitcoins using that address<br />Result: transaction is confirmed by network, displays properly in listtransactions.Result: balance is unaffected|
+style="color:red;"|||Test multisig 1-of-2<br />Run 0.6 bitcoind, get 2 new bitcoin addresses<br />Generate a multisig 1-of-2 address: ./bitcoind addmultisigaddress 1 {address1}{address2}<br />Send-to-self some bitcoins using that address<br />Result: transaction is confirmed by network, displays properly in listtransactions.Result: bitcoin balance is unaffected.|
+style="color:red;"|||Test multisig 1-of-3, 2-of-3, 3-of-3<br />Repeat test procedures above, with the other new multisignature transaction types|
+style="color:red;"|||Test multisig send-to-other<br />Repeat test procedures above, but use two bitcoinds, prepared as follows:<br />bitcoind 1 : Run getnewaddress and addmultisigaddress<br />bitcoind 2 : Just addmultisigaddress<br />Send coins from 2 to 1 using the address<br />Result: transaction is accepted/confirmed by network<br />Result: balance for 2 goes down, listtransactions for 2 displays correct result<br />Result: balance for 1 goes up, listtransactions for 1 displays correct result<br />|
+style="color:red;"|||Test redeeming multisignature transactions<br />Fund a new, empty wallet entirely with multisig transactions<br />Wait for transactions to confirm<br />Use sendtoaddress and sendmany to generate spend-from-multisig transactions<br />Spend to both single-address and multisig address, and test send-to-other and send-to-self<br />Result: transactions are accepted/confirmed by network<br />Result: balance decreases, listtransactions displays correct information<br />|
+style="color:red;"|||Run 0.6 Bitcoin-Qt GUI on one of the test wallets from above<br />Result: balance and transactions displayed correctly|
+style="color:red;"|||Run BIP-16-capable backport Bitcoin 0.3.19 through 0.5.1 on testnet and main net<br />Send coins using GUI, RPC sendtoaddress, and RPC sendmany commands<br />Result: coins sent in all cases|
+style="color:red;"|||Run BIP-16-capable Bitcoin 0.6.0 on testnet<br />Mine coins using built-in miner<br />Result: blocks accepted, show up on blockexplorer.com/testnet<br />Result: mined blocks' coinbase contains p2sh/CHV string|
+style="color:red;"|||Run BIP-16-capable Bitcoin 0.6.0 on testnet<br />Mine coins using getwork interface<br />Result: blocks accepted, show up on blockexplorer.com/testnet<br />Result: mined blocks' coinbase contains p2sh/CHV string|
+style="color:red;"|||Run BIP-16-capable Bitcoin 0.6.0 on testnet<br />Mine coins using getmemorypool interface<br />Result: blocks accepted, show up on blockexplorer.com/testnet<br />Result: mined blocks' coinbase contains p2sh/CHV string|
+style="color:red;"|||Run BIP-16-capable Bitcoin 0.3.19 through 0.5.1 backports on testnet<br />Mine coins using built-in miner<br />Result: blocks accepted, show up on blockexplorer.com/testnet<br />Result: mined blocks' coinbase contains p2sh/CHV string|
+style="color:red;"|||Run BIP-16-capable Bitcoin 3.19 through 0.5.1 backports on testnet<br />Mine coins using getwork interface<br />Result: blocks accepted, show up on blockexplorer.com/testnet<br />Result: mined blocks' coinbase contains p2sh/CHV string|
+style="color:red;"|||Run BIP-16-capable Bitcoin 0.3.19 through 0.5.1 backports on testnet<br />Mine coins using built-in miner<br />Result: blocks accepted, show up on blockexplorer.com/testnet<br />Result: mined blocks' coinbase contains p2sh/CHV string|
+style="color:red;"|||Run BIP-16-capable Bitcoin 3.19 through 0.5.1 backports on testnet<br />Mine coins using getwork interface<br />Result: blocks accepted, show up on blockexplorer.com/testnet<br />Result: mined blocks' coinbase contains p2sh/CHV string|
+style="color:red;"|||Run BIP-16-capable Bitcoin 3.19 through 0.5.1 backports on testnet<br />Mine coins using getmemorypool interface<br />Result: blocks accepted, show up on blockexplorer.com/testnet<br />Result: mined blocks' coinbase contains p2sh/CHV string|
+style="color:red;"|||Create/run unit tests for:<br />multisignature signing/verification<br />multisignature invalid signature failure<br />multisignature IsStandard() success/failure<br />extraction of addresses from multisignature transactions<br />BIP 17 IsStandard() success/failure<br />BIP 17 AreInputsStandard() success/failure<br />BIP 17 compatibility with other 3 standard transaction types<br />BIP 17 switchover date logic<br />|
+style="color:red;"|||Create/run 'transaction fuzzer' to stress-test BIP 17 transactions|
+style="color:red;"|||Run Bitcoin 0.6 on main net <br />Result: blocks created properlyResult: blocks include p2sh/CHV string in their coinbase|
+style="color:red;"|||Run BIP 17 vinced_mergedmine backport on main net <br />Result: blocks created properlyResult: blocks include p2sh/CHV string in their coinbase|
+
