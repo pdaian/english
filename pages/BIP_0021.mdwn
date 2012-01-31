@@ -30,15 +30,15 @@ Graphical bitcoin clients SHOULD register themselves as the handler for the "bit
 
 (See also [[a simpler representation of syntax|#Simpler_syntax]])
 
-	bitcoinurn      = "bitcoin:" bitcoinaddress  [bitcoinversion](";version=")  [bitcoinparams]("?")
-	bitcoinaddress  = base58 *base58
-	bitcoinversion  = "1.0"
-	bitcoinparams   = *bitcoinparam
-	bitcoinparam    = amountparam  labelparam  messageparam  otherparam
-	amountparam     = "amount=" *digit  [*digit](".")
-	labelparam      = "label=" *pchar
-	messageparam    = "message=" *pchar
-	otherparam      = pchar *pchar "=" *pchar
+	bitcoinurn         = "bitcoin:" bitcoinaddress  [bitcoinparams]("?")
+	bitcoinaddress     = base58 *base58
+	bitcoinparams      = *bitcoinparam
+	bitcoinparam       = amountparam  labelparam  messageparam  otherparam  mustimplementparam
+	amountparam        = "amount=" *digit  [*digit](".")
+	labelparam         = "label=" *pchar
+	messageparam       = "message=" *pchar
+	otherparam         = pchar *pchar "=" *pchar
+	mustimplementparam = "mustimplement:" pchar *pchar "=" *pchar
 
 ### Query Keys
 
@@ -70,10 +70,10 @@ Other proposed names sound much more cryptic; the chance that someone googles th
 Also, very likely, what he will find are mostly technical specifications - not the best introduction to bitcoin.
 
 ##Forward compatibility
-We want URIs generated in 2011 to still work in 2036: think about extensibility.
-Of course we can make only educated guesses about the future, but don't act as if there is none.
-This should be the best we can do, but it should not be seen as set in stone.
-Make it possible for later generations to improve our work, to mend our errors, without breaking the URIs created now.
+Variables which are prefixed with a mustimplement: are considered required.  If a client does not implement any variables which are prefixed with mustimplement:, it MUST consider the entire URI invalid.  Any other variables which are not implemented, but which are not prefixed with a mustimplement:, can be safely ignored.  
+
+##Backward compatibility
+As this BIP is written, several clients already implement a bitcoin: URI scheme similar to this one, however usually without the additional "mustimplement:" prefix requirement.  Thus, it is recommended that additional variables prefixed with mustimplement: not be used in a mission-critical way until a grace period of 6 months from the finalization of this BIP has passed in order to allow client developers to release new versions, and users of old clients to upgrade.
 
 ## Appendix
 
@@ -84,28 +84,34 @@ Please see the [[BNF grammar|#BNF_grammar]] above for the normative syntax.
 
 [[foo]] means optional, <bar> are placeholders
 
-	bitcoin:<address>[[;version=1.0]]<amount>[[?amount=]]<label>[[?label=]]<message>[[?message=]]
+	bitcoin:<address><amount>[[?amount=]]<label>[[?label=]]<message>[[?message=]]
 
 ### Examples
 
 Just the address:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L
+	bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W
 
 Address with name:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?label=Luke-Jr
+	bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?label=Luke-Jr
 
 Request 20.30 BTC to "Luke-Jr":
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=20.3&label=Luke-Jr
+	bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&label=Luke-Jr
 
 Request 50 BTC with message:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=50&label=Luke-Jr&message=Donation%20for%20project%20xyz
+	bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=50&label=Luke-Jr&message=Donation%20for%20project%20xyz
+
+Some future version that has variables which are (currently) not understood and required and thus invalid:
+	bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?mustimplement:somethingyoudontunderstand=50&mustimplement:somethingelseyoudontget=999
+
+Some future version that has variables which are (currently) not understood but not required and thus valid:
+	bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?somethingyoudontunderstand=50&somethingelseyoudontget=999
 
 Characters must be URI encoded properly.
 
 ## Reference Implementations
 ### Bitcoin clients
 
-* [[Bitcoin-Qt]] supports all valid Bitcoin URIs, with Windows and KDE integration as of commit 70f55355e29c8e45b607e782c5d76609d23cc858.
+* [[Bitcoin-Qt]] supports the old version of Bitcoin URIs (ie without the mustimplement: prefix), with Windows and KDE integration as of commit 70f55355e29c8e45b607e782c5d76609d23cc858.
 
 [[!tag "Developer"]]
 [[!tag "Technical"]]
