@@ -14,7 +14,7 @@ Perhaps H() is a password hashing algorithm and you're looking for the password 
 
 Say I happen to _know_ some X that answers your question... and I'd like to sell it to you. But we don't trust each other at all, and because we're computer geeks we have no friends who can act as trusted mediators. Can we make this exchange using bitcoin with zero trust?  Yes.
 
-A [zero-knowledge proof](https://en.wikipedia.org/wiki/Zero-knowledge_proof) lets someone prove a mathematical fact to another person without teaching them anything about the fact itself. It has been proven that you can convert any computer program into a zero-knowledge proof.  So, using a zero-knowledge proof I could prove to you that I know some X such that H(X)=Y ... which is helpful but it's not enough because you could pay me and I could not tell you the answer (or I could tell you and then you don't pay). Here is where the password locked transactions come in.
+A [zero-knowledge proof](https://en.wikipedia.org/wiki/Zero-knowledge_proof) lets someone prove a mathematical fact to another person without teaching them anything about the fact itself. It has been proven that you can convert any computer program into a zero-knowledge proof([PSPACE⊂IP](http://en.wikipedia.org/wiki/IP_%28complexity%29#PSPACE_is_a_subset_of_IP)).  So, using a zero-knowledge proof I could prove to you that I know some X such that H(X)=Y ... which is helpful but it's not enough because you could pay me and I could not tell you the answer (or I could tell you and then you don't pay). Here is where the password locked transactions come in.
 
 First I encrypt X with random key K, Ex=AES(X,K).
 then I construct the program:
