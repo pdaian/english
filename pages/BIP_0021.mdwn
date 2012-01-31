@@ -34,11 +34,10 @@ Graphical bitcoin clients SHOULD register themselves as the handler for the "bit
 	bitcoinaddress  = base58 *base58
 	bitcoinversion  = "1.0"
 	bitcoinparams   = *bitcoinparam
-	bitcoinparam    = amountparam  labelparam  messageparam  sendparam  otherparam
+	bitcoinparam    = amountparam  labelparam  messageparam  otherparam
 	amountparam     = "amount=" *digit  [*digit](".")
 	labelparam      = "label=" *pchar
 	messageparam    = "message=" *pchar
-	sendparam       = "send=" *pchar
 	otherparam      = pchar *pchar "=" *pchar
 
 ### Query Keys
@@ -47,7 +46,6 @@ Graphical bitcoin clients SHOULD register themselves as the handler for the "bit
 * address: bitcoin address
 * message: message that shown to the user after scanning the QR code
 * size: amount of base bitcoin units ([[see below|#Transfer_amount/size]])
-* send: used to send bitcoin, rather than to request them
 * (others): optional, for future extensions
 
 #### Transfer amount/size
@@ -86,7 +84,7 @@ Please see the [[BNF grammar|#BNF_grammar]] above for the normative syntax.
 
 [[foo]] means optional, <bar> are placeholders
 
-	bitcoin:<address>[[;version=1.0]]<amount>[[?amount=]]<label>[[?label=]]<message>[[?message=]]<private key>[[?send=]]
+	bitcoin:<address>[[;version=1.0]]<amount>[[?amount=]]<label>[[?label=]]<message>[[?message=]]
 
 ### Examples
 
@@ -102,25 +100,7 @@ Request 20.30 BTC to "Luke-Jr":
 Request 50 BTC with message:
 	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=50&label=Luke-Jr&message=Donation%20for%20project%20xyz
 
-Send 1 BTC:
-	bitcoin:1NS17iag9jJgTHD1VXjvLCEnZuQ3rJED9L?amount=1&send=S4b3N3oGqDqR5jNuxEvDwf
-
 Characters must be URI encoded properly.
-
-###Sending money via private key
-To send a payment to someone else first construct a new keypair. You may want to use a [[mini_private_key_format]], or you may also use a full private key for more security depending on the amount being sent and how long you expect to pass before a claim. Now create and publish a transaction with an output of the amount you wish to send. Use this script in that output:
-
-	<pubkey> OP_CHECKSIG
-
-Construct an address from the public key. Encode the URI as below:
-
-	bitcoin:<address>?send=<base 58 encoded private key>
-
-You may optionally include amount or message fields as well. In a wallet to claim money sent this way search for an incoming transaction with the output script form above, where <address> matches the public key in the script. When you find the transaction create a claim transaction with an input script of this form:
-
-	<sig>
-
-This claims the money you were sent. Until your claim transaction has confirmed the sender may take their money back.
 
 ## Reference Implementations
 ### Bitcoin clients
