@@ -40,6 +40,9 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * Scripts should be fully enabled after a careful audit.
 * Miners/relays should not be able to inject extra arbitrary data into transactions?
 * Use the previous block hash as an explicit or implicit prev_in in coinbases when hashing them to make it ~impossible to get a duplicate coinbase, thus removing the need for a pruning node to remember coinbase hashes to prevent duplicates consistently with the rest of the network
+* coinbases must be parseable.
+This changes would involve converting old blocks:
+
 * uint64_t for timestamp field in blocks.
 
 ##References
