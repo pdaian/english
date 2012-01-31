@@ -85,23 +85,24 @@ P2Pool uses higher difficulty shares than most centralized pools, so you'll see 
 
 ### Option Reference
 <pre>
-usage: run_p2pool.py [-h] [--version] [--net {bitcoin, litecoin, namecoin}]
-                     [--testnet] [--debug] [-a ADDRESS] [--logfile LOGFILE]
+usage: run_p2pool.py [-h] [--version] [--net {bitcoin, litecoin}] [--testnet]
+                     [--debug] [-a ADDRESS] [--logfile LOGFILE]
                      [--merged-url MERGED_URL]
                      [--merged-userpass MERGED_USERPASS]
-                     [--give-author DONATION_PERCENTAGE] [--p2pool-port PORT]
-                     [-n ADDR[:PORT]] [--disable-upnp] [-w PORT]
-                     [-f FEE_PERCENTAGE] [--bitcoind-address BITCOIND_ADDRESS]
+                     [--give-author DONATION_PERCENTAGE] [--irc-announce]
+                     [--p2pool-port PORT] [-n ADDR[:PORT]] [--disable-upnp]
+                     [-w PORT] [-f FEE_PERCENTAGE]
+                     [--bitcoind-address BITCOIND_ADDRESS]
                      [--bitcoind-rpc-port BITCOIND_RPC_PORT]
                      [--bitcoind-p2p-port BITCOIND_P2P_PORT]
-                     [BITCOIND_RPCUSER] BITCOIND_RPCPASSWORD
+                     [BITCOIND_RPCUSERPASS [BITCOIND_RPCUSERPASS ...]]
 
-p2pool (version 31cbeea)
+p2pool (version a7d3ae4)
 
 optional arguments:
   -h, --help            show this help message and exit
   --version             show program's version number and exit
-  --net {bitcoin, litecoin, namecoin}
+  --net {bitcoin, litecoin}
                         use specified network (default: bitcoin)
   --testnet             use the network's testnet
   --debug               enable debugging mode
@@ -118,13 +119,15 @@ optional arguments:
   --give-author DONATION_PERCENTAGE
                         donate this percentage of work to author of p2pool
                         (default: 0.5)
+  --irc-announce        announce any blocks found on
+                        irc://irc.freenode.net/#p2pool
   --disable-upnp        don't attempt to use UPnP to forward p2pool's P2P port
                         from the Internet to this computer
 
 p2pool interface:
   --p2pool-port PORT    use port PORT to listen for connections (forward this
                         port from your router!) (default: bitcoin:9333,
-                        litecoin:9338, namecoin:9334)
+                        litecoin:9338)
   -n ADDR[:PORT], --p2pool-node ADDR[:PORT]
                         connect to existing p2pool node at ADDR listening on
                         port PORT (defaults to default p2pool P2P port) in
@@ -133,7 +136,7 @@ p2pool interface:
 worker interface:
   -w PORT, --worker-port PORT
                         listen on PORT for RPC connections from miners
-                        (default: bitcoin:9332, litecoin:9327, namecoin:9331)
+                        (default: bitcoin:9332, litecoin:9327)
   -f FEE_PERCENTAGE, --fee FEE_PERCENTAGE
                         charge workers mining to their own bitcoin address (by
                         setting their miner's username to a bitcoin address)
@@ -146,12 +149,16 @@ bitcoind interface:
                         connect to this address (default: 127.0.0.1)
   --bitcoind-rpc-port BITCOIND_RPC_PORT
                         connect to JSON-RPC interface at this port (default:
-                        bitcoin:8332, litecoin:9332, namecoin:8332)
+                        bitcoin:8332, litecoin:9332 <read from bitcoin.conf if
+                        password not provided>)
   --bitcoind-p2p-port BITCOIND_P2P_PORT
                         connect to P2P interface at this port (default:
-                        bitcoin:8333, litecoin:9333, namecoin:8334)
-  BITCOIND_RPCUSER      bitcoind RPC interface username (default: <empty>)
-  BITCOIND_RPCPASSWORD  bitcoind RPC interface password
+                        bitcoin:8333, litecoin:9333 <read from bitcoin.conf if
+                        password not provided>)
+  BITCOIND_RPCUSERPASS  bitcoind RPC interface username, then password, space-
+                        separated (only one being provided will cause the
+                        username to default to being empty, and none will
+                        cause P2Pool to read them from bitcoin.conf)
 </pre>
 
 ## Protocol description
