@@ -96,7 +96,6 @@ An m-of-n transaction, requiring (for example) 5 out of 10 signatures
 	9 repetitions of: EVALOP_CHECKSIGU + xnyn + EVALOP_ADD +
 	(constant 5) + EVALOP_GREATERTHANOREQUAL
 
-
 ##Backwards Compatibility
 
 New transactions are non-standard to old implementations.  But old implementations will generate transactions that are fully compatible with the new format.  Regardless, old implementations will be rendered incompatible once such extended transactions appear on the network.
