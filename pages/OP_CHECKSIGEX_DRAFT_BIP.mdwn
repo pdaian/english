@@ -126,6 +126,11 @@ The implementation of the evaluation script processor MUST be implemented as a s
 
 The inner evaluation script processing loop SHOULD NOT contain any references or use any pointers to the stacks belonging to the outer loop.  The inner evaluation script processing loop MUST NOT provide any access whatsoever to the stacks used by the outer loop - not read access, not write access.  The inner processing loop MUST receive as its sole inputs a dedicated copy of the two binary blob parameters (*sigs* and *pubKeyEx*) that were popped off the stack, along with any information incidental to validating signatures (i.e. the computed hash of the transaction script).  The inner processing loop MUST NOT be able to return any data to the outer loop that invoked it - other than transaction failure or validation success (identical in behavior to the current implementation of OP_CHECKSIG returning success, which is to push a 0 or 1 to the outer stack).
 
+##OP_CHECKSIGVERIFY would follow
+OP_CHECKSIGVERIFY would also be renamed to OP_CHECKSIGVERIFYEX and would remain backwards compatible, but would acquire the functionality added to OP_CHECKSIGEX.  This actually keeps the Bitcoin code base simpler and smaller.
+
+The current implementation in Bitcoin's *script.cpp* of both OP_CHECKSIG and OP_CHECKSIGVERIFY are the same, sharing the same "case" block in the Bitcoin code.  They do exactly the same thing, except that OP_CHECKSIGVERIFY has a single extra if-statement which completely fails the transaction if the signature check fails, and leaves behind no result on the stack upon success.  This if-statement would be preserved so OP_CHECKSIGVERIFYEX does the same thing.
+
 ##Notes
 This was once informally proposed by Casascius.
 
