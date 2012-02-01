@@ -65,7 +65,7 @@ In addition,
 
 * Operations expecting a 1 or 0 on the top of the stack shall cause transaction failure if the stack does not contain these elements or if they are not 1 or 0.
 * Operations shall be explicitly defined as unsigned 32-bit arithmetic, with overflows explicitly defined as causing transaction failure.
-* Note that none of the operations defined thus far involve stack operations involving anything other than scalar 32-bit unsigned integers (assuming "true" and "false" are denoted as 1 and 0).  In the absence of a well-articulated need to utilize any other data type in this limited evaluation context, it is advisable to limit the functionality of the *evaluation stack* such that it only holds 32-bit unsigned integers.
+* Note that none of the operations defined thus far involve stack operations involving anything other than scalar 32-bit unsigned integers (assuming "true" and "false" are denoted as 1 and 0).  Notably, there is no defined need for objects such as blobs of bytes or big integers, as all of these are provided as explicit parameters to the EVALOP_CHECKSIGU operation.  In the absence of a well-articulated need to utilize any other data type in this limited evaluation context, it is advisable to limit the functionality of the *evaluation stack* such that it only holds 32-bit unsigned integers.
 
 ###Examples of use cases
 
