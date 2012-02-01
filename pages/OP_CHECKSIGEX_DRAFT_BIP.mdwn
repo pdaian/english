@@ -102,6 +102,13 @@ New transactions are non-standard to old implementations.  But old implementatio
 
 A suggested implementation is to program the client such that the functionality is enabled only on Testnet, and on the main Bitcoin network once a certain level of voting consensus has been established into the block chain.  So long as the functionality is disabled, OP_CHECKSIG shall fail so long as the expected parameters of one single signature and one single private key are provided.
 
+##Avoiding Turing completeness surprises
+In order to minimize the possibility of a later discovery of a Turing complete script engine, the following implementation details are recommended and/or required for implementers.
+
+The implementation of the evaluation script processor SHOULD be implemented as a simple nested loop within the outer script processor.  The evaluation script processing SHOULD NOT be implemented as a recursive call to the same loop that handles the outer script operations.
+
+The inner evaluation script processing loop SHOULD NOT contain any references or use any pointers to the stacks belonging to the outer loop.  The inner evaluation script processing loop MUST NOT provide any access whatsoever to the stacks used by the outer loop - not read access, not write access.  The inner processing loop MUST receive as its sole inputs the two binary blob parameters (*sigs* and *pubKeyEx*) that were popped off the stack, along with any information incidental to validating signatures (i.e. the computed hash of the transaction script).  The inner processing loop MUST NOT be able to return any data to the outer loop that invoked it - other than transaction failure (which terminates script processing) or validation success (identical in behavior to the current implementation of OP_CHECKSIG returning success).
+
 ##Notes
 This was once informally proposed by Casascius.
 
