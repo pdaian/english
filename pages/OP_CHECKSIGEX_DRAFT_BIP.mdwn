@@ -26,7 +26,7 @@ Unlike BIP 16, this proposal creates no new types of script that must be recogni
 
 Unlike BIP 17, this proposal requires no reliance on the redefinition of OP_NOP opcodes to operations that must trigger failure, where they would never trigger failure under their prior definitions.
 
-It is expected to be fairly easy to conclude at a glance that this proposal does not accidentally afford Turing-completeness to scripts, because it runs on a sandbox stack whose access is exclusive to evaluation functions.  This evaluation stack is a completely new stack that is independent of the regular and "alt" stacks defined in the Bitcoin scripting system.
+It is expected to be fairly easy to conclude at a glance that this proposal does not accidentally afford Turing-completeness to scripts, because it proposes creation of an extra sandbox stack whose access is exclusive to evaluation functions.  This evaluation stack is a completely new stack that is independent of the regular and "alt" stacks defined in the Bitcoin scripting system.
 
 In this proposal, all existing transactions become normal cases of an extended opcode.  No changes are made to the way new transactions are sent, only how they are redeemed.
 
