@@ -120,7 +120,7 @@ Importantly, transactions in the new format still look at best like regular tran
 A suggested implementation is to program the client such that the functionality is enabled only on Testnet, and on the main Bitcoin network once a certain level of voting consensus has been established into the block chain.  So long as the functionality is disabled, OP_CHECKSIG shall fail so long as the expected parameters of one single signature and one single private key are provided.
 
 ##Avoiding Turing completeness surprises
-In order to minimize the possibility of a later discovery of a Turing complete script engine, the following implementation details are recommended and/or required for implementers.
+In order to minimize the possibility of a later discovery that the proposal resulted in the accidental implementation of a Turing complete script engine, the following details are recommended and/or required for implementers.
 
 The implementation of the evaluation script processor MUST be implemented as a simple nested loop within the outer script processor.  The evaluation script processing MUST NOT be implemented as a recursive call to the same loop that handles the outer script operations.
 
