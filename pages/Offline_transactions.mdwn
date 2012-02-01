@@ -1,0 +1,7 @@
+[[!template id=stub]]
+
+The term "offline transaction" refers to the practice of keeping the private keys on an offline device (not connected to the internet), and singing on individuals transactions. The signature is then copy-pasted from this device into a connected device, and broadcast into the Bitcoin network.
+
+Assuming the offline computer is malware-free is easier than a connected device. If this assumption is held, then this practice is virtually risk-free of bitcoin theft.
+
+Offline transactions can also be used when talking to an [[Overlay_Network]] (e.g. [Stratum](http://stratum.bitcoin.cz/)) or equivalent - an ultra thin client can send only signatures to the Overlay server, thus mitigating the risk of a malicious server running away with one's BTC.
