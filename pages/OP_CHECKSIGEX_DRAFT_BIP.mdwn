@@ -34,7 +34,7 @@ In this proposal, all existing transactions become normal cases of an extended o
 
 The OP_CHECKSIG function is renamed to OP_CHECKSIGEX and termed *check signature expression*.  The current OP_CHECKSIG takes two parameters: a signature and a public key; the redefined OP_CHECKSIGEX is extended such that its arguments are a *list* of n signatures along with a *public key expression* that consumes those signatures, and also which supports a subset of interpreted opcodes that are executed strictly on a new, separate sandbox stack known as the *expression evaluation* stack.
 
-By retaining the same opcode, all existing transactions become OP_CHECKSIGEX transactions.  Specifically, they become a specific case of OP_CHECKSIGEX: one which happen to contain exactly one signature and one public key to be validated.  Thus, they retain identical behavior as before the redefinition.
+By retaining the same opcode, all existing transactions using OP_CHECKSIG (i.e. the vast majority of Bitcoin transactions) become OP_CHECKSIGEX transactions.  Specifically, they become a specific case of OP_CHECKSIGEX: one which happen to contain exactly one signature and one public key to be validated.  Thus, they retain identical behavior as before the redefinition.
 
 As OP_CHECKSIGEX, the function will continue to pop two parameters from the stack: one representing public key(s), and the other representing signature(s).  Under the original OP_CHECKSIG, the public key portion is always 65 bytes.  Under the extended OP_CHECKSIGEX, the public key portion may be greater than 65 bytes, this would represent the multi-signature formula supplied at redemption.
 
