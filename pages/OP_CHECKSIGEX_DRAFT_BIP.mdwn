@@ -111,7 +111,7 @@ An m-of-n transaction, requiring (for example) 5 out of 10 signatures
 
 ##Backwards Compatibility
 
-New transactions are non-standard to old implementations.  But old implementations will generate transactions that are fully compatible with the new format.  Regardless, old implementations will be rendered incompatible once such extended transactions appear on the network.
+New transactions are non-standard to old implementations.  But old implementations will generate transactions that are fully compatible with the new format.  Sending Bitcoins to multisignature addresses as defined in this proposal will not break old clients, but redeeming them will.  Regardless, old implementations will be rendered incompatible once such extended transactions appear on the network.
 
 Importantly, transactions in the new format still look at best like regular transactions in the old format to old clients.  There is no foreseen way to trick an old client into redeeming a new transaction (for example, by exploiting a deprecated interpretation of OP_NOP as meaning "do nothing").
 
