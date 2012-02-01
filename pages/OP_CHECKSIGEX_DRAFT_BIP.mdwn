@@ -51,15 +51,21 @@ that a particular signature is absent and not needed.  (For example, an **(A AND
 ###Proposed opcodes to be supported in evaluation environment
 The following opcodes would be supported in an evaluation environment.  They would not necessarily need to be enabled in the environment of regular script processing (and in fact ought not to be).  Thus, they have been prefixed as EVALOP_ instead of OP_, to show they are different, even if the same constants are chosen to represent these as the corresponding OP_ version.
 
-* EVALOP_CHECKSIGU (0x04) - Check a single uncompressed ECDSA signature.  The next 64 bytes are the X and Y coordinates of the public key, and one signature is pulled from the signature list.  Push 1 or 0 on the stack to denote success or failure.
+* EVALOP_CHECKSIGU (opcode strictly defined as 0x04) - Check a single uncompressed ECDSA signature.  The U stands for uncompressed.  The next 64 bytes are the X and Y coordinates of the public key, and one signature is pulled from the signature list.  Push 1 or 0 on the stack to denote success or failure.
 * EVALOP_NOP
 * EVALOP_INVERT - turn a 1 on top of the eval stack to a 0 and vice versa.
 * EVALOP_AND - pop two items off eval stack, if both 1 then push 1, else push 0.
 * EVALOP_OR - pop two items off eval stack, if either 1 then push 1, else push 0.
 * EVALOP_ADD - pop two items off eval stack, push sum.
-* EVALOP_DUP
-* Comparison operators
+* EVALOP_DUP - duplicate top item on stack.
+* Comparison operators (equality, less than, greater than, etc.)
 * Ability to push constants 0-75 (with the exception of the repurposed opcode 0x04, which must be handled via a replacement opcode or via EVALOP_PUSHDATA1)
+
+In addition,
+
+* Operations expecting a 1 or 0 on the top of the stack shall cause transaction failure if the stack does not contain these elements or if they are not 1 or 0.
+* Operations shall be explicitly defined as unsigned 32-bit arithmetic, with overflows explicitly defined as causing transaction failure.
+* Note that none of the operations defined thus far involve stack operations involving anything other than scalar 32-bit unsigned integers (assuming "true" and "false" are denoted as 1 and 0).  In the absence of a well-articulated need to utilize any other data type in this limited evaluation context, it is advisable to limit the functionality of the *evaluation stack* such that it only holds 32-bit unsigned integers.
 
 ###Examples of use cases
 
