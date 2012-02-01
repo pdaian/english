@@ -1,1 +1,118 @@
+<pre>
+  BIP: 22
+  Title: OP_CHECKSIGEX
+  Author: Mike Caldwell <mcaldwell@swipeclock.com>
+  Status: Draft
+  Type: Standards Track
+  Created: 31-01-2012
+</pre>
 
+##Abstract
+
+This BIP describes a new "standard" transaction type for the Bitcoin scripting system, and defines additional validation rules that apply only to the new transactions.
+
+##Motivation
+The purpose of this proposal is to address some of the perceived shortcomings in [[BIP_0016]] and [[BIP_0017]], as well as objections that have been raised with respect to the difficulty in statically analyzing all of the potential scenarios that could arise.  If adopted, it would be a complete replacement for both BIP 16 and BIP 17.
+
+Like BIP 16, this proposal keeps the burden for supplying the conditions to redeem a transaction on the redeemer.
+
+Like BIP 16 and BIP 17, this proposal ensures that payments to multisig addresses can be accomplished with addresses in the customary format.  In other words, this proposal provides the benefit of allowing a sender to fund any arbitrary transaction, no matter how complicated, using a fixed-length 20-byte hash that is short enough to scan from a QR code or easily copied and pasted.
+
+Unlike BIP 16 and BIP 17, this proposal creates no new transaction types.
+
+Unlike BIP 16 and BIP 17, this proposal is believed to create no new scenarios where a "stealing bot" could be implemented to grab transactions created under the new standard from the view of the old clients.
+
+Unlike BIP 16, this proposal creates no new types of script that must be recognized as a special case by design (referred to in BIP 16 as "ugly").
+
+Unlike BIP 17, this proposal requires no reliance on the redefinition of OP_NOP opcodes to operations that must trigger failure, where they would never trigger failure under their prior definitions.
+
+It is expected to be fairly easy to conclude at a glance that this proposal does not accidentally afford Turing-completeness to scripts, because it runs on a sandbox stack whose access is exclusive to evaluation functions.  This evaluation stack is a completely new stack that is independent of the regular and "alt" stacks defined in the Bitcoin scripting system.
+
+In this proposal, all existing transactions become normal cases of an extended opcode.  No changes are made to the way new transactions are sent, only how they are redeemed.
+
+##Specification
+
+The OP_CHECKSIG function is renamed to OP_CHECKSIGEX and termed *check signature expression*, and extended such that its arguments are a list of signatures along with a *public key expression* which supports a subset of opcodes that are executed on a separate sandbox stack known as the *expression evaluation* stack.
+
+By retaining the same opcode, all existing transactions become OP_CHECKSIGEX transactions.  Specifically, they become a specific case of OP_CHECKSIGEX: one which happen to contain exactly one signature and one public key to be validated.  Thus, they retain identical behavior as before the redefinition.
+
+As OP_CHECKSIGEX, the function will continue to pop two parameters from the stack: one representing public key(s), and the other representing signature(s).  Under OP_CHECKSIG, the public key portion is always 65 bytes.  Under OP_CHECKSIGEX, the public key portion may be greater than 65 bytes, this would represent the multi-signature formula supplied at redemption.
+
+A public key portion greater than 65 bytes is a script that only has access to an evaluation stack, and cannot read or reference anything on the stack(s) used in normal script processing.  The evaluation stack shall be empty at the beginning of the execution of OP_CHECKSIGEX.
+
+It shall be noted that in Bitcoin, all 65-byte public keys begin with the byte 0x04, which is a constant that denotes an uncompressed public key.  This fact is exploited in this proposal, by defining 0x04 in the context of evaluation to simply mean, "check one signature in uncompressed format".  Therefore, an existing transaction consisting of a single public key, single signature, and OP_CHECKSIG would
+become interpreted as an OP_CHECKSIGEX opcode which contains an instruction (0x04) to check a single uncompressed signature.
+
+By including a subset of opcodes specifically turned on for OP_CHECKSIGEX, the multi signature functionality can be included in a reduced "expression" context without the risk of adding Turing-completeness to the scripting engine, nor the risk of the ability of scripts to modify themselves.
+
+The signature list is a simple heap of signatures, each of which can either be present, or intentionally omitted (leaving a null placeholder entry in the list).  A real signature always begins with 0x30 plus a length byte which is used to establish the end of the signature.  A placeholder is a single 0x00 byte.  A placeholder is used to denote
+that a particular signature is absent and not needed.  (For example, an **(A AND B) OR C** transaction, where only C is provided, would have two placeholders in the list to represent A and B.)
+
+###Proposed opcodes to be supported in evaluation environment
+The following opcodes would be supported in an evaluation environment.  They would not necessarily need to be enabled in the environment of regular script processing (and in fact ought not to be).  Thus, they have been prefixed as EVALOP_ instead of OP_, to show they are different, even if the same constants are chosen to represent these as the corresponding OP_ version.
+
+* EVALOP_CHECKSIGU (0x04) - Check a single uncompressed ECDSA signature.  The next 64 bytes are the X and Y coordinates of the public key, and one signature is pulled from the signature list.  Push 1 or 0 on the stack to denote success or failure.
+* EVALOP_NOP
+* EVALOP_INVERT - turn a 1 on top of the eval stack to a 0 and vice versa.
+* EVALOP_AND - pop two items off eval stack, if both 1 then push 1, else push 0.
+* EVALOP_OR - pop two items off eval stack, if either 1 then push 1, else push 0.
+* EVALOP_ADD - pop two items off eval stack, push sum.
+* EVALOP_DUP
+* Comparison operators
+* Ability to push constants 0-75 (with the exception of the repurposed opcode 0x04, which must be handled via a replacement opcode or via EVALOP_PUSHDATA1)
+
+###Examples of use cases
+
+All of these use cases assume the standard transaction format which is recited as follows, but modified such that pubKeyHash is called pubKeyExHash (public key expression hash), and pubKey is called pubKeyEx (public key expression).
+
+	Sending funds: OP_DUP OP_HASH160 <pubKeyExHash> OP_EQUALVERIFY OP_CHECKSIGEX
+	Redeeming funds: <sigs> <pubKeyEx>
+
+
+A standard transaction as is known now.  This transaction leaves the evaluation environment with a 1 on the top of the evaluation stack, resulting in OP_CHECKSIGEX returning true.
+
+	<sigs> - contains a single signature.
+	<pubKeyEx> - contains a single public key, i.e. 0x04 + xy i.e. EVALOP_CHECKSIGU + xy
+
+A two party, A and B transaction.
+
+	<sigs> - contains two signatures, binary concatenated together
+	<pubKeyEx> contains:  EVALOP_CHECKSIGU + x1y1 + EVALOP_CHECKSIGU + x2y2 + EVALOP_AND
+
+An (A AND B) OR C, redeemed using signatures A and B
+
+	<sigs> - contains two signatures and one placeholder
+	<pubKeyEx> contains: EVALOP_CHECKSIGU + x1y1 + EVALOP_CHECKSIGU + x2y2 + EVALOP_AND + EVALOP_CHECKSIGU + x3y3 + EVALOP_OR
+
+An (A AND B) OR C, redeemed using only signature C
+
+	<sigs> - contains two placeholders and one signature
+	<pubKeyEx> contains: EVALOP_CHECKSIGU + x1y1 + EVALOP_CHECKSIGU + x2y2 + EVALOP_AND + EVALOP_CHECKSIGU + x3y3 + EVALOP_OR
+
+An m-of-n transaction, requiring (for example) 5 out of 10 signatures
+
+	<sigs> - contains 10 items, a combination of signatures and placeholders
+	<pubKeyEx> contains: EVALOP_CHECKSIGU + x1y1 +
+	9 repetitions of: EVALOP_CHECKSIGU + xnyn + EVALOP_ADD +
+	(constant 5) + EVALOP_GREATERTHANOREQUAL
+
+
+##Backwards Compatibility
+
+New transactions are non-standard to old implementations.  But old implementations will generate transactions that are fully compatible with the new format.  Regardless, old implementations will be rendered incompatible once such extended transactions appear on the network.
+
+A suggested implementation is to program the client such that the functionality is enabled only on Testnet, and on the main Bitcoin network once a certain level of voting consensus has been established into the block chain.  So long as the functionality is disabled, OP_CHECKSIG shall fail so long as the expected parameters of one single signature and one single private key are provided.
+
+##Notes
+This was once informally proposed by Casascius.
+
+As it was understood by Casascius, the proposal was informally rejected, mainly on the notion that it would be silly or unclean to have a script interpreter of one type embedded within a script interpreter of another type.
+
+This proposal is being reintroduced as a BIP simply because, due to heightened concern regarding Turing completeness surprises - where a script may be able to modify its own behavior - having separate partitioned storage
+and operations for two different types of script content may be seen as a viable answer to the concern.  The partitioning, of course, referring to the main script - which has access to control flow operations (if/then/else), as well as the ability
+to modify scripts run in the "evaluation context" and then that separate
+"evaluation" context - consisting solely of code that has access to nothing beyond its own private data, the signature validation function, and basic arithmetic options.
+
+It is believed that implementation of this BIP would be relatively easy, with changes to code being confined strictly to the addition of a single new loop that runs with in the OP_CHECKSIG[[EX]] portion of the script interpreter.
+
+[[!tag "BIP"]]
