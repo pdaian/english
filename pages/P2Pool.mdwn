@@ -83,6 +83,11 @@ With all miners, using a HIGH FPS target (100?) or a LOW intensity (8 for cgmine
 
 P2Pool uses higher difficulty shares than most centralized pools, so you'll see fewer shares reported. This is normal and doesn't reduce your payments.  It's also normal to see longpoll messages once per every ten seconds on average.
 
+### Useful features
+
+* If upgrading P2Pool or changing its configuration, you can start another instance of P2Pool in parallel with the first. It will start normally, but realize that the worker and P2P listening ports are busy and keep trying to bind to them in the background. Thus, you can do almost-completely-seemless upgrades of P2Pool.
+* If you run multiple P2Pool nodes or have trusted friends that run P2Pool, you can use *-n* to establish a constant extra P2P connection to them.
+
 ### Option Reference
 <pre>
 usage: run_p2pool.py [-h] [--version] [--net {bitcoin, litecoin}] [--testnet]
@@ -176,9 +181,9 @@ P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same 
 
 ##History
 
-This project was announced on June 17, 2011 by Forrest Voight (9.1).
+This project was announced on June 17, 2011 by Forrest Voight (10.1).
 
-The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (9.2).
+The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (10.2).
 
 The software author's address for donations can be found in the signature section of his [forum profile](http://forum.bitcoin.org/index.php?action=profile;u=6447).
 
@@ -202,8 +207,8 @@ If you decide to donate you should announce it on the forums so that your donati
 
 ##References
 
-9.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
-9.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
+10.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
+10.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
 
 
 [[!tag "Pool_Operators"]]
