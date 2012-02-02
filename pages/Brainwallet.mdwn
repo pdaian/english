@@ -2,7 +2,7 @@ A **brainwallet** refers to the concept of storing Bitcoins in one's own mind by
 
 A brainwallet is created simply by starting with a unique phrase.  The phrase must be sufficiently long to prevent brute-force guessing - a short password, a simple phrase, or a phrase taken from published literature is likely to be stolen by hackers who use computers to quickly try combinations.  A suggestion is to take a memorable phrase and change it in a silly way that is difficult to predict.
 
-The phrase is turned into a 256-bit [[private_key]] with a hashing or key derivation algorithm (example: SHA256).  That private key is then used to compute a Bitcoin address.  This conversion can be done with a utility such as Casascius Bitcoin Utility.  
+The phrase is turned into a 256-bit [[private_key]] with a hashing or key derivation algorithm (example: SHA256).  That private key is then used to compute a Bitcoin address, or a deterministic sequence of addresses. This conversion can be done with a utility such as Casascius Bitcoin Utility or [[Electrum]].  
 
 Bitcoins are sent to the address.  In order to recover the Bitcoins, one must recompute the private key with the same phrase.  The private key is imported into a wallet.
 
