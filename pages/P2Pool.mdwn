@@ -49,7 +49,7 @@ If your efficiency is unusually low, make sure your network connection isn't ove
 Follow these steps to join the pool:
 
 * Run Bitcoin with the RPC interface enabled: put rpcuser=USER, rpcpassword=LONG_RANDOM_SECRET_VALUE, and server=1 in bitcoin.conf (on separate lines)
-	* **Replace LONG_RANDOM_SECRET_VALUE with something long and random like the output of smashing your keyboard for a bit like fju4M78yAj3ds39pak92raK**. You don't need to be able to remember it. If your RPC port becomes exposed to the internet a thief could steal your bitcoin if they could guess it.
+	* **Replace LONG_RANDOM_SECRET_VALUE with something long and random like the output of smashing your keyboard for a bit like fju4M78yAj3ds39pak92raK**. You don't need to be able to remember it. If your RPC port becomes exposed to the internet a thief could steal your bitcoin if they could guess it, or use a brute force attack in order to find it.
 	* Bitcoin 0.5 or later is required
 	* It's important that your Bitcoin client be fully synchronized before starting. It's also better if you have the Bitcoin port forwarded
 * Download p2pool:
