@@ -43,13 +43,17 @@ The current Satoshi bitcoin client does not relay or mine transactions with scri
 ###Templates
 scriptPubKey:
 
-* {pubkey} OP_CHECKSIGVERIFY {pubkey} OP_CHECKSIGVERIFY
-* {pubkey} OP_CHECKSIGVERIFY {pubkey} OP_CHECKSIGVERIFY {pubkey} OP_CHECKSIGVERIFY
-* {pubkey} OP_CHECKSIG OP_SWAP {pubkey} OP_CHECKSIG OP_ADD {n} OP_EQUAL
-* {pubkey} OP_CHECKSIG OP_SWAP {pubkey} OP_CHECKSIG OP_ADD OP_SWAP {pubkey} OP_CHECKSIG OP_ADD {n} OP_EQUAL
+	{pubkey} OP_CHECKSIGVERIFY {pubkey} OP_CHECKSIGVERIFY
+
+	{pubkey} OP_CHECKSIGVERIFY {pubkey} OP_CHECKSIGVERIFY {pubkey} OP_CHECKSIGVERIFY
+
+	{pubkey} OP_CHECKSIG OP_SWAP {pubkey} OP_CHECKSIG OP_ADD {n} OP_EQUAL
+
+	{pubkey} OP_CHECKSIG OP_SWAP {pubkey} OP_CHECKSIG OP_ADD OP_SWAP {pubkey} OP_CHECKSIG OP_ADD {n} OP_EQUAL
+
 scriptSig:
 
-* ...signatures... up to 500 bytes
+	...signatures... up to 500 bytes
 
 ##Rationale
 
