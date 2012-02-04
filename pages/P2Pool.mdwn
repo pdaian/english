@@ -188,9 +188,14 @@ The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a
 The software author's address for donations can be found in the signature section of his [forum profile](http://forum.bitcoin.org/index.php?action=profile;u=6447).
 
 ##Donating to P2Pool miners
-In order to encourage people to mine to P2Pool you can donate to the following bitcoin address:
+In order to encourage people to mine to P2Pool you can donate to the recent miners in proportion using a sendmany:
 
-16TgDchkexj3nVoN8akinrNDiMqpqPQdwc
+E.g. a bash script to donate 10 btc is:
+<pre>
+~/src/bitcoin/src/bitcoind sendmany "" "$(GET http://forre.st:9332/patron_sendmany?total=10.0)"
+</pre>
+
+You can replace "" with "accountname" if you want to pay from some specific bitcoind account, and you can replace forre.st with 127.0.0.1 if you're running a P2Pool node locally, so you don't have to trust that the URL gives accurate figures.
 
 If you decide to donate you should announce it on the forums so that your donations provide the most incentive possible.
 
