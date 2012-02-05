@@ -24,9 +24,19 @@ Other relevant things:
 * There is no trivial way to guarantee that the amount of bitcoins showing for the account holder's balance are truly being held in reserve by the wallet provider.
 
 * Transactions to a Bitcoin address from the same wallet provider are usually completed internally and, if so, will not be processed on the Bitcoin P2P network.  Auditing tools such as the [[Block_Explorer]] will not show any activity for this transaction.
-	* Some wallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same wallet provider.  For example, MyBitcoin will report an error when attempting to send an amount smaller than 0.01 BTC to a Bitcoin address that is not for another MyBitcoin account.
+	* Some wallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same wallet provider. 
 
 * The wallet service provider's wallet may be vulnerable to security breaches, loss, or theft.  Because Bitcoin transactions are irreversible, there may be limited or no recovery if a provider's master wallet is compromised.  Wallet providers who implement preventative controls - such as keeping their reserves in an [[offline_wallet]] - are likely to be safer.
+
+##Javascript based online wallets
+
+Javascript based e-wallets differ from traditional online wallet services because the user actually owns the private keys inside their wallet. This approach has several advantages:
+
+* The "from" address of a transaction originates from the actual bitcoin address of the user.
+* The user can lookup their account balance in the blockchain and which guarantees their account balance is correct.
+* Users can easily export their private keys out of a wallet to use with another bitcoin client or wallet provider.
+* The users keys are stored encrypted on the server offering some protection for security breaches.
+
 
 ##See Also
 
