@@ -59,7 +59,7 @@ Follow these steps to join the pool:
 * Run p2pool: (See below for additional options.)
 	* Windows py2exe: run_p2pool.exe
 	* Source: python run_p2pool.py
-* Run a miner daemon with long polling connecting to 127.0.0.1 (or the IP of the host running p2pool if you're mining remotely) on port 9332 with any username and password
+* Run a miner daemon with long polling connecting to 127.0.0.1 (or the IP of the host running p2pool if it isn't on the same computer as the miner) on port 9332 with any username and password
 	* cgminer -O u:p -o http://127.0.0.1:9332/ --submit-stales
 
 Dependencies if running from source:
