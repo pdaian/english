@@ -1,6 +1,8 @@
 [[!img "P2pool_chain.png‎" size=120x120 size=350x350 class="right" title="Visualization of the P2Pool share chain"]]
 P2Pool is a decentralized [[Bitcoin]] [[mining pool|Bitcoin_Pool]] that works by creating a peer-to-peer network of miner nodes.
 
+<blockquote>P2Pool creates a new block chain in which the difficulty is adjusted so a new block is found every 10 seconds. The blocks that get into the P2Pool block chain (called the "share chain") are the same blocks that would get into the Bitcoin block chain, only they have a lower difficulty target. Whenever a peer announces a new share found (new block in the P2Pool block chain), it is received by the other peers, and the other peers verify that this block contains payouts for all the previous miners who found a share (and announced it) that made it into the P2Pool share chain. This continues until some peer finds a block that has a difficulty that meets the Bitcoin network's difficulty target. This peer announces this block to the Bitcoin network and miners who have submitted shares for this block are paid in the generation transaction, proportionally to how many shares they have found in the last while. - Unknown author</blockquote>
+
 Decentralized payout pooling solves the problem of centralized mining pools degrading the decentralization of Bitcoin, avoids the risk of hard to detect theft by pool operators, and has better fundamental resistance to DoS attacks than centralized pools.
 
 Miners are configured to connect to a P2Pool node that can be run locally, alongside the miner. P2Pool users must run a full Bitcoin node which serves the purpose of independently validating transactions and the Bitcoin blockchain. P2Pool also supports merged mining and several alternative blockchains.
