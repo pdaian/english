@@ -14,7 +14,7 @@ Scripts are big-endian.
 The stacks hold byte vectors.  Byte vectors are interpreted as little-endian integers with the most significant bit determining the sign of the integer.  Thus 0x81 represents -1.  0x80 is another representation of zero (so called negative 0).  Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero.
 
 ## Words
-This is a list of all Script words (commands/functions). Some are currently disabled for security reasons.
+This is a list of all Script words (commands/functions). Some of the more complicated opcodes are disabled out of concern that the client might have a bug in their implementation; if a transaction using such an opcode were to be included in the chain it would become "unfixable".
 
 True=1 and False=0.
 
