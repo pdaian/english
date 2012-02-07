@@ -108,9 +108,9 @@ An elaboration of this concept is described by Tabarrok in  his paper, [“The p
 
 Scripts are, by design, pure functions. They cannot poll external servers or import any state that may change as it would allow an attacker to outrun the block chain. But we can make transactions connected to the world in other ways.
 
-Consider the example of an old man who wishes to give an inheritance to his grandson, either on the grandsons 18th birthday or when the man dies, whichever comes first. 
+Consider the example of an old man who wishes to give an inheritance to his grandson, either on the grandson's 18th birthday or when the man dies, whichever comes first. 
 
-To solve this, the man first sends the amount of the inheritance to himself so there is a single output of the right amount. Then he creates a transaction with a lock time of the grandsons 18th birthday that pays the coins to another key owned by the grandson, signs it, and gives it to him - but does not broadcast it. This takes care of the 18th birthday condition. If the date passes, the grandson broadcasts the transaction and claims the coins. He could do it before then, but it doesn't let him get the coins any earlier, and some nodes may choose to drop transactions in the memory pool with lock times far in the future.
+To solve this, the man first sends the amount of the inheritance to himself so there is a single output of the right amount. Then he creates a transaction with a lock time of the grandson's 18th birthday that pays the coins to another key owned by the grandson, signs it, and gives it to him - but does not broadcast it. This takes care of the 18th birthday condition. If the date passes, the grandson broadcasts the transaction and claims the coins. He could do it before then, but it doesn't let him get the coins any earlier, and some nodes may choose to drop transactions in the memory pool with lock times far in the future.
 
 The death condition is harder. As Bitcoin nodes cannot measure arbitrary conditions, we must rely on an *oracle*. An oracle is a server that has a keypair, and signs transactions on request when a user-provided expression evaluates to true.
 
@@ -118,7 +118,7 @@ Here is an example. The man creates a transaction spending his output, and sets 
 
 	<sons pubkey> CHECKSIGVERIFY <oracle pubkey> CHECKSIGVERIFY <hash> OP_TRUE
 
-This is the oracle script. It has an unusual form - after signature checking it pushes data to the stack then does not use it. The pubkey is published on the oracles website and is well known. The hash is set to be the hash of the user-provided expression stating that he has died, written in a form the oracle knows how to evaluate. For example it could be the hash of the string:
+This is the oracle script. It has an unusual form - after signature checking it pushes data to the stack then does not use it. The pubkey is published on the oracle's website and is well-known. The hash is set to be the hash of the user-provided expression stating that he has died, written in a form the oracle knows how to evaluate. For example, it could be the hash of the string:
 
 	if (has_died('john smith', born_on=1950/01/02)) return 1JxgRXEHBi86zYzHN2U4KMyRCg4LvwNUrp;
 
@@ -128,15 +128,15 @@ Once more, the man creates this transaction but gives it directly to his grandso
 
 It is used in the following algorithm:
 
-1. The oracle accepts a measurement request. The request contains the user-provided expression, a copy of the output script and a partially complete transaction provided by the user. Everything in this transaction is finished except for the scriptSig, which contains just one signature (the grandsons) - not enough to unlock the output.
+1. The oracle accepts a measurement request. The request contains the user-provided expression, a copy of the output script, and a partially complete transaction provided by the user. Everything in this transaction is finished except for the scriptSig, which contains just one signature (the grandson's) - not enough to unlock the output.
 1. The oracle checks the user-provided expression hashes to the value in the provided output script. If it doesn't, it returns an error.
 1. The oracle evaluates the expression. If the result is not the destination address of the output, it returns an error.
 1. Otherwise the oracle signs the transaction and inserts the signature into the scriptSig. Note that when signing a Bitcoin transaction, the input script is set to the connected output script. The reason is that when OP_CHECKSIG runs, the script containing the opcode is put in the input being evaluated, _not_ the script containing the signature itself. The oracle has never seen the full output it is being asked to sign, but it doesn't have to. It knows the output script, its own public key, and the hash of the user-provided expression, which is everything it needs to check the output script and finish the transaction.
 1. The oracle returns the newly signed, unbroadcast transaction to the user.
 
-If and only if the oracle agrees the man is dead, the grandson can broadcast the two transactions (the contract and the claim) and take the coins.
+If, and only if, the oracle agrees that the man is dead, the grandson can broadcast the two transactions (the contract and the claim) and take the coins.
 
-The oracle does not need to be highly trusted. It has not seen the transaction the grandson is trying to unlock, as it was never broadcast, thus, the oracle cannot hold the grandson to ransom because it does not know if the transaction it's signing for even exists. People can and should regularly challenge the oracle in an automated fashion to ensure it always outputs what is expected. The challenges can be done without spending any coins because the tx to be signed can be invalid (ie, connected to transactions that don't exist). The oracle has no way to know if a request to be signed is random or real. CHECKSIGVERIFY can be replaced with CHECKMULTISIGVERIFY to allow for n-of-m oracles if need be.
+The oracle does not need to be highly trusted. It has not seen the transaction the grandson is trying to unlock, as it was never broadcast, thus, the oracle cannot hold the grandson to ransom because it does not know whether the transaction it's signing for even exists. People can, and should, regularly challenge the oracle in an automated fashion to ensure it always outputs what is expected. The challenges can be done without spending any coins because the tx to be signed can be invalid (ie, connected to transactions that don't exist). The oracle has no way to know whether a request to be signed is random or real. CHECKSIGVERIFY can be replaced with CHECKMULTISIGVERIFY to allow for n-of-m oracles if need be.
 
 Oracles can potentially evaluate anything, yet the output script form in the block chain can always be the same. Consider the following possibilities:
 
