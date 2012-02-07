@@ -1,4 +1,4 @@
-A **distributed contract** is a method of using Bitcoin to form agreements with people via the block chain. Contracts don't make anything possible that was previously impossible, but rather they allow you to solve common problems in a way that minimizes trust. Minimal trust often makes things more convenient by allowing human judgements to be taken out of the loop, thus allowing complete automation.
+A **distributed contract** is a method of using Bitcoin to form agreements with people via the block chain. Contracts don't make anything possible that was previously impossible, but rather, they allow you to solve common problems in a way that minimizes trust. Minimal trust often makes things more convenient by allowing human judgements to be taken out of the loop, thus allowing complete automation.
 
 Many of the ideas underlying Bitcoin contracts were first described by Nick Szabó in his seminal paper, 
 [Formalizing and Securing Relationships on Public Networks](http://szabo.best.vwh.net/formalize.html).
@@ -7,19 +7,19 @@ This page was written by [Mike Hearn](mailto:mike@plan99.net). Contact him if yo
 
 ##Theory
 
-Every [[transaction]] in Bitcoin has one or more inputs and outputs. Each input/output has a small pure function associated with it called a [[script]]. Scripts can contain signatures over simplified forms of the transaction itself.
+Every [[transaction]] in Bitcoin has one or more inputs and outputs. Each input/output has a small, pure function associated with it called a [[script]]. Scripts can contain signatures over simplified forms of the transaction itself.
 
-Every transaction can have a lock time associated with it. This allows the transaction to be pending and replaceable until an agreed upon future time, specified either as a block index or as a timestamp (the same field is used for both, but values less than 500 million are interpreted as a block index). If a transactions lock time has been reached we say it is final.
+Every transaction can have a lock time associated with it. This allows the transaction to be pending and replaceable until an agreed-upon future time, specified either as a block index or as a timestamp (the same field is used for both, but values less than 500 million are interpreted as a block index). If a transaction's lock time has been reached, we say it is final.
 
-Each transaction input has a sequence number. In a normal transaction that just moves value around, the sequence numbers are all UINT_MAX and the lock time is zero. If the lock time has not yet been reached, but all the sequence numbers are UINT_MAX, the transaction is also considered final. Sequence numbers can be used to issue new versions of a transaction without invalidating other inputs signatures, eg, in the case where each input on a transaction comes from a different party each input may start with a sequence number of zero, and those numbers can be incremented independently.
+Each transaction input has a sequence number. In a normal transaction that just moves value around, the sequence numbers are all UINT_MAX and the lock time is zero. If the lock time has not yet been reached, but all the sequence numbers are UINT_MAX, the transaction is also considered final. Sequence numbers can be used to issue new versions of a transaction without invalidating other inputs signatures, e.g., in the case where each input on a transaction comes from a different party, each input may start with a sequence number of zero, and those numbers can be incremented independently.
 
-Signature checking is flexible because the form of transaction that is signed can be controlled through the use of SIGHASH flags, which are stuck on the end of a signature. In this way contracts can be built in which each party signs only a part of it, allowing other parts to be changed without their involvement.  The SIGHASH flags have two parts, a mode and the ANYONECANPAY modifier:
+Signature checking is flexible because the form of transaction that is signed can be controlled through the use of SIGHASH flags, which are stuck on the end of a signature. In this way, contracts can be constructed in which each party signs only a part of it, allowing other parts to be changed without their involvement.  The SIGHASH flags have two parts, a mode and the ANYONECANPAY modifier:
 
-1. SIGHASH_ALL: This is the default. It indicates that everything about the transaction is signed, except for the input scripts. Signing the input scripts as well would obviously make it impossible to construct a transaction, so they are always blanked out. Note though that other properties of the input, like the connected output and sequence numbers, *are* signed: it's only the scripts which are not. Intuitively it means "I agree to put my money in, if everyone puts their money in and the outputs are this".
+1. SIGHASH_ALL: This is the default. It indicates that everything about the transaction is signed, except for the input scripts. Signing the input scripts as well would obviously make it impossible to construct a transaction, so they are always blanked out. Note, though, that other properties of the input, like the connected output and sequence numbers, *are* signed; it's only the scripts that are not. Intuitively, it means "I agree to put my money in, if everyone puts their money in and the outputs are this".
 1. SIGHASH_NONE: The outputs are not signed and can be anything. Use this to indicate "I agree to put my money in, as long as everyone puts their money in, but I don't care what's done with the output". This mode allows others to update the transaction by changing their inputs sequence numbers.
-1. SIGHASH_SINGLE: Like SIGHASH_NONE the inputs are signed but the sequence numbers are blanked so others can create new versions of the transaction. However the only output that is signed is the one at the same position as the input. Use this to indicate "I agree, as long as my output is what I want, I don't care about the others".
+1. SIGHASH_SINGLE: Like SIGHASH_NONE, the inputs are signed, but the sequence numbers are blanked, so others can create new versions of the transaction. However, the only output that is signed is the one at the same position as the input. Use this to indicate "I agree, as long as my output is what I want; I don't care about the others".
 
-The SIGHASH_ANYONECANPAY modifier can be combined with the above three modes. When set, only that input is signed, and the other inputs can be anything.
+The SIGHASH_ANYONECANPAY modifier can be combined with the above three modes. When set, only that input is signed and the other inputs can be anything.
 
 Scripts can contain the CHECKMULTISIG opcode. This opcode provides n-of-m checking: you provide multiple public keys, and specify the number of valid signatures that must be present. The number of signatures can be less than the number of public keys. An output can require two signatures to be spent by setting it to something like this:
 
@@ -27,56 +27,56 @@ Scripts can contain the CHECKMULTISIG opcode. This opcode provides n-of-m checki
 
 There are two general patterns for safely creating contracts:
 
-1. Transactions are passed around outside of the P2P network, in partially complete or invalid forms.
-1. Two transactions are used: one (the contract) is created and signed but not broadcast right away. Instead the other transaction (the payment) is broadcast after the contract is agreed to lock in the money, and then the contract is broadcast.
+1. Transactions are passed around outside of the P2P network, in partially-complete or invalid forms.
+1. Two transactions are used: one (the contract) is created and signed but not broadcast right away. Instead, the other transaction (the payment) is broadcast after the contract is agreed to lock in the money, and then the contract is broadcast.
 
-This is to ensure people always know what they are agreeing to.
+This is to ensure that people always know what they are agreeing to.
 
-Together these features let us build interesting new financial tools on top of the block chain.
+Together, these features let us build interesting new financial tools on top of the block chain.
 
 ##Example 1: Providing a deposit
 
-Imagine you open an account on a website (eg, a forum or wiki) and wish to establish your trustworthyness with the operators, but you don't have any pre-existing reputation to leverage. One solution is to buy trust by paying the website some money. But if at some point you close your account you'd probably like that money back. You may not trust the site enough to give them a deposit which they are tempted to spend. Another risk is that the site might just disappear one day. 
+Imagine that you open an account on a website (eg, a forum or wiki) and wish to establish your trustworthiness with the operators, but you don't have any pre-existing reputation to leverage. One solution is to buy trust by paying the website some money. But if at some point you close your account, you'd probably like that money back. You may not trust the site enough to give them a deposit that they are tempted to spend. Another risk is that the site might just disappear one day. 
 
-The goal is to prove that you made a sacrifice of some kind so the site knows you're not a spambot, but you don't want them to be able to spend the money. And if the operators disappear you'd eventually like the coins back without needing anything from them.
+The goal is to prove that you made a sacrifice of some kind so the site knows you're not a spambot, but you don't want them to be able to spend the money. And if the operators disappear, you'd eventually like the coins back without needing anything from them.
 
 We can solve this problem with a contract:
 
-1. The user and website send each other a newly generated public key.
-1. The user creates transaction Tx1 (the payment) putting 10 BTC into an output which requires both user and website to sign, but does not broadcast it. They use the key from the previous step for the site.
+1. The user and website send each other a newly-generated public key.
+1. The user creates transaction Tx1 (the payment) putting 10 BTC into an output that requires both user and website to sign, but does not broadcast it. They use the key from the previous step for the site.
 1. User sends Tx1 to the website.
-1. The website creates a transaction Tx2 (the contract).  Tx2 spends Tx1 and pays it back to the user using the address he provided in the first step. Note that Tx1 requires two signatures, so this transaction can't be complete. nLockTime is set to some point in the future (eg, six months). The sequence number on the input is set to zero.
-1. Finally the incomplete (half signed) transaction is sent back to the user. The user checks that the contract is as expected ... that the coins will eventually come back to him but, unless things are changed, only after six months. Because the sequence number is zero the contract can be amended in future if both parties agree. The script in the input isn't finished though - there are only zeros where should be the user's signature. He fixes that by signing the contract and putting the new signature in the appropriate spot.
+1. The website creates a transaction Tx2 (the contract).  Tx2 spends Tx1 and pays it back to the user via the address he provided in the first step. Note that Tx1 requires two signatures, so this transaction can't be complete. nLockTime is set to some date in the future (eg, six months). The sequence number on the input is set to zero.
+1. Finally, the incomplete (half-signed) transaction is sent back to the user. The user checks that the contract is as expected - that the coins will eventually come back to him - but, unless things are changed, only after six months. Because the sequence number is zero, the contract can be amended in future if both parties agree. The script in the input isn't finished though; there are only zeros where the user's signature should be. He fixes that by signing the contract and putting the new signature in the appropriate spot.
 1. The user broadcasts Tx1, then broadcasts Tx2.
 
-At this point, the 10 BTC are in a state where neither the user nor the website can spend them independently. After six months the contract will complete and the user will get the coins back even if the website disappears.
+At this stage, the 10 BTC are in a state where neither the user nor the website can spend them independently. After six months, the contract will complete and the user will get the coins back, even if the website disappears.
 
-What if the user wishes to close his account early? The website creates a new version of Tx2 with nLockTime set to zero and the input sequence number set to UINT_MAX, then re-signs it. The site hands the tx back to the user who signs it as well. The user then broadcasts the transaction, terminating the contract early and releasing the coins.
+What if the user wishes to close his account early? The website creates a new version of Tx2 with nLockTime set to zero and the input sequence number set to UINT_MAX, then he re-signs it. The site hands the tx back to the user, who signs it as well. The user then broadcasts the transaction, terminating the contract early and releasing the coins.
 
 What if the six months is nearly up and the user wishes to keep his account? The same thing applies: the contract can be resigned with a newer nLockTime, a sequence number 1 higher than the previous and rebroadcast 2^32 times. No matter what happens, both parties must agree for the contract to change.
 
-Obviously, if the user turns out to be abusive (ie a spammer), the website will not allow an early close of the contract. If too much abuse is getting through, the size of the deposit can be raised or the length of the contract can be increased.
+Obviously, if the user turns out to be abusive (i.e., a spammer), the website will not allow an early close of the contract. If too much abuse is getting through, the size of the deposit can be raised or the length of the contract can be increased.
 
 ##Example 2: Escrow and dispute mediation
 
-You want to trade with somebody you don't know or trust. In the common case where the transaction goes well, you don't want any third parties involved. If something goes wrong though, you'd like a third party to decide who gets the money - perhaps a professional dispute mediation service. Note that "you" in that sentence can refer to either buyer or seller. The mediator might request proof of postage from the merchant for example.
+A buyer wants to trade with somebody he doesn't know or trust. In the common case where the transaction goes well, the client doesn't want any third parties involved. If something goes wrong though, he'd like a third party to decide who gets the money - perhaps a professional dispute mediation service. Note that this concept can apply to either buyer or seller. The mediator might request proof of postage from the merchant, for example.
 
-In other words, you want to lock up some coins so a third party has to agree in order for them to be spent:
+In other words, one wants to lock up some coins so a third party has to agree in order for them to be spent:
 
-1. Agree with the merchant on a dispute mediator (eg, ClearCoin).
+1. Agree with the merchant on a dispute mediator (e.g., ClearCoin).
 1. Ask the merchant for a public key (K1). Ask the mediator for a public key (K2). Create a new key for yourself (K3).
-1. Send the merchant K2. The merchant challenges the mediator with a random nonce, the mediator signs the nonce with the private form of K2 thus proving it really belongs to them.
+1. Send the merchant K2. The merchant challenges the mediator with a random nonce. The mediator signs the nonce with the private form of K2, thus proving it really belongs to merchant.
 1. Create a transaction (Tx1) with an output script as follows and broadcast it:
 
 	2 <K1> <K2> <K3> 3 CHECKMULTISIGVERIFY
 
-Now the coins are locked in such a way that they can be only spent by the following methods:
+Now the coins are locked in such a way that they can only be spent by the following methods:
 
-1. You and the merchant agree (either a successful trade, or merchant agrees to reimburse you without mediation)
-1. You and the mediator agree (failed trade, mediator sides with you, like a chargeback)
-1. The mediator and the merchant agree (goods delivered, merchant gets your coins despite the dispute)
+1. Client and the merchant agree (either a successful trade, or merchant agrees to reimburse client without mediation)
+1. Client and the mediator agree (failed trade, mediator sides with client, like a charge-back)
+1. The mediator and the merchant agree (goods delivered, merchant gets client's coins despite the dispute)
 
-When signing an input, the contents is set to the connected output. Thus, to redeem this transaction, you create a scriptSig containing zeros where the other signature should be, sign it, and then set one of the slots to your new signature. The partially complete transaction can then be sent to the merchant or mediator for the second signature.
+When signing an input, the contents are set to the connected output. Thus, to redeem this transaction, the client creates a scriptSig containing zeros where the other signature should be, signs it, and then sets one of the slots to his new signature. The partially-complete transaction can then be sent to the merchant or mediator for the second signature.
 
 ##Example 3: Assurance contracts
 
