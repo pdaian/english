@@ -192,24 +192,24 @@ i.e., the first data element selects which phase is being used.
 
 It's possible to make physical property, like houses, cars or phones, be atomically tradeable and lendable via the block chain. This topic has its own article: learn more about [[smart property|Smart_Property]].
 
-##Example 7: Rapidly adjusted (micro)payments to a pre-determined party
+##Example 7: Rapidly-adjusted (micro)payments to a pre-determined party
 
-Bitcoin transactions are very cheap relative to traditional payment systems, but still have a cost due to the need for it to be mined upon and stored. There are some cases in which you want to rapidly and cheaply adjust the amount of money sent to a particular recipient without incurring the cost of a broadcast transaction.
+Bitcoin transactions are very cheap relative to traditional payment systems, but still have a cost due to the need for it to be mined and stored. There are some cases in which you want to rapidly and cheaply adjust the amount of money sent to a particular recipient without incurring the cost of a broadcast transaction.
 
-For example, consider an untrusted internet access point, like a WiFi hotspot in a cafe you never visited before. You'd like to pay per 10 kilobytes of usage for 0.001 BTC each, without opening an account with the cafe. A zero-trust solution means it could be fully automatic, so you could just pre-allocate a budget on your phones mobile wallet at the start of the month, and then your device automatically negotiates and pays for internet access on demand. The cafe also wants to allow anyone to pay them without the fear of being ripped off.
+For example, consider an untrusted internet access point, like a WiFi hotspot in a cafe you never visited before. You'd like to pay 0.001 BTC per 10 kilobytes of usage, without opening an account with the cafe. A zero-trust solution means it could be fully automatic, so you could just pre-allocate a budget on your phone's mobile wallet at the start of the month, and then your device automatically negotiates and pays for internet access on demand. The cafe also wants to allow anyone to pay them without the fear of being ripped off.
 
 To do this, a protocol similar to one proposed by hashcoin can be used:
 
 1. Request a public key from the access point.
-1. Create but do not sign a transaction (T1) which sets up a payment of (for example) 10 BTC to an output requiring both the access points public key and one of your own to be used. The value to be used is chosen as an efficiency tradeoff.
-1. Create but do not sign another transaction (T2) which has two outputs, one to the access points key and another which goes back to you. The initial value is 0.001 BTC to the access point and the rest back to you. Use a sequence number of zero on the input and a lock time of some point in the future (eg, 1 day).
+1. Create, but do not sign, a transaction (T1) that sets up a payment of (for example) 10 BTC to an output requiring both the access point's public key and one of your own to be used. The value to be used is chosen as an efficiency tradeoff.
+1. Create, but do not sign, another transaction (T2) that has two outputs, one to the access point's key and another that goes back to you. The initial value is 0.001 BTC to the access point and the rest back to you. Use a sequence number of zero on the input and a lock time in the future (e.g., 1 day).
 1. Send both unsigned transactions to the access point. It sees that T1 and T2 are of the expected form and signs T2. It hands T2 back to you.
-1. Check T2 is signed correctly, sign T1 and T2. Send them to the access point which broadcasts them, thus locking in the agreement. Note that T2 won't get included into a block for at least one day, unless it's replaced by a newer transaction, as determined by the sequence numbers.
-1. Each time you want 10kb of data quota, sign a new version of T2 with a higher sequence number, the same lock time and adjust the outputs so more value is allocated to the access point and send it. The AP sees that the output sizes are correct, signs it and keeps it (does not broadcast).
+1. Check that T2 is signed correctly, sign T1 and T2. Send them to the access point, which broadcasts them, thus locking in the agreement. Note that T2 won't get included into a block for at least one day, unless it's replaced by a newer transaction, as determined by the sequence numbers.
+1. Each time you want 10kb of data quota, sign a new version of T2 with a higher sequence number, the same lock time, and adjust the outputs so more value is allocated to the access point, and send it. The AP sees that the output sizes are correct, signs it, and keeps it (does not broadcast).
 
-This continues until the session ends or the 1 day period is getting close to expiry. The AP broadcasts the last transaction it saw, replacing the original that was pending. Once the lock time passes, the value transfer is committed. Alternatively if the session end is negotiated cleanly, the user can sign a transaction that's final (sequence number of UINT_MAX) which signals that no more data quota will be purchased, allowing instant commitment of the transaction.
+This continues until the session ends, or the 1-day period is getting close to expiry. The AP broadcasts the last transaction it saw, replacing the original that was pending. Once the lock time passes, the value transfer is committed. Alternatively, if the session end is negotiated cleanly, the user can sign a transaction that's final (sequence number of UINT_MAX), which signals that no more data quota will be purchased, allowing instant commitment of the transaction.
 
-The lock time and sequence numbers avoid an attack in which the AP provides connectivity, and then the user double spends the output back to themselves using the first version of TX2 thus preventing the cafe from claiming the bill. If the user does try this, the TX won't be included right away giving the access point a window of time in which it can observe the TX broadcast, and broadcast the last version it saw, overriding the users attempted double spend.
+The lock time and sequence numbers avoid an attack in which the AP provides connectivity, and then the user double-spends the output back to themselves using the first version of TX2, thus preventing the cafe from claiming the bill. If the user does try this, the TX won't be included right away, giving the access point a window of time in which it can observe the TX broadcast, and then broadcast the last version it saw, overriding the users attempted double spend.
 
 ##See Also
 
