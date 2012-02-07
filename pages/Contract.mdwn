@@ -156,19 +156,19 @@ The conditions that control whether the oracle signs can be arbitrarily complex,
 
 ##Example 5: Trading across chains
 
-The Bitcoin technology can be used to adapted to create [[multiple, independent currencies|Alternative_Chains]]. NameCoin is an example of one such currency which operates under a slightly different set of rules, and can also be used to rent names in a namespace. Currencies that implement the same ideas as Bitcoin can be traded freely against each other without trust. For example, imagine a consortium of companies that issue EURcoins, a crypto-currency that is backed 1:1 by deposits in the consortiums bank accounts. Such a currency would have a different set of tradeoffs to Bitcoin: more centralized, but without FX risk. People might wish to trade Bitcoins for EURcoins back and forth, with the companies only getting involved when cashing in/out of the regular banking system.
+The Bitcoin technology can be adapted to create [[multiple, independent currencies|Alternative_Chains]]. NameCoin is an example of one such currency that operates under a slightly different set of rules, and can also be used to rent names in a namespace. Currencies that implement the same ideas as Bitcoin can be traded freely against each other without trust. For example, imagine a consortium of companies that issue EURcoins, a crypto-currency that is backed 1:1 by deposits in the consortium's bank accounts. Such a currency would have a different set of tradeoffs to Bitcoin: more centralized, but without FX risk. People might wish to trade Bitcoins for EURcoins back and forth, with the companies only getting involved when cashing in/out of the regular banking system.
 
 To implement this, a protocol proposed by luxgladius can be used:
 
-1. Both parties generates a new key and some random data (the secret).
-1. Party B sends a hash of his secret to A along with his public key.
-1. Party A generates Tx1 (the payment) containing an output with the chain-trade script in it. See below for this script and a discussion of it. It allows coin release either by signing with the two keys (key A and key B) or with (secret A, secret B, key B). This transaction is not broadcast. The chain release script contains hashes, not the actual secrets themselves.
-1. Party A generates Tx2 (the contract) which spends Tx1 and has an output going back to key A. It has a lock time of some point in the future and the input has a sequence number of zero, so it can be replaced. A signs Tx2 and sends it to B, who also signs it and sends it back. Alternatively they can simply agree on what form the contract takes, eg by using the same software, and then A can simply send B the hash of Tx1 and receive back a signature.
-1. A broadcasts Tx1 and Tx2. Party B can now see the coins but cannot spend them because it does not have an output going to him, and the tx is not finalized anyway.
-1. B performs the same scheme in reverse on the alternative chain. Both sides of the trade are now pending but incomplete.
-1. A sends his secret (random data) to B, who then uses it to re-issue the now finalized contract using (secret A, secret B, key B) and an output of his choice. B now owns the coins but in the process of claiming them, revealed his secret, allowing A to claim the other side of the trade.
+1. Both parties generate a new key and some random data (the secret).
+1. Party 'B' sends a hash of his secret to 'A' along with his public key.
+1. Party 'A' generates Tx1 (the payment) containing an output with the chain-trade script in it. See below for this script and a discussion of it. It allows coin release either by signing with the two keys (key 'A' and key 'B') or with (secret 'A', secret 'B', key 'B'). This transaction is not broadcast. The chain release script contains hashes, not the actual secrets themselves.
+1. Party 'A' generates Tx2 (the contract), which spends Tx1 and has an output going back to key 'A'. It has a lock time in the future and the input has a sequence number of zero, so it can be replaced. 'A' signs Tx2 and sends it to 'B', who also signs it and sends it back. Alternatively, they can simply agree on what form the contract takes, e.g., by using the same software, and then 'A' can simply send 'B' the hash of Tx1 and receive back a signature.
+1. 'A' broadcasts Tx1 and Tx2. Party 'B' can now see the coins but cannot spend them because it does not have an output going to him, and the tx is not finalized anyway.
+1. 'B' performs the same scheme in reverse on the alternative chain. Both sides of the trade are now pending but incomplete.
+1. 'A' sends his secret (random data) to 'B', who then uses it to re-issue the now-finalized contract using (secret 'A', secret 'B', key 'B') and an output of his choice. 'B' now owns the coins, but in the process of claiming them, revealed his secret, allowing 'A' to claim the other side of the trade.
 
-Because the protocol is trust-free it would be feasible to do trades automatically in an entirely peer-to-peer manner, which should ensure good liquidity.
+Because the protocol is trust-free, it would be feasible to do trades automatically in an entirely peer-to-peer manner, which should ensure good liquidity.
 
 The chain-trade script could look like this:
 
@@ -186,7 +186,7 @@ or
 
 	<secret B> <secret A> <sig B> 0
 
-ie, the first data element selects which phase is being used.
+i.e., the first data element selects which phase is being used.
 
 ##Example 6: Smart property
 
