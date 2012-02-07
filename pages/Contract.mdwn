@@ -209,7 +209,7 @@ To do this, a protocol similar to one proposed by hashcoin can be used:
 
 This continues until the session ends, or the 1-day period is getting close to expiry. The AP broadcasts the last transaction it saw, replacing the original that was pending. Once the lock time passes, the value transfer is committed. Alternatively, if the session end is negotiated cleanly, the user can sign a transaction that's final (sequence number of UINT_MAX), which signals that no more data quota will be purchased, allowing instant commitment of the transaction.
 
-The lock time and sequence numbers avoid an attack in which the AP provides connectivity, and then the user double-spends the output back to themselves using the first version of TX2, thus preventing the cafe from claiming the bill. If the user does try this, the TX won't be included right away, giving the access point a window of time in which it can observe the TX broadcast, and then broadcast the last version it saw, overriding the users attempted double spend.
+The lock time and sequence numbers avoid an attack in which the AP provides connectivity, and then the user double-spends the output back to themselves using the first version of TX2, thus preventing the cafe from claiming the bill. If the user does try this, the TX won't be included right away, giving the access point a window of time in which it can observe the TX broadcast, and then broadcast the last version it saw, overriding the user's attempted double-spend.
 
 ##See Also
 
