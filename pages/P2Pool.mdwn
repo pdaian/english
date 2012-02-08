@@ -70,6 +70,17 @@ Dependencies if running from source:
 * python-argparse for Python 2.6 and lower
 * Twisted (Ubuntu package python-twisted)
 
+### Frequently Asked Questions
+
+**Q:** "Why does cgminer report so many longpoll events when mining on p2pool? - P4Man"<br />
+**A:** "Once every ~10 seconds is normal. That is how often p2pool shares are generated (as opposed to ~10 min for bitcoin blocks) - cabin"
+
+**Q:** "Do the 'orphan' and 'dead' shares in P2Pool's status display hurt me?"<br />
+**A:** They shouldn't - It's normal for some fraction of everyone's shares to end up orphaned or dead. Because payouts are calculated by counting how many shares you have relative to others, everyone with normal configurations is equally "hurt" by this. However, if you have a large proportion of stales, your payout will be hurt. You can see how well you're doing by looking at P2Pool's "Efficiency" (ex: *Efficiency: ~110.6% (40-111%)*). If 100% doesn't lie within the [confidence interval](http://en.wikipedia.org/wiki/Confidence_interval) at the end, something is probably wrong (with 5% confidence).
+
+**Q:** "What do I do if my efficiency is low?"<br />
+**A:** If you have a lot of dead shares or the "Local dead on arrival" number is higher than a few percent, that means that something is wrong with your miner. Check to make sure that it is one of the working versions in the *Miners* section on this page. Make sure the computers you're running P2Pool and the miner on have enough memory and CPU time. Lower the intensity or raise the FPS of your miner. If you have a lot of orphan shares, something is wrong with P2Pool's P2P connection. Don't overload your internet connection or enable QoS (Quality of Service) on your router.
+
 ### Miners
 
 
@@ -183,9 +194,9 @@ P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same 
 
 ##History
 
-This project was announced on June 17, 2011 by Forrest Voight (10.1).
+This project was announced on June 17, 2011 by Forrest Voight (11.1).
 
-The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (10.2).
+The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (11.2).
 
 The software author's address for donations can be found in the signature section of his [forum profile](http://forum.bitcoin.org/index.php?action=profile;u=6447).
 
@@ -214,8 +225,8 @@ If you decide to donate you should announce it on the forums so that your donati
 
 ##References
 
-10.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
-10.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
+11.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
+11.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
 
 
 [[!tag "Pool_Operators"]]
