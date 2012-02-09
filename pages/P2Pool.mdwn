@@ -108,7 +108,8 @@ P2Pool uses higher difficulty shares than most centralized pools, so you'll see 
 ### Option Reference
 <pre>
 usage: run_p2pool.py [-h] [--version] [--net {bitcoin, litecoin}] [--testnet]
-                     [--debug] [-a ADDRESS] [--logfile LOGFILE]
+                     [--debug] [-a ADDRESS] [--datadir DATADIR]
+                     [--logfile LOGFILE] [--merged MERGED_URLS]
                      [--merged-url MERGED_URL]
                      [--merged-userpass MERGED_USERPASS]
                      [--give-author DONATION_PERCENTAGE] [--irc-announce]
@@ -119,7 +120,7 @@ usage: run_p2pool.py [-h] [--version] [--net {bitcoin, litecoin}] [--testnet]
                      [--bitcoind-p2p-port BITCOIND_P2P_PORT]
                      [BITCOIND_RPCUSERPASS [BITCOIND_RPCUSERPASS ...]]
 
-p2pool (version a7d3ae4)
+p2pool (version 28a1948)
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -131,13 +132,16 @@ optional arguments:
   -a ADDRESS, --address ADDRESS
                         generate payouts to this address (default: <address
                         requested from bitcoind>)
+  --datadir DATADIR     store data in this directory (default: <directory
+                        run_p2pool.py is in>/data)
   --logfile LOGFILE     log to this file (default: data/<NET>/log)
+  --merged MERGED_URLS  call getauxblock on this url to get work for merged
+                        mining (example:
+                        http://ncuser:ncpass@127.0.0.1:10332/)
   --merged-url MERGED_URL
-                        call getauxblock on this url to get work for merged
-                        mining (example: http://127.0.0.1:10332/)
+                        DEPRECATED, use --merged
   --merged-userpass MERGED_USERPASS
-                        use this user and password when requesting merged
-                        mining work (example: ncuser:ncpass)
+                        DEPRECATED, use --merged
   --give-author DONATION_PERCENTAGE
                         donate this percentage of work to author of p2pool
                         (default: 0.5)
