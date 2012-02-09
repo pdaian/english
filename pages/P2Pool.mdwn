@@ -83,7 +83,6 @@ Dependencies if running from source:
 
 ### Miners
 
-
 This is all for the latest p2pool version, as it includes several new workarounds. 
 
 With all miners, using a HIGH FPS target (100?) or a LOW intensity (8 for cgminer?) helps a lot with reducing stales.
@@ -100,6 +99,11 @@ P2Pool uses higher difficulty shares than most centralized pools, so you'll see 
 
 * If upgrading P2Pool or changing its configuration, you can start another instance of P2Pool in parallel with the first. It will start normally, but realize that the worker and P2P listening ports are busy and keep trying to bind to them in the background. Thus, you can do almost-completely-seemless upgrades of P2Pool.
 * If you run multiple P2Pool nodes or have trusted friends that run P2Pool, you can use *-n* to establish a constant extra P2P connection to them.
+* You can make P2Pool use a configuration file by running run_p2pool.py @FILENAME, with FILENAME being the path to a file containing the command-line arguments (newlines are ignored) Example:
+<pre>
+--net litecoin
+-n 1.2.3.4
+</pre>
 
 ### Option Reference
 <pre>
