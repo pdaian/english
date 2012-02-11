@@ -43,13 +43,13 @@ Transaction data can also be deleted with minimal risk if it can be proven that 
 ## Probably not a problem
 
 ###Breaking the cryptography
-SHA-256 and ECDSA are considered very strong currently, but they might be broken in the far future. If that happens, BitCoin can shift to a stronger algorithm. [More info](http://www.bitcoin.org/smf/index.php?topic=191.msg1585#msg1585).
+SHA-256 and ECDSA are considered very strong currently, but they might be broken in the far future. If that happens, BitCoin can shift to a stronger algorithm. [More info](https://bitcointalk.org/index.php?topic=191.msg1585#msg1585).
 
 ###Scalability
 BitCoin can easily scale beyond the level of traffic VISA sees globally today. See the discussion on the [[scalability]] page for more information.
 
 ###Segmentation
-If there is even a "trickle" of a connection between two sides of a segmented network, things should still work perfectly. When block chains are combined, all of the non-generation transactions in the shorter chain are re-added to the transaction pool -- they'll start over at 0/unconfirmed, but they'll still be valid. No mature transactions will be lost unless the segmentation persists for longer than ~120 blocks. Then generations will start to mature, and any transactions based on those generations will become invalid when recombined with the longer chain. [More info](http://www.bitcoin.org/smf/index.php?topic=241.msg2071#msg2071).
+If there is even a "trickle" of a connection between two sides of a segmented network, things should still work perfectly. When block chains are combined, all of the non-generation transactions in the shorter chain are re-added to the transaction pool -- they'll start over at 0/unconfirmed, but they'll still be valid. No mature transactions will be lost unless the segmentation persists for longer than ~120 blocks. Then generations will start to mature, and any transactions based on those generations will become invalid when recombined with the longer chain. [More info](https://bitcointalk.org/index.php?topic=241.msg2071#msg2071).
 
 ### Attacking all users
 The IP addresses of most users are totally public. You can use Tor to hide this, but the network won't work if everyone does this. BitCoin requires that *some* country is still free.
@@ -58,7 +58,7 @@ The IP addresses of most users are totally public. You can use Tor to hide this,
 Nodes that generate blocks can choose not to include a transaction in their blocks. When this happens, the transaction remains "active" and can be included in a later block. Two things discourage this:
 
 * Nodes only hash a fixed-size *header*, so there is no speed advantage to dropping transactions.
-* [[Satoshi]] has [communicated](http://www.bitcoin.org/smf/index.php?topic=165.msg1595#msg1595) that he will write code to stop this kind of thing if it becomes a problem.
+* [[Satoshi]] has [communicated](https://bitcointalk.org/index.php?topic=165.msg1595#msg1595) that he will write code to stop this kind of thing if it becomes a problem.
 
 ### Attacker has a lot of computing power
 An attacker that controls more than 50% of the network's computing power can, for the time that he is in control, exclude and modify the ordering of transactions. This allows him to:
