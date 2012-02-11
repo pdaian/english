@@ -196,6 +196,9 @@ https://mtgox.com/api/0/btcAddress.php
 
 * pass POST data "description" to add a description that will appear in your history when this BTC address receive a deposit
 
+* pass POST data "ipn" to add an url that mtgox will ping whenever this new address receive funds
+description ( see above ) is also required for ipn to work
+
 * returns a bitcoin deposit address
 
 #### 0/history_[CUR].csv
