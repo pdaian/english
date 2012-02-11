@@ -172,7 +172,7 @@ The following distributions are suitable only for users with good knowledge. How
 
 The first step is [to create a new user](https://help.ubuntu.com/8.04/serverguide/C/user-management.html), which goes with the command:
 
-sudo adduser <code> new_user_name </ code>
+sudo adduser <code> new_user_name </code>
 
 On the message "Enter a new value or press ENTER for the default" one needs only to press the Return key.
 
@@ -182,64 +182,65 @@ The newly created user should be safe to use in order to keep him safe, exclusiv
 
 There is also a good idea to encrypt this user's home directory with the package ecryptfs-utils.
 
-# If the home directory is not empty, first backup it to some other medium.
-# Now install ecryptfs-utils (Ubuntu: sudo apt-get install ecryptfs-utils)
-# From X11 (graphical system) log and log in with Ctrl + Alt + F1 in the Linux console - if you are logged in X11, the home directory is encrypted.
-# The current directory change so that it is not in the home folder, eg "Cd /".
-# The migration tool to run: (in Ubuntu: sudo ecryptfs-migrate-home-u username)
-# If it succeeds then you can press ALT + F8 to go back and log in X11.
-# Run the command 'ecryptfs-unwrap-passphrase'. Without exception '''write and store the code that you receive on a secure medium''. '''Without this code no data - including the wallet  - can be accessed if the system does not work'''
-# Run the command 'ecryptfs-setup-swap' run, which encrypts the swap partition. Otherwise, keys in your purse in plain text can go to the the swap partition where they might be stolen. This unfortunately also means that "idle" or Hibernate can not be used anymore because the bootloader can not restore the dump. An more conventient alternative is to overwrite the swap partition when you shut down the machine (after the deactivation of virtual memory) with random data.
+1. If the home directory is not empty, first backup it to some other medium.
+1. Now install ecryptfs-utils (Ubuntu: sudo apt-get install ecryptfs-utils)
+1. From X11 (graphical system) log and log in with Ctrl + Alt + F1 in the Linux console - if you are logged in X11, the home directory is encrypted.
+1. The current directory change so that it is not in the home folder, eg "Cd /".
+1. The migration tool to run: (in Ubuntu: sudo ecryptfs-migrate-home-u username)
+1. If it succeeds then you can press ALT + F8 to go back and log in X11.
+1. Run the command 'ecryptfs-unwrap-passphrase'. Without exception **write and store the code that you receive on a secure medium*. **Without this code no data - including the wallet  - can be accessed if the system does not work**
+1. Run the command 'ecryptfs-setup-swap' run, which encrypts the swap partition. Otherwise, keys in your purse in plain text can go to the the swap partition where they might be stolen. This unfortunately also means that "idle" or Hibernate can not be used anymore because the bootloader can not restore the dump. An more conventient alternative is to overwrite the swap partition when you shut down the machine (after the deactivation of virtual memory) with random data.
 
-(Instructions from [http://bodhizazen.net/Tutorials/Ecryptfs/ # Migrate])
+(Instructions from [# Migrate](http://bodhizazen.net/Tutorials/Ecryptfs/))
 
 ====== For more information ======
-* [https://help.ubuntu.com/community/Security Security features on ubuntu]
 
-* [http://www.techrepublic.com/blog/10things/10-ways-to-secure-your-linux-desktop/359 10 ways to secure your lInux desktop]
+* [Security features on ubuntu](https://help.ubuntu.com/community/Security)
 
-===== Windows =====
+* [10 ways to secure your lInux desktop](http://www.techrepublic.com/blog/10things/10-ways-to-secure-your-linux-desktop/359)
 
-* [http://windows.microsoft.com/de-DE/windows7/help/security-privacy-user-accounts Basics]
+##### Windows
+
+* [Basics](http://windows.microsoft.com/de-DE/windows7/help/security-privacy-user-accounts)
 
 * Create an extra user, under which only the Bitcoin software is running. So the wallet is somewhat protected from malicious code in applications for other users:
-** [http://support.microsoft.com/kb/905056/en Windows XP]
-** [http://windows.microsoft.com/en-US/windows7/Create-a-user-account Windows 7]
+	* [Windows XP](http://support.microsoft.com/kb/905056/en)
+	* [Windows 7](http://windows.microsoft.com/en-US/windows7/Create-a-user-account)
 
-====Browser Security ====
+####Browser Security
 
-===== Firefox =====
+##### Firefox
 To secure the browser, you start Firefox, go to menu "Edit" (edit), and select "Preferences" (Settings).
 
 * Now you start with the tabs on the left, select the "Startup" option "Show a blank page" (Clean Slate).
 * By "content" (content)
-** The option "Load images automatically / Load images automatically" opt out,
-** Also "Enable Javascript Enable / javascript" opt out.
+	* The option "Load images automatically / Load images automatically" opt out,
+	* Also "Enable Javascript Enable / javascript" opt out.
 * In the tab "privacy / data protection" in the "History / History History," select "Never remember history" / "do not save history".
 * In the tab "Security" in the "Passwords"
-** The "remember passwords / passwords save" deselect
-** Also "use a master password" / "master password".
+	* The "remember passwords / passwords save" deselect
+	* Also "use a master password" / "master password".
 * Finally, in the tab "Advanced" / "Advanced" option
-** "Automatically check for updates" deselect
-** As "add-ons" and
-** "Search engines" / "search engines" opt out.
+	* "Automatically check for updates" deselect
+	* As "add-ons" and
+	* "Search engines" / "search engines" opt out.
 
-If Javascript is disabled, the page linux download page] to download new versions of the Bitcoin Clients will no longer automatically download, so you have to link to the "direct link" on notice "Problems with the download? Please use this 'direct link' or try another mirror." . click Once you make the effort made, of course you checked the download of new clients Bitcoin the checksums, which are indicated on the sourceforge page, with the program sha1.
+If Javascript is disabled, the page linux download page to download new versions of the Bitcoin Clients will no longer automatically download, so you have to link to the "direct link" on notice "Problems with the download? Please use this 'direct link' or try another mirror." . click Once you make the effort made, of course you checked the download of new clients Bitcoin the checksums, which are indicated on the sourceforge page, with the program sha1.
 
-=== Protect against data loss: Backup ===
+### Protect against data loss: Backup
 Secure the only file you need is the wallet.dat. Advance to make sure that Bitcoin not running anymore! The best way would be to encrypt the file and store somewhere safe.
 
-You can also [[API | backupwallet]] JSON-RPC command used to create a backup on the fly.
+You can also  [[backupwallet|API]] JSON-RPC command used to create a backup on the fly.
 
-==== Where to find the Bitcoin folder ====
-The [[Bitcoin folder]] is the folder where the data is wallet.dat along with the file.
+#### Where to find the Bitcoin folder
+The [[Bitcoin_folder]] is the folder where the data is wallet.dat along with the file.
 
-===== Windows =====
+##### Windows
 Click on "Start", then Run and enter this:
-	% APPDATA% \ Bitcoin
+> % APPDATA% \ Bitcoin
 A folder should open now, for most it would be:
- C: \ Documents and Settings \ username \ Application Data \ Bitcoin (XP)
- C: \ Users \ username \ appdata \ roaming \ Bitcoin (Vista and 7)
+	C: \ Documents and Settings \ username \ Application Data \ Bitcoin (XP)
+	C: \ Users \ username \ appdata \ roaming \ Bitcoin (Vista and 7)
 
 <!---
 
@@ -255,7 +256,7 @@ To mount the <p> Bitcoin DataDirectory on an encrypted drive </ b> </ p>
 <ol start=1 type=1>
 <li> use the third-party disk image encryption program of your choice to create and mount an encrypted disk image of at least 100 MB in size. </ li>
 Locate the <li> Bitcoin data directory, and copy the directory with all contents to the encrypted drive.
-<p> For help finding this directory, see <b> [[# Securing_your_wallet Locating_BitCoin_s_data_directory | Locating Bitcoin's data directory]] </ b> </ p> </ li>.
+<p> For help finding this directory, see <b>  [[Locating Bitcoin's data directory|#_Securing_your_wallet_Locating_BitCoin_s_data_directory]] </ b> </ p> </ li>.
 Create a Windows shortcut <li> that starts with the Bitcoin <code>-datadir </ code> parameter specifier and the encrypted drive and directory.
 <p> For example, if you Bitcoin installed in the default directory, mounted encrypted drive as your Bitcoin <code> E: \ </ code>, and stored it on your Bitcoin DataDirectory as <code> Bitcoin </ code>, you would type the following command as the shortcut target: </ p>
 blockquote <code> C: \ Program Files \ Bitcoin \ bitcoin.exe-datadir = E: \ Bitcoin </ code> </ blockquote> </ li>
