@@ -1,21 +1,11 @@
 [[!template id=stub]]
 [[!img "Quick-and-dirty-4x5970-cooling.jpg" size=120x120 class="right" title="A quick and dirty mining rig"]]
 ## Introduction
-**Transaction recording**, or **mining**, is the process of adding transaction records to Bitcoin's public ledger or journal.  The ledger serves to [[confirm|confirmations]] those transactions to the rest of the network as having taken place.  Through the public ledger, Bitcoin nodes can distinguish legitimate Bitcoin transactions from attempts to respend coins that have already been spent elsewhere.
+Transaction recording, or **mining**, is the process of adding transaction records to Bitcoin's journal of past transactions. This journal of past transactions is called the [[block_chain]] as it is a chain of [[blocks|block]]. The block chain serves to [[confirm|confirmations]] those transactions to the rest of the network as having taken place. Through this public journal, Bitcoin nodes can distinguish legitimate Bitcoin transactions from attempts to respend coins that have already been spent elsewhere.
 
-Transaction recording is intentionally designed to be resource-intensive and difficult.  It is also designed such that the records themselves provide a "proof-of-work" - in other words, that it is possible for any node to estimate how much collective computational work went into creating each record.
+Mining is intentionally designed to be resource-intensive and difficult. Individual [[blocks]] must contain a [[proof of work|proof_of_work]] to be considered valid and this proof of work is always verified by other Bitcoin nodes. 
 
-The more work for which a record contains proof, the more valid that record is considered to be.  The proof of work provides a quick and simple way to reconcile conflicting versions of portions of the ledger, which may occur from time to time due to differences in timing and perspective from different nodes.  In case of conflict, the version that shows proof of the greatest amount of work is deemed to be the version as witnessed by the majority of the nodes, and becomes the winner.
-
-When a conflict is resolved, transactions from the "losing" version are automatically transplanted into later pages following the "winning" page, assuming there is no conflict with any of the earlier transactions on the "winning" page.  During reconciliation, legitimate transactions are highly unlikely to conflict, but a conflict might occur in the event of a deliberate attempt to spend the same Bitcoins in two different places simultaneously.  Because the transaction on the "winning" page takes precedence, any such conflict will be resolved in favor of the transaction that was successfully recorded on the earliest winning page.
-
-Anyone can add records to Bitcoin's public ledger, it is just not easy.  In order to add a page of transaction records to the public journal (also referred to as adding a *[[block]]* to the *[[block_chain]]*), one must compute the answer to a difficult mathematical problem and include the correct answer into the block.  The answer for each block is different, and depends on all of the transactions that have been included in the block.
-
-The person who successfully records a page is able to collect the transaction fees that are offered in each of the transactions he or she successfully recorded.
-
-As an economic incentive to build the peer-to-peer infrastructure for recording transactions in the absence of fee-paying transaction volume, Bitcoin was designed such that a reward of newly minted Bitcoins would be distributed to each participant who successfully records a page (block) into the public transaction journal.  The reward per page diminishes over time so that the limit of 21 million Bitcoins can take effect, with the expectation that transaction volume will increase and that the efforts of transaction recorders can transition from receiving rewards of new Bitcoins to receiving transaction fees.
-
-Transaction recording is also commonly called **mining** because it resembles gold mining in the sense that it requires exertion and slowly yields new currency.
+Mining is so called because it resembles gold mining in the sense that it requires exertion and slowly yields new currency.
 
 ## History
 Bitcoin's public journal was started on January 3rd, 2009 at 18:15 UTC presumably by [[Satoshi_Nakamoto]].  This page (block) is known as the [[genesis_block]].  The first transaction recorded on the first page (block) was a single transaction paying the reward of 50 new Bitcoins to its creator.
@@ -24,7 +14,7 @@ Bitcoin mining is so called because the rate at which bitcoins are generated res
 
 ## Difficulty
 ### The Computationally-Difficult Problem
-Mining a block is difficult because the SHA-256 hash of a block's header must be lower than or equal to the [[target|Target]] in order for the block to be accepted by the network. This problem can be simplified for explanation purposes: The hash of a block must start with a certain number of zeros. The probability of calculating a hash that starts with many zeros is very low, therefore many attempts must be made. In order to generate a new hash each round, a [[nonce|Nonce]] is incremented.
+Mining a block is difficult because the SHA-256 hash of a block's header must be lower than or equal to the [[target|Target]] in order for the block to be accepted by the network. This problem can be simplified for explanation purposes: The hash of a block must start with a certain number of zeros. The probability of calculating a hash that starts with many zeros is very low, therefore many attempts must be made. In order to generate a new hash each round, a [[nonce|Nonce]] is incremented. See [[Proof_of_work]] for more information.
 
 ### The Difficulty Metric
 The [[difficulty|Difficulty]] is the measure of how difficult it is to find a new block compared to the easiest it can ever be. It is recalculated every 2016 blocks to a value such that the previous 2016 blocks would have been generated in exactly two weeks had everyone been mining at this difficulty. This will yield, on average, one block every ten minutes. As more miners join, the rate of block creation will go up. As the rate of block generation goes up, the difficulty rises to compensate which will push the rate of block creation back down. Any blocks released by malicious miners that do not meet the required difficulty [[target|Target]] will simply be rejected by everyone on the network and thus will be worthless. 
@@ -38,6 +28,7 @@ Additionally, the miner is awarded the fees paid by users sending transactions. 
 [[!img "Usb-fpga_module_1.15x-hs-800.jpg" size=120x120 class="right" title="FPGA Module"]]
 Users have used various types of hardware over time to mine blocks. Hardware specifications and performance statistics are detailed on the [[Mining_Hardware_Comparison]] page.
 ### CPU Mining 
+Early Bitcoin client versions allowed users to use their CPUs to mine. The advent of GPU mining made CPU mining financially unwise. The option was therefore removed from the Bitcoin client. 
 ### GPU Mining
 GPU Mining is drastically faster and more efficient than CPU mining. See the main article: [[Why_a_GPU_mines_faster_than_a_CPU]]. A variety of popular [[mining rigs|Mining_rig]] have been documented.
 ### FPGA Mining
