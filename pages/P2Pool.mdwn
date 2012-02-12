@@ -107,6 +107,25 @@ P2Pool uses higher difficulty shares than most centralized pools, so you'll see 
 
 * Setting the username of your miner connecting to P2Pool to a Bitcoin address will make it mine to that address instead of the one requested from bitcoind or set by -a
 
+### Web interface
+
+Lots of data and useful tools are available at http://127.0.0.1:9332/something:
+
+* /graphs - RRD graphs of past hash rates for pool and local miners. Look for "VIP password" in P2Pool's output when it starts and use that for your miners to get graphs for individual miners.
+* /rate
+* /users
+* /fee
+* /current_payouts
+* /patron_sendmany - Gives sendmany outputs for fair donations to P2Pool
+* /global_stats
+* /local_stats
+* /peer_addresses
+* /payout_addr
+* /recent_blocks
+* /uptime
+* /chain_img - Visualization of sharechain
+* /web/log - Some different stats collected over the last day
+
 ### Option Reference
 <pre>
 usage: run_p2pool.py [-h] [--version] [--net {bitcoin, litecoin}] [--testnet]
@@ -204,9 +223,9 @@ P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same 
 
 ##History
 
-This project was announced on June 17, 2011 by Forrest Voight (11.1).
+This project was announced on June 17, 2011 by Forrest Voight (12.1).
 
-The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (11.2).
+The began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (12.2).
 
 The software author's address for donations can be found in the signature section of his [forum profile](http://forum.bitcoin.org/index.php?action=profile;u=6447).
 
@@ -235,8 +254,8 @@ If you decide to donate you should announce it on the forums so that your donati
 
 ##References
 
-11.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
-11.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
+12.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
+12.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
 
 
 [[!tag "Pool_Operators"]]
