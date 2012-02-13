@@ -1,3 +1,5 @@
+See also [[Difficulty]]
+
 The **target** is a 256-bit number (extremely large) that all Bitcoin clients share. The SHA-256 [[hash]] of a [[block]]'s header must be lower than or equal to the current target for the block to be accepted by the network. The lower the target, the more [[difficult|difficulty]] it is to generate a block.
 
 It's important to realize that block generation is not a long, set problem (like doing a million hashes), but more like a lottery. Each hash basically gives you a random number between 0 and the maximum value of a 256-bit number (which is huge). If your hash is below the target, then you win. If not, you increment the nonce (completely changing the hash) and try again. 
@@ -24,6 +26,9 @@ For reasons of stability and low latency in transactions, the network tries to p
 	0x00000000ffff0000000000000000000000000000000000000000000000000000
 
 Since a lower target makes Bitcoin generation more difficult, the maximum target is the *lowest* possible [[difficulty]].
+
+##Related Links
+See also [[Difficulty]]
 
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
