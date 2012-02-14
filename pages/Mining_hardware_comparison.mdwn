@@ -154,10 +154,10 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#FFFFEF;"5770 |171.12 |- |- |- |- |stock |- |PCI-E 2.1 x16 |phoenix 1.7.3/debian gnu/linux 6 squeeze |-k phatk2 DEVICE=0 VECTORS BFI_INT FASTLOOP=false AGGRESSION=12 WORKSIZE=256
 |style="background:#FFFFEF;"5770x2 |425 |- |- |225(+) |960 |800x2 |2.1 |PCI-E 2.1 x16 |poclbm (guiminer) Win7x64 |-v -w128 (OC 960/1200)
 |style="background:#FFFDDD;"5830 |244 |1.36||179 |800 |1000 |2.4 |PCI-E 2.1 x16 |Phoenix 1.48 OpenCL/Linux x86_64 |-k phatk DEVICE=1 VECTORS AGGRESSION=6 -v FASTLOOP WORKSIZE=128 BFI_INT
-|style="background:#FFFDDD;"5830 |267 |-||- |875 |1000 |2.4 |PCI-E 2.1 x1 |Phoenix 1.48 OpenCL/Linux x86_64 |-k phatk DEVICE=1 VECTORS AGGRESSION=6 -v FASTLOOP WORKSIZE=128 BFI_INT
 |style="background:#FFFDDD;"5830 |245 |1.28||192 |880 |900 |2.4 |PCI-E 2.1 x16 |poclbm (guiminer) |-v -w 256
 |style="background:#FFFDDD;"5830 |248 |1.29||192 |880 |500 |2.4 |PCI-E 2.1 x16 |phoenix 1.46 |-k poclbm VECTORS BFI_INT AGGRESSION=11
 |style="background:#FFFDDD;"5830 |256 |-||- |900 |300 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 |-k poclbm VECTORS BFI_INT AGGRESSION=7
+|style="background:#FFFDDD;"5830 |267 |-||- |875 |1000 |2.4 |PCI-E 2.1 x1 |Phoenix 1.48 OpenCL/Linux x86_64 |-k phatk DEVICE=1 VECTORS AGGRESSION=6 -v FASTLOOP WORKSIZE=128 BFI_INT
 |style="background:#FFFDDD;"5830 |272 |1.52||179 |875 |- |2.4 |PCI-E 2.1 x16 |phoenix 1.48 / phatk / LinuxCoin |275Mhz Memory clock, 1.125 V (from 1.163), VECTORS AGGRESSION=12 BFI_INT
 |style="background:#FFFDDD;"5830 |275 |1.5714||175 |900 |500 |2.1 |PCI-E 2.1 x16 |poclbm (guiminer) Win7x64 |-v -w64 -f10, XFX stock w/ v2.4 SDK = 230Mh/s, v2.1 SDK = +10Mh/s, overclocking core clock by 100 = +30Mh/s, underclocking memory to 500 (ran cooler), and changing workload to -w64 = +5Mh/s.
 |style="background:#FFFDDD;"5830 |285 |- |1.58 |- |960 |- |2.4 |PCI-E 2.1 x16 |phoenix 1.47 / poclbm / Win7 64 |VECTORS BFI_INT FASTLOOP=false AGGRESSION=12
@@ -176,11 +176,13 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#FFFDDD;"5830 black |310 ||- |- |990 |300 |2.4 |PCI-E 2.1 x8 |LinuxCoin 0.2b, phoenix/phatk |(XFX Brand) -k phatk VECTORS BFI_INT WORKSIZE=256 AGGRESSION=11 FASTLOOPS=false
 |style="background:#FFFDDD;"5830 |311 |-||- |1000 |300 |2.4 |PCI-E 2.1 x16 |phoenix 1.50 / phatk / Linux |VECTORS BFI_INT AGGRESSION=13 FASTLOOP=false WORKSIZE=256
 |style="background:#FFFDDD;"5830 |315 |-||- |970 |- |2.4 |PCI-E 2.1 x16 |phoenix 1.6.1 / phatk2 / CrunchBang Linux |memory @ 300mhz VECTORS BFI_INT AGGRESSION=9 WORKSIZE=256
-|style="background:#FFFDDD;"5830 |316.35 ||- |- |1015 |375 |2.1 |PCI-E 2.1 x16 |phoenix 1.48 / phatk / Win7 32 |@ stock voltage VECTORS AGGRESSION=12 -v FASTLOOP=false BFI_INT
+|style="background:#FFFDDD;"5830 |316 ||- |- |1015 |375 |2.1 |PCI-E 2.1 x16 |phoenix 1.48 / phatk / Win7 32 |@ stock voltage VECTORS AGGRESSION=12 -v FASTLOOP=false BFI_INT
 |style="background:#FFFDDD;"5830 |319 |-|1.77 |- |1030 |- |2.4 |PCI-E 2.1 x16 |phoenix 1.48 / phatk / Xp 64 |1.2v 355Mhz Memory, VECTORS AGGRESSION=12 BFI_INT
 |style="background:#FFFDDD;"5830 |321 |-||- |1000 |1120 |2.4 |PCI-E 2.0 x16 |phoenix 1.50 / phatk-mod / Linux |1000Mhz GPU, 350Mhz RAM, 1.15V, 90% fan, ~60c Temp, VECTORS BFI_INT FASTLOOP=false AGGRESSION=13 WORKSIZE=128; phatk kernel found [here](http://forum.bitcoin.org/index.php?topic=25135.0)
 |style="background:#FFFDDD;"5830 |323 ||||900 (OC) ||2.4 |PCI-E 2.1 x16 |phoenix 1.5 Win7x64 |(500Mhz RAM), ~61c Temp, 57% fan, BFI_INT  FASTLOOP=false VECTORS AGGRESSION=12 -v WORKSIZE=64
 |style="background:#FFFDDD;"5830 |328 |- |- |- |1040 |- |2.4 |PCI-E 2.1 x16 |LinuxCoin 0.2.1b / phoenix / phatk |1.195 V, RAM @ 325 Mhz, fan @90%, no case, extra 10K RPM fan (62 deg.C in full-load); options: -k phatk DEVICE=0 VECTORS BFI_INT FASTLOOP=false AGGRESSION=11 WORKSIZE=256; brand: Sapphire Xtreme; bord is stable up to 1060 Mhz ~ 335 MHash, but produces some visual artefacts;
+|style="background:#FFFDDD;"5830 |331 |- |4.14 |- |1010 |1120 |2.4 |PCI-E 1.0 x16 |WinXP 32 / Phoenix 1.7.5 / phatk2 |Stock Voltage, RAM 300, 64C, Fan 67%, -k phatk2 VECTORS BFI_INT AGGRESSION=11 WORKSIZE=256 FASTLOOP=false (+6Mh w/ Phoenix 1.7.5 over 1.6.2)
+
 |style="background:#FFFDDD;"5830 |333 |- |- |- |1040 |- |2.4 |PCI-E 2.1 x16 |LinuxCoin 0.2.1b / phoenix-1.50 / phatk-[mod](http://forum.bitcoin.org/index.php?topic=25135.0)|+ ~5 Mhash increase using the modified phatk from the user above. I am the same guy with 330 @ 1040 MHz Sapphire Xtreme, all other settings the same, board stable, no increase in rejected
 |style="background:#FFFDDD;"5830 |334 |-||- |1030 |- |2.4 |PCI-E 2.1 x16 |phoenix 1.50 / phatk 2.0 / Win7 64 |Stock voltage, 385Mhz Memory, VECTORS AGGRESSION=12 WORKSIZE=256 BFI_INT  -- (upped from 330 achieved with diapolo mod [here](http://forum.bitcoin.org/index.php?topic=25135.0)), now using phatk 2.0 found [here](http://forum.bitcoin.org/?topic=7964.0)
 |style="background:#FFFDDD;"5830 |342 |- |- |- |1045 |- |2.4 |PCI-E 2.0 x8 |phoenix 1.48 / phatk 2.2 / WinSvr 2008 R2 64 |Stock voltage, 385Mhz Memory, VECTORS VECTORS4 FASTLOOP=false AGGRESSION=14 BFI_INT -k phatk-2.2
