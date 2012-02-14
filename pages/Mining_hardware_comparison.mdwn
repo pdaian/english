@@ -63,8 +63,8 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 
 
 
-|Model |Mhash/s |Mhash/J |Mhash / $|Watts |Clock |SP |SDK |Slot |Miner |Notes |Flags |
-|---|---|---|---|---|---|---|---|---|---|---|---|---
+|Model |Mhash/s |Mhash/J |Mhash / $|Watts |Clock |SP |SDK |Slot |Miner |Notes |Flags
+|---|---|---|---|---|---|---|---|---|---|---|---
 |3410 |0.89 |0.074 |? |12(?) |222 |40 |1.4 beta |PCI-E 1.1 x8 |A custom Brook+ miner |Using 16,384 length streams
 |3XXX ||||||||||OpenCL Not Supported
 |42XX ||||||||||OpenCL Not Supported (integrated/mobile GPU)
@@ -82,8 +82,8 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |4770 |72.29 |0.904|0.72 |80 |750 |640 |- |PCI-E 2.0 x16 |- |
 |4830 |55.42 |0.583||95 |575 |640 |- |PCI-E 2.0 x16 |- |
 |4830 |66.12 |0.503||105 |700 |1005 |- |PCI-E 2.0 x16 |- |
-|4830 |61.7 |- ||- |700 |- |2.4 |PCI-E 2.0 x16 |poclbm-mod |Fedora 14 |
-|4830 |64.9 |- ||- |700 |- |2.4 |PCI-E 2.0 x16 |poclbm-mod |Fedora 14 |
+|4830 |61.7 |- ||- |700 |- |2.4 |PCI-E 2.0 x16 |poclbm-mod |Fedora 14
+|4830 |64.9 |- |- |- |700 |- |2.4 |PCI-E 2.0 x16 |poclbm-mod |Fedora 14
 |4850 |75.30 |0.685 ||110 |625 |800 |- |PCI-E 2.0 x16 |- |
 |4850 |84.3 |0.766||110 |725 |300 |- |PCI-E 2.0 x16 |- |-w64 fan at 70% temp 73C, stock voltage -gui miner
 |4850 |90.1 |0.819 ||110 |800 |500 |- |PCI-E 2.0 x16 |guiminer |-f 30; Tried phoenix and phatk, got same max
@@ -101,7 +101,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |4890 |97.1 |0.511||190 |870(OC) |1050 |2.4 |PCI-E 2.0 x16 |GUIMiner v2011-01-21 Solo settings |Sapphire fab. No flags options helped. Close all browsers and do full restart of GUIMiner and then Bitcoin via GUIMiner server starter or the browsers GPU accl. will limit to 56~ ish Mhash/s - I can now start browser without slowdowns
 |4890 |102.41 |0.539||190 |850 |800 |- |PCI-E 2.0 x16 |- |
 |4890 |108.3 |0.57||190 |975 |800 |- |PCI-E 2.0 x16 |- |
-|4890 |121.5 |-||190 |1025 (OC) |800 |2.4 |PCI-E 2.0 x16 |poclbm |no flags, Vcore 1.4 |
+|4890 |121.5 |-||190 |1025 (OC) |800 |2.4 |PCI-E 2.0 x16 |poclbm |no flags, Vcore 1.4 
 |style="background:#FFF8EF;"5450 |11.99|0.631||19 |650 |80 |- |PCI-E 2.1 x16 |- |
 |style="background:#FFF8EF;"5450 |13.74||- |- |700 |- |- |PCI-E 2.1 x16 |poclbm/Linuxcoin v0.2 |-v -w128 tried several options, seems to work best.
 |style="background:#FFF8EF;"5450 |14.12||- |- |700 |- |- |PCI-E 2.1 x16 |Phoenix/Linuxcoin v0.2 |Flags: "DEVICE=0 VECTORS AGGRESSION=4 -v FASTLOOP BFI_INT WORKSIZE=64" Kernel: "phatk"
@@ -125,7 +125,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#EEFFEE;"5670 |91||- |- |890 |400 |- |PCI-E 2.1 x16 |guiminer 2011-06-09 poclbm catalyst 11.2 win7 x86 |-v -f 0 -w 128
 |style="background:#EEFFEE;"5670 |100||- |- |890 |400 |- |PCI-E 2.1 x16 |cgminer 1.5.6 |GPU/Mem 890/800 temp 72C
 |style="background:#EEFFEE;"5670 |103 |-||- |900/275 |400 |2.4 |PCI-E 2.1 x1 |phoenix-1.50 / phatk-mod / Ubuntu 11.04 |VECTORS BFI_INT FASTLOOP=false AGGRESSION=11 WORKSIZE=256 / small fan, under 50 deg C, no voltage tweaks... catfish
-|5750 |105 |- |- |- |- |- |- |- |poclbm |Apple iMac 27inch (Mid 2010), Mac OSX 10.7 Lion |
+|5750 |105 |- |- |- |- |- |- |- |poclbm |Apple iMac 27inch (Mid 2010), Mac OSX 10.7 Lion 
 |5750 |116.24 |1.352||86 |700 |720 |- |PCI-E 2.1 x16 |- |
 |5750 |137 ||- |- |710 |720 |- |PCI-E 1.1 x16 |poclbm |-v -f 0 -w 128 using stock memory and GPU clocks
 |5750 |146.4 ||- |- |775 |720 |- |PCI-E 2.0 x16 |GUIMiner v2011-05-21 |-v -w128, AMD Catalyst overclock (775MHz GPU / 1225 MHz Memory)
@@ -187,9 +187,9 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#FFFDDD;"5830 |334 |-||- |1030 |- |2.4 |PCI-E 2.1 x16 |phoenix 1.50 / phatk 2.0 / Win7 64 |Stock voltage, 385Mhz Memory, VECTORS AGGRESSION=12 WORKSIZE=256 BFI_INT  -- (upped from 330 achieved with diapolo mod [here](http://forum.bitcoin.org/index.php?topic=25135.0)), now using phatk 2.0 found [here](http://forum.bitcoin.org/?topic=7964.0)
 |style="background:#FFFDDD;"5830 |342 |- |- |- |1045 |- |2.4 |PCI-E 2.0 x8 |phoenix 1.48 / phatk 2.2 / WinSvr 2008 R2 64 |Stock voltage, 385Mhz Memory, VECTORS VECTORS4 FASTLOOP=false AGGRESSION=14 BFI_INT -k phatk-2.2
 |style="background:#FFFDDD;"5830x2 CF |480 |-||- |800 |- |2.4 |PCI-E 2.1 x16 |Guiminer/ - / Win7 64bit Guiminer -v -f70 -w128|
-|style="background:#FFFDDD;"5830x2 |570 |-||- |950 |- |2.4 |PCI-E 2.1 x8 |Guiminer/ - / Win7 64bit poclbm |poclbm -v -w256 -f10 MEMORYCLOCK 300MHZ GPUCLOCK 950MHZ FAN 52% 72°C|
-|style="background:#FFFDDD;"5830x2 |672 |-||- |990 |- |2.4 |PCI-E 2.1 x16 |CGMiner/ - / Win7 32bit 4way |-I 10 Mem@300, Clock@990, 336-341mhs per card. 69°C ShadesMinoco Machine|
-|style="background:#FFFDDD;"5830x6 |1956 |-||- |980 |- |2.4 |PCI-E 2.1 x16 x1 |CGMiner/ - / Win7 32bit 4way |Gpu Engine 900-980, Target temp 76°C, -I 10, Memoryclock 300, fans at 80% ShadesMinoco Machine|
+|style="background:#FFFDDD;"5830x2 |570 |-||- |950 |- |2.4 |PCI-E 2.1 x8 |Guiminer/ - / Win7 64bit poclbm |poclbm -v -w256 -f10 MEMORYCLOCK 300MHZ GPUCLOCK 950MHZ FAN 52% 72°C 
+|style="background:#FFFDDD;"5830x2 |672 |-||- |990 |- |2.4 |PCI-E 2.1 x16 |CGMiner/ - / Win7 32bit 4way |-I 10 Mem@300, Clock@990, 336-341mhs per card. 69°C ShadesMinoco Machine 
+|style="background:#FFFDDD;"5830x6 |1956 |-||- |980 |- |2.4 |PCI-E 2.1 x16 x1 |CGMiner/ - / Win7 32bit 4way |Gpu Engine 900-980, Target temp 76°C, -I 10, Memoryclock 300, fans at 80% ShadesMinoco Machine 
 |style="background:#EFEFFF;"5850 |282.75 |style="background:#EFEFFF;"3.06|- |92.25|666 (UC) |1440|2.1 |PCI-E 2.1 x16 |Phoenix/WinXP |undervolted to 0.95V; phatk2 VECTORS BFI_INT AGGRESSION=11 WORKSIZE=256; driver 10.12; [clocktweak](http://bitcointalk.org/index.php?topic=9982.0)for setting values; [thread](https://bitcointalk.org/index.php?topic=40056)
 |style="background:#EFEFFF;"5850 |240.77 |1.595|1.49 |151 |725 |1440 |- |PCI-E 2.1 x16 |- |
 |style="background:#EFEFFF;"5850 |250.26 |1.657||151 |725 |1440 |- |PCI-E 2.1 x16 |opencl client |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg29471#msg29471)
@@ -204,7 +204,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#EFEFFF;"5850 |300 |1.5460||194 |925(OC) |1440 |- |PCI-E 2.1 x16 |m0mchil's OpenCL |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg24699#msg24699)
 |style="background:#EFEFFF;"5850 |304 |- ||- |725 (stock) |1440 |2.1 |PCI-E 2.1 x16 |cgminer.exe -v 2 -I 8 -w 256 --gpu-memclock 275 |
 |style="background:#EFEFFF;"5850 |314 |1.8362||171 |820(OC) |1440 |2.4 |PCI-E 1.0 x8 |poclbm |-v -w128
-|style="background:#EFEFFF;"5850 |328 |TBD||TBD |875 @ Stock voltage |1440 |2.4 |PCI-E 2.1 x16 |phoenix |70C @42% fan, mem @ 500mhz; -v -k phatk VECTORS BFI_INT AGGRESSION=8 FASTLOOP=false WORKSIZE=128 |
+|style="background:#EFEFFF;"5850 |328 |- ||- |875 @ Stock voltage |1440 |2.4 |PCI-E 2.1 x16 |phoenix |70C @42% fan, mem @ 500mhz; -v -k phatk VECTORS BFI_INT AGGRESSION=8 FASTLOOP=false WORKSIZE=128  
 |style="background:#EFEFFF;"5850 |330 |- ||- |850 @ Stock voltage |1440 |2.1 |PCI-E 2.0 x16 |phoenix |EAH5850, miner arguments: -k poclbm DEVICE=1 VECTORS AGGRESSION=8 WORKSIZE=128 BFI_INT FASTLOOP=false
 |style="background:#EFEFFF;"5850 |331 |- ||- |725 (Stock) ||2.4 |PCI-E 2.0 x16 |Diablo Win7 64bits|Sapphire 5850 Xtreme, Arguments: -v 2 -w 192 (by Swapper 2011-07-05)
 |style="background:#EFEFFF;"5850 |335 |1.8611||180 |890(OC) |1440 |2.4 |PCI-E 2.0 x8 |poclbm |-v -w128, Memory downclocked to 300Mhz
@@ -230,11 +230,10 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#EFEFFF;"5850 |414.8 |-||- |1018 |450 |2.4 |PCI-E 2.0 16x |GUIMiner / Win7 64 11.7 |I use Sapphire HD5850 Toxic 2GB and for OC TRIXX Sapphire Tweak Utility v4.0.2. 72 deg C, fan 100%, core 1018mhz, mem 450Mhz, stock voltage (1.163). proof: http://img23.imageshack.us/img23/2367/414upload.png GUIMiner parameters: -v -w256 -f1  
 |style="background:#EFEFFF;"5850 |420 |-||- |1055 |300 |2.5 |PCI-E 2.0 1x>16x |phoenix 1.5 / phatk 3% mod / Win7 64 11.6 |Fan 80%, 66C, 1.250 Vcore, -k phatk PLATFORM=0 DEVICE=0 VECTORS BFI_INT AGGRESSION=8 And proof: http://i.imgur.com/s9hqs.png
 |style="background:#EFEFFF;"5850 |431 |-||- |1040 |1440 |2.4 |PCI-E 2.0 4x>16x |phoenix-svn / phatk kernel / Debian Wheezy AMD64 + fglrx 11.6 |fan 100%, vcore 1.1750 V, 72C, VECTORS BFI_INT AGGRESSION=15 FASTLOOP=false -k phatk, proof: http://imageshack.us/photo/my-images/199/431u.png/
-|style="background:#EFEFFF;"5850x3 |1,010 |-||- |850 |- |2.4 |PCI-E 2.0 (x3) |GUIMiner |-v -w128 MSI Afterburner settings: 850MHz core clock and 500MHz memory clock |
-|style="background:#EFEFFF;"5850x6 |2,135 |-||- |900 |- |2.5 |PCI-E 2.0 (6 total, 4 full length, 2 @ PCIE1x with risers |GUIMiner 24/8/2011 - poclbm |-v -f1 -w128 Win 7 64Bit, Gigabyte GA-890FXA-UD5 motherboard, 4gb ram, AM3 cpu, Kingston SSD, Catalyst 11.8 drivers, guiminer switches: -v -f1 -w128, MSI Afterburner settings: 900MHz core clock and 1000MHz memory clock, cable risers required to fit all 6 cards, fans 100% Proof: http://i.imgur.com/6s7zv.jpg |
-|style="background:#EFFFEF;"5870M |152.5 |-||- |750(OC) |1000 |2.1 |PCI-E 2.1 x16 |gui-miner (win-7) ||
-|style="background:#EFFFEF;"5870M |189.2 |-||- |850(OC) |1000 |2.5 |PCI-E 2.1 x16 |Wins 7 64/gui-miner (win-7) |-v -w128 -f0 Graphics Overdrive setting 700->850 core clock & 900->1030memory clock . +35mhs over stock settings|
-
+|style="background:#EFEFFF;"5850x3 |1,010 |-||- |850 |- |2.4 |PCI-E 2.0 (x3) |GUIMiner |-v -w128 MSI Afterburner settings: 850MHz core clock and 500MHz memory clock 
+|style="background:#EFEFFF;"5850x6 |2,135 |-||- |900 |- |2.5 |PCI-E 2.0 (6 total, 4 full length, 2 @ PCIE1x with risers |GUIMiner 24/8/2011 - poclbm |-v -f1 -w128 Win 7 64Bit, Gigabyte GA-890FXA-UD5 motherboard, 4gb ram, AM3 cpu, Kingston SSD, Catalyst 11.8 drivers, guiminer switches: -v -f1 -w128, MSI Afterburner settings: 900MHz core clock and 1000MHz memory clock, cable risers required to fit all 6 cards, fans 100% Proof: http://i.imgur.com/6s7zv.jpg 
+|style="background:#EFFFEF;"5870M |152.5 |-||- |750(OC) |1000 |2.1 |PCI-E 2.1 x16 |gui-miner (win-7) |
+|style="background:#EFFFEF;"5870M |189.2 |-||- |850(OC) |1000 |2.5 |PCI-E 2.1 x16 |Wins 7 64/gui-miner (win-7) |-v -w128 -f0 Graphics Overdrive setting 700->850 core clock & 900->1030memory clock . +35mhs over stock settings
 |style="background:#EFFFEF;"5870 |313.65 |1.668|1.65 |188 |850 |1600 |2.1 |PCI-E 2.1 x16 |clmine |
 |style="background:#EFFFEF;"5870 |313 |1.665||188 |900? |1600 |2.3 |PCI-E 2.1 x16 |Diablo/Linux |
 |style="background:#EFFFEF;"5870 |343 |1.824||188 |900? |1600 |2.1 |PCI-E 2.1 x16 |Diablo/Linux |
@@ -330,9 +329,9 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#FFFF00;"6870 |300 |- ||- |940 |1120 |2.5 |PCI-E 2.1 x16 |Phoenix 1.6.2 phatk2 |xfx6870 Black Edition, 340MHz Memory Clock, Catalyst 11.6, VECTORS BFI_INT AGGRESSION=13 WORKSIZE=128, Debian Linux 64-Bit, Fan @ 50%, Temp @ 75C
 |style="background:#FFFF00;"6870 |302 |- ||- |940 |1120 |2.5 |PCI-E 2.1 x16 |cgminer 2.1.2 |xfx6870 Black Edition, 340MHz Memory Clock, Catalyst 11.6, -w 256 -I 9, Debian Linux 64-Bit, Fan @ 50%, Temp @ 75C
 |style="background:#FFFF00;"6870 |300.06 |1.830||164 |1020 |1120 |2.4 |PCI-E 2.1 x16 |Phoenix 1.4 cat 11.4 |VECTORS BFI_INT AGGRESSION=8 fastloop mem clock 344
-|style="background:#FFFF00;"6870 |300 |1.72||174 |1038 |1120 |2.4 |PCI-E 2.1 x16 |poclbm windows7x86 cat 11.4 |-v -w128 -f1 mem clock 360, fan 100% temp 73C
-|style="background:#CCFF00;"6870 |307 |1.72||174 |1001/\1001 |1120 |2.4 |PCI-E 2.1 x16 |poclbm windows7x86 cat11.8 |-v -w128 -f5,85°C
-|style="background:#FFFF00;"6870 |310 |-||- |1035 |1120 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 phatk 11.5 sdk 2.4 |BFI_INT VECTORS FASTLOOP=false AGGRESSION=12 WORKSIZE=128, mem clock @ 300MHz, voltage @ 1.300
+|style="background:#FFFF00;"6870 |300 |1.72 |- |174 |1038 |1120 |2.4 |PCI-E 2.1 x16 |poclbm windows7x86 cat 11.4 |-v -w128 -f1 mem clock 360, fan 100% temp 73C
+|style="background:#CCFF00;"6870 |307 |1.72 |- |174 |1001/\1001 |1120 |2.4 |PCI-E 2.1 x16 |poclbm windows7x86 cat11.8 |-v -w128 -f5,85°C
+|style="background:#FFFF00;"6870 |310 |- |- |- |1035 |1120 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 phatk 11.5 sdk 2.4 |BFI_INT VECTORS FASTLOOP=false AGGRESSION=12 WORKSIZE=128, mem clock @ 300MHz, voltage @ 1.300
 |style="background:#FFFF00;"6870 |310 |-||- |975 |1120 |2.4 |PCI-E 2.1 x16 |phoenix phatk linuxcoin |BFI_INT VECTORS FASTLOOP=false AGGRESSION=13 WORKSIZE=128, mem clock @ 340MHz, core clock @ 970MHz, flashed bios, 72 degrees w/ fan @ 68%, GIGABYTE SOC
 |style="background:#CCFF00;"6870 |312 |-||- |975 |300|2.4 |PCI-E 2.1 x16 |phoenix 1.50 / phatk / Windows 7 x64 SP1 |VECTORS BFI_INT AGGRESSION=11 FASTLOOP=false WORKSIZE=256, mem clock @ 300MHz, voltage @ 1.300, Fan @ 45%, Temp @ 62C,  MSI 6870 HAWK.
 |style="background:#FFFF00;"6870 |314 |-||- |1030 |1120|2.4 |PCI-E 2.1 x16 |phoenix 1.50 / phatk / Linux |VECTORS BFI_INT AGGRESSION=11 FASTLOOP=false WORKSIZE=256
@@ -345,7 +344,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#FFFF00;"6870 |332 |-|1.74 |- |1050 |1120 |2.4 |PCI-E 2.1 x16 |guiminer 2011-06-14 using phoenix (Win7-32bit) |-k phatk platform=0 device=0 VECTORS BFI_INT AGGRESSION=13 worksize=128 FASTLOOP=false, mem clock @ 228MHz, voltage @ 1.3, Fan @ 60%, Temp @ 74C, flash and browser hardware acceleration disabled, aero enabled.
 |style="background:#FFFF00;"6870 |295 |2.02|1.64 |146 |950 |1120 |2.4 |PCI-E 2.1 x16 |hashkill latest as of 7/6/11 (ubuntu 11.4) |hashkill-gpu -p bitcoin user:pass:server -D, mem clock 850, voltage @ 1.175, Fan @ 70%, Temp @ 71C.
 |style="background:#FFFF00;"6870 |339.25 |- |- |- |1090 |1120 |2.6 |PCI-E 2.1 x16 |Phoenix 1.7.3 cat 12.1 |Mem @ 350Mhz Clock @ 1090 Voltage 1.337 fan @ 100 Temp @ 75 diapolo's modified phatk kernel -k phatk_dia platform=0 device=0 VECTORS2 AGGRESSION=11 worksize=64 FASTLOOP=false BFI_INT
-|style="background:#FFFF00;"6870 |264.5 |- |- |- |980 |1050 |??? |PCI-E 2.1 x16 |GUIMiner v2011-05-01 |Stays around 66*C if I keep the side panel off and the room well ventilated. Card is PowerColor branded. Windows 7 Ultimate SP1 with Classic theme. Fan is at 100%.|-v -w128
+|style="background:#FFFF00;"6870 |264.5 |- |- |- |980 |1050 |- |PCI-E 2.1 x16 |GUIMiner v2011-05-01 |Stays around 66*C if I keep the side panel off and the room well ventilated. Card is PowerColor branded. Windows 7 Ultimate SP1 with Classic theme. Fan is at 100%. -v -w128 
 |style="background:#FFFF00;"6870x4 |1150|-|1.2 |- |900|1050 |2.4 |PCI-E 2.0 x16 |phoenix 1.7 (Win7-64bit) |-k phatk platform=0 device=0-3 VECTORS BFI_INT AGGRESSION=11 worksize=128 FASTLOOP=false
 |style="background:#FFFF00;"6870x4 |1180 |-|- |145 |950 |1120 |2.4 |PCI-E 2.1 x16 |poclbm/debian32bit |-v -w128, Gigabyte SOC. voltage 1.175 (default), GPU default 950 MHz, Mem downclocked to 300 MHz, Fan 4x100% (+ 2x12cm fun 1300rpm), Temp 4x75C (in summer).
 |style="background:#FFFF00;"6870x4 |1200 |-|- |150 |970 |1120 |2.4 |PCI-E 2.1 x16 |poclbm/debian32bit |-v -w128, Gigabyte SOC. voltage 1.175 (default), GPU overclocked from 950 to 970 MHz, Mem downclocked to 300 MHz, Fan 4x100% (+ 2x12cm fun 1300rpm), Temp 4x75C (in summer). Unstable with GPU@975 MHz.
