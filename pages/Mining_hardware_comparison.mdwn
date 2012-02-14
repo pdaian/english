@@ -264,7 +264,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#EFFFEF;"5870x2 (Ares) |826 |0.751||1100 |950 |3200 |2.1 |PCI-E 2.1 x16 |phoenix 1.4 w/ Phtak |AGGRESSION=13 WORKSIZE=128 VECTORS BFI_INT Memory @ 300MHz
 |style="background:#EFFFEF;"5870x2 (Ares) |826 |1.18||700 |935 |3200 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 w/ Phatk |AGGRESSION=13 WORKSIZE=256 VECTORS BFI_INT FASTLOOP=false, memory @ 319 MHz, Windows 7 32-bit
 |style="background:#EFFFEF;"5870x2 (Ares) |878 |0.585||1500 |1000 |3200 |2.1 |PCI-E 2.1 x16 |phoenix 1.7 w/ Phtak |AGGRESSION=13 WORKSIZE=128 VECTORS BFI_INT Memory @ 300MHz
-|5870x4 |1784 ||1.29||960 |- |2.1 |PCI-E 2.0 x1 |phoenix 1.50 + phatk + [Version 2.2 Improvement](https://bitcointalk.org/index.php?topic=7964.0)|Cards are clocked with BIOS flash @ 960Mhz Core and 300Mhz Memory. More information and pictures: http://forum.bitcoin.org/index.php?topic=7216.msg324521#msg324521 
+|style="background:#EFFFEF;"5870x4 |1784 ||1.29||960 |- |2.1 |PCI-E 2.0 x1 |phoenix 1.50 + phatk + [Version 2.2 Improvement](https://bitcointalk.org/index.php?topic=7964.0)|Cards are clocked with BIOS flash @ 960Mhz Core and 300Mhz Memory. More information and pictures: http://forum.bitcoin.org/index.php?topic=7216.msg324521#msg324521 
 |style="background:#EFFFEF;"5870x6 |2568 |-||1200 |970 |-|2.4 |PCI-E 2.1 x16 |poclbm/debian32bit  |-v -w128, voltage default, Mem downclocked to 300 MHz, Fan 80-90% (+ 4x12cm fun 1900rpm), Temp 6x 70-75C. Whole computer comsumpts 1280Watt. Using PCI-E risers 16x-16x to use 6 GPU cards
 |style="background:#FFEFEF;"5970 |530 |1.803|0.53 ? |294 |725 |3200 |2.4.595.10 |PCI-E 2.1 x16 |poclbm/201103.beta3/Windows |-v -w128 -f60
 |style="background:#FFEFEF;"5970 |535.06 |1.820||294 |725 |3200 |2.1 |PCI-E 2.1 x16 |clmine |
@@ -330,10 +330,10 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#FFFF00;"6870 |302 |- ||- |940 |1120 |2.5 |PCI-E 2.1 x16 |cgminer 2.1.2 |xfx6870 Black Edition, 340MHz Memory Clock, Catalyst 11.6, -w 256 -I 9, Debian Linux 64-Bit, Fan @ 50%, Temp @ 75C
 |style="background:#FFFF00;"6870 |300.06 |1.830||164 |1020 |1120 |2.4 |PCI-E 2.1 x16 |Phoenix 1.4 cat 11.4 |VECTORS BFI_INT AGGRESSION=8 fastloop mem clock 344
 |style="background:#FFFF00;"6870 |300 |1.72 |- |174 |1038 |1120 |2.4 |PCI-E 2.1 x16 |poclbm windows7x86 cat 11.4 |-v -w128 -f1 mem clock 360, fan 100% temp 73C
-|style="background:#CCFF00;"6870 |307 |1.72 |- |174 |1001/\1001 |1120 |2.4 |PCI-E 2.1 x16 |poclbm windows7x86 cat11.8 |-v -w128 -f5,85°C
+|style="background:#FFFF00;"6870 |307 |1.72 |- |174 |1001/\1001 |1120 |2.4 |PCI-E 2.1 x16 |poclbm windows7x86 cat11.8 |-v -w128 -f5,85°C
 |style="background:#FFFF00;"6870 |310 |- |- |- |1035 |1120 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 phatk 11.5 sdk 2.4 |BFI_INT VECTORS FASTLOOP=false AGGRESSION=12 WORKSIZE=128, mem clock @ 300MHz, voltage @ 1.300
 |style="background:#FFFF00;"6870 |310 |-||- |975 |1120 |2.4 |PCI-E 2.1 x16 |phoenix phatk linuxcoin |BFI_INT VECTORS FASTLOOP=false AGGRESSION=13 WORKSIZE=128, mem clock @ 340MHz, core clock @ 970MHz, flashed bios, 72 degrees w/ fan @ 68%, GIGABYTE SOC
-|style="background:#CCFF00;"6870 |312 |-||- |975 |300|2.4 |PCI-E 2.1 x16 |phoenix 1.50 / phatk / Windows 7 x64 SP1 |VECTORS BFI_INT AGGRESSION=11 FASTLOOP=false WORKSIZE=256, mem clock @ 300MHz, voltage @ 1.300, Fan @ 45%, Temp @ 62C,  MSI 6870 HAWK.
+|style="background:#FFFF00;"6870 |312 |-||- |975 |300|2.4 |PCI-E 2.1 x16 |phoenix 1.50 / phatk / Windows 7 x64 SP1 |VECTORS BFI_INT AGGRESSION=11 FASTLOOP=false WORKSIZE=256, mem clock @ 300MHz, voltage @ 1.300, Fan @ 45%, Temp @ 62C,  MSI 6870 HAWK.
 |style="background:#FFFF00;"6870 |314 |-||- |1030 |1120|2.4 |PCI-E 2.1 x16 |phoenix 1.50 / phatk / Linux |VECTORS BFI_INT AGGRESSION=11 FASTLOOP=false WORKSIZE=256
 |style="background:#FFFF00;"6870 |316 |-||- |1030 |1120 |2.4 |PCI-E 2.1 x16 |guiminer 2011-06-09 using phoenix (Win7-32bit) |-k phatk platform=0 device=0 VECTORS BFI_INT AGGRESSION=11 worksize=128 FASTLOOP=false, mem clock @ 228MHz, voltage @ 1.25, Fan @ 40%, Temp @ 73C
 |style="background:#FFFF00;"6870 |322 |1.882||170 |1050 |1120 |2.4 |PCI-E 2.1 x16 |phoenix 1.47 phatk 11.5 sdk 2.4 |BFI_INT VECTORS FASTLOOP=false AGGRESSION=12 WORKSIZE=256, mem clock @ 400MHz
