@@ -1,0 +1,7 @@
+A block is "discouraged" if the ShouldDiscourage() method in the source code returns true.  Currently, for each "new rule" this happens only if (a) 80 of the last 100 blocks obey the "new rule" and (b) the block does not obey the "new rule".
+
+At the moment, the only "new rule" for which disobedience is being discouraged is the "put the block height in the coinbase" rule.
+
+* Clients **will consider discouraged blocks** when determining which chain is difficultywise-longest.
+* Mining clients **will not build on top of** discouraged blocks.
+* Transactions cannot be discouraged (only blocks), so this does not affect transaction propagation.
