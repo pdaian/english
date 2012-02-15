@@ -3,7 +3,7 @@ A block is "discouraged" if the ShouldDiscourage() method in the source code ret
 At the moment, the only "new rule" for which disobedience is being discouraged is the "put the block height in the coinbase" rule.
 
 * Clients **will consider discouraged blocks** when determining which chain is difficultywise-longest.
-* Mining clients **will not build on top of** discouraged blocks.
+* Mining clients **will not build directly on top of** discouraged blocks.  They *will* extend branches containing discouraged blocks, so long as the block at the tip of the fork is not discouraged.
 * Transactions cannot be discouraged (only blocks), so this does not affect transaction propagation.
 
 [[!tag "Technical"]][[!tag "Developer"]]
