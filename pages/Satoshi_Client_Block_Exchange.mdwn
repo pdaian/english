@@ -1,7 +1,6 @@
 ##Overview
 This article describes how blocks are exchanged between nodes.
-See this article for more information on how blocks are validated:
-https://en.bitcoin.it/wiki/Protocol_rules#Blocks
+See [[Protocol_rules]] for more information on how blocks are [[validated|Invalid_block]].
 
 Upon initial connection, if the connection was not inbound[[1]],
 or in other words, if the connection was initiated by the local node,
@@ -21,7 +20,6 @@ block and goes back ten and then doubles in an exponential progression
 until the genesis block is reached.[[3]]  Since both nodes are hard coded
 with the genesis block, they are guaranteed to a least start there.
 If that block does not match for some reason, no blocks are exchanged.
-
 
 ## Inventory Messages
 
