@@ -1,1 +1,5 @@
 A block is valid if it obeys all of the [[Protocol_rules]]; otherwise it is invalid.
+
+* Clients will ignore transactions in invalid blocks.
+* Mining clients will not build new blocks on top of invalid blocks.
+* Clients will not propagate invalid blocks (or invalid transactions).
