@@ -38,6 +38,8 @@ You can use any arbitrary IP addresses with MapAddress, though some of the commo
 
 It is highly recommended that you use "connect" instead of "addnode" so that all of your communications are kept within the tor network.
 
+<span style="color:red">Since Bitcoin 0.5, the client enables nolisten when the proxy setting is enabled, which in effect prevents the client from becoming a peer node. So the only way to operate a hidden bitcoin seed node would be to revert to an earlier version, or see phantomcircuit's [bitcoin-alt](https://github.com/phantomcircuit/bitcoin-alt).</span>
+
 ## Nodes list
 
 ### IPv4 Nodes
