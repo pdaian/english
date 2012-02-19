@@ -81,34 +81,34 @@ Dependencies if running from source:
 **Q:** "What do I do if my efficiency is low?"<br />
 **A:** If you have a lot of dead shares or the "Local dead on arrival" number is higher than a few percent, that means that something is wrong with your miner. Check to make sure that it is one of the working versions in the *Miners* section on this page. Make sure the computers you're running P2Pool and the miner on have enough memory and CPU time. Lower the intensity or raise the FPS of your miner. If you have a lot of orphan shares, something is wrong with P2Pool's P2P connection. Don't overload your internet connection or enable QoS (Quality of Service) on your router.
 
-**Q:** What is PPLNS?
+**Q:** What is PPLNS?<br />
 **A:** Pay-Per-Last-N-Shares is a payout method that is completely resistant to pool hoppers.
 
-**Q:** Why am I not getting any shares with my NVIDIA after waiting a whole 5 minutes?!
+**Q:** Why am I not getting any shares with my NVIDIA after waiting a whole 5 minutes?!<br />
 **A:** The P2Pool difficulty is hundreds of times higher than on normal pools. It can take time to get a share. P2Pool displays an estimate of how long you have to wait in the console output.
 
-**Q:** Why am I getting so many rejects?
+**Q:** Why am I getting so many rejects?<br />
 **A:** You're using an incompatible miner. See the miners section here, increase your FPS on the miner, decrease the intensity, upgrade your miner, or try a different miner.
 
-**Q:** What stops the pool operator or the block finder from stealing a block?
+**Q:** What stops the pool operator or the block finder from stealing a block?<br />
 **A:** A block solution is only worth anything because its hash matches Bitcoin's target. Altering anything within the block will change its hash and make it worthless.
 
-**Q:** Why does it say "Generated?" I want to spend my coins now!
+**Q:** Why does it say "Generated?" I want to spend my coins now!<br />
 **A:** P2Pool includes payouts in generation transactions, which must mature (taking 120 blocks or 20 hours) before they can be spent. The reason for this is that a block could be orphaned, which would make its payout invalid and could reverse transactions.
 
-**Q:** Do I get paid transaction fees?
-**A:** Yes.
+**Q:** Do I get paid transaction fees?<br />
+**A:** Yes. They are split among P2Pool miners.
 
-**Q:** What are these payments I'm getting that aren't generated?
+**Q:** What are these payments I'm getting that aren't generated?<br />
 **A:** These are subsidies that people who support the idea of P2Pool send to miners.
 
-**Q:** Cool Subsidies sound like an awesome idea! How do I send some BTC to these awesome miners?
+**Q:** Cool Subsidies sound like an awesome idea! How do I send some BTC to these awesome miners?<br />
 **A:** See end of this page.
 
-**Q:** Do I really need the WHOLE blockchain?
+**Q:** Do I really need the WHOLE blockchain?<br />
 **A:** Yes. Your node needs to be able to independently make decisions about what transactions to mine.
 
-**Q:** How do merged mining payments work?
+**Q:** How do merged mining payments work?<br />
 **A:** Merged mining is handled entirely by namecoind, so you're solo mining and payouts will go into namecoind's wallet.
 
 
