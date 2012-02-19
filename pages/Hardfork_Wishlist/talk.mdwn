@@ -11,3 +11,16 @@ One of my concerns about this page is that lots of ideas sound just fantastic un
 In my opinion, the drop risk is inconsequential: Having the average txn time go to 20 minutes for a month isn't really a big deal... and if there is a bigger drop then the slow txn processing time will be the least of our problems. The costs here are not speculative, altchains with "improved" difficulty adjustments have been exploited several times. The benefit is purely speculative and primarily matters only if bitcoin is already failing.
 
 Perhaps we should change the page to tabular layout so that we can link to for and against arguments for features where ones exist? --[Gmaxwell](User:Gmaxwell) 19:59, 4 January 2012 (GMT)
+
+
+###OP_FAIL FAILS
+
+I've removed this suggestion:
+
+<blockquote>
+**Futureproofing**
+
+* Add a few new opcodes called OP_FAIL*n* or repurpose them from OP_NOP*n*.  These would immediately fail a transaction, and like OP_NOP*n*, would be available as new opcodes for future purposes, but without the burden of old clients dangerously understanding them as "do nothing".
+</blockquote>
+
+Because it's idiotic. You could already use undefined opcodes for this— but even that is stupid, the reason the the OP_NOPs are useful for futureproofing is specifically because they pass. The fact that they pass is what enables you to run a mixed network.  If you use an opcode that always fails for old nodes as an extension mechanism the instant that it gets mined the network forks. --[Gmaxwell](User:Gmaxwell) 17:13, 19 February 2012 (GMT)
