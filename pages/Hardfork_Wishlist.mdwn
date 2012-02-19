@@ -19,6 +19,7 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 ####Cryptographic changes
 
 * Pervasive ECC public key-recovery to reduce transaction sizes (can be done partially without breaking compatibility completely)
+* [Ed25519](http://ed25519.cr.yp.to/) (variant*) for much faster validation operations. (variant because the normal way Ed25519 is specified is not key recovery compatible)
 * Support for a post-quantum signature scheme. [Lamport signatures](http://en.wikipedia.org/wiki/Lamport_signature) have nice intuitive security properties, but it and all other similar schemes have extreme space requirements that would require structural changes to the blockchain to accommodate, (e.g. flip-chain+paytoscripthash+extensive pruning). Additional signature types could be kludged into the existing system with script extensions but would be better supported natively.
 
 ####Currency changes
