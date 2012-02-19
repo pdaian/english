@@ -627,6 +627,27 @@ The payload is serialized into a var_str to ensure that versions using incompati
 |? |Reserved |string |Reserved
 
 
+Sample alert (no message header):
+	73010000003766404f00000000b305434f00000000f2030000f1030000001027000048ee0000
+	0064000000004653656520626974636f696e2e6f72672f666562323020696620796f75206861
+	76652074726f75626c6520636f6e6e656374696e672061667465722032302046656272756172
+	79004730450221008389df45f0703f39ec8c1cc42c13810ffcae14995bb648340219e353b63b
+	53eb022009ec65e1c1aaeec1fd334c6b684bde2b3f573060d5b70c3a46723326e4e8a4f1
+	
+	Version: 1
+	RelayUntil: 1329620535
+	Expiration: 1329792435
+	ID: 1010
+	Cancel: 1009
+	setCancel: <empty>
+	MinVer: 10000
+	MaxVer: 61000
+	setSubVer: <empty>
+	Priority: 100
+	Comment: <empty>
+	StatusBar: "See bitcoin.org/feb20 if you have trouble connecting after 20 February"
+	Reserved: <empty>
+
 ## Scripting
 
 See [[script]].
