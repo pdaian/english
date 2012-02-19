@@ -1,0 +1,19 @@
+Blockchain-based currencies use addresses, which are a [[Base58Check_encoding]] of some hash, typically that of a public key. The encoding includes a version byte, which affects the first character in the address. The following is a list of some prefixes which are in use.
+
+
+
+|Decimal version|Leading symbol|Use|Example
+|---|---|---|---
+|0|1|Bitcoin pubkey hash|12CPLrAUPvhVwjZqBgww3sLdEg4Z888R1j
+|5|3|Bitcoin script hash|
+|21|4|Bitcoin (compact) public key (proposed)|
+|52|M or N|Namecoin pubkey hash|NATX6zEUNfxfvgVwz8qVnnw3hLhhYXhgQn
+|128|5|Private key|
+|111|m or n|Bitcoin testnet pubkey hash|mkJ7Bf5chdfw61d1m7gnDVAQV3EQQAb8iz
+|196|2|Bitcoin testnet script hash|
+|?|L|Litecoin pubkey hash|LhK2kQwiaAvhjWY799cZvMyYwnQAcxkarr
+|?|g|GeistGeld pubkey hash|gK5Lx6ypWgr69Gw9yGzE6dsA7kcuCRZRK
+|?|?|Tenebrix pubkey hash|
+|?|x|ixc0in pubkey hash|xoKDFH4uWpyzxUcCC5jCLFujRKayv3HHcV
+|?|s|Solidcoin pubkey hash|sXNaMoYBocjcQJRLK53dkaQ5mWuKfvHB9f
+
