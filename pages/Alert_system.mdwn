@@ -1,7 +1,5 @@
 Bitcoin versions 0.3.10 and later have an alert system which allows messages about critical network problems to be broadcast to all clients. When an alert is in effect, the message it contains will appear in the status bar of all clients, and also in the "errors" field of RPC *getinfo*.
 
-An alert has never been issued.
-
 ###Alert message
 Alerts are broadcast using the same [[TCP relay system|network]] as *block* and *tx* messages. They are not encoded in a special transaction. Unlike block and tx relaying, alerts are sent at the start of every new connection for as long as the alert is in effect. This ensures that everyone receives the alert.
 
@@ -23,6 +21,14 @@ Until version 0.3.20, Bitcoin went into safe mode when a valid alert was receive
 Even though Bitcoin no longer automatically disables RPC when an alert is live, it is wise for Bitcoin sites to shut down when an alert has been issued. To detect an active alert, poll the "errors" field of *getinfo*.
 
 To test safe mode, run Bitcoin with the -testsafemode switch. To override a real safe mode event, run Bitcoin with the -disablesafemode switch.
+
+###Past alerts
+
+
+|ID|Sent date|Expires (UTC)|Versions|Priority|Message
+|---|---|---|---|---|---
+|1010|Feb 18, 2012|Feb 21 02:47:15|All|100|See bitcoin.org/feb20 if you have trouble connecting after 20 February
+
 
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
