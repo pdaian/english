@@ -32,10 +32,6 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * Eliminate redundancies in the variable length integer encodings, possibly switch to a standard.
 * Avoiding hashes covering malleable fields
 
-####Futureproofing
-
-* Add a few new opcodes called OP_FAIL*n* or repurpose them from OP_NOP*n*.  These would immediately fail a transaction, and like OP_NOP*n*, would be available as new opcodes for future purposes, but without the burden of old clients dangerously understanding them as "do nothing".
-
 ####Bug fixes
 
 * CHECKMULTISIG popping one-too-many items off the stack
