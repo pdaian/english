@@ -1,5 +1,6 @@
 Personally, I don't like the nomenclature "version".  It's signalling far more than just a version.  How about "address class"?
 --[Andyparkins](User:Andyparkins) 11:49, 9 December 2011 (GMT)
+
 The "version" portion of the address has so far been labeled "network id", and signals from which network and which chain the address can be used for. I thin that this change from network id to version is much more fundamental and should not just be squeezed in alone with bip16/17.
 The right way to do this is to structure the bitcoin address into:
 base58-encode: [version](one-byte)[hash](20-byte)[one for version](1-bytes)[checksum](3-byte)
