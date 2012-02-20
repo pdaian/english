@@ -23,8 +23,28 @@ Example:
 * hexadecimal: 8a44dfd6ad4f687b5e3c80563c327027 
 * mnemonic: "shade weave eternity kept true tangle new talk clay warmth fish match"
 
+###Export and import addresses
 
+You can export your private keys using the 'addresses' command:
+<pre>
+$ ./electrum addresses -ak
+Password:
+1LGoehbyeX4QBEPK1a6dhyaoMQZfqg5LKX:5JBSttEGhjEcPidSovW66Rin2EZ6LEHZ2qx8Pu2RqqNaDTBVWaF   
+1KcsBJa2cCxVkGJfSsg5bUeXN7Y5uLa8mP:5KiP4uiNT6KG8jnXbainCM8rDWRrgxt3PAyut4FFpDoCo1Rh6VM   
+1PXsn7LVXTccGhJPTUL8r2EGB4fF9kvex3:5Kj8mvBJReyk8xEBMx5cTnciQCxto5JmudiTPkqwMcd61Kf1Jqc   
+1KteSFTAphyByLTtUfFiVQ9s7fMVmx7c2h:5JeZ3FTbWcksLt3PKydd5U9p952UQRHwv3LoxzCA9LZ7V2bku5p   
+1GE5ZChAobeTEPLHDCDDKTSg3XvLkcQFjS:5JwtGEygTwF2nouhRVzW3w5DWZd1sCgxLtnd1v51wjkbUrp5sqH   
+12YNehfAoYTiwjTXULwaZqTCauu2D61fq6:5Jvcq19ePCXKcVun4n7US99CsrEByUK2kgxXBA3rBVBqYZjhfwD  [change] 
+</pre>
+The option -a means: 'list all addresses' 
+The option -k means: display the private keys
 
+You can also import addresses into an electrum wallet, with the 'import' command:
+<pre>
+$ ./electrum import 1LGoehbyeX4QBEPK1a6dhyaoMQZfqg5LKX:5JBSttEGhjEcPidSovW66Rin2EZ6LEHZ2qx8Pu2RqqNaDTBVWaF
+keypair imported
+</pre>
+Note that imported keys do not belong to the deterministic sequence of your wallet; if you import keys in a wallet, you must backup it up!
 
 ###Screenshot
 [[Capture-Electrum.png]]
