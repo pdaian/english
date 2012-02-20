@@ -3,7 +3,7 @@ It was released on november 5, 2011.
 
 [[!img "Capture-Electrum.png" class="right" size=600x600 title="screenshot of Electrum with its Qt gui"]]
 
-###Main features:
+**Main features:**
 
 * Encrypted wallet
 * Deterministic key generation. If you lose your wallet, you can recover it from its seed.
@@ -12,6 +12,14 @@ It was released on november 5, 2011.
 * Firewall friendly: The client does not need to open a port, it simply polls the server for updates.
 * No single point of failure: The server code is open source, anyone can run a server.
 * Python. Very compact code, easy to contribute.
+
+__TOC__
+
+###Graphical User Interfaces
+Electrum has two GUIs: one that is based on Gtk, and a newer one based on Qt. The Qt GUI is enabled by default. To use the gtk interface, type:
+<pre>
+$ electrum -g gtk
+</pre>
 
 ###Brain Wallet
 
