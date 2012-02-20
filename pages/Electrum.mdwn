@@ -53,6 +53,80 @@ keypair imported
 </pre>
 Note that imported keys do not belong to the deterministic sequence of your wallet; if you import keys in a wallet, you must backup it up!
 
+###Offline wallet
+
+It is possible to create a transaction while your computer is offline, and to broadcast it from another computer, 
+with a wallet that does not have the seed or private keys.
+
+####How to prepare an offline wallet
+
+* step 1: create a wallet on your offline computer
+<pre>
+$ ./electrum -w wallet create
+</pre>
+
+* step 2: save the seed of your wallet to a file that will remain on the offline computer:
+<pre>
+./electrum -w wallet seed | awk '{print $1}'> seedfile
+</pre>
+
+* step 3: blank the seed in your wallet file. 
+For example, under linux, you may type:
+<pre>
+$ cat w | sed "s/`cat seedfile`/trololololo/g" > wallet.no_seed
+</pre>
+or you can open the file in an editor and do it manually. After this step you may remove the wallet file:
+<pre>
+rm wallet
+</pre>
+
+* step 4: transfer the wallet.no_seed file to the online computer.
+For example, copy the wallet file to a usb stick:
+<pre>
+$ cp wallet.no_seed /my/usb/wallet.no_seed
+</pre>
+and once you have plugged the usb key to the online computer:
+<pre>
+$ cp /my/usb/wallet.no_seed ./wallet.no_seed
+</pre>
+
+* step 5: run electrum on the online computer; this will synchronize your wallet with the bitcoin network, and you will be able to monitor incoming transactions:
+<pre>
+./electrum -w wallet.no_seed
+</pre>
+
+####How to send a transaction with an offline wallet
+
+* step 1: copy the synchronized wallet file to your offline computer
+<pre>
+$ cp wallet.no_seed /usb/stick/wallet.no_seed
+</pre>
+
+* step 2: edit the wallet file and restore the seed :
+<pre>
+$ cat w | sed "s/trololololo/`cat seedfile`/g" > wallet.seed
+</pre>
+you may also do this manually with a file editor if you do not know how to use sed.
+
+* step 3: create the transaction
+<pre>
+./electrum -w wallet.seed mktx <recipient> <amount>  >  tx_file
+</pre>
+
+* step 4: with the usb stick, copy the transaction to the online computer:
+<pre>
+$cp tx_file /usb/tx_file
+</pre>
+and:
+<pre>
+$cp /usb/tx_file tx_file
+</pre>
+
+* step 5: broadcast the transaction:
+<pre>
+./electrum sendtx <transaction> `cat tx_file`
+</pre>
+
 ###Screenshot
 [[Capture-Electrum.png]]
 
