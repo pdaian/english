@@ -23,6 +23,13 @@ Example:
 * hexadecimal: 8a44dfd6ad4f687b5e3c80563c327027 
 * mnemonic: "shade weave eternity kept true tangle new talk clay warmth fish match"
 
+###Multiple wallets
+Electrum uses one single file per wallet. Your default wallet is located in your user account.
+If you want to use another wallet, use the -w option followed by the wallet path and name:
+<pre>
+$ ./electrum -w /path/to/my/wallet/wallet_name
+</pre>
+
 ###Export and import addresses
 
 You can export your private keys using the 'addresses' command:
