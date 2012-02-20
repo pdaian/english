@@ -18,8 +18,9 @@ __TOC__
 ###Graphical User Interfaces
 Electrum has two GUIs: one that is based on Gtk, and a newer one based on Qt. The Qt GUI is enabled by default. To use the gtk interface, type:
 <pre>
-$ electrum -g gtk
+$ ./electrum -g gtk
 </pre>
+In addition, Electrum has a rich set of commands for the command line interface.
 
 ###Brain Wallet
 
@@ -30,8 +31,15 @@ Electrum makes it easy to memorize its seed, because it uses a mnemonic code.
 
 Example:
 
-* hexadecimal: 8a44dfd6ad4f687b5e3c80563c327027 
-* mnemonic: "shade weave eternity kept true tangle new talk clay warmth fish match"
+* hexadecimal: 431a62f1c86555d3c45e5c4d9e10c8c7 
+* mnemonic: "constant forest adore false green weave stop guy fur freeze giggle clock"
+
+You can display the seed with the command line interface. Example:
+<pre>
+$ electrum seed
+Password:
+431a62f1c86555d3c45e5c4d9e10c8c7 "constant forest adore false green weave stop guy fur freeze giggle clock"
+</pre>
 
 ###Multiple wallets
 Electrum uses one single file per wallet. Your default wallet is located in your user account.
