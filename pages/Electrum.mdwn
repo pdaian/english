@@ -162,7 +162,7 @@ $cp /usb/tx_file tx_file
 |create |create a new wallet |create |no |no
 |restore |restore a wallet from seed |restore |no |yes
 |payto |create and broadcast a transaction |payto <address><amount>|yes |yes
-|mktx |create a transaction and dump it |mktx <address><amount>|Example |Example
+|mktx |create a transaction and dump it |mktx <address><amount>|yes |no
 |sendtx |broadcast a transaction |sendtx <tx>|no |yes
 |password |update your password |password |yes |no
 |addresses |show your list of addresses, optionally with private keys. |addresses [[-abk]]|/ |no
@@ -173,7 +173,6 @@ $cp /usb/tx_file tx_file
 |signmessage |sign a message (as in bitcoind) |signmessage address message |yes |no
 |verifymessage |verify a message (as in bitcoind) |verifymessage address sig message |no |no
 |eval |call python eval |eval expression |no |no
-
 
 
 ### Security
