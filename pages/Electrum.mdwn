@@ -161,8 +161,8 @@ $cp /usb/tx_file tx_file
 |contacts |print your list of contacts |contacts |no |no
 |create |create a new wallet |create |no |no
 |restore |restore a wallet from seed |restore |no |yes
-|payto |create and broadcast a transaction |payto <address><amount>|yes |yes
-|mktx |create a transaction and dump it |mktx <address><amount>|yes |no
+|payto |create and broadcast a transaction |payto [sourceaddr](-s)[changeaddr](-c)-f fee<address><amount>|yes |yes
+|mktx |create a transaction and dump it |mktx [sourceaddr](-s)[changeaddr](-c)-f fee<address><amount>|yes |no
 |sendtx |broadcast a transaction |sendtx <tx>|no |yes
 |password |update your password |password |yes |no
 |addresses |show your list of addresses, optionally with private keys. |addresses [[-a]][[-b]][[-k]]|iff -k |no
