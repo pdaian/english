@@ -165,13 +165,13 @@ $cp /usb/tx_file tx_file
 |mktx |create a transaction and dump it |mktx <address><amount>|yes |no
 |sendtx |broadcast a transaction |sendtx <tx>|no |yes
 |password |update your password |password |yes |no
-|addresses |show your list of addresses, optionally with private keys. |addresses [[-abk]]|/ |no
+|addresses |show your list of addresses, optionally with private keys. |addresses [[-abk]]|iff -k |no
 |history |print the transaction history |history |no |yes
 |label |change the label of a transaction or address |label <label>|no |no
 |seed |print your seed |seed |yes |no
-|import |import a keypair |import address:private_key |yes |no
-|signmessage |sign a message (as in bitcoind) |signmessage address message |yes |no
-|verifymessage |verify a message (as in bitcoind) |verifymessage address sig message |no |no
+|import |import a keypair |import <address:private_key> |yes |no
+|signmessage |sign a message (as in bitcoind) |signmessage <address><message>|yes |no
+|verifymessage |verify a message (as in bitcoind) |verifymessage <address><signature><message>|no |no
 |eval |call python eval |eval expression |no |no
 
 
