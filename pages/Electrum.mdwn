@@ -95,7 +95,7 @@ $ ./electrum -w wallet create
 * step 3: blank the seed in your wallet file. 
 For example, under linux, you may type:
 <pre>
-$ cat w | sed "s/`cat seedfile`/trololololo/g" > wallet.no_seed
+$ cat wallet | sed "s/`cat seedfile`/trololololo/g" > wallet.no_seed
 </pre>
 or you can open the file in an editor and do it manually. After this step you may remove the wallet file:
 <pre>
