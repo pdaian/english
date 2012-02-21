@@ -149,6 +149,33 @@ $cp /usb/tx_file tx_file
 ./electrum sendtx <transaction> `cat tx_file`
 </pre>
 
+### List of commands
+
+
+
+|command |description |syntax |requires password |needs to be online
+|---|---|---|---|---
+|help |display the help for a command |help [[command]]|no |no
+|validateaddress |check is the argument is a valid bitcoin address |validateaddress <address>|no |no
+|balance |shows the balance of your wallet or of an address |balance [[address]]|no |yes
+|contacts |print your list of contacts |contacts |no |no
+|create |create a new wallet |create |no |no
+|restore |restore a wallet from seed |restore |no |yes
+|payto |create and broadcast a transaction |payto <address><amount>|yes |yes
+|mktx |create a transaction and dump it |mktx <address><amount>|Example |Example
+|sendtx |broadcast a transaction |sendtx <tx>|no |yes
+|password |update your password |password |yes |no
+|addresses |show your list of addresses, optionally with private keys. |addresses [[-abk]]|/ |no
+|history |print the transaction history |history |no |yes
+|label |change the label of a transaction or address |label <label>|no |no
+|seed |print your seed |seed |yes |no
+|import |import a keypair |import address:private_key |yes |no
+|signmessage |sign a message (as in bitcoind) |signmessage address message |yes |no
+|verifymessage |verify a message (as in bitcoind) |verifymessage address sig message |no |no
+|eval |call python eval |eval expression |no |no
+
+
+
 ### Security
 
 See [[Thin_Client_Security]]
