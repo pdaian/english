@@ -1,56 +1,56 @@
 
-|Info |bitcoind |ecoinpool |Eloipool |PoolServerJ |pushpool |p2pool |Slush
-|---|---|---|---|---|---|---|---
-|language |C++ |Erlang |Python3 |Java |C |Twisted |
-|license |MIT |GPL-3 |AGPL-3 |GPL-3 |GPL-2 |GPL-3 |[[!template id=no]]
-|ref. pool ||[[BTCServ]]|[[Eligius]]|||[[P2Pool]]|[[Slushs_pool]]
-|website |[link](http://sf.net/projects/bitcoin)|[link](https://ecoinpool.p2k-network.org/)|[link](http://gitorious.org/bitcoin/eloipool)|[link](http://poolserverj.org/)|[link](https://github.com/jgarzik/pushpool)|[link](https://bitcointalk.org/index.php?topic=18313)|
-colspan='8' miner protocols
-Protocol bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool Slush
-|[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
-|[[UBBP]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|
-|getmemorypool |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-colspan='8' getwork extensions
-Extension bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool Slush
-|hostlist |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
-|longpoll |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
-|midstate |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
-|noncerange |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jrs-pushpool/commit/2dd2ad48e7d21f917dae3b5d9186563c78942e38]]|[[!template id=no]]|
-|reject-reason |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|
-|rollntime |[[!template id=notadv]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
-|expire=N |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|
-|submitold |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=patch]]|[[!template id=yes]]|
-|switchto |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
-colspan='8' work generation
-Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool Slush
-|getwork |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|
-|rollntime |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jrs-pushpool/commits/ntimes]]||
-|getmemorypool |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|
-|coinbaser |[[!template id=patch uri=https://github.com/bitcoin/bitcoin/pull/719]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|
-|gotwork |[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jr-bitcoin/commits/outbound_gotwork]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
-|setworkaux |[[!template id=patch uri=https://github.com/bitcoin/bitcoin/pull/719]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
-|getauxblock |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|
-|title='merged-mining getmemorypool'MM gmp|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]||
-|full node |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
-colspan='8' account management
-Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool Slush
-|multiuser |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
-|explicit users |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|
-|anon users |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|
-|explicit workers |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|
-|anon workers |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|
-|saved worklog |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|
-|share logging |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
-|invalid logging |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|
-colspan='8' databases
-Database bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool Slush
-|couchdb |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
-|mysql |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|
-|plaintext |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|
-|postgres |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|
-|rrd |[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=yes]]|
-|sqlite |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|
+|Info |bitcoind |ecoinpool |Eloipool |PoolServerJ |pushpool |p2pool |BitPenny |Slush
+|---|---|---|---|---|---|---|---|---
+|language |C++ |Erlang |Python3 |Java |C |Twisted |C++ |
+|license |MIT |GPL-3 |AGPL-3 |GPL-3 |GPL-2 |GPL-3 |[[!template id=no]]|[[!template id=no]]
+|ref. pool ||[[BTCServ]]|[[Eligius]]|||[[P2Pool]]|[[BitPenny]]|[[Slushs_pool]]
+|website |[link](http://sf.net/projects/bitcoin)|[link](https://ecoinpool.p2k-network.org/)|[link](http://gitorious.org/bitcoin/eloipool)|[link](http://poolserverj.org/)|[link](https://github.com/jgarzik/pushpool)|[link](https://bitcointalk.org/index.php?topic=18313)||
+colspan='9' miner protocols
+Protocol bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny |Slush
+|[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]
+|[[UBBP]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|
+|getmemorypool |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]
+colspan='9' getwork extensions
+Extension bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
+|hostlist |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |
+|longpoll |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |[[!template id=yes]]
+|midstate |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |
+|noncerange |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jrs-pushpool/commit/2dd2ad48e7d21f917dae3b5d9186563c78942e38]]|[[!template id=no]]|n/a |
+|reject-reason |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|n/a |
+|rollntime |[[!template id=notadv]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |[[!template id=yes]]
+|expire=N |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |
+|submitold |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=patch]]|[[!template id=yes]]|n/a |
+|switchto |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |
+colspan='9' work generation
+Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
+|getwork |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|
+|rollntime |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jrs-pushpool/commits/ntimes]]||[[!template id=no]]|
+|getmemorypool |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|
+|coinbaser |[[!template id=patch uri=https://github.com/bitcoin/bitcoin/pull/719]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]||
+|gotwork |[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jr-bitcoin/commits/outbound_gotwork]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||
+|setworkaux |[[!template id=patch uri=https://github.com/bitcoin/bitcoin/pull/719]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||
+|getauxblock |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||
+|title='merged-mining getmemorypool'MM gmp|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|||
+|full node |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|
+colspan='9' account management
+Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
+|multiuser |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
+|explicit users |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||
+|anon users |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||
+|explicit workers |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||
+|anon workers |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||
+|saved worklog |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]||
+|share logging |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
+|invalid logging |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||
+colspan='9' databases
+Database bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
+|couchdb |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||
+|mysql |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||
+|plaintext |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||
+|postgres |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||
+|rrd |[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=yes]]||
+|sqlite |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||
 
 
 
