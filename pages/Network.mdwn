@@ -9,8 +9,8 @@ Bitcoin uses a simple broadcast network to propagate transactions and blocks. Al
 * *getdata* - Request a single block or transaction by hash.
 * *getblocks* - Request an *inv* of all blocks in a range.
 * *getheaders* - Request a *headers* message containing all block headers in a range.
-* *tx* - Send a transaction. This is only sent in response to a *getdata* request.
-* *block* - Send a block. This is only sent in response to a *getdata* request.
+* *tx* - Send a transaction. This is sent only in response to a *getdata* request.
+* *block* - Send a block. This is sent only in response to a *getdata* request.
 * *headers* - Send up to 2,000 block headers. Non-generators can download the headers of blocks instead of entire blocks.
 * *getaddr* - Request an *addr* message containing a bunch of known-active peers (for bootstrapping).
 * *submitorder*, *checkorder*, and *reply* - Used when performing an [[IP transaction|IP_address]].
@@ -29,7 +29,7 @@ You then exchange *getaddr* and *addr* messages, storing all addresses that you 
 
 ## Standard relaying
 
-When someone sends a transaction, they send an *inv* message containing it to all of their peers. Their peers will request the full transaction with *getdata*. If they consider the transaction valid after receiving it, they will also broadcast the transaction to all of their peers with an *inv*, and so on. Peers only ask for or relay transactions if they don't already have them. A peer will never rebroadcast a transaction that it already knows about, though transactions will eventually be forgotten if they don't get into a block after a while. The sender and receiver of the transaction will rebroadcast, however.
+When someone sends a transaction, they send an *inv* message containing it to all of their peers. Their peers will request the full transaction with *getdata*. If they consider the transaction valid after receiving it, they will also broadcast the transaction to all of their peers with an *inv*, and so on. Peers ask for or relay transactions only if they don't already have them. A peer will never rebroadcast a transaction that it already knows about, though transactions will eventually be forgotten if they don't get into a block after a while. The sender and receiver of the transaction will rebroadcast, however.
 
 Anyone who is generating will collect valid received transactions and work on including them in a block. When someone does find a block, they send an *inv* containing it to all of their peers, as above. It works the same as transactions.
 
@@ -41,7 +41,7 @@ Network alerts are broadcast with *alert* messages. No *inv*-like system is used
 
 At the start of a connection, you send a *getblocks* message containing the hash of the latest block you know about. If the peer doesn't think that this is the latest block, it will send an *inv* that contains up to 500 blocks ahead of the one you listed. You will then request all of these blocks with *getdata*, and the peer will send them to you with *block* messages. After you have downloaded and processed all of these blocks, you will send another *getblocks*, etc., until you have all of the blocks.
 
-0.3.18 introduced new *headers* and *getheaders* messages. These are not currently used, but they will be used by non-generators to download block headers without the corresponding block bodies. Only the headers are necessary for verifying received transactions -- full blocks are only needed by generators. Instead of the *getblocks/inv/getdata/block* sequence, non-generators will send a *getheaders* message (very like *getblocks*), and the peer will immediately respond with a *headers* message containing up to 2,000 of the next headers. This will make initial block download *much* faster.
+0.3.18 introduced new *headers* and *getheaders* messages. These are not currently used, but they will be used by non-generators to download block headers without the corresponding block bodies. Only the headers are necessary for verifying received transactions -- full blocks are needed only by generators. Instead of the *getblocks/inv/getdata/block* sequence, non-generators will send a *getheaders* message (very like *getblocks*), and the peer will immediately respond with a *headers* message containing up to 2,000 of the next headers. This will make initial block download *much* faster.
 
 ## Bootstrapping
 
@@ -55,7 +55,7 @@ The *addr* messages described above create an effect similar to the IRC bootstra
 
 Bitcoin comes with a list of addresses known as "seed nodes". If you are unable to connect to IRC and you've never connected to the network before, the client will update the address database by connecting to one of the nodes from this list.
 
-The -addnode command line option can be used to manually add a node.  The -connect option can force bitcoin to only connect to a specific node.
+The -addnode command line option can be used to manually add a node.  The -connect option can force bitcoin to connect only to a specific node.
 
 ### DNS
 
