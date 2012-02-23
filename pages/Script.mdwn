@@ -157,6 +157,7 @@ Arithmetic is limited to max 4 byte integers
 |OP_CHECKSIGVERIFY|173|0xad|sig pubkey|True / false|Same as OP_CHECKSIG, but OP_VERIFY is executed afterward.
 |OP_CHECKMULTISIG|174|0xae|x sig1 sig2 ... <number of signatures>pub1 pub2 <number of public keys>|True / False|For each signature and public key pair, OP_CHECKSIG is executed. If more public keys than signatures are listed, some key/sig pairs can fail. All signatures need to match a public key. If all signatures are valid, 1 is returned, 0 otherwise. Due to a bug, one extra unused value is removed from the stack.
 |OP_CHECKMULTISIGVERIFY|175|0xaf|x sig1 sig2 ... <number of signatures>pub1 pub2 ... <number of public keys>|True / False|Same as OP_CHECKMULTISIG, but OP_VERIFY is executed afterward.
+|[[OP_CHECKHASHVERIFY|BIP_0017]]|177|0xb1|hash|hash|Aborts the script (with failure) unless the previous script (from the last OP_CODESEPARATOR onward) hashes (with Hash160) to the top stack item. Note the stack never modified.
 
 
 ###Pseudo-words
@@ -165,6 +166,7 @@ These words are used internally for assisting with transaction matching. They ar
 
 |Word|Opcode|Hex|Description
 |---|---|---|---
+|OP_SCRIPTHASH|252|0xfc|Represents a script hashed with OP_HASH160.
 |OP_PUBKEYHASH|253|0xfd|Represents a public key hashed with OP_HASH160.
 |OP_PUBKEY|254|0xfe|Represents a public key compatible with OP_CHECKSIG.
 |OP_INVALIDOPCODE|255|0xff|Matches any opcode that is not yet assigned.
@@ -183,7 +185,8 @@ Any opcode not assigned is also reserved. Using an unassigned opcode makes the t
 |OP_VERNOTIF|102|0x66|Transaction is invalid even when occuring in an unexecuted OP_IF branch
 |OP_RESERVED1|137|0x89|Transaction is invalid unless occuring in an unexecuted OP_IF branch
 |OP_RESERVED2|138|0x8a|Transaction is invalid unless occuring in an unexecuted OP_IF branch
-|OP_NOP1-OP_NOP10|176-185|0xb0-0xb9|The word is ignored.
+|OP_NOP1|176|0xb0|The word is ignored.
+|OP_NOP3-OP_NOP10|178-185|0xb2-0xb9|The word is ignored.
 
 
 ## Scripts
