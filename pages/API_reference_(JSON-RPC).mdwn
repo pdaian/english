@@ -33,7 +33,7 @@ See the [[proper money handling page|Proper_Money_Handling_(JSON-RPC)]] for note
 [python-jsonrpc](http://json-rpc.org/wiki/python-json-rpc) is the official JSON-RPC implementation for Python.
 It automatically generates Python methods for RPC calls.
 However, due to its design for supporting old versions of Python, it is also rather inefficient.
-[jgarzik](User:jgarzik) has forked it as [Python-BitcoinRPC](https://github.com/jgarzik/python-bitcoinrpc) and optimized it for current versions (at least Python 2.6+, though not 3.x).
+[jgarzik](User:jgarzik) has forked it as [Python-BitcoinRPC](https://github.com/jgarzik/python-bitcoinrpc) and optimized it for current versions.
 Generally, this version is recommended.
 
 While BitcoinRPC lacks a few obscure features from jsonrpc, software using only the ServiceProxy class can be written the same to work with either version the user might choose to install:
