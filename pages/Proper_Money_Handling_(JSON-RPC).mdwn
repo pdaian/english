@@ -5,7 +5,7 @@ If you are writing software that uses the JSON-RPC interface you need to be awar
 
 Improper value handling can lead to embarrassing errors; for example, if you truncate instead of doing proper rounding and your software will display the value "0.1 BTC" as "0.09999999 BTC" (or, worse, "0.09 BTC").
 
-The original bitcoin client does proper, full-precision rounding for all values passed to it via the RPC interface.  So, for example, if the value 0.1 is converted to the value "0.099999999999" by your JSON-RPC library, that value will be rounded to the nearest 0.00000001 bitcoin and will be treated as exactly 0.1 bitcoins.
+The original bitcoin client does proper, full-precision rounding for all values passed to it via the RPC interface.  So, for example, if the value 0.1 is converted to the value "0.099999999999" by your JSON-RPC library, that value will be rounded to the nearest 0.00000001 bitcoin and will be treated as exactly 0.10 BTC.
 
 The rest of this page gives sample code for various JSON libraries and programming languages.
 
