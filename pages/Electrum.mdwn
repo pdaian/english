@@ -1,18 +1,21 @@
 [[!img "Electrum_logo.png" size=400x400]][[!img "Capture-Electrum.png" class="right" size=600x600 title="screenshot of Electrum with its Qt gui"]]
 
-Electrum is a lightweight Bitcoin client, based on a client-server protocol. 
+[Electrum](http://ecdsa.org/electrum) is a lightweight Bitcoin client, based on a client-server protocol. 
 It was released on november 5, 2011.
 
 **Main features:**
 
-* Encrypted wallet
-* Deterministic key generation. If you lose your wallet, you can recover it from its seed.
-* No blockchain download; the client requests that information from a server
-* Private keys are not shared with the server.
-* Firewall friendly: The client does not need to open a port, it simply polls the server for updates.
+* Encrypted wallet: the file that contains your bitcoins is protected with a password. You are protected from thieves.
+* Deterministic key generation: If you lose your wallet, you can recover it from its seed. You are protected from your own mistakes.
+* Instant on: the client does not download the blockchain, it requests that information from a server. No delays, always up-to-date.
+* Transactions are signed locally: Your private keys are not shared with the server. You do not have to trust the server with your money.
+* Freedom and Privacy: The server does not store user accounts. You are not tied to a particular server, and the server does not need to know you.
+* No scripts: Electrum does not download any script. A compromised server cannot send you arbitrary code and steal your bitcoins.
 * No single point of failure: The server code is open source, anyone can run a server.
-* Python. Very compact code, easy to contribute.
-
+* Firewall friendly: The client does not need to open a port, it simply polls the server for updates.
+* Free software: Gnu GPL v3. Anyone can audit the code.
+* Written in Python. The code is short, and easy to review.
+* Support for Bitcoin URIs, signed URIs and Bitcoin aliases
 
 
 __TOC__
