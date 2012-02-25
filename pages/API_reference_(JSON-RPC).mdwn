@@ -222,6 +222,29 @@ implementing Bitcoin API in more convenient way:
 	Console.WriteLine("Balance:" + inf[["balance"]]);
 </source>
 
+## Node.js
+There is an unoffical [bitcoin module](https://github.com/jb55/node-bitcoin) that provides a simple way to make calls to the bitcoin client.
+
+<source lang="javascript">
+var bitcoin = require('bitcoin');
+var client = new bitcoin.Client({
+	host: 'localhost',
+	port: 8332,
+	user: 'user',
+	pass: 'pass'
+});
+
+client.getDifficulty(function(err, difficulty) {
+	if (err) {
+	console.log('Error...');
+	console.log(err);
+	return;
+	}
+
+	console.log('Difficulty: ' + difficulty);
+});
+</source>
+
 ## Command line (cURL)
 
 You can also send commands and see results using [cURL](http://curl.haxx.se/) or some other command-line HTTP-fetching utility; for example:
