@@ -1,0 +1,68 @@
+This document is a proposed protocol (RFC) for issuing new alt-chains.
+It does not always follow the official "RFC language". If you're pedantic about such matters, feel free to edit it to fit the official form of "How RFCs should look like".
+
+Adherence to the protocol is not mandatory, of course. It is this author's belief that any alt chain that wishes to have a chance at being successful, long term, MUST follow this protocol.
+
+# Announcement Format
+The initial announcement of the alt chain MUST contain a post to the [alt-chain forum](https://bitcointalk.org/index.php?board=67.0) titled "[[RFC]] <Alt-Chain-Name> - <tl;dr>".
+
+The [[tl;dr]] is a short one line description of the alt chain (e.g. "[[RFC]] - MinorLeftieCoin - the alt chain for lefties under 18!"
+
+The RFC thread SHOULD contain the Timeline for the coin (see below).
+
+Another, separate placeholder **Announcement Thread** MUST be created at this point (e.g. "[[ANN]] MinorLeftieCoin"). All further **official announcement** about this alt chain SHOULD go in that thread - this thread will be useful for people who wish to subscribe to announcements only, and not get all the clutter from the discussion. Other announcement channels such as Twitter/Blog/Google+ can be published as well.
+
+# Launch Timeline
+## RFC thread
+
+This is the initial step, where the key elements of the net alt chain should be presented in a clear and concise manner. This post SHOULD contains:
+
+1. **Who** - The developers / founders behind the chain (forum IDs + any other information they're willing to release, possibly including real names, contact information, previous projects, twitter IDs)
+1. **Benefits** - Key benefits over Bitcoin - why do you think this chain can compete with the main Bitcoin chain?
+1. **Other alts** - Comparison to other significant crypto-currencies, when applicable.
+1. **Merged mining** - Will this support Merged Mining? How exactly will that be implemented, with which existing chains? When will merged mining be enabled?
+1. **Shortcomings** - What can go wrong with this Alt chain? What are its drawbacks?
+1. **Attacks** - Will this chain be resilient to attacks by Bitcoin miners with a huge hashpower? (Such attacks happened before on new alts ... authors of new alt chains should come up with ways to protect against this ... e.g. not enable merged mining so soon)
+1. Open Source License - All alt chains MUST be completely open source, for obvious reasons. Preference is given to github for project hosting, but any open repository is ok. The exact license should be chosen prior to launch.
+1. **Schedule**:
+	1. Proposed source code release date - this can happen any time after the RFC. Authors are encouraged to release source code as soon as they have it available, but they can wait for "proper maturity of the codebase" if they so desire.
+	1. Proposed Pre-Launch (testnet) Date - this must be at one week after the launch of the source code, and at least two weeks after the RFC thread, to allow time for proper discussion and review.
+	1. Proposed Launch Date - this must be at least two weeks after the pre-launch date, to allow time for testing.
+	1. Proposed date for exchanges to open. This can either at the launch date, or any time after date, but should be announced beforehand.
+
+Any of the components listed above (e.g. launch schedule, specific technical details) can be skipped from the initial RFC, if the authors wish to hasten the process. However, these dates MUST be filled in before the RFC thread is "closed" by posting a message to the announcement thread, AND updating the top post in the RFC thread.
+
+
+## Source code release
+
+This is a **mandatory step** that can follow anytime between the publication of the RFC, up to **one week before** the pre-launch date. The one week period is required to let people examine the source code for possible bugs/backdoors/problems.
+
+
+## Pre-Launch
+
+This step must not occur sooner than the date planned in the RFC, and must happen at least one week after publishing the source code. It can be delayed for various reasons if the author needs more time.
+
+The purpose of the pre-launch is to do a dry run of the alt chain. This dry run MUST happen on a dedicated testnet.
+
+The pre-launch phase MUST be accompanied with an official binary release, with at least LINUX and WINDOWS binaries. The binaries SHOULD include both a miner/daemon and a GUI.
+
+The pre-launch phase MUST include an official channel for binary publication (e.g. Github, SourceForge), where future official binaries will be released.
+
+The software MUST be properly versioned. The pre-launch version numbers are numbered 0.1, 0.2, 0.3, ... (with 0.X.1, 0.X.2, ... for minor bug fixes releases). The post-launch version numbers are 1.0, 1.1, 1.2, ... (with 1.X.1, 1.X.2, ... for bug fixes).
+
+
+## 4. Launch
+
+This step must not occur sooner than the date planned in the RFC, and must happen at least two weeks after the pre-launch. This is the official chain, that will have value, as opposed to the pre-launch release which was a testnet release (testnets can be reset at any point).
+
+The same versioning and binary release guidelines from the Pre-Launch phase apply to the Launch phase.
+
+
+## 5. Exchanges Open
+
+This step can happen any time after the Launch. Proper notice of three days SHOULD be given before exchanges officially open (the notice can be made even before launch). Note that this is not a formal part of the process, because [[i]]anyone can start exchanging any alts[[/i]], not just the project author.
+
+# Further notes
+
+1. Any major update to the client MUST have releases on all supported platforms including Linux and Windows. This can be automated or semi-automated, so "I don't know how to compile on Windows" is not an excuse - find someone you trust who does know how to compile on Windows. The releases SHOULD be concurrently released on all platforms.
+1. Pre-mine - Sadly this needs stating explicitly - the main chain MUST NOT have any pre-mined blocks except 1-2 blocks to test the chain really works.
