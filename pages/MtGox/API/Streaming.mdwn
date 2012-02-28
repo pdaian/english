@@ -96,7 +96,7 @@ The <tt>MESSAGE_TYPE</tt> field may take the values:
 |depth |Orders placed or removed
 
 
-###Ticker
+####Ticker
 Ticker messages contain the current inside Bid and Ask as well as daily highs, lows, and volume. The fields contained in the ticker match those defined in the version 1.0 API above. All fields contain <tt>currency</tt>, <tt>display</tt>, <tt>value</tt>, and <tt>value_int</tt> entries.
 <source lang="javascript">
 {
@@ -129,7 +129,7 @@ Ticker messages contain the current inside Bid and Ask as well as daily highs, l
 }
 </source>
 
-###Trade
+####Trade
 <source lang="javascript">{
 	"channel":"dbf1dee9-4f2e-4a08-8cb7-748919a71b21",
 	"op":"private",
@@ -170,7 +170,7 @@ Ticker messages contain the current inside Bid and Ask as well as daily highs, l
 
 
 
-###Depth
+####Depth
 
 Changes to the market depth data are broadcast so an up-to-date market depth can be kept by clients.
 
