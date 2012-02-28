@@ -215,14 +215,14 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 Output from [[HTTP API version 1|MtGox/API/HTTP/v1]] requests that were sent over the websocket.
 
 <source lang="javascript">{
-	id:<REQUEST_ID>,
+	id:<REQUEST ID>,
 	op:result,
 	result: {
 	...
 	}
 }</source>
 
-"result" contains the result of the call the same as if it were called over the HTTP API.
+"result" contains the result of the call the same as if it were called over the HTTP API. <REQUEST ID> is the ID chosen by you when the request was sent.
 
 ## Account-related private channels
 
