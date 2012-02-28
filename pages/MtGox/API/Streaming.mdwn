@@ -94,6 +94,7 @@ The <tt>MESSAGE_TYPE</tt> field may take the values:
 |ticker |Ticker messages
 |trade |Trades, as they occur
 |depth |Orders placed or removed
+|result |The result of a websocket-encapsulated [[version 1 HTTP API|MtGox/API/HTTP/v1]]request
 
 
 ####Ticker
@@ -208,6 +209,20 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 |volume |the volume change as float, deprecated
 |volume_int |volume change * 1E8
 
+
+#### Result
+
+Output from [[HTTP API version 1|MtGox/API/HTTP/v1]] requests that were sent over the websocket.
+
+<source lang="javascript">{
+	id:<REQUEST_ID>,
+	op:result,
+	result: {
+	...
+	}
+}</source>
+
+"result" contains the result of the call the same as if it were called over the HTTP API.
 
 ## Account-related private channels
 
