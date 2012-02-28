@@ -1,4 +1,3 @@
-
 Real time streaming data may be obtained over the streaming API, implemented in [Socket.io](http://socket.io/) (1.1). The original WebSocket API (1.2) is deprecated as of 11-Nov-2011.
 
 ##Connecting
@@ -44,7 +43,7 @@ The <tt>OPERATION_TYPE</tt> field may take these values:
 |private |The operation for depth, trade, and ticker messages
 
 
-##op:subscribe and op:unsubscribe
+###op:subscribe and op:unsubscribe
 The subscribe and unsubscribe message data are very simple, containing the channel and the operation.
 <source lang="javascript">
 {
@@ -64,7 +63,7 @@ Some of the channels are:
 |24e67e0d-1cad-4cc0-9e7a-f8523ef460fe |Depth
 
 
-##op:remark
+###op:remark
 The remark operation contains message and success fields.
 <source lang="javascript">
 {
@@ -74,7 +73,7 @@ The remark operation contains message and success fields.
 }
 </source>
 
-##op:private
+###op:private
 The payloads of the <tt>op:private</tt> messages contain the real time market information. Each message follows this form:
 
 <source lang="javascript">
