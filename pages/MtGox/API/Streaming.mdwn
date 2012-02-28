@@ -1,0 +1,321 @@
+
+Real time streaming data may be obtained over the streaming API, implemented in [Socket.io](http://socket.io/) (1.1). The original WebSocket API (1.2) is deprecated as of 11-Nov-2011.
+
+##Connecting
+The following JavaScript code establishes a connection in the browser:
+<source lang="javascript">
+<script src="https://socketio.mtgox.com/socket.io/socket.io.js"></script>
+<script>
+	var conn = io.connect('https://socketio.mtgox.com/mtgox');
+	conn.on('message', function(data) {
+	// Handle incoming data object.
+	});
+</script>
+</source>
+
+The session ID expires after 30 seconds
+
+##Handling Events
+Socket.io exposes a simple interface for handling events. Handling <tt>message</tt> events is shown above, but there are other events that may be handled:
+<source lang="javascript">
+conn.on('connect',    onConnect);
+conn.on('disconnect', onDisconnect);
+conn.on('error',      onError);
+conn.on('message',    onMessage);
+</source>
+
+##Incoming Data
+Data arrives as a full object instead of as JSON text, eliminating the need to parse the data in the JavaScript handler. Messages that come across the socket to trigger the <tt>message</tt> event will contain the following minimum components:
+<source lang="javascript">
+{
+	"op":<OPERATION_TYPE>
+}
+</source>
+
+The <tt>OPERATION_TYPE</tt> field may take these values:
+
+> 
+
+|OPERATION_TYPE |Description
+|---|---
+|subscribe |Notification that the user is subscribed to a channel
+|unsubscribe |Messages will no longer arrive over the channel
+|remark |A server message, usually a warning
+|private |The operation for depth, trade, and ticker messages
+
+
+##op:subscribe and op:unsubscribe
+The subscribe and unsubscribe message data are very simple, containing the channel and the operation.
+<source lang="javascript">
+{
+	"channel":<CHANNEL_ID>,
+	"op":"subscribe" OR "unsubscribe"
+}
+</source>
+
+Some of the channels are:
+
+> 
+
+|Channel ID |Description
+|---|---
+|dbf1dee9-4f2e-4a08-8cb7-748919a71b21 |Trades
+|d5f06780-30a8-4a48-a2f8-7ed181b4a13f |Ticker
+|24e67e0d-1cad-4cc0-9e7a-f8523ef460fe |Depth
+
+
+##op:remark
+The remark operation contains message and success fields.
+<source lang="javascript">
+{
+	"op":"remark",
+	"message":<MESSAGE FROM THE SERVER>,
+	"success":<boolean>
+}
+</source>
+
+##op:private
+The payloads of the <tt>op:private</tt> messages contain the real time market information. Each message follows this form:
+
+<source lang="javascript">
+{
+	"channel":<CHANNEL_ID>,
+	"op":"private",
+	"private":<MESSAGE_TYPE>,
+	<MESSAGE_TYPE>:<DATA_PAYLOAD>
+}
+</source>
+
+The <tt>MESSAGE_TYPE</tt> field may take the values:
+
+> 
+
+|MESSAGE_TYPE |Description
+|---|---
+|ticker |Ticker messages
+|trade |Trades, as they occur
+|depth |Orders placed or removed
+
+
+###Ticker
+Ticker messages contain the current inside Bid and Ask as well as daily highs, lows, and volume. The fields contained in the ticker match those defined in the version 1.0 API above. All fields contain <tt>currency</tt>, <tt>display</tt>, <tt>value</tt>, and <tt>value_int</tt> entries.
+<source lang="javascript">
+{
+	"channel":"d5f06780-30a8-4a48-a2f8-7ed181b4a13f",
+	"op":"private",
+	"origin":"broadcast",
+	"private":"ticker",
+	"ticker":{
+	"avg":{
+	"currency":"USD",
+	"display":"$2.26847",
+	"value":"2.26847",
+	"value_int":"226847"
+	},
+	"buy":{...},
+	"high":{...},
+	"last":{..},
+	"last_local":{...},
+	"last_orig":{...},
+	"low":{...},
+	"sell":{...},
+	"vol":{
+	"currency":"BTC",
+	"display":"118,696.02104208",
+	"value":"118696.02104208",
+	"value_int":"11869602104208"
+	},
+	"vwap":{...}
+	}
+}
+</source>
+
+###Trade
+<source lang="javascript">{
+	"channel":"dbf1dee9-4f2e-4a08-8cb7-748919a71b21",
+	"op":"private",
+	"origin":"broadcast",
+	"private":"trade",
+	"trade":{
+	"amount":2.71,
+	"amount_int":"271000000",
+	"date":1310279340,
+	"item":"BTC",
+	"price":14.43,
+	"price_currency":"USD",
+	"price_int":"1443000",
+	"primary":"Y",
+	"properties":"limit, mixed_currency",
+	"tid":"1310279340877902",
+	"trade_type":"bid",
+	"type":"trade"
+	}
+}
+</source>
+
+**trade** contains the following:
+
+> 
+
+|Name |Value
+|---|---
+|amount |the traded amount in item (BTC), float, deprecated
+|amount_int |the traded amount * 1E8
+|date |unix timestamp of trade
+|item |What was this trade about
+|price |price per unit, float, deprecated
+|price_int |price in smallest unit as integer (5 decimals of USD, 3 in case of JPY)
+|price_currency |currency in which trade was completed
+|tid |Trade id (big integer, which is in fact trade timestamp in microseconds)
+|trade_type |Did this trade result from the execution of a bid or a ask?
+
+
+
+###Depth
+
+Changes to the market depth data are broadcast so an up-to-date market depth can be kept by clients.
+
+<source lang="javascript">{
+	"channel":"24e67e0d-1cad-4cc0-9e7a-f8523ef460fe",
+	"depth":{
+	"currency":"USD",
+	"item":"BTC",
+	"now":"1323644358437819",
+	"price":"14.43",
+	"price_int":"1443000",
+	"total_volume_int":"849766000",
+	"type":1,
+	"type_str":"ask",
+	"volume":"-2.71",
+	"volume_int":"-271000000"
+	},
+	"op":"private",
+	"origin":"broadcast",
+	"private":"depth"
+}</source>
+
+**depth** contains the following:
+
+> 
+
+|Name |Value
+|---|---
+|currency |the currency affected
+|item |the item (BTC)
+|price |price as a float, deprecated
+|price_int |the price at which volume change happened (5 decimal for USD, 3 for JPY)
+|type |1=ask, 2=bid. deprecated, use type_str
+|type_str |type of order at this depth, either "ask" or "bid"
+|volume |the volume change as float, deprecated
+|volume_int |volume change * 1E8
+
+
+## Account-related private channels
+
+The streaming API provides a private channel for every user which receives updates for account-related activities like new orders being created. To subscribe, do:
+
+<source lang="javascript">{
+	"op":"mtgox.subscribe",
+	"key":<PRIVATE_IDKEY>
+}</source>
+
+<PRIVATE_IDKEY> is obtained by sending a request to generic/private/idkey in the version 1 API. Either over HTTP or through the websocket using [[op:call|#Authenticated_commands]].
+
+##  Outgoing commands
+### Direct commands
+
+Commands that can be sent without authentication
+
+### unsubscribe
+Stop receiving messages from a channel
+
+<source lang="javascript">{
+	"op":"unsubscribe", 
+	"channel":<CHANNEL ID>
+}</source>
+
+Responds with an identical message to confirm
+### mtgox.subscribe
+Subscribe to a channel to start receiving messages from it.
+
+<source lang="javascript">{
+	"op": "mtgox.subscribe",
+	"type": "ticker"
+}</source>
+"type" can be ticker, trades, or depth.
+
+### Authenticated commands
+
+These commands require an API key and secret pair to sign requests. Any of the "version 1" requests from the HTTP API can be called. 
+
+<source lang="javascript">{
+	"op":"call",
+	"id":<REQUEST ID>,
+	"call":<BASE-64 ENCODED SIGNED REQUEST>,
+	"context":"mtgox.com"
+}</source>
+
+<REQUEST ID> can be any string, it's used to identify the response as belonging to this request when an answer comes back. md5'ing your nonce is a good way to get an id. 
+
+"call" must be a base-64 encoded string consisting of, in order: an API key, a signed copy of the response, and the response text itself.
+
+The queries themselves look like:
+<source lang="javascript">{
+	"id":<REQUEST ID>,
+	"call":<HTTP API ENDPOINT>,
+	"nonce":<REQUEST NONCE>,
+	"params":<REQUEST PARAMETERS>,
+	"item":"BTC"
+}</source>
+
+<HTTP API ENDPOINT> is the last two path components of any version 1 API endpoint, for example [[private/info|#Private_info]], or [[public/cancelledtrades|#Cancelled_Trades]].
+
+<REQUEST PARAMETERS> is optional for any request that doesn't have parameters.
+
+The signing process is similar to the HTTP API, but because we can't send headers in an open websocket, the API key and signed request are simply prepended to the actual query data and base64 encoded. Reference implementations are available at https://github.com/MtGox/websocket
+
+Here's a sample of how to create a valid request in PHP 5.3:
+<source lang="php">$nonce = explode(' ', microtime(false));
+$nonce = $nonce[[1]].substr($nonce[[0]], 2, 6);
+$id = md5($nonce); // id can be anything to recognize this call
+$query = array('call' => $call, 'params' => $params, 'item' => $item, 'currency' => $currency, 'id' => $id, 'nonce' => $nonce);
+$query = json_encode($query);
+// generate signature
+$sign = hash_hmac('sha512', $query, base64_decode($apiSecret), true);
+// prefix signature to query
+$query = pack('H*', str_replace('-',*,$apiKey)).$sign.$query;
+// send query
+$call = array('op' => 'call', 'call' => base64_encode($query), 'id' => $id, 'context' => 'mtgox.com');
+// $call can now be pushed out to the websocket</source>
+
+## examples
+
+### ticker
+javascript, using hookio : 
+
+http://www.youtube.com/watch?v=KD5ljtNK72U
+
+http://github.com/hookio
+
+http://github.com/cronopio/hook.io-mtgox
+
+Another node.js project, using plain websockets (largely based on cronopio's work) :
+
+https://github.com/dlanod/node-mtgox-websocket-client
+
+A python example :
+https://github.com/3M3RY/python-mtgox
+
+### arbitrage
+https://github.com/goteppo/ArBit
+
+### websocket
+https://github.com/cronopio/hook.io-ws
+
+https://github.com/dlanod/node-mtgox-websocket-client
+
+
+## References
+<references></references>
+1.1: Socket.io forum announcement by MagicalTux: https://bitcointalk.org/index.php?topic=14412.msg613271#msg613271  
+1.2: Original WebSocket thread: https://bitcointalk.org/index.php?topic=5855.msg86219
