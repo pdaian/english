@@ -1,14 +1,19 @@
-Two versions of the HTTP API are currently available:
+Two versions of the HTTP API are currently available, see the following pages for details on the methods available for each:
 
 * [[Version 0|MtGox/API/HTTP/v0]]
 * [[Version 1|MtGox/API/HTTP/v1]]
+
+## Summary
 
 All HTTP API requests are sent to URLs beginning with<nowiki>https://mtgox.com/api/*</nowiki>. It allows placing orders, performing withdrawls, deposits, and other things.  
 
 There is a [Ruby gem](https://rubygems.org/gems/mtgox) and a [Perl module](Finance::MtGox) available for interacting with the HTTP API.
 
-### Authentication
+## Cache
 
+All API methods are cached for 10 seconds. Do not request results more often than that, you might be blocked by the anti-DDoS filters.
+
+## Authentication
 
 Authentication is performed by signing each request using HMAC-SHA512. The request must contain an extra value "nonce" which must be an always incrementing numeric value.  A reference implementation is provided here:
 <source lang="php">
@@ -63,8 +68,3 @@ var_dump(mtgox_query('0/getFunds.php'));
 </source>
 
 Python version here: https://bitcointalk.org/index.php?topic=49789.msg592388#msg592388
-
-### Cache
-
-All of the API methods below have cached results, ticker, depth . . . have a 10 seconds cache .
-No need to poll more often, you wont have more results, you could just be blocked by the prolexic anti ddos features.
