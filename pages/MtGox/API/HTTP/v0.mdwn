@@ -1,0 +1,156 @@
+
+## HTTP API version 0 methods
+
+### 0/data/getTrades.php
+This allows retrieving all trades which happened in the last 24 hours. The returned data is cached and may not reflect latest activity.
+
+Parameters:
+
+* since: Passing a tid in "since" allows retrieving all trades since that trade. The passed id is may not exist. Ie. to get all trades from the very beginning one would just call https://mtgox.com/code/data/getTrades.php?since=0 . since returns only 100 trades, and you can call the method again by passing the latest trade you have imported in since.
+
+* data is returned in standard json format like :
+<source lang="php">
+{}{}[(1)]("date":1279424586,"price":"0.05941","amount":"50.01","price_int":"5941","amount_int":"5001000000","tid":"2","price_currency":"USD","item":"BTC","trade_type":"")
+</source>
+
+### 0/getDepth.php
+Get the current Market depth
+
+https://mtgox.com/api/0/data/getDepth.php?Currency=PLN
+
+https://mtgox.com/api/0/data/getDepth.php?Currency=AUD
+
+https://mtgox.com/api/0/data/getDepth.php?Currency=USD
+
+### 0/getFunds.php
+Get your current balance
+
+https://mtgox.com/api/0/getFunds.php
+
+getfunds is now deprecated since multi currency, please use info.php
+
+### 0/buyBTC.php
+Place an order to Buy BTC
+
+https://mtgox.com/api/0/buyBTC.php
+
+POST data: amount=#&price=#&Currency=PLN
+
+returns a list of your open orders
+
+you can omit the price to do a market order
+
+### 0/sellBTC.php
+Place an order to Sell BTC
+
+https://mtgox.com/api/0/sellBTC.php
+
+POST data: &amount=#&price=#&Currency=PLN 
+
+returns a list of your open orders
+
+you can omit the price to do a market order
+
+### 0/getOrders.php
+Fetch a list of your open Orders
+
+https://mtgox.com/api/0/getOrders.php
+
+oid: Order ID
+
+type: 1 for sell order or 2 for buy order
+
+status: 1 for active, 2 for not enough funds
+
+### 0/cancelOrder.php
+Cancel an order
+
+https://mtgox.com/api/0/cancelOrder.php
+
+POST data: oid=#&type=#
+
+oid: Order ID
+
+type: 1 for sell order or 2 for buy order
+
+### 0/redeemCode.php
+Used to redeem a mtgox coupon code
+
+https://mtgox.com/api/0/redeemCode.php
+
+* call with a post parameter "code" containing the code to redeem
+
+* it will return an array with amount (float amount value of code), currency (3 letters, BTC or USD), reference (the transaction id), and status
+
+### 0/withdraw.php
+withdraw / Send BTC
+
+https://mtgox.com/api/0/withdraw.php
+
+POST data: group1=BTC&btca=bitcoin_address_to_send_to&amount=#
+
+* pass btca parameter to withdraw to a btc adress
+
+* pass group1 for a coupon : BTC2CODE or USD2CODE
+
+* pass group1=DWUSD&dwaccount=XXX-XXX-XXXX (no btca=xxxxxxx) for a dwolla withdraw
+
+* pass green=1 to use the new greenaddress feature ( see [[GreenAddress]] )
+* return code and status if successful
+
+	To make a withdraw in another Currency , use group1=USD2CODE and add a Currency parameter ( example Currency=EUR to get a mtgox EUR coupon )
+
+### 0/btcAddress.php
+get a bitcoin deposit adress for your account 
+
+https://mtgox.com/api/0/btcAddress.php
+
+* pass POST data "description" to add a description that will appear in your history when this BTC address receive a deposit
+
+* pass POST data "ipn" to add an url that mtgox will ping whenever this new address receive funds
+description ( see above ) is also required for ipn to work
+
+* returns a bitcoin deposit address
+
+### 0/history_[CUR].csv
+
+Allows downloading your activity history for a given currency (BTC or USD for now).
+
+https://mtgox.com/api/0/history_BTC.csv
+
+https://mtgox.com/api/0/history_USD.csv
+
+encoding is utf-8
+
+### 0/info.php
+
+https://mtgox.com/api/0/info.php
+
+returns info about your account, funds, fees, API privileges, withdraw limits . . . 
+
+### 0/ticker
+
+http://mtgox.com/api/0/data/ticker.php
+
+returns the current ticker :
+
+<source lang="php">
+{"ticker":
+	{
+	"high":5.70653,
+	"low":5.4145,
+	"avg":5.561388723,
+	"vwap":5.610932845,
+	"vol":55698,
+	"last":5.56915,
+	"buy":5.51326,
+	"sell":5.5672
+	}
+}
+</source>
+
+	the time frame for high, low, vol, avg, vwap . . . is sliding 24 hours
+
+what is vwap ? 
+
+please see http://en.wikipedia.org/wiki/VWAP
