@@ -235,6 +235,49 @@ The streaming API provides a private channel for every user which receives updat
 
 <PRIVATE_IDKEY> is obtained by sending a request to [[generic/private/idkey|MtGox/API/HTTP/v1#idKey]] in the version 1 API. Either over HTTP or through the websocket using [[op:call|#Authenticated_commands]].
 
+#### user_order
+
+user_order is sent when a the status of a user's order is changed.
+
+<source lang="javascript">{
+	"channel":  <USER CHANNEL GUID>
+	"op": "private".
+	"origin": "broadcast",
+	"private": "user_order".
+	"user_order": {
+	"amount": {
+	"currency": "BTC",
+	"display": "1.00000000\U00a0BTC",
+	"value": "1.00000000",
+	"value_int": "100000000"
+	},
+	"currency": "USD",
+	"date": "1330522328",
+	"item": "BTC",
+	"oid": <ORDER GUID>,
+	"price": {
+	"currency": "USD",
+	"display": "$10.00000",
+	"value": "10.00000",
+	"value_int": "1000000",
+	};
+	"status": <ORDER STATUS>,
+	"type": <ORDER TYPE>,
+	};
+}</source>
+
+
+
+|Name |Value
+|---|---
+|USER CHANNEL GUID |GUID of private user channel
+|ORDER GUID |GUID of order
+|ORDER STATUS |New status of the order. Can be pending, post-pending, open, or invalid
+|ORDER TYPE |bid or ask
+
+
+When an order is cancelled, the "user_order" field only contains the "oid", and none of the other fields.
+
 ##  Outgoing commands
 ### Direct commands
 
