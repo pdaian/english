@@ -64,6 +64,7 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 |share/truncate|if the block hash is less than "target", but not less than "fulltarget", only return the block header in "submitblock"
 |transactions/add|add other valid transactions to the block
 |transactions/remove|remove transactions provided by the server
+|transactions|add or remove transactions (both of the above)
 |prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid, unless they are part of the "transactionsrequired" count
 
 
