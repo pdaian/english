@@ -1,6 +1,6 @@
 The "nonce" in a bitcoin [[block]] is a 32-bit (4-byte) field whose value is set so that the [[hash]] of the block will contain a run of zeros. The rest of the fields may not be changed, as they have a defined meaning.
 
-Any change to the the block data (such as the nonce) will make the block hash completely different. Since it is [believed infeasible](wikipedia:Cryptographic hash function) to predict which combination of bits will result in the right hash, many different nonce values are tried, and the hash is recomputed for each value until a hash containing the required number of zero bits is found. As this iterative calculation requires time and resources, the presentation of the block with the correct nonce value constitutes [[proof_of_work]].
+Any change to the block data (such as the nonce) will make the block hash completely different. Since it is [believed infeasible](wikipedia:Cryptographic hash function) to predict which combination of bits will result in the right hash, many different nonce values are tried, and the hash is recomputed for each value until a hash containing the required number of zero bits is found. As this iterative calculation requires time and resources, the presentation of the block with the correct nonce value constitutes [[proof_of_work]].
 
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
