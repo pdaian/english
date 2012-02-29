@@ -51,13 +51,13 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 
 
 |coinbase/append|append the provided coinbase scriptSig
-|coinbase|provide their own coinbase; if one is provided, it may be replaced or modified
-|generation|add or remove outputs from the coinbase/generation transaction
+|coinbase|provide their own coinbase; if one is provided, it may be replaced or modified (default if "coinbasetxn" omitted)
+|generation|add or remove outputs from the coinbase/generation transaction (default if "coinbasetxn" omitted)
 |share/merkle|if the block hash is less than "target", but not less than "fulltarget", only return the block header, coinbase transaction, and merkle tree connecting that transaction to the root (in the form of repeated right-side SHA256 hashes) in "submitblock"
 |share/truncate|if the block hash is less than "target", but not less than "fulltarget", only return the block header in "submitblock"
 |transactions/add|add other valid transactions to the block
 |transactions/remove|remove transactions provided by the server
-|transactions|add or remove transactions (both of the above)
+|transactions|add or remove transactions (both of the above; default if "transactions" omitted)
 |prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid, unless they are part of the "transactionsrequired" count
 
 
