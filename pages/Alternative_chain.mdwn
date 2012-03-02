@@ -76,7 +76,7 @@ The bitcoin_data field is how you share work with miners today (assuming they op
 
 All you need to share work is the above four things.
 
-A [[wikipedia:Merkle tree]] is a data structure in which each node in the tree is a hash. The leaf nodes are hashes of the things you want to include in the tree. The interior nodes are hashes of the concatenations of the child nodes. A merkle branch is a part of a merkle tree which allows you to cryptographically prove that something you're given was in the tree, without needing everything that was in the tree. They are calculated by the CBlock::GetMerkleBranch() function in the Bitcoin code.
+A [merkle tree](wikipedia:Merkle tree) is a data structure in which each node in the tree is a hash. The leaf nodes are hashes of the things you want to include in the tree. The interior nodes are hashes of the concatenations of the child nodes. A merkle branch is a part of a merkle tree which allows you to cryptographically prove that something you're given was in the tree, without needing everything that was in the tree. They are calculated by the CBlock::GetMerkleBranch() function in the Bitcoin code.
 
 We store a merkle branch here for efficiency. It means no matter how large the current Bitcoin block is, your alternative network only needs to handle a small amount of data. You could just store the entire Bitcoin block - that would be simpler but inefficient.
 
