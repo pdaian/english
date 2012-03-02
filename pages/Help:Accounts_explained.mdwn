@@ -43,7 +43,7 @@ The send will fail if the account has insufficient funds, with two exceptions:
 	- 'sendtoaddress' always succeeds if there are sufficient funds in the
 	server's wallet.  For example, if your wallet account balances were 100 BTC in account
 	'foo' and 0 BTC in the default account, then the balances after *sendtoaddress
-	15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC 10.00* would be 100 in account 'foo' and -10.00 in
+	1PC9aZC4hNX2rmmrt7uHTfYAS3hRbph4UN 10.00* would be 100 in account 'foo' and -10.00 in
 	the default account (and the overall server balance would go from 100 to 90 BTC).  On
 	the other hand, using 'sendfrom' to send from the default account with a zero balance
 	will fail with message "Account has insufficient funds".
