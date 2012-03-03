@@ -39,6 +39,7 @@ getmemorypool MUST return a JSON Object containing at least the following keys, 
 |mintime |[[!template id=no]]|Number |the minimum time allowed
 |mutable |[[!template id=no]]|Array of Strings |different manipulations that the server explicitly allows to be made (see later for details)
 |noncerange |[[!template id=no]]|String |two 32-bit integers, concatenated in big-endian hexadecimal, which represent the valid ranges of nonces the miner may scan
+|submitold |[[!template id=no]]|Boolean |only relevant for long poll responses; indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 |target |[[!template id=no]]|String |the number which valid results must be less than, in little-endian hexadecimal
 |txrequired |[[!template id=no]]|Number |this many of the first transactions provided must be present in the final block, even if the "transactions/remove" mutation is allowed
 |workid |[[!template id=no]]|String or Number |if provided, this value must be returned with results (see "submitblock")
@@ -51,10 +52,13 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 
 
 |coinbase/append|append the provided coinbase scriptSig
-|coinbase|provide their own coinbase; if one is provided, it may be replaced or modified (default if "coinbasetxn" omitted)
-|generation|add or remove outputs from the coinbase/generation transaction (default if "coinbasetxn" omitted)
+|coinbase|provide their own coinbase; if one is provided, it may be replaced or modified (implied if "coinbasetxn" omitted)
+|generation|add or remove outputs from the coinbase/generation transaction (implied if "coinbasetxn" omitted)
 |share/merkle|if the block hash is less than "target", but not less than "fulltarget", only return the block header, coinbase transaction, and merkle tree connecting that transaction to the root (in the form of repeated right-side SHA256 hashes) in "submitblock"
 |share/truncate|if the block hash is less than "target", but not less than "fulltarget", only return the block header in "submitblock"
+|time/increment|change the time header to a value after "time" (implied if "maxtime" or "maxtimeoff" are provided)
+|time/decrement|change the time header to a value before "time" (implied if "mintime" is provided)
+|time|modify the time header of the block
 |transactions/add|add other valid transactions to the block
 |transactions/remove|remove transactions provided by the server
 |transactions|add or remove transactions (both of the above; default if "transactions" omitted)
@@ -62,6 +66,24 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 
 
 Note that miners are NOT required to implement any of these mutations.
+
+#### Long Polling
+If the server supports long polling, it SHOULD include an X-Long-Polling header with a relative or absolute URI.
+The absolute URI MAY specify a different port than the original connection.
+Miners MAY start a request to this long polling URI with a standard JSON-RPC request (POST with data) and same basic authorization.
+This request SHOULD NOT be processed nor answered by the server until it wishes to replace the current block data.
+Clients SHOULD make this request with a very long request timeout and MUST accept the server sending response headers with "chunked" Transfer-Encoding delaying the completion of the final JSON response.
+
+Upon receiving a completed response:
+
+* Only if "submitold" is provided and false, the client MAY discard the results of past operations and MUST begin working on the new work immediately.
+* The client SHOULD begin working on the new work received as soon as possible, if not immediately.
+* The client SHOULD make a new request to the same long polling URI.
+
+If a client receives an incomplete or invalid response, it SHOULD retry the request with an exponential backoff.
+Clients MAY implement this backoff with limitations (such as maximum backoff time) or any algorithm as deemed suitable.
+It is however forbidden to simply retry immediately with no delay after more than one failure.
+In the case of a HTTP 403 response (Forbidden), a client SHOULD NOT attempt to retry without user intervention.
 
 ###JSON-RPC Method: submitblock
 A new JSON-RPC method is defined, called "submitblock".
