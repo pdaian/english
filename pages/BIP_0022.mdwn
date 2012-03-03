@@ -36,7 +36,7 @@ getmemorypool MUST return a JSON Object containing at least the following keys, 
 |fulltarget |[[!template id=no]]|String |the number which full results should be less than, in little-endian hexadecimal (see [["share/*" mutations|#Mutations]])
 |longpoll |[[!template id=no]]|String |URI for [[long polling|#Long_Polling]]
 |maxtime |[[!template id=no]]|Number |the maximum time allowed
-|maxtimeoff |[[!template id=no]]|Number |the maximum time allowed (as a moving offset from 'time')
+|maxtimeoff |[[!template id=no]]|Number |the maximum time allowed (as a moving offset from 'time' - every second, the actual maxtime is incremented by 1; for example, "maxtimeoff":0 means "time" may be incremented by 1 every second)
 |mintime |[[!template id=no]]|Number |the minimum time allowed
 |mutable |[[!template id=no]]|Array of Strings |different manipulations that the server explicitly allows to be made (see [[Mutations|#Mutations]])
 |noncerange |[[!template id=no]]|String |two 32-bit integers, concatenated in big-endian hexadecimal, which represent the valid ranges of nonces the miner may scan
