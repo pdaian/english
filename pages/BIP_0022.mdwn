@@ -94,7 +94,7 @@ The second argument, if provided, is an Object.
 The only defined key of this Object is the "workid" provided by the server:
 if a "workid" was specified, it must be submitted with the share/block.
 
-This method MUST return either null (when a share is accepted), a String describing briefly the reason the share was accepted, or an Object of these with a key for each merged-mining chain the share was submitted to.
+This method MUST return either null (when a share is accepted), a String describing briefly the reason the share was rejected, or an Object of these with a key for each merged-mining chain the share was submitted to.
 
 Possible reasons a share may be rejected include, but are not limited to:
 
