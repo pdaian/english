@@ -34,6 +34,7 @@ getmemorypool MUST return a JSON Object containing at least the following keys, 
 |curtime |[[!template id=no]]|Number |TODO?
 |expires |[[!template id=no]]|Number |how many seconds (beginning from when the server sent the response) this work is valid for, at most
 |fulltarget |[[!template id=no]]|String |the number which full results should be less than, in little-endian hexadecimal (see "share/*" mutations)
+|longpoll |[[!template id=no]]|String |URI for long polling
 |maxtime |[[!template id=no]]|Number |the maximum time allowed
 |maxtimeoff |[[!template id=no]]|Number |the maximum time allowed (as a moving offset from 'time')
 |mintime |[[!template id=no]]|Number |the minimum time allowed
@@ -68,7 +69,7 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 Note that miners are NOT required to implement any of these mutations.
 
 #### Long Polling
-If the server supports long polling, it SHOULD include an X-Long-Polling header with a relative or absolute URI.
+If the server supports long polling, it SHOULD include the "longpoll" key with a relative or absolute URI.
 The absolute URI MAY specify a different port than the original connection.
 Miners MAY start a request to this long polling URI with a standard JSON-RPC request (POST with data) and same basic authorization.
 This request SHOULD NOT be processed nor answered by the server until it wishes to replace the current block data.
@@ -83,7 +84,7 @@ Upon receiving a completed response:
 If a client receives an incomplete or invalid response, it SHOULD retry the request with an exponential backoff.
 Clients MAY implement this backoff with limitations (such as maximum backoff time) or any algorithm as deemed suitable.
 It is however forbidden to simply retry immediately with no delay after more than one failure.
-In the case of a HTTP 403 response (Forbidden), a client SHOULD NOT attempt to retry without user intervention.
+In the case of a "Forbidden" response (for example, HTTP 403), a client SHOULD NOT attempt to retry without user intervention.
 
 ###JSON-RPC Method: submitblock
 A new JSON-RPC method is defined, called "submitblock".
