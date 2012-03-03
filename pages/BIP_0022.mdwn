@@ -33,17 +33,17 @@ getmemorypool MUST return a JSON Object containing at least the following keys, 
 |coinbaseaux |[[!template id=no]]|Object |data that SHOULD or MUST (depending on mutable flags) be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys.
 |curtime |[[!template id=no]]|Number |TODO?
 |expires |[[!template id=no]]|Number |how many seconds (beginning from when the server sent the response) this work is valid for, at most
-|fulltarget |[[!template id=no]]|String |the number which full results should be less than, in little-endian hexadecimal (see "share/*" mutations)
-|longpoll |[[!template id=no]]|String |URI for long polling
+|fulltarget |[[!template id=no]]|String |the number which full results should be less than, in little-endian hexadecimal (see [["share/*" mutations|#Mutations]])
+|longpoll |[[!template id=no]]|String |URI for [[long polling|#Long_Polling]]
 |maxtime |[[!template id=no]]|Number |the maximum time allowed
 |maxtimeoff |[[!template id=no]]|Number |the maximum time allowed (as a moving offset from 'time')
 |mintime |[[!template id=no]]|Number |the minimum time allowed
-|mutable |[[!template id=no]]|Array of Strings |different manipulations that the server explicitly allows to be made (see later for details)
+|mutable |[[!template id=no]]|Array of Strings |different manipulations that the server explicitly allows to be made (see [[Mutations|#Mutations]])
 |noncerange |[[!template id=no]]|String |two 32-bit integers, concatenated in big-endian hexadecimal, which represent the valid ranges of nonces the miner may scan
-|submitold |[[!template id=no]]|Boolean |only relevant for long poll responses; indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
+|submitold |[[!template id=no]]|Boolean |only relevant for [[long poll|#Long_Polling]]responses; indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 |target |[[!template id=no]]|String |the number which valid results must be less than, in little-endian hexadecimal
 |txrequired |[[!template id=no]]|Number |this many of the first transactions provided must be present in the final block, even if the "transactions/remove" mutation is allowed
-|workid |[[!template id=no]]|String or Number |if provided, this value must be returned with results (see "submitblock")
+|workid |[[!template id=no]]|String or Number |if provided, this value must be returned with results (see [["submitblock"|#JSON-RPC_Method:_submitblock]])
 
 
 ####Mutations
