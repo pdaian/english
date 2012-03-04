@@ -1,4 +1,10 @@
-OP_IFDUP	115	0x73	x	x / x x	If the input is true or false, duplicate it.
+xOP_IFDUP	115	0x73	x	x / x x	If the input is true or false, duplicate it.
 
 Shouldn't it be: "If the input is true, duplicate it."?
 --[ThePiachu](User:ThePiachu) 11:37, 20 December 2011 (GMT)
+
+The byte vectors in the stack are specified as being signed integers or variable-length. Then there's an explanation that these integers are considered false if they are either zero or negative zero, which is 0x80. This is an old binary representation called sign-magnitude, which is important to state, since today virtually all computers use two's complement as representation, and there's no such thing as a negative zero there. There's even another representation, one's complement, where negative zero looks like 0xff.
+
+Reading the source code of the application, I see that arithmetic operations expect unsigned integers, for example, operations OP_2MUL and OP_2DIV are implemented as byte-shifting, which wouldn't work with signed representations.
+
+--[Jpierre](User:Jpierre) 10:43, 4 March 2012 (GMT)
