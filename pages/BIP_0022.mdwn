@@ -25,6 +25,7 @@ getmemorypool MUST return a JSON Object containing at least the following keys, 
 
 |bits |[[!template id=yes]]|String |the big-endian compressed difficulty in hexadecimal
 |curtime |[[!template id=yes]]|Number |the current time as seen by the server (recommended for block time)
+|height |[[!template id=yes Should]]|Number |the height of the block we are looking for
 |previousblockhash |[[!template id=yes]]|String |the hash of the previous block, in little endian converted to hexadecimal
 |transactions |[[!template id=yes Should]]|Array of Strings |Bitcoin transactions encoded in hexadecimal (byte-for-byte), not including coinbase
 |version |[[!template id=yes]]|Number |always 1 (at least for bitcoin)
@@ -63,7 +64,7 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 |transactions/add|add other valid transactions to the block
 |transactions/remove|remove transactions provided by the server
 |transactions|add or remove transactions (both of the above; implied if "transactions" omitted from result)
-|prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid, unless they are part of the "transactionsrequired" count
+|prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid, unless they are part of the "txrequired" count; it also implies adjusting "height" as necessary
 
 
 Note that miners are NOT required to implement any of these mutations.
