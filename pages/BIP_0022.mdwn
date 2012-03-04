@@ -62,7 +62,7 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 |time|modify the time header of the block
 |transactions/add|add other valid transactions to the block
 |transactions/remove|remove transactions provided by the server
-|transactions|add or remove transactions (both of the above; default if "transactions" omitted)
+|transactions|add or remove transactions (both of the above; implied if "transactions" omitted from result)
 |prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid, unless they are part of the "transactionsrequired" count
 
 
