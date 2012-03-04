@@ -84,8 +84,11 @@ Dependencies if running from source:
 **Q:** What is PPLNS?<br />
 **A:** Pay-Per-Last-N-Shares is a payout method that is completely resistant to pool hoppers.
 
-**Q:** Why am I not getting any shares with my NVIDIA after waiting a whole 5 minutes?!<br />
+**Q:** Why am I not getting very many shares?!<br />
 **A:** The P2Pool difficulty is hundreds of times higher than on normal pools. It can take time to get a share. P2Pool displays an estimate of how long you have to wait in the console output.
+
+**Q:** Why does my miner say it has found a lot of shares but p2pool say I have only found a few?!<br />
+**A:** The real P2Pool difficulty is hundreds of times higher than on normal pools, but p2pool essentially lies to your miner and tells it to work on relatively easy shares so that it submits shares every few seconds instead of every few hours.  P2Pool then ignores any submitted shares that don't match the real share difficulty.  By doing this, P2Pool can more accurately report your local hash rate and you can see if you are having problems with too many stale shares quickly
 
 **Q:** Why am I getting so many rejects?<br />
 **A:** You're using an incompatible miner. See the miners section here, increase your FPS on the miner, decrease the intensity, upgrade your miner, or try a different miner.
