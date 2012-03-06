@@ -279,6 +279,55 @@ user_order is sent when a the status of a user's order is changed.
 
 When an order is cancelled, the "user_order" field only contains the "oid", and none of the other fields.
 
+#### wallet
+
+Updates to the user's wallet balance.
+
+<source lang="javascript">{
+	"channel": <USER CHANNEL GUID>,
+	"op": "private",
+	"origin": "broadcast",
+	"private": "wallet",
+	"wallet": {
+	"op": <UPDATE SOURCE>,
+	"amount": {
+	...
+	},
+	"info": <UPDATE INFO>,
+	"ref": <REFERENCE CODE>,
+	"balance": {
+	...
+	}
+	}
+}</source>
+
+"..." values above are normal 'amount' type dictionaries containing "currency", "value", "value_int", and "display".
+
+
+
+|Name |Value
+|---|---
+|USER CHANNEL GUID |GUID of private user channel
+|ORDER GUID |GUID of order
+|UPDATE SOURCE |Cause of the balance update. Can be: in, out, earned, spent, withdraw, or deposit
+|UPDATE INFO |Human readable string describing the update. Same string you see in the account history on mtgox.com
+|REFERENCE CODE |Reference code for bank transfers. "null" if this isn't a bank transfer.
+
+
+Description of the different source types:
+
+
+|Source |Description
+|---|---
+|deposit  |Account deposits
+|withdraw |Account withdrawals
+|earned |Amount of USD gained from a trade
+|spent |Amount of USD used for a trade
+|in |Amount of BTC gained from a trade
+|out |Amount of BTC used for a trade
+|fee |MtGox fees
+
+
 ##  Outgoing commands
 ### Direct commands
 
