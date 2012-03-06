@@ -1,0 +1,21 @@
+This scheme is an attempt at [Mike Hearn](User:Mike)'s [[exercise for the reader|Contracts#Example_3:_Assurance_contracts]]:  an implementation of dominant assurance contracts.  The scheme requires the use of multisignature transactions, nLockTime and transaction replacement which means it won't work until these features are available on the Bitcoin network.
+
+1. A vendor agrees to produce a good if X BTC are raised by date D and to pay Y BTC to each of n contributors if X BTC are not raised by date D, or to pay nY BTC if X BTC are raised and the vendor fails to produce the good to the satisfaction of 2 of 3 independent arbitrators picked through a fair process
+1. The arbitrators specify a 2-of-3 multisignature script to use as an output for the fundraiser with a public key from each arbitrator, which will allow them to judge the performance on actually producing the good
+1. For each contributor:
+	1. The vendor and the contributor exchange public keys
+	1. They create a 2-of-2 multisignature output from those public keys
+	1. With no change, they create but do not sign a transaction with an input of X/n BTC from the contributor and an input of Y BTC from the vendor, with X/n+Y going to the output created in 3.2
+	1. The contributor creates a transaction where the output is X+nY to the address created in step 2 and the input is the output of the transaction in 3.3, signs it using SIGHASH_ALL  SIGHASH_ANYONECANPAY, with version = UINT_MAX and gives it to the vendor
+	1. The vendor creates a transaction of the entire balance of the transaction in 3.3 to the contributor with nLockTime of D and version < UINT_MAX, signs it and gives it to the contributor
+	1. The vendor and contributor then both sign the transaction in 3.3 and broadcast it to the network, making the transaction in 3.4 valid when enough contributors participate and the transaction in 3.5 valid when nLockTime expires
+1. As date D nears, nLockTime comes close to expiration.
+	1. If enough (n) people contribute, all of the inputs from 3.4 can combine to make the output valid when signed by the vendor, creating a valid transaction sending that money to the arbitrators, which only agree to release the funds when the vendor produces a satisfactory output
+	1. If not enough people (<n) contribute, nLockTime expires on the transaction in 3.5, meaning each contributor can sign and redeem her transaction containing X/n + Y BTC from 3c
+	1. Note that there is a limit at which it can be more profitable for the vendor to make the remaining contributions when D approaches
+1. Now the arbitrators have control of X (the payment from the contributors) + nY (the performance bond from the vendor) BTC and pay the vendor only when the vendor performs satisfactorily
+
+Such contracts can be used for crowdfunding.  Notable examples from Mike Hearn include:
+
+* Funding Internet radio stations which don't want to play ads: donations are the only viable revenue source as pay-for-streaming models allow undercutting by subscribers who relay the stream to their own subscribers
+* Automatically contributing to the human translation of web pages
