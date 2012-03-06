@@ -328,6 +328,10 @@ Description of the different source types:
 |fee |MtGox fees
 
 
+#### trade
+
+Trades that happen on behalf of a user whose private channel you're subscribed to issue trade messages with the same format as the [[public trades channel|MtGox/API/Streaming#Trade]] does. If you're subscribed to both, be careful not to take both into account during calculations, it might cause some hard to track down issues
+
 ##  Outgoing commands
 ### Direct commands
 
