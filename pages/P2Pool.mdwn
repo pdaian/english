@@ -332,14 +332,14 @@ In order to encourage people to mine to P2Pool you can donate to the recent mine
 
 For example, a bash script to donate 10 btc is:
 <pre>
-~/src/bitcoin/src/bitcoind sendmany "" "$(GET http://forre.st:9332/patron_sendmany?total=10)"
+~/src/bitcoin/src/bitcoind sendmany "" "$(GET http://forre.st:9332/patron_sendmany/10)"
 </pre>
 
 You can replace "" with "accountname" if you want to pay from some specific bitcoind account, and you can replace forre.st with 127.0.0.1 if you're running a P2Pool node locally, so you don't have to trust that the URL gives accurate figures.
 
 Note that the amount you donate will be allocated to recent miners in proportion to the amount of work they've done in the last 24 hours or so, but all the miner whose shares of the donated amount are less than 0.01 BTC will have their shares combined into a single amount which is awarded to one of them at random, with the chance of winning this 'lottery' weighted by the miner's recent amount of work done.  You can change this 0.01 BTC threshold like this, for example, which says to pay 10 BTC, but to share it amongst more miners that the default, cutting off at 0.001 BTC instead of at 0.01 BTC.
 <pre>
-~/src/bitcoin/src/bitcoind sendmany "" "$(GET http://forre.st:9332/patron_sendmany?total=10/0.001)"
+~/src/bitcoin/src/bitcoind sendmany "" "$(GET http://forre.st:9332/patron_sendmany/10/0.001)"
 </pre>
 
 If you decide to donate you should announce it on the forums so that your donations provide the most incentive possible.
