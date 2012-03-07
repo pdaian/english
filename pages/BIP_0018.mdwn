@@ -7,4 +7,23 @@
   Created: 27-01-2012
 </pre>
 
+##Abstract
+
+This BIP modifies the basic format of transaction inputs and outputs, replacing the current scriptSig and scriptPubKey (scripts executed to validate a transaction) with new contents: dataSig, scriptCheck, and hashScriptCheck.
+
+##Motivation
+
+The purpose of pay-to-script-hash is to move the responsibility for supplying the conditions to redeem a transaction from the sender of the funds to the redeemer.
+
+The benefit is allowing a sender to fund any arbitrary transaction, no matter how complicated, using a fixed-length 20-byte hash that is short enough to scan from a QR code or easily copied and pasted.
+
+##Specification
+
 Details to be finalized when BIP 16 or 17 is deployed.
+
+##See Also
+
+* The [[Address format for Pay to Script Hash BIP|BIP_0013]]
+* [[BIP_16:_Pay_to_Script_Hash_(aka_/P2SH/)]]
+* [[BIP_17:_CHECKHASHVERIFY_(P2SH)]]
+* M-of-N Multisignature Transactions [[BIP 11|BIP_0011]]
