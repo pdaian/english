@@ -415,7 +415,7 @@ The TxOut structure consists of the following fields:
 
 
 
-|8 |value |uint64_t |Transaction Value
+|8 |value |int64_t |Transaction Value
 |1+ |pk_script length |[[var_int|Protocol_specification#Variable_length_integer]]|Length of the pk_script
 |? |pk_script |uchar[]|Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
 
