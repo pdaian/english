@@ -7,4 +7,24 @@ Some argue that methods based on Proof of Work alone might lead to a low network
 
 Here is [one attempt](https://bitcointalk.org/index.php?topic=37194.msg456773#msg456773) to describe an implementation of Proof of Stake.
 
+**Motivation For Proof of Stake**
+
+A proof-of-stake system would provide increased protection from a malicious attack on the network. Secondly, when block rewards are produced through txn fees, a proof of stake system would result in lower equilibrium txn fees. Lower long-run fees would increase the competiveness of bitcoin relative to alternative payments systems. 
+
+*The Problem of Monopoly* 
+
+If a single entity (hereafter a monopolist) took control of the majority of txn verification resources, he could use these resources to impose conditions on the rest of the network. Potentially, the monopolist could choose to do this in quite malicious ways, such as double spending or denying service (refusing to include txns in blocks. If the monopolist chose a malicious strategy and maintained his control for a long period, confidence in bitcoin would be undermined and bitcoin purchasing power would collapse. Alternatively, the monopolist could choose to behave benovolently. A benevolent monopolist would exclude all other txn verifiers from fee collection and currency generation, but would not try to exploit currency holders in any way. In order to maintain a good reputation, he would refrain from double spends and maintain service provision. In this case, confidence in bitcoin could be maintained under monoploly since all of its basic functionality would not be affected.
+
+Both benevolent and malevolent monopoly are profitable, so there are strong reasons for believing that an entrepreneurial miner will attempt to become a monopolist at some point. Due to the [[Tragedy_of_the_Commons]] effect, attempts at monopoly become increasingly likely over time.
+
+*How Proof of Stake Addresses Monopoly Problems*
+
+Monopoly is still possible under proof-of-stake. However, proof-of-stake would be more secure against malicious attacks for two reasons. 
+
+Firstly, proof-of-stake makes establishing a verification monopoly more difficult. At the time of writing, an entrepreneur could achieve monopoly over proof-of-work by investing about 10 million USD in computing hardware. If price remained constant in the face of extremely large purchases, such an entrepreneur would need to invest about twice in USD to obtain monopoly under proof-of-stake. Since such a large purchase would dramatically increase bitcoin price, the entrepreneur would likely to have to invest several times this amount. Over time, the ratio of bitcoin's market value to mining rewards will decline. As this happens, proof-of-work monopoly will become easier and easier to obtain relative to proof-of-stake monopoly.
+
+Secondly, and perhaps more importantly, a proof-of-stake monopolist is more likely to behave benevolently. In a benevolent monopoly, the currency continues to operate as normally, but the monopolist earns more from txn fees and generations than they are entitled too. Bitcoin would likely retain most of its value if the monopolist behaved benevolently. Earnings are similar regardless of whether a benevolent attack occurs through proof-of-stake or proof-of-work. In a malicious attack, the attacker has some outside opportunity which allows profit from bitcoin's destruction (simple double-spends are not a plausible motivation). I assume that a malicious attack the purchasing power of bitcoin to zero. Under such an attack, the proof-of-stake monopolist will lose his entire investment. By contrast, a malicious proof-of-work monopolist will be able to recover much of their investment (likely most) through the resale of used hardware. Recall from the previous paragraph that the proof-of-stake investment is much larger than the monopolistic proof-of-work investment. The likelihood of benevolent behavior depends on the difference in payoffs between a benevolent attack and a malicious attack. Since the difference in payoffs is much larger under proof-of-stake, a malicious attack would be much less likely to occur under this arrangement.
+
+*Why Proof of Stake Would Decrease Long-run Txn Fees*
+To be added
 [[!tag "mining"]]
