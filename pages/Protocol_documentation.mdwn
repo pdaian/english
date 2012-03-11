@@ -197,7 +197,6 @@ Payload:
 |26 |addr_from |net_addr |The network address of the node emitting this message
 |8 |nonce |uint64_t |Node random nonce, randomly generated every time a version packet is sent. This nonce is used to detect connections to self.
 |? |user_agent |[[var_str|#Variable_length_string]]|[[User Agent|BIP_0014]](0x00 if string is 0 bytes long)
-|colspan="4"version >= 209
 |4 |start_height |int32_t |The last block received by the emitting node
 
 
