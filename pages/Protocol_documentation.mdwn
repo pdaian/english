@@ -81,11 +81,10 @@ Almost all integers are encoded in little endian. Only IP or port number are enc
 |4 |magic |uint32_t |Magic value indicating message origin network, and used to seek to next message when stream state is unknown
 |12 |command |char[[12]]|ASCII string identifying the packet content, NULL padded (non-NULL padding results in packet rejected)
 |4 |length |uint32_t |Length of payload in number of bytes
-|4 |checksum |uint32_t |First 4 bytes of sha256(sha256(payload)) (not included in version or verack)
+|4 |checksum |uint32_t |First 4 bytes of sha256(sha256(payload))
 |? |payload |uchar[]|The actual data
 
 
-Before 20 February 2012, the version and verack messages do not have a checksum; the payload starts 4 bytes earlier. On and after 20 February 2012, all messages have checksums.
 
 Known magic values:
 
@@ -202,7 +201,7 @@ Payload:
 |4 |start_height |int32_t |The last block received by the emitting node
 
 
-If the emitter of the packet has version >= 209, a "verack" packet shall be sent if the version packet was accepted.
+A "verack" packet shall be sent if the version packet was accepted.
 
 The following services are currently assigned:
 
@@ -211,7 +210,7 @@ The following services are currently assigned:
 |1 |NODE_NETWORK |This node can be asked for full blocks instead of just headers.
 
 
-Hexdump example of version message (note the message header for this version message does not have a checksum):
+Hexdump example of version message (OBSOLETE EXAMPLE. This example lacks a checksum and user-agent):
 <pre>
 0000   F9 BE B4 D9 76 65 72 73  69 6F 6E 00 00 00 00 00   ....version.....
 0010   55 00 00 00 9C 7C 00 00  01 00 00 00 00 00 00 00   U....|..........
@@ -239,9 +238,9 @@ Version message:
 
 ### verack
 
-The *verack* message is sent in reply to *version* for clients >= 209.  This message consists of only a [[message header|#Message_structure]] with the command string "verack".
+The *verack* message is sent in reply to *version*.  This message consists of only a [[message header|#Message_structure]] with the command string "verack".
 
-Hexdump of the verack message:
+Hexdump of the verack message (This example is OBSOLETE. It does not have the required checksum)
 
 <pre>
 0000   F9 BE B4 D9 76 65 72 61  63 6B 00 00 00 00 00 00   ....verack......
