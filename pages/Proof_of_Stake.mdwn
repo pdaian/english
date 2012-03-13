@@ -30,8 +30,6 @@ In a competitive market equilibrium, the total volume of txn fees must be equal 
 # Implementations
 There are currently at least two distinct proposals on how to implement PoS, by Cunicula and Meni.
 
-(Someone, please add a tl;dr on what are the key differences)
-
 ## Cunicula's Implementation of Mixed Proof-of-Work and Proof-of-Stake
 
 This suggestion is of a mixed Proof-of-Work / Proof-of-Stake system.
@@ -57,5 +55,10 @@ As before the Difficulty Target is a periodically adjusted constant which is set
 
 ## Meni's implementation
 TBD
+
+## Key difference
+In Cunicula's system, voting power is determined by combining (multiplicatively) your hashrate and stake. To be effective you need both to be high (which IMO is very problematic because small players cannot contribute effectively. It's not linear.)
+
+In Meni's, there's a skeleton based purely on hashrate, and superposed on it are occasional checkpoints set by stakeholders. You can contribute PoW without having stake, and you can contribute PoS without having work, and in both cases your voting power and reward is linearly proportional to the resources you have.
 
 [[!tag "mining"]]
