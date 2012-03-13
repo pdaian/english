@@ -41,13 +41,14 @@ Each block must be signed by its miner using a single bitcoin account. The accou
 
 Hash generates valid block if and only if
 
-Hash Difficulty >= (Aggregate difficulty)^{1/((1-p)}/({max(Coin-confirmations used to sign block,100 satoshi-confirmations)})^{p/(1-p)}
+Hash Difficulty >= 
+(Difficulty Target) ^ ( 1 / (1-p) ) / ( max(Coin-confirmations used to sign block, 100 satoshi-confirmations) )^( p / (1-p))
 
 , where 0 <= p < 1. Stake becomes more and more important as p approaches 1. p=0.8 is suggested as an appropriate choice. p=0 is identical to the current proof-of-work system. 
 
 The maximum criteria allows for valid blocks to be generated even if no stakeholders exist, solving the problem of initial distribution.
 
-As before aggregate difficulty is periodically adjusted to maintain a target generation rate of 1 block every 10 minutes. 
+As before the Difficulty Target is a periodically adjusted constant which is set to maintain a target generation rate of 1 block every 10 minutes. 
 
 
 ## Space for Criticism and Questions About Cunicula's Proposal [Cunicula promises not to edit this section, though others are free to do so as they feel.]
