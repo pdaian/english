@@ -12,7 +12,6 @@ This pages gathers resources for the implementation of a Bitcoin wallet on a sma
 * the smart card should have its own keyboard (for pin code protection) and display (to show the transaction amount)
 (<- Alternative to this is the card returning, to the terminal screen, the debit amount multiplied by a number only the card holder knows which cycles from 1 to 100 to 1 incrementing by 1 each transfer - the card is locked 10 minutes if a second amount is send before a pin is typed.)
 
-* The address of the card should NOT be readable. The identity of the card should be kept secret to prevent scamming merchants from storing pin/card pairs used in the past.
 * The card holder will know pin, puk, private key and address only from when he programmed it or ordered his smart card.
 * the card should implement a deterministic wallet, so that funds can be recovered if the card is lost.
 
