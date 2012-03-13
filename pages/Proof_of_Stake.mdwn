@@ -24,19 +24,24 @@ Firstly, proof-of-stake makes establishing a verification monopoly more difficul
 
 Secondly, and perhaps more importantly, a proof-of-stake monopolist is more likely to behave benevolently exactly because of his stake in Bitcoin. In a benevolent monopoly, the currency txn continue as usual, but the monopolist earns all txn fees and coin generations. Other txn verifiers are shut out of the system, however. Since mining is not source of demand for bitcoin, bitcoin might retain most of its value in the event of a benevolent attack. Earnings from a benevolent attack are similar regardless of whether the attack occurs under proof-of-stake or proof-of-work. In a malicious attack, the attacker has some outside opportunity which allows profit from bitcoin's destruction (simple double-spends are not a plausible motivation; ownership of a competing payment platform is). At the same time, the attacker faces costs related to losses on bitcoin-specific investments which are necessary for the attack. It can be assumed that a malicious attack causes the purchasing power of bitcoin to fall to zero. Under such an attack, the proof-of-stake monopolist will lose his entire investment. By contrast, a malicious proof-of-work monopolist will be able to recover much of their hardware investment through resale. Recall also, that the necessary proof-of-work investment is much smaller than the proof-of-stake investment. Thus, the costs of a malicious attack are several-fold lower under proof-of-work. The low costs associated with malicious attack make a malicious attack more likely to occur.
 
-## Why Proof of Stake Would Likely Decrease Long-run Txn Fees By An Order of Magnitude
+## Why Proof of Stake Would Likely Decrease Long-run Txn Fees Considerably
 In a competitive market equilibrium, the total volume of txn fees must be equal to opportunity cost of all resources used to verify txns. Under proof-of-work mining, opportunity cost can be calculated as the total sum spent on mining electricity, mining equipment depreciation, mining labor, and a market rate of return on mining capital. Electricity costs, returns on mining equipment, and equipment depreciation costs are likely to dominate here. If these costs are not substantial, then it will be exceptionally easy to monopolize the mining network. The fees necessary to prevent monopolization will be onerous, possibly in excess of the 3% fee currently charged for credit card purchases. Under pure proof-of-stake, opportunity cost can be calculated as the total sum spent on mining labor and the market interest rate for risk-free bitcoin lending (hardware-related costs will be negligible). Since bitcoins are designed to appreciate over time due to hard-coded supply limitations, interest rates on risk-free bitcoin-denominated loans are likely to be negligible. Therefore, the total volume of txn fees under pure proof-of-stake will just need to be just sufficient to compensate labor involved in maintaining bandwidth and storage space. The associated txn fees will be exceptionally low. Despite these exceptionally low fees, a proof-of-stake network will be many times more costly to exploit than the proof-of-work network. Approximately, a proof-of-work network can be exploited using expenditure equal to about one years worth of currency generation and txn fees. By constrast, exploitation of a proof-of-stake network requires purchase of a majority or near majority of all extant coins. 
 
-# Cunicula's Implementation of Mixed Proof-of-Work and Proof-of-Stake
+# Implementations
+There are currently at least two distinct proposals on how to implement PoS, by Cunicula and Meni.
 
-Cunicula suggests that proof-of-stake could be implemented through a mixed Proof-of-Work / Proof-of-Stake system.
+(Someone, please add a tl;dr on what are the key differences)
 
-##Cunicula's Useful Definitions
+## Cunicula's Implementation of Mixed Proof-of-Work and Proof-of-Stake
+
+This suggestion is of a mixed Proof-of-Work / Proof-of-Stake system.
+
+### Definitions
 'Coin-confirmations' are defined as the product of the number of coins in an account multiplied by the number of confirmations on this account. 
 
 'Confirmations' are defined as the number of blocks mined since this account's private key was last used to send coins or sign a newly mined block.
 
-##Description of Cunicula's System
+### How the system works
 Each block must be signed by its miner using a single bitcoin account. The account used to sign a block must also be the recipient of txn fees and generation from this block. Blocks are mined by proof-of-work hashing as before, but with modified difficulty criteria. The difficulty criterion for block validity is modified as follows: 
 
 Hash generates valid block if and only if
@@ -50,10 +55,7 @@ If the block is signed by a bitcoin account holding less than 100 satoshi-confir
 
 As before the Difficulty Target is a periodically adjusted constant which is set to maintain a target generation rate of 1 block every 10 minutes. 
 
+## Meni's implementation
+TBD
 
-## Space for Criticism and Questions About Cunicula's Proposal [Cunicula promises not to edit this section, though others are free to do so as they feel.]
-
-## Space for Response to Criticism and Questions About Cunicula's proposal [Cunicula will edit this.]
-	
-# Meni's Proposal for Proof-of-Stake [This space is reserved for Meni to describe his system for mixed proof-of-work and proof-of-stake].
 [[!tag "mining"]]
