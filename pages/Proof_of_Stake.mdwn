@@ -40,18 +40,7 @@ This suggestion is of a mixed Proof-of-Work / Proof-of-Stake system.
 'Confirmations' are defined as the number of blocks mined since this account's private key was last used to send coins or sign a newly mined block.
 
 ### How the system works
-Each block must be signed by its miner using a single bitcoin account. The account used to sign a block must also be the recipient of txn fees and generation from this block. Blocks are mined by proof-of-work hashing as before, but with modified difficulty criteria. The difficulty criterion for block validity is modified as follows: 
-
-Hash generates valid block if and only if
-
-Hash Difficulty >= 
-(Difficulty Target) ^ ( 1 / (1-p) ) / ( max(Coin-confirmations used to sign block, 100 satoshi-confirmations) )^( p / (1-p))
-
-, where 0 <= p < 1. Stake becomes more and more important as p approaches 1. p=0.8 is suggested as an appropriate choice. p=0 is identical to the current proof-of-work system. 
-
-If the block is signed by a bitcoin account holding less than 100 satoshi-confirmations, this is treated as if the account held 100 satoshi-confirmations. Thus non-stakeholders are allowed to verify blocks, but relative to stakeholders they must meet extremely stringent difficulty criteria. Permitting non-stakeholders to verify blocks solves the initial distribution problem.
-
-As before the Difficulty Target is a periodically adjusted constant which is set to maintain a target generation rate of 1 block every 10 minutes. 
+Under revision to correct problems of increasing-returns-to-scale pointed out by Meni.
 
 ## Meni's implementation
 TBD
