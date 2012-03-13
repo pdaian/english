@@ -46,7 +46,7 @@ Hash Difficulty >=
 
 , where 0 <= p < 1. Stake becomes more and more important as p approaches 1. p=0.8 is suggested as an appropriate choice. p=0 is identical to the current proof-of-work system. 
 
-The maximum criteria allows for valid blocks to be generated even if no stakeholders exist, solving the problem of initial distribution.
+If the block is signed by a bitcoin account holding less than 100 satoshi-confirmations, this is treated as if the account held 100 satoshi-confirmations. Thus non-stakeholders are allowed to verify blocks, but relative to stakeholders they must meet extremely stringent difficulty criteria. Permitting non-stakeholders to verify blocks solves the initial distribution problem.
 
 As before the Difficulty Target is a periodically adjusted constant which is set to maintain a target generation rate of 1 block every 10 minutes. 
 
