@@ -66,7 +66,7 @@ Q = A*k^(p)*h^(1-p)
 
 Returns-to-scale in this system are subtle. If you double hashing power at one point in time, then you double the probability that you will find a block in the current hashing round. Therefore, intuitively one might think that doubling hashing power would allow you to generate double the amount of bitcoin generated per unit time on average. However, this is not true. Outcomes in each round of hashing affect outcomes in subsequent rounds of hashing. In this system, failure to find a block in the current period leads to decreased expected waiting time in the next round (since if you fail in the current round you get the consolation prize that the next round will have an easier target). This decrease in future waiting time provides some compensation for not mining the block immediately. Thus, doubling your chance of mining the block immediately does not double your output over a longer period.
 
-# Stylized Example (You get an outcome that works like this when p is close to 1)
+### Stylized Example (You get an outcome that works like this when p is close to 1)
 
 Consider a system where:
 you have a 0% chance of mining coins at less than 6 coin confirmations,
