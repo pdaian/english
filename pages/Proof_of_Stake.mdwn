@@ -1,4 +1,5 @@
-Proof of Stake is a propose alternative mechanism to [[Proof_of_Work]] as a way to mine Bitcoin and sign transactions.
+Proof of Stake is a proposed alternative to [[Proof_of_Work]]. Like proof of work, proof of stake provides a mechanism for determining who signs bitcoin transactions.
+
 It was probablly first proposed [here](https://bitcointalk.org/index.php?topic=27787.0) by Quantum Mechanic. With Proof of Work, the probability of mining a block depends on the work done by the miner (e.g. CPU/GPU cycles spent checking hashes). With Proof of Stake, the resource that's compared is the amount of Bitcoin a miner holds - someone holding 1% of the Bitcoin can mine 1% of the "Proof of Stake blocks".
 
 Some argue that methods based on Proof of Work alone might lead to a low network security due to [[Tragedy_of_the_Commons]], and Proof of Stake is one way of changing the miner's incentives in favor of higher network security.
@@ -7,9 +8,11 @@ Here is [one attempt](https://bitcointalk.org/index.php?topic=37194.msg456773#ms
 
 # Motivation For Proof of Stake
 
-* A proof-of-stake system might provide increased protection from a malicious attack on the network.
-* When block rewards are produced through txn fees, a proof of stake system would result in lower equilibrium txn fees. Lower long-run fees would increase the competiveness of bitcoin relative to alternative payments systems. 
+* A proof-of-stake system might provide increased protection from a malicious attack on the network. Additional protection comes from two sources:
+1) Executing an attack would be much more expensive. 
+2) Reduced incentives for attack. The attacker would need to own a near majority of all bitcoin. Therefore, the attacker suffer severely from his own attack. 
 
+* When block rewards are produced through txn fees, a proof of stake system would result in lower equilibrium txn fees. Lower long-run fees would increase the competiveness of bitcoin relative to alternative payments systems. Intuitively reduced fees are do to vast reductions in the scale of  wastage of resources. 
 ## The Monopoly Problem
 
 If a single entity (hereafter a monopolist) took control of the majority of txn verification resources, he could use these resources to impose conditions on the rest of the network. Potentially, the monopolist could choose to do this in malicious ways, such as double spending or denying service. If the monopolist chose a malicious strategy and maintained his control for a long period, confidence in bitcoin would be undermined and bitcoin purchasing power would collapse. Alternatively, the monopolist could choose to act benevolently. A benevolent monopolist would exclude all other txn verifiers from fee collection and currency generation, but would not try to exploit currency holders in any way. In order to maintain a good reputation, he would refrain from double spends and maintain service provision. In this case, confidence in Bitcoin could be maintained under monopoly since all of its basic functionality would not be affected.
@@ -40,13 +43,51 @@ This suggestion is of a mixed Proof-of-Work / Proof-of-Stake system.
 'Confirmations' are defined as the number of blocks mined since this account's private key was last used to send coins or sign a newly mined block.
 
 ### How the system works
-Under revision to correct problems of increasing-returns-to-scale pointed out by Meni.
+Each block must be signed by its miner using a single bitcoin account. The account used to sign a block must also be the recipient of txn fees and generation from this block. Blocks are mined by proof-of-work hashing as before, but with modified difficulty criteria. The difficulty criterion for block validity is modified as follows: 
+
+Hash generates valid block if and only if
+
+Hash Difficulty >= Difficulty Target  / ( max(Coin-confirmations used to sign block, 100 satoshi-confirmations) )^( p / (1-p))
+
+, where 0 <= p < 1. Stake becomes more and more important as p approaches 1. p=0.8 is suggested as an appropriate choice. p=0 is identical to the current proof-of-work system. 
+
+If the block is signed by a bitcoin account holding less than 100 satoshi-confirmations, this is treated as if the account held 100 satoshi-confirmations. Thus non-stakeholders are allowed to verify blocks, but relative to stakeholders they must meet extremely stringent difficulty criteria. Permitting non-stakeholders to verify blocks solves the initial distribution problem.
+
+As before the Difficulty Target is a periodically adjusted constant which is set to maintain a target generation rate of 1 block every 10 minutes.  
+
+# Does this system exhibit Constant-Returns-to-Scale ?
+
+While the formal theory behind this has yet to be laid out in detail, simulations indicate that the system is fully described by a constant returns-to-scale Cobb-Douglas production function. Generation rate over a long time span is almost perfectly predicted by the following equation, where  Q is generation per unit time, k is the number of coins invested in generation, h is hashing power, A is an arbitrary constant which is inversely proportional to difficulty, and p is the parameter described in the previous section.
+
+Q = A*k^(p)*h^(1-p)
+
+
+# How could we see constant returns to scale here?
+
+Returns-to-scale in this system are subtle. If you double hashing power at one point in time, then you double the probability that you will find a block in the current hashing round. Therefore, intuitively one might think that doubling hashing power would allow you to generate double the amount of bitcoin generated per unit time on average. However, this is not true. Outcomes in each round of hashing affect outcomes in subsequent rounds of hashing. In this system, failure to find a block in the current period leads to decreased expected waiting time in the next round (since if you fail in the current round you get the consolation prize that the next round will have an easier target). This decrease in future waiting time provides some compensation for not mining the block immediately. Thus, doubling your chance of mining the block immediately does not double your output over a longer period. 
+
+# Stylized Example (You get an outcome that works like this when p is close to 1)
+
+Consider a system where:
+you have a 0% chance of mining coins at less than 6 coin confirmations,
+a 50% chance of mining coins at 6 coin confirmations,
+and a 100% chance of mining coins at 7 or more coin confirmations.
+
+Half the time you will mine your coin after 6 confirmations. The other half you will mine your coin after 7. Therefore, it will take 6.5 rounds on average to mine a block.
+
+Now what if you double hashing power. Remember that this doubles your chance of mining a block at any given stage. Now..
+you have a 0% chance of mining coins at less than 6 coin confirmations,
+a 100% chance of mining coins at 6 or more coin confirmations,
+
+Therefore, it will take 6 rounds on average to mine a block.
+
+Here you have doubled hashing power, but only increased average output per unit time by a small amount.
 
 ## Meni's implementation
 TBD
 
 ## Key difference between the two proposals
-In Cunicula's system, voting power is determined by combining (multiplicatively) your hashrate and stake. To be effective you need both to be high (which IMO is very problematic because small players cannot contribute effectively. It's not linear.)
+In Cunicula's system, voting power is determined by combining (multiplicatively) your hashrate and stake. To be effective you need both to be high (which IMO is very problematic because small players cannot contribute effectively. It's not linear.) (Note: Though we are waiting on further testing and hopefully formal mathematical analysis, evidence to date suggests that this is not true. In simulations small players compete equally with large players and the multiplicative combinations of hashrate and stake exhibit constant returns.) 
 
 In Meni's, there's a skeleton based purely on hashrate, and superimposed on it are occasional checkpoints set by stakeholders. You can contribute PoW without having stake, and you can contribute PoS without having work, and in both cases your voting power and reward is linearly proportional to the resources you have.
 
