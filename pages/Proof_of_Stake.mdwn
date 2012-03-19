@@ -86,7 +86,59 @@ Here you have doubled hashing power, but only increased average output per unit 
 Note: in the limit when p -> 1 (that is p approaches pure proof of stake), you approach a situation where you have a 0% chance of mining coins at less than x coin confirmations, but a 100% chance at x+1 coin confirmations, where x depends soley on difficulty. Mining becomes completely deterministic and doubling hashing power has no effect on output at all. Essentially miners take turns to mine blocks. The frequency with which a miner's turn comes up is equal to his ownership share in the total volume of coins actively used for mining. This sounds really good, but a fatal problem arises if participation falls. A fall in participation would make it impossible for anyone to mine blocks. Particularly, worrisome is that if participation is at 100%, a loss of some coins would interrupt the blockchain forever with no possible remedy except location of the missing coins. Even without a loss of coins, simply transferring coins across wallets can disrupt turn-taking and freeze the blockchain forever. For these reasons, it is necessary for block mining to retain a random element and not follow a deterministic, pure proof of stake system, i.e. p can safely be 0.8 or 0.9 or even 0.99, but 0.9999999999999999 would make complete failure of the blockchain a certainty.
 
 ## Meni's implementation
-TBD
+This proposal is for a proof-of-work (PoW) skeleton on which occasional checkpoints set by stakeholders are placed. In one variant, double-spending is prevented by waiting for a transaction to be included in a checkpoint; the variant described here uses cementing to prevent double-spending, and checkpoints to resolve cementing conflicts.
+
+### Proof of work
+Miners use their hashrate to find blocks and build the blockchain exactly as with the pure PoW system. They receive any new generated coins from the block; there will be two kinds of transaction fees, one of which is a mining fee given to the miner who finds the block, just like the PoW transaction fees.
+
+### Signatures
+One block every 100 blocks (a different number can be used instead) is a signature block. When a signature block is found and confirmed with several subsequent blocks, stakeholders (people who have bitcoins) are expected to sign it by using a private key associated with their address which contains coins to sign the block hash. If there are several blocks of the same height, an address should not sign more than one of them. The signatures are broadcast on the network and included in a future block. For every candidate block, the total weight of all signatures is tallied (the weight of an address is determined mostly by the number of coins in it, as of the last signature block). Stakeholders will be able to collect signature fees when providing a signature, proportionally to their weight.
+
+At the basic level, there are no rules to choosing which of several conflicting blocks to sign, stakeholders should just choose one.
+
+### Cementing
+Cementing is a node's reluctance to do a blockchain reorganization. A node will reject any new block found if it contradicts a 6-block deep branch it is already aware of and currently considers valid. That is, once a node receives 6 confirmations for a block, it will not accept a competing block even if it is part of a longer branch.
+
+In a pure PoW system this is problematic to do because a node could be stuck on "the wrong version" - if an attacker isolates the node and feeds him bogus data, it will not embrace the true, longer chain when he learns of it. However, using PoS to have the final say in such situations makes this possible.
+
+### Branch selection
+When a node needs to select which of several branches is valid, it chooses one based on the following criteria in increasing importance (each one is overridden by the next):
+
+1. Branch length (total difficulty of all blocks), as in a PoW system.
+1. Cementing - an already cemented block will not be replaced by a longer branch.
+1. Signatures - even a cemented block will be overridden by a signature block with signature weight more than half the total possible weight by some margin.
+
+If the conflict is so long that it contains more than one spot for a signature block, the conflicting signature blocks will be traversed earliest to latest, each time choosing the branch with the majority vote. After the newest uncontested signature block it proceeds to use cementing and branch length.
+
+A signature block with no clear majority will be considered tied, and will not override the other criteria. Signature fees will not be given out but instead carried over to the next signature spot, to encourage stakeholders to participate then.
+
+### Double spending prevention
+A good level of security can be achieved by waiting for a block to be cemented. By that time it is safe to assume that the network recognizes this block and will not easily switch to a different block, even if a longer branch is presented.
+
+A more authoritative confirmation is enabled by waiting for a signature block. Once a block achieves a majority (and some more time is allowed for this majority to spread in the network), it is extremely unlikely that the network will ever switch away from this block.
+
+### Weights
+The weight of every address starts at 0. When an address provides a signature, its weight increases so that after several signatures, the weight approaches the number of coins in the address as of the last signature block. For example,
+	New weight = 0.9 * Old weight + 0.1 * Balance
+If a signature is not provided by the address in a signature block, its weight decreases:
+	New weight = 0.9 * Old weight
+This way, addresses whose owners do not wish to participate in signing do not hamper the ability to reach a majority.
+
+If an address signs two conflicting blocks, its weight is reset to 0. This is to limit the power of malicious stakeholders.
+
+If coins move to a new address, weight is proportionally taken away from the addressed, but is not transferred to the new address. The new stakeholder will have to build up his weight.
+
+### Malicious stakeholders
+The system is resilient against stakeholders who misuse their signature power, even if they have a majority of the bitcoins. Since their only obligation is to not sign conflicting blocks, the only way they could double-spend is if they first sign one block so it achieves a majority, then sign a different one so that it achieves a bigger majority. Generally this will not work. A short while after a majority is achieved, most of the network will be aware of the relevant signatures. If a different signature is broadcast, the conflict will be detected and both signatures will be ignored. This will cause the current majority block to become tied, but the network is already cemented on it and will vote for this branch in the next signature block. The weight of the attacker will by then reduce to 0 so he will be unable to create more disruption.
+
+Another attack is refusing to sign blocks to keep them tied. Since this causes a decay of the weight, they can only stand in the way of a majority for a short time.
+
+### Denial of service
+The method as described does not solve a denial of service scenario. A majority miner could create only blocks with no transactions (or with many transactions missing) and reject all other blocks.
+
+This may be solvable by adding some measure of the transaction in a block to the selection criteria, such as Bitcoin days destroyed.
+
+Also, proposals to replace the block chain with a directed acyclic graph have been made, and could be used to make it easier to include transactions.
 
 ## Key difference between the two proposals
 In Cunicula's system, voting power is determined by combining (multiplicatively) your hashrate and stake. This would be problematic if small players could not compete effectively with large players. Though we are waiting on a formal mathematical proof, evidence to date suggests that small and large players would have an equal competitive footing. Simulations described in this thread [(1)](https://bitcointalk.org/index.php?topic=68213.msg801253#msg801253) indicate that small players are competitive with large players because the multiplicative combination of hashrate and stake exhibits constant returns. Evidence in the thread suggests that these simulation results are accepted by both Cunicula and Meni.) 
