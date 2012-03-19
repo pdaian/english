@@ -1,29 +1,6 @@
 **importprivkey** is an RPC command on [[bitcoind]] that allows a [[private_key]] to be added to a wallet.
 
-As of September 2011, this command exists only in the form of a patch that must be applied to the main client.
-
-##How to get the patched source
-If you are able to compile the source in Linux, you can download and compile the patched source.
-
-First, use git to get the unpatched source:
-
-	git clone git://github.com/bitcoin/bitcoin.git
-
-Then, change into the source subdirectory within the tree.
-
-	cd bitcoin/src
-
-Then, download the patch:
-
-	curl https://github.com/bitcoin/bitcoin/pull/220.diff > 220.diff
-
-Then apply the patch:
-
-	git apply < 220.diff
-
-Then compile the source
-
-	make -f makefile.unix bitcoind
+This is a Bitcoin 0.6.0 feature and is available in the 0.6 release candidates and later.
 
 ## See also
 
