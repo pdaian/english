@@ -58,7 +58,7 @@ When talking about scripts, these value-pushing words are usually omitted.
 |---|---|---|---|---|---
 |OP_TOALTSTACK|107|0x6b|x1|(alt)x1|Puts the input onto the top of the alt stack. Removes it from the main stack.
 |OP_FROMALTSTACK|108|0x6c|(alt)x1|x1|Puts the input onto the top of the main stack. Removes it from the alt stack.
-|OP_IFDUP|115|0x73|x|x / x x|If the input is true or false, duplicate it.
+|OP_IFDUP|115|0x73|x|x / x x|If the top stack value is not 0, duplicate it.
 |OP_DEPTH|116|0x74|Nothing|<Stack size>|Puts the number of stack items onto the stack.
 |OP_DROP|117|0x75|x|Nothing|Removes the top stack item.
 |OP_DUP|118|0x76|x|x x|Duplicates the top stack item.
