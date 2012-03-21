@@ -19,3 +19,22 @@ In step 2, only OP_CODESEPARATOR before OP_CHECKSIG are removed. In step OP_CODE
 # More info
 
 Maybe add short description from here [[Contracts#Theory]] for all SIGHASH_*? [Mad](User:Mad)
+
+# Code samples and raw dumps 
+
+I think there is some error in the section "Code samples and raw dumps" - The input script is:
+
+"04 11 db 93 e1 dc db 8a 
+01 6b 49 84 0f 8c 53 bc 
+1e b6 8a 38 2e 97 b1 48 
+2e ca d7 b1 48 a6 90 9a 
+5c b2 e0 ea dd fb 84 cc 
+f9 74 44 64 f8 2e 16 0b 
+fa 9b 8b 64 f9 d4 c0 3f 
+99 9b 86 43 f6 56 b4 12 
+a3
+ac"
+
+and should probably be "304402204e45e16932b8af514961a1d3a1a25fdf3f4f7732e9d624c6c61548ab5fb8cd410220181522ec8eca07de4860a4acdd12909d831cc56cbbac4622082221a8768d1d0901", at least according to the Block Explorer:
+http://blockexplorer.com/rawtx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16
+--[ThePiachu](User:ThePiachu) 22:46, 21 March 2012 (GMT)
