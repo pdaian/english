@@ -17,6 +17,8 @@ All API methods are cached for 10 seconds. Do not request results more often tha
 
 Authentication is performed by signing each request using HMAC-SHA512. The request must contain an extra value "nonce" which must be an always incrementing numeric value.  A reference implementation is provided here:
 
+Warning : the API is no more accepting authentication by login/pass ( since 2012 march 1 ) , you _need_ to use an API key.
+
 ### PHP
 <source lang="php">
 <?php
