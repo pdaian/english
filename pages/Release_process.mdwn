@@ -1,0 +1,29 @@
+## Bitcoin Open Source Release Process
+
+Releases to the [[Bitcoin.org client|Original_Bitcoin_client]] project are built and released using this process:
+
+* Labeled in github
+* Binaries are created for the platforms affected (usually all, Windows, Mac and Linux).
+* Binary file checksum(s) is(are) calculated and a message with those are signed by a core developer.
+	* sha256 checksum
+* Uploaded to sourceforge
+* Blog post on Bitcoin.org
+* Forum post on BitcoinTalk.org
+
+##Verifying The Downloads
+
+To verify the checksums, first ensure the checksum file is secure by decrypting the SHA256SUMS.asc file:
+	$ gpg --decrypt SHA256SUMS.asc
+
+Then verify the file checksum:
+	$ openssl dgst -sha256 [release archive](binary)
+
+Verify that the checksum matches the one in SHA256SUMS.asc
+
+##See Also
+
+* [[Development_process]]
+* [[Original_Bitcoin_client]]
+* [[Open source|tags/Open_Source]]
+
+[[!tag "Developer"]]
