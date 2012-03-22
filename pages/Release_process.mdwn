@@ -5,6 +5,7 @@ Releases to the [[Bitcoin.org client|Original_Bitcoin_client]] project are built
 * Labeled in github
 * Binaries are created for the platforms affected (usually all, Windows, Mac and Linux).
 * Binary file checksum(s) is(are) calculated and a message with those are signed by a core developer.
+* Files used to build are checksummed and submitted to the Gitian.sigs project on github.
 	* sha256 checksum
 * Uploaded to sourceforge
 * Blog post on Bitcoin.org
@@ -19,6 +20,12 @@ Then verify the file checksum:
 	$ openssl dgst -sha256 [release archive](binary)
 
 Verify that the checksum matches the one in SHA256SUMS.asc
+
+##External Links
+
+* [Bitcoin.org client source](https://github.com/bitcoin/bitcoin) project on Github
+* [Gitain.sigs](https://github.com/bitcoin/gitian.sigs) Trusted build process signatures on Github
+* [Bitcoin.org](http://bitcoin.org) website with releases
 
 ##See Also
 
