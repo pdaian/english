@@ -4,9 +4,15 @@ The winners are calculated based off of a hash of a block and Mega Millions lott
 
 The Bitcoin transaction hash of the 0.25 BTC purchase is used as the "pick" and to see who sent it, and therefore know where the winnings should go. The algorithm for converting the winning lotto numbers to the characters in the entrant's Bitcoin transaction hash is documented on BitLotto's site.
 
+Multi-ticket purchases may be made in amounts that are multiples of the 0.25 BTC per-ticket price.  For example, sending 1.0 BTC will result in the equivalent of having bought four ticket entries.  Purchase amounts that are not exact multiples of 0.25 BTC are rounded down.  For example, a 0.30 BTC payment would be treated as just one ticket purchase.  Amounts smaller than the minimum 0.25 BTC purchase price are returned as ineligible.
+
 ##History
 
-The service was launched on April 6th, 2011 (2.1). An extended outage occurred for most of the month of December, 2011 after the site was forced to move to a new server hosting provider (2.2).  
+The service was launched on April 6th, 2011 (2.1). An extended outage occurred for most of the month of December, 2011 after the site was forced to move to a new server hosting provider (2.2).
+
+The April 4th, 2012 lotto was the first to accommodate multi-ticket purchases (i.e., send an amount that equals the number of tickets times the per-ticket price) (2.3).
+
+On Marcy 17th, 2012 an affiliate program was introduced which allows ticket purchases using an address assigned to the affiliate.  The affiliate earns a 1% commission on all ticket purchases made towards that affiliates address (2.4).
 
 ##Criticism
 When a winner is paid, the funds are sent to the Bitcoin address that bought the winning entry. <b>If the user buys the ticket using an [[eWallet]] service</b> those funds are lost as any winnings will then go to someone else.  The site does clearly provide a warning about this, however.
@@ -15,13 +21,16 @@ Unlike other [[gambling|tags/Gambling]] sites, BitLotto requires Bitcoin payment
 
 ##External Sites
 
-* [BitLotto](http://bitlotto.com) web site
+* [BitLotto](http://bitlotto.com) website
+* [BitLotto Affiliate](http://bitlotto.com/affiliate.php) website
 * [MegaMillions lottery](http://www.megamillions.com) (source of "winning numbers")
 
 ##References
 
 2.1: [Official launch of *BitLotto* at bitlotto.com](http://www.bitcointalk.org/index.php?topic=5458.0)  
-2.2: [Why is bitlotto down?](http://bitcointalk.org/index.php?topic=54397.0)
+2.2: [Why is bitlotto down?](http://bitcointalk.org/index.php?topic=54397.0)  
+2.3: [Next draw is April 4! March Jackpot was over 100 BTC!](http://bitcointalk.org/index.php?topic=34007.msg806114#msg806114)  
+2.4: [Next draw is April 4! March Jackpot was over 100 BTC!](https://bitcointalk.org/index.php?topic=34007.msg806114#msg806114)
 
 
 [[!tag "Gambling"]]
