@@ -10,14 +10,14 @@ Miners are configured to connect to a P2Pool node that can be run locally, along
 P2Pool nodes work on a chain of shares similar to Bitcoin's blockchain. Each node works on a block that includes payouts to the previous shares' owners and the node itself, which can also result in a share if it meets P2Pool's difficulty.
 
 Because of the importance of strengthening Bitcoin's decentralization, some Bitcoin supporters donate to P2Pool miners, resulting in average returns above 100% of the expected reward.
-However, it should be noted that there are other pools (such as [[BitPenny]] and [[Eligius]]) which provide this same level of decentralization.
+However, it should be noted that there are other pools (such as [[BitPenny]] and [[Eligius]]) which can provide the same level of reduction of the power of the pool operator over the Bitcoin network.
 
 ## Overview
 
 P2Pool shares form a "sharechain" with each share referencing the previous share's hash. Each share contains a standard Bitcoin block header, some P2Pool-specific data that is used to compute the generation transaction (total subsidy, payout script of this share, a nonce, the previous share's hash, and the current target for shares), and a Merkle branch linking that generation transaction to the block header's Merkle hash.
 
 The chain continuously regulates its target to keep generation around one share every ten seconds, just as Bitcoin regulates it to generate one block every ten minutes.
-This means that finding shares becomes more difficult (resulting in higher variance) the more people mine on P2Pool.
+This means that finding shares becomes more difficult (resulting in higher variance) the more people mine on P2Pool, though large miners have the option to raise their difficulty, and so reduce the impact of their mining on P2Pool's minimum difficulty.
 
 Unlike Bitcoin, nodes do not know the entire chain - instead they only hold the last 8640 shares (the last day's worth). In order to prevent an attacker from working on a chain in secret and then releasing it, overriding the existing chain, chains are judged by how much work they have since a point in the past. To ascertain that the work has been done since that point, nodes look at the Bitcoin blocks that the shares reference, establishing a provable timestamp. (If a share points to a block, it was definitely made after that block was made.)
 
@@ -144,6 +144,7 @@ P2Pool uses higher difficulty shares than most centralized pools, so you'll see 
 </pre>
 
 * Setting the username of your miner connecting to P2Pool to a Bitcoin address will make it mine to that address instead of the one requested from bitcoind or set by -a
+* Appending "/1000" to a miner's username will increase the difficulty of producing a P2Pool share to at most 1000. This is useful to large miners because doing this can make it easier for small miners while minimally impacting the large miners themselves. See [recommended values](https://bitcointalk.org/index.php?topic=18313.msg816322#msg816322).
 
 ### Web interface
 
