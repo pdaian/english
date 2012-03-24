@@ -1,7 +1,7 @@
 [[!img "PubKeyToAddr.png" size=120x120 class="right" title="Conversion from ECDSA public key to Bitcoin Address"]]
 This article may be too technical for some users. The more basic article on [[Bitcoin Addresses|Address]] may be more appropriate.
 
-A [[Bitcoin_address]] is a 160-bit hash of the public portion of a public/private [ECDSA](Wikipedia:Elliptic_Curve_DSA) keypair. Using some mathemagic, you can "sign" data with your private key and anyone who knows your public key can verify that the signature is valid. See the [Wikipedia article](Wikipedia:Public-key_crnyptography) for more information about how this works. 
+A [[Bitcoin_address]] is a 160-bit hash of the public portion of a public/private [ECDSA](Wikipedia:Elliptic_Curve_DSA) keypair. Using some mathemagic, you can "sign" data with your private key and anyone who knows your public key can verify that the signature is valid. See the [Wikipedia article](Wikipedia:Public-key_cryptography) for more information about how this works. 
 
 A new keypair is generated for each receiving address. Bitcoin addresses (the public keys) and their associated private keys are stored in the [[wallet]] data file. This is the only file you need to [[back up|backup]]. A "send" transaction to a specific Bitcoin address requires that the corresponding private key exist in the recipient's wallet. This has the implication that if you create a receiving address and receive coins to that address, then restore the wallet from an earlier backup, before the address was generated, then the coins associated with that address are lost.  Addresses are added to an address [[key_pool]] prior to being used for receiving coins. If you lose your wallet entirely, all of your coins are lost and can never be recovered.
 
