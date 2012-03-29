@@ -1,3 +1,5 @@
+<p style="color:red">URGENT: All P2Pool miners must upgrade to P2Pool 0.10.3 before April 1st! See [the forum post](https://bitcointalk.org/index.php?topic=18313.0)</p>
+
 [[!img "P2pool_chain.png‎" size=120x120 size=350x350 class="right" title="Visualization of the P2Pool share chain"]]
 P2Pool is a decentralized [[Bitcoin]] [[mining pool|Bitcoin_Pool]] that works by creating a peer-to-peer network of miner nodes.
 
@@ -23,7 +25,7 @@ Unlike Bitcoin, nodes do not know the entire chain - instead they only hold the 
 
 ### Payout logic
 
-Each share contains a generation transaction that pays to the previous *n* shares, where *n* is the number of shares whose total work is equal to 3 times the average work required to solve a block, or 8640, whichever is smaller. Payouts are weighted based on the amount of work each share took to solve, which is proportional to the p2pool difficulty at that time.
+Each share contains a generation transaction that pays to the previous *n* shares, where *n* is the number of shares whose total work is equal to 3 times the average work required to solve a block, or 8640 (= 24 hours of shares), whichever is smaller. Payouts are weighted based on the amount of work each share took to solve, which is proportional to the p2pool difficulty at that time.
 
 The block reward (currently 50BTC) and the transaction fees are combined and apportioned according to these rules:
 
