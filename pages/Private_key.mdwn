@@ -17,7 +17,7 @@ Nearly every 256-bit number is a valid private key.  Specifically, any 256-bit n
 The range of valid private keys is governed by the [[secp256k1]] ECDSA standard used by Bitcoin.
 
 ##Base 58 Wallet Import format
-When we represent private keys in Bitcoin, however, we use a shorter format known as [[wallet_import_format]], which offers a few advantages.  The wallet import format is shorter, and includes built-in error checking codes so that typos can be automatically detected and/or corrected (which is impossible in hex format).  Wallet import format is the most common way to represent private keys in Bitcoin.  They are 51 characters and always start with the number 5.  This is the same private key in wallet import format.
+When we represent private keys in Bitcoin, however, we use a shorter format known as [[wallet_import_format]], which offers a few advantages.  The wallet import format is shorter, and includes built-in error checking codes so that typos can be automatically detected and/or corrected (which is impossible in hex format).  Wallet import format is the most common way to represent private keys in Bitcoin.  For private keys associated with uncompressed public keys, they are 51 characters and always start with the number 5. Private keys associated with compressed public keys are 52 characters and start with a capital L or K. This is the same private key in wallet import format.
 
 	5Kb8kLf9zgWQnogidDA76MzPL6TsZZY36hWXMssSzNydYXYB9KF
 
