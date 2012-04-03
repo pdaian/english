@@ -32,7 +32,7 @@ She would need to selectively double spend the real ones, but she doesn't know i
 
 *What if Alice uses that same 1 BTC to buy services from somebody else, who won't know she is pledging shares of that same coin in more than one place, where somebody would be shortchanged if both services won the same bitcoin at around the same time?*
 
-This could be solved with hub servers that nanopayment receivers would use to announce coins currently in use.
+This could be solved with hub servers that nanopayment receivers would use to announce coins currently in use to other nanopayment receivers.
 
 When Alice sends her nanopayment transaction to Bob, she would need to use her coin's EC-DSA key to sign a reserve message containing the current time, her coin's hash, and the address she's paying to. Bob sends this message to the hub server to reserve her coin for some predetermined period like 1 minute.
 
