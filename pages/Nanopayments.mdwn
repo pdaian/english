@@ -1,3 +1,5 @@
+*a.k.a. Micropayments*
+
 Nanopayments are tiny payments for a trivial service. For example, 0.0001 BTC for each of three Tor nodes to relay one megabyte of traffic with premium priority.
 
 It should be easy to see that a series of payments like this would be "spam" to Bitcoin, and infeasible due to transaction fees, and unwelcome to everyone who must download and store the whole block chain.
@@ -32,11 +34,13 @@ She would need to selectively double spend the real ones, but she doesn't know i
 
 *What if Alice uses that same 1 BTC to buy services from somebody else, who won't know she is pledging shares of that same coin in more than one place, where somebody would be shortchanged if both services won the same bitcoin at around the same time?*
 
-This could be solved with hub servers that nanopayment receivers would use to announce coins currently in use to other nanopayment receivers.
+This may not be a big enough problem to matter for most casual, low value uses.
+
+If need be, this could be solved with hub servers that nanopayment recipients would use to announce coins currently in use to other nanopayment recipients.
 
 When Alice sends her nanopayment transaction to Bob, she would need to use her coin's EC-DSA key to sign a reserve message containing the current time, her coin's hash, and the address she's paying to. Bob sends this message to the hub server to reserve her coin for some predetermined period like 1 minute.
 
 A hub server would be pretty simple, just a single lookup table. A merchant sends it a reserve message. The server checks that the signature matches the coin. If a reserve is already in effect for that coin, it returns an error, otherwise OK. It adds the reservation to its lookup table and purges it when it expires. Merchants could connect to several hub servers to keep them honest and for redundancy. It would be fitting to pay the hub servers with nanopayments.
 
 
-This article is based on an idea posted by casascius [Sustainable nanopayment idea: Probabilistic Payments](https://bitcointalk.org/index.php?topic=62558)
+This article is based on an idea posted by casascius: [Sustainable nanopayment idea: Probabilistic Payments](https://bitcointalk.org/index.php?topic=62558)
