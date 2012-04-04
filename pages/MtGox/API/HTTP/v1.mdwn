@@ -136,6 +136,18 @@ https://mtgox.com/api/1/generic/public/hotp_gen
 
 used to generate a new HOTP key ( useful for developers )
 
+### App activation
+
+https://mtgox.com/api/1/generic/public/api/activate
+
+parameters:
+
+* key - Activation key
+* name - Device name
+* app - App ID
+
+used in mobile apps to obtain an API key/secret pair. Contact MagicalTux on freenode to obtain an app ID. Activation key comes from the user's account, Settings > Access > Application Access.
+
 ### Merchant System
 
 #### Order Creation
