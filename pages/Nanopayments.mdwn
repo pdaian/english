@@ -43,4 +43,4 @@ When Alice sends her nanopayment transaction to Bob, she would need to use her c
 A hub server would be pretty simple, just a single lookup table. A merchant sends it a reserve message. The server checks that the signature matches the coin. If a reserve is already in effect for that coin, it returns an error, otherwise OK. It adds the reservation to its lookup table and purges it when it expires. Merchants could connect to several hub servers to keep them honest and for redundancy. It would be fitting to pay the hub servers with nanopayments.
 
 
-This article is based on an idea posted by casascius: [Sustainable nanopayment idea: Probabilistic Payments](https://bitcointalk.org/index.php?topic=62558)
+This article is derived from [Sustainable nanopayment idea: Probabilistic Payments](https://bitcointalk.org/index.php?topic=62558) by casascius.
