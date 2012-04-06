@@ -34,7 +34,7 @@ After these bugs were discovered, many currently-unused [[script]] words were di
 
 ## ASCII embedding into blockchain
 
-Security researchers Dan Kaminsky and Travis Goodspeed successfully embedded [extraneous text](http://pastebin.com/raw.php?i=BUB3dygQ) into the blockchain from a mined block.  This was disclosed on July 31, 2011, prior to Kaminsky's presentation at the Black Hat Briefings conference entitled [Black Ops Of TCP/IP 2011](http://www.slideshare.net/dakami/black-ops-of-tcpip-2011-black-hat-usa-2011).
+Security researchers Dan Kaminsky and Travis Goodspeed successfully embedded [extraneous text](http://pastebin.com/raw.php?i=BUB3dygQ) into the blockchain from a mined block which included a [special transaction](http://blockexplorer.com/tx/930a2114cdaa86e1fac46d15c74e81c09eee1d4150ff9d48e76cb0697d8e1d72).  This was disclosed on July 31, 2011, prior to Kaminsky's presentation at the Black Hat Briefings conference entitled [Black Ops Of TCP/IP 2011](http://www.slideshare.net/dakami/black-ops-of-tcpip-2011-black-hat-usa-2011).
 
 Though Block chain embedding should not really be seen as an attack (BitCoin is ultimately a channel by which arbitrary data is validated and retained over time), the ability of users to store arbitrary data in the blockchain is a potential avenue for abuse.  That said, placing arbitrary data in a coinbase does not require additional space on user's drives (as the [[genesis_block]] did).
 [[!tag "Technical"]]
