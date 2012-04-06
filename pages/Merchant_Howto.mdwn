@@ -20,10 +20,10 @@ If you are delivering digital goods or services and want to be able to deliver i
 
 If you keep Bitcoins off your web server, this ensures your wallet cannot be stolen if your web server experiences a security intrusion.  Your risk becomes limited to the possibility that a successful intruder could add his own addresses to your address pool and steal funds from a few incoming orders until you detect the problem, however, this is a relatively controllable risk.
 
-###Using a third-party API
-You can use an existing [[shopping cart interface|tags/Shopping_Cart_Interfaces]] or utilize the Bitcoin client's [[JSON-RPC API|API_tutorial_(JSON-RPC)]] to automatically accept payments.
+###Using a third-party plugin
+You can use an existing [[shopping cart interface|tags/Shopping_Cart_Interfaces]] from a 3rd party to automatically handle all Bitcoin payments on your website.  If you want to develop the system yourself, you can utilize the Bitcoin client's [[JSON-RPC API|API_tutorial_(JSON-RPC)]] to automatically accept payments.
 
-Set up a system that:
+Things to note if you build it yourself:
 
 1. When a customer orders something on your website it records:
 1. * Bitcoin address that payment should be sent to
