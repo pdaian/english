@@ -16,7 +16,7 @@ This is used to prove work on the aux chain. In vinced's original implementation
 
 
 |32 |block_hash |char[[32]]|Hash of the block header
-|? |branch_count |var_int |The number of links to bring the transaction to the block's merkle root
+|? |branch_count |[[var_int|Protocol_specification#Variable_length_integer]]|The number of links to bring the transaction to the block's merkle root
 |32* |branch[]|char[[32]]|Linking merkle branches
 |4 |index |int32_t |Index of this transaction in the merkle tree
 
