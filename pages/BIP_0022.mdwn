@@ -56,6 +56,7 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 |coinbase/append|append the provided coinbase scriptSig
 |coinbase|provide their own coinbase; if one is provided, it may be replaced or modified (implied if "coinbasetxn" omitted)
 |generation|add or remove outputs from the coinbase/generation transaction (implied if "coinbasetxn" omitted)
+|share/coinbase|if the block hash is less than "target", but not less than "fulltarget", only return the block header and coinbase transaction, but only if the other transactions are unmodified from those proposed in the getmemorypool job
 |share/merkle|if the block hash is less than "target", but not less than "fulltarget", only return the block header, coinbase transaction, and merkle tree connecting that transaction to the root (in the form of repeated right-side SHA256 hashes) in "submitblock"
 |share/truncate|if the block hash is less than "target", but not less than "fulltarget", only return the block header in "submitblock"
 |time/increment|change the time header to a value after "time" (implied if "maxtime" or "maxtimeoff" are provided)
