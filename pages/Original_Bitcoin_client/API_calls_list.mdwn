@@ -1,4 +1,4 @@
-Bitcoin API call list (as of version 0.5.0)
+Bitcoin API call list (as of version 0.6.0)
 
 ## Common operations
 
@@ -14,7 +14,9 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 
 
 
+|addmultisigaddress |<nrequired><'[["key","key"]]'> [[account]]|**Currently only available on testnet**Add a nrequired-to-sign multisignature address to the wallet. Each key is a bitcoin address or hex-encoded public key. If [[account]]is specified, assign address to [[account]]. |N
 |backupwallet |<destination>|Safely copies wallet.dat to destination, which can be a directory or a path with filename. |N
+|dumpprivkey |<bitcoinaddress>|Reveals the private key corresponding to <bitcoinaddress>|Y
 |encryptwallet |<passphrase>|Encrypts the wallet with <passphrase>. |N
 |getaccount |<bitcoinaddress>|Returns the account associated with the given address. |N
 |getaccountaddress |<account>|Returns the current bitcoin address for receiving payments to this account. |N
@@ -22,6 +24,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |getbalance |[[account]][[minconf=1]]|If [[account]]is not specified, returns the server's total available balance.<br/>If [[account]]is specified, returns the balance in the account. |N
 
 |getblockcount ||Returns the number of blocks in the longest block chain. |N
+|getblockhash |<index>|Returns hash of block in best-block-chain at <index>|N
 |getblocknumber ||**Deprecated**. Use getblockcount. |N
 |getconnectioncount ||Returns the number of connections to other nodes. |N
 |getdifficulty ||Returns the proof-of-work difficulty as a multiple of the minimum difficulty. |N
@@ -29,12 +32,14 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |gethashespersec ||Returns a recent hashes per second performance measurement while generating. |N
 |getinfo ||Returns an object containing various state info. |N
 |getmemorypool |[[data]]|If [[data]]is not specified, returns data needed to construct a block to work on:* "version" : block version* "previousblockhash" : hash of current highest block* "transactions" : contents of non-coinbase transactions that should be included in the next block* "coinbasevalue" : maximum allowable input to coinbase transaction, including the generation award and transaction fees* "time" : timestamp appropriate for next block* "bits" : compressed target of next blockIf [[data]]is specified, tries to solve the block and returns true if it was successful.|N
+|getmininginfo ||Returns an object containing mining-related information:* blocks* currentblocksize* currentblocktx* difficulty* errors* generate* genproclimit* hashespersec* pooledtx* testnet|N
 |getnewaddress |[[account]]|Returns a new bitcoin address for receiving payments.  If [[account]]is specified (recommended), it is added to the address book so payments received with the address will be credited to [[account]]. |N
 |getreceivedbyaccount |[[account]][[minconf=1]]|Returns the total amount received by addresses with [[account]]in transactions with at least [[minconf]]confirmations. If [[account]]not provided return will include all transactions to all accounts. (version 0.3.24-beta) |N
 |getreceivedbyaddress |<bitcoinaddress>[[minconf=1]]|Returns the total amount received by <bitcoinaddress>in transactions with at least [[minconf]]confirmations. While some might consider this obvious, value reported by this only considers *receiving* transactions. It does not check payments that have been made *from* this address. In other words, this is not "getaddressbalance". Works only for addresses in the local wallet, external addresses will always show 0. |N
 |gettransaction |<txid>|Returns an object about the given transaction containing:* "amount" : total amount of the transaction* "confirmations" :  number of confirmations of the transaction* "txid" : the transaction ID* "time" : time the transaction occurred* "details" - An array of objects containing:	* "account"	* "address"	* "category"	* "amount"|N
 |[[getwork]]|[[data]]|If [[data]]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf [[data]]is specified, tries to solve the block and returns true if it was successful. |N
 |help |[[command]]|List commands, or get help for a command. |N
+|importprivkey |<bitcoinprivkey>[[label]]|Adds a private key (as returned by dumpprivkey) to your wallet. |Y
 |keypoolrefill ||Fills the keypool, requires wallet passphrase to be set. |Y
 |listaccounts |[[minconf=1]]|Returns Object that has account names as keys, account balances as values. |N
 |listreceivedbyaccount |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "account" : the account of the receiving addresses* "amount" : total amount received by addresses with this account* "confirmations" : number of confirmations of the most recent transaction included|N
