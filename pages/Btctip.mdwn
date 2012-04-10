@@ -1,0 +1,40 @@
+##BTCTip
+
+Btctip was launched in beta on March 12th 2012  (2.1), and is a service that allows Twitter users to send bitcoins to each other using a tweet. Visitors can log in the website with only their Twitter account. Through the site interface, they can see your account history, and withdraw and deposit bitcoins.
+
+**Green address deposits**
+
+Users can deposit bitcoins into their Btctip account from a MtGox green address to have their deposit registered with zero-confirmations in about 30 seconds. Non-green-address deposits take three confirmations, or about 30 minutes, to be registered by the site.
+
+**Sending bitcoins**
+
+The format for sending bitcoins is:
+
+1. btctip [[recipient]] [[amount]] [[unit]]
+
+For example:
+
+1. btctip @BobOnTwitter 10 bitcents
+
+The permitted units are bitcoins, bitcents, and millibits.
+
+The variations of each that are recognized by btctip.com are:
+
+bitcoin: bitcoin, bitcoins and btc
+
+bitcent: bitcent, bitcents, and cbtc
+
+millibit: millibit, millibits, and mbtc
+
+Note that , (comma) is treated the same as . (decimal mark), so for example, 10,2 bitcents will be interpreted as 10.2 bitcents.
+
+A user's tweet can contain other text as well, as long as some segment of it contains the tipping command. 
+
+For example, this would be valid:
+
+Great post! #btctip @BobOnTwitter 10 bitcents!
+
+After btctip.com has registered a user's tweet, the Twitter account @btctip will post a tweet verifying the transaction, in the following format:
+
+@Recipient, you received a [[Amount]] BTC tip from @Sender! Log in with Twitter to btctip.com to claim your bitcoin!
+2.1: https://bitcointalk.org/index.php?topic=68320.0
