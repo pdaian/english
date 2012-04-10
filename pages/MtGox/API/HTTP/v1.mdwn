@@ -58,21 +58,40 @@ For multi currency,also returns the primary value,"Y" or "N", the primary curren
 
 A trade can appear in more than one currency, to ignore duplicates, use only the trades having primary =Y
 
-example of returned data : 
+Each trade is described by a JSON structure like the following: 
 <source lang="php">
-{"date":1316312781,
-"price":"3.5599",
-"amount":"3.6900096",
-"price_int":"355990",
-"amount_int":"369000960",
-"tid":"1316312781670700",
-"price_currency":"EUR",
-"item":"BTC",
-"trade_type":"bid",
-"primary":"Y",
-"properties":"limit,mixed_currency"
+{
+	"date":1316312781,
+	"price":"3.5599",
+	"amount":"3.6900096",
+	"price_int":"355990",
+	"amount_int":"369000960",
+	"tid":"1316312781670700",
+	"price_currency":"EUR",
+	"item":"BTC",
+	"trade_type":"bid",
+	"primary":"Y",
+	"properties":"limit,mixed_currency"
 }
 </source>
+
+The meaning of each field is as follows:
+> 
+
+|Name |Value
+|---|---
+|amount |the traded amount in item (BTC), float, deprecated
+|amount_int |the traded amount * 1E8
+|date |unix timestamp of trade
+|item |What was this trade about
+|price |price per unit, float, deprecated
+|price_int |price in smallest unit as integer (5 decimals of USD, 3 in case of JPY)
+|price_currency |currency in which trade was completed
+|tid |Trade id (big integer, which is in fact trade timestamp in microseconds)
+|trade_type |Did this trade result from the execution of a bid or a ask?
+
+
+
 
 ### Cancelled Trades
 
