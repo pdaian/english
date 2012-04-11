@@ -72,7 +72,7 @@ If we can define a good way to publish Alice's  pubkey into the blockchain and 
 
 ##UnSpammable Publication of Senders' Public Keys
 
-Using the Namecoin block-chain, it is possible for the sender to publish their pubkey for secure communication with their friendly address, without also enabling an attacker to make large numbers of desirable user accounts of domains unavailable by publishing ownership over them without the domain owner's permission in the bitcoin block-chain. The scheme, proposed here, would work as follows:
+Using the Namecoin block-chain, it is possible for the sender to publish their pubkey for secure communication with their friendly address, without also enabling an attacker to make large numbers of desirable user accounts of domains unavailable by publishing ownership over them without the domain owner's permission in the bitcoin block-chain. The scheme, proposed [here](https://bitcointalk.org/index.php?topic=74572.msg847022#msg847022), would work as follows:
 
 * A relay server registers example.bit in the namecoin block-chain.
 * The relay server creates a base58(ripemd160("example.bit") +checksum)) hash, and sends a namecoin-bitcent/satoshi/etc to it from the namecoin address that example.bit is registered with at the time, thus publishing the pubkey of example.bit, which will be used to verify its signatures
