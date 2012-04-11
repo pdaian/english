@@ -83,4 +83,4 @@ Using the Namecoin block-chain, it is possible for the friendly address owner to
 * Once Bob finds the spend, he considers the pubkey used for the spend as example.bit's official pubkey for signature verification
 * Bob asks example.bit for a digital signature of alice@example.bit, and uses example.bit's published pubkey to verify the signature was made by example.bit's official privkey
 * Bob scans the bitcoin block-chain for the earliest spend to base58(ripemd160(example.bit-signature("alice@example.bit") +checksum), and obtain's Alice's pubkey
-* There is no way the owners of example.bit could have cheated and given Bob a different signature for alice@example.bit than they gave to Alice when she published her pubkey, because every namecoin address can only ever have one official pubkey, that can never be altered
+* There is no way the owners of example.bit could have cheated and given Bob a different signature for alice@example.bit than they gave to Alice when she published her pubkey, because every namecoin domain can only ever have one official pubkey, that can never be altered
