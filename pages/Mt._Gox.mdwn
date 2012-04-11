@@ -17,6 +17,8 @@ Unfunded orders do not appear in the order book, but are automatically readded i
 
 Mt. Gox charges a trading fee of up to 0.6% from each party of successful trades made through the market.  The fee appears in the account history next to each trade.  The trading fee is discounted for larger customers based on volume, which is calculated as a sliding window over the last 720 hours (30 days).
 
+The fees are, by default, subtracted from the proceeds of each trade (e.g., buying 1.0 BTC will add to the balance 0.994 BTC when the exchange fee is 0.6%).  An account setting will allow fees to be added to the purchase amount (e.g., buying 1.0 BTC at $5 will cost about $5.03 when the exchange fee is 0.6%).
+
 ##Adding Funds
 
 ###BTC
