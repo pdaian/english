@@ -1,0 +1,86 @@
+The 'friendly addresses with enhanced privacy' protocol, [proposed](https://bitcointalk.org/index.php?topic=74572.0) by BubbleBoy, would provide increased privacy and improved usability in bitcoin usage. The proposal in its original form is reproduced here:
+
+##Proposal
+
+It's my opinion that exposing a SHA256 hash to the general public is bad usability. People would much rather publish a friendly address in a format that can easily be dictated over the phone, written down or memorized, similar to the way PayPal/Skrill/Neteller work, where an email address is the identity of the account holder. They would also like to include private payment details with each transaction, such as invoice numbers, and have the option of easily providing a refund when they desire.
+
+Additionally, publishing a single base58 hash *reduces privacy* because it can help trace related payments to that address. A political candidate might not want to disclose the total amount of donations received. As a donor, I wouldn't want my friend and business partners to find out that some of the money they sent me ended up in a well known collection box. Since ECDSA keys are cheap, maximum privacy is achieved when each real world transaction has it's own unique address, and they are not aggregated in a master key, but rather spent individually by the recipient.
+
+Combining the two requirements, I am proposing a distributed online protocol that resolves friendly names to base58 hashes, ensuring at the same time that each transaction has it's own unique address. The protocol works using a trusted 3rd party that acts as an always-on relay point on behalf of the user, similar to an email server. The payload (money / private keys) is not under the server's control, only the public address list and their mapping to a friendly address. Privacy focused individuals who don't want to disclose even the transaction list to a 3rd party can host their own relay server.
+
+A conceptual workflow would go something like this:
+
+* Alice creates a large number of private keys and stores them offline, keeping only the public corresponding public addresses; for space concerns the private keys could be generated based on a single seed that is easy to store
+* Alice creates an account on the relay server, establishes an authentication token, and assigns herself a friendly address: alice@example.com 
+* Using her authentication token, Alice's client periodically contacts the relay server and queries for recent activity related to her account ("activity" will be defined bellow); if the base58 address pool is depleted, for example on first connect, the client uploads fresh keys generated in step 1
+* Alice publishes her friendly address to friends, family, business partners, Bob and Mallory
+* When Bob desires to make a payment to Alice, he enters Alice's friendly address in his client, the amount to send, some description and any other application-specific data
+* Bob's client scans it's wallet and discovers it can match Bob's entered amount exactly by spending three private keys it owns
+* Bob's client parses the address into a server and user part, contacts the relay server via DNS/HTTP and POSTs a request for a transaction. For example the post address and data could go something like this:
+> POST to: https://example.com/relay_server
+> URL-encoded data:
+> user=alice&currency=BTC&amount=500&want_addr=3&description=Paycheck%20December&payer=bob@example.or:g&meta1=value1&meta2=value2&...
+
+* The relay server extracts three of Alice's base58 hashes from the pool of [[i]]available hashes[[/i]], records them in the database of [[i]]used hashes[[/i]] along with the information posted by Bob, and returns the addresses to Bob's client
+* Bob's client makes transactions as usual to the addresses it obtained, and publishes them in the blockchain
+* On the next refresh, Alice's client will contact the server and find what addresses where used, and the associated payer meta information; if the transactions exists in the blockchain, then Alice will be able to see a user friendly entry in her incoming log, that maps all 3 sends to a single entry and shows the associated payer addr and meta information, just like a regular e-wallet
+
+
+For maximum compatibility and easy deployment, the server works on top of DNS and HTTP, but it could be also deployed over Namecoin/Tor. It's also coin agnostic and could be implemented for any other currency besides Bitcoin. If Bob does not want to disclose his IP address to Alice's relay server, he can resolve her friendly name via Tor. It's also optional for Bob to disclose or not his own friendly address under the "payer" POST field.
+
+The system has the advantage that Mallory cannot find anything by queering the relay server. She will obtain a unique and random string that is never used in the blockchain and reveals no information about Alice. The only way to find out more is to send money to Alice and trance them further. But if Alice employs the same protocol when spending the money received from Mallory, then Mallory cannot find **anything** about Alice's other partners. 
+
+The protocol offers the convenience of systems such as PayPal without spamming the blockchain with metadata (payment details); metadata is kept private, known only by the Bob, Alice and the server, and it can also be encrypted to exclude the server. It allows easy refund if the payer chose to disclose a return address; without the payer's friendly address, refunds to a base58 addresses are a bad ideea since there is no guarantee the sender has kept the corresponding private key.
+
+I'm not necessarily keen to have friendly addresses formatted like an email especially since this address would not have email capabilities; The friendly address syntax is yet to be defined and there are a myriad alternatives: alice$example.com, alice^example.com, btc:example.com~alice etc. I've also skimmed over the low level details for server communication since it's too early to lay down the implementation details. Also, DoS by emptying the pool of available hashes should be prevented.
+
+
+**Later edit, April 03, 2012:**
+
+The naive scheme presented above is very vulnerable to a man-in-the middle attack. Alice must trust the relay server, the DNS system, and the SSL provider of example.com; they could conspire to hand out fake keys that are not owned by Alice, seize all of Alice's funds, and log all payment details. 
+
+But the sender and the recipient already have an unforgeable channel at their disposal: the blockchain. Why not use this channel to establish a trusted public key, thus widely reducing the middle man's (relay server) maneuvering capabilities ?
+
+It could go something like this:
+
+* Alice wants the friendly name alice@example.com, and the owners of example.com allow her to register it
+* Alice hashes the friendly name with RIPEMD160, and constructs a globally unique, unspendable bitcoin address: base58(ripemd160("alice@example.com") +checksum),
+* The address is unspendable since it's not a hash of a public key; only Alice and friends know this, and it cannot be detected
+* Alice creates a ECDSA keypair, and uses it to sign a transfer of a few bitcents to the unspendable address
+* Alice has just published ownership of the "alice@example.com" friendly name, with none of the Bitcoin participants seeing anything other than a regular Bitcoin transaction 
+* Bob wants to send Alice some coins; he repeats the ripmend160 hashing and gets to the unspendable address
+* Bob scans his blockchain for spends to this address; it's expected the blockchain is properly indexed for such scans to be cheap
+* He finds the single unspent transaction made by Alice, thus obtains her public key
+* He contacts the relay server @example.com, and uses the Alice's ECDSA public key to cut the middle man out of the loop:
+* The transaction metadata is passed to the relay server as a binary blob, encrypted for Alices's private key using ECIES
+* Each address previously uploaded by Alice to the relay server is signed, so Bob can have full confidence Alice gets the money
+
+Using this scheme, Alice maintains good privacy (she publishes a hashed version of her address), and does not have to trust the relay server with her money or personal data. 
+
+What happens if Mallory finds Alice's friendly address, and broadcasts her own transaction to base58(ripemd160("alice@example.com") +checksum), with her own public key ? Bob should accept only the first valid transaction, and ignore later ones. This has the disadvantage that if Alice looses her initial keypair, "alice@example.com" is unusable for eternity. A more complex scheme could be devised where updates, revokes and reuse can be enabled.
+
+What about address colisions ? RIPEMD160 80 bits of collision resistance should offer sufficient protection against accidental collisions; for deliberate collisions, we are exactly in the previous situations and the protocol should prevent it.
+
+There seem to be at least two similar but-incompatible schemes for doing what I proposed above as the "naive approach". Here I was thinking I am being original :):
+
+* https://en.bitcoin.it/wiki/BIP_0015
+* http://ecdsa.org/bitcoin_URIs.html
+
+Judging by [discussion in the mailing list](http://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg00419.html), BIP15 was deferred because it lacked a clear way to authenticate the relay (alias) server. HTTPS is not enough.
+The electrum proposal tries to do some authentication, using an undefined "trusted authority". Not very useful.
+If we can define a good way to publish Alice's  pubkey into the blockchain and use it further to authenticate and encrypt the exchange, we are making progress towards a working protocol. Coin destruction and spamming should be kept to a minimum or zero.
+
+##UnSpammable Publication of Senders' Public Keys
+
+Using the Namecoin block-chain, it is possible for the sender to publish their pubkey for secure communication with their friendly address, without also enabling an attacker to make large numbers of desirable user accounts of domains unavailable by publishing ownership over them without the domain owner's permission in the bitcoin block-chain. The scheme, proposed here, would work as follows:
+
+* A relay server registers example.bit in the namecoin block-chain.
+* The relay server creates a base58(ripemd160("example.bit") +checksum)) hash, and sends a namecoin-bitcent/satoshi/etc to it from the namecoin address that example.bit is registered with at the time, thus publishing the pubkey of example.bit, which will be used to verify its signatures
+* When Alice is registering alice@example.bit, the relay server creates a digital signature for "alice@example.bit" using the privkey of the example.bit pubkey published in the namecoin block-chain, and sends it to Alice through a secure channel
+* Alice creates a bitcoin transaction, sending one bitcent/satoshi/etc to base58(ripemd160(example.bit-signature("alice@example.bit") +checksum)), thus publishing her public key.
+* When Bob wants to make a payment to alice@example.bit, he scans the namecoin block-chain for the earliest spend to base58(ripemd160("example.bit") +checksum))
+* He checks if the spend came from the namecoin address that example.bit was registered at at the time of the spend, and if it didn't, he looks for the next earliest spend, and does this until he finds a spend to base58(ripemd160("example.bit") +checksum)) that came from example.bit's namecoin address
+* Once Bob finds the spend, he considers the pubkey used for the spend as example.bit's official pubkey for signature verification
+* Bob asks example.bit for a digital signature of alice@example.bit, and uses example.bit's published pubkey to verify the signature was made by example.bit's official privkey
+* Bob scans the bitcoin block-chain for the earliest spend to base58(ripemd160(example.bit-signature("alice@example.bit") +checksum), and obtain's Alice's pubkey
+* There is no way for the owners of example.bit could have cheated and given Bob a different signature for alice@example.bit than they gave to Alice when she published her pubkey, because every namecoin address can only ever have one official pubkey, that can never be altered
