@@ -70,7 +70,7 @@ Judging by [discussion in the mailing list](http://www.mail-archive.com/bitcoin-
 The electrum proposal tries to do some authentication, using an undefined "trusted authority". Not very useful.
 If we can define a good way to publish Alice's  pubkey into the blockchain and use it further to authenticate and encrypt the exchange, we are making progress towards a working protocol. Coin destruction and spamming should be kept to a minimum or zero.
 
-##UnSpammable Publication of Senders' Public Keys
+##UnSpammable Publication of Friendly Address Owners' Public Keys
 
 Using the Namecoin block-chain, it is possible for the sender to publish their pubkey for secure communication with their friendly address, without also enabling an attacker to make large numbers of desirable user accounts of domains unavailable by publishing ownership over them without the domain owner's permission in the bitcoin block-chain. The scheme, proposed [here](https://bitcointalk.org/index.php?topic=74572.msg847022#msg847022), would work as follows:
 
