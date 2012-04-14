@@ -275,6 +275,8 @@ For maximum flexibility, a work-sharing chain's block acceptance algorithm might
 
 This design would even support plain Bitcoin proof of work, where the "header" consists of all [[Bitcoin block header fields|Protocol_Specification#block]] except the nonce, and the proof-of-work script simply appends the nonce.  Thus, one can think of the work-sharing rules as an extension of the original Bitcoin rules.
 
+Note that any naive implementation of this idea would let people create proofs-of-work by including data in a Bitcoin transaction, which would be accepted into a block.
+
 ##External Links
 
 * [BitDNS in the words of Satoshi](https://bitcointalk.org/index.php?topic=6197.0)
