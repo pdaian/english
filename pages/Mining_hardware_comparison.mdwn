@@ -10,14 +10,6 @@ The table shows (mostly) stock clock numbers. 10-20% performance improvement can
 * Clock (in MHz) refers to the Shader clock only with nVidia cards (not Core or Memory). With AMD card the shader clock is not separate, but is part of the GPU clock.
 * SP = Stream processors (Shader Units)
 
-##FPGAs
-
-
-|Model |Price |Availability |Avg. Mhash/s |Mhash/J |Mhash/s/$
-|---|---|---|---|---|---
----|BitForce Single|$700||820||
-
-
 ##Graphics cards
 ### Popular Mining Cards
 This information has been included to make choosing a card easier. The cards selected are generally readily available online. Once you have purchased a card or cards, use the tables below to compare different configurations and setups.
@@ -29,7 +21,7 @@ V1.5 - 1 Jan, 2012 - by. Joseph Woodrell
 #### Single Card Setups
 
 
-|Model |Price  (6.1)|Availability |Avg. Mhash/s |Mhash/J |Mhash/s/$
+|Model |Price  (5.1)|Availability |Avg. Mhash/s |Mhash/J |Mhash/s/$
 |---|---|---|---|---|---
 ---|5770|$136|Moderate|212.83|1.45|1.56 
 ---|5830|$92|Moderate|302|1.68|3.28
@@ -479,7 +471,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 
 
 <references>
- (8.1)
+ (7.1)
 </references>
 
 ###Nvidia
@@ -801,8 +793,8 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 
 
 <references>
- (13.1)
- (13.2)
+ (12.1)
+ (12.2)
 </references>
 
 ###Other
@@ -828,19 +820,19 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 
 |Board |Cores |Mhash/s |Mhash/J |Mhash/s/$ |Power [[W]]|Board price |Clock |Version |FPGA Model |Comment	
 |---|---|---|---|---|---|---|---|---|---|---
-|Terasic DE2-115 |1 |80 |18.18 |0.13 |4.4 |$595 ($299 academic)  (15.1)|80 MHz |fpgaminer 0.03 |Altera EP4CE115C7 |Unoptimized Pipelined Version
-|Terasic DE2-115 |1 |109 ||0.18 ||$595 ($299 academic)  (15.2)|109 MHz |fpgaminer 0.03-makomk |Altera EP4CE115C7 |Makomk's Improvements
-|XUPV5-LX110T |1 |120 ||0.06 ||$1999 ($750 academic)  (15.3)|120 MHz |fpgaminer virtex5 |Xilinx XC5VLX110T-1FF1136 |Original non-configurable fully-unrolled Xilinx VHDL Design
-|Digilent Nexys 2 500K |1 |3.125 |4.0 |0.02 |0.78 |$149 ($99 academic)  (15.4)|100 MHz |fpgaminer Verilog Xilinx port |Xilinx XC3S500E-FG320-5 |
-|Avnet Spartan-6 LX150T Development Kit |1 |100 |~25 ||~4.0 |$995  (15.5)|100 MHz |fpgaminer makomk Xilinx port |Xilinx XC6SLX150T-3FGG676 |-3N 484-pin chip is ~$150, 0.67Mhash/s/$
+|Terasic DE2-115 |1 |80 |18.18 |0.13 |4.4 |$595 ($299 academic)  (14.1)|80 MHz |fpgaminer 0.03 |Altera EP4CE115C7 |Unoptimized Pipelined Version
+|Terasic DE2-115 |1 |109 ||0.18 ||$595 ($299 academic)  (14.2)|109 MHz |fpgaminer 0.03-makomk |Altera EP4CE115C7 |Makomk's Improvements
+|XUPV5-LX110T |1 |120 ||0.06 ||$1999 ($750 academic)  (14.3)|120 MHz |fpgaminer virtex5 |Xilinx XC5VLX110T-1FF1136 |Original non-configurable fully-unrolled Xilinx VHDL Design
+|Digilent Nexys 2 500K |1 |3.125 |4.0 |0.02 |0.78 |$149 ($99 academic)  (14.4)|100 MHz |fpgaminer Verilog Xilinx port |Xilinx XC3S500E-FG320-5 |
+|Avnet Spartan-6 LX150T Development Kit |1 |100 |~25 ||~4.0 |$995  (14.5)|100 MHz |fpgaminer makomk Xilinx port |Xilinx XC6SLX150T-3FGG676 |-3N 484-pin chip is ~$150, 0.67Mhash/s/$
 |Terasic DE0-Nano |1 |6.25 |?? |0.08 |?? |79$ |50 MHz |Makomk-partial-unroll-speed, LOG2_LOOP=3 |Altera EP4CE22F17C6 |16k LEs from 22k used
-|Xilinx ML605 development kit |3 |375 |23 |0.21 |16 |$1795  (15.6)|125MHz |Modified verilog xilinx fpga miner port (modified for 3 cores, a PCIe interface and use of DSP48s)|Xilinx XC6VLX240T-1FFG1156 |Uses PCIe interface instead of serial interface. ML605 power manager must have its current limit increased to meet power demands.  DSP48s used to reduce logic resources.
-|Bitcoin Dominator X5000 |1 |100  |14.7 |0.23 |6.8 |$440  (15.7)|100 MHz ||Xilinx XC6SLX150-3FG484 |
-|[X6500 FPGA Miner](http://fpgamining.com)|1 |400 |24.45 |0.71 |16.36 |$560  (15.8)|200 MHz |ztexmerge_200MHz |Xilinx XC6SLX150-3FG484 x2 |See  (15.9)for bitstreams and frequencies
-|[Icarus](http://en.qi-hardware.com/wiki/Icarus)|1 |380 |19 |0.66 |20 |$569  (15.10)|190 MHz |Bitstream V3 |Xilinx XC6SLX150-2FGG484I |
-|[ZTEX USB-FPGA Module 1.15b](http://www.ztex.de/usb-fpga-1/usb-fpga-1.15.e.html)|1 |90  |18.0 |0.25 |5.0 |$364  (15.11)|184 MHz |[BTCMiner](http://www.ztex.de/btcminer)-120208 |Xilinx XC6SLX75-3 |single unit price including Experimental Board 1.3 as baseboard |
-|[ZTEX USB-FPGA Module 1.15x](http://www.ztex.de/usb-fpga-1/usb-fpga-1.15x.e.html)|1 |210  |22.3 |0.82-0.5 |9.4 |$255-$420  (15.12)|210 MHz |[BTCMiner](http://www.ztex.de/btcminer)-120208 |Xilinx XC6SLX150-3/-N3 |See  (15.13)for prices |
-|[BitForce SHA256 Single](http://www.butterflylabs.com/product-details/)||832 +/-10% |10.4 |1.38 |80 |$599  (15.14)|||BitForce SHA256 |See  (15.15)for product details
+|Xilinx ML605 development kit |3 |375 |23 |0.21 |16 |$1795  (14.6)|125MHz |Modified verilog xilinx fpga miner port (modified for 3 cores, a PCIe interface and use of DSP48s)|Xilinx XC6VLX240T-1FFG1156 |Uses PCIe interface instead of serial interface. ML605 power manager must have its current limit increased to meet power demands.  DSP48s used to reduce logic resources.
+|Bitcoin Dominator X5000 |1 |100  |14.7 |0.23 |6.8 |$440  (14.7)|100 MHz ||Xilinx XC6SLX150-3FG484 |
+|[X6500 FPGA Miner](http://fpgamining.com)|1 |400 |24.45 |0.71 |16.36 |$560  (14.8)|200 MHz |ztexmerge_200MHz |Xilinx XC6SLX150-3FG484 x2 |See  (14.9)for bitstreams and frequencies
+|[Icarus](http://en.qi-hardware.com/wiki/Icarus)|1 |380 |19 |0.66 |20 |$569  (14.10)|190 MHz |Bitstream V3 |Xilinx XC6SLX150-2FGG484I |
+|[ZTEX USB-FPGA Module 1.15b](http://www.ztex.de/usb-fpga-1/usb-fpga-1.15.e.html)|1 |90  |18.0 |0.25 |5.0 |$364  (14.11)|184 MHz |[BTCMiner](http://www.ztex.de/btcminer)-120208 |Xilinx XC6SLX75-3 |single unit price including Experimental Board 1.3 as baseboard |
+|[ZTEX USB-FPGA Module 1.15x](http://www.ztex.de/usb-fpga-1/usb-fpga-1.15x.e.html)|1 |210  |22.3 |0.82-0.5 |9.4 |$255-$420  (14.12)|210 MHz |[BTCMiner](http://www.ztex.de/btcminer)-120208 |Xilinx XC6SLX150-3/-N3 |See  (14.13)for prices |
+|[BitForce SHA256 Single](http://www.butterflylabs.com/product-details/)||832 +/-10% |10.4 |1.38 |80 |$599  (14.14)|||BitForce SHA256 |See  (14.15)for product details
 
 
 <references>
@@ -859,22 +851,22 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 	* [Bitcoin Mining Power Costs Compared](http://www.pcper.com/reviews/Graphics-Cards/Bitcoin-Mining-Update-Power-Usage-Costs-Across-United-States)
 
 [[!tag "Mining"]]
-6.1: Price from http://ebay.com/ on 2012-02-10 using an average of completed items, minus the top and bottom 20% to avoid spikes and give a truer average.  
-8.1: $ Prices from http://www.amazon.com on 2011-06-25  
-13.1: $ Prices from http://www.amazon.com on 2011-06-25  
-13.2: € Prices from http://geizhals.at/eu on 2011-06-25  
-15.1: price from http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=502 on 2011-06-26  
-15.2: Price from http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=502 on 2011-06-26  
-15.3: Price from http://www.digilentinc.com/Products/Detail.cfm?NavPath=2,400,795&Prod=XUPV5 on 2011-06-26  
-15.4: Price from http://www.digilentinc.com/Products/Detail.cfm?Prod=NEXYS2 on 2011-06-26  
-15.5: Price from http://www.xilinx.com/products/boards-and-kits/AES-S6DEV-LX150T-G.htm on 2011-07-26  
-15.6: Price from Avnet on Aug 11, 2011  
-15.7: Price from https://bitcointalk.org/index.php?topic=37904.0  
-15.8: Price from https://bitcointalk.org/index.php?topic=40058.0  
-15.9: http://fpgamining.com/bitstreams/  
-15.10: Price from https://bitcointalk.org/index.php?topic=51371.0  
-15.11: http://shop.ztex.de  
-15.12: https://bitcointalk.org/index.php?topic=49180.0  
-15.13: https://bitcointalk.org/index.php?topic=49180.0  
-15.14: Price from http://www.butterflylabs.com/products/  
-15.15: http://www.butterflylabs.com/product-details/
+5.1: Price from http://ebay.com/ on 2012-02-10 using an average of completed items, minus the top and bottom 20% to avoid spikes and give a truer average.  
+7.1: $ Prices from http://www.amazon.com on 2011-06-25  
+12.1: $ Prices from http://www.amazon.com on 2011-06-25  
+12.2: € Prices from http://geizhals.at/eu on 2011-06-25  
+14.1: price from http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=502 on 2011-06-26  
+14.2: Price from http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=502 on 2011-06-26  
+14.3: Price from http://www.digilentinc.com/Products/Detail.cfm?NavPath=2,400,795&Prod=XUPV5 on 2011-06-26  
+14.4: Price from http://www.digilentinc.com/Products/Detail.cfm?Prod=NEXYS2 on 2011-06-26  
+14.5: Price from http://www.xilinx.com/products/boards-and-kits/AES-S6DEV-LX150T-G.htm on 2011-07-26  
+14.6: Price from Avnet on Aug 11, 2011  
+14.7: Price from https://bitcointalk.org/index.php?topic=37904.0  
+14.8: Price from https://bitcointalk.org/index.php?topic=40058.0  
+14.9: http://fpgamining.com/bitstreams/  
+14.10: Price from https://bitcointalk.org/index.php?topic=51371.0  
+14.11: http://shop.ztex.de  
+14.12: https://bitcointalk.org/index.php?topic=49180.0  
+14.13: https://bitcointalk.org/index.php?topic=49180.0  
+14.14: Price from http://www.butterflylabs.com/products/  
+14.15: http://www.butterflylabs.com/product-details/
