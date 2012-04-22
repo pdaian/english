@@ -1,3 +1,5 @@
+Incidents in which a problem with the protocol was discovered or where the client mishandled the protocol, either of which were newsworthy or resolution required updated client software.
+
 ## LSHIFT and RETURN bugs
 
 On July 28 2010 two bugs were discovered and demonstrated on the test network.  The first caused bitcoin to crash on some machines when processing a transaction containing an OP_LSHIFT.  The second exploited another bug in the transaction handling code and allowed an attacker to spend coins that they did not own.  Neither were exploited on the main network, and both were fixed by Bitcoin version 0.3.5.
@@ -38,4 +40,5 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 Occurred July 30, 2011. Security researchers Dan Kaminsky and Travis Goodspeed successfully embedded [extraneous text](http://pastebin.com/raw.php?i=BUB3dygQ) into the blockchain from a mined block which included a [special transaction](http://blockexplorer.com/tx/930a2114cdaa86e1fac46d15c74e81c09eee1d4150ff9d48e76cb0697d8e1d72).  This was disclosed on July 31, 2011, prior to Kaminsky's presentation at the Black Hat Briefings conference entitled [Black Ops Of TCP/IP 2011](http://www.slideshare.net/dakami/black-ops-of-tcpip-2011-black-hat-usa-2011).
 
 Though Block chain embedding should not really be seen as an attack (BitCoin is ultimately a channel by which arbitrary data is validated and retained over time), the ability of users to store arbitrary data in the blockchain is a potential avenue for abuse.  That said, placing arbitrary data in a coinbase does not require additional space on user's drives (as the [[genesis_block]] did).
+
 [[!tag "Technical"]]
