@@ -87,6 +87,8 @@ version is recent or if the local node does not yet have 1000 addresses.
 
 ###IRC Addresses
 
+As of version 0.6.x the Bitcoin client no longer uses IRC bootstrapping by default.  This documentation below is accurate for most prior versions.
+
 In addition to learning and sharing its own address, the node
 learns about other node addresses via an IRC channel. See irc.cpp.
 After learning its own address, a node encodes its own address into a string
@@ -100,7 +102,6 @@ When the client discovers an address from IRC, it sets the timestamp
 on the address to the current time, but it uses a "penalty"
 of 51 minutes, which means it looks like it was actually seen
 almost an hour ago.
-
 
 ###DNS Addresses
 Upon startup, the client makes DNS requests to hard coded DNS names
