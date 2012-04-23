@@ -93,24 +93,6 @@ https://mtgox.com/api/0/redeemBtcPrivkey.php
 "key":code
 "keytype":"auto"
 "description":description
-"token":session_token
-
-javascript example :
-<source lang="javascript">
-	function onPrivatekey()
-	{
-	if(tb.isConnected())
-	{
-	var code=$('#privateKey').val();
-	var description=$('#privateKeyDescription').val();$('#status').text("Sending code"+'...').show();$('#error').text(*).hide();
-	$.post("/api/0/redeemBtcPrivkey.php",{"key":code,"keytype":"auto","description":description,"token":session_token},onServer,"json");
-	}else
-	{
-	$('#error').text("Really you must be logged in to add funds!").fadeIn();
-	}
-	return(false);
-	}
-</source>
 
 ### 0/withdraw.php
 withdraw / Send BTC
