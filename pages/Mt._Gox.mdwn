@@ -36,10 +36,35 @@ There are no fees incurred when adding [[Liberty_Reserve]] LRUSD funds to an acc
 
 Dwolla is among the fastest and least expensive methods for adding funds to a Mt. Gox account. The transaction fee on [[Dwolla]] is merely $0.25. The process is automated and the funds become available for trading within an hour (8.1).
 
+###OKPay
+
+OKPay may be used for depositing funds to USD, EUR, GBP, CHF, and RUB (9.1).
+
 ###Bank Wire
 
 ####International USD
 Funds in USD may be wired to the exchange's bank in Japan. Each wire is subject to a per-wire fee plus any intermediate fees.  
+
+####International Wire
+
+An account can be configured with a wallet for each of the currencies that the exchange supports (12.1).  When a wire is received in one of these currencies, that account will be credited.
+
+* USD - U.S. Dollar 
+* EUR - Euro (SEPA or Int'l wire)
+* CAD - Canadian Dollar
+* GBP - British Pound (Domestic or Int'l wire)
+* CHF - Swiss Francs
+* RUB - Russian Rubles
+* AUD - Australian Dollars
+* SEK - Swedish Krona
+* DKK - Danish Krona
+* HKD - Hong Kong Dollars
+* PLN - Polish Zloty (Domestic or Int'l wire)
+* CNY - Chinese Yuan
+* SGD - Singapore Dollars
+* TBH - Thai Baht
+* NZD - New Zealand Dollars
+* JPY - Japanese Yen (Domestic or Int'l wire)
 
 ####AurumXChange USD, EUR and CAD
 
@@ -48,7 +73,7 @@ Funds may be wired to [[AurumXChange_Company]] as USD, EUR or CAD (the latter tw
 ###Direct Deposit
 ####EU
 
-Funds in EUR may be added using SEPA Direct Debit for free, with funds convert to USD at the current ECB rate at the time the funds are received (13.1).
+Funds in EUR may be added using SEPA Direct Debit for free, with funds convert to USD at the current ECB rate at the time the funds are received (15.1).
 
 ####U.S.
 
@@ -64,7 +89,7 @@ Funds may be sent using direct deposit (BPay) for a AU$2.00 per-deposit fee.  Th
 
 ##Withdrawing Funds
 
-MtGox imposes a $1,000 USD limit for withdrawals per 24 hours and a $10,000 USD limit for withdrawals per month with most non-verified accounts.  Bitcoins withdrawn are counted toward this limit as well and the USD value is calculated at the market rate at the time of the attempted withdrawal.  Customers that have been Verified have higher limits and customers that have Trusted status have limits even higher (17.1).  Any [[account-to-account transfers|MtGox#Transfers_to_Other_Customers]] made also count toward this limit as well.
+MtGox imposes a $1,000 USD limit for withdrawals per 24 hours and a $10,000 USD limit for withdrawals per month with most non-verified accounts.  Bitcoins withdrawn are counted toward this limit as well and the USD value is calculated at the market rate at the time of the attempted withdrawal.  Customers that have been Verified have higher limits and customers that have Trusted status have limits even higher (19.1).  Any [[account-to-account transfers|MtGox#Transfers_to_Other_Customers]] made also count toward this limit as well.
 
 Requests for higher withdrawal limits may be submitted by email
 
@@ -77,7 +102,7 @@ Recently, a number of Mt.Gox's user accounts were suspended. Mt.Gox has posted o
 
 "As a result of recently implemented tightened security measures which have identified these accounts as showing suspicious activity. These measures have been brought into place at the insistence of a number of banking and policing entities after an increase in the incidence of fraud, phishing attacks and money laundering being carried out using bitcoins to mask illegal transactions."
 
-Mt.Gox requires users who have had their accounts suspended to submit personal identification such as a passport or driver's licence to get access to their funds. While a number of users have experienced delays in having their account unsuspended, Mt.Gox claims that this is due to an increase in workload reviewing submitted IDs, and that all accounts whose owners submit identification will be unsuspended in due time. (18.1)
+Mt.Gox requires users who have had their accounts suspended to submit personal identification such as a passport or driver's licence to get access to their funds. While a number of users have experienced delays in having their account unsuspended, Mt.Gox claims that this is due to an increase in workload reviewing submitted IDs, and that all accounts whose owners submit identification will be unsuspended in due time. (20.1)
 
 ###Dwolla
 
@@ -94,7 +119,7 @@ There have been sporadic reports where withdrawing the entire bitcoin balance re
 
 There are two fees incurred when withdrawing LRUSD.  Mt. Gox themselves subtracts 1% of the transfer amount as a fee before transferring away.  Liberty Reserve then subtracts as a transfer fee 1% from the amount they've received.
 
-For example, to withdraw $100 LRUSD, Mt. Gox will send $99 ($100 less a 1% fee) (21.1)  Liberty Reserve will subtract $0.99 ($99 less a 1% fee) leaving a net amount at Liberty Received of $98.01.
+For example, to withdraw $100 LRUSD, Mt. Gox will send $99 ($100 less a 1% fee) (23.1)  Liberty Reserve will subtract $0.99 ($99 less a 1% fee) leaving a net amount at Liberty Received of $98.01.
 
 ###AurumXChange USD, EUR and CAD
 
@@ -112,6 +137,10 @@ You may withdraw any amount as a direct deposit to your bank.  There is a 2% fee
 ####Australia
 
 A per-withdrawal fee is subtracted and the remaining amount is converted to AUD and sent through Technocash.
+
+###International Wire
+
+Fee applies.
 
 ##Transfers to Other Customers
 
@@ -164,19 +193,19 @@ Mt Gox offers an [[API|MtGox/API]] which can be used to automate operations.
 Online sellers can accept bitcoins for payment using the Mt. Gox's E-commerce Solution, which is an interface to the exchange's [[Merchant System API|MtGox/API/HTTP/v1#Merchant_System]].
 
 ##History
-The exchange went online on July 18, 2010. (38.1)
+The exchange went online on July 18, 2010. (41.1)
 
 On October 10, 2010 the exchange switched from [[PayPal]] to Liberty Reserve as the main funding option as a result of this attack. Former PayPal customers still had the possibility to withdraw their USD using alternative methods.
 
-On March 6th, 2011 ownership of the exchange changed hands (38.2).  Tibanne publishes their [company certificate](http://legal.tibanne.com/docs/20110801_company_certificate.pdf) from the Japanese government.
+On March 6th, 2011 ownership of the exchange changed hands (41.2).  Tibanne publishes their [company certificate](http://legal.tibanne.com/docs/20110801_company_certificate.pdf) from the Japanese government.
 
-On June 19, 2011 the service experienced a significant security breach (38.3).  The incident caused a selloff down to BTC/USD of $0.01 due to fraudulent trading.  The site was disabled and all trading following the point that fraudulent trading began was rolled back. Complicating this breach was the release of a list of the exchange's accounts including username, email address and a password hash, which forced the exchange to implement an account recovery method for customers to regain control of their accounts.
+On June 19, 2011 the service experienced a significant security breach (41.3).  The incident caused a selloff down to BTC/USD of $0.01 due to fraudulent trading.  The site was disabled and all trading following the point that fraudulent trading began was rolled back. Complicating this breach was the release of a list of the exchange's accounts including username, email address and a password hash, which forced the exchange to implement an account recovery method for customers to regain control of their accounts.
 
 In July, 2011 it was observed that the exchange no longer allows new registrations to occur without having a valid e-mail address.
 
-On July 19, 2011 a press release announced that MtGox had acquired [[MtGox_Live]]. (38.4)
+On July 19, 2011 a press release announced that MtGox had acquired [[MtGox_Live]]. (41.4)
 
-Announced on March 6, 2012 was the Merchant Solution and API (38.5)
+Announced on March 6, 2012 was the Merchant Solution and API (41.5)
 
 ##See Also
 
@@ -195,15 +224,17 @@ Announced on March 6, 2012 was the Merchant Solution and API (38.5)
 1.1: 2011-06-07 on #bitcoin-otc: "MagicalTux: you could use the count of users on mtgox (went over 30k recently)"  
 6.1: [How long does it take to Deposit bitcoins to MtGox?](http://www.bitcoin.org/smf/index.php?topic=3851.msg55220#msg55220)  
 8.1: [Dwolla to Mt. Gox vs. Dwolla to TradeHill](http://forum.bitcoin.org/index.php?topic=15107.msg205622#msg205622)  
-13.1: [MTGox: Euro deposits](http://www.bitcoin.org/smf/index.php?topic=5461.0)  
-17.1: [MtGox - trusted vs verified](http://bitcoin.stackexchange.com/questions/2442/mtgox-trusted-vs-verified)  
-18.1: [Security Measures Explained](https://mtgox.zendesk.com/entries/20471711-security-measures-explained)  
-21.1: One member of [[Bitcoin-otc]] reports that this appears to be a 0.99% fee, not a 1.0%.  
-38.1: [MtGox announcement on forum](http://www.bitcoin.org/smf/index.php?topic=444.0)  
-38.2: [Mtgox is changing owners](http://www.bitcoin.org/smf/index.php?topic=4187.0)  
-38.3: [Huge Bitcoin sell off due to a compromised account - rollback](https://support.mtgox.com/entries/20224998-huge-bitcoin-sell-off-due-to-a-compromised-account-rollback)  
-38.4: [World's Leading Bitcoin Exchange, Mt.Gox, acquires MtGoxLive.com](https://mtgox.com/press_release_20110719.html)  
-38.5: [Mt.Gox launches the definitive bitcoin checkout solution](https://mtgox.com/press_release_20120306.html)
+9.1: [OKPAY](https://support.mtgox.com/entries/21034626-okpay)  
+12.1: [Mt.Gox Opens 15 New Currency Markets](https://mtgox.zendesk.com/entries/20413328-mt-gox-opens-15-new-currency-markets)  
+15.1: [MTGox: Euro deposits](http://www.bitcoin.org/smf/index.php?topic=5461.0)  
+19.1: [MtGox - trusted vs verified](http://bitcoin.stackexchange.com/questions/2442/mtgox-trusted-vs-verified)  
+20.1: [Security Measures Explained](https://mtgox.zendesk.com/entries/20471711-security-measures-explained)  
+23.1: One member of [[Bitcoin-otc]] reports that this appears to be a 0.99% fee, not a 1.0%.  
+41.1: [MtGox announcement on forum](http://www.bitcoin.org/smf/index.php?topic=444.0)  
+41.2: [Mtgox is changing owners](http://www.bitcoin.org/smf/index.php?topic=4187.0)  
+41.3: [Huge Bitcoin sell off due to a compromised account - rollback](https://support.mtgox.com/entries/20224998-huge-bitcoin-sell-off-due-to-a-compromised-account-rollback)  
+41.4: [World's Leading Bitcoin Exchange, Mt.Gox, acquires MtGoxLive.com](https://mtgox.com/press_release_20110719.html)  
+41.5: [Mt.Gox launches the definitive bitcoin checkout solution](https://mtgox.com/press_release_20120306.html)
 
 
 [[!tag "Exchanges"]]
