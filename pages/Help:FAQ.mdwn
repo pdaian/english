@@ -269,13 +269,9 @@ Bitcoin finds peers primarily by connecting to an IRC server (channel #bitcoin o
 
 ##Mining
 ###What is mining?
-[[Mining]] is the process of spending computation power to find valid blocks and thus create new Bitcoins.
+[[Mining]] is the process of spending computation power to secure Bitcoin transactions against reversal and introducing new Bitcoins to the system.
 
 Technically speaking, mining is the calculation of a [[hash]] of the a block header, which includes among other things a reference to the previous block, a hash of a set of transactions and a [[nonce]]. If the hash value is found to be less than the current [[target]] (which is inversely proportional to the [[difficulty]]), a new block is formed and the miner gets the newly generated Bitcoins (50 per block at current levels). If the hash is not less than the current target, a new nonce is tried, and a new hash is calculated. This is done millions of times per second by each miner.
-
-###Why was the "Generate coin" option of the client software removed?
-
-In the early days of Bitcoin, it was easy for anyone to find new blocks using standard CPUs. As more and more people started mining, the [[difficulty]] of finding new blocks has greatly increased to the point where the average time for a CPU to find a single block can be many years. The only cost-effective method of [[mining|Mining]] is using a high-end graphics card with special software (see also [[Why_a_GPU_mines_faster_than_a_CPU]]) and/or joining a [[mining pool|Bitcoin_Pool]]. Since solo CPU mining is essentially useless, it was removed from the GUI of the Bitcoin software.
 
 ###Is mining used for some useful computation?
 The computations done when mining are internal to Bitcoin and not related to any other distributed computing projects. They serve the purpose of securing the Bitcoin network, which is useful.
@@ -314,6 +310,10 @@ required proof of work before it will be accepted. And as long as honest miners 
 computing power, they can always outpace an attacker.
 
 Also see [SHA2](http://en.wikipedia.org/wiki/SHA2) and [Proof-of-work system](http://en.wikipedia.org/wiki/Proof-of-work_system) on Wikipedia.
+
+###Why was the "Generate coin" option of the client software removed?
+
+In the early days of Bitcoin, it was easy for anyone to find new blocks using standard CPUs. As more and more people started mining, the [[difficulty]] of finding new blocks has greatly increased to the point where the average time for a CPU to find a single block can be many years. The only cost-effective method of [[mining|Mining]] is using a high-end graphics card with special software (see also [[Why_a_GPU_mines_faster_than_a_CPU]]) and/or joining a [[mining pool|Bitcoin_Pool]]. Since solo CPU mining is essentially useless, it was removed from the GUI of the Bitcoin software.
 
 ##Security
 
