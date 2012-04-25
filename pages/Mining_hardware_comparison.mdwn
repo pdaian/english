@@ -151,7 +151,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#FFFFEF;"5770 |214.7 |1.95(-)||108(+) |950 |800 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 / win7x86 |mem underclocked 309 mhz, -k phatk DEVICE=0 VECTORS BFI_INT FASTLOOP=false AGGRESSION=12
 |style="background:#FFFFEF;"5770 |216.5 |-||- |955 ||2.1 |PCI-E 2.0 x16 |Phoenix 1.5 /phatk |[Modified phatk kernel](http://forum.bitcoin.org/index.php?topic=23067.0)and stock voltage for Sapphire (1.125V) VECTORS BFI_INT FASTLOOP=false AGGRESSION=12 -k phatk WORKSIZE=256
 |style="background:#FFFFEF;"5770 |218.35 |-||- |1000 |1401 |2.1 |PCI-E 2.0 x16 |DiabloMiner |-w 128 -v 2 (Overclocked to 1Ghz core with 1.2 voltage and Scythe Setsugen 2 cooling system)
-|style="background:#FFFFEF;"5770 |222.60 |-||- |960 |300 |2.1 |PCI-E 2.0 x16 |Phoenix 1.60 /phatk2 |[Modified phatk kernel](http://forum.bitcoin.org/index.php?topic=23067.0)and stock voltage for Sapphire (1.125V) VECTORS BFI_INT FASTLOOP=false AGGRESSION=9
+|style="background:#FFFFEF;"5770 |223.50 |-||- |960 |300 |2.1 |PCI-E 2.0 x16 |Phoenix 1.75 /phatk2 |[Modified phatk kernel](http://forum.bitcoin.org/index.php?topic=23067.0)and stock voltage for Sapphire (1.125V) VECTORS BFI_INT FASTLOOP=false AGGRESSION=9, Temp 75C, FAN 100% (manual)
 |style="background:#FFFFEF;"5770 |223 |2.23(-)||100(+) |1050 |300 |2.4 |PCI-E 2.1 x16 |guiminer |-v -w256 [source](http://www.smpake.com/?p=59)
 |style="background:#FFFFEF;"5770 |227 |-||- |1030 |800 |2.1 |PCI-E 2.0 x16 |DiabloMiner |-w 256 -v 2 (Overclocked to 1030 core/300 mem with 1.2 voltage and Scythe Setsugen 2 cooling system)
 |style="background:#FFFFEF;"5770 |236 |-||- |1033/275 |800 |2.4 |PCI-E 2.1 x16 |phoenix-1.50 / phatk-mod / Ubuntu 10.04 |VECTORS BFI_INT FASTLOOP=false AGGRESSION=11 WORKSIZE=256 / big fans, under 75 deg C, no voltage tweaks... catfish
@@ -365,7 +365,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#FFFF00;"6870x4 |1150|-|1.2 |- |900|1050 |2.4 |PCI-E 2.0 x16 |phoenix 1.7 (Win7-64bit) |-k phatk platform=0 device=0-3 VECTORS BFI_INT AGGRESSION=11 worksize=128 FASTLOOP=false
 |style="background:#FFFF00;"6870x4 |1180 |-|- |145 |950 |1120 |2.4 |PCI-E 2.1 x16 |poclbm/debian32bit |-v -w128, Gigabyte SOC. voltage 1.175 (default), GPU default 950 MHz, Mem downclocked to 300 MHz, Fan 4x100% (+ 2x12cm fun 1300rpm), Temp 4x75C (in summer).
 |style="background:#FFFF00;"6870x4 |1200 |-|- |150 |970 |1120 |2.4 |PCI-E 2.1 x16 |poclbm/debian32bit |-v -w128, Gigabyte SOC. voltage 1.175 (default), GPU overclocked from 950 to 970 MHz, Mem downclocked to 300 MHz, Fan 4x100% (+ 2x12cm fun 1300rpm), Temp 4x75C (in summer). Unstable with GPU@975 MHz.
-|6930 |320|-|- |- |960 |1200 |2.1 |PCI-E 2.1 x16 |phoenix 1.75/phatk |Stock Voltage, BFI_INT FASTLOOP VECTORS AGGRESSION=13 WORKSIZE=128. 70C, FAN 80%
+|6930 |320|-|- |- |960 |1200 |2.1 |PCI-E 2.1 x16 |phoenix 1.75/phatk |stock voltage, BFI_INT FASTLOOP VECTORS AGGRESSION=13 WORKSIZE=64. 70C, FAN 80%
 |6930 |372 |-|1.89(?) |- |1000 |900 |2.4 |PCI-E 2.1 x16 |phoenix 1.75/poclbm |max stable @ 1200 mV, BFI_INT FASTLOOP VECTORS AGGRESSION=13 WORKSIZE=64
 |style="background:#00FFFF;"6930x2|700 |- |- |~400|940 |2560 |2.4 |PCI-E 2.1 x16 |Guiminer |max stable @ 1100mV mem 300, Fan 80-90%, temp 70-75, -v -w64 -f10
 |6950 |272 |-|0.90 |- |900 |1408 |2.4 |PCI-E 2.1 x16 |phoenix 1.48/poclbm |max stable @ 1150 mV, AGGRESSION = 7, BFI_INT, MSI 6950
