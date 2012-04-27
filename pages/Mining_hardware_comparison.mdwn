@@ -143,6 +143,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |5750 |190 |- ||- |930/290 |- |atistream sdk |PCI-E 1.1 x16 |poclbm |930gpu / 290mem (O.S. Ubuntu 10.10 x64, overclock gpu & underclock mem) with poclbm options -v -f 0 -w 256
 |5750x2 CF |356 |- ||- |870 |720x2 |2.4 |PCI-E 2.0 x16 |[cgminer v1.5.1](http://forum.bitcoin.org/index.php?topic=28402.0)(Win7 64bit) |870MHz GPU / -I 8 / 2x [GIGABYTE GV-R575SL-1GI](http://www.gigabyte.com/products/product-page.aspx?pid=3402#sp)cards + [GIGABYTE GA-790FXTA-UD5](http://www.gigabyte.com/products/product-page.aspx?pid=3258#sp)MB + 1x [80mm](http://www.noctua.at/main.php?show=productview&products_id=9&lng=en), 1x [90mm](http://www.noctua.at/main.php?show=productview&products_id=16&lng=en)Noctua coolers
 |style="background:#FFFFEF;"5770 |156.83 |1.452||108 |850 |800 |2.1 |PCI-E 2.1 x16 |clmine |
+|style="background:#FFFFEF;"5770 |171.12 |- |- |- |- |stock |- |PCI-E 2.1 x16 |phoenix 1.7.3/debian gnu/linux 6 squeeze |-k phatk2 DEVICE=0 VECTORS BFI_INT FASTLOOP=false AGGRESSION=12 WORKSIZE=256
 |style="background:#FFFFEF;"5770 Hawk |182 ||- |- |875 |800 |2.4 |PCI-E 2.0 x16 |poclbm/GUIMiner/Win7-64 |-v -w 128 (875MHz is stock for 5770 Hawk)
 |style="background:#FFFFEF;"5770 |180 |1.406(*)||128(*) |950(OC) |800 |2.4RC1 |PCI-E 2.1 x16 |poclbm |-v -w 128 -f 30 (*: Overclocked wattage calculated [here](http://bakkap.free.fr/Misc/wCalc.html))
 |style="background:#FFFFEF;"5770 |185 |- ||- |850 |1200 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 / phatk |-k phatk VECTORS BFI_INT WORKSIZE=128 FASTLOOP AGGRESSION=7
@@ -151,14 +152,13 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |style="background:#FFFFEF;"5770 |214.7 |1.95(-)||108(+) |950 |800 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 / win7x86 |mem underclocked 309 mhz, -k phatk DEVICE=0 VECTORS BFI_INT FASTLOOP=false AGGRESSION=12
 |style="background:#FFFFEF;"5770 |216.5 |-||- |955 ||2.1 |PCI-E 2.0 x16 |Phoenix 1.5 /phatk |[Modified phatk kernel](http://forum.bitcoin.org/index.php?topic=23067.0)and stock voltage for Sapphire (1.125V) VECTORS BFI_INT FASTLOOP=false AGGRESSION=12 -k phatk WORKSIZE=256
 |style="background:#FFFFEF;"5770 |218.35 |-||- |1000 |1401 |2.1 |PCI-E 2.0 x16 |DiabloMiner |-w 128 -v 2 (Overclocked to 1Ghz core with 1.2 voltage and Scythe Setsugen 2 cooling system)
-|style="background:#FFFFEF;"5770 |223.50 |-||- |960 |300 |2.1 |PCI-E 2.0 x16 |Phoenix 1.75 /phatk2 |[Modified phatk kernel](http://forum.bitcoin.org/index.php?topic=23067.0)and stock voltage for Sapphire (1.125V) VECTORS BFI_INT FASTLOOP=false AGGRESSION=9, Temp 75C, FAN 100% (manual)
 |style="background:#FFFFEF;"5770 |223 |2.23(-)||100(+) |1050 |300 |2.4 |PCI-E 2.1 x16 |guiminer |-v -w256 [source](http://www.smpake.com/?p=59)
 |style="background:#FFFFEF;"5770 |227 |-||- |1030 |800 |2.1 |PCI-E 2.0 x16 |DiabloMiner |-w 256 -v 2 (Overclocked to 1030 core/300 mem with 1.2 voltage and Scythe Setsugen 2 cooling system)
 |style="background:#FFFFEF;"5770 |236 |-||- |1033/275 |800 |2.4 |PCI-E 2.1 x16 |phoenix-1.50 / phatk-mod / Ubuntu 10.04 |VECTORS BFI_INT FASTLOOP=false AGGRESSION=11 WORKSIZE=256 / big fans, under 75 deg C, no voltage tweaks... catfish
 |style="background:#FFFFEF;"5770 |233 |2.23(-)||100(+) |1050 |300 |2.4 |PCI-E 2.1 x16 |phoenix 1.48 |VECTORS BFI_INT FASTLOOP=false AGGRESSION=12 -k phatk WORKSIZE=256 [source](http://www.smpake.com/?p=59)
 |style="background:#FFFFEF;"5770 |240.61 |2.3632(-)||100(+) |1080 |300 |2.4 |PCI-E 2.1 x1 |phoenix 1.48 |VECTORS BFI_INT FASTLOOP=false AGGRESSION=12 -k phatk WORKSIZE=256 (OC'd and OV'd 1080/300 1.25v)
 |style="background:#FFFFEF;"5770 |241 |- |- |100(+) |1045 |250 |2.1 |PCI-E 2.1 x16 |phoenix 1.50 |VECTORS BFI_INT AGGRESSION=13 -k phatk WORKSIZE=256 (OC 1020/300) XFX@1.1 volts. +Kernel function improve 5%
-|style="background:#FFFFEF;"5770 |171.12 |- |- |- |- |stock |- |PCI-E 2.1 x16 |phoenix 1.7.3/debian gnu/linux 6 squeeze |-k phatk2 DEVICE=0 VECTORS BFI_INT FASTLOOP=false AGGRESSION=12 WORKSIZE=256
+|style="background:#FFFFEF;"5770 |244 |-||- |1050 |300 |2.1 |PCI-E 2.0 x16 |Phoenix 1.75 /phatk2 |[Modified phatk kernel](http://forum.bitcoin.org/index.php?topic=23067.0)and stock voltage for Sapphire (1.125V) VECTORS BFI_INT FASTLOOP=false AGGRESSION=9, Temp 75C, FAN 100% (manual)
 |style="background:#FFFFEF;"5770x2 |425 |- |- |225(+) |960 |800x2 |2.1 |PCI-E 2.1 x16 |poclbm (guiminer) Win7x64 |-v -w128 (OC 960/1200)
 |style="background:#FFFDDD;"5830 |244 |1.36||179 |800 |1000 |2.4 |PCI-E 2.1 x16 |Phoenix 1.48 OpenCL/Linux x86_64 |-k phatk DEVICE=1 VECTORS AGGRESSION=6 -v FASTLOOP WORKSIZE=128 BFI_INT
 |style="background:#FFFDDD;"5830 |245 |1.28||192 |880 |900 |2.4 |PCI-E 2.1 x16 |poclbm (guiminer) |-v -w 256
