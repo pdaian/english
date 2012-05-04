@@ -210,7 +210,13 @@ Ten minutes was specifically chosen by [[Satoshi]] as a tradeoff between propaga
 
 ### Do you have to wait 10 minutes in order to buy or sell things with Bitcoin?
 
-No, it's reasonable to sell things without waiting for a confirmation as long as the transaction is not of high value. When people ask this question they are usually thinking about applications like supermarkets or snack machines. For a complete answer, see the wiki article [[here|Myths#Point_of_sale_with_bitcoins_isn.27t_possible_because_of_the_10_minute_wait_for_confirmation]].
+YES, you do, if the transaction is non-recourse *and* attempted thefts are likely.  Otherwise you don't.
+
+When people ask this question they are usually thinking about applications like supermarkets.  This is a recourse situation: if somebody tries to double-spend on a face-to-face transaction it might work a few times, but probabalistically speaking eventually one of the double-spends will get noticed, and the penalty for shoplifting charges in most localities is calibrated to be several times worse than the proceeds of a single shoplifting event.
+
+Double-spends might be a concern for something like a snack machine in a low-traffic area with no nearby security cameras.  A snack machine in such a situation probably shouldn't honor 0-confirmation payments.
+
+For a complete answer, see the wiki article [[here|Myths#Point_of_sale_with_bitcoins_isn.27t_possible_because_of_the_10_minute_wait_for_confirmation]].
 
 ### I was sent some bitcoins and they haven't arrived yet! Where are they?
 
