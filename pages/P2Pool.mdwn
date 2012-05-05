@@ -147,6 +147,7 @@ P2Pool uses higher difficulty shares than most centralized pools, so you'll see 
 
 * Setting the username of your miner connecting to P2Pool to a Bitcoin address will make it mine to that address instead of the one requested from bitcoind or set by -a
 * Appending "/1000" to a miner's username will increase the difficulty of producing a P2Pool share to at most 1000. This is useful to large miners because doing this can make it easier for small miners while minimally impacting the large miners themselves. See [recommended values](https://bitcointalk.org/index.php?topic=18313.msg816322#msg816322).
+	* Appending "+1" (for example) after that will make P2Pool always give your miners work with a difficulty of 1
 
 ### Web interface
 
