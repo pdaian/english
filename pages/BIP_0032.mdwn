@@ -82,6 +82,18 @@ Extended public and private keys are serialized as follows:
 
 This 74, 75 or 107 byte structure can be encoded like other Bitcoin data in Base58, by first adding 32 checksum bits (derived from the double SHA-256 checksum), and then converting to the Base58 representation. This results in a base58-encoded string of 107, 108 or 152 characters.
 
+
+###Master key generation
+
+The total number of possible extended keypairs is almost 2^512, but the produced keys are only 256 bits long, and offer about half of that in terms of security. Therefore, master keys are not generated directly, but instead from a potentially short seed value.
+
+* Generate a seed S of a chosen length (at least 128 bits) from a (P)RNG.
+* Calculate I = HMAC-SHA512(key="Bitcoin seed", msg=S)
+* Split I into two 32-byte sequences, I<sub>l</sub> and I<sub>r</sub>.
+* Use I<sub>l</sub> as master secret key, and I<sub>r</sub> as master chain code.
+
+[[BIP32-derivation.png]]
+
 ###Wallet structure
 
 The previous sections specified key trees and their nodes. The next step is imposing a wallet structure on this tree. 
@@ -92,15 +104,6 @@ Each account is composed of two keypair chains: an internal and an external one.
 
 	* m/i/0/k corresponds to the k'th keypair of the external chain of account number i of the HDW derived from master m.
 	* m/i/1/k corresponds to the k'th keypair of the internal chain of account number i of the HDW derived from master m.
-
-###Master key generation
-
-The total number of possible extended keypairs is almost 2^512, but the produced keys are only 256 bits long, and offer about half of that in terms of security. Therefore, master keys are not generated directly, but instead from a potentially short seed value.
-
-* Generate a seed S of a chosen length (at least 128 bits) from a (P)RNG.
-* Calculate I = HMAC-SHA512(key="Bitcoin seed", msg=S)
-* Split I into two 32-byte sequences, I<sub>l</sub> and I<sub>r</sub>.
-* Use I<sub>l</sub> as master secret key, and I<sub>r</sub> as master chain code.
 
 ##Use cases
 
