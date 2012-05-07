@@ -48,20 +48,20 @@ We define the child key derivation function CKD((k<sub>par</sub>,c<sub>par</sub>
 To define (k<sub>n</sub>,c<sub>n</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),n):
 
 * call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=k<sub>par</sub>*G  n), where k<sub>par</sub>*G is the public key corresponding to k<sub>par</sub>,  is concatenation, and n is encoded as a 32 bits unsigned integer, most significant byte first.
-* Split I into two 32-byte sequences, I<sub>l</sub> and I<sub>r</sub>.
-* k<sub>n</sub> is equal to I<sub>l</sub>*k<sub>par</sub>.
-* c<sub>n</sub> is equal to I<sub>r</sub>.
+* Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
+* k<sub>n</sub> is equal to I<sub>L</sub>*k<sub>par</sub>.
+* c<sub>n</sub> is equal to I<sub>R</sub>.
 
 We also define a version that operates on extended public keys instead of private ones: (K<sub>n</sub>,c<sub>n</sub>) = CKD'((K<sub>par</sub>,c<sub>par</sub>),n):
 
 * call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  n), where n is encoded a 32 bits unsigned integer, most significant byte first.
-* Split I into two 32-byte sequences, I<sub>l</sub> and I<sub>r</sub>.
-* K<sub>n</sub> is equal to I<sub>l</sub>*K<sub>par</sub>.
-* c<sub>n</sub> is equal to I<sub>r</sub>.
+* Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
+* K<sub>n</sub> is equal to I<sub>L</sub>*K<sub>par</sub>.
+* c<sub>n</sub> is equal to I<sub>R</sub>.
 
 Note that the extended public key corresponding to the evaluation of CKD(x,n) is identical to the evaluation of CKD'(X,n), with X the extended public key corresponding to x. Symbolically, CKD(x,n)*G = CKD'(x*G,n). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
 
-The HMAC-SHA512 function is specified in RFC 4231.
+The HMAC-SHA512 function is specified in  [RFC 4231](http://tools.ietf.org/html/rfc4231).
 
 ###The key tree
 
