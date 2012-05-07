@@ -43,21 +43,21 @@ We represent an extended private key as (k,c), with k the normal private key, an
 
 ###Child key derivation function
 
-We define the child key derivation function CKD((k_par,c_par),n), which takes a parent extended secret key (k_par,c_par) and a 32-bit integer n, to produce a child extended secret key (k_n,c_n).
+We define the child key derivation function CKD((k<sub>par</sub>,c<sub>par</sub>),n), which takes a parent extended secret key (k<sub>par</sub>,c<sub>par</sub>) and a 32-bit integer n, to produce a child extended secret key (k<sub>n</sub>,c<sub>n</sub>).
 
-To define (k_n,c_n) = CKD((k_par,c_par),n):
+To define (k<sub>n</sub>,c<sub>n</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),n):
 
-* call I = HMAC-SHA512(Key=c_par, Data=k_par*G  n), where k_par*G is the public key corresponding to k_par,  is concatenation, and n is encoded as a 32 bits unsigned integer, most significant byte first.
-* Split I into two 32-byte sequences, I_l and I_r.
-* k_n is equal to I_l*k_par.
-* c_n is equal to I_r.
+* call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=k<sub>par</sub>*G  n), where k<sub>par</sub>*G is the public key corresponding to k<sub>par</sub>,  is concatenation, and n is encoded as a 32 bits unsigned integer, most significant byte first.
+* Split I into two 32-byte sequences, I<sub>l</sub> and I<sub>r</sub>.
+* k<sub>n</sub> is equal to I<sub>l</sub>*k<sub>par</sub>.
+* c<sub>n</sub> is equal to I<sub>r</sub>.
 
-We also define a version that operates on extended public keys instead of private ones: (K_n,c_n) = CKD'((K_par,c_par),n):
+We also define a version that operates on extended public keys instead of private ones: (K<sub>n</sub>,c<sub>n</sub>) = CKD'((K<sub>par</sub>,c<sub>par</sub>),n):
 
-* call I = HMAC-SHA512(Key=c_par, Data=K_par  n), where n is encoded a 32 bits unsigned integer, most significant byte first.
-* Split I into two 32-byte sequences, I_l and I_r.
-* K_n is equal to I_l*K_par.
-* c_n is equal to I_r.
+* call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  n), where n is encoded a 32 bits unsigned integer, most significant byte first.
+* Split I into two 32-byte sequences, I<sub>l</sub> and I<sub>r</sub>.
+* K<sub>n</sub> is equal to I<sub>l</sub>*K<sub>par</sub>.
+* c<sub>n</sub> is equal to I<sub>r</sub>.
 
 Note that the extended public key corresponding to the evaluation of CKD(x,n) is identical to the evaluation of CKD'(X,n), with X the extended public key corresponding to x. Symbolically, CKD(x,n)*G = CKD'(x*G,n). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
 
@@ -65,7 +65,7 @@ The HMAC-SHA512 function is specified in RFC 4231.
 
 ###The key tree
 
-The next step is cascading several CKD constructions to build a tree. We start with one root, the master extended key m. By evaluating CKD(m,n) for several values of n, we get a number of first-degree derivative nodes. As each of these is again an extended key, CKD can be applied to those as well. To shorten notation, we will write CKD(CKD(CKD(m,n_1),n_2),n_3) as m/n_1/n_2/n_3 now.
+The next step is cascading several CKD constructions to build a tree. We start with one root, the master extended key m. By evaluating CKD(m,n) for several values of n, we get a number of first-degree derivative nodes. As each of these is again an extended key, CKD can be applied to those as well. To shorten notation, we will write CKD(CKD(CKD(m,n<sub>1</sub>),n<sub>2</sub>),n<sub>3</sub>) as m/n<sub>1</sub>/n<sub>2</sub>/n<sub>3</sub> now.
 
 Each leaf node in the tree corresponds to an actual keypair, while the internal nodes correspond to the collection of keypairs that descends from them. The chain codes of the leaf nodes are ignored, and only their embedded private or public key is used. Because of this construction, knowing an extended private key allows reconstruction of all descendant private keys and public keys, and knowing an extended public keys allows reconstruction of all descendant public keys.
 
@@ -75,8 +75,8 @@ Extended public and private keys are serialized as follows:
 
 * 1 byte: version byte (mainnet: 0x06 public, 0x0C private; testnet: 0xC6 public, 0xCC private)
 * 1 byte: depth: 0x00 for master nodes, 0x01 for level-1 descendants, .... 
-* 4 bytes: the first 32 bits of RIPEMD160(SHA256(K_par)), a "fingerprint" of the parent's key. Note that this corresponds to the first 32 bits of the data in the "address" corresponding to the parent's key.
-* 4 bytes: child number. This is the number n in x_n = x_par/n, with x_n the key being serialized. This is encoded in MSB order.
+* 4 bytes: the first 32 bits of RIPEMD160(SHA256(K<sub>par</sub>)), a "fingerprint" of the parent's key. Note that this corresponds to the first 32 bits of the data in the "address" corresponding to the parent's key.
+* 4 bytes: child number. This is the number n in x<sub>n</sub> = x<sub>par</sub>/n, with x<sub>n</sub> the key being serialized. This is encoded in MSB order.
 * 32 bytes: the chain code
 * the rest: the normal public or private key serialization (65 or 33 bytes for public keys, 32 or 33 bytes for private keys).
 
@@ -99,8 +99,8 @@ The total number of possible extended keypairs is almost 2^512, but the produced
 
 * Generate a seed S of a chosen length (at least 128 bits) from a (P)RNG.
 * Calculate I = HMAC-SHA512(key="Bitcoin seed", msg=S)
-* Split I into two 32-byte sequences, I_l and I_r.
-* Use I_l as master secret key, and I_r as master chain code.
+* Split I into two 32-byte sequences, I<sub>l</sub> and I<sub>r</sub>.
+* Use I<sub>l</sub> as master secret key, and I<sub>r</sub> as master chain code.
 
 ##Use cases
 
