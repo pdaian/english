@@ -1,3 +1,11 @@
 Adaptive difficulty is a bitcoin protocol change proposal by [Iain Stewart](User:Ids), with the goal of letting the typical time interval from one block to the next adjust smoothly to prevailing network latency, while not compromising the strength of the blockchain, or the decentralization of the network (in particular the ability of small miners to join in).
 
+## Background
+
+The world is being wired up with ever faster connectivity. A merchant location in particular, where any kind of online transaction is desired, will usually have a fast link to either the net or specific counterparty bank(s), with paid-for higher bandwidth and lower latency than the usual domestic speeds. All but the smallest businesses where an internet presence is de rigeur - and that will include the specialised miners (using ASICs or whatever) of the future - routinely choose to pay for a fast connection, sometimes choosing to pay a little extra for a guarantee of quick repair ("five nines" cover and the like).
+
+It will therefore remain an expectation of customers that the merchant can process their transaction quickly as a matter of course. (With bitcoin, we do have the sub-community of users who desire strong anonymity and may use Tor/i2p, coin mixing services, and the like. They are tech-savvy and accept that these choices cause slowness. We can't expect that to become the broader expectation, however.)
+
+The average 10-minute interval between blocks, and the need to wait a few blocks (6 is often cited) to achieve acceptable closeness to irreversibility of one's transaction, will likely be a barrier to ease of use in cases where an expectation of speed is firmly embedded in customers' and merchants' culture. (Even people who choose to slow down the *submission* of their transaction, in exchange for better anonymity for example, would still benefit from fast *handling* of their transaction once it has been submitted. They too may well grumble at the tens of minutes' to hours' delay on top of that of their own choosing.) 
+
 *(uh, and now a pause folks, while I slowly learn everything I never wanted to know about how to type in mathematical notation to a wiki but have been forced to find out!)*
