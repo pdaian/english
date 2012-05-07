@@ -168,10 +168,9 @@ Lots of data and useful tools are available at http://127.0.0.1:9332/something:
 * /web/log - Some different stats collected over the last day
 
 ### Included README
-<pre>
-Requirements:
+<pre>Requirements:
     Generic:
-        Bitcoin >=0.5.0 or Litecoin
+        Bitcoin >=0.6.0rc4 or Bitcoin >=0.5.4 (for BIP16 support) or Litecoin
         Python
         Twisted
         python-argparse (for Python <=2.6)
@@ -233,25 +232,24 @@ Notes for Litecoin:
 
 ### Option Reference
 <pre>
-usage: run_p2pool.py [-h] [--version] [--net {bitcoin, litecoin}] [--testnet]
+usage: run_p2pool.py [-h] [--version] [--net {bitcoin,litecoin}] [--testnet]
                      [--debug] [-a ADDRESS] [--datadir DATADIR]
                      [--logfile LOGFILE] [--merged MERGED_URLS]
-                     [--merged-url MERGED_URL]
-                     [--merged-userpass MERGED_USERPASS]
-                     [--give-author DONATION_PERCENTAGE] [--irc-announce]
-                     [--p2pool-port PORT] [-n ADDR[:PORT]] [--disable-upnp]
-                     [-w PORT] [-f FEE_PERCENTAGE]
+                     [--give-author DONATION_PERCENTAGE] [--iocp]
+                     [--irc-announce] [--no-bugreport] [--p2pool-port PORT]
+                     [-n ADDR[:PORT]] [--disable-upnp] [--max-conns CONNS]
+                     [-w PORT or ADDR:PORT] [-f FEE_PERCENTAGE]
                      [--bitcoind-address BITCOIND_ADDRESS]
                      [--bitcoind-rpc-port BITCOIND_RPC_PORT]
                      [--bitcoind-p2p-port BITCOIND_P2P_PORT]
                      [BITCOIND_RPCUSERPASS [BITCOIND_RPCUSERPASS ...]]
 
-p2pool (version 28a1948)
+p2pool (version 0.11.1-8-ged9359d)
 
 optional arguments:
   -h, --help            show this help message and exit
   --version             show program's version number and exit
-  --net {bitcoin, litecoin}
+  --net {bitcoin,litecoin}
                         use specified network (default: bitcoin)
   --testnet             use the network's testnet
   --debug               enable debugging mode
@@ -264,15 +262,14 @@ optional arguments:
   --merged MERGED_URLS  call getauxblock on this url to get work for merged
                         mining (example:
                         http://ncuser:ncpass@127.0.0.1:10332/)
-  --merged-url MERGED_URL
-                        DEPRECATED, use --merged
-  --merged-userpass MERGED_USERPASS
-                        DEPRECATED, use --merged
   --give-author DONATION_PERCENTAGE
-                        donate this percentage of work to author of p2pool
-                        (default: 0.5)
+                        donate this percentage of work towards the development
+                        of p2pool (default: 0.5)
+  --iocp                use Windows IOCP API in order to avoid errors due to
+                        large number of sockets being open
   --irc-announce        announce any blocks found on
                         irc://irc.freenode.net/#p2pool
+  --no-bugreport        disable submitting caught exceptions to the author
   --disable-upnp        don't attempt to use UPnP to forward p2pool's P2P port
                         from the Internet to this computer
 
@@ -284,11 +281,13 @@ p2pool interface:
                         connect to existing p2pool node at ADDR listening on
                         port PORT (defaults to default p2pool P2P port) in
                         addition to builtin addresses
+  --max-conns CONNS     maximum incoming connections (default: 40)
 
 worker interface:
-  -w PORT, --worker-port PORT
-                        listen on PORT for RPC connections from miners
-                        (default: bitcoin:9332, litecoin:9327)
+  -w PORT or ADDR:PORT, --worker-port PORT or ADDR:PORT
+                        listen on PORT on interface with ADDR for RPC
+                        connections from miners (default: all interfaces,
+                        bitcoin:9332, litecoin:9327)
   -f FEE_PERCENTAGE, --fee FEE_PERCENTAGE
                         charge workers mining to their own bitcoin address (by
                         setting their miner's username to a bitcoin address)
