@@ -14,6 +14,8 @@ There has been the suggestion that the service might be seeing use as a [[mixing
 
 To determine if a wager is a winner or loser, the site uses a method to produce a number between 0 and 65,535, similar to how a random number generator (RNG) would be used.  The service uses a combination of the transaction hash from the wager transaction from the blockchain and performs a sha2 (sha-512) hash for that transaction hash using a secret unknown to the player.  The first four bytes of that sha-512 hash become the lucky number in determining winner or loser.
 
+There is no reason to believe that [[Satoshi_Nakamoto]] has anything to do with this service, other than the service choosing to include the noun Satoshi in the brand.
+
 ##Odds
 
 Each wager address has different odds, and each gives the house just under 1% (i.e., payouts are a bit over 99%).  The website shows the full list of wager addresses and odds.
