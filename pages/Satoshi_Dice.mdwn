@@ -1,0 +1,41 @@
+A blockchain-based betting game.
+
+Blockchain betting games are those which use information from the wager transaction in the blockchain in determining whether the player wins or loses.
+
+Unlike traditional online gaming software, wagers with SatoshiDice can be sent without access to the website nor running any client software.  To play, a Bitcoin transaction is made to one of the static addresses operated by the service, each having differing payouts.  The service determines if the wager wins or loses and sends a transaction in response with the payout to a winning bet or it returns a tiny fraction of the house's gain to a losing bet.  As a result, the player receives a win/lose response relatively instantaneously.  SatoshiDICE pays a transaction fee on for each payout so the transactions will be relayed and included in the blockchain without significant delay.
+
+With SatoshiDICE, there is no need for bitcoin transactions to first confirm as the method the service creates the payout transaction includes a dependency on the original wager transaction.  This gives the service the ability to accept a 0/unconfirmed transaction for each wager.
+
+Multiple bets may be in a single transaction (e.g., a bet can be made for Under 48,000 and include a second bet Under 32 in the same payment transaction).  The service will respond with multiple payout transactions, one for each bet, in response.
+
+There has been the suggestion that the service might be seeing use as a [[mixing_service]], as the composition of a wallet can be materially changed after running wagers through SatoshiDICE (1.1).  Though this approach could change the makeup of the wallet, it does not sufficiently serve the mixing purpose as the coins returned in winning bets are tied to the coins from the wager transaction.
+
+##Random Number Generation
+
+To determine if a wager is a winner or loser, the site uses a method to produce a number between 0 and 65,535, similar to how a random number generator (RNG) would be used.  The service uses a combination of the transaction hash from the wager transaction from the blockchain and performs a sha2 (sha-512) hash for that transaction hash using a secret unknown to the player.  The first four bytes of that sha-512 hash become the lucky number in determining winner or loser.
+
+##Odds
+
+Each wager address has different odds, and each gives the house just under 1% (i.e., payouts are a bit over 99%).  The website shows the full list of wager addresses and odds.
+
+##History
+
+SatoshiDICE was the brand given the service initially created by [[BitcoinTalk]] forum user FireDuck before selling the system to another operator (4.1).  The service was announced on April 24, 2012 (4.2).  Withing weeks, the site became responsible for more Bitcoin transactions than all other uses of Bitcoin -- combined (4.3).
+
+##See Also
+
+* [[Mixing_service]]
+
+##External Links
+
+* [SatoshiDICE.com](http://www.SatoshiDICE.com) website
+
+##References
+
+1.1: [Blockchain-based betting services function as mixing services?](http://bitcointalk.org/index.php?topic=79079.0)  
+4.1: [Anyone want to run my bitcoin casino](http://www.reddit.com/r/Bitcoin/comments/segz0/anyone_want_to_run_my_bitcoin_casino)  
+4.2: [SatoshiDICE.com - Verified rolls, up to 65,000x winning](http://bitcointalk.org/index.php?topic=77870.0)  
+4.3: [All-time transaction record was just hit](http://bitcointalk.org/index.php?topic=79285.0)
+
+
+[[!tag "Gambling"]]
