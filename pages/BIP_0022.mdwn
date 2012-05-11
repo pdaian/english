@@ -29,6 +29,7 @@ The second argument is an Object of request parameters.
 If called with a single Object argument, getmemorypool interprets that Object as a set of parameters to build a block template from:
 
 
+|longpoll |Boolean |if provided and true, indicates this is a [[long poll request|#Long_Polling]]
 |longpollid |String |"longpollid" of job to monitor for expiration; required and valid only for [[long poll requests|#Long_Polling]]
 |nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
 |sigoplimit |Number |number of sigops to include in template, at most; if negative, offset from the block maximum
@@ -42,6 +43,7 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |bits |[[!template id=yes]]|String |the compressed difficulty in hexadecimal
 |curtime |[[!template id=yes]]|Number |the current time as seen by the server (recommended for block time)
 |height |[[!template id=yes Should]]|Number |the height of the block we are looking for
+|longpollid |[[!template id=yes Should]]|String |unique identifier for [[long poll request|#Long_Polling]]; MUST be omitted if the server does not support long polling
 |previousblockhash |[[!template id=yes]]|String |the hash of the previous block, in big-endian hexadecimal
 |sigoplimit |[[!template id=yes Should]]|Number |number of sigops allowed in blocks
 |sizelimit |[[!template id=yes Should]]|Number |number of bytes allowed in blocks
@@ -54,8 +56,7 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |coinbaseaux |[[!template id=no]]|Object |data that SHOULD or MUST (depending on mutable flags) be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys.
 |expires |[[!template id=no]]|Number |how many seconds (beginning from when the server sent the response) this work is valid for, at most
 |fulltarget |[[!template id=no]]|String |the number which full results should be less than, in big-endian hexadecimal (see [["share/*" mutations|#Mutations]])
-|longpoll |[[!template id=no]]|String |URI for [[long polling|#Long_Polling]]
-|longpollid |[[!template id=patch if ↑]]|String |unique identifier for [[long poll request|#Long_Polling]]
+|longpolluri |[[!template id=no]]|String |if provided, an alternate URI to use for [[longpoll requests|#Long_Polling]]
 |maxtime |[[!template id=no]]|Number |the maximum time allowed
 |maxtimeoff |[[!template id=no]]|Number |the maximum time allowed (as a moving offset from "curtime" - every second, the actual maxtime is incremented by 1; for example, "maxtimeoff":0 means "time" may be incremented by 1 every second)
 |mintime |[[!template id=no]]|Number |the minimum time allowed
@@ -108,13 +109,15 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 Note that miners are NOT required to implement any of these mutations.
 
 #### Long Polling
-If the server supports long polling, it SHOULD include the "longpoll" key with a relative or absolute URI.
-The absolute URI MAY specify a different port than the original connection.
-If "longpoll" is provided, a "longpollid" key MUST also be, with a unique identifier used to determine expiration of the current job.
-Miners MAY start a request to this long polling URI with a standard JSON-RPC request (in the case of HTTP transport, POST with data) and same authorization.
-The miner MUST include the "longpollid" key provided in the parameters to this getmemorypool call.
+If the server supports long polling, it MUST include the "longpollid" key
+It MAY supply the "longpolluri" key with a relative or absolute URI, which MAY specify a completely different resource than the original connection, including port number.
+If "longpolluri" is provided by the server, clients MUST only attempt to use that URI for longpoll requests.
+
+Clients MAY start a longpoll request with a standard JSON-RPC request (in the case of HTTP transport, POST with data) and same authorization, setting the "longpoll" parameter in the request to true.
+The client MUST also include the "longpollid" key provided by the server in the parameters.
+
 This request SHOULD NOT be processed nor answered by the server until it wishes to replace the current block data as identified by the "longpollid".
-Clients SHOULD make this request with a very long request timeout and MUST accept the server sending response headers with "chunked" Transfer-Encoding, only delaying the completion of the final JSON response.
+Clients SHOULD make this request with a very long request timeout and MUST accept servers sending a partial response in advance (such as HTTP headers with "chunked" Transfer-Encoding), and only delaying the completion of the final JSON response until processing.
 
 Upon receiving a completed response:
 
@@ -124,7 +127,7 @@ Upon receiving a completed response:
 
 If a client receives an incomplete or invalid response, it SHOULD retry the request with an exponential backoff.
 Clients MAY implement this backoff with limitations (such as maximum backoff time) or any algorithm as deemed suitable.
-It is however forbidden to simply retry immediately with no delay after more than one failure.
+It is, however, forbidden to simply retry immediately with no delay after more than one failure.
 In the case of a "Forbidden" response (for example, HTTP 403), a client SHOULD NOT attempt to retry without user intervention.
 
 ###Block Proposal
@@ -181,7 +184,6 @@ Possible reasons a share may be rejected include, but are not limited to:
 ### Known Bugs
 This BIP should not be promoted from Draft status until these are addressed:
 
-* Longpolling currently assumes URI-based requests, which is not implied by JSON-RPC.
 * *(feel free to add issues here)*
 
 ##Motivation
