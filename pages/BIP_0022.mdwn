@@ -31,6 +31,8 @@ If called with a single Object argument, getmemorypool interprets that Object as
 
 |longpollid |String |"longpollid" of job to monitor for expiration; required and valid only for [[long poll requests|#Long_Polling]]
 |nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
+|sigoplimit |Number |number of sigops to include in template, at most; if negative, offset from the block maximum
+|sizelimit |Number |number of bytes to use for the entire block, at most; if negative, offset from the block maximum
 |tx |String |format of response "transactions" key elements ("hex" per default)
 
 
@@ -41,6 +43,8 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |curtime |[[!template id=yes]]|Number |the current time as seen by the server (recommended for block time)
 |height |[[!template id=yes Should]]|Number |the height of the block we are looking for
 |previousblockhash |[[!template id=yes]]|String |the hash of the previous block, in big-endian hexadecimal
+|sigoplimit |[[!template id=yes Should]]|Number |number of sigops allowed in blocks
+|sizelimit |[[!template id=yes Should]]|Number |number of bytes allowed in blocks
 |transactions ("hash") |[[!template id=yes Should]]|Array of Strings |hashes/ids of Bitcoin transactions (excluding coinbase), in little-endian hexadecimal
 |transactions ("hex") |[[!template id=yes Should]]|Array of Strings |data for Bitcoin transactions (excluding coinbase) encoded in hexadecimal (byte-for-byte)
 |transactions ("obj") |[[!template id=yes Should]]|Array of Objects |Objects containing [[information for Bitcoin transactions|#Transactions_Object_Format]](excluding coinbase)
