@@ -22,12 +22,22 @@ Extension bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
 |expire=N |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |[[!template id=no]]
 |submitold |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=patch]]|[[!template id=yes]]|n/a |[[!template id=no]]
 |switchto |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |[[!template id=no]]
+colspan='9' getmemorypool/BlkPrep functionality
+Function bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
+|longpoll |[[!template id=no]]|n/a |[[!template id=no]] (1.1)|n/a |n/a |n/a |n/a |n/a
+|noncerange |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a
+|proposal |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a
+|serverlist |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a
 colspan='9' getmemorypool/BlkPrep variations
 Variation bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
-|(longpoll) |[[!template id=no]]|n/a |[[!template id=yes]]|n/a |n/a |n/a |n/a |n/a
 |coinbase/append |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a |[[!template id=yes]]|n/a
 |coinbase (set) |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
 |generation |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a |[[!template id=no]]|n/a
+|share/coinbase |n/a |n/a ||n/a |n/a |n/a ||n/a
+|share/merkle |n/a |n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
+|share/truncate |n/a |n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
+|time/increment |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a ||n/a
+|time/decrement |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a ||n/a
 |txns/add |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
 |txns/remove |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
 |prevblock |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
@@ -64,4 +74,5 @@ Database bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
 
 
 
+1.1: Eloipool supports an older draft GMP longpoll standard
 
