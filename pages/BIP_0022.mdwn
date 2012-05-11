@@ -20,7 +20,7 @@ Instead of sending a simple block header for hashing, the entire block structure
 
 A new JSON-RPC method is defined, called "getmemorypool".
 It accepts two arguments, both optional.
-If the first argument is provided, and a String, it is interpreted as block data [[submission|#Block_Submission]] or proposal;
+If the first argument is provided, and a String, it is interpreted as block data [[submission|#Block_Submission]] or [[proposal|#Block_Proposal]];
 otherwise, this call is interpreted as a request for a new block template from the server.
 The second argument is an Object of request parameters.
 
@@ -62,6 +62,7 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |mintimeoff |[[!template id=no]]|Number |the minimum time allowed (as a moving offset from "curtime")
 |mutable |[[!template id=no]]|Array of Strings |different manipulations that the server explicitly allows to be made (see [[Mutations|#Mutations]])
 |noncerange |[[!template id=no]]|String |two 32-bit integers, concatenated in big-endian hexadecimal, which represent the valid ranges of nonces the miner may scan
+|submitmodes |[[!template id=no]]|Array of Strings |MAY contain "proposal" to indicate support for [[block proposal|#Block_Proposal]]
 |submitold |[[!template id=no]]|Boolean |only relevant for [[long poll|#Long_Polling]]responses; indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 |target |[[!template id=no]]|String |the number which valid results must be less than, in big-endian hexadecimal
 |txrequired |[[!template id=no]]|Number |this many of the first transactions provided must be present in the final block, even if the "transactions/remove" mutation is allowed
@@ -126,10 +127,27 @@ Clients MAY implement this backoff with limitations (such as maximum backoff tim
 It is however forbidden to simply retry immediately with no delay after more than one failure.
 In the case of a "Forbidden" response (for example, HTTP 403), a client SHOULD NOT attempt to retry without user intervention.
 
+###Block Proposal
+
+At any point before a job expires, a miner MAY propose a block to the server for general validation.
+This is accomplished by calling getmemorypool with the block data as the first argument (as in a [[submission|#Block_Submission]]), and an Object as the second argument with the "mode" key set to "proposal".
+
+The block data MUST be validated and checked against the server's usual acceptance rules (excluding the check for a valid proof-of-work).
+If it is found to be in violation of any of these rules, the server MUST return a String giving the reason for the rejection (see [[Block Submission|#Block_Submission]] for example reasons).
+If it is acceptable as-is, the server MAY return a true Boolean.
+Otherwise, the server may return a new block template (with or without changes); in this case, any missing keys are assumed to default to those in the proposed block or, if not applicable, the original block template it was based on.
+
+It is RECOMMENDED that servers which merely need to track the proposed block for later share/* submissions, return a simple Object of the form:
+	{"workid":"new workid"}
+
+Clients SHOULD assume their proposed block will remain valid if the only changes they make are to the portion of the coinbase scriptSig they themselves provided (if any) and the time header.
+Servers SHOULD NOT break this assumption without good cause.
+
 ###Block Submission
 When getmemorypool is called with a String as its first argument, it is interpreted as data for a potential block; this may be truncated or merkle-ified depending on the "share/truncate" or "share/merkle" mutations, respectively.
 The second argument, if provided, is an Object of parameters for the submission.
-The only defined key of this Object is the "workid" provided by the server:
+If this includes the "mode" key set to "proposal", the [[block proposal|#Block_Proposal]] process should be followed instead.
+The only other defined key for this Object is the "workid" provided by the server:
 if a "workid" was specified in the template, it must be submitted with the share/block.
 
 If the parameters argument is specified, this method MUST return either null (when a share is accepted), a String describing briefly the reason the share was rejected, or an Object of these with a key for each merged-mining chain the share was submitted to.
