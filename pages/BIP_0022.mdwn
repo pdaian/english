@@ -19,10 +19,21 @@ Instead of sending a simple block header for hashing, the entire block structure
 ###JSON-RPC Method: getmemorypool
 
 A new JSON-RPC method is defined, called "getmemorypool".
-It takes no arguments.
-If arguments are provided, it may wrap the "submitblock" JSON-RPC method (described later), cast to a Boolean return value (true = share accepted).
+It accepts two arguments, both optional.
+If the first argument is provided, and a String, it is interpreted as block data [[submission|#Block_Submission]] or proposal;
+otherwise, this call is interpreted as a request for a new block template from the server.
+The second argument is an Object of request parameters.
 
-getmemorypool MUST return a JSON Object containing at least the following keys, all of which relate to the block header:
+###Block Template Request
+
+If called with a single Object argument, getmemorypool interprets that Object as a set of parameters to build a block template from:
+
+
+|nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
+|longpollid |String |"longpollid" of job to monitor for expiration; required and valid only for [[long poll requests|#Long_Polling]]
+
+
+getmemorypool MUST return a JSON Object containing the following keys:
 
 
 |bits |[[!template id=yes]]|String |the compressed difficulty in hexadecimal
@@ -93,15 +104,16 @@ Clients MAY implement this backoff with limitations (such as maximum backoff tim
 It is however forbidden to simply retry immediately with no delay after more than one failure.
 In the case of a "Forbidden" response (for example, HTTP 403), a client SHOULD NOT attempt to retry without user intervention.
 
-###JSON-RPC Method: submitblock
-A new JSON-RPC method is defined, called "submitblock".
-It takes one to two arguments.
-The first argument is the block data; this may be truncated or merkle-ified depending on the "share/truncate" or "share/merkle" mutations, respectively.
-The second argument, if provided, is an Object.
+###Block Submission
+When getmemorypool is called with a String as its first argument, it is interpreted as data for a potential block; this may be truncated or merkle-ified depending on the "share/truncate" or "share/merkle" mutations, respectively.
+The second argument, if provided, is an Object of parameters for the submission.
 The only defined key of this Object is the "workid" provided by the server:
-if a "workid" was specified, it must be submitted with the share/block.
+if a "workid" was specified in the template, it must be submitted with the share/block.
 
-This method MUST return either null (when a share is accepted), a String describing briefly the reason the share was rejected, or an Object of these with a key for each merged-mining chain the share was submitted to.
+If the parameters argument is specified, this method MUST return either null (when a share is accepted), a String describing briefly the reason the share was rejected, or an Object of these with a key for each merged-mining chain the share was submitted to.
+
+If the parameters argument is omitted, this method SHOULD return either true (if the share is accepted) or false (if rejected).
+Clients MUST NOT depend on this boolean response, and servers MAY choose not to implement this paragraph.
 
 Possible reasons a share may be rejected include, but are not limited to:
 
@@ -129,7 +141,6 @@ Possible reasons a share may be rejected include, but are not limited to:
 ### Known Bugs
 This BIP should not be promoted from Draft status until these are addressed:
 
-* Noncerange might not be possible to support for all workers, so a way to signal support is needed
 * Longpolling currently assumes URI-based requests, which is not implied by JSON-RPC.
 * *(feel free to add issues here)*
 
