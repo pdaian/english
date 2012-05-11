@@ -54,7 +54,7 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |version |[[!template id=yes]]|Number |always 1 (at least for bitcoin)
 |coinbasetxn |[[!template id=patch or ↓]]|See "transactions" |coinbase transaction, in the same format as "transactions" key
 |coinbasevalue |[[!template id=patch or ↑]]|Number |total funds available for the coinbase (in Satoshis)
-|capabilities |[[!template id=no]]|Array of Strings |MAY contain "proposal" to indicate support for [[block proposal|#Block_Proposal]]
+|capabilities |[[!template id=no]]|Array of Strings |MAY contain "proposal" to indicate support for [[block proposal|#Block_Proposal]], and SHOULD contain [["longpoll"|#Long_Polling]]to indicate support for that
 |coinbaseaux |[[!template id=no]]|Object |data that SHOULD or MUST (depending on mutable flags) be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys.
 |expires |[[!template id=no]]|Number |how many seconds (beginning from when the server sent the response) this work is valid for, at most
 |fulltarget |[[!template id=no]]|String |the number which full results should be less than, in big-endian hexadecimal (see [["share/*" mutations|#Mutations]])
