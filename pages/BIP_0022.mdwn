@@ -109,9 +109,9 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 
 Note that miners are NOT required to implement any of these mutations.
 
-##### Format of data for share/merkle
+##### Format of Data for Merkle-Only Shares
 
-TODO
+The format used for submitting shares with the "share/merkle" mutation shall be the 80-byte block header, followed by the coinbase transaction, and then finally the little-endian SHA256 hashes of each link in the merkle chain connecting it to the merkle root.
 
 #### Long Polling
 If the server supports long polling, it MUST include the "longpollid" key
