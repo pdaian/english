@@ -63,6 +63,7 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |mintimeoff |[[!template id=no]]|Number |the minimum time allowed (as a moving offset from "curtime")
 |mutable |[[!template id=no]]|Array of Strings |different manipulations that the server explicitly allows to be made (see [[Mutations|#Mutations]])
 |noncerange |[[!template id=no]]|String |two 32-bit integers, concatenated in big-endian hexadecimal, which represent the valid ranges of nonces the miner may scan
+|serverlist |[[!template id=no]]|Array of Objects |list of servers in this [[single logical service|#Logical_Services]]
 |submitmodes |[[!template id=no]]|Array of Strings |MAY contain "proposal" to indicate support for [[block proposal|#Block_Proposal]]
 |submitold |[[!template id=no]]|Boolean |only relevant for [[long poll|#Long_Polling]]responses; indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 |target |[[!template id=no]]|String |the number which valid results must be less than, in big-endian hexadecimal
@@ -133,6 +134,36 @@ If a client receives an incomplete or invalid response, it SHOULD retry the requ
 Clients MAY implement this backoff with limitations (such as maximum backoff time) or any algorithm as deemed suitable.
 It is, however, forbidden to simply retry immediately with no delay after more than one failure.
 In the case of a "Forbidden" response (for example, HTTP 403), a client SHOULD NOT attempt to retry without user intervention.
+
+####Logical Services
+
+If the "serverlist" parameter is provided, clients MAY choose to intelligently treat the server as part of a larger single logical service.
+
+Each host Object in the Array is comprised of the following fields:
+
+
+|uri |[[!template id=yes]]|String |URI of the individual server; if authentication information is omitted, the same authentication used for this request MUST be assumed
+|avoid |[[!template id=no]]|Number |number of seconds to avoid using this server
+|priority |[[!template id=no]]|Number |an integer priority of this host (default: 0)
+|sticky |[[!template id=no]]|Number |number of seconds to stick to this server when used
+|update |[[!template id=no]]|Boolean |whether this server may update the serverlist (default: true)
+|weight |[[!template id=no]]|Number |a relative weight for hosts with the same priority (default: 1)
+
+
+When choosing which actual server to get the next job from, URIs MUST be tried in order of their "priority" key, lowest Number first.
+Where the priority of URIs is the same, they should be chosen from in random order, weighed by their "weight" key.
+
+Updates to the Logical Service server list may only be made by the original server, or servers listed with the "update" key missing or true.
+Clients MAY choose to advertise serverlist capability to servers with a false "update" key, but if so, MUST treat the server list provided as a subset of the current one, only considered in the context of this server.
+At least one server with "update" privilege MUST be attempted at least once daily.
+
+If the "sticky" key is provided, then when that server is used, it should be used consistently for at least that many seconds, if possible.
+
+A permanent change in server URI MAY be indicated with a simple "serverlist" parameter:
+	"serverlist":{}["http://newserver"]("uri":)
+
+A temporary delegation to another server for 5 minutes MAY be indicated likewise:
+	"serverlist":{}{}["http://newserver", "update": false]("uri":)
 
 ###Block Proposal
 
