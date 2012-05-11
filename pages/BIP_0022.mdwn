@@ -29,8 +29,8 @@ The second argument is an Object of request parameters.
 If called with a single Object argument, getmemorypool interprets that Object as a set of parameters to build a block template from:
 
 
-|nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
 |longpollid |String |"longpollid" of job to monitor for expiration; required and valid only for [[long poll requests|#Long_Polling]]
+|nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
 
 
 getmemorypool MUST return a JSON Object containing the following keys:
