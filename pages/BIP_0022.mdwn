@@ -29,6 +29,7 @@ The second argument is an Object of request parameters.
 If called with a single Object argument, getmemorypool interprets that Object as a set of parameters to build a block template from:
 
 
+|capabilities |Array of Strings |SHOULD contain a list of the following, to indicate client-side support: [["longpoll"|#Long_Polling]], "coinbasetxn", "coinbasevalue", [["proposal"|#Block_Proposal]], [["serverlist"|#Logical_Services]], "workid", and any of the [[mutations|#Mutations]]
 |longpoll |Boolean |if provided and true, indicates this is a [[long poll request|#Long_Polling]]
 |longpollid |String |"longpollid" of job to monitor for expiration; required and valid only for [[long poll requests|#Long_Polling]]
 |nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
@@ -53,6 +54,7 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |version |[[!template id=yes]]|Number |always 1 (at least for bitcoin)
 |coinbasetxn |[[!template id=patch or ↓]]|See "transactions" |coinbase transaction, in the same format as "transactions" key
 |coinbasevalue |[[!template id=patch or ↑]]|Number |total funds available for the coinbase (in Satoshis)
+|capabilities |[[!template id=no]]|Array of Strings |MAY contain "proposal" to indicate support for [[block proposal|#Block_Proposal]]
 |coinbaseaux |[[!template id=no]]|Object |data that SHOULD or MUST (depending on mutable flags) be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys.
 |expires |[[!template id=no]]|Number |how many seconds (beginning from when the server sent the response) this work is valid for, at most
 |fulltarget |[[!template id=no]]|String |the number which full results should be less than, in big-endian hexadecimal (see [["share/*" mutations|#Mutations]])
@@ -64,7 +66,6 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |mutable |[[!template id=no]]|Array of Strings |different manipulations that the server explicitly allows to be made (see [[Mutations|#Mutations]])
 |noncerange |[[!template id=no]]|String |two 32-bit integers, concatenated in big-endian hexadecimal, which represent the valid ranges of nonces the miner may scan
 |serverlist |[[!template id=no]]|Array of Objects |list of servers in this [[single logical service|#Logical_Services]]
-|submitmodes |[[!template id=no]]|Array of Strings |MAY contain "proposal" to indicate support for [[block proposal|#Block_Proposal]]
 |submitold |[[!template id=no]]|Boolean |only relevant for [[long poll|#Long_Polling]]responses; indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 |target |[[!template id=no]]|String |the number which valid results must be less than, in big-endian hexadecimal
 |txrequired |[[!template id=no]]|Number |this many of the first transactions provided must be present in the final block, even if the "transactions/remove" mutation is allowed
