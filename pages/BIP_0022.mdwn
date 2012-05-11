@@ -31,6 +31,7 @@ If called with a single Object argument, getmemorypool interprets that Object as
 
 |longpollid |String |"longpollid" of job to monitor for expiration; required and valid only for [[long poll requests|#Long_Polling]]
 |nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
+|tx |String |format of response "transactions" key elements ("hex" per default)
 
 
 getmemorypool MUST return a JSON Object containing the following keys:
@@ -39,11 +40,13 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |bits |[[!template id=yes]]|String |the compressed difficulty in hexadecimal
 |curtime |[[!template id=yes]]|Number |the current time as seen by the server (recommended for block time)
 |height |[[!template id=yes Should]]|Number |the height of the block we are looking for
-|previousblockhash |[[!template id=yes]]|String |the hash of the previous block, in big-endian converted to hexadecimal
-|transactions |[[!template id=yes Should]]|Array of Strings |Bitcoin transactions encoded in hexadecimal (byte-for-byte), not including coinbase
+|previousblockhash |[[!template id=yes]]|String |the hash of the previous block, in big-endian hexadecimal
+|transactions ("hash") |[[!template id=yes Should]]|Array of Strings |hashes/ids of Bitcoin transactions (excluding coinbase), in little-endian hexadecimal
+|transactions ("hex") |[[!template id=yes Should]]|Array of Strings |data for Bitcoin transactions (excluding coinbase) encoded in hexadecimal (byte-for-byte)
+|transactions ("obj") |[[!template id=yes Should]]|Array of Objects |Objects containing [[information for Bitcoin transactions|#Transactions_Object_Format]](excluding coinbase)
 |version |[[!template id=yes]]|Number |always 1 (at least for bitcoin)
-|coinbasetxn |[[!template id=patch or ↓]]|String |hexadecimal byte-for-byte coinbase transaction
-|coinbasevalue |[[!template id=patch or ↑]]|Number |total funds available for the coinbase
+|coinbasetxn |[[!template id=patch or ↓]]|See "transactions" |coinbase transaction, in the same format as "transactions" key
+|coinbasevalue |[[!template id=patch or ↑]]|Number |total funds available for the coinbase (in Satoshis)
 |coinbaseaux |[[!template id=no]]|Object |data that SHOULD or MUST (depending on mutable flags) be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys.
 |expires |[[!template id=no]]|Number |how many seconds (beginning from when the server sent the response) this work is valid for, at most
 |fulltarget |[[!template id=no]]|String |the number which full results should be less than, in big-endian hexadecimal (see [["share/*" mutations|#Mutations]])
@@ -59,6 +62,21 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |target |[[!template id=no]]|String |the number which valid results must be less than, in big-endian hexadecimal
 |txrequired |[[!template id=no]]|Number |this many of the first transactions provided must be present in the final block, even if the "transactions/remove" mutation is allowed
 |workid |[[!template id=no]]|String or Number |if provided, this value must be returned with results (see [["submitblock"|#JSON-RPC_Method:_submitblock]])
+
+
+#### Transactions Object Format
+
+When the "tx" option is provided as "obj", the Objects listed in the response's "transactions" key may contain these keys:
+
+
+
+|data |[[!template id=yes]]|String |transaction data encoded in hexadecimal (byte-for-byte)
+|depends |[[!template id=no]]|Array of Numbers |other transactions (by index in "transactions" list) that must be present in the final block if this one is
+|fee |[[!template id=no]]|Number |difference in value between transaction inputs and outputs (in Satoshis); for coinbase transactions, this is a negative Number of the total collected block fees (ie, not including the block subsidy)
+|hash |[[!template id=no]]|String |hash/id encoded in little-endian hexadecimal
+|required |[[!template id=no]]|Boolean |if provided and true, this transaction must be in the final block, even if the "transactions/remove" mutation is allowed
+|sigops |[[!template id=no]]|Number |total number of SigOps, as counted for purposes of block limits
+|sigopsreal |[[!template id=no]]|Number |total number of SigOps, as counted by current standard rules
 
 
 ####Mutations
