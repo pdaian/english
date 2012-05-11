@@ -37,6 +37,7 @@ getmemorypool MUST return a JSON Object containing at least the following keys, 
 |expires |[[!template id=no]]|Number |how many seconds (beginning from when the server sent the response) this work is valid for, at most
 |fulltarget |[[!template id=no]]|String |the number which full results should be less than, in big-endian hexadecimal (see [["share/*" mutations|#Mutations]])
 |longpoll |[[!template id=no]]|String |URI for [[long polling|#Long_Polling]]
+|longpollid |[[!template id=patch if ↑]]|String |unique identifier for [[long poll request|#Long_Polling]]
 |maxtime |[[!template id=no]]|Number |the maximum time allowed
 |maxtimeoff |[[!template id=no]]|Number |the maximum time allowed (as a moving offset from "curtime" - every second, the actual maxtime is incremented by 1; for example, "maxtimeoff":0 means "time" may be incremented by 1 every second)
 |mintime |[[!template id=no]]|Number |the minimum time allowed
@@ -75,9 +76,11 @@ Note that miners are NOT required to implement any of these mutations.
 #### Long Polling
 If the server supports long polling, it SHOULD include the "longpoll" key with a relative or absolute URI.
 The absolute URI MAY specify a different port than the original connection.
-Miners MAY start a request to this long polling URI with a standard JSON-RPC request (POST with data) and same basic authorization.
-This request SHOULD NOT be processed nor answered by the server until it wishes to replace the current block data.
-Clients SHOULD make this request with a very long request timeout and MUST accept the server sending response headers with "chunked" Transfer-Encoding delaying the completion of the final JSON response.
+If "longpoll" is provided, a "longpollid" key MUST also be, with a unique identifier used to determine expiration of the current job.
+Miners MAY start a request to this long polling URI with a standard JSON-RPC request (in the case of HTTP transport, POST with data) and same authorization.
+The miner MUST include the "longpollid" key provided in the parameters to this getmemorypool call.
+This request SHOULD NOT be processed nor answered by the server until it wishes to replace the current block data as identified by the "longpollid".
+Clients SHOULD make this request with a very long request timeout and MUST accept the server sending response headers with "chunked" Transfer-Encoding, only delaying the completion of the final JSON response.
 
 Upon receiving a completed response:
 
