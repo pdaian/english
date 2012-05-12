@@ -169,7 +169,7 @@ A temporary delegation to another server for 5 minutes MAY be indicated likewise
 
 ###Block Proposal
 
-	getmemorypool "hex-encoded block data..." {mode: proposal, parameters...}
+	getmemorypool "hex-encoded block data..." {mode: "proposal", parameters...}
 
 At any point before a job expires, a miner MAY propose a block to the server for general validation.
 This is accomplished by calling getmemorypool with the hex-encoded block data as the first argument (as in a [[submission|#Block_Submission]]), and an Object as the second argument with the "mode" key set to "proposal".
