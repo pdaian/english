@@ -105,16 +105,11 @@ This will move the seed to a file named 'wallet.seed'
 
 ####How to send a transaction with an offline wallet
 
-* step 1: copy the synchronized wallet file to your offline computer
+* step 1: copy the synchronized wallet file to your offline computer, in the directory where the seed is.
+* step 2: restore the seed in the wallet file:
 <pre>
-$ cp wallet.no_seed /usb/stick/wallet.no_seed
+$ electrum -w wallet reseed
 </pre>
-
-* step 2: edit the wallet file and restore the seed :
-<pre>
-$ cat wallet.noseed | sed "s/'seed': ''/'seed': '`cat seedfile`'/g" > wallet.seed
-</pre>
-you may also do this manually with a file editor if you do not know how to use sed.
 
 * step 3: create the transaction
 <pre>
