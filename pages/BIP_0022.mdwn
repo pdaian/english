@@ -86,7 +86,6 @@ When the "tx" option is provided as "obj", the Objects listed in the response's 
 |hash |[[!template id=no]]|String |hash/id encoded in little-endian hexadecimal
 |required |[[!template id=no]]|Boolean |if provided and true, this transaction must be in the final block, even if the "transactions/remove" mutation is allowed
 |sigops |[[!template id=no]]|Number |total number of SigOps, as counted for purposes of block limits; if key is not present, sigop count is unknown and clients MUST NOT assume there aren't any
-|sigopsreal |[[!template id=no]]|Number |total number of SigOps, as counted by current standard rules; if key is not present, sigop count is unknown and clients MUST NOT assume there aren't any
 
 
 ####Mutations
