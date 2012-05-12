@@ -20,12 +20,13 @@ Instead of sending a simple block header for hashing, the entire block structure
 
 A new JSON-RPC method is defined, called "getmemorypool".
 It accepts two arguments, both optional.
-If the first argument is provided, and a String, the call is interpreted as a block [[submission|#Block_Submission]] or [[proposal|#Block_Proposal]];
+If the first argument is provided, and a String, it is interpreted as block data for a [[submission|#Block_Submission]] or [[proposal|#Block_Proposal]] call;
 otherwise, this call is interpreted as a request for a new block template from the server.
+The second argument is an Object of request parameters.
 
 ###Block Template Request
 
-	getmemorypool {}[[parameters...]]
+	getmemorypool({parameters...})
 
 If called with a single Object argument, getmemorypool interprets that Object as a set of parameters to build a block template from:
 
@@ -169,7 +170,7 @@ A temporary delegation to another server for 5 minutes MAY be indicated likewise
 
 ###Block Proposal
 
-	getmemorypool "hex-encoded block data..." {mode: "proposal", parameters...}
+	getmemorypool("hex-encoded block data...", {mode: "proposal", parameters...})
 
 At any point before a job expires, a miner MAY propose a block to the server for general validation.
 This is accomplished by calling getmemorypool with the hex-encoded block data as the first argument (as in a [[submission|#Block_Submission]]), and an Object as the second argument with the "mode" key set to "proposal".
@@ -187,7 +188,7 @@ Servers SHOULD NOT break this assumption without good cause.
 
 ###Block Submission
 
-	getmemorypool "hex-encoded block data..." {}[[...]]
+	getmemorypool("hex-encoded block data...", {parameters...})
 
 When getmemorypool is called with a String as its first argument, it is interpreted as hex-encoded data for a potential block; this may be truncated or merkle-ified depending on the "share/truncate" or "share/merkle" mutations, respectively.
 The second argument, if provided, is an Object of parameters for the submission.
