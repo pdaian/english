@@ -99,15 +99,11 @@ $ ./electrum -w wallet seed | awk '{print $1}'> seedfile
 <pre>
 $ electrum deseed 
 </pre>
-to avoid confusion, let us rename it:
-<pre>
-mv wallet wallet.no_seed
-</pre>
 
-* step 4: transfer the wallet.no_seed file to the online computer.
+* step 4: transfer the wallet without seed to the online computer.
 For example, copy the wallet file to a usb stick:
 <pre>
-$ cp wallet.no_seed /my/usb/wallet.no_seed
+$ cp wallet /my/usb/wallet.no_seed
 </pre>
 and once you have plugged the usb key to the online computer:
 <pre>
