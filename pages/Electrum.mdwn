@@ -113,21 +113,13 @@ $ electrum -w wallet reseed
 
 * step 3: create the transaction
 <pre>
-./electrum -w wallet.seed mktx <recipient> <amount>  >  tx_file
+./electrum -w wallet mktx <recipient> <amount>  >  tx_file
 </pre>
 
 * step 4: with the usb stick, copy the transaction to the online computer:
+* step 5: broadcast the transaction on the online computer:
 <pre>
-$cp tx_file /usb/tx_file
-</pre>
-and, on the online computer:
-<pre>
-$cp /usb/tx_file tx_file
-</pre>
-
-* step 5: broadcast the transaction:
-<pre>
-./electrum sendtx  `cat tx_file`
+./electrum -w wallet sendtx  `cat tx_file`
 </pre>
 
 ### List of commands
