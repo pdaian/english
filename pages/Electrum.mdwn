@@ -90,29 +90,17 @@ and to broadcast them from another computer, with a wallet that does not have th
 $ ./electrum -w wallet create
 </pre>
 
-* step 2: save the seed of your wallet to a file that will remain on the offline computer:
-<pre>
-$ ./electrum -w wallet seed | awk '{print $1}'> seedfile
-</pre>
-
-* step 3: blank the seed in your wallet file. 
+* step 2: extract the seed from your wallet file:
 <pre>
 $ electrum deseed 
 </pre>
+This will move the seed to a file named 'wallet.seed'
 
-* step 4: transfer the wallet without seed to the online computer.
-For example, copy the wallet file to a usb stick:
-<pre>
-$ cp wallet /my/usb/wallet.no_seed
-</pre>
-and once you have plugged the usb key to the online computer:
-<pre>
-$ cp /my/usb/wallet.no_seed ./wallet.no_seed
-</pre>
+* step 3: transfer the deseeded wallet to the online computer (for example with a usb stick)
 
-* step 5: run electrum on the online computer; this will synchronize your wallet with the bitcoin network, and you will be able to monitor incoming transactions:
+* step 4: run electrum on the online computer; this will synchronize your wallet with the bitcoin network, and you will be able to monitor incoming transactions:
 <pre>
-./electrum -w wallet.no_seed
+./electrum -w wallet
 </pre>
 
 ####How to send a transaction with an offline wallet
