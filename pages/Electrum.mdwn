@@ -94,10 +94,9 @@ $ ./electrum -w wallet create
 <pre>
 $ electrum -w wallet deseed 
 </pre>
-This will move the seed to a file named 'wallet.seed'
+This will remove the seed from 'wallet', and save it to a file named 'wallet.seed'
 
 * step 3: transfer the deseeded wallet to the online computer (for example with a usb stick)
-
 * step 4: run electrum on the online computer; this will synchronize your wallet with the bitcoin network, and you will be able to monitor incoming transactions:
 <pre>
 ./electrum -w wallet
