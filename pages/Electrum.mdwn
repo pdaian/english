@@ -92,17 +92,16 @@ $ ./electrum -w wallet create
 
 * step 2: save the seed of your wallet to a file that will remain on the offline computer:
 <pre>
-./electrum -w wallet seed | awk '{print $1}'> seedfile
+$ ./electrum -w wallet seed | awk '{print $1}'> seedfile
 </pre>
 
 * step 3: blank the seed in your wallet file. 
-For example, under linux, you may type:
 <pre>
-$ cat wallet | sed "s/`cat seedfile`/trololololo/g" > wallet.no_seed
+$ electrum deseed 
 </pre>
-or you can open the file in an editor and do it manually. After this step you may remove the wallet file:
+to avoid confusion, let us rename it:
 <pre>
-rm wallet
+mv wallet wallet.no_seed
 </pre>
 
 * step 4: transfer the wallet.no_seed file to the online computer.
