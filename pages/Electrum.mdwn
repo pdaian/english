@@ -107,18 +107,18 @@ This will remove the seed from 'wallet', and save it to a file named 'wallet.see
 * step 1: copy the synchronized wallet file to your offline computer, in the directory where the seed is.
 * step 2: restore the seed in the wallet file:
 <pre>
-$ electrum -w wallet reseed
+[offline]$ electrum -w wallet reseed
 </pre>
 
 * step 3: create the transaction
 <pre>
-./electrum -w wallet mktx <recipient> <amount>  >  tx_file
+[offline]$ electrum -w wallet mktx <recipient> <amount>  >  tx_file
 </pre>
 
 * step 4: with the usb stick, copy the transaction to the online computer:
 * step 5: broadcast the transaction on the online computer:
 <pre>
-./electrum -w wallet sendtx  `cat tx_file`
+[online]$ electrum -w wallet sendtx  `cat tx_file`
 </pre>
 
 ### List of commands
