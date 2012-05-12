@@ -35,10 +35,15 @@ If called with a single Object argument, getmemorypool interprets that Object as
 |longpoll |Boolean |if provided and true, indicates this is a [[long poll request|#Long_Polling]]
 |longpollid |String |"longpollid" of job to monitor for expiration; required and valid only for [[long poll requests|#Long_Polling]]
 |nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
-|sigoplimit |Number |number of sigops to include in template, at most; if negative, offset from the block maximum
-|sizelimit |Number |number of bytes to use for the entire block, at most; if negative, offset from the block maximum
+|sigoplimit |Number or Boolean |maximum number of sigops to include in template
+|sizelimit |Number or Boolean |maximum number of bytes to use for the entire block
 |tx |String |format of response "transactions" key elements ("hex" per default)
 
+
+For "sigoplimit" and "sizelimit", negative values and zero are offset from the server-determined block maximum.
+If a Boolean is provided and true, the default limit is used; if false, the server is instructed not to use any limits on returned template.
+Servers SHOULD respect these desired maximums, but are NOT required to:
+clients SHOULD check that the returned template satisfies their requirements appropriately.
 
 getmemorypool MUST return a JSON Object containing the following keys:
 
