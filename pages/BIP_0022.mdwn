@@ -53,8 +53,8 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |transactions ("hex") |[[!template id=yes Should]]|Array of Strings |data for Bitcoin transactions (excluding coinbase) encoded in hexadecimal (byte-for-byte)
 |transactions ("obj") |[[!template id=yes Should]]|Array of Objects |Objects containing [[information for Bitcoin transactions|#Transactions_Object_Format]](excluding coinbase)
 |version |[[!template id=yes]]|Number |always 1 (at least for bitcoin)
-|coinbasetxn |[[!template id=patch or ↓]]|See "transactions" |coinbase transaction, in the same format as "transactions" key
-|coinbasevalue |[[!template id=patch or ↑]]|Number |total funds available for the coinbase (in Satoshis)
+|coinbasetxn |[[!template id=patch this or ↓]]|See "transactions" |coinbase transaction, in the same format as "transactions" key
+|coinbasevalue |[[!template id=patch this or ↑]]|Number |total funds available for the coinbase (in Satoshis)
 |capabilities |[[!template id=no]]|Array of Strings |MAY contain "proposal" to indicate support for [[block proposal|#Block_Proposal]], and SHOULD contain [["longpoll"|#Long_Polling]]to indicate support for that
 |coinbaseaux |[[!template id=no]]|Object |data that SHOULD or MUST (depending on mutable flags) be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys.
 |expires |[[!template id=no]]|Number |how many seconds (beginning from when the server sent the response) this work is valid for, at most
