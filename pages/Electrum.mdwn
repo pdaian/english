@@ -124,7 +124,7 @@ $ cp wallet.no_seed /usb/stick/wallet.no_seed
 
 * step 2: edit the wallet file and restore the seed :
 <pre>
-$ cat w | sed "s/trololololo/`cat seedfile`/g" > wallet.seed
+$ cat wallet.noseed | sed "s/seed:''/seed:'`cat seedfile`'/g" > wallet.seed
 </pre>
 you may also do this manually with a file editor if you do not know how to use sed.
 
