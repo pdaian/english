@@ -155,6 +155,9 @@ Each host Object in the Array is comprised of the following fields:
 
 When choosing which actual server to get the next job from, URIs MUST be tried in order of their "priority" key, lowest Number first.
 Where the priority of URIs is the same, they should be chosen from in random order, weighed by their "weight" key.
+Work proposals and submissions MUST be made to the same server that issued the job.
+Clients MAY attempt to submit to other servers if, and only if, the original server cannot be reached.
+If cross-server share submissions are desired, services should instead use the equivalent domain name system (DNS) features (RFCs 1794 and 2782).
 
 Updates to the Logical Service server list may only be made by the original server, or servers listed with the "update" key missing or true.
 Clients MAY choose to advertise serverlist capability to servers with a false "update" key, but if so, MUST treat the server list provided as a subset of the current one, only considered in the context of this server.
