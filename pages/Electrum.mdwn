@@ -87,12 +87,12 @@ and to broadcast them from another computer, with a wallet that does not have th
 
 * step 1: create a wallet on your offline computer
 <pre>
-[offline]$ electrum -w wallet create
+[offline]$ electrum -o -w wallet create
 </pre>
 
 * step 2: extract the seed from your wallet file:
 <pre>
-[offline]$ electrum -w wallet deseed 
+[offline]$ electrum -o -w wallet deseed 
 </pre>
 This will remove the seed from 'wallet', and save it to a file named 'wallet.seed'
 
