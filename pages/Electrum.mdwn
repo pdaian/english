@@ -140,7 +140,7 @@ This will remove the seed from 'wallet', and save it to a file named 'wallet.see
 |mktx |create a transaction and dump it |mktx [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |no
 |password |update your password |password |yes |no
 |payto |create and broadcast a transaction |payto [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |yes
-|reseed |takes seed from .seed file and adds it to wallet. |reseed |no |no
+|reseed |take seed from .seed file and add it to wallet (it checks that keys are consistent). |reseed |no |no
 |restore |restore a wallet from seed |restore |no |yes
 |sendtx |broadcast a transaction |sendtx <tx>|no |yes
 |seed |print your seed |seed |yes |no
