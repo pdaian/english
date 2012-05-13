@@ -33,7 +33,6 @@ If called with a single Object argument, getmemorypool interprets that Object as
 
 
 |capabilities |Array of Strings |SHOULD contain a list of the following, to indicate client-side support: [["longpoll"|#Long_Polling]], "coinbasetxn", "coinbasevalue", [["proposal"|#Block_Proposal]], [["serverlist"|#Logical_Services]], "workid", and any of the [[mutations|#Mutations]]
-|longpoll |Boolean |if provided and true, indicates this is a [[long poll request|#Long_Polling]]
 |longpollid |String |"longpollid" of job to monitor for expiration; required and valid only for [[long poll requests|#Long_Polling]]
 |nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
 |sigoplimit |Number or Boolean |maximum number of sigops to include in template
@@ -126,8 +125,7 @@ If the server supports long polling, it MUST include the "longpollid" key
 It MAY supply the "longpolluri" key with a relative or absolute URI, which MAY specify a completely different resource than the original connection, including port number.
 If "longpolluri" is provided by the server, clients MUST only attempt to use that URI for longpoll requests.
 
-Clients MAY start a longpoll request with a standard JSON-RPC request (in the case of HTTP transport, POST with data) and same authorization, setting the "longpoll" parameter in the request to true.
-The client MUST also include the "longpollid" key provided by the server in the parameters.
+Clients MAY start a longpoll request with a standard JSON-RPC request (in the case of HTTP transport, POST with data) and same authorization, setting the "longpollid" parameter in the request to the value provided by the server.
 
 This request SHOULD NOT be processed nor answered by the server until it wishes to replace the current block data as identified by the "longpollid".
 Clients SHOULD make this request with a very long request timeout and MUST accept servers sending a partial response in advance (such as HTTP headers with "chunked" Transfer-Encoding), and only delaying the completion of the final JSON response until processing.
