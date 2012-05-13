@@ -131,7 +131,7 @@ This will remove the seed from 'wallet', and save it to a file named 'wallet.see
 |balance |shows the balance of your wallet or of an address |balance [[address]]|no |yes
 |contacts |print your list of contacts |contacts |no |no
 |create |create a new wallet |create |no |no
-|deseed |Remove seed from wallet and stores it to a file  |deseed |no |no
+|deseed |Remove seed from wallet and store it to .seed file  |deseed |no |no
 |eval |call python eval |eval <expression>|no |no
 |help |display the help for a command |help [[command]]|no |no
 |history |print the transaction history |history |no |yes
@@ -140,7 +140,7 @@ This will remove the seed from 'wallet', and save it to a file named 'wallet.see
 |mktx |create a transaction and dump it |mktx [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |no
 |password |update your password |password |yes |no
 |payto |create and broadcast a transaction |payto [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |yes
-|reseed |takes seed from file and adds it to wallet |reseed |no |no
+|reseed |takes seed from .seed file and adds it to wallet. |reseed |no |no
 |restore |restore a wallet from seed |restore |no |yes
 |sendtx |broadcast a transaction |sendtx <tx>|no |yes
 |seed |print your seed |seed |yes |no
