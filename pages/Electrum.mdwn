@@ -127,25 +127,26 @@ This will remove the seed from 'wallet', and save it to a file named 'wallet.see
 
 |command |description |syntax |requires password |needs to be online
 |---|---|---|---|---
-|help |display the help for a command |help [[command]]|no |no
-|validateaddress |check is the argument is a valid bitcoin address |validateaddress <address>|no |no
+|addresses |show your list of addresses, optionally with private keys. |addresses [[-a]][[-b]][[-k]]|iff -k |no
 |balance |shows the balance of your wallet or of an address |balance [[address]]|no |yes
 |contacts |print your list of contacts |contacts |no |no
 |create |create a new wallet |create |no |no
-|restore |restore a wallet from seed |restore |no |yes
-|payto |create and broadcast a transaction |payto [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |yes
-|mktx |create a transaction and dump it |mktx [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |no
-|sendtx |broadcast a transaction |sendtx <tx>|no |yes
-|password |update your password |password |yes |no
-|addresses |show your list of addresses, optionally with private keys. |addresses [[-a]][[-b]][[-k]]|iff -k |no
-|history |print the transaction history |history |no |yes
-|label |change the label of a transaction or address |label <label>|no |no
-|seed |print your seed |seed |yes |no
-|import |import a keypair |import <address:private_key> |yes |no
-|signmessage |sign a message (as in bitcoind) |signmessage <address><message>|yes |no
-|verifymessage |verify a message (as in bitcoind) |verifymessage <address><signature><message>|no |no
+|deseed |Remove your seed from a wallet  |deseed |? |?
 |eval |call python eval |eval <expression>|no |no
-
+|help |display the help for a command |help [[command]]|no |no
+|history |print the transaction history |history |no |yes
+|import |import a keypair |import <address:private_key> |yes |no
+|label |change the label of a transaction or address |label <label>|no |no
+|mktx |create a transaction and dump it |mktx [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |no
+|password |update your password |password |yes |no
+|payto |create and broadcast a transaction |payto [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |yes
+|reseed |? |? |? |?
+|restore |restore a wallet from seed |restore |no |yes
+|sendtx |broadcast a transaction |sendtx <tx>|no |yes
+|seed |print your seed |seed |yes |no
+|signmessage |sign a message (as in bitcoind) |signmessage <address><message>|yes |no
+|validateaddress |check is the argument is a valid bitcoin address |validateaddress <address>|no |no
+|verifymessage |verify a message (as in bitcoind) |verifymessage <address><signature><message>|no |no
 
 
 ##History
