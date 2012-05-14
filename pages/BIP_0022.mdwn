@@ -103,9 +103,6 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 |coinbase/append|append the provided coinbase scriptSig
 |coinbase|provide their own coinbase; if one is provided, it may be replaced or modified (implied if "coinbasetxn" omitted)
 |generation|add or remove outputs from the coinbase/generation transaction (implied if "coinbasetxn" omitted)
-|share/coinbase|if the block hash is less than "target", but not less than "fulltarget", only return the block header and coinbase transaction, but only if the other transactions are unmodified from those proposed in the getmemorypool job
-|share/merkle|if the block hash is less than "target", but not less than "fulltarget", only return the block header, coinbase transaction, and merkle tree connecting that transaction to the root (in the form of repeated right-side SHA256 hashes) in "submitblock"
-|share/truncate|if the block hash is less than "target", but not less than "fulltarget", only return the block header in "submitblock"
 |time/increment|change the time header to a value after "time" (implied if "maxtime" or "maxtimeoff" are provided)
 |time/decrement|change the time header to a value before "time" (implied if "mintime" is provided)
 |time|modify the time header of the block
@@ -113,6 +110,13 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 |transactions/remove|remove transactions provided by the server
 |transactions|add or remove transactions (both of the above; implied if "transactions" omitted from result)
 |prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid, unless they are part of the "txrequired" count; it also implies adjusting "height" as necessary
+|colspan="2" style="font-size:80%;font-style:italic"Affecting the format of requests, but not the blocks themselves:
+|submit/hash|each transaction being sent in a request, that the client is certain the server knows about, may be replaced by its hash in little-endian hexadeciaml, prepended by a ":" character
+|submit/coinbase|if the "transactions" provided by the server are used as-is with no changes, only return the block header and coinbase transaction
+|submit/truncate|if the "coinbasetxn" and "transactions" provided by the server are used as-is with no changes, only return the block header
+|share/coinbase|same as "submit/coinbase", but only if the block hash is less than "target"
+|share/merkle|if the block hash is less than "target", but not less than "fulltarget", only return the block header, coinbase transaction, and merkle tree connecting that transaction to the root (in the form of repeated right-side SHA256 hashes)
+|share/truncate|same as "submit/truncate", but only if the block hash is less than "target"
 
 
 Note that miners are NOT required to implement any of these mutations.
