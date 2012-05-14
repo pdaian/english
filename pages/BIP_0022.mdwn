@@ -10,7 +10,7 @@
 </pre>
 
 ##Abstract
-
+b
 This BIP describes a new JSON-RPC method for "smart" Bitcoin miners and proxies.
 Instead of sending a simple block header for hashing, the entire block structure is sent, and left to the miner to (optionally) customize and assemble.
 
@@ -77,7 +77,7 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |submitold |[[!template id=no]]|Boolean |only relevant for [[long poll|#Long_Polling]]responses; indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 |target |[[!template id=no]]|String |the number which valid results must be less than, in big-endian hexadecimal
 |txrequired |[[!template id=no]]|Number |this many of the first transactions provided must be present in the final block, even if the "transactions/remove" mutation is allowed
-|workid |[[!template id=no]]|String |if provided, this value must be returned with results (see [[Block_Submission]])
+|workid |[[!template id=no]]|String |if provided, this value must be returned with results (see [[Block Submission|#Block_Submission]])
 
 
 #### Transactions Object Format
