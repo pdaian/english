@@ -77,7 +77,7 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |submitold |[[!template id=no]]|Boolean |only relevant for [[long poll|#Long_Polling]]responses; indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 |target |[[!template id=no]]|String |the number which valid results must be less than, in big-endian hexadecimal
 |txrequired |[[!template id=no]]|Number |this many of the first transactions provided must be present in the final block, even if the "transactions/remove" mutation is allowed
-|workid |[[!template id=no]]|String |if provided, this value must be returned with results (see [["submitblock"|#JSON-RPC_Method:_submitblock]])
+|workid |[[!template id=no]]|String |if provided, this value must be returned with results (see [[Block_Submission]])
 
 
 #### Transactions Object Format
