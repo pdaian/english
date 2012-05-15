@@ -120,6 +120,10 @@ Note that blocks must at minimum have their merkle root validated and transactio
 
 ## Security
 
+The concern here is that stratized nodes are at the mercy of blockchain services. This proposal deals with that issue by designing this protocol in such a way that the implementation can resolve the common history between multiple services.
+
+A stratized node will typically connect to 8 blockchain services. It will only accept a output, spend or inventory vector that has been sent by a common subset of all those services (6 in our example). This spreads the risk between all services, and does not make a node vulnerable to any one rogue blockchain service.
+
 ## Privacy
 
 SPV
