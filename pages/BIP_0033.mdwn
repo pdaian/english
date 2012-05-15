@@ -130,4 +130,8 @@ The other strategy for thin clients termed *headers-only* or *Simplified. Paymen
 
 ## Rationale
 
+NODE_SERVICE does not respond to "getdata" requests by itself (unless used in conjunction with NODE_NETWORK) to prevent starvation attacks. This allows a single trusted NODE_SERVICE architecture (possibly acting as a front-end to multiple backends) to service very many nodes while externalising the costs to the Bitcoin network.
+
+NODE_STRATIZED tries its best to maintain the facade and help upkeep the Bitcoin network (see relaying), but cannot support "getblocks" as it does not have the entire blockchain.
+
 ## Backwards Compatibility
