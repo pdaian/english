@@ -53,10 +53,15 @@ Four new messages are defined which are represented below in C-like pseudocode.
 
 "getoutputs"
 <pre>
-struct get_outputs
+struct decoded_address
 {
     uint8_t payment_type;
     uint8_t address_hash[16];
+};
+
+struct get_outputs
+{
+    decoded_address dest;
 };
 </pre>
 
@@ -70,6 +75,7 @@ struct point_t
 
 struct outputs
 {
+    decoded_address dest;
     uint64_t number_outputs;  // variable uint
     point_t outpoints[];
 };
@@ -87,7 +93,6 @@ struct get_spend
 <pre>
 struct spend
 {
-    uint64_t number_points;
-    point_t inpoints[];
+    point_t outpoint, inpoint;
 };
 </pre>
