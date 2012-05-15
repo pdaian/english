@@ -208,11 +208,11 @@ Ten minutes was specifically chosen by [[Satoshi]] as a tradeoff between propaga
 
 [[TransactionConfirmationTimesExample.PNG]]
 
-### Do you have to wait 10 minutes in order to buy or sell things with Bitcoin?
+### Do you have to wait until my transactions are confirmed in order to buy or sell things with Bitcoin?
 
-YES, you do, IF the transaction is non-recourse *and* attempted thefts are likely.  Otherwise you do not have to wait.
+YES, you do, IF the transaction is non-recourse. The Bitcoin reference software does not display transactions as confirmed until six blocks have passed (confirmations). As transactions are burred in the chain they become increasingly non-reversible but are very reversible before the first confirmation. Two to six confirmations are recommended for non-recourse situations depending on the value of the transactions involved.
 
-When people ask this question they are usually thinking about applications like supermarkets.  This is a recourse situation: if somebody tries to double-spend on a face-to-face transaction it might work a few times, but probabalistically speaking eventually one of the double-spends will get noticed, and the penalty for shoplifting charges in most localities is calibrated to be several times worse than the proceeds of a single shoplifting event.
+When people ask this question they are usually thinking about applications like supermarkets.  This generally is a recourse situation: if somebody tries to double-spend on a face-to-face transaction it might work a few times, but probabalistically speaking eventually one of the double-spends will get noticed, and the penalty for shoplifting charges in most localities is calibrated to be several times worse than the proceeds of a single shoplifting event.
 
 Double-spends might be a concern for something like a snack machine in a low-traffic area with no nearby security cameras.  A snack machine in such a situation probably shouldn't honor 0-confirmation payments.  An ATM in such a situation *definitely* shouldn't honor 0-confirmation payments -- but on the other hand, ATMs usually have cameras.
 
