@@ -96,3 +96,22 @@ struct spend
     point_t outpoint, inpoint;
 };
 </pre>
+
+These four messages allow a node to discover the history of a Bitcoin address without needing direct access to the blockchain.
+
+A typical use case might look like:
+
+1. Send "getoutputs" for a decoded Bitcoin address.
+1. Receive "outputs", and loop through each contained output point:
+	1. Send "getdata" to download the transaction for that point.
+	1. Send "getspend" for each output point.
+1. Receive "spend":
+	1. Send "getdata" to download the transaction for that input point.
+
+This sequence allows the gradual but fast build up of history for an address.
+
+## Security
+
+## Privacy
+
+SPV
