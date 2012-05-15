@@ -214,9 +214,7 @@ YES, you do, IF the transaction is non-recourse. The Bitcoin reference software 
 
 When people ask this question they are usually thinking about applications like supermarkets.  This generally is a recourse situation: if somebody tries to double-spend on a face-to-face transaction it might work a few times, but probabalistically speaking eventually one of the double-spends will get noticed, and the penalty for shoplifting charges in most localities is calibrated to be several times worse than the proceeds of a single shoplifting event.
 
-Double-spends might be a concern for something like a snack machine in a low-traffic area with no nearby security cameras.  A snack machine in such a situation probably shouldn't honor 0-confirmation payments.  An ATM in such a situation *definitely* shouldn't honor 0-confirmation payments -- but on the other hand, ATMs usually have cameras.
-
-For a complete answer, see the wiki article [[here|Myths#Point_of_sale_with_bitcoins_isn.27t_possible_because_of_the_10_minute_wait_for_confirmation]].
+Double-spends might be a concern for something like a snack machine in a low-traffic area with no nearby security cameras.  Such a machine shouldn't honor 0-confirmation payments, and should instead use some other mechanism of clearing Bitcoin or validating transactions against reversal, see the wiki article [[here|Myths#Point_of_sale_with_bitcoins_isn.27t_possible_because_of_the_10_minute_wait_for_confirmation]] for alternatives.
 
 ### I was sent some bitcoins and they haven't arrived yet! Where are they?
 
