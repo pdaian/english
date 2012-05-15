@@ -49,6 +49,8 @@ Apart from the differences noted above, the nodes are otherwise unchanged in the
 
 ## Specification
 
+### Initialisation
+
 Four new messages are defined which are represented below in C-like pseudocode.
 
 "getoutputs"
@@ -109,6 +111,12 @@ A typical use case might look like:
 	1. Send "getdata" to download the transaction for that input point.
 
 This sequence allows the gradual but fast build up of history for an address.
+
+### Updates
+
+Nodes receive "inv" messages as normal from service nodes, issuing "getdata" to download the block or transaction data. From this they check for newly sent (in the input points) or received (in the output points) payments in the transaction data.
+
+Note that blocks must at minimum have their merkle root validated and transactions must be checked for uniqueness by stratized nodes.
 
 ## Security
 
