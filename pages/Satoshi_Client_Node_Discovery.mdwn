@@ -161,8 +161,7 @@ Addresses are stored in the database when AddAddress() is called.
 
 Addresses are read on startup when AppInit2() calls LoadAddresses(), which is located in db.cpp.
 
-Currently, it appears all addresses are stored all at once whenever any address is stored or updated. Indeed, AddAddress is seen to take over .01 seconds in various testing and is typically called tens of thousands of times in the initial 12 hours of running the client.
-
+Currently, it appears all addresses are stored all at once whenever any address is stored or updated (14.1). Indeed, AddAddress is seen to take over .01 seconds in various testing and is typically called tens of thousands of times in the initial 12 hours of running the client.
 
 ###Command Line Provided Addresses
 
@@ -190,7 +189,8 @@ Addresses loaded from the text file are initially given a zero timestamp, theref
 
 ##References
 
-8.1: [bitcoin/src/net.cpp at master](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp)
+8.1: [bitcoin/src/net.cpp at master](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp)  
+14.1: [Lots of disk activity on Bitcoin startup: easy fix?](http://bitcointalk.org/index.php?topic=26436.0)
 
 
 [[!tag "Developer"]]
