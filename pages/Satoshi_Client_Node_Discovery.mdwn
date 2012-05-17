@@ -104,21 +104,16 @@ of 51 minutes, which means it looks like it was actually seen
 almost an hour ago.
 
 ###DNS Addresses
-Upon startup, the client makes DNS requests to hard coded DNS names
-in order to learn about the addresses of other nodes.[[4]] As of version
-v0.3.24, these addresses were[[5]]:
+Upon startup, if peer node discovery is needed, the client then issues DNS requests to learn about the addresses of other peer nodes.  The client includes a list of nost names for DNS services that are seeded.  As-of May 17, 2012 the list includes:
 
-bitseed.xf2.org
-bitseed.bitcoin.org.uk
-dnsseed.bluematt.me
+* bitseed.xf2.org
+* dnsseed.bluematt.me
+* seed.bitcoin.sipa.be
+* dnsseed.bitcoin.dashjr.org
 
-A recent query of these addresses returned 48 nodes. Note that a
-DNS reply can contain multiple IP addresses for a requested name.
+A DNS reply can contain multiple IP addresses for a requested name.
 
-
-Addresses discovered via DNS are initially given a zero timestamp,
-therefore they are not advertised in response to a "getaddr" request.
-
+Addresses discovered via DNS are initially given a zero timestamp, therefore they are not advertised in response to a "getaddr" request.
 
 
 ###Hard Coded "Seed" Addresses
@@ -260,13 +255,6 @@ in irc.cpp.
 	// Advertise our address
 in ProcessMessage() in main.cpp where strCommand == "version"
 
-4. See 
-	DNSAddressSeed()
-in net.cpp.
-
-5. See 
-	static const char *strDNSSeed[] = {
-in net.cpp
 
 6. See
 	pnSeed 
