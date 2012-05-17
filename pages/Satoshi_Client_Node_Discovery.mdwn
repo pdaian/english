@@ -104,7 +104,7 @@ of 51 minutes, which means it looks like it was actually seen
 almost an hour ago.
 
 ###DNS Addresses
-Upon startup, if peer node discovery is needed, the client then issues DNS requests to learn about the addresses of other peer nodes.  The client includes a list of nost names for DNS services that are seeded.  As-of May 17, 2012 the list includes:
+Upon startup, if peer node discovery is needed, the client then issues DNS requests to learn about the addresses of other peer nodes.  The client includes a list of nost names for DNS services that are seeded.  As-of May 17, 2012 the list (from net.cpp (8.1)) includes:
 
 * bitseed.xf2.org
 * dnsseed.bluematt.me
@@ -114,7 +114,6 @@ Upon startup, if peer node discovery is needed, the client then issues DNS reque
 A DNS reply can contain multiple IP addresses for a requested name.
 
 Addresses discovered via DNS are initially given a zero timestamp, therefore they are not advertised in response to a "getaddr" request.
-
 
 ###Hard Coded "Seed" Addresses
 The client contains hard coded IP addresses that represent bitcoin nodes.[[6]]
@@ -278,3 +277,4 @@ in ProcessMessage() in main.cpp where strCommand == "addr"
 
 [[!tag "Developer"]]
 [[!tag "Technical"]]
+8.1: [bitcoin/src/net.cpp at master](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp)
