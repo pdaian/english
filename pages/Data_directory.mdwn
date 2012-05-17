@@ -58,7 +58,7 @@ By default Bitcoin will put its data here:
 * debug.log
 	* Bitcoin's verbose log file. Automatically trimmed from time to time.
 * wallet.dat
-	* Storage for keys, transactions, metadata, and options.
+	* Storage for keys, transactions, metadata, and options. <span style="color:red">Please be sure to make backups of this file.  It contains the keys necessary for spending your bitcoins.</span>
 * addr.dat
 	* Storage for ip addresses to make a reconnect easier
 The data, index and log files are used by Oracle [Berkeley DB](http://en.wikipedia.org/wiki/Berkeley_DB), the embedded key/value data store that Bitcoin uses.
