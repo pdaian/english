@@ -28,14 +28,14 @@ To use tor .onion addresses ([[listed below|Fallback_Nodes#Tor_nodes]]), you wil
 	mapaddress 192.0.2.2 vso3r6cmjoomhhgg.onion
 	mapaddress 192.0.2.3 sjdntqu5roj4q6lo.onion
 
-And then put these IPs in your bitcoin.conf (or run bitcoin with -addnode)
+And then put these IPs in your bitcoin.conf (or run bitcoin with -connect).
 
-	addnode=192.0.2.2
-	addnode=192.0.2.3
+	connect=192.0.2.2
+	connect=192.0.2.3
 
 You can use any arbitrary IP addresses with MapAddress, though some of the common non-routable ranges (10.*, 192.168.*) will not work due to a Bitcoin bug (reference?). 192.0.2.1-192.0.2.255 is the recommended range because it is both non-routable and compatible with Bitcoin.
 
-It is highly recommended that you use "connect" instead of "addnode" so that all of your communications are kept within the tor network.
+If you would like to use these nodes in addition to the hard-coded node list in the client, you can substitute "connect" with "addnode". However, if you want to keep all your Bitcoin communication strictly within the Tor network, it is recommended that you use "connect."
 
 Additional suggested settings for hidden node operators:
 
