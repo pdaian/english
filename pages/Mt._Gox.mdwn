@@ -113,7 +113,7 @@ See the [[AML|MtGox#AML]] section regarding verification levels for AML purposes
 
 Bitcoins may be withdrawn at no charge.
 
-There have been sporadic reports where withdrawing the entire bitcoin balance results in an error message.  This could the be the result of a possible error where the amount available for withdrawal gets miscalculated due to a rounding error.  In at least one instance, a subsequent attempt to withdraw all but the last 1 BTC completed successfully.
+A [[green_address]] option is available though this type of transaction could experience a delay if the exchange's wallet funding level for green address transactions is insufficient.  The withdrawal form also offers an "open transaction" option which forces the transaction to go through the blockchain.  If the recipient of a BTC withdrawal happens to also be from Mt. Gox's [[EWallet]], then that transfer would occur instantly and the transaction would not be broadcast to the Bitcoin network.  This "open transaction" option forces a withdrawal to be broadcast to the Bitcoin network.
 
 ###Redeemable Code (USD)
 
