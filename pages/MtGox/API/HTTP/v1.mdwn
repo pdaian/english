@@ -24,6 +24,7 @@
 	"display":"55,829.58960346\u00a0BTC",
 	"currency":"BTC"
 	},
+	"last_all":{"value":"5.5594","value_int":"555940","display":"$5.55940","currency":"USD"},
 	"last_local":{"value":"5.5594","value_int":"555940","display":"$5.55940","currency":"USD"},
 	"last_orig":{"value":"5.5594","value_int":"555940","display":"$5.55940","currency":"USD"},
 	"last":{"value":"5.5594","value_int":"555940","display":"$5.55940","currency":"USD"},
@@ -32,7 +33,12 @@
 	}
 </source>
 
-note : last_local include only the last trade in the selected currency, last_orig include data of the original last trade ( currency,price in currency . . . ),last can be a conversion of the last trde in another currency
+**note about prices:**
+
+* last_local include only the last trade in the selected currency
+* last_all   is the last trade in ANY currency, converted to your currency
+* last_orig  include data of the original last trade ( currency,price in currency . . . ),
+* last can be a conversion of the last trade in another currency
 
 ### Multi Currency depth
 
