@@ -38,3 +38,68 @@ Key Type Description
 
 
 Note: Bitcoin amounts are in Satoshis
+
+Example:
+<pre>
+{
+	"version": 1,
+	"group": {
+		"name": "Eligius",
+		"hashrate": 600000000000
+	},
+	"collab": [
+		{
+			"name": "Eligius-Ra",
+			"hashrate": 550000000000,
+			"roundbegin": 1337719877.959086,
+			"roundshares": 423433,
+			"fee": 0,
+			"rewardalgo": "SMPPS",
+			"miners": [
+				"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW",
+				"name": "Luke-Jr",
+				"balances": [
+					{
+						"currency": "Bitcoin",
+						"balance": 167476453,
+						"estimate": 14761828,
+						"paid": 5800000000,
+						"lastpay": 67423840,
+						"lastpaytime": 1337713832.25908
+					},
+					{
+						"currency": "fiat",
+						"balance": 9342224,
+						"estimate": 39433
+					}
+				],
+				"hashrate": 1382848482,
+				"lastactive": 1337783882.423086,
+				"roundshares": 832,
+				"workers": [
+					{
+						"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW_Icarus",
+						"name": "Luke-Jr's Icarus :)",
+						"hashrate": 378483883,
+						"lastactive": 1337783882.423086,
+						"roundshares": 100,
+					},
+					{
+						"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW_BFL",
+						"name": "Luke-Jr's BitForce Single :D",
+						"hashrate": 832942393,
+						"lastactive": 1337783882.423086,
+						"roundshares": 600,
+					},
+					{
+						"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW_6870",
+						"name": "Luke-Jr's Radeon 6870",
+						"hashrate": 371422206,
+						"lastactive": 1337783882.423086,
+						"roundshares": 232,
+					}
+				]
+			]
+		}
+	]
+}</pre>
