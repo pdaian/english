@@ -1,50 +1,40 @@
 
-|version |[[!template id=yes]]|Number |always 1
-|group |[[!template id=no]]|Object |information about the organizational pool
-|collab |[[!template id=no]]|Array of Objects |information about each collaborative pool
-
-
-Organizational pool:
-
-
-|name |[[!template id=no]]|String |human-readable identifier for organizational pool
-|hashrate |[[!template id=no]]|Number |total hashrate of all mining in the organizational pool
-|miners |[[!template id=no]]|Array of Objects |information of specific miners
-
-
-Collaborative pool:
-
-
-|name |[[!template id=no]]|String |human-readable identifier for collaborative pool
-|hashrate |[[!template id=no]]|Number |total hashrate of all mining in the same collaborative pool
-|roundbegin |[[!template id=no]]|Number |time the current round began
-|roundshares |[[!template id=no]]|Number |number of shares submitted to the current round
-|fee |[[!template id=no]]|Number |fee (0.01 = 1%)
-|rewardalgo |[[!template id=no]]|String |reward algorithm identifier
-|miners |[[!template id=no]]|Array of Objects |information of specific miners
-
-
-Individual miner:
-
-
-|id |[[!template id=no]]|String |unique identifier for a miner's account (shared across collaborative pools)
-|name |[[!template id=no]]|String |human-readable identifier for miner
-|balances |[[!template id=no]]|Array of Objects |balance information
-|hashrate |[[!template id=no]]|Number |total hashrate of all mining in the same collaborative pool
-|lastactive |[[!template id=no]]|Number |time the miner was last seen active
-|roundshares |[[!template id=no]]|Number |number of shares submitted to the current round
-|workers |[[!template id=no]]|Array of Objects |information of specific workers
-
-
-Balance info:
-
-
-|currency |[[!template id=no]]|String |currency of balance
-|balance |[[!template id=no]]|Number |amount currently stored at the pool
-|estimate |[[!template id=no]]|Number |amount expected reward for the current round
-|paid |[[!template id=no]]|Number |amount that has been paid out ever
-|lastpay |[[!template id=no]]|Number |amount of last payout
-|lastpaytime |[[!template id=no]]|Number |time of last payout
+|colspan='3'Root
+|---
+|version |Number |always 1
+|group |Object |information about the organizational pool
+|collab |Array of Objects |information about each collaborative pool
+colspan='3'Organizational pool
+Key Type Description
+|name |String |human-readable identifier for organizational pool
+|hashrate |Number |total hashrate of all mining in the organizational pool
+|miners |Array of Objects |information of specific miners
+colspan='3'Collaborative pool
+Key Type Description
+|name |String |human-readable identifier for collaborative pool
+|hashrate |Number |total hashrate of all mining in the same collaborative pool
+|roundbegin |Number |time the current round began
+|roundshares |Number |number of shares submitted to the current round
+|fee |Number |fee (0.01 = 1%)
+|rewardalgo |String |reward algorithm identifier
+|miners |Array of Objects |information of specific miners
+colspan='3'Individual miner
+Key Type Description
+|id |String |unique identifier for a miner's account (shared across collaborative pools)
+|name |String |human-readable identifier for miner
+|balances |Array of Objects |balance information
+|hashrate |Number |total hashrate of all mining in the same collaborative pool
+|lastactive |Number |time the miner was last seen active
+|roundshares |Number |number of shares submitted to the current round
+|workers |Array of Objects |information of specific workers
+colspan='3'Balance info
+Key Type Description
+|currency |String |currency of balance
+|balance |Number |amount currently stored at the pool
+|estimate |Number |amount expected reward for the current round
+|paid |Number |amount that has been paid out ever
+|lastpay |Number |amount of last payout
+|lastpaytime |Number |time of last payout
 
 
 Note: Bitcoin balances are in Satoshis
