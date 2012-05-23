@@ -269,7 +269,8 @@ If you want to restrict your firewall rules to a few ips and/or don't want to al
 	iptables -t nat -A OUTPUT -p tcp --dest 173.246.103.92 --dport 6667 -j DNAT --to-destination :7777 -m comment --comment "bitcoind irc connection"
 
 ### How does the peer finding mechanism work?
-Bitcoin finds peers primarily by connecting to an IRC server (channel #bitcoin on irc.lfnet.org). If a connection to the IRC server cannot be established (like when connecting through TOR), an in-built node list will be used and the nodes will be queried for more node addresses.
+
+Bitcoin finds peers primarily by forwarding peer announcements within its own network and each node saves a database of peers that it's aware of for use in the future. In order to bootstrap this process Bitcoin needs a list of initial peers, these can be provided manually but normally it obtains them by querying a set of DNS domain names which have automatically updated lists, if that doesn't work it falls back to a build-in list which is updated from time to time in new versions of the software. There is also an IRC based mechanism but it is disabled by default.
 
 ##Mining
 ###What is mining?
