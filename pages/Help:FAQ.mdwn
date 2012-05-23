@@ -261,12 +261,9 @@ If this is too long for you, you can download a pre-synchronized blockchain from
 ##Networking
 ### Do I need to configure my firewall to run bitcoin?
 
-Bitcoin will connect to other nodes, usually on tcp port 8333. You will need to allow outgoing TCP connections to port 8333 if you want to allow your bitcoin client to connect to many nodes. Bitcoin will also try to connect to IRC (tcp port 6667) to meet other nodes to connect to.  [[Testnet]] uses tcp port 18333 instead of 8333.
+Bitcoin will connect to other nodes, usually on tcp port 8333. You will need to allow outgoing TCP connections to port 8333 if you want to allow your bitcoin client to connect to many nodes. [[Testnet]] uses tcp port 18333 instead of 8333.
 
-If you want to restrict your firewall rules to a few ips and/or don't want to allow IRC connection, you can find stable nodes in the [[fallback nodes list|Fallback_Nodes]].  If your provider blocks the common IRC ports, note that lfnet also listens on port 7777.  Connecting to this alternate port currently requires either recompiling Bitcoin, or changing routing rules.  For example, on Linux you can evade a port 6667 block by doing something like this:
-
-	echo 173.246.103.92 irc.lfnet.org >> /etc/hosts
-	iptables -t nat -A OUTPUT -p tcp --dest 173.246.103.92 --dport 6667 -j DNAT --to-destination :7777 -m comment --comment "bitcoind irc connection"
+If you want to restrict your firewall rules to a few ips, you can find stable nodes in the [[fallback nodes list|Fallback_Nodes]].  If your provider blocks the common IRC ports.
 
 ### How does the peer finding mechanism work?
 
