@@ -1,0 +1,21 @@
+###Generate new Bitcoin address
+
+<source lang="php">
+$fields = array(
+	'merchant' => 'owner@example.com',
+	'label' => 'TEST'
+);
+$fields[['encrypted']] = strtoupper(hash('sha256', $fields[['merchant']] . ':' . $fields[['label']] . ':' . 'API Key'));
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://walletbit.com/api/getnewaddress');
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, TRUE);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_POST, count($fields));
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+$response = curl_exec($ch);
+curl_close($ch);
+</source>
+
+If successful $response will contain your new bitcoin address, otherwise empty.
