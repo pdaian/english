@@ -1,0 +1,29 @@
+###Sent to Email or Bitcoin address
+
+<source lang="php">
+$fields = array(
+	'merchant' => 'owner@example.com',
+	'customer_email' => 'johnsmith@example.com',
+	'address' => *,
+	'amount' => 0.01000000,
+	'details' => 'You got Bitcoins!'
+);
+$fields[['encrypted']] = strtoupper(hash('sha256', $fields[['merchant']] . ':' . $fields[['customer_email']] . ':' . $fields[['amount']] . ':' . 'API Key'));
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://walletbit.com/api');
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, TRUE);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_POST, count($fields));
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+$response = curl_exec($ch);
+curl_close($ch);
+
+if ($response == '1')
+{
+
+}
+</source>
+
+If 'customer_email' is not on WalletBit, it will try to send to the defined bitcoin address.
