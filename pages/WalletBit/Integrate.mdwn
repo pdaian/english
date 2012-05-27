@@ -1,0 +1,42 @@
+Below you'll find tutorials that will teach you how to use [[WalletBit]] API, and reference documentation for all the moving parts
+
+Two methods are currently available: 
+
+##Create a payment form
+###If you want to integrate WalletBit manually
+
+Copy the following code, then place it immediately before the closing </head>
+
+<source lang="javascript">
+<script type="text/javascript">
+	(function() {
+	var wb = document.createElement('script'); wb.type = 'text/javascript'; wb.async = true;
+	wb.src = 'https://walletbit.com/' + (typeof jQuery == 'undefined' ? 'jq' : 'checkout') + '/45ab2793b84a351e3354661e6532c1c7?url=' + escape(parent.location.href);
+	var s = document.getElementsByTagName('script')[[0]]; s.parentNode.insertBefore(wb, s);
+	})();
+</script>
+</source>
+
+And the following anywhere in your HTML where you want a payment button. Adjust the product name in text and amount in the rel value. You can define where you want to send customers after purchase by editing href value. If you need additional variable place them in target of the a tag splitted by pipe 
+
+<source lang="html4strict"><a rel="0.01000000" target="wb_1=red|wb_2=green" test="0" href="https://walletbit.com/" class="WalletBitButton">Auction Goods</a></source>
+
+You can also build your own payment button, for instance our support button at front site looks like this, notice the class WalletBitButtonCustom
+
+<source lang="html4strict"><a rel="0.50" test="0" href="https://walletbit.com/" title="Support this free service" class="WalletBitButtonCustom" >1MrcomYR9JrbeYzyPTCSH9usfAuW5WjtJu</a></source>
+
+###If you want a standard checkout process where customers leave your site and come back once completed
+
+<source lang="html4strict">
+<form method="post" action="https://walletbit.com/checkout/frame">
+	<input type="hidden" name="token" value="45ab2793b84a351e3354661e6532c1c7" />
+	<input type="hidden" name="item_name" value="Auction Goods" />
+	<input type="hidden" name="amount" value="0.01000000" />
+	<input type="hidden" name="returnurl" value="https://walletbit.com/" />
+	<input type="hidden" name="additional" value="wb_1=red|wb_2=green" />
+	<input type="hidden" name="test" value="0" />
+	<input type="image" src="https://walletbit.com/button/0.01000000" border="0" name="submit" alt="WalletBit - The Simple Way to Spend or Get Paid Online" />
+</form>
+</source>
+
+Sign in before using these examples as your need to replace the TOKEN.
