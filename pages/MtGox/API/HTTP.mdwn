@@ -13,6 +13,11 @@ There is a [Ruby gem](https://rubygems.org/gems/mtgox), [guten-mtgox](https://ru
 
 All API methods are cached for 10 seconds. Do not request results more often than that, you might be blocked by the anti-DDoS filters.
 
+## Currency Symbols
+List of the currency symbols available with the API:
+
+USD, AUD, CAD, CHF, CNY, DKK, EUR, GBP, HKD, JPY, NZD, PLN, RUB, SEK, SGD, THB
+
 ## Authentication
 
 Authentication is performed by signing each request using HMAC-SHA512. The request must contain an extra value "nonce" which must be an always incrementing numeric value.  A reference implementation is provided here:
