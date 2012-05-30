@@ -25,10 +25,6 @@ On July 28 2010 two bugs were discovered and demonstrated on the test network. T
 
 After these bugs were discovered, many currently-unused script words were disabled for safety.
 
-### References
-
-* [[Incident|Incidents#LSHIFT_and_RETURN_bugs]]
-
 
 ## CVE-2010-5138
 
@@ -41,10 +37,6 @@ After these bugs were discovered, many currently-unused script words were disabl
 
 
 On July 29 2010, it was discovered that block [71036](http://blockexplorer.com/block/00000000000997f9fd2fe1ee376293ef8c42ad09193a5d2086dddf8e5c426b56) contained several transactions with a ton of OP_CHECKSIG commands. There should only ever be one such command. This caused every node to do extra unnecessary work, and it could have been used as a denial-of-service attack. A new version of Bitcoin was quickly released. The new version did not cause a fork on the main network, though it did cause one on the test network (where someone had played around with the attack more).
-
-### References
-
-* [[Incident|Incidents#OP_CHECKSIG_abuse]]
 
 
 ## CVE-2010-5139
@@ -76,7 +68,6 @@ Transaction hash: 1d5e512a9723cbef373b970eb52f1e9598ad67e7408077a82fdac194b65333
 
 ### References
 
-* [[Incident|Incidents#Value_overflow]]
 * [Discovery](https://bitcointalk.org/index.php?topic=822.0)
 
 
@@ -96,7 +87,6 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 
 ### References
 
-* [[Incident|Incidents#Micropayment_contamination]]
 * [Initial reports](http://www.bitcoin.org/smf/index.php?topic=1306.0)
 
 
