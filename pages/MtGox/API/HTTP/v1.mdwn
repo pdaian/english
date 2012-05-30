@@ -3,8 +3,8 @@
 
 ### Multi Currency Ticker
 
-	https://mtgox.com/api/1/BTCUSD/public/ticker
-	https://mtgox.com/api/1/BTCEUR/public/ticker
+	https://mtgox.com/api/1/BTCUSD/ticker
+	https://mtgox.com/api/1/BTCEUR/ticker
 
 	returns the current ticker for the selected currency :
 
@@ -42,23 +42,23 @@
 
 ### Multi Currency depth
 
-https://mtgox.com/api/1/BTCPLN/public/depth?raw
+https://mtgox.com/api/1/BTCPLN/depth?raw
 
-https://mtgox.com/api/1/BTCAUD/public/depth?raw
+https://mtgox.com/api/1/BTCAUD/depth?raw
 
 ### Multi currency trades
 
-https://mtgox.com/api/1/BTCUSD/public/trades?raw
+https://mtgox.com/api/1/BTCUSD/trades?raw
 
-https://mtgox.com/api/1/BTCPLN/public/trades?raw
+https://mtgox.com/api/1/BTCPLN/trades?raw
 
-https://mtgox.com/api/1/BTCAUD/public/trades?raw
+https://mtgox.com/api/1/BTCAUD/trades?raw
 
 to get only the trades since a given trade id, you can add the parameter since=<trade_id>
 
-https://mtgox.com/api/1/BTCUSD/public/trades?since=0
+https://mtgox.com/api/1/BTCUSD/trades?since=0
 
-https://mtgox.com/api/1/BTCEUR/public/trades?since=1316312781670700
+https://mtgox.com/api/1/BTCEUR/trades?since=1316312781670700
 
 For multi currency,also returns the primary value,"Y" or "N", the primary currency is always the buyers currency
 
@@ -101,13 +101,13 @@ The meaning of each field is as follows:
 
 ### Cancelled Trades
 
-https://mtgox.com/api/1/BTCUSD/public/cancelledtrades
+https://mtgox.com/api/1/BTCUSD/cancelledtrades
 
 returns a list of all the cancelled trades this last month, list of trade ids in json format .
 
 ### Full Depth
 
-https://mtgox.com/api/1/BTCUSD/public/fulldepth
+https://mtgox.com/api/1/BTCUSD/fulldepth
 
 returns full depth
 
@@ -193,7 +193,7 @@ submits an order and returns info about success or error
 
 ### Currency information
 
-https://mtgox.com/api/1/generic/public/currency
+https://mtgox.com/api/1/generic/currency
 
 pass parameter ?currency=<currency_symbol>
 
@@ -201,13 +201,13 @@ returns information about a currency ( number of decimals . . . )
 
 ### HOTP key
 
-https://mtgox.com/api/1/generic/public/hotp_gen
+https://mtgox.com/api/1/generic/hotp_gen
 
 used to generate a new HOTP key ( useful for developers )
 
 ### App activation
 
-https://mtgox.com/api/1/generic/public/api/activate
+https://mtgox.com/api/1/generic/api/activate
 
 parameters:
 
