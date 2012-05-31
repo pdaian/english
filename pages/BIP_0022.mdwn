@@ -19,10 +19,10 @@ Instead of sending a simple block header for hashing, the entire block structure
 ###JSON-RPC Method: getmemorypool
 
 A new JSON-RPC method is defined, called "getmemorypool".
-It accepts two arguments, both of which are optional and may be omitted from calls.
-If the first argument is provided, is is a String and interpreted as block data for a [[submission|#Block_Submission]] or [[proposal|#Block_Proposal]] call;
-otherwise, this call is interpreted as a request for a new block template from the server.
-The second argument is an Object of request parameters.
+It accepts a total of two arguments, both of which are optional and may be omitted individually from calls.
+If the first argument is provided, it is a String and interpreted as block data for a [[submission|#Block_Submission]] or [[proposal|#Block_Proposal]] call;
+otherwise, the call is interpreted as a request for a new block template from the server.
+The next argument, if provided, is an Object of request parameters.
 If the request parameters include a "mode" key, that is used to explicitly select between [["template"|#Block_Template_Request]], [["proposal"|#Block_Proposal]], and [["submit"|#Block_Submission]] calls.
 
 ###Block Template Request
