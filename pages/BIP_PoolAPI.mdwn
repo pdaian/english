@@ -40,6 +40,7 @@ Key Type Description
 |id |String |unique identifier for a miner's account (shared across collaborative pools)
 |name |String |human-readable identifier for miner
 |balances |Array of Objects |balance information
+|fee |Number |fee (0.01 = 1%)
 |hashrate |Number |total hashrate of all mining in the same collaborative pool
 |lastactive |Number |time the miner was last seen active
 |roundshares |Number |number of shares submitted to the current round
@@ -49,9 +50,12 @@ Key Type Description
 |currency |String |currency of balance
 |balance |Number |amount currently stored at the pool
 |estimate |Number |amount expected reward for the current round
+|fee |Number |fee (0.01 = 1%)
 |paid |Number |amount that has been paid out ever
 |lastpay |Number |amount of last payout
 |lastpaytime |Number |time of last payout
+|autopay |Number |minimum amount before autopayout
+|autopayto |String |address for autopayouts
 
 
 Currencies:
@@ -68,10 +72,10 @@ Reward algorithms:
 |Prop |Proportional
 |PPLNS |Pay Per Last N Shares
 |PPS |Pay Per Share
-|PPS/SM |Shared Maximum Pay Per Share
+|SMPPS |Shared Maximum Pay Per Share
 |Score |
-|Score/Geo |Geometric Method
-|Score/Geo/Dbl |Double Geometric Method
+|Geo |Geometric Method
+|DGM |Double Geometric Method
 
 
 ###Example
