@@ -192,7 +192,7 @@ This is accomplished by calling getmemorypool with two keys:
 
 
 The block data MUST be validated and checked against the server's usual acceptance rules (excluding the check for a valid proof-of-work).
-If it is found to be in violation of any of these rules, the server MUST return a String giving the reason for the rejection (see [[Block Submission|#Block_Submission]] for example reasons).
+If it is found to be in violation of any of these rules, the server MUST return a String giving the reason for the rejection (see [[example rejection reasons|#Example_Rejection_Reasons]]).
 If it is acceptable as-is, the server MAY return a true Boolean.
 Otherwise, the server may return a new block template (with or without changes); in this case, any missing keys are assumed to default to those in the proposed block or, if not applicable, the original block template it was based on.
 
@@ -215,6 +215,7 @@ When getmemorypool is called with a "data" key, and "mode" either set to "submit
 
 This method MUST return either null (when a share is accepted), a String describing briefly the reason the share was rejected, or an Object of these with a key for each merged-mining chain the share was submitted to.
 
+####Example Rejection Reasons
 Possible reasons a share may be rejected include, but are not limited to:
 
 
