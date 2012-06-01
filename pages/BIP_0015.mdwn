@@ -347,21 +347,17 @@ By using DNS lookups, the MITM problem with IP transactions could be mitigated b
 
 ### Namecoin ID
 
-This proposal uses the namecoin blockchain to associate an alias with a bitcoin address. Bitcoin queries a namecoin node. This retreives the data (i.e a bitcoin address) associated with this alias.
+This proposal uses the Namecoin blockchain to associate an alias with a bitcoin address. Bitcoin queries a namecoin node. This retreives the structured data containing the bitcoin address(es) associated with this alias.
 
-**Advantages :**
+Using a decentralised domainname system like Namecoin, means no external server or entity needs to be trusted unlike the other proposals listed here. This indicates a system with the advantage of having a high availability and ease of entry (no restrictions for users to create aliases).
 
-* Secure : no external server/entity to trust
-* High Availability : even available offline
-* Easy to implement : works with json and rpc
-* Economy : anybody can create a service for aliases/identity
+Two examples are presented below. The first shows a simpler format, while the second shows several Bitcoin addresses in a structured format.
 
-**Examples :**
 	$ namecoind name_show id/khal
 	{
 	"bitcoin" : "N15mJsVMHNtVDedDnD8vu82M5hCfn3nJWq"
 	}
-
+	
 	$ namecoind name_show id/khal
 	{
 	"bitcoin" :
@@ -370,7 +366,6 @@ This proposal uses the namecoin blockchain to associate an alias with a bitcoin 
 	"donation": "N2pGWAh65TWpWmEFrFssRQkQubbczJSKi9"
 	}
 	}
-
 
 **More possibilities :**
 
