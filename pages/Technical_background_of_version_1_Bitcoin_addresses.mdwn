@@ -11,7 +11,7 @@ Bitcoin allows you to create as many addresses as you want, and each one is comp
 
 Bitcoin addresses contain a built-in check code, so it's generally not possible to send Bitcoins to a mistyped address. However, if the address is well-formed but no one owns it (or the owner lost their wallet.dat), any coins sent to that address will be lost forever.
 
-Hash values and the checksum data are converted to an alpha-numeric representation using a custom scheme: the [[Base58Check_encoding]] scheme. Under Base58Check, addresses can contain all alphanumeric characters except 0, O, I, and l. Normal addresses currently always start with 1, though this might change in a future version. Testnet addresses usually start with *m* or *n*. Mainline addresses can be 25-34 characters in length, and testnet addresses can be 26-34 characters in length. Most addresses are 33 or 34 characters long.
+Hash values and the checksum data are converted to an alpha-numeric representation using a custom scheme: the [[Base58Check_encoding]] scheme. Under Base58Check, addresses can contain all alphanumeric characters except 0, O, I, and l. Normal addresses currently always start with 1 (addresses from script hashes use 3), though this might change in a future version. Testnet addresses usually start with *m* or *n*. Mainline addresses can be 25-34 characters in length, and testnet addresses can be 26-34 characters in length. Most addresses are 33 or 34 characters long.
 
 It is also possible to send Bitcoins directly to an [[IP_address]] but this method is never recommended as a man-in-the-middle attacks makes redirecting coins trivial.
 
