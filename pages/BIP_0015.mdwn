@@ -351,8 +351,7 @@ This proposal uses the namecoin blockchain to associate an alias (id) with a bit
 
 A user send some bitcoins to an alias (say "khal"), so he puts "khal" in the "To" field of Bitcoin.
 
-Bitcoin then query a namecoin node (with an rpc request) to retreive data (a bitcoin address for example) associated with this alias.
-
+Bitcoin then queries a namecoin node with an rpc request. This retreives data (a bitcoin address for example) associated with this alias.
 
 **Advantages :**
 
@@ -360,7 +359,6 @@ Bitcoin then query a namecoin node (with an rpc request) to retreive data (a bit
 * High Availability : even available offline
 * Easy to implement : works with json and rpc
 * Economy : anybody can create a service for aliases/identity
-
 
 **Examples :**
 	$ namecoind name_show id/khal
