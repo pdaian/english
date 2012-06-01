@@ -19,19 +19,21 @@ Instead of sending a simple block header for hashing, the entire block structure
 ###JSON-RPC Method: getmemorypool
 
 A new JSON-RPC method is defined, called "getmemorypool".
-It accepts a total of two arguments, both of which are optional and may be omitted individually from calls.
-If the first argument is provided, it is a String and interpreted as block data for a [[submission|#Block_Submission]] or [[proposal|#Block_Proposal]] call;
-otherwise, the call is interpreted as a request for a new block template from the server.
-The next argument, if provided, is an Object of request parameters.
+It accepts exactly one argument, which MUST be an Object of request parameters.
 If the request parameters include a "mode" key, that is used to explicitly select between [["template"|#Block_Template_Request]], [["proposal"|#Block_Proposal]], and [["submit"|#Block_Submission]] calls.
+Otherwise, it defaults to [[a submission|#Block_Submission]] if there is a "data" key (including the String-type argument mentioned above), and [[a template request|#Block_Template_Request]] if not.
+
+###Backward Compatibility
+Servers MAY choose to implement the following behaviours to remain backward compatible with pre-standard bitcoind 0.5 and 0.6 getmemorypool methods:
+
+* If the parameters Object is omitted, it should be accepted as a [[template request|#Block_Template_Request]] with all default parameters.
+* If there is a single String argument instead of the parameters Object, it should be accepted as the "data" key for a [[submission|#Block_Submission]]. In this case, the response format is changed to either true (if a share is accepted) or false (if a share is rejected, regardless of reason).
 
 ###Block Template Request
-
-	getmemorypool({parameters...})
-
-If called with a single Object argument, getmemorypool interprets that Object as a set of parameters to build a block template from:
+Block template creation can be influenced by various parameters:
 
 
+|mode |String |MUST be "template" or omitted
 |capabilities |Array of Strings |SHOULD contain a list of the following, to indicate client-side support: [["longpoll"|#Long_Polling]], "coinbasetxn", "coinbasevalue", [["proposal"|#Block_Proposal]], [["serverlist"|#Logical_Services]], "workid", and any of the [[mutations|#Mutations]]
 |longpollid |String |"longpollid" of job to monitor for expiration; required and valid only for [[long poll requests|#Long_Polling]]
 |nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
@@ -180,11 +182,14 @@ A temporary delegation to another server for 5 minutes MAY be indicated likewise
 	"serverlist":{}{}["http://newserver", "update": false]("uri":)
 
 ###Block Proposal
-
-	getmemorypool("hex-encoded block data...", {mode: "proposal", parameters...})
-
 At any point before a job expires, a miner MAY propose a block to the server for general validation.
-This is accomplished by calling getmemorypool with the hex-encoded block data as the first argument (as in a [[submission|#Block_Submission]]), and an Object as the second argument with the "mode" key set to "proposal".
+This is accomplished by calling getmemorypool with two keys:
+
+
+|data |String |MUST be hex-encoded block data
+|mode |String |MUST be "proposal"
+|workid |String |if the server provided a workid, it MUST be included with proposals
+
 
 The block data MUST be validated and checked against the server's usual acceptance rules (excluding the check for a valid proof-of-work).
 If it is found to be in violation of any of these rules, the server MUST return a String giving the reason for the rejection (see [[Block Submission|#Block_Submission]] for example reasons).
@@ -199,18 +204,16 @@ Servers SHOULD NOT break this assumption without good cause.
 
 ###Block Submission
 
-	getmemorypool("hex-encoded block data...", {parameters...})
+When getmemorypool is called with a "data" key, and "mode" either set to "submit" or omitted, it is interpreted as a potential block (or share); this may be truncated or merkle-ified depending on the [["submit/*" or "share/*" mutations|#Mutations]].
 
-When getmemorypool is called with a String as its first argument, it is interpreted as hex-encoded data for a potential block; this may be truncated or merkle-ified depending on the "share/truncate" or "share/merkle" mutations, respectively.
-The second argument, if provided, is an Object of parameters for the submission.
-If this includes the "mode" key set to "proposal", the [[block proposal|#Block_Proposal]] process should be followed instead.
-The only other defined key for this Object is the "workid" provided by the server:
-if a "workid" was specified in the template, it must be submitted with the share/block.
 
-If the parameters argument is specified, this method MUST return either null (when a share is accepted), a String describing briefly the reason the share was rejected, or an Object of these with a key for each merged-mining chain the share was submitted to.
 
-If the parameters argument is omitted, this method SHOULD return either true (if the share is accepted) or false (if rejected).
-Clients MUST NOT depend on this boolean response, and servers MAY choose not to implement this paragraph.
+|data |String |MUST be hex-encoded block data
+|mode |String |MUST be "submit" or omitted
+|workid |String |if the server provided a workid, it MUST be included with submissions
+
+
+This method MUST return either null (when a share is accepted), a String describing briefly the reason the share was rejected, or an Object of these with a key for each merged-mining chain the share was submitted to.
 
 Possible reasons a share may be rejected include, but are not limited to:
 
