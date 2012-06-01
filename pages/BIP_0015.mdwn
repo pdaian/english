@@ -345,4 +345,47 @@ By using DNS lookups, the MITM problem with IP transactions could be mitigated b
 
 [[!tag "BIP"]]
 
-### Namecoin
+### Namecoin ID
+
+This proposal uses the namecoin blockchain to store alias (id) for a bitcoin address.
+
+A user send some bitcoins to an alias (say "khal"), so he puts "khal" in the "To" field of Bitcoin.
+
+Bitcoin then query a namecoin node (with an rpc request) to retreive data (a bitcoin address for example) associated with this alias.
+
+**Advantages :**
+
+* Secure : no external server/entity to trust
+* High Availability : even available offline
+* Easy to implement : works with json and rpc
+* Economy : anybody can create a service for aliases/identity
+	$ namecoind name_show id/khal
+	{
+	"bitcoin" : "N15mJsVMHNtVDedDnD8vu82M5hCfn3nJWq"
+	}
+
+	$ namecoind name_show id/khal
+	{
+	"bitcoin" :
+	{
+	"default" : "N15mJsVMHNtVDedDnD8vu82M5hCfn3nJWq",
+	"donation": "N2pGWAh65TWpWmEFrFssRQkQubbczJSKi9"
+	}
+	}
+
+**More possibilities :**
+
+* Allow the use of unsecured channels by getting signed keys
+* Allow to get a different address each time, or per user, per order, etc
+* Specification is extensible
+	$ namecoind name_show id/khal
+	{
+	"bitcoin" :
+	{
+	"url" : "http://merchant.com/bitcoin/getnewaddres/{Your customer id}",
+	"signedWith" : "1J3EKMfboca3SESWGrQKESsG1MA9yK6vN4",
+	"useOnce": true
+	}
+	}
+
+See the specification of [Namecoin ID](http://dot-bit.org/Namespace:Identity) for more informations.
