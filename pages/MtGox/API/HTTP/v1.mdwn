@@ -292,7 +292,7 @@ Two headers are added to the request:
 
 See below for examples:
 
-#### PHP
+====== PHP ======
 <source lang="php">
 <?php
 
@@ -304,6 +304,22 @@ function mtgox_is_valid_ipn() {
 	return ($sign == $good_sign);
 }
 </source>
+
+#### Dynamic Button
+
+While you can create buttons through the MtGox website, those are generated with the normal API. To display a button with your API transaction, first add the following markup to your page:
+
+<source lang="html5">
+<span class="mtgox" data-id="<txid>" data-amount="<amount>" data-currency="<currency>">
+	<a href="https://payment.mtgox.com/<txid>">
+	<img src="https://payment.mtgox.com/img/mtgox-checkout.png" border="0" />
+	</a>
+</span>
+<!-- You only need the following tag once on the page, after all the buttons (for example on the last line before closing the <body>	tag) -->
+<![!IE](if)><script type="text/javascript" src="https://payment.mtgox.com/js/button.min.js"></script><![[endif]]>
+</source>
+
+Make sure to change **<txid>**, **<amount>** and **<currency>** to whatever value apply to that transaction.
 
 ## Examples
 
