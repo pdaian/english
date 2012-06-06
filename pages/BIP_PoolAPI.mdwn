@@ -1,69 +1,87 @@
-[[!template id=bip]]
+                         [[!template id=bip]]
 
 <pre>
   BIP: ?
   Title: ?
-  Author: ? and Luke Dashjr <luke+bip22@dashjr.org>
+  Author: Paul Sheppard <shep(nospace)soft(at)gmail.com> and Luke Dashjr <luke+bip22@dashjr.org>
   Status: Draft
   Type: Standards Track
   Created: 22-05-2012
 </pre>
 
 ##Abstract
+This BIP aims to create a standard API for pool statistics.
+
 ##Specification
 
-All times are in standard seconds since Jan 1 1970 midnight UTC.
+Time is seconds since Jan 1 1970 midnight UTC.<br>
+Hashrate is hashes per second.<br>
+Satoshis is the smallest divisable part of the currency. i.e. for USD this is 0.01<br>
+
+###Consistuent Structures
 
 
-
-|colspan='3'Root
+|colspan='3'shares
 |---
-|version |Number |always 1
-|group |Object |information about the organizational pool
-|collab |Array of Objects |information about each collaborative pool
-colspan='3'Organizational pool
-Key Type Description
-|name |String |human-readable identifier for organizational pool
-|hashrate |Number |total hashrate of all mining in the organizational pool
-|miners |Array of Objects |information of specific miners
-colspan='3'Collaborative pool
-Key Type Description
-|name |String |human-readable identifier for collaborative pool
-|hashrate |Number |total hashrate of all mining in the same collaborative pool
-|roundbegin |Number |time the current round began
-|roundshares |Number |number of shares submitted to the current round
-|fee |Number |fee (0.01 = 1%)
-|rewardalgo |String |reward algorithm identifier
-|miners |Array of Objects |information of specific miners
-colspan='3'Individual miner or worker
-Key Type Description
-|id |String |unique identifier for a miner's account (shared across collaborative pools)
-|name |String |human-readable identifier for miner
-|balances |Array of Objects |balance information
-|fee |Number |fee (0.01 = 1%)
-|hashrate |Number |total hashrate of all mining in the same collaborative pool
-|lastactive |Number |time the miner was last seen active
-|roundshares |Number |number of shares submitted to the current round
-|workers |Array of Objects |information of specific workers
-colspan='3'Balance info
-Key Type Description
-|currency |String |currency of balance
-|balance |Number |amount currently stored at the pool
-|estimate |Number |amount expected reward for the current round
-|fee |Number |fee (0.01 = 1%)
-|paid |Number |amount that has been paid out ever
-|lastpay |Number |amount of last payout
-|lastpaytime |Number |time of last payout
-|autopay |Number |minimum amount before autopayout
-|autopayto |String |address for autopayouts
+|submitted |Number |shares submitted
+|stale |Number |shares deemed stale by pool
+|invalid |Number |shares deemed invalid by pool
 
 
-Currencies:
 
 
-|Bitcoin |Bitcoins (in Satoshis)
-|Namecoin |Namecoins
-|fiat |Pool-specific "play money" (eg, SMPPS "extra credit")
+|colspan='3'block
+|---
+|currency |String |BTC, NMC, Ix, iO, etc...
+|id |Number |block ID
+|duration |Time |block duration in seconds
+|shares_round |Object 'shares' |shares for entire pool for the round 
+|shares_user |Object 'shares' |shares for all workers of the user  for the round
+
+
+
+
+|colspan='3'balance
+|---
+|currency |String |BTC, NMC, Ix, iO, etc...
+|confirmed |Satoshis |confirmed reward (>=120 valid blocks)
+|unconfirmed |Satoshis |unconfirmed reward (<120 valid blocks)
+|estimate |Satoshis |estimated reward for current round
+|last_pay |Satoshis |value of last payout
+|last_pay_time |Time |time of last payout
+|total_pay |Satoshis |total value of paid out
+|threshold |Satoshis |min confirmed reward before auto payout. 0 for no auto payment
+
+
+
+
+|colspan='3'worker
+|---
+|id |String |unique worker identifier
+|name |String |human-readable identifier for worker
+|hashrate |Hashrate |current hashrate of the worker
+|last_activity |Time |last submitted share time
+|shares_round |Object 'shares' |shares for current round
+|shares_reset |Object 'shares' |shares since last user reset
+|shares_total |Object 'shares' |shares of worker for all time
+|reward_algo |String |reward algorithm identifier
+|fee |Float |fee multiplier (1% = 0.01)
+
+
+###Main Structure
+
+
+|colspan='3'user
+|---
+|pool_MOTD |String |whatever the pool wants to tell us
+|pool_hashrate |Hashrate |current hashrate of the entire pool
+|pool_users |Number |number of active users on the pool
+|pool_workers |Number |number of active workers on the pool
+|current_round |Array of 'block' |current active round
+|user_hashrate |Hashrate |current hashrate of user for all workers
+|last_activity |Time |last submitted share time of any user worker
+|balances |Array of 'balance' |listing of each balance (BTC, NMC, etc.)
+|workers |Array of 'worker' |listing of each worker of the user
 
 
 Reward algorithms:
@@ -79,71 +97,12 @@ Reward algorithms:
 
 
 ###Example
-<pre>
-{
-	"version": 1,
-	"group": {
-		"name": "Eligius",
-		"hashrate": 600000000000
-	},
-	"collab": [
-		{
-			"name": "Eligius-Ra",
-			"hashrate": 550000000000,
-			"roundbegin": 1337719877.959086,
-			"roundshares": 423433,
-			"fee": 0,
-			"rewardalgo": "SMPPS",
-			"miners": [
-				"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW",
-				"name": "Luke-Jr",
-				"balances": [
-					{
-						"currency": "Bitcoin",
-						"balance": 167476453,
-						"estimate": 14761828,
-						"paid": 5800000000,
-						"lastpay": 67423840,
-						"lastpaytime": 1337713832.25908
-					},
-					{
-						"currency": "fiat",
-						"balance": 9342224,
-						"estimate": 39433
-					}
-				],
-				"hashrate": 1382848482,
-				"lastactive": 1337783882.423086,
-				"roundshares": 832,
-				"workers": [
-					{
-						"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW_Icarus",
-						"name": "Luke-Jr's Icarus :)",
-						"hashrate": 378483883,
-						"lastactive": 1337783882.423086,
-						"roundshares": 100,
-					},
-					{
-						"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW_BFL",
-						"name": "Luke-Jr's BitForce Single :D",
-						"hashrate": 832942393,
-						"lastactive": 1337783882.423086,
-						"roundshares": 600,
-					},
-					{
-						"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW_6870",
-						"name": "Luke-Jr's Radeon 6870",
-						"hashrate": 371422206,
-						"lastactive": 1337783882.423086,
-						"roundshares": 232,
-					}
-				]
-			]
-		}
-	]
-}</pre>
 
 ##Motivation
+Moving forward with bitcoin it is important to make all aspects as user friendly as possible. 
+
 ##Rationale
+This BIP allows the creators of Apps and Web GUIs for pool monitoring a common interface to use, as opposed to dealing with a differing interface for each pool.
+
 ##Backwards Compatibility
-##Reference Implementation
+As an emerging standard, backwards comparability is not applicable. However forward comparability should be maintained. Any future incompatibilities shall be identified by the 'API_version' number.
