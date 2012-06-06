@@ -115,6 +115,13 @@ See the [[AML|MtGox#AML]] section regarding verification levels for AML purposes
 [[Dwolla]] is among the fastest and least expensive methods for withdrawing USD funds from a Mt. Gox account. The transaction fee to do so is just $0.25.
 [[Dwolla]] withdrawals are processed every hour during business hours (Japan time) and every 12 hours on weekends.
 
+The status of the withdrawal request will show one of the following status codes:
+
+* Preparing: System is running checks to see if the transfer can be executed.
+* Confirmed: Transfer can be executed and is pending in queue.
+* Todo: Transfer is near the top of the queue and will be executed soon.
+* Processed: Transfer has been processed.
+
 ###BTC
 
 Bitcoins may be withdrawn at no charge.
