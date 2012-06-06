@@ -238,6 +238,10 @@ or
 * **description**: *<string>* A small description that will appear on the payment page (defaults to "Payment to <user_login>")
 * **ipn**: *<string>* URL that will be called by our services once the payment is complete (more below)
 * **data**: *<string>* Custom data returned by the IPN
+* **email**: *int* Set to 1 to receive an email for each successful payment
+* **autosell**: *int* Set to 1 to automatically sell received bitcoins at market price
+* **multipay**: *int* Set to 1 to allow multiple payments on the same transaction ID
+* **instant_only**: *int* Set to 1 to only allow MtGox users to pay on this transaction
 
 ##### Returns
 
