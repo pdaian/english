@@ -2,7 +2,7 @@
 
 <pre>
   BIP: ?
-  Title: ?
+  Title: JSON Pool Information API
   Author: Paul Sheppard <shepsoft@gmail.com> and Luke Dashjr <luke+bip22@dashjr.org>
   Status: Draft
   Type: Standards Track
@@ -51,8 +51,8 @@ Key Type Description
 |id |String |unique identifier for the round
 |begintime |Number |time the current round began
 |shares |Object |number of shares submitted to the current round
-|blockchain |String |which blockchain the round is relevant for
-|blockparent |String |blockchain-specific identifier for the base of the current round
+|network |String |which network the round is relevant for
+|parent |String |network-specific identifier for the base of the current round
 colspan='3'Shares
 Key Type Description
 |accepted |Number |number of accepted shares
@@ -91,6 +91,14 @@ Currencies:
 |Bitcoin |Bitcoins (in Satoshis)
 |Namecoin |Namecoins
 |fiat |Pool-specific "play money" (eg, SMPPS "extra credit")
+
+
+Networks:
+
+
+|Bitcoin |Bitcoin blockchain
+|Bitcoin address |Searching for vanity Bitcoin addresses
+|Namecoin |Namecoin blockchain
 
 
 Reward algorithms:
