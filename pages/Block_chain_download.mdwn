@@ -1,0 +1,119 @@
+## Bitcoin Chain Download
+
+### Downloader Behavior
+
+* When receiving an inv
+	* For each block
+		* If already have as orphan, send getblocks(locator(chainHead), orphanRoot(block))
+		* If not already have
+			* send getdata(block)
+		* If already have and this is last block in message NOTE: this triggers specific behavior in peer getdata
+			* send getdata(block)
+
+* When receiving a block
+	* If already have, ignore
+	* Else if have parent not in main chain
+		* store as orphan
+		* getblocks(locator(chainHead), orphanRoot(block))
+	* Else
+		* Accept block
+		* Accept orphan blocks that depend on this one
+
+* When starting download from a peer
+	* getblocks(locator(chainHead), 0)
+
+
+### Responder Behavior
+
+* When receiving getdata, for each requested block
+	* Send block
+	* If block == hashContinue(peer)
+		* send inv(chainHead)
+		* set hashContinue(peer)=0
+
+* When receiving getblocks(locator, hashStop)
+	* Iterate from locate(locator)->next, going forward in chain
+		* If reached hashStop or ran off end of chain, break
+		* If reached limit of 500 or buffer limit
+			* Set current hashContinue(peer) to current block hash
+			* break
+		* Send inv for block
+
+* When receiving getheaders(hashLocator, hashStop)
+	* If hashLocator = 0, return block(hashStop)
+	* Send up to 2000 block headers, iterating from block(hashLocator) to hashStop
+
+### Locator
+
+Downloader: create locator(block)
+
+* For 1..10
+	* block = block->prev
+	* add block->hash
+* step = 1
+* Do
+	* block = block->prev 'step' times
+	* add block->hash
+	* step = step * 2
+* add genesis->hash
+
+Responder: locate(locator)
+
+* Foreach hash in locator
+	* If hash exists in main chain, return block
+* Otherwise return genesis block
+
+## Analysis
+
+Observations:
+
+* the locator is dense near downloader chain head, and exponentially sparse as it goes towards the genesis
+* downloading is accomplished in cooperation:
+	* downloader sends getblocks with locator based on downloader chain head
+	* responder sends invs for first 500 blocks going forward from latest common block (approximate, per locator)
+	* downloader sends getdata for blocks it does not have
+	* responder sends blocks and a gratuitious inv for reponder chain head
+	* downloader incorporates blocks into chain and now has a new chain head
+	* downloader sends another getblocks in response to the gratuitious inv with new locator based on new chain head
+
+Here are some cases. dChainHead is the downloader chain head, rChainHead is the responder chain head.
+
+### Single Block Case
+
+* Responder sends an inv for a newly solved block
+* Downloader sends getdata
+* Responder sends block
+
+### Small Catchup Case
+
+* Downloader sends getblocks(locator(dChainHead), 0)
+* Responder sends invs for blocks from dChainHead to rChainHead
+* Downloader sends getdata for each inv
+* Responder sends blocks for each getdata
+
+### Large Catchup Case
+
+* Downloader sends getblocks(locator(dChainHead), 0)
+* Responder sends invs for blocks from dChainHead to dChainHead + 500
+* (getdata / blocks sent by responder / blocks added to chain by downloader)
+* The last getdata triggers an inv(rChainHead)
+* Downloader sends getdata(rChainHead)
+* Responder sends block
+* Downloader puts block on orphan list
+* Downloader sends getblocks(locator(dChainHead), rChainHead)
+* goto step 2
+
+### Side Chain Case
+
+Less than 500 blocks.
+
+* Downloader sends getblocks(locator(dChainHead), 0)
+* Responder does not have dChainHead in best chain.  Responder iterates over locator until it finds a block in common for the two chains.
+* Responder sends invs for blocks from commonBlock to commonBlock + 500
+* Downloader adds the blocks that it did not have and reorganizes
+
+### Large Side Chain Case
+
+More than 500 blocks.
+
+If the side chain has more than 500 blocks this does not seem to work.  getblocks(locator(dChainHead), rChainHead) will not return enough blocks for the Downloader to switch chains.  If the Downloader does not switch chains, it will send the same getblocks message again.
