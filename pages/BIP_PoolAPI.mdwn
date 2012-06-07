@@ -3,7 +3,7 @@
 <pre>
   BIP: ?
   Title: ?
-  Author: Paul Sheppard <shep(nospace)soft(at)gmail.com> and Luke Dashjr <luke+bip22@dashjr.org>
+  Author: Paul Sheppard <shepsoft@gmail.com> and Luke Dashjr <luke+bip22@dashjr.org>
   Status: Draft
   Type: Standards Track
   Created: 22-05-2012
@@ -14,11 +14,26 @@ This BIP aims to create a standard API for pool statistics.
 
 ##Specification
 
-Time is seconds since Jan 1 1970 midnight UTC.<br>
-Hashrate is hashes per second.<br>
-Satoshis is the smallest divisable part of the currency. i.e. for USD this is 0.01<br>
+* All time keys are seconds since Jan 1 1970 midnight UTC.
+* Hashrate is measured in full block hashes per second. So if a full block proof-of-work requires two rounds of SHA256 (as it does with Bitcoin today), each two rounds counts only as a single hash.
+* Currencies are always represented in the smallest divisible part of the currency. eg, for USD this is 1 cent and for Bitcoin this is 0.00000001 BTC
 
-###Consistuent Structures
+###Object Formats
+
+
+|colspan='3'user
+|---
+|pool_MOTD |String |whatever the pool wants to tell us
+|pool_hashrate |Hashrate |current hashrate of the entire pool
+|pool_users |Number |number of active users on the pool
+|pool_workers |Number |number of active workers on the pool
+|current_round |Object of 'block' |current active round
+|user_hashrate |Hashrate |current hashrate of user for all workers
+|last_activity |Time |last submitted share time of any user worker
+|balances |Array of 'balance' |listing of each balance (BTC, NMC, etc.)
+|workers |Array of 'worker' |listing of each worker of the user
+
+
 
 
 |colspan='3'shares
@@ -66,22 +81,6 @@ Satoshis is the smallest divisable part of the currency. i.e. for USD this is 0.
 |shares_total |Object 'shares' |shares of worker for all time
 |reward_algo |String |reward algorithm identifier
 |fee |Float |fee multiplier (1% = 0.01)
-
-
-###Main Structure
-
-
-|colspan='3'user
-|---
-|pool_MOTD |String |whatever the pool wants to tell us
-|pool_hashrate |Hashrate |current hashrate of the entire pool
-|pool_users |Number |number of active users on the pool
-|pool_workers |Number |number of active workers on the pool
-|current_round |Object of 'block' |current active round
-|user_hashrate |Hashrate |current hashrate of user for all workers
-|last_activity |Time |last submitted share time of any user worker
-|balances |Array of 'balance' |listing of each balance (BTC, NMC, etc.)
-|workers |Array of 'worker' |listing of each worker of the user
 
 
 Reward algorithms:
