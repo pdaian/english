@@ -1,0 +1,51 @@
+A service that enables the use of either e-mail or SMS to transfer bitcoins.  In conjunction with [[BitInstant]], Coinapult can also be used to buy bitcoins.
+
+##Transfer Methods
+
+###E-Mail
+When bitcoins are sent as an e-mail, the message delivered includes a link that is used to withdraw the bitcoins.
+
+There is no fee charged by Coinapult for this service.
+
+###SMS (Text messaging)
+When bitcoins are sent as an SMS, a hosted (shared) [[EWallet]] is created for that mobile number.  The recipient can then, using text messaging, send the bitcoins to an e-mail address, to a Bitcoin address or to another mobile number (U.S. and Canada numbers only).
+
+SMS text messaging is a feature on nearly all mobile phones in the world, and to use a Coinapult SMS wallet does not require any Internet access.  This is the bitcoin equivalent to M-Pesa (though it is only available in the U.S. and Canada at the present time.)
+
+There are no fees charged by Coinapult to use the SMS wallet, though the mobile provider may charge for text message use.
+
+##Buy
+
+Coinapult is offered as one of the destinations for [[BitInstant]].  Coinapult will convert deposited funds from BitInstant customer into bitcoins and deliver them to recipient's E-mail address or SMS mobile wallet.  If Coinapult e-mail is chosen as the destination for the bitcoins, BitInstant provides a PIN code that will be required to claim the bitcoins using the URL included by e-mail message that is delivered.
+
+##API
+
+Coinapult offers an API to enable the delivery of bitcoins to recipients through E-mail and text messaging.  There is a fee assessed on all API transactions.
+
+##Criticism
+
+E-mail is not a secure method of transfer.  The e-mail message that Coinapult uses is sent in clear text across the Internet.  All that is needed to spend those bitcoins is knowledge of the URL shown in the message. As a result the message is visible at each router hop along the way as the message is delivered and stored until the recipient transfers the bitcoin.  It is not yet known what Coinapult will do if the intended recipient asserts that the bitcoins had already been claimed by the time the withdrawal was attempted.
+
+When purchasing bitcoins through BitInstant, a PIN code is given to secure the transaction.  The e-mail recipient that receives the URL in the message to claim the bitcoins must provide the PIN in order to withdraw the bitcoins, so this specific use of Coinapult does not have the same risk as the standard Bitcoin to e-mail transfer method.
+
+##History
+
+The service was launched on April 13, 2012 (8.1).  The SMS wallet was added May 31, 2012 (8.2).
+
+##See Also
+
+* [[Buying_bitcoins]]
+* [[Selling_bitcoins]]
+
+##External Links
+
+* [Coinapult.com](http://www.Coinapult.com) web site.
+
+##References
+
+8.1: [Coinapult - send Bitcoin over email in seconds](http://bitcointalk.org/index.php?topic=76493.0)  
+8.2: [Coinapult SMS wallet - no internet required](http://bitcointalk.org/index.php?topic=84457.0)
+
+
+[[!tag "Mobile"]]
+[[!tag "Exchanges"]]
