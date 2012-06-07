@@ -21,66 +21,76 @@ This BIP aims to create a standard API for pool statistics.
 ###Object Formats
 
 
-|colspan='3'user
+|colspan='3'Root
 |---
-|pool_MOTD |String |whatever the pool wants to tell us
-|pool_hashrate |Hashrate |current hashrate of the entire pool
-|pool_users |Number |number of active users on the pool
-|pool_workers |Number |number of active workers on the pool
-|current_round |Object of 'block' |current active round
-|user_hashrate |Hashrate |current hashrate of user for all workers
-|last_activity |Time |last submitted share time of any user worker
-|balances |Array of 'balance' |listing of each balance (BTC, NMC, etc.)
-|workers |Array of 'worker' |listing of each worker of the user
+|version |Number |always 1
+|group |Object |information about the organizational pool
+|collab |Array of Objects |information about each collaborative pool
+colspan='3'Organizational pool
+Key Type Description
+|name |String |human-readable identifier for organizational pool
+|hashrate |Number |total hashrate of all mining in the organizational pool
+|message |String |whatever the pool wants to tell us
+|minercount |Number |total number of active miners
+|miners |Array of Objects |information of specific miners
+|workercount |Number |total number of active workers
+colspan='3'Collaborative pool
+Key Type Description
+|name |String |human-readable identifier for collaborative pool
+|hashrate |Number |total hashrate of all mining in the same collaborative pool
+|message |String |whatever the pool wants to tell us
+|round |Object |information about the current round
+|fee |Number |fee (0.01 = 1%)
+|rewardalgo |String |reward algorithm identifier
+|minercount |Number |total number of active miners
+|miners |Array of Objects |information of specific miners
+|time |Number |time as the poolserver sees it
+|workercount |Number |total number of active workers
+colspan='3'Round
+Key Type Description
+|id |String |unique identifier for the round
+|begintime |Number |time the current round began
+|shares |Object |number of shares submitted to the current round
+|blockchain |String |which blockchain the round is relevant for
+|blockparent |String |blockchain-specific identifier for the base of the current round
+colspan='3'Shares
+Key Type Description
+|accepted |Number |number of accepted shares
+|* |Number |any [[rejection reason|BIP_0022#Example_Rejection_Reasons]]may be a key; value is number of shares
+colspan='3'Individual miner or worker
+Key Type Description
+|id |String |unique identifier for a miner's account (shared across collaborative pools)
+|name |String |human-readable identifier for miner
+|message |String |whatever the pool wants to tell us
+|balances |Array of Objects |balance information
+|fee |Number |fee (0.01 = 1%)
+|hashrate |Number |total hashrate of all mining in the same collaborative pool
+|lastactive |Number |time the miner was last seen active
+|rewardalgo |String |reward algorithm identifier
+|sharesround |Object |information on shares submitted to the current round
+|sharesuser |Object |information on shares submitted since last user reset
+|sharestotal |Object |information on shares submitted for all time
+|workers |Array of Objects |information of specific workers
+colspan='3'Balance info
+Key Type Description
+|currency |String |currency of balance
+|balance |Number |amount currently stored at the pool
+|unconfirmed |Number |amount currently waiting for confirmations
+|estimate |Number |amount expected reward for the current round
+|fee |Number |fee (0.01 = 1%)
+|paid |Number |amount that has been paid out ever
+|lastpay |Number |amount of last payout
+|lastpaytime |Number |time of last payout
+|autopay |Number |minimum amount before autopayout
+|autopayto |String |address for autopayouts
 
 
+Currencies:
 
 
-|colspan='3'shares
-|---
-|submitted |Number |shares submitted
-|stale |Number |shares deemed stale by pool
-|invalid |Number |shares deemed invalid by pool
-
-
-
-
-|colspan='3'block
-|---
-|currency |String |BTC, NMC, Ix, iO, etc...
-|id |Number |block ID
-|duration |Time |block duration in seconds
-|shares_round |Object 'shares' |shares for entire pool for the round 
-|shares_user |Object 'shares' |shares for all workers of the user  for the round
-
-
-
-
-|colspan='3'balance
-|---
-|currency |String |BTC, NMC, Ix, iO, etc...
-|confirmed |Satoshis |confirmed reward (>=120 valid blocks)
-|unconfirmed |Satoshis |unconfirmed reward (<120 valid blocks)
-|estimate |Satoshis |estimated reward for current round
-|last_pay |Satoshis |value of last payout
-|last_pay_time |Time |time of last payout
-|total_pay |Satoshis |total value of paid out
-|threshold |Satoshis |min confirmed reward before auto payout. 0 for no auto payment
-
-
-
-
-|colspan='3'worker
-|---
-|id |String |unique worker identifier
-|name |String |human-readable identifier for worker
-|hashrate |Hashrate |current hashrate of the worker
-|last_activity |Time |last submitted share time
-|shares_round |Object 'shares' |shares for current round
-|shares_reset |Object 'shares' |shares since last user reset
-|shares_total |Object 'shares' |shares of worker for all time
-|reward_algo |String |reward algorithm identifier
-|fee |Float |fee multiplier (1% = 0.01)
+|Bitcoin |Bitcoins (in Satoshis)
+|Namecoin |Namecoins
+|fiat |Pool-specific "play money" (eg, SMPPS "extra credit")
 
 
 Reward algorithms:
@@ -96,6 +106,88 @@ Reward algorithms:
 
 
 ###Example
+<pre>
+{
+	"version": 1,
+	"group": {
+		"name": "Eligius",
+		"hashrate": 600000000000,
+		"message": "Welcome to Eligius! Enjoy :)"
+	},
+	"collab": [
+		{
+			"name": "Eligius-Ra",
+			"hashrate": 550000000000,
+			"time": 1337729874.2489,
+			"workercount": 5423,
+			"round": {
+				"begintime": 1337719877.959086,
+				"blockchain": "Bitcoin",
+				"blockparent": "00000000000001c536f8865bd2be554372fa149eb88fb1c096f475e1c9cd8176",
+				"shares": {
+					"accepted": 423433,
+					"stale-prevblk": 92,
+					"duplicate": 3
+				}
+			},
+			"fee": 0,
+			"rewardalgo": "SMPPS",
+			"miners": [
+				"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW",
+				"name": "Luke-Jr",
+				"balances": [
+					{
+						"currency": "Bitcoin",
+						"balance": 167476453,
+						"estimate": 14761828,
+						"paid": 5800000000,
+						"lastpay": 67423840,
+						"lastpaytime": 1337713832.25908
+					},
+					{
+						"currency": "fiat",
+						"balance": 9342224,
+						"estimate": 39433
+					}
+				],
+				"hashrate": 1382848482,
+				"lastactive": 1337783882.423086,
+				"sharesround": {
+					"accepted": 832
+				},
+				"workers": [
+					{
+						"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW_Icarus",
+						"name": "Luke-Jr's Icarus :)",
+						"hashrate": 378483883,
+						"lastactive": 1337783882.423086,
+						"sharesround": {
+							"accepted": 100
+						}
+					},
+					{
+						"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW_BFL",
+						"name": "Luke-Jr's BitForce Single :D",
+						"hashrate": 832942393,
+						"lastactive": 1337783882.423086,
+						"sharesround": {
+							"accepted": 600
+						}
+					},
+					{
+						"id": "16kNKa7WUg8QAPFy8dJRv7USSu2fAG2pkW_6870",
+						"name": "Luke-Jr's Radeon 6870",
+						"hashrate": 371422206,
+						"lastactive": 1337783882.423086,
+						"sharesround": {
+							"accepted": 232
+						}
+					}
+				]
+			]
+		}
+	]
+}</pre>
 
 ##Motivation
 Moving forward with bitcoin it is important to make all aspects as user friendly as possible. 
