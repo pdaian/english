@@ -24,7 +24,7 @@ Coinapult offers an API to enable the delivery of bitcoins to recipients through
 
 ##Criticism
 
-E-mail is not a secure method of transfer.  The e-mail message that Coinapult uses is sent in clear text across the Internet.  All that is needed to spend those bitcoins is knowledge of the URL shown in the message. As a result the message is visible at each router hop along the way as the message is delivered and stored until the recipient transfers the bitcoin.  It is not yet known what Coinapult will do if the intended recipient asserts that the bitcoins had already been claimed by the time the withdrawal was attempted.
+E-mail is not a secure method of transfer.  The e-mail message that Coinapult uses is sent in clear text across the Internet.  All that is needed to spend those bitcoins is knowledge of the URL shown in the message. As a result the message is visible at each router hop along the way as the message is delivered and stored until the recipient transfers the bitcoin.  It is not yet known what Coinapult will do if the intended recipient asserts that the bitcoins had already been claimed by the time the withdrawal was attempted.  Coinapult is working on an approach to resolve this issue (7.1).
 
 When purchasing bitcoins through BitInstant, a PIN code is given to secure the transaction.  The e-mail recipient that receives the URL in the message to claim the bitcoins must provide the PIN in order to withdraw the bitcoins, so this specific use of Coinapult does not have the same risk as the standard Bitcoin to e-mail transfer method.
 
@@ -43,6 +43,7 @@ The service was launched on April 13, 2012 (8.1).  The SMS wallet was added May 
 
 ##References
 
+7.1: [Increased security to normal email transactions](http://bitcointalk.org/index.php?topic=84457.msg947576#msg947576)  
 8.1: [Coinapult - send Bitcoin over email in seconds](http://bitcointalk.org/index.php?topic=76493.0)  
 8.2: [Coinapult SMS wallet - no internet required](http://bitcointalk.org/index.php?topic=84457.0)
 
