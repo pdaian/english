@@ -107,18 +107,18 @@ Here are some cases. dChainHead is the downloader chain head, rChainHead is the 
 
 ### Side Chain Case
 
-Less than 500 blocks.
-
 * Downloader sends getblocks(locator(dChainHead), 0)
 * Responder does not have dChainHead in best chain.  Responder iterates over locator until it finds a block in common for the two chains.
-* Responder sends invs for blocks from commonBlock to commonBlock + 500
+* Responder sends invs for blocks from commonBlock to rChainHead
 * Downloader adds the blocks that it did not have and reorganizes
+
+For this to work, the invs must fit the network buffer.
 
 ### Large Side Chain Case
 
-More than 500 blocks.
+More invs than fits the network buffer.
 
-If the side chain has more than 500 blocks this does not seem to work.  getblocks(locator(dChainHead), rChainHead) will not return enough blocks for the Downloader to switch chains.  If the Downloader does not switch chains, it will send the same getblocks message again.
+If the side chain has blocks than fits in the network buffer this does not seem to work.  getblocks(locator(dChainHead), rChainHead) will not return enough blocks for the Downloader to switch chains.  If the Downloader does not switch chains, it will send the same getblocks message again.
 
 
 [[!tag "Technical"]]
