@@ -1,0 +1,139 @@
+[[!template id=bip]]
+
+<pre>
+  BIP: ?
+  Title: Protocol for Dedicated Mining Hardware
+  Author: Luke Dashjr <luke+bipmhbp@dashjr.org>
+  Status: Draft
+  Type: Standards Track
+  Created: 08-06-2012
+</pre>
+
+##Abstract
+##Specification
+
+This protocol is designed to be spoken only over a reliable (including error correction) lower-level protocol, such as USB-Serial or USB-CDC, to a local device.
+
+###Packet Format
+1 byte: packet length/type
+N bytes: packet data
+
+Valid lengths are 1-250 (bytes).
+End of command is denoted by a length/type of ff.
+Abort command is denoted by a length/type of 00.
+ACK is denoted by a length/type of fe, and should be sent in response to each 250-byte packet. Bulk data transfers, such as bitstream uploads, should wait until ACK is received before sending more packets (maybe? or does USB handle this for us too?).
+Length/types fa-fd are reserved.
+
+###Command Format
+1 byte: request id
+1 byte: command id
+	0x -- Modification commands (potentially dangerous)
+	4x -- Informational commands
+	(high bit set for replies)
+1 byte: device number (ignored for some commands) -- 00 is the MCU, 1-fe are FPGAs, and ff for "all FPGAs"
+1 byte: status (should always be 00 for requests)
+	00 -- success
+	80 -- failure
+N bytes: data
+
+Commands less than 4 bytes should be ignored.
+Additional data beyond what is expected should be ignored.
+
+
+###Commands
+####01 -- program software
+Data:
+
+* 4 bytes: hardware version (big endian)
+* 2 bytes: hardware manuf/authority
+* 2 bytes: hardware model number
+* 4 bytes: hardware specific information ("ID Code")
+* 4 bytes: software size
+* N bytes: software data
+####02 -- get/set clock speed
+Data:
+
+* 1 byte: new clock speed (00 = don't change)
+Reply (if getting):
+
+* 1 byte: current clock speed
+####03 -- get/set register(s)
+Data:
+
+* 2 bytes: first register number
+* 2 bytes: number of registers to fetch/set
+* N bytes: new values for each register (omitted to read)
+Reply (if reading):
+
+* 1 byte: width (in bits) of each register
+* N bytes: value of each register
+####04 -- watch register(s)
+Data:
+
+* 2 bytes: first register number
+* 2 bytes: number of registers to watch
+* 1 byte: how long to watch, in seconds; 00 = cancel watch; ff = never expire
+Reply (immediate):
+
+* 1 byte: width (in bits) of each register
+* N bytes: current value of each register
+Notification (DEFERRED, with command=ff and same request id):
+
+* 2 bytes: number of registers changed
+* for each:
+	* 2 bytes: register number
+	* N bytes: value of register
+####40 -- ping
+Device number ignored.
+Replies with same data given
+####41 -- get FPGA count
+Device number ignored.
+Reply:
+
+* 1 byte: number of FPGAs
+####42 -- hardware version
+Reply:
+
+* 4 bytes: hardware version (big endian)
+* 2 bytes: hardware manuf/authority
+* 2 bytes: hardware model number
+* 4 bytes: hardware specific information ("ID Code")
+* 1 byte: length of hardware model number
+* N bytes: hardware model number (EUI-64 when available)
+* 1 byte: length of human-readable hardware model
+* N bytes: human-readable hardware model/version string (UTF-8)
+####43 -- software version
+Reply:
+
+* 4 bytes: software version (big endian)
+* 1 byte: length of software-specific unique identifier (git commit?)
+* N bytes: software-specific unique identifier
+* 1 byte: length of human-readable software name
+* N bytes: human-readable hardware model/version string (UTF-8)
+####44 -- get temperature
+Reply:
+
+* 1 byte: temperature in celcius
+
+##Examples
+####Get temperature of FPGA #2
+	> 04  00 44 02 00  ff
+	< 05  00 c4 02 00 30  ff
+
+####Mine a bitcoin share (with proper bitstream, on FPGA #1)
+	> 34  00 03 01 00 0000 000b <32:midstate> <12:taildata>  ff  (assign job to registers)
+	> 09  01 04 01 00 000e 0001 ff  ff  (setup watch on nonce-found register)
+	< 04  00 83 01 00  ff
+	< 09  01 84 01 00 20 ffffffff  ff
+	...
+	< 0c  01 ff 01 00 0001 000e <4:nonce>  ff  (nonce-found got updated)
+	> 09  02 04 01 00 000e 0001 00  ff  (clear nonce-found watch)
+	< 09  02 84 01 00 20 <4:nonce>  ff
+
+####Reset the command queue
+To reset the command queue, send 251 zero bytes; this will pad-out any "open" packet, and send a zero-length for the next one to abort the command.
+
+##Motivation
+##Rationale
+##Backwards Compatibility
+##Reference Implementation
