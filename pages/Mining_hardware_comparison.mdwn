@@ -715,11 +715,15 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 
 |Model |p/t |Mhash/s |Mhash/J |Mhash/s/$ /€  |ACP [[W]]|Clock |Version |Comment
 |---|---|---|---|---|---|---|---|---
+|ARM926EJ-S |1 |0.187 |? |? |? |1.2 GHz |cpuminer |Seagate Dockstar [ArchLinux](http://archlinuxarm.org/platforms/armv5/seagate-dockstar)
+|Marvel Feroceon (88FR131) |1 |0.195 |0.224 |<0.01|0.87 W |1.2 GHz |cpuminer  git (2011-06-15) |Marvell SheevaPlug, Debian, 'c' algo
 |ARM1136EJ-S |1 |0.11 |? |? |? |0.528 GHz |cpuminer git |T-Mobile Pulse, inside Debian chroot, 'c' algo
+|ARM1176JZ(F)-S |1 |0.119 |? |? |? |0.412 GHz |[pooler's cpuminer](http://github.com/pooler/cpuminer)2.2 |iPhone 3G, 'sha256d' algo
 |Cortex-A8 |1 |0.125 |0.36 |<0.01 |0.35 W |0.6 GHz |cpuminer git (2011-03-26) |Nokia N900: 'cryptopp'
 |Cortex-A8 |1 |0.2 |0.57 |<0.01 |0.35 W |0.6 GHz |cpuminer git (2011-03-26) |Nokia N900: 'c' algo
-|2x Cortex-A9 |2 |0.57|1.14 |<0.01 |0.5 W |1.0 GHz |cpuminer git (2011-03-24) |Toshiba AC100, ubuntu, 'c' algo
-|Marvel Feroceon (88FR131) |1 |0.195 |0.224 |<0.01|0.87 W |1.2 GHz |cpuminer  git (2011-06-15) |Marvell SheevaPlug, Debian, 'c' algo
+|Cortex-A8 |1 |0.435 |? |? |? |0.8 GHz |[pooler's cpuminer](http://github.com/pooler/cpuminer)2.2 |'sha256d' algo
+|Cortex-A9 |2 |0.57|1.14 |<0.01 |0.5 W |1.0 GHz |cpuminer git (2011-03-24) |Toshiba AC100, ubuntu, 'c' algo
+|Cortex-A9 |2 |1.0 |? |? |? |1.2 GHz |[pooler's cpuminer](http://github.com/pooler/cpuminer)2.2 |Samsung Galaxy S II
 
 
 ###Intel
@@ -838,7 +842,6 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 |Cell |6 |21 |0.35 |0.07 |60W |3.2 GHz |Cellminer |Sony Playstation 3 (FAT): Needs custom firmware. [source](https://github.com/verement/cellminer)[source](http://www.bitcoin.org/smf/index.php?topic=4704.20)Total power usage of PS3 fat is 120W but only the Cell cpu is active.
 |Cell |7 |26.6 |? |? |60W |3.2 GHz |Cellminer |Sony Playstation 3 (FAT): Needs custom firmware. [source](https://github.com/verement/cellminer)[source](http://www.bitcoin.org/smf/index.php?topic=4704.20)Running with 7th spu enabled and both ppe cores.
 |Cell |6 |21 |0.7 |0.07 |35W |3.2 GHz |cellminer |Sony Playstation 3 (SLIM): Total power usage of PS3 slim is 70W but only the Cell cpu is active.
-|ARM |1 |0.187 |? |? |? |1200 MHz |cpuminer |Seagate Dockstar [ArchLinux](http://archlinuxarm.org/platforms/armv5/seagate-dockstar)
 |MIPS |1 |0.026 |? |? |? |200 MHz |cpuminer |ASUS WL-500G Deluxe Router Running [OpenWrt](http://openwrt.org/)
 |VIA Eden |1 |1.3 |0.17 ||8W |1600 MHz |cpuminer |VIA Eden w/ padlock
 |PowerPC 7447A |1 |0.53 ||||1420 MHz |cpuminer |
