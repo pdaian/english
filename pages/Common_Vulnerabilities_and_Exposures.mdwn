@@ -33,10 +33,23 @@
 |bitcoind<br>wxBitcoin |* - 0.3.4 |0.3.5
 
 
-On July 28 2010 two bugs were discovered and demonstrated on the test network. The first caused bitcoin to crash on some machines when processing a transaction containing an OP_LSHIFT. The second exploited another bug in the transaction handling code and allowed an attacker to spend coins that they did not own. Neither were exploited on the main network, and both were fixed by Bitcoin version 0.3.5.
+On July 28 2010, two bugs were discovered and demonstrated on the test network. One caused bitcoin to crash on some machines when processing a transaction containing an OP_LSHIFT. This was never exploited on the main network, and was fixed by Bitcoin version 0.3.5.
 
 After these bugs were discovered, many currently-unused script words were disabled for safety.
 
+## CVE-2010-
+
+	<b>Date:</b> 2010-07-28
+	<b>Summary:</b> ?
+	<b>Fix Deployment:</b> 100%
+
+
+|bitcoind<br>wxBitcoin |* - 0.3.4 |0.3.5
+
+
+On July 28 2010, two bugs were discovered and demonstrated on the test network. One exploited a bug in the transaction handling code and allowed an attacker to spend coins that they did not own. This was never exploited on the main network, and was fixed by Bitcoin version 0.3.5.
+
+After these bugs were discovered, many currently-unused script words were disabled for safety.
 
 ## CVE-2010-5138
 
