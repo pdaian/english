@@ -1,13 +1,25 @@
 
-|[[CVE-2010-5137|#CVE-2010-5137]]|2010-07-28|wxBitcoin and bitcoind|OP_LSHIFT crash|bgcolor=lime100%
-|[[CVE-2010-5138|#CVE-2010-5138]]|2010-07-29|wxBitcoin and bitcoind|Unlimited SigOp DoS|bgcolor=lime100%
-|[[CVE-2010-5139|#CVE-2010-5139]]|2010-08-15|wxBitcoin and bitcoind|Combined output overflow|bgcolor=lime100%
-|[[CVE-2010-5140|#CVE-2010-5140]]|2010-09-29|wxBitcoin and bitcoind|Never confirming transactions|bgcolor=lime100%
-|[[CVE-2011-4447|#CVE-2011-4447]]|2011-11-11|wxBitcoin and bitcoind|Wallet non-encryption|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2011-4447.html)
-|[[CVE-2012-1909|#CVE-2012-1909]]|2012-03-07|Bitcoin protocol and all clients|Transaction overwriting|bgcolor=pink[68%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-1909.html)
-|[[CVE-2012-1910|#CVE-2012-1910]]|2012-03-17|Bitcoin-Qt for Windows|MingW non-multithreading|bgcolor=lime[95%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-1910.html)
-|[[BIP 0016|#BIP-0016]]|2012-04-01|All Bitcoin clients|Mandatory P2SH protocol update|bgcolor=pink[65%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0016.html)
-|[[CVE-2012-2459|#CVE-2012-2459]]|2012-05-14|bitcoind and Bitcoin-Qt|TBD (at net ~77%)|bgcolor=pink[60%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-2459.html)
+|[[CVE-2010-5137|#CVE-2010-5137]]|2010-07-28|wxBitcoin and bitcoind|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|OP_LSHIFT crash|bgcolor=lime100%
+||2010-07-28|wxBitcoin and bitcoind|bgcolor=pinkTheft (1.2)|bgcolor=pinkEasy||bgcolor=lime100%
+|[[CVE-2010-5138|#CVE-2010-5138]]|2010-07-29|wxBitcoin and bitcoind|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Unlimited SigOp DoS|bgcolor=lime100%
+|[[CVE-2010-5139|#CVE-2010-5139]]|2010-08-15|wxBitcoin and bitcoind|bgcolor=pinkTheft (1.2)|bgcolor=pinkEasy|Combined output overflow|bgcolor=lime100%
+|[[CVE-2010-5140|#CVE-2010-5140]]|2010-09-29|wxBitcoin and bitcoind|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Never confirming transactions|bgcolor=lime100%
+|[[CVE-2011-4447|#CVE-2011-4447]]|2011-11-11|wxBitcoin and bitcoind|bgcolor=pinkExposure (1.3)|bgcolor=limeHard|Wallet non-encryption|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2011-4447.html)
+|[[CVE-2012-1909|#CVE-2012-1909]]|2012-03-07|Bitcoin protocol and all clients|bgcolor=pinkNetsplit (1.4)|bgcolor=limeVery hard|Transaction overwriting|bgcolor=pink[68%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-1909.html)
+|[[CVE-2012-1910|#CVE-2012-1910]]|2012-03-17|Bitcoin-Qt for Windows|bgcolor=pinkUnknown (1.5)|bgcolor=limeHard|MingW non-multithreading|bgcolor=lime[95%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-1910.html)
+|[[BIP 0016|#BIP-0016]]|2012-04-01|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Mandatory P2SH protocol update|bgcolor=pink[65%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0016.html)
+|[[CVE-2012-2459|#CVE-2012-2459]]|2012-05-14|bitcoind and Bitcoin-Qt|bgcolor=pinkTBD|bgcolor=pinkEasy|TBD (at net ~77%)|bgcolor=pink[60%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-2459.html)
+
+
+
+1.1: Attacker can disable some functionality, for example by crashing clients  
+1.2: Attacker can take or create money outside known network rules  
+1.3: Attacker can access user data outside known acceptable methods  
+1.4: Attacker can create multiple views of the network, enabling double-spending with over 1 confirmation  
+1.5: Extent of possible abuse is unknown  
+1.6: Attacker can double-spend with 1 confirmation  
+1.7: Attacking requires mining block(s)
+
 
 
 
