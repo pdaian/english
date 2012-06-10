@@ -7,7 +7,19 @@ Transaction fees are voluntary on the part of the person making the bitcoin tran
 
 It is envisioned that over time the cumulative effect of collecting transaction fees will allow somebody creating new blocks to "earn" more bitcoins than will be mined from new bitcoins created by the new block itself.  This is also an incentive to keep trying to create new blocks even if the value of the newly created block from the mining activity is zero in the far future.
 
-It works like this:
+##Minimum transaction fees
+
+As of 10 June 2012, minimum transaction fees on the original Bitcoin client are:
+
+* Accept a transaction for inclusion in a block: **0.0005 BTC**
+* Relay a transaction to other Bitcoin hosts: **0.0001 BTC**
+
+A transaction can be sent without fees if both of these conditions are met:
+
+* It is smaller than 10 (SI) kilobytes (10.000 bytes).
+* All outputs are 0.01 BTC or larger.
+
+##Overview
 
 * Whoever sends the transaction is often able to guess an appropriate fee based on their own fee rules.  The [[original client|Original_Bitcoin_client]] will always assess the transaction, and if a fee will typically be expected, it will not allow you to send the transaction without the calculated fee.
 * The user is prompted to confirm the fee before the transaction is sent.
@@ -15,6 +27,8 @@ It works like this:
 * Whoever ends up publishing the [[block]] which contains this transaction will take these (and any other) leftover coins. They are included with their normal generated coins and is an extra bonus for creating the block.
 * If a mining node receives a transaction that should include a transaction fee but doesn't, they may refuse to include it in their blocks. It might be included in a later block if someone is willing to accept it. Generators can't force a certain fee on transactions -- they can only accept or reject the transaction's “fee offer”.
 [[!img "lfm_fee.png" size=120x120 title="This balance is made entirely of 0.01 BTC cents. Since sending them requires a lot of data, a very large fee is required."]]
+
+##Rules for calculating minimum fees
 
 Different bitcoin clients and different versions have different rules for determining which transactions to accept and how large a fee to send.
 
