@@ -1,0 +1,137 @@
+Documentation of Basic and Advanced Features in Electrum:
+=========================================================
+
+Legend in this documentation:
+-----------------------------
+
+* A [or term in square brackets](word) means that this is explained in another dedicated entry of this documentation.
+* A {text in curly brackest} means I am not really sure about this... --> other people should correct/clarify
+
+
+What is the "Wallet"? (general, not specific to Electrum)
+---------------------------------------------------------
+Your wallet is a list of Bitcoin addresses (more precisely: the privat/public key pairs). Each address "contains" (or is associated with) a certain amount of Bitcoins at a given time.
+Your wallet's balance is the sum of all Bitcoins of all your wallet's Bitcoin addresses.
+Your wallet consists of both [addresses](normal) and [addresses](change). Although they are fully equivalent from the Bitcoin protocol's point of view {right?}, they are different in how they are used by Bitcoin clients like Electrum.
+
+
+How are New "Normal Addresses" Created for my Wallet? (more or less general, not too specific to Electrum)
+----------------------------------------------------------------------------------------------------------
+The Bitcoin client (e.g. Electrum) allows you to trigger manually the generation of a new Bitcoin address. you typically want to create a new address when you want to receive Bitcoins from somebody and do not want to use any of the wallet's present addresses for this, for privacy reasons (note that all transfers are publically visible in the blockchain).
+
+
+What is a "Change Address", and why is it useful? (general, not specific to Electrum)
+-------------------------------------------------------------------------------------
+The concept of change addresses is a feature not of the Bitcoin protocol, but of a Bitcoin client. It is implemented in most {if not all?} Bitcoin clients, including Electrum.
+
+How it works:
+Whenever your Bitcoin client (e.g. Electrum) sends Bitcoins from your wallet's address "A" to a foreing address "B", a new change address "C" is created by Electrum and added to your wallet.
+Example: Address "A" has 20 BTC. Electrum sends 9 BTC from "A" to "B". The change (20-9 = 11 BTC) is sent to the "change address" "C". For this purpose, address "C" is created by Electrum at this moment and added to your wallet.
+{Exception: If all the Bitcoins of "A" are sent to "B", there is no point in creating a change address "C" {or is "C" created anyway, yet without any Bitcoins sent to it??? - depends on the bitcoin client's implementation, would not make any sense, but would not harm either}}
+
+Actually, Bitcoin clients would also work without change addresses. In this case, the change would be sent back to "A" instead of the new address "C".
+
+Why the concept of "change addresses" is useful:
+
+* Using a new change address makes it more difficult for other people (by analyzing the blockchain) to track how many Bitcoins you have or where you're spending them.
+* It also conceals which output is the "spend" and which is the "change".
+
+
+What is a "Deterministic Wallet" in Electrum?
+---------------------------------------------
+Traditionally, all new addresses (incl. the private keys of course) added to the wallet ([Addresses](Normal) or [Addresses](Change)) are generated randomly. This is the case e.g. for the original "Satoshi Bitcoin Client" (at least as of today, version 0.6.2).
+Contrary to that, a Bitcoin client with a "Deterministic Wallet" will generate all new addresses accoding to a pre-defined (i.e. "deterministic") algorithm as a function of a wallet-specific [[seed]] (a 128 bit number). This means, if the seed is known, all new addresses that Electrum will ever create for this wallet are known, because Electrum's algorithm is known (and open source).
+This is a big advantage when it comes to making wallet backups:
+
+* _Traditionally_, a wallet backup just contains the bitcoin addresses (and private keys of course) that have been created by the client by the time the backup was made. If the user performs transactions after the backup, new addresses ([[normal]] or [[change]] addresses) will be generated and added to the wallet. These are not included in the backup yet. If the wallet in use gets lost, all the Bitcoins that are associated with the new addresses will also be lost. To avoid the risk of a too high loss, regular wallet backup are important.
+* _With a Deterministic Wallet_ (like with Electrum), the wallet backup only needs to contain the seed, and all new addresses generated in the future are safe. Regular successive backup are not required! {or is this not entirely true?? I do not know exactly if the "[limit](gap)" plays a role here...?!?}
+
+
+What is the "Seed" of a Deterministic Wallet in Electrum?
+---------------------------------------------------------
+The Seed of a [wallet](deterministic) is a series of 128 random bits in Electrum.
+For convenience, a seed can also be expressed by a sequence of 12 {always 12?} words in Electrum. Also generation of a QR code is supported to facilitate the backup of the seed.
+
+So there are 2^128 possible seeds for a deterministic wallet in Electrum.
+For comparison, the total number of Bitcoin addresses is 2^160, and the number of atoms on earth is 2^166.
+So there exists one Bitcoin address per 1 Million atoms on earth, and there exists one seed of Electrum wallets per 4.3 Billion Bitcoin addresses.
+(BTW: The number of atoms in the complete universe is estimated as 2^266).
+
+{
+Open Point: I _do not know_ whether the algorithm of deterministic address generation is designed such that for any two seeds "S1" and "S2" (out of the 2^128 possible different seeds) the following condition holds true: If 4.3 Billion (2^32 to be exact) new addresses are calculated from S1 and from S2, the algorithm guarantees that there will be no collision between the set of 2^32 addresses from S1 and the set of 2^32 addresses from S2.
+If this condition does not hold true, I am wonderng whether the use of deterministic wallets still bares an acceptably low probability of address collisions.
+}
+
+
+What is the "Gap Limit" in Electrum?
+------------------------------------
+{
+Apparently, when I generate too many new addresses, I exceed the "gap limit" at some point - whatever this means. It reads to me that this could be dangerous somehow in the sense that the new addresses might not be recoverable from the wallet's seed...?!??!?? Or not?? Not clear to me at all...
+Not clear to me what this means. I thought the wallet is deterministic, so why should the be a problem wiht a "gap limit" (whatever this means).
+}
+
+{
+Quote of ThomasV on v.0.54 of Electrum:
+The 'receive' tab now has a 'new' button, that allows the user to create addresses beyond the wallet's gap limit. The user gets a warning, and addresses that are beyond the gap limit are displayed in red. The red color will remain until the gap has been filled. (in other words, to fill the gap you need to send coins to the last non-red address of your list).
+
+Quote of ThomasV on v.0.55 of Electrum:
+the 'receive' tab has a 'new' button that allows to create new addresses by raising the wallet's gap limit. Note that the gap limit can be lowered too. The dialog also displays the minimum value of the gap limit that can be set without losing any of your current addresses (this assumes you are connected, because it needs to compute the maximal gap of your sequence of addresses)
+
+But still I do not understand at all the meaning of "gap limit" and what should be my concerns as a user about it.
+}
+
+
+What does it mean to "Prioritze" or "Freeze" Addresses in Electrum?
+-------------------------------------------------------------------
+{
+{This is my understanding/assumption - please correct if necessary}
+When sending Bitcoins to a foreign address, Electrum will by default use a built-in method to select the address(es) of the wallet used for sending these Bitcoins.
+
+* When you _prioritize_ some of your wallet's addresses, these addresses will be used with priorities, and other addresses will not be used until the prioritized addresses contain no more Bitcoins.
+* When you _freeze_ some of your wallet's addresses, these addresses will not be used for sending bitcoins but they will keep their balance.
+	{Will they still not be used if all other addresses have zero balance,such that sending Bitcoins is not possible although the wallet has a vbalance? I think so, just not 100% sure...}
+
+Note: Clearly, an address can not be tagged "prioritied" and "frozen" at the same time.
+}
+
+
+What does the "Tx" column mean in Electrum?
+-------------------------------------------
+--> Applies to "Receive" tab (own wallet's addresses) and "Contacts" tab (foreing addresses).
+
+Tx stands for {... ?? "Transaction"? "Transmission" ?? ...}
+
+The Tx column in Electrum displays a number for each Bitcoin address in the address list, both for own addresses ("Receive" tab) and for foreing addresses ("Contacts" tab).
+
+In the "Receive" tab (own addresses):
+The number in the Tx column indicates the total number of _incoming_ Bitcoin transactions that have ever been sent to this address.
+{
+The number of outgoing transactions is apparently not counted. I am wondering why the column is called "Tx" and not "Rx", because I understand that it indicates the number of times that Bitcoins had been sent to this address, i.e. how often This address "received" Bitcoins.
+Does this "Tx" come from blockchain/blockexplorer terminology? Or why is it called "Tx" ("transmit") and not "Rx" ("receive")?
+}
+
+In the "Contacts" tab (foreign addresses):
+The number in the Tx column indicates the total number of Bitcoin transactions that have ever been received by this address {from anyobody? or just from myself, i.e. from addresses in my wallet? - I assume the latter - but to be confirmed...}.
+
+
+What does the "Balance" column mean in Electrum?
+------------------------------------------------
+--> Applies to "Receive" tab  only (i.e. own wallet's addresses).
+
+The balance column indicates the amount of Bitcoins belonging to the given address.
+The individual balances add up to the total balance of your wallet.
+
+
+What does the "Flag" column mean in Electrum?
+---------------------------------------------
+--> Applies to "Receive" tab  only (i.e. own wallet's addresses).
+
+This column indicates certain properties of the different addresses:
+C = [address](Change)
+	Without a "C" it means it is a [address](normal)
+P = [address](Prioritized)
+F = [address](Frozen)
+
+Note: P and F flags can be applied to both [[normal]] and [[change]] addresses.
+
+{Am I missing any flags?}
