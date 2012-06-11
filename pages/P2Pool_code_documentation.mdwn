@@ -14,3 +14,9 @@ Tests connection to p2pool network.
 
 Gets address to use for payout either from  file or bitcoind.
 Validates address and checks local bitcoind owns it.
+
+##p2pool/util/pack.py
+I think this handles all the binary data types used in the bitcoin protocol to send data over the network wire.
+These are nasty as very low level and many big endian/little endian complications.
+The p2pool network protocol uses these also.
+Do not think you need to really understand this unless making changes at this low level.
