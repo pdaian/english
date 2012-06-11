@@ -1,6 +1,15 @@
 Ignore this page for the minute. Is just a scratch pad for documenting the p2pool code.
 Will tidy up once initial pass done.
 
+
+	****
+	!Files Name	!Description
+	p2pool/main.py	Main Startup and initialisation code
+	p2pool/data.py	P2Pool main data structures
+	p2pool/util/pack.py	Handling of over the wire data structures
+
+
+
 ##p2pool/main.py
 Makes extensive use of twisted.defer. This allows it to "yield" to allow long running network code to complete.
 Read up on Python Generators and this before progressing!
@@ -14,6 +23,10 @@ Tests connection to p2pool network.
 
 Gets address to use for payout either from  file or bitcoind.
 Validates address and checks local bitcoind owns it.
+
+##p2pool/data.py
+Contains the main data structures used in p2pool.
+These are:
 
 ##p2pool/util/pack.py
 I think this handles all the binary data types used in the bitcoin protocol to send data over the network wire.
