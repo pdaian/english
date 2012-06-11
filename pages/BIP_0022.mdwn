@@ -78,7 +78,7 @@ getmemorypool MUST return a JSON Object containing the following keys:
 |serverlist |[[!template id=no]]|Array of Objects |list of servers in this [[single logical service|#Logical_Services]]
 |submitold |[[!template id=no]]|Boolean |only relevant for [[long poll|#Long_Polling]]responses; indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 |target |[[!template id=no]]|String |the number which valid results must be less than, in big-endian hexadecimal
-|txrequired |[[!template id=no]]|Number |this many of the first transactions provided must be present in the final block, even if the "transactions/remove" mutation is allowed
+|txrequired |[[!template id=no]]|Number |this many of the first transactions provided must be present in the final block
 |workid |[[!template id=no]]|String |if provided, this value must be returned with results (see [[Block Submission|#Block_Submission]])
 
 
@@ -92,7 +92,7 @@ When the "tx" option is provided as "obj", the Objects listed in the response's 
 |depends |[[!template id=no]]|Array of Numbers |other transactions (by 1-based index in "transactions" list) that must be present in the final block if this one is; if key is not present, dependencies are unknown and clients MUST NOT assume there aren't any
 |fee |[[!template id=no]]|Number |difference in value between transaction inputs and outputs (in Satoshis); for coinbase transactions, this is a negative Number of the total collected block fees (ie, not including the block subsidy); if key is not present, fee is unknown and clients MUST NOT assume there isn't one
 |hash |[[!template id=no]]|String |hash/id encoded in little-endian hexadecimal
-|required |[[!template id=no]]|Boolean |if provided and true, this transaction must be in the final block, even if the "transactions/remove" mutation is allowed
+|required |[[!template id=no]]|Boolean |if provided and true, this transaction must be in the final block
 |sigops |[[!template id=no]]|Number |total number of SigOps, as counted for purposes of block limits; if key is not present, sigop count is unknown and clients MUST NOT assume there aren't any
 
 
@@ -108,9 +108,7 @@ Any of these may be listed in the "mutable" key to signify modifications the min
 |time/increment|change the time header to a value after "time" (implied if "maxtime" or "maxtimeoff" are provided)
 |time/decrement|change the time header to a value before "time" (implied if "mintime" is provided)
 |time|modify the time header of the block
-|transactions/add|add other valid transactions to the block
-|transactions/remove|remove transactions provided by the server
-|transactions|add or remove transactions (both of the above; implied if "transactions" omitted from result)
+|transactions/add (or "transactions")|add other valid transactions to the block (implied if "transactions" omitted from result)
 |prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid, unless they are part of the "txrequired" count; it also implies adjusting "height" as necessary
 |colspan="2" style="font-size:80%;font-style:italic"Affecting the format of requests, but not the blocks themselves:
 |submit/hash|each transaction being sent in a request, that the client is certain the server knows about, may be replaced by its hash in little-endian hexadeciaml, prepended by a ":" character
@@ -244,7 +242,45 @@ Possible reasons a share may be rejected include, but are not limited to:
 There is reasonable concerns about mining currently being too centralized on pools, and the amount of control these pools hold.
 By exposing the details of the block proposals to the miners, they are enabled to audit and possibly modify the block before hashing it.
 
+To encourage widespread adoption, this BIP should be a complete superset of the existing centralized getwork protocol, so pools are not required to make substantial changes to adopt it.
+
 ##Rationale
+Why not just deal with transactions as hashes (txids)?
+
+* Servers might not have access to the transaction database, or miners may wish to include transactions not broadcast to the network as a whole.
+* Miners may opt not to do full transaction verification, and may not have access to the transaction database on their end.
+
+Why allow servers to restrict the complete coinbase and nonce range?
+
+* This is necessary to provide a complete superset of JSON-RPC getwork functionality, so that pools may opt to enable auditing without significantly changing or increasing the complexity of their share validation or mining policies.
+* Since noncerange is optional (both for getwork and this BIP), neither clients nor servers are required to support it.
+
+Why specify "time/*" mutations at all?
+
+* In most cases, these are implied by the mintime/mintimecur/maxtime/maxtimecur keys, but there may be cases that there are no applicable minimums/maximums.
+
+What is the purpose of the "prevblock" mutation?
+
+* There are often cases where a miner has processed a new block before the server. If the server allows "prevblock" mutation, the miner may begin mining on the new block immediately, without waiting for a new template.
+
+Why must both "mintime"/"maxtime" and "mintimeoff"/"maxtimeoff" keys be supported?
+
+* In some cases, the limits may be unrelated to the current time (such as the Bitcoin network itself; the minimum is always a fixed median time)
+* In other cases, the limits may be bounded by other rules (many pools limit the time header to within 5 minutes of when the share is submitted to them).
+
+Is "target" really needed?
+
+* Some pools work with higher targets, and should not be expected to waste bandwidth ignoring shares that don't meet it.
+* Required to be a proper superset of getwork.
+* As mining hashrates grow, some miners may need the ability to request a higher target from their pools to be able to manage their bandwidth use.
+
+What is the purpose of "workid"?
+
+* If servers allow all mutations, it may be hard to identify which job it is based on. While it may be possible to verify the submission by its content, it is much easier to compare it to the job issued. It is very easy for the miner to keep track of this. Therefore, using a "workid" is a very cheap solution to enable more mutations.
+
+Why should "sigops" be provided for transactions?
+
+* Due to the [[BIP_0016]] changes regarding rules on block sigops, it is impossible to count sigops from the transactions themselves (the sigops in the scriptCheck must also be included in the count).
 
 ##Reference Implementation
 
