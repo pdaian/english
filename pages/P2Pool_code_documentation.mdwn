@@ -1,0 +1,17 @@
+
+Ignore this page for the minute. Is just a scratch pad for documenting the p2pool code.
+Will tidy up once initial pass done.
+
+p2pool/main.py
+Makes extensive use of twisted.defer. This allows it to "yield" to allow long running network code to complete.
+Read up on Python Generators and this before progressing!
+
+Contains main startup code.
+
+Tests connection to bitcoind.
+Prints hash of latest block to show bitcoind is up to date.
+
+Tests connection to p2pool network.
+
+Gets address to use for payout either from  file or bitcoind.
+Validates address and checks local bitcoind owns it.
