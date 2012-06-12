@@ -22,8 +22,8 @@ to version 0.4 and then revert back to an earlier version of bitcoin
 the it may be unable to start because bdb 4.7 cannot read bdb 4.8
 "log" files.
 
+
 Notable bug fixes from version 0.3.24:
---------------------------------------
 
 Fix several bitcoin-becomes-unresponsive bugs due to multithreading
 deadlocks.
@@ -31,8 +31,9 @@ deadlocks.
 Optimize database writes for large (lots of inputs) transactions
 (fixes a potential denial-of-service attack)
 
+
 Wallet Encryption
------------------
+
 Bitcoin supports native wallet encryption so that people who steal your
 wallet file don't automatically get access to all of your Bitcoins.
 In order to enable this feature, choose "Encrypt Wallet" from the
