@@ -23,7 +23,7 @@ Your wallet consists of both [[normal addresses|#Normal_Addresses]] and [[change
 ####How are New "Normal Addresses" Created for my Wallet?
 The Bitcoin client (e.g. Electrum) allows you to trigger manually the generation of a new Bitcoin address. You typically want to create a new address when you want to receive Bitcoins from somebody and do not want to use any of the wallet's present addresses that have already been used for earlier Bitcoin transfers, for privacy reasons (note that all transfers are publically visible in the blockchain).
 
-Another way of adding addresses to your wallet is to [[import|#Imported_Addresses]] private keys (use Electrum's [[command line options|Electrum]] for this). Typically, you would do this if you want to import addresses (and private keys) from another wallet, e.g. from another Bitcoin client's wallet. Note that Electrum cannot derive these addresses/keys from your wallet's [[seed|#Seed]]. Therefore, these imported addresses/keys need to be saved explicitly when you want to make a full backup of your wallet.
+Another way of adding addresses to your wallet is to [[import|#Imported_Addresses]] private keys (with their addresses of course), using Electrum's [[command line options|Electrum]]. See section about [[imported addresses|#Imported_Addresses]] for more details.
 
 ###Change Addresses
 
