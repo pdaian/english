@@ -52,7 +52,7 @@ Contrary to that, a Bitcoin client with a "Deterministic Wallet" will generate a
 This is a big advantage when it comes to making wallet backups:
 
 * *Traditionally*, a wallet backup just contains the bitcoin addresses (and private keys of course) that have been created by the client by the time the backup was made. If the user performs transactions after the backup, new addresses ([[normal|#Normal_Addresses]] or [[change|#Change_Addresses]] addresses) will be generated and added to the wallet. These are not included in the backup yet. If the wallet in use gets lost, all the Bitcoins that are associated with the new addresses will also be lost. To avoid the risk of a too high loss, regular wallet backups are important.
-* *With a Deterministic Wallet* (like with Electrum), the wallet backup only needs to contain the seed, and all new addresses generated in the future are already secured by the initial backup. Hence, regular new backups are not required! {or is this not entirely true?? It is not really clear if the "[[Gap Limit|#Gap_Limit]]" plays a role here...?!? Can anybody clarify?!?}
+* *With a Deterministic Wallet* (like with Electrum), the wallet backup only needs to contain the seed, and all new addresses generated in the future are already secured by the initial backup. Hence, regular new backups are not required!
 
 ###Seed
 ####What is the "Seed" of a Deterministic Wallet in Electrum?
