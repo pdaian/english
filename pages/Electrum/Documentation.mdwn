@@ -90,6 +90,16 @@ The user can (de)prioritize or (un)freeze both [[normal|#Normal_Addresses]] and 
 
 Note: Clearly, an address can not be "prioritized" and "frozen" at the same time.
 
+###Troubleshooting
+
+### 'transaction rejected by memorypool' errors
+
+When you send a transaction, there is a delay before the Electrum client displays the transaction in its history.
+This is because the server polls bitcoind's memorypool every 10 seconds.
+
+If you create another transaction during this interval, during which the first tx is not displayed,
+then your client will pick the same coins again, and the transaction will be rejected as a double spend.
+
 ###What does the "Tx" column mean in Electrum?
 
 * Applies to "Receive" tab (own wallet's addresses) and "Contacts" tab (foreing addresses).
