@@ -21,7 +21,9 @@ Your wallet consists of both [[normal addresses|#Normal_Addresses]] and [[change
 
 * (More or less general, not too specific to Electrum)
 ####How are New "Normal Addresses" Created for my Wallet?
-The Bitcoin client (e.g. Electrum) allows you to trigger manually the generation of a new Bitcoin address. You typically want to create a new address when you want to receive Bitcoins from somebody and do not want to use any of the wallet's present addresses that have already been used for earlier Bitcoin transfers, for privacy reasons (note that all transfers are publically visible in the blockchain).
+A Bitcoin client allows you to trigger the generation of a new Bitcoin address either manually, or it generates new addresses automatically upon certain conditions. The latter applies to Electrum: Depending on the "[[gap limit|#What_is_the_Gap_Limit?]]" setting in Electrum's program preferences, there will always be a certain number of unused addresses showing up in your list of receive addresses (=your own wallet's addresses), and as these addresses get used, new ones will show up automatically.
+
+Typically you want to use a new address for receiving Bitcoins from somebody, instead of using any of your wallet's present addresses that have already been used for earlier transactions. This is to protect your privacy, because all Bitcoins transfers are published in the blockchain and can be read by anyone.
 
 Another way of adding addresses to your wallet is to [[import|#Imported_Addresses]] private keys (with their addresses of course), using Electrum's [[command line options|Electrum]]. See section about [[imported addresses|#Imported_Addresses]] for more details.
 
