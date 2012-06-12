@@ -5,6 +5,274 @@ Note that some download links are not longer valid as highly insecure versions m
 
 #Changelogs
 
+##0.5.X
+After 0.5.1, all subsequent releases are stable maintenance releases, 0.6.0 is based on 0.5.1.
+
+###0.5.5<ref>[https://bitcointalk.org/index.php?topic=79651 0.4.6/0.5.5 release announcement]</ref>=
+bitcoind and Bitcoin-Qt version 0.5.5 are now available for download at:
+Windows: installer  zip (sig)
+Source: tar.gz
+bitcoind and Bitcoin-Qt version 0.6.0.7 are also tagged in git, but it is recommended to upgrade to 0.6.1.
+
+These are bugfix-only releases.
+
+Please report bugs by replying to this forum thread. Note that the 0.4.x wxBitcoin GUI client is no longer maintained nor supported. If someone would like to step up to maintain this, they should contact Luke-Jr.
+
+BUG FIXES
+
+Version 0.6.0 allowed importing invalid "private keys", which would be unspendable; 0.6.0.7 will now verify the private key is valid, and refuse to import an invalid one
+Verify status of encrypt/decrypt calls to detect failed padding
+Check blocks for duplicate transactions earlier. Fixes #1167
+Upgrade Windows builds to OpenSSL 1.0.1b
+Set label when selecting an address that already has a label. Fixes #1080 (Bitcoin-Qt)
+JSON-RPC listtransactions's from/count handling is now fixed
+Optimize and fix multithreaded access, when checking whether we already know about transactions
+Fix potential networking deadlock
+Proper support for Growl 1.3 notifications
+Display an error, rather than crashing, if encoding a QR Code failed (0.6.0.7)
+Don't erroneously set "Display addresses" for users who haven't explicitly enabled it (Bitcoin-Qt)
+Some non-ASCII input in JSON-RPC expecting hexadecimal may have been misinterpreted rather than rejected
+Missing error condition checking added
+Do not show green tick unless all known blocks are downloaded. Fixes #921 (Bitcoin-Qt)
+Increase time ago of last block for "up to date" status from 30 to 90 minutes
+Show a message box when runaway exception happens (Bitcoin-Qt)
+Use a messagebox to display the error when -server is provided without providing a rpc password
+Show error message instead of exception crash when unable to bind RPC port (Bitcoin-Qt)
+Correct sign message bitcoin address tooltip. Fixes #1050 (Bitcoin-Qt)
+Removed "(no label)" from QR Code dialog titlebar if we have no label (0.6.0.7)
+Removed an ugly line break in tooltip for mature transactions (0.6.0.7)
+Add missing tooltip and key shortcut in settings dialog (part of #1088) (Bitcoin-Qt)
+Work around issue in boost::program_options that prevents from compiling in clang
+Fixed bugs occurring only on platforms with unsigned characters (such as ARM).
+Rename make_windows_icon.py to .sh as it is a shell script. Fixes #1099 (Bitcoin-Qt)
+Various trivial internal corrections to types used for counting/size loops and warnings
+
+###0.5.4<ref>[https://bitcointalk.org/index.php?topic=76808.0 0.5.4 release announcement]</ref>=
+Bitcoin version 0.5.4 is now available for download at:
+http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.5.4/
+NOTE: 0.5.4rc3 is being renamed to 0.5.4 final with no changes.
+
+This is a bugfix-only release in the 0.5.x series, plus a few protocol updates.
+
+Please report bugs using the issue tracker at github:
+https://github.com/bitcoin/bitcoin/issues
+
+Stable source code is hosted at Gitorious:
+http://gitorious.org/bitcoin/bitcoind-stable/archive-tarball/v0.5.4#.tar.gz
+
+PROTOCOL UPDATES
+
+BIP 16: Special-case "pay to script hash" logic to enable minimal validation of new transactions.
+Support for validating message signatures produced with compressed public keys.
+
+BUG FIXES
+
+Build with thread-safe MingW libraries for Windows, fixing a dangerous memory corruption scenario when exceptions are thrown.
+Fix broken testnet mining.
+Stop excess inventory relay during initial block download.
+When disconnecting a node, clear the received buffer so that we do not process any already received messages.
+Yet another attempt at implementing "minimize to tray" that works on all operating systems.
+Fix Bitcoin-Qt notifications under Growl 1.3.
+Increase required age of Bitcoin-Qt's "not up to date" status from 30 to 90 minutes.
+Implemented missing verifications that led to crash on entering some wrong passphrases for encrypted wallets.
+Fix default filename suffixes in GNOME save dialog.
+Make the "Send coins" tab use the configured unit type, even on the first attempt.
+Print detailed wallet loading errors to debug.log when it is corrupt.
+Allocate exactly the amount of space needed for signing transactions, instead of a fixed 10k buffer.
+Workaround for improbable memory access violation.
+Check wallet's minimum version before trying to load it.
+Remove wxBitcoin properly when installing Bitcoin-Qt over it. (Windows)
+Detail reorganization information better in debug log.
+Use a messagebox to display the error when -server is provided without configuring a RPC password.
+Testing suite build now honours provided CXXFLAGS.
+Removed an extraneous line-break in mature transaction tooltips.
+Fix some grammatical errors in translation process documentation.
+
+###0.5.3<ref>[https://bitcointalk.org/index.php?topic=68895.0 0.5.3 release announcement]</ref>=
+Bitcoin version 0.5.3 is now available for download at:
+http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.5.3/
+
+This is a bugfix-only release based on 0.5.1.
+It also includes a few protocol updates.
+
+Please report bugs using the issue tracker at github:
+https://github.com/bitcoin/bitcoin/issues
+
+Stable source code is hosted at Gitorious:
+http://gitorious.org/bitcoin/bitcoind-stable/archive-tarball/v0.5.3#.tar.gz
+
+PROTOCOL UPDATES
+
+BIP 30: Introduce a new network rule: "a block is not valid if it contains a transaction whose hash already exists in the block chain, unless all that transaction's outputs were already spent before said block" beginning on March 15, 2012, 00:00 UTC.
+On testnet, allow mining of min-difficulty blocks if 20 minutes have gone by without mining a regular-difficulty block. This is to make testing Bitcoin easier, and will not affect normal mode.
+
+BUG FIXES
+
+Limit the number of orphan transactions stored in memory, to prevent a potential denial-of-service attack by flooding orphan transactions. Also never store invalid transactions at all.
+Fix possible buffer overflow on systems with very long application data paths. This is not exploitable.
+Resolved multiple bugs preventing long-term unlocking of encrypted wallets
+(issue #922).
+Only send local IP in "version" messages if it is globally routable (ie, not private), and try to get such an IP from UPnP if applicable.
+Reannounce UPnP port forwards every 20 minutes, to workaround routers expiring old entries, and allow the -upnp option to override any stored setting.
+Skip splash screen when -min is used, and fix Minimize to Tray function.
+Do not blank "label" in Bitcoin-Qt "Send" tab, if the user has already entered something.
+Correct various labels and messages.
+Various memory leaks and potential null pointer deferences have been fixed.
+Handle invalid Bitcoin URIs using "bitcoin://" instead of "bitcoin:".
+Several shutdown issues have been fixed.
+Revert to "global progress indication", as starting from zero every time was considered too confusing for many users.
+Check that keys stored in the wallet are valid at startup, and if not, report corruption.
+Enable accessible widgets on Windows, so that people with screen readers such as NVDA can make sense of it.
+Various build fixes.
+If no password is specified to bitcoind, recommend a secure password.
+Automatically focus and scroll to new "Send coins" entries in Bitcoin-Qt.
+Show a message box for --help on Windows, for Bitcoin-Qt.
+Add missing "About Qt" menu option to show built-in Qt About dialog.
+Don't show "-daemon" as an option for Bitcoin-Qt, since it isn't available.
+Update hard-coded fallback seed nodes, choosing recent ones with long uptime and versions at least 0.4.0.
+Add checkpoint at block 168,000.
+
+###0.5.2<ref>[https://bitcointalk.org/index.php?topic=60146.0 0.5.2 release announcement]</ref>=
+Bitcoin version 0.5.2 is now available for download at:
+http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.5.2/
+
+This is a bugfix-only release based on 0.5.1.
+
+Please report bugs using the issue tracker at github:
+https://github.com/bitcoin/bitcoin/issues
+
+Stable source code is hosted at Gitorious:
+http://gitorious.org/bitcoin/bitcoind-stable/archive-tarball/v0.5.2#.tar.gz
+
+BUG FIXES
+
+Check all transactions in blocks after the last checkpoint (0.5.0 and 0.5.1 skipped checking ECDSA signatures during initial blockchain download).
+Cease locking memory used by non-sensitive information (this caused a huge performance hit on some platforms, especially noticable during initial blockchain download; this was
+not a security vulnerability).
+Fixed some address-handling deadlocks (client freezes).
+No longer accept inbound connections over the internet when Bitcoin is being used with Tor (identity leak).
+Re-enable SSL support for the JSON-RPC interface (it was unintentionally disabled for the 0.5.0 and 0.5.1 release Linux binaries).
+Use the correct base transaction fee of 0.0005 BTC for accepting transactions into mined blocks (since 0.4.0, it was incorrectly accepting 0.0001 BTC which was only meant to be relayed).
+Don't show "IP" for transactions which are not necessarily IP transactions.
+Add new DNS seeds (maintained by Pieter Wuille and Luke Dashjr).
+
+###0.5.1<ref>[https://bitcointalk.org/index.php?topic=54717.0 0.5.1 release announcement]</ref>=
+Bitcoin version 0.5.1 is now available for download at:
+http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.5.1/
+
+This is a bugfix-only release.
+
+This release includes 13 translations, including 5 new translations:
+Italian, Hungarian, Ukranian, Portuguese (Brazilian) and Simplified Chinese.
+More translations are welcome; join the project at Transifex if you can help:
+https://www.transifex.net/projects/p/bitcoin/
+
+Please report bugs using the issue tracker at github:
+https://github.com/bitcoin/bitcoin/issues
+
+Project source code is hosted at github; we are no longer
+distributing .tar.gz files here, you can get them
+directly from github:
+https://github.com/bitcoin/bitcoin/tarball/v0.5.1  # .tar.gz
+https://github.com/bitcoin/bitcoin/zipball/v0.5.1  # .zip
+
+For Ubuntu users, there is a new ppa maintained by Matt Corallo which
+you can add to your system so that it will automatically keep
+bitcoin up-to-date.  Just type
+sudo apt-add-repository ppa:bitcoin/bitcoin
+in your terminal, then install the bitcoin-qt package.
+
+
+BUG FIXES
+
+Re-enable SSL support for the JSON-RPC interface (it was unintentionally
+disabled for the 0.5.0 release binaries).
+
+The code that finds peers via "dns seeds" no longer stops bitcoin startup
+if one of the dns seed machines is down.
+
+Tooltips on the transaction list view were rendering incorrectly (as black boxes
+or with a transparent background).
+
+Prevent a denial-of-service attack involving flooding a bitcoin node with
+orphan blocks.
+
+The wallet passphrase dialog now warns you if the caps lock key was pressed.
+
+Improved searching in addresses and labels in bitcoin-qt.
+
+###0.5.0<ref>[https://bitcointalk.org/index.php?topic=52480.0 0.5.0 release announcement]</ref>=
+Bitcoin version 0.5.0 is now available for download at:
+http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.5.0/
+
+The major change for this release is a completely new graphical interface that uses the Qt user interface toolkit.
+
+This release include German, Spanish, Spanish-Castilian, Norwegian and Dutch translations. More translations are welcome; join the project at Transifex if you can help:
+https://www.transifex.net/projects/p/bitcoin/
+
+Please report bugs using the issue tracker at github:
+https://github.com/bitcoin/bitcoin/issues
+
+For Ubuntu users, there is a new ppa maintained by Matt Corallo which you can add to your system so that it will automatically keep bitcoin up-to-date.  Just type "sudo apt-add-repository ppa:bitcoin/bitcoin" in your terminal, then install the bitcoin-qt package.
+
+MAJOR BUG FIX  (CVE-2011-4447)
+
+The wallet encryption feature introduced in Bitcoin version 0.4.0 did not sufficiently secure the private keys. An attacker who
+managed to get a copy of your encrypted wallet.dat file might be able to recover some or all of the unencrypted keys and steal the
+associated coins.
+
+If you have a previously encrypted wallet.dat, the first time you run bitcoin-qt or bitcoind the wallet will be rewritten, Bitcoin will
+shut down, and you will be prompted to restart it to run with the new, properly encrypted file.
+
+If you had a previously encrypted wallet.dat that might have been copied or stolen (for example, you backed it up to a public
+location) you should send all of your bitcoins to yourself using a new bitcoin address and stop using any previously generated addresses.
+
+Wallets encrypted with this version of Bitcoin are written properly.
+
+Technical note: the encrypted wallet's 'keypool' will be regenerated the first time you request a new bitcoin address; to be certain that the
+new private keys are properly backed up you should:
+
+1. Run Bitcoin and let it rewrite the wallet.dat file
+
+2. Run it again, then ask it for a new bitcoin address.
+	Bitcoin-Qt: Address Book, then New Address...
+	bitcoind: run the 'walletpassphrase' RPC command to unlock the wallet,  then run the 'getnewaddress' RPC command.
+
+3. If your encrypted wallet.dat may have been copied or stolen, send  all of your bitcoins to the new bitcoin address.
+
+4. Shut down Bitcoin, then backup the wallet.dat file.
+	IMPORTANT: be sure to request a new bitcoin address before backing up, so that the 'keypool' is regenerated and backed up.
+
+"Security in depth" is always a good idea, so choosing a secure location for the backup and/or encrypting the backup before uploading it is recommended. And as in previous releases, if your machine is infected by malware there are several ways an attacker might steal your bitcoins.
+
+Thanks to Alan Reiner (etotheipi) for finding and reporting this bug.
+
+MAJOR GUI CHANGES
+
+"Splash" graphics at startup that show address/wallet/blockchain loading progress.
+
+"Synchronizing with network" progress bar to show block-chain download progress.
+
+Icons at the bottom of the window that show how well connected you are to the network, with tooltips to display details.
+
+Drag and drop support for bitcoin: URIs on web pages.
+
+Export transactions as a .csv file.
+
+Many other GUI improvements, large and small.
+
+RPC CHANGES
+
+getmemorypool : new RPC command, provides everything needed to construct a block with a custom generation transaction and submit a solution
+
+listsinceblock : new RPC command, list transactions since given block
+
+signmessage/verifymessage : new RPC commands to sign a message with one of your private keys or verify that a message signed by the private key associated with a bitcoin address.
+
+GENERAL CHANGES
+
+Faster initial block download.
+
 ##0.4.X
 After 0.4.0, all subsequent releases are stable maintenance releases, 0.5.0 is based on 0.4.0.
 
