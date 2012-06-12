@@ -33,3 +33,7 @@ I think this handles all the binary data types used in the bitcoin protocol to s
 These are nasty as very low level and many big endian/little endian complications.
 The p2pool network protocol uses these also.
 Do not think you need to really understand this unless making changes at this low level.
+
+##p2pool/__init__.py
+At bottom has DEBUG flag. Change to true to get more output.
+Other than that just returns version number for git if it can.
