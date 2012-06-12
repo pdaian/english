@@ -46,6 +46,11 @@ Actually, Bitcoin clients can also work without change addresses. In this case, 
 * Using a new change address makes it more difficult for other people (by analyzing the blockchain) to track how many Bitcoins you have or where you're spending them.
 * It also conceals which output is the "spend" and which is the "change".
 
+###Imported Addresses
+Instead of generating new addresses in the default way from the wallet's [[seed|#Seed]], Electrum also allows you to import addresses (and their private keys of course) from external sources, e.g. from another Bitcoin client's wallet. For this, use Electrum's [[command line|Electrum]] options. Note that imported addresses cannot be derived from your wallet's [[seed|#Seed]] and therefore need to be secured separately for a complete backup of your wallet.
+
+Imported addresses can be used like any other [[normal|#Normal_Addresses]] receive address with Electrum for transmission or reception of Bitcoins, and can also be (un)tagged as "prioritized" or "frozen".
+
 ###Deterministic Wallet
 ####What is a "Deterministic Wallet" in Electrum?
 Traditionally, all new addresses (incl. the private keys of course) added to the wallet ([[normal addresses|#Normal_Addresses]] or [[change addresses|#Change_Addresses]]) are generated randomly. This is the case e.g. for the original "Satoshi Bitcoin Client" (at least as of today, version 0.6.2).
