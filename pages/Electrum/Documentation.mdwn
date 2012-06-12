@@ -84,7 +84,7 @@ It is the criterion used to decide when to stop the recovery from seed process.
 When sending Bitcoins to a foreign address, Electrum will by default use a built-in method to select the address(es) of the wallet used for sending these Bitcoins.
 
 * When you *prioritize* some of your wallet's addresses, these addresses will be used with preference. Other addresses will not be used until the prioritized addresses contain no more Bitcoins.
-* When you *freeze* some of your wallet's addresses, these addresses will not be used for sending bitcoins but they will keep their balance. Instead, other addresses will be used. {To clarify: Will they still not be used if all other addresses have zero balance, such that sending Bitcoins is not possible although the wallet has a balance? Probably yes, just not 100% sure...}
+* When you *freeze* some of your wallet's addresses, these addresses will not be used for sending bitcoins. Instead, other addresses will be used. Sending Bitcoins is not possible if the non-frozen addresses of your wallet do not contain enough funds. 
 
 The user can (de)prioritize or (un)freeze both [[normal|#Normal_Addresses]] and [[change|#Change_Addresses]] addresses.
 
