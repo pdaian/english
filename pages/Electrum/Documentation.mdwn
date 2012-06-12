@@ -74,23 +74,10 @@ If this condition does not hold true, it needs to be clarified whether the use o
 }
 
 ###Gap Limit
-####What is the "Gap Limit" in Electrum? (YET UNCLEAR IN THIS WIKI !!!)
+####What is the "Gap Limit" in Electrum?
 
 The gap limit is the maximal number of contiguous unused addresses in your deterministic sequence of addresses.
 It is the criterion used to decide when to stop the recovery from seed process.
-
-{
-
-Apparently, when you generate too many new addresses, you exceed the "gap limit" at some point - whatever this means... It appears to the first authour of this documentation that this could be dangerous somehow in the sense that the new addresses might not be recoverable from the wallet's seed...?!??!?? Or not?? Not clear at all...
-Not clear what this means. Isn't the wallet "deterministic"? So why should their be a problem with a "gap limit"?  What is its significance?
-
- Quote of Electrum's author ThomasV on v.0.54 of Electrum in the Bitcoin Forum:
->  *The 'receive' tab now has a 'new' button, that allows the user to create addresses beyond the wallet's gap limit. The user gets a warning, and addresses that are beyond the gap limit are displayed in red. The red color will remain until the gap has been filled. (in other words, to fill the gap you need to send coins to the last non-red address of your list).*
-
-Quote of Electrum's author ThomasV on v.0.55 of Electrum in the Bitcoin Forum:
->  *the 'receive' tab has a 'new' button that allows to create new addresses by raising the wallet's gap limit. Note that the gap limit can be lowered too. The dialog also displays the minimum value of the gap limit that can be set without losing any of your current addresses (this assumes you are connected, because it needs to compute the maximal gap of your sequence of addresses)*
-
-}
 
 ##More on the Electrum GUI
 ###What does it mean to "Prioritize" or "Freeze" Addresses in Electrum?
