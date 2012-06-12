@@ -282,6 +282,10 @@ Why should "sigops" be provided for transactions?
 
 * Due to the [[BIP_0016]] changes regarding rules on block sigops, it is impossible to count sigops from the transactions themselves (the sigops in the scriptCheck must also be included in the count).
 
+## To Be Resolved
+
+* Since "data" is a key on the params Object now, perhaps "submit/hash" and "share/merkle" should use new keys for their non-block-format data?
+
 ##Reference Implementation
 
 * [Eloipool](https://gitorious.org/bitcoin/eloipool)
