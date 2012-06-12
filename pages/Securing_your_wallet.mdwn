@@ -22,7 +22,7 @@ In the case that your current wallet hasn't been protected adequately (e.g. put 
 
 "Storing" bitcoins is a little bit of a misnomer - what you are actually "storing" is a sequence of secret numbers that is used to prove your right to spend the Bitcoins you have received.  This secret number is called a [[private_key]].  The most common way to write a Bitcoin private key is as a sequence of fifty-one alphanumeric characters that always starts with a '5'.
 
-One way you can print a paper wallet is at the website [[BitAddress]].  This website features a free client-side paper wallet generator written in Javascript.  This generator can be saved as a file and used on an offline computer.  Using it online is relatively safe, but not airtight unless you take a couple of extra precautions to ensure your keys are not stolen by spyware. Alternatively blockchain.info offers a [tutorial on how to generate a paper wallet](https://blockchain.info/wallet/paper-tutorial) with an online component so you can still check your balance easily.
+One way you can print a paper wallet is at the website [[BitAddress]].  This website features a free client-side paper wallet generator written in JavaScript.  This generator can be saved as a file and used on an offline computer.  Using it online is relatively safe, but not airtight unless you take a couple of extra precautions to ensure your keys are not stolen by spyware. Alternatively blockchain.info offers a [tutorial on how to generate a paper wallet](https://blockchain.info/wallet/paper-tutorial) with an online component so you can still check your balance easily.
 
 To generate a safe paper wallet, you need to "clean-boot" your computer with a bootable CD (such as a Linux Live CD), with your computer not connected to the internet, to ensure that you do not have any active spyware that might steal the private keys you generate.  Disconnecting from the Internet allows you to confirm that the paper wallet generator is truly self-contained and isn't depending on communication with a remote server.  Run the saved paper wallet generator in a web browser, print your paper wallets (do not save them on the computer), and then shut down the computer.  You may need to load an appropriate printer driver in order to print while booted from the Live CD.
 
@@ -61,19 +61,19 @@ For example, this will be necessary if one created a wallet with a password of 1
 
 ###Linux
 
-The first step is to make a [new user,](http://www.howtogeek.com/howto/ubuntu/add-a-user-on-ubuntu-server/) so run:
+The first step is to make a [new user,](http://www.howtogeek.com/howto/ubuntu/add-a-user-on-ubuntu-server/) so as root, run:
 
 <code>adduser new_user_name</code>
 
-as root. When you get to the prompt 'Enter the new value, or press ENTER for the default', just keep hitting ENTER.
+When you get to the prompt 'Enter the new value, or press ENTER for the default', just keep hitting ENTER.
 
 Then switch user to the new user.  To get to the new user you can use the switch user icon for your system, which on Ubuntu is in the 'System/Quit' screen, or if there is no switch icon on your system you can log out and log back in as the new user.  Then click on a folder in the new user to display the file browser, then keep going up folders until you see the new user home directory, then right click to bring up the Properties dialog, then click on the Permissions tab, then in the Others section, set the folder access to None.
 
-For secure browsing, open Firefox, and then go into the Edit menu and click Preferences.  Starting from the left, click on the General tab, and in the 'Startup/When Firefox starts' pop up menu, choose 'Show a Blank Page'.  Then click on the Content tab, and deselect 'Load images automatically' and deselect 'Enable Javascript'.  Then click on the Privacy tab, and in the 'History/Firefox will' pop up menu, choose 'Never remember history'.  Then click on the Security tab, and in the Passwords section, deselect 'Remember passwords for sites' and deselect 'Use a master password'.  Then click on the Advanced tab, then click on the Update tab, and then in the 'Automatically check for updates to' section, deselect 'Add-ons' and 'Search Engines'.
+For secure browsing, open Firefox, and then go into the Edit menu and click Preferences.  Starting from the left, click on the General tab, and in the 'Startup/When Firefox starts' pop up menu, choose 'Show a Blank Page'.  Then click on the Content tab, and deselect 'Load images automatically' and deselect 'Enable JavaScript'.  Then click on the Privacy tab, and in the 'History/Firefox will' pop up menu, choose 'Never remember history'.  Then click on the Security tab, and in the Passwords section, deselect 'Remember passwords for sites' and deselect 'Use a master password'.  Then click on the Advanced tab, then click on the Update tab, and then in the 'Automatically check for updates to' section, deselect 'Add-ons' and 'Search Engines'.
 
-When javascript is disabled, the [linux download page](http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.3.23/bitcoin-0.3.23-linux.tar.gz/download) will not download automatically, so you'll have to click on the 'direct link' part of the "Problems with the download? Please use this 'direct link' or try another mirror." line.
+When JavaScript is disabled, the [Linux download page](http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.3.23/bitcoin-0.3.23-linux.tar.gz/download) will not download automatically, so you'll have to click on the 'direct link' part of the "Problems with the download? Please use this 'direct link' or try another mirror." line.
 
-After you've made your secure new user, to maintain security you should use it only for bitcoin.
+After you've made your secure new user, to maintain security you should only use it for Bitcoin.
 
 It's also a good idea to encrypt the Home directory of whatever user you run Bitcoin under using ecryptfs-utils. To do this:
 
@@ -101,7 +101,7 @@ Follow these instructions to backup all the bitcoin data (wallet and block chain
 1. Symlink it back so the app would be able to use it
 > ln -s /Volumes/Bitcoin ~/Library/Application Support/Bitcoin
 
-Don't forget to mount your image before using Bitcoin and unmount after quitting it.
+Don't forget to mount your image before using Bitcoin and unmount it after quitting.
 
 #####Backup just wallet.dat
 Follow these instructions to backup just the wallet.dat file. This results in a smaller disk image, but it's more complicated to do.
@@ -176,7 +176,7 @@ If that's not it, you can do a search like this:
 
 	find / -name wallet.dat -print 2>/dev/null
 
-To change the directory BitCoin stores its data in:
+To change the directory Bitcoin stores its data in:
 	Run in terminal or script: ./bitcoin(-qt) -datadir=./[[Directory_Name]]
 
 ### Mac
@@ -223,7 +223,7 @@ However, simply using dictionary words is also insecure as it opens you up to a 
 
 If you use keyfiles in addition to a password, it is unlikely that your encrypted file can ever be cracked using brute force methods, even 10 years from now when even a 12 character password might be too short.
 
-Assume that any encrypted files you store online (eg. gmail, Dropbox) will be stored somewhere forever and can never be erased.
+Assume that any encrypted files you store online (eg. Gmail, Dropbox) will be stored somewhere forever and can never be erased.
 
 ##### Choosing Your Password
 Make sure you pick at least one character in each group:<br />
