@@ -60,11 +60,16 @@ These are:
 	desired_version	VarInt	?
 
 
-###x
+###share_info_type
 
 	****
 	!Field	!Type	!Description
-	name	String(32)	?
+	share_data	share_data_type (see above)	?
+	far_share_hash	none or int(256)	?
+	max_bits	Float Int	?
+	bits	Float Int	?
+	timestamp	Int(32)	?
+
 
 ###x
 
