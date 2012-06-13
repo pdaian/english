@@ -282,6 +282,15 @@ Why should "sigops" be provided for transactions?
 
 * Due to the [[BIP_0016]] changes regarding rules on block sigops, it is impossible to count sigops from the transactions themselves (the sigops in the scriptCheck must also be included in the count).
 
+What is the purpose of the "hash" transaction list format?
+
+* Non-mining tools may wish to simply get a list of memory pool transactions.
+* Humans may wish to view their current memory pool.
+
+What is the purpose of the "hex" transaction list format?
+
+* Mainly backward compatibility with bitcoind 0.5 and 0.6.
+
 ## To Be Resolved
 
 * Since "data" is a key on the params Object now, perhaps "submit/hash" and "share/merkle" should use new keys for their non-block-format data?
