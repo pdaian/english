@@ -35,11 +35,16 @@ These are:
 	extra_data	String(0)	Comments say this is a hack
 	length	VarInt	?
 
-###x
+###small_block_header
 
 	****
 	!Field	!Type	!Description
-	name	String(32)	?
+	version	VarInt	?
+	previous_block	None or Int(256)	?
+	timestamp	Int(32)	?
+	bits	FloatingInteger(32)	?
+	nonce	Int(32)	?
+
 
 ###x
 
