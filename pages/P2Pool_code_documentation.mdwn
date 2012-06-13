@@ -46,11 +46,19 @@ These are:
 	nonce	Int(32)	?
 
 
-###x
+###share_data_type
 
 	****
 	!Field	!Type	!Description
-	name	String(32)	?
+	previous_share_hash	None or int(256)	?
+	coinbase	VarString	?
+	nonce	Int(32)	?
+	pubkey_hash	Int(160)	?
+	subsidy	Int(64)	?
+	donation	Int(16)	?
+	stale_info	String(32)	Enum (orpan, dao, unk253, unk252...???
+	desired_version	VarInt	?
+
 
 ###x
 
