@@ -91,15 +91,6 @@ It is used in order to decide when to stop the recovery procedure.
 If you need to have more receiving addresses in your wallet, you may increase your gap limit (expert mode).
 This, however, means that you will need to remember the new limit in order to be able to recover your wallet from seed.
 
-{
-
-To avoid misunderstandings and panic: This does not mean that you will irrecoverably loose your funds when you have forgotten the gap limit and want to recover your wallet from seed. It just means:
-
-* If you enter a too low gap limit when recovering a wallet from seed, it may happen that some of the later addresses in the deterministic sequence of addresses are not recovered although they have a balance>0, such that your wallet will not show the full balance.
-* If you enter a too high value for the gap limit when recovering a wallet from seed, you will unnecessarily generate too many new addresses that will then show up in your wallet, all with zero balance. But at least all your funds are recovered in this case.
-
-}
-
 ##More on the Electrum GUI
 ###What does it mean to "Prioritize" or "Freeze" Addresses in Electrum?
 When sending Bitcoins to a foreign address, Electrum will by default use a built-in method to select the address(es) of the wallet used for sending these Bitcoins.
