@@ -6,3 +6,13 @@ Open Point: It is _not clear_ whether the algorithm of deterministic address gen
 If this condition does not hold true, it needs to be clarified whether the use of deterministic wallets still bares an acceptably low probability of address collisions.
 
 }
+
+
+{
+
+To avoid misunderstandings and panic: This does not mean that you will irrecoverably loose your funds when you have forgotten the gap limit and want to recover your wallet from seed. It just means:
+
+* If you enter a too low gap limit when recovering a wallet from seed, it may happen that some of the later addresses in the deterministic sequence of addresses are not recovered although they have a balance>0, such that your wallet will not show the full balance.
+* If you enter a too high value for the gap limit when recovering a wallet from seed, you will unnecessarily generate too many new addresses that will then show up in your wallet, all with zero balance. But at least all your funds are recovered in this case.
+
+}
