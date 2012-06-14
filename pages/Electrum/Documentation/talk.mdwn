@@ -16,3 +16,8 @@ To avoid misunderstandings and panic: This does not mean that you will irrecover
 * If you enter a too high value for the gap limit when recovering a wallet from seed, you will unnecessarily generate too many new addresses that will then show up in your wallet, all with zero balance. But at least all your funds are recovered in this case.
 
 }
+
+{
+The number of outgoing transactions is apparently not counted. It is unclear why the column is called "Tx" and not "Rx", because it indicates the number of times that Bitcoins have been sent to this address, i.e. how often this address has "received" Bitcoins.
+Does this "Tx" come from blockchain/blockexplorer terminology? Or why is it called "Tx" ("transmit") and not "Rx" ("receive")? To be clarified.
+}
