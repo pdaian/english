@@ -39,3 +39,12 @@ Any invalid CREATEs are ignored (e.g. CREATE with incorrect version or wrong sig
 READ(guid)
 
 This operation returns an array of all the valid version of an object with this guid (or an empty array if the object does not exist). It is naively implemented by traversing the blockchain and looking for the first message with this guid, storing the owner_pub_key, and moving forward from there, identifying the valid versions and discarding invalid ones. This naive implementation is very costly (O(blockchain size)), but can be cached.
+
+## Sample implementation of a ledger
+Trading websites such as Mt. Gox, GLBSE and Bitcoinica use a ledger - a system that records, for each user and asset class (BTC, USD, securities), the quantity of assets he owns at any given moment in time. Here is a simple way for such sites to implement an auditable public ledger over BPD.
+
+* For every user, we create both a unique encryption key and a guid. These are sent to the user immediately upon registration, and are also stored in the website's normal database.
+* For every transaction on the site, a statement comprising all of the user's assets is encoded in some format, and then written to the BPD in encrypted form, using the user's guid and encryption key.
+* At any point when the user wishes to verify his assets on the webiste, he performs a READ operation with his guid, and then decrypts his balances using his decryption key. He can then validate his current and previous account.
+
+Note, this system does not reduce the security of the website, because all data in the BPD is encrypted (we assume the user's computer is trojan-free - if this is an issue, the user may opt-out of receiving a copy of his encryption key ... this is still preferable to not using a BPD, because at least the site's owner would have a sure way of authenticating the ledger, that can't be deleted or tampered with ... with the assumption that the guids and encryption keys are secure and backed up).
