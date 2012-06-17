@@ -34,6 +34,8 @@ The first time a CREATE operation is used with a particular guid, its version sh
 
 Any invalid CREATEs are ignored (e.g. CREATE with incorrect version or wrong signature).
 
+It should be mentioned that CREATE operations cost some amount of Bitcoin to be "performed" by the network - the exact amount depends on the implementation of the PUT operation.
+
 ### READ
 
 READ(guid)
