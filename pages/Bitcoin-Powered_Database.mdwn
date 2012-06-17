@@ -17,8 +17,7 @@ Regular databases are composed of a server and a client library. In this case, t
 
 We will use a primitive PUT(message) that encodes the parameter **message** in the blockchain using a [[Block_chain_message_service]].
 
-### CREATE
-CREATE(guid, version, encoding, data, owner_pub_key, hash_algorithm, signature)
+### CREATE(guid, version, encoding, data, owner_pub_key, hash_algorithm, signature)
 
 This operation creates a new record.
 
@@ -36,9 +35,7 @@ Any invalid CREATEs are ignored (e.g. CREATE with incorrect version or wrong sig
 
 It should be mentioned that CREATE operations cost some amount of Bitcoin to be "performed" by the network - the exact amount depends on the implementation of the PUT operation (The raw implementation of CREATE is just to PUT a message with the concatenation of its parameters).
 
-### READ
-
-READ(guid)
+### READ(guid)
 
 This operation returns an array of all the valid version of an object with this guid (or an empty array if the object does not exist). It is naively implemented by traversing the blockchain and looking for the first message with this guid, storing the owner_pub_key, and moving forward from there, identifying the valid versions and discarding invalid ones. This naive implementation is very costly (O(blockchain size)), but can be cached.
 
