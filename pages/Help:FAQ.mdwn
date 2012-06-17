@@ -210,11 +210,21 @@ Ten minutes was specifically chosen by [[Satoshi]] as a tradeoff between propaga
 
 ### Do you have to wait until my transactions are confirmed in order to buy or sell things with Bitcoin?
 
-YES, you do, IF the transaction is non-recourse. The Bitcoin reference software does not display transactions as confirmed until six blocks have passed (confirmations). As transactions are burred in the chain they become increasingly non-reversible but are very reversible before the first confirmation. Two to six confirmations are recommended for non-recourse situations depending on the value of the transactions involved.
+Unlike credit cards, PayPal or even some kinds of bank wires, Bitcoin strives to provide irreversible payments. Buyer/seller disputes can be handled using dispute mediation protocols that exploit features of the Bitcoin system. Therefore reversing a standard one-to-one payment is seen as an attack on the system. 
 
-When people ask this question they are usually thinking about applications like supermarkets.  This generally is a recourse situation: if somebody tries to double-spend on a face-to-face transaction it might work a few times, but probabalistically speaking eventually one of the double-spends will get noticed, and the penalty for shoplifting charges in most localities is calibrated to be several times worse than the proceeds of a single shoplifting event.
+A transaction without confirmations is still valid, but if the sender is malicious they may be able to reverse the payment. Actually doing so is fairly complex - there's no "reverse payment" button in any Bitcoin application. Doing so requires technical knowledge and in many cases, computational power (you have to mine blocks).
 
-Double-spends might be a concern for something like a snack machine in a low-traffic area with no nearby security cameras.  Such a machine shouldn't honor 0-confirmation payments, and should instead use some other mechanism of clearing Bitcoin or validating transactions against reversal, see the wiki article [[here|Myths#Point_of_sale_with_bitcoins_isn.27t_possible_because_of_the_10_minute_wait_for_confirmation]] for alternatives.
+How problematic is such an attack? This depends a lot on your situation. 
+
+For typical cases like mail order sites, after only a few blocks (30-60 minutes) the chances of a reversal are very low, in fact, no merchant has ever complained about a payment reversal after this time. As dispatching the goods takes more time than this anyway, there is no issue.
+
+When people ask this question they are usually thinking about applications that require immediate payment processing, like supermarkets or snack machines. There are two possible ways to reverse an unconfirmed payment:
+
+1) A timing attack in which two conflicting transactions are broadcast in such a way that the merchant believes he received some coins, but other nodes believe he did not. This technique was researched by the ETH University in Zurich, you can [read their paper](http://eprint.iacr.org/2012/248.pdf). There are some simple changes to the Bitcoin protocol which can render such attacks significantly harder, but they were not yet made.
+
+2) A "Finney Attack", in which an attacker mines a block containing a movement of some coins back to themselves. Once they find a block solution, they quickly go to a merchant and make a purchase, then broadcast the block, thus taking back the coins. This attack is a risk primarily for goods that are dispatched immediately, like song downloads or currency trades. Because the attacker can't choose the time of the attack, it isn't a risk for merchants such as supermarkets where you can't choose exactly when to pay (due to queues, etc). The attack can fail if somebody else finds a block containing the purchasing transaction before you release your own block, therefore, merchants can reduce but not eliminate the risk by making purchasers wait some length of time that's less than a confirm.
+
+Because pulling off these attacks is not trivial, merchants who need to sell things automatically and instantly are most likely to just price the cost of reversal fraud in, or use insurance.
 
 ### I was sent some bitcoins and they haven't arrived yet! Where are they?
 
