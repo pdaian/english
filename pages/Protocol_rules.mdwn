@@ -82,15 +82,6 @@ These messages hold a single transaction.
 ###Explanation of Some Rules
 Most rules are self-explanatory. This section explains why some of the less obvious rules are in place.
 
-6.1: nLockTime must not exceed 31 bits, as some clients will interpret it incorrectly  
-6.2: A valid transaction requires at least 100 bytes. If it's any less, the transaction is not valid  
-6.3: The number of signature operands in the signature (no, that is not redundant) for standard transactions will never exceed two  
-6.4: Note that this is not a hard requirement on clients.  
-6.5: Note that this is not a hard requirement on clients.  The network-enforced rule is that only <i>one</i> transaction spending a particular output can be in the blockchain, thus preventing double-spending.  Technically miners can choose which one they want to put into the block they're working on as long as no other transaction has spent that output either previously in the blockchain, or in the same block.  The in-memory transaction pool can technically be managed in whatever way the miner is willing to implement.  
-6.6: This is the protection against double-spending  
-6.7: Note that when the transaction is accepted into the memory pool, an additional check is made to ensure that the coinbase value does not exceed the transaction fees plus the expected BTC value (50BTC as of this writing).
-
-
 ## [["block"|Protocol_specification#block]] messages
 
 These messages hold a single block.
@@ -155,5 +146,16 @@ These messages hold a single block.
 ## See Also
 
 * [[Protocol_specification]]
+
+##References
+
+6.1: nLockTime must not exceed 31 bits, as some clients will interpret it incorrectly  
+6.2: A valid transaction requires at least 100 bytes. If it's any less, the transaction is not valid  
+6.3: The number of signature operands in the signature (no, that is not redundant) for standard transactions will never exceed two  
+6.4: Note that this is not a hard requirement on clients.  
+6.5: Note that this is not a hard requirement on clients.  The network-enforced rule is that only <i>one</i> transaction spending a particular output can be in the blockchain, thus preventing double-spending.  Technically miners can choose which one they want to put into the block they're working on as long as no other transaction has spent that output either previously in the blockchain, or in the same block.  The in-memory transaction pool can technically be managed in whatever way the miner is willing to implement.  
+6.6: This is the protection against double-spending  
+6.7: Note that when the transaction is accepted into the memory pool, an additional check is made to ensure that the coinbase value does not exceed the transaction fees plus the expected BTC value (50BTC as of this writing).
+
 
 [[!tag "Technical"]][[!tag "Developer"]]
