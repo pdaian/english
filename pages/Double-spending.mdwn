@@ -16,7 +16,7 @@ The [[research]] paper [Two Bitcoins at the Price of One](http://eprint.iacr.org
 
 ###Finney attack
 
-Another attack the trader or merchant is exposed to when accepting payment on 0/unconfirmed.  The Finney attack is a fraudulent double-spend that requires the participation of a miner once a block has been mined.  The risk of a Finney attack cannot be eliminated regardless of the precautions taken by the merchant, but the participation of a miner is required and a specific sequence of events must occur.  Thus the attack is not trivial nor inexpensive to perform and only makes sense for the attacker when the gains from the attack are significant.  Just like with the race attack, a trader or merchant should consider the cost / benefit when accepting payment on just one confirmation when there is no recourse against the attacker.
+Another attack the trader or merchant is exposed to when accepting payment on 0/unconfirmed.  The Finney attack is a fraudulent double-spend that requires the participation of a miner once a block has been mined (4.1).  The risk of a Finney attack cannot be eliminated regardless of the precautions taken by the merchant, but the participation of a miner is required and a specific sequence of events must occur.  Thus the attack is not trivial nor inexpensive to perform and only makes sense for the attacker when the gains from the attack are significant.  Just like with the race attack, a trader or merchant should consider the cost / benefit when accepting payment on just one confirmation when there is no recourse against the attacker.
 
 ###Vector76 attack
 
@@ -38,7 +38,8 @@ There are third-party services to assist traders and merchants to help manage th
 
 ##References
 
-3.1: [BitcoinTalk Thread - Two Bitcoins at the Price of One](http://bitcointalk.org/index.php?topic=79090.msg881283#msg881283)
+3.1: [BitcoinTalk Thread - Two Bitcoins at the Price of One](http://bitcointalk.org/index.php?topic=79090.msg881283#msg881283)  
+4.1: [Best practice for fast transaction acceptance - how high is the risk?](http://www.bitcointalk.org/index.php?topic=3441.msg48384#msg48384)
 
 
 [[!tag "Technical"]]
