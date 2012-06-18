@@ -1,4 +1,4 @@
-To protect against double spending, a transaction should not be considered as **confirmed** until a certain number of blocks in the block chain confirm, or verify that the transaction.  
+To protect against [[double_spending]], a transaction should not be considered as **confirmed** until a certain number of blocks in the block chain confirm, or verify that the transaction.  
 
 The classic bitcoin client will show a transaction as "n/unconfirmed" until 6 blocks confirm the transaction.  Merchants and exchanges who accept [[bitcoins as payment|trade]] can set their own threshold.  When there's loss due to double spending is nominal, payment confirms instantly as soon as it is seen on the network.  The [[eWallet]] provider, [[MyBitcoin]] confirms after one block.  Most [[exchanges|tags/Exchanges]] and other merchants who bear the risk from double spending require 6 blocks, with the exception of [[CoinCard]] which considers payment confirmed after just two blocks.
 
