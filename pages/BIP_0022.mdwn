@@ -39,6 +39,7 @@ Block template creation can be influenced by various parameters:
 |nonces |Number |size of nonce range the miner needs; if not provided, the server SHOULD assume the client requires 2<sup>32</sup>
 |sigoplimit |Number or Boolean |maximum number of sigops to include in template
 |sizelimit |Number or Boolean |maximum number of bytes to use for the entire block
+|target |String |desired target for block template
 |tx |String |format of response "transactions" key elements ("hex" per default)
 |tx:cb |String |format of response "coinbasetxn" key (defaults to "tx" format)
 
