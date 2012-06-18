@@ -59,7 +59,7 @@ Only Bob can do this because only Bob has the private key that corresponds to th
 
 Eve cannot change who the coins belong to by replacing Bob’s public key with her public key, because Alice signed the transfer to Bob using her private key, declaring that the coins which belonged to her now belong to Bob, and Alice's private key is kept secret from Eve. So if Charley accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
 
-###Preventing double-spending
+###Preventing [[double-spending]]
 The process described above does not prevent Alice from using a coin in more than one transaction. The following process does. This is the primary innovation behind Bitcoin.
 
 * Details about the [[transaction|Transactions]] are [[sent and forwarded|Network]] to all or as many other computers as possible.
