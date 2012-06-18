@@ -84,7 +84,7 @@ It is easy to send transactions to yourself repeatedly. If these transactions fi
 
 This is made expensive by the [[fees|transaction_fee]] that would be required after the 50KB of free transactions per block are exhausted. An attacker will eventually eliminate free transactions, but Bitcoin fees will always be low because raising fees above 0.01 BTC per KB would require spending transaction fees. An attacker will eventually run out of money. Even if an attacker wants to waste money, transactions are further prioritized by the time since the coins were last spent, so attacks spending the same coins repeatedly are less effective.
 
-### The "Finney" attack
+### The [[Finney attack|Double-spending#Finney_attack]]
 Named for Hal Finney, who first described this variation of a double-spend attack involving accepting [0-confirmation transactions](http://www.bitcointalk.org/index.php?topic=3441.msg48384#msg48384).  Accepting 0-confirmation large-value transactions is problematic; accepting them for low-value transactions (after waiting several seconds to detect an ordinary double-spend attempt) is probably safe.
 
 ###Rival/malicious client code
