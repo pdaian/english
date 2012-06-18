@@ -63,7 +63,7 @@ Nodes that generate blocks can choose not to include a transaction in their bloc
 ### Attacker has a lot of computing power
 An attacker that controls more than 50% of the network's computing power can, for the time that he is in control, exclude and modify the ordering of transactions. This allows him to:
 
-* Reverse transactions that he sends while he's in control
+* Reverse transactions that he sends while he's in control.  This has the potential to [[double-spend transactions|Double-spending#51.25_attack]] that previously had already been seen in the block chain.
 * Prevent some or all transactions from gaining any confirmations
 * Prevent some or all other miners from mining any valid blocks
 The attacker *can't*:
