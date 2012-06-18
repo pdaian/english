@@ -4,7 +4,12 @@ Other electronic systems prevent double-spending by having a master authoritativ
 
 Bitcoin has some exposure to fraudulent double-spending when a transaction is first made, with less and less risk as a transaction gains [[confirmations|confirmation]].
 
-* Race attack - Traders and merchants who accept a payment immediately on seeing "0/unconfirmed" are exposed to a double-spend occurring is there was a fraudulent attempt that successfully communicated one transaction to the merchant yet communicated a different transaction that spends the same coin that was first to eventually make it into the block chain.  Merchants can take precautions (e.g., disable incoming connections, only connect to well connected nodes) to lessen the risk of a race attack but the risk cannot be eliminated.  Therefore, the cost/benefit of the risk needs to be considered when accepting payment on 0/unconfirmed when there is no recourse against the attacker.  
+* Race attack - Traders and merchants who accept a payment immediately on seeing "0/unconfirmed" are exposed to a double-spend occurring is there was a fraudulent attempt that successfully communicated one transaction to the merchant yet communicated a different transaction that spends the same coin that was first to eventually make it into the block chain.
+
+Merchants can take precautions (e.g., disable incoming connections, only connect to well connected nodes) to lessen the risk of a race attack but the risk cannot be eliminated.  Therefore, the cost/benefit of the risk needs to be considered when accepting payment on 0/unconfirmed when there is no recourse against the attacker.
+
+The [[research]] paper [Two Bitcoins at the Price of One](http://eprint.iacr.org/2012/248.pdf) finds that the protocol allows a high degree of success by an attacker in performing race attacks.  The method studied in the research paper depends on access to the merchant's Bitcoin node which is why that even prior to this paper, recommendations for merchants include disabling incoming connections and to choose specific outgoing connections (1.1).
+
 * Finney attack - Another attack the trader or merchant is exposed to when accepting payment on 0/unconfirmed.  The Finney attack is a fraudulent double-spend that requires the participation of a miner once a block has been mined.  The risk of a Finney attack cannot be eliminated regardless of the precautions taken by the merchant, but the participation of a miner is required and a specific sequence of events must occur.  Thus the attack is not trivial nor inexpensive to perform and only makes sense for the attacker when the gains from the attack are significant.  Just like with the race attack, a trader or merchant should consider the cost / benefit when accepting payment on just one confirmation when there is no recourse against the attacker.
 * Vector76 attack - Also referred to as a one-confirmation attack, is a combination of the race attack and the Finney attack such that a transaction that even has one confirmation can still be dobule-spent.
 * 51% attack - This is an attempt to fraudulently double-spend by a miner or cartel controls more than fifty percent of the hashing capacity of the bitcoin mining network.  With majority of hashing power the attacker has the technical ability to mine blocks where transactions from the miner can be rejected so they will never confirm or the coin in the transaction can be double spent by the attacker even once the transaction already had some confirmations.  The risk lessens of this with each confirmation as the computational advantage the attacker needs grows to a mathematically improbable level and six confirmations is widely accepted as being the amount where the transaction is secure from this attack.
@@ -14,5 +19,10 @@ There are third-party services to assist traders and merchants to help manage th
 ##See Also
 
 * [[Weaknesses]]
+
+##References
+
+1.1: [BitcoinTalk Thread - Two Bitcoins at the Price of One](http://bitcointalk.org/index.php?topic=79090.msg881283#msg881283)
+
 
 [[!tag "Technical"]]
