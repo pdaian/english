@@ -1,31 +1,64 @@
-This page describes an idea to create a modular 'plug-in system' for the official bitcoin client, which would also be cross-client compatible. One of the problems with bitcoin is that all of services which use bitcoin are on different websites, or require the use of different applications. The other main problem with bitcoin is the steep learning curve with new users often finding it difficult to use the entire bitcoin ecosystem to achieve a given task. My solution to this is to create a plug-in system with a plug-in browser where modules could be downloaded and loaded/unloaded at run-time, and sandbox these modules so that the client is both secure and doesn't suffer from feature creep. The scripting system for these modules could use for example, Lua, and so anyone will be able to write a module.
+This page describes an idea to create a modular 'plug-in system' for the official bitcoin client, which would also be cross-client compatible. One of the problems with 
+
+bitcoin is that all of services which use bitcoin are on different websites, or require the use of different applications. The other main problem with bitcoin is the steep 
+
+learning curve with new users often finding it difficult to use the entire bitcoin ecosystem to achieve a given task. My solution to this is to create a plug-in system with 
+
+a plug-in browser where modules could be downloaded and loaded/unloaded at run-time, and sandbox these modules so that the client is both secure and doesn't suffer from 
+
+feature creep. The scripting system for these modules could use for example, Lua, and so anyone will be able to write a module.
 
 **What modules could be created?**
 
-* Welcome to bitcoin / Tutorial module - This module could be for new users, to direct them to the different services such as the bitcoin faucet, showing them how simple transactions can be made, how the address book works, and explain about blockchain downloading, explaining about transactions and confirmations.
+* Welcome to bitcoin / Tutorial module - This module could be for new users, to direct them to the different services such as the bitcoin faucet, showing them how simple 
+
+transactions can be made, how the address book works, and explain about blockchain downloading, explaining about transactions and confirmations.
+
 * Faucet module - This module could connect to different bitcoin faucets.
 * Freenode IRC module - This module could be an integrated IRC client which connects to freenode for help and support with bitcoin.
 * Bitcoin Wiki module - This module could connect to the bitcoin wiki.
 * Calculator module - This module could allow calculations such as addition, subtraction and multiplication to save time when making transactions.
-* MtGox, InterSango, BTC-e, other exchanges module - These modules, one for each exchange, could allow for a much easier way to start using and exchanging bitcoins for other currencies.
-* Bitcoin Charts module - This module could show charts for the exchange rates between bitcoins, other currencies, commodities such as gold, and other information available on sites such as bitcoincharts.com and blockchain.info.
+* MtGox, InterSango, BTC-e, other exchanges module - These modules, one for each exchange, could allow for a much easier way to start using and exchanging bitcoins for other 
+
+currencies.
+
+* Bitcoin Charts module - This module could show charts for the exchange rates between bitcoins, other currencies, commodities such as gold, and other information available 
+
+on sites such as bitcoincharts.com and blockchain.info.
+
 * Bitcoin Skin module - This module could allow the client to be skinnable.
 * Bitcoin OTC module - This module could allow the use of the #bitcoin-otc system and simplify setting up a gribble account and trading.
 * Bitcoin Mobile module - This module could allow interfacing with a mobile phone wallet.
 * Bitcoin Backup module - This module could allow a series of options, such as backup to email, USB drive, CD/DVD, dropbox, FTP, network server.
 
-These are a few examples of modules that would typically help new users, and the order of these modules are relevant to what a new user might use bitcoin for. A tutorial to help them use the interface would make it much easier for a wider audience to understand the basics of bitcoin, particularly if they are not used to internet banking and find it hard to understand the interface. The faucet module would be very helpful to allow new users to get their first bitcoins, so they can play around with bitcoin. The Freenode IRC module and Bitcoin Wiki module would direct curious users to more information about bitcoin. The calculator, exchanges and charts modules would speed up use of the bitcoin client. Skinning would make the client be more warm and friendly and allow a level of personalisation. The OTC module and mobile modules would finally allow people to make their first trades, and of course, there are possibilities for many different types of modules, such as games, widgets and tools.
+These are a few examples of modules that would typically help new users, and the order of these modules are relevant to what a new user might use bitcoin for. A tutorial to 
+
+help them use the interface would make it much easier for a wider audience to understand the basics of bitcoin, particularly if they are not used to internet banking and 
+
+find it hard to understand the interface. The faucet module would be very helpful to allow new users to get their first bitcoins, so they can play around with bitcoin. The 
+
+Freenode IRC module and Bitcoin Wiki module would direct curious users to more information about bitcoin. The calculator, exchanges and charts modules would speed up use of 
+
+the bitcoin client. Skinning would make the client be more warm and friendly and allow a level of personalisation. The OTC module and mobile modules would finally allow 
+
+people to make their first trades, and of course, there are possibilities for many different types of modules, such as games, widgets and tools.
 
 **How would the interface work?**
 
-After discussing this idea on IRC, I think one idea for the interface would be a system based on HTML where each module had its own HTML space. The entire plug-in system could either have its own window or be integrated into a tab in the client. I beleive a clean simple interface will work best.
+After discussing this idea on IRC, I think one idea for the interface would be a system based on HTML where each module had its own HTML space. The entire plug-in system 
+
+could either have its own window or be integrated into a tab in the client. I beleive a clean simple interface will work best.
 
 **What about security?**
 
-There is obviously many concerns about security, but the solution would be to sandbox each module in its own process and use a standardized system to communicate with the client. There could also be a rating system on plugins so that other users could give information about the quality and safety of each module, and leave feedback.
+There is obviously many concerns about security, but the solution would be to sandbox each module in its own process and use a standardized system to communicate with the 
+
+client. There could also be a rating system on plugins so that other users could give information about the quality and safety of each module, and leave feedback. The plugin system would be seperate and would not have any priviledged ability such as the ability to direct access private keys.
 
 **What if users do not like the plugin system?**
 
-The system could be an optional feature in the client, which by default has no modules downloaded or activated. The entire system could be enabled or disabled by a configuration option or through a command line option so that those who want the maximum security and peace of mind, will not have to worry about the plugin system at all.
+The system could be an optional feature in the client, which by default has no modules downloaded or activated. The entire system could be enabled or disabled by a 
+
+configuration option or through a command line option so that those who want the maximum security and peace of mind, will not have to worry about the plugin system at all.
 
 *This idea was proposed by MysteryBanshee*
