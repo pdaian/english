@@ -28,6 +28,7 @@ Validates address and checks local bitcoind owns it.
 Contains the main data structures used in p2pool.
 These are:
 ###hash_link_type
+Serialized SHA256 engine state, used to prove that a coinbase transaction contains some data near the end without sending the entire transaction.
 
 	****
 	!Field	!Type	!Description
@@ -36,6 +37,7 @@ These are:
 	length	VarInt	?
 
 ###small_block_header
+Bitcoin block header, excluding the merkle root. Included in shares, where the merkle root is computed implicitly from the coinbase transaction and the merkle branch.
 
 	****
 	!Field	!Type	!Description
@@ -47,6 +49,7 @@ These are:
 
 
 ###share_data_type
+Information contained within a share that is only relevant to P2Pool and that the client has control over (i.e. its value isn't fixed by the protocol rules).
 
 	****
 	!Field	!Type	!Description
@@ -61,6 +64,7 @@ These are:
 
 
 ###share_info_type
+Information contained within a share that is only relevant to P2Pool
 
 	****
 	!Field	!Type	!Description
@@ -97,5 +101,5 @@ The p2pool network protocol uses these also.
 Do not think you need to really understand this unless making changes at this low level.
 
 ##p2pool/__init__.py
-At bottom has DEBUG flag. Change to true to get more output.
+At bottom has DEBUG flag. Change to true to get more output. (running p2pool with --debug does this)
 Other than that just returns version number for git if it can.
