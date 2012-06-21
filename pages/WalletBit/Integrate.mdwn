@@ -42,15 +42,18 @@ You can also build your own payment button, for instance a support button looks 
 ###Subscription form
 
 <source lang="html4strict">
-<form method="post" action="https://walletbit.com/checkout/frame">
-	<input type="hidden" name="token" value="TOKEN" />
-	<input type="hidden" name="item_name" value="Auction Goods" />
-	<input type="hidden" name="amount" value="0.01000000" />
-	<input type="hidden" name="returnurl" value="https://walletbit.com/" />
-	<input type="hidden" name="additional" value="wb_1=red|wb_2=green" />
-	<input type="hidden" name="test" value="0" />
-	<input type="image" src="https://walletbit.com/button/0.01000000" border="0" name="submit" alt="WalletBit - The Simple Way to Spend or Get Paid Online" />
-</form>
+<form class="walletbit" method="post" action="https://walletbit.com/checkout/subscribe">
+	<input name="token" value="TOKEN" type="hidden">
+	<input name="item_name" value="Magazine" type="hidden">
+	<input name="amount" value="1" type="hidden">
+	<input name="period" value="1" type="hidden">
+	<input name="cycle" value="M" type="hidden">
+	<input name="adjustable" value="0" type="hidden">
+	<input name="returnurl" value="" type="hidden">
+	<input name="additional" value="" type="hidden">
+	<input name="test" value="0" type="hidden">
+	<input id="walletbitsubscribe" src="https://walletbit.com/subscribebutton/1" name="submit" alt="WalletBit - Simple, Flexible & Secure Bitcoin" title="WalletBit - Simple, Flexible & Secure Bitcoin" border="0" type="image">
+</form><script type="text/javascript" src="https://walletbit.com/jq/subscribe"></script>
 </source>
 
 Sign in before using these examples as your need to replace the TOKEN.
