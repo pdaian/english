@@ -1,6 +1,6 @@
 Below you'll find tutorials that will teach you how to use [[WalletBit]] API, and reference documentation for all the moving parts
 
-Two methods are currently available: 
+Three methods are currently available for integrating to your online shop: 
 
 ##Create a payment form
 ###If you want to integrate WalletBit manually
@@ -26,6 +26,20 @@ You can also build your own payment button, for instance a support button looks 
 <source lang="html4strict"><a rel="0.50" test="0" href="https://walletbit.com/" title="Support this free service" class="WalletBitButtonCustom" >1MrcomYR9JrbeYzyPTCSH9usfAuW5WjtJu</a></source>
 
 ###If you want a standard checkout process where customers leave your site and come back once completed
+
+<source lang="html4strict">
+<form method="post" action="https://walletbit.com/checkout/frame">
+	<input type="hidden" name="token" value="TOKEN" />
+	<input type="hidden" name="item_name" value="Auction Goods" />
+	<input type="hidden" name="amount" value="0.01000000" />
+	<input type="hidden" name="returnurl" value="https://walletbit.com/" />
+	<input type="hidden" name="additional" value="wb_1=red|wb_2=green" />
+	<input type="hidden" name="test" value="0" />
+	<input type="image" id="walletbitcheckout" src="https://walletbit.com/button/0.01000000" border="0" name="submit" alt="WalletBit - Simple, Flexible & Secure Bitcoin"  title="WalletBit - Simple, Flexible & Secure Bitcoin" />
+</form><script type="text/javascript" src="https://walletbit.com/jq/button"></script>
+</source>
+
+###Subscription form
 
 <source lang="html4strict">
 <form method="post" action="https://walletbit.com/checkout/frame">
