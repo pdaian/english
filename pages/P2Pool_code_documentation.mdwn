@@ -16,15 +16,30 @@ Read up on Python Generators and this before progressing!
 
 Contains main startup code.
 
-Tests connection to bitcoind.
-Prints hash of latest block to show bitcoind is up to date.
+###Function run
+This is the initially executed function.
 
-Tests connection to p2pool network.
+1. Parses arguments
+1. Reads user/password from bitcoin config file
+1. Sets up log file
+1. Sets up logger that reports errors to http://u.forre.st/p2pool_error.cgi (If you are concerned this is a privacy issue add --no-bugreport to command line.)
+Finally it adds the main function to the Twister Reactor and start the reactor. (i.e. runs the function main!).
 
-Gets address to use for payout either from  file or bitcoind.
-Validates address and checks local bitcoind owns it.
+###main
+This does all the startup tasks.
 
-##p2pool/data.py
+1. Tests connection to bitcoind.
+1. Prints hash of latest block to show bitcoind is up to date.
+1. Tests connection to p2pool network.
+1. Gets address to use for payout either from  file or bitcoind.
+1. Validates address and checks local bitcoind owns it.
+1. Create a "tracker" and loads know shares from files in data/bitcoin/sharesX where X is a number.
+1. poll_bitcoind then gets work from bitcoind (i.e. block header to hash). Does this by calling getwork function explained below. 
+1. I am still getting my head round Twisted but I think the work_poller() function then polls bitcoind every 15 seconds for new work.
+1. Check for work from peers. This is new code to try to reduce stales. It gets new block headers from peers if they arrive before the ones from bitcoind.
+1. Set up merged work for merged mining.
+1. Sets up combined work.
+1. ##p2pool/data.py
 Contains the main data structures used in p2pool.
 These are:
 ###hash_link_type
