@@ -7,6 +7,7 @@ Will tidy up once initial pass done.
 	p2pool/main.py	Main Startup and initialisation code
 	p2pool/data.py	P2Pool main data structures
 	p2pool/util/pack.py	Handling of over the wire data structures
+	p2pool/util/variable.py	Code to allow monitoring of when variables change and triggering events
 
 
 
@@ -16,7 +17,7 @@ Read up on Python Generators and this before progressing!
 
 Contains main startup code.
 
-###Function run
+###Function run()
 This is the initially executed function.
 
 1. Parses arguments
@@ -25,7 +26,7 @@ This is the initially executed function.
 1. Sets up logger that reports errors to http://u.forre.st/p2pool_error.cgi (If you are concerned this is a privacy issue add --no-bugreport to command line.)
 Finally it adds the main function to the Twister Reactor and start the reactor. (i.e. runs the function main!).
 
-###main
+###Function main()
 This does all the startup tasks.
 
 1. Tests connection to bitcoind.
@@ -35,11 +36,23 @@ This does all the startup tasks.
 1. Validates address and checks local bitcoind owns it.
 1. Create a "tracker" and loads know shares from files in data/bitcoin/sharesX where X is a number.
 1. poll_bitcoind then gets work from bitcoind (i.e. block header to hash). Does this by calling getwork function explained below. 
-1. I am still getting my head round Twisted but I think the work_poller() function then polls bitcoind every 15 seconds for new work.
-1. Check for work from peers. This is new code to try to reduce stales. It gets new block headers from peers if they arrive before the ones from bitcoind.
+1. The work_poller() function then polls bitcoind every 15 seconds for new work.
+1. Check for work from peers. This is new code to try to reduce stales. It gets new block headers from peers if they arrive before they arrive from bitcoind.
 1. Set up merged work for merged mining.
 1. Sets up combined work.
-1. ##p2pool/data.py
+1. Sets up Longpoll to trigger when current_work changes (transitions).
+1. Creates Node class that handles connections to other p2pool nodes (see p2p.py also).
+1. Read p2pool node address from addrs file else use bootstrap addresses.
+1. Create node object and start it connecting/sending/receiving data.
+1. Setup loop to save shares to disk every 60 seconds.
+1. Create tunnel through routers using upnp if enabled.
+1. Start listening for workers using WorkerBridge Class (e.g. cgminers).
+1. Start IRC connection for announcing blocks.
+1. Start Status process that output to screen data every 3 seconds.
+
+
+
+##p2pool/data.py
 Contains the main data structures used in p2pool.
 These are:
 ###hash_link_type
