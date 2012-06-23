@@ -155,14 +155,13 @@ Information contained within a share that is only relevant to P2Pool
 	hash_link	hash_link_type	?
 
 
-###share_common_type
+###share1a_type
+I think this is a share that creates a block.
 
 	****
 	!Field	!Type	!Description
-	min_header	small_block_header_type	?
-	share_info	share_info_type	?
-	ref_merkle_link	ComposedType(branch:List(Int), index:VarInt)	?
-	hash_link	hash_link_type	?
+	common	share_common_type	?
+	merkle_link	ComposedType(branch:List(Int), index:VarInt)	?
 
 
 ###x
