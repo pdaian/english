@@ -75,6 +75,11 @@ Initially it starts up the client factory that connects to other nodes and a ser
 
 Then it checks it has enough node addresses, if not asks random peers to send it 8 more addresses.
 
+####Method Node.handle_shares
+Passes new shares onto tracker.
+Update peer_heads
+Calls compute_work if a new share.
+
 ##p2pool/data.py
 Contains the main data structures used in p2pool.
 These are:
