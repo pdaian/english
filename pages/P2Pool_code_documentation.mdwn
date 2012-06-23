@@ -59,6 +59,17 @@ This connects to the bitcoind process using the jsonrpc proxy. It calls the getm
 getwork then unpacks this into a dictionary containing the header info, the transactions
 , the merkel branch/root and the coinbase flags. This is everything that a miner needs to calculate a valid nonce/block.
 
+###Class Node
+This also covers code in p2pool/p2p.py.
+It is dependant on p2pool/util/p2protocol.py which is the Twisted.protocol class that handles low level network communication and passes on messages to the handle_xxx methods of the Client and Server factories and Node class.
+This class is the main class that handles all the p2pool connections and message handling. It is the core of the p2p network for p2pool.
+
+Is initialised with best_share_hash variable so it can update/monitor it, port, store of peer addresses.
+
+Initially it starts up the client factory that connects to other nodes and a server factory that allows incoming connections.
+
+Then it checks it has enough node addresses, if not asks random peers to send it 8 more addresses.
+
 ##p2pool/data.py
 Contains the main data structures used in p2pool.
 These are:
