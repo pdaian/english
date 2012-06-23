@@ -58,6 +58,18 @@ This is a critical function that watches for tracker.verified shares being added
 
 The _ function that calls it also send the share that contains the block solution out over the p2pool network to propagate the solution asap and so reduce orphans.
 
+####Class main/WorkerBridge
+This is the main communication between p2pool process and the workers (mining processes running cgminer or similar).
+#####get_user_details
+This allows clients to connect. Also parses out if this client wants a higher than normal pseudoshare difficulty.
+#####get_work
+This is the main method.
+Creates a new share to solve from current data.
+Create a "BlockAttempt" which is a bitcoin header for the miner to find a nonce for.
+returns the BlockAttempt and a got_response function.
+
+got_response is called when miner finds a solution. It checks that the solution is valid. If below block target we found a block. If below share target we found a share.
+
 ###Function getWork()
 This connects to the bitcoind process using the jsonrpc proxy. It calls the getmemorypool function (see [[Bitcoin json-rpc API document|API_reference_(JSON-RPC)]] and [[getmemorypool document|Original_Bitcoin_client/API_Calls_list]]) This returns all the data needed to create a new block (except the nounce obviously!).
 
