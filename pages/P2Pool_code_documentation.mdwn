@@ -53,6 +53,10 @@ This does all the startup tasks.
 1. Start IRC connection for announcing blocks.
 1. Start Status process that output to screen data every 3 seconds.
 
+####submit_block
+This is a critical function that watches for tracker.verified shares being added. If they meet the difficulty requirements it then submits the block to bitcoind using BOTH the p2p connection and the JSONRPC connection.
+**Should it not also send out over p2pool connection to propagate ASAP so reduce orphaned blocks?**
+
 ###Function getWork()
 This connects to the bitcoind process using the jsonrpc proxy. It calls the getmemorypool function (see [[Bitcoin json-rpc API document|API_reference_(JSON-RPC)]] and [[getmemorypool document|Original_Bitcoin_client/API_Calls_list]]) This returns all the data needed to create a new block (except the nounce obviously!).
 
