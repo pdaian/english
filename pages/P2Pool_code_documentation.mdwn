@@ -70,6 +70,8 @@ returns the BlockAttempt and a got_response function.
 
 got_response is called when miner finds a solution. It checks that the solution is valid. If below block target we found a block. If below share target we found a share.
 
+**More debugging in here would be useful to find the "10%" issue**
+
 ###Function getWork()
 This connects to the bitcoind process using the jsonrpc proxy. It calls the getmemorypool function (see [[Bitcoin json-rpc API document|API_reference_(JSON-RPC)]] and [[getmemorypool document|Original_Bitcoin_client/API_Calls_list]]) This returns all the data needed to create a new block (except the nounce obviously!).
 
