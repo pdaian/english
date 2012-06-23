@@ -164,11 +164,12 @@ I think this is a share that creates a block.
 	merkle_link	ComposedType(branch:List(Int), index:VarInt)	?
 
 
-###x
+###share1b_type
 
 	****
 	!Field	!Type	!Description
-	name	String(32)	?
+	common	share_common_type	?
+	other_txs	List(bitcoin_data.tx_type)	?
 
 
 ##p2pool/util/pack.py
