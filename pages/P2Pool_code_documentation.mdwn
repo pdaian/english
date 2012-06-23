@@ -49,10 +49,12 @@ This does all the startup tasks.
 1. Setup loop to save shares to disk every 60 seconds.
 1. Create tunnel through routers using upnp if enabled.
 1. Start listening for workers using WorkerBridge Class (e.g. cgminers).
+1. Create web_root and start web server. This is the monitoring web pages. (see web.py)
 1. Start IRC connection for announcing blocks.
 1. Start Status process that output to screen data every 3 seconds.
 
-
+###Function getWork()
+This connects to the bitcoind process using the jsonrpc proxy. It calls the getmemorypool function (see [[Bitcoin json-rpc API document|API_reference_(JSON-RPC)]])
 
 ##p2pool/data.py
 Contains the main data structures used in p2pool.
