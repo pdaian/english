@@ -171,6 +171,13 @@ I think this is a share that creates a block.
 	common	share_common_type	?
 	other_txs	List(bitcoin_data.tx_type)	?
 
+###ref_type
+
+	****
+	!Field	!Type	!Description
+	identifier	str(4)	?
+	share_info	share_info_type	?
+
 
 ##p2pool/util/pack.py
 I think this handles all the binary data types used in the bitcoin protocol to send data over the network wire.
