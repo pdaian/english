@@ -151,11 +151,15 @@ Information contained within a share that is only relevant to P2Pool
 	!Field	!Type	!Description
 	name	String(32)	?
 
-###x
+###share_common_type
 
 	****
 	!Field	!Type	!Description
-	name	String(32)	?
+	min_header	small_block_header_type	?
+	share_info	share_info_type	?
+	ref_merkle_link	ComposedType(branch:List(Int), index:VarInt)	?
+	hash_link	hash_link_type	?
+
 
 ###x
 
