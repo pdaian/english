@@ -54,7 +54,10 @@ This does all the startup tasks.
 1. Start Status process that output to screen data every 3 seconds.
 
 ###Function getWork()
-This connects to the bitcoind process using the jsonrpc proxy. It calls the getmemorypool function (see [[Bitcoin json-rpc API document|API_reference_(JSON-RPC)]] and [[getmemorypool document|Original_Bitcoin_client/API_Calls_list]])
+This connects to the bitcoind process using the jsonrpc proxy. It calls the getmemorypool function (see [[Bitcoin json-rpc API document|API_reference_(JSON-RPC)]] and [[getmemorypool document|Original_Bitcoin_client/API_Calls_list]]) This returns all the data needed to create a new block (except the nounce obviously!).
+
+getwork then unpacks this into a dictionary containing the header info, the transactions
+, the merkel branch/root and the coinbase flags. This is everything that a miner needs to calculate a valid nonce/block.
 
 ##p2pool/data.py
 Contains the main data structures used in p2pool.
