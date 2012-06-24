@@ -1,2 +1,14 @@
-##p2pool/util/forest.py
 This contains code for tracking shares.
+##Class Tracker
+Number of dictionaries that store the shares in various ways to allow fast access.
+
+1. shares (hash->share) Since share contains parent share allows you to link to previous shares all the way to the tail.
+1. reverse_shares (delta.tail->set of share_hashes) Allows you to link share to the next share that came after it all the way to the head.
+1. deltas (share_hash -> delta, ref)
+1. reverse_deltas (ref -> set of share_hashes)
+1. delta_refs (ref -> delta)
+1. reverse_delta_refs ( delta.tail -> ref)
+
+**what are deltas???** I have not got my head round this code at all!
+###Method add
+Adds a share to the tracker
