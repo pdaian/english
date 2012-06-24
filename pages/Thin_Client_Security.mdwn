@@ -63,7 +63,7 @@ Clients with a checkpoint (even a very old one) that download and validate the h
 
 It is important to distinguish between block height verification and block depth verification.
 
-A client verifies the height H of a block by checking that there are H block before it, all of which are valid and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client does block height verification.
+A client verifies the height H of a block by checking that there are H block before it, all of which are valid and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client does block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
 
 A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are valid.  SPV clients substitute block depth for block height as a validity check.
 
