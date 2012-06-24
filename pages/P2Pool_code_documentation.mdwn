@@ -146,6 +146,7 @@ Information contained within a share that is only relevant to P2Pool
 
 
 ###share_common_type
+Data common to both of the following two types of shares.
 
 	****
 	!Field	!Type	!Description
@@ -156,7 +157,7 @@ Information contained within a share that is only relevant to P2Pool
 
 
 ###share1a_type
-I think this is a share that creates a block.
+This is a share that isn't a block solution.
 
 	****
 	!Field	!Type	!Description
@@ -165,6 +166,7 @@ I think this is a share that creates a block.
 
 
 ###share1b_type
+This is a share that is a block solution.
 
 	****
 	!Field	!Type	!Description
@@ -172,6 +174,7 @@ I think this is a share that creates a block.
 	other_txs	List(bitcoin_data.tx_type)	?
 
 ###ref_type
+Internal data structure, hashed to determine the "reference hash" at the end of generation transaction.
 
 	****
 	!Field	!Type	!Description
