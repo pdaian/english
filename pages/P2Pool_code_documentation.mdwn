@@ -128,13 +128,13 @@ Information contained within a share that is only relevant to P2Pool and that th
 	****
 	!Field	!Type	!Description
 	previous_share_hash	None or int(256)	?
-	coinbase	VarString	?
-	nonce	Int(32)	?
-	pubkey_hash	Int(160)	?
-	subsidy	Int(64)	?
-	donation	Int(16)	?
-	stale_info	String(32)	Enum (orpan, dao, unk253, unk252...???
-	desired_version	VarInt	?
+	coinbase	VarString	coinbase script
+	nonce	Int(32)	internal P2Pool nonce
+	pubkey_hash	Int(160)	pubkey hash of Bitcoin address that this share's payouts will go to
+	subsidy	Int(64)	total block value
+	donation	Int(16)	donation to authors. 0 = 0%, 65535 = 100%
+	stale_info	String(32)	Flag that tells whether the node that generated this share's last share was orphaned or dead. Used to compute pool statistics. Enum (orphan, dao, unk253, unk252...???
+	desired_version	VarInt	Vote for P2Pool version. Used to trigger upgrade warnings on other nodes
 
 
 ###share_info_type
@@ -143,9 +143,9 @@ Information contained within a share that is only relevant to P2Pool
 	****
 	!Field	!Type	!Description
 	share_data	share_data_type (see above)	?
-	far_share_hash	none or int(256)	?
-	max_bits	Float Int	?
-	bits	Float Int	?
+	far_share_hash	none or int(256)	Hash of 100th parent of this share. Not currently used for anything, but has applications in timestamping and more secure sharechain bootstrapping
+	max_bits	Float Int	Maximum share target allowed
+	bits	Float Int	Share target this share was mined at
 	timestamp	Int(32)	?
 
 
@@ -154,10 +154,10 @@ Data common to both of the following two types of shares.
 
 	****
 	!Field	!Type	!Description
-	min_header	small_block_header_type	?
-	share_info	share_info_type	?
-	ref_merkle_link	ComposedType(branch:List(Int), index:VarInt)	?
-	hash_link	hash_link_type	?
+	min_header	small_block_header_type	Block header of mined share
+	share_info	share_info_type	see above
+	ref_merkle_link	ComposedType(branch:List(Int), index:VarInt)	Merkle branch from hash(ref_type) to ref hash. Currently always empty in generated shares, but could be used by new merged mining implementations
+	hash_link	hash_link_type	Lets you compute the generation transaction hash as a function of this and the ref hash
 
 
 ###share1a_type
@@ -166,7 +166,7 @@ This is a share that isn't a block solution.
 	****
 	!Field	!Type	!Description
 	common	share_common_type	?
-	merkle_link	ComposedType(branch:List(Int), index:VarInt)	?
+	merkle_link	ComposedType(branch:List(Int), index:VarInt)	Merkle branch from generation transaction hash to block header's merkle root
 
 
 ###share1b_type
@@ -175,15 +175,15 @@ This is a share that is a block solution.
 	****
 	!Field	!Type	!Description
 	common	share_common_type	?
-	other_txs	List(bitcoin_data.tx_type)	?
+	other_txs	List(bitcoin_data.tx_type)	List of transactions included in the block besides the generation transaction
 
 ###ref_type
 Internal data structure, hashed to determine the "reference hash" at the end of generation transaction.
 
 	****
 	!Field	!Type	!Description
-	identifier	str(4)	?
-	share_info	share_info_type	?
+	identifier	str(4)	Value different for every P2Pool instance (Bitcoin, Bitcoin-testnet, Litecoin...)
+	share_info	share_info_type	see above
 
 ###Class share
 Class used to store shares.
