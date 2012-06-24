@@ -59,6 +59,16 @@ Future enhancements have been suggested that will have the client talk to multip
 
 Clients with a checkpoint (even a very old one) that download and validate the headers for the whole blockchain are [not vulnerable](http://bitcoinmedia.com/the-irc-bootstrap-method-is-flawed/#comment-4243) to Sybil attacks in the following sense: they can always ensure that an attack would cost more than the amount being stolen.
 
+## Block Height vs. Depth
+
+It is important to distinguish between block height verification and block depth verification.
+
+A client verifies the height H of a block by checking that there are H block before it, all of which are valid and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client does block height verification.
+
+A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are valid.  SPV clients substitute block depth for block height as a validity check.
+
+See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
+
 ## Other
 
 * A [thread](http://sourceforge.net/mailarchive/message.php?msg_id=28633866) on bitcoin-dev
