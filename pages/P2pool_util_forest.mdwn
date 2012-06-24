@@ -9,6 +9,6 @@ Number of dictionaries that store the shares in various ways to allow fast acces
 1. delta_refs (ref -> delta)
 1. reverse_delta_refs ( delta.tail -> ref)
 
-**what are deltas???** I have not got my head round this code at all!
+Deltas are used for quickly answering queries by caching data between two points in the sharechain. Each share has a delta that goes between it and its highest parent and contains information such as how much work was done and how many shares are in between. If the highest parent has its parent added, the delta will keep referring to the old highest parent until it is next needed, and then it will be updated.
 ###Method add
 Adds a share to the tracker
