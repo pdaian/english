@@ -186,6 +186,14 @@ Internal data structure, hashed to determine the "reference hash" at the end of 
 	identifier	str(4)	?
 	share_info	share_info_type	?
 
+###Class share
+Class used to store shares.
+####Method generate_transaction
+Returns the share_info and the generation transations. These are all the transactions that pay the other p2pool users the generated coins and fees.
+It include 2 special transactions
+
+1. The donation sent to the developers.
+1. A transaction that is not valid, but just has a value of zero and the hash of the share info. This is to prove that when a share is found it was whilst looking for a real p2pool block. This is computed from the ref_type data structure.
 
 ##p2pool/util/pack.py
 I think this handles all the binary data types used in the bitcoin protocol to send data over the network wire.
