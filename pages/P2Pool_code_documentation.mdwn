@@ -3,7 +3,7 @@ Feel free to add or correct errors if you are familiar with code.
 
 Will tidy up once initial pass done.
 ##Overview
-The code consists of x main processes
+The code consists of a number of main tasks.
 
 1. Communicate with bitcoind. This mainly gets work - i.e. the latest block and all transactions that need including in the next block. The other communication is for checking the payout address is OK, and publishing newly found blocks to the bitcoin network.
 1. Store and track p2pool shares. We need to track what shares have been published by us and other users. We need this as to calculate the block generation transaction we need to know who created shares in the previous few days.
