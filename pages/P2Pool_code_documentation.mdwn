@@ -2,6 +2,14 @@
 Feel free to add or correct errors if you are familiar with code.
 
 Will tidy up once initial pass done.
+##Overview
+The code consists of x main processes
+
+1. Communicate with bitcoind. This mainly gets work - i.e. the latest block and all transactions that need including in the next block. The other communication is for checking the payout address is OK, and publishing newly found blocks to the bitcoin network.
+1. Store and track p2pool shares. We need to track what shares have been published by us and other users. We need this as to calculate the block generation transaction we need to know who created shares in the previous few days.
+1. Communicate with miners. We need to respond the their get work requests with a block header to try to "solve". Also need to handle LongPolling which is a way to inform miners instantly when they need to stop solving the current block header and solve a new one.
+1. Communicate with p2pool network. We need to connect to other members of the pool and publish and receive shares.
+
 ##Files
 
 	****
