@@ -15,8 +15,9 @@
 This protocol is designed to be spoken only over a reliable (including error correction) lower-level protocol, such as USB-Serial or USB-CDC, to a local device.
 
 ###Packet Format
-1 byte: packet length/type
-N bytes: packet data
+
+* 1 byte: packet length/type
+* N bytes: packet data
 
 Valid lengths are 1-250 (bytes).
 End of command is denoted by a length/type of ff.
