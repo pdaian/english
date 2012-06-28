@@ -18,16 +18,22 @@ This protocol is designed to be spoken only over a reliable (including error cor
 
 * 1 byte: packet length/type
 * N bytes: packet data
+* 4 bytes: packet data CRC32 (only for data packets)
 
 Packet length/types:
 
 * 00 - Abort
-* 01 to fa - Data packet length (1 to 250 bytes)
-* fb to fd - Reserved
+* 01 to ef - Data packet length (1 to 239 bytes)
+* f0 to fc - Reserved
+* fd - Bad packet (command aborted)
 * fe - ACK
 * ff - End of command
 
 ACK should be sent in response to each 250-byte packet. Bulk data transfers, such as bitstream uploads, should wait until ACK is received before sending more packets (maybe? or does USB handle this for us too?).
+
+CRC32 must include the packet length/type byte and all data; this is not used to prevent corruption (USB already guarantees that), but rather to avoid acting when something foreign sends stuff. If the CRC32 does not match, the device should send a "fd" packet back and abort the command.
+
+Null-length commands (ie, "ff" without any valid data packets preceding it) must be ignored.
 
 ###Command Format
 
@@ -139,7 +145,7 @@ Reply:
 	< 09  02 84 01 00 20 <4:nonce>  ff
 
 ####Reset the command queue
-To reset the command queue, send 251 zero bytes; this will pad-out any "open" packet, and send a zero-length for the next one to abort the command.
+To reset the command queue, send 244 zero bytes; this will pad-out any "open" packet, and send a zero-length for the next one to abort the command.
 
 ##Motivation
 ##Rationale
