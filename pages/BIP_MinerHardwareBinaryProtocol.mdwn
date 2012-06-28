@@ -112,10 +112,13 @@ Reply:
 * 2 bytes: hardware manuf/authority
 * 2 bytes: hardware model number
 * 4 bytes: hardware specific information ("ID Code")
+* 1 byte: length of hardware serial number
+* N bytes: hardware serial number
 * 1 byte: length of hardware model number
 * N bytes: hardware model number (EUI-64 when available)
 * 1 byte: length of human-readable hardware model
 * N bytes: human-readable hardware model/version string (UTF-8)
+
 ####43 -- software version
 Reply:
 
