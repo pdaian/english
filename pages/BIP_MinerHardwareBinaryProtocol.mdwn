@@ -25,20 +25,23 @@ ACK is denoted by a length/type of fe, and should be sent in response to each 25
 Length/types fa-fd are reserved.
 
 ###Command Format
-1 byte: request id
-1 byte: command id
-	0x -- Modification commands (potentially dangerous)
-	4x -- Informational commands
-	(high bit set for replies)
-1 byte: device number (ignored for some commands) -- 00 is the MCU, 1-fe are FPGAs, and ff for "all FPGAs"
-1 byte: status (should always be 00 for requests)
-	00 -- success
-	80 -- failure
-N bytes: data
+
+* 1 byte: request id
+* 1 byte: command id
+	* 0x -- Modification commands (potentially dangerous)
+	* 4x -- Informational commands
+	* (high bit set for replies)
+* 1 byte: device number (ignored for some commands)
+	* 00 is the MCU
+	* 1-fe are FPGAs
+	* ff for "all FPGAs"
+* 1 byte: status (should always be 00 for requests)
+	* 00 -- success
+	* 80 -- failure
+* N bytes: data
 
 Commands less than 4 bytes should be ignored.
 Additional data beyond what is expected should be ignored.
-
 
 ###Commands
 ####01 -- program software
