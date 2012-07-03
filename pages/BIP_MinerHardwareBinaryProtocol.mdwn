@@ -39,9 +39,10 @@ Null-length commands (ie, "ff" without any valid data packets preceding it) must
 
 * 1 byte: request id
 * 1 byte: command id
-	* 0x -- Modification commands (potentially dangerous)
-	* 4x -- Informational commands
-	* (high bit set for replies)
+	* Cx -- Modification commands (potentially dangerous)
+	* Dx -- Replies to Modification commands
+	* Ex -- Informational commands
+	* Fx -- Replies to Informational commands
 * 1 byte: device number (ignored for some commands)
 	* 00 is the MCU
 	* 1-fe are FPGAs
@@ -55,7 +56,7 @@ Commands less than 4 bytes should be ignored.
 Additional data beyond what is expected should be ignored.
 
 ###Commands
-####01 -- program software
+####c1 -- program software
 Data:
 
 * 4 bytes: hardware version (big endian)
@@ -64,14 +65,14 @@ Data:
 * 4 bytes: hardware specific information ("ID Code")
 * 4 bytes: software size
 * N bytes: software data
-####02 -- get/set clock speed
+####c2 -- get/set clock speed
 Data:
 
 * 1 byte: new clock speed (00 = don't change)
 Reply (if getting):
 
 * 1 byte: current clock speed
-####03 -- get/set register(s)
+####c3 -- get/set register(s)
 Data:
 
 * 2 bytes: first register number
@@ -81,7 +82,7 @@ Reply (if reading):
 
 * 1 byte: width (in bits) of each register
 * N bytes: value of each register
-####04 -- watch register(s)
+####c4 -- watch register(s)
 Data:
 
 * 2 bytes: first register number
@@ -97,15 +98,15 @@ Notification (DEFERRED, with command=ff and same request id):
 * for each:
 	* 2 bytes: register number
 	* N bytes: value of register
-####40 -- ping
+####e0 -- ping
 Device number ignored.
 Replies with same data given
-####41 -- get FPGA count
+####e1 -- get FPGA count
 Device number ignored.
 Reply:
 
 * 1 byte: number of FPGAs
-####42 -- hardware version
+####e2 -- hardware version
 Reply:
 
 * 4 bytes: hardware version (big endian)
@@ -119,7 +120,7 @@ Reply:
 * 1 byte: length of human-readable hardware model
 * N bytes: human-readable hardware model/version string (UTF-8)
 
-####43 -- software version
+####e3 -- software version
 Reply:
 
 * 4 bytes: software version (big endian)
@@ -127,12 +128,14 @@ Reply:
 * N bytes: software-specific unique identifier
 * 1 byte: length of human-readable software name
 * N bytes: human-readable hardware model/version string (UTF-8)
-####44 -- get temperature
+####e4 -- get temperature
 Reply:
 
 * 1 byte: temperature in celcius
 
 ##Examples
+** Needs updating **
+
 ####Get temperature of FPGA #2
 	> 04  00 44 02 00  ff
 	< 05  00 c4 02 00 30  ff
