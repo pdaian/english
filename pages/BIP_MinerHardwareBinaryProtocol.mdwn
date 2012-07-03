@@ -33,7 +33,7 @@ ACK should be sent in response to each 250-byte packet. Bulk data transfers, suc
 
 CRC32 must include the string "mhbp" plus the packet length/type byte and all data; this is not used to prevent corruption (USB already guarantees that), but rather to avoid acting when something foreign sends stuff. If the CRC32 does not match, the device should send a "fd" packet back and abort the command.
 
-Null-length commands (ie, "ff" without any valid data packets preceding it) must be ignored.
+Null-length commands (ie, "ff" without any valid data packets preceding it) must be ACK'd and ignored.
 
 ###Command Format
 
