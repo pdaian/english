@@ -22,7 +22,16 @@ USD, AUD, CAD, CHF, CNY, DKK, EUR, GBP, HKD, JPY, NZD, PLN, RUB, SEK, SGD, THB
 
 Authentication is performed by signing each request using HMAC-SHA512. The request must contain an extra value "nonce" which must be an always incrementing numeric value.  A reference implementation is provided here:
 
-Warning : the API is no more accepting authentication by login/pass ( since 2012 march 1 ) , you _need_ to use an API key.
+	**basically the base64 string should contain:**
+
+* the binary representation of the api key id
+* binary hmac-sha512 signature
+* json data
+
+	api key looks like that: 12345678-abcd-1234-abcd-50286e649d5c
+	it's actually hexadecimal, it should be converted to binary
+
+**Warning : the API is no more accepting authentication by login/pass ( since 2012 march 1 ) , you _need_ to use an API key.**
 
 ### PHP
 <source lang="php">
@@ -90,7 +99,7 @@ hoping for many java forks and pull requests on github
 
 ### Javascript Firefox addon
 
-* [(1)](https://github.com/joric/mtgox-ticker) firefox ticker addon 
+* [(1)](https://github.com/joric/mtgox-ticker) firefox ticker addon
 
 ##See Also
 
