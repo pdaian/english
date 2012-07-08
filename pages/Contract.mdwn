@@ -213,6 +213,10 @@ This continues until the session ends, or the 1-day period is getting close to e
 
 The lock time and sequence numbers avoid an attack in which the AP provides connectivity, and then the user [[double-spends|double-spending]] the output back to themselves using the first version of TX2, thus preventing the cafe from claiming the bill. If the user does try this, the TX won't be included right away, giving the access point a window of time in which it can observe the TX broadcast, and then broadcast the last version it saw, overriding the user's attempted double-spend.
 
+##Example 8: Agents
+
+[[Agents]] are autonomous programs that maintain their own wallets and act in the economy. Because an agent is a program and has no recourse to the law courts if something goes wrong, it must be entirely reliant on low trust protocols. Agents have a dedicated wiki page that discusses how they would use some of the contracts on this page, along with trusted computing/remote attestation protocols to ensure they do not get scammed by humans or other programs.
+
 ##See Also
 
 * [[Script]]
