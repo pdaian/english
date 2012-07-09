@@ -16,3 +16,7 @@ Normally this class stores shares. These are called items in the code. I guess t
 
 ###Method add
 Adds a share to the tracker
+
+###Skiplist, TrackerSkipList and DistanceSkipList classes
+The trackers self._subset_of is a DistanceSkipList instance.
+TrackerSkipList is also the base class for data.py/WeightsSkipList class (should TrackerSkipList be moved into skiplist.py?)
