@@ -2,13 +2,17 @@ This contains code for tracking shares.
 ##Class Tracker
 Number of dictionaries that store the shares in various ways to allow fast access.
 
-1. shares (hash->share) Since share contains parent share allows you to link to previous shares all the way to the tail.
-1. reverse_shares (delta.tail->set of share_hashes) Allows you to link share to the next share that came after it all the way to the head.
-1. deltas (share_hash -> delta, ref)
-1. reverse_deltas (ref -> set of share_hashes)
+This class is critical for performance. It stores and updates **Deltas** that are used for quickly answering queries by caching data between two points in the sharechain. Each share (item) has a delta that goes between it and its highest parent and contains information such as how much work was done and how many shares are in between. If the highest parent has its parent added, the delta will keep referring to the old highest parent until it is next needed, and then it will be updated.
+
+Normally this class stores shares. These are called items in the code. I guess this is because the class is reused elsewhere?
+
+1. items (hash->item) Since share(item) contains parent share allows you to link to previous shares all the way to the tail.
+1. reverse (delta.tail->set of item_hashes) Allows you to link share to the next share that came after it all the way to the head.
+1. deltas (item_hash -> delta, ref)
+1. reverse_deltas (ref -> set of item_hashes)
 1. delta_refs (ref -> delta)
 1. reverse_delta_refs ( delta.tail -> ref)
 
-Deltas are used for quickly answering queries by caching data between two points in the sharechain. Each share has a delta that goes between it and its highest parent and contains information such as how much work was done and how many shares are in between. If the highest parent has its parent added, the delta will keep referring to the old highest parent until it is next needed, and then it will be updated.
+
 ###Method add
 Adds a share to the tracker
