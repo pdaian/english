@@ -5,16 +5,16 @@
 |[[CVE-2010-5139|#CVE-2010-5139]]|2010-08-15|wxBitcoin and bitcoind|bgcolor=pinkTheft (1.2)|bgcolor=pinkEasy|Combined output overflow|bgcolor=lime100%
 |[[CVE-2010-5140|#CVE-2010-5140]]|2010-09-29|wxBitcoin and bitcoind|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Never confirming transactions|bgcolor=lime100%
 |[[CVE-2011-4447|#CVE-2011-4447]]|2011-11-11|wxBitcoin and bitcoind|bgcolor=pinkExposure (1.3)|bgcolor=limeHard|Wallet non-encryption|bgcolor=lime[94%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2011-4447.html)
-|[[CVE-2012-1909|#CVE-2012-1909]]|2012-03-07|Bitcoin protocol and all clients|bgcolor=pinkNetsplit (1.4)|bgcolor=limeVery hard|Transaction overwriting|bgcolor=pink[73%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-1909.html)
+|[[CVE-2012-1909|#CVE-2012-1909]]|2012-03-07|Bitcoin protocol and all clients|bgcolor=pinkNetsplit (1.4)|bgcolor=limeVery hard|Transaction overwriting|bgcolor=pink[75%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-1909.html)
 |[[CVE-2012-1910|#CVE-2012-1910]]|2012-03-17|Bitcoin-Qt for Windows|bgcolor=pinkUnknown (1.5)|bgcolor=limeHard|MingW non-multithreading|bgcolor=lime[97%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-1910.html)
-|[[BIP 0016|#BIP-0016]]|2012-04-01|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Mandatory P2SH protocol update|bgcolor=pink[72%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0016.html)
-|[[CVE-2012-2459|#CVE-2012-2459]]|2012-05-14|bitcoind and Bitcoin-Qt|bgcolor=pinkTBD|bgcolor=pinkEasy|TBD (at net ~77%)|bgcolor=pink[69%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-2459.html)<!--
+|[[BIP 0016|#BIP-0016]]|2012-04-01|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Mandatory P2SH protocol update|bgcolor=pink[73%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0016.html)
+|[[CVE-2012-2459|#CVE-2012-2459]]|2012-05-14|bitcoind and Bitcoin-Qt|bgcolor=pinkTBD|bgcolor=pinkEasy|TBD (at net ~77%)|bgcolor=pink[71%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-2459.html)<!--
 |-
 | [[#CVE-2012-3584|CVE-2012-3584]]
 | 2012-06-16
 | Bitcoin p2p protocol
 |bgcolor=yellow| DoS<ref name="DoS"/>|bgcolor=yellowMiners (1.7)|Poor miner incentives|(no fix)-->
-|[[CVE-2012-3789|#CVE-2012-3789]]|2012-06-20|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|TBD|TBD|bgcolor=pink[23%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-3789)
+|[[CVE-2012-3789|#CVE-2012-3789]]|2012-06-20|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|TBD|TBD|bgcolor=pink[25%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-3789)
 
 
 
@@ -142,7 +142,7 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 
 	<b>Date:</b> 2012-03-07
 	<b>Summary:</b> Transaction overwriting
-	<b>Fix Deployment:</b> 73%
+	<b>Fix Deployment:</b> 75%
 
 
 |Bitcoin protocol |Before March 15th, 2012 |BIP 30
@@ -174,7 +174,7 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 
 	<b>Date:</b> 2012-04-01
 	<b>Summary:</b> Mandatory P2SH protocol update
-	<b>Deployment:</b> 72%
+	<b>Deployment:</b> 73%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.4<br>0.5.0rc1 - 0.5.0.5<br>0.5.1rc1 - 0.5.3<br>0.6.0rc1 |0.4.5<br>0.5.0.6<br>0.5.4rc1<br>0.6.0rc2
@@ -189,7 +189,7 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 
 	<b>Date:</b> 2012-05-14
 	<b>Summary:</b> *To Be Disclosed* (when network deployment reaches about 77%)
-	<b>Fix Deployment:</b> 69%
+	<b>Fix Deployment:</b> 71%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.6rc1<br>0.5.0rc1 - 0.5.5rc1<br>0.6.0rc1 - 0.6.0.7rc1<br>0.6.1rc1 - 0.6.1 |0.4.6<br>0.5.5<br>0.6.0.7<br>0.6.2
@@ -210,7 +210,7 @@ Incentives for excluding transactions from blocks?
 
 	<b>Date:</b> 2012-06-20
 	<b>Summary:</b> *To Be Disclosed*
-	<b>Fix Deployment:</b> 23%
+	<b>Fix Deployment:</b> 25%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.7rc2<br>0.5.0rc1 - 0.5.6rc2<br>0.6.0rc1 - 0.6.0.8rc2<br>0.6.1rc1 - 0.6.2.2 |0.4.7rc3<br>0.5.6rc3<br>0.6.0.9rc1<br>0.6.3rc1
