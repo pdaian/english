@@ -21,39 +21,22 @@ The current mainline ("Satoshi") client cannot currently be used to import minik
 ##Decoding
 The private key encoding consists of 22, 26, or 30 alphanumeric characters from the [[base58]] alphabet used in Bitcoin.  The first of the characters is always the uppercase letter S.
 
-There are two methods to obtain the full 256-bit private key.  One involves SHA256, and the other involves PBKDF2.  A simple test must be performed to determine which method shall be used:
+A simple test must be performed to determine which method shall be used:
 
 1. Add a question mark to the end of the mini private key string.
 1. Take the SHA256 hash of the entire string.  However, we will only looking at the first two bytes of the result.
-1. If the first byte is 00, then the private key must be computed as simply SHA256(minikey).  The question mark is not part of this computation.
-1. If the first byte is 01, then the private key must be computed using PBKDF2.  The second byte determines the iteration count that will be passed into the PBKDF2 function.  The iteration count is determined as follows: 2 ^ (n/4) rounded to the nearest integer, where n is the second byte.  For example, if the second byte is 0x28, then 4096 iterations will be used.  The salt string is "Satoshi Nakamoto".  The Bitcoin client imposes an upper limit on the value of n, which is currently 0x40, or 65536 iterations, and rejects the key as invalid beyond the limit.
+1. If the first byte is 00, the string is a well-formed minikey.  If the first byte is not 00, the string should be rejected as a minikey.
 
 ###Example with SHA256
-Here is an example with the sample private key S4b3N3oGqDqR5jNuxEvDwf.
+Here is an example with the sample private key Sz9vkwiuc5ghNWKcemKoNi66pJ6AgM.
 
-The string "S4b3N3oGqDqR5jNuxEvDwf?" has a SHA256 value that begins with 00, so it uses SHA256.
+The string "Sz9vkwiuc5ghNWKcemKoNi66pJ6AgM?" has a SHA256 value that begins with 00, so it is well-formed.
 
-To obtain the full 256-bit private key, simply take the SHA256 hash of the entire string.  There is no encoding for breaks in the string even if printed that way - the SHA256 should be taken of exactly twenty-two bytes.
+To obtain the full 256-bit private key, simply take the SHA256 hash of the entire string.  There is no encoding for breaks in the string even if printed that way - the SHA256 should be taken of exactly thirty bytes.
 
-	SHA256("S4b3N3oGqDqR5jNuxEvDwf") = 0C28FCA386C7A227600B2FE50B7CAE11EC86D3BF1FBE471BE89827E19D72AA1D
+	SHA256("Sz9vkwiuc5ghNWKcemKoNi66pJ6AgM") = 68DD9613911D884866A613EE909A8C3B1877D47BF4B59350AA44ED1687FA5127 
 
-This sample key in [[wallet_export_format]] is 5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ, and the corresponding [[Bitcoin_address]] is 1GAehh7TsJAHuUAeKZcXf5CnwuGuGgyX2S.
-
-###Example with PBKDF2
-<font color="red">The PBKDF2 format is currently a proposal still in the draft stage.  Specifically, there has been discussion about using an SHA256-based HMAC, rather than SHA1 as is used on WiFi networks, so the example as presented here may be discarded and revised.  All Casascius coins produced in 2011 exclusively use the SHA256 format.  This PBKDF2 key format as documented herein has not been used on Casascius coins or any other projects.</font>
-
-Here is an example with the sample private key SmbM4uRBu2mQymCsuMKkiW.
-
-The string "SmbM4uRBu2mQymCsuMKkiW?" has a SHA256 value that begins with 01 30 (hex), so it will use PBKDF2 with 4096 iterations.
-
-To obtain the full 256-bit private key, evaluate the PBKDF2 function as follows:
-
-	PBKDF2("SmbM4uRBu2mQymCsuMKkiW", "Satoshi Nakamoto", 4096, 32bytes) = 
-	80366610e37e56c5125aee358ab51326a15f6586d658b90bb881a6116b06853c
-
-This sample key in [[wallet_export_format]] is 5Jnkbccxr6hbCkL7d4sufAzrTxqWmeSHTY2tKQp4P1vogQ13g5g, and the corresponding [[Bitcoin_address]] is 1ArzEMMcd4EHV3jbWKkpuGRhBG6iV4RCVA.
-
-The PBKDF2 key derivation algorithm is shared by the WPA-PSK encryption method used on WiFi networks.  It also happens to also use 4096 iterations and 32 bytes of key, so a standard WPA key calculator can be used to test and confirm this particular result, simply by entering "Satoshi Nakamoto" as the SSID and "SmbM4uRBu2mQymCsuMKkiW" as the password.
+This sample key in [[wallet_export_format]] is 5JcUEPy6ZNEU2beoyAZdPwjtZWPeiU2j2nDwMjGXWeoD87LrURL, and the corresponding [[Bitcoin_address]] is 1HwWMmDFaFLDBt3XRfCce3kA1rR2Syb1W2.
 
 ##Check code
 The mini private key format offers a simple typo check code.  Mini private keys must be generated in a "brute force" fashion, keeping only keys that conform to the format's rules.  If a key is well-formed (22, 26, or 30 Base58 characters starting with S), but fails the hash check, then it probably contains a typo.
