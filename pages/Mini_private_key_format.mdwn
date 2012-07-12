@@ -1,5 +1,5 @@
 [[!img "QR-privkeys-sidebyside.png" size=120x120 class="right" title="QR codes of the same private key, in mini versus regular private key format.  Both codes have the same dot density and error correction level, but the mini key is 57% of the full code's size."]]
-The **mini private key format** is a method of encoding a Bitcoin private key in as few as 22 characters so that it can be embedded in a small space.  This private key format was first used in Casascius physical bitcoins, and is also favorable for use in QR codes.  The fewer characters encoded in a QR code, the lower dot density can be used, as well as more dots allocated to error correction in the same space, significantly improving readability and resistance to damage.  The mini private key format offers its own built-in check code as a small margin of protection against typos.
+The **mini private key format** is a method of encoding a Bitcoin private key in as few as 30 characters so that it can be embedded in a small space.  This private key format was first used in Casascius physical bitcoins, and is also favorable for use in QR codes.  The fewer characters encoded in a QR code, the lower dot density can be used, as well as more dots allocated to error correction in the same space, significantly improving readability and resistance to damage.  The mini private key format offers its own built-in check code as a small margin of protection against typos.
 
 An example key using this encoding is **S4b3N3oGqDqR5jNuxEvDwf**.
 
@@ -39,11 +39,9 @@ To obtain the full 256-bit private key, simply take the SHA256 hash of the entir
 This sample key in [[wallet_export_format]] is 5JcUEPy6ZNEU2beoyAZdPwjtZWPeiU2j2nDwMjGXWeoD87LrURL, and the corresponding [[Bitcoin_address]] is 1HwWMmDFaFLDBt3XRfCce3kA1rR2Syb1W2.
 
 ##Check code
-The mini private key format offers a simple typo check code.  Mini private keys must be generated in a "brute force" fashion, keeping only keys that conform to the format's rules.  If a key is well-formed (22, 26, or 30 Base58 characters starting with S), but fails the hash check, then it probably contains a typo.
+The mini private key format offers a simple typo check code.  Mini private keys must be generated in a "brute force" fashion, keeping only keys that conform to the format's rules.  If a key is well-formed (30 Base58 characters starting with S), but fails the hash check, then it probably contains a typo.
 
-If the SHA256 hash of the string followed by '?' doesn't result in something that begins with 0x00 or 0x01, the mini private key is not valid.
-
-If it starts with 0x01, but the second byte is higher than the allowed maximum (0x30), the mini private key is invalid.  Note that the maximum is likely to be increased as computing power advances.
+If the SHA256 hash of the string followed by '?' doesn't result in something that begins with 0x00, the mini private key is not valid.
 
 ##Creating mini private keys
 Creating mini private keys is relatively simple.  One program which can create such keys is [[Casascius_Bitcoin_Utility]].
@@ -52,16 +50,13 @@ Mini private keys must be created "from scratch", as the conversion from mini pr
 
 To create mini private keys, simply create random strings that satisfy the well-formedness requirement, and then eliminate the ones that do not pass the typo check.  (This means eliminating more than 99% of the candidates.)  Then use the appropriate algorithm to compute the corresponding private key, and in turn, the matching Bitcoin address.  The Bitcoin address can always be computed from just the private key.
 
-It is **highly recommended** to use the PBKDF2 function and select at least 4096 rounds.  (This means selecting strings as keys whose SHA256(string+"?") begins with 0x0128).  Mini private keys offer a minimum of entropy, so the more rounds you choose, the stronger your keys will resist advances in technology to do brute-force cracks.
-
-The SHA256 function is provided for the convenience of hardware and software environments that offer very limited computational power, such as microcontrollers.  It provides for the ability to generate a valid mini private key with, on average, 256 operations of SHA256.  However, it also offers the lowest brute force attack resistance.  Such keys are only suitable for situations where a "throwaway" Bitcoin address is needed, such as on a coupon or ticket where the amount will be spent soon, as opposed to an address where bitcoins will be kept long term.  The strongest possible PBKDF2-based keys should always be preferred in any environment where generating them is possible.
+It is strongly advisable to avoid using the digit "1" in minikeys unless it is being printed in such a way where a user is unlikely to mistake it for the lowercase letter "l".  Few clients and redemption tools are prepared to tell the user that their entry containing the letter "l" should actually be the number "1" - rather, they will simply reject the code and may leave the user confused.
 
 In all cases, you **must** use a secure cryptographic random number generator to eliminate risks of predictability of the random strings.
 
-##Entropy considerations
-The 22-character mini private key code appears to offer about 123 bits of entropy, determined as log2(58^21).  (Because the first character is fixed, there are 21 symbols which can each have one of 58 values).
+##Casascius Series 1 coins
 
-The 26-character version offers about 146 bits of entropy by the same calculation.  The 30-character version offers over 169 bits, which exceeds the 160-bits found in a Bitcoin address.
+Casascius Series 1 Physical Bitcoins use a 22-character variant of the minikey format, instead of 30 characters.  Everything is the same other than the length.  To properly implement minikey redemption, services and clients MUST support the 30-character format, but MAY support the 22-character format as well.  Use of the 22-character format for future applications is discouraged due to security considerations.
 
 ##Python Code
 The following code produces sample SHA256-based mini private keys in Python.  For real-world use, *random* must be replaced with a better source of entropy, as the Python documentation for *random* states the function *"is completely unsuitable for cryptographic purposes"*.
