@@ -12,9 +12,11 @@ The way it might appear within a physical bitcoin is on a round card printed as 
 Mini private keys can be imported through the following clients/services:
 
 * [[Blockchain.info]]
+	* Private keys can be imported and coins sent to another address immediately upon import without needing to wait for any confirmations.  Even after import, funds remain associated with the private key until they are actually spent to a different address.
 * [[Strongcoin]]
 * [[Armory]]
 * [[Mt._Gox]]
+	* Mt. Gox sweeps the funds to a secondary address, and then a user must wait for six confirmations before the funds will appear in the Mt. Gox account.  Removing the imported bitcoins from the Mt. Gox account is treated as a bitcoin withdrawal and counts against daily/monthly limits.  Mt. Gox also permanently remembers any imported private key and automatically sweeps any future funds sent to it into the user's Mt. Gox account.
 
 The current mainline ("Satoshi") client cannot currently be used to import minikeys.
 
