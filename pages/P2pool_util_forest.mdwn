@@ -18,5 +18,8 @@ Normally this class stores shares. These are called items in the code. I guess t
 Adds a share to the tracker
 
 ###Skiplist, TrackerSkipList and DistanceSkipList classes
+The __call__ function of DistanceSkipList implements the get_nth_parent_hash function of the trackers.
+So these are used to enable an efficient way of managing the share lists.
+
 The trackers self._subset_of is a DistanceSkipList instance.
 TrackerSkipList is also the base class for data.py/WeightsSkipList class (should TrackerSkipList be moved into skiplist.py?)
