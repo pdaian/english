@@ -1,0 +1,146 @@
+[[!template id=bip]]
+
+<pre>
+  BIP: ?
+  Title: Abstract JTAG Protocol
+  Author: Luke Dashjr <luke+bipmhbp@dashjr.org>
+  Status: Draft
+  Type: Standards Track
+  Created: 14-07-2012
+</pre>
+
+##Abstract
+##Specification
+
+This protocol is designed to be spoken only over a reliable (including error correction) lower-level protocol, such as USB-Serial or USB-CDC, to a local device.
+
+###Packet Format
+
+* 4 bytes: magic: always <tt>fd414a50</tt>
+* 1 byte: packet length/type
+* N bytes: packet data
+* 4 bytes: packet data CRC32 (omit for Abort and Bad packet)
+
+Packet length/types:
+
+* <tt>00</tt> -- Abort
+* <tt>01</tt> to <tt>ef</tt> -- Data packet length (1 to 239 bytes)
+* <tt>f0</tt> to <tt>fc</tt> -- Reserved
+* <tt>fd</tt> -- Bad packet (command aborted)
+* <tt>fe</tt> -- ACK
+* <tt>ff</tt> -- End of command
+
+ACK should be sent in response to each 250-byte packet. Bulk data transfers, such as bitstream uploads, should wait until ACK is received before sending more packets.
+
+CRC32 must include the complete packet up until the CRC32 itself; this is not used to prevent corruption (USB already guarantees that), but rather to avoid acting when something foreign sends stuff (possibly intermixed with a real AJP packet). If the CRC32 does not match, the device should send a "<tt>fd</tt>" packet back and ignore the content.
+
+Note that while Abort packets abort the entire command, but do not guarantee it had no effect.
+
+Anything up to the initial magic is ignored.
+
+###Command Format
+
+* 1 byte: request id
+* 1 byte: command id
+	* <tt>Cx</tt> -- JTAG interface commands (potentially dangerous)
+	* <tt>Dx</tt> -- Replies to JTAG interface commands
+	* <tt>Ex</tt> -- Informational commands
+	* <tt>Fx</tt> -- Replies to Informational commands
+* 1 byte: device number (ignored for some commands)
+	* <tt>00</tt> is the controller
+	* <tt>01</tt> to <tt>fe</tt> are JTAG devices
+	* <tt>ff</tt> for "all JTAG devices"
+* 1 byte: status (should always be <tt>00</tt> for requests)
+	* <tt>00</tt> -- success
+	* <tt>80</tt> -- failure
+* N bytes: data
+
+Commands less than 4 bytes should be ignored.
+Additional data beyond what is expected should be ignored.
+
+###Commands
+####<tt>c0</tt> -- clock
+Request Data:
+
+* 1 byte: bit values (bitwise or'd)
+	* <tt>01</tt> -- TDO high
+	* <tt>02</tt> -- TMS high
+Reply Data:
+
+* 1 byte: TDI status
+	* <tt>00</tt> -- Low
+	* <tt>01</tt> -- High
+####<tt>c1</tt> -- read/write register
+Request Data:
+
+* 1 byte: bit values (bitwise or'd)
+	* <tt>80</tt> -- Use IR register (default is DR)
+	* <tt>40</tt> -- Read+Write (default is Write only)
+	* <tt>01</tt> to <tt>07</tt> -- Don't send last N bits of data
+* N bytes: data to write
+Reply Data (may be parallel with request):
+
+* N bytes: data read (only if Read+Write set in request)
+####<tt>c2</tt> -- reset
+(No Request or Reply Data)
+####<tt>c3</tt> -- run
+(No Request or Reply Data)
+####<tt>c8</tt> -- watch/poll
+Request Data:
+
+* 1 byte: how long to watch, in seconds
+	* <tt>00</tt> -- cancel watch
+	* <tt>ff</tt> -- never expire
+* N bytes: packets to send
+Reply (immediately, and whenever results change):
+
+* Same as if the packets were received directly
+####<tt>e0</tt> -- ping
+Device number ignored.
+Replies with same data as request
+####<tt>e1</tt> -- get JTAG device count
+Device number ignored.
+Reply:
+
+* 1 byte: number of JTAG devices
+####<tt>e2</tt> -- hardware version
+Note: Only expected to work for controller
+
+Reply Data:
+
+* 4 bytes: hardware version (big endian)
+* 2 bytes: hardware vendor id authority
+	* <tt>0000</tt> -- USB
+	* <tt>ffff</tt> -- Ad-hoc
+* 1 byte: length of hardware vendor id
+* N bytes: hardware vendor id (binary)
+* 1 byte: length of hardware device id
+* N bytes: hardware device id (binary)
+* 1 byte: length of hardware serial number
+* N bytes: hardware serial number (UTF-8)
+* 1 byte: length of human-readable hardware model
+* N bytes: human-readable hardware model/version string (UTF-8)
+
+####<tt>e3</tt> -- software version
+Note: Only expected to work for controller
+
+Reply Data:
+
+* 4 bytes: software version (big endian)
+* 1 byte: length of software-specific unique identifier (git commit?)
+* N bytes: software-specific unique identifier
+* 1 byte: length of human-readable software name
+* N bytes: human-readable hardware model/version string (UTF-8)
+* 2 byte: number of AJP features supported
+* 2*N bytes: AJP features supported
+	* <tt>c800</tt> -- watch/poll command
+
+##Examples
+
+####Reset the command queue
+To reset the command queue, send 243 zero bytes followed by the Abort packet (<tt>fd414a50 00</tt>); this will pad-out any "open" packet, and abort any open command.
+
+##Motivation
+##Rationale
+##Backwards Compatibility
+##Reference Implementation
