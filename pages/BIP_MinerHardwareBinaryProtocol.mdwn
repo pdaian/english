@@ -23,18 +23,18 @@ This protocol is designed to be spoken only over a reliable (including error cor
 
 Packet length/types:
 
-* 00 - Abort
-* 01 to ef - Data packet length (1 to 239 bytes)
-* f0 to fc - Reserved
-* fd - Bad packet (command aborted)
-* fe - ACK
-* ff - End of command
+* <tt>00</tt> -- Abort
+* <tt>01</tt> to <tt>ef</tt> -- Data packet length (1 to 239 bytes)
+* <tt>f0</tt> to <tt>fc</tt> -- Reserved
+* <tt>fd</tt> -- Bad packet (command aborted)
+* <tt>fe</tt> -- ACK
+* <tt>ff</tt> -- End of command
 
 ACK should be sent in response to each 250-byte packet. Bulk data transfers, such as bitstream uploads, should wait until ACK is received before sending more packets (maybe? or does USB handle this for us too?).
 
-CRC32 must include the string "mhbp" plus the packet length/type byte and all data; this is not used to prevent corruption (USB already guarantees that), but rather to avoid acting when something foreign sends stuff. If the CRC32 does not match, the device should send a "fd" packet back and abort the command.
+CRC32 must include the string "mhbp" plus the packet length/type byte and all data; this is not used to prevent corruption (USB already guarantees that), but rather to avoid acting when something foreign sends stuff. If the CRC32 does not match, the device should send a "<tt>fd</tt>" packet back and abort the command.
 
-Null-length commands (ie, "ff" without any valid data packets preceding it) must be ACK'd and ignored.
+Null-length commands (ie, "<tt>ff</tt>" without any valid data packets preceding it) must be ACK'd and ignored.
 
 Anything up to the initial FE is ignored.
 
@@ -42,80 +42,107 @@ Anything up to the initial FE is ignored.
 
 * 1 byte: request id
 * 1 byte: command id
-	* Cx -- Modification commands (potentially dangerous)
-	* Dx -- Replies to Modification commands
-	* Ex -- Informational commands
-	* Fx -- Replies to Informational commands
+	* <tt>Cx</tt> -- Modification commands (potentially dangerous)
+	* <tt>Dx</tt> -- Replies to Modification commands
+	* <tt>Ex</tt> -- Informational commands
+	* <tt>Fx</tt> -- Replies to Informational commands
 * 1 byte: device number (ignored for some commands)
-	* 00 is the MCU
-	* 1-fe are FPGAs
-	* ff for "all FPGAs"
-* 1 byte: status (should always be 00 for requests)
-	* 00 -- success
-	* 80 -- failure
+	* <tt>00</tt> is the controller
+	* <tt>01</tt> to <tt>fe</tt> are mining devices
+	* <tt>ff</tt> for "all mining devices"
+* 1 byte: status (should always be <tt>00</tt> for requests)
+	* <tt>00</tt> -- success
+	* <tt>80</tt> -- failure
 * N bytes: data
 
 Commands less than 4 bytes should be ignored.
 Additional data beyond what is expected should be ignored.
 
 ###Commands
-####c1 -- program software
+####<tt>c1</tt> -- program software
 Data:
 
 * 4 bytes: hardware version (big endian)
 * 2 bytes: hardware manuf/authority
 * 2 bytes: hardware model number
 * 4 bytes: hardware specific information ("ID Code")
+* 2 bytes: hardware component
+	* <tt>0000</tt> -- FPGA Bitstream
+	* <tt>0100</tt> -- JTAG abstraction interface
 * 4 bytes: software size
 * N bytes: software data
-####c2 -- get/set clock speed
+####<tt>c2</tt> -- get/set clock speed
 Data:
 
-* 1 byte: new clock speed (00 = don't change)
-Reply (if getting):
+* 4 bytes: new clock speed in Hz (omit to read only)
+	* <tt>00000000</tt> -- minimum allowed
+	* <tt>ffffffff</tt> -- maximum allowed
+Reply (for both get and set):
 
-* 1 byte: current clock speed
-####c3 -- get/set register(s)
+* 4 bytes: current/new clock speed
+####<tt>c3</tt> -- start new job
 Data:
 
-* 2 bytes: first register number
-* 2 bytes: number of registers to fetch/set
-* N bytes: new values for each register (omitted to read)
+* 1 byte: busy behaviour (what to do if there's already a job running)
+	* <tt>00</tt> -- cancel it (and all pending queued jobs) and start new job immediately
+	* <tt>01</tt> -- error
+	* <tt>02</tt> -- queue to run after current job finishes
+* (data may end here to cancel all jobs and halt)
+* 1 byte: job id
+	* <tt>00</tt> -- Unusable
+* N bytes: job data
+	* For standard Bitcoin kernels (but may be different for other kernels!):
+		* 32 bytes: SHA256 midstate
+		* 4 bytes: final 32 bits of transaction merkle root
+		* 4 bytes: block time header
+		* 4 bytes: block target in compact format ("bits")
+		* 4 bytes (optional): first valid nonce (if omitted, <tt>00000000</tt>)
+		* 4 bytes (optional): last valid nonce (if omitted, <tt>ffffffff</tt>)
+		* 2 bytes (optional): how many times to roll the time header (if omitted, <tt>0000</tt>)
+####<tt>c4</tt> -- get/set register
+Data:
+
+* 2 bytes: register number
+	* <tt>ffff</tt> -- valid share nonce
+		* Value:
+			* 1 byte: job id
+				* <tt>00</tt> -- Unknown
+			* N bytes: nonce (4 bytes for standard Bitcoin kernels)
+* N bytes: new value (omitted to read)
 Reply (if reading):
 
-* 1 byte: width (in bits) of each register
-* N bytes: value of each register
-####c4 -- watch register(s)
+* N bytes: current value
+####<tt>c5</tt> -- watch register
 Data:
 
-* 2 bytes: first register number
-* 2 bytes: number of registers to watch
-* 1 byte: how long to watch, in seconds; 00 = cancel watch; ff = never expire
-Reply (immediate):
+* 2 bytes: register number
+* 1 byte: how long to watch, in seconds
+	* <tt>00</tt> -- cancel watch
+	* <tt>ff</tt> -- never expire
+Reply (immediately):
 
-* 1 byte: width (in bits) of each register
-* N bytes: current value of each register
-Notification (DEFERRED, with command=ff and same request id):
+* N bytes: current value
+Notification (when condition met, with command=<tt>ff</tt> and same request id):
 
-* 2 bytes: number of registers changed
-* for each:
-	* 2 bytes: register number
-	* N bytes: value of register
-####e0 -- ping
+* 2 bytes: register number
+* N bytes: new value
+####<tt>e0</tt> -- ping
 Device number ignored.
 Replies with same data given
-####e1 -- get FPGA count
+####<tt>e1</tt> -- get mining device count
 Device number ignored.
 Reply:
 
-* 1 byte: number of FPGAs
-####e2 -- hardware version
+* 1 byte: number of mining devices
+####<tt>e2</tt> -- hardware version
 Reply:
 
 * 4 bytes: hardware version (big endian)
 * 2 bytes: hardware manuf/authority
 * 2 bytes: hardware model number
 * 4 bytes: hardware specific information ("ID Code")
+* 2 bytes: number of programmable hardware components
+* 2*N bytes: hardware component ids
 * 1 byte: length of hardware serial number
 * N bytes: hardware serial number
 * 1 byte: length of hardware model number
@@ -123,7 +150,7 @@ Reply:
 * 1 byte: length of human-readable hardware model
 * N bytes: human-readable hardware model/version string (UTF-8)
 
-####e3 -- software version
+####<tt>e3</tt> -- software version
 Reply:
 
 * 4 bytes: software version (big endian)
@@ -131,7 +158,17 @@ Reply:
 * N bytes: software-specific unique identifier
 * 1 byte: length of human-readable software name
 * N bytes: human-readable hardware model/version string (UTF-8)
-####e4 -- get temperature
+* 2 byte: number of MHBP features supported
+* 2*N bytes: MHBP features supported
+	* <tt>c310</tt> -- standard Bitcoin kernel interface
+	* <tt>c311</tt> -- standard Bitcoin kernel interface: nonce range
+	* <tt>c312</tt> -- standard Bitcoin kernel interface: roll time
+	* <tt>c400</tt> -- general register access
+	* <tt>c410</tt> -- "job id" tracking
+	* <tt>c500</tt> -- general register watching
+	* <tt>c501</tt> -- nonce register watching
+
+####<tt>e4</tt> -- get temperature
 Reply:
 
 * 1 byte: temperature in celcius
