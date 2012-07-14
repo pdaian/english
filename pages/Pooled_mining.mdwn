@@ -36,7 +36,7 @@ Like slush's approach, miners submit proofs-of-work to earn shares.
 Like puddinpop's approach, the pool pays out immediately via block generation.
 When distributing block rewards, it is divided equally among all shares since the last valid block.
 Unlike any preexisting pool approach, this means that the shares contributed toward orphaned blocks are recycled into the next block's shares.
-In order to spare participating miners from transaction fees, rewards are only paid out if a miner has earned at least 1 BTC. If the amount owed is less, it will be added to the earnings of a later block (which may then total over 1 BTC).
+In order to spare participating miners from transaction fees, rewards are only paid out if a miner has earned at least 0.67108864 BTC (400 TBC). If the amount owed is less, it will be added to the earnings of a later block (which may then total over the threshold amount).
 If a miner does not submit a share for over a week, the pool sends any balance remaining, regardless of its size.
 
 ###The Triplemining approach
