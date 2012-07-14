@@ -71,16 +71,19 @@ Reply Data:
 	* <tt>00</tt> -- Low
 	* <tt>01</tt> -- High
 ####<tt>c1</tt> -- read/write register
+Note that data is written/read in big endian bit order. This means that the first bit written/read is <tt>80</tt>, then <tt>40</tt>, and so on. If you are not using a multiple of 8 bits, this is still the case; for example, if you read 7 bits all high, you will get <tt>fe</tt>, *not* <tt>7f</tt>.
+
 Request Data:
 
 * 1 byte: bit values (bitwise or'd)
 	* <tt>80</tt> -- Use IR register (default is DR)
 	* <tt>40</tt> -- Read+Write (default is Write only)
-	* <tt>01</tt> to <tt>07</tt> -- Don't send last N bits of data
+	* <tt>01</tt> to <tt>07</tt> -- Don't do last N bits of data
 * N bytes: data to write
 Reply Data (may be parallel with request):
 
 * N bytes: data read (only if Read+Write set in request)
+
 ####<tt>c2</tt> -- reset
 (No Request or Reply Data)
 ####<tt>c3</tt> -- run
