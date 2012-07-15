@@ -62,14 +62,15 @@ Additional data beyond what is expected should be ignored.
 ####<tt>c0</tt> -- clock
 Request Data:
 
-* 1 byte: bit values (bitwise or'd)
-	* <tt>01</tt> -- TDO high
-	* <tt>02</tt> -- TMS high
+* 1 byte: number of clocks to ignore at the end (only 1-3 are valid)
+* N bytes: two bits per clock
+	* 1 bit: TMS high
+	* 1 bit: TDO high
 Reply Data:
 
-* 1 byte: TDI status
-	* <tt>00</tt> -- Low
-	* <tt>01</tt> -- High
+* N bytes: one bit per clock
+	* 1 bit: TDI high
+
 ####<tt>c1</tt> -- read/write register
 Note that data is written/read in big endian bit order. This means that the first bit written/read is <tt>80</tt>, then <tt>40</tt>, and so on. If you are not using a multiple of 8 bits, this is still the case; for example, if you read 7 bits all high, you will get <tt>fe</tt>, *not* <tt>7f</tt>.
 
