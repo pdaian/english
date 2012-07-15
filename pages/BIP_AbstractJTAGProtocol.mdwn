@@ -135,6 +135,7 @@ Note: Only expected to work for controller
 Reply Data:
 
 * 4 bytes: software version (big endian)
+	* <tt>ffffffff</tt> -- Unknown
 * 1 byte: length of software-specific unique identifier (git commit?)
 * N bytes: software-specific unique identifier
 * 1 byte: length of human-readable software name
