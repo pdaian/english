@@ -42,10 +42,10 @@ Anything up to the initial magic is ignored.
 
 * 1 byte: request id
 * 1 byte: command id
-	* <tt>Cx</tt> -- JTAG interface commands (potentially dangerous)
+	* <tt>Cx</tt> -- JTAG interface commands
 	* <tt>Dx</tt> -- Replies to JTAG interface commands
-	* <tt>Ex</tt> -- Informational commands
-	* <tt>Fx</tt> -- Replies to Informational commands
+	* <tt>Ex</tt> -- JAP Controller commands
+	* <tt>Fx</tt> -- Replies to JAP Controller commands
 * 1 byte: device number (ignored for some commands)
 	* <tt>00</tt> is the controller
 	* <tt>01</tt> to <tt>fe</tt> are JTAG devices
@@ -88,16 +88,6 @@ Reply Data (may be parallel with request):
 (No Request or Reply Data)
 ####<tt>c3</tt> -- run
 (No Request or Reply Data)
-####<tt>c8</tt> -- watch/poll
-Request Data:
-
-* 1 byte: how long to watch, in seconds
-	* <tt>00</tt> -- cancel watch
-	* <tt>ff</tt> -- never expire
-* N bytes: packets to send
-Reply (immediately, and whenever results change):
-
-* Same as if the packets were received directly
 ####<tt>e0</tt> -- ping
 Device number ignored.
 Replies with same data as request
@@ -147,7 +137,18 @@ Reply Data:
 
 * 2*N bytes: supported capabilities
 	* <tt>c000</tt> -- JTAG protocol commands
-	* <tt>c800</tt> -- watch/poll command
+	* <tt>e500</tt> -- watch/poll command
+
+####<tt>e5</tt> -- watch/poll
+Request Data:
+
+* 1 byte: how long to watch, in seconds
+	* <tt>00</tt> -- cancel watch
+	* <tt>ff</tt> -- never expire
+* N bytes: packets to send
+Reply (immediately for all, and whenever results change individually):
+
+* Same as if the packets were received directly
 
 ##Examples
 
