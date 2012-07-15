@@ -1,7 +1,7 @@
 [[!img "QR-privkeys-sidebyside.png" size=120x120 class="right" title="QR codes of the same private key, in mini versus regular private key format.  Both codes have the same dot density and error correction level, but the mini key is 57% of the full code's size."]]
 The **mini private key format** is a method of encoding a Bitcoin private key in as few as 30 characters so that it can be embedded in a small space.  This private key format was first used in Casascius physical bitcoins, and is also favorable for use in QR codes.  The fewer characters encoded in a QR code, the lower dot density can be used, as well as more dots allocated to error correction in the same space, significantly improving readability and resistance to damage.  The mini private key format offers its own built-in check code as a small margin of protection against typos.
 
-An example key using this encoding is **Sz9vkwiuc5ghNWKcemKoNi66pJ6AgM**.
+An example key using this encoding is **S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy**.
 
 ##Usage on a physical bitcoin
 The way it might appear within a physical bitcoin is on a round card printed as follows:
@@ -11,6 +11,8 @@ Side of discs showing mini private key: (from Casascius coins)<br/>
 
 Side of discs showing prefix of bitcoin address (printed on the opposite side):<br/>
 [[!img "Minipubkeys.jpg" size=300x300]]
+
+The examples in this article use the private key and Bitcoin address of the leftmost circle in the above two photos.
 
 ##Import
 Mini private keys can be imported through the following clients/services:
@@ -36,15 +38,15 @@ A simple test must be performed to determine which method shall be used:
 1. If the first byte is 00, the string is a well-formed minikey.  If the first byte is not 00, the string should be rejected as a minikey.
 
 ###Example with SHA256
-Here is an example with the sample private key Sz9vkwiuc5ghNWKcemKoNi66pJ6AgM.
+Here is an example with the sample private key S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy.
 
-The string "Sz9vkwiuc5ghNWKcemKoNi66pJ6AgM?" has a SHA256 value that begins with 00, so it is well-formed.
+The string "S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy?" has a SHA256 value that begins with 00, so it is well-formed.
 
 To obtain the full 256-bit private key, simply take the SHA256 hash of the entire string.  There is no encoding for breaks in the string even if printed that way - the SHA256 should be taken of exactly thirty bytes.
 
-	SHA256("Sz9vkwiuc5ghNWKcemKoNi66pJ6AgM") = 68DD9613911D884866A613EE909A8C3B1877D47BF4B59350AA44ED1687FA5127 
+	SHA256("S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy") = 4C7A9640C72DC2099F23715D0C8A0D8A35F8906E3CAB61DD3F78B67BF887C9AB  
 
-This sample key in [[wallet_export_format]] is 5JcUEPy6ZNEU2beoyAZdPwjtZWPeiU2j2nDwMjGXWeoD87LrURL, and the corresponding [[Bitcoin_address]] is 1HwWMmDFaFLDBt3XRfCce3kA1rR2Syb1W2.
+This sample key in [[wallet_export_format]] is 5JPy8Zg7z4P7RSLsiqcqyeAF1935zjNUdMxcDeVrtU1oarrgnB7, and the corresponding [[Bitcoin_address]] is 1CciesT23BNionJeXrbxmjc7ywfiyM4oLW.
 
 ##Check code
 The mini private key format offers a simple typo check code.  Mini private keys must be generated in a "brute force" fashion, keeping only keys that conform to the format's rules.  If a key is well-formed (30 Base58 characters starting with S), but fails the hash check, then it probably contains a typo.
