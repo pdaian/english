@@ -145,7 +145,7 @@ Reply Data:
 ##Examples
 
 ####Reset the command queue
-To reset the command queue, send 243 zero bytes followed by the Abort packet (<tt>fd414a50 00</tt>); this will pad-out any "open" packet, and abort any open command.
+To reset the command queue, send 243 zero bytes followed by the Abort packet (<tt>fd414a50 00 7052</tt>); this will pad-out any "open" packet, and abort any open command.
 
 ##Motivation
 ##Rationale
