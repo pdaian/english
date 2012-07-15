@@ -101,14 +101,17 @@ Reply (immediately, and whenever results change):
 ####<tt>e0</tt> -- ping
 Device number ignored.
 Replies with same data as request
-####<tt>e1</tt> -- get JTAG device count
+####<tt>e1</tt> -- get device count
 Device number ignored.
 May be required before device access.
 
 Reply Data:
 
-* 1 byte: number of JTAG devices
-* N bytes: device id numbers (1 byte each)
+* 1 byte: number of devices
+* N bytes:
+	* 1 byte: device id number
+	* 1 byte: protocols supported
+		* <tt>80</tt> -- JTAG
 
 ####<tt>e2</tt> -- hardware version
 Note: Only expected to work for controller
