@@ -62,11 +62,13 @@ Additional data beyond what is expected should be ignored.
 ####<tt>c0</tt> -- clock
 Request Data:
 
-* 1 byte: number of clocks to ignore at the end (only 1-3 are valid)
+* 1 byte: bit field (bitwise OR'd)
+	* <tt>80</tt> -- return TDI status
+	* <tt>01</tt> to <tt>03</tt> -- number of clocks to ignore at the end
 * N bytes: two bits per clock
 	* 1 bit: TMS high
 	* 1 bit: TDO high
-Reply Data:
+Reply Data (only if reading):
 
 * N bytes: one bit per clock
 	* 1 bit: TDI high
