@@ -90,7 +90,10 @@ Reply Data (may be parallel with request):
 ####<tt>c2</tt> -- reset
 (No Request or Reply Data)
 ####<tt>c3</tt> -- run
-(No Request or Reply Data)
+Request Data:
+
+* 1 byte: number of iterations to run
+
 ####<tt>e0</tt> -- ping
 Device number ignored.
 Replies with same data as request
