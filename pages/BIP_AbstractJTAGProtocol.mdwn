@@ -141,7 +141,12 @@ Reply Data:
 * 1 byte: length of human-readable software name
 * N bytes: human-readable hardware model/version string (UTF-8)
 * 2 byte: number of AJP features supported
-* 2*N bytes: AJP features supported
+
+####<tt>e4</tt> -- device capabilities
+Reply Data:
+
+* 2*N bytes: supported capabilities
+	* <tt>c000</tt> -- JTAG protocol commands
 	* <tt>c800</tt> -- watch/poll command
 
 ##Examples
