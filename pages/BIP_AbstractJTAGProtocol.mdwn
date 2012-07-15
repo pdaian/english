@@ -103,9 +103,12 @@ Device number ignored.
 Replies with same data as request
 ####<tt>e1</tt> -- get JTAG device count
 Device number ignored.
-Reply:
+May be required before device access.
+
+Reply Data:
 
 * 1 byte: number of JTAG devices
+
 ####<tt>e2</tt> -- hardware version
 Note: Only expected to work for controller
 
