@@ -30,7 +30,7 @@ Packet length/types:
 * <tt>fe</tt> -- ACK
 * <tt>ff</tt> -- End of command
 
-ACK should be sent in response to each 250-byte packet. Bulk data transfers, such as bitstream uploads, should wait until ACK is received before sending more packets.
+ACK should be sent in response to each 239-byte packet. Bulk data transfers, such as bitstream uploads, should wait until ACK is received before sending more packets.
 
 Checksum must include the complete packet up until the checksum itself; this is not used to prevent corruption (USB already guarantees that), but rather to avoid acting when something foreign sends stuff (possibly intermixed with a real AJP packet). If the checksum does not match, the device should send a "<tt>fd</tt>" packet back and ignore the content.
 
