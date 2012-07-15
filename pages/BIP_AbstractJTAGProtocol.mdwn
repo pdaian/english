@@ -19,7 +19,7 @@ This protocol is designed to be spoken only over a reliable (including error cor
 * 4 bytes: magic: always <tt>fd414a50</tt>
 * 1 byte: packet length/type
 * N bytes: packet data
-* 2 bytes: packet data BSD "sum1" checksum (omit for Abort and Bad packet)
+* 2 bytes: packet data [BSD "sum1" checksum](http://en.wikipedia.org/wiki/BSD_checksum) (omit for Abort and Bad packet)
 
 Packet length/types:
 
