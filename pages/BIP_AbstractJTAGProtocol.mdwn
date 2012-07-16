@@ -161,6 +161,8 @@ Reply (immediately for all, and whenever results change individually):
 ####Reset the command queue
 To reset the command queue, send 243 zero bytes followed by the Abort packet (<tt>fd414a50 00 7052</tt>); this will pad-out any "open" packet, and abort any open command.
 
+It is also advisable to cancel any watch active: <tt>fd414a50 05 00e50000 00 5b9f</tt>
+
 ##Motivation
 ##Rationale
 ##Backwards Compatibility
