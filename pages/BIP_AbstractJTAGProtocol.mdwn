@@ -148,9 +148,12 @@ Reply Data:
 ####<tt>e5</tt> -- watch/poll
 Request Data:
 
-* 1 byte: how long to watch, in seconds
+* 1 byte: how long to watch, in 1/0x10000th of a day (about 1.32 seconds)
 	* <tt>00</tt> -- cancel watch
 	* <tt>ff</tt> -- never expire
+* 2 bytes: how often to poll, in 1/0x1000000th of a day (about 0.005 seconds)
+	* <tt>0000</tt> -- constantly poll
+	* <tt>2d83</tt> -- about once a minute
 * N bytes: packets to send
 Reply (immediately for all, and whenever results change individually):
 
