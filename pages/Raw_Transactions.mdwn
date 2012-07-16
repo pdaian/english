@@ -20,7 +20,7 @@ Sign as many inputs as possible for raw transaction (serialized, hex-encoded). T
 * complete : 1 if rawtx is completely signed, 0 if signatures are missing.
 If no private keys are given and the wallet is locked, requires that the wallet be unlocked with walletpassphrase first.
 ### sendrawtx <hex string>
-Submits raw transaction (serialized, hex-encoded) to local node and network. Returns transaction id, or an error if the transaction is invalid for any reason.1
+Submits raw transaction (serialized, hex-encoded) to local node and network. Returns transaction id, or an error if the transaction is invalid for any reason.
 ## Motivating use cases
 ### Multisignature transactions
 Funds are sitting in one or more multisignature transaction outputs, and it is time to gather signatures and spend them.
@@ -53,5 +53,13 @@ You want to specify, on a per-transaction basis, how much to pay in fees. Or you
 * Submit it with sendrawtransaction
 * Re-submit it periodicially with sendrawtransaction if it does not get into a block.
 
+## Other, non-obvious use cases
+### Re-broadcast a transaction
+If you want to re-broadcast a transaction right away, you can use the getrawtransaction and sendrawtransaction API calls to do that. As a bash shell-script one-liner it would be:
+
+* sendrawtransaction $(getrawtransaction $TXID)
+(note that Bitcoin-Qt/bitcoind automatically re-transmits wallet transactions periodically until they are accepted into a block).
+### Validate a transaction without broadcasting it
+If you have a raw transaction and want to make sure all of it's signatures are correct, you can use the signrawtransaction API call. Pass in the hex-encoded raw transaction, any inputs that bitcoind doesn't yet know about, and an empty array of private keys to use to sign the transaction. Passing an empty array of private keys will prevent signrawtransaction from doing any signing; if it returns "complete":1 then all of the existing signatures are valid and there are no signatures missing.
 [[!tag "Technical"]]
 [[!tag "Developer"]]
