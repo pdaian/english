@@ -19,8 +19,9 @@ Sign as many inputs as possible for raw transaction (serialized, hex-encoded). T
 * hex : raw transaction with signature(s) (hex-encoded string)
 * complete : 1 if rawtx is completely signed, 0 if signatures are missing.
 If no private keys are given and the wallet is locked, requires that the wallet be unlocked with walletpassphrase first.
-### sendrawtx <hex string>
+### sendrawtransaction <hex string>
 Submits raw transaction (serialized, hex-encoded) to local node and network. Returns transaction id, or an error if the transaction is invalid for any reason.
+
 ## Motivating use cases
 ### Multisignature transactions
 Funds are sitting in one or more multisignature transaction outputs, and it is time to gather signatures and spend them.
