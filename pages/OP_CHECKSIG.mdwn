@@ -34,12 +34,14 @@ Now depending on the hashtype various things can happen to txCopy, these will be
 
 ### Hashtype SIGHASH_ALL (default)
 
-No special handling occurs in the default case
+No special handling occurs in the default case.  Think of this as "sign **all** of the outputs."
 
 ### Hashtype SIGHASH_NONE
 
 1. The output of txCopy is set to a vector of zero size.
 1. All other inputs aside from the current input in txCopy have their nSequence index set to zero
+
+Think of this as "sign **none** of the outputs-- I don't care where the bitcoins go."
 
 ### Hashtype SIGHASH_SINGLE
 
@@ -47,10 +49,14 @@ No special handling occurs in the default case
 1. All other txCopy outputs aside from the output that is the same as the current input index are set to a blank script and a value of (long) -1;
 1. All other txCopy inputs aside from the current input are set to have an nSequence index of zero
 
+Think of this as "sign **one** of the outputs-- I don't care where the other outputs go."
+
 ### Hashtype SIGHASH_ANYONECANPAY
 
 1. The txCopy input vector is resized to a length of one
 1. The current input is set as the first and only member of this vector
+
+This can be combined with ALL/SINGLE/NONE. Think of this as "Let other people add inputs to this transaction later, I don't care where the rest of the bitcoins come from."
 
 ## Final signature
 
