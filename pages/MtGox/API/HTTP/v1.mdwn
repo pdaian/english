@@ -1,7 +1,9 @@
 Ď**Note: All API methods require a valid User-Agent header.**
 ## HTTP API version 1 methods
 
-### Multi Currency Ticker
+### public information
+
+#### Multi Currency Ticker
 
 	https://mtgox.com/api/1/BTCUSD/ticker
 	https://mtgox.com/api/1/BTCEUR/ticker
@@ -40,13 +42,13 @@
 * last_orig  include data of the original last trade ( currency,price in currency . . . ),
 * last is always the same as last_all
 
-### Multi Currency depth
+#### Multi Currency depth
 
 https://mtgox.com/api/1/BTCPLN/depth?raw
 
 https://mtgox.com/api/1/BTCAUD/depth?raw
 
-### Multi currency trades
+#### Multi currency trades
 
 https://mtgox.com/api/1/BTCUSD/trades?raw
 
@@ -99,19 +101,19 @@ The meaning of each field is as follows:
 
 
 
-### Cancelled Trades
+#### Cancelled Trades
 
 https://mtgox.com/api/1/BTCUSD/cancelledtrades
 
 returns a list of all the cancelled trades this last month, list of trade ids in json format .
 
-### Full Depth
+#### Full Depth
 
 https://mtgox.com/api/1/BTCUSD/fulldepth
 
 returns full depth
 
-### transaction information
+#### transaction information
 https://mtgox.com/api/1/generic/bitcoin/tx_details?hash=4462c88079cc51972f1bdcb8a4240ee8757b0bb69df828ade051c95ced540fa0
 
 will return :
@@ -155,9 +157,9 @@ will return :
 }
 </code>
 
-### public information
 
-#### block information
+
+##### block information
 block information can be accessed bu depth ( the block number ) :
 
 https://mtgox.com/api/1/generic/bitcoin/block_list_tx?depth=188111
@@ -188,16 +190,33 @@ both will return ( for block 188111 )
 }
 </code>
 
-#### address information
+##### address information
 https://mtgox.com/api/1/generic/bitcoin/addr_details?hash=1f27d1fc284143729944ab89823111d2bb63dc46
 
-### Private info
+#### Order lag
+
+https://mtgox.com/api/1/generic/order/lag
+
+The "lag" value is the age in microseconds of the oldest order pending execution
+If it's too large it means the engine is busy, and the depth is probably not reliable
+
+#### Currency information
+
+https://mtgox.com/api/1/generic/currency
+
+pass parameter ?currency=<currency_symbol>
+
+returns information about a currency ( number of decimals . . . )
+
+### Private API
+
+#### Private info
 
 https://mtgox.com/api/1/generic/private/info
 
 returns information about your account, funds, fees, API privileges, withdraw limits . . .
 
-### redeem a private key
+#### redeem a private key
 
 https://mtgox.com/api/1/generic/private/bitcoin/addpriv
 
@@ -210,21 +229,21 @@ https://mtgox.com/api/1/generic/private/bitcoin/addpriv
 
 * returns the btc adress and the total number of btcs in this private key
 
-### idKey
+#### idKey
 
 https://mtgox.com/api/1/generic/private/idkey
 
 Returns the idKey used to subscribe to a user's private updates channel in the websocket API. The key is valid for 24 hours.
 
 
-### Your trade history
+#### Your trade history
 
 https://mtgox.com/api/1/generic/private/trades
 	
 Returns all of your trades. Does not include fees.
 
 
-### Your wallet history
+#### Your wallet history
 
 https://mtgox.com/api/1/generic/private/wallet/history
 
@@ -234,7 +253,6 @@ only the currency parameter is mandatory
 
 returns a json array with your wallet history
 
-### orders
 #### Submit an order
 
 https://mtgox.com/api/1/BTCUSD/private/order/add
@@ -247,12 +265,6 @@ parameters:
 	
 submits an order and returns info about success or error
 
-#### Order lag
-
-https://mtgox.com/api/1/generic/order/lag
-
-The "lag" value is the age in microseconds of the oldest order pending execution
-If it's too large it means the engine is busy, and the depth is probably not reliable
 
 #### Your open orders
 
@@ -282,21 +294,15 @@ order_id: '1234234-e9ef-4b75-aa1c-90cd109d24ea',
 	currency: 'BTC' } }</source>
 
 
-### Currency information
+### Application API
 
-https://mtgox.com/api/1/generic/currency
-
-pass parameter ?currency=<currency_symbol>
-
-returns information about a currency ( number of decimals . . . )
-
-### HOTP key
+#### HOTP key
 
 https://mtgox.com/api/1/generic/hotp_gen
 
 used to generate a new HOTP key ( useful for developers )
 
-### App activation
+#### App activation
 
 https://mtgox.com/api/1/generic/api/activate
 
