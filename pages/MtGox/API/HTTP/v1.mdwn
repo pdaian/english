@@ -232,7 +232,8 @@ only the currency parameter is mandatory
 
 returns a json array with your wallet history
 
-### Submit an order
+### orders
+#### Submit an order
 
 https://mtgox.com/api/1/BTCUSD/private/order/add
 
@@ -244,20 +245,20 @@ parameters:
 	
 submits an order and returns info about success or error
 
-### Order lag
+#### Order lag
 
 https://mtgox.com/api/1/generic/order/lag
 
 The "lag" value is the age in microseconds of the oldest order pending execution
 If it's too large it means the engine is busy, and the depth is probably not reliable
 
-### Your open orders
+#### Your open orders
 
 https://mtgox.com/api/1/generic/private/orders
 	
 Returns information about your current open orders. Valid order statuses are: pending, executing, post-pending, open, stop, and invalid.
 
-### Order result
+#### Order result
 
 https://mtgox.com/api/1/generic/private/order/result
 
