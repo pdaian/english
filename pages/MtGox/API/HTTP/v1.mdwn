@@ -214,11 +214,6 @@ https://mtgox.com/api/1/generic/private/idkey
 
 Returns the idKey used to subscribe to a user's private updates channel in the websocket API. The key is valid for 24 hours.
 
-### Your open orders
-
-https://mtgox.com/api/1/generic/private/orders
-	
-Returns information about your current open orders. Valid order statuses are: pending, executing, post-pending, open, stop, and invalid.
 
 ### Your trade history
 
@@ -226,26 +221,6 @@ https://mtgox.com/api/1/generic/private/trades
 	
 Returns all of your trades. Does not include fees.
 
-### Order result
-
-https://mtgox.com/api/1/generic/private/order/result
-
-parameters : type ( bid or ask ) and order (the order id)
-
-returns a json array like this : 
-
-<source lang="javascript">
-order_id: '1234234-e9ef-4b75-aa1c-90cd109d24ea',
-	trades:
-	 { 						[[Object]],
-	price: [[Object]],
-	date: '2012-05-10 00:52:23' } ,
-	total_amount:
-	{ value: '0.01000000',
-	value_int: '1000000',
-	display: '0.01000000 BTC',
-	display_short: '0.01 BTC',
-	currency: 'BTC' } }</source>
 
 ### Your wallet history
 
@@ -268,6 +243,41 @@ parameters:
 * price_int <price as int> (can be omitted to place market order)
 	
 submits an order and returns info about success or error
+
+### Order lag
+
+https://mtgox.com/api/1/generic/order/lag
+
+The "lag" value is the age in microseconds of the oldest order pending execution
+If it's too large it means the engine is busy, and the depth is probably not reliable
+
+### Your open orders
+
+https://mtgox.com/api/1/generic/private/orders
+	
+Returns information about your current open orders. Valid order statuses are: pending, executing, post-pending, open, stop, and invalid.
+
+### Order result
+
+https://mtgox.com/api/1/generic/private/order/result
+
+parameters : type ( bid or ask ) and order (the order id)
+
+returns a json array like this : 
+
+<source lang="javascript">
+order_id: '1234234-e9ef-4b75-aa1c-90cd109d24ea',
+	trades:
+	 { 						[[Object]],
+	price: [[Object]],
+	date: '2012-05-10 00:52:23' } ,
+	total_amount:
+	{ value: '0.01000000',
+	value_int: '1000000',
+	display: '0.01000000 BTC',
+	display_short: '0.01 BTC',
+	currency: 'BTC' } }</source>
+
 
 ### Currency information
 
