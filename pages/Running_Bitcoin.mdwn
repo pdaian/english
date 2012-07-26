@@ -70,7 +70,7 @@ The configuration file is not automatically created; you can create it using you
 Note: if running Bitcoin in testnet mode, the sub-folder "testnet" will be appended to the data directory automatically.
 
 ##Sample Bitcoin.conf
-Here is a sample bitcoin.conf file, containing every option set to its default value.
+Here is a sample bitcoin.conf file.
 
 	# bitcoin.conf configuration file. Lines beginning with # are comments.
 	
@@ -78,7 +78,7 @@ Here is a sample bitcoin.conf file, containing every option set to its default v
 	# Network-related settings:
 	
 	# Run on the test network instead of the real bitcoin network.
-	#testnet=1
+	#testnet=0
 	
 	# Connect via a socks4 proxy
 	#proxy=127.0.0.1:9050
@@ -117,7 +117,7 @@ Here is a sample bitcoin.conf file, containing every option set to its default v
 	
 	# Do not use Internet Relay Chat (irc.lfnet.org #bitcoin channel) to
 	# find other peers.
-	#noirc=1
+	#noirc=0
 	
 	# Maximum number of inbound+outbound connections.
 	#maxconnections=
@@ -125,16 +125,16 @@ Here is a sample bitcoin.conf file, containing every option set to its default v
 	
 	# JSON-RPC options (for controlling a running Bitcoin/bitcoind process)
 	
-	# server=1 tells Bitcoin to accept JSON-RPC commands.
-	#server=1
+	# server=1 tells Bitcoin-QT to accept JSON-RPC commands.
+	#server=0
 	
 	# You must set rpcuser and rpcpassword to secure the JSON-RPC api
 	#rpcuser=Ulysseys
-	#rpcpassword=YourSuperGreatPasswordNumber_385593
+	#rpcpassword=YourSuperGreatPasswordNumber_DO_NOT_USE_THIS_OR_YOU_WILL_GET_ROBBED_385593
 	
 	# How many seconds bitcoin will wait for a complete RPC HTTP request.
 	# after the HTTP connection is established. 
-	rpctimeout=30
+	#rpctimeout=30
 	
 	# By default, only RPC connections from localhost are allowed.  Specify
 	# as many rpcallowip= settings as you like to allow connections from
@@ -143,42 +143,41 @@ Here is a sample bitcoin.conf file, containing every option set to its default v
 	#rpcallowip=192.168.1.*
 	
 	# Listen for RPC connections on this TCP port:
-	rpcport=8332
+	#rpcport=8332
 	
 	# You can use Bitcoin or bitcoind to send commands to Bitcoin/bitcoind
 	# running on another host using this option:
-	rpcconnect=127.0.0.1
+	#rpcconnect=127.0.0.1
 	
 	# Use Secure Sockets Layer (also known as TLS or HTTPS) to communicate
 	# with Bitcoin -server or bitcoind
 	#rpcssl=1
 	
 	# OpenSSL settings used when rpcssl=1
-	rpcsslciphers=TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH
-	rpcsslcertificatechainfile=server.cert
-	rpcsslprivatekeyfile=server.pem
+	#rpcsslciphers=TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH
+	#rpcsslcertificatechainfile=server.cert
+	#rpcsslprivatekeyfile=server.pem
 	
 	
 	# Miscellaneous options
 	
 	# Set gen=1 to attempt to generate bitcoins
-	gen=0
+	#gen=0
 	
 	# Use SSE instructions to try to generate bitcoins faster.
 	#4way=1
 	
 	# Pre-generate this many public/private key pairs, so wallet backups will be valid for
 	# both prior transactions and several dozen future transactions.
-	keypool=100
+	#keypool=100
 	
 	# Pay an optional transaction fee every time you send bitcoins.  Transactions with fees
 	# are more likely than free transactions to be included in generated blocks, so may
 	# be validated sooner.
-	paytxfee=0.00
+	#paytxfee=0.00
 	
 	# Allow direct connections for the 'pay via IP address' feature.
 	#allowreceivebyip=1
-	
 	
 	# User interface options
 	
