@@ -11,6 +11,7 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * "Flip the chain", instead of committing to new transactions, commit to the summaries of open transactions: [(1)](https://bitcointalk.org/index.php?topic=505.0) [(2)](https://bitcointalk.org/index.php?topic=21995.0)
 * Increased efficiency for merged mining: restructure the primary header to make the bitcoin specific data non-mandatory. (e.g. the block chain specific stuff would go into second header connected by a header tree), making the primary headers pure timestamps and nonces.
 * Switch to block hashing algorithm secure against block withholding attacks.
+* Replace the 10 minute block finding target with a dynamic target decided by the market [(3)](https://bitcointalk.org/index.php?topic=79837.0).
 
 ####Transaction behavior changes
 
