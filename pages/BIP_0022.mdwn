@@ -310,6 +310,23 @@ If a Boolean is provided and true, the default limit is used; if false, the serv
 Servers SHOULD respect these desired maximums, but are NOT required to:
 clients SHOULD check that the returned template satisfies their requirements appropriately.
 
+###Optional: nonce24 support
+
+It has been proposed that the first 32 bits of the Bitcoin block header be divided into an additional 24-bit nonce (hereafter, "nonce24") and 8-bit block version number.
+
+
+
+|Key |Type |Description
+|---|---|---
+|nonce24s |Number |size of nonce24 range the miner wants; if not provided, the server SHOULD assume the client requires 1
+
+
+
+
+|Key |Type |Description
+|---|---|---
+|nonce24range |String |two 24-bit integers, concatenated in big-endian hexadecimal, which represent the valid ranges of nonce24s the miner may scan
+
 
 ###Optional: Backward Compatibility
 Servers MAY choose to implement the following behaviours to remain backward compatible with pre-standard bitcoind 0.5 and 0.6 getmemorypool methods:
