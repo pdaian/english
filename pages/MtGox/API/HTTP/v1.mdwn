@@ -216,6 +216,23 @@ https://mtgox.com/api/1/generic/private/info
 
 returns information about your account, funds, fees, API privileges, withdraw limits . . .
 
+#### get a bitcoin deposit address
+
+https://mtgox.com/api/1/generic/bitcoin/address
+
+get a bitcoin address linked to your account.
+the returned address can be used to deposit bitcoins in your mtgox account
+
+<source lang="javascript">
+result: 
+{
+	u'return': 
+	{u'addr': u'18dGNs5Bd6pPMuSchLHQtb1k996YpUHs3j'},
+	u'result': u'success'
+	}
+}
+</source>
+
 #### redeem a private key
 
 https://mtgox.com/api/1/generic/private/bitcoin/addpriv
@@ -313,7 +330,6 @@ order_id: '1234234-e9ef-4b75-aa1c-90cd109d24ea',
 	display: '0.01000000 BTC',
 	display_short: '0.01 BTC',
 	currency: 'BTC' } }</source>
-
 
 ### Application API
 
