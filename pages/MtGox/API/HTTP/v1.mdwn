@@ -273,21 +273,24 @@ https://mtgox.com/api/1/generic/private/orders
 Returns information about your current open orders. Valid order statuses are: pending, executing, post-pending, open, stop, and invalid.
 
 <source lang="javascript">
-{
-	'return':{			{						}		[],
-	'priority': '1343527861724073',
-	'currency': 'USD',
-	'amount': {'value_int': '10000000',
-	'currency': 'BTC',
-	'display_short': '0.10\xa0BTC',
-	'display': '0.10000000\xa0BTC',
-	'value': '0.10000000'
+	{
+	"return":
+		{				{						}		[],
+	"priority": "1343527861724073",
+	"currency": "USD",
+	"amount":
+	{
+	"value_int": "10000000",
+	"currency": "BTC",
+	"display_short": "0.10\u00a0BTC",
+	"display": "0.10000000\u00a0BTC",
+	"value": "0.10000000"
 	},
-	'date': 1343527861,
-	'type': 'bid'
-	},
-	'result': 'success'
-}
+	"date": 1343527861,
+	"type": "bid"
+	}
+	
+	}
 </source>
 
 #### Order result
