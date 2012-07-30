@@ -100,7 +100,7 @@ This method MUST return either null (when a share is accepted), a String describ
 
 |Key |Type |Description
 |---|---|---
-|longpollid |String |unique identifier for [[long poll request|#Optional:_Long_Polling]]; MUST be omitted if the server does not support long polling
+|longpollid |String |unique identifier for long poll request; MUST be omitted if the server does not support long polling
 |longpolluri |String |if provided, an alternate URI to use for long poll requests
 |submitold |Boolean |only relevant for long poll responses: indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 
@@ -124,7 +124,6 @@ If a client receives an incomplete or invalid response, it SHOULD retry the requ
 Clients MAY implement this backoff with limitations (such as maximum backoff time) or any algorithm as deemed suitable.
 It is, however, forbidden to simply retry immediately with no delay after more than one failure.
 In the case of a "Forbidden" response (for example, HTTP 403), a client SHOULD NOT attempt to retry without user intervention.
-
 
 ###Optional: Basic Pool Extensions
 
