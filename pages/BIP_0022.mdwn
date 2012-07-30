@@ -20,7 +20,7 @@ Instead of sending a simple block header for hashing, the entire block structure
 
 A JSON-RPC method is defined, called "getmemorypool".
 It accepts exactly one argument, which MUST be an Object of request parameters.
-If the request parameters include a "mode" key, that is used to explicitly select between [["template"|#Block_Template_Request]], [["proposal"|#Block_Proposal]], and [["submit"|#Block_Submission]] calls.
+If the request parameters include a "mode" key, that is used to explicitly select between [["template"|#Block_Template_Request]], [["proposal"|#Optional:_Block_Proposal]], and [["submit"|#Block_Submission]] calls.
 Otherwise, it defaults to [[a submission|#Block_Submission]] if there is a "data" key (including the String-type argument mentioned above), and [[a template request|#Block_Template_Request]] if not.
 
 ###Block Template Request
@@ -29,7 +29,7 @@ Block template creation can be influenced by various parameters:
 
 |Key |Type |Description
 |---|---|---
-|capabilities |Array of Strings |SHOULD contain a list of the following, to indicate client-side support: [["longpoll"|#Long_Polling]], "coinbasetxn", "coinbasevalue", [["proposal"|#Block_Proposal]], [["serverlist"|#Logical_Services]], "workid", and any of the [[mutations|#Mutations]]
+|capabilities |Array of Strings |SHOULD contain a list of the following, to indicate client-side support: [["longpoll"|#Optional:_Long_Polling]], "coinbasetxn", "coinbasevalue", [["proposal"|#Optional:_Block_Proposal]], [["serverlist"|#Optional:_Logical_Services]], "workid", and any of the [[mutations|#Optional:_Mutations]]
 |mode |String |MUST be "template" or omitted
 
 
@@ -100,9 +100,9 @@ This method MUST return either null (when a share is accepted), a String describ
 
 |Key |Type |Description
 |---|---|---
-|longpollid |String |unique identifier for [[long poll request|#Long_Polling]]; MUST be omitted if the server does not support long polling
-|longpolluri |String |if provided, an alternate URI to use for [[longpoll requests|#Long_Polling]]
-|submitold |Boolean |only relevant for [[long poll|#Long_Polling]]responses: indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
+|longpollid |String |unique identifier for [[long poll request|#Optional:_Long_Polling]]; MUST be omitted if the server does not support long polling
+|longpolluri |String |if provided, an alternate URI to use for long poll requests
+|submitold |Boolean |only relevant for long poll responses: indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 
 
 If the server supports long polling, it MUST include a "longpollid" key in block templates.
@@ -151,7 +151,7 @@ Servers may indicate support for proposing blocks by including a capability stri
 
 |Key |Type |Description
 |---|---|---
-|capabilities |Array of Strings |MAY contain "proposal" to indicate support for [[block proposal|#Block_Proposal]]
+|capabilities |Array of Strings |MAY contain "proposal" to indicate support for block proposal
 
 
 If supported, a miner MAY propose a block to the server for general validation at any point before the job expires.
@@ -166,7 +166,7 @@ This is accomplished by calling getmemorypool with two keys:
 
 
 The block data MUST be validated and checked against the server's usual acceptance rules (excluding the check for a valid proof-of-work).
-If it is found to be in violation of any of these rules, the server MUST return a String giving the reason for the rejection (see [[example rejection reasons|#Example_Rejection_Reasons]]).
+If it is found to be in violation of any of these rules, the server MUST return a String giving the reason for the rejection (see [[example rejection reasons|#Appendix:_Example_Rejection_Reasons]]).
 If it is acceptable as-is, the server MAY return a true Boolean.
 Otherwise, the server may return a new block template (with or without changes); in this case, any missing keys are assumed to default to those in the proposed block or, if not applicable, the original block template it was based on.
 
@@ -190,12 +190,12 @@ Servers SHOULD NOT break this assumption without good cause.
 
 |Key |Type |Description
 |---|---|---
-|fulltarget |String |the number which full results should be less than, in big-endian hexadecimal (see [["share/*" mutations|#Mutations]])
+|fulltarget |String |the number which full results should be less than, in big-endian hexadecimal (see "share/*" mutations)
 |maxtime |Number |the maximum time allowed
 |maxtimeoff |Number |the maximum time allowed (as a moving offset from "curtime" - every second, the actual maxtime is incremented by 1; for example, "maxtimeoff":0 means "time" may be incremented by 1 every second)
 |mintime |Number |the minimum time allowed
 |mintimeoff |Number |the minimum time allowed (as a moving offset from "curtime")
-|mutable |Array of Strings |different manipulations that the server explicitly allows to be made (see [[Mutations|#Mutations]])
+|mutable |Array of Strings |different manipulations that the server explicitly allows to be made
 |noncerange |String |two 32-bit integers, concatenated in big-endian hexadecimal, which represent the valid ranges of nonces the miner may scan
 
 
@@ -259,7 +259,7 @@ Note that the "coinbasetxn" key in the template will remain in "obj" format.
 
 |Key |Type |Description
 |---|---|---
-|serverlist |Array of Objects |list of servers in this [[single logical service|#Logical_Services]]
+|serverlist |Array of Objects |list of servers in this single logical service
 
 
 If the "serverlist" parameter is provided, clients MAY choose to intelligently treat the server as part of a larger single logical service.
