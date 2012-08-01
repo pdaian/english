@@ -12,7 +12,7 @@
 ##Abstract
 This BIP proposes a scheme to enable parties to a transaction to receive a reliable confirmation of their transaction from miners in a deterministic predictable timeframe, and compensates miners financially for providing this service.
 
-With the service described by this BIP, instead of waiting an average of 10 minutes for 1 confirmation, a transactor could potentially receive 0.51 or more confirmations within 10 seconds of issuing it (representing 51% of the mining power on the network), and have a much higher level of confidence that the transaction will be confirmed.
+With the service described by this BIP, instead of waiting an average of 10 minutes for 1 confirmation, a transactor could potentially receive 0.51 or more confirmations within 10 seconds of issuing it (representing 51% of the mining power on the network), and have a much higher level of confidence that the transaction will be confirmed as compared to a zero-confirmation transaction.
 
 ##Motivation
 One of the most frequently discussed issues with Bitcoin is the fact that transactions are subject to double-spending until confirmed by the network, and the time needed to receive such confirmations is too great and too unpredictable to be of practical use in a retail setting.  The present consensus is that the best practice is for merchants to simply assume the risk of fraud for small transactions or those where the risk of loss to the merchant is trivial, and to only insist on confirmations for transactions where the cost of committing fraud is believed to be greater than the anticipated benefit from such a fraud.
