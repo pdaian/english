@@ -28,19 +28,14 @@ Bitcoin transaction confirmations are normally counted with integers.  In the pa
 
 The specification itself rests on three distinct prongs described as follows:
 
-1. Miners advertise their willingness to provide the Instant Partial Confirmation (IPC) service with a notation in their coinbase transactions.  The notation references support for IPC, and includes contact information consisting of an IP address (IPv4/IPv6) and a UDP port number.
-1. Users wishing to use the service must include a transaction fee in their outgoing transactions that satisfies a market-defined threshold established by the miners.  Each miner is free to establish his/her own minimum price for providing the service.  The higher the fee paid, the more miners will respond to the IPC request, directly influencing the number 
+1. Miners SHOULD advertise their willingness to provide the Instant Partial Confirmation (IPC) service with a notation in their coinbase transactions.  The notation references support for IPC, and includes contact information consisting of an IP address (IPv4/IPv6) and a UDP port number.
+1. In order to request IPC services, a party to a transaction send a UDP message to the miners who mined the most recent 2016 blocks.  Only one message is needed whenever more than one block contains identical contact information.  The message shall contain the entire transaction to be partially confirmed, a return path (IP and UDP port) for the response, and proof that the requester is a party to the transaction.
+1. Miners may choose whether to respond.  If a miner grants the partial confirmation, the response MUST be signed (typically by the private key corresponding to the coinbase transaction).  A partial confirmation response from a miner is a commitment to include that transaction into a block, as well as an assertion that no prior transactions have been received that would ordinarily cause the new transaction to be rejected.  If the new transaction is not valid or conflicts with a previously received transaction, the miner MUST NOT offer a partial confirmation.  If the miner believes that a double spend is in progress, the miner MAY send a signed message to that effect, indicating a negative confirmation.
 
+Users wishing to use the service must include a transaction fee in their outgoing transactions that satisfies a market-defined threshold established by the miners.  Each miner is free to establish his/her own minimum price for providing the service.  Miners do not respond to IPC requests when the transaction fee is less than the minimum amount they demand.  The higher the fee paid, the more miners will respond to the IPC request, directly influencing the total fractional confirmation that will be achieved in the seconds following the broadcast.
 
-
-
-
-
-
-
-
-
-
-##Rationale
 
 ##Backwards compatibility
+This proposal contemplates adding new data to coinbase transactions, which has already been shown quite clearly to be possible without any ill effects on existing clients.  The new data is completely optional.
+
+This proposal contemplates providing services completely through out-of-band communication (with respect to the Bitcoin peer-to-peer protocol).  No compatibility issues are expected.  Nodes are free to disregard any message received through such out-of-band communication without consequence (other than perhaps, of course, a lower fractional confirmation value for the party requesting it).
