@@ -38,6 +38,44 @@ The fee is not paid to any individual miner or provider of the IPC service, rath
 
 Each miner is free to establish his/her own minimum price for providing the service.  Miners do not respond to IPC requests when the transaction fee is less than the minimum amount they demand.  The higher the fee paid, the more miners will respond to the IPC request, directly influencing the total fractional confirmation that will be achieved in the seconds following the broadcast.
 
+###Coinbase offer
+Draft: to be refined.
+
+Miners offer the IPC service by including a message in their coinbase.  The message MUST contain all of the following:
+
+* the string "IPC"
+* an IP address (IPv4, IPv6, or both) and port number
+The message MAY also contain:
+
+* The hash of a public key so the client can securely associate a response with recently mined blocks in order to establish hashing power.  If this field is absent, the first public key in the coinbase transaction is assumed to be acceptable for signing the message.  If the field is present, clients MUST NOT accept coinbase output keys as an acceptable signature.
+
+
+###Request for IPC services
+Draft: to be refined.
+
+Parties to a transaction may request the IPC service by sending a UDP datagram to the IP and port listed in the most recent 2016 blocks.
+
+The datagram MUST contain the following:
+
+* The entire transaction to be confirmed (as the miner may not yet have received it via the peer-to-peer network).  Miners SHOULD treat an incoming valid transaction arriving as a datagram over the IPC port the same way they would treat an incoming transaction from a peer, including adding it to the in-memory transaction pool and broadcasting it to peers who haven't received it.
+* A signature proving that the requestor is one of the parties to the transaction (either the sender or the receiver).
+
+###Response to IPC request
+Draft: to be refined.
+
+Miners receiving an IPC request MAY respond with a datagram containing the following:
+
+* The transaction identifier in question.
+* One of the following status codes:
+	* CONFIRMED: The miner considers the transaction valid and commits to include it in the next block.
+	* VALID: The miner chooses to acknowledge the transaction is valid from its perspective, but offers no commitment.
+	* UNKNOWN: The miner cannot attest to the transaction's validity.  Reasons could include that the transaction spends unconfirmed funds, particularly an unconfirmed transaction that the miner hasn't heard about yet.  The reason could also be that the transaction fee isn't high enough.  (In lieu of responding UNKNOWN, the miner could simply not respond at all.)
+	* REJECT: The miner asserts that the transaction is not valid.  This is how a double-spend should be signaled.
+* A digital signature allowing the client to determine that the response came from the same party that mined recent blocks.
+Miners MAY include:
+
+* A field describing the minimum transaction fee that would entice the miner to provide a CONFIRMED response when possible.
+
 ##Backwards compatibility
 This proposal contemplates adding new data to coinbase transactions, which has already been shown quite clearly to be possible without any ill effects on existing clients.  The new data is completely optional.
 
