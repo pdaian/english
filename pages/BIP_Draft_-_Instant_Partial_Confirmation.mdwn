@@ -1,0 +1,46 @@
+[[!template id=bip]]
+
+<pre>
+  BIP: Draft
+  Title: Instant Partial Confirmation
+  Author: Mike Caldwell <casascius@mc2cs.com>
+  Status: Draft
+  Type: Standards Track
+  Created: 2012-07-31
+</pre>
+
+##Abstract
+This BIP proposes a scheme to enable parties to a transaction to receive a reliable confirmation of their transaction from miners in a deterministic predictable timeframe, and compensates miners financially for providing this service.
+
+With the service described by this BIP, instead of waiting an average of 10 minutes for 1 confirmation, a transactor could potentially receive 0.51 or more confirmations within 10 seconds of issuing it (representing 51% of the mining power on the network), and have a much higher level of confidence that the transaction will be confirmed.
+
+##Motivation
+One of the most frequently discussed issues with Bitcoin is the fact that transactions are subject to double-spending until it is confirmed by the network, and the time it takes to receive such confirmations is too great for them to be of any use in a retail setting.  The present consensus is that the best practice is for merchants to assume the risk of fraud for the smaller items, and only insist on confirmations for transactions where the cost of committing fraud is believed to be greater than the anticipated benefit from such a fraud.
+
+While such a consensus has practical merit, there will still be situations where merchants are uncomfortable with the level of faith required, and who would gladly pay for a technically-based solution to mitigate their risk. 
+
+Another frequently discussed issue with Bitcoin is the observation that the total volume of transaction fees is orders of magnitude smaller than the block reward.  Presently, miners provide no services to individual Bitcoin users, rather, they provide services to the network as a whole.  This proposal represents an opportunity for Bitcoin miners to offer a valuable service to customers willing to pay for it, potentially providing a significant enhancement to the total volume of transaction fees collected into new blocks solved by miners.
+
+##Specification
+This proposal, in a nutshell, is that the parties to a transaction are invited to directly contact a large number of miners using a best-effort datagram protocol (specifically, UDP), send them their transaction, and in return, receive a digitally signed informal acknowledgment of the transaction.  The digital signature serves two purposes: one, to establish the authenticity of the promise, and two, to allow the recipient of the promise to assign a weight to the commitments in units of "fractional confirmations".
+
+Bitcoin transaction confirmations are normally counted with integers.  In the paradigm of Bitcoin as known today, a brand new transaction is considered "unconfirmed" and starts out with 0 confirmations.  When it is first seen in a block, it has 1 confirmation.  In contrast, with Instant Partial Confirmation, a transaction starts out with 0 confirmations, but immediately starts to accumulate a fractional confirmation count - greater than zero but less than one - as individual commitments are received and correlated with their likely known hash power based on recent blocks.
+
+The specification itself rests on three distinct prongs described as follows:
+
+1. Miners advertise their willingness to provide the Instant Partial Confirmation (IPC) service with a notation in their coinbase transactions.  The notation references support for IPC, and includes contact information consisting of an IP address (IPv4/IPv6) and a UDP port number.
+1. Users wishing to use the service must include a transaction fee in their outgoing transactions that satisfies a market-defined threshold established by the miners.  Each miner is free to establish his/her own minimum price for providing the service.  The higher the fee paid, the more miners will respond to the IPC request, directly influencing the number 
+
+
+
+
+
+
+
+
+
+
+
+##Rationale
+
+##Backwards compatibility
