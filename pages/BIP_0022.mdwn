@@ -2,7 +2,7 @@
 
 <pre>
   BIP: 22
-  Title: getmemorypool - Fundamentals
+  Title: getblocktemplate - Fundamentals
   Author: Luke Dashjr <luke+bip22@dashjr.org>
   Status: Draft
   Type: Standards Track
@@ -16,9 +16,9 @@ Instead of sending a simple block header for hashing, the entire block structure
 
 ##Specification
 
-###JSON-RPC Method: getmemorypool
+###JSON-RPC Method: getblocktemplate
 
-A JSON-RPC method is defined, called "getmemorypool".
+A JSON-RPC method is defined, called "getblocktemplate".
 It accepts exactly one argument, which MUST be an Object of request parameters.
 If the request parameters include a "mode" key, that is used to explicitly select between [["template"|#Block_Template_Request]], [["proposal"|#Optional:_Block_Proposal]], and [["submit"|#Block_Submission]] calls.
 Otherwise, it defaults to [[a submission|#Block_Submission]] if there is a "data" key (including the String-type argument mentioned above), and [[a template request|#Block_Template_Request]] if not.
@@ -33,7 +33,7 @@ Block template creation can be influenced by various parameters:
 |mode |String |MUST be "template" or omitted
 
 
-getmemorypool MUST return a JSON Object containing the following keys:
+getblocktemplate MUST return a JSON Object containing the following keys:
 
 
 |Key |Type |Description
@@ -72,7 +72,7 @@ Only the "data" key is required, but servers should provide the others if they a
 
 ###Block Submission
 
-When getmemorypool is called with a "data" key, and "mode" either set to "submit" or omitted, it is interpreted as a potential block (or share).
+When getblocktemplate is called with a "data" key, and "mode" either set to "submit" or omitted, it is interpreted as a potential block (or share).
 
 
 
@@ -140,28 +140,6 @@ If a Boolean is provided and true, the default limit is used; if false, the serv
 Servers SHOULD respect these desired maximums, but are NOT required to:
 clients SHOULD check that the returned template satisfies their requirements appropriately.
 
-###Optional: Backward Compatibility
-Servers MAY choose to implement the following behaviours to remain backward compatible with pre-standard bitcoind 0.5 and 0.6 getmemorypool methods:
-
-* If the parameters Object is omitted, it should be accepted as a [[template request|#Block_Template_Request]], except that the format of the "transactions" key in the template changes. This same format can be requested explicitly by adding a "tx" key to the request set to "hex".
-* If there is a single String argument instead of the parameters Object, it should be accepted as the "data" key for a [[submission|#Block_Submission]]. In this case, the response format is changed to either true (if a share is accepted) or false (if a share is rejected, regardless of reason).
-
-
-
-|Key |Type |Description
-|---|---|---
-|tx |String |format of response "transactions" key elements ("obj" per default; "hex" per backward compat)
-
-
-The format of the "transactions" key in block templates with the "hex" format should be:
-
-
-|Key |Type |Description
-|---|---|---
-|transactions ("hex" format) |Array of Strings |data for Bitcoin transactions (excluding coinbase) encoded in hexadecimal (byte-for-byte)
-
-
-
 ###Appendix: Example Rejection Reasons
 Possible reasons a share may be rejected include, but are not limited to:
 
@@ -216,6 +194,6 @@ Why should "sigops" be provided for transactions?
 
 ##See Also
 
-* [[BIP ?: getmemorypool - Pooled Mining|BIP_GMPPM]]
+* [[BIP ?: getblocktemplate - Pooled Mining|BIP_GMPPM]]
 
 [[!tag "BIP"]]
