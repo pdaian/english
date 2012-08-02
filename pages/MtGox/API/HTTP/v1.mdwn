@@ -246,6 +246,15 @@ https://mtgox.com/api/1/generic/private/bitcoin/addpriv
 
 * returns the btc adress and the total number of btcs in this private key
 
+#### redeem a wallet.dat
+
+https://mtgox.com/api/1/generic/bitcoin/wallet_add
+
+	allows you to add a wallet.dat file to your account
+
+* parameters : 
+"wallet": the file content of a wallet.dat file ( base64 encoded )
+
 #### idKey
 
 https://mtgox.com/api/1/generic/private/idkey
