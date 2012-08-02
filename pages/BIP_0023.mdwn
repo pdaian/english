@@ -15,7 +15,9 @@ This BIP describes extensions to the getblocktemplate JSON-RPC call to enhance p
 
 ##Specification
 
-###Optional: Basic Pool Extensions
+Note that all sections of this specification are optional extensions on top of [[BIP 22|BIP_0022]].
+
+###Basic Pool Extensions
 
 
 
@@ -33,7 +35,7 @@ This BIP describes extensions to the getblocktemplate JSON-RPC call to enhance p
 
 
 
-###Optional: Block Proposal
+###Block Proposal
 
 Servers may indicate support for proposing blocks by including a capability string in their original template:
 
@@ -66,7 +68,7 @@ Clients SHOULD assume their proposed block will remain valid if the only changes
 Servers SHOULD NOT break this assumption without good cause.
 
 
-###Optional: Mutations
+###Mutations
 
 
 
@@ -104,7 +106,7 @@ If the block template contains a "mutable" key, it is a list of these to signify
 
 
 
-###Optional: Submission Abbreviation
+###Submission Abbreviation
 
 
 
@@ -132,7 +134,7 @@ If the block template contains a "mutable" key, it is a list of these to signify
 
 The format used for submitting shares with the "share/merkle" mutation shall be the 80-byte block header, followed by the coinbase transaction, and then finally the little-endian SHA256 hashes of each link in the merkle chain connecting it to the merkle root.
 
-###Optional: Full Node Optimization
+###Full Node Optimization
 
 
 
@@ -149,7 +151,7 @@ Note that the "coinbasetxn" key in the template will remain in "obj" format.
 
 
 
-###Optional: Logical Services
+###Logical Services
 
 
 
