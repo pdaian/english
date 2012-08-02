@@ -2,7 +2,7 @@
 
 <pre>
   BIP: 23
-  Title: getmemorypool - Pooled Mining
+  Title: getblocktemplate - Pooled Mining
   Author: Luke Dashjr <luke+bip22@dashjr.org>
   Status: Draft
   Type: Standards Track
@@ -11,7 +11,7 @@
 
 ##Abstract
 
-This BIP describes extensions to the getmemorypool JSON-RPC call to enhance pooled mining.
+This BIP describes extensions to the getblocktemplate JSON-RPC call to enhance pooled mining.
 
 ##Specification
 
@@ -44,7 +44,7 @@ Servers may indicate support for proposing blocks by including a capability stri
 
 
 If supported, a miner MAY propose a block to the server for general validation at any point before the job expires.
-This is accomplished by calling getmemorypool with two keys:
+This is accomplished by calling getblocktemplate with two keys:
 
 
 |Key |Type |Description
@@ -246,6 +246,6 @@ What is the purpose of the "hash" transaction list format?
 
 ##See Also
 
-* [[BIP 22: getmemorypool - Pooled Mining|BIP_0022]]
+* [[BIP 22: getblocktemplate - Fundamentals|BIP_0022]]
 
 [[!tag "BIP"]]
