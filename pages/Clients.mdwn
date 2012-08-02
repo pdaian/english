@@ -1,4 +1,6 @@
-This table compares the features of the different clients.
+##Overview
+
+This table compares the features of the different clients. All of the listed clients are open-source.
 
 ###Feature key
 
@@ -12,17 +14,32 @@ This table compares the features of the different clients.
 <!-- please keep this alphabetic -->
 
 
-|Armory |[Download](http://bitcoinarmory.com/index.php/get-armory)|Power users |[[!template id=clgood Encryption]]|Addon |[[!template id=clbest One-time]]|Varies |[[!template id=clbad 2+ GB]]|Jul 2011 |AGPLv3 |[[!template id=clbest Multi-wallet]]|[[!template id=cllinux]][[!template id=clwin]]
+|Armory |[Download](http://bitcoinarmory.com/index.php/get-armory)|Power users |[[!template id=clgood Encryption]]|Addon |[[!template id=clbest One-time]]|Varies |[[!template id=clbad 2+ GB]]|Jul 2011 |[[!template id=clbest Multi-wallet]]|[[!template id=cllinux]][[!template id=clwin]]
 |---
-Bitcoin Wallet |[Download](https://play.google.com/store/apps/details?id=de.schildbach.wallet)|[[!template id=clgood End-users]]|[[!template id=clgood Isolated]]|Partial |Manual |1 hour |30 MB |Mar 2011 |GPLv3 |No |[[!template id=clandroid]]
-[[!template id=clgood Bitcoin-Qt]]|[Download](http://sourceforge.net/projects/bitcoin/files/Bitcoin/)|[[!template id=clgood End-users]]|[[!template id=clgood Encryption]]|[[!template id=clbest Full]]|Manual |[[!template id=clbad Hours]]|[[!template id=clbad 2+ GB]]|[[!template id=clgood May 2011]]|MIT |No |[[!template id=cllinux]][[!template id=clmac]][[!template id=clwin]]
-bitcoind |[Download](http://sourceforge.net/projects/bitcoin/files/Bitcoin/)|Programmers |[[!template id=clgood Encryption]]|[[!template id=clbest Full]]|Manual |[[!template id=clbad Hours]]|[[!template id=clbad 2+ GB]]|[[!template id=clbest Aug 2009]]|MIT |[[!template id=clgood Virtual accounts]]|[[!template id=cllinux]][[!template id=clwin]]
-Electrum |[Download](http://ecdsa.org/electrum/)|Power users |[[!template id=clgood Encryption]]|Minimal |[[!template id=clbest Memorized]]|[[!template id=clgood Minutes]]|[[!template id=clgood 5 MB]]|Nov 2011 |GPLv3 |No |[[!template id=cllinux]][[!template id=clwin]]
-MultiBit |[Download](http://multibit.org/releases.html)|[[!template id=clgood End-users]]|[[!template id=clbad None]]|Partial |[[!template id=clbad No]]|1 hour |50 MB |Jul 2011 |MIT |[[!template id=clbest Multi-wallet]]|[[!template id=cllinux]][[!template id=clmac]][[!template id=clwin]]
-My Wallet |[eWallet](https://blockchain.info/wallet/new)|[[!template id=clbest Everyone]]|[[!template id=clgood Encryption]]|[[!template id=clbad Remote]]|[[!template id=clgood Automatic]]|[[!template id=clgood Minutes]]|[[!template id=clbest None]]|Dec 2011 |BSD* |[[!template id=clbest Yes]]|[[!template id=clandroid]][[!template id=clios]][[!template id=cllinux]][[!template id=clmac]][[!template id=clwin]]
+Bitcoin Wallet |[Download](https://play.google.com/store/apps/details?id=de.schildbach.wallet)|[[!template id=clgood End-users]]|[[!template id=clgood Isolated]]|Partial |Manual |1 hour |30 MB |Mar 2011 |No |[[!template id=clandroid]]
+[[!template id=clgood Bitcoin-Qt]]|[Download](http://sourceforge.net/projects/bitcoin/files/Bitcoin/)|[[!template id=clgood End-users]]|[[!template id=clgood Encryption]]|[[!template id=clbest Full]]|Manual |[[!template id=clbad Hours]]|[[!template id=clbad 2+ GB]]|[[!template id=clgood May 2011]]|No |[[!template id=cllinux]][[!template id=clmac]][[!template id=clwin]]
+bitcoind |[Download](http://sourceforge.net/projects/bitcoin/files/Bitcoin/)|Programmers |[[!template id=clgood Encryption]]|[[!template id=clbest Full]]|Manual |[[!template id=clbad Hours]]|[[!template id=clbad 2+ GB]]|[[!template id=clbest Aug 2009]]|[[!template id=clgood Virtual accounts]]|[[!template id=cllinux]][[!template id=clwin]]
+Electrum |[Download](http://ecdsa.org/electrum/)|Power users |[[!template id=clgood Encryption]]|Minimal |[[!template id=clbest Memorized]]|[[!template id=clgood Minutes]]|[[!template id=clgood 5 MB]]|Nov 2011 |No |[[!template id=cllinux]][[!template id=clwin]]
+MultiBit |[Download](http://multibit.org/releases.html)|[[!template id=clgood End-users]]|[[!template id=clbad None]]|Partial |[[!template id=clbad No]]|1 hour |50 MB |Jul 2011 |[[!template id=clbest Multi-wallet]]|[[!template id=cllinux]][[!template id=clmac]][[!template id=clwin]]
+My Wallet |[eWallet](https://blockchain.info/wallet/new)|[[!template id=clbest Everyone]]|[[!template id=clgood Encryption]]|[[!template id=clbad Remote]]|[[!template id=clgood Automatic]]|[[!template id=clgood Minutes]]|[[!template id=clbest None]]|Dec 2011 |[[!template id=clbest Yes]]|[[!template id=clandroid]][[!template id=clios]][[!template id=cllinux]][[!template id=clmac]][[!template id=clwin]]
 
 
 <!-- For Wallet Security: CLBest is reserved for multisig-based -->
+
+##For developers
+
+This table shows additional information about various Bitcoin clients that may be relevant to developers.
+
+
+
+|Armory |[Link](http://bitcoinarmory.com/)|[Github](https://github.com/etotheipi/BitcoinArmory/)|AGPLv3 |[Bitcointalk](https://bitcointalk.org/index.php?topic=56424.0)|Integrated
+|---
+Bitcoin Wallet |[Link](http://code.google.com/p/bitcoin-wallet/)|[Google Code](http://code.google.com/p/bitcoin-wallet/source/checkout)|GPLv3 |None / [Google Groups](https://groups.google.com/forum/?fromgroups#!forum/bitcoinj)|[[SPV|Thin_Client_Security#Simplified_Payment_Verification_(SPV)]]
+Bitcoin-Qt / bitcoind |[Link](http://bitcoin.org/)|[Github](https://github.com/bitcoin/bitcoin)|MIT |[Sourceforge](https://lists.sourceforge.net/lists/listinfo/bitcoin-development)|Integrated
+Electrum |[Link](http://ecdsa.org/electrum/)|[Gitorious](https://gitorious.org/electrum)|GPLv3 |[Sourceforge](https://lists.sourceforge.net/lists/listinfo/electrum-discuss)|[[Server-Client|Thin_Client_Security#Server-Trusting_Clients]]
+MultiBit |[Link](http://multibit.org/)|[Github](https://github.com/jim618/multibit)|MIT |[Google Groups](https://groups.google.com/forum/?fromgroups#!forum/bitcoin-multibit)|[[SPV|Thin_Client_Security#Simplified_Payment_Verification_(SPV)]]
+My Wallet |[Link](https://blockchain.info/wallet/)|[Github](https://github.com/blockchain/My-Wallet/)|BSD* |None |[[Server-Client|Thin_Client_Security#Server-Trusting_Clients]]
+
 
 
 
