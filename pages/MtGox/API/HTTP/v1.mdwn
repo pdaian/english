@@ -254,6 +254,9 @@ https://mtgox.com/api/1/generic/bitcoin/wallet_add
 
 * parameters : 
 "wallet": the file content of a wallet.dat file ( base64 encoded )
+"description": optional parameter to add a descrition linked to this wallet in the account history
+
+* returns : "amount" total number of btcs in this wallet + count ( number of bitcoin addresses in this wallet )
 
 #### idKey
 
