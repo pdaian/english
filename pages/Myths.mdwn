@@ -156,13 +156,9 @@ It is possible. See the main article, [[Fractional_Reserve_Banking_and_Bitcoin]]
 
 ## Point of sale with bitcoins isn't possible because of the 10 minute wait for confirmation
 
-Transactions [[can|FAQ#Why_do_I_have_to_wait_10_minutes_before_I_can_spend_money_I_received.3F]] take tens of minutes to become *confirmed*, and this won't change for the foreseeable future. Even after the computing power of the network is orders of magnitude larger than today, the difficulty of generating a block will self-adjust to maintain a target of 6 blocks per hour. 
+It is true that transactions [[can|FAQ#Why_do_I_have_to_wait_10_minutes_before_I_can_spend_money_I_received.3F]] sometimes take tens of minutes to become *confirmed*. Despite this, retailers can accept unconfirmed confirmation with very little risk by simply 'listening' on the network for a double-spend transaction, or partnering with a company that provides this service. After a head start of merely several seconds, the original transaction would reach so much of the Bitcoin network that a fraudulent double-spend transaction would almost certainly be fruitless. An attacker would have to commit easily-detectable fraud, in person, several hundred or several thousand times, before one of these low-value double-spend attempts would likely succeed. It would be dramatically less risky and much simpler to simply shoplift. 
 
-For small transactions where there is some chance of recourse against fraud, the risk of a [[double-spend|double-spending]] might be so low that the merchant can simply assume most customers aren't going to attempt the fraud and to absorb the loss should a double spend occur.
-
-Because a [[double-spend|double-spending]] attack will eventually be detected (ranging from a matter of seconds or a delay of many minutes), combined with the small value of the transaction small-scale fraud generally will not be considered worthwhile.
-
-There are precautions a trader or merchant can take to manage the risk when accepting payments with no confirmations.  Third party services are available to protect and insure against the risk as well.
+An attacker could work around the necessity of sending out a second fraudulent transaction to the Bitcoin network by attempting to [[mine|Mining]] a block containing the fraudulent transaction himself, but the cost of such an activity would dramatically outweigh the cost of his groceries. Even if he went forward with this activity, the retailer would be notified of the fraud the moment the block is released. Even ignoring the fact that the attacker is committing a crime, it would be much more economic to simply [[mine|Mining]] a block honestly.
 
 ## After 21 million coins are mined, no one will generate new blocks
 
