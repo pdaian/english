@@ -79,8 +79,12 @@ Note that data is written/read in big endian bit order. This means that the firs
 Request Data:
 
 * 1 byte: bit values (bitwise or'd)
-	* <tt>80</tt> -- Use IR register (default is DR)
-	* <tt>40</tt> -- Read+Write (default is Write only)
+	* Mode:
+		* <tt>00</tt> -- Continue already-started r/w
+		* <tt>80</tt> -- Start r/w of DR register
+		* <tt>40</tt> -- Start r/w of IR register
+		* <tt>c0</tt> -- Finish already-started r/w
+	* <tt>20</tt> -- Read+Write (default is Write only)
 	* <tt>01</tt> to <tt>07</tt> -- Don't do last N bits of data
 * N bytes: data to write
 Reply Data (may be parallel with request):
