@@ -256,11 +256,9 @@ Message header:
 
 Provide information on known nodes of the network. Non-advertised nodes should be forgotten after typically 3 hours
 
-Payload (maximum payload length: 1000 bytes):
 
 
-
-|1+ |count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of address entries
+|1+ |count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of address entries (max: 1000)
 |30x? |addr_list |(uint32_t + net_addr)[]|Address of other nodes on the network. version < 209 will only read the first one. The uint32_t is a timestamp (see note below).
 
 
