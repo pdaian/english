@@ -83,8 +83,8 @@ Request Data:
 		* <tt>00</tt> -- Continue already-started r/w
 		* <tt>80</tt> -- Start r/w of DR register
 		* <tt>40</tt> -- Start r/w of IR register
-		* <tt>c0</tt> -- Finish already-started r/w
-	* <tt>20</tt> -- Read+Write (default is Write only)
+	* <tt>20</tt> -- Finish r/w
+	* <tt>10</tt> -- Read+Write (default is Write only)
 	* <tt>01</tt> to <tt>07</tt> -- Don't do last N bits of data
 * N bytes: data to write
 Reply Data (may be parallel with request):
