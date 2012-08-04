@@ -1,4 +1,4 @@
-The first Bitcoin client in the network's history is **bitcoind**. It is available under the [MIT license](http://www.opensource.org/licenses/mit-license.php) for Windows, 32 and 64-bit GNU/Linux-based OSes and Mac OS X.
+Bitcoind is a program that implements the Bitcoin protocol for command line and remote procedure call (RPC) use. It is also the first Bitcoin client in the network's history. It is available under the [MIT license](http://www.opensource.org/licenses/mit-license.php) in 32-bit and 64-bit versions for Windows, GNU/Linux-based OSes, and Mac OS X.
 
 Prior to version 0.5, this service-provider client used a wxWidgets GUI as its default GUI. It is now instead bundled with [[Bitcoin-Qt]].
 
@@ -6,15 +6,15 @@ Prior to version 0.5, this service-provider client used a wxWidgets GUI as its d
 
 See [[running bitcoind|Running_bitcoind]] for more detail and an example of the configuration file.
 
-bitcoind is a headless daemon, and also bundles a testing tool for the same daemon.  It provides a JSON-RPC interface, allowing it to be controlled locally or remotely.  [[Various commands|Original_Bitcoin_client/API_Calls_list]] are made available by the API.
+Bitcoind is a headless daemon, and also bundles a testing tool for the same daemon.  It provides a JSON-RPC interface, allowing it to be controlled locally or remotely which makes it useful for integration with other software or in larger payment systems.  [[Various commands|Original_Bitcoin_client/API_Calls_list]] are made available by the API.
 
 To use locally, first start the program in daemon mode:
 > bitcoind -daemon
 
 
 Then you can use the same program to execute [[API commands|Original_Bitcoin_client/API_Calls_list]], e.g.:
-> bitcoind listreceivedbyaddress 0 true
-> bitcoind getbalance
+> bitcoind getinfo
+> bitcoind listtransactions
 
 To stop the bitcoin daemon, execute:
 > bitcoind stop
@@ -40,7 +40,7 @@ The client is oriented around several major operations, which are described in s
 Upon startup, the client performs various initialization routines including starting multiple threads to handle concurrent operations.
 
 ###[[Node Discovery|Satoshi_Client_Node_Discovery]]
-The client uses various techniques find out about other bitcoin nodes that may exist.
+The client uses various techniques find out about other Bitcoin nodes that are currently connected to the network.
 
 ###[[Node Connectivity|Satoshi_Client_Node_Connectivity]]
 The client initiates and maintains connections to other nodes.
@@ -49,7 +49,7 @@ The client initiates and maintains connections to other nodes.
 The client processes messages from other nodes and sends messages to other nodes using socket connections.
 
 ###[[Block Exchange|Satoshi_Client_Block_Exchange]]
-Nodes advertise their inventory of blocks to each other and exchange blocks to build block chains.
+Nodes advertise their inventory of blocks to each other and exchange blocks to yeahbuild block chains.
 
 ###[[Transaction Exchange|Satoshi_Client_Transaction_Exchange]]
 Nodes exchange and relay transactions with each other. The client associates transactions with bitcoin addresses in the local wallet.
@@ -61,7 +61,19 @@ The client can create transactions using the local wallet. The client associates
 The client offers an JSON-RPC interface over HTTP over sockets to perform various operational functions and to manage the local wallet.
 
 ###User Interface
-The user interface code was based on [wxWidgets](http://www.wxwidgets.org) and was superseded by [[Bitcoin-qt]] in version 0.5.0.
+Bitcoind's current user interface is the command line while it used to be based on [wxWidgets](http://www.wxwidgets.org). A graphical user interface is now provided by [[Bitcoin-qt]] in version 0.5+ for the reference client.
+
+###Troubleshooting
+
+**I get "Error loading blkindex.bat" when I try to run the client**
+
+blkindex.dat is part of the database that stores the local copy of the blockchain which may have become corrupted. Open the Bitcoin data dir:
+
+Windows: %APPDATA%\Bitcoin
+Linux: ~/.bitcoin
+Mac: ~/Library/Application Support/Bitcoin/
+
+Make a backup of that entire folder, then delete everything EXCEPT wallet.dat. Start bitcoind again and it will download a fresh copy of the blockchain.
 
 ##See Also
 
