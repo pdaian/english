@@ -100,11 +100,11 @@ Further discussion on this topic can be found on the forums here:
 
 ### How does the halving work when the number gets really small?
 
-The reward will go from 0.00000001 BTC to 0. Then no more coins will likely be created.  
+Eventually the reward will go from 0.00000001 BTC to zero and no more bitcoins will be created.  
 
-The calculation is done as a right bitwise shift of a 64-bit signed integer, which means it is divided by 2 and rounded down. The integer is equal to the value in BTC * 100,000,000. This is how all Bitcoin balances/values are stored internally.
+The block reward calculation is done as a right bitwise shift of a 64-bit signed integer, which means it is divided by two and rounded down. The integer is equal to the value in BTC * 100,000,000 since internally in the reference client software, all Bitcoin balances and values are stored as unsigned integers.
 
-Keep in mind that using current rules this will take nearly 100 years before it becomes an issue and Bitcoins may change considerably before that happens.
+With an initial block reward of 50 BTC, it will take many 4-year periods for the block reward to reach zero.
 
 ### How long will it take to generate all the coins?
 
