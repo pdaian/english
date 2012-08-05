@@ -60,7 +60,7 @@ Only Bob can do this because only he has the private key that can create a valid
 Eve cannot change who the coins belong to by replacing Bob’s public key with her public key because Alice signed the transfer to Bob using her private key, declaring that the coins which belonged to her now belong to Bob, and Alice's private key is kept secret from Eve. So if Charlie accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
 
 ###Preventing [[double-spending]]
-The process described above does not prevent Alice from using a coin in more than one transaction. The following process does. This is the primary innovation behind Bitcoin.
+The process described above does not prevent Alice from using the same bitcoins in more than one transaction. The following process does. This is the primary innovation behind Bitcoin.
 
 * Details about the [[transaction|Transactions]] are [[sent and forwarded|Network]] to all or as many other computers as possible.
 * A constantly growing chain of [[blocks|Blocks]] that contains a record of all transactions is collectively maintained by all computers (each has a full copy).
@@ -68,7 +68,7 @@ The process described above does not prevent Alice from using a coin in more tha
 * Blocks are chained in a way so that, if any one is modified, all following blocks will have to be recomputed.
 * When multiple valid continuations to this chain appear, only the longest such branch is accepted and it is then extended further.
 
-When Bob sees that his transaction has been included in a block, which has been made part of the single longest and fastest-growing block chain (extended with significant computational effort), he can be confident that the transaction by Alice has been accepted by the computers in the network and is permanently recorded, preventing Alice from creating a second transaction with the same coin. In order for Alice to thwart this system and double-spend her coins, she would need to muster more computing power than all other bitcoin users combined.
+When Bob sees that his transaction has been included in a block, which has been made part of the single longest and fastest-growing block chain (extended with significant computational effort), he can be confident that the transaction by Alice has been accepted by the computers in the network and is permanently recorded, preventing Alice from creating a second transaction with the same coin. In order for Alice to thwart this system and double-spend her coins, she would need to muster more computing power than all other Bitcoin users combined.
 
 ###Anonymity
 There are no bitcoin "accounts" to set up, no e-mail addresses and no user-names and passwords to give, just for owning bitcoins. Each balance is simply associated with a randomly generated public-private key pair, and the money "belongs" to whoever has the private key and can sign transactions with it. Moreover, those keys do not have to be registered anywhere in advance, as they are only actually used if and when there is a transaction involving them. Transacting parties do not need to know each other's identity in the same way that a store owner does not know Bob's name is Bob when Bob goes and buys groceries with cash.
