@@ -1,0 +1,42 @@
+[[!template id=stub]]
+
+When using [[Cold_storage]], [[Paper_wallet]] or [Vanity Bitcoin Address](https://bitcointalk.org/index.php?topic=25804.0) you need to import [[Private_key]]s. Before Bitcoin 0.6.0, you need to rely on third-party [[wallet.dat]] manipulation tool such as [[pyWallet]]. Since Bitcoin 0.6.0, you can import Private keys using build-in RPC command [[importprivkey]]. Here are some instructions for desktop users (official bitcoin-qt client).
+
+## Start Bitcoin client
+Unlike third-party wallet.dat manipulation tool such as [[pyWallet]], you do not have to close Bitcoin client before proceeding. In contrary, you need to start the bitcoind server.
+
+Bitcoin-qt do not start with a bitcoind server by default so it cannot accept RPC commands by default. You can do one of this:
+
+* Close bitcoin-qt and start *bitcoind -damon* in Terminal Emulator. The version of bitcoind MUST be the same as bitcoin-qt!
+* Close bitcoin-qt and restart it with *bitcoin-qt -server*. This will make bitcoin-qt accept RPC commands. You can use your client from both GUI and CLI now!
+
+## Unlock your wallet
+If you have an encrypted wallet (which is a good idea), you need to unlock it temporarily in memory before importing or exporting Private keys. The RPC commands for unlocking is *walletpassphrase <passphrase> <timeout>*. But typing this directly in Terminal Emulator will leave your wallet passphrase directly in bash history. You can do this do prevent that:
+
+	read x
+	(input you passphrase)
+	bitcoind walletpassphrase "$x" 120   # Do not set the timeout too long or too short.
+
+By doing so, your passphrase will not be recorded into bash history. But be careful with people standing behind you since the passphrase are on your screen...
+
+## Import Private key(s)
+The last command unlocked your wallet temporarily in memory for 120 seconds. You need to finish importing keys before timed out. Since Private keys are as important as your passphrase, you may want to use these commands to import them instead of typing / pasting them directly in Terminal Emulator to prevent their being recorded in bash history:
+
+	read y
+	(type / paste your Private key)
+	bitcoind importprivkey "$y" "my-new-key"  # Label can be omitted
+
+The importing process is now started. Bitcoind will rescan the entire block data to ensure this key has not been used before. This process will take about one minute or two, depending on your CPU performance. DO NOT abort it before finishing!
+
+If no errors occurs, the import is a success. If you run your bitcoind via bitcoin-qt, you can see your new address in the GUI now. If you need to import more keys, just repeat the instructions above. Right now there are no ways to import keys in batch so you have to wait one minute or two for every key imported...
+
+## Cleaning up
+
+	unset x
+	unset y
+
+This will clear the passphrase and Private key from memory. If you start bitcoind in the first way above, you also need to stop it, or bitcoin-qt cannot start again:
+
+	bitcoind stop
+
+Happy importing!
