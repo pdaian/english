@@ -19,6 +19,8 @@ There are various methods for copying the private key data from a paper wallet t
 
 Those running the Bitcoin.org ("Satoshi") client can import paper wallet addresses using the [[Pywallet]] utility.  Other [[clients|tags/Clients]] may allow this as well, including the Javascript-based wallet called My Wallet from [[BlockChain.info]] which can import Bitcoin private keys as well.
 
+Since 0.6.0, key import/export are available in the client itself, you can use is via RPC. The commands are *dumpprivkey* and *importprivkey*. For encrypted wallet, you need to use *walletpassphrase* to decrypt temporarily in memory before importing or exporting. Note that bitcoind will rescan the block data when importing each key now, this process takes about one minute or two, depending on your CPU performance. See [[How_to_import_private_keys]] for more info.
+
 ##See Also
 
 * [[Private_key]]
