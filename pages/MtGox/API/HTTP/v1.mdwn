@@ -301,25 +301,51 @@ https://mtgox.com/api/1/generic/private/orders
 	
 Returns information about your current open orders. Valid order statuses are: pending, executing, post-pending, open, stop, and invalid.
 
+The order can have 2 amounts, the valid amount and the invalid ( unfunded ) amount.
+valid amount and invalid amount will be updated when funds are added or when other orders are removed
+
 <source lang="javascript">
-	{
-	"return":
-		{				{						}		[],
-	"priority": "1343527861724073",
-	"currency": "USD",
-	"amount":
-	{
-	"value_int": "10000000",
-	"currency": "BTC",
-	"display_short": "0.10\u00a0BTC",
-	"display": "0.10000000\u00a0BTC",
-	"value": "0.10000000"
-	},
-	"date": 1343527861,
-	"type": "bid"
-	}
-	
-	}
+	[[0]] => Array
+	(
+	[[oid]] => 3af0fc57-c132-4312-9968-b00a6e719b98
+	[[currency]] => USD
+	[[item]] => BTC
+	[[type]] => bid
+	[[amount]] => Array
+	(
+	[[value]] => 0.83712650
+	[[value_int]] => 83712650
+	[[display]] => 0.83712650 BTC
+	[[display_short]] => 0.84 BTC
+	[[currency]] => BTC
+	)
+
+	[[price]] => Array
+	(
+	[[value]] => 10.07469
+	[[value_int]] => 1007469
+	[[display]] => $10.07469
+	[[display_short]] => $10.07
+	[[currency]] => USD
+	)
+
+	[[status]] => open
+	[[date]] => 1344191866
+	[[priority]] => 1344191866829747
+	[[actions]] => Array
+	(
+	)
+
+	[[invalid_amount]] => Array
+	(
+	[[value]] => 3.16287350
+	[[value_int]] => 316287350
+	[[display]] => 3.16287350 BTC
+	[[display_short]] => 3.16 BTC
+	[[currency]] => BTC
+	)
+
+	)
 </source>
 
 #### Order result
