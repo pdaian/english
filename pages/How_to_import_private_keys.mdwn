@@ -32,10 +32,11 @@ If no errors occurs, the import is a success. If you run your bitcoind via bitco
 
 ## Cleaning up
 
+	bitcoind walletlock
 	unset x
 	unset y
 
-This will clear the passphrase and Private key from memory. If you start bitcoind in the first way above, you also need to stop it, or bitcoin-qt cannot start again:
+This will lock your wallet again (so you don't have to wait for timeout) and clear the passphrase and Private key from memory. If you start bitcoind in the first way above, you also need to stop it, or bitcoin-qt cannot start again:
 
 	bitcoind stop
 
