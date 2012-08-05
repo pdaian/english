@@ -34,30 +34,30 @@ Blocks contain 50 bitcoins at present. This amount, known as the block reward, i
 
 Because the block reward will decrease over the long term, miners will some day instead pay for their hardware and electricity costs by collecting [[transaction fees|Transaction_fee]]. The sender of money may voluntarily pay a small transaction fee which will be kept by whoever finds the next block. Paying this fee will encourage miners to include the transaction in a block more quickly.
 
-###Transferring a coin
-To guarantee that an eavesdropper, Eve, cannot access other people's bitcoins by creating transactions in their names we use a [public key system](Wikipedia:Public-key_cryptography) to make digital signatures. In this system, each person, such as Alice or Bob, has a pair of public and private keys which he/she stores in a safe [[wallet|Wallet]]. Only the user with his secret private key can sign a document, such as the transaction to give some of his bitcoins to somebody else, but any one can validate the signature using the user’s public key.
+###Sending payments
+To guarantee that a third-party, Eve, cannot spend other people's bitcoins by creating transactions in their names Bitcoin uses [public key cryptography](Wikipedia:Public-key_cryptography) to make and verify digital signatures. In this system, each person, such as Alice or Bob, has one or more addresses each with an associated pair of public and private keys that they may hold in a [[wallet|Wallet]]. Only the user with the private key can sign a transaction to give some of their bitcoins to somebody else, but anyone can validate the signature using the user’s public key.
 
 Suppose Alice wants to send a bitcoin to Bob.
 
-* Bob sends his public key to Alice.
-* Alice adds Bob’s public key along with the amount she wants to transfer to a message: a 'transaction' message.
-* Alice signs the transaction with her secret private key.
-* Alice broadcasts the transaction out over the bitcoin network for all to see.
+* Bob sends his address (from which the public key can be derived) to Alice.
+* Alice adds Bob’s public key and the amount of bitcoins to transfer to a message: a 'transaction' message.
+* Alice signs the transaction with her private key.
+* Alice broadcasts the transaction on the Bitcoin network for all to see.
 
-(Only the first step is actually completed by a human. The rest is done by the bitcoin client software.)
+(Only the first two steps require human action. The rest is done by the Bitcoin client software.)
 
-As a result, anyone who knows the public keys of both Alice and Bob can now see that Alice agreed to transfer the amount to Bob, because nobody other than Alice has Alice's private key. Alice would be foolish to give her private key to other people, as this would allow them to sign transactions in her name, removing funds from her control.
+Looking at this transaction from the outside, anyone who knows that these addresses belong to Alice and Bob can see that Alice has agreed to transfer the amount to Bob, because nobody else has Alice's private key. Alice would be foolish to give her private key to other people, as this would allow them to sign transactions in her name, removing funds from her control.
 
-Later on, when Bob wishes to transfer the same bitcoin to Charley, he will do the same thing:
+Later on, when Bob wishes to transfer the same bitcoins to Charley, he will do the same thing:
 
-* Charlie sends Bob his public key.
-* Bob adds Charlie's public key along with the amount he wants to transfer to a message: a 'transaction' message.
+* Charlie sends Bob his address.
+* Bob adds Charlie's public key and the amount of bitcoins to transfer to a message: a 'transaction' message.
 * Bob signs the transaction with his private key.
-* Bob broadcasts the transaction out over the bitcoin network for all to see. 
+* Bob broadcasts the transaction on the Bitcoin network for all to see. 
 
-Only Bob can do this because only Bob has the private key that corresponds to the public key Alice included in the previous transaction. 
+Only Bob can do this because only he has the private key that can create a valid signature for the transaction.  
 
-Eve cannot change who the coins belong to by replacing Bob’s public key with her public key, because Alice signed the transfer to Bob using her private key, declaring that the coins which belonged to her now belong to Bob, and Alice's private key is kept secret from Eve. So if Charley accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
+Eve cannot change who the coins belong to by replacing Bob’s public key with her public key because Alice signed the transfer to Bob using her private key, declaring that the coins which belonged to her now belong to Bob, and Alice's private key is kept secret from Eve. So if Charlie accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
 
 ###Preventing [[double-spending]]
 The process described above does not prevent Alice from using a coin in more than one transaction. The following process does. This is the primary innovation behind Bitcoin.
