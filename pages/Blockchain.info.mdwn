@@ -18,6 +18,29 @@ The site was launched on August 30, 2011 (1.1), originally as the PiUK-BlockChai
 
 On March 26, 2012 the Blockchain for Android mobile app was released (1.2).  On April 20, 2012 the Blockchain ios app for the Apple iPhone, iPod touch and iPad was released globally on the App Store (1.3).
 
+##Wallet
+
+The wallet available from this service is considered a [[hybrid EWallet|Browser-based_wallet#Hybrid_e-wallets]].  This means that the coins are not stored with Blockchain.info, but instead held in your browser.  There is an encrypted copy of your wallet stored on Blockchain.info's server, but that does not have your wallet password and thus cannot access or spend from your wallet.
+
+The same wallet is accessed using the Blockchain for Android mobile wallet.
+
+To access the wallet, the wallet identifier needs to be known or bookmarked.  To allow for the wallet to be accessed using an easily-remembered word or term, the service allows you to enter an alias to the wallet identifier.
+
+###Security
+
+Access to the wallet requires a password.  After multiple successive failed attempts to login (e.g., five) the account will be locked for a period of four hours (3.1).
+
+Mutli-factor authentication is available to further protect access to the wallet.  These methods include:
+
+* Google Authenticator
+* e-mail verification
+* SMS
+* YubiKey (only using the 16 byte prefix though, not full OTP)
+
+###Backups
+
+Though the service does store an encrypted copy of your wallet, the recommendation is for the wallet owner to also keep a backup copy of the encrypted wallet.  Configuring an e-mail address in the account details will then make it possible to manually request that a backup of the wallet be sent by e-mail to that address.  This backup is generally secure because the wallet is encrypted though wallet owners holding larger balances may want to obtain advice from a security professional regarding the risks.
+
 ##Mobile Apps
 
 * [Blockchain for Android](https://play.google.com/store/apps/details?id=piuk.blockchain) on Google play ([GitHub](https://github.com/zootreeves/My-Wallet-Android))
@@ -47,7 +70,8 @@ Users of the Blockchain mobile app may wish to add the second password capabilit
 
 1.1: [Blockchain.info - Bitcoin Block explorer & Currency Statistics](http://bitcointalk.org/index.php?topic=40264.0)  
 1.2: [Blockchain.info android wallet](http://bitcointalk.org/index.php?topic=74191.0)  
-1.3: [iPhone IOS Bitcoin wallet is here! (From Blockchain.info)](http://bitcointalk.org/index.php?topic=75673.0)
+1.3: [iPhone IOS Bitcoin wallet is here! (From Blockchain.info)](http://bitcointalk.org/index.php?topic=75673.0)  
+3.1: [Blockchain.info - Bitcoin Block explorer & Currency Statistics](http://bitcointalk.org/index.php?topic=40264.msg1081388#msg1081388)
 
 
 [[!tag "Services"]]
