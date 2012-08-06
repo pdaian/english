@@ -71,15 +71,13 @@ The process described above does not prevent Alice from using the same bitcoins 
 When Bob sees that his transaction has been included in a block, which has been made part of the single longest and fastest-growing block chain (extended with significant computational effort), he can be confident that the transaction by Alice has been accepted by the computers in the network and is permanently recorded, preventing Alice from creating a second transaction with the same coin. In order for Alice to thwart this system and double-spend her coins, she would need to muster more computing power than all other Bitcoin users combined.
 
 ###Anonymity
-There are no bitcoin "accounts" to set up, no e-mail addresses and no user-names and passwords to give, just for owning bitcoins. Each balance is simply associated with a randomly generated public-private key pair, and the money "belongs" to whoever has the private key and can sign transactions with it. Moreover, those keys do not have to be registered anywhere in advance, as they are only actually used if and when there is a transaction involving them. Transacting parties do not need to know each other's identity in the same way that a store owner does not know Bob's name is Bob when Bob goes and buys groceries with cash.
+When it comes to the Bitcoin network itself, there are no "accounts" to set up and no e-mail addresses, user-names or passwords are required to hold or spend bitcoins. Each balance is simply associated with an address and its public-private key pair. The money "belongs" to anyone who has the private key and can sign transactions with it. Moreover, those keys do not have to be registered anywhere in advance, as they are only used when required for a transaction. Transacting parties do not need to know each other's identity in the same way that a store owner does not know a customer's name who pays with cash.
 
 A [[Bitcoin address|Address]] mathematically corresponds to a public key and looks like this:
 
 > 1PC9aZC4hNX2rmmrt7uHTfYAS3hRbph4UN
 
-Each person can have many such addresses, each with its own balance, which makes it very difficult to know which person owns what amount. In order to protect his [[privacy|Anonymity]], Bob can even generate a new public-private key pair for each individual transaction. The Bitcoin software encourages this behavior by default. Continuing the example from above, when Charlie receives the bitcoin from Bob, Charlie will not be able to identify who owned the coin before Bob (not without asking Bob).
-
-You have completed reading our Bitcoin introduction!
+Each person can have many such addresses, each with its own balance, which makes it very difficult to know which person owns what amount. In order to protect his [[privacy|Anonymity]], Bob can generate a new public-private key pair for each individual receiving transaction and the Bitcoin software encourages this behavior by default. Continuing the example from above, when Charlie receives the bitcoins from Bob, Charlie will not be able to identify who owned the bitcoins before Bob without further information.
 
 ##Where to see and explore
 You can directly explore the system in action by visiting [Blockchain.info](http://blockchain.info/) or [Bitcoin Block Explorer](http://blockexplorer.com/).
