@@ -43,6 +43,11 @@ On July 28 2010, two bugs were discovered and demonstrated on the test network. 
 
 After these bugs were discovered, many currently-unused script words were disabled for safety.
 
+### References
+
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-5137)
+
+
 ## CVE-2010-5141
 
 	<b>Date:</b> 2010-07-28
@@ -57,6 +62,11 @@ On July 28 2010, two bugs were discovered and demonstrated on the test network. 
 
 After these bugs were discovered, many currently-unused script words were disabled for safety.
 
+### References
+
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-5141)
+
+
 ## CVE-2010-5138
 
 	<b>Date:</b> 2010-07-29
@@ -68,6 +78,10 @@ After these bugs were discovered, many currently-unused script words were disabl
 
 
 On July 29 2010, it was discovered that block [71036](http://blockexplorer.com/block/00000000000997f9fd2fe1ee376293ef8c42ad09193a5d2086dddf8e5c426b56) contained several transactions with a ton of OP_CHECKSIG commands. There should only ever be one such command. This caused every node to do extra unnecessary work, and it could have been used as a denial-of-service attack. A new version of Bitcoin was quickly released. The new version did not cause a fork on the main network, though it did cause one on the test network (where someone had played around with the attack more).
+
+### References
+
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-5138)
 
 
 ## CVE-2010-5139
@@ -100,6 +114,7 @@ Transaction hash: 1d5e512a9723cbef373b970eb52f1e9598ad67e7408077a82fdac194b65333
 ### References
 
 * [Discovery](https://bitcointalk.org/index.php?topic=822.0)
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-5139)
 
 
 ## CVE-2010-5140
@@ -119,6 +134,7 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 ### References
 
 * [Initial reports](http://www.bitcoin.org/smf/index.php?topic=1306.0)
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-5140)
 
 
 ## CVE-2011-4447
@@ -136,6 +152,7 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 * [Announcement](https://bitcointalk.org/index.php?topic=51604.0)
 * [Finding](https://bitcointalk.org/index.php?topic=51474.0)
 * [0.5.0](http://bitcoin.org/releases/2011/11/21/v0.5.0.html)
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2011-4447)
 
 
 ## CVE-2012-1909
@@ -155,6 +172,7 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 * [Announcement](https://bitcointalk.org/index.php?topic=67738.0)
 * [Fix](https://en.bitcoin.it/wiki/BIP_0030)
 * [Gentoo bug tracker](https://bugs.gentoo.org/show_bug.cgi?id=407793)
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-1909)
 
 ## CVE-2012-1910
 
@@ -169,6 +187,7 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 ### References
 
 * [Announcement](https://bitcointalk.org/index.php?topic=69120.0)
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-1910)
 
 ## BIP-0016
 
@@ -199,12 +218,7 @@ Bitcoin was changed to only select coins with at least 1 confirmation. The remai
 
 * [Announcement](https://bitcointalk.org/?topic=81749)
 * [Gentoo bug tracker](https://bugs.gentoo.org/show_bug.cgi?id=415973)
-
-## CVE-2012-3584
-
-This entry is a work-in-progress.
-
-Incentives for excluding transactions from blocks?
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-2459)
 
 ## CVE-2012-3789
 
@@ -219,11 +233,12 @@ Incentives for excluding transactions from blocks?
 ### References
 
 * [0.6.3rc1 Announcement](https://bitcointalk.org/?topic=88734)
+* [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-3789)
 
 
 ##Definitions
 
-A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (22.1).
+A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (24.1).
 
 ##See Also
 
@@ -231,5 +246,5 @@ A critical vulnerability is one that will have disastrous consequences if it is 
 
 ##References
 
-22.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
+24.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
 
