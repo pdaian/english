@@ -33,6 +33,34 @@
 * 18.07.2012<br />
 Special offer! Extra **10%** for WebMoney payouts due to 1 TH/s rate achievement! Valid for 3 weeks only.
 
+##How to run miners
+
+**Phoenix [Web site](https://bitcointalk.org/?topic=6458.0)**<br />
+
+phoenix -u http://WorkerName@Example.com@50btc.com:8332 -k phatk BFI_INT FASTLOOP VECTORS AGGRESSION=11 WORKSIZE=128 DEVICE=0
+
+**DiabloMiner [Web site](https://bitcointalk.org/index.php?topic=1721.0)**<br />
+
+*Windows:*<br />
+DiabloMiner-Windows.exe -u WorkerName@Example.com -p pass -o pool.50btc.com -r 8332 -v 2 -w 256<br />
+
+<nowiki>*</nowiki>*nix*:<br />
+DiabloMiner-YourOS.sh -u WorkerName@Example.com -p 123 -o pool.50btc.com -r 8332 -v 2 -w 256
+
+
+**Ufasoft Miner [Web site](https://bitcointalk.org/index.php?topic=3486.0)**<br />
+
+bitcoin-miner.exe -o http://pool.50btc.com:8332 -u WorkerName@Example.com
+
+
+**jgarzik's CPU miner [Web site](https://bitcointalk.org/index.php?topic=1925.0)**<br />
+
+*Windows:*<br /> 
+minerd.exe -s 20 -t 4 --url http://pool.50btc.com:8332 --userpass WorkerName@Example.com:123
+
+<nowiki>*</nowiki>*nix*:<br />
+minerd -s 20 -t 4 --url http://pool.50btc.com:8332 --userpass WorkerName@Example.com:123
+
 ##See Also
 
 * [[Comparison_of_mining_pools]]
