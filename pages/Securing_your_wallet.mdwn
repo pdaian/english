@@ -57,27 +57,18 @@ If a wallet or an encrypted wallet's password has been compromised, it is wise t
 
 There are a number of ways to create a new wallet with Bitcoin-QT or bitcoind but this is a process that has been tested with bitcoind 0.6.3. We use the copy command to minimize the chance of any data loss but you are warned to make backups of any wallet.dat that holds a balance for you.
 
-1. Shut down the Bitcoin program.
-
-2. Find and make a backup of the "compromised" wallet.dat file and rename it, perhaps adding a short description:
-
-wallet.dat ->  wallet-compromised.dat
-
-Depending on your OS, the wallet file will be located at:
-
-Windows: %APPDATA%\Bitcoin\
-Linux: ~/.bitcoin/
-Mac: ~/Library/Application Support/Bitcoin/
-
-3. Start the Bitcoin program and it will create a new wallet.dat. You may then encrypt the wallet as desired and make a new backup.
-
-4. Once you've made a new wallet, you can obtain one or more addresses and copy them into a text editor. After obtaining the new address(es), shut down the Bitcoin program, make a backup of the new wallet.dat file and copy it to a new file named wallet-new.dat.
-
-5. Copy the wallet-compromised.dat file back to wallet.dat, start the Bitcoin program and transfer your balance to the new address(es) you put in your text editor. Once the balance is back to 0 for your compromised wallet, you may want to wait a couple minutes or for a confirmation or check block explorer to be sure the transactions have been broadcasted. Then you may shut down the Bitcoin program.
-
-6. Rename wallet.dat to wallet-compromised.dat. 
-
-7. Rename wallet-new.dat to wallet.dat.
+> 1. Shut down the Bitcoin program.
+> 2. Find and make a backup of the "compromised" wallet.dat file and rename it, perhaps adding a short description:
+> wallet.dat ->  wallet-compromised.dat
+> Depending on your OS, the wallet file will be located at:
+> Windows: %APPDATA%\Bitcoin\
+> Linux: ~/.bitcoin/
+> Mac: ~/Library/Application Support/Bitcoin/
+> 3. Start the Bitcoin program and it will create a new wallet.dat. You may then encrypt the wallet as desired and make a new backup.
+> 4. Once you've made a new wallet, you can obtain one or more addresses and copy them into a text editor. After obtaining the new address(es), shut down the Bitcoin program, make a backup of the new wallet.dat file and copy it to a new file named wallet-new.dat.
+> 5. Copy the wallet-compromised.dat file back to wallet.dat, start the Bitcoin program and transfer your balance to the new address(es) you put in your text editor. Once the balance is back to 0 for your compromised wallet, you may want to wait a couple minutes or for a confirmation or check block explorer to be sure the transactions have been broadcasted. Then you may shut down the Bitcoin program.
+> 6. Rename wallet.dat to wallet-compromised.dat. 
+> 7. Rename wallet-new.dat to wallet.dat.
 
 You should now have a new wallet with all the bitcoins from the old wallet.
 
