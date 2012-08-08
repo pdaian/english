@@ -22,7 +22,7 @@ A long string of letters and numbers would be a way to prevent a brute force att
 Each implementer of deterministic wallets should make sure that this article leads to a publicly available reference describing how to reconstitute the deterministic wallet from its seed.
 
 ###Type 1 deterministic wallet
-A Type 1 deterministic wallet is created from a string.  Simply take SHA256(string + n), where n is an ASCII-coded number that starts from 1 and increments as additional keys are needed.
+A Type 1 deterministic wallet is created from a string.  Simply take SHA256(string + n), where n is an ASCII-coded number that starts from 1 and increments as additional keys are needed.  This simple type of wallet can be created by Casascius Bitcoin Address Utility.
 
 ###Type 2 deterministic wallet
 Not sure on the details, but mention was made of a "type-2 deterministic wallet" in [[BIP_0032]] and credited to Gregory Maxwell, so this is a placeholder to describe that implementation.
