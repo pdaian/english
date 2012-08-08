@@ -25,7 +25,7 @@ Each implementer of deterministic wallets should make sure that this article lea
 A Type 1 deterministic wallet is created from a string.  Simply take SHA256(string + n), where n is an ASCII-coded number that starts from 1 and increments as additional keys are needed.
 
 ###Type 2 deterministic wallet
-Not sure on the details, but mention was made of a "type-2 deterministic wallet" in [[BIP_0032]], so this is a placeholder to describe that implementation.
+Not sure on the details, but mention was made of a "type-2 deterministic wallet" in [[BIP_0032]] and credited to Gregory Maxwell, so this is a placeholder to describe that implementation.
 
 ###BIP 0032 deterministic wallet
 Described in [[BIP_0032]] (currently a draft) and described as a *hierarchical deterministic* (HD) wallet, a BIP 0032 deterministic wallet allows sharing smaller deterministic wallets that are subportions of a larger one.
