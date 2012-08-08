@@ -29,3 +29,9 @@ Not sure on the details, but mention was made of a "type-2 deterministic wallet"
 
 ###BIP 0032 deterministic wallet
 Described in [[BIP_0032]] (currently a draft) and described as a *hierarchical deterministic* (HD) wallet, a BIP 0032 deterministic wallet allows sharing smaller deterministic wallets that are subportions of a larger one.
+
+###Electrum deterministic wallet
+[[Electrum]] has its own deterministic wallet format based on a 128-bit seed.  It uses a word list and converts the seed to a series of words as an aid to help the user record the seed.
+
+###Armory deterministic wallet
+[[Armory]] has its own deterministic wallet format based on a "root key" and a "chain code".  The Armory client has a "Paper Backup" screen that expresses these two codes as two strings of 72 lowercase characters.  These probably represent two 256-bit values with some checksum bits for safety.
