@@ -352,11 +352,9 @@ Be sure to modify the script options to fit your setup. After you save, make sur
 
 Assuming your backup is recent enough that you haven't used up all of your key pool... restoring a wallet to a new (or old) location and rescanning the block chain should leave you with all your coins. Just follow these steps:
 
-* Quit bitcoin(d).
-* Copy your backed up wallet.dat into your bitcoin profile directory.
-* If copying into existing profile, delete files *blk*.dat* to make the client re-scan the block chain.
-
-And you'll be good as new.
+* Shut down the Bitcoin program.
+* Copy your backed-up wallet.dat into your bitcoin data directory.
+* If copying into existing profile, delete files *blk*.dat* to make the client re-download the block chain.
 
 ##Erasing Plain Text Wallets
 
