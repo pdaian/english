@@ -356,11 +356,7 @@ Assuming your backup is recent enough that you haven't used up all of your key p
 * Copy your backed-up wallet.dat into your bitcoin data directory.
 * If copying into existing profile, delete files *blk*.dat* to make the client re-download the block chain.
 
-##Erasing Plain Text Wallets
-
-A good practice is to keep at least two wallets, one as a "current account" for everyday transactions and one as a "savings account" where you store the majority of your Bitcoins.  
-
-The "savings account" wallet should be backed up in encrypted form only and all plaintext copies of this wallet should be erased. In case someone gains unauthorised access to your computer (either by physically stealing it or by exploiting a system vulnerability via the internet), they will only be able to spend the coins in your "current account" wallet.
+##Erasing Plain-text Wallets
 
 In most operating systems, including Windows, Linux, and Mac OS X, simply deleting a wallet.dat file will *not* generally destroy it. It is likely that advanced tools can still be used to recover the wallet.dat file, even after it has been deleted.
 
