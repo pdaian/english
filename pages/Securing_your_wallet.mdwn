@@ -207,17 +207,17 @@ By default Bitcoin will put its data here:
 1. Dropbox stores your encryption key (meaning that a disgruntled Dropbox employee or an attacker who gained access to the system could decrypt your Dropbox data and steal your bitcoins)
 1. the Dropbox client only needs a password for the first login. After it authenticates once, the server assigns it a token which it uses to show that, at one time, its user knew the password rather than sending the actual password (meaning that if you ever use the Dropbox client on another PC, that PC's users can access your Dropbox - even if you change your password - and can steal your bitcoins or get a virus that will steal your bitcoins).
 
-For these reasons, an alternative that always uses password authentication such as [Wuala](http://www.wuala.com/en/bitcoin) should be used. Wuala does not store your encryption key and authenticates with the password each time the program is started.
+For these reasons, an alternative that always uses password authentication such as [Wuala](http://www.wuala.com/en/bitcoin) should be used. Wuala's servers do not store your encryption key and the program authenticates with the password each time it is started.
 
-Whether you use Dropbox as your backup or not, it is advised to use what Steve Gibson calls "pre-Internet encryption" which means to use some form of encryption on your files before you back them up, in case an attacker gains access to that backup. Make sure to pick a password that's memorable but secure.
+Whether you use Dropbox as your backup or not, it is advised to use what Steve Gibson calls "pre-Internet encryption" which means to use some form of encryption on your files before you back them up, in case an attacker gains access to that backup. Make sure to pick a password that is memorable but secure.
 
-The only file you need to back up is "wallet.dat" which can be done one of two ways. To make a copy of the wallet.dat file, ensure that Bitcoin is closed, copy this file somewhere else. The other way is to use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin. 
+The only file you need to back up is "wallet.dat" which can be done one of two ways. To make a copy of the wallet.dat file, ensure that Bitcoin is closed and copy this file somewhere else. The other way is to use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin. 
 
 Once a copy has been made, encrypt it, and put it in two or more safe locations. Consider the risk due to theft, fire, or natural disaster in proportion to the value of bitcoins stored in the wallet.
 
 ### General Solutions
 
-Your wallet.dat file is not encrypted by the Bitcoin program, by default but the most current release of the Bitcoin client provides a method to encrypt with a passphrase the private keys stored in the wallet. Anyone who can access an unencrypted wallet can easily steal all of your coins.  Use one of these encryption programs if there is any chance someone might gain access to your wallet.
+Your wallet.dat file is not encrypted by the Bitcoin program by default but the most current release of the Bitcoin client provides a method to encrypt with a passphrase the private keys stored in the wallet. Anyone who can access an unencrypted wallet can easily steal all of your coins.  Use one of these encryption programs if there is any chance someone might gain access to your wallet.
 
 * [7-zip](http://www.7-zip.org/) - Supports strongly-encrypted archives.
 * [AxCrypt by Axantum](http://www.axantum.com/axcrypt/)
@@ -228,18 +228,18 @@ There is also a list of [[open source encryption software.|OpenSourceEncryptionS
 
 Decrypting and encrypting the wallet.dat every time you start or quit the Bitcoin client can be *tedious* (and outright error-prone). If you want to keep your wallet encrypted (except while you're actually running the Bitcoin client), it's better to relegate the automation to a [small shell script](http://lorelei.kaverit.org/bitcoin.sh) that handles the en/decryption and starting up Bitcoin client for you (Linux and OSX). 
 
-There is also a method to Print out and encrypt your Wallet.dat as a special barcode. See details here: [[WalletPaperbackup]]
+There is also a method to print out and encrypt your wallet.dat as a special, scannable code. See details here: [[WalletPaperbackup]]
 
 #### Password Strength
-Brute-force password cracking has come a long way. A password of random [[a-Z]] [[0-9]] [[!-~]] of 8 characters long was previously thought secure but can be trivially solved now (using appropriate hardware). The recommended length is **at least** 12 characters long.  You can also use a multi-word password. [The Usability of Passwords](http://www.baekdal.com/tips/password-security-usability) 
+Brute-force password cracking has come a long way. A password including capitals, numbers, and special characters with a length of 8 characters can be trivially solved now (using appropriate hardware). The recommended length is **at least** 12 characters long.  You can also use a multi-word password and there are techniques to increase the strength of your passwords without sacrificing usability. [The Usability of Passwords](http://www.baekdal.com/tips/password-security-usability) 
 
-However, simply using dictionary words is also insecure as it opens you up to a dictionary attack. If you use dictionary words, be sure to throw random symbols and numbers in the mix as well.
+However, simply using dictionary words is also insecure as it opens you up to a dictionary attack. If you use dictionary words, be sure to include random symbols and numbers in the mix as well.
 
-If you use keyfiles in addition to a password, it is unlikely that your encrypted file can ever be cracked using brute force methods, even 10 years from now when even a 12 character password might be too short.
+If you use keyfiles in addition to a password, it is unlikely that your encrypted file can ever be cracked using brute-force methods, even when even a 12 character password might be too short.
 
 Assume that any encrypted files you store online (eg. Gmail, Dropbox) will be stored somewhere forever and can never be erased.
 
-##### Choosing Your Password
+##### Choosing A Strong Password
 Make sure you pick at least one character in each group:<br />
 
 	Lowercase: abcdefghijklmnopqrstuvwxyz
@@ -254,16 +254,16 @@ Make sure you pick at least one character in each group:<br />
 	12 char = good security (good enough for your wallet)
 	13 char = very good, enough for anything.
 
-#### Storage of Archive
-One of the most simple methods for storing a appropriately **encrypted** archive of your wallet.dat file is to send the archive as an email attachment to your own e-mail address.  Services like gmail.com use very comprehensive distributed networks that make the loss of data very unlikely.  One can even obfuscate the name of the files within the archive, and name the archive something less inviting, such as: 'personal notes' or 'car insurance'.
+#### Email-based Archival and Remote Backup
+One of the simplest methods for storing an appropriately **encrypted** archive of your wallet.dat file is to send the archive as an email attachment to your own e-mail address.  Services like Gmail use very comprehensive distributed networks that make the loss of data very unlikely.  One can even obfuscate the name of the files within the archive, and name the archive something less inviting, such as: 'personal notes' or 'car insurance'.
 
-Another solution is to use a file storage service like [Wuala](http://www.wuala.com/bitcoin) ( encrypted, [instructions](http://www.bitcoin.org/smf/index.php?topic=5817.0)), [Dropbox](http://www.dropbox.com) and [others](http://en.wikipedia.org/wiki/Comparison_of_online_backup_services), including the more secure [SpiderOak](http://www.spideroak.com).
+Another solution is to use a file storage service like [Wuala](http://www.wuala.com/bitcoin) ( encrypted, [instructions](http://www.bitcoin.org/smf/index.php?topic=5817.0)), [Dropbox](http://www.dropbox.com) (after encrypting the wallet first) and [others](http://en.wikipedia.org/wiki/Comparison_of_online_backup_services), including the more secure [SpiderOak](http://www.spideroak.com).
 
-### Linux solution
+### Autmated Backups using Cron, Bash and GNU/Linux
 
 Linux users can setup backups using cron by telling it to run a backup script at set intervals of time. Run 'crontab -e' and add this line near the bottom:
 
-	01 */1 * * * /usr/local/bin/backupwallet.sh
+	01 * * * * /usr/local/bin/backupwallet.sh
 
 This cron line will run the /usr/local/bin/backupwallet.sh script at the 01 minute of every hour. Remember to add a newline after the last line of the crontab file, or else the last line won't run. You may also wish to ignore the script's output by appending " > /dev/null 2>&1" to the line (this will also prevent emails from being sent).
 
