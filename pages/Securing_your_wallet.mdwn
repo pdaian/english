@@ -142,15 +142,13 @@ If one *doesn't* want to use encrypted Disk images, then a **small shell script*
 
 ###Windows
 
-If you are using Windows XP or Windows 7, you can keep your wallet on an encrypted disk image created by third-party software, such as [TrueCrypt](http://www.truecrypt.org/) (open source) or [Jetico BestCrypt](http://www.jetico.com/encryption-bestcrypt/) (commercial).  You can probably do the same with Windows Vista or Windows 2000.  
-
-**NOTE:** You should configure Bitcoin in this manner only on computers where you use Bitcoin, but do not use that computer to mine.  For example, this is a good configuration for a notebook or tablet computer.
+Due to the frequency with which Windows computers are compromised, it is advised to encrypt your wallet or to keep your wallet on an encrypted disk image created by third-party software, such as [TrueCrypt](http://www.truecrypt.org/) (open source) or [Jetico BestCrypt](http://www.jetico.com/encryption-bestcrypt/) (commercial). This also applies to the storage of passwords, private keys and other data that can be used to access any of your Bitcoin balances.
 
 Assuming that you have installed the Windows Bitcoin client and run it at least once, the process is described below.
 
 <p><b>To mount the Bitcoin data directory on an encrypted drive</b></p>
 <ol start=1 type=1>
-<li>Use the third-party disk image encryption program of your choice to create and mount an encrypted disk image of at least 100 MB in size.</li>
+<li>Use the third-party disk image encryption program of your choice to create and mount an encrypted disk image of at least 5GB in size. This procedure stores the entire block chain database with the wallet.dat file so the required size of the encrypted disk image required may grow in the future.</li>
 <li>Locate the Bitcoin data directory, and copy the directory with all contents to the encrypted drive.
 <p>For help finding this directory, see <b>[[Locating Bitcoin's Data Directory|Securing_your_wallet#Locating_Bitcoin_s_data_directory]]</b>.</p></li>
 <li>Create a Windows shortcut that starts Bitcoin with the <code>-datadir</code> parameter and specifies the encrypted drive and directory.
@@ -161,7 +159,7 @@ Assuming that you have installed the Windows Bitcoin client and run it at least 
 <li>Shut down Bitcoin, and then restart it from the new shortcut.</li>
 </ol>
 
-After doing this, any time you want to use Bitcoin, you must first mount the Bitcoin encrypted disk image using the same drive designation, and then run Bitcoin from the shortcut that you created, so that it can find its data and your wallet. :-)
+After doing this, any time you want to use Bitcoin, you must first mount the Bitcoin encrypted disk image using the same drive designation, and then run Bitcoin from the shortcut that you created, so that it can find its data and your wallet.
 
 ## Locating Bitcoin's data directory
 
