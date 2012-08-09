@@ -202,28 +202,27 @@ By default Bitcoin will put its data here:
 
 ##Backup
 
-**Note**: Using a service like Dropbox to back up your Bitcoin data is not recommended as doing so introduces [security concerns](https://en.wikipedia.org/wiki/Dropbox_(service)#Reception) such as:
+**Note**: Using Dropbox to back up your Bitcoin data is not recommended as doing so introduces the following [security concerns](https://en.wikipedia.org/wiki/Dropbox_(service)#Reception):
 
-1. the fact that they store your encryption key (meaning that a disgruntled Dropbox employee or an attacker who gained access to the system could decrypt your Dropbox data and steal your Bitcoins)
-1. the fact that the Dropbox client only needs a password for the first login. After it authenticates once, the server assigns it a token which it uses to show that, at one time, its user knew the password rather than sending the actual password (meaning that if you ever use the Dropbox client on another PC, that PC's users can access your Dropbox - even if you change your password - and can steal your Bitcoins or get a virus that will steal your Bitcoins).
+1. Dropbox stores your encryption key (meaning that a disgruntled Dropbox employee or an attacker who gained access to the system could decrypt your Dropbox data and steal your bitcoins)
+1. the Dropbox client only needs a password for the first login. After it authenticates once, the server assigns it a token which it uses to show that, at one time, its user knew the password rather than sending the actual password (meaning that if you ever use the Dropbox client on another PC, that PC's users can access your Dropbox - even if you change your password - and can steal your bitcoins or get a virus that will steal your bitcoins).
 
-For these reasons, an alternative is Wuala which does not store your encryption key and requires a password each time.  With Wuala, the client can be set to remember your password but the server will check each time to make sure that the client is sending the correct password. Like Dropbox, the basic, lowest-storage-space account with Wuala is free of charge, and coincidentally, Wuala [is experimenting with allowing users to pay for "upgraded" plans using Bitcoin.](http://www.wuala.com/en/bitcoin)
+For these reasons, an alternative that always uses password authentication such as [Wuala](http://www.wuala.com/en/bitcoin) should be used. Wuala does not store your encryption key and authenticates with the password each time the program is started.
 
-Whether you use Dropbox as your backup or not, use what Steve Gibson calls "pre-Internet encryption" (which he [discussed in the context of Dropbox's security concerns](http://itknowledgeexchange.techtarget.com/security-corner/cloud-security-and-privacy-do-they-exist/)) and use some form of encryption on the files before you back them up -- just in case someone other than yourself ever gains access to that backup. Make sure to pick a password that's memorable but secure.
+Whether you use Dropbox as your backup or not, it is advised to use what Steve Gibson calls "pre-Internet encryption" which means to use some form of encryption on your files before you back them up, in case an attacker gains access to that backup. Make sure to pick a password that's memorable but secure.
 
-The only file you need to back up is "wallet.dat". Ensure that Bitcoin is closed, copy this file somewhere else, encrypt it, and put it somewhere safe. Ideally, you would put this file in two places: one nearby, and one 100+ miles away.
+The only file you need to back up is "wallet.dat" which can be done one of two ways. To make a copy of the wallet.dat file, ensure that Bitcoin is closed, copy this file somewhere else. The other way is to use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin. 
 
-You can use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin.
+Once a copy has been made, encrypt it, and put it in two or more safe locations. Consider the risk due to theft, fire, or natural disaster in proportion to the value of bitcoins stored in the wallet.
 
 ### General Solutions
 
-Your wallet.dat file is not encrypted by Bitcoin, by default.  The most current release of the Bitcoin client provides a method to encrypt with a passphrase the private keys stored in the wallet.  Anyone who can access a wallet which is not using the passphrase encryption can easily steal all of your coins.  Use one of these encryption programs if there is any chance someone might stumble upon your wallet.
+Your wallet.dat file is not encrypted by the Bitcoin program, by default but the most current release of the Bitcoin client provides a method to encrypt with a passphrase the private keys stored in the wallet. Anyone who can access an unencrypted wallet can easily steal all of your coins.  Use one of these encryption programs if there is any chance someone might gain access to your wallet.
 
 * [7-zip](http://www.7-zip.org/) - Supports strongly-encrypted archives.
 * [AxCrypt by Axantum](http://www.axantum.com/axcrypt/)
 * [lrzip](http://lrzip.kolivas.org) - Compression software for Linux and OSX that supports very high grade password protected encryption
 * [TrueCrypt](http://www.truecrypt.org/) - Volume-based on-the-fly encryption (for advanced users)
-* [WinRar](http://www.rarlab.com/) - Commonly used archive software that supports verification records and encryption.
 
 There is also a list of [[open source encryption software.|OpenSourceEncryptionSoftware]]
 
