@@ -1,22 +1,21 @@
 **L**inux **A**pache **M**ySQL **P**HP + Bitcoin tutorial.
 
-For the sake of this tutorial we assume an Ubuntu server running with PHP. The use case here is integrating a shopping system to accept Bitcoins. We assume some knowledge of Bitcoin and experience in PHP.
+For this introduction we assume that you have GNU/Linux server with Apache and PHP and that you wish to interact with the Bitcoin network from a web application. We assume some knowledge of Bitcoin and experience in PHP.
 
-You can substitute any other language here for PHP. See the associated [[API reference|API_reference_(JSON-RPC)]] pages for info on other languages.
+While this is written for PHP, the same principles apply for other languages. See the associated [[API reference|API_reference_(JSON-RPC)]] pages for info on other languages.
 
-You will run Bitcoin in daemon mode. The way PHP communicates is through localhost HTTP requests. You use a library called [JSON-RPC](http://jsonrpcphp.org/) to call the various functions. It will respond back with a [JSON object](http://en.wikipedia.org/wiki/Json).
+The easiest way to get started is to run Bitcoin in daemon mode with which PHP communicates via local HTTP requests. A library called [JSON-RPC](http://jsonrpcphp.org/) is used to call the various functions of bitcoind, which will respond back with a [JSON object](http://en.wikipedia.org/wiki/Json).
 
 ## Setting up Bitcoin
 
-You need the bitcoind command-line daemon.  You can either compile it from source or download a binary from the bitcoin.org homepage.
+You can download the Bitcoin daemon from the [[homepage|index]] and run one of the included binaries or compile your own from the included source code. See [[Running_Bitcoin]] for details on configuring bitcoind.
 
-See [[Running_Bitcoin]] for details on configuring bitcoin.
-
-Before running bitcoind you will need to create a file in the bitcoin data directory (~/.bitcoin/bitcoin.conf on Linux):
+Before running bitcoind you will need to create a configuration file in the Bitcoin data directory (~/.bitcoin/bitcoin.conf on Linux):
 <source lang="bash">
 rpcuser=user
 rpcpassword={you MUST pick a unique password to be secure}
 </source>
+If you miss this step, bitcoind will remind you.
 
 Now run bitcoind:
 <source lang="bash">
@@ -25,17 +24,19 @@ $ ./bitcoind
 1. wait a few seconds for it to start up
 $ ./bitcoind getinfo
 
-1. various info shown
+1. various information will be shown. If you get an error, try again until you see some useful output.
 $ ./bitcoind help
 
-1. help on commands
+1. get help on commands, note no dash before help
 </source>
 
-Bitcoin is now initialising and you must wait until "blocks" is at the [current count](http://blockexplorer.com/q/getblockcount).
+Bitcoin will begin synchronizing with the network and downloading a complete copy of the block chain. As of August 2012, more than 2gb of data must be downloaded and verified during this process. It may take two or more hours to complete. You will know when it's done when the block count reaches the [current count](http://blockexplorer.com/q/getblockcount).
 
-## First steps
+## Getinfo (Bitcoind's version of Hello World)
 
-Assuming Bitcoin has finished the initialisation process; download the file jsonRPCClient.php from [JSON-RPC PHP](http://jsonrpcphp.org/). The other files can be safely discarded.
+Assuming Bitcoin has finished the initialisation process; download the file jsonRPCClient.php from [JSON-RPC PHP](http://jsonrpcphp.org/) and place it in a web-accessible location.
+
+Second, create a PHP file with the following and visit it with your browser to test.
 
 <source lang="php">
 	require_once 'jsonRPCClient.php';
@@ -49,7 +50,7 @@ Assuming Bitcoin has finished the initialisation process; download the file json
 
 ## Precision
 
-Bitcoin amounts can range from 1 (0.00000001 BTC) to nearly 2,100,000,000,000,000 (21,000,000 BTC).  To avoid rounding errors, you must make sure your PHP implementation supports the full range of bitcoin values without losing precision.  Most PHP implementations use IEEE 64-bit double-precision floating point numbers, which have 53 bits of precision, which is enough to correctly represent the full range of bitcoin values.
+Bitcoin amounts can range from 1 (0.00000001 BTC) to nearly 2,100,000,000,000,000 (21,000,000 BTC).  To avoid rounding errors, you must make sure your PHP implementation supports the full range of Bitcoin values without losing precision.  Most PHP implementations use IEEE 64-bit double-precision floating point numbers with 53 bits of precision, which is enough to correctly represent the full range of bitcoin values.
 
 See [[Proper_Money_Handling_(JSON-RPC)]] for more information.
 
