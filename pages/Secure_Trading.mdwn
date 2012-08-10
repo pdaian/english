@@ -25,18 +25,18 @@ A PGP key-pair serves two very important functions:
 
 This allows you to both conduct business privately (encryption), and give out promises that you cannot deny making (signature).
 #### Installing GPG
-Virtually all Linux distributions include [GPG](http://en.wikipedia.org/wiki/GNU_Privacy_Guard) in their default configurations. However windows doesn't provide it by default.
+Virtually all GNU/Linux distributions include [GPG](http://en.wikipedia.org/wiki/GNU_Privacy_Guard) in their default configurations, but Microsoft Windows users will need to install additional software.
 
 ##### Microsoft Windows:
-On windows, the recommend package that contains gpg is the [Git](http://en.wikipedia.org/wiki/Git_%28software%29) package by the [msysgit project](http://code.google.com/p/msysgit).  This package contains a group of unix tools that are very useful for any windows installation.
+On Windows, the recommend package that contains GPG is the [Git](http://en.wikipedia.org/wiki/Git_%28software%29) package by the [msysgit project](http://code.google.com/p/msysgit).  This package contains a collection of Unix tools that are very useful for any Windows installation.
 
 * Navigate to [[msysgit|Git]] https://code.google.com/p/msysgit/downloads/list
 * Select the latest *Git* package. (Git-1.7.4-preview20110204.exe)
 * When installing Git on the *Adjusting your PATH environment* screen, select: *Run Git and included Unix tools from the Windows Command Prompt*<br />
-This option will install both Git and its supporting tools that include [[gpg]] into the windows PATH file.  This will enable any windows application to access gpg.<br />
-On some (rare) systems this option that replaces the default windows tools will cause issues... However on most it should be fine.
+This option will install both Git and its supporting tools that include [[gpg]] into the Windows file PATH.  This will enable any Windows application to access GPG.<br />
+It is possible that some other software on your system has installed GPG before. If you think this may be the case, it is advised to use the search tool or command prompt to find or run GPG respectively.
 
-* After installation, gpg can be used by entering 'gpg' into any windows cmd shell.
+* After installation, GPG can be used by entering 'gpg' into any Windows Command Prompt (cmd).
 
 #### Setting up OpenPGP email
 Once you have GPG installed on your system, it is recommended that you use Thunderbird that works on both Windows and Linux systems:
