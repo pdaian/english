@@ -58,9 +58,9 @@ If your PHP implementation does not support 64-bit numbers (again, this is very 
 
 ## Accounts
 
-In Bitcoin, money is sent to addresses. Your balance is the total of all the money in all the addresses in your wallet.
+In Bitcoin, money is sent to addresses and many addresses can be held by one wallet. The balance shown by default in bitcoind is the sum of the bitcoins in all the addresses in the wallet.
 
-Bitcoin goes another step. You can have [[accounts|Accounts_explained]]. Each account holds multiple addresses and acts like a mini-Bitcoin.
+Bitcoin goes another step. You can have [[accounts|Accounts_explained]]. Each account holds multiple addresses and acts like a mini-bitcoind. 
 
 <source lang="bash">
 $ ./bitcoind listaccounts
@@ -74,17 +74,19 @@ $ ./bitcoind getbalance user889
 1. get the sum of all the money in the addresses owned by the account user889
 </source>
 
-In your shopping system, each user should have a unique username. You then query bitcoin for a unique address using $bitcoin->getaccountaddress("user889"); [the first address for user889](gets) or $bitcoin->getnewaddress("user889"); [a new address for user889](creates).
+In your application, each user should have a unique username. You may then query bitcoind for a unique address using $bitcoin->getaccountaddress("user889"); [the first address for user889](gets) or $bitcoin->getnewaddress("user889"); [a new address for user889](creates).
 
 The customer then deposits to this address.
 
 You can check the funds for that customer by doing $bitcoin->getbalance("user889", 4);. The 4 indicates the minimum number of confirmations we will accept before assuming this payment is valid.
 
+If you will be using accounts for multiple deposits and withdrawals long-term, you may want to consider tracking user balances in your own database. This simplifies transfers between your application's accounts and decouples your accounts from the Bitcoin wallet.
+
 ### getnewaddress vs getaccountaddress
 
-Using getnewaddress helps increase the anonymity of your customers by making it hard to track their payments from the POV of a malicious agent. However running it too often will cause your wallet to become filled with many empty addresses.
+Using getnewaddress helps increase maintain anonymity of your users by making it hard for a malicious agent to track payments flowing through your application. Running getnewaddress too often, however, will cause your wallet to become filled with many empty addresses.
 
-I recommend that you do something like:
+It is therefore recommended to in some way limit the number of unfunded addresses each user can request. Here is an example using sessions:
 <source lang="php">
 <?php
 	require_once('jsonRPCClient.php');
