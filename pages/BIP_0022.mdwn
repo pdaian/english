@@ -46,7 +46,7 @@ getblocktemplate MUST return a JSON Object containing the following keys:
 |sizelimit |Number |number of bytes allowed in blocks
 |transactions |Array of Objects |Objects containing [[information for Bitcoin transactions|#Transactions_Object_Format]](excluding coinbase)
 |version |Number |always 1 or 2 (at least for bitcoin) - clients MUST understand the implications of the version they use (eg, comply with [[BIP_0034]]for version 2)
-|coinbaseaux |Object |data that SHOULD be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys. This does not include the block height, which is required to be included in the scriptSig by [[BIP_0034]]. It is advisable to encode values inside "PUSH" opcodes, so as to not inadvertantly expend SIGOPs.
+|coinbaseaux |Object |data that SHOULD be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys. This does not include the block height, which is required to be included in the scriptSig by [[BIP_0034]]. It is advisable to encode values inside "PUSH" opcodes, so as to not inadvertantly expend SIGOPs (which are counted toward limits, despite not being executed).
 |coinbasetxn |String or Object |[[information for coinbase transaction|#Transactions_Object_Format]]
 |coinbasevalue |Number |total funds available for the coinbase (in Satoshis)
 |workid |String |if provided, this value must be returned with results (see [[Block Submission|#Block_Submission]])
