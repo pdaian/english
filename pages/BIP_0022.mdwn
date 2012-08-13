@@ -61,7 +61,7 @@ The Objects listed in the response's "transactions" key contains these keys:
 |Key |Type |Description
 |---|---|---
 |data |String |transaction data encoded in hexadecimal (byte-for-byte)
-|depends |Array of Numbers |other transactions (by 1-based index in "transactions" list) that must be present in the final block if this one is; if key is not present, dependencies are unknown and clients MUST NOT assume there aren't any
+|depends |Array of Numbers |other transactions before this one (by 1-based index in "transactions" list) that must be present in the final block if this one is; if key is not present, dependencies are unknown and clients MUST NOT assume there aren't any
 |fee |Number |difference in value between transaction inputs and outputs (in Satoshis); for coinbase transactions, this is a negative Number of the total collected block fees (ie, not including the block subsidy); if key is not present, fee is unknown and clients MUST NOT assume there isn't one
 |hash |String |hash/id encoded in little-endian hexadecimal
 |required |Boolean |if provided and true, this transaction must be in the final block
