@@ -45,7 +45,7 @@ getblocktemplate MUST return a JSON Object containing the following keys:
 |sigoplimit |Number |number of sigops allowed in blocks
 |sizelimit |Number |number of bytes allowed in blocks
 |transactions |Array of Objects |Objects containing [[information for Bitcoin transactions|#Transactions_Object_Format]](excluding coinbase)
-|version |Number |always 1 or 2 (at least for bitcoin) - if 2, clients MUST comply with [[BIP_0034]]
+|version |Number |always 1 or 2 (at least for bitcoin) - clients MUST understand the implications of the version they use (eg, comply with [[BIP_0034]]for version 2)
 |coinbaseaux |Object |data that SHOULD be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys. This does not include the block height, which is required to be included in the scriptSig by [[BIP_0034]].
 |coinbasetxn |String or Object |[[information for coinbase transaction|#Transactions_Object_Format]]
 |coinbasevalue |Number |total funds available for the coinbase (in Satoshis)
