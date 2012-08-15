@@ -23,7 +23,7 @@ If you have an encrypted wallet (recommended), you need to unlock it temporarily
 Another alternative is to use a bash variable:
 
 	read x
-	(input you passphrase)
+	(input your passphrase)
 	bitcoind walletpassphrase "$x" 120   # Do not set the timeout too long or too short.
 
 ## Import Private key(s)
