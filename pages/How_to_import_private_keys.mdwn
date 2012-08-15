@@ -1,8 +1,8 @@
 [[!template id=stub]]
 
-When using [[Cold_storage]], [[Paper_wallet]] or [Vanity Bitcoin Address](https://bitcointalk.org/index.php?topic=25804.0) you need to import [[Private_key]]s. Since Bitcoin 0.6.0, you can import Private keys using build-in RPC command [[importprivkey]]. Before Bitcoin 0.6.0, you need to rely on third-party [[wallet.dat]] manipulation tool such as [[Pywallet]]. 
+If you are using [[Cold_storage]], a [[Paper_wallet]] or generating [vanity addresses](https://bitcointalk.org/index.php?topic=25804.0) you may have a need to import a [[Private_key]]. Since Bitcoin 0.6.0, you can import private keys using build-in RPC command [[importprivkey]]. Before Bitcoin 0.6.0, you needed to rely on third-party [[wallet.dat]] manipulation tool such as [[Pywallet]]. 
 
-As of August 2012, possibly the easiest way to import a private key is using [[Blockchain.info]].  Import can be done through the "Import/Export" screen, and when successful, bitcoins can be immediately sent to a new address outside Blockchain.info without needing to wait for any confirmations.  The [[MtGox]] Bitcoin exchange will allow individual private keys to be redeemed with a wait time of 6 confirmations. There is an API method to import an entire wallet.dat as well.
+As of August 2012, possibly the easiest way to import a private key is using [[Blockchain.info]]'s My Wallet service. When successully imported through the "Import/Export" screen, the bitcoins assigned to a private key can be immediately sent to any Bitcoin address. The [[MtGox]] Bitcoin exchange will allow individual private keys to be redeemed but since they must sweep the address, the user must wait 6 confirmations for access to the funds. There is an API method to import an entire wallet.dat as well.
 
 This article describes how to import a private key through the RPC API of bitcoind, which is a topic for advanced users.
 
