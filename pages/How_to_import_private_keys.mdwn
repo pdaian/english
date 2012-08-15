@@ -16,7 +16,7 @@ Bitcoin-QT does not enable its RPC interface by default. To enable it:
 * Close Bitcoin-QT and restart it with *bitcoin-qt -server*.
 
 ## Unlock your wallet
-If you have an encrypted wallet (recommended), you need to unlock it temporarily before importing private keys. The RPC command for unlocking an encrypted wallet is *walletpassphrase <passphrase> <timeout>*. Typing this directly in a bash terminal will leave your wallet passphrase directly in the bash history but there is a trick. Simply add a space before the command:
+If you have an encrypted wallet (recommended), you need to unlock it temporarily before importing private keys. The RPC command for unlocking an encrypted wallet is *walletpassphrase <passphrase> <timeout>*. Typing this directly in a bash terminal will leave your wallet passphrase directly in the bash history but there are a couple of techniques you can use to avoid this. Simply add a space before the command:
 
 	(space)bitcoind walletpassphrase yourpassphrase 120
 
