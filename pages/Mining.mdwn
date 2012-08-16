@@ -1,11 +1,11 @@
 [[!template id=stub]]
 [[!img "Quick-and-dirty-4x5970-cooling.jpg" size=120x120 class="right" title="A quick and dirty mining rig"]]
 ## Introduction
-Transaction recording, or **mining**, is the process of adding transaction records to Bitcoin's journal of past transactions. This journal of past transactions is called the [[block_chain]] as it is a chain of [[blocks|block]]. The block chain serves to [[confirm|confirmations]] those transactions to the rest of the network as having taken place. Through this public journal, Bitcoin nodes can distinguish legitimate Bitcoin transactions from attempts to respend coins that have already been spent elsewhere.
+**'Mining** or generating, is the process of adding transaction records to Bitcoin's public ledger of past transactions. This ledger of past transactions is called the [[block_chain]] as it is a chain of [[blocks|block]]. The block chain serves to [[confirm|confirmations]] those transactions to the rest of the network as having taken place. Bitcoin nodes use the block chain to distinguish legitimate Bitcoin transactions from attempts to respend coins that have already been spent elsewhere.
 
-Mining is intentionally designed to be resource-intensive and difficult. Individual [[blocks]] must contain a [[proof of work|proof_of_work]] to be considered valid and this proof of work is always verified by other Bitcoin nodes. 
+Mining is intentionally designed to be resource-intensive and difficult. Individual [[blocks]] must contain [[proof of work|proof_of_work]] in the form of a brute-force hash to be considered valid. This proof of work is verified by other Bitcoin nodes each time they receive a block. 
 
-Mining is so called because it resembles gold mining in the sense that it requires exertion and slowly yields new currency.
+This process is called mining because it resembles gold mining in that it requires exertion and slowly makes new currency available. As the block reward drops over the next decades, the purpose of mining will shift more toward transaction processing rather than the seeding of the Bitcoin currency.
 
 ## History
 Bitcoin's public journal was started on January 3rd, 2009 at 18:15 UTC presumably by [[Satoshi_Nakamoto]].  This page (block) is known as the [[genesis_block]].  The first transaction recorded on the first page (block) was a single transaction paying the reward of 50 new Bitcoins to its creator.
