@@ -1,8 +1,8 @@
-To protect against [[double_spending]], a transaction should not be considered as **confirmed** until a certain number of blocks in the block chain confirm, or verify that the transaction.  
+After a transaction is broadcast to the Bitcoin network, it may be included in a block that is published to the network. When that happens it is said that one confirmation has occurred for the transaction. With each subsequent block that is found, the number of confirmations is increased by one. To protect against [[double_spending]], a transaction should not be considered as **confirmed** until a certain number of blocks confirm, or verify that transaction.  
 
-The classic bitcoin client will show a transaction as "n/unconfirmed" until 6 blocks confirm the transaction.  Merchants and exchanges who accept [[bitcoins as payment|trade]] can set their own threshold.  When there's loss due to double spending is nominal, payment confirms instantly as soon as it is seen on the network.  The [[eWallet]] provider, [[MyBitcoin]] confirms after one block.  Most [[exchanges|tags/Exchanges]] and other merchants who bear the risk from double spending require 6 blocks, with the exception of [[CoinCard]] which considers payment confirmed after just two blocks.
+The classic bitcoin client will show a transaction as "n/unconfirmed" until 6 blocks confirm the transaction.  Merchants and exchanges who accept [[bitcoins as payment|trade]] can set their own threshold as to how many confirmations are required until funds can be considered valid.  When potential loss due to double spending as nominal, as with very inexpensive or non-fungible items, payments can be considered confirmed as soon as it is seen on the network.  Most [[exchanges|tags/Exchanges]] and other merchants who bear the risk from double spending require 6 or more blocks. 
 
-Coins generated aren't confirmed for 100 blocks, and the classic bitcoin client won't show the generated coins as confirmed until the 120 block.
+Coins generated aren't considered confirmed by the Bitcoin protocol for 100 blocks. It is advisable to wait some additional time for a better chance that the transaction will be propogated by all nodes. The classic bitcoin client won't show generated coins as confirmed until the 120th block.
 
 ##See Also
 
