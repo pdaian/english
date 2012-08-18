@@ -1,0 +1,9 @@
+As exciting as this idea is, it brushes up against a known impossibility result in theoretical cryptography. In order to pay for itself, the agent would need to be capable of producing digitally signed messages (e.g., bitcoin transactions). In order to safely spawn new instances on rental servers, it would have to function even if the the server host is untrusted. What you would want is a way of embedding the private key in the agent's code, such that the agent is able to sign messages but the host cannot extract the key and steal the agent's endowment. This idea is known as program obfuscation, and unfortunately, it is generally impossible. See [[1]] "On the Impossibility of Program Obfuscation" by Boaz Barak, et al., or [[2]] an informal description of the proof.
+
+This is not a problem with StorJ as it was originally described. The "agent" is a program that runs on a trusted host, and it rents untrusted "storage" or "bandwidth" services (e.g., Amazon S3). That's fine. What it can't do is rent "execution" services (e.g., Amazon EC2) in order to spawn new instances of itself. The "artificial lifeform" language is misleading, and leads to confusion (e.g., [[3]]). This page should be removed or heavily reworded to make this distinction clear.
+
+[[1]] http://www.wisdom.weizmann.ac.il/~oded/PS/obf4.pdf B. Barak, O. Goldreich R. Impagliazzo, S. Rudich, A. Sahai, S. Vadhan and K. Yang, On the (Im)possibility of Obfuscating Programs, CRYPTO 2001 
+
+[[2]] http://www.cs.princeton.edu/~boaz/Papers/obf_informal.html
+
+[[3]] http://www.reddit.com/r/Bitcoin/comments/yf0ww/
