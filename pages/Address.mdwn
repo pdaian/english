@@ -1,19 +1,19 @@
 A **Bitcoin address**, or simply **address**, is an identifier of approximately 34 alphanumeric characters, beginning with the number 1 or 3, that represents a possible destination for a Bitcoin payment.
 Addresses can be generated at no cost by any user of Bitcoin.
-For example, using [[wxBitcoin]], one can click "Get Address" and be assigned an address.
-It is also possible to get a Bitcoin address simply by creating an account at an exchange, to which a Bitcoin address will be automatically assigned.
+For example, using [[Bitcoin-Qt]], one can click "Get Address" and be assigned an address.
+It is also possible to get a Bitcoin address using an account at an exchange or online wallet service.
 
 An example of a Bitcoin address is *37muSN5ZrukVTvyVh3mT5Zc5ew9L9CBare*.
 
 ##A Bitcoin address is like an e-mail address
-Like e-mail, you can send Bitcoins to a person by sending Bitcoins to their address.  Somewhat unlike e-mail, one person can, and is encouraged, to have an unlimited number of different Bitcoin addresses.  It is recommended that you use a unique address for each transaction.  Most Bitcoin software and websites will help with this, by generating a brand new address each time you perform a transaction, or will provide a button you can click for a new one.
+Like e-mail, you can send bitcoins to a person by sending bitcoins to one of their addresses. A person can have many different Bitcoin addresses and, for increased privacy, it is recommended that you use a unique address for each transaction.  Most Bitcoin software and websites will help with this by generating a brand new address each time you perform a transaction. Some services provide a facility to request a new Bitcoin address for use with their service when desired.
 
-When using a web site that accepts Bitcoins or holds Bitcoin balances on your behalf, that website will assign a Bitcoin address to your account, so you can transfer funds into your account at the site.  Very much unlike e-mail, this address will probably change every time funds come in, but the previous addresses will usually remain permanently valid for receiving additional funds.  When you send Bitcoins to your account at a web site, they will usually be credited to your account at that web site within an hour (depending on the site's policy) to ensure that the transaction is [[confirmed|confirmation]].
+When using a web site that accepts bitcoins or holds Bitcoin balances on your behalf, that website will assign a Bitcoin address to your account, so you can transfer funds into your account at the site.  Very much unlike e-mail, this address may change every time funds come in so care should be taken when sending additional funds to a previously-used address.  When you send Bitcoins to your account at a web site, they will usually be credited to your account at that web site after the transaction is [[confirmed|confirmation]].
 
 ##Addresses can be created offline
-Creating addresses can be done without any Internet connection or contact with the Bitcoin network.  Creating addresses does not consume any resources on the network - the network only knows about an address when it is first used in a transaction.  Because addresses can be created so easily and at no cost, it is trivial to create temporary "throwaway" addresses that can be discarded if never needed.
+Creating addresses can be done without an Internet connection and do not require any contact or registration with the Bitcoin network.  The network only knows about an address when it is first used in a transaction.  Because addresses can be created easily and at minimal cost, it is not uncommon to create temporary addresses that can be discarded if unused.
 
-It is also possible to create large batches of addresses offline, using other software tools.  Generating batches of addresses is useful in several scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer who chooses a "pay with Bitcoin" option.
+It is also possible to create large batches of addresses offline using other software tools.  Generating batches of addresses is useful in several scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer who chooses a "pay with Bitcoin" option.
 
 ##Addresses are case sensitive and exact
 Bitcoin addresses are case-sensitive.  Bitcoin addresses should be copied and pasted using the computer's clipboard wherever possible.
@@ -23,18 +23,21 @@ If you hand-key a Bitcoin address, and each character is not transcribed exactly
 The probability that a mistyped address is accepted as being valid is 1 in 2<sup>32</sup> or approximately 1 in 4.29 billion.
 
 ##Most addresses have a "private key"
-For most addresses, there is a corresponding secret number known as a [[private_key]].
-When using a Bitcoin client, private key numbers are typically stored in the [[wallet_file]].  The private key has a special purpose - it is mathematically needed to create transactions acceptable to the Bitcoin network that respend the funds originally sent to the address.  If the private key to an address is lost (for example, in a hard drive crash and the user didn't have backups of the wallet file), any associated Bitcoins are lost forever.
+For most addresses, there is a corresponding secret number known as a [[private_key]] that is required to spend funds previously sent to an address.
+
+When using a Bitcoin client, private keys are typically stored in the [[wallet_file]].  The private key has a special purpose - it is mathematically needed to create valid transactions that spend the funds originally sent to the address.  If the private key to an address is lost (for example, in a hard drive crash, fire or other natural disaster), any associated Bitcoins are effectively lost forever.
 
 ##What's in an address
 Most Bitcoin addresses are 34 characters.
 They consist of random digits and uppercase and lowercase letters, with the exception that the uppercase letter "O", uppercase letter "I", lowercase letter "l", and the number "0" are never used to prevent visual ambiguity.
 
-Some Bitcoin addresses can be shorter than 34 characters - these are completely valid.
+Some Bitcoin addresses can be shorter than 34 characters and still be valid.
 A significant percentage of Bitcoin addresses are only 33 characters, and some older addresses may be even shorter.
 Every Bitcoin address stands for a number - somewhat like an account number.  These shorter addresses are valid simply because they stand for numbers that happen to start with zeroes, and when the zeroes are omitted, the encoded address gets shorter.
 
-Several of the characters inside a Bitcoin address are used as a checksum so that typographical errors can be automatically detected and rejected.
+Several of the characters inside a Bitcoin address are used as a checksum so that typographical errors can be automatically found and rejected.
+
+If you would like to validate a Bitcoin address in an application, it is advisable to use a method from [this thread](https://bitcointalk.org/index.php?topic=1026.0) rather than to just check for string length, allowed characters, or that the address starts with a 1.
 
 ##See Also
 
