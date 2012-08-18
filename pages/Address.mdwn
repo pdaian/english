@@ -22,6 +22,10 @@ If you hand-key a Bitcoin address, and each character is not transcribed exactly
 
 The probability that a mistyped address is accepted as being valid is 1 in 2<sup>32</sup> or approximately 1 in 4.29 billion.
 
+##Address validation
+If you would like to validate a Bitcoin address in an application, it is advisable to use a method from [this thread](https://bitcointalk.org/index.php?topic=1026.0) rather than to just check for string length, allowed characters, or that the address starts with a 1.
+
+
 ##Most addresses have a "private key"
 For most addresses, there is a corresponding secret number known as a [[private_key]] that is required to spend funds previously sent to an address.
 
@@ -36,8 +40,6 @@ A significant percentage of Bitcoin addresses are only 33 characters, and some o
 Every Bitcoin address stands for a number - somewhat like an account number.  These shorter addresses are valid simply because they stand for numbers that happen to start with zeroes, and when the zeroes are omitted, the encoded address gets shorter.
 
 Several of the characters inside a Bitcoin address are used as a checksum so that typographical errors can be automatically found and rejected.
-
-If you would like to validate a Bitcoin address in an application, it is advisable to use a method from [this thread](https://bitcointalk.org/index.php?topic=1026.0) rather than to just check for string length, allowed characters, or that the address starts with a 1.
 
 ##See Also
 
