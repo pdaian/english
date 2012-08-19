@@ -8,7 +8,7 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 
 ####Major structural changes
 
-* , instead of committing to new transactions, commit to the summaries of open transactions: [(1)](https://bitcointalk.org/index.php?topic=505.0) [(2)](https://bitcointalk.org/index.php?topic=21995.0) [(3)](https://en.bitcoin.it/wiki/User:DiThi/MTUT#PROPOSAL:_Merkle_tree_of_unspent_transactions_.28MTUT.29.2C_for_serverless_thin_clients_and_self-verifiable_prunned_blockchain.) [(4)](https://bitcointalk.org/index.php?topic=88208.0)
+* "Flip the chain", instead of committing to new transactions, commit to the summaries of open transactions: [(1)](https://bitcointalk.org/index.php?topic=505.0) [(2)](https://bitcointalk.org/index.php?topic=21995.0) [(3)](https://en.bitcoin.it/wiki/User:DiThi/MTUT#PROPOSAL:_Merkle_tree_of_unspent_transactions_.28MTUT.29.2C_for_serverless_thin_clients_and_self-verifiable_prunned_blockchain.) [(4)](https://bitcointalk.org/index.php?topic=88208.0)
 * Increased efficiency for merged mining: restructure the primary header to make the bitcoin specific data non-mandatory. (e.g. the block chain specific stuff would go into second header connected by a header tree), making the primary headers pure timestamps and nonces.
 * Switch to block hashing algorithm secure against block withholding attacks.
 
@@ -43,8 +43,8 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * Difficulty adjustment should adapt to sudden hashrate loss. Note: all altchains which have attempted this have created significant security vulnerabilities in the process. Also interested parties could encourage mining by including high fee transactions in every block so avoiding need for this change.
 * Scripts should be fully enabled after a careful audit.
 * Miners/relays should not be able to inject extra arbitrary data into transactions?
-* Use the previous block hash as an explicit or implicit prev_in in coinbases when hashing them to make it ~impossible to get a duplicate coinbase, prevent duplicates consistently with the rest of the network without creating the need for a pruning node to remember coinbase hashes. (doesn't really require a hardfork)
-* coinbases must be parseable. (doesn't really require a hardfork)
+* Use the previous block hash as an explicit or implicit prev_in in coinbases when hashing them to make it ~impossible to get a duplicate coinbase, thus removing the need for a pruning node to remember coinbase hashes to prevent duplicates consistently with the rest of the network
+* coinbases must be parseable.
 This changes would involve converting old blocks:
 
 * uint64_t for timestamp field in blocks.
