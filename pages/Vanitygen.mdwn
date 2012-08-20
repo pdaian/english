@@ -22,3 +22,22 @@ Windows x86+x64 binaries [here](https://github.com/downloads/samr7/vanitygen/van
 Get the source from [GitHub](https://github.com/samr7/vanitygen).  Includes Makefiles for Linux and Mac OS X.
 
 Main discussion at [BitCoinTalk](https://bitcointalk.org/index.php?topic=25804.0)
+
+## Expected keysearch rate
+What key search rate can I expect from hardware X?
+
+Detailed list forthcoming.  Some ballpark estimates are listed below.
+
+	Dual-core desktop CPUs, 32-bit mode: 100-250 Kkey/s.
+	Dual-core desktop CPUs, 64-bit mode: 150-450 Kkey/s.
+	Quad-core desktop CPUs, 32-bit mode: 200-400 Kkey/s.
+	Quad-core desktop CPUs, 64-bit mode: 300-750 Kkey/s.
+	NVIDIA GT200 GPUs: up to 6.5 Mkey/s
+	AMD Radeon 58XX, 68XX GPUs: up to 23.5 Mkey/s.
+	AMD Radeon 69XX GPUs: up to 19.5 Mkey/s.
+
+As vanitygen performs a lot of large integer arithmetic, running it in 64-bit mode makes a huge difference in key search rate, easily a 50% improvement over 32-bit mode.  If you are using a 64-bit edition of Windows, and not using a GPU, be sure to use vanitygen64.exe.
+
+Radeon 58XX outperforms Radeon 69XX by a very comfortable margin.  Oclvanitygen is sensitive to integer multiply throughput, and Radeon 58XX can multiply concurrently with other operations.  At similar clocks, a hobbled Radeon 5830 will outperform a Radeon 6970.
+
+In custom builds, CPU performance will be less than expected if the OpenSSL library is an older version (<1.0.0d) or is not built with the appropriate optimizations enabled.
