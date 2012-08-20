@@ -15,3 +15,14 @@ As [[vanitygen]] performs a lot of large integer arithmetic, running it in 64-bi
 Radeon 58XX outperforms Radeon 69XX by a very comfortable margin.  Oclvanitygen is sensitive to integer multiply throughput, and Radeon 58XX can multiply concurrently with other operations.  At similar clocks, a hobbled Radeon 5830 will outperform a Radeon 6970.
 
 In custom builds, CPU performance will be less than expected if the OpenSSL library is an older version (<1.0.0d) or is not built with the appropriate optimizations enabled.
+
+
+## Keysearch Rates
+
+
+|CPU |GPU |keys/s |Comment
+|---|---|---|---
+|Core2 Duo 6600 |nVidia GTX 285 |3.5 Mkey/s |100% CPU / 90% GPU [(1)](https://bitcointalk.org/index.php?topic=25804.msg378114#msg378114)
+|Sempron 140 |AMD 5830 |5.5 Mkey/s |100% CPU / 60% GPU [(2)](https://bitcointalk.org/index.php?topic=25804.msg378114#msg378114)
+|Core i5 750 @2.67 GHz |nVidia GTS 250 |1.54 Mkey/s |110% CPU [(3)](https://bitcointalk.org/index.php?topic=25804.msg378820#msg378820)
+
