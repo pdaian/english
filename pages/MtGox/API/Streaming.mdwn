@@ -204,6 +204,7 @@ Changes to the market depth data are broadcast so an up-to-date market depth can
 |currency |the currency affected
 |item |the item (BTC)
 |price |price as a float, deprecated
+|total_volume_int |total volume at this price, after applying the depth update, can be used as a starting point before applying subsequent updates.
 |price_int |the price at which volume change happened (5 decimal for USD, 3 for JPY)
 |type |1=ask, 2=bid. deprecated, use type_str
 |type_str |type of order at this depth, either "ask" or "bid"
