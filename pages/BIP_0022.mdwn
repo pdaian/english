@@ -47,7 +47,7 @@ getblocktemplate MUST return a JSON Object containing the following keys:
 |coinbaseaux |Object |data that SHOULD be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys. This does not include the block height, which is required to be included in the scriptSig by [[BIP_0034]]. It is advisable to encode values inside "PUSH" opcodes, so as to not inadvertantly expend SIGOPs (which are counted toward limits, despite not being executed).
 |coinbasetxn |Object |[[information for coinbase transaction|#Transactions_Object_Format]]
 |coinbasevalue |Number |total funds available for the coinbase (in Satoshis)
-|workid |String |if provided, this value must be returned with results (see [[submitblock|#Block_Submission]])
+|workid |String |if provided, this value must be returned with results (see [[Block Submission|#Block_Submission]])
 
 
 #### Transactions Object Format
@@ -71,12 +71,14 @@ Only the "data" key is required, but servers should provide the others if they a
 ###Block Submission
 
 A JSON-RPC method is defined, called "submitblock", to submit potential blocks (or shares).
+It accepts two arguments:
+the first is always a String of the hex-encoded block data to submit;
+the second is an Object of parameters, and is optional if parameters are not needed.
 
 
 
 |Key |Type |Description
 |---|---|---
-|data |String |MUST be hex-encoded block data
 |mode |String |MUST be "submit" or omitted
 |workid |String |if the server provided a workid, it MUST be included with submissions
 
