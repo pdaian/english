@@ -16,14 +16,12 @@ Instead of sending a simple block header for hashing, the entire block structure
 
 ##Specification
 
-###JSON-RPC Method: getblocktemplate
+###Block Template Request
 
 A JSON-RPC method is defined, called "getblocktemplate".
 It accepts exactly one argument, which MUST be an Object of request parameters.
-If the request parameters include a "mode" key, that is used to explicitly select between [["template"|#Block_Template_Request]], [["proposal"|BIP_0023#Block_Proposal]], and [["submit"|#Block_Submission]] calls.
-Otherwise, it defaults to [[a submission|#Block_Submission]] if there is a "data" key (including the String-type argument mentioned above), and [[a template request|#Block_Template_Request]] if not.
+If the request parameters include a "mode" key, that is used to explicitly select between the default "template" request or a [["proposal"|BIP_0023#Block_Proposal]].
 
-###Block Template Request
 Block template creation can be influenced by various parameters:
 
 
@@ -49,7 +47,7 @@ getblocktemplate MUST return a JSON Object containing the following keys:
 |coinbaseaux |Object |data that SHOULD be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys. This does not include the block height, which is required to be included in the scriptSig by [[BIP_0034]]. It is advisable to encode values inside "PUSH" opcodes, so as to not inadvertantly expend SIGOPs (which are counted toward limits, despite not being executed).
 |coinbasetxn |Object |[[information for coinbase transaction|#Transactions_Object_Format]]
 |coinbasevalue |Number |total funds available for the coinbase (in Satoshis)
-|workid |String |if provided, this value must be returned with results (see [[Block Submission|#Block_Submission]])
+|workid |String |if provided, this value must be returned with results (see [[submitblock|#Block_Submission]])
 
 
 #### Transactions Object Format
@@ -72,7 +70,7 @@ Only the "data" key is required, but servers should provide the others if they a
 
 ###Block Submission
 
-When getblocktemplate is called with a "data" key, and "mode" either set to "submit" or omitted, it is interpreted as a potential block (or share).
+A JSON-RPC method is defined, called "submitblock", to submit potential blocks (or shares).
 
 
 
