@@ -12,6 +12,22 @@ The following JavaScript code establishes a connection in the browser:
 </script>
 </source>
 
+##command line connecting example
+
+<source lang="javascript">
+wssh websocket.mtgox.com:80/mtgox
+wssh websocket.mtgox.com:80/mtgox  grep trade
+wssh websocket.mtgox.com:80/mtgox  grep depth 
+</source>
+
+find wssh ( web socket command line client ) here : https://github.com/progrium/wssh
+
+##the Currency parameter
+use : 
+websocket.mtgox.com:80/mtgox?Currency=EUR
+
+	and the websocket will give you updates in EUR currency
+
 The session ID expires after 30 seconds
 
 ##Handling Events
