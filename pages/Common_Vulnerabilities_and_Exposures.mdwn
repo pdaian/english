@@ -15,6 +15,7 @@
 | Bitcoin p2p protocol
 |bgcolor=yellow| DoS<ref name="DoS"/>|bgcolor=yellowMiners (1.7)|Poor miner incentives|(no fix)-->
 |[[CVE-2012-3789|#CVE-2012-3789]]|2012-06-20|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|TBD|TBD|bgcolor=pink[52%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-3789)
+|[[BIP 0034|#BIP-0034]]|Future|All Bitcoin clients|bgcolor=yellowFake Conf (1.8)|bgcolor=yellowMiners (1.9)|Mandatory block protocol update|bgcolor=yellow[0%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0034.html)
 
 
 
@@ -24,7 +25,9 @@
 1.4: Attacker can create multiple views of the network, enabling [[double-spending]] with over 1 confirmation  
 1.5: Extent of possible abuse is unknown  
 1.6: Attacker can double-spend with 1 confirmation  
-1.7: Attacking requires mining block(s)
+1.7: Attacking requires mining block(s)  
+1.8: Attacker can double-spend with 1 confirmation  
+1.9: Attacking requires mining block(s)
 
 
 
@@ -240,10 +243,25 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 * [0.6.3rc1 Announcement](https://bitcointalk.org/?topic=88734)
 * [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-3789)
 
+## BIP-0034
+
+	<b>Date:</b> Future
+	<b>Summary:</b> Mandatory block protocol update
+	<b>Deployment:</b> 0%
+
+
+|Bitcoin-Qt<br>bitcoind |* - 0.4.7<br>0.5.0rc1 - 0.5.7<br>0.6.0rc1 - 0.6.0.9<br>0.6.1rc1 - 0.6.3 |0.4.8rc1<br>0.5.7rc1<br>0.6.0.10rc1<br>0.6.4rc1<br>0.7.0rc1
+|wxBitcoin |ALL |NONE
+
+
+### References
+
+* [[BIP_0034]]
+
 
 ##Definitions
 
-A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (24.1).
+A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (26.1).
 
 ##See Also
 
@@ -251,5 +269,5 @@ A critical vulnerability is one that will have disastrous consequences if it is 
 
 ##References
 
-24.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
+26.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
 
