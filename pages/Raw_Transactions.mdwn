@@ -64,6 +64,6 @@ If you want to re-broadcast a transaction right away, you can use the getrawtran
 (note that Bitcoin-Qt/bitcoind automatically re-transmit wallet transactions periodically until they are accepted into a block).
 
 ### Validate a transaction without broadcasting it
-If you have a raw transaction and want to make sure all of it's signatures are correct, you can use the signrawtransaction API call. Pass in the hex-encoded raw transaction, any inputs that bitcoind doesn't yet know about, and an empty array of private keys to use to sign the transaction. Passing an empty array of private keys will prevent signrawtransaction from doing any signing; if it returns "complete":1 then all of the existing signatures are valid and there are no signatures missing.
+If you have a raw transaction and want to make sure all of its signatures are correct, you can use the signrawtransaction API call. Pass in the hex-encoded raw transaction, any inputs that bitcoind doesn't yet know about, and an empty array of private keys to use to sign the transaction. Passing an empty array of private keys will prevent signrawtransaction from doing any signing; if it returns "complete":1 then all of the existing signatures are valid and there are no signatures missing.
 [[!tag "Technical"]]
 [[!tag "Developer"]]
