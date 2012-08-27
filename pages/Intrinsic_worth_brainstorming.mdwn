@@ -75,7 +75,6 @@ Hmmm... we don't want mining monopolized.. needs a bit more work..
 
 oh, i got it. choose the bid winner stochastically.
 
-
 #### more ruminations on paying for computation
 http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1773169 brings up the idea of "programming" a market to solve an NP-complete problem for you by placing a series of orders. This inspires a better idea than holding an auction to see whose NP-complete problem will be solved next; instead, the system should allow everyone's NP-complete problem to be put out there, and other participants solve the ones they can, being paid for it by the person issuing the question.
 
@@ -83,7 +82,18 @@ Also, the low transaction costs of BTC make one wonder if this is already the ca
 
 One difference is that, in Maymin's scenario, the market can silently yield the "wrong answer" simply by being inefficient, whereas in BTC, nodes either claim to have reversed a given hash, or they don't. 
 
+
 -- BayleShanks
+
+### Alternative where it doesn't matter who knows the answer already
+Most of the proposals so far have problems or potential problems when a miner already knows the solution, and where solving a problem happens in a deterministic way making the miner with the most computing power always "win". Both of these problems can be solved using techniques already used in Bitcoin. It turns out that there is a computational problem which is extremely important to Bitcoin but where everybody already knows many answers: "What is a nonnegative integer that is less than the current target?".  The reason Bitcoin survives even though everybody knows the answer is because they are required to find it in a special way which is very slow, namely trying a bunch of different guesses in a random order with repetition. This is a poor strategy if you actually want to find small numbers, but it's a pretty good (though not perfect, as there may be repetition) strategy for solving certain NP-complete problems. Thus, I suggest that a block's hash can be checked not only for whether it's greater than or less than a given target, but also for whether it solves any of the existing problems. For example, perhaps one could take the several least significant bits of the hash and see if they happen to solve any of the proposed 3-SAT problems. Obviously, if the miners determine that it is not worth their computing time to check for certain problems (maybe ones which don't pay enough for the size of the problem), then they are free to ignore those problems. Solving a problem (or more than one) could give a partial discount on the rest of the hash (it would need to be a partial discount to prevent people from attacking the network by repeatedly posing trivial problems where every possibility is a solution).  Thus, my proposal is as follows:
+
+1. Allow a new script operator which pops the last three items off the stack, interprets the top one as a 3-SAT problem (PROBLEM), the middle ones as an integer (OFFSET), and the bottom one as a sequence of bits (SOLUTION). It puts TRUE on the stack if the bits of SOLUTION, starting at bit OFFSET, are a solution to PROBLEM. The usual way to use it would be in the scriptPubKey of a transaction output, the whole output taking the form "<PROBLEM> <OP_3SAT>". A valid transaction which uses this type of output as a transaction input is said to solve the problem.
+1. Make a separate portion of a block, which doesn't change the block header when it's changed (so as not to affect the hash), which is a single transaction. This transaction may be of any type, but under most circumstances will only have inputs from transactions of the type mentioned above. Every transaction input will be have an implied operation which pushes the block's hash onto the stack, so the scriptSig will usually only push an offset onto the stack. Since the transaction is already included in a block, it SHOULD NOT include a transaction fee. Obviously it MUST NOT include any of the same inputs as are already used in the main part of the block.
+1. A block is valid iff the transaction above (if any) is valid, the block's hash is less than the sum of the target and some "score" (to be determined) calculated from the set of all problems the transaction above solves, and any other conditions on whether a block is valid. This score SHOULD have some maximum to prevent spamming the network with trivial problems, and SHOULD be zero if no problems are solved.
+1. IF POSSIBLE, current blocks SHOULD be considered valid but with no solved problems. I do not know enough about the specifics of the block format to know if this is possible.
+
+This way, miners may work on any or all problems they see fit, it doesn't matter who knows the answer, and problems will not be deterministically solved by whoever has the most computing power. If somebody figures out the answer but does not solve a block with it, they can submit it as a regular transaction, but then must pay transaction fees. The price for computing power will be determined by the miners and by anybody who's willing to solve the problems without mining. The score should be such that miners will be likely to try to figure out the answer and anybody who may want to devote computing power to solving the problems would be better served by mining.
 
 ##See Also
 
