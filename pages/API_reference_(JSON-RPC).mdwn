@@ -233,9 +233,7 @@ var client = new bitcoin.Client({
 
 client.getDifficulty(function(err, difficulty) {
 	if (err) {
-	console.log('Error...');
-	console.log(err);
-	return;
+	return console.error(err);
 	}
 
 	console.log('Difficulty: ' + difficulty);
