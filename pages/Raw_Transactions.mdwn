@@ -5,7 +5,7 @@ The "raw transaction API" was introduced with Bitcoin-Qt/bitcoind version 0.7. I
 ## JSON-RPC API
 ### listunspent [minconf=1] [maxconf=999999]==
 Returns an array of unspent transaction outputs in the wallet that have between minconf and maxconf (inclusive) confirmations. Each output is a 5-element object with keys: txid, output, scriptPubKey, amount, confirmations. txid is the hexadecimal transaction id, output is which output of that transaction, scriptPubKey is the hexadecimal-encoded CScript for that output, amount is the value of that output and confirmations is the transaction's depth in the chain.
-### createrawtransaction [{"txid":txid,"vout":n],...] {address:amount,...}
+### createrawtransaction [{"txid":txid,"vout":n},...] {address:amount,...}
 Create a transaction spending given inputs (array of objects containing transaction outputs to spend), sending to given address(es). Returns the hex-encoded transaction in a string. Note that the transaction's inputs are not signed, and it is not stored in the wallet or transmitted to the network.
 
 Also note that NO transaction validity checks are done; it is easy to create invalid transactions or transactions that will not be relayed/mined by the network because they contain insufficient fees.
