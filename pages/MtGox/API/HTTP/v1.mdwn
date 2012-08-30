@@ -160,7 +160,7 @@ will return :
 
 
 
-##### block information
+#### block information
 block information can be accessed by depth ( the block number ) :
 
 https://mtgox.com/api/1/generic/bitcoin/block_list_tx?depth=188111
@@ -191,8 +191,14 @@ both will return ( for block 188111 )
 }
 </code>
 
-##### address information
+#### address information
 https://mtgox.com/api/1/generic/bitcoin/addr_details?hash=1f27d1fc284143729944ab89823111d2bb63dc46
+
+### pending transactions
+
+https://mtgox.com/api/0/bitcoin_tx.php
+
+gives a list of the transaction numbers for transactions broadcasted by mtgox to the bitcoin network, but not yet included in a block
 
 #### Order lag
 
