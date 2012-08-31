@@ -1,29 +1,26 @@
-**Higher difficulty pooled mining** is an attempt to allow powerful miners with high hash-rates to mine efficiently while reducing network chatter, therefore saving usage limits and bandwidth for both the miner and the pool operator. In development at this time, this concept is expected to overtake classical 1-difficulty [[pooled_mining]] in the near future, coinciding with the introduction of [[ASIC]] mining. The basic concept is to only accept shares that meet a certain [[difficulty]], so less shares are sent to the pool.
+**Higher difficulty pooled mining** refers to using targets greater than difficulty 1 for pool shares. With the advent of ASIC mining, many hashrates may be sufficiently high that difficulty 1 creates too much traffic for share submissions, and is expected to become necessary in the near future.
 
 ## Concept
 With rapidly-increasing hashing speeds, miners are rather wasteful in terms of bandwidth. Each share requires submission to the server, which must handle shares from all miners. This can be overloading, and is suboptimal.
 
 Higher difficulty pooled mining saves bandwidth and does not affect the expected return; however, volatility is increased. For powerful miners, volatility should be low even with a higher difficulty, and the bandwidth savings can pay off.
 
-Hypothetically, pools can allow miners to set their own difficulty level. No pool demonstrates this ability yet; however, Eligius may offer this functionality in the future.
+Pools can allow miners to request their own difficulty level using the "target" key specified in [[BIP 23's basic pool extensions|BIP_0023#Basic_Pool_Extensions]].  No pool or pool software supports this extension yet; however, [[Eloipool]] (maintained by the [[Eligius]] pool) plans to offer this functionality in the near future.
 
 ## Technical details
-Communication is done, as with classical pools, with the [[getwork]] protocol. However, some mining software does not yet fully support the protocol.
+Communication can be done, as with classical pools, with the [[getwork]] protocol (though some mining software implements this improperly).
+However, the [[getwork]] protocol itself cannot scale to faster hashrates.
+To take full advantage of faster miners, [[BIP 22|BIP_0022]] and [[BIP 23|BIP_0023]] are needed.
 
 ## History
-Higher difficulty pooled mining originally originated in a [[SolidCoin]] pool, but after SolidCoin's closure was forgotten. The concept had previously been discussed, but weak mining hardware made original 1-difficulty mining pools sufficient. After [[Litecoin]]'s introduction, many Litecoin pools also adopted the concept. The first Bitcoin pool to propose higher difficulty pooled mining was [[Eligius]]; however, at the time, this has not yet been implemented. The first pool known to use higher difficulty pooled mining is HHTT, which uses a difficulty of 32.
+The first Bitcoin pool to use higher difficulty pooled mining was [[BitPenny]], which uses a fixed difficulty of 8.
 
 ## Support
 ### Pools
-Only one pool is known to use higher difficulty pooled mining.
-
-<table class="wikitable sortable">
-<tr><th>Pool</th><th>Difficulty</th><th>Power (GhHz)</th><th>Type</th></tr>
-<tr><td>[Horrible Horrendous Terrible Tremendous Mining Pool (HHTT)](http://hhtt.1209k.com/)</td><td>32</td><td>6</td><td>PPS</td></tr>
-</table>
+> *Main article: [[Comparison_of_mining_pools]]
+Only a few pools make use of higher difficulties at this time.
 
 ### Software
 > *Main article: [[Getwork_support]]*
-Mining software that fully conforms with the [[getwork]] protocol are compatible with higher difficulty pooled mining.
 
 [[!tag "Mining"]]
