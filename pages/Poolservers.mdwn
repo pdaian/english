@@ -9,7 +9,7 @@ colspan='9' miner protocols
 Protocol bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny |Slush
 |[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]
 |[[UBBP]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|getmemorypool |[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|[[getblocktemplate|BIP_0022]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]
 colspan='9' getwork extensions
 Extension bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
@@ -22,13 +22,13 @@ Extension bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
 |expire=N |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |[[!template id=no]]
 |submitold |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=patch]]|[[!template id=yes]]|n/a |[[!template id=no]]
 |switchto |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |[[!template id=no]]
-colspan='9' getmemorypool/BlkPrep functionality
+colspan='9' getblocktemplate/BlkPrep functionality
 Function bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
-|longpoll |[[!template id=no]]|n/a |[[!template id=no]] (1.1)|n/a |n/a |n/a |n/a |n/a
+|longpoll |[[!template id=no]]|n/a |[[!template id=yes]]|n/a |n/a |n/a |n/a |n/a
 |noncerange |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a
 |proposal |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a
 |serverlist |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a
-colspan='9' getmemorypool/BlkPrep variations
+colspan='9' getblocktemplate/BlkPrep variations
 Variation bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
 |coinbase/append |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a |[[!template id=yes]]|n/a
 |coinbase (set) |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
@@ -45,11 +45,11 @@ colspan='9' work generation
 Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
 |getwork |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
 |ntime roll |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jrs-pushpool/commits/ntimes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
-|GMP (old) |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
-|GMP (BIP22) |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|coinbaser |[[!template id=patch uri=https://github.com/bitcoin/bitcoin/pull/719]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]||
-|gotwork |[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jr-bitcoin/commits/outbound_gotwork]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
-|setworkaux |[[!template id=patch uri=https://github.com/bitcoin/bitcoin/pull/719]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
+|getmemorypool |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
+|getblocktemplate |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|coinbaser |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]||
+|gotwork |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
+|setworkaux |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
 |getauxblock |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]
 |title='merged-mining getmemorypool'MM gmp|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]||
 |full node |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|
@@ -75,5 +75,4 @@ Database bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
 
 
 
-1.1: Eloipool supports an older draft GMP longpoll standard
 
