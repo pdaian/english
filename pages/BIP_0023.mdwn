@@ -102,8 +102,7 @@ If the block template contains a "mutable" key, it is a list of these to signify
 |time/decrement|change the time header to a value before "time" (implied if "mintime" is provided)
 |time|modify the time header of the block
 |transactions/add (or "transactions")|add other valid transactions to the block (implied if "transactions" omitted from result)
-|prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid, unless they are part of the "txrequired" count; it also implies adjusting "height" as necessary
-
+|prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid (but clients SHOULD attempt to propose removal of any required transactions); it also implies adjusting "height" as necessary
 
 
 ###Submission Abbreviation
