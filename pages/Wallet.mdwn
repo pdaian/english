@@ -1,4 +1,8 @@
-A Bitcoin **wallet** is a file named **wallet.dat** and contains (1.1):
+A Bitcoin **wallet** is a file that contains a collection of private keys. 
+
+### Bitcoin Qt
+
+The original Bitcoin client wallet file is named **wallet.dat** and contains (2.1):
 
 * keypairs for each of your [[addresses|address]]
 * transactions done from/to your addresses
@@ -12,9 +16,21 @@ A Bitcoin **wallet** is a file named **wallet.dat** and contains (1.1):
 
 The data file for the wallet is wallet.dat and is located in the Bitcoin [[data_directory]].
 
-It is intended that a wallet be used on only one installation of Bitcoin at a time.  Attempting to clone a wallet for use on multiple computers will result in "weird behavior" (1.2).
+It is intended that a wallet be used on only one installation of Bitcoin at a time.  Attempting to clone a wallet for use on multiple computers will result in "weird behavior" (2.2).
 
 The format of this file is Berkeley DB.  Tools that can manipulate wallet files include [[pywallet]].
+
+### Armory
+
+The Armory client uses a custom [binary wallet format](http://bitcoinarmory.com/index.php/armory-wallet-files).
+
+### Blockchain.info
+
+Blockchain.info use a plain text JSON wallet format documented [here](https://blockchain.info/wallet/wallet-format). Private keys Keys are stored in base58.
+
+### Multibit
+
+Multibit uses the BitcoinJ [protobuf](http://code.google.com/p/protobuf/) wallet file.
 
 ##See Also
 
@@ -23,6 +39,6 @@ The format of this file is Berkeley DB.  Tools that can manipulate wallet files 
 * [[Deterministic_Wallet]]
 ##References
 
-1.1: [Wallet import/export: bitkeys format](https://bitcointalk.org/index.php?topic=4448.0)  
-1.2: [Multiple instance of bitcoin with the same wallet](http://forum.bitcoin.org/index.php?topic=5324.msg77896#msg77896)
+2.1: [Wallet import/export: bitkeys format](https://bitcointalk.org/index.php?topic=4448.0)  
+2.2: [Multiple instance of bitcoin with the same wallet](http://forum.bitcoin.org/index.php?topic=5324.msg77896#msg77896)
 
