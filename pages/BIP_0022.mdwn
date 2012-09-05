@@ -98,12 +98,15 @@ This method MUST return either null (when a share is accepted), a String describ
 
 |Key |Type |Description
 |---|---|---
-|longpollid |String |unique identifier for long poll request; MUST be omitted if the server does not support long polling
+|longpollid |String |identifier for long poll request; MUST be omitted if the server does not support long polling
 |longpolluri |String |if provided, an alternate URI to use for long poll requests
 |submitold |Boolean |only relevant for long poll responses: indicates if work received prior to this response remains potentially valid (default) and should have its shares submitted; if false, the miner may wish to discard its share queue
 
 
-If the server supports long polling, it MUST include a "longpollid" key in block templates.
+If the server supports long polling, it MUST include a "longpollid" key in block templates, and it MUST be unique for each event:
+any given "longpollid" should check for only one condition and not be reused.
+For example, a server which has a long poll wakeup only for new blocks might use the previous block hash.
+However, clients should not assume the "longpollid" has any specific meaning.
 It MAY supply the "longpolluri" key with a relative or absolute URI, which MAY specify a completely different resource than the original connection, including port number.
 If "longpolluri" is provided by the server, clients MUST only attempt to use that URI for longpoll requests.
 
