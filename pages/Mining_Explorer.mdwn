@@ -1,0 +1,120 @@
+###Description
+
+Monitoring tool for bitcoin mining.
+
+Mining Explorer [website](http://miningexplorer.org/en/), [DOWNLOAD](http://miningexplorer.org/files/MiningExplorer.zip)
+
+[[!img "Mining_Explorer_screenshot1.png" size=400x400]]
+[[!img "Mining_Explorer_screenshot2.png" size=400x400]]
+[[Mining_Explorer_screenshot3.png]]
+
+###The opportunities of the program
+	
+* Monitoring of the Bitcoin`s rate( with Mt.Gox)
+* Monitoring of the worker`s status (online/offline)
+* Monitoring of the pool score
+* Monitoring of the other settings, which pools give back on statistics
+* The time of the last share, the time of connecting to the pool, etc. is taken into account the time zone on your computer
+* Ability to save the width and position of the table columns
+
+###List of the supported pools
+
+* 50BTC.com
+* ABCPool
+* BitClockers
+* BTC Guild
+* BTC mine
+* Deepbit
+* EclipseMS
+* Itzod
+* Mkalinin
+* Mt.Red
+* OzCoin
+* Slush
+* TripleMining
+
+###Supported languages
+
+* English
+* Russian
+* German
+
+To start the work choose the sign of gear in the settings, choose the necessary pool, enter API key, press OK and after that the program will start to show statistics. You can enter the keys for several pools, so you can choose the pool in the main window.
+
+The program does not need installation, it can be dearchived and you can have it on flash drive. All the keys and settings can be saved in the configuration file. All the questions,remarks and suggestions about the program you can write in this thread.
+
+###Version hystory
+
+**Version 0.4.8**:
+
+>  Fixed bug saving width and column positions
+>  Added a separate display of invalid and stale shares for pool 50BTC
+
+**Version 0.4.7**:
+
+>  Fixed bug display workers Eclipse pool in "Custom" table
+
+**Version 0.4.6**:
+
+>  Fixed bug of choice "standard/custom window", "display of balance," "alignment of cells"
+
+**Version 0.4.5**:
+
+>  Added an optional choice of displaying the balance in the window on tray
+>  Added optional ability to align the content of table cells in the center of the cell
+
+**Version 0.4.4**:
+
+>  Automatically change the width of the window with a summary
+
+**Version 0.4.3**:
+
+>  Added pool TripleMining
+>  Added an optional choice of standard/custom application window
+>  Ability to move a window with basic information on tray
+
+**Version 0.4.2**:
+
+>  Fixed display data in a twisted form of Deepbit and BTCMine
+>  Improved exception handling in case of invalid input API key, incomplete data from the pool
+
+**Version 0.4.1**:
+
+>  Fixed bug rolling window
+
+**Version 0.4**:
+
+>  A summary table of workers from the different pools
+>  Opportunity to close the window with the basic information above the tray
+>  Minimization of the application to the taskbar, minimize to tray, close the application in the context menu
+>  Changed the design of the application
+
+**Version 0.3**:
+
+>  API for Itzod was corrected. Now you need to enter UserName_Key for an API key
+>  It is possible to minimize a window in tray and display the window with the basic information
+>  Sound notification when connecting / disconnecting
+>  To order the information click on the column header
+
+**Version 0.2**:
+
+>  Pools are added:
+>  * ABCPool
+>  * Mkalinin
+>  * Itzod
+>  The time of the last share, the time of connecting to the pool, etc. is taken into account the time zone on your computer
+>  Ability to save the width and position of the table columns
+
+**Version 0.1**:
+
+>  The initial version of the program
+
+###FAQ
+Q: Why do I sometimes do not get the data with BTCGuild and on the top of the screen appears "Too often".<br />
+A: MTC Guild let get API not more than once per minute. If you frequently access to the API in the program "Mining Explorer", next to the course MtGox, displayed a red label "Too often".
+
+Q: Why is there no field roundduration in the pool information http://pool.mkalinin.ru/api.php .<br />
+A: There is no field Roundduration , because it displays the current time UTC +0, and not the duration of the round.
+
+Q: Why is the information about the workers of the pool http://pool.itzod.ru not displayed?<br />
+A: The pool http://pool.itzod.ru gives the information only about the active workers. If there are no workers then there is nothing to give.
