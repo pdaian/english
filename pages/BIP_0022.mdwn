@@ -134,6 +134,7 @@ In the case of a "Forbidden" response (for example, HTTP 403), a client SHOULD N
 |---|---|---
 |sigoplimit |Number or Boolean |maximum number of sigops to include in template
 |sizelimit |Number or Boolean |maximum number of bytes to use for the entire block
+|maxversion |Number |highest block version number supported
 
 
 For "sigoplimit" and "sizelimit", negative values and zero are offset from the server-determined block maximum.
