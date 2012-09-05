@@ -103,6 +103,8 @@ If the block template contains a "mutable" key, it is a list of these to signify
 |time|modify the time header of the block
 |transactions/add (or "transactions")|add other valid transactions to the block (implied if "transactions" omitted from result)
 |prevblock|use the work with other previous-blocks; this implicitly allows removing transactions that are no longer valid (but clients SHOULD attempt to propose removal of any required transactions); it also implies adjusting "height" as necessary
+|version/force|encode the provide block version, even if the miner doesn't understand it
+|version/reduce|use an older block version than the one provided (for example, if the client does not support the version provided)
 
 
 ###Submission Abbreviation
