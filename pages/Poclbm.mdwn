@@ -68,6 +68,10 @@ and this user repo, which provides PyOpenCL (take a moment to appreciate this be
 
 <code># zypper ar -r http://download.opensuse.org/repositories/home:/scorot/openSUSE_12.1/home:scorot.repo</code>
 
+and finally this repo, which is needed for the previous to work (replace i586 with x86_64 if you're 64-bit):
+
+<code># zypper ar -r http://download.nvidia.com/opensuse/12.1/ nvidia-i586</code>
+
 Refresh your repos:
 
 <code># zypper ref</code>
@@ -76,7 +80,7 @@ You will asked to accept the repo keys, respond with 'a' each time.
 
 Install PyOpenCL:
 
-<code># zypper in python-pyopencl</code>
+<code># zypper in python-opencl</code>
 
 Get the latest version of poclbm with git (`zypper in git-core` if you don't have git installed):
 
