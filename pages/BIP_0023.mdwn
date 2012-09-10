@@ -58,8 +58,9 @@ This is accomplished by calling getblocktemplate with two keys:
 
 
 The block data MUST be validated and checked against the server's usual acceptance rules (excluding the check for a valid proof-of-work).
-If it is found to be in violation of any of these rules, the server MUST return null if it is acceptable as-is, or either of the following:
+If it is found to be in violation of any of these rules, the server MUST return one of the following:
 
+* Null if it is acceptable as-is, with the same workid (if any) as provided. Note that this SHOULD NOT invalidate the old template's claim to the same workid.
 * A String giving the reason for the rejection (see [[example rejection reasons|BIP_0022#Appendix:_Example_Rejection_Reasons]]).
 * A "delta" block template (with changes needed); in this case, any missing keys are assumed to default to those in the proposed block or, if not applicable, the original block template it was based on. This template MAY also include a "reject-reason" key with a String of the reason for rejection.
 
