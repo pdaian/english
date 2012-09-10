@@ -43,6 +43,7 @@ Servers may indicate support for proposing blocks by including a capability stri
 |Key |Type |Description
 |---|---|---
 |capabilities |Array of Strings |MAY contain "proposal" to indicate support for block proposal
+|reject-reason |String |Reason the proposal was invalid as-is (only applicable in response to proposals)
 
 
 If supported, a miner MAY propose a block to the server for general validation at any point before the job expires.
@@ -57,16 +58,16 @@ This is accomplished by calling getblocktemplate with two keys:
 
 
 The block data MUST be validated and checked against the server's usual acceptance rules (excluding the check for a valid proof-of-work).
-If it is found to be in violation of any of these rules, the server MUST return a String giving the reason for the rejection (see [[example rejection reasons|#Appendix:_Example_Rejection_Reasons]]).
-If it is acceptable as-is, the server MAY return a true Boolean.
-Otherwise, the server may return a new block template (with or without changes); in this case, any missing keys are assumed to default to those in the proposed block or, if not applicable, the original block template it was based on.
+If it is found to be in violation of any of these rules, the server MUST return null if it is acceptable as-is, or either of the following:
+
+* A String giving the reason for the rejection (see [[example rejection reasons|BIP_0022#Appendix:_Example_Rejection_Reasons]]).
+* A "delta" block template (with changes needed); in this case, any missing keys are assumed to default to those in the proposed block or, if not applicable, the original block template it was based on. This template MAY also include a "reject-reason" key with a String of the reason for rejection.
 
 It is RECOMMENDED that servers which merely need to track the proposed block for later share/* submissions, return a simple Object of the form:
 	{"workid":"new workid"}
 
 Clients SHOULD assume their proposed block will remain valid if the only changes they make are to the portion of the coinbase scriptSig they themselves provided (if any) and the time header.
 Servers SHOULD NOT break this assumption without good cause.
-
 
 ###Mutations
 
