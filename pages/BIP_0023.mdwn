@@ -126,16 +126,16 @@ If the block template contains a "mutable" key, it is a list of these to signify
 |Value |Significance
 |---|---
 |submit/hash|each transaction being sent in a request, that the client is certain the server knows about, may be replaced by its hash in little-endian hexadecimal, prepended by a ":" character
-|submit/coinbase|if the "transactions" provided by the server are used as-is with no changes, only return the block header and coinbase transaction
-|submit/truncate|if the "coinbasetxn" and "transactions" provided by the server are used as-is with no changes, only return the block header
-|share/coinbase|same as "submit/coinbase", but only if the block hash is no less than "fulltarget"
-|share/merkle|if the block hash is less than "target", but not less than "fulltarget", only return the block header, coinbase transaction, and merkle tree connecting that transaction to the root (in the form of repeated right-side SHA256 hashes)
-|share/truncate|same as "submit/truncate", but only if the block hash is no less than "fulltarget"
+|submit/coinbase|if the "transactions" provided by the server are used as-is with no changes, submissions may omit transactions after the coinbase
+|submit/truncate|if the "coinbasetxn" and "transactions" provided by the server are used as-is with no changes, submissions may contain only the block header
+|share/coinbase|same as "submit/coinbase", but only if the block hash is greater than "fulltarget"
+|share/merkle|if the block hash is greater than "fulltarget", the non-coinbase transactions may be replaced with a merkle chain connecting it to the root
+|share/truncate|same as "submit/truncate", but only if the block hash is greater than "fulltarget"
 
 
 #### Format of Data for Merkle-Only Shares
 
-The format used for submitting shares with the "share/merkle" mutation shall be the 80-byte block header, followed by the coinbase transaction, and then finally the little-endian SHA256 hashes of each link in the merkle chain connecting it to the merkle root.
+The format used for submitting shares with the "share/merkle" mutation shall be the 80-byte block header, the total number of transactions encoded in Bitcoin variable length number format, the coinbase transaction, and then finally the little-endian SHA256 hashes of each link in the merkle chain connecting it to the merkle root.
 
 ###Full Node Optimization
 
