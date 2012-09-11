@@ -127,7 +127,7 @@ If the block template contains a "mutable" key, it is a list of these to signify
 |---|---
 |submit/hash|each transaction being sent in a request, that the client is certain the server knows about, may be replaced by its hash in little-endian hexadecimal, prepended by a ":" character
 |submit/coinbase|if the "transactions" provided by the server are used as-is with no changes, submissions may omit transactions after the coinbase
-|submit/truncate|if the "coinbasetxn" and "transactions" provided by the server are used as-is with no changes, submissions may contain only the block header
+|submit/truncate|if the "coinbasetxn" and "transactions" provided by the server are used as-is with no changes, submissions may contain only the block header; if only the scriptSig of "coinbasetxn" is modified, the params Object MUST contain a "coinbasesig" key with the content
 |share/coinbase|same as "submit/coinbase", but only if the block hash is greater than "fulltarget"
 |share/merkle|if the block hash is greater than "fulltarget", the non-coinbase transactions may be replaced with a merkle chain connecting it to the root
 |share/truncate|same as "submit/truncate", but only if the block hash is greater than "fulltarget"
