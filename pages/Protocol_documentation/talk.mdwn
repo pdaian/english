@@ -55,3 +55,9 @@ https://en.bitcoin.it/wiki/Protocol_specification#headers
 
 I think the Field Size of Block Headers is wrong (77x? rather than 81x?).
 --[ThePiachu](User:ThePiachu) 18:45, 7 October 2011 (GMT)
+
+The nonce in the version message is created when the local node is created, not when connection is established. I still have to confirm this in a real example before correcting it in the wiki.
+[Jdnavarro](User:Jdnavarro) ([[talk|User_talk:Jdnavarro]]) 16:15, 12 September 2012 (GMT)
+
+When there is not Txin or Txout for a given Tx, there is no field for txins or txouts, only the Txin or Txout count set to 0. I still have to confirm this.
+[Jdnavarro](User:Jdnavarro) ([[talk|User_talk:Jdnavarro]]) 16:15, 12 September 2012 (GMT)
