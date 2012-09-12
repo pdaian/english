@@ -23,12 +23,23 @@ https://mtgox.com/api/0/data/getDepth.php?Currency=AUD
 
 https://mtgox.com/api/0/data/getDepth.php?Currency=USD
 
+<source lang="php">
+{"asks":[[11.37998,22.89]],[[11.38,42.44592124]],[[11.3844,165]],[[11.599,1000]],"bids":[[10.7078,0.3]],[[10.70964,0.02024837]],[[10.70978,0.55822]],[[11.2903,2.8]]}
+</source>
+
 ### 0/getFunds.php
 Get your current balance
 
 https://mtgox.com/api/0/getFunds.php
 
 getfunds is now deprecated since multi currency, please use info.php
+
+<source lang="php">
+{
+	[["usds"]]=> "18.74737"
+	[["btcs"]]=> "0.01733"
+}
+</source>
 
 ### 0/buyBTC.php
 Place an order to Buy BTC
@@ -141,6 +152,57 @@ encoding is utf-8
 https://mtgox.com/api/0/info.php
 
 returns info about your account, funds, fees, API privileges, withdraw limits . . . 
+
+<source lang="php">
+	{
+	[["Login"]]=> "some_user"
+	[["Index"]]=> "111111"
+	[["Rights"]]=> {
+	[[0]]=> "get_info"
+	[[1]]=> "trade"
+	}
+	[["Language"]]=> "en_US"
+	[["Created"]]=> "2012-03-12 17:58:53"
+	[["Last_Login"]]=> "2012-07-10 09:19:56"
+	[["Wallets"]]=>
+	{
+	[["BTC"]]=>
+	{
+	[["Balance"]]=>
+	{
+	[["value"]]=> "0.01733000"
+	[["value_int"]]=> "1733000"
+	[["display"]]=> "0.01733000 BTC"
+	[["display_short"]]=> "0.02 BTC"
+	[["currency"]]=> "BTC"
+	}
+	[["Operations"]]=> *
+	[["Daily_Withdraw_Limit"]]=>
+	{
+	[["value"]]=> "200.00000000"
+	[["value_int"]]=> "20000000000"
+	[["display"]]=> "200.00000000 BTC"
+	[["display_short"]]=> "200.00 BTC"
+	[["currency"]]=> "BTC"
+	}
+	[["Monthly_Withdraw_Limit"]]=> *
+	[["Max_Withdraw"]]=>
+	{
+	[["value"]]=> "200.00000000"
+	[["value_int"]]=> "20000000000"
+	[["display"]]=> "200.00000000 BTC"
+	[["display_short"]]=> "200.00 BTC"
+	[["currency"]]=> "BTC"
+	}
+	}
+	[["EUR"]]=>
+	{
+...
+	}
+	}
+	[["Trade_Fee"]]=> float(0.6)
+}
+</source>
 
 ### 0/ticker
 
