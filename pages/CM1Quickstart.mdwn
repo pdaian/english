@@ -68,7 +68,7 @@ Once the VM has started, login with username 'root' and password 'password'.
 
 Set the DIP switches on the CM1 to the following configuration:
 
-<ctrlprog.jpg>
+[[ctrlprog.jpg]]
 
 
 Connect the CM1 to the power supply and wait 2 minutes for the controller to start and initialize all four FPGA's
@@ -84,7 +84,7 @@ Open the 'Device Manager' from:
 
 You should see four unknown devices :
 
-<unknown devices.jpg>
+[[unknown devices.jpg]]
 
 Right-Click on the first one and select 'Update Driver Software' -> 'Browse my computer for driver software'
 
@@ -92,7 +92,7 @@ Click the 'browse' button and navigate to the folder containing the drivers e.g.
 
 Click 'Next'. As the driver is unsigned, Windows will prompt you for permission to continue:
 
-<install driver.jpg>
+[[install driver.jpg]]
 
 Click 'Install this driver software anyway'
 
@@ -103,7 +103,7 @@ Right click to check the properties of each COM port and note down the ones that
 In this example, they are COM25 & COM26
 
 
-<devices.jpg>
+[[devices.jpg]]
 
 
 
@@ -117,7 +117,7 @@ Type the following commands:
 
 The terminal should show the following output:
 
-<spiprog.jpg>
+[[spiprog.jpg]]
 
 
 
@@ -129,7 +129,7 @@ Please read 'Cairnsmore1_Controller_Upgrade_Procedure.pdf' from 'CAIRNSMORE1_CON
 ###Bitstream Upgrade
 Set the DIP switches on the CM1 to the following configuration:
 
-<fpgaprog.jpg>
+[[fpgaprog.jpg]]
 
 Connect the PSU. Wait 2 minutes and then reconnect the USB cable.
 
@@ -161,7 +161,7 @@ Run the following command:
 
 The output should look like:
 
-<jtag.jpg>
+[[jtag.jpg]]
 
 Run the following commands:
 
@@ -184,7 +184,7 @@ Now run the following commands, checking for a successful verify before proceedi
 
 After each command the output should look like:
 
-<prog.jpg>
+[[prog.jpg]]
 
 
 If all four commands are successful, disconnect and power down the CM1.
@@ -197,7 +197,7 @@ Please read 'VirtualBox Installation Windows.pdf' from 'CairnsmoreProgramming.zi
 ##3. Mining software configuration
 Set the DIP switches on the CM1 to the following configuration:
 
-<run.jpg>
+[[run.jpg]]
 
 Connect the PSU. Wait 2 minutes and then reconnect the USB cable.
 
@@ -214,11 +214,11 @@ You will be prompted to enter authentication - enter username: 'admin', password
 Click 'Work Sources' -> 'Create new work source' of type 'theseven.bcjsonrpc':
 
 
-<source.jpg>
+[[work source.jpg]]
 
 And configure it with the host, username and password for your preferred pool, and save the settings:
 
-source cfg.jpg
+[[source cfg.jpg]]
 
 
 
@@ -227,7 +227,7 @@ Then click 'Workers' and create two new workers of type 'theseven.icarus' and co
 e.g to specify COM26 enter 
 	\\.\COM26
 
-<workers.jpg>
+[[workers.jpg]]
 
 If you have multiple CM1 boards, you may find it helpful to enter the serial number and port of each board in the name field.
 
@@ -235,7 +235,7 @@ If you have multiple CM1 boards, you may find it helpful to enter the serial num
 
 MPBM should start assigning work to the workers from the pool and after a while the statistics should give you an idea of how the CM1 is performing:
 
-<stats.jpg>
+[[stats.jpg]]
 
 	
 ###Using CGMiner
@@ -250,7 +250,7 @@ Double-click the 'start.bat' file to start mining.
 
 The output should eventually settle and show statistics similar to:
 
-<cgmstats.jpg>
+[[cgmstats.jpg]]
 
 
 
