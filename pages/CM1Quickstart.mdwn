@@ -33,6 +33,9 @@ Extract the files in **dcmwd4e-20120822.7z** onto a USB pen drive for later use 
 
 You will need to download the following files to mine with the CM1:
 
+###For BFGMiner
+[Current BFGMiner download](https://bitcointalk.org/?topic=78192)
+
 ###For MPBM
 
 [prepackaged python runtime windows-runtime-v0.1.0beta.zip](http://www.mediafire.com/?tdqpuvoppkqxb3y)
@@ -202,6 +205,12 @@ Set the DIP switches on the CM1 to the following configuration:
 Connect the PSU. Wait 2 minutes and then reconnect the USB cable.
 
 If VirtualBox is still running, it will connect to the CM1 - In the VM window, select 'Devices' -> 'USB Devices' and disable 'FTDI Cairnsmore1 [[800]]' or shut it down before reconnecting the USB cable.
+
+
+###Using BFGMiner
+Just run "bfgminer"
+
+The first time, it will prompt you for pool information. Once you are happy with it working, go to the (S)ettings menu, and (W)rite the config file. If you use the default path (you might need to create it first), it will automatically load the config the next time.
 
 
 ###Using MPBM
