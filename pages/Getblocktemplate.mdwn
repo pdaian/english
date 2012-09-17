@@ -1,0 +1,37 @@
+##Why change something that works?
+
+###Centralization
+The original getwork mining protocol simply issues block headers for a miner to solve.
+The miner is kept in the dark as to what is actually in this block, and has no influence over it.
+In effect, the authority of the miner to decide which transactions are accepted, etc, is all transferred blindly to the pool operator.
+A corrupt (or compromised) pool operator could use the combined hash power of all the miners to execute double spend attacks or other similar attacks.
+
+getblocktemplate moves block creation to the miner, while giving pools a way to set down the rules for participation.
+While pools can do just as much as they could before by expressing it in these rules, miners can not be kept in the dark and are enabled to freely choose what they participate in mining.
+This improves the security of the Bitcoin network by making blocks decentralized again.
+
+###ASICs
+The original getwork protocol only provides a single block header, which is sufficient for a total of about 4 GH of mining.
+With the "rollntime" extension, this can be extended to 4 GH *per second*, but even that is far from sufficient for the next generation of mining equipment (ASICs) which are capable of 1000 GH/s on the high end.
+
+By moving block creation to the miners, they are enabled to create as much work as they need locally, thus overcoming this limitation.
+
+###Scalability
+Due to scalability problems, bitcoind's JSON-RPC stack has not been able to keep up with the hashrates needed for solo mining today.
+Since getblocktemplate drastically reduces the load required to a single request per new block on the network, direct solo mining on bitcoind is again possible.
+Poolservers likewise benefit from having to meet much lower demands of miners who can make their own blocks.
+
+###Extensible
+The original getwork protocol was designed in a way that was very incompatible with extensions.
+As a result, as new functionality was needed, extensions were "hacked in" out-of-band using HTTP headers.
+getblocktemplate is designed from the start to be flexible for future extensions, and the [[BIP 23|BIP_0023]] specification already covers how the established getwork extensions can be implemented cleanly, regardless of transport protocol.
+
+##Compatible miners
+##Compatible pools
+##Compatible poolservers
+
+##For mining software developers
+##For poolserver developers
+
+##Technical Specifications
+Please see [[BIP 22|BIP_0022]] and [[BIP 23|BIP_0023]] for full technical specifications on getblocktemplate.
