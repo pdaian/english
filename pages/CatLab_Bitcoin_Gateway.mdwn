@@ -1,0 +1,23 @@
+CatLab Bitcoin Gateway is developed for programmers who want to easily implement Bitcoin in their projects. Their goal is to provide a very clean Bitcoin user experience without actually having to mess with the Bitcoin API.
+
+## How it works
+Instead of forcing users to create accounts and manage their online wallet, the gateway does not require registration by the merchant. A unique API Key is required, but other than that there is no admin panel.
+
+The merchant requests a new BitCoin address from the service and specifies the expected amount of BitCoins. Once the BitCoins have arrived and have received the required amount of confirmations, the merchant's callback is called and the received BitCoins are forwarded to the merchant's BitCoin wallet.
+
+## Notifier
+The difference between [[BitcoinNotify]] and the Bitcoin Gateway is the fact that you do not need to maintain a set of addresses yourself. The Gateway automatically assigns a new address to every customer transaction; the merchant only needs to provide one "final address" to which the coins are send after confirmation.
+
+## Costs
+The service provider charges 1% + BTC 0.01 transfer costs.
+
+## External links
+[CatLab Bitcoin Gateway](http://bitcoin.catlab.eu)
+
+## Similar services
+
+* [[CatLab_Bitcoin_Gateway]]
+* [[Bitcoin_PayFlow]]
+
+[[!tag "Shopping_Cart_Interfaces"]]
+[[!tag "Services"]]
