@@ -5,6 +5,9 @@ Instead of forcing users to create accounts and manage their online wallet, the 
 
 The merchant requests a new BitCoin address from the service and specifies the expected amount of BitCoins. Once the BitCoins have arrived and have received the required amount of confirmations, the merchant's callback is called and the received BitCoins are forwarded to the merchant's BitCoin wallet.
 
+## Notifier
+The difference between [[BitcoinNotify]] and the Bitcoin Gateway is the fact that you do not need to maintain a set of addresses yourself. The Gateway automatically assigns a new address to every customer transaction; the merchant only needs to provide one "final address" to which the coins are send after confirmation.
+
 ## Costs
 The service provider charges 1% + BTC 0.01 transfer costs.
 
