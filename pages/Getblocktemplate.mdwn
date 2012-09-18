@@ -111,7 +111,20 @@ Assemble the block header as laid out in the Bitcoin [[block_hashing_algorithm]]
 Note that miners are expected to check the "version" number, and should not create blocks with versions they do not understand unless the server instructs them to do so with the "version/force" or "version/reduce" mutations - you don't need to support those, but if you don't support the version the server has provided, understand that the server may reject submissions if they don't meet some unknown future rules.
 As of this time, the current Bitcoin block version is 2, so it is safe to build blocks with version 1 or 2.
 
-======Submittion shares======
+======While you're mining======
+Since you're making all the blocks yourself, you really don't ever need to get another template... until it's invalid.
+Generally, it's a good idea to refresh more often anyway to get more transactions, but it's better to let the pool decide when to do that, since it knows what's changed in the meantime already.
+
+If your template included a "longpollid" key, you can queue a request for a new template to be executed as soon as the pool decides you should change.
+This is the same as any other template request, except that you include the "longpollid" parameter that the pool provided in your request.
+If there is already a new template, the pool might respond immediately, so be sure not to depend on a delay!
+
+So to amend the template request we used initially, now we use:
+	{"id": 0, "method": "getblocktemplate", "params": {	["workid", "coinbase/append"]("coinbasetxn",),
+	"longpollid": "some gibberish",
+	}}
+
+======Submitting shares======
 When miner find the job which meets requested difficulty, it can submit the block to the server as a share:
 	{"id": 0, "method": "submitblock", "params": 							[(1)](147c866aee1fa2f3b3d5effad576df3dbf1f07475588ac00000000")}
 
