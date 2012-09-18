@@ -53,7 +53,7 @@ If you are implementing your own pool server, see the [[section for poolserver d
 
 ###For developers
 ####Mining software
-#####libblkmaker
+#####Using libblkmaker
 If your miner can include C libraries, you can harness [libblkmaker](http://gitorious.org/bitcoin/libblkmaker) to do all the GBT interpretation for you:
 all your miner needs to do then is handle the networking (libblkmaker can prepare the JSON for you) and ask libblkmaker for data (block headers to search).
 Note that libblkmaker does not provide a SHA256 implementation, and your miner needs to provide one for it to work.
