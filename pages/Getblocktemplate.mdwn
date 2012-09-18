@@ -100,7 +100,7 @@ So when/if you want to add on to the coinbase data, simply insert it 42+DataLen 
 
 Python example:
 	import binascii
-	coinbase = binascii.a2b_hex(template[['coinbasetxn']])
+	coinbase = binascii.a2b_hex(template[['coinbasetxn']][['data']])
 	extradata = b'my block'
 	# The following can be done better in both Python 2 and Python 3, but this way works with both
 	origLen = ord(coinbase[[41:42]])
