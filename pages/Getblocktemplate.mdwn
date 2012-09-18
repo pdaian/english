@@ -147,3 +147,23 @@ Recommended standards to start with (in order of importance):
 
 * [[BIP 22: getblocktemplate - Fundamentals|BIP_0022]]
 * [[BIP 23: getblocktemplate - Pooled Mining|BIP_0023]]
+
+##History
+
+Getblocktemplate's origins trace back to forrestv's getmemorypool JSON-RPC method for bitcoind.
+He created it so that his pool ([[P2Pool]]) could piggy-back on bitcoind so as to avoid harming the Bitcoin network (up to this point, it mined only empty blocks that never confirmed transactions).
+Having been fighting with scalability problems in pushpool/bitcoind for months on his pool ([[Eligius]]), Luke-Jr set out to implement a fast pool server using getmemorypool to do its own block production (this became [[Eloipool]], this first open source makes-its-own-blocks poolserver).
+Other poolservers also implemented block creation using getmemorypool over the months following.
+
+At about the same time, interest in decentralizing pooled mining became a hot topic.
+While [[BitPenny]] had initially released its own decentralized mining proxy months prior, [[P2Pool]]'s implementation became rapidly popular.
+Anyone involved in Bitcoin mining protocols could see the need to move control of block creation back into the hands of the miners.
+Unfortunately, both [[BitPenny]] and [[P2Pool]] had used very pool-specific proprietary protocols to implement their decentralization.
+On the other hand, getmemorypool was *almost* a perfect fit for the task - it just lacked support for the now-ubiquitous pooled mining extensions that had developed around the getwork protocol over time.
+
+In February of 2012, Luke implemented and [deployed](https://bitcointalk.org/?topic=23768.msg774497#msg774497) a first draft of getmemorypool mining support in [[Eloipool]] (and on [[Eligius]]) along with a proof-of-concept getwork proxy (now known as gmp-proxy), adding revisions as needed to function as a general-purpose decentralized mining protocol.
+After he had confirmed it was working, he documented and proposed it on the [[Bitcoin_development_mailing_list]] for review on February 28th, where discussion began on what was missing and what needed to be changed or clarified.
+During the following few months, a number of others, both developers and testers, provided constructive criticism and suggestions, which were integrated into the standard.
+Luke also actively encouraged participation in the development of the standard among pool operators and poolserver authors, especially as it became necessary to move forward into the ASIC "mining generation".
+Eventually, it was decided it would be best to rename it to the more appropriate "getblocktemplate" name and drop backward compatibility with getmemorypool for simplicity.
+The standard was split into two pieces and the technical specification can be found in [BIP 22](BIP 0022) and [[BIP 23|BIP_0023]].
