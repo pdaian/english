@@ -68,6 +68,7 @@ Follow these steps to join the pool:
 	* Windows py2exe: run_p2pool.exe
 	* Source: python run_p2pool.py
 * Run a miner daemon with long polling connecting to 127.0.0.1 (or the IP of the host running p2pool if it isn't on the same computer as the miner) on port 9332 with any username and password
+	* cgminer -O u:p -o http://127.0.0.1:9332/ --submit-stales
 	* bfgminer -O u:p -o http://127.0.0.1:9332/ --submit-stales
 
 Dependencies if running from source:
@@ -125,7 +126,7 @@ Dependencies if running from source:
 
 This is all for the latest p2pool version, as it includes several new workarounds. 
 
-With all miners, using a HIGH FPS target (100?) or a LOW intensity (8 for bfgminer?) helps a lot with reducing stales.
+With all miners, using a HIGH FPS target (100?) or a LOW intensity (8 for cgminer/bfgminer?) helps a lot with reducing stales.
 
 * bfgminer, cgminer, and ufasoft work perfectly without any extra options.
 * DiabloMiner works fine after commit 3b731b9.
@@ -134,7 +135,7 @@ With all miners, using a HIGH FPS target (100?) or a LOW intensity (8 for bfgmin
 
 P2Pool uses higher difficulty shares than most centralized pools, so you'll see fewer shares reported. This is normal and doesn't reduce your payments.  It's also normal to see longpoll messages once per every ten seconds on average.
 
-####Tips to configure bfgminer to reduce stale/doa:
+####Tips to configure cgminer/bfgminer to reduce stale/doa:
 
 * "gpu-threads" : "1", (2 by default)
 * "queue" : "0", (1 by default)
