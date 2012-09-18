@@ -164,6 +164,19 @@ When miner find the job which meets requested difficulty, it can submit the bloc
 To assemble the block data, simply concatenate your block header, number of transactions encoded in [[Bitcoin varint format|Protocol_specification#Variable_length_integer]], followed by each of the transactions in your block (beginning with the coinbase).
 If the server has listed "submit/coinbase" in its "mutable" key, you may opt to omit the transactions after the coinbase.
 
+Python example:
+	def varintEncode(n):
+	if n < 0xfd:
+	return struct.pack('<B', n)
+	# NOTE: Technically, there are more encodings for numbers bigger than
+	# 16-bit, but transaction counts can't be that high with version 2 Bitcoin
+	# blocks
+	return b'\xfd' + struct.pack('<H', n)
+	blkdata = blkheader + varintEncode(len(txnlist)) + coinbase
+	if 'submit/coinbase' not in template.get('mutable', ()):
+	for txn in txnlist[[1:]]:
+	blkdata += txn
+
 ####Poolserver software
 Recommended standards to start with (in order of importance):
 
