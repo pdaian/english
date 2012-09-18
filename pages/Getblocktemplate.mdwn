@@ -62,6 +62,14 @@ libblkmaker currently only supports the Jansson JSON library, but was designed s
 TODO
 
 ####Poolserver software
+Recommended standards to start with (in order of importance):
+
+* [[BIP 22 (non-optional sections)|BIP_0022]]
+* [[BIP 22 Long Polling|BIP_0022#Optional:_Long_Polling]]
+* [[BIP 23 Basic Pool Extensions|BIP_0023#Basic_Pool_Extensions]]
+* [[BIP 23 Mutation "coinbase/append"|BIP_0023#Mutations]] (required for miner extranonce rolling)
+* [[BIP 23 Submission Abbreviation "submit/coinbase"|BIP_0023#Submission_Abbreviation]]
+* [[BIP 23 Mutation "time/increment"|BIP_0023#Mutations]] (be sure to specify "maxtime" or "maxtimeoff"!)
 
 ##Technical specifications
 
