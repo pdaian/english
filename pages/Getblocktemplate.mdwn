@@ -59,7 +59,64 @@ libblkmaker currently only supports the Jansson JSON library, but was designed s
 [Luke Dashjr](User:Luke-jr) is willing to do this porting to other JSON libraries free of charge on request.
 
 #####From scratch
-TODO
+======Miner requests block template======
+
+To start participating, the miner contacts the pool and requests an initial template:
+	{"id": 0, "method": "getblocktemplate", "params": {["workid", "coinbase/append"]("coinbasetxn",)}}
+
+The server will respond with the full details needed to immediately begin mining blocks:
+	{
+	"error": null,
+	"result": {
+	"coinbasetxn": {
+	"data": "0100000001000000000000000000000000000000000000000000000000000000
+	0000000000ffffffff1302955d0f00456c6967697573005047dc66085fffffffff02fff1052a01
+	0000001976a9144ebeb1cd26d6227635828d60d3e0ed7d0da248fb88ac01000000000000001976
+	a9147c866aee1fa2f3b3d5effad576df3dbf1f07475588ac00000000"
+	},
+	"previousblockhash": "000000004d424dec1c660a68456b8271d09628a80cc62583e5904f5894a2483c",
+	"transactions": [],
+	"expires": 120,
+	"target": "00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+	"longpollid": "some gibberish",
+	"height": 23957,
+	"version": 2,
+	"curtime": 1346886758,
+	"mutable": [["coinbase/append"]],
+	"bits": "ffff001d"
+	},
+	"id": 0
+	}
+
+======How to build coinbase transaction======
+If the pool allows the "coinbase/append" mutation by including it in the "mutable" key, you can rebuild the coinbase transaction to append any data your miner wants, such as an extranonce - you can use as much space as you need so long as the coinbase data does not overflow the 100 byte hard limit.
+If the server does *not* allow "coinbase/append", or you don't care to change it, you can skip this step entirely :)
+
+The coinbase data always begins after exactly 42 bytes of the coinbase transaction.
+The 42nd byte (that is, the byte immediately before the data) is the length of the data.
+So when/if you want to add on to the coinbase data, simply insert it 42+DataLen bytes into the transaction, and increment the 42nd byte by the length of your inserted data.
+
+======How to build merkle root======
+Collect your coinbase transaction (modified or not) at the front of the "transactions" list provided by the server.
+Apply a double-SHA256 hash to each transaction in the list.
+
+Now, as long as the list has more than 1 hash remaining, go through each pair and hash them together.
+That is, concatenate the first two, double-SHA256 that, repeat for the next two, and so on.
+If you encounter an odd pair (that is, the hash list ends with a single item and no pairing), concatenate it with itself and hash that.
+Continue to do that until there is only one hash left:
+that is your merkle root.
+
+======How to build block header======
+Assemble the block header as laid out in the Bitcoin [[block_hashing_algorithm]], using the data provided in the block template along with your very own merkle root.
+Note that miners are expected to check the "version" number, and should not create blocks with versions they do not understand unless the server instructs them to do so with the "version/force" or "version/reduce" mutations - you don't need to support those, but if you don't support the version the server has provided, understand that the server may reject submissions if they don't meet some unknown future rules.
+As of this time, the current Bitcoin block version is 2, so it is safe to build blocks with version 1 or 2.
+
+======Submittion shares======
+When miner find the job which meets requested difficulty, it can submit the block to the server as a share:
+	{"id": 0, "method": "submitblock", "params": 							[(1)](147c866aee1fa2f3b3d5effad576df3dbf1f07475588ac00000000")}
+
+To assemble the block data, simply concatenate your block header, number of transactions encoded in [[Bitcoin varint format|Protocol_specification#Variable_length_integer]], followed by each of the transactions in your block (beginning with the coinbase).
+If the server has listed "submit/coinbase" in its "mutable" key, you may opt to omit the transactions after the coinbase.
 
 ####Poolserver software
 Recommended standards to start with (in order of importance):
