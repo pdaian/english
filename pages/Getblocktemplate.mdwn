@@ -117,6 +117,19 @@ If you encounter an odd pair (that is, the hash list ends with a single item and
 Continue to do that until there is only one hash left:
 that is your merkle root.
 
+Python example:
+	import hashlib
+	def dblsha(data):
+	return hashlib.sha256(hashlib.sha256(data).digest()).digest()
+	
+	txnlist = [[coinbase]] + [['data']]) for a in template[[transactions]]
+	merklehashes = [for t in txnlist](dblsha(t))
+	while len(merklehashes) > 1:
+	if len(merklehashes) % 2:
+	merklehashes.append(merklehashes[[-1]])
+	merklehashes = [[i]] + merklehashes[+ 1](i)) for i in range(0, len(merklehashes), 2)
+	merkleroot = merklehashes[[0]]
+
 ======How to build block header======
 Assemble the block header as laid out in the Bitcoin [[block_hashing_algorithm]], using the data provided in the block template along with your very own merkle root.
 Note that miners are expected to check the "version" number, and should not create blocks with versions they do not understand unless the server instructs them to do so with the "version/force" or "version/reduce" mutations - you don't need to support those, but if you don't support the version the server has provided, understand that the server may reject submissions if they don't meet some unknown future rules.
