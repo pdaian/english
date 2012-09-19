@@ -91,8 +91,10 @@ def formatBitcoin(n, addSign = False):
 
 * [Davout](User:Davout) has to google this page each time someone mentions an amount in tonal bitcoin
 
-### Can be done without new fonts as characters
+### Hexadecimal could be done without new fonts as characters
 
-The tonal notation requires extra fonts.  Within the programming community there is a widely accepted convention for hexadecimal notation: use A-F for the higher order digits.  Thus, one counts 0,1,2,3, ... , 9,A,B,C,D,E,F,10,11 ....  There are even two conventions, (which are lacking in tonal notation) for distinguishing a base-16 number from a decimal.  The C convention prefixes 0x and the Motorola convention suffixes h.  So, the number san, 256 (decimal) would be written 0x100 or 100h.  In tonal notation, it would only be written 100, and thus potentially confused with decimal 100 which is 0x64.
+The tonal notation requires extra fonts.  Within the programming community there is a widely accepted convention for hexadecimal notation: use A-F for the higher order digits.  Thus, one counts 0,1,2,3, ... , 9,A,B,C,D,E,F,10,11 ....  There are even two conventions, (which are lacking in tonal notation) for distinguishing a base-16 number from a decimal.  The C convention prefixes 0x and the Motorola convention suffixes h.  So, the number san, 256 (decimal) would be written 0x100 or 100h.  In tonal notation, it would only be written 100, and thus potentially confused with decimal 100 which is 0x64, though this confusion is less of a problem for Bitcoin since the context is always explicit (SI/BTC vs Tonal/TBC units).
 
-Thus programming notation accomplishes the same goals as tonal notation with no requirement for changing fonts, thus is more suited to wider usage.  Further the prefix and suffix conventions lead to less ambiguity within the tonal community.
+Thus hexadecimal notation accomplishes most of the same goals as tonal notation, at least for Bitcoin, with no requirement for changing fonts, thus is more suited to wider usage.  Further the prefix and suffix conventions lead to less ambiguity within the tonal community.
+
+However, the goal of Tonal Bitcoin is to bring Bitcoin to Tonal, not to redefine Tonal or advocate change to the number system itself, so this is out of scope.
