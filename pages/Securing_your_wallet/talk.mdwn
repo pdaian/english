@@ -378,3 +378,7 @@ I don't feel entirely comfortable with the suggested usage of the ‘shred’ co
 ~ [[User:Ijel|Ijel]] 03:49, 11 February 2012 (GMT)
 
 @Ijel Well, TrueCrypt uses RAM-only storage when mounting a file. I'm pretty sure it has anti-swap protection too. [[User:Lordcirth|Lordcirth]] 23:55, 27 May 2012 (GMT)
+
+== Automated backup: inotify v.s. cron ==
+
+Hi, what would you think about a an automated backup using inotify (or pynotify: http://pyinotify.sourceforge.net/doc-v07/) to monitor writes on the wallet, which trigger the backup. It would save space by not copying the same versions of a wallet, and not wait for the next cron iteration to backup the wallet (which could be lost in between). --[[User:Mammique|Mammique]] ([[User talk:Mammique|talk]]) 06:17, 25 September 2012 (GMT)
