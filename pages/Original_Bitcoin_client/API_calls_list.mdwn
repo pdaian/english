@@ -52,6 +52,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |listsinceblock|[[blockhash]][[target-confirmations]]|Get all transactions in blocks since block [[blockhash]], or all transactions if omitted. |N
 |listtransactions |[[account]][[count=10]][[from=0]]|Returns up to [[count]]most recent transactions skipping the first [[from]]transactions for account [[account]]. If [[account]]not provided will return recent transaction from all accounts.|N
 |listunspent |[[minconf=1]][[maxconf=999999]]|**version 0.7**Returns array of unspent transaction inputs in the wallet. |N
+|loadblock |<file>|Imports blocks from external blk000?.dat file. You should not point loadblocks at files bitcoind is going to write to. cat together the blockfiles to feed to loadblocks. |Y
 |move |<fromaccount><toaccount><amount>[[minconf=1]][[comment]]|Move from one account in your wallet to another |N
 |sendfrom |<fromaccount><tobitcoinaddress><amount>[[minconf=1]][[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Will send the given amount to the given address, ensuring the account has a valid balance using [[minconf]]confirmations. Returns the transaction ID if successful (not in JSON object). |Y
 |sendmany |<fromaccount>{address:amount,...}[[minconf=1]][[comment]]|amounts are double-precision floating point numbers |Y
