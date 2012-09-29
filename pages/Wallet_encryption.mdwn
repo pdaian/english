@@ -40,4 +40,6 @@ passphrase and when topupkeypool is called (while the wallet is unlocked).
 Note that the keypool continues to be topped up on various occasions when
 a new key from pool is used and the wallet is unlocked (or unencrypted).
 
+When wallet passphrase enrcyption becomes enabled, any unused keys from the keypool are flushed (marked as used) and new keys protected with encyption are added.
+
 [[!tag "Technical"]]
