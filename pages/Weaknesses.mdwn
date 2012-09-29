@@ -36,10 +36,6 @@ See [Timejacking](http://culubas.blogspot.com/2011/05/timejacking-bitcoin_802.ht
 ### Illegal content in the block chain
 It is illegal in some countries to possess/distribute certain kinds of data. Since arbitrary data can be included in Bitcoin transactions, and clients must normally have a copy of all unspent transactions, this could cause legal problems.
 
-Unspent transactions can be safely forgotten if more than half of all users are forgetting those transactions. If a miner neglects to forget an unspent transaction and is in the minority, its blocks will be rejected by the majority if those transactions are subsequently spent. Probably users will not want to coordinate enough to forget illegal transactions, as it would require a high degree of centralization. Miners can safely refuse to accept illegal transactions, which may be enough to avoid legal problems, but this is basically impractical due to illegal content being extremely complex to detect.
-
-Transaction data can also be deleted with minimal risk if it can be proven that data will never be used. For example, if the standard template for a tx output is used, the only place you can put arbitrary data is the pubkey hash. If you set this to, say, English text or part of a JPEG, that tx output can be deleted because the chances of anyone finding a public key that hashes to that specific bit of meaningful data is very remote. However, someone could still encrypt the data so miners cannot detect it, and this carries the same liability for miners who neglect to drop it.
-
 ## Probably not a problem
 
 ###Breaking the cryptography
