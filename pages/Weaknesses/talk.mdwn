@@ -1,12 +1,13 @@
+## Wallet Vulnerable To Loss=
+
 I don't know if the vulnerable to loss from no backup is something that should fall under the category of being a "Bitcoin weakness".  - [Sgornick](User:Sgornick) 05:36, 18 June 2011 (GMT)
 
-### Wallet Vulnerable To Loss
 
 If a computer problem such as a disk crash occurs or for whatever reason there is no longer access to the wallet, and backups are either unavailable or not current enough, loss of coins can result.  Though backups are recommended, the client itself does not manage backups.
 
-This following appears to be speculation as to how a resolution to the problem might be arrived at.  That has been moved here as speculation of potential solutions doesn't go in the Weaknesses article. - [Sgornick](User:Sgornick) ([[talk|User_talk:Sgornick]]) 06:39, 29 September 2012 (GMT)
+## Illegal Content In the Blockchain
 
-### Illegal Content In the Blockchain
+This following appears to be speculation as to how a resolution to the problem might be arrived at.  That has been moved here as speculation of potential solutions doesn't go in the Weaknesses article. - [Sgornick](User:Sgornick) ([[talk|User_talk:Sgornick]]) 06:39, 29 September 2012 (GMT)
 
 Unspent transactions can be safely forgotten if more than half of all users are forgetting those transactions. If a miner neglects to forget an unspent transaction and is in the minority, its blocks will be rejected by the majority if those transactions are subsequently spent. Probably users will not want to coordinate enough to forget illegal transactions, as it would require a high degree of centralization. Miners can safely refuse to accept illegal transactions, which may be enough to avoid legal problems, but this is basically impractical due to illegal content being extremely complex to detect.Transaction data can also be deleted with minimal risk if it can be proven that data will never be used. For example, if the standard template for a tx output is used, the only place you can put arbitrary data is the pubkey hash. If you set this to, say, English text or part of a JPEG, that tx output can be deleted because the chances of anyone finding a public key that hashes to that specific bit of meaningful data is very remote. However, someone could still encrypt the data so miners cannot detect it, and this carries the same liability for miners who neglect to drop it.
 
