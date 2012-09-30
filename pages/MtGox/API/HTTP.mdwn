@@ -36,6 +36,73 @@ hash should then be appended (binary too) and then encode everything in base64
 
 **Warning : the API is no more accepting authentication by login/pass ( since 2012 march 1 ) , you _need_ to use an API key.**
 
+### perl
+
+**IMPORTANT! This is a simplified perl module simply returning user info not a full API, it is shown simply for illustrative purposes for those wishing to developing there own modules from scratch.. or bots.. or other**
+
+**IMPORTANT! This requires you compiled perl libwww with https support**
+
+<source lang="perl">
+
+1. !/usr/bin/perl
+
+use strict;
+use warnings;
+
+use Time::HiRes qw(gettimeofday);
+use MIME::Base64;
+use Digest::SHA qw(sha512_base64 hmac_sha512);
+
+use JSON;
+use LWP::UserAgent;
+
+use Data::Dumper;
+
+my $lwp = LWP::UserAgent->new;
+$lwp->agent("perl $");
+
+my $json = JSON->new->allow_nonref;
+
+my $secret = '_MTGOX API SECRET GET YOURS AT https://classic.mtgox.com/support/tradeAPI';
+my $key = '_MTGOX API KEY GET YOURS AT https://classic.mtgox.com/support/tradeAPI';
+
+	1. user code
+
+
+my $request = genReq('0/info.php');
+my $res = $lwp->request($request);
+
+1. Check the outcome of the response
+if ($res->is_success) {
+	print Dumper($json->decode( $res->content ))."\n";
+}
+else { print $res->status_line, "\n"; }
+
+exit 0;
+
+
+	1. sub routines and helpers
+
+sub genReq {
+	my ($uri) = shift;
+
+	my $req = HTTP::Request->new(POST => 'https://mtgox.com/api/'.$uri);
+	$req->content_type('application/x-www-form-urlencoded');
+	$req->content("nonce=".microtime());
+	$req->header('Rest-Key' => $key);
+	$req->header('Rest-Sign' => signReq($req->content(),$secret));
+
+	return $req;
+};
+
+sub signReq {
+	my ($content,$secret) = @_;
+	return encode_base64(hmac_sha512($content,decode_base64($secret)));
+}
+
+sub microtime { return sprintf "%d%06d", gettimeofday; }
+
+</source>
 ### PHP
 <source lang="php">
 <?php
@@ -92,7 +159,6 @@ var_dump(mtgox_query('0/getFunds.php'));
 Python version here: https://bitcointalk.org/index.php?topic=49789.msg592388#msg592388
 
 ### Node.js
-
 Generic [[Node.js_Example]] trading library (supports MtGox and Bitfloor): https://github.com/bitfloor/trader.nodejs
 
 ### Java
