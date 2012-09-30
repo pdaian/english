@@ -51,7 +51,7 @@ use warnings;
 
 use Time::HiRes qw(gettimeofday);
 use MIME::Base64;
-use Digest::SHA qw(sha512_base64 hmac_sha512);
+use Digest::SHA qw(hmac_sha512);
 
 use JSON;
 use LWP::UserAgent;
@@ -69,7 +69,7 @@ my $key = '_MTGOX API KEY GET YOURS AT https://classic.mtgox.com/support/tradeAP
 	1. user code
 
 
-my $request = genReq('0/info.php');
+my $request = genReq('/1/generic/private/info');
 my $res = $lwp->request($request);
 
 1. Check the outcome of the response
