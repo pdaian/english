@@ -1,24 +1,53 @@
 
-##Unlock your wallet
-1st you must unlock your wallet.
 
 ##Open Debug Window
 Then go to menu:
-
 /Help/Debug Window
 
-[[Screen1.PNG]]
+
+[[!img "Screen1.PNG" title="px200"]]
 
 and click on the tab - Console.
+
+##Unlock your wallet
+
+If your wallet is encrypted (I hope it is!). 1st you must unlock it.
+
+To do this just type:
+
+walletpassphrase YourLongPassphrase 600
+
+The 600 means your wallet is unlocked for 10 mins (600seconds
+
+[[!img "Unlock.PNG" title="px200"]]
 
 ##Run Import Command in Debug Window
 In the console at the very bottom is a text entry box in here enter:
 
 importprivkey yourPrivateKeyInWalletImportFormat TheLabelThatIWant
 
-Note that this can take a good few seconds and during that time it looks like the client has hung!
+[[Import1.PNG]]
+
+You now have to be patient. On a fast PC it takes 2 minutes to import, and
+during this time it looks like you application has hung. After waiting a few minutes
+you will see:
+
+[[Import2.PNG]]
+
+You are now done. But always best to check it worked.
 
 ##Check Key Imported OK
+
 Once Imported you can check that you have the address by closing the Debug window and going back to your address book.
 
-In there you should see the address you imported and the label.
+You should see the address here:
+
+[[InAddressBook.PNG]]
+
+And you can even send a transaction to check e.g.
+
+[[ReceivedTrans.PNG]]
+
+##Backup Wallet
+Your backup of you wallet will not have this key in obviously. So before you do anything else close the 
+client (to ensure that it is locked again) and backup the wallet.dat file as normal.
