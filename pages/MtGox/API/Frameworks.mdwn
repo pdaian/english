@@ -13,8 +13,11 @@ A list of some of the larger more commonly used FrameWorks used with the MtGox A
 * Object Orientated - The framework uses an object based programming style.
 * Blocking - The framework uses a blocking style of communication with the MtGox API, this menas that for instance when you place an order you have to wait for the information to come back to you before you can proceed. This is often easier to use for small bots and tickers.
 * Maintained - If the framework is knowingly maintained.
-* COMPAT_Linux/COMPAT_WIN32/COMPAT_WIN32/COMPAT_BSD - The framework is compatible with: linux, windows (32bit), windows (64bit) or BSD.
-
+* COMPAT_Linux - The framework is compatible with: linux.
+* COMPAT_WIN32 - The framework is compatible with: windows (32bit).
+* COMPAT_WIN32 - The framework is compatible with: windows (64bit).
+* COMPAT_BSD - The framework is compatible with: BSD.
+* Language - The language the framework is based in and the minimum version required. (Example: Python32, Perl 5.10)
 
 
 ## Frameworks
@@ -31,6 +34,7 @@ A perl based framework developed by Paul G Webster 'daemon' utilizing the non-bl
 * Maintained
 * COMPAT_Linux
 * COMPAT_BSD
+* Language: Perl 5.10+
 
 
 ### POE::Component::MtGox::Client::SafetyNet
