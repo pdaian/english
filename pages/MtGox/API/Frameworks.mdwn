@@ -1,0 +1,18 @@
+## Foreword
+A list of some of the larger more commonly used FrameWorks used with the MtGox API
+This section of the wiki is heavily under construction so antipate that some functions and frameworks may not have complete documented examples!
+
+### Definition of Terms
+
+* Safety caching - This process means the framework will actively cache 'save' information from queries so to reduce the amount of 'outbound' http calls required to mtgox, this is highly recommended as some features such as 'fullDepth' and 'Trades' are limted on MtGox its self.
+
+
+### POE::Component::MtGox::Client
+A perl based framework developed by Paul G Webster 'daemon' utilizing the non-blocking functions of POE, no large applications we know about yet use this, however it does implement some impressive features:
+
+* Safety caching 
+
+### Finance::MtGox
+The original perl based framework for MtGox, unrated.
+
+### Add more
