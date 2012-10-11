@@ -6,6 +6,12 @@ A list of some of the larger more commonly used FrameWorks used with the MtGox A
 ## Definition of Terms
 
 * Safety caching - This process means the framework will actively cache 'save' information from queries so to reduce the amount of 'outbound' http calls required to mtgox, this is highly recommended as some features such as 'fullDepth' and 'Trades' are limted on MtGox its self.
+* Non-Blocking - The framework uses a non blocking method of communication with the MtGox API, that is its possible to execute many simultaneous tasks in parallel. This is beneficial to large applications that may have to manage multiple trades very quickly.
+* Object Orientated - The framework uses an object based programming style.
+* Blocking - The framework uses a blocking style of communication with the MtGox API, this menas that for instance when you place an order you have to wait for the information to come back to you before you can proceed. This is often easier to use for small bots and tickers.
+* Maintained - If the framework is knowingly maintained.
+* COMPAT_Linux/COMPAT_WIN32/COMPAT_WIN32/COMPAT_BSD - The framework is compatible with: linux, windows (32bit), windows (64bit) or BSD.
+
 
 ## Frameworks
 
@@ -13,6 +19,14 @@ A list of some of the larger more commonly used FrameWorks used with the MtGox A
 A perl based framework developed by Paul G Webster 'daemon' utilizing the non-blocking functions of POE, no large applications we know about yet use this, however it does implement some impressive features:
 
 * Safety caching 
+* Non-Blocking
+* Object Orientated
+* Maintained
+* COMPAT_Linux
+* COMPAT_BSD
+
+### POE::Component::MtGox::Client::SafetyNet
+A proposed extension to PoCo::MtGox that allows the same functionality as PoCo::MtGox but will work on the windows architecture by offsetting processing to a linux or BSD mid-way server. There are security implications with doing this however; the BSD/Linux mid server will have to know your private key/secret, it would be advised that you run your own Mid-Level server on your own for all your windows machines unless you really trust the SafetyNet provider.
 
 ### Finance::MtGox
 The original perl based framework for MtGox, unrated.
