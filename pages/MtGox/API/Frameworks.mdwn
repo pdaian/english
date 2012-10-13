@@ -37,8 +37,12 @@ A perl based framework developed by Paul G Webster 'daemon' utilizing the non-bl
 * Language: Perl 5.10+
 
 
-### POE::Component::MtGox::Client::SafetyNet
-A proposed extension to PoCo::MtGox that allows the same functionality, but will work on the windows architecture by offsetting processing to a linux or BSD mid-way server. There are security implications with doing this however; the BSD/Linux mid server will have to know your private key/secret, it would be advised that you run your own Mid-Level server on your own for all your windows machines unless you really trust the SafetyNet provider.
+### POE::Component::MtGox::Server::SafetyNet
+A pure adaptive cache for MtGox; that will automatically keep track of all the Trade Histories and Depth queries and serve them its self instead of querying MtGox, so if your client is a bit spam happy and keeps getting dropped by MtGox for spam protection; you can run your own safety net server to get around it. This would also be useful for multiple mtgox clients behind the same IP, if you simply need to contact MtGox through PoCo::MtGox::Client the best bit is using PoCo-MtGox-Winproxy.
+
+
+### POE::Component::MtGox::Server::WinProxy
+A proposed extension to PoCo::MtGox that allows the same functionality, but will work on the windows architecture by offsetting processing to a linux or BSD mid-way server. There are security implications with doing this however; the BSD/Linux mid server will have to know your private key/secret, it would be advised that you run your own Mid-Level server on your own for all your windows machines unless you really trust the WinProxy provider.
 
 
 ### Finance::MtGox
