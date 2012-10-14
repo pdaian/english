@@ -1,8 +1,4 @@
-The core Bitcoin network can scale to very high transaction rates assuming a distributed version of the node software is built. This would not be very complicated.
-
-##Note to readers
-
-If you're coming here because of Dan Kaminsky's criticisms related to this page, you can find a discussion of his points on the [[Talk:Scalability]] page.
+The core Bitcoin network can scale to much higher transaction rates than are seen today, assuming that nodes in the network are primarily running on high end servers rather than desktops. Bitcoin was designed to support lightweight clients that only process small parts of the block chain (see *simplified payment verification* below for more details on this). A configuration in which the vast majority of users sync lightweight clients to more powerful backbone nodes is capable of scaling to millions of users and tens of thousands of transactions per second.
 
 ##Scalability targets
 
@@ -20,67 +16,52 @@ Today the Bitcoin network is restricted to a sustained rate of 7 tps by some art
 
 The protocol has two parts. Nodes send "inv" messages to other nodes telling them they have a new transaction. If the receiving node doesn't have that transaction it requests it with a getdata.
 
-The big cost is the crypto and block chain lookups involved with verifying the transaction. An ECDSA verification of a transaction input takes around 3msec on a modern Intel core. RIPEMD-160 runs at 106 megabytes/sec (call it 100 for simplicity) and SHA256 is about the same. So hashing 1 megabyte should take around 10 milliseconds and hashing 1 kilobyte would take 0.01 milliseconds, ie it's dwarfed by the cost of the ECDSA and thus can be ignored.
+The big cost is the crypto and block chain lookups involved with verifying the transaction. Verifying a transaction means some hashing and an ECDSA signature verification. RIPEMD-160 runs at 106 megabytes/sec (call it 100 for simplicity) and SHA256 is about the same. So hashing 1 megabyte should take around 10 milliseconds and hashing 1 kilobyte would take 0.01 milliseconds - fast enough that we can ignore it.
 
-So the slowest part of verifying a transaction is verifying its inputs, which is ~3 msec per input on todays hardware. It seems like in the current blockchain most transactions have only one input, and a few have more like 5/6 inputs. Let's call it an average of 2 inputs overall.  However each transaction input is verified twice: once when first received, and a second time when a block containing that transaction is received, so call it 12msec in total per transaction.
+Bitcoin is currently able (with a couple of simple optimizations that are prototyped but not merged yet) to perform around 8000 signature verifications per second on an quad core [Intel Core i7-2670QM 2.2Ghz processor](http://ark.intel.com/products/53469). However the average number of inputs per transaction is around 2, so we must halve the rate. This means 4000 transactions per second is easily achievable CPU-wise with a single fairly mainstream CPU.
 
-This means a single core today can probably, with tuning and the block chain held in RAM but no special hardware beyond that, verify and accept about 80 transactions/sec ([note the current rate is 4 transactions/min](http://bitcoinstatus.rowit.co.uk/messages.html)). This means a network node capable of keeping up with VISA would need roughly 50 cores + whatever is used for mining (done by separate machines/GPUs). Whilst building a single machine with 50 cores would be kind of a pain load balancing inbound "tx" messages over multiple machines would be very easy. Certainly a single machine could easily load balance all of VISAs transactions to a small group of verification machines which would then send the verified tx hash to the miners for incorporation into the merkle tree.
-
-For receiving and handling all the "tx" messages, you therefore could build a rack of 12 4-core machines that would keep up.
-
-That leaves the inbound inv messages. The cost of handling an inv is basically reading a small message from the network and then doing a RAM lookup to see if we already have the transaction. This is really, really fast. A single core could easily handle several thousand inv messages per second before breaking a sweat, even assuming it needs to read from a sharded in-memory block chain index.
+As we can see, this means as long as Bitcoin nodes are allowed to max out at least 4 cores of the machines they run on, we will not run out of CPU capacity unless Bitcoin is handling 100 times as much traffic as PayPal. As of late 2012 the network is handling 0.5 transactions/second, so even assuming enormous growth in popularity we will not reach this level for a long time.
 
 ##Network
 
-Let's assume an average rate of 2000tps, so just VISA. Transactions vary in size from about 0.2 kilobytes to over 1 kilobyte, but from looking at the block explorer it's probably averaging half a kilobyte today. So let's assume the way people use Bitcoin gets more complicated and call it 1kb per transaction.
+Let's assume an average rate of 2000tps, so just VISA. Transactions vary in size from about 0.2 kilobytes to over 1 kilobyte, but it's averaging half a kilobyte today.
 
-A solved block will then be around (1024 bytes * 2000tps * 60 seconds in a minute * 10minutes) / 1024 bytes in a kilobyte / 1024 kilobytes in a megabyte / 1024 megabytes in a gigabyte = 1.14 gigabytes per block.
+That means that you need to keep up with around 8 megabits/second of transaction data (2000tps * 512 bytes) / 1024 bytes in a kilobyte / 1024 kilobytes in a megabyte = 0.97 megabytes per second * 8 = 7.8 megabits/second.
 
-But you only have to transmit a solved block to your connected peers. If we assume these big futuristic supernodes have something like 40 or 50 peered connections, that means in the worst case scenario where you solve a block OR you receive a block but none of your peers have it yet (unlikely), you have to send ~57 gigabytes of data (call it 60).
+This sort of bandwidth is already common for even residential connections today, and is certainly at the low end of what colocation providers would expect to provide you with.
 
-Shifting 60 gigabytes of data in, say, 60 seconds means an average rate of 1 gigabyte per second, or 8 gigabits per second.
-
-The real question you want to know is how much does that sort of bandwidth cost? Well, bandwidth prices are a very tricky thing as some of the largest consumers pay the least due to how peering agreements work. The Googles and Akamais of this world will pay way less for a 10G wave than a small operator would. And, you wouldn't be hitting the 8Gbps very frequently .... only when you solve a block, really, as when relaying a block the peers you connect to will likely have already received it from some other peer anyway so only a subset would need to receive it from you. 
-
-Luckily, a node would very likely not have to transfer this much data this quickly. Assuming all nodes are equally well connected to other nodes with the same number of connections, each node would only have to send one copy of each block received, on average. Even if you are the first node to become aware of a block, once you send the block to 3 or 4 others, it would propagate among the others in exponentially growing numbers, similar to the bit-torrent protocol. 
-
-Take a look at [(1)](http://icecolo.com/colocation-packages) to get a feel for data transfer costs.
+When blocks are solved, the current protocol will send the transactions again, even if a peer has already seen it at broadcast time. Fixing this to make blocks just list of hashes would resolve the issue and make the bandwidth needed for block broadcast negligable. So whilst this optimization isn't fully implemented today, we do not consider block transmission bandwidth here.
 
 ##Storage
 
-At very high transaction rates each block can be over a gigabyte in size. These blocks must be stored somewhere. Whilst for speed it'd be ideal to store the block chain entirely in RAM, for cheapness storing only the hot parts in RAM and the rest on disk is the way to go. A 3 terabyte hard disk costs less than $200 today and will be cheaper still in future, so you'd need one such disk for every 21 days of operation (at 1gb per block).
+At very high transaction rates each block can be over half a gigabyte in size.
 
-##Network structure
+It is not required for most fully validating nodes to store the entire chain. In Satoshis paper he describes "pruning", a way to delete unnecessary data about transactions that are fully spent. This reduces the amount of data that is needed for a fully validating node to be only the size of the current unspent output size, plus some additional data that is needed to handle re-orgs. As of October 2012 (block 203258) there have been 7,979,231 transactions, however the size of the unspent output set is less than 100MiB, which is small enough to easily fit in RAM for even quite old computers.
 
-Today Bitcoin is a flat peer to peer network in which all nodes are equal. However the intention is to evolve it towards a more typical two-tier structure in which low powered client nodes connect to long-lived, high powered supernodes. The protocol already has some support for this (see the services flags in the version/address messages). However client mode is only partially implemented and no code exists to decide if and when to switch between supernode/client node status.
+Only a small number of archival nodes need to store the full chain going back to the genesis block. These nodes can be used to bootstrap new fully validating nodes from scratch but are otherwise unnecessary.
 
-As the network scales up, the costs of running a supernode that stores the full block chain and verifies every transaction will get progressively higher, but the two tier structure ensures everyone can still get started quickly. Client nodes only need to download a small number of headers the first time they connect (from their last checkpoint until the chain head). It's quite possible to run such nodes on a modern smartphone. The security model for lightweight clients is slightly different to a full node: whilst they don't need to talk to a trusted node (ie any network node will do), in that configuration it's important that the network be very difficult to attack as the block contents are not verified.
+The primary limiting factor in Bitcoins performance is disk seeks once the unspent transaction output set stops fitting in memory. It is quite possible that the set will always fit in memory on dedicated server class machines, if hardware advances faster than Bitcoin usage does.
 
 ##Optimizations
 
-The description above applies to the current software. However several optimizations exist that can dramatically cheapen the cost of running a node and these are fairly easy to implement.
+The description above applies to the current software with only minor optimizations assumed (the type that can and have been done by one man in a few weeks). 
+
+However there is potential for even greater optimizations to be made in future, at the cost of some additional complexity.
 
 ###CPU
 
-The CPU cost of a transaction is doubled by the fact that the current software verifies each input twice. There's no need for this. Once a transaction is received the fact that it passed verification can be stored, and when it re-appears in a block the second verification can be skipped. This would roughly double per-core capacity, ie you would need only 25 cores to verify VISA-level traffic loads. This can actually fit into a single high-end server.
+Newly developed digital signature algorithms, like [ed25519](http://ed25519.cr.yp.to/ed25519-20110705.pdf) have extremely efficient software implementations that can reach speeds of nearly 80,000 verifications per second, even on an old Westmere CPU. That is a 10x improvement over secp256k1, and most likely is even higher on more modern CPUs. Supporting this in Bitcoin would mean a "soft fork" like the one done recently for pay-to-script-hash support.
 
-###Storage
+Algorithms exist to accelerate batch verification over elliptic curve signatures. This means if there are several inputs that are signing with the same key, it's possible to check their signatures simultaneously for another 9x speedup. This is a somewhat more complex implementation, however, it can work with existing signatures (clients don't need upgrading).
 
-The storage costs of the block chain calculated above assume transactions are never deleted. Satoshi's paper explains how transactions with fully spent outputs can be pruned from long term storage due to how they are arranged in a Merkle tree. Nodes try to avoid accumulating lots of small unspent outputs as that means to send a reasonable quantity of coins would require transactions with lots of inputs and thus, be large and perhaps requiring a fee. Because nodes fight fragmentation, as time goes by it's likely that many blocks can be completely pruned of all or nearly all transactions, reducing their storage costs in the best case down to 80 bytes. As of May, 2011, the software does not implement pruning, and the potential savings are [calculated](http://forum.bitcoin.org/index.php?topic=9461.msg137059#msg137059) at 71% of transactions or 73% of raw block bytes.
+Assuming no upgrades to lightweight/SPV clients, so just batch verification, we can reach 40,000 transactions per second which is far beyond the traffic levels of the entire credit card system. And with ed25519 we could go up to nearly half a million transactions per second - with todays hardware!
 
-###Bandwidth
-
-The network costs of distributing blocks can be minimized by changing the protocol to send blocks as a header plus a list of hashes. Because nodes are very likely to have already seen a transaction when it was first broadcast, this means the size of a block to download would be trivial (80 bytes + 32 bytes per transaction). If a node didn't see a transaction broadcast, it can ask the connected node to provide it.
-
-###Network structure
-
-The peer-finding mechanism today relies on IRC. Switching to DNS would give dramatically faster startup times that do not scale with the size of the network. NOTE: This is done in 0.3.24
 
 ###Simplified payment verification
 
 It's possible to build a Bitcoin implementation that does not verify everything, but instead relies on either connecting to a trusted node, or puts its faith in high difficulty as a proxy for proof of validity. [[BitCoinJ]] is an implementation of this mode.
 
-In Simplified Payment Verification (SPV) mode, named after the section of Satoshis paper that describes it, clients connect to an arbitrary full node and download only the block headers. They verify the chain headers connect together correctly and that the difficulty is high enough. They then request transactions matching particular patterns from the remote node (ie, payments to your addresses), which provides copies of those transactions along with a Merkle branch linking them to the block in which they appeared. This exploits the Merkle tree structure to allow proof of inclusion without needing the full contents of the block. The pattern matching protocol message isn't implemented yet, [a proposal](http://forum.bitcoin.org/index.php?topic=7972.msg116285#msg116285) was discussed in May 2011.
+In Simplified Payment Verification (SPV) mode, named after the section of Satoshis paper that describes it, clients connect to an arbitrary full node and download only the block headers. They verify the chain headers connect together correctly and that the difficulty is high enough. They then request transactions matching particular patterns from the remote node (ie, payments to your addresses), which provides copies of those transactions along with a Merkle branch linking them to the block in which they appeared. This exploits the Merkle tree structure to allow proof of inclusion without needing the full contents of the block. 
 
 As a further optimization, block headers that are buried sufficiently deep can be thrown away after some time (eg, you only really need to store say 1000 blocks).
 
@@ -89,9 +70,5 @@ The level of difficulty required to obtain confidence the remote node is not fee
 Programs implementing this approach can have fixed storage/network overhead in the null case of no usage, and resource usage proportional to received/sent transactions.
 
 See also: [[Thin_Client_Security]].
-
-### Alternate blockchain for unspent outputs
-[This thread](https://bitcointalk.org/index.php?topic=88208.0) introduces the notion of an alternate blockchain (merged mined), which will have a smaller size than the full blockchain.
-
 
 [[!tag "Technical"]]
