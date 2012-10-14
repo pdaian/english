@@ -268,6 +268,21 @@ https://mtgox.com/api/1/generic/bitcoin/wallet_add
 
 * returns : "amount" ( total number of btcs in this wallet ) + count ( number of bitcoin addresses in this wallet )
 
+#### send_simple
+Withdraw bitcoins from your account to a given bitcoin address.
+
+Parameters:
+> 
+
+|Name |Value |Example
+|---|---|---
+|group1 ||*"BTC"*
+|btca |Bitcoin address |<code>18ytF1DH13LYEmBGREr47bNXNe6oH9ygzj</code>
+|amount_int |the traded amount * 1E8 |123000000
+|amount |amount of bitcoins as float, ***deprecated***|1.23
+
+
+
 #### idKey
 
 https://mtgox.com/api/1/generic/private/idkey
