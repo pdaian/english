@@ -271,19 +271,30 @@ https://mtgox.com/api/1/generic/bitcoin/wallet_add
 #### Withdraw bitcoins
 https://mtgox.com/api/1/generic/bitcoin/send_simple
 
-Withdraw bitcoins from your account to a given bitcoin address.
+Send bitcoins from your account to a bitcoin address.
+
+Warning:
+>  MtGox sent me notices to stop using the *withdraw_btc* method from API v0 and suggested the *send_simple* method.
+>  Unfortunately, I keep getting the error on the bitcoin address. Once this is resolved, I will complete the spec of this call.
 
 Parameters:
 > 
 
 |Name |Value |Example
 |---|---|---
-|group1 ||*"BTC"*
+|group1 ||"BTC"
 |btca |Bitcoin address |<code>18ytF1DH13LYEmBGREr47bNXNe6oH9ygzj</code>
-|amount_int |the traded amount * 1E8 |123000000
-|amount |amount of bitcoins as float, ***deprecated***|1.23
+|amount |amount of bitcoins as float |1.23
 
 
+
+#####Success
+No success yet.
+
+#####Error
+	<code>{
+ "error": "Invalid bitcoin address, please confirm your input"
+ }</code>
 
 #### idKey
 
