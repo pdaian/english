@@ -66,3 +66,6 @@ It seems that the magic bytes for the testnet in version 0.7.0 is 0x0709110B. Am
 
 When a **getdata** message with multiple blocks is sent (i.e. initial block download), the remote node, after sending all the requested block messages, it sends an **inv** message with its top block.
 [Jdnavarro](User:Jdnavarro) ([[talk|User_talk:Jdnavarro]]) 16:08, 8 October 2012 (GMT)
+
+The maximum size for a Block or a Transaction is 1MB. The overall message size is 32MB, which I think is deliberately redundant because it shouldn't be possible to generate a message of such size with the other limits. Should this be part of the protocol?
+[Jdnavarro](User:Jdnavarro) ([[talk|User_talk:Jdnavarro]]) 18:20, 15 October 2012 (GMT)
