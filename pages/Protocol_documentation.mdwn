@@ -209,30 +209,36 @@ The following services are currently assigned:
 |1 |NODE_NETWORK |This node can be asked for full blocks instead of just headers.
 
 
-Hexdump example of version message (OBSOLETE EXAMPLE. This example lacks a checksum and user-agent):
+Hexdump example of version message:
 <pre>
-0000   F9 BE B4 D9 76 65 72 73  69 6F 6E 00 00 00 00 00   ....version.....
-0010   55 00 00 00 9C 7C 00 00  01 00 00 00 00 00 00 00   U....|..........
-0020   E6 15 10 4D 00 00 00 00  01 00 00 00 00 00 00 00   ...M............
-0030   00 00 00 00 00 00 00 00  00 00 FF FF 0A 00 00 01   ................
-0040   20 8D 01 00 00 00 00 00  00 00 00 00 00 00 00 00   ................
-0050   00 00 00 00 FF FF 0A 00  00 02 20 8D DD 9D 20 2C   .......... ... ,
-0060   3A B4 57 13 00 55 81 01  00                        :.W..U...
+                        f9 be  b4 d9 76 65 72 73 69 6f   ........ ..versio
+0040  6e 00 00 00 00 00 66 00  00 00 c8 a2 64 d9 62 ea   ........ ........
+0050  00 00 01 00 00 00 00 00  00 00 E6 15 10 4D 00 00   ........ ........
+0060  00 00 01 00 00 00 00 00  00 00 00 00 00 00 00 00   ........ ........
+0070  00 00 00 00 ff ff 6c 27  6a 2c 20 8d 01 00 00 00   ........ ........
+0080  00 00 00 00 00 00 00 00  00 00 00 00 00 00 ff ff   ........ ........
+0090  5a e3 2b fe 20 8d ef 9d  5f 69 96 7f e1 da 11 2f   ........ ......./
+00a0  53 61 74 6f 73 68 69 3a  30 2e 37 2e 30 2e 33 2f   Satoshi: 0.7.0.3/
+00b0  f5 11 03 00  
 
-Message header:
- F9 BE B4 D9                                                                   - Main network magic bytes
- 76 65 72 73 69 6F 6E 00 00 00 00 00                                           - "version" command
- 55 00 00 00                                                                   - Payload is 85 bytes long
-                                                                               - No checksum in version message until 20 February 2012. See https://bitcointalk.org/index.php?topic=55852.0
-Version message:
- 9C 7C 00 00                                                                   - 31900 (version 0.3.19)
- 01 00 00 00 00 00 00 00                                                       - 1 (NODE_NETWORK services)
- E6 15 10 4D 00 00 00 00                                                       - Mon Dec 20 21:50:14 EST 2010
- 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 01 20 8D - Recipient address info - see Network Address
- 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 0A 00 00 02 20 8D - Sender address info - see Network Address
- DD 9D 20 2C 3A B4 57 13                                                       - Node random unique ID
- 00                                                                            - "" sub-version string (string is 0 bytes long)
- 55 81 01 00                                                                   - Last block sending node has is block #98645
+Header
+f9 be  b4 d9					- Main network magic bytes
+76 65 72 73 69 6f 6e 00 00 00 00 00		- "version" command
+66 00 00 00 					- Payload is 102 bytes long
+c8 a2 64 d9					- Checksum
+
+Payload
+62 ea 00 00 					- Version
+01 00 00 00 00 00 00 00 			- Service
+E6 15 10 4D 00 00 00 00				- Timestamp
+01 00 00 00 00 00 00 00 00 00 00 00 00 00 	- Reciever (see Network Address)
+00 00 00 00 ff ff 6c 27 6a 2c 20 8d
+01 00 00 00 00 00 00 00 00 00 00 00 00 00	- Sender (see Network Address)
+00 00 00 00 ff ff 5a e3 2b fe 20 8d
+ef 9d  5f 69 96 7f e1 da			- Node random id
+11 2f 53 61 74 6f 73 68 69 3a 30 2e 37		- User-Agent
+2e 30 2e 33 2f 								
+f5 11 03 00     				- Last block known to sending node.
 </pre>
 
 ### verack
