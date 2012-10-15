@@ -1,3 +1,4 @@
+##Bitcoin Data Platform by Clark Moody
 A financial information service that provides a real-time display of data from the [[MtGox]] exchange.
 
 * Combined - Includes all of the services listed below
@@ -5,21 +6,48 @@ A financial information service that provides a real-time display of data from t
 * Ticker - Current best ask / best bid, day's high, day's low, volume and last trade for all MtGox currencies. The site also displays a synthetic forex grid, based on the immediate exchange rates between non-zero volume currencies.
 * Order Book - The buy (bid) and sell (ask) orders along with real time trade calculators
 
-The Ticker and Time Sales services were announced on June 03, 2011 (1.1) and the Order Book was announced on June 10, 2011 (1.2). The combined information view was announced on September 11, 2011 (1.3).
+The Ticker and Time Sales services were announced on June 03, 2011 (2.1) and the Order Book was announced on June 10, 2011 (2.2). The combined information view was announced on September 11, 2011 (2.3).
+
+##Bitcoin-Analytics.com
+Relatively new financial information analytical service which provides real-time display of data from multiple bitcoin exchanges. The service was announced on May 21, 2012 (3.1).
+
+###Supported Markets
+
+* USD - mtgoxUSD, btceUSD, cbxUSD, cryptoxUSD, intrsngUSD, bitstampUSD, bitmarketUSD, bcLRUSD, vcxUSD, btc24USD, <strike>bitfloorUSD</strike> 
+* EUR - mtgoxEUR, bitmarketEUR, vcxEUR, intrsngEUR, bcEUR, bcLREUR, bitcurexEUR, btc24EUR
+* CNY - btcnCNY, mtgoxCNY
+	
+###Displayed Charts
+
+* Order Book Volume Chart
+* MKT Execution Price Chart
+* Time Last 1000? BTC Traded
+* VWAP Last 1000? BTC Traded
+* Trade Volume
+
+###Arbitrage Table
+Service provides arbitrage tables for all supported currency markets.
+
+###Consolidated Order Books
+Also service provides unique data - consolidated order books (all order books for the same currency are merged and all orders are sorted). Thus for each currency there is additional consolidated currency market: one for USD allUSD, for EUR allEUR, and for CNY allCNY.
+
+Consolidated order books data can help represent the behavior of the whole market.
+For example consolidated order book charts clearly displays whether arbitrage opportunity is present among different exchanges and for how long it is present, and at what extent. Also comparing charts for different exchanges it is possible to see quickly between which exchanges this particular arbitrage apportunity currently exists.
 
 ##External Links
 
 * [Combined](http://bitcoin.clarkmoody.com/) web page
-* [Multiple Exchanges Consolidated Order Books and Trades Real Time Charts](http://bitcoin-analytics.com) subscribtion service web page
 * [Time Sales](http://bitcoin.clarkmoody.com/time-sales) web page
 * [Ticker](http://bitcoin.clarkmoody.com/ticker) web page
 * [Order Book](http://bitcoin.clarkmoody.com/order-book) web page
+* [Bitcoin-Analytics.com - Multiple Exchanges Consolidated Order Books and Trades Real Time Charts](http://bitcoin-analytics.com) subscribtion service web page
 
 ##References
 
-1.1: [Realtime MtGox Time and Sales with WebSockets](http://forum.bitcoin.org/index.php?topic=11560.0)  
-1.2: [Real Time Order Book with WebSockets](http://forum.bitcoin.org/index.php?topic=14412.0)  
-1.3: [Combined Order Book and Time & Sales](https://bitcointalk.org/index.php?topic=43514.0)
+2.1: [Realtime MtGox Time and Sales with WebSockets](http://forum.bitcoin.org/index.php?topic=11560.0)  
+2.2: [Real Time Order Book with WebSockets](http://forum.bitcoin.org/index.php?topic=14412.0)  
+2.3: [Combined Order Book and Time & Sales](https://bitcointalk.org/index.php?topic=43514.0)  
+3.1: [Bitcoin-Analytics.com](https://bitcointalk.org/index.php?topic=82768.0)
 
 
 [[!tag "Financial"]]
