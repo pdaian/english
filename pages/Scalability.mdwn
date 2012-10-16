@@ -2,11 +2,11 @@ The core Bitcoin network can scale to much higher transaction rates than are see
 
 ##Scalability targets
 
-VISA handles on average around 2,000 transactions/sec, so call it a daily peak rate of 4,000/sec. They have burst capacity for over 10,000 transactions per second which they need to handle the busiest points of the holiday period (~8,500tps). [(1)](http://investor.visa.com/phoenix.zhtml?c=215693&p=irol-newsArticle_print&ID=1355716)
+VISA handles on average around 2,000 transactions per second (tps), so call it a daily peak rate of 4,000 tps. They have burst capacity for over 10,000 tps which they need to handle the busiest points of the holiday period (~8,500 tps). [(1)](http://investor.visa.com/phoenix.zhtml?c=215693&p=irol-newsArticle_print&ID=1355716)
 
-PayPal, in contrast, handles around 4 million transactions per day for an average of 46tps or a probably peak rate of 100tps.
+PayPal, in contrast, handles around 4 million transactions per day for an average of 46 tps or a probably peak rate of 100 tps.
 
-Let's take 4,000 tps as starting goal. Obviously if we want Bitcoin to scale to all economic transactions worldwide, including cash, it'd be a lot higher than that, perhaps more in the region of a few hundred thousand transactions/sec. And the need to be able to withstand DoS attacks (which VISA does not have to deal with) implies we would want to scale far beyond the standard peak rates. Still, picking a target let us do some basic calculations even if it's a little arbitrary.
+Let's take 4,000 tps as starting goal. Obviously if we want Bitcoin to scale to all economic transactions worldwide, including cash, it'd be a lot higher than that, perhaps more in the region of a few hundred thousand tps. And the need to be able to withstand DoS attacks (which VISA does not have to deal with) implies we would want to scale far beyond the standard peak rates. Still, picking a target let us do some basic calculations even if it's a little arbitrary.
 
 ##Current bottlenecks
 
@@ -18,7 +18,7 @@ The protocol has two parts. Nodes send "inv" messages to other nodes telling the
 
 The big cost is the crypto and block chain lookups involved with verifying the transaction. Verifying a transaction means some hashing and an ECDSA signature verification. RIPEMD-160 runs at 106 megabytes/sec (call it 100 for simplicity) and SHA256 is about the same. So hashing 1 megabyte should take around 10 milliseconds and hashing 1 kilobyte would take 0.01 milliseconds - fast enough that we can ignore it.
 
-Bitcoin is currently able (with a couple of simple optimizations that are prototyped but not merged yet) to perform around 8000 signature verifications per second on an quad core [Intel Core i7-2670QM 2.2Ghz processor](http://ark.intel.com/products/53469). However the average number of inputs per transaction is around 2, so we must halve the rate. This means 4000 transactions per second is easily achievable CPU-wise with a single fairly mainstream CPU.
+Bitcoin is currently able (with a couple of simple optimizations that are prototyped but not merged yet) to perform around 8000 signature verifications per second on an quad core [Intel Core i7-2670QM 2.2Ghz processor](http://ark.intel.com/products/53469). However the average number of inputs per transaction is around 2, so we must halve the rate. This means 4000 tps is easily achievable CPU-wise with a single fairly mainstream CPU.
 
 As we can see, this means as long as Bitcoin nodes are allowed to max out at least 4 cores of the machines they run on, we will not run out of CPU capacity unless Bitcoin is handling 100 times as much traffic as PayPal. As of late 2012 the network is handling 0.5 transactions/second, so even assuming enormous growth in popularity we will not reach this level for a long time.
 
