@@ -1,0 +1,29 @@
+
+In new fields the normal systems of academic peer review may be ineffective because the norms for studying that field are not yet established, the basics are not yet widely known, and the best references sources have not been identified.  The experience in the subject that the authors have relative to reviewers can be much greater than usual because without a well developed field there is not an adequate supply of expert reviewers.
+
+While analysis and review is greatly appreciated, some in the Bitcoin community have the opinion that much of the output from academic analysis of Bitcoin is of low quality: It often repeats well known things as novel, gets basic details about the system wrong, and generally would have benefited greatly by even a little review by an _actual_ Bitcoin expert.
+
+While the Bitcoin community doesn't have any way to intercede in the publication process we can at least document these mistakes after the fact to reduce their propagation in new works via citations.
+
+## Linking transactions to identify ownership
+
+In *Quantitative Analysis of the Full Bitcoin Transaction Graph* by Dorit Ron and Adi Shamir [(1)](http://eprint.iacr.org/2012/584.pdf) the authors write:
+
+<blockquote>
+A very important feature of the Bitcoin network is that a transaction involving
+multiple sending addresses can only be carried out by the common owner of
+all those addresses, as it is demanded by the Bitcoin system that “Whoever sent
+this transaction owns all of these addresses”. This legal requirement is also technically
+ensured by the fact that each received amount must have a cryptographic
+digital signature that unlocks it from the prior transaction. Only the person possessing
+the appropriate address is able to create a satisfactory signature, and thus
+funds can only be spent by their owners.
+</blockquote>
+
+This is flatly untrue for multiple reasons.
+
+First— this is expressed as a 'legal requirement' of the system, which isn't important for the paper's purposes but it's misinformation which may have greater implications elsewhere.  It is perfectly possible for users of Bitcoin to _jointly_ create a transactions where the owner of each input signs only for that input. This can be used so that multiple parties can atomically pay a third (e.g. to release information) without risk that one party will not pay. It's also used for 'coin mixing' purposes to explicitly frustrate the kind of analysis done in *Quantitative Analysis*.
+
+Admittedly, these uses are not currently very common. but if we step away from the system pedantic we find other problems with this assumption:  A very common model for 'web wallets', 'exchanges', and bank like services (as well as explicit centralized laundering services) is to have a common wallet which mixes inputs from many customers. While arguably these services "control" the funds, this kind of control is not useful for drawing conclusions about ownership or if funds are "in use" (since they could be stationary in the blockchain while being very actively traded.  Moreover, many of these systems allow users to _import_ private keys, invisibly transferring control. It would not be a correct assumption that a later party "controlled" other keys jointly used in the past, even ignoring that joint use is never proof. The import functionality is fairly widely used.
+
+Because of these concerns great care should be taken when assuming that "ownership" or even "control" can be reliably determined from transaction graph analysis, and the exact analysis and conclusions should be carefully compared against usage norms because the system rules to not ensure a clear pattern of either of these qualities as a function of the transaction graph.
