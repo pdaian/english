@@ -280,21 +280,17 @@ Warning:
 Parameters:
 > 
 
-|Name |Value |Example
-|---|---|---
-|group1 ||"BTC"
-|btca |Bitcoin address |<code>18ytF1DH13LYEmBGREr47bNXNe6oH9ygzj</code>
-|amount |amount of bitcoins as float |1.23
+|Name ||Value |Required |Example
+|---|---|---|---|---
+address |string |Yes |N/A
+amount_int |int |Yes |N/A
+fee_int |int |No |N/A
+no_instant |bool |No |N/A
+green |bool |No |N/A
 
 
 
-#####Success
-No success yet.
-
-#####Error
-	<code>{
- "error": "Invalid bitcoin address, please confirm your input"
- }</code>
+Answer unknown at the time of writing
 
 #### idKey
 
