@@ -273,20 +273,16 @@ https://mtgox.com/api/1/generic/bitcoin/send_simple
 
 Send bitcoins from your account to a bitcoin address.
 
-Warning:
->  MtGox sent me notices to stop using the *withdraw_btc* method from API v0 and suggested the *send_simple* method.
->  Unfortunately, I keep getting the error on the bitcoin address. Once this is resolved, I will complete the spec of this call.
-
 Parameters:
 > 
 
-|Name ||Value |Required |Example
-|---|---|---|---|---
-address |string |Yes |N/A
-amount_int |int |Yes |N/A
-fee_int |int |No |N/A
-no_instant |bool |No |N/A
-green |bool |No |N/A
+|Name |Value |Required |Example
+|---|---|---|---
+|address |string |Yes |N/A
+|amount_int |int |Yes |N/A
+|fee_int |int |No |N/A
+|no_instant |bool |No |N/A
+|green |bool |No |N/A
 
 
 
