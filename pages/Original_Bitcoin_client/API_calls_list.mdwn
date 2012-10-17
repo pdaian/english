@@ -1,4 +1,4 @@
-Bitcoin API call list (as of version 0.6.0)
+Bitcoin API call list (as of version 0.7.0)
 
 ## Common operations
 
@@ -14,7 +14,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 
 
 
-|addmultisigaddress |<nrequired><'[["key","key"]]'> [[account]]|**Currently only available on testnet**Add a nrequired-to-sign multisignature address to the wallet. Each key is a bitcoin address or hex-encoded public key. If [[account]]is specified, assign address to [[account]]. |N
+|addmultisigaddress |<nrequired><'[["key","key"]]'> [[account]]|Add a nrequired-to-sign multisignature address to the wallet. Each key is a bitcoin address or hex-encoded public key. If [[account]]is specified, assign address to [[account]]. |N
 |backupwallet |<destination>|Safely copies wallet.dat to destination, which can be a directory or a path with filename. |N
 |createrawtransaction |{}[[,...]]{address:amount,...}|**version 0.7**Creates a [[raw transaction|Raw_Transactions]]spending given inputs. |N
 |decoderawtransaction |<hex string>|**version 0.7**Produces a human-readable JSON object for a [[raw transaction|Raw_Transactions]]. |N
