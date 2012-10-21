@@ -53,16 +53,16 @@ Then we get the last target for this old 2 week window and multiply it by the ra
 
 If the old set of blocks completed too fast then the target is lowered (difficulty goes up) ensuring it takes longer to solve these new blocks... and vice versa. This way the difficulty oscillates around the ideal of 2 weeks (and 10 mins per block).
 
-## Coinbase value change
+## Block creation fee
 
-The output value of the coinbase transaction of a block, changes at every 210000 blocks. 
-The output value is a function of block height on the chain (genesis=0), and is calculated using 64 bit integer operations 
+The block creation fee changes at every 210000 blocks. 
+The block creation fee is a function of block height on the chain (genesis=0), and is calculated using 64 bit integer operations 
 (in satoshis) as:
 
 (50 * 100000000) >> (height / 210000) 
 
-The output value started with 50 BTC, will fall to 25 BTC at block 210000, 12 BTC at block 420000, finally down to 0 satoshi with block 6930000. 
-The output value of all coinbase transactions will sum up to  2099999997690000 satoshis, practically 21million BTC.
+The block creation fee started with 50 BTC, will fall to 25 BTC at block 210000, 12 BTC at block 420000, finally down to 0 satoshi with block 6930000. 
+The block creation fee of all coinbase transactions will sum up to  2099999997690000 satoshis, practically 21million BTC.
 
 ## [["tx"|Protocol_specification#tx]] messages
 
@@ -102,7 +102,7 @@ These messages hold a single block.
 1. Transaction list must be non-empty
 1. Block hash must satisfy claimed *nBits* proof of work
 1. Block timestamp must not be more than two hours in the future
-1. First transaction must be coinbase with the right output value for the height (i.e. only 1 input, with hash=0, n=-1), the rest must not be
+1. First transaction must be coinbase (i.e. only 1 input, with hash=0, n=-1), the rest must not be
 1. For each transaction, apply "tx" checks 2-4
 1. For the coinbase (first) transaction, scriptSig length must be 2-100
 1. Reject if sum of transaction sig opcounts > MAX_BLOCK_SIGOPS
