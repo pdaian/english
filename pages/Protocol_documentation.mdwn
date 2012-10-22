@@ -57,7 +57,7 @@ In a transaction, the sum of all inputs must be equal to or greater than the sum
 
 A special kind of transaction, called a [[coinbase_transaction]], has no inputs.  It is created by [[miners]], and there is one coinbase transaction per block.  Because each block comes with a reward of newly created Bitcoins (e.g. 50 BTC for the first 210,000 blocks), the first transaction of a block is, with few exceptions, the transaction that grants those coins to their recipient (the miner).  In addition to the newly created Bitcoins, the coinbase transaction is also used for assigning the recipient of any transaction fees that were paid within the other transactions being included in the same block.  The coinbase transaction can assign the entire reward to a single Bitcoin address, or split it in portions among multiple addresses, just like any other transaction.  Coinbase transactions always contain outputs totaling the sum of the block reward plus all transaction fees collected from the other transactions in the same block.
 
-The [[coinbase_transaction]] in block zero cannot be spent. This is due to a quirk of the reference client implementation that would open the potential for a block chain fork if some nodes accepted the spend and others did not. [(1)](https://bitcointalk.org/index.php?topic=119645.msg1288552#msg1288552)
+The [[coinbase_transaction]] in block zero cannot be spent. This is due to a quirk of the reference client implementation that would open the potential for a block chain fork if some nodes accepted the spend and others did not (6.1).
 
 Most Bitcoin outputs encumber the newly transferred coins with a single ECDSA private key.  The actual record saved with inputs and outputs isn't necessarily a key, but a *script*.  Bitcoin uses an interpreted scripting system to determine whether an output's criteria have been satisfied, with which more complex operations are possible, such as outputs that require two ECDSA signatures, or two-of-three-signature schemes.  An output that references a single Bitcoin address is a *typical* output; an output actually contains this information in the form of a script that requires a single ECDSA signature (see [[OP_CHECKSIG]]).  The output script specifies what must be provided to unlock the funds later, and when the time comes in the future to spend the transaction in another input, that input must provide all of the thing(s) that satisfy the requirements defined by the original output script.
 
@@ -659,6 +659,12 @@ A dissector for wireshark is being developed at https://github.com/blueCommand/b
 
 * [[Network]]
 * [[Protocol_rules]]
+
+##References
+
+6.1: [Block 0 Network Fork](http://bitcointalk.org/index.php?topic=119645.msg1288552#msg1288552)
+
+
 [[zh-cn:协议说明]]
 [[!tag "Technical"]]
 [[!tag "Developer"]]
