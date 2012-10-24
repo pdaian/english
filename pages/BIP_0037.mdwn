@@ -75,7 +75,7 @@ After a filter has been set, nodes don't merely stop announcing non-matching tra
 |4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2106!)
 |4 |bits |uint32_t |The calculated difficulty target being used for this block
 |4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
-|1 |txn_count |uint8_t |Number of transactions that matched the filter
+|1 |txn_count |uint32_t |Number of transactions that matched the filter
 |? |transactions |merkle_tx[]|A series of merkle_tx messages, defined below, for each transaction in the block that matched the filter.
 
 
