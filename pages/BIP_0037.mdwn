@@ -1,0 +1,166 @@
+[[!template id=bip]]
+
+<pre>
+  BIP: 37
+  Title: Connection Bloom filtering
+  Author: Mike Hearn <hearn@google.com>, Matt Corallo <bip@bluematt.me>
+  Status: Draft
+  Type: Standards Track
+  Created: 24-10-2012
+</pre>
+
+##Abstract
+
+This BIP adds new support to the peer-to-peer protocol that allows peers to reduce the amount of transaction data they are sent. Peers have the option of setting *filters* on each connection they make after the version handshake has completed. A filter is defined as a [Bloom filter](http://en.wikipedia.org/wiki/Bloom_filter) on data derived from transactions. A Bloom filter is a probabilistic data structure which allows for testing set membership - they can have false positives but not false negatives.
+
+This document will not go into the details of how Bloom filters work and the reader is referred to Wikipedia for an introduction to the topic.
+
+##Motivation
+
+As Bitcoin grows in usage the amount of bandwidth needed to download blocks and transaction broadcasts increases. Clients implementing *simplified payment verification* do not attempt to fully verify the block chain, instead just checking that block headers connect together correctly and trusting that the transactions in a chain of high difficulty are in fact valid. See the Bitcoin paper for more detail on this mode.
+
+Today, SPV clients have to download the entire contents of blocks and all broadcast transactions, only to throw away the vast majority of the transactions that are not relevant to their wallets. This slows down their synchronization process, wastes users bandwidth (which on phones is often metered) and increases memory usage. All three problems are triggering real user complaints for the Android "Bitcoin Wallet" app which implements SPV mode. In order to make chain synchronization fast, cheap and able to run on older phones with limited memory we want to have remote peers throw away irrelevant transactions before sending them across the network.
+
+##Design rationale
+
+The most obvious way to implement the stated goal would be for clients to upload lists of their keys to the remote node. We take a more complex approach for the following reasons:
+
+* Privacy: Because Bloom filters are probabilistic, with the false positive rate chosen by the client, nodes can trade off precision vs bandwidth usage. A node with access to lots of bandwidth may choose to have a high FP rate, meaning the remote peer cannot accurately know which transactions belong to the client and which don't. A node with very little bandwidth may choose to use a very accurate filter meaning that they only get sent transactions actually relevant to their wallet, but remote peers may be able to correlate transactions with IP addresses (and each other).
+* Bloom filters are compact and testing membership in them is fast. This results in satisfying performance characteristics with minimal risk of opening up potential for DoS attacks.
+
+##Specification
+
+###New messages
+
+We start by adding three new messages to the protocol:
+
+* <code>filterload</code>, which sets the current Bloom filter on the connection
+* <code>filteradd</code>, which adds the given data element to the connections current filter without requiring a completely new one to be set
+* <code>filterclear</code>, which deletes the current filter and goes back to regular pre-BIP37 usage.
+
+Note that there is no filterremove command because by their nature, Bloom filters are append-only data structures. Once an element is added it cannot be removed again without rebuilding the entire structure from scratch.
+
+The <code>filterload</code> command is defined as follows:
+
+
+
+|? |filter |uint8_t[]|The filter itself is simply a bit field of arbitrary byte-aligned size. The maximum size is 36,000 bytes.
+|4 |nHashFuncs |uint32_t |The number of hash functions to use in this filter. The maximum value allowed in this field is 50.
+
+
+See below for a description of the Bloom filter algorithm and how to select nHashFuncs and filter size for a desired false positive rate.
+
+Upon receiving a <code>filterload</code> command, the remote peer will immediately restrict the broadcast transactions it announces (in inv packets) to transactions matching the filter, where the matching algorithm is specified below.
+
+The <code>filteradd</code> command is defined as follows:
+
+
+
+|? |data |uint8_t[]|The data element to add to the current filter.
+
+
+The data field can be of any size up to the maximum message size limit.
+
+The given data element will be added to the Bloom filter. If no filter has been previously provided using <code>filterload</code>, a new one will be initialized that would have a false positive rate of 0.1% with 1000 inserted elements. This command is useful if a new key or script is added to a clients wallet whilst it has connections to the network open, it avoids the need to re-calculate and send an entirely new filter to every peer.
+
+The <code>filterclear</code> command has no arguments at all.
+
+After a filter has been set, nodes don't merely stop announcing non-matching transactions, they can also serve filtered blocks. A filtered block is defined by the <code>merkleblock</code> message and is defined like this:
+
+
+
+|4 |version |uint32_t |Block version information, based upon the software version creating this block
+|32 |prev_block |char[[32]]|The hash value of the previous block this particular block references
+|32 |merkle_root |char[[32]]|The reference to a Merkle tree collection which is a hash of all transactions related to this block
+|4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2106!)
+|4 |bits |uint32_t |The calculated difficulty target being used for this block
+|4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
+|1 |txn_count |uint8_t |Number of transactions that matched the filter
+|? |transactions |merkle_tx[]|A series of merkle_tx messages, defined below, for each transaction in the block that matched the filter.
+
+
+The <code>merkle_tx</code> message is defined below:
+
+
+
+|4 |index |uint32_t |The index in the original block that the transaction appeared at.
+|32 |hash |uint256_t |The hash of the matching transaction.
+|? |merkle_branch |uint256_t[]|A vector of hashes defining the Merkle branch linking this transaction to the merkle root in the block header
+
+
+See below for the format of the merkle branch.
+
+As you can see a <code>merkleblock</code> message is a block header, plus identifying information for transactions that matched the filter, plus the Merkle branch which can be used to prove that the matching transaction data really did appear in the solved block. Clients can use this data to be sure that the remote node is not feeding them fake transactions that never appeared in a real block, although lying through omission is still possible.
+
+###Extensions to existing messages
+
+The <code>version</code> command is extended with a new field:
+
+
+
+|1 byte |fRelay |bool |If false then broadcast transactions will not be announced until a filter{load,add,clear}command is received. If missing or true, no change in protocol behaviour occurs.
+
+
+SPV clients that wish to use Bloom filtering would normally set fRelay to false in the version message, then set a filter based on their wallet (or a subset of it, if they are overlapping different peers). Being able to opt-out of inv messages until the filter is set prevents a client being flooded with traffic in the brief window of time between finishing version handshaking and setting the filter.
+
+The <code>getdata</code> command is extended to allow a new type in the <code>inv</code> submessage. The type field can now be <code>MSG_FILTERED_BLOCK (== 3)</code> rather than <code>MSG_BLOCK</code>. If no filter has been set on the connection, a request for filtered blocks is ignored. If a filter has been set, a <code>merkleblock</code> message is returned for the requested block hash. In addition, because a <code>merkleblock</code> message contains only a list of transaction hashes, any transactions that the requesting node hasn't either received or announced with an inv will be automatically sent as well. This avoids a slow roundtrip that would otherwise be required (receive hashes, didn't see some of these transactions yet, ask for them).
+
+###Filter matching algorithm
+
+The filter can be tested against arbitrary pieces of data, to see if that data was inserted by the client. Therefore the question arises of what pieces of data should be inserted/tested.
+
+To determine if a transaction matches the filter, the following algorithm MUST be used. Once a match is found the algorithm aborts.
+
+1. Test the hash of the transaction itself.
+1. For each output, test each data element of the output script. This means each hash and key in the output script is tested independently. **Important:** if an output matches whilst testing a transaction, the node MUST update the filter by inserting the serialized COutPoint structure. See below for more details.
+1. For each input, test the serialized COutPoint structure.
+1. For each input, test each data element of the input script (note: input scripts only ever contain data elements).
+1. Otherwise there is no match.
+
+In this way addresses, keys and script hashes (for P2SH outputs) can all be added to the filter. You can also match against classes of transactions that are marked with well known data elements in either inputs or outputs, for example, to implement various forms of [[Smart_property]].
+
+The test for outpoints is there to ensure you can find transactions spending outputs in your wallet, even though you don't know anything about their form. As you can see, once set on a connection the filter is **not static** and can change throughout the connections lifetime. This is done to avoid the following race condition:
+
+1. A client sets a filter matching a key in their wallet. They then start downloading the block chain. The part of the chain that the client is missing is requested using getblocks.
+1. The first block is read from disk by the serving peer. It contains TX 1 which sends money to the clients key. It matches the filter and is thus sent to the client.
+1. The second block is read from disk by the serving peer. It contains TX 2 which spends TX 1. However TX 2 does not contain any of the clients keys and is thus not sent. The client does not know the money they received was already spent.
+
+By updating the bloom filter atomically in step 2 with the discovered outpoint, the filter will match against TX 2 in step 3 and the client will learn about all relevant transactions, despite that there is no pause between the node processing the first and second blocks.
+
+###Merkle branch format
+
+A *Merkle tree* is a way of arranging a set of items as leaf nodes of tree in which the interior nodes are hashes of the concatenations of their child hashes. The root node is called the *Merkle root*. Every Bitcoin block contains a Merkle root of the tree formed from the blocks transactions. By providing some elements of the trees interior nodes (called a *Merkle branch*) a proof is formed that the given transaction was indeed in the block when it was being mined, but the size of the proof is much smaller than the size of the original block.
+
+The branch is a list of hashes that can be used with the following algorithm.
+
+1. Let H = the hash of the transaction being checked for block inclusion.
+1. Let I = the index in the original block of the transaction being checked.
+1. For each element E in the branch:
+	1. If I is even, H = SHA256(SHA256(concatenation of E and H))
+	1. If I is odd, H = SHA256(SHA256(concatenation of H and E))
+	1. Divide I by 2   (right-shift)
+1. If H is equal to the merkle root in the block header, the transaction was included
+
+###Bloom filter format
+
+A Bloom filter is a bit-field in which bits are set based on feeding the data element to a set of different hash functions. The number of hash functions used is a parameter of the filter. In Bitcoin we use version 3 of the 32-bit Murmur hash function. To get N "different" hash functions we simply initialize the Murmur algorithm with the following formula:
+
+<code>nHashNum * (MAX_UINT32 / (nHashFuncs - 1))</code>
+
+i.e. if the filter is initialized with 4 hash functions, when the second function is needed h1 would be equal to 1431655765.
+
+When loading a filter with the <code>filterload</code> command, there are two parameters that can be chosen. One is the size of the filter in bytes. The other is the number of hash functions to use. To select the parameters you can use the following formulas:
+
+Let N be the number of elements you wish to insert into the set and P be the probability of a false positive, where 1.0 is "match everything" and zero is unachievable.
+
+The size S of the filter in bytes is given by <code>(-1 / pow(log(2), 2) * N * log(P)) / 8</code>. Of course you must ensure it does not go over the maximum size (36,000).
+
+The number of hash functions required is given by <code>S * 8 / N * log(2)</code>.
+
+##Copyright
+
+This document is placed in the public domain.
+
+[[!tag "Developer"]]
+[[!tag "Technical"]]
+[[!tag "BIP"]]
