@@ -4,13 +4,13 @@ The purpose of this page is to provide a general overview of the Bitcoin system 
 
 ###Currency
 
-Alice wants to buy the [Alpaca socks](http://www.grasshillalpacas.com/alpacaproductsforbitcoinoffer.html) Bob has for sale. In return, she must provide something of equal value to Bob. The most efficient way to do this is by using a medium of exchange that Bob accepts which would be classified as currency. Currency makes trade easier by eliminating the need for [coincidence of wants](http://en.wikipedia.org/wiki/Coincidence_of_wants) required in other systems of trade such as barter. Currency adoption and acceptance can be global, national, or in some cases local or community-based.
+Alice wants to buy the [Alpaca socks](http://www.grasshillalpacas.com/alpacaproductsforbitcoinoffer.html) which Bob has for sale. In return, she is to provide something of equal value to Bob. The most efficient way to do this is by using a medium of exchange that Bob accepts which would be classified as currency. Currency makes trade easier by eliminating the need for [coincidence of wants](http://en.wikipedia.org/wiki/Coincidence_of_wants) required in other systems of trade such as barter. Currency adoption and acceptance can be global, national, or in some cases local or community-based.
 
 ###Banks
 
-Alice need not provide currency to Bob in-person. She may instead transfer this value by first giving her dollar bills to a bank who promises to store and protect Alice's dollar bills. The bank gives Alice a written promise (called a "bank statement") that entitles her to withdraw the same number of dollar bills that she deposited. Since the money is still Alice's, she is entitled to do with it whatever she pleases, and the bank (like most banks), for a small fee, will do Alice the service of "giving" the dollar bills to Bob instead of her. This is done by Alice's bank by giving the dollar bills to Bob's bank and informing them that the money is for Bob, who will then see the amount the next time he checks his balance or receives his bank statement.
+Alice needs not provide currency to Bob in-person. She may instead transfer this value by first entrusting her currency to a bank who promises to store and protect Alice's currency notes. The bank gives Alice a written promise (called a "bank statement") that entitles her to withdraw the same number of currency bills that she deposited. Since the money is still Alice's, she is entitled to do with it whatever she pleases, and the bank (like most banks), for a small fee, will do Alice the service of passing on the currency bills to Bob on her behalf. This is done by Alice's bank by giving the dollar bills to Bob's bank and informing them that the money is for Bob, who will then see the amount the next time he checks his balance or receives his bank statement.
 
-Since banks have many customers, and bank employees require money for doing the job of talking to people and signing documents, banks in recent times have been using machines such as ATMs and web servers that do the job of interacting with customers instead of paid bank employees. The job of these machines is to learn what each customer wants to do with their money and, to the extent that it is possible, act on what the customer wants (for example, ATMs can hand out cash). Customers can always know how much money they have in their accounts, and they are confident that the numbers they see in their bank statements and on their computer screens accurately reflect the number of dollars that they can get from the bank on demand. They can be so sure of this that they can accept those numbers in the same way they accept paper dollars (this is similar to the way people started accepting paper dollars when they had been accepting gold or silver).
+Since banks have many customers, and bank employees require money for doing the job of talking to people and signing documents, banks in recent times have been using machines such as ATMs and web servers that do the job of interacting with customers instead of paid bank employees. The task of these machines is to learn what each customer wants to do with their money and, to the extent that it is possible, act on what the customer wants (for example, ATMs can hand out cash). Customers can always know how much money they have in their accounts, and they are confident that the numbers they see in their bank statements and on their computer screens accurately reflect the number of dollars that they can get from the bank on demand. They can be so sure of this that they can accept those numbers in the same way they accept paper banknotes (this is similar to the way people started accepting paper dollars when they had been accepting gold or silver).
 
 Such a system has several disadvantages:
 
@@ -28,14 +28,14 @@ Bitcoin is a system of owning and voluntarily transferring amounts of so-called 
 ###Creation of coins
 The creation of coins must be limited for the currency to have any value. 
 
-New coins are slowly [[mined|Mining]] into existence by following a mutually agreed-upon set of rules. A user [[mining|Mining]] bitcoins is running a program that searches tirelessly for a solution to a very difficult math problem whose difficulty is precisely known. The difficulty is automatically adjusted regularly so that the number of solutions found globally, by everyone, is constant: an average of 6 per hour. When a solution is found, the user may tell everyone of the existence of this newly found solution, along with other information, packaged together in what is called a "[[block|Block]]". 
+New coins are slowly [[mined|Mining]] into existence by following a mutually agreed-upon set of rules. A user [[mining|Mining]] bitcoins is running a software program that searches tirelessly for a solution to a very difficult math problem whose difficulty is precisely known. The difficulty is automatically adjusted regularly so that the number of solutions found globally, by everyone, is constant: an average of 6 per hour. When a solution is found, the user may tell everyone of the existence of this newly found solution, along with other information, packaged together in what is called a "[[block|Block]]". 
 
-Blocks contain 50 bitcoins at present. This amount, known as the block reward, is an incentive for people to perform the computation work required for block generation. Roughly every 4 years, the number of bitcoins that can be "mined" in a block reduces by 50%. Any block that is created by a malicious user that does not follow this rule (or any other rules) will be rejected by everyone else. The result is that no more than 21 million bitcoins will ever exist. 
+Blocks contain 50 bitcoins at present. This amount, known as the block reward, is an incentive for people to perform the computation work required for generating blocks. Roughly every 4 years, the number of bitcoins that can be "mined" in a block reduces by 50%. Any block that is created by a malicious user that does not follow this rule (or any other rules) will be rejected by everyone else. In the end, no more than 21 million bitcoins will ever exist. 
 
-Because the block reward will decrease over the long term, miners will some day instead pay for their hardware and electricity costs by collecting [[transaction fees|Transaction_fee]]. The sender of money may voluntarily pay a small transaction fee which will be kept by whoever finds the next block. Paying this fee will encourage miners to include the transaction in a block more quickly.
+Because the block reward will decrease over the long term, miners will some day instead pay for their hardware and electricity costs by collecting [[transaction fees|Transaction_fee]]. The sender of money may voluntarily pay a small transaction fee which will be kept by whomever finds the next block. Paying this fee will encourage miners to include the transaction in a block more quickly.
 
 ###Sending payments
-To guarantee that a third-party, Eve, cannot spend other people's bitcoins by creating transactions in their names Bitcoin uses [public key cryptography](Wikipedia:Public-key_cryptography) to make and verify digital signatures. In this system, each person, such as Alice or Bob, has one or more addresses each with an associated pair of public and private keys that they may hold in a [[wallet|Wallet]]. Only the user with the private key can sign a transaction to give some of their bitcoins to somebody else, but anyone can validate the signature using the user’s public key.
+To guarantee that a third-party, let's call her Eve, cannot spend other people's bitcoins by creating transactions in their names, Bitcoin uses [public key cryptography](Wikipedia:Public-key_cryptography) to make and verify digital signatures. In this system, each person, such as Alice or Bob, has one or more addresses each with an associated pair of public and private keys that they may hold in a [[wallet|Wallet]]. Only the user with the private key can sign a transaction to give some of their bitcoins to somebody else, but anyone can validate the signature using that user’s public key.
 
 Suppose Alice wants to send a bitcoin to Bob.
 
@@ -55,12 +55,12 @@ Later on, when Bob wishes to transfer the same bitcoins to Charley, he will do t
 * Bob signs the transaction with his private key.
 * Bob broadcasts the transaction on the Bitcoin network for all to see. 
 
-Only Bob can do this because only he has the private key that can create a valid signature for the transaction.  
+Only Bob can do this because only he has the private key that can create a valid signature for the transaction.
 
-Eve cannot change who the coins belong to by replacing Bob’s public key with her public key because Alice signed the transfer to Bob using her private key, declaring that the coins which belonged to her now belong to Bob, and Alice's private key is kept secret from Eve. So if Charlie accepts that the original coin was in the hands of Alice he will also accept the fact that this coin was later passed to Bob and now Bob is passing this same coin to him.
+Eve cannot change whose coins these are by replacing Bob’s public key with her public key, because Alice signed the transfer to Bob using her own private key, which is kept secret from Eve, and instructing that the coins which were hers now belong to Bob. So if Charlie accepts that the original coin was in the hands of Alice, he will also accept the fact that this coin was later passed to Bob, and now Bob is passing this same coin to him.
 
 ###Preventing [[double-spending]]
-The process described above does not prevent Alice from using the same bitcoins in more than one transaction. The following process does. This is the primary innovation behind Bitcoin.
+The process described above does not prevent Alice from using the same bitcoins in more than one transaction. The following process does; this is the primary innovation behind Bitcoin.
 
 * Details about the [[transaction|Transactions]] are [[sent and forwarded|Network]] to all or as many other computers as possible.
 * A constantly growing chain of [[blocks|Blocks]] that contains a record of all transactions is collectively maintained by all computers (each has a full copy).
@@ -71,7 +71,7 @@ The process described above does not prevent Alice from using the same bitcoins 
 When Bob sees that his transaction has been included in a block, which has been made part of the single longest and fastest-growing block chain (extended with significant computational effort), he can be confident that the transaction by Alice has been accepted by the computers in the network and is permanently recorded, preventing Alice from creating a second transaction with the same coin. In order for Alice to thwart this system and double-spend her coins, she would need to muster more computing power than all other Bitcoin users combined.
 
 ###Anonymity
-When it comes to the Bitcoin network itself, there are no "accounts" to set up and no e-mail addresses, user-names or passwords are required to hold or spend bitcoins. Each balance is simply associated with an address and its public-private key pair. The money "belongs" to anyone who has the private key and can sign transactions with it. Moreover, those keys do not have to be registered anywhere in advance, as they are only used when required for a transaction. Transacting parties do not need to know each other's identity in the same way that a store owner does not know a customer's name who pays with cash.
+When it comes to the Bitcoin network itself, there are no "accounts" to set up, and no e-mail addresses, user-names or passwords are required to hold or spend bitcoins. Each balance is simply associated with an address and its public-private key pair. The money "belongs" to anyone who has the private key and can sign transactions with it. Moreover, those keys do not have to be registered anywhere in advance, as they are only used when required for a transaction. Transacting parties do not need to know each other's identity in much the same way that a store owner does not know a cash-paying customer's name.
 
 A [[Bitcoin address|Address]] mathematically corresponds to a public key and looks like this:
 
@@ -80,7 +80,7 @@ A [[Bitcoin address|Address]] mathematically corresponds to a public key and loo
 Each person can have many such addresses, each with its own balance, which makes it very difficult to know which person owns what amount. In order to protect his [[privacy|Anonymity]], Bob can generate a new public-private key pair for each individual receiving transaction and the Bitcoin software encourages this behavior by default. Continuing the example from above, when Charlie receives the bitcoins from Bob, Charlie will not be able to identify who owned the bitcoins before Bob without further information.
 
 ###Capitalization / Nomenclature
-Since Bitcoin is both a currency and a protocol, capitalization of Bitcoin can be confusing. Generally accepted pracitice is to use Bitcoin (singular, with upper case letter b) to describe the protocol, network, and software, and bitcoin(s) (singular or plural, with lower case letter b) to describe actual bitcoins, as generated by computers. For example, you may have some bitcoins but when you run the program you are using Bitcoin.
+Since Bitcoin is both a currency and a protocol, capitalization of Bitcoin can be confusing. Generally accepted practice is to use Bitcoin (singular, with upper case letter b) to describe the protocol, network, and software, and bitcoin(s) (singular or plural, with lower case letter b) to describe actual bitcoins, as generated by computers. For example, you may have some bitcoins but when you run the program you are using Bitcoin.
 
 ##Where to see and explore
 You can directly explore the system in action by visiting [Blockchain.info](http://blockchain.info/) or [Bitcoin Block Explorer](http://blockexplorer.com/).
@@ -89,7 +89,7 @@ Note how many blocks were generated in the last hour, which on average will be 6
 This should give you an indication of how active the system is.
 
 Next, navigate to one of these blocks.
-The block's [[hash|hash]] begins with a run of zeros. This is what made creating the block so difficult; a hash that begins with many zeros is much more difficult to find than a hash with few or no zeros. The computer that generated this block had to try many *Nonce* values (also listed on the block's page) until it found one that generated this run of zeros.
+The block's [[hash]] begins with a run of zeros. This is what made creating the block so difficult; a hash that begins with many zeros is much more difficult to find than a hash with few or no zeros. The computer that generated this block had to try many *Nonce* values (also listed on the block's page) until it found one that generated this run of zeros.
 Next, see the line titled *Previous block*. Each block contains the hash of the block that came before it. This is what forms the chain of blocks.
 Now take a look at all the transactions the block contains. The first transaction is the income earned by the computer that generated this block. It includes a fixed amount of coins created out of "thin air" and possibly a fee collected from other transactions in the same block.
 
@@ -102,7 +102,7 @@ To get an impression of the amount of activity on the Bitcoin network, you might
 
 ###How many people use Bitcoin?
 
-This is quite a difficult question to answer accurately. One approach is to count how many bitcoin clients connected to the network in the last 24 hours. We can do this because some clients transmit their addresses to the other members of the network periodically. In September 2011 this method suggested that there were about 60,000 users.
+This is quite a difficult question to answer accurately. One approach is to count how many bitcoin clients connected to the network in the last 24 hours. We can do this because some clients transmit their addresses to the other members of the network periodically. In September 2011 this method suggested that there were about [[!template id=formatnum:60000]] users.
 
 ##See Also
 
