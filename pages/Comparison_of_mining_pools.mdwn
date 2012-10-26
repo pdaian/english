@@ -7,24 +7,24 @@ Reward types & explanation:
 * **SMPPS** - Shared Maximum Pay Per Share. Like Pay Per Share, but never pays more than the pool earns. [(2)](http://eligius.st/wiki/index.php/Shared_Maximum_PPS)
 * **ESMPPS** - Equalized Shared Maximum Pay Per Share. Like SMPPS, but equalizes payments fairly among all those who are owed. [(3)](http://forum.bitcoin.org/index.php?topic=12181.msg378851#msg378851)
 * **RSMPPS** - Recent Shared Maximum Pay Per Share. Like SMPPS, but system aims to prioritize the most recent miners first. [(4)](http://eligius.st/wiki/index.php/Shared_Maximum_PPS)
-* **CPPSRB** - Capped Pay Per Share with Recent Backpay.
+* **CPPSRB** - Capped Pay Per Share with Recent Backpay. [(5)](http://eligius.st/wiki/index.php/Capped_PPS_with_Recent_Backpay)
 * **Score** - Score based system: a proportional reward, but weighed by time submitted. Each submitted share is worth more in the function of time *t* since start of current round. For each share score is updated by: score += exp(t/C). This makes later shares worth much more than earlier shares, thus the miner's score quickly diminishes when they stop mining on the pool. Rewards are calculated proportionally to scores (and not to shares). (at slush's pool C=300 seconds, and every hour scores are normalized)
 [Visual examples of the various payout methods](http://eligius.st/~luke-jr/samples/800MH-3/)
 
 
 
-|Name |Location |GH/s (1.5)|Merged Mining (1.6)|Reward Type |Transaction fees |PPS Fee |Reward Fee |Protocol |Launched |Difficulty (1.7)|Forum |Website
+|Name |Location |GH/s (1.6)|Merged Mining (1.7)|Reward Type |Transaction fees |PPS Fee |Reward Fee |Protocol |Launched |Difficulty (1.8)|Forum |Website
 |---|---|---|---|---|---|---|---|---|---|---|---|---
-|[[50BTC]]|Germany |4000 |No |PPS (1.8)|kept by pool |3% ||[[getwork]]|2011-11-11 |1 |[1](http://bitcointalk.org/index.php?topic=54673.0)|[Link](http://50btc.com/)
+|[[50BTC]]|Germany |4000 |No |PPS (1.9)|kept by pool |3% ||[[getwork]]|2011-11-11 |1 |[1](http://bitcointalk.org/index.php?topic=54673.0)|[Link](http://50btc.com/)
 |[[BitArena]]|Romania |1 |No |Prop. |kept by pool ||0% |[[getblocktemplate]]|2012-09-22 |1 |[1](https://bitcointalk.org/index.php?topic=112243.0)|[Link](https://www.bitarena.net/)
 |[[Bitcash.cz|Bitcash.cz]]|Czech Republic |5 |No |Prop. |kept by pool ||0% |[[getwork]]|2012-09-14 |1 |[1](http://bitcash.cz/forum/)|[Link](http://bitcash.cz/pool/)
 |[[BitClockers|Bitclockers]]|USA/EU |250 |[[NMC]]|PPS |kept by pool |8% ||[[getwork]]|2011-05-27 |1 |[1](http://forum.bitcoin.org/index.php?topic=10127.0)|[Link](http://bitclockers.com/)
-|[[Bitcoin Mining Pool|Bitcoin_Pool]]|USA |70 |No |Prop. |kept by pool ||0% (1.9)|[[getwork]]|Unknown |1 |[1](http://bitcoinpool.com/forum/)|[Link](http://www.bitcoinpool.com/)
+|[[Bitcoin Mining Pool|Bitcoin_Pool]]|USA |70 |No |Prop. |kept by pool ||0% (1.10)|[[getwork]]|Unknown |1 |[1](http://bitcoinpool.com/forum/)|[Link](http://www.bitcoinpool.com/)
 |[[Slush's pool (mining.bitcoin.cz)|Bitcoin_Pooled_Mining]]|EU/France |2000 |[[NMC]]|Score |kept by pool ||2% |[[getwork]], [stratum](http://mining.bitcoin.cz/stratum-mining)|2010-11-27 |Dynamic |[1](http://forum.bitcoin.org/index.php?topic=1976.0)|[Link](http://mining.bitcoin.cz/)
 |[[Bitcoins.lc]]|EU |60 |No |Prop. |kept by pool ||0% |[[getwork]]|2011-05-27 |1 |[1](http://forum.bitcoin.org/index.php?topic=10121.0)|[Link](http://www.bitcoins.lc/)
 |[[Bitparking]]|USA |130 |[[NMC]], I0C, IXC, [[Devcoin]]|PPS |kept by pool |2.5% ||[[getwork]]|2012-01-08 |Choosable|[1](https://bitcointalk.org/index.php?topic=57148.0)|[Link](http://mmpool.bitparking.com/pool)
 |[[BitMinter]]|Germany |1500 |[[NMC]]|PPLNS |shared ||0% |[[getwork]]|2011-06-26 |1 |[1](https://bitcointalk.org/index.php?topic=27062.0)|[Link](https://bitminter.com)
-|[[BitPenny]]|USA |4 |No |CPPSRB |97% shared |3% ||BlkPrep (1.10)|2011-02-08 |8 |[1](https://bitcointalk.org/index.php?topic=36371.0)|[Link](http://bitpenny.com/)
+|[[BitPenny]]|USA |4 |No |CPPSRB |97% shared |3% ||BlkPrep (1.11)|2011-02-08 |8 |[1](https://bitcointalk.org/index.php?topic=36371.0)|[Link](http://bitpenny.com/)
 |[[BTC_Canada]]|Canada |2 |No |PPLNS |kept by pool ||1.5% |[[getwork]]|2012-08-08 |1 |[1](https://bitcointalk.org/index.php?topic=99741.0/)|[Link](https://btccan.com/)
 |[[BTC_Guild]]|USA/EU |2300 |[[NMC]]|PPS |kept by pool |5% ||[[getwork]], [stratum](http://mining.bitcoin.cz/stratum-mining)|2011-05-09 |Choosable|[1](http://forum.bitcoin.org/index.php?topic=7760.0)|[Link](http://www.btcguild.com/)
 |[[BTCMine]]|UK |65 |No |Score |kept by pool ||0% |[[getwork]]|2011-03-11 |1 |[1](http://forum.bitcoin.org/index.php?topic=4251.0)|[Link](http://www.btcmine.com/)
@@ -34,33 +34,33 @@ Reward types & explanation:
 |[[Coinotron|Coinotron]]|Poland |70 |No |DGM |kept by pool ||0% |[[getwork]]|2011-07-06 |1 |[1](http://forum.bitcoin.org/index.php?topic=26727.0)|[Link](http://www.coinotron.com)
 |[[DeepBit]]|Germany |4200 |No |PPS/Prop. |kept by pool |10% |3% |[[getwork]]|2011-02-26 |1 |[1](http://forum.bitcoin.org/index.php?topic=3889.0)|[Link](http://deepbit.net/)
 |[[Eclipse_Mining_Consortium]]|USA/EU/AU/Asia |1900 |[[NMC]]|DGM/PPS |kept by pool |5% |0% |[[getwork]], [[getblocktemplate]]|2011-06-14 |1/Choosable/Dynamic |[1](http://forum.bitcoin.org/index.php?topic=16385.0)|[Link](https://eclipsemc.com)
-|[[Eligius]]|Germany |300 |[[NMC]]|SMPPS |kept by pool |0% (1.11)||[[getwork]], [[getblocktemplate]] (1.10)|2011-04-27 |1 |[1](https://bitcointalk.org/index.php?topic=23768.msg298069#msg298069)|[Link](http://eligius.st)
-|[[Horrible_Horrendous_TT]]|USA |15 |No |PPS (1.12)|kept by pool |1% ||[[getwork]]|2012-08-29 |Choosable (1.13)|[1](https://bitcointalk.org/index.php?topic=95378.0)|[Link](http://hhtt.1209k.com/)
-|[[Mining_Team_Reddit_(MtRed)]]|USA/EU |650 |[[NMC]]|PPS (1.14)|shared |0% ||[[getwork]]|2011-05-25 |1 |[1](http://forum.bitcoin.org/index.php?topic=15929.0)[2](http://reddit.com/r/mtred/)|[Link](http://www.mtred.com/)
+|[[Eligius]]|Germany |300 |[[NMC]]|SMPPS |kept by pool |0% (1.12)||[[getwork]], [[getblocktemplate]] (1.11)|2011-04-27 |1 |[1](https://bitcointalk.org/index.php?topic=23768.msg298069#msg298069)|[Link](http://eligius.st)
+|[[Horrible_Horrendous_TT]]|USA |15 |No |PPS (1.13)|kept by pool |1% ||[[getwork]]|2012-08-29 |Choosable (1.14)|[1](https://bitcointalk.org/index.php?topic=95378.0)|[Link](http://hhtt.1209k.com/)
+|[[Mining_Team_Reddit_(MtRed)]]|USA/EU |650 |[[NMC]]|PPS (1.15)|shared |0% ||[[getwork]]|2011-05-25 |1 |[1](http://forum.bitcoin.org/index.php?topic=15929.0)[2](http://reddit.com/r/mtred/)|[Link](http://www.mtred.com/)
 |[[MaxBTC]]|USA |220 |[[NMC]]|DGM |kept by pool ||0% |[[getwork]]|2012-03-15 |1 |[1](https://bitcointalk.org/index.php?topic=68734.0)|[Link](https://www.maxbtc.com/)
 |[[NMCBit]]|USA |20 |[[NMC]]|PPS/Prop. |kept by pool |6.6% |3% |[[getwork]]|2011-08-01 |1 |[1](https://bitcointalk.org/index.php?topic=33612.0)[2](http://dot-bit.org/forum/viewtopic.php?f=6&t=268)|[Link](http://www.nmcbit.com/)
 |[[Ozco.in]]|USA/EU/AUS |750 |[[NMC]]on DGM |DGM/PPS |shared on DGM |4% |2% |[[getwork]]|2011-06-07 |1 |[1](https://bitcointalk.org/index.php?topic=14085.0)|[Link](https://www.ozcoin.net)
-|[[P2Pool]]|Earth (P2P) |300 |Solo Mining (1.15)|PPLNS |shared ||0% (1.16)|Proprietary (1.10)|2011-06-17 |Choosable (1.13)|[1](http://forum.bitcoin.org/index.php?topic=18313.0)|[Link](https://en.bitcoin.it/wiki/P2Pool)
-|[[pool.itzod.ru]]|Russia |360 |Converted to BTC |RSMPPS |shared |0% ||[[getwork]]|2011-08-01 |Choosable (1.13)|[1](https://bitcointalk.org/index.php?topic=25127.0)[2](https://bitcointalk.org/index.php?topic=44024.0)|[Link](https://pool.itzod.ru/)
+|[[P2Pool]]|Earth (P2P) |300 |Solo Mining (1.16)|PPLNS |shared ||0% (1.17)|Proprietary (1.11)|2011-06-17 |Choosable (1.14)|[1](http://forum.bitcoin.org/index.php?topic=18313.0)|[Link](https://en.bitcoin.it/wiki/P2Pool)
+|[[pool.itzod.ru]]|Russia |360 |Converted to BTC |RSMPPS |shared |0% ||[[getwork]]|2011-08-01 |Choosable (1.14)|[1](https://bitcointalk.org/index.php?topic=25127.0)[2](https://bitcointalk.org/index.php?topic=44024.0)|[Link](https://pool.itzod.ru/)
 |[[PolMine]]|Poland |160 |No |SMPPS |shared |1% ||[[getwork]]|2011-06-13 |1 |[1](http://forum.polmine.pl/)|[Link](https://polmine.pl/?setlang=en)
-|[[Triplemining]]|EU |90 |No |PPLNS |kept by pool ||0%  (1.17)|[[getwork]], getmemorypool (1.10)|2011-06-28 |1 |[1](http://forum.bitcoin.org/index.php?topic=23664.0)|[Link](http://tinyurl.com/triplemining)
+|[[Triplemining]]|EU |90 |No |PPLNS |kept by pool ||0%  (1.18)|[[getwork]], getmemorypool (1.11)|2011-06-28 |1 |[1](http://forum.bitcoin.org/index.php?topic=23664.0)|[Link](http://tinyurl.com/triplemining)
 |[[pool.mkalinin.ru]]|Russia |70 |No |PPLNS |kept by pool ||0% |[[getwork]]|2011-07-20 |1 |[1](https://bitcointalk.org/index.php?topic=30703.0)|[Link](http://pool.mkalinin.ru/)
 |[[alvarez.sfek.kz]]|Kazakhstan |3 |No |PPLNS |kept by pool ||0% |[[getwork]]|2012-04-19 |1 |[1](https://bitcointalk.org/index.php?topic=80135.0)|[Link](http://alvarez.sfek.kz/)
 
 
-1.5: Note that pool hashrate is largely irrelevant but can be seen as a popularity measurement. Note however that it is a theoretical security issue if one pool gains above 50% of the total computational power of the network, thus consider joining a pool based on other metrics.  
-1.6: Merged mining allows miners to mine on multiple [[block chains]] at the same time with the same hashing.  
-1.7: The share difficulty the pool uses  
-1.8: Pool also rewards stale shares  
-1.9: Donations are possible  
-1.10: Miner-local getwork proxy available.  
-1.11: Donations are possible  
-1.12: Pool also rewards stale shares  
-1.13: The difficulty of the shares can be changed by the user.  
-1.14: Pool also rewards stale shares  
-1.15: P2Pool supports merged mining but payouts in the merged chain are not pooled.  
-1.16: People are donating ''to'' P2Pool miners to encourage people to use it. The P2Pool author also accepts optional donations.  
-1.17: Triplemining keeps 1% to redistribute using a weekly jackpot and affiliations
+1.6: Note that pool hashrate is largely irrelevant but can be seen as a popularity measurement. Note however that it is a theoretical security issue if one pool gains above 50% of the total computational power of the network, thus consider joining a pool based on other metrics.  
+1.7: Merged mining allows miners to mine on multiple [[block chains]] at the same time with the same hashing.  
+1.8: The share difficulty the pool uses  
+1.9: Pool also rewards stale shares  
+1.10: Donations are possible  
+1.11: Miner-local getwork proxy available.  
+1.12: Donations are possible  
+1.13: Pool also rewards stale shares  
+1.14: The difficulty of the shares can be changed by the user.  
+1.15: Pool also rewards stale shares  
+1.16: P2Pool supports merged mining but payouts in the merged chain are not pooled.  
+1.17: People are donating ''to'' P2Pool miners to encourage people to use it. The P2Pool author also accepts optional donations.  
+1.18: Triplemining keeps 1% to redistribute using a weekly jackpot and affiliations
 
 
 ## See also
