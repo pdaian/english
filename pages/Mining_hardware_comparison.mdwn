@@ -440,7 +440,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |6930 |320|-|- |- |960 |1200 |2.1 |PCI-E 2.1 x16 |phoenix 1.75/phatk |stock voltage, BFI_INT FASTLOOP VECTORS AGGRESSION=13 WORKSIZE=64. 70C, FAN 80% (HIS brand)
 |6930 |370|-|- |- |980 |855 |2.4 |PCI-E 2.1 x16 |cgminer-2.4.1 |stock voltage (1,160), -I9. 71C, FAN 85% (HIS brand)
 |6930 |372 |-|1.89(?) |- |1000 |900 |2.4 |PCI-E 2.1 x16 |phoenix 1.75/poclbm |max stable @ 1200 mV, BFI_INT FASTLOOP VECTORS AGGRESSION=13 WORKSIZE=64
-|style="background:#00FFFF;"6930x2|700 |- |- |~400|940 |2560 |2.4 |PCI-E 2.1 x16 |Guiminer |max stable @ 1100mV mem 300, Fan 80-90%, temp 70-75, -v -w64 -f10
+|style="background:#00FFFF;"6930x2|700 |- |- |400~|940 |2560 |2.4 |PCI-E 2.1 x16 |Guiminer |max stable @ 1100mV mem 300, Fan 80-90%, temp 70-75, -v -w64 -f10
 |6950 |272 |-|0.90 |- |900 |1408 |2.4 |PCI-E 2.1 x16 |phoenix 1.48/poclbm |max stable @ 1150 mV, AGGRESSION = 7, BFI_INT, MSI 6950
 |6950 |291 |-||- |920 |1408 |2.4 |PCI-E 2.1 x16 |phoenix 1.48/poclbm |max stable @ 1200mV, AGGRESSION = 7, BFI_INT, MSI 6950
 |6950 |295 |-||- |930 |1408 |2.4 |PCI-E 2.1 x16 |phoenix 1.48/poclbm |max stable @ 1275mV, AGGRESSION = 7, BFI_INT, MSI 6950
@@ -448,15 +448,15 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |6950 |295 |1.844(?)||160(?) |810 |1536 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |unlocked shaders, default mem 1250
 |6950 |314 |-||- |800 |1408 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm 05-01-11 |-v -f30 -w128 default mem 1250 Stock Sapphire 6950 1gb
 |6950 |325 |1.635(?)||200(?) |885 |1536 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |unlocked shaders, default mem 1250
-|6950 |332 |~1.95 |~1.2 |~170 |840 |1408 |2.5.684.212 |PCI-E 2.1 x16 |guiminer/poclbm 2011-06-14 |-v -w 128 -f 0, WinXP x86, Cat11.6b, desktop on IGP, Sapphire 1GB w/ HW locked BIOS, +40MHz GPU OC, 160W ACP + 5% OC = 170W new estimated ACP
-|6950 |333 |~1.95 |~1.2 |~170 |840 |1408 |2.4.650.9 |PCI-E 2.1 x16 |guiminer/poclbm 2011-06-14 |-v -w 128 -f 0, WinXP x86, Cat11.6, desktop on IGP, Sapphire 1GB w/ HW locked BIOS, +40MHz GPU OC, 160W ACP + 5% OC = 170W new estimated ACP
-|6950 |338 |~1.84 |- |~184 |860 |1408 |2.4 |PCI-E 2.1 x16 |Phoenix 1.50/poclbm kernel |Sapphire 2GB card w/ HW locked BIOS; Cat 11.6, Win7 x64; core @ 860MHz & 1087mV (OC + undervolt), mem @ 860MHz; cmd line args: VECTORS BFI_INT AGGRESSION=11 WORKSIZE=128; power and MH/J calculated using Power = C*f*v^2 w/ assumption of 175 W at stock settings w/ 100% GPU util. (not measured)
+|6950 |332 |1.95~ |1.2~ |170~ |840 |1408 |2.5.684.212 |PCI-E 2.1 x16 |guiminer/poclbm 2011-06-14 |-v -w 128 -f 0, WinXP x86, Cat11.6b, desktop on IGP, Sapphire 1GB w/ HW locked BIOS, +40MHz GPU OC, 160W ACP + 5% OC = 170W new estimated ACP
+|6950 |333 |1.95~ |1.2~ |170~ |840 |1408 |2.4.650.9 |PCI-E 2.1 x16 |guiminer/poclbm 2011-06-14 |-v -w 128 -f 0, WinXP x86, Cat11.6, desktop on IGP, Sapphire 1GB w/ HW locked BIOS, +40MHz GPU OC, 160W ACP + 5% OC = 170W new estimated ACP
+|6950 |338 |1.84~ |- |184~ |860 |1408 |2.4 |PCI-E 2.1 x16 |Phoenix 1.50/poclbm kernel |Sapphire 2GB card w/ HW locked BIOS; Cat 11.6, Win7 x64; core @ 860MHz & 1087mV (OC + undervolt), mem @ 860MHz; cmd line args: VECTORS BFI_INT AGGRESSION=11 WORKSIZE=128; power and MH/J calculated using Power = C*f*v^2 w/ assumption of 175 W at stock settings w/ 100% GPU util. (not measured)
 |6950 |340 |- ||- |895 |1408 |2.4 |PCI-E 2.1 x16 |guiminer/poclbm 05-21-11 |-v -w 128, mem @ 500, 1200 mV, MSI 6950
 |6950 |340 |- ||- |800 |1536 |(?) |PCI-E 2.1 x16 |guiminer/poclbm 05-21-11 |-v -f30 -w128 default mem 1250,Sapphire 6950 1gb, unlocked shaders
 |6950 |343 |2.14 |- |160 |840 |1536 |2.4 |PCI-E 2.1 x16 |phoenix 06-27-11 |VECTORS BFI_INT AGGRESSION=11 WORKSIZE=128 FASTLOOP=false, HIS H695FN2G2M 2GB, mem @ 720, Kill-a-Watt measured
-|6950 |344 |~2.02 |~1.27 |~170 |840 |1408 |2.5.684.212 |PCI-E 2.1 x16 |poclbm/20110709 |-v -w 128 -f 0, WinXP x86, Cat11.6b, desktop on IGP, Sapphire 1GB w/ HW locked BIOS, +40MHz GPU OC, 160W ACP + 5% OC = 170W new estimated ACP
+|6950 |344 |2.02~ |1.27~ |170~ |840 |1408 |2.5.684.212 |PCI-E 2.1 x16 |poclbm/20110709 |-v -w 128 -f 0, WinXP x86, Cat11.6b, desktop on IGP, Sapphire 1GB w/ HW locked BIOS, +40MHz GPU OC, 160W ACP + 5% OC = 170W new estimated ACP
 |6950 |349 |1.745(?)||200(?) |800 |1408 |- |PCI-E 2.1 x16 |guiminer/poclbm 05-21-11 |-v -f30 -w128, xfx 6950 xxx 1gb, locked shaders, core 900, mem 650, 79° C
-|6950 |351 |~1.91 |- |~184 |860 |1408 |2.4 |PCI-E 2.1 x16 |GUIminer/poclbm v2011-07-01 |Sapphire 2GB card w/ HW locked BIOS; Cat 11.6, Win7 x64; core @ 860MHz & 1087mV (OC + undervolt), mem @ 860MHz; cmd line args: -v -w 128 -f 0; (same system as the 338 MH/s result above using Phoenix)
+|6950 |351 |1.91~ |- |184~ |860 |1408 |2.4 |PCI-E 2.1 x16 |GUIminer/poclbm v2011-07-01 |Sapphire 2GB card w/ HW locked BIOS; Cat 11.6, Win7 x64; core @ 860MHz & 1087mV (OC + undervolt), mem @ 860MHz; cmd line args: -v -w 128 -f 0; (same system as the 338 MH/s result above using Phoenix)
 |6950 |360 |1.8(?)||200(?) |970 |1536 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |unlocked shaders, default mem 1250
 |6950 |360 |-||- |870 |1375 |- |PCI-E 2.1 x16 |guiminer/poclbm |flashed with 6970 BIOS, -v -f30 -w128
 |6950 |365 |-||- |925 |1408 |- |PCI-E 2.1 x16 |guiminer/poclbm |stock bios, -v -f0 -w128, MSI twinfrozr III 2GB
@@ -466,7 +466,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |6950 |383 |-||- |975 |1408 |- |PCI-E 2.1 x16 |guiminer/poclbm |stock bios, -v -f0 -w128, voltage 1.274 @72c MSI twinfrozr III 2GB
 |6950 |389.9 |-||- |950 |1408 |- |PCI-E 2.0 x16 |cgminer 2.3.2/Diablo |stock bios, -I 9, VRAM @ 820Mhz, fan @ 100%, voltage 1.250v, temp @ 68c, HIS ICE-Q X 2GB, OCed using MSI Afterburner, Windows 7 Professional 64-bit SP 1
 |6950 |388.4 |-||- |900 |1536 |- |PCI-E 2.1 x16 |guiminer/poclbm |Powercolor 6950 @ shadermod on original Bios 6950 / 1000mV 850/730, +20% powertune, Fan @ 60%, -v -w128 -f1.
-|6950 |~400 |-||- |895 |320 |1536|PCI-E 2.1 x16 |GUIMiner 24th Aug 2011  |Sapphire HD6950 Shader unlock mod 1408>1536 / +20% Power control, Fan @ 55%, Flags:-v -f2 -w64 -r5.Note this keeps temps under 80oC which is needed for this to be stable.Moderate fan noise.Power use is ~200W.
+|6950 |400~ |-||- |895 |320 |1536|PCI-E 2.1 x16 |GUIMiner 24th Aug 2011  |Sapphire HD6950 Shader unlock mod 1408>1536 / +20% Power control, Fan @ 55%, Flags:-v -f2 -w64 -r5.Note this keeps temps under 80oC which is needed for this to be stable.Moderate fan noise.Power use is ~200W.
 |6950 |403 |-||- |939 |685 |- |PCI-E 2.1 x16 |phoenix-1.50/phatk |ASUS EAH6950 ([(Ref. 6950 Flashed -> 6970)](http://www.techpowerup.com/vgabios/90661/Asus.HD6970.2048.101124.html)) / +10% overdrive volt., Fan @ 90%, VECTORS BFI_INT WORKSIZE=128 AGGRESSION=13. Overclocked from 880 -> 939 with MSI Aferburner
 |6950 |408.8 |-||- |925 |1536 |- |PCI-E 2.0 x16 |cgminer 2.12 |GIGABYTE GV-R695D5-2GD-B @ shadermod on original Bios 6950, mem@625, V=1100mv Fan @ 60%. Windows 7x64, Catalyst 11.9
 |6950 |410.4 |-||- |950 |1536 |- |PCI-E 2.1 x16 |guiminer/poclbm |Powercolor 6950 @ shadermod on original Bios 6950 / 1000mV 850/730, +20% powertune, Fan @ 60%, -v -w128 -f1.
@@ -478,8 +478,8 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |6950 |428 |2.14(?)||200(?) |1000 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 1250, fan @ 80%, temp 64C, -v -w128, gpu core @ 1160mV
 |6950 |440 ||||990 |1536 |2.4 |PCI-E 2.1 x16 |guiminer/phatk |unlocked shaders, mem @ 1375, VGPU 1.21v, Watercooled (MCW60), temp 54C, VECTORS BFI_INT AGGRESSION=11 -k phatk
 |6950 |432 |2.16(?)|1.44 |200(?) |1000 |1536 |2.4.595.0 |PCI-E 2.1 x16 |guiminer/poclbm |unlocked shaders, +20% overdrive, mem @ 520, fan @ 80%, temp 76C, -v -w128 -f 2, gpu core @ 1275mV
-|style="background:#FFAFAF;"6950x2 CF |720 |- |- |~400 |900 |1408 |2.4.595.0 |PCI-E 2.1 x16 |GUIMiner v2011-07-01 |MSI Afterburner - gpu @ 900 (870 stock), mem @ 900 (1250 stock), temp 69-71C(bottom vga) fan@94% / 77-81C(top vga) fan@99% - 31C enviornment, -v -f 1 -w 128 BFI_INT
-|style="background:#FFAFAF;"6950x2 CF |731 |- |- |~400 |900 |1408 |2.4.595.0 |PCI-E 2.1 x16 |GUIMiner v2011-07-01 |MSI Afterburner - gpu @ 900 (870 stock), mem @ 900 (1250 stock), temp 68C(bottom vga) fan@90% / 73C(top vga) fan@99% - 28C enviornment, -v -f 1 -w 128 BFI_INT AGGRESSION=13
+|style="background:#FFAFAF;"6950x2 CF |720 |- |- |400 ~|900 |1408 |2.4.595.0 |PCI-E 2.1 x16 |GUIMiner v2011-07-01 |MSI Afterburner - gpu @ 900 (870 stock), mem @ 900 (1250 stock), temp 69-71C(bottom vga) fan@94% / 77-81C(top vga) fan@99% - 31C enviornment, -v -f 1 -w 128 BFI_INT
+|style="background:#FFAFAF;"6950x2 CF |731 |- |- |400~ |900 |1408 |2.4.595.0 |PCI-E 2.1 x16 |GUIMiner v2011-07-01 |MSI Afterburner - gpu @ 900 (870 stock), mem @ 900 (1250 stock), temp 68C(bottom vga) fan@90% / 73C(top vga) fan@99% - 28C enviornment, -v -f 1 -w 128 BFI_INT AGGRESSION=13
 |6950x3 |1081 |-||- |860 |1408 |2.4(?) |PCI-E 2.1 x8 |guiminer/poclbm 07-01 |Sapphire 2GB stock bios, stock voltage, locked shaders: +20% overdrive, mem@650, fan@95%, temp 94C, -v -f0 -w128, 93c
 |6950x4 |1316 |1.513||870 |840 |1408 |2.4.595.0 |PCI-E 2.1 x16 |m0mchil/poclbm 03-07-11 |locked shaders, default mem 1250, dual fan 75C typical
 |style="background:#F0FF0F;"6970 |323 |1.468|0.92 |220 |880 |1536 |2.3 |PCI-E 2.1 x16 |poclbm |-w 64, SDK 2.1 not supported on 69xx.
@@ -546,7 +546,7 @@ Stream SDK 2.5 seems to have resolved many of the problems with earlier versions
 |7970 |690 |- |- |- |1150 |2048 |2.6 (10.0.898.1) |PCI-E 2.0 x16 |DiabloMiner |GPU: 1150MHz, Memory: 1375MHz; -v 1 -w 256
 |7970 |695 |- |- |- |1160(core)/1050(mem) |2048 |2.6 |PCI-E 2.0 x16 |DiabloMiner (options: -v 1 -w 256) |Asus HD7970-DC2T-3GD5 @ 1.17V; Linux Ubuntu 11.10 64 bit; AMD SDK 2.6; Catalyst 12.3 
 |7970 |710 |-||- |1200 |2048 |2.4 |PCI-E 2.0 x16 |DiabloMiner|GPU 1200MHz, Memory 600MHz; -v 1 -w 256
-|7970 |~714 |-||- |1210 |2048 |2.7 |PCI-E 1.1 x16 |cgminer 2.7.4 |MSI HD7970 R7970-2PMD3GD5/OC, core clock - 1210Mhz, memory clock - 685, core voltage (1.149V - MSI Afterburner, ~1.043V - GPU-Z), memory voltage 1.5V, temperature - 75C at mid-day and 65C w/ AC on at 20C, Catalyst 12.8, Windows 8 Release Preview 32-bit, kernel - poclbm, vector - 1, worksize - 64, intensity - 14, fan - 100% 
+|7970 |714~ |-||- |1210 |2048 |2.7 |PCI-E 1.1 x16 |cgminer 2.7.4 |MSI HD7970 R7970-2PMD3GD5/OC, core clock - 1210Mhz, memory clock - 685, core voltage (1.149V - MSI Afterburner, ~1.043V - GPU-Z), memory voltage 1.5V, temperature - 75C at mid-day and 65C w/ AC on at 20C, Catalyst 12.8, Windows 8 Release Preview 32-bit, kernel - poclbm, vector - 1, worksize - 64, intensity - 14, fan - 100% 
 |7970 |825 |-||214 |1290 |2048 |2.4 |PCI-E 2.0 x16 |Bitminter|Bitminter beta 1.1.1; GPU 1290MHz, Memory 1375MHz (Trixx = 600); work size 256, "BFI_INT," Device-accessible CPU memory; full watercooled block; power stats from GPU-Z; Driver 11.12
 |7970x3 |1950 |2.6 |1.72 |750 |1100 |2048x3 |- |PCI-E 2.0 x16 |cgminer 2.7.5 |Win8, Catalyst 12.8, driver: 8.982.0.0, E: 1100, M:750, kernel: poclbm, worksize: 256, intensity: 9, gpu-threads: 4, refitted Diamond 7970 HSF with new VRM pads to lower VRM temps ~15C.  Undervolted each card until crash under load, then raised about 0.015v for stability.  Settings using afterburner 2.2.1 with OC unlocked.  Visiontek 7970: $370, Sapphire 7970: $360, Diamond 7970: $400
 |7970x3 |2050 |2.41 |1.22 |850 |1150 |6144 |2.6 |PCI-E 2.0 x16 |cgminer 2.3.1 |Win7, Catalyst 12.3, driver: 2.95, E: 1150, M:685, -k diakgcn -v 2 -w 256, 850W power consumption measured at the wall
