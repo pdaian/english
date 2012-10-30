@@ -109,7 +109,7 @@ These messages hold a single block.
 1. Verify Merkle hash
 1. Check if prev block (matching *prev* hash) is in main branch or side branches. If not, add this to orphan blocks, then query peer we got this from for 1st missing orphan block in *prev* chain; done with block
 1. Check that *nBits* value matches the difficulty rules
-1. Reject if timestamp is before the median time of the last 11 blocks
+1. Reject if timestamp is the median time of the last 11 blocks or before
 1. For certain old blocks (i.e. on initial block download) check that hash matches known values
 1. Add block into the tree. There are three cases: 1. block further extends the main branch; 2. block extends a side branch but does not add enough difficulty to make it become the new main branch; 3. block extends a side branch and makes it the new main branch.
 1. For case 1, adding to main branch:
