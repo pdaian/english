@@ -15,7 +15,6 @@ Options:
 	-pid=<file>        Specify pid file (default: bitcoind.pid)
 	-gen               Generate coins
 	-gen=0             Don't generate coins
-	-min               Start minimized
 	-datadir=<dir>     Specify data directory
 	-timeout=<n>       Specify connection timeout (in milliseconds)
 	-proxy=<ip:port>   Connect through socks4 proxy
@@ -52,6 +51,7 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)
 	-rpcsslciphers=<ciphers>                 Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)
 
 Additional (Supported but not listed in -? help):
+	-min               Start minimized
 	-checkblocks       Rescan the whole blockchain (can take very much time)
 
 ##Bitcoin.conf Configuration File
