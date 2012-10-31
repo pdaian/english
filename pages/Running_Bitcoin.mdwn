@@ -23,15 +23,11 @@ Options:
 	-maxconnections=<n>  Maintain at most <n> connections to peers (default: 125)
 	-addnode=<ip>      Add a node to connect to
 	-connect=<ip>      Connect only to the specified node at <ip> or <ip:port> (default port: 8333).
-	-nolisten          Don't accept connections from outside
-	-nodnsseed         Don't bootstrap list of peers using DNS
 	-banscore=<n>      Threshold for disconnecting misbehaving peers (default: 100)
 	-bantime=<n>       Number of seconds to keep misbehaving peers from reconnecting (default: 86400)
 	-maxreceivebuffer=<n>  Maximum per-connection receive buffer, <n>*1000 bytes (default: 10000)
 	-maxsendbuffer=<n>  Maximum per-connection send buffer, <n>*1000 bytes (default: 10000)
-	-noupnp            Don't attempt to use UPnP to map the listening port
 	-paytxfee=<amt>    Fee per KB to add to transactions you send
-	-daemon            Run in the background as a daemon and accept commands
 	-testnet           Use the test network
 	-debug             Output extra debugging information
 	-logtimestamps     Prepend debug output with timestamp
@@ -53,6 +49,11 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)
 Additional (Supported but not listed in -? help):
 	-min               Start minimized
 	-checkblocks       Rescan the whole blockchain (can take very much time)
+	-nolisten          Don't accept connections from outside [[Deprecated]]
+	-noupnp            Don't attempt to use UPnP to map the listening port [[Deprecated]]
+	-nodnsseed         Don't bootstrap list of peers using DNS [[Deprecated]]
+	-noirc             [[Deprecated]]
+	-daemon            Run in the background as a daemon and accept commands [[Deprecated]]
 
 ##Bitcoin.conf Configuration File
 All command-line options (except for -datadir and -conf) may be specified in a configuration file, and all configuration file options may also be specified on the command line. Command-line options override values set in the configuration file.
