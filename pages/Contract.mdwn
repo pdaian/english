@@ -1,9 +1,16 @@
 A **distributed contract** is a method of using Bitcoin to form agreements with people via the block chain. Contracts don't make anything possible that was previously impossible, but rather, they allow you to solve common problems in a way that minimizes trust. Minimal trust often makes things more convenient by allowing human judgements to be taken out of the loop, thus allowing complete automation.
 
-Many of the ideas underlying Bitcoin contracts were first described by Nick Szabó in his seminal paper, 
-[Formalizing and Securing Relationships on Public Networks](http://szabo.best.vwh.net/formalize.html).
+By building low trust protocols that interact with Bitcoin, entirely new products become possible:
 
-This page was written by [Mike Hearn](mailto:mike@plan99.net). Contact him if you have an idea for a new type of contact. You can watch **[a video of a talk on contracts](https://www.youtube.com/watch?feature=player_embedded&v=mD4L7xDNCmA)** that was presented at the Bitcoin 2012 conference in London.
+* [[Smart property|Smart_Property]] is property that can be atomically traded and loaned via the block chain.
+* [[Agents]] are autonomous programs that maintain their own wallet, which they use to buy server time. Money is obtained by the agent selling services. If demand exceeds supply the agents can spawn children that either survive or die depending on whether they can get enough business.
+* [[Distributed_markets]] are a way to implement peer to peer bond and stock trading, allowing Bitcoin to be evolve into a full competitor to the international financial system.
+* The [[Ripple_currency_exchange]] is a way to implement a distributed currency exchange based on social networks.
+
+This page also lists some smaller examples.
+
+Many of the ideas underlying Bitcoin contracts were first described by Nick Szabó in his seminal paper, 
+[Formalizing and Securing Relationships on Public Networks](http://szabo.best.vwh.net/formalize.html). These pages were written by [Mike Hearn](mailto:mike@plan99.net). Contact him if you have an idea for a new type of contract. You can watch **[a video of a talk on contracts](https://www.youtube.com/watch?feature=player_embedded&v=mD4L7xDNCmA)** that was presented at the Bitcoin 2012 conference in London.
 
 ##Theory
 
@@ -194,10 +201,6 @@ i.e., the first data element selects which phase is being used.
 
 Note that whilst EURcoins is a natural idea, there are other ways to implement peer-to-peer currency exchange (Bitcoin to fiat and vice versa), see the [[Ripple_currency_exchange]] article for more information.
 
-##Example 6: Smart property
-
-It's possible to make physical property, like houses, cars or phones, be atomically tradeable and lendable via the block chain. This topic has its own article: learn more about [[smart property|Smart_Property]].
-
 ##Example 7: Rapidly-adjusted (micro)payments to a pre-determined party
 
 Bitcoin transactions are very cheap relative to traditional payment systems, but still have a cost due to the need for it to be mined and stored. There are some cases in which you want to rapidly and cheaply adjust the amount of money sent to a particular recipient without incurring the cost of a broadcast transaction.
@@ -216,14 +219,6 @@ To do this, a protocol similar to one proposed by hashcoin can be used:
 This continues until the session ends, or the 1-day period is getting close to expiry. The AP broadcasts the last transaction it saw, replacing the original that was pending. Once the lock time passes, the value transfer is committed. Alternatively, if the session end is negotiated cleanly, the user can sign a transaction that's final (sequence number of UINT_MAX), which signals that no more data quota will be purchased, allowing instant commitment of the transaction.
 
 The lock time and sequence numbers avoid an attack in which the AP provides connectivity, and then the user [[double-spends|double-spending]] the output back to themselves using the first version of TX2, thus preventing the cafe from claiming the bill. If the user does try this, the TX won't be included right away, giving the access point a window of time in which it can observe the TX broadcast, and then broadcast the last version it saw, overriding the user's attempted double-spend.
-
-##Example 8: Agents
-
-[[Agents]] are autonomous programs that maintain their own wallets and act in the economy. Because an agent is a program and has no recourse to the law courts if something goes wrong, it must be entirely reliant on low trust protocols. Agents have a dedicated wiki page that discusses how they would use some of the contracts on this page, along with trusted computing/remote attestation protocols to ensure they do not get scammed by humans or other programs.
-
-##Example 9: Distributed investment and securities markets
-
-[[Smart property|Smart_Property]] allows for collateralized lending of physical property. But we can extend the concept to build distributed, peer to peer markets for the trading of bonds and other similar securities like stocks. In this way credit and lending can be brought to the Bitcoin world. Read more about [[distributed markets|Distributed_markets]].
 
 ##See Also
 
