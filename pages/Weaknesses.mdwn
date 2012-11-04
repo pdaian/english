@@ -27,7 +27,28 @@ Since there's no authentication when sending to an [[IP_address]] (as opposed to
 Someone who can see all of your Internet traffic can easily see when you send a transaction that you didn't receive (which means that it's yours). This would be made more difficult (but not impossible) if node-to-node encryption was used.
 
 ### Denial of Service (DoS) attacks
-Sending lots of data to a node may make it so busy it cannot process normal bitcoin transactions.  Bitcoin has some denial-of-service prevention built-in (it will drop connections to peers that send it too much data too quickly), but is likely still vulnerable to more sophisticated denial-of-service attacks.
+Sending lots of data to a node may make it so busy it cannot process normal bitcoin transactions.  Bitcoin has some denial-of-service prevention built-in, but is likely still vulnerable to more sophisticated denial-of-service attacks.
+
+These are the current Bitcoin Satoshi client protections to deter DoS attacks, as of version 0.7.0:
+
+1. Does not forward orphan transactions/blocks
+1. Does not forward double-spend transactions
+1. Restrict the maximum number of signature checks a transaction input may request
+1. Continuous rate-limit of free transactions to mitigate 'penny-flooding'
+1. Keeping a DoS score of each connected peer and disconnects from a peer that send messages that fail to comply with the rules.
+1. Permanently ban IP addresses that misbehave for a time lapse (24 hours default)
+1. Limit the number of stored orphan transactions (10000 by default)
+1. Limit the number of stored signature in the signature cache (50000 signatures by default)
+1. Tries to catch errors in transactions before the time consuming signature verifications.
+1. Penalize peers that send us lots of duplicate/expired/invalid-signature/whatever alerts, so they eventually get banned.
+1. In orphan/signature caches: when removing an item, evict a random entry.
+1. Data structures are specially chosen to avoid loops in which the number of iterations can be controller by an attacker that result in exponential complexity.
+1. Ignore big orphan transactions, to avoid a send-big-orphans memory exhaustion attack.
+1. In RPC: Only send a HTTP 403 response if it's not using SSL to prevent a DoS during the SSL handshake.
+1. In RPC: Sleep some time if authorization fails to deter brute-forcing short passwords.
+1. In GUI: Limit URI length to prevent a DoS against the QR-Code dialog
+
+Satoshi client does not directly limit peer bandwidth nor CPU usage.
 
 ### Forcing clock drift against a target node
 
