@@ -41,7 +41,7 @@ These are the current Bitcoin Satoshi client protections to deter DoS attacks, a
 1. Use a signature cache to prevent attacks that try to continuously trigger the re-verification of stored orphan transactions
 1. Limit the number of stored signatures in the signature cache (50000 signatures by default)
 1. Tries to catch errors in transactions before the time consuming signature verifications.
-1. Penalize peers that send us lots of duplicate/expired/invalid-signature/whatever alerts, so they eventually get banned.
+1. Penalize peers that send lots of duplicate/expired/invalid-signature/whatever alerts, so they eventually get banned.
 1. In orphan/signature caches: when removing an item, evict a random entry.
 1. Data structures are specially chosen to avoid loops in which the number of iterations can be controller by an attacker that result in exponential complexity.
 1. Ignore big orphan transactions, to avoid a send-big-orphans memory exhaustion attack.
