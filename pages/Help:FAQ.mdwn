@@ -242,9 +242,9 @@ As of Bitcoin 0.5.3 the required fee will not be higher than 0.05 BTC. For most 
 
 ### What happens when someone sends me a bitcoin but my computer is powered off?
 
-Bitcoins aren't actually "sent" to your wallet, the software only uses that term so that we can use the currency without having to learn new concepts.  Your wallet is only needed when you wish to spend coins that you've received.
+Bitcoins are not actually "sent" to your wallet; the software only uses that term so that we can use the currency without having to learn new concepts.  Your wallet is only needed when you wish to spend coins that you've received.
 
-The coins that were sent to you when the client was not running will later appear as if they were received in your wallet when you later launch the client.  It will download blocks and catch up with any transactions it didn't already have.
+If you are sent coins when your wallet client program is not running, and you later launch the wallet client program, the coins will eventually appear as if they were just received in the wallet. That is to say, when the client program is started it must download blocks and catch up with any transactions it did not already know about.
 
 ### How long does "synchronizing" take when the Bitcoin client is first installed? What's it doing?
 
