@@ -53,10 +53,10 @@ The current mainline ("Satoshi") client cannot currently be used to import minik
 ##Decoding
 The private key encoding consists of 30 alphanumeric characters from the [[base58]] alphabet used in Bitcoin.  The first of the characters is always the uppercase letter S.
 
-A simple test must be performed to determine which method shall be used:
+To determine whether the minikey is valid:
 
 1. Add a question mark to the end of the mini private key string.
-1. Take the SHA256 hash of the entire string.  However, we will only looking at the first two bytes of the result.
+1. Take the SHA256 hash of the entire string.  However, we will only look at the first byte of the result.
 1. If the first byte is 00, the string is a well-formed minikey.  If the first byte is not 00, the string should be rejected as a minikey.
 
 ###Example with SHA256
@@ -64,7 +64,7 @@ Here is an example with the sample private key S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy.
 
 The string "S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy?" has a SHA256 value that begins with 00, so it is well-formed.
 
-To obtain the full 256-bit private key, simply take the SHA256 hash of the entire string.  There is no encoding for breaks in the string even if printed that way - the SHA256 should be taken of exactly thirty bytes.
+To obtain the full 256-bit private key, simply take the SHA256 hash of the entire string.  There is no encoding for line breaks in the string, even if the key is broken into multiple lines for printing.  The SHA256 should be taken of exactly thirty bytes.
 
 	SHA256("S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy") = 4C7A9640C72DC2099F23715D0C8A0D8A35F8906E3CAB61DD3F78B67BF887C9AB  
 
