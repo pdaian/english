@@ -250,11 +250,11 @@ If you are sent coins when your wallet client program is not running, and you la
 
 The popular Bitcoin client software from bitcoin.org implements a "full" Bitcoin node: It can carry out all the duties of the Bitcoin P2P system, it isn't simply a "client". One of the principles behind the operation of full Bitcoin nodes is that they don't assume that the other participants have followed the rules of the Bitcoin system. During synchronization, the software is processing historical Bitcoin transactions and making sure for itself that all of the rules of the system have been correctly followed.
 
-In normal operation, after synchronizing, the software should use a hardly noticeable amount of IO, CPU, or network capacity.
+In normal operation, after synchronizing, the software should use a hardly noticeable amount of your computer's resources.
 
-The initial validation is very disk-IO-intensive, so the amount of time to synchronize depends on your disk speed and, to a lesser extent, your CPU speed. It can take anywhere from a few hours to a day or so.  You can use the software while this process is going on, but you may not see recent payments to you until the synchronization has caught up to the point where those transactions happened.
+When the wallet client program is first installed, its initial validation requires a lot of work from your computer's hard disk, so the amount of time to synchronize depends on your disk speed and, to a lesser extent, your CPU speed. It can take anywhere from a few hours to a day or so. On a slow computer it could take more than 40 hours of continuous synchronization, so check your computer's power-saving settings to ensure that it does not turn its hard disk off when unattended for a few hours.  You can use the Bitcoin software during synchronization, but you may not see recent payments to you until the client program has caught up to the point where those transactions happened.
 
-If this is too long for you, you can download a pre-synchronized blockchain from [http://eu1.bitcoincharts.com/blockchain/](http://eu1.bitcoincharts.com/blockchain/). Alternatively, you can try an alternative "lite" client such as Multibit or a super-light client like electrum, though these clients have somewhat weaker security, are less mature, and don't contribute to the health of the P2P network.
+If you feel that this process takes too long, you can download a pre-synchronized blockchain from [http://eu1.bitcoincharts.com/blockchain/](http://eu1.bitcoincharts.com/blockchain/). Alternatively, you can try an alternative "lite" client such as Multibit or a super-light client like electrum, though these clients have somewhat weaker security, are less mature, and don't contribute to the health of the P2P network.
 
 ##Networking
 ### Do I need to configure my firewall to run Bitcoin?
