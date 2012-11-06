@@ -17,6 +17,10 @@ The examples in this article use the private key and Bitcoin address of the left
 ##Usage in bar codes
 The mini private key is suitable for use in QR codes.  The recommended settings for maximizing readability are: QR version 3, error correction level Q (near highest).  This results in a 29x29 grid.  A minikey QR code can also fit in a 25x25 grid with QR version 2, error correction level L (lowest).
 
+The sample private minikey encoded as a QR code on a 29x29 grid looks like this:
+
+[[Private_minikey_in_2D_barcode.gif]]
+
 The mini private key is small enough to fit in a one-dimensional barcode while still remaining practical.  Among the most popular one-dimensional barcode symbologies, the one known as "Code 128" is best suited for encoding a minikey due to its favorable data density and support for mixed case strings.  The variant known as "Code 128-B" produces the shortest code for strings containing lowercase characters.
 
 The sample private minikey encoded with Code 128-B looks like this:
