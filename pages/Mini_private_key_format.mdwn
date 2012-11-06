@@ -73,7 +73,7 @@ This sample key in [[wallet_export_format]] is 5JPy8Zg7z4P7RSLsiqcqyeAF1935zjNUd
 ##Check code
 The mini private key format offers a simple typo check code.  Mini private keys must be generated in a "brute force" fashion, keeping only keys that conform to the format's rules.  If a key is well-formed (30 Base58 characters starting with S), but fails the hash check, then it probably contains a typo.
 
-If the SHA256 hash of the string followed by '?' doesn't result in something that begins with 0x00, the mini private key is not valid.
+If the SHA256 hash of the string followed by '?' doesn't result in something that begins with 0x00, the string is not a valid mini private key.
 
 ##Creating mini private keys
 Creating mini private keys is relatively simple.  One program which can create such keys is [[Casascius_Bitcoin_Utility]].
