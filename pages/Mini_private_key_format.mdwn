@@ -91,20 +91,20 @@ In all cases, you **must** use a secure cryptographic random number generator to
 Casascius Series 1 Physical Bitcoins use a 22-character variant of the minikey format, instead of 30 characters.  Everything is the same other than the length.  To properly implement minikey redemption, services and clients MUST support the 30-character format, but MAY support the 22-character format as well.  Use of the 22-character format for future applications is discouraged due to security considerations.
 
 ##Python Code
-The following code produces sample 22-character (weaker than 30-character) SHA256-based mini private keys in Python.  For real-world use, *random* must be replaced with a better source of entropy, as the Python documentation for *random* states the function *"is completely unsuitable for cryptographic purposes"*.
+The following code produces sample 30-character SHA256-based mini private keys in Python.  For real-world use, *random* must be replaced with a better source of entropy, as the Python documentation for *random* states the function *"is completely unsuitable for cryptographic purposes"*.
 
 <source lang="python">
 import random
 import hashlib
 
-BASE58 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+BASE58 = '23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
 def Candidate():
 	"""
 	Generate a random, well-formed mini private key.
 	"""
 	return('%s%s' % ('S', *.join(
-	 [(1)](random.randrange(0,len(BASE58))) for i in range(21))))
+	 [(1)](random.randrange(0,len(BASE58))) for i in range(29))))
 
 def GenerateKeys(numKeys = 10):
 	"""
@@ -155,7 +155,7 @@ def CheckShortKey(shortKey):
 	"""
 	Checks for typos in the short key.
 	"""
-	if len(shortKey) != 22:
+	if len(shortKey) != 30:
 	return False
 	t = '%s?' % shortKey
 	tHash = hashlib.sha256(t).digest()
