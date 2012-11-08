@@ -23,7 +23,10 @@ For reasons of stability and low latency in transactions, the network tries to p
 * [Bitcoin network graphs](http://bitcoin.sipa.be/) 
 
 ### What is the maximum target?
-	0x00000000ffff0000000000000000000000000000000000000000000000000000
+The maximum target used by SHA256 mining devices is:
+	0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+Because Bitcoin stores the target as a floating-point type, this is truncated:
+	0x00000000FFFF0000000000000000000000000000000000000000000000000000
 
 Since a lower target makes Bitcoin generation more difficult, the maximum target is the *lowest* possible [[difficulty]].
 
