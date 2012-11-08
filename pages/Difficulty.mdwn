@@ -24,12 +24,19 @@ Note that the 0x0404cb value is a signed value in this format. The largest legal
 The highest possible target (difficulty 1) is defined as 0x1d00ffff, which gives us a hex target of
 	0x00ffff * 2**(8*(0x1d - 3)) = 0x00000000FFFF0000000000000000000000000000000000000000000000000000
 
+It should be noted that pooled mining often uses non-truncated targets, which puts "pool difficulty 1" at
+	0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
 So the difficulty at 0x1b0404cb is therefore:
 	0x00000000FFFF0000000000000000000000000000000000000000000000000000 /
 	0x00000000000404CB000000000000000000000000000000000000000000000000 
-	= 16307.420938523983
+	= 16307.420938523983 (bdiff)
+And:
+	0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF /
+	0x00000000000404CB000000000000000000000000000000000000000000000000 
+	= 16307.669773817162 (pdiff)
 
-Here's a fast way to calculate difficulty. It uses a modified Taylor series for the logarithm (you can see tutorials on flipcode and wikipedia) and relies on logs to transform the difficulty calculation:
+Here's a fast way to calculate bitcoin difficulty. It uses a modified Taylor series for the logarithm (you can see tutorials on flipcode and wikipedia) and relies on logs to transform the difficulty calculation:
 
 <source lang="cpp">
 
