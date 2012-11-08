@@ -13,6 +13,10 @@ Several tools exist for producing paper wallets, including [[pywallet]], [[vanit
 * A web-based paper wallet generator should be written so that all of the generation happens on your computer, not the web server.  After you load the paper wallet generating website in your web browser, you should disconnect from the internet, and observe that the paper wallet generator continues to function.  Afterward, you should close your browser before reconnecting to the internet.
 * A paper wallet generator should use an appropriate source of random numbers (entropy).  This means that the generated addresses aren't predictable.  If the addresses come from a predictable or partially-predictable pattern, someone else who can predict the pattern addresses can steal the balance.  A safe way to generate addresses is from a passphrase, where you provide a very long unguessable passphrase (at least thirty characters - even if it is just mashing random characters on the keyboard).  This way, you as the user are in control of the randomness and potential predictability of the addresses.
 
+###Printer Security
+
+Some printers will store the output using storage in which the data can be recovered from the printer's memory or from a hard drive if the printer has one and stores its print jobs there.  Most larger commercial printers have hard drives but whether or not documents are stored on them will vary based on manufacturer and model.
+
 ##Redeeming Keys
 
 There are various methods for copying the private key data from a paper wallet to other wallets.  [[BlockChain.info]] and [[Armory]] can import them directly into wallets.  [[Mt. Gox|MtGox]] provides the ability to Add Funds using a private key.  The exchange will then create a "sweep" transaction that spends any amount for that paper wallet address so that the amount is added to your account with them.  They will also sweep to your account any bitcoins received to that address in the future as well.
