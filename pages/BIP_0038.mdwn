@@ -1,0 +1,70 @@
+##Proposed encoding for a passphrase-protected private key
+> ***User story:** As a Bitcoin user who uses paper wallets, I would like the ability to add encryption, so that my Bitcoin paper storage can be two factor: something I have plus something I know.*
+> ***User story:** As a user of physical bitcoins, I would like a third party to be able to create password-protected Bitcoin private keys for me, without them knowing the password, so I can benefit from the physical bitcoin without the issuer having access to the private key, but also for it to be possible to memorize the material needed to unlock the physical bitcoin.
+
+This proposal contemplates existence of a private key that requires a decryption passphrase before it can be used.
+
+This proposal makes use of the following functions and definitions:
+
+* **AES256Encrypt, AES256Decrypt**: the simple form of the well-known AES block cipher without consideration for block chaining.  Each of these functions takes a 256-bit key and 16 bytes of input, and deterministically yields 16 bytes of output.
+* **SHA256**, a well-known hashing algorithm that takes an arbitrary number of bytes as input and deterministically yields a 32-byte hash.
+* **scrypt**: A well-known key derivation algorithm.  It takes the following parameters: (string) password, (string) salt, (int) n, (int) r, (int) p, (int) length, and deterministically yields an array of bytes whose length is equal to the length parameter.
+* **ECMultiply**: Multiplication of an elliptic curve point by a scalar integer with respect to the [[secp256k1]] elliptic curve.
+* **G, N**: Constants defined as part of the [[secp256k1]] elliptic curve.  G is an elliptic curve point, and N is a large positive integer.
+* **[[Base58Check]]**: a method for encoding arrays of bytes using 58 alphanumeric characters commonly used in the Bitcoin ecosystem.
+
+###Prefix
+
+
+
+
+I propose having the Base58Check-encoded string start with a '6'.  The number '6' is intended to represent, from the perspective of the user, "a private key that needs something else to be usable" - an umbrella definition that could include keys participating in multisig transactions.  The second character ought to give a hint as to what is needed, and for an AES256-encoded key based on the SHA256 hash of a passphrase, I propose the lowercase letter p.
+
+I propose the string having an optional 14 bits of password typo resistance.  That is, a 14-bit checksum of the password may be added so that the vast majority of password typos can be detected and reported to the user, rather than inadvertently accepted as correct, which will simply yield the wrong private key and frustrate the user.  This checksum is optional, and a bit flag is defined for the purpose of disabling it.
+
+The choice of a low-bitcount checksum is intended to reduce its usefulness to someone attempting to crack the password.
+
+To encrypt the key requires the AES256Encrypt function, which takes a 16-byte input and a 32-byte key and yields a 16-byte output.  The SHA256 hash of the passphrase is used as the 32-bit key given to the AES functions.
+
+Encryption is: 
+
+* firsthalf: AES256Encrypt(bitcoinprivkey[[0...15]], SHA256(passphrase))
+* lasthalf: AES256Encrypt(bitcoinprivkey[[16...31]] xor firsthalf[[0...15]], SHA256(passphrase))
+
+Decryption is the reverse:
+
+* firsthalf: AES256Decrypt(ciphertext[[0...15]], SHA256(passphrase))
+* lasthalf: AES256Decrypt(ciphertext[[16...31]], SHA256(passphrase)) xor firsthalf[[0...15]]
+
+To keep the size of the encrypted key down, no initialization vectors are used.
+
+###Proposed specification
+
+* Object identifier prefix: 0x0205
+* How the user sees it: 54 characters always starting with '6p'
+* Count of payload bytes (beyond prefix): 34
+	* 2 bytes: compressed flag and passphrase typo resistance (1 bit: passphrase enable/disable, 14 bits: passphrase checksum, 1 bit: compressed flag)
+	* 16 bytes: firsthalf: AES256Encrypt(bitcoinprivkey[[0...15]], SHA256(passphrase))
+	* 16 bytes: lasthalf: AES256Encrypt(bitcoinprivkey[[16...31]] xor firsthalf, SHA256(passphrase))
+* Range in base58check encoding:
+	* Minimum value: 6pZbbCzeNu7567y9swhRL8zC4yXioQc6oaUmwPMof6zvChFcMrTmMp
+	* Maximum value: 6ptXqrvUjVYbnPvXPrC2S4tRVvAFdXBKDUC7K96C9ukAKogUFQynhy
+
+Passphrase typo resistance bytes:  The most significant bit is the enable(0)/disable(1) bit, the next 14 bits hold the passphrase checksum.  The checksum is defined as SHA256(correct passphrase + "?")[[0...1]] & 0x7FFE.  The least significant bit is 0 for an uncompressed key, and 1 for a compressed key.
+
+If the passphrase is disabled, the passphrase checksum bits MUST be 0 (so the two bytes will be 0x8000 or 0x8001).
+
+The valid range of the passphrase typo resistance bytes are 0x0000 thru 0x8001.  Values above 0x8001 are excluded from the definition of keys valid for this proposal.  Note that if the value were to be above 0xabb9, the prefix "6p" is lost and becomes "6q".
+
+###Example/Test Vector
+
+* Passphrase: "VIRES IN NUMERIS"
+* Sample Bitcoin private key to be encrypted: 5Ki8KQ65ihzzoex9BjarbMjUATaFYMmWZ4eLmBnjj9fdhKqm3VR / F967E2BEEFCEC703A4737E42124D7BB3 34A34CC345446B9B163576B7C7A36266
+
+* SHA256("VIRES IN NUMERIS"): 8967A8562255672471ACB316E705593454040FA41E3883AD5A8C3576E5DC03DD
+* AES256Encrypt(F967E2BEEFCEC703A4737E42124D7BB3,8967A8562255672471ACB316E705593454040FA41E3883AD5A8C3576E5DC03DD) = b5dde5769a8b031139cdcc54f2f5f98b
+* 34A34CC345446B9B163576B7C7A36266 xor b5dde5769a8b031139cdcc54f2f5f98b = 817EA9B5DFCF688A2FF8BAE335569BED
+* AES256Encrypt(817EA9B5DFCF688A2FF8BAE335569BED,8967A8562255672471ACB316E705593454040FA41E3883AD5A8C3576E5DC03DD) = 8b899125ebf86b82a54fb898077188f6
+* First 16 bits of SHA256("VIRES IN NUMERIS?"): B2C4, and 0x7ffe = 0x32c4
+* What to [[Base58Check]] encode: 0205 32C4 b5dde5769a8b031139cdcc54f2f5f98b 8b899125ebf86b82a54fb898077188f6
+* Resulting encrypted private key: 6ph7B7aqL4aBkQY2sJs8MZdJ1MwjEJSgLDiRoBrqAXsAbjmdQecEi3
