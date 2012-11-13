@@ -33,21 +33,22 @@ These are the current Bitcoin Satoshi client protections to deter DoS attacks, a
 
 1. Does not forward orphan transactions/blocks
 1. Does not forward double-spend transactions
-1. Restrict the maximum number of signature checks a transaction input may request
+1. Does not forward the same block, transaction or alert twice to the same peer.
+1. Restricts the maximum number of signature checks a transaction input may request
 1. Continuous rate-limit of free transactions to mitigate 'penny-flooding'
-1. Keeping a DoS score of each connected peer and disconnects from a peer that send messages that fail to comply with the rules.
-1. Permanently ban IP addresses that misbehave for a time lapse (24 hours default)
-1. Limit the number of stored orphan transactions (10000 by default)
-1. Use a signature cache to prevent attacks that try to continuously trigger the re-verification of stored orphan transactions
-1. Limit the number of stored signatures in the signature cache (50000 signatures by default)
-1. Tries to catch errors in transactions before the time consuming signature verifications.
-1. Penalize peers that send lots of duplicate/expired/invalid-signature/whatever alerts, so they eventually get banned.
-1. In orphan/signature caches: when removing an item, evict a random entry.
+1. Keeps a DoS score of each connected peer and disconnects from a peer that send messages that fail to comply with the rules.
+1. Bans IP addresses that misbehave for a time lapse (24 hours default)
+1. Limits the number of stored orphan transactions (10000 by default)
+1. Uses a signature cache to prevent attacks that try to continuously trigger the re-verification of stored orphan transactions
+1. Limits the number of stored signatures in the signature cache (50000 signatures by default)
+1. Tries to catch all possible errors in transactions before the signature verifications take place, to avoid DoS attacks on CPU usage.
+1. Penalizes peers that send lots of duplicate/expired/invalid-signature/whatever alerts, so they eventually get banned.
+1. In orphan/signature caches, when removing an item, evicts a random entry.
 1. Data structures are specially chosen to avoid loops in which the number of iterations can be controller by an attacker that result in exponential complexity.
-1. Ignore big orphan transactions, to avoid a send-big-orphans memory exhaustion attack.
-1. In RPC: Only send a HTTP 403 response if it's not using SSL to prevent a DoS during the SSL handshake.
-1. In RPC: Sleep some time if authorization fails to deter brute-forcing short passwords.
-1. In GUI: Limit URI length to prevent a DoS against the QR-Code dialog
+1. Ignores big orphan transactions, to avoid a send-big-orphans memory exhaustion attack.
+1. In RPC: Only sends a HTTP 403 response if it's not using SSL to prevent a DoS during the SSL handshake.
+1. In RPC: Sleeps some time if authorization fails to deter brute-forcing short passwords.
+1. In GUI: Limits URI length to prevent a DoS against the QR-Code dialog
 
 Satoshi client does not directly limit peer bandwidth nor CPU usage.
 
@@ -57,6 +58,10 @@ See [Timejacking](http://culubas.blogspot.com/2011/05/timejacking-bitcoin_802.ht
 
 ### Illegal content in the block chain
 It is illegal in some countries to possess/distribute certain kinds of data. Since arbitrary data can be included in Bitcoin transactions, and clients must normally have a copy of all unspent transactions, this could cause legal problems.
+
+### Security Vulnerabilities and bugs
+It's possible but unlikely that a newly discovered bug or security vulnerability in the standard client could lead to a block chain split, or the need for every node to upgrade in a short time period. For example, a single malformed message tailored to exploit a specific vulnerability, when spread from node to node, could cause the whole network to shutdown in a few hours. Starting from version 0.7.0, Bitcoin client can be considered a mature project. The security critical sections of the source code are updated less and less frequently and those parts have been reviewed by many computer security experts. Also Bitcoin Satoshi client has passed the test of being on-line for more than 3 year, without a single vulnerability being exploited *in the wild*. 
+See [[Common_Vulnerabilities_and_Exposures]] for a detailed list of vulnerabilities detected and fixed.
 
 ## Probably not a problem
 
