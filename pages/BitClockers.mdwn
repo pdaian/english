@@ -8,6 +8,10 @@ The service was first available for beta testing starting May 26, 2011 (1.1).
 
 ##Pool Features
 
+* Real-time statistics
+* Reward calculator
+* SSL Encryption
+* JSON API for miner status
 * Protocols supported: Stratum, GetBlockTemplate, GetMemoryTemplate, GetWork
 * Difficulty: Dynamic - 0.5 to infinity in multiples of 2 
 
@@ -15,6 +19,14 @@ The service was first available for beta testing starting May 26, 2011 (1.1).
 
 * Bitcoin Pay-Per-Share: 5% fee.
 * Namecoin Proportional: 5% fee.
+* Minimum payout is 0.01 BTC/NMC
+* Pool pays for invalid blocks.
+
+##Hosts
+
+* pool.bitclockers.com:8332 - Load balanced between Denver/Chicago/Zlin
+* pool2.bitclockers.com:8332 - Chicago, IL USA
+* pool3.bitclockers.com:8332 - Zlin, Czech Republic EU
 
 ##See Also
 
