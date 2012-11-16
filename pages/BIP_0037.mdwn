@@ -61,7 +61,7 @@ The <code>filteradd</code> command is defined as follows:
 
 The data field must be smaller than or equal to 520 bytes in size (the maximum size of any potentially matched object).
 
-The given data element will be added to the Bloom filter. If no filter has been previously provided using <code>filterload</code>, a new one will be initialized that would have a false positive rate of 0.1% with 1000 inserted elements. This command is useful if a new key or script is added to a clients wallet whilst it has connections to the network open, it avoids the need to re-calculate and send an entirely new filter to every peer.
+The given data element will be added to the Bloom filter. If no filter has been previously provided using <code>filterload</code>, a new one will be initialized that would have a false positive rate of, at a minimum, 0.1% with 1000 inserted elements. This command is useful if a new key or script is added to a clients wallet whilst it has connections to the network open, it avoids the need to re-calculate and send an entirely new filter to every peer.
 
 The <code>filterclear</code> command has no arguments at all.
 
