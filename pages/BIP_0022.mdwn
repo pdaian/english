@@ -25,29 +25,29 @@ If the request parameters include a "mode" key, that is used to explicitly selec
 Block template creation can be influenced by various parameters:
 
 
-|Key |Type |Description
-|---|---|---
-|capabilities |Array of Strings |SHOULD contain a list of the following, to indicate client-side support: [["longpoll"|#Optional:_Long_Polling]], "coinbasetxn", "coinbasevalue", [["proposal"|BIP_0023#Block_Proposal]], [["serverlist"|BIP_0023#Logical_Services]], "workid", and any of the [[mutations|BIP_0023#Mutations]]
-|mode |String |MUST be "template" or omitted
+|Key |Required |Type |Description
+|---|---|---|---
+|capabilities |[[!template id=no]]|Array of Strings |SHOULD contain a list of the following, to indicate client-side support: [["longpoll"|#Optional:_Long_Polling]], "coinbasetxn", "coinbasevalue", [["proposal"|BIP_0023#Block_Proposal]], [["serverlist"|BIP_0023#Logical_Services]], "workid", and any of the [[mutations|BIP_0023#Mutations]]
+|mode |[[!template id=no]]|String |MUST be "template" or omitted
 
 
 getblocktemplate MUST return a JSON Object containing the following keys:
 
 
-|Key |Type |Description
-|---|---|---
-|bits |String |the compressed difficulty in hexadecimal
-|curtime |Number |the current time as seen by the server (recommended for block time) - note this is not necessarily the system clock, and must fall within the mintime/maxtime rules
-|height |Number |the height of the block we are looking for
-|previousblockhash |String |the hash of the previous block, in big-endian hexadecimal
-|sigoplimit |Number |number of sigops allowed in blocks
-|sizelimit |Number |number of bytes allowed in blocks
-|transactions |Array of Objects |Objects containing [[information for Bitcoin transactions|#Transactions_Object_Format]](excluding coinbase)
-|version |Number |always 1 or 2 (at least for bitcoin) - clients MUST understand the implications of the version they use (eg, comply with [[BIP_0034]]for version 2)
-|coinbaseaux |Object |data that SHOULD be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys. This does not include the block height, which is required to be included in the scriptSig by [[BIP_0034]]. It is advisable to encode values inside "PUSH" opcodes, so as to not inadvertantly expend SIGOPs (which are counted toward limits, despite not being executed).
-|coinbasetxn |Object |[[information for coinbase transaction|#Transactions_Object_Format]]
-|coinbasevalue |Number |total funds available for the coinbase (in Satoshis)
-|workid |String |if provided, this value must be returned with results (see [[Block Submission|#Block_Submission]])
+|Key |Required |Type |Description
+|---|---|---|---
+|bits |[[!template id=yes]]|String |the compressed difficulty in hexadecimal
+|curtime |[[!template id=yes]]|Number |the current time as seen by the server (recommended for block time) - note this is not necessarily the system clock, and must fall within the mintime/maxtime rules
+|height |[[!template id=yes]]|Number |the height of the block we are looking for
+|previousblockhash |[[!template id=yes]]|String |the hash of the previous block, in big-endian hexadecimal
+|sigoplimit |[[!template id=no]]|Number |number of sigops allowed in blocks
+|sizelimit |[[!template id=no]]|Number |number of bytes allowed in blocks
+|transactions |[[!template id=yes Should]]|Array of Objects |Objects containing [[information for Bitcoin transactions|#Transactions_Object_Format]](excluding coinbase)
+|version |[[!template id=yes]]|Number |always 1 or 2 (at least for bitcoin) - clients MUST understand the implications of the version they use (eg, comply with [[BIP_0034]]for version 2)
+|coinbaseaux |[[!template id=no]]|Object |data that SHOULD be included in the coinbase's scriptSig content. Only the values (hexadecimal byte-for-byte) in this Object should be included, not the keys. This does not include the block height, which is required to be included in the scriptSig by [[BIP_0034]]. It is advisable to encode values inside "PUSH" opcodes, so as to not inadvertantly expend SIGOPs (which are counted toward limits, despite not being executed).
+|coinbasetxn |[[!template id=patch this or ↓]]|Object |[[information for coinbase transaction|#Transactions_Object_Format]]
+|coinbasevalue |[[!template id=patch this or ↑]]|Number |total funds available for the coinbase (in Satoshis)
+|workid |[[!template id=no]]|String |if provided, this value must be returned with results (see [[Block Submission|#Block_Submission]])
 
 
 #### Transactions Object Format
