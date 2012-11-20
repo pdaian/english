@@ -16,11 +16,9 @@ Creating addresses can be done without an Internet connection and do not require
 It is also possible to create large batches of addresses offline using other software tools.  Generating batches of addresses is useful in several scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer who chooses a "pay with Bitcoin" option.
 
 ##Addresses are case sensitive and exact
-Bitcoin addresses are case-sensitive.  Bitcoin addresses should be copied and pasted using the computer's clipboard wherever possible.
+Bitcoin addresses are case-sensitive.  Bitcoin addresses should be copied and pasted using the computer's clipboard wherever possible. If you hand-key a Bitcoin address, and each character is not transcribed exactly - including capitalization - the incorrect address will most likely be rejected by the Bitcoin client.  You will have to check your entry and try again.
 
-If you hand-key a Bitcoin address, and each character is not transcribed exactly - including capitalization - the incorrect address will most likely be rejected by the Bitcoin client.  You will have to check your entry and try again.
-
-The probability that a mistyped address is accepted as being valid is 1 in 2<sup>32</sup> or approximately 1 in 4.29 billion.
+The probability that a mistyped address is accepted as being valid is 1 in 2<sup>32</sup>, that is, approximately 1 in 4.29 billion.
 
 ##Address validation
 If you would like to validate a Bitcoin address in an application, it is advisable to use a method from [this thread](https://bitcointalk.org/index.php?topic=1026.0) rather than to just check for string length, allowed characters, or that the address starts with a 1.
