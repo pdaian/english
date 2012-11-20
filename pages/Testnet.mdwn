@@ -7,7 +7,7 @@ Run bitcoin or bitcoind with the -testnet flag to use the testnet (or put testne
 * Instead of port 8333 (listen), port 18333 is used.
 * Bootstrapping IRC channel is #bitcoinTEST instead of #bitcoin (both on irc.lfnet.org). The built-in node list is disabled.
 * A different value of ADDRESSVERSION field ensures no testnet BitCoin addresses will work on the production network. (0x6F rather than 0x00)
-* The protocol message header bytes are shifted up (0xFABFB5DA instead of 0xF9BEB4D9)
+* The protocol message header bytes are shifted up (0xFABFB5DA instead of 0xF9BEB4D9) bitcoin version >= 7.0.0 testnet message header (0x0B110907)
 * Minimum [[difficulty]] of 1.0 on testnet is equal to difficulty of 0.5 on mainnet. This means that the mainnet-equivalent of any testnet difficulty is half the testnet difficulty.
 * A new genesis block
 
