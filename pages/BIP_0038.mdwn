@@ -3,7 +3,7 @@
 > ***User story:** As a Bitcoin user who would like to pay a person or a company with a private key, I do not want to worry that any part of the communication path may result in the interception of the key and theft of my funds.  I would prefer to offer an encrypted private key, and then follow it up with the password using a different communication channel (e.g. a phone call or SMS).
 > ***User story:** (EC-multiplied keys) As a user of physical bitcoins, I would like a third party to be able to create password-protected Bitcoin private keys for me, without them knowing the password, so I can benefit from the physical bitcoin without the issuer having access to the private key, but also for it to be possible to memorize the material needed to unlock the physical bitcoin.
 
-This proposal contemplates existence of a private key that requires a decryption passphrase before it can be used.
+This proposal contemplates existence of a private key that requires a decryption passphrase before it can be used.  A 32-bit hash of the resulting Bitcoin address is encoded in plaintext within each encrypted key, so it can be correlated to a Bitcoin address with reasonable probability by someone not knowing the passphrase.
 
 This proposal makes use of the following functions and definitions:
 
@@ -15,7 +15,7 @@ This proposal makes use of the following functions and definitions:
 * **[[Base58Check]]**: a method for encoding arrays of bytes using 58 alphanumeric characters commonly used in the Bitcoin ecosystem.
 
 ###Prefix
-I propose having the Base58Check-encoded string start with a '6'.  The number '6' is intended to represent, from the perspective of the user, "a private key that needs something else to be usable" - an umbrella definition that could include keys participating in multisig transactions.  The second character ought to give a hint as to what is needed, and for an AES256-encoded key based on the SHA256 hash of a passphrase, I propose the lowercase letter p.
+It is proposed that the resulting Base58Check-encoded string start with a '6'.  The number '6' is intended to represent, from the perspective of the user, "a private key that needs something else to be usable" - an umbrella definition that could include keys participating in multisig transactions.  The second character ought to give a hint as to what is needed, and for an AES256-encoded key based on this proposal, the uppercase letter P is suggested.
 
 I propose the string having an optional 14 bits of password typo resistance.  That is, a 14-bit checksum of the password may be added so that the vast majority of password typos can be detected and reported to the user, rather than inadvertently accepted as correct, which will simply yield the wrong private key and frustrate the user.  This checksum is optional, and a bit flag is defined for the purpose of disabling it.
 
@@ -41,7 +41,7 @@ To keep the size of the encrypted key down, no initialization vectors are used.
 * How the user sees it: 58 characters always starting with '6P'
 	* Visual cues are present in the third character for visually identifying the EC-multiply and compress flag.
 * Count of payload bytes (beyond prefix): 37
-	* 1 byte: 
+	* 1 byte (*flagbyte*): 
 		* the most significant two bits are set as follows to preserve the visibility of the EC multiply flag in the prefix.  For non-EC-multiplied keys, the bits are 10.  For EC-multiplied keys, the bits are 00.
 		* the bit with value 0x20 when set indicates the key should be converted to a bitcoin address using the compressed public key format.
 		* remaining bits are reserved for future use (such as specifying different scrypt parameters) and must all be 0
@@ -66,35 +66,36 @@ Encrypting a private key without the EC multiplication offers the advantage that
 
 Encryption steps:
 
-1. Compute the Bitcoin address (ASCII), and take the first four bytes of SHA256(SHA256()) of it.  Let's call this "salt", as this is one way it will be used.
+1. Compute the Bitcoin address (ASCII), and take the first four bytes of SHA256(SHA256()) of it.  Let's call this "addresshash".
 1. Derive a key from the passphrase using scrypt
-1. *Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  *salt* came from the earlier step, n=1048576, r=8, p=16, length=64
+1. *Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  *addresshash* came from the earlier step, n=1048576, r=8, p=16, length=64
 1. *Let's split the resulting 64 bytes in half, and call them *derivedhalf1* and *derivedhalf2*.
 1. Do AES256Encrypt(bitcoinprivkey[[0...15]] xor derivedhalf1[[0...15]], derivedhalf2), call the 16-byte result *encryptedhalf1*
 1. Do AES256Encrypt(bitcoinprivkey[[16...31]] xor derivedhalf1[[16...31]], derivedhalf2), call the 16-byte result *encryptedhalf2*
 
 The encrypted private key is the Base58Check-encoded concatenation of the following:
 
-* 0x0142 + bitflags + salt + encryptedhalf1 + encryptedhalf2
+* 0x0142 + *flagbyte* + *salt* + *encryptedhalf1* + *encryptedhalf2*
 
-####Encryption when EC multiply flag is used
-Encrypting a private key with EC multiplication offers the ability for someone to generate encrypted keys knowing only an EC point derived from the original passphrase, not the passphrase itself.  Only the person who knows the original passphrase can decrypt the private key.  This methodology does not offer the ability to encrypt a known private key - this means that the process of creating encrypted keys is also the process of generating new addresses.
+####Encryption when EC multiply mode is used
+Encrypting a private key with EC multiplication offers the ability for someone to generate encrypted keys knowing only an EC point derived from the original passphrase and some salt generated by the passphrase's owner, and without knowing the passphrase itself.  Only the person who knows the original passphrase can decrypt the private key.  This methodology does not offer the ability to encrypt a known private key - this means that the process of creating encrypted keys is also the process of generating new addresses.
 
-Steps performed by the person with the passphrase:
+Steps performed by the person with the passphrase (call him the *owner*):
 
 1. Generate 16 random bytes, call this *ownersalt*
 1. Derive a key from the passphrase using scrypt
 1. * Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  salt is *ownersalt*. n=1048576, r=8, p=16, length=32.
 1. * Call the resulting 32 bytes *passfactor*.
-1. Compute the elliptic curve point G * passfactor, and convert the result to compressed notation (33 bytes).  Call this *passpoint*.
+1. Compute the elliptic curve point G * passfactor, and convert the result to compressed notation (33 bytes).  Call this *passpoint*.  Compressed notation is used here regardless of whether the intent is to create Bitcoin addresses with or without compressed public keys.
 1. Convey *ownersalt* and *passpoint* to the party generating the keys, along with a checksum to ensure integrity.
+1. * The following Base58Check-encoded format is recommended for this purpose: bytes "04 A1 2D 58 B1 85 62" followed by *ownersalt* and then *passpoint*.  The resulting string will start with the word "password", will be 81 characters in length, and encodes 56 bytes (7 bytes constant + 16 bytes *ownersalt* + 33 bytes *passpoint*).  The checksum is handled in the Base58Check encoding.
 
-Encryption steps:
+Steps to create new encrypted private keys given an encrypted password string from *owner* (so we have *ownersalt* and *passpoint*, but we do not have *passfactor* or the passphrase):
 
 1. Generate 16 random bytes, call this *seedb*.  Take SHA256(SHA256(*seedb*)) to yield 32 bytes, call this *factorb*.
-1. Multiply *passpoint* by *factorb*.  Use the resulting EC point as a public key and hash it into a Bitcoin address.  This is the generated Bitcoin address, call it *generatedaddress*.
+1. ECMultiply *passpoint* by *factorb*.  Use the resulting EC point as a public key and hash it into a Bitcoin address using either compressed or uncompressed public key methodology (specify which methodology is used inside *flagbyte*).  This is the generated Bitcoin address, call it *generatedaddress*.
 1. Take the first four bytes of SHA256(SHA256(*generatedaddress*)) and call it *addresshash*.
-1. Now we will encrypt *seedb*.  Derive a second key from the passphrase using scrypt
+1. Now we will encrypt *seedb* and *ownersalt*.  Derive a second key from *passpoint* using scrypt
 1. *Parameters: *passphrase* is *passpoint* provided from the first party (expressed in binary as 33 bytes).  *salt* is *addresshash*, n=1048576, r=8, p=16, length=64
 1. *Split the result into two 16-byte halves and call them *derivedhalf1* and *derivedhalf2*.
 1. Do AES256Encrypt(ownersalt xor derivedhalf1[[0...15]], derivedhalf2), call the 16-byte result *encryptedownersalt*
@@ -102,7 +103,7 @@ Encryption steps:
 
 The encrypted private key is the Base58Check-encoded concatenation of the following:
 
-* 0x0142 + bitflags + addresshash + encryptedownersalt + encryptedseedb
+* 0x0142 + *flagbyte* + *addresshash* + *encryptedownersalt* + *encryptedseedb*
 
 Decryption steps:
 
@@ -111,3 +112,5 @@ Decryption steps:
 1. Derive decryption key for *factorb* by passing *passpoint* and *salt* into scrypt function.  (*salt* is stored in the base58-encoded encrypted private key)
 1. Decrypt *encryptedhalf1* and *encryptedhalf2* to yield *factorb* using AES256Decrypt and derived decryption key.
 1. Multiply *passfactor* by *factorb* mod N to yield the private key associated with *generatedaddress*.
+1. Convert that private key into a Bitcoin address, honoring the compression preference specified in the encrypted key.
+1. Hash the Bitcoin address, and verify that *addresshash* from the encrypted private key record matches the hash.  If not, report that the passphrase entry was incorrect.
