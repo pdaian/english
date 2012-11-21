@@ -41,7 +41,7 @@ To keep the size of the encrypted key down, no initialization vectors (IVs) are 
 
 ###Proposed specification
 
-* Object identifier prefix: 0x0142 (non-EC-multiplied) or 0x0143 (EC-multiplied)
+* Object identifier prefix: 0x0142 (non-EC-multiplied) or 0x0143 (EC-multiplied).  These are constant bytes that appear at the beginning of the Base58Check-encoded record, and their presence causes the resulting string to have a predictable prefix.
 * How the user sees it: 58 characters always starting with '6P'
 	* Visual cues are present in the third character for visually identifying the EC-multiply and compress flag.
 * Count of payload bytes (beyond prefix): 37
