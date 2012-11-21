@@ -7,7 +7,7 @@ This proposal contemplates existence of a private key that requires a decryption
 
 This proposal makes use of the following functions and definitions:
 
-* **AES256Encrypt, AES256Decrypt**: the simple form of the well-known AES block cipher without consideration for block chaining.  Each of these functions takes a 256-bit key and 16 bytes of input, and deterministically yields 16 bytes of output.
+* **AES256Encrypt, AES256Decrypt**: the simple form of the well-known AES block cipher without consideration for initialization vectors or block chaining.  Each of these functions takes a 256-bit key and 16 bytes of input, and deterministically yields 16 bytes of output.
 * **SHA256**, a well-known hashing algorithm that takes an arbitrary number of bytes as input and deterministically yields a 32-byte hash.
 * **scrypt**: A well-known key derivation algorithm.  It takes the following parameters: (string) password, (string) salt, (int) n, (int) r, (int) p, (int) length, and deterministically yields an array of bytes whose length is equal to the length parameter.
 * **ECMultiply**: Multiplication of an elliptic curve point by a scalar integer with respect to the [[secp256k1]] elliptic curve.
