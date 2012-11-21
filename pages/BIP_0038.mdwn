@@ -40,21 +40,38 @@ To keep the size of the encrypted key down, no initialization vectors are used.
 
 ###Proposed specification
 
-* Object identifier prefix: 0x0205
-* How the user sees it: 54 characters always starting with '6p'
-* Count of payload bytes (beyond prefix): 34
-	* 2 bytes: compressed flag and passphrase typo resistance (1 bit: passphrase enable/disable, 14 bits: passphrase checksum, 1 bit: compressed flag)
+* Object identifier prefix: 0x0142
+* How the user sees it: 58 characters always starting with '6P'
+* Count of payload bytes (beyond prefix): 37
+	* 1 byte: compressed flag, EC multiply flag, five unused bits, call this *bitflags*
+	* 4 bytes: SHA256(SHA256(expected_bitcoin_address))[[0...3]], used both for typo checking and as salt
 	* 16 bytes: firsthalf: AES256Encrypt(bitcoinprivkey[[0...15]], SHA256(passphrase))
 	* 16 bytes: lasthalf: AES256Encrypt(bitcoinprivkey[[16...31]] xor firsthalf, SHA256(passphrase))
 * Range in base58check encoding:
-	* Minimum value: 6pZbbCzeNu7567y9swhRL8zC4yXioQc6oaUmwPMof6zvChFcMrTmMp
-	* Maximum value: 6ptXqrvUjVYbnPvXPrC2S4tRVvAFdXBKDUC7K96C9ukAKogUFQynhy
+	* Minimum value: 6PBFqPa2USdAvd91kpeDHpeuYsT9JUYLZDCVLQUpLZi4mJssFEpKogvS6o
+	* Maximum value: 6PfKzduKZXAFXWMtJ19Vg9cSvbFg4va6U8p2VWzSjtHQCCLk3JSBddFK3S
 
-Passphrase typo resistance bytes:  The most significant bit is the enable(0)/disable(1) bit, the next 14 bits hold the passphrase checksum.  The checksum is defined as SHA256(correct passphrase + "?")[[0...1]] & 0x7FFE.  The least significant bit is 0 for an uncompressed key, and 1 for a compressed key.
+Of the one byte:
 
-If the passphrase is disabled, the passphrase checksum bits MUST be 0 (so the two bytes will be 0x8000 or 0x8001).
+* the most significant bit is always set to preserve the prefix.
+* the bit with value 0x40 when set indicates EC multiplication is required to decrypt the key, that it was created by someone not knowing the password.
+* the bit with value 0x20 when set indicates the key should be converted to a bitcoin address using the compressed public key format.
 
-The valid range of the passphrase typo resistance bytes are 0x0000 thru 0x8001.  Values above 0x8001 are excluded from the definition of keys valid for this proposal.  Note that if the value were to be above 0xabb9, the prefix "6p" is lost and becomes "6q".
+####Encryption when EC multiply flag is not used
+Encrypting a private key without the EC multiplication offers the advantage that any known private key can be encrypted.
+
+Encryption steps:
+
+1. Compute the Bitcoin address (ASCII), and take the first four bytes of SHA256(SHA256()) of it.  Let's call this "salt", as this is one way it will be used.
+1. Derive a key from the passphrase using scrypt
+1. *Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  *salt* came from the earlier step, n=1024, r=8, p=16, length=64
+1. *Let's split the resulting 64 bytes in half, and call them *derivedhalf1* and *derivedhalf2*.
+1. Do AES256Encrypt(bitcoinprivkey[[0...15]] xor derivedhalf1[[0...15]], derivedhalf2), call the 16-byte result *encryptedhalf1*
+1. Do AES256Encrypt(bitcoinprivkey[[16...31]] xor encryptedhalf1, derivedhalf2), call the 16-byte result *encryptedhalf2*
+
+The encrypted private key is the Base58Check-encoded concatenation of the following:
+
+* 0x0142 + bitflags + salt + encryptedhalf1 + encryptedhalf2
 
 ###Example/Test Vector
 
