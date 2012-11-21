@@ -66,35 +66,37 @@ Encrypting a private key with EC multiplication offers the ability for someone t
 
 Steps performed by the person with the passphrase (call him the *owner*):
 
-1. Generate 16 random bytes, call this *ownersalt*
+1. Generate 8 random bytes, call this *ownersalt*
 1. Derive a key from the passphrase using scrypt
 1. * Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  salt is *ownersalt*. n=1048576, r=8, p=16, length=32.
 1. * Call the resulting 32 bytes *passfactor*.
 1. Compute the elliptic curve point G * *passfactor*, and convert the result to compressed notation (33 bytes).  Call this *passpoint*.  Compressed notation is used for this purpose regardless of whether the intent is to create Bitcoin addresses with or without compressed public keys.
 1. Convey *ownersalt* and *passpoint* to the party generating the keys, along with a checksum to ensure integrity.
-1. * The following Base58Check-encoded format is recommended for this purpose: bytes "04 A1 2D 58 B1 85 62" followed by *ownersalt* and then *passpoint*.  The resulting string will start with the word "password", will be 81 characters in length, and encodes 56 bytes (7 bytes constant + 16 bytes *ownersalt* + 33 bytes *passpoint*).  The checksum is handled in the Base58Check encoding.
+1. * The following Base58Check-encoded format is recommended for this purpose: bytes "?? ?? ?? ?? ?? ?? ??" followed by *ownersalt* and then *passpoint*.  The resulting string will start with the word "password", will be ?? characters in length, and encodes 48 bytes (7 bytes constant + 8 bytes *ownersalt* + 33 bytes *passpoint*).  The checksum is handled in the Base58Check encoding.
 
 Steps to create new encrypted private keys given an encrypted password string from *owner* (so we have *ownersalt* and *passpoint*, but we do not have *passfactor* or the passphrase):
 
-1. Generate 16 random bytes, call this *seedb*.  Take SHA256(SHA256(*seedb*)) to yield 32 bytes, call this *factorb*.
+1. Generate 24 random bytes, call this *seedb*.  Take SHA256(SHA256(*seedb*)) to yield 32 bytes, call this *factorb*.
 1. ECMultiply *passpoint* by *factorb*.  Use the resulting EC point as a public key and hash it into a Bitcoin address using either compressed or uncompressed public key methodology (specify which methodology is used inside *flagbyte*).  This is the generated Bitcoin address, call it *generatedaddress*.
 1. Take the first four bytes of SHA256(SHA256(*generatedaddress*)) and call it *addresshash*.
-1. Now we will encrypt *seedb* and *ownersalt*.  Derive a second key from *passpoint* using scrypt
-1. *Parameters: *passphrase* is *passpoint* provided from the first party (expressed in binary as 33 bytes).  *salt* is *addresshash*, n=1048576, r=8, p=16, length=64
+1. Now we will encrypt *seedb*.  Derive a second key from *passpoint* using scrypt
+1. *Parameters: *passphrase* is *passpoint* provided from the first party (expressed in binary as 33 bytes).  *salt* is *addresshash* + *ownersalt* (concatenation), n=1048576, r=8, p=16, length=64
 1. *Split the result into two 16-byte halves and call them *derivedhalf1* and *derivedhalf2*.
-1. Do AES256Encrypt(ownersalt xor derivedhalf1[[0...15]], derivedhalf2), call the 16-byte result *encryptedownersalt*
-1. Do AES256Encrypt(seedb xor derivedhalf1[[16...31]], derivedhalf2), call the 16-byte result *encryptedseedb*
+1. Do AES256Encrypt(seedb[[0...15]] xor derivedhalf1[[0...15]], derivedhalf2), call the 16-byte result *encryptedpart1*
+1. Do AES256Encrypt((encryptedpart1[[8...15]] + seedb[[16...23]]) xor derivedhalf1[[16...31]], derivedhalf2), call the 16-byte result *encryptedseedb*.  + is concatenation.
 
 The encrypted private key is the Base58Check-encoded concatenation of the following:
 
-* 0x0142 + *flagbyte* + *addresshash* + *encryptedownersalt* + *encryptedseedb*
+* 0x0142 + *flagbyte* + *addresshash* + *ownersalt* + *encryptedpart1*[[0...7]] + *encryptedpart2*
 
 Decryption steps:
 
-1. Collect passphrase from user
-1. Recompute *passfactor* and *passpoint* using same steps done pre-encryption (current problem: can't get *passpoint* because it depends on *ownersalt* which we don't have unencrypted)
-1. Derive decryption key for *factorb* by passing *passpoint* and *addresshash* into scrypt function.  (*addresshash* is stored in the base58-encoded encrypted private key)
-1. Decrypt *encryptedhalf1* and *encryptedhalf2* to yield *factorb* using AES256Decrypt and derived decryption key.
+1. Collect encrypted private key and passphrase from user.
+1. Recompute *passfactor* and *passpoint* using same steps done pre-encryption (using *ownersalt* and the user's passphrase)
+1. Derive decryption key for *factorb* by passing *passpoint* and *addresshash*+*ownersalt* into scrypt function.
+1. Decrypt *encryptedhalf2* using AES256Decrypt to yield the last 8 bytes of *seedb* and the last 8 bytes of *encryptedpart1*.
+1. Decrypt *encryptedhalf1* to yield the remainder of *seedb*.
+1. Use *seedb* to compute *factorb*.
 1. Multiply *passfactor* by *factorb* mod N to yield the private key associated with *generatedaddress*.
 1. Convert that private key into a Bitcoin address, honoring the compression preference specified in the encrypted key.
 1. Hash the Bitcoin address, and verify that *addresshash* from the encrypted private key record matches the hash.  If not, report that the passphrase entry was incorrect.
