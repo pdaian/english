@@ -46,7 +46,8 @@ To keep the size of the encrypted key down, no initialization vectors (IVs) are 
 	* 1 byte (*flagbyte*): 
 		* the most significant two bits are set as follows to preserve the visibility of the compression flag in the prefix, as well as to keep the payload within the range of allowable values that keep the "6P" prefix intact.  For non-EC-multiplied keys, the bits are 11.  For EC-multiplied keys, the bits are 00.
 		* the bit with value 0x20 when set indicates the key should be converted to a bitcoin address using the compressed public key format.
-		* remaining bits are reserved for future use (such as specifying different scrypt parameters or cryptocurrency systems) and must all be 0 to comply with this specification.
+		* the bits with values 0x10 and 0x08 are reserved for a future specification that contemplates using multisig as a way to combine the factors such that parties in possession of the separate factors can independently sign a proposed transaction without requiring that any party possess both factors.  These bits must be 0 to comply with this version of the specification.
+		* remaining bits are reserved for future use and must all be 0 to comply with this version of the specification.
 	* 4 bytes: SHA256(SHA256(expected_bitcoin_address))[[0...3]], used both for typo checking and as salt
 	* 16 bytes: firsthalf: An AES-encrypted key material record (contents depend on whether EC multiplication is used)
 	* 16 bytes: lasthalf: An AES-encrypted key material record (contents depend on whether EC multiplication is used)
