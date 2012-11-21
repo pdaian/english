@@ -40,10 +40,10 @@ Most Bitcoin addresses are 34 characters.
 They consist of random digits and uppercase and lowercase letters, with the exception that the uppercase letter "O", uppercase letter "I", lowercase letter "l", and the number "0" are never used to prevent visual ambiguity.
 
 Some Bitcoin addresses can be shorter than 34 characters and still be valid.
-A significant percentage of Bitcoin addresses are only 33 characters, and some older addresses may be even shorter.
+A significant percentage of Bitcoin addresses are only 33 characters, and some addresses may be even shorter.
 Every Bitcoin address stands for a number - somewhat like an account number.  These shorter addresses are valid simply because they stand for numbers that happen to start with zeroes, and when the zeroes are omitted, the encoded address gets shorter.
 
-Several of the characters inside a Bitcoin address are used as a checksum so that typographical errors can be automatically found and rejected.
+Several of the characters inside a Bitcoin address are used as a checksum so that typographical errors can be automatically found and rejected.  The checksum also allows Bitcoin software to confirm that a 33-character (or shorter) address is in fact valid and isn't simply an address with a missing character.
 
 ##See Also
 
