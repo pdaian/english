@@ -1,10 +1,28 @@
-##Proposed encoding for a passphrase-protected private key
+<pre>
+  BIP: draft
+  Title: Passphrase-protected private key
+  Author: Mike Caldwell
+  Status: Draft
+  Type: Standards Track
+  Created: 20-11-2012
+</pre>
+
+##Abstract
+A method is proposed for encoding a passphrase-protected Bitcoin private key record in the form of a 58-character Base58Check-encoded printable string.  Encoded private key records are intended for use on paper wallets and physical Bitcoins.  Each record string contains all the information needed to reconstitute the private key except for a passphrase, and the methodology uses salting and *scrypt* to resist brute-force attacks.
+
+The method provides two encoding methodologies - one permitting any known private key to be encrypted with any passphrase, and another permitting a shared private key generation scheme where the party generating the final key string and its associated Bitcoin address (such as a physical bitcoin manufacturer) knows only a string derived from the original passphrase, and where the original passphrase is needed in order to actually redeem funds sent to the associated Bitcoin address.
+
+A 32-bit hash of the resulting Bitcoin address is encoded in plaintext within each encrypted key, so it can be correlated to a Bitcoin address with reasonable probability by someone not knowing the passphrase.  The complete Bitcoin address can be derived through successful decryption of the key record.
+
+##Copyright
+This proposal is hereby placed in the public domain.
+
+##Rationale
 > ***User story:** As a Bitcoin user who uses paper wallets, I would like the ability to add encryption, so that my Bitcoin paper storage can be two factor: something I have plus something I know.*
 > ***User story:** As a Bitcoin user who would like to pay a person or a company with a private key, I do not want to worry that any part of the communication path may result in the interception of the key and theft of my funds.  I would prefer to offer an encrypted private key, and then follow it up with the password using a different communication channel (e.g. a phone call or SMS).
-> ***User story:** (EC-multiplied keys) As a user of physical bitcoins, I would like a third party to be able to create password-protected Bitcoin private keys for me, without them knowing the password, so I can benefit from the physical bitcoin without the issuer having access to the private key, but also for it to be possible to memorize the material needed to unlock the physical bitcoin.
+> ***User story:** (EC-multiplied keys) As a user of physical bitcoins, I would like a third party to be able to create password-protected Bitcoin private keys for me, without them knowing the password, so I can benefit from the physical bitcoin without the issuer having access to the private key.  I would like to be able to choose a password whose minimum length and required format precludes me from memorizing it or engraving it on my physical bitcoin, without exposing me to an undue risk of theft by the manufacturer of the item.
 
-This proposal contemplates existence of a private key that requires a decryption passphrase before it can be used.  A 32-bit hash of the resulting Bitcoin address is encoded in plaintext within each encrypted key, so it can be correlated to a Bitcoin address with reasonable probability by someone not knowing the passphrase.
-
+##Specification
 This proposal makes use of the following functions and definitions:
 
 * **AES256Encrypt, AES256Decrypt**: the simple form of the well-known AES block cipher without consideration for initialization vectors or block chaining.  Each of these functions takes a 256-bit key and 16 bytes of input, and deterministically yields 16 bytes of output.
@@ -100,3 +118,9 @@ Decryption steps:
 1. Multiply *passfactor* by *factorb* mod N to yield the private key associated with *generatedaddress*.
 1. Convert that private key into a Bitcoin address, honoring the compression preference specified in the encrypted key.
 1. Hash the Bitcoin address, and verify that *addresshash* from the encrypted private key record matches the hash.  If not, report that the passphrase entry was incorrect.
+
+##Backwards compatibility
+Backwards compatibility is minimally applicable since this is a new standard that at most extends [[Wallet_Import_Format]].  It is assumed that an entry point for private key data may also accept existing formats of private keys (such as hexadecimal and [[Wallet_Import_Format]]); this draft uses a key format that cannot be mistaken for any existing one and preserves auto-detection capabilities.
+
+##Reference implementation
+Coming soon as part of Casascius Bitcoin Address Utility
