@@ -33,9 +33,9 @@ This proposal makes use of the following functions and definitions:
 * **[[Base58Check]]**: a method for encoding arrays of bytes using 58 alphanumeric characters commonly used in the Bitcoin ecosystem.
 
 ###Prefix
-It is proposed that the resulting Base58Check-encoded string start with a '6'.  The number '6' is intended to represent, from the perspective of the user, "a private key that needs something else to be usable" - an umbrella definition that could include keys participating in multisig transactions, and was chosen with deference to the existing prefix '5' most commonly observed in [[Wallet_Import_Format]] which denotes an unencrypted private key.
+It is proposed that the resulting Base58Check-encoded string start with a '6'.  The number '6' is intended to represent, from the perspective of the user, "a private key that needs something else to be usable" - an umbrella definition that could be understood in the future to include keys participating in multisig transactions, and was chosen with deference to the existing prefix '5' most commonly observed in [[Wallet_Import_Format]] which denotes an unencrypted private key.
 
-It is proposed that the second character ought to give a hint as to what is needed, and for an encrypted key, the uppercase letter P is proposed.
+It is proposed that the second character ought to give a hint as to what is needed as a second factor, and for an encrypted key, the uppercase letter P is proposed.
 
 To keep the size of the encrypted key down, no initialization vectors (IVs) are used in the AES encryption.  Rather, suitable values for IV-like use are derived using scrypt from the passphrase and from using a 32-bit hash of the resulting Bitcoin address as salt.
 
