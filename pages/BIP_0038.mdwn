@@ -84,6 +84,8 @@ Steps performed by the person with the passphrase:
 1. Compute the elliptic curve point G * passfactor, and convert the result to compressed notation (33 bytes).  Call this *passpoint*.
 1. Convey *passpoint* to the party generating the keys.
 
+problem: constant salt allows creation of rainbow table. need a way for salt to be persisted in the encrypted record without lengthening it.
+
 Encryption steps:
 
 1. Generate 32 random bytes, call them *factorb*.
