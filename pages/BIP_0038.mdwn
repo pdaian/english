@@ -48,18 +48,18 @@ To keep the size of the encrypted key down, no initialization vectors are used.
 	* 4 bytes: SHA256(SHA256(expected_bitcoin_address))[[0...3]], used both for typo checking and as salt
 	* 16 bytes: firsthalf: An AES-encrypted key material record (contents depend on whether EC multiplication is used)
 	* 16 bytes: lasthalf: An AES-encrypted key material record (contents depend on whether EC multiplication is used)
-* Range in base58check encoding for non-EC-multiplied keys without compression:
+* Range in base58check encoding for non-EC-multiplied keys without compression (prefix 6PB):
 	* Minimum value: 6PBFqPa2USdAvd91kpeDHpeuYsT9JUYLZDCVLQUpLZi4mJssFEpKogvS6o (based on 01 42 80 plus thirty-six 00's)
-	* Maximum value: (based on 01 42 80 plus thirty-six FF's) 
-* Range in base58check encoding for non-EC-multiplied keys with compression:
-	* Minimum value: (based on 01 42 A0 plus thirty-six 00's)
+	* Maximum value: 6PBUZ9doU2eKa41QonTZouLJuRx473NPAWqUDgPcPTxpsPoztkkXPQSyKU (based on 01 42 80 plus thirty-six FF's) 
+* Range in base58check encoding for non-EC-multiplied keys with compression (prefix 6PJ):
+	* Minimum value: 6PJGsherFDFwaLwjPcmXtQPntoQGzb3n2wbsdBcDwPrQ82k5wkinjNnZkp (based on 01 42 A0 plus thirty-six 00's)
 	* Maximum value: 6PJVbTidEoH6Dmp8SaatQV5CFMuBo9speFErWTX1zJ7AE7gDbGezKyKqmt (based on 01 42 A0 plus thirty-six FF's) 
-* Range in base58check encoding for EC-multiplied keys without compression:
-	* Minimum value: 6PfYiPy6Z7BQAwEHLxxrCEHrH9kasVQ95ST1NnuEnnYAJHGsgpNPQ9dTHc (based on 01 43 00 plus thirty-six 00's)
-	* Maximum value: (based on 01 43 00 plus thirty-six FF's)
-* Range in base58check encoding for non-EC-multiplied keys with compression:
-	* Minimum value: (based on 01 43 20 plus thirty-six 00's)
-	* Maximum value: 6PuN5G4y74RnpwyKZbQ8sK6DcT9wT9ayRbco55FFwYa4ue5BSLF7gm1yLY (based on 01 43 20 plus thirty-six FF's)
+* Range in base58check encoding for EC-multiplied keys without compression (prefix 6Pf):
+	* Minimum value: 6PfKzduKZXAFXWMtJ19Vg9cSvbFg4va6U8p2VWzSjtHQCCLk3JSBpUvfpf (based on 01 43 00 plus thirty-six 00's)
+	* Maximum value: 6PfYiPy6Z7BQAwEHLxxrCEHrH9kasVQ95ST1NnuEnnYAJHGsgpNPQ9dTHc (based on 01 43 00 plus thirty-six FF's)
+* Range in base58check encoding for non-EC-multiplied keys with compression (prefix 6Pn):
+	* Minimum value: 6PnM2wz9LHo2BEAbvoGpGjMLGXCom35XwsDQnJ7rLiRjYvCxjpLenmoBsR (based on 01 43 20 plus thirty-six 00's)
+	* Maximum value: 6PnZki3vKspApf2zym6Anp2jd5hiZbuaZArPfa2ePcgVf196PLGrQNyVUh (based on 01 43 20 plus thirty-six FF's)
 
 ####Encryption when EC multiply flag is not used
 Encrypting a private key without the EC multiplication offers the advantage that any known private key can be encrypted.
