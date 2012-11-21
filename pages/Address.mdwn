@@ -11,9 +11,11 @@ Like e-mail, you can send bitcoins to a person by sending bitcoins to one of the
 When using a web site that accepts bitcoins or holds Bitcoin balances on your behalf, that website will assign a Bitcoin address to your account, so you can transfer funds into your account at the site.  Very much unlike e-mail, this address may change every time funds come in so care should be taken when sending additional funds to a previously-used address.  When you send Bitcoins to your account at a web site, they will usually be credited to your account at that web site after the transaction is [[confirmed|confirmation]].
 
 ##Addresses can be created offline
-Creating addresses can be done without an Internet connection and do not require any contact or registration with the Bitcoin network.  The network only knows about an address when it is first used in a transaction.  Because addresses can be created easily and at minimal cost, it is not uncommon to create temporary addresses that can be discarded if unused.
+Creating addresses can be done without an Internet connection and does not require any contact or registration with the Bitcoin network.  The network starts tracking an address when it is first seen in a valid payment transaction.
 
-It is also possible to create large batches of addresses offline using other software tools.  Generating batches of addresses is useful in several scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer who chooses a "pay with Bitcoin" option.
+It is possible to create large batches of addresses offline using freely available software tools.  Generating batches of addresses is useful in several scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer who chooses a "pay with Bitcoin" option.
+
+An average desktop computer can generate thousands of new Bitcoin addresses a minute.  Addresses are created simply by generating random numbers and then performing mathematical operations to derive matching pairs of "public" and "private" keys.  Because addresses can be created easily and at minimal cost, it is not uncommon to create temporary addresses that can be discarded if unused.
 
 ##Addresses are case sensitive and exact
 Bitcoin addresses are case-sensitive.  Bitcoin addresses should be copied and pasted using the computer's clipboard wherever possible. If you hand-key a Bitcoin address, and each character is not transcribed exactly - including capitalization - the incorrect address will most likely be rejected by the Bitcoin software.  You will have to check your entry and try again.
