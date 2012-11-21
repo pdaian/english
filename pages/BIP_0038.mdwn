@@ -15,25 +15,9 @@ This proposal makes use of the following functions and definitions:
 * **[[Base58Check]]**: a method for encoding arrays of bytes using 58 alphanumeric characters commonly used in the Bitcoin ecosystem.
 
 ###Prefix
-It is proposed that the resulting Base58Check-encoded string start with a '6'.  The number '6' is intended to represent, from the perspective of the user, "a private key that needs something else to be usable" - an umbrella definition that could include keys participating in multisig transactions.  The second character ought to give a hint as to what is needed, and for an AES256-encoded key based on this proposal, the uppercase letter P is suggested.
+It is proposed that the resulting Base58Check-encoded string start with a '6'.  The number '6' is intended to represent, from the perspective of the user, "a private key that needs something else to be usable" - an umbrella definition that could include keys participating in multisig transactions.  The second character ought to give a hint as to what is needed, and for an AES256-encoded key based on this proposal, the uppercase letter P is proposed.
 
-I propose the string having an optional 14 bits of password typo resistance.  That is, a 14-bit checksum of the password may be added so that the vast majority of password typos can be detected and reported to the user, rather than inadvertently accepted as correct, which will simply yield the wrong private key and frustrate the user.  This checksum is optional, and a bit flag is defined for the purpose of disabling it.
-
-The choice of a low-bitcount checksum is intended to reduce its usefulness to someone attempting to crack the password.
-
-To encrypt the key requires the AES256Encrypt function, which takes a 16-byte input and a 32-byte key and yields a 16-byte output.  The SHA256 hash of the passphrase is used as the 32-bit key given to the AES functions.
-
-Encryption is: 
-
-* firsthalf: AES256Encrypt(bitcoinprivkey[[0...15]], SHA256(passphrase))
-* lasthalf: AES256Encrypt(bitcoinprivkey[[16...31]] xor firsthalf[[0...15]], SHA256(passphrase))
-
-Decryption is the reverse:
-
-* firsthalf: AES256Decrypt(ciphertext[[0...15]], SHA256(passphrase))
-* lasthalf: AES256Decrypt(ciphertext[[16...31]], SHA256(passphrase)) xor firsthalf[[0...15]]
-
-To keep the size of the encrypted key down, no initialization vectors are used.
+To keep the size of the encrypted key down, no initialization vectors (IVs) are used in the AES encryption.  Rather, suitable values for IV-like use are derived using scrypt from the passphrase and from using a 32-bit hash of the resulting Bitcoin address as salt.
 
 ###Proposed specification
 
