@@ -72,7 +72,7 @@ Steps performed by the person with the passphrase (call him the *owner*):
 1. * Call the resulting 32 bytes *passfactor*.
 1. Compute the elliptic curve point G * *passfactor*, and convert the result to compressed notation (33 bytes).  Call this *passpoint*.  Compressed notation is used for this purpose regardless of whether the intent is to create Bitcoin addresses with or without compressed public keys.
 1. Convey *ownersalt* and *passpoint* to the party generating the keys, along with a checksum to ensure integrity.
-1. * The following Base58Check-encoded format is recommended for this purpose: bytes "?? ?? ?? ?? ?? ?? ??" followed by *ownersalt* and then *passpoint*.  The resulting string will start with the word "password", will be ?? characters in length, and encodes 48 bytes (7 bytes constant + 8 bytes *ownersalt* + 33 bytes *passpoint*).  The checksum is handled in the Base58Check encoding.
+1. * The following Base58Check-encoded format is recommended for this purpose: bytes "C6 3C 7B 3D 83 D9 C0" followed by *ownersalt* and then *passpoint*.  The resulting string will start with the word "password", will be 71 characters in length, and encodes 48 bytes (7 bytes constant + 8 bytes *ownersalt* + 33 bytes *passpoint*).  The checksum is handled in the Base58Check encoding.
 
 Steps to create new encrypted private keys given an encrypted password string from *owner* (so we have *ownersalt* and *passpoint*, but we do not have *passfactor* or the passphrase):
 
@@ -94,8 +94,8 @@ Decryption steps:
 1. Collect encrypted private key and passphrase from user.
 1. Recompute *passfactor* and *passpoint* using same steps done pre-encryption (using *ownersalt* and the user's passphrase)
 1. Derive decryption key for *factorb* by passing *passpoint* and *addresshash*+*ownersalt* into scrypt function.
-1. Decrypt *encryptedhalf2* using AES256Decrypt to yield the last 8 bytes of *seedb* and the last 8 bytes of *encryptedpart1*.
-1. Decrypt *encryptedhalf1* to yield the remainder of *seedb*.
+1. Decrypt *encryptedpart2* using AES256Decrypt to yield the last 8 bytes of *seedb* and the last 8 bytes of *encryptedpart1*.
+1. Decrypt *encryptedpart1* to yield the remainder of *seedb*.
 1. Use *seedb* to compute *factorb*.
 1. Multiply *passfactor* by *factorb* mod N to yield the private key associated with *generatedaddress*.
 1. Convert that private key into a Bitcoin address, honoring the compression preference specified in the encrypted key.
