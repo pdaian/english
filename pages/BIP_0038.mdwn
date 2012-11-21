@@ -74,32 +74,30 @@ The encrypted private key is the Base58Check-encoded concatenation of the follow
 * 0x0142 + bitflags + salt + encryptedhalf1 + encryptedhalf2
 
 ####Encryption when EC multiply flag is used
-Encrypting a private key with EC multiplication offers the ability for someone to generate encrypted keys knowing only an EC point derived from the original passphrase, not the passphrase itself.  Only the person who knows the original passphrase can decrypt the private key.  Using this scheme, arbitrary private keys cannot be encoded except when they are known to be a product of two factors, one of which is the EC point.  In practice, this means that the process of creating encrypted keys is also the process of generating new addresses.
+Encrypting a private key with EC multiplication offers the ability for someone to generate encrypted keys knowing only an EC point derived from the original passphrase, not the passphrase itself.  Only the person who knows the original passphrase can decrypt the private key.  This methodology does not offer the ability to encrypt a known private key - this means that the process of creating encrypted keys is also the process of generating new addresses.
 
 Steps performed by the person with the passphrase:
 
+1. Generate 16 random bytes, call this *ownersalt*
 1. Derive a key from the passphrase using scrypt
-1. * Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  salt is "Bitcoin". n=1048576, r=8, p=16, length=32.
+1. * Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  salt is *ownersalt*. n=1048576, r=8, p=16, length=32.
 1. * Call the resulting 32 bytes *passfactor*.
 1. Compute the elliptic curve point G * passfactor, and convert the result to compressed notation (33 bytes).  Call this *passpoint*.
-1. Convey *passpoint* to the party generating the keys.
-
-problem: constant salt allows creation of rainbow table. need a way for salt to be persisted in the encrypted record without lengthening it.
+1. Convey *ownersalt* and *passpoint* to the party generating the keys, along with a checksum to ensure integrity.
 
 Encryption steps:
 
-1. Generate 32 random bytes, call them *factorb*.
+1. Generate 16 random bytes, call this *seedb*.  Take SHA256(SHA256(*seedb*)) to yield 32 bytes, call this *factorb*.
 1. Multiply *passpoint* by *factorb*.  Use the resulting EC point as a public key and hash it into a Bitcoin address.  This is the generated Bitcoin address, call it *generatedaddress*.
-1. Take the first four bytes of SHA256(SHA256(*generatedaddress*)) and call it *salt*.
-1. Now we will encrypt *factorb*.  Derive a second key from the passphrase using scrypt
-1. *Parameters: *passphrase* is *passpoint* provided from the first party.  *salt* is what we just computed, n=1048576, r=8, p=16, length=64
-1. *Let's split the resulting 64 bytes in half, and call them *derivedhalf1* and *derivedhalf2*.
-1. Do AES256Encrypt(factorb[[0...15]] xor derivedhalf1[[0...15]], derivedhalf2), call the 16-byte result *encryptedhalf1*
-1. Do AES256Encrypt(factorb[[16...31]] xor encryptedhalf1, derivedhalf2), call the 16-byte result *encryptedhalf2*
+1. Take the first four bytes of SHA256(SHA256(*generatedaddress*)) and call it *addresshash*.
+1. Now we will encrypt *seedb*.  Derive a second key from the passphrase using scrypt
+1. *Parameters: *passphrase* is *passpoint* provided from the first party (expressed in binary as bytes, not hex or ASCII etc.).  *salt* is the concatenation of *addresshash* + *ownersalt*, n=1048576, r=8, p=16, length=32
+1. *Split the result into two 16-byte halves and call them *derivedhalf1* and *derivedhalf2*.
+1. Do AES256Encrypt(seedb xor derivedhalf1, derivedhalf2), call the 16-byte result *encryptedseedb*
 
 The encrypted private key is the Base58Check-encoded concatenation of the following:
 
-* 0x0142 + bitflags + salt + encryptedhalf1 + encryptedhalf2
+* 0x0142 + bitflags + addresshash + ownersalt + encryptedseedb
 
 Decryption steps:
 
