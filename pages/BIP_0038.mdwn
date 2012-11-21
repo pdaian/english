@@ -106,16 +106,3 @@ Decryption steps:
 1. Derive decryption key for *factorb* by passing *passpoint* and *salt* into scrypt function.  (*salt* is stored in the base58-encoded encrypted private key)
 1. Decrypt *encryptedhalf1* and *encryptedhalf2* to yield *factorb* using AES256Decrypt and derived decryption key.
 1. Multiply *passfactor* by *factorb* mod N to yield the private key associated with *generatedaddress*.
-
-###Example/Test Vector
-
-* Passphrase: "VIRES IN NUMERIS"
-* Sample Bitcoin private key to be encrypted: 5Ki8KQ65ihzzoex9BjarbMjUATaFYMmWZ4eLmBnjj9fdhKqm3VR / F967E2BEEFCEC703A4737E42124D7BB3 34A34CC345446B9B163576B7C7A36266
-
-* SHA256("VIRES IN NUMERIS"): 8967A8562255672471ACB316E705593454040FA41E3883AD5A8C3576E5DC03DD
-* AES256Encrypt(F967E2BEEFCEC703A4737E42124D7BB3,8967A8562255672471ACB316E705593454040FA41E3883AD5A8C3576E5DC03DD) = b5dde5769a8b031139cdcc54f2f5f98b
-* 34A34CC345446B9B163576B7C7A36266 xor b5dde5769a8b031139cdcc54f2f5f98b = 817EA9B5DFCF688A2FF8BAE335569BED
-* AES256Encrypt(817EA9B5DFCF688A2FF8BAE335569BED,8967A8562255672471ACB316E705593454040FA41E3883AD5A8C3576E5DC03DD) = 8b899125ebf86b82a54fb898077188f6
-* First 16 bits of SHA256("VIRES IN NUMERIS?"): B2C4, and 0x7ffe = 0x32c4
-* What to [[Base58Check]] encode: 0205 32C4 b5dde5769a8b031139cdcc54f2f5f98b 8b899125ebf86b82a54fb898077188f6
-* Resulting encrypted private key: 6ph7B7aqL4aBkQY2sJs8MZdJ1MwjEJSgLDiRoBrqAXsAbjmdQecEi3
