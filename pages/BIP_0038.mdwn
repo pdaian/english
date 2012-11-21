@@ -8,7 +8,7 @@
 </pre>
 
 ##Abstract
-A method is proposed for encoding a passphrase-protected Bitcoin private key record in the form of a 58-character Base58Check-encoded printable string.  Encoded private key records are intended for use on paper wallets and physical Bitcoins.  Each record string contains all the information needed to reconstitute the private key except for a passphrase, and the methodology uses salting and *scrypt* to resist brute-force attacks.
+A method is proposed for encrypting and encoding a passphrase-protected Bitcoin private key record in the form of a 58-character Base58Check-encoded printable string.  Encrypted private key records are intended for use on paper wallets and physical Bitcoins.  Each record string contains all the information needed to reconstitute the private key except for a passphrase, and the methodology uses salting and *scrypt* to resist brute-force attacks.
 
 The method provides two encoding methodologies - one permitting any known private key to be encrypted with any passphrase, and another permitting a shared private key generation scheme where the party generating the final key string and its associated Bitcoin address (such as a physical bitcoin manufacturer) knows only a string derived from the original passphrase, and where the original passphrase is needed in order to actually redeem funds sent to the associated Bitcoin address.
 
