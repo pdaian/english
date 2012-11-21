@@ -103,8 +103,8 @@ Decryption steps:
 
 1. Collect passphrase from user
 1. Recompute *passfactor* and *passpoint* using same steps done pre-encryption
-1. Derive decryption key for *factorb* by passing *passpoint* and *salt* into scrypt function.  (*salt* is stored in the key)
-1. Decrypt *encryptedhalf1* and *encryptedhalf2* to yield *factorb*
+1. Derive decryption key for *factorb* by passing *passpoint* and *salt* into scrypt function.  (*salt* is stored in the base58-encoded encrypted private key)
+1. Decrypt *encryptedhalf1* and *encryptedhalf2* to yield *factorb* using AES256Decrypt and derived decryption key.
 1. Multiply *passfactor* by *factorb* mod N to yield the private key associated with *generatedaddress*.
 
 ###Example/Test Vector
