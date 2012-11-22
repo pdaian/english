@@ -101,7 +101,7 @@ I consider approximations below. The numbers are so favorable that consideration
 
 Double spends rely on secrecy. In order to mine blocks in secret a PoW miner must select his 5 of his own public keys in the lottery. If the PoW miner owns a share 0<s<1 of all coins, 
 the probability of doing that a block meeting the difficulty target will select the miner's coins is (1/s)^5. For s=0.01, 1 out of 10 billion blocks will satisfy this criteria. 
-Even for extremely small hash aggregate rates, it is not practical to privately mine at a rate 10 billion times faster than the main chain. For s=0.1, 1 out of 100,000 blocks will 
+Even for extremely small hash aggregate rates, it is not practical to privately mine at a rate 10 billion times faster than all other miners combined. For s=0.1, 1 out of 100,000 blocks will 
 satisfy this criteria. (i.e. the attack still requires approximately 99.999% of all hashing power). For s=0.5, the attacker will succeed if he controls 51% of the aggregate hash rate.
 
 2) Denial of Service
