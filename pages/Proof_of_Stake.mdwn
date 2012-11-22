@@ -75,7 +75,7 @@ Stake Signing Key - Private Key can delegate signing and sending authority to on
 
 2) Work submission is hashed 10 times consecutively. Each consecutive hash maps to an individual unspent output in the blockchain. This is essentially a lottery drawing two sets of five winners. The first five hashes map to mandatory signatures, the final five hashses map to voluntary signatures.
 
-3) If the first 5 unspent outputs map to active public keys [glossary](see), the block can potentially be valid. Otherwise, the block is invalid and must be discarded.
+3) If the mandatory signatures map to active public keys [glossary](see), the block can potentially be valid. Otherwise, the block is invalid and must be discarded.
 
 4) If PoW miner finds a potentially valid block. He transmits the following hash to the network: hash(his block, the previous valid block) 
 
