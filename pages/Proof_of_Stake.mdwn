@@ -83,7 +83,7 @@ Stake Signing Key - Private Key can delegate signing and sending authority to on
 
 5) The first five selected signatories sequentially sign this hash and transmit it onwards as {work submission; hash; sig 1; sig 2; sig 3; sig 4; sig 5}
 
-6) After Sig 5 is added, the final signatory publishes the PoW block and also his own PoS block. 
+6) After the mandatory signature sequence is complete, the final signatory publishes the PoW block and also his own PoS block. 
 
 7) The final five hashes map to voluntary signatures. These voluntary signatures can be inserted into any block within the next 6 blocks as special txns. These txns do not require fees. 
 
