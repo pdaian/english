@@ -47,9 +47,9 @@ Active Keys - By default, public keys that appear in the blockchain are active. 
 
 Dead Keys - Keys that have failed to provide signatures lose lottery eligibility. Dead keys can no longer mine PoS blocks. However, these dead keys can still be used to generate txns. Network maintenance is supported primarily through mandatory fees levied on coins sent by dead keys. After coins are sent using a dead key, the key becomes active again.
 
-Mandatory Signature Sequence - In order for a PoW block to be valid and enter the blockchain, it must be signed by a sequence of 5 randomly selected active keys. Blocks which lack these signatures are invalid and can be discarded.  The fifth signatory mines a PoS block. 
+Mandatory Signature Sequence - In order for a PoW block to be valid and enter the blockchain, it must be signed by a sequence of 5 randomly selected active keys. The fifth signatory in the sequence mines a PoS block. 
 
-PoS block - The fifth signatory of a PoW block must mint his own block without any PoW submission at all. This block is called the PoS block.
+PoS block - The fifth signatory of a PoW block must mint his own block without any PoW submission at all. This block is called a PoS block.
 
 Coin-age - Coin age refers to the age of txn inputs. Coin age is equal to the number of coins sent times the average age on these coins. Age is measured in blocks. Age is reset to 1 block whenever a coin is sent AND whenever a coin provides a signature (both mandatory and voluntary signatures count). Coin-age is used to calculate mandatory fees.
 
