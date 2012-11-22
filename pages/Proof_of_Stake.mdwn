@@ -109,22 +109,20 @@ satisfy this criteria. (i.e. the attack still requires approximately 99.999% of 
 An attacker who mines publicly could simply produce empty PoW blocks. However, this would fail to deny service. 50% of all blocks are randomly mined via PoS. The attacker cannot
 force the PoS miners to produce empty blocks. Therefore he cannot deny service regardless of how much hash rate he controls.
 
-### Stylized Example (You get an outcome that works like this when p is close to 1)
+### Incentives to maintain full nodes
 
-Consider a system where:
-you have a 0% chance of mining coins at less than 6 coin confirmations,
-a 50% chance of mining coins at 6 coin confirmations,
-and a 100% chance of mining coins at 7 or more coin confirmations.
+This system introduces powerful incentives to maintain full nodes. Many people argue that the lack of an incentive to maintain a full node is a problem in the bitcoin system.
 
-Half the time you will mine your coin after 6 confirmations. The other half you will mine your coin after 7. Therefore, it will take 6.5 rounds on average to mine a block.
+1) a steady flow of txns will generate some fees even if all public keys remain active. Active keys must be maintaining full nodes. Otherwise they could not provide the voluntary signatures which prove their activity. Even very weak incentives are sufficient in this case. If almost all keys are associated with active nodes, then it is not necessary to motivate additional participation.
 
-Now what if you double hashing power. Remember that this doubles your chance of mining a block at any given stage. Now..
-you have a 0% chance of mining coins at less than 6 coin confirmations,
-a 100% chance of mining coins at 6 or more coin confirmations,
+2) Some public keys may decide to become inactive. This is costly for them. They will suffer a loss of 5% of their balance per year for as long as they remain inactive.
 
-Therefore, it will take 6 rounds on average to mine a block.
+3) The active public keys constantly capture revenue from inactive public keys. This means that the incentives to remain increase dramatically as participation falls. Suppose that 50% of public keys maintain full nodes, then this 50% will capture 2.5% of coins held by inactive keys per annum. This is equal to an annual of return of 2.0%. I consider this a reasonable target incentive level and participation rate. Suppose that I am wrong, and only 10% of public keys maintain full nodes. Then these 10% will capture 4.5% of all extant coins per annum. This implies an annual return on participation equal to 45% per annum. This is a very strong incentive and is almost certain to be sufficient, even if nodes are quite costly to maintain. If only 1% of coins participate, then 4.95% of all extant coins will be distributed to this 1% each year. This implies a weekly return on participation of 3%, a pirate ponzi scheme level return. If these incentive are inadequate to support a healthy network of full nodes (which seems unlikely to me), then the levy on dead coins could be increased to exceed 5% per annum.
 
-Here you have doubled hashing power, but only increased average output per unit time by a small amount.
+4) Many people will not have enough coins to justify running their own node. Such individuals will likely use an online banking service which could store their limited spend key. The service could return interest to users in exchange for managing their keys.
+
+5) Other individuals may prefer the privacy associated with dropping out of participation. These individuals are still welcome to use the network, but must face a wealth tax of 5% per annum to compensate for the security risk created by their behavior.
+
 ### Infeasibility of Pure Proof of Stake Under this System
 Note: in the limit when p -> 1 (that is p approaches pure proof of stake), you approach a situation where you have a 0% chance of mining coins at less than x coin confirmations, but a 100% chance at x+1 coin confirmations, where x depends soley on difficulty. Mining becomes completely deterministic and doubling hashing power has no effect on output at all. Essentially miners take turns to mine blocks. The frequency with which a miner's turn comes up is equal to his ownership share in the total volume of coins actively used for mining. This sounds really good, but a fatal problem arises if participation falls. A fall in participation would make it impossible for anyone to mine blocks. Particularly, worrisome is that if participation is at 100%, a loss of some coins would interrupt the blockchain forever with no possible remedy except location of the missing coins. Even without a loss of coins, simply transferring coins across wallets can disrupt turn-taking and freeze the blockchain forever. For these reasons, it is necessary for block mining to retain a random element and not follow a deterministic, pure proof of stake system, i.e. p can safely be 0.8 or 0.9 or even 0.99, but 0.9999999999999999 would make complete failure of the blockchain a certainty.
 
