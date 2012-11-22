@@ -40,7 +40,7 @@ This suggestion is of a mixed Proof-of-Work / Proof-of-Stake system.
 ### Cunicula's Note
 Check the page history for the older implementation. I am replacing my description with a new system which I believe to be much more secure. The new system is inspired by Colbee's proof of activity.
 
-### Definitions
+### Glossary
 Voluntary Signatures - Voluntary signatures result from a random auditing processes. As blocks are mined, keys are selected for auditing based on random selection. The signatures provide public evidence that a public key owner is running a full node. Passing the audit allows a private key to remain active.
 
 Active Keys - By default, public keys that appear in the blockchain are active. Public keys that provide voluntary signatures when requested remain active. Active public keys are eligible to participate in lotteries to sign PoW blocks and mine PoS blocks. This is remunerative. Public keys that fail to provide signatures become dead private keys. 
@@ -59,12 +59,15 @@ Optional Fee - Fees are used to ration block space. Blocks select prioritize txn
 
 Fee Fund - Both optional fees and demurrage fees enter a fund, rather than being distributed directly to miners. Fees are added to the fund immediately, so there is a weak incentive to include high fee txns in blocks. The PoW miner receives a distribution equal to 0.1% of the accumulated fund. The first four mandatory signatories also receive 0.1% each. The PoS block miner receives 0.1% as well, but his takings will differ slightly because the fund is updated based on txns included in his block. Use of a fund reduces volatility in mining reward.
 
-Stake Signing Key - Private Key can delegate signing and sending authority to one other private key. The delegated key can sign blocks and has limited authority to send coins. Authority to send coins is determined by two positive constants, t and k. The following txn rule limits spending authority:
+Root Private Key - The root private key has full spending and signing authority. When significant balances are held, this key should be kept as an offline backup to guard against theft. 
+	
+Stake Signing Key - Private Key can delegate signing and sending authority to one other private key. The delegated key can sign blocks and has limited authority to send coins. Authority to send coins is determined by two positive constants, t and k. The following txn rule limits the stake signing keys' spending authority:
 
-Change Returned to Public Key >= all coins sent to other addresses * {max(k,k*(t/coin-age on public key)}
-
-
-[be continued later...](to)
+	Change Returned to Public Key >= all coins sent to other addresses * {max(k,k*(t/coin-years on public key)}
+	k=9 and t=1/12 are suggested as possible parameters. These parameters allows the stake signing key to spend up to 10% of the total key balance per month. The max value at risk in event of theft of                 
+	this key is 10%. Holders of large balances 'zero-out' their coin-age frequently via mining and face less theft risk. If this occurs once per week, for example, the large balance holder will only
+	risk be able to spend up to 2.3% of their balance per week and will only lose 2.3% in the event of theft. Once theft is detected, all remaining coins can be moved to a secure computer using the
+	root private key.
 
 ### Does this system exhibit Constant-Returns-to-Scale ?
 
