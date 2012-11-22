@@ -77,15 +77,15 @@ Stake Signing Key - Private Key can delegate signing and sending authority to on
 
 3) If the mandatory signatures map to active public keys [glossary](see), the block can potentially be valid. Otherwise, the block is invalid and must be discarded.
 
-4) If PoW miner finds a potentially valid block. He transmits the following hash to the network: hash(his block, the previous valid block) 
+4) If PoW miner finds a potentially valid block, he transmits the following hash to the network: {work submission;hash(his block, the previous valid block)}
 
-5) The first five selected signatories sequentially sign this hash and transmit it onwards.
+5) If the work submission meets the difficulty target and maps to active signatories, then the block is relayed through the network. Otherwise, the message is dropped as spam.
 
-6) The final signatory publishes the PoW block.
+5) The first five selected signatories sequentially sign this hash and transmit it onwards as {work submission; hash; sig 1; sig 2; sig 3; sig 4; sig 5}
 
-7) The final signatory publishes his own own PoS block which builds on this PoW block.
+6) After Sig 5 is added, the final signatory publishes the PoW block and also his own PoS block. 
 
-8) Voluntary signatures can be inserted into any block within the next 6 blocks as special txns. The txns do not require fees. 
+7) The final five hashes map to voluntary signatures. These voluntary signatures can be inserted into any block within the next 6 blocks as special txns. These txns do not require fees. 
 
 9) Go to step 1
 
