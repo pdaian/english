@@ -69,12 +69,20 @@ Stake Signing Key - Private Key can delegate signing and sending authority to on
 	risk be able to spend up to 2.3% of their balance per week and will only lose 2.3% in the event of theft. Once theft is detected, all remaining coins can be moved to a secure computer using the
 	root private key.
 
-### Does this system exhibit Constant-Returns-to-Scale ?
+### Mining Process
 
-While the formal theory behind this has yet to be laid out in detail, simulations indicate that the system is fully described by a constant returns-to-scale Cobb-Douglas production function. Generation rate over a long time span is almost perfectly predicted by the following equation, where  Q is generation per unit time, k is the number of coins invested in generation, h is hashing power, A is an arbitrary constant which is inversely proportional to difficulty, and p is the parameter described in the previous section.
+1) Block meeting work difficulty target is mined. Difficulty target selected so 1 work block arrives every 10 minutes.
+2) Work submission is hashed 10 times consecutively. Each consecutive hash maps to an individual unspent output in the blockchain. The first five hashes determine mandatory signatures, the final five hashses determine voluntary signatures.
+3) If the first 5 unspent outputs map to active public keys [glossary](see), the block can potentially be valid. Otherwise, the block is invalid and must be discarded.
+4) If PoW miner finds a potentially valid block. He transmits the following hash to the network: hash(his block, the previous valid block) 
+5) The first five selected signatories sequentially sign this hash and transmit it onwards.
+6) The final signatory publishes the PoW block.
+7) The final signatory publishes his own own PoS block which builds on this PoW block.
+8) Voluntary signatures can be inserted into any block within the next 6 blocks as special txns. The txns do not require fees. 
+9) Go to step 1
 
-Q = A*k^(p)*h^(1-p)
-
+Note: This process is simultaneous so that multiple block hashes can circulate in the network attempting to collect five signatures and generate PoW/PoS block pairs. Block pairs that lose this race
+are orphaned.
 
 ### How could we see constant returns to scale here?
 
