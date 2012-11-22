@@ -5,7 +5,7 @@
   Title: Duplicate transactions
   Author: Pieter Wuille <pieter.wuille@gmail.com>
   Status: Draft
-  Type: Standards Track
+  Type: Final
   Created: 22-02-2012
 </pre>
 
@@ -43,6 +43,9 @@ The addition of this rule only makes some previously-valid blocks invalid. This 
 
 ##Implementation
 A patch for the reference client can be found on https://github.com/sipa/bitcoin/tree/nooverwritetx
+
+This BIP was implemented in Commit [Do not allow overwriting unspent transactions (BIP 30)](https://github.com/bitcoin/bitcoin/commit/a206b0ea12eb4606b93323268fc81a4f1f952531)
+There have been additional commits to refine the implementation of this BIP.
 
 ##Acknowledgements
 Thanks to Russell O'Connor for finding and demonstrating this problem, and helping test the patch.
