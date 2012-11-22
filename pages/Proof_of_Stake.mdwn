@@ -59,6 +59,11 @@ Optional Fee - Fees are used to ration block space. Blocks select prioritize txn
 
 Fee Fund - Both optional fees and demurrage fees enter a fund, rather than being distributed directly to miners. Fees are added to the fund immediately, so there is a weak incentive to include high fee txns in blocks. The PoW miner receives a distribution equal to 0.1% of the accumulated fund. The first four mandatory signatories also receive 0.1% each. The PoS block miner receives 0.1% as well, but his takings will differ slightly because the fund is updated based on txns included in his block. Use of a fund reduces volatility in mining reward.
 
+Stake Signing Key - Private Key can delegate signing and sending authority to one other private key. The delegated key can sign blocks and has limited authority to send coins. Authority to send coins is determined by two positive constants, t and k. The following txn rule limits spending authority:
+
+Change Returned to Public Key >= all coins sent to other addresses * {max(k,k*(t/coin-age on public key)}
+
+
 [be continued later...](to)
 
 ### Does this system exhibit Constant-Returns-to-Scale ?
