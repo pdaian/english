@@ -73,7 +73,7 @@ Encryption steps:
 
 1. Compute the Bitcoin address (ASCII), and take the first four bytes of SHA256(SHA256()) of it.  Let's call this "addresshash".
 1. Derive a key from the passphrase using scrypt
-1. *Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  *addresshash* came from the earlier step, n=1048576, r=8, p=16, length=64
+1. *Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  *addresshash* came from the earlier step, n=16384, r=8, p=8, length=64 (n, r, p are provisional and subject to consensus)
 1. *Let's split the resulting 64 bytes in half, and call them *derivedhalf1* and *derivedhalf2*.
 1. Do AES256Encrypt(bitcoinprivkey[[0...15]] xor derivedhalf1[[0...15]], derivedhalf2), call the 16-byte result *encryptedhalf1*
 1. Do AES256Encrypt(bitcoinprivkey[[16...31]] xor derivedhalf1[[16...31]], derivedhalf2), call the 16-byte result *encryptedhalf2*
@@ -109,7 +109,7 @@ Steps to create new encrypted private keys given an encrypted password string fr
 1. ECMultiply *passpoint* by *factorb*.  Use the resulting EC point as a public key and hash it into a Bitcoin address using either compressed or uncompressed public key methodology (specify which methodology is used inside *flagbyte*).  This is the generated Bitcoin address, call it *generatedaddress*.
 1. Take the first four bytes of SHA256(SHA256(*generatedaddress*)) and call it *addresshash*.
 1. Now we will encrypt *seedb*.  Derive a second key from *passpoint* using scrypt
-1. *Parameters: *passphrase* is *passpoint* provided from the first party (expressed in binary as 33 bytes).  *salt* is *addresshash* + *ownersalt* (concatenation), n=1048576, r=8, p=16, length=64
+1. *Parameters: *passphrase* is *passpoint* provided from the first party (expressed in binary as 33 bytes).  *salt* is *addresshash* + *ownersalt* (concatenation), n=16384, r=8, p=8, length=64 (n, r, p are provisional and subject to consensus)
 1. *Split the result into two 16-byte halves and call them *derivedhalf1* and *derivedhalf2*.
 1. Do AES256Encrypt(seedb[[0...15]] xor derivedhalf1[[0...15]], derivedhalf2), call the 16-byte result *encryptedpart1*
 1. Do AES256Encrypt((encryptedpart1[[8...15]] + seedb[[16...23]]) xor derivedhalf1[[16...31]], derivedhalf2), call the 16-byte result *encryptedseedb*.  + is concatenation.
