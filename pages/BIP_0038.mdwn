@@ -121,8 +121,8 @@ The encrypted private key is the Base58Check-encoded concatenation of the follow
 Decryption steps:
 
 1. Collect encrypted private key and passphrase from user.
-1. Recompute *passfactor* and *passpoint* using same steps done pre-encryption (using *ownersalt* and the user's passphrase)
-1. Derive decryption key for *factorb* by passing *passpoint* and *addresshash*+*ownersalt* into scrypt function.
+1. Derive *passfactor* using scrypt with *ownersalt* and the user's passphrase and use it to recompute *passpoint*
+1. Derive decryption key for *seedb* using scrypt with *passpoint*, *addresshash*, and *ownersalt*
 1. Decrypt *encryptedpart2* using AES256Decrypt to yield the last 8 bytes of *seedb* and the last 8 bytes of *encryptedpart1*.
 1. Decrypt *encryptedpart1* to yield the remainder of *seedb*.
 1. Use *seedb* to compute *factorb*.
