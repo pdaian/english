@@ -133,6 +133,22 @@ Decryption steps:
 ##Backwards compatibility
 Backwards compatibility is minimally applicable since this is a new standard that at most extends [[Wallet_Import_Format]].  It is assumed that an entry point for private key data may also accept existing formats of private keys (such as hexadecimal and [[Wallet_Import_Format]]); this draft uses a key format that cannot be mistaken for any existing one and preserves auto-detection capabilities.
 
+##Discussion item: scrypt parameters
+This proposal leaves the scrypt parameters up in the air.  The following items are proposed for consideration:
+
+The main goal of scrypt is to reduce the feasibility of brute force attacks.  It must be assumed that an attacker will be able to use an efficient implementation of scrypt.  The parameters should force a highly efficient implementation of scrypt to wait a decent amount of time to slow attacks.
+
+On the other hand, an unavoidably likely place where scrypt will be implemented is using slow interpreted languages such as javascript.  What might take milliseconds on an efficient scrypt implementation may take seconds in javascript.
+
+It is believed, however, that someone using a javascript implementation is probably dealing with codes by hand, one at a time, rather than generating or processing large batches of codes.  Thus, a wait time of several seconds is acceptable to a user.
+
+A private key redemption process that forces a server to consume several seconds of CPU time would discourage implementation by the server owner, because they would be opening up a denial of service avenue by inviting users to make numerous attempts to invoke the redemption process.  However, it's also feasible for the server owner to implement his redemption process in such a way that the decryption is done by the user's browser, offloading the task from his own server (and providing another reason why the chosen scrypt parameters should be tolerant of javascript-based decryptors).
+
+The preliminary values of 16384, 8, and 8 are hoped to offer the following properties:
+
+* Encryption/decryption in javascript requiring several seconds per operation
+* Use of the parallelization parameter provides a modest opportunity for speedups in environments where concurrent threading is available - such environments would be selected for processes that must handle bulk quantities of encryption/decryption operations.  Estimated time for an operation is in the tens or hundreds of milliseconds.
+
 ##Reference implementation
 Added to alpha version of Casascius Bitcoin Address Utility for Windows available at https://casascius.com/btcaddress-alpha.zip
 
