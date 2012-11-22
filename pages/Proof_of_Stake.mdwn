@@ -40,18 +40,26 @@ This suggestion is of a mixed Proof-of-Work / Proof-of-Stake system.
 ### Cunicula's Note
 Check the page history for the older implementation. I am replacing my description with a new system which I believe to be much more secure. The new system is inspired by Colbee's proof of activity.
 
-### How the system works
-Each block must be signed by its miner using a single bitcoin account. The account used to sign a block must also be the recipient of txn fees and generation from this block. Blocks are mined by proof-of-work hashing as before, but with modified difficulty criteria. The difficulty criterion for block validity is modified as follows: 
+### Definitions
+Voluntary Signatures - Voluntary signatures result from a random auditing processes. As blocks are mined, keys are selected for auditing based on random selection. The signatures provide public evidence that a public key owner is running a full node. Passing the audit allows a private key to remain active.
 
-Hash generates valid block if and only if
+Active Keys - By default, public keys that appear in the blockchain are active. Public keys that provide voluntary signatures when requested remain active. Active public keys are eligible to participate in lotteries to mine PoS blocks. Public keys that fail to provide signatures become dead private keys. 
 
-Hash Difficulty >= Difficulty Target  / ( max(Coin-confirmations used to sign block, 100 satoshi-confirmations) )^( p / (1-p))
+Dead Keys - Keys that have failed to provide signatures lose lottery eligibility. Dead keys can no longer mine PoS blocks. However, these dead keys can still be used to generate txns. Death is an absorbing state. Network maintenance is supported primarily through mandatory fees levied on dead keys. Dead key owners should send their coins to a new address to recover eligibility.
 
-, where 0 <= p < 1. Stake becomes more and more important as p approaches 1. p=0.8 is suggested as an appropriate choice. p=0 is identical to the current proof-of-work system. 
+Mandatory Signature Sequence - In order for a PoW block to be valid and enter the blockchain, it must be signed by a sequence of 5 randomly selected active keys. Blocks which lack these signatures are invalid and can be discarded.  The fifth signatory mines a PoS block. 
 
-If the block is signed by a bitcoin account holding less than 100 satoshi-confirmations, this is treated as if the account held 100 satoshi-confirmations. Thus non-stakeholders are allowed to verify blocks, but relative to stakeholders they must meet extremely stringent difficulty criteria. Permitting non-stakeholders to verify blocks solves the initial distribution problem.
+PoS block - The fifth signatory of a PoW block must mint his own block without any PoW submission at all. This block is called the PoS block.
 
-As before the Difficulty Target is a periodically adjusted constant which is set to maintain a target generation rate of 1 block every 10 minutes.  
+Coin-age - Coin age refers to the age of txn inputs. Coin age is equal to the number of coins sent times the average age on these coins. Age is measured in blocks. Age is reset to 1 block whenever a coin is sent AND whenever a coin provides a signature (both mandatory and voluntary signatures count). Coin-age is used to calculate mandatory fees.
+
+Demurrage Fee - Chain Security is supported primarily through a demurrage tax on sent inputs. This tax proportional to average input age as measured in coin-years. I suggest 5% per coin-year as a reasonable fee. Active keys avoid demurrage fees simply by remaining active. Dead keys must pay demurrage. The opportunity to evade demurrage motivates activity.
+
+Optional Fee - Fees are used to ration block space. Blocks select prioritize txns with high fees. If demurrage fees alone are insufficient to motivate txn inclusion, the user can add an optional fee to his txn.
+
+Fee Fund - Both optional fees and demurrage fees enter a fund, rather than being distributed directly to miners. Fees are added to the fund immediately, so there is a weak incentive to include high fee txns in blocks. The PoW miner receives a distribution equal to 0.1% of the accumulated fund. The first four mandatory signatories also receive 0.1% each. The PoS block miner receives 0.1% as well, but his takings will differ slightly because the fund is updated based on txns included in his block. Use of a fund reduces volatility in mining reward.
+
+[be continued later...](to)
 
 ### Does this system exhibit Constant-Returns-to-Scale ?
 
