@@ -38,9 +38,7 @@ There are currently a few distinct proposals on how to implement PoS
 This suggestion is of a mixed Proof-of-Work / Proof-of-Stake system.
 
 ### Definitions
-'Coin-confirmations' are defined as the product of the number of coins in an account multiplied by the number of confirmations on this account. 
-
-'Confirmations' are defined as the number of blocks mined since this account's private key was last used to send coins or sign a newly mined block.
+[came up with a new system that seems much stronger than my previous suggestion. Therefore, I deleted the old scheme (based on coin-age) and am introducing the new scheme here which does not rely on coin-age.](I)
 
 ### How the system works
 Each block must be signed by its miner using a single bitcoin account. The account used to sign a block must also be the recipient of txn fees and generation from this block. Blocks are mined by proof-of-work hashing as before, but with modified difficulty criteria. The difficulty criterion for block validity is modified as follows: 
