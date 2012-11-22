@@ -109,6 +109,11 @@ satisfy this criteria. (i.e. the attack still requires approximately 99.999% of 
 An attacker who mines publicly could simply produce empty PoW blocks. However, this would fail to deny service. 50% of all blocks are randomly mined via PoS. The attacker cannot
 force the PoS miners to produce empty blocks. Therefore he cannot deny service regardless of how much hash rate he controls.
 
+### Long-term Chain Evaluation
+1) Comparison of two long chains is based on a simple sum of block difficulty, just as in bitcoin.
+
+2) A criticism of PoS is that there is no reason not to sign attack chains that appear out of nowehere. However, in a long attack chain, many stakeholders will have dead signatures. These dead stakeholders will not be able to sign the main chain, but not the attack chain. They will have a strong incentive to make sure the main chain wins because the attack chain will impose demurrage fees on them.
+
 ### Incentives to maintain full nodes
 
 This system introduces powerful incentives to maintain full nodes. Many people argue that the lack of an incentive to maintain a full node is a problem in the bitcoin system.
