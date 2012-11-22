@@ -53,7 +53,7 @@ PoS block - The fifth signatory of a PoW block must mint his own block without a
 
 Coin-age - Coin age refers to the age of txn inputs. Coin age is equal to the number of coins sent times the average age on these coins. Age is measured in blocks. Age is reset to 1 block whenever a coin is sent AND whenever a coin provides a signature (both mandatory and voluntary signatures count). Coin-age is used to calculate mandatory fees.
 
-Demurrage Fee - Chain Security is supported primarily through a demurrage tax on sent inputs. This tax proportional to average input age as measured in coin-years. I suggest 5% per coin-year as a reasonable fee. Active keys avoid demurrage fees simply by remaining active. Dead keys must pay demurrage. The opportunity to evade demurrage motivates activity.
+Demurrage Fee - Chain Security is supported primarily through a demurrage tax on sent inputs. This tax proportional to average input age as measured in coin-years. I suggest 5% per coin-year as a reasonable fee. Active keys can avoid demurrage fees simply by remaining active. Thus the actual fee generation will be much lower than 5% per year. Dead keys must pay demurrage. The opportunity to evade demurrage motivates activity.
 
 Optional Fee - Fees are used to ration block space. Blocks select prioritize txns with high fees. If demurrage fees alone are insufficient to motivate txn inclusion, the user can add an optional fee to his txn.
 
