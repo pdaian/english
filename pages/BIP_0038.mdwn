@@ -134,4 +134,59 @@ Decryption steps:
 Backwards compatibility is minimally applicable since this is a new standard that at most extends [[Wallet_Import_Format]].  It is assumed that an entry point for private key data may also accept existing formats of private keys (such as hexadecimal and [[Wallet_Import_Format]]); this draft uses a key format that cannot be mistaken for any existing one and preserves auto-detection capabilities.
 
 ##Reference implementation
-Coming soon as part of Casascius Bitcoin Address Utility
+Added to alpha version of Casascius Bitcoin Address Utility for Windows.
+
+
+##Test vectors
+
+###No compression, no EC multiply
+
+Test 1:
+
+* Passphrase: TestingOneTwoThree
+* Encrypted: 6PRVWUbkzzsbcVac2qwfssoUJAN1Xhrg6bNk8J7Nzm5H7kxEbn2Nh2ZoGg
+* Unencrypted (WIF): 5KN7MzqK5wt2TP1fQCYyHBtDrXdJuXbUzm4A9rKAteGu3Qi5CVR
+* Unencrypted (hex): CBF4B9F70470856BB4F40F80B87EDB90865997FFEE6DF315AB166D713AF433A5
+
+Test 2:
+
+* Passphrase: Satoshi
+* Encrypted: 6PRNFFkZc2NZ6dJqFfhRoFNMR9Lnyj7dYGrzdgXXVMXcxoKTePPX1dWByq
+* Unencrypted (WIF): 5HtasZ6ofTHP6HCwTqTkLDuLQisYPah7aUnSKfC7h4hMUVw2gi5
+* Unencrypted (hex): 09C2686880095B1A4C249EE3AC4EEA8A014F11E6F986D0B5025AC1F39AFBD9AE
+
+###Compression, no EC multiply
+
+Test 1:
+
+* Passphrase: TestingOneTwoThree
+* Encrypted: 6PYNKZ1EAgYgmQfmNVamxyXVWHzK5s6DGhwP4J5o44cvXdoY7sRzhtpUeo
+* Unencrypted (WIF): L44B5gGEpqEDRS9vVPz7QT35jcBG2r3CZwSwQ4fCewXAhAhqGVpP
+* Unencrypted (hex): CBF4B9F70470856BB4F40F80B87EDB90865997FFEE6DF315AB166D713AF433A5
+
+Test 2:
+
+* Passphrase: Satoshi
+* Encrypted: 6PYLtMnXvfG3oJde97zRyLYFZCYizPU5T3LwgdYJz1fRhh16bU7u6PPmY7
+* Unencrypted (WIF): KwYgW8gcxj1JWJXhPSu4Fqwzfhp5Yfi42mdYmMa4XqK7NJxXUSK7
+* Unencrypted (hex): 09C2686880095B1A4C249EE3AC4EEA8A014F11E6F986D0B5025AC1F39AFBD9AE
+
+###EC multiply, no compression
+
+Test 1:
+
+* Passphrase: TestingOneTwoThree
+* Passphrase code: passphrasepxFy57B9v8HtUsszJYKReoNDV6VHjUSGt8EVJmux9n1J3Ltf1gRxyDGXqnf9qm
+* Encrypted key: 6PfU7JNp1Hh7quZAGxMkaW4vaVHXLG6PoUeDWfFdS4uZ3HkAJMBi5UytRL
+* Bitcoin address: 16e6ecJdZVYz3nKBvuQZBnWcu25phBRLSN
+* Unencrypted private key (WIF): 5KFJHvxE6XsjAtTKuTgcKfqaCrijBEijqfkRhEMxmXbLwS5xnjp
+* Unencrypted private key (hex): BC7D4FA3F7F8D99538A213CF0D99611F443F557DE71AA40BE3420F0787A17CE4
+	
+Test 2:
+
+* Passphrase: Satoshi
+* Passphrase code: passphraseoRDGAXTWzbp72eVbtUDdn1rwpgPUGjNZEc6CGBo8i5EC1FPW8wcnLdq4ThKzAS
+* Encrypted key: 6PfSm3ax57sS7MwPbjaKpYMhWCYVrhrXBAWn1BVqoQtFzTq96QCWpg4g8X
+* Bitcoin address: 1G62rdVbvMgdKGrUa7gS9wU8JwkSQKrVks
+* Unencrypted private key (WIF): 5K3Fg3AAyXGU8tgth3F7XLKMhQtW8jSxSqFat5yPf3JhbScwxRW
+* Unencrypted private key (hex): A123B68C240BBEE7C41C4EB1902F0B4DD692B0A770D78C72A80BD6505A143ADD
