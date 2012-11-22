@@ -71,7 +71,7 @@ Stake Signing Key - Private Key can delegate signing and sending authority to on
 
 ### Mining Process
 
-1) Block meeting work difficulty target is mined. Difficulty target selected so 1 work block arrives every 10 minutes.
+1) Block meeting work difficulty target is mined. Difficulty target periodically adjusted so that 1 PoW block arrives every 10 minutes.
 
 2) Work submission is hashed 10 times consecutively. Each consecutive hash maps to an individual unspent output in the blockchain. This is essentially a lottery drawing two sets of five winners. The first five hashes map to mandatory signatures, the final five hashses map to voluntary signatures.
 
