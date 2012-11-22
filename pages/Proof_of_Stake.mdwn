@@ -123,8 +123,29 @@ This system introduces powerful incentives to maintain full nodes. Many people a
 
 5) Other individuals may prefer the privacy associated with dropping out of participation. These individuals are still welcome to use the network, but must face a wealth tax of 5% per annum to compensate for the security risk created by their behavior.
 
-### Infeasibility of Pure Proof of Stake Under this System
-Note: in the limit when p -> 1 (that is p approaches pure proof of stake), you approach a situation where you have a 0% chance of mining coins at less than x coin confirmations, but a 100% chance at x+1 coin confirmations, where x depends soley on difficulty. Mining becomes completely deterministic and doubling hashing power has no effect on output at all. Essentially miners take turns to mine blocks. The frequency with which a miner's turn comes up is equal to his ownership share in the total volume of coins actively used for mining. This sounds really good, but a fatal problem arises if participation falls. A fall in participation would make it impossible for anyone to mine blocks. Particularly, worrisome is that if participation is at 100%, a loss of some coins would interrupt the blockchain forever with no possible remedy except location of the missing coins. Even without a loss of coins, simply transferring coins across wallets can disrupt turn-taking and freeze the blockchain forever. For these reasons, it is necessary for block mining to retain a random element and not follow a deterministic, pure proof of stake system, i.e. p can safely be 0.8 or 0.9 or even 0.99, but 0.9999999999999999 would make complete failure of the blockchain a certainty.
+### Storage of Blockchain Metadata
+To facilitate the system, data should be extracted from the block chain in a readily accessible database that is updated with each block. The database would look like this.
+
+Public Key (ordered list)       Linked Stake Public key (if any)         Balance  Cumulative Balance                 Active?         Coin-age            
+A                                       As                                  1                1                        1               0.03 years        
+B                                       Bs                                2.5              3.5                        0               0.1 years         
+C                                       Cs                                  3              6.5                        1               0.2 years          
+...                                     ...                                ...             ...                        ...             ...
+
+The block chain must maintain records of links between public keys and delegated limited stake public keys. These should be put in a simple chart for easy access.
+
+Cumulative balance can be used to determine the winners of the lottery. (i.e. the lottery is a uniform draw on the support [issued coins](0,total)) This indicates a unique lottery winner,
+whose chance of winning is proportional to his ownership share.
+
+Coin-age is updated as follows.
+If no send, Coin-age_t = Coin-age_t-1 + 1. 
+If send, Coin_age_t = 1. 
+If send and receipt of coins, Coin_age_t = 1. 
+If receipt of coins but no send, Coin_age_t = [coins](Coin_age_(t-1)*balance_(t-1)+received)/balance(t)
+
+Coin-age is necessary to determine mandatory demurrage fees and to calculate spending limits for limited stake public keys.
+
+Active is 1 by default and becomes 0 if a key fails to provide a requested voluntary signature. 0 is an absorbing state.
 
 ## Meni's implementation
 This proposal is for a proof-of-work (PoW) skeleton on which occasional checkpoints set by stakeholders are placed. In one variant, double-spending is prevented by waiting for a transaction to be included in a checkpoint; the variant described here uses cementing to prevent double-spending, and checkpoints to resolve cementing conflicts.
