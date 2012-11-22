@@ -97,7 +97,7 @@ Steps performed by the person with the passphrase (call him the *owner*):
 
 1. Generate 8 random bytes, call this *ownersalt*
 1. Derive a key from the passphrase using scrypt
-1. * Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  salt is *ownersalt*. n=1048576, r=8, p=16, length=32.
+1. * Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  salt is *ownersalt*. n=16384, r=8, p=8, length=32. (parameters n, r, p are provisional and subject to consensus-seeking)
 1. * Call the resulting 32 bytes *passfactor*.
 1. Compute the elliptic curve point G * *passfactor*, and convert the result to compressed notation (33 bytes).  Call this *passpoint*.  Compressed notation is used for this purpose regardless of whether the intent is to create Bitcoin addresses with or without compressed public keys.
 1. Convey *ownersalt* and *passpoint* to the party generating the keys, along with a checksum to ensure integrity.
