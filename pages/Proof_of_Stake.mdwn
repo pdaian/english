@@ -133,11 +133,19 @@ This system introduces powerful incentives to maintain full nodes. Many people a
 ### Storage of Blockchain Metadata
 To facilitate the system, data should be extracted from the block chain in a readily accessible database that is updated with each block. The database would look like this.
 
-Public Key (ordered list)       Linked Stake Public key (if any)         Balance  Cumulative Balance                 Active?         Coin-age            
+	
 A                                       As                                  1                1                        1               0.03 years        
 B                                       Bs                                2.5              3.5                        0               0.1 years         
 C                                       Cs                                  3              6.5                        1               0.2 years          
 ...                                     ...                                ...             ...                        ...             ...
+
+
+|Public Key (ordered list) |Linked Stake Public key (if any) |Balance |Cumulative Balance |Active? |Coin-age (in years)
+|---|---|---|---|---|---
+|A |As |1 |1 |1 |0.03
+|B |Bs |2.5 |3.5 |0 |0.1 
+|C |Cs |3 |6.5 |1 |0.2 
+|... |... |... |... |... |... 
 
 The block chain must maintain records of links between public keys and delegated limited stake public keys. These should be put in a simple chart for easy access.
 
