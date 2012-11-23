@@ -162,8 +162,6 @@ Coin-age is necessary to determine mandatory demurrage fees and to calculate spe
 
 Active is 1 by default and becomes 0 if a key fails to provide a requested voluntary signature. 0 is an absorbing state.
 
-Addresses with 0 balance can be removed from the metadata.
-
 ## Meni's implementation
 This proposal is for a proof-of-work (PoW) skeleton on which occasional checkpoints set by stakeholders are placed. In one variant, double-spending is prevented by waiting for a transaction to be included in a checkpoint; the variant described here uses cementing to prevent double-spending, and checkpoints to resolve cementing conflicts.
 
