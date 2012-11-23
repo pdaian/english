@@ -164,14 +164,16 @@ The most burdensome fee in the system is the fee paid to PoW miners. This fee im
 	
 For the most part, demurrage fees are transfers of revenue from one private key to another. Some keys are net beneficiaries of these transfers, while other keys are net losers. 
 
+#Losers
 Dead keys are net losers from demurrage. They lose up to 5% of their balances per year via demurrage taxes.
 
+Active keys which spend much more frequently than average will likely also lose from demurrage fees. 
+
+#Beneficiaries
 Active keys which never spend or which spend only in blocks they mine themselves are beneficiaries of demurrage taxes. Their balances increase through demurrage payments at a rate between 0% and 5% per year. 
 These keys are being rewarded for maintaining active nodes.
 
-The average active key should receive a small, positive amount of interest through the fee system. This is possible because of the tax on dead keys.
-
-Active keys which spend much more frequently than average will lose more than they gain from demurrage fees.
+The average active key should receive a very small, positive amount of interest through the fee system. This is possible because of the tax on dead keys.
 
 ## Meni's implementation
 This proposal is for a proof-of-work (PoW) skeleton on which occasional checkpoints set by stakeholders are placed. In one variant, double-spending is prevented by waiting for a transaction to be included in a checkpoint; the variant described here uses cementing to prevent double-spending, and checkpoints to resolve cementing conflicts.
