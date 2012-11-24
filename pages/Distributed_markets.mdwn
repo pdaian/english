@@ -95,7 +95,7 @@ By scanning the block chain for payments to the current owner of the bond, and c
 
 Creating a decentralized bond market is a good start, but real financial markets are more complex. Often there is a layer of abstraction between buyer and seller: an investment fund. The funds encapsulate general instructions from the clients, such as "buy low risk municipal bonds" or "invest in energy stocks" and translates that into a stream of purchases and sales of specific assets. Funds compete on how they choose the specific assets and therefore what return they get.
 
-Bitcoin payments today must be to a specific, concrete owner. By combining Bitcoin with CP-ABE we can instead make payments to a [[i]]policy[[/i]]. A policy is a formula over a set of attributes. Attributes are arbitrary strings or string=integer pairs. Example policies include:
+Bitcoin payments today must be to a specific, concrete owner. By combining Bitcoin with CP-ABE we can instead make payments to a **policy**. A policy is a formula over a set of attributes. Attributes are arbitrary strings or string=integer pairs. Example policies include:
 
 1. *ceo or (accounts_department AND manager)* - a policy that allows the CEO of the company access, or a manager in the accounts department, but not any other kind of manager or member of accounting.
 1. *master_key OR (3 OF (a, b, c, d, e))* - a threshold policy that is overridable by a master key. Your key must have at least 3 of the 5 lettered attributes to be usable.
