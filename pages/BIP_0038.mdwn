@@ -136,6 +136,11 @@ Decryption steps:
 ##Backwards compatibility
 Backwards compatibility is minimally applicable since this is a new standard that at most extends [[Wallet_Import_Format]].  It is assumed that an entry point for private key data may also accept existing formats of private keys (such as hexadecimal and [[Wallet_Import_Format]]); this draft uses a key format that cannot be mistaken for any existing one and preserves auto-detection capabilities.
 
+##Suggestions for implementers of proposal with alt-chains
+If this proposal is accepted into alt-chains, it is requested that the unused flag bytes not be used for denoting that the key belongs to an alt-chain.
+
+Alt-chain implementers should exploit the address hash for this purpose.  Since each operation in this proposal involves hashing a text representation of a coin address which (for Bitcoin) includes the leading '1', an alt-chain can easily be denoted simply by using the alt-chain's preferred format for representing an address.  Alt-chain implementers may also change the prefix such that encrypted addresses do not start with "6P".
+
 ##Discussion item: scrypt parameters
 This proposal leaves the scrypt parameters up in the air.  The following items are proposed for consideration:
 
