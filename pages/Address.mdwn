@@ -1,12 +1,13 @@
-A **Bitcoin address**, or simply **address**, is an identifier of 34 alphanumeric characters (or less), beginning with the number 1, that represents a possible destination for a Bitcoin payment.
+A **Bitcoin address**, or simply **address**, is an identifier of 27-34 alphanumeric characters, beginning with the number 1 or 3, that represents a possible destination for a Bitcoin payment.
 Addresses can be generated at no cost by any user of Bitcoin.
-For example, using [[Bitcoin-Qt]], one can click "Get Address" and be assigned an address.
+For example, using [[Bitcoin-Qt]], one can click "New Address" and be assigned an address.
 It is also possible to get a Bitcoin address using an account at an exchange or online wallet service.
 
-An example of a Bitcoin address is *175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W*.
+An example of a Bitcoin address is *31uEbMgunupShBVTewXjtqbBv5MndwfXhb*.
+<!-- Note: This bitcoin address is based on ripemd160(sha256('Bitcoin')) with version 5 and a corrupt checksum -->
 
 ##A Bitcoin address is like an e-mail address
-Like e-mail, you can send bitcoins to a person by sending bitcoins to one of their addresses. A person can have many different Bitcoin addresses and, for increased privacy, it is recommended that you use a unique address for each transaction.  Most Bitcoin software and websites will help with this by generating a brand new address each time you perform a transaction. Some services provide a facility to request a new Bitcoin address for use with their service when desired.
+Like e-mail, you can send bitcoins to a person by sending bitcoins to one of their addresses. A person can have many different Bitcoin addresses and, for increased privacy and as the only way to know what the bitcoins are received for/from, it is recommended that you use a unique address for each transaction.  Most Bitcoin software and websites will help with this by generating a brand new address each time you perform a transaction. Some services provide a facility to request a new Bitcoin address for use with their service when desired.
 
 When using a web site that accepts bitcoins or holds Bitcoin balances on your behalf, that website will assign a Bitcoin address to your account, so you can transfer funds into your account at the site.  Very much unlike e-mail, this address may change every time funds come in so care should be taken when sending additional funds to a previously-used address.  When you send Bitcoins to your account at a web site, they will usually be credited to your account at that web site after the transaction is [[confirmed|confirmation]].
 
@@ -23,25 +24,25 @@ Bitcoin addresses are case-sensitive.  Bitcoin addresses should be copied and pa
 The probability that a mistyped address is accepted as being valid is 1 in 2<sup>32</sup>, that is, approximately 1 in 4.29 billion.
 
 ##Address validation
-If you would like to validate a Bitcoin address in an application, it is advisable to use a method from [this thread](https://bitcointalk.org/index.php?topic=1026.0) rather than to just check for string length, allowed characters, or that the address starts with a 1.
+If you would like to validate a Bitcoin address in an application, it is advisable to use a method from [this thread](https://bitcointalk.org/index.php?topic=1026.0) rather than to just check for string length, allowed characters, or that the address starts with a 1 or 3.
 
 ##Addresses have a "private key"
-For each properly-generated Bitcoin address, there is a corresponding secret number known as a [[private_key]] which is required for access to the funds assigned to that address.
+For most properly-generated Bitcoin addresses, there is at least one secret number known as a [[private_key]] which is required for access to the funds assigned to that address.
 
 When using a Bitcoin client, private keys are typically stored in the [[wallet file|Wallet]].  The private key has a special purpose - it is mathematically needed to create valid transactions that spend the funds originally sent to the address.  If the private key to an address is lost (for example, in a hard drive crash, fire or other natural disaster), any associated Bitcoins are effectively lost forever.
 
-##Future addresses that start with '3'
-A new address format has been proposed where the addresses start with the number 3 instead of 1.  These addresses represent "complex" destinations: instead of paying a wallet in the simple sense, a payment to such an address has a requirement for being respent that typically involves more than knowing a single private key.  These can be thought of as the equivalent of writing a check to two parties - "pay to the order of somebody AND somebody else" - where both parties must endorse the check in order to receive the funds.  Usually, the same person or organization manages all of the private keys associated with a complex address, but they are split up among different people or stored in different places in order to implement the security policy that the person or organization desires.
+##Multi-signature addresses
+Addresses can be created that require a combination of multiple private keys.
+Since these take advantage of newer features, they begin with the newer prefix of 3 instead of the older 1.
+These can be thought of as the equivalent of writing a check to two parties - "pay to the order of somebody AND somebody else" - where both parties must endorse the check in order to receive the funds.
 
 The actual requirement (number of private keys needed, their corresponding public keys, etc.) that must be satisfied to spend the funds is decided in advance by the person generating this type of address, and once an address is created, the requirement cannot be changed without generating a new address.
-
-These addresses aren't intended to replace addresses starting with a 1, and addresses starting with 3 will not be available until support for P2SH (pay-to-script-hash) and [[BIP_0013]] is formalized.  When this happens, older versions of client software will not be able to send to addresses starting with 3.  In order to send funds to such addresses, the software must be upgraded, or the funds must first be sent to another wallet managed by software that supports sending to such addresses.
 
 ##What's in an address
 Most Bitcoin addresses are 34 characters.
 They consist of random digits and uppercase and lowercase letters, with the exception that the uppercase letter "O", uppercase letter "I", lowercase letter "l", and the number "0" are never used to prevent visual ambiguity.
 
-Some Bitcoin addresses can be shorter than 34 characters and still be valid.
+Some Bitcoin addresses can be shorter than 34 characters (as few as 27 in theory) and still be valid.
 A significant percentage of Bitcoin addresses are only 33 characters, and some addresses may be even shorter.
 Every Bitcoin address stands for a number - somewhat like an account number.  These shorter addresses are valid simply because they stand for numbers that happen to start with zeroes, and when the zeroes are omitted, the encoded address gets shorter.
 
