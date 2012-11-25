@@ -27,9 +27,9 @@ The probability that a mistyped address is accepted as being valid is 1 in 2<sup
 If you would like to validate a Bitcoin address in an application, it is advisable to use a method from [this thread](https://bitcointalk.org/index.php?topic=1026.0) rather than to just check for string length, allowed characters, or that the address starts with a 1 or 3.
 
 ##Addresses have a "private key"
-For most properly-generated Bitcoin addresses, there is at least one secret number known as a [[private_key]] which is required for access to the funds assigned to that address.
+For properly-generated Bitcoin addresses, there is a secret number known as a [[private_key]] which is required for access to the funds assigned to that address.
 
-When using a Bitcoin client, private keys are typically stored in the [[wallet file|Wallet]].  The private key has a special purpose - it is mathematically needed to create valid transactions that spend the funds originally sent to the address.  If the private key to an address is lost (for example, in a hard drive crash, fire or other natural disaster), any associated Bitcoins are effectively lost forever.
+When using a Bitcoin client, private keys are stored in the [[wallet file|Wallet]].  The private key has a special purpose - it is mathematically needed to create valid transactions that spend the funds originally sent to the address.  If the private key to an address is lost (for example, in a hard drive crash, fire or other natural disaster), any associated Bitcoins are effectively lost forever.
 
 ##Multi-signature addresses
 Addresses can be created that require a combination of multiple private keys.
