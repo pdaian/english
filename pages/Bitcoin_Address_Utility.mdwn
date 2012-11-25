@@ -22,3 +22,13 @@ The Base58Check calculator screen allows quick conversions between the [[Base58C
 The 32-bit checksum is verified on all Base58 entries, and "invalid" is displayed in the hex box if the checksum is incorrect.  However, verification of the checksum can be skipped simply by appending a question mark (?) to the end of the Base58 string.  Once the hexadecimal equivalent is known, simply making an insignificant change to the hex box (such as adding a space to the end) will result in the correct checksum being recomputed and displayed.
 
 If "invalid" is still shown after adding a question mark to the Base58 string, it probably contains invalid characters such as 0, O, I, or l.
+
+##Key Combiner screen
+[[!img "Casascius_key_combiner_screen.png" size=120x120 class="right" size=300x300]]
+The Key Combiner screen allows elliptic-curve arithmetic on Bitcoin public and private keys.  Specifically, multiplication can be used for creating two-factor Bitcoin addresses, and addition can be used for secure vanity address generation.
+
+The two boxes accept either a public or private key in any recognized format (hexadecimal, WIF, minikey, etc.).
+
+Multiplying or adding two private keys yields a new private key, as well as its corresponding public key and Bitcoin address.
+
+Multiplying or adding a private key and public key yields a combined public key and Bitcoin address, but no private key.  When the public key input is replaced by the matching private key, then calculating the resulting private key becomes possible.
