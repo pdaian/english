@@ -129,7 +129,11 @@ This system introduces powerful incentives to maintain full nodes. Many people a
 5) Other individuals may prefer the privacy associated with dropping out of participation. These individuals are still welcome to use the network, but must face a wealth tax of 5% per annum to compensate for the security risk created by their behavior.
 
 ### Storage of Blockchain Metadata
-To facilitate the system, data should be extracted from the block chain in a readily accessible database that is updated with each block. The database would look like this:
+To facilitate the system, data should be extracted from the block chain in a readily accessible database that is updated with each block. The database only needs to incorporate
+public keys which control at least 1 coin. Keys with balances less than 1 coin or which have never received 1 full coin are considered dead by default. These low-value public keys
+are not allowed to create limited stake public keys. If a public key balance drops below 1 coin, the limited stake public key associated with the root key is invalidated. 
+
+The database would look like this:
 	
 
 
