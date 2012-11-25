@@ -5,11 +5,13 @@
 The Address Utility screen offers the following functions:
 
 * Create new Bitcoin addresses with corresponding [[minikey]] and standard private key formats
-* Convert minikeys to standard private key formats
+* Convert minikeys to WIF/hexadecimal private key formats
+* Create private keys from text strings via SHA256 hash ("brainwallet")
 * Convert between hexadecimal and WIF private key formats
 * Decrypt/encrypt private keys per [[BIP_0038]]
 * Calculate public key from private key
 * Calculate compressed/uncompressed equivalents for public keys
+* Confirm that public keys are valid (i.e. that they represent a valid EC curve point)
 * Calculate Hash160 from public key
 * Calculate Bitcoin address
 * Convert between equivalent addresses for Testnet/Namecoin/Litecoin/other altcoins.
