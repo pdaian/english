@@ -45,7 +45,7 @@ Voluntary Signatures - Voluntary signatures result from a random auditing proces
 
 Active Keys - By default, public keys that appear in the blockchain are actived as soon as they receive at least one full coin in a single transaction. Public keys that provide voluntary signatures when randomly audited remain active. Active public keys are eligible to participate in lotteries to sign PoW blocks and mine PoS blocks. This is remunerative. Public keys that fail to provide signatures become dead private keys. 
 
-Dead Keys - Keys that have failed to provide signatures lose lottery eligibility. Keys that have balances of less than 1 coin or have never received 1 coin are considered dead by default. Dead keys can no longer mine PoS blocks. However, these dead keys can still be used to generate txns. Network maintenance is supported primarily through mandatory fees levied on coins sent by dead keys. After coins are sent using a dead key, the key becomes active again.
+Dead Keys - Keys that have failed to provide signatures lose lottery eligibility. Keys that have balances of less than 1 coin or have never received 1 coin are considered dead by default. Dead keys can no longer mine PoS blocks. However, these dead keys can still be used to generate txns. Network maintenance is supported primarily through mandatory fees levied on coins sent by dead keys. After coins are sent using a dead key, the key becomes active provided that it retains a balance of at least 1 coin.
 
 Mandatory Signature Sequence - In order for a PoW block to be valid and enter the blockchain, it must be signed by a sequence of 5 randomly selected active keys. The fifth signatory in the sequence mines a PoS block. 
 
