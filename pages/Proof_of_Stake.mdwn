@@ -130,7 +130,7 @@ This system introduces powerful incentives to maintain full nodes. Many people a
 
 ### Storage of Blockchain Metadata
 To facilitate the system, data should be extracted from the block chain in a readily accessible database that is updated with each block. The database only needs to incorporate
-public keys which control at least 1 coin. Keys with balances less than 1 coin or which have never received 1 full coin are considered dead by default. These low-value public keys
+public keys which control at least 1 coin. Keys with balances less than 1 coin are considered dead by default. These low-value public keys
 are not allowed to create limited stake public keys. If a public key balance drops below 1 coin, the limited stake public key associated with the root key is invalidated. 
 
 The database would look like this:
