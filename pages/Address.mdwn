@@ -32,9 +32,9 @@ For properly-generated Bitcoin addresses, there is a secret number known as a [[
 When using a Bitcoin client, private keys are stored in the [[wallet file|Wallet]].  The private key has a special purpose - it is mathematically needed to create valid transactions that spend the funds originally sent to the address.  If the private key to an address is lost (for example, in a hard drive crash, fire or other natural disaster), any associated Bitcoins are effectively lost forever.
 
 ##Multi-signature addresses
-Addresses can be created that require a combination of multiple private keys.
-Since these take advantage of newer features, they begin with the newer prefix of 3 instead of the older 1.
-These can be thought of as the equivalent of writing a check to two parties - "pay to the order of somebody AND somebody else" - where both parties must endorse the check in order to receive the funds.
+Addresses can be created that are based on a combination of multiple private keys instead of a single private key, an option that allows someone to self-impose restrictions on the funds they receive.  These addresses begin with the prefix of 3 instead of 1.
+
+There is no difference in sending funds to such addresses - the difference is in how the receiver gains access to respend the funds.  These can be thought of as the equivalent of writing a check to two parties - "pay to the order of somebody AND somebody else" - where both parties must endorse the check in order to receive the funds.
 
 The actual requirement (number of private keys needed, their corresponding public keys, etc.) that must be satisfied to spend the funds is decided in advance by the person generating this type of address, and once an address is created, the requirement cannot be changed without generating a new address.
 
