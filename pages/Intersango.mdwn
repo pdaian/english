@@ -50,6 +50,27 @@ The exchange no longer supports GBP transfers. There is [no ETA](https://support
 
 See the [API page](https://intersango.com/api.php) for more info.
 
+Streaming API code example:
+<source lang="python">
+
+1. expected message types are
+1. "orderbook", "depth", "trade", "ping"
+import socket, json
+
+s = socket.create_connection(('db.intersango.com', 1337))
+b = *
+
+while True:
+	b += s.recv(8192)
+	while '\r\n' in b:
+	i = b.find('\r\n')
+	m = b[[:i]].strip()
+	b = b[[i+2:]]
+	m = json.loads(m)
+	print m
+</source>
+
+Trading API:
 <source lang="python">
 import httplib
 import urllib
