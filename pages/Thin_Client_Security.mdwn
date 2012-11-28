@@ -4,9 +4,9 @@ Recently there have been a number of proposals for bitcoin clients which do not 
 
 It is important to distinguish between block height verification and block depth verification.
 
-A client verifies the height H of a block by checking that there are H block before it, all of which are valid and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client does block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
+A client verifies the height H of a block by checking that there are H block before it, all of which are well-formed and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client does block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
 
-A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are valid.  SPV clients substitute block depth for block height as a validity check.
+A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV clients substitute block depth for block height as a transaction validity check.
 
 See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
 
@@ -59,11 +59,11 @@ There have been several proposals (the first appears to be [this one](https://bi
 
 If such UOT hashes were included in the blockchain, a client which shipped with a [checkpoint](https://en.bitcoin.it/wiki/Vocabulary) block that had a UOT would only need to download blocks after the checkpoint.  Moreover, once the client had downloaded those blocks and confirmed their UOTs, it could discard all but the most recent block containing a UOT.
 
-This would also let a thin client reduce the question of "is this output unspent" to the question of "is this block super-valid" where "super-valid" means "valid according to the normal blockchain rules and additionally has an Unused Output Tree which is accurate and truthful".  This is still a long way from the low level of trust involved in the thick client, but it is a major improvement over all existing proposals.
+This would also let a thin client reduce the question of "is this output unspent" to the question of "is this block super-well-formed" where "well-formed" means "well-formed according to the normal blockchain rules and additionally has an Unused Output Tree which is accurate and truthful".  This is still a long way from the low level of trust involved in the thick client, but it is a major improvement over all existing proposals.
 
 It is unlikely that bitcoin would ever arrive at a state where every single block had a UOT, since this would require upgrading 100% of the miners on the network, or else convincing enough miners to reject blocks which do not contain a UOT.  The latter strategy risks creating blockchain forks, which can be expensive (in reward terms) to miners.  Therefore, any UOT strategy would need to cope with the fact that not every block contains a UOT.
 
-Hostile miners may insert blocks into the chain which have what claims to be a UOT, but which is actually invalid.  It is unlikely that such blocks could be kept out of the chain because, again, this would require adding a new block validity criterion, and miners implementing this new criterion would risk "mining on the wrong side" of a fork, which could cost them a lot of money.  Therefore, any UOT strategy would need to cope with the fact that not every block containing a UOT entry can be trusted.
+Hostile miners may insert blocks into the chain which have what claims to be a UOT, but which is actually invalid.  It is unlikely that such blocks could be kept out of the chain because, again, this would require adding a new block well-formedness criterion, and miners implementing this new criterion would risk "mining on the wrong side" of a fork, which could cost them a lot of money.  Therefore, any UOT strategy would need to cope with the fact that not every block containing a UOT entry can be trusted.
 
 Note that at the present moment no standard format for such Unused Output Tree hashes has been agreed upon, nor are do any of the blocks in the chain contain them.
 
