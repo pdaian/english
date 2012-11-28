@@ -30,7 +30,7 @@ However, deterministic wallets typically consist of a single "chain" of keypairs
 In the rest of this text we will assume the public key cryptography used in Bitcoin, namely elliptic curve cryptography using the field and curve parameters defined by secp256k1 (http://www.secg.org/index.php?action=secg,docs_secg). Variables below are either:
 
 * integers modulo the order of the curve, serialized as 32 bytes, most significant byte first.
-* coordinates of points on the curve, serialized as specified in SEC1: either compressed ([or 0x03](0x02) + 32 byte x coordinate), or uncompressed (0x04 + 32 byte x coordinate + 32 byte y coordinate).
+* coordinates of points on the curve, serialized as specified in SEC1 in compressed form: [or 0x03](0x02) + 32 byte x coordinate), where the header byte depends on the parity of the omitted y coordinate.
 * byte sequences
 
 Addition (+) of two coordinates is defined as application of the EC group operation. Multiplication (*) of an integer and a coordinate is defined as repeated application of the EC group operation. The generator element of the curve is called G. The public key K corresponding to the private key k is calculated as k*G. We do not distinguish between numbers or coordinates and their serialization as byte sequences.
@@ -78,9 +78,9 @@ Extended public and private keys are serialized as follows:
 * 4 bytes: the first 32 bits of RIPEMD160(SHA256(K<sub>par</sub>)), a "fingerprint" of the parent's key. Note that this corresponds to the first 32 bits of the data in the "address" corresponding to the parent's key.
 * 4 bytes: child number. This is the number n in x<sub>n</sub> = x<sub>par</sub>/n, with x<sub>n</sub> the key being serialized. This is encoded in MSB order.
 * 32 bytes: the chain code
-* the rest: the normal public or private key serialization (65 or 33 bytes for public keys, 32 or 33 bytes for private keys).
+* the rest: the normal public or private key serialization (33 bytes for public keys, 32 bytes for private keys).
 
-This 74, 75 or 107 byte structure can be encoded like other Bitcoin data in Base58, by first adding 32 checksum bits (derived from the double SHA-256 checksum), and then converting to the Base58 representation. This results in a base58-encoded string of 107, 108 or 152 characters.
+This 74 or 75 byte structure can be encoded like other Bitcoin data in Base58, by first adding 32 checksum bits (derived from the double SHA-256 checksum), and then converting to the Base58 representation. This results in a base58-encoded string of up to 107 or 108 character.
 
 
 ###Master key generation
