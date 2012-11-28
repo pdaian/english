@@ -31,6 +31,11 @@ A security analysis of some of the issues in BitcoinJ can be found [here](http:/
 * The claim that "picking 10 nodes and requiring all of them to be consistent needs much less trust" overlooks the problem of ["cancer nodes"](https://en.bitcoin.it/wiki/Weaknesses#Cancer_nodes) and [Sybil attacks](http://en.wikipedia.org/wiki/Sybil_attack).
 * Many of the security claims are qualified by some form of "if you don't think an attacker controls your internet connection"; see the previous section for a discussion of why this is problematic.
 
+#### [https://bitcointalk.org/index.php?topic=128055.0 picocoin/libccoin]=
+
+Simplified Payment Verification is the verification mechanism used in picocoin and libccoin.
+
+
 ### Unused Output Tree in the Blockchain (UOT)
 
 There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell, who called it an "open transaction tree", although the term "open" is now taken to mean "not yet mined into the blockchain" rather than "unspent") to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).  This will be called an Unused Output Tree (UOT).  The first detailed proposal so far appears to be [Alberto Torres' proposal](https://en.bitcoin.it/wiki/User:DiThi/MTUT); etotheipi's [ultimate blockchain compression](https://bitcointalk.org/index.php?topic=88208.0) is a variant of this.
@@ -54,7 +59,7 @@ All thin clients listed below currently connect to a single server, and are vuln
 * [[BCCAPI]]
 * [[Electrum]]
 
-Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (8.1).  [This post](https://bitcointalk.org/index.php?topic=88208.msg975201#msg975201) on bitcointalk explains how some governments (notably Iran and China) already perform these sorts of attacks on their own citizens, with the coerced assistance of SSL certificate authorities.
+Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (9.1).  [This post](https://bitcointalk.org/index.php?topic=88208.msg975201#msg975201) on bitcointalk explains how some governments (notably Iran and China) already perform these sorts of attacks on their own citizens, with the coerced assistance of SSL certificate authorities.
 
 Clients with a checkpoint (even a very old one) that download and validate the headers for the whole blockchain are [not vulnerable](http://bitcoinmedia.com/the-irc-bootstrap-method-is-flawed/#comment-4243) to Sybil attacks in the following sense: they can always ensure that an attack would cost more than the amount being stolen.
 
@@ -80,4 +85,4 @@ See also [some comments on probabilistic verification of block height](https://b
 [[!tag "Technical"]]
 [[!tag "Clients"]]
 [[!tag "Security"]]
-8.1: http://en.wikipedia.org/wiki/Sybil_attack
+9.1: http://en.wikipedia.org/wiki/Sybil_attack
