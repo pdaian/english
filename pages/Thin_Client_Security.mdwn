@@ -1,8 +1,23 @@
 Recently there have been a number of proposals for bitcoin clients which do not store a complete copy of every block in the entire block chain.  This page will refer to all such clients as "thin clients".  This page is meant to be a place to try to make sense of the security and trust implications of the various schemes.
 
+## Block Height vs. Depth
+
+It is important to distinguish between block height verification and block depth verification.
+
+A client verifies the height H of a block by checking that there are H block before it, all of which are valid and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client does block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
+
+A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are valid.  SPV clients substitute block depth for block height as a validity check.
+
+See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
+
+
 ## Full-Chain Clients
 
 The "thick" bitcoin client downloads a copy of the entire chain, including all transactions (not just headers).  It will be used as the reference point for security comparisions below.
+
+### Block '''Height''' as a Transaction Validity Check
+
+A full-chain client trusts the difficultywise-longest [well-formed](https://en.bitcoin.it/wiki/Protocol_rules#Blocks) blockchain it can find.  Any transaction on the difficultywise-longest well-formed chain is considered valid.  Therefore, the validity of a transaction is determined by its height -- i.e. how many blocks come *before* it.  A transaction's *depth* (the number of blocks *after* it) is used to determine the likelihood of the transaction being invalidated due to the emergence of a longer fork.
 
 ## Header-Only Clients
 
@@ -12,9 +27,9 @@ These client downloads a complete copy of the headers for all blocks in the enti
 
 This scheme is described in section 8 of the [original bitcoin whitepaper](http://bitcoin.org/bitcoin.pdf).
 
-#### Block Depth as a Transaction Validity Check
+#### Block '''Depth''' as a Transaction Validity Check
 
-As Satoshi writes, "[thin client](the) can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it."  If we take "X" to be the "number of blocks added after it", then SPV essentially trusts that a transaction X blocks deep in the chain does not have inputs which were already spent further back in the chain.  Other thin client protocols also include this assumption.
+As Satoshi writes, "[thin client](the) can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it."  If we take "X" to be the "number of blocks added after it", then SPV essentially trusts that a transaction X blocks deep in the chain does not have inputs which were already spent further back in the chain.  Therefore, the validity of a transaction is determined by its depth -- i.e. how many blocks come *after* it.  Other thin client protocols also include this assumption.
 
 This is very different from the trust model in the "thick" client: the thick client verifies that a transaction's inputs are unspent by actually checking the whole chain up to that point -- there is no "X blocks deep" involved here.  The thick client uses "X blocks deep" (aka "confirmations") only once it has already decided that a transaction is valid (i.e. no [[double-spends|Double-spending]]).  At that point it uses "X blocks deep" to decide how likely it is that a longer fork in the chain will emerge which excludes that transaction.
 
@@ -61,19 +76,9 @@ All thin clients listed below currently connect to a single server, and are vuln
 * [[BCCAPI]]
 * [[Electrum]]
 
-Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (9.1).  [This post](https://bitcointalk.org/index.php?topic=88208.msg975201#msg975201) on bitcointalk explains how some governments (notably Iran and China) already perform these sorts of attacks on their own citizens, with the coerced assistance of SSL certificate authorities.
+Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (11.1).  [This post](https://bitcointalk.org/index.php?topic=88208.msg975201#msg975201) on bitcointalk explains how some governments (notably Iran and China) already perform these sorts of attacks on their own citizens, with the coerced assistance of SSL certificate authorities.
 
 Clients with a checkpoint (even a very old one) that download and validate the headers for the whole blockchain are [not vulnerable](http://bitcoinmedia.com/the-irc-bootstrap-method-is-flawed/#comment-4243) to Sybil attacks in the following sense: they can always ensure that an attack would cost more than the amount being stolen.
-
-## Block Height vs. Depth
-
-It is important to distinguish between block height verification and block depth verification.
-
-A client verifies the height H of a block by checking that there are H block before it, all of which are valid and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client does block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
-
-A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are valid.  SPV clients substitute block depth for block height as a validity check.
-
-See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
 
 ## Other
 
@@ -87,4 +92,4 @@ See also [some comments on probabilistic verification of block height](https://b
 [[!tag "Technical"]]
 [[!tag "Clients"]]
 [[!tag "Security"]]
-9.1: http://en.wikipedia.org/wiki/Sybil_attack
+11.1: http://en.wikipedia.org/wiki/Sybil_attack
