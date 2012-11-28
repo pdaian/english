@@ -173,6 +173,7 @@ Ticker messages contain the current inside Bid and Ask as well as daily highs, l
 |price |price per unit, float, deprecated
 |price_int |price in smallest unit as integer (5 decimals of USD, 3 in case of JPY)
 |price_currency |currency in which trade was completed
+|properties |"market": the trade ate the whole order, "limit": the trade ate the order partially - some of the original order still exists
 |tid |Trade id (big integer, which is in fact trade timestamp in microseconds)
 |trade_type |Did this trade result from the execution of a bid or a ask?
 
