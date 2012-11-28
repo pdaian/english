@@ -64,9 +64,7 @@ It is unlikely that bitcoin would ever arrive at a state where every single bloc
 
 Hostile miners may insert blocks into the chain which have what claims to be a UOT, but which is actually invalid.  It is unlikely that such blocks could be kept out of the chain because, again, this would require adding a new block well-formedness criterion, and miners implementing this new criterion would risk "mining on the wrong side" of a fork, which could cost them a lot of money.  Therefore, any UOT strategy would need to cope with the fact that not every block containing a UOT entry can be trusted.
 
-Note that at the present moment no standard format for such Unused Output Tree hashes has been agreed upon, nor are do any of the blocks in the chain contain them.
-
-The [ultraprune](https://bitcointalk.org/index.php?topic=91954) feature added to bitcoind-0.8 maintains a similar data structure on the client's disk.  It does not put this data structure or its hash anywhere in the blockchain.
+Note that at the present moment no standard format for such Unused Output Tree hashes has been agreed upon, nor do any of the blocks in the chain contain them.  The [ultraprune](https://bitcointalk.org/index.php?topic=91954) feature added to bitcoind-0.8 maintains a similar data structure on the client's disk.  It does not put this data structure or its hash anywhere in the blockchain.
 
 ## Server-Trusting Clients
 
