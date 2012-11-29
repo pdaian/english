@@ -6,7 +6,7 @@
 Mining is intentionally designed to be resource-intensive and difficult so that the number of blocks found each day by miners remains steady. Individual [[blocks]] must contain a [[proof of work|proof_of_work]] to be considered valid. This proof of work is verified by other Bitcoin nodes each time they receive a block. 
 
 ## History
-Bitcoin's public ledger (the 'block chain') was started on January 3rd, 2009 at 18:15 UTC presumably by [[Satoshi_Nakamoto]]. The first block is known as the [[genesis_block]]. The first transaction recorded in the first block was a single transaction paying the reward of 50 new bitcoins to its creator.
+Bitcoin's public ledger (the 'block chain') was started on January 3rd, 2009 at 18:15 UTC presumably by [[Satoshi_Nakamoto]]. The first block is known as the [[genesis_block]]. The first transaction recorded in the first block was a single transaction paying the reward of 25 new bitcoins to its creator.
 
 Bitcoin mining is so called because it resembles the mining of other commodities: it requires exertion and it slowly makes new currency available at a rate that resembles the rate at which commodities like gold are mined from the ground. See [[Controlled_Currency_Supply]]. 
 
@@ -18,7 +18,7 @@ Mining a block is difficult because the SHA-256 hash of a block's header must be
 The [[difficulty|Difficulty]] is the measure of how difficult it is to find a new block compared to the easiest it can ever be. It is recalculated every 2016 blocks to a value such that the previous 2016 blocks would have been generated in exactly two weeks had everyone been mining at this difficulty. This will yield, on average, one block every ten minutes. As more miners join, the rate of block creation will go up. As the rate of block generation goes up, the difficulty rises to compensate which will push the rate of block creation back down. Any blocks released by malicious miners that do not meet the required difficulty [[target|Target]] will simply be rejected by everyone on the network and thus will be worthless. 
 
 ### Reward
-When a block is discovered, the discoverer may award themselves a certain number of bitcoins, which is agreed-upon by everyone in the network. Currently this bounty is 50 bitcoins; this value will halve every 210,000 blocks. See [[Controlled_Currency_Supply]].
+When a block is discovered, the discoverer may award themselves a certain number of bitcoins, which is agreed-upon by everyone in the network. Currently this bounty is 25 bitcoins; this value will halve every 210,000 blocks. See [[Controlled_Currency_Supply]].
 
 Additionally, the miner is awarded the fees paid by users sending transactions. The fee is an incentive for the miner to include the transaction in their block. In the future, as the number of new bitcoins miners are allowed to create in each block dwindles, the fees will make up a much more important percentage of mining income.
 
@@ -33,7 +33,7 @@ GPU Mining is drastically faster and more efficient than CPU mining. See the mai
 FPGA mining is a very efficient and fast way to mine, comparable to GPU mining and drastically outperforming CPU mining. FPGAs typically consume very small amounts of power with relatively high hash ratings, making them more viable and efficient than GPU mining. See [[Mining_Hardware_Comparison]] for FPGA hardware specifications and statistics.
 
 ### Mining in the Future
-At around November 30th 2012 (plus / minus 6 days) the block reward will be reduced from 50 BTC per block to 25 (exactly: when block 210,000 appears in the block chain). If and only if the value of each bitcoin remains constant between now and then, miners will lose 50% of their revenue. An upwards trend of [[difficulty]] is expected through 2012 towards December with the expected advent of ASICs and efficient FPGAs adding to overall network mining capacity. GPU mining is expected to reach a peak in growth and to slowly decline in the future.
+At around November 25th 2016 (plus / minus 6 days) the block reward will be reduced from 25 BTC per block to 12.5 (exactly: when block 420,000 appears in the block chain). If and only if the value of each bitcoin remains constant between now and then, miners will lose 50% of their revenue. An upwards trend of [[difficulty]] is expected through 2012 towards December with the expected advent of ASICs and efficient FPGAs adding to overall network mining capacity. GPU mining is expected to reach a peak in growth and to slowly decline in the future.
 
 ## Pools
 As mining a block became more and more difficult, individuals found that they were working for months without finding a block and receiving *any* reward for their mining efforts. Thus they started organizing themselves into [[pools|Pooled_mining]] so that they could share rewards more evenly. See [[Pooled_mining]] and [[Comparison_of_mining_pools]].
