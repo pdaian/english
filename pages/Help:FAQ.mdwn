@@ -294,7 +294,7 @@ To give a general idea of the mining process, imagine this setup:
 	nonce = 1
 	hash = [SHA2](http://en.wikipedia.org/wiki/SHA2)( [SHA2](http://en.wikipedia.org/wiki/SHA2)( payload + nonce ) )
 
-The work performed by a miner consists of repeatedly increasing "nonce" until
+The cost function use in bitcoin is the [Hashcash](http://en.wikipedia.org/wiki/Hashcash) cost-function.  Bit coin mining intensively computes a high value Hashcash stamp on the underlying block chain data.  The hashcash stamp that Bitcoin miners produce is computed by repeatedly increasing "nonce" until
 the hash function yields a value, that has the rare property of being below a certain
 target threshold. (In other words: The hash "starts with a certain number of zeroes",
 if you display it in the fixed-length representation, that is typically used.)
@@ -303,14 +303,14 @@ As can be seen, the mining process doesn't compute anything special. It merely
 tries to find a number (also referred to as nonce) which - in combination with the payload -
 results in a hash with special properties.
 
-The advantage of using such a mechanism consists of the fact, that it is very easy to check a result: Given the payload and a specific nonce, only a single call of the hashing function is needed to verify that the hash has the required properties. Since there is no known way to find these hashes other than brute force, this can be used as a "proof of work" that someone invested a lot of computing power to find the correct nonce for this payload.
+The advantage of using the hashcash mechanism consists of the fact, that it is very easy to check a result: Given the payload and a specific nonce, only a single call of the hashing function is needed to verify that the hash has the required properties. Since there is no known way to find these hashes other than brute force, this can be used as a "proof of work" that someone invested a lot of computing power to find the correct nonce for this payload.
 
 This feature is then used in the Bitcoin network to secure various aspects. An attacker
 that wants to introduce malicious payload data into the network, will need to do the
-required proof of work before it will be accepted. And as long as honest miners have more
+required hashcash proof of work before it will be accepted. And as long as honest miners have more
 computing power, they can always outpace an attacker.
 
-Also see [SHA2](http://en.wikipedia.org/wiki/SHA2) and [Proof-of-work system](http://en.wikipedia.org/wiki/Proof-of-work_system) on Wikipedia.
+Also see [Hashcash](http://en.wikipedia.org/wiki/Hashcash) and [Proof-of-work system](http://en.wikipedia.org/wiki/Proof-of-work_system) and [SHA2](http://en.wikipedia.org/wiki/SHA2) and on Wikipedia.
 
 ###Why was the "Generate coin" option of the client software removed?
 
