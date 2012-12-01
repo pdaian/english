@@ -1,6 +1,7 @@
 Three APIs are currently available: 
 
 * [[Send API|WalletBit/API/Send]] 
+* [[SendTo API|WalletBit/API/SendTo]] 
 * [[Getnewaddress API|WalletBit/API/Getnewaddress]] 
 * [[Lookup API|WalletBit/API/Lookup]]
 
@@ -76,4 +77,4 @@ $response = curl_exec($ch);
 curl_close($ch);
 </source>
 
-If successful $response returns a json encoded array containing amount, confirmations, txid and timestamp of deposit to the provided Bitcoin address, otherwise empty.
+If successful $response returns a json encoded array containing batch number, amount, fee, confirmations, txid, address and timestamp of deposit to the provided Bitcoin address, otherwise empty.
