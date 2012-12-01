@@ -93,6 +93,14 @@ If this header is present, the miner should switch to the specified server for a
 Example:
 	X-Switch-To: {"host":"temporary.tld","port":8332,"ttr":10}
 
+### stratum
+The server may include a X-Stratum header containing URL to its Stratum interface. If this header is present, the Stratum-capable miner should switch to the specified URL immediately
+
+Example:
+	X-Stratum: stratum+tcp://example.com:3333
+
+Stratum+tcp indicates Stratum protocol with TCP transport. Theoretically pool can implement other transports as well, although at this date Stratum miners implement only TCP transport.
+
 ##See Also
 
 * [[Getwork_support]]
