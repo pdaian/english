@@ -1,0 +1,55 @@
+###Send to Email or Mobile number (SMS)
+
+<source lang="php">
+$fields = array(
+	'merchant' => 'owner@example.com', // Requires a valid WalletBit account with API key.
+	'to' => '4550142790',	// Email or Mobile number
+	'from' => '4591614856', // Email, Name or Phone number
+	'details' => 'You got Bitcoins!' // Message to recipient
+);
+$fields[['encrypted']] = strtoupper(hash('sha256', $fields[['merchant']] . ':' . $fields[['to']] . ':' . $fields[['from']] . ':' . 'API Key'));
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://walletbit.com/api/sendto');
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_POST, count($fields));
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));
+$response = json_decode(curl_exec($ch));
+curl_close($ch);
+
+if (is_object($response))
+{
+	// everythings good
+	if ($response->status == 1)
+	{
+	// any bitcoin sent to this address will be forwarded
+	print $response->address;
+	}
+	else
+	{
+	// print error message
+	print $response->message;
+	}
+}
+</source>
+
+##Send Bitcoin Methods
+
+Parameters:<br />
+Merchant - WalletBit email<br />
+To *     - The recipient's email address or mobile phone number (712 mobile networks in 212 countries)<br />
+From     - The sender's name, phone number or email address<br />
+Details  - Optional details to include. (22 characters message limit on phone messages)<br />
+
+* Numbers MUST be in their international format, (no leading zeroes). The UK number 0870 711 111 will become 44870711111<br /><br />
+
+Return:<br />
+Status   - Indicating if the transaction was successful by a one or zero.<br />
+Message  - Response from sendTo containing possible errors or similar.<br />
+Address  - A Bitcoin address. Send bitcoins to it, and it will be forwarded immediately.<br />
+
+When bitcoin is sent to the generated bitcoin address, the system will send out IPN to the defined url in your account.<br />
+
+Our sendTo system covers 712 mobile networks in 212 countries — we can reach almost all mobile phones, however please test if we can reach your mobile or the mobile you want to send to, prior to utilize sending bitcoin via SMS. If the mobile is not covered, you can still enjoy sending instant to email addresses with WalletBit.
