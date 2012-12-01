@@ -9,10 +9,11 @@ Three methods are currently available for integrating to your online shop:
 Copy the following code, then place it immediately before the closing </head>
 
 <source lang="javascript">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
 <script type="text/javascript">
 	(function() {
 	var wb = document.createElement('script'); wb.type = 'text/javascript'; wb.async = true;
-	wb.src = 'https://walletbit.com/' + (typeof jQuery == 'undefined' ? 'jq' : 'checkout') + '/TOKEN?url=' + escape(parent.location.href);
+	wb.src = 'https://walletbit.com/pay/01ee1e83d3d38627af1ee8bf88fe8a0c?url=' + escape(parent.location.href);
 	var s = document.getElementsByTagName('script')[[0]]; s.parentNode.insertBefore(wb, s);
 	})();
 </script>
@@ -29,32 +30,31 @@ You can also build your own payment button, for instance a support button looks 
 ###If you want a standard checkout process where customers leave your site and come back once completed
 
 <source lang="html4strict">
-<form method="post" action="https://walletbit.com/checkout/frame">
-	<input type="hidden" name="token" value="TOKEN" />
+<form method="post" action="https://walletbit.com/pay">
+	<input type="hidden" name="token" value="01ee1e83d3d38627af1ee8bf88fe8a0c" />
 	<input type="hidden" name="item_name" value="Auction Goods" />
 	<input type="hidden" name="amount" value="0.01000000" />
 	<input type="hidden" name="returnurl" value="https://walletbit.com/" />
 	<input type="hidden" name="additional" value="wb_1=red|wb_2=green" />
 	<input type="hidden" name="test" value="0" />
-	<input type="image" id="walletbitcheckout" src="https://walletbit.com/button/0.01000000" border="0" name="submit" alt="WalletBit - Simple, Flexible & Secure Bitcoin"  title="WalletBit - Simple, Flexible & Secure Bitcoin" />
-</form><script type="text/javascript" src="https://walletbit.com/jq/button"></script>
+	<input type="image" class="walletbitcheckout" src="https://walletbit.com/includes/checkout.png" border="0" name="submit" alt="WalletBit - Simple, Flexible & Secure Bitcoin"  title="WalletBit - Simple, Flexible & Secure Bitcoin" />
+</form><script type="text/javascript" src="https://walletbit.com/scripts/checkout.js"></script>
 </source>
 
 ###Subscription form
 
 <source lang="html4strict">
 <form class="walletbit" method="post" action="https://walletbit.com/checkout/subscribe">
-	<input name="token" value="TOKEN" type="hidden">
+	<input name="token" value="01ee1e83d3d38627af1ee8bf88fe8a0c" type="hidden">
 	<input name="item_name" value="Magazine" type="hidden">
 	<input name="amount" value="1" type="hidden">
 	<input name="period" value="1" type="hidden">
 	<input name="cycle" value="M" type="hidden">
-	<input name="adjustable" value="0" type="hidden">
+	<input name="adjustable" value="1" type="hidden">
 	<input name="returnurl" value="" type="hidden">
 	<input name="additional" value="" type="hidden">
 	<input name="test" value="0" type="hidden">
-	<input id="walletbitsubscribe" src="https://walletbit.com/subscribebutton/1" name="submit" alt="WalletBit - Simple, Flexible & Secure Bitcoin" title="WalletBit - Simple, Flexible & Secure Bitcoin" border="0" type="image">
-</form><script type="text/javascript" src="https://walletbit.com/jq/subscribe"></script>
+	<input id="walletbitsubscribe" src="https://walletbit.com/subscribebutton/1" name="submit" alt="WalletBit - Simple, Flexible & Secure Bitcoin" title="WalletBit - Simple, Flexible & Secure Bitcoin" border="0" type="image"></form><script type="text/javascript" src="https://walletbit.com/jq/subscribe"></script>
 </source>
 
-Sign in before using these examples as your need to replace the TOKEN.
+Remember to replace the TOKEN with your own.
