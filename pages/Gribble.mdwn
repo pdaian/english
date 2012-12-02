@@ -10,27 +10,28 @@ To get help on any command, try 'help <command>', to get a list of bitcoin-relat
 
 ###Mining/network/hashrate stats
 
-* **bc,blocks** - show the current number of blocks in the bitcoin block chain
-* **bc,calc** - given a hash rate in Khps, calculate the expected average time to generate a block, at current difficulty. For example, to see the average time for 1000 Khps, run 'bc,calc 1000'.
-* **bc,calcd** - given a hash rate in Khps, and a difficulty level, calculate the expected average time to generate a block at that difficulty. For example, to see the average time for 1000 Khps at difficulty 1, run 'bc,calc 1000 1'.
-* **bc,diff** - show the current generation difficulty
-* **bc,diffchange** - show estimated percent change in difficulty
-* **bc,estimate** - show the estimate of the next difficulty (4.1)
-* **bc,gen** - given the hash rate in Khps, calculate expected BTC generation per day and per hour, at current difficulty.
-* **bc,gend** - given the hash rate in Khps, and a difficulty level, calculate expected BTC generation per day and per hour at that difficulty.
 * **bc,hextarget** - show the current difficulty target in hex.
-* **bc,nethash** - current 3-day estimate of network hash power, in Ghps.
-* **bc,nexttarget** - show the block at which the next difficulty change will take place
-* **bc,interval** - show the average time between blocks, over the past 1000 blocks. If given optional integer argument, use that many blocks for the estimate.
-* **bc,prob** - show the probability of getting at least one block at given Khps, in a given time period. E.g., to see probability of getting a block at 1000 Khps, in 2 years and 1 week, try 'bc,prob 1000 2y 1w'. Time takes input in years, weeks, days, hours, minutes, and seconds.
-* **bc,probd** - show the probability of getting at least one block at given Khps, given difficulty, in a given time period. Same as **bc,prob** but supply a difficulty after the hash rate. E.g., 'bc,probd 10000000 600000 1w 2d'
-* **bc,spotestimate** - current 3-day estimate of network power, in terms of difficulty.
-* **bc,stats** - show some statistics about the block chain - number of blocks, difficulty, estimated next difficulty target, time to next difficulty
-* **bc,timetonext** - show estimated time to reach the next difficulty target
-* **bc,totalbc** - show total number of bitcoins in existence.
+* **bcstats** - show some statistics about the block chain - number of blocks, difficulty, estimated next difficulty target, time to next difficulty
+* **blocks** - show the current number of blocks in the bitcoin block chain
+* **blockdiff** - show difficulty for a specified past block.
+* **bounty** - show current block reward bounty, in BTC.
+* **diff** - show the current generation difficulty
+* **diffchange** - show estimated percent change in difficulty
+* **estimate** - show the estimate of the next difficulty, based on data since last change (4.1), and for last three days.
+* **genprob** - show the probability of getting at least one block at given hashrate, in a given time period, at given difficulty. user current difficulty by default.
+* **genrate** - given the hash rate, and optional difficulty, calculate expected BTC generation per day and per hour. uses current difficulty by default.
+* **gentime** - given a hash rate, and optional difficulty level, calculate the expected average time to generate a block. uses current difficulty by default.
+* **halfreward** - show estimated time of next block reward halving.
+* **interval** - show the average time between blocks, over the past 1000 blocks. If given optional integer argument, use that many blocks for the estimate.
+* **nethash** - current 3-day estimate of network hash power, in Ghps.
+* **nextretarget** - show the block at which the next difficulty change will take place
+* **prevdiff** - show previous difficulty level
+* **prevdiffchange** - show previous difficulty percent change.
+* **timetonext** - show estimated time to reach the next difficulty target
+* **totalbc** - show total number of bitcoins in existence.
+* **tslb** - show time elapsed since last generated block.
 
-
-Big kudos goes out to theymos for providing a web interface to [real time statistics about the bitcoin block chain](http://blockexplorer.com/q/).
+Big kudos goes out to theymos for providing a web interface to [real time statistics about the bitcoin block chain](http://blockexplorer.com/q/), and to http://blockchain.info for a similar service.
 
 ###Markets and exchange rates
 
