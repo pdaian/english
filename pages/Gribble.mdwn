@@ -35,14 +35,11 @@ Big kudos goes out to theymos for providing a web interface to [real time statis
 
 ###Markets and exchange rates
 
-* **bc,bcm** - show the market snapshot from bitcoinmarket.com
-* **bc,mtgox** - show the market snapshot for mtgox.com
-* **bc,avgprc** - show average 24h, 7d, and 30d trading prices of BTC in various currencies.
-* **bc,24hprc** - show average 24h price of BTC in USD.
+* **avgprc** - show average 24h, 7d, and 30d trading prices of BTC in various currencies.
 * **bc,convert** - convert bitcoin price, based on Mt.Gox last, to currency you specify. e.g., try 'bc,convert eur' for euros.
 * **bc,fx** - show various currency exchange rates
 * **bc,xau** - show price of gold in BTC
-* **ticker** - show pretty-printed mtgox ticker. Takes optional argument of '--bid', '--ask', '--last', '--high', or '--low', to show just that numeric value (useful for command nesting in calculations)
+* **ticker** - show pretty-printed mtgox ticker. Takes a number of optional arguments to customize output.
 * **bids** - given a numeric argument, shows how many total btc are being demanded on MtGox at or over the given price. If optional '--under' argument given, looks under the price.
 * **asks** - given a numeric argument, shows how many total btc are being offered on MtGox at or below given price. If optional '--over' argument given, looks over the price.
 
