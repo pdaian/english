@@ -49,10 +49,9 @@ It is trivial for to forge a transaction which is 100 blocks deep if each of tho
 * A sudden drop in exchange rate might lead to a mass exodous of miners, causing the network hashrate to plunge.
 * Some future competing cryptocurrency might become more popular, leading to a sudden plunge in the bitcoin network hashrate.
 
-All of these factors and others mean that any sort of difficulty-guessing heuristic wired into a piece of software will make it fragile.  This is an especially serious concern for embedded software or software operated by bitcoin non-experts.  Imagine if a bitcoin ATM or bitcoin vending machine suddenly stopped working because of an unexpected change in the network hashrate!  It is unlikely that the person servicing this sort of equipment would be able to figure out what had gone wrong.
+All of these factors and others mean that any sort of difficulty-guessing heuristic wired into a piece of software will make it fragile.  This is an especially serious concern for embedded software or software operated by bitcoin non-experts.  Imagine if a bitcoin ATM or vending machine suddenly stopped working because of an unexpected change in the network hashrate!  It is unlikely that the person servicing this sort of equipment would be able to figure out what had gone wrong.
 
 Clients which use height rather than depth (by full chain validation or probabalistic height verification) are not vulnerable to this problem.  By tracking the chain continuously as it develops they learn about difficulty adjustments from evidence which is astronomically expensive to forge, even as technological and economic factors alter the exact definition of "expensive".
-
 
 #### [[BitCoinJ]]
 
