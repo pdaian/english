@@ -10,21 +10,6 @@ A client verifies the depth D of a block by checking that there are D blocks **a
 
 See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
 
-#### Depth and Difficulty
-
-The main problem with using block depth as a validity check is *difficulty*.
-
-It is trivial for to forge a transaction which is 100 blocks deep if each of those blocks can be difficulty=1.0 blocks.  A thin client might poll nearby nodes to find out what the difficulty ought to be (accepting the last hundred or so blocks as proof), but this approach is acutely vulnerable to Sybil attacks.  Therefore, clients that use block depth as a validity check need to have some sort of hardwired assumption about the difficulty level.  It's easy for a human to say "well, the difficulty ought to be plausible," but formalizing this in software is not as easy as it seems.
-
-* The difficulty levels of late 2012 seem implausibly high from the perspective of the CPU-mining era of late 2009.
-* Future chip technologies could increase the network hashrate by factors of 10 or more.
-* Although SHA-256 is unlikely to be totally compromised, it is entirely possible that a future mathematical discovery could shave a dozen or so bits off of the hashspace, corresponding to a 100x increase in hashpower.  Similar partial-collision attacks have been discovered for many earlier hash functions.
-* A sudden drop in exchange rate might lead to a mass exodous of miners, causing the network hashrate to plunge.
-* Some future competing cryptocurrency might become more popular, leading to a sudden plunge in the bitcoin network hashrate.
-
-All of these factors and others mean that any sort of difficulty-guessing heuristic wired into a piece of software will make it fragile.  This is an especially serious concern for embedded software or software operated by bitcoin non-experts.  Imagine if a bitcoin ATM or bitcoin vending machine suddenly stopped working because of an unexpected change in the network hashrate!  It is unlikely that the person servicing this sort of equipment would be able to figure out what had gone wrong.
-
-Clients which use height rather than depth (by full chain validation or probabalistic height verification) are not vulnerable to this problem.  By tracking the chain continuously as it develops they learn about difficulty adjustments from evidence which is astronomically expensive to forge, even as technological and economic factors alter the exact definition of "expensive".
 
 ## Full-Chain Clients
 
@@ -51,6 +36,22 @@ This is very different from the trust model in the "thick" client: the thick cli
 It is very important to understand how the same property ("X blocks deep") is used to verify two different properties in the thick client and SPV cases.  **The thick client never uses block depth as a measure of transaction validity; the SPV client does**.
 
 This is a concern in a situation where an SPV client is subjected to a double-spend attack by somebody who controls its network connection.  For example, suppose you are at a wi-fi cafe and are paying for something using your smartphone -- the cafe owner controls your network connection.  Satoshi acknowledges this implicitly when he writes that "the verification is reliable as long as honest nodes control the network" -- to be completely pedantic, this means that the verification is reliable as long as honest nodes control **the part of the network that the SPV client is able to communicate with**.  In an attack-by-ISP scenario this may not be a sufficiently strong security property.  The attacker would not need to overpower "the rest of the network" because the client is unable to communicate with it.
+
+#### Depth and Difficulty
+
+The main problem with using block depth as a validity check is *difficulty*.
+
+It is trivial for to forge a transaction which is 100 blocks deep if each of those blocks can be difficulty=1.0 blocks.  A thin client might poll nearby nodes to find out what the difficulty ought to be (accepting the last hundred or so blocks as proof), but this approach is acutely vulnerable to Sybil attacks.  Therefore, clients that use block depth as a validity check need to have some sort of hardwired assumption about the difficulty level.  It's easy for a human to say "well, the difficulty ought to be plausible," but formalizing this in software is not as easy as it seems.
+
+* The difficulty levels of late 2012 seem implausibly high from the perspective of the CPU-mining era of late 2009.
+* Future chip technologies could increase the network hashrate by factors of 10 or more.
+* Although SHA-256 is unlikely to be totally compromised, it is entirely possible that a future mathematical discovery could shave a dozen or so bits off of the hashspace, corresponding to a 100x increase in hashpower.  Similar partial-collision attacks have been discovered for many earlier hash functions.
+* A sudden drop in exchange rate might lead to a mass exodous of miners, causing the network hashrate to plunge.
+* Some future competing cryptocurrency might become more popular, leading to a sudden plunge in the bitcoin network hashrate.
+
+All of these factors and others mean that any sort of difficulty-guessing heuristic wired into a piece of software will make it fragile.  This is an especially serious concern for embedded software or software operated by bitcoin non-experts.  Imagine if a bitcoin ATM or bitcoin vending machine suddenly stopped working because of an unexpected change in the network hashrate!  It is unlikely that the person servicing this sort of equipment would be able to figure out what had gone wrong.
+
+Clients which use height rather than depth (by full chain validation or probabalistic height verification) are not vulnerable to this problem.  By tracking the chain continuously as it develops they learn about difficulty adjustments from evidence which is astronomically expensive to forge, even as technological and economic factors alter the exact definition of "expensive".
 
 
 #### [[BitCoinJ]]
