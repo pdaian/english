@@ -22,11 +22,19 @@ Another attack the trader or merchant is exposed to when accepting payment on 0/
 
 Also referred to as a one-confirmation attack, is a combination of the race attack and the Finney attack such that a transaction that even has one confirmation can still be double-spent.  The same protective action for the race attack (no incoming connections, explicit outgoing connection to a well-connected node) significantly reduces the risk of this occurring.
 
-###51% attack
+###Brute force attack
 
-A miner or cartel who controls more than fifty percent of the hashing capacity of the bitcoin mining network has the potential to fraudulently double-spend recent transactions.  With majority of hashing power the attacker has the technical ability to mine blocks which do not include a previous spend transactions from the miner but instead include a double spend of the coin.  With majority control the potential exists for this double spend even if the transaction had already seen confirmations as those blocks could be overtaken in the attack. 
+This attack has a chance to work even if the merchant waits for some confirmations, but requires relatively high hashrate.
 
-The risk lessens of this with each confirmation as the computational advantage the attacker needs grows to a mathematically improbable level and six confirmations is widely accepted as being the amount where the transaction is secure from this attack.
+The attacker submits to the merchant/network a transaction which pays the merchant, while privately mining a blockchain fork in which a double-spending transaction is included instead. After waiting for *n* confirmations, the merchant sends the product. If the attacker happened to find more than *n* blocks at this point, he releases his fork and regains his coins; otherwise, he can try to continue extending his fork with the hope of being able to catch up with the network. If he never manages to do this, the attack fails and the payment to the merchant will go through.
+
+The probability of success is a function of the attacker's hashrate (as a proportion of the total network hashrate) and the number of confirmations the merchant waits for. For example, if the attacker controls 10% of the network hashrate but the merchant waits for 6 confirmations, the success probability is on the order of 0.1%.
+
+###>50% attack
+
+If the attacker controls more than half of the network hashrate, the previous attack has a probability of 100% to succeed. Since the attacker can generate blocks faster than the rest of the network, he can simply persevere with his private fork until it becomes longer than the branch built by the honest network, from whatever disadvantage.
+
+No amount of confirmations can prevent this attack; however, waiting for confirmations does increase the aggregate resource cost of performing the attack, which could make it unprofitable or delay it long enough for the circumstances to change or slower-acting synchronization methods to kick in.
 
 ##Risk management
 
