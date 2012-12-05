@@ -69,25 +69,32 @@ The next step is cascading several CKD constructions to build a tree. We start w
 
 Each leaf node in the tree corresponds to an actual keypair, while the internal nodes correspond to the collection of keypairs that descends from them. The chain codes of the leaf nodes are ignored, and only their embedded private or public key is used. Because of this construction, knowing an extended private key allows reconstruction of all descendant private keys and public keys, and knowing an extended public keys allows reconstruction of all descendant public keys.
 
+###Key identifiers
+
+Extended keys can be identified by the Hash160 (RIPEMD160 after SHA256) of the serialized public key, ignoring the chain code. This corresponds exactly to the data used in traditional Bitcoin addresses. It is not advised to represent this data in base58 format though, as it may be interpreted as an address that way (and wallet software is not required to accept payment to the chain key itself).
+
+The first 32 bits of the identifier are called the fingerprint.
+
 ###Serialization format
 
 Extended public and private keys are serialized as follows:
 
-* 1 byte: version byte (mainnet: 0x06 public, 0x0C private; testnet: 0xC6 public, 0xCC private)
+* 4 byte: version bytes (mainnet: 0x0488B21E public, 0x0488ADE4 private; testnet: 0x043587CF public, 0x04358394 private)
 * 1 byte: depth: 0x00 for master nodes, 0x01 for level-1 descendants, .... 
-* 4 bytes: the first 32 bits of RIPEMD160(SHA256(K<sub>par</sub>)), a "fingerprint" of the parent's key. Note that this corresponds to the first 32 bits of the data in the "address" corresponding to the parent's key.
+* 4 bytes: the fingerprint of the parent's key.
 * 4 bytes: child number. This is the number n in x<sub>n</sub> = x<sub>par</sub>/n, with x<sub>n</sub> the key being serialized. This is encoded in MSB order.
 * 32 bytes: the chain code
-* the rest: the normal public or private key serialization (33 bytes for public keys, 32 bytes for private keys).
+* 33 bytes: the public key or private key data (0x02 + X or 0x03 + X for public keys, 0x00 + k for private keys)
 
-This 74 or 75 byte structure can be encoded like other Bitcoin data in Base58, by first adding 32 checksum bits (derived from the double SHA-256 checksum), and then converting to the Base58 representation. This results in a base58-encoded string of up to 107 or 108 character.
+This 78 byte structure can be encoded like other Bitcoin data in Base58, by first adding 32 checksum bits (derived from the double SHA-256 checksum), and then converting to the Base58 representation. This results in a Base58-encoded string of up to 112 characters. Because of the choice of the version bytes, the Base58 representation will start with "xprv" or "xpub" on mainnet, "tprv" or "tpub" on testnet.
 
+Note that the fingerprint of the parent only serves as a checksum here, and software must be willing to deal with collisions. Internally, the full 160-bit identifier could be used.
 
 ###Master key generation
 
 The total number of possible extended keypairs is almost 2^512, but the produced keys are only 256 bits long, and offer about half of that in terms of security. Therefore, master keys are not generated directly, but instead from a potentially short seed value.
 
-* Generate a seed S of a chosen length (at least 128 bits) from a (P)RNG.
+* Generate a seed S of a chosen length (at least, but not limited to, 128 bits) from a (P)RNG.
 * Calculate I = HMAC-SHA512(key="Bitcoin seed", msg=S)
 * Split I into two 32-byte sequences, I<sub>l</sub> and I<sub>r</sub>.
 * Use I<sub>l</sub> as master secret key, and I<sub>r</sub> as master chain code.
@@ -136,3 +143,4 @@ When an unsecure webserver is used to run an e-commerce site, it needs to know p
 
 * Gregory Maxwell for the original idea of type-2 deterministic wallets, and many discussions about it.
 * Alan Reiner for the implementation of this scheme in Armory, and the suggestions that followed from that.
+* Mike Caldwell for the version bytes to obtain human-recognizable Base58 strings.
