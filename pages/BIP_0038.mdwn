@@ -134,13 +134,24 @@ The encrypted private key is the Base58Check-encoded concatenation of the follow
 
 * 0x01 0x43 + *flagbyte* + *addresshash* + *ownersalt* + *encryptedpart1*[[0...7]] + *encryptedpart2*
 
-The party generating the Bitcoin address has the option to return a *confirmation code* back to *owner* which allows *owner* to independently verify that he has been given a Bitcoin address that actually depends on his passphrase.  This protects *owner* from being given a Bitcoin address by the second party that is unrelated to the key derivation and possibly spendable by the second party.  If a Bitcoin address given to *owner* can be successfully regenerated through the confirmation process, *owner* can be reasonably assured that any spending without the passphrase is infeasible.  This confirmation code is 75 characters starting with "cfrm38" and contains a compressed representation of G*factorb (33 bytes) and is a Base58Check-encoded concatenation of the following:
+#####Confirmation code
+The party generating the Bitcoin address has the option to return a *confirmation code* back to *owner* which allows *owner* to independently verify that he has been given a Bitcoin address that actually depends on his passphrase.  This protects *owner* from being given a Bitcoin address by the second party that is unrelated to the key derivation and possibly spendable by the second party.  If a Bitcoin address given to *owner* can be successfully regenerated through the confirmation process, *owner* can be reasonably assured that any spending without the passphrase is infeasible.  This confirmation code is 75 characters starting with "cfrm38".
 
-* 0x64 0x3B 0xF6 0xA8 0x9A + *flagbyte* + *ownersalt* + *addresshash* + G*factorb
+To generate it, we need *factorb*, *derivedhalf1* and *derivedhalf2* from the original encryption operation.
 
-A confirmation tool, given a passphrase and a confirmation code, can recalculate the address and assert the following: "It is confirmed that Bitcoin address *address* depends on this passphrase".
+1. ECMultiply *factorb* by G, call the result *pubfactorb*.  The result is 33 bytes.
+1. The first byte is 0x02 or 0x03.  XOR it by (derivedhalf2[[31]] & 0x01), call the resulting byte *pubfactorprefix*.
+1. Do AES256Encrypt(pubfactor[[1...16]] xor derivedhalf1[[0...15]], derivedhalf2) and call the result *pubfactorx1*.
+1. Do AES256Encrypt(pubfactor[[17...32]] xor derivedhalf1[[16...31]], derivedhalf2) and call the result *pubfactorx2*.
+1. Concatenate *pubfactorprefix* + *pubfactorx1* + *pubfactorx2* (total 33 bytes) and call the result *encryptedpubfactor*.
 
-Decryption steps:
+The result is a Base58Check-encoded concatenation of the following:
+
+* 0x64 0x3B 0xF6 0xA8 0x9A + *flagbyte* + *ownersalt* + *addresshash* + *encryptedpubfactor*
+
+A confirmation tool, given a passphrase and a confirmation code, can recalculate the address, verify the address hash, and then assert the following: "It is confirmed that Bitcoin address *address* depends on this passphrase".
+
+#####Decryption
 
 1. Collect encrypted private key and passphrase from user.
 1. Derive *passfactor* using scrypt with *ownersalt* and the user's passphrase and use it to recompute *passpoint*
