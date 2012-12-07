@@ -1,0 +1,23 @@
+# Payment Requests
+
+Payment Requests are a proposed new way to make Bitcoin payments.
+
+Instead of sending somebody a bitcoin address and asking them to pay to that address, you give them a PaymentRequest message which bundles up more information than is contained in just a bitcoin address. A SignedPaymentRequest bundles a PaymentRequest with a digital identity and signature, so you can be sure that you are paying the correct person or merchant.
+
+## Specification
+
+See https://gist.github.com/4120476 for the current specification. After some prototyping it is expected the specification will become one or more BIPs.
+
+## Extensions
+
+To avoid conflicts, implementations should use this page to register extensions to the protocol.
+
+### PaymentRequest
+
+
+|Field Number |Name |Description
+|---|---|---
+|100 |(available) |(available)
+|101 |(available) |(available)
+
+
