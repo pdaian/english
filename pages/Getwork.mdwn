@@ -79,6 +79,14 @@ Due to network latency, [Luke-Jr](User:Luke-jr) recommends the following design 
 1. when current time is past <time@1+getwork expire> minus <duration of longest getwork/submit since we started this work> times 4, begin a request for new work
 1. when new work arrives, discard old work and begin using the new work.
 
+### stratum
+The server may include a X-Stratum header containing URL to its Stratum interface. If this header is present, the Stratum-capable miner should switch to the specified URL immediately
+
+Example:
+	X-Stratum: stratum+tcp://example.com:3333
+
+Stratum+tcp indicates Stratum protocol with TCP transport. Theoretically pool can implement other transports as well, although at this date Stratum miners implement only TCP transport.
+
 ### submitold
 This feature should only be advertised with a longpoll request. If received with a regular request, it should be ignored.
 
@@ -92,14 +100,6 @@ If this header is present, the miner should switch to the specified server for a
 
 Example:
 	X-Switch-To: {"host":"temporary.tld","port":8332,"ttr":10}
-
-### stratum
-The server may include a X-Stratum header containing URL to its Stratum interface. If this header is present, the Stratum-capable miner should switch to the specified URL immediately
-
-Example:
-	X-Stratum: stratum+tcp://example.com:3333
-
-Stratum+tcp indicates Stratum protocol with TCP transport. Theoretically pool can implement other transports as well, although at this date Stratum miners implement only TCP transport.
 
 ##See Also
 
