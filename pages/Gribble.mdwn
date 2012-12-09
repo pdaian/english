@@ -10,7 +10,7 @@ To get help on any command, try 'help <command>', to get a list of bitcoin-relat
 
 ###Mining/network/hashrate stats
 
-* **bc,hextarget** - show the current difficulty target in hex.
+* **hextarget** - show the current difficulty target in hex. if optional block number argument is specified, show target for that block.
 * **bcstats** - show some statistics about the block chain - number of blocks, difficulty, estimated next difficulty target, time to next difficulty
 * **blocks** - show the current number of blocks in the bitcoin block chain
 * **blockdiff** - show difficulty for a specified past block.
@@ -18,7 +18,7 @@ To get help on any command, try 'help <command>', to get a list of bitcoin-relat
 * **diff** - show the current generation difficulty
 * **diffchange** - show estimated percent change in difficulty
 * **estimate** - show the estimate of the next difficulty, based on data since last change (4.1), and for last three days.
-* **genprob** - show the probability of getting at least one block at given hashrate, in a given time period, at given difficulty. user current difficulty by default.
+* **genprob** - show the probability of getting at least one block at given hashrate, in a given time period, at given difficulty. uses current difficulty by default.
 * **genrate** - given the hash rate, and optional difficulty, calculate expected BTC generation per day and per hour. uses current difficulty by default.
 * **gentime** - given a hash rate, and optional difficulty level, calculate the expected average time to generate a block. uses current difficulty by default.
 * **halfreward** - show estimated time of next block reward halving.
