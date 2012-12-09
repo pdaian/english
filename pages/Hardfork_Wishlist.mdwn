@@ -18,6 +18,7 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * Elimination of output scripts: all transactions pay-to-scripthash, probably with a single byte indicating the scripthash type.  Other than reducing effective output script secrecy (which is not possible without OP_EVAL anyways) this is believed to be costless, and the secrecy can be recovered with recursive OP_EVAL. The motivation here is that data in outputs is far more expensive than inputs because some outputs may be never prunable, and pay-to-scripthash minimizes output size without harming total size.
 * Allow soft-spending of generation outputs without confirmations (outputs of these transactions might also appear as generation themselves)
 * Allow additional inputs to generation transactions
+* Add new signature hashtype to include value of TxOut being spent, in the hash to be signed.  Doing this would remove the requirement that offline signing devices be sent all supporting transactions with the transaction-to-be-signed, just to confirm the transaction fee.
 
 ####Cryptographic changes
 
