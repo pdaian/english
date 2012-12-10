@@ -8,7 +8,7 @@ Honest generators only build onto a block (by referencing it in blocks they crea
 
 For any block on the chain, there is only one path to the genesis block. Coming from the genesis block, however, there can be forks. One-block forks are created from time to time when two blocks are created just a few seconds apart. When that happens, generating nodes build onto whichever one of the blocks they received first. Whichever block ends up being included in the next block becomes part of the main chain because that chain is longer. More serious forks have occurred after fixing bugs that required backward-incompatible changes.
 
-Blocks in shorter chains (or invalid chains) are called "orphan blocks", and while they are stored, they are not used for anything. When a block becomes an orphan block, all of its valid transactions are re-added to the pool of queued transactions and will be included in another block. The 50 BTC reward for the orphan block will be lost, which is why a network-enforced 100-block maturation time for generations exists.
+Blocks in shorter chains (or invalid chains) are called "orphan blocks", and while they are stored, they are not used for anything. When a block becomes an orphan block, all of its valid transactions are re-added to the pool of queued transactions and will be included in another block. The reward for the orphan block will be lost, which is why a network-enforced 100-block maturation time for generations exists.
 
 Because a block can only reference one previous block, it is impossible for two forked chains to merge.
 
