@@ -2,9 +2,9 @@ Blockchain-based currencies use addresses, which are a [[Base58Check_encoding]] 
 
 
 
-|Decimal version|Leading symbol|Use|Example
+|Initial byte(s)|Leading symbol|Use|Example
 |---|---|---|---
-|0|1|Bitcoin pubkey hash|<tt>12CPLrAUPvhVwjZqBgww3sLdEg4Z888R1j</tt>
+|00|1|Bitcoin pubkey hash|<tt>12CPLrAUPvhVwjZqBgww3sLdEg4Z888R1j</tt>
 |5|3|Bitcoin script hash|<tt>3EktnHQD7RiAE6uzMj2ZifT9YgRrkSgzQX</tt>
 |48|L|Litecoin pubkey hash|<tt>LhK2kQwiaAvhjWY799cZvMyYwnQAcxkarr</tt>
 |52|M or N|Namecoin pubkey hash|<tt>NATX6zEUNfxfvgVwz8qVnnw3hLhhYXhgQn</tt>
@@ -19,7 +19,8 @@ Blockchain-based currencies use addresses, which are a [[Base58Check_encoding]] 
 |138|x|ixcoin pubkey hash|<tt>xoKDFH4uWpyzxUcCC5jCLFujRKayv3HHcV</tt>
 |196|2|Testnet script hash|
 |239|9|Uncompressed Testnet Private key|<tt>91eWjgRmucdtYHpMdsHbn9h8UU8hdoMNSKj8p3QAj6VTLyBnjj6</tt>
-|239|c|Compressed Testnet Private key|<tt>cNJFgo1driFnPcBdBX8BrJrpxchBWXwXCvNH5SoSkdcF6JXXwHMm</tt>
+|239|c|Compressed Testnet Private key|<tt>cNJFgo1driFnPcBdBX8BrJrpxchBWXwXCvNH5SoSkdcF6JXXwHMm</tt>|
+|0x142, 0x0143|6P|Encrypted private key ([[BIP 38|BIP_0038]])|<tt>6PRVWUbkzzsbcVac2qwfssoUJAN1Xhrg6bNk8J7Nzm5H7kxEbn2Nh2ZoGg </tt>
 
 
 The following table shows the leading symbol(s) and address length(s) for 160 bit hashes for each of the possible decimal version values:
