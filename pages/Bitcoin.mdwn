@@ -2,16 +2,16 @@
 **Bitcoin** is a decentralized [[digital_currency]] created by programmer [[Satoshi_Nakamoto]], who also developed the [[original_Bitcoin_client]].
 It allows for pseudonymous and secure ownership and transfers of amounts of bitcoins, without relying on any central server to process the transactions or store the accounts.
 
-It is the most widely used [[alternative_currency]], (1.1) with the total market cap at over 100 million [[US_dollars]]. (1.2) (1.3) (1.4) 
+It is the most widely used alternative currency, (1.1) with the total market cap at over 100 million US dollars. (1.2) (1.3) (1.4) 
 
-Bitcoin has no central issuer; instead, the [[peer-to-peer]] network regulates Bitcoins, transactions and issuance according to consensus in network software.
+Bitcoin has no central issuer; instead, the peer-to-peer network regulates Bitcoins, transactions and issuance according to consensus in network software.
 Bitcoins are issued to various nodes that verify transactions through computing power;
 it is established that there will be a limited and scheduled release of no more than 21 million BTC worth of coins, which will be fully issued by the year 2140.
 
-Internationally, Bitcoins can be exchanged and managed through various [[websites]] and [[software]] along with physical [[banknotes]] and [[coins]]. (1.5) (1.6)
+Internationally, Bitcoins can be exchanged and managed through various websites and [[software]] along with physical banknotes and coins. (1.5) (1.6)
 
 ##History
-> Main article: [[History_of_Bitcoin]]
+> Main article: [[History]]
 
 A cryptographic system for untraceable payments was first described by David Chaum in 1982. (2.1) In 1990 Chaum extended this system to create the first cryptographic anonymous electronic cash system., (2.2) which became known as [[ecash]].
  (2.3) In 1998 Wei Dai published a description of an anonymous, distributed electronic cash system which he called "b-money". (2.4) Around the same time, Nick Szabo created *bit gold*. (2.5) (2.6) Like Bitcoin, *Bit gold* was a currency system where users would compete to solve a [[proof_of_work]] function, with solutions being cryptographically chained together and published via a distributed property title registry. A variant of *Bit gold*, called *Reusable Proofs of Work*, was implemented by Hal Finney. (2.6)
@@ -22,35 +22,21 @@ The Bitcoin network came into existence on 3 January 2009 with the release of th
 A year after, the initial exchange rates for Bitcoin were set by individuals on the bitcointalk forums.[[!template id=citation_needed date="October 2012"]] The most significant transaction involved a 10,000 BTC pizza. (2.13)
 Today, the majority of Bitcoin exchanges occur on the [[MtGox]] Bitcoin exchange.
 
-In 2011, [[Wikileaks]], (2.14) [[Freenet]], (2.15) [[Singularity_Institute]], (2.16) [[Internet_Archive]], (2.17) [[Free_Software_Foundation]] (2.18) and others, began to accept donations in Bitcoin. The [[Electronic_Frontier_Foundation]] did so for a while but has since stopped, citing concerns about a lack of legal precedent about new currency systems, and because they "generally don't endorse any type of product or service." (2.19) Some small businesses had started to adopt Bitcoin. [[LaCie]], a public company, accepts Bitcoin for its [[Wuala]] service. (2.20)
+In 2011, Wikileaks, (2.14) [[Freenet]], (2.15) Singularity Institute, (2.16) Internet Archive, (2.17) Free Software Foundation (2.18) and others, began to accept donations in Bitcoin. The Electronic Frontier Foundation did so for a while but has since stopped, citing concerns about a lack of legal precedent about new currency systems, and because they "generally don't endorse any type of product or service." (2.19) Some small businesses had started to adopt Bitcoin. LaCie, a public company, accepts Bitcoin for its Wuala service. (2.20)
 
 In 2012, BitPay reports of having over 1000 merchants accepting Bitcoin under its payment processing service. (2.21)
 
 ##Administration
-Bitcoin is administered through a [[decentralized]] [[peer-to-peer]] network. (2.7) Cryptographic technologies and the [[peer-to-peer]] network of computing power enables users to make and verify irreversible, instant online Bitcoin payments, without an obligation to trust and use centralized banking institutions and authorities. [[Dispute_resolution]] services are not made directly available. Instead it is left to the users to verify and trust the parties they are sending money to through their choice of methods. 
+Bitcoin is administered through a decentralized peer-to-peer network. (2.7) Cryptographic technologies and the peer-to-peer network of computing power enables users to make and verify irreversible, instant online Bitcoin payments, without an obligation to trust and use centralized banking institutions and authorities. Dispute resolution services are not made directly available. Instead it is left to the users to verify and trust the parties they are sending money to through their choice of methods. 
 
 Bitcoins are issued according to rules agreed to by the majority of the computing power within the Bitcoin network. The core rules describing the predictable issuance of Bitcoins to its verifying servers, a voluntary and competitive transaction fee system and the hard limit of no more than 21 million BTC issued in total. (2.7)
 
-Bitcoin does not require a [[central_bank]], [[state|Sovereign_state]], (3.1) or incorporated backers.
+Bitcoin does not require a central bank, State, (3.1) or incorporated backers.
 
 ##Services
+> Main article: [[Wallet]]
 
 Bitcoins are sent and received through software and websites called wallets. They send and confirm transactions to the network through Bitcoin addresses, the identifiers for users' Bitcoin wallets within the network. (2.7)
-
-
-
-|Name|Website
-|---|---
-|[[Armory_(client)]]|http://bitcoinarmory.com
-|[[Bitcoin-Qt]]|http://sourceforge.net/projects/bitcoin/
-|[[Coinbase]]|http://coinbase.com
-|[[Electrum_(client)]]|http://electrum.ecdsa.org/
-|[[Flexcoin]]|http://flexcoin.com
-|[[Instawallet]]|http://instawallet.org
-|[[Multibit]]|http://multibit.org/
-|[[My_Wallet]]|https://blockchain.info/wallet
-
-
 
 ###Bitcoin addresses
 > Main article: [[Address]]
@@ -60,9 +46,12 @@ Payments are made to Bitcoin "addresses": human-readable strings of numbers and 
 Users obtain new Bitcoin addresses from their Bitcoin software. Creating a new address can be a completely offline process and require no communication with the Bitcoin network.
 
 ###Transaction fees
+> Main article: [[Transaction_fees]]
 Transaction fees may be included with any transfer of Bitcoins. As of 2012 many transactions are processed in a way which makes no charge for the transaction. For transactions which consume or produce many coins (and therefore have a large data size), a small transaction fee is usually expected.
 
 ###Confirmations
+> Main article: [[Confirmation]]
+
 The network's software confirms a transaction when it records it in a block. Further blocks of transactions confirm it even further. After six confirmations/blocks, a transaction is confirmed beyond reasonable doubt.
 
 The network must store the whole transaction history inside the blockchain, which grows constantly as new records are added and never removed. Nakamoto conceived that as the database became larger, users would desire applications for Bitcoin that didn't store the entire database on their computer. To enable this, the network uses this [[Merkle_tree]], the blockchain, to organize the transaction records in such a way that client software can locally delete portions of its own database it knows it will never need, such as earlier transaction records of Bitcoins that have changed ownership multiple times.
@@ -96,6 +85,7 @@ If multiple different software packages, whose usage becomes widespread on the B
 A global, organized campaign against the currency or the software could also influence the demand for bitcoins, and thus the exchange price.
 
 ##Bitcoin mining
+> Main article: [[Mining]]
 
 Bitcoin mining nodes are responsible for managing the Bitcoin network.
 
@@ -119,10 +109,13 @@ In addition to receiving the pending transactions confirmed in the block, a gene
 The network never creates more than a 50&nbsp;BTC reward per block and this amount will decrease over time towards zero, such that no more than 21 million BTC will ever exist. (9.5) As this payout decreases, the incentive for users to run block-generating nodes is intended to change to earning [[transaction fees|#Transaction_fees]].
 
 ###Mining pools
+> Main article: [[Pooled_mining]]
 
 Bitcoin users often pool computational effort to increase the stability of the collected fees and subsidy they receive. (15.1)
 
 ###Mining difficulty
+> Main article: [[Difficulty]]
+
 In order to throttle the creation of blocks, the difficulty of generating new blocks is adjusted over time.  If mining output increases or decreases, the difficulty increases or decreases accordingly.
 
 The adjustment is done by changing the threshold that a hash is required to be less than. A lower threshold means fewer possible hashes can be accepted, and thus a higher degree of difficulty.  The target rate of block generation is one block every 10 minutes, or 2016 blocks every two weeks.  Bitcoin changes the difficulty of finding a valid block every 2016 blocks, using the difficulty that would have been most likely to cause the prior 2016 blocks to have taken two weeks to generate, according to the timestamps on the blocks.  Technically, this is done by modeling the generation of Bitcoins as [[Poisson_process]].  All nodes perform and enforce the same difficulty calculation.
@@ -283,5 +276,3 @@ Matthew Elias, founder of the [[Cryptocurrency_Legal_Advocacy_Group]] (CLAG) pub
 
 
 [[!tag "Digital_currencies"]]
-
-[[pl:Bitcoin]]
