@@ -13,12 +13,12 @@ Internationally, Bitcoins can be exchanged and managed through various websites 
 ##History
 > Main article: [[History]]
 
-A cryptographic system for untraceable payments was first described by David Chaum in 1982. (2.1) In 1990 Chaum extended this system to create the first cryptographic anonymous electronic cash system., (2.2) which became known as [[ecash]].
+A cryptographic system for untraceable payments was first described by David Chaum in 1982. (2.1) In 1990 Chaum extended this system to create the first cryptographic anonymous electronic cash system., (2.2) which became known as ecash.
  (2.3) In 1998 Wei Dai published a description of an anonymous, distributed electronic cash system which he called "b-money". (2.4) Around the same time, Nick Szabo created *bit gold*. (2.5) (2.6) Like Bitcoin, *Bit gold* was a currency system where users would compete to solve a [[proof_of_work]] function, with solutions being cryptographically chained together and published via a distributed property title registry. A variant of *Bit gold*, called *Reusable Proofs of Work*, was implemented by Hal Finney. (2.6)
 
 In 2008, Satoshi Nakamoto published a paper (2.7) (2.8) on The Cryptography Mailing list at metzdowd.com (2.9) describing the Bitcoin protocol.
 
-The Bitcoin network came into existence on 3 January 2009 with the release of the first [[open-source]] Bitcoin client, [[wxBitcoin]], and the issuance of the first Bitcoins. (2.10) (2.11) (2.12)
+The Bitcoin network came into existence on 3 January 2009 with the release of the first Bitcoin client, [[wxBitcoin]], and the issuance of the first Bitcoins. (2.10) (2.11) (2.12)
 A year after, the initial exchange rates for Bitcoin were set by individuals on the bitcointalk forums.[[!template id=citation_needed date="October 2012"]] The most significant transaction involved a 10,000 BTC pizza. (2.13)
 Today, the majority of Bitcoin exchanges occur on the [[MtGox]] Bitcoin exchange.
 
@@ -54,13 +54,13 @@ Transaction fees may be included with any transfer of Bitcoins. As of 2012 many 
 
 The network's software confirms a transaction when it records it in a block. Further blocks of transactions confirm it even further. After six confirmations/blocks, a transaction is confirmed beyond reasonable doubt.
 
-The network must store the whole transaction history inside the blockchain, which grows constantly as new records are added and never removed. Nakamoto conceived that as the database became larger, users would desire applications for Bitcoin that didn't store the entire database on their computer. To enable this, the network uses this [[Merkle_tree]], the blockchain, to organize the transaction records in such a way that client software can locally delete portions of its own database it knows it will never need, such as earlier transaction records of Bitcoins that have changed ownership multiple times.
+The network must store the whole transaction history inside the blockchain, which grows constantly as new records are added and never removed. Nakamoto conceived that as the database became larger, users would desire applications for Bitcoin that didn't store the entire database on their computer. To enable this, the blockchain uses a [[merkle_tree]] to organize the transaction records in such a way that client software can locally delete portions of its own database it knows it will never need, such as earlier transaction records of Bitcoins that have changed ownership multiple times.
 
 ##Economics
 
 ###Initial distribution
 
-Bitcoin has no centralized issuing authority. (9.1) (9.2) (9.3) The network is programmed to increase the money supply as a [[geometric_series]] until the total number of Bitcoins reaches 21 million BTC. (1.1) As of 2012 10 slightly over 10 million of the total 21 million BTC had been created; the current total number created is available online. (9.4) By 2013 half of the total supply will have been generated, and by 2017, three-quarters will have been generated. To ensure sufficient granularity of the [[money_supply]], clients can divide each BTC unit down to eight decimal places (a total of 2.1&nbsp;×&nbsp;10<sup>15</sup> or 2.1 quadrillion units). (9.5)
+Bitcoin has no centralized issuing authority. (9.1) (9.2) (9.3) The network is programmed to increase the money supply as a geometric series until the total number of Bitcoins reaches 21 million BTC. (1.1) As of 2012 10 slightly over 10 million of the total 21 million BTC had been created; the current total number created is available online. (9.4) By 2013 half of the total supply will have been generated, and by 2017, three-quarters will have been generated. To ensure sufficient granularity of the [[money_supply]], clients can divide each BTC unit down to eight decimal places (a total of 2.1&nbsp;×&nbsp;10<sup>15</sup> or 2.1 quadrillion units). (9.5)
 
 The network As of 2012 lc=on required over one million times more work for confirming a block and receiving an award (25 BTC As of 2012 2 lc=on) than when the first blocks were confirmed.
 The difficulty is automatically adjusted every 2016 blocks based on the time taken to find the previous 2016 blocks such that one block is created roughly every 10 minutes.
@@ -71,7 +71,7 @@ Those who chose to put computational and electrical resources toward mining earl
 Prices fluctuate relative to goods and services more than more widely accepted currencies;
 the price of a Bitcoin is not static.
 
-In August 2012, 1 BTC traded at around $10.00 USD. Taking into account the total number of Bitcoins mined, the [[monetary_base]] of the Bitcoin network stands at over 110 million USD. (10.1)
+In August 2012, 1 BTC traded at around $10.00 USD. Taking into account the total number of Bitcoins mined, the monetary base of the Bitcoin network stands at over 110 million USD. (10.1)
 
 ## Security<!--Please keep as starting template-->
 > Main article: [[Weaknesses]]
@@ -89,19 +89,19 @@ A global, organized campaign against the currency or the software could also inf
 
 Bitcoin mining nodes are responsible for managing the Bitcoin network.
 
-Bitcoins are awarded to Bitcoin nodes known as "miners" for the solution to a difficult [[proof-of-work|Proof-of-work_system]] problem which confirms transactions and prevents double-spending. This incentive, as the Nakamoto white paper describes it, encourages "nodes to support the network, and provides a way to initially distribute coins into circulation, since no central authority issues them." (2.7)
+Bitcoins are awarded to Bitcoin nodes known as "miners" for the solution to a difficult [[proof-of-work]] problem which confirms transactions and prevents double-spending. This incentive, as the Nakamoto white paper describes it, encourages "nodes to support the network, and provides a way to initially distribute coins into circulation, since no central authority issues them." (2.7)
 
 Nakamoto compared the generation of new coins by expending CPU time and electricity to gold miners expending resources to add gold to circulation. (2.7)
 
 ###Node operation
 
-The node software for the Bitcoin network is based on [[peer-to-peer networking|peer-to-peer]], [[digital_signature]]s and [[cryptographic proof|zero-knowledge_proof]] to make and verify transactions. Nodes [[broadcast|Broadcasting_(networks)]] [[transactions|Financial_transaction]] to the network, which records them in a public record of all transactions, called the *blockchain*, after validating them with a [[proof-of-work_system]].
+The node software for the Bitcoin network is based on peer-to-peer networking, digital signatures and cryptographic proof to make and verify transactions. Nodes [[broadcast|Broadcasting_(networks)]] [[transactions|Financial_transaction]] to the network, which records them in a public record of all transactions, called the *blockchain*, after validating them with a [[proof-of-work system|proof-of-work]].
 
 Satoshi Nakamoto designed the first Bitcoin node and mining software (13.1) and developed the majority of the first implementation, Bitcoind, from 2007 to mid-2010. (13.2)
 
 Node implementations include core software such as Bitcoind/Bitcoin-Qt, [[libbitcoin]], [[cbitcoin]] (13.3)  and BitCoinJ. (13.4) (13.5)
 
-Every node in the Bitcoin network collects all the unacknowledged transactions it knows of in a file called a *block*, which also contains a reference to the previous valid block known to that node. It then appends a [[nonce|Cryptographic_nonce]] value to this previous block and computes the [[SHA-256]] [[cryptographic hash|Cryptographic_hash_function]] of the block and the appended nonce value. The node repeats this process until it adds a nonce that allows for the generation of a hash with a value lower than a specified *target*. Because computers cannot practically reverse the hash function, finding such a nonce is hard and requires on average a predictable amount of [[repetitious trial and error|Brute-force_search]]. This is where the *proof-of-work* concept comes in to play.  When a node finds such a solution, it announces it to the rest of the network. Peers receiving the new solved block validate it by computing the hash and checking that it really starts with the given number of zero bits (i.e., that the hash is within the target). Then they accept it and add it to the chain.
+Every node in the Bitcoin network collects all the unacknowledged transactions it knows of in a file called a *block*, which also contains a reference to the previous valid block known to that node. It then appends a [[nonce]] value to this previous block and computes the SHA-256 cryptographic hash of the block and the appended nonce value. The node repeats this process until it adds a nonce that allows for the generation of a hash with a value lower than a specified *target*. Because computers cannot practically reverse the hash function, finding such a nonce is hard and requires on average a predictable amount of repetitious trial and error. This is where the *[[proof-of-work]]* concept comes in to play.  When a node finds such a solution, it announces it to the rest of the network. Peers receiving the new solved block validate it by computing the hash and checking that it really starts with the given number of zero bits (i.e., that the hash is within the target). Then they accept it and add it to the chain.
 
 ###Mining rewards
 In addition to receiving the pending transactions confirmed in the block, a generating node adds a *generate* transaction, which awards new Bitcoins to the operator of the node that generated the block. The system sets the payout of this generated transaction according to its defined inflation schedule.  The miner that generates a block also receives the fees that users have paid as an incentive to give particular transactions priority for faster confirmation.
@@ -118,7 +118,7 @@ Bitcoin users often pool computational effort to increase the stability of the c
 
 In order to throttle the creation of blocks, the difficulty of generating new blocks is adjusted over time.  If mining output increases or decreases, the difficulty increases or decreases accordingly.
 
-The adjustment is done by changing the threshold that a hash is required to be less than. A lower threshold means fewer possible hashes can be accepted, and thus a higher degree of difficulty.  The target rate of block generation is one block every 10 minutes, or 2016 blocks every two weeks.  Bitcoin changes the difficulty of finding a valid block every 2016 blocks, using the difficulty that would have been most likely to cause the prior 2016 blocks to have taken two weeks to generate, according to the timestamps on the blocks.  Technically, this is done by modeling the generation of Bitcoins as [[Poisson_process]].  All nodes perform and enforce the same difficulty calculation.
+The adjustment is done by changing the threshold that a hash is required to be less than. A lower threshold means fewer possible hashes can be accepted, and thus a higher degree of difficulty.  The target rate of block generation is one block every 10 minutes, or 2016 blocks every two weeks.  Bitcoin changes the difficulty of finding a valid block every 2016 blocks, using the difficulty that would have been most likely to cause the prior 2016 blocks to have taken two weeks to generate, according to the timestamps on the blocks.  Technically, this is done by modeling the generation of Bitcoins as Poisson process.  All nodes perform and enforce the same difficulty calculation.
 
 Difficulty is intended as an automatic stabilizer allowing mining for Bitcoins to remain profitable in the long run for the most efficient miners, independently of the fluctuations in demand of Bitcoin in relation to other currencies.
 
@@ -130,7 +130,7 @@ Bitcoins used to be mined through Intel/AMD CPUs. As of   2012, mining has gradu
 ##Concerns
 
 ###As an investment
-Bitcoin describes itself as an experimental digital currency. Reuben Grinberg has noted that Bitcoin's supporters have argued that Bitcoin is neither a security or an investment because it fails to meet the criteria for either category. (19.1)  Although it is a virtual currency, some people see it as an investment (19.2) or accuse it of being a form of investment fraud known as a [[Ponzi_scheme]]. (19.3) (19.4) A report by the [[European_Central_Bank]], using the [[U.S._Securities_and_Exchange_Commission]]'s definition of a Ponzi scheme, found that the use of bitcoins shares some characteristics with Ponzi schemes, but also has characteristics of its own which contradict several common aspects of Ponzi schemes. (19.5)
+Bitcoin describes itself as an experimental digital currency. Reuben Grinberg has noted that Bitcoin's supporters have argued that Bitcoin is neither a security or an investment because it fails to meet the criteria for either category. (19.1)  Although it is a virtual currency, some people see it as an investment (19.2) or accuse it of being a form of investment fraud known as a Ponzi scheme. (19.3) (19.4) A report by the European Central Bank, using the U.S. Securities and Exchange Commission's definition of a Ponzi scheme, found that the use of bitcoins shares some characteristics with Ponzi schemes, but also has characteristics of its own which contradict several common aspects of Ponzi schemes. (19.5)
 
 ###Privacy
 Because transactions are broadcast to the entire network, they are inherently public. Unlike regular banking, (20.1) which preserves customer privacy by keeping transaction records private, loose transactional privacy is accomplished in Bitcoin by using many unique addresses for every wallet, while at the same time publishing all transactions. As an example, if Alice sends 123.45 BTC to Bob, the network creates a public record that allows anyone to see that 123.45 has been sent from one address to another. However, unless Alice or Bob make their ownership of these addresses known, it is difficult for anyone else to connect the transaction with them. However, if someone connects an address to a user at any point they could follow back a series of transactions as each participant likely knows who paid them and may disclose that information on request or under duress.
@@ -139,16 +139,17 @@ It can be difficult to associate Bitcoin identities with real-life identities. (
 
 ###Illicit use
 
-####Hacktivism
-The hacking organization "[[LulzSec]]" accepted donations in Bitcoin, having said that the group "needs Bitcoin donations to continue their hacking efforts". (22.1) (22.2)
+####Cracking
+The cracking organization "LulzSec" accepted donations in Bitcoin, having said that the group "needs Bitcoin donations to continue their hacking efforts". (22.1) (22.2)
 
 ####Silk Road
-[[Silk Road|Silk_Road_(anonymous_marketplace)]] is an anonymous [[black_market]] that uses only the Bitcoin. (23.1) 
+[[Silk_Road]] is an anonymous black market that uses only the Bitcoin. (23.1) 
 
-In a 2011 letter to Attorney General Eric Holder and the Drug Enforcement Administration, senators [[Charles_Schumer]] of New York and [[Joe_Manchin]] of West Virginia called for an investigation into Silk Road and the Bitcoin. (23.1) Schumer described the use of Bitcoins at Silk Road as a form of [[money_laundering]]. (9.1)
+In a 2011 letter to Attorney General Eric Holder and the Drug Enforcement Administration, senators Charles Schumer of New York and Joe Manchin of West Virginia called for an investigation into Silk Road and the Bitcoin. (23.1)
+Schumer described the use of Bitcoins at Silk Road as a form of money laundering. (9.1)
 
 ####Botnet mining
-In June 2011, [[Symantec]] warned about the possibility of [[botnet]]s engaging in covert "mining" of Bitcoins, (24.1) (24.2) consuming computing cycles, using extra electricity and possibly increasing the temperature of the computer. Later that month, the [[Australian_Broadcasting_Corporation]] caught an employee using the company's servers to generate Bitcoins without permission. (24.3) Some malware also uses the [[parallel processing|parallel_computing]] capabilities of the [[GPU]]s built into many modern-day [[video_card]]s. (24.4) In mid August 2011, Bitcoin miner botnets were found; (24.5) trojans infecting Mac OS X have also been uncovered. (24.6)
+In June 2011, Symantec warned about the possibility of botnets engaging in covert "mining" of Bitcoins, (24.1) (24.2) consuming computing cycles, using extra electricity and possibly increasing the temperature of the computer. Later that month, the Australian Broadcasting Corporation caught an employee using the company's servers to generate Bitcoins without permission. (24.3) Some malware also uses the parallel processing capabilities of the GPUs built into many modern-day video cards. (24.4) In mid August 2011, Bitcoin miner botnets were found; (24.5) trojans infecting Mac OS X have also been uncovered. (24.6)
 
 ###Theft and fraud
 On 19 June 2011, a security breach of the Mt.Gox (an acronym for *M*agic: *T*he *G*athering *O*nline E*x*change, its original purpose) Bitcoin Exchange caused the price of a Bitcoin to briefly drop to US$0.01 on the Mt.Gox exchange (though it remained unaffected on other exchanges) after a hacker allegedly used credentials from a Mt.Gox auditor's compromised computer to illegally transfer a large number of Bitcoins to him- or herself and sell them all, creating a massive "ask" order at any price. Within minutes the price rebounded to over $15 before Mt.Gox shut down their exchange and canceled all trades that happened during the hacking period. (25.1) (25.2) The exchange rate of Bitcoins quickly returned to near pre-crash values. (25.3) (25.4) (25.5) (25.6) Accounts with the equivalent of more than USD 8,750,000 were affected. (25.3)
@@ -159,16 +160,16 @@ In August 2011, MyBitcoin, one of popular Bitcoin transaction processors, declar
 
 In early August 2012, a lawsuit was filed in San Francisco court against Bitcoinica, claiming about 460,000 USD from the company. Bitcoinica was hacked twice in 2012, which led to allegations of neglecting the safety of customers' money and cheating them out of withdrawal requests. (25.10) (25.11)
 
-In late August 2012, Bitcoin Savings and Trust was shut down by the owner, allegedly leaving around $5.6 million in debts; this led to allegations of the operation being a [[Ponzi_scheme]]. (25.12) (25.13) (25.14) (25.15) In September 2012, it was reported that [[U.S._Securities_and_Exchange_Commission]] has started an investigation on the case. (25.16)
+In late August 2012, Bitcoin Savings and Trust was shut down by the owner, allegedly leaving around $5.6 million in debts; this led to allegations of the operation being a Ponzi scheme. (25.12) (25.13) (25.14) (25.15) In September 2012, it was reported that U.S. Securities and Exchange Commission has started an investigation on the case. (25.16)
 
 In September 2012, Bitfloor Bitcoin exchange also reported being hacked, with 24,000 BitCoins (roughly equivalent to 250,000 USD) stolen. As a result, Bitfloor suspended operations. (25.17) (25.18) The same month, Bitfloor resumed operations, with its founder saying that he reported the theft to FBI, and that he is planning to repay the victims, though the time frame for such repayment is unclear. (25.19)
 
 ###Taxation
-In September 2012, the [[Intra-European_Organization_of_Tax_Administrations]] (IOTA), in [[Tbilisi]], Georgia, held a workshop titled "Auditing Individuals and Legal Entities in the Use of e-Money." The workshop was attended by representatives from 23 countries. (26.1)  [[Jerry_Taylor]], IOTA's technical taxation expert, said, "There's an awful lot happening on the Internet environment which is fascinating at the moment and introducing new challenges for auditors when it comes to virtual currency." (26.2)  Bitcoin was mentioned during the workshop. (26.3)  
+In September 2012, the Intra-European Organization of Tax Administrations (IOTA), in Tbilisi, Georgia, held a workshop titled "Auditing Individuals and Legal Entities in the Use of e-Money." The workshop was attended by representatives from 23 countries. (26.1)  Jerry Taylor, IOTA's technical taxation expert, said, "There's an awful lot happening on the Internet environment which is fascinating at the moment and introducing new challenges for auditors when it comes to virtual currency." (26.2)  Bitcoin was mentioned during the workshop. (26.3)  
 
 Matthew Elias, founder of the [[Cryptocurrency_Legal_Advocacy_Group]] (CLAG) published "Staying Between the Lines: A Survey of U.S. Income Taxation and its Ramifications on Cryptocurrencies", which discusses "the taxability of cryptocurrencies such as bitcoin." (26.4)  CLAG "stressed the importance for taxpayers to determine on their own whether taxes are due on a bitcoin-related transaction based on whether one has "experienced a realization event." (26.5)  Such examples are "when a taxpayer has provided a service in exchange for bitcoins, a realization event has probably occurred, and any gain or loss would likely be calculated using fair market values for the service provided." (26.6)
 
-[[Peter_Vessenes]], [[Bitcoin Foundation's|Bitcoin_Foundation]] executive director, said, since the foundation is trying to pay for everything in bitcoin, including salaries, "How do we [[W-2|Form_W-2]] someone for their bitcoins? Do we [[mark-to-market]] every time a transfer happens? Payroll companies cringe." (26.7)  The Bitcoin Foundation hopes "to push for solid guidance about its legal and tax treatment." [[Patrick_Murck]], legal counsel for the Bitcoin Foundation, said he would like "to help regulators understand the technology better so they can make better decisions." (26.8) Murck said, "Bitcoin has the potential to become much more than a niche currency, but it needs the guidance and understanding of regulators." and "The full potential of bitcoin could be realized through clearer guidelines and a better understanding by financial and tax regulators." and "Part of making that happen is to talk to regulators, the [[IRS]], and tax professionals and helping them understand that bitcoin is not this nefarious thing, it's just software, it's a community, and there's nothing inherently nefarious about either of those things." (26.9)
+[[Peter_Vessenes]], [[Bitcoin Foundation's|Bitcoin_Foundation]] executive director, said, since the foundation is trying to pay for everything in bitcoin, including salaries, "How do we W-2 someone for their bitcoins? Do we mark-to-market every time a transfer happens? Payroll companies cringe." (26.7)  The Bitcoin Foundation hopes "to push for solid guidance about its legal and tax treatment." [[Patrick_Murck]], legal counsel for the Bitcoin Foundation, said he would like "to help regulators understand the technology better so they can make better decisions." (26.8) Murck said, "Bitcoin has the potential to become much more than a niche currency, but it needs the guidance and understanding of regulators." and "The full potential of bitcoin could be realized through clearer guidelines and a better understanding by financial and tax regulators." and "Part of making that happen is to talk to regulators, the IRS, and tax professionals and helping them understand that bitcoin is not this nefarious thing, it's just software, it's a community, and there's nothing inherently nefarious about either of those things." (26.9)
 
 ##See Also
 
