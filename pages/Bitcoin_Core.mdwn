@@ -1,10 +1,20 @@
-**Bitcoin-Qt** is an MIT-licenced Qt4 Bitcoin client written and maintained by Wladimir J. van der Laan, and has been distributed together with [[bitcoind]] since version 0.5.
+**Bitcoin-Qt** is the first [[Bitcoin]] client, developed by [[Satoshi_Nakamoto]] under its original name Bitcoind. (1.1) (1.2) (1.3)
+
+The Bitcoin-Qt [[GUI]] was initially designed by Wladimir J. van der Laan. It is now maintained by the contributing [[developers]] of Bitcoind, which it has been bundled in since version 0.5. (1.4)
+
+##History
+
+Historically, Bitcoin-Qt supported the mining of the Bitcoin currency; however, this feature has been since redacted due to increased computing requirements and the obsolence of regular CPU power. 
+
+Currently, Bitcoin-Qt can used as a desktop client for regular payments or as a server utility for merchants and other payment services. 
+
+###Current version
+Source code (and build instructions for supported platforms) can be found at the [Bitcoin GitHub page](https://github.com/bitcoin/bitcoin).
 
 ##Features
 
 * Compatibility with Linux (both GNOME and KDE), Mac OS X and Windows
 * All functionality of the original wxWidgets client
-* User friendly, tabbed interface
 * Asks for confirmation before sending coins
 * CSV export of transactions
 * Clearer transaction list with status icons and real-time filtering
@@ -14,8 +24,8 @@
 * Multiple [[unit|Units]] support, can show subdivided bitcoins (mBTC, µBTC) for users that like large numbers (only decimal units)
 * Splash screen that details progress
 
-##Current version
-Source code (and build instructions for supported platforms) can be found at the [Bitcoin GitHub page](https://github.com/bitcoin/bitcoin).
+##Criticism
+Bitcoin-Qt is often criticized for being slow in downloading and verifying the Bitcoin transaction database (often called the Blockchain). 
 
 ##External Links
 
@@ -33,3 +43,7 @@ Source code (and build instructions for supported platforms) can be found at the
 [[!tag "Frontends"]]
 [[!tag "Free_Software"]]
 [[!tag "Open_Source"]]
+1.1: [Bitcoin Client Software](http://bitcoin.org/clients.html) Bitcoin.org Quote: The original software written by Satoshi Nakamoto, the project's founder.  
+1.2: http://gavintech.blogspot.co.uk/2012/03/full-disclosure-bitcoin-qt-on-windows.html, Full disclosure: Bitcoin-Qt on Windows vulnerability, 21st October 2012  
+1.3: http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-4682, Vulnerability Summary for CVE-2012-4682, 21st October 2012  
+1.4: [Bitcoin-Qt/Bitcoind Releases](http://bitcoin.org/news.html) Bitcoin.org
