@@ -1,29 +1,170 @@
-[[Bitcoin]] is a decentralized [[digital_currency]] invented by programmer [[Satoshi_Nakamoto]], who also developed the [[Original_Bitcoin_client]]. It allows for pseudonymous and secure ownership and transfers of amounts of bitcoins, without relying on any central server to process the transactions or store the accounts.
 
-Bitcoin is currently accepted in exchange for other currencies, such as dollars and euros, as well as directly for services and tangible goods.
+**Bitcoin** ([[sign|currency_sign]]: **฿**; [[abbrv|abbreviation]]: **BTC**) is a decentralized [[digital_currency]] created by the [[pseudonymous]] entity Satoshi Nakamoto. It is subdivided into 100-million smaller units called satoshis. (1.1)
 
-##History
+It is the most widely used [[alternative_currency]], (1.2) with the total market cap at over 100 million [[US_dollars]]. (1.3) (1.4) (1.5) 
+
+Bitcoin has no central issuer; instead, the [[peer-to-peer]] network regulates Bitcoins' balances, transactions and issuance according to consensus in network software. Bitcoins are issued to various nodes that verify transactions through computing power; it is established that there will be a limited and scheduled release of no more than 21 million coins, which will be fully issued by the year 2140. (1.6)
+
+Internationally, Bitcoins can be exchanged and managed through various [[websites]] and [[software]] along with physical [[banknotes]] and [[coins]]. (1.7) (1.8)
+[[!img "Bitcoin-coin2.jpg" size=120x120 class="right" size=150x150 title="Physical 1-BTC Casascius Coin with public key shown"]]
+
+## {{AnchorDeveloper}} History
 > Main article: [[History_of_Bitcoin]]
 
-The first mention of the concept of cryptocurrency is said to have been made in 1998 by Wei Dai on the cypherpunks mailing list, and Bitcoin can trace its origin to the [[B-money_Proposal]].  Related to this is the more recent [[Bit_Gold_proposal]] by Nick Szabo.
+A cryptographic system for untraceable payments was first described by David Chaum in 1982. (2.1) In 1990 Chaum extended this system to create the first cryptographic anonymous electronic cash system., (2.2) which became known as [[ecash]].
+ (2.3) In 1998 Wei Dai published a description of an anonymous, distributed electronic cash system which he called "b-money". (2.4) Around the same time, Nick Szabo created *bit gold*. (2.5) (2.6) Like Bitcoin, *Bit gold* was a currency system where users would compete to solve a [[proof_of_work]] function, with solutions being cryptographically chained together and published via a distributed property title registry. A variant of *Bit gold*, called *Reusable Proofs of Work*, was implemented by Hal Finney. (2.6)
 
-The paper [[Bitcoin: A Peer-to-Peer Electronic Cash System]] describes the early concepts behind Bitcoin (2.1) and and precedes the first release of Bitcoin software.
+In 2008, Satoshi Nakamoto published a paper (2.7) (2.8) on The Cryptography Mailing list at metzdowd.com (2.9) describing the Bitcoin protocol.
 
-The Bitcoin project was registered on November 9th, 2008. The Bitcoin network started up on January 3rd, 2009 with the [[genesis_block]]. The genesis block contains a media reference to the dealings of a central banker in the UK.
+The Bitcoin network came into existence on 3 January 2009 with the release of the first [[open-source]] Bitcoin client, [[Bitcoind]], and the issuance of the first Bitcoins. (2.10) (2.11) (2.12) A year after, the initial exchange rates for Bitcoin were set by individuals on the bitcointalk forums.[[!template id=citation_needed date="October 2012"]] The most significant transaction involved a 10,000 BTC pizza. (2.13) Today, the majority of Bitcoin exchanges occur on the Mt. Gox Bitcoin exchange. (1.5)
 
-On February 9, 2011, and for a few days afterwards, Bitcoin sold for over $1 in most exchanges.
+In 2011, [[Wikileaks]], (2.14) [[Freenet]], (2.15) [[Singularity_Institute]], (2.16) [[Internet_Archive]], (2.17) [[Free_Software_Foundation]] (2.18) and others, began to accept donations in Bitcoin. The [[Electronic_Frontier_Foundation]] did so for a while but has since stopped, citing concerns about a lack of legal precedent about new currency systems, and because they "generally don't endorse any type of product or service." (2.19) Some small businesses had started to adopt Bitcoin. [[LaCie]], a public company, accepts Bitcoin for its [[Wuala]] service. (2.20)
 
-##Security
+In 2012, BitPay reports of having over 1000 merchants accepting Bitcoin under its payment processing service. (2.21)
 
-> Main article: [[Weaknesses]]
+##Administration
+Bitcoin is administered through a [[decentralized]] [[peer-to-peer]] network. (2.7) Cryptographic technologies and the [[peer-to-peer]] network of computing power enables users to make and verify irreversible, instant online Bitcoin payments, without an obligation to trust and use centralized banking institutions and authorities. [[Dispute_resolution]] services are not made directly available. Instead it is left to the users to verify and trust the parties they are sending money to through their choice of methods. 
 
-In the history of bitcoin, there have been a few [[incidents]], caused by problematic as well as malicious transactions. In the worst such incident, and the only one of its type, a person was able to pretend that he had a practically infinite supply of bitcoins, for almost 9 hours.
+Bitcoins are issued according to rules agreed to by the majority of the computing power within the Bitcoin network. The core rules describing the predictable issuance of Bitcoins to its verifying servers, a voluntary and competitive transaction fee system and the hard limit of no more than 21 million Bitcoins issued in total. (2.7)
 
-Bitcoin relies, among other things, on [public key cryptography](http://en.wikipedia.org/wiki/Public-key_cryptography) and thus may be vulnerable to [quantum computing attacks](http://en.wikipedia.org/wiki/Elliptic_curve_cryptography#Quantum_computing_attacks) if and when practical quantum computers can be constructed.
+Bitcoin does not require a [[central_bank]], [[state|Sovereign_state]], (3.1) or [[corporate-backer|Private_currency]].
 
-If multiple different software packages, whose usage becomes widespread on the Bitcoin network, disagree on the protocol and the rules for transactions, this could potentially cause a fork in the block chain, with each faction of users being able to accept only their own version of the history of transactions. This could influence the price of bitcoins.
+## {{AnchorClient}} Services
 
-A global, organized campaign against the currency or the software could also influence the demand for bitcoins, and thus the exchange price.
+Bitcoins are sent and received through software and websites called wallets. They send and confirm transactions to the network through Bitcoin addresses, the identifiers for users' Bitcoin wallets within the network. (2.7)
+
+
+
+|Name|Website|[[Software_license]]
+|---|---|---
+|[[Armory_(client)]]|http://bitcoinarmory.com|[[!template id=free [[Affero General Public License AGPL]]]]
+|[[Bitcoin-Qt]]|http://sourceforge.net/projects/bitcoin/|[[!template id=free [[MIT License MIT]]]]
+|[[Coinbase]]|http://coinbase.com|[[Proprietary|Proprietary_software]]
+|[[Electrum_(client)]]|http://electrum.ecdsa.org/|[[!template id=free [[General Public License GPL]]]]
+|[[Flexcoin]]|http://flexcoin.com|[[Proprietary|Proprietary_software]]
+|[[Instawallet]]|http://instawallet.org|[[Proprietary|Proprietary_software]]
+|[[Multibit]]|http://multibit.org/|[[!template id=free [[MIT License MIT]]]]
+|[[My_Wallet]]|https://blockchain.info/wallet|[[Proprietary|Proprietary_software]]
+
+
+
+###Bitcoin addresses
+Payments are made to Bitcoin "addresses": human-readable strings of numbers and letters around 33 characters in length, always beginning with the digit 1 or 3, as in the example of<!-- Do not change this intentionally invalid address. Address chosen by consensus (see [[Talk:Bitcoin]]), it is SHA1("Bitcoin") in base58 with an invalid checksum character added --> *175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W*.
+
+Users obtain new Bitcoin addresses from their Bitcoin software. Creating a new address can be a completely offline process and require no communication with the Bitcoin network.
+
+###Transaction fees
+Transaction fees may be included with any transfer of Bitcoins. As of 2012 many transactions are processed in a way which makes no charge for the transaction. For transactions which draw coins from many Bitcoin addresses and therefore have a large data size, a small transaction fee is usually expected.
+
+###Confirmations
+The network's software confirms a transaction when it records it in a block. Further blocks of transactions confirm it even further. After six confirmations/blocks, a transaction is confirmed beyond reasonable doubt.
+
+The network must store the whole transaction history inside the blockchain, which grows constantly as new records are added and never removed. Nakamoto conceived that as the database became larger, users would desire applications for Bitcoin that didn't store the entire database on their computer. To enable this, the network uses this [[Merkle_tree]], the blockchain, to organize the transaction records in such a way that client software can locally delete portions of its own database it knows it will never need, such as earlier transaction records of Bitcoins that have changed ownership multiple times.
+
+## {{AnchorCurrency}} Economics
+
+###Initial distribution
+[[!img "Total_bitcoins_over_time.png" size=120x120 class="right" size=300x300 title="Total bitcoins over time"]]
+
+Unlike [[fiat_currency]], Bitcoin has no centralized issuing authority. (9.1) (9.2) (9.3) The network is programmed to increase the money supply as a [[geometric_series]] until the total number of Bitcoins reaches 21 million BTC. (1.2) As of 2012 10 slightly over 10 million of the total 21 million BTC had been created; the current total number created is available online. (9.4) By 2013 half of the total supply will have been generated, and by 2017, three-quarters will have been generated. To ensure sufficient granularity of the [[money_supply]], clients can divide each BTC unit down to eight decimal places (a total of 2.1&nbsp;×&nbsp;10<sup>15</sup> or 2.1 quadrillion units). (9.5)
+
+The network As of 2012 lc=on required over one million times more work for confirming a block and receiving an award (50 BTC As of 2012 2 lc=on) than when the first blocks were confirmed. (9.6)
+The network adjusts the difficulty every 2016 blocks based on the time taken to find the previous 2016 blocks such that one block is created roughly every 10 minutes.
+
+Those who chose to put computational and electrical resources toward mining early on had a greater chance at receiving awards for block generations. This served to make available enough processing power to process blocks. Indeed, without miners there are no transactions and the Bitcoin economy comes to a halt.
+
+###Exchange rate
+[[!img "Bitcoin_exchange.png" size=120x120 class="right" size=500x500 title="alt=graph showing a peak around June 2011" title="The exchange rate for 1 BTC in USD on MtGox exchange"]]
+Prices fluctuate relative to goods and services more than more widely accepted currencies; the price of a Bitcoin is not [[sticky|Sticky_(economics)]].
+
+In August 2012, 1 BTC traded at around $10.00 USD. Taking into account the total number of Bitcoins mined, the [[monetary_base]] of the Bitcoin network stands at over 110 million USD. (10.1)
+
+## Security<!--Please keep as starting template-->
+[[!template id=expand_section date="October 2012"]]
+
+Bitcoin uses numerous methods to prevent [[denial-of-service_attack]]s or other types of network compromise.
+
+## {{AnchorNetwork}} Bitcoin mining
+
+Bitcoin mining nodes are responsible for managing the Bitcoin network.
+
+Bitcoins are awarded to Bitcoin nodes known as "miners" for the solution to a difficult [[proof-of-work|Proof-of-work_system]] problem which confirms transactions and prevents double-spending. This incentive, as the Nakamoto white paper describes it, encourages "nodes to support the network, and provides a way to initially distribute coins into circulation, since no central authority issues them." (2.7)
+
+Nakamoto compared the generation of new coins by expending CPU time and electricity to gold miners expending resources to add gold to circulation. (2.7)
+
+###Mining and node operation
+
+The mining and node software for the Bitcoin network is based on [[peer-to-peer networking|peer-to-peer]], [[digital_signature]]s and [[cryptographic proof|zero-knowledge_proof]] to make and verify transactions. Nodes [[broadcast|Broadcasting_(networks)]] [[transactions|Financial_transaction]] to the network, which records them in a public record of all transactions, called the *blockchain*, after validating them with a [[proof-of-work_system]].
+
+Satoshi Nakamoto designed the first Bitcoin node and mining software (13.1) and developed the majority of the first implementation, Bitcoind, from 2007 to mid-2010. (13.2)
+
+Mining and node implementations include core software such as Bitcoind/Bitcoin-Qt, [[libbitcoin]], [[cbitcoin]] (13.3)  and BitCoinJ. (13.4) (13.5)
+
+Every node in the Bitcoin network collects all the unacknowledged transactions it knows of in a file called a *block*, which also contains a reference to the previous valid block known to that node. It then appends a [[nonce|Cryptographic_nonce]] value to this previous block and computes the [[SHA-256]] [[cryptographic hash|Cryptographic_hash_function]] of the block and the appended nonce value. The node repeats this process until it adds a nonce that allows for the generation of a hash with a value lower than a specified *target*. Because computers cannot practically reverse the hash function, finding such a nonce is hard and requires on average a predictable amount of [[repetitious trial and error|Brute-force_search]]. This is where the *proof-of-work* concept comes in to play.  When a node finds such a solution, it announces it to the rest of the network. Peers receiving the new solved block validate it by computing the hash and checking that it really starts with the given number of zero bits (i.e., that the hash is within the target). Then they accept it and add it to the chain.
+
+###Mining rewards
+In addition to receiving the pending transactions confirmed in the block, a generating node adds a *generate* transaction, which awards new Bitcoins to the operator of the node that generated the block. The system sets the payout of this generated transaction according to its defined inflation schedule.  The miner that generates a block also receives the fees that users have paid as an incentive to give particular transactions priority for faster confirmation.
+
+The network never creates more than a 50&nbsp;BTC reward per block and this amount will decrease over time towards zero, such that no more than 21 million will ever exist. (9.5) As this payout decreases, the incentive for users to run block-generating nodes is intended to change to earning [[transaction fees|#Transaction_fees]].
+
+###Mining pools
+
+Bitcoin users often pool computational effort to increase the stability of the collected fees and subsidy they receive. (15.1)
+
+###Mining difficulty
+In order to throttle the creation of blocks, the difficulty of generating new blocks is adjusted over time.  If mining output increases or decreases, the difficulty increases or decreases accordingly.
+
+The adjustment is done by changing the threshold that a hash is required to be less than. A lower threshold means fewer possible hashes can be accepted, and thus a higher degree of difficulty.  The target rate of block generation is one block every 10 minutes, or 2016 blocks every two weeks.  Bitcoin changes the difficulty of finding a valid block every 2016 blocks, using the difficulty that would have been most likely to cause the prior 2016 blocks to have taken two weeks to generate, according to the timestamps on the blocks.  Technically, this is done by modeling the generation of Bitcoins as [[Poisson_process]].  All nodes perform and enforce the same difficulty calculation.
+
+Difficulty is intended as an automatic stabilizer allowing mining for Bitcoins to remain profitable in the long run for the most efficient miners, independently of the fluctuations in demand of Bitcoin in relation to other currencies.
+
+###Mining hardware
+[[!template id=expand_section date="October 2012"]]
+
+Bitcoins used to be mined through Intel/AMD CPUs. As of   2012, mining has gradually moved to [[GPU]] and [[FPGA]] hardware. [[ASIC|Application-specific_integrated_circuit]]-based hardware for Bitcoin mining has been announced by several manufacturers who intend to ship products from late 2012 to early 2013. (17.1)
+
+##Concerns
+
+###As an investment
+Bitcoin describes itself as an experimental digital currency. Reuben Grinberg has noted that Bitcoin's supporters have argued that Bitcoin is neither a security or an investment because it fails to meet the criteria for either category. (19.1)  Although it is a virtual currency, some people see it as an investment (19.2) or accuse it of being a form of investment fraud known as a [[Ponzi_scheme]]. (19.3) (19.4) A report by the [[European_Central_Bank]], using the [[U.S._Securities_and_Exchange_Commission]]'s definition of a Ponzi scheme, found that the use of bitcoins shares some characteristics with Ponzi schemes, but also has characteristics of its own which contradict several common aspects of Ponzi schemes. (19.5)
+
+###Privacy
+Because transactions are broadcast to the entire network, they are inherently public. Unlike regular banking, (20.1) which preserves customer privacy by keeping transaction records private, loose transactional privacy is accomplished in Bitcoin by using many unique addresses for every wallet, while at the same time publishing all transactions. As an example, if Alice sends 123.45 BTC to Bob, the network creates a public record that allows anyone to see that 123.45 has been sent from one address to another. However, unless Alice or Bob make their ownership of these addresses known, it is difficult for anyone else to connect the transaction with them. However, if someone connects an address to a user at any point they could follow back a series of transactions as each participant likely knows who paid them and may disclose that information on request or under duress.
+
+It can be difficult to associate Bitcoin identities with real-life identities. (20.2) This property makes Bitcoin transactions attractive to sellers of illegal products. (20.3) (20.4)
+
+###Illicit use
+
+####Hacktivism
+The hacking organization "[[LulzSec]]" accepted donations in Bitcoin, having said that the group "needs Bitcoin donations to continue their hacking efforts". (22.1) (22.2)
+
+####Silk Road
+[[Silk Road|Silk_Road_(anonymous_marketplace)]] is an anonymous [[black_market]] that uses only the Bitcoin. (23.1) 
+
+In a 2011 letter to Attorney General Eric Holder and the Drug Enforcement Administration, senators [[Charles_Schumer]] of New York and [[Joe_Manchin]] of West Virginia called for an investigation into Silk Road and the Bitcoin. (23.1) Schumer described the use of Bitcoins at Silk Road as a form of [[money_laundering]]. (9.1)
+
+####Botnet mining
+In June 2011, [[Symantec]] warned about the possibility of [[botnet]]s engaging in covert "mining" of Bitcoins, (24.1) (24.2) consuming computing cycles, using extra electricity and possibly increasing the temperature of the computer. Later that month, the [[Australian_Broadcasting_Corporation]] caught an employee using the company's servers to generate Bitcoins without permission. (24.3) Some malware also uses the [[parallel processing|parallel_computing]] capabilities of the [[GPU]]s built into many modern-day [[video_card]]s. (24.4) In mid August 2011, Bitcoin miner botnets were found; (24.5) trojans infecting Mac OS X have also been uncovered. (24.6)
+
+###Theft and fraud
+On 19 June 2011, a security breach of the Mt.Gox (an acronym for *M*agic: *T*he *G*athering *O*nline E*x*change, its original purpose) Bitcoin Exchange caused the price of a Bitcoin to briefly drop to US$0.01 on the Mt.Gox exchange (though it remained unaffected on other exchanges) after a hacker allegedly used credentials from a Mt.Gox auditor's compromised computer to illegally transfer a large number of Bitcoins to him- or herself and sell them all, creating a massive "ask" order at any price. Within minutes the price rebounded to over $15 before Mt.Gox shut down their exchange and canceled all trades that happened during the hacking period. (25.1) (25.2) The exchange rate of Bitcoins quickly returned to near pre-crash values. (25.3) (25.4) (25.5) (25.6) Accounts with the equivalent of more than USD 8,750,000 were affected. (25.3)
+
+In July 2011, The operator of Bitomat, the third largest Bitcoin exchange, announced that he lost access to his wallet.dat file with about 17,000 BitCoins (roughly equivalent to 220,000 USD at that time). He announced that he would sell the service for the missing amount, aiming to use funds from the sale to refund his customers. (25.7)
+
+In August 2011, MyBitcoin, one of popular Bitcoin transaction processors, declared that it was hacked, which resulted in it being shut down, with paying 49% on customer deposits, leaving more than 78,000 BitCoins (roughly equivalent to 800,000 USD at that time) unaccounted for. (25.8) (25.9)
+
+In early August 2012, a lawsuit was filed in San Francisco court against Bitcoinica, claiming about 460,000 USD from the company. Bitcoinica was hacked twice in 2012, which led to allegations of neglecting the safety of customers' money and cheating them out of withdrawal requests. (25.10) (25.11)
+
+In late August 2012, Bitcoin Savings and Trust was shut down by the owner, allegedly leaving around $5.6 million in debts; this led to allegations of the operation being a [[Ponzi_scheme]]. (25.12) (25.13) (25.14) (25.15) In September 2012, it was reported that [[U.S._Securities_and_Exchange_Commission]] has started an investigation on the case. (25.16)
+
+In September 2012, Bitfloor Bitcoin exchange also reported being hacked, with 24,000 BitCoins (roughly equivalent to 250,000 USD) stolen. As a result, Bitfloor suspended operations. (25.17) (25.18) The same month, Bitfloor resumed operations, with its founder saying that he reported the theft to FBI, and that he is planning to repay the victims, though the time frame for such repayment is unclear. (25.19)
+
+###Taxation
+In September 2012, the [[Intra-European_Organization_of_Tax_Administrations]] (IOTA), in [[Tbilisi]], Georgia, held a workshop titled "Auditing Individuals and Legal Entities in the Use of e-Money." The workshop was attended by representatives from 23 countries. (26.1)  [[Jerry_Taylor]], IOTA's technical taxation expert, said, "There's an awful lot happening on the Internet environment which is fascinating at the moment and introducing new challenges for auditors when it comes to virtual currency." (26.2)  Bitcoin was mentioned during the workshop. (26.3)  
+
+Matthew Elias, founder of the [[Cryptocurrency_Legal_Advocacy_Group]] (CLAG) published "Staying Between the Lines: A Survey of U.S. Income Taxation and its Ramifications on Cryptocurrencies", which discusses "the taxability of cryptocurrencies such as bitcoin." (26.4)  CLAG "stressed the importance for taxpayers to determine on their own whether taxes are due on a bitcoin-related transaction based on whether one has "experienced a realization event." (26.5)  Such examples are "when a taxpayer has provided a service in exchange for bitcoins, a realization event has probably occurred, and any gain or loss would likely be calculated using fair market values for the service provided." (26.6)
+
+[[Peter_Vessenes]], [[Bitcoin Foundation's|Bitcoin_Foundation]] executive director, said, since the foundation is trying to pay for everything in bitcoin, including salaries, "How do we [[W-2|Form_W-2]] someone for their bitcoins? Do we [[mark-to-market]] every time a transfer happens? Payroll companies cringe." (26.7)  The Bitcoin Foundation hopes "to push for solid guidance about its legal and tax treatment." [[Patrick_Murck]], legal counsel for the Bitcoin Foundation, said he would like "to help regulators understand the technology better so they can make better decisions." (26.8) Murck said, "Bitcoin has the potential to become much more than a niche currency, but it needs the guidance and understanding of regulators." and "The full potential of bitcoin could be realized through clearer guidelines and a better understanding by financial and tax regulators." and "Part of making that happen is to talk to regulators, the [[IRS]], and tax professionals and helping them understand that bitcoin is not this nefarious thing, it's just software, it's a community, and there's nothing inherently nefarious about either of those things." (26.9)
 
 ##See Also
 
@@ -35,7 +176,105 @@ A global, organized campaign against the currency or the software could also inf
 
 ##References
 
-2.1: [Bitcoin P2P e-cash paper](http://www.mail-archive.com/cryptography@metzdowd.com/msg09959.html)
+1.1: [Cracking the Bitcoin: Digging Into a $131M USD Virtual Currency](http://www.dailytech.com/Cracking+the+Bitcoin+Digging+Into+a+131M+USD+Virtual+Currency/article21878.htm) Daily Tech  
+1.2: Page 17 of [Quantitative Analysis of the Full Bitcoin Transaction Graph](http://eprint.iacr.org/2012/584.pdf) Ron Dorit Cryptology ePrint Archive Coauthors: Adi Shamir Quote: The Bitcoin system is the best known and most widely used alternative payment scheme,...  
+1.3: [Bitcoin - a Means for Redistribution of Wealth](http://ieet.org/index.php/IEET/more/koch20120927) Institute for Ethics & Emerging Technologies Rüdiger Koch Quote: We’re currently at 50,000 users and a market cap of $100 Million.  
+1.4: [Market Capitalization](http://blockchain.info/charts/market-cap) Blockchain.info  
+1.5: [Mt.Gox data](http://bitcoincharts.com/markets/mtgoxUSD.html) Bitcoincharts  
+1.6: [Bitcoin miners busted? Police confuse bitcoin power usage for pot farm](http://blogs.computerworld.com/18335/bitcoin_miners_busted_police_confuse_bitcoin_power_usage_for_pot_farm) Computer World Darlene Storm Quote: While there is a limit of only 21 million bitcoins to be generated by the year 2140,...  
+1.7: [Physical Bitcoins by Casascius](https://www.casascius.com/) Casascius Coins  
+1.8: [Bitbills](http://www.bitbills.com/) Bitbills  
+2.1: [David Chaum, Blind signatures for untraceable payments](http://blog.koehntopp.de/uploads/Chaum.BlindSigForPayment.1982.PDF) , Advances in Cryptology - Crypto '82, Springer-Verlag (1983), 199–203.  
+2.2: [Untraceable Electronic Cash](http://blog.koehntopp.de/uploads/chaum_fiat_naor_ecash.pdf) Naor  & David  & Amos Chaum  & Moni Fiat Journal: Lecture Notes in Computer Science  
+2.3: [E-Money (That's What I Want)](http://www.wired.com/wired/archive/2.12/emoney.html) Steven Levy Wired 1994–2012  
+2.4: [B-Money](http://www.weidai.com/bmoney.txt) Wei Dai Year: 1998  
+2.5: [Bitcoin: The Cryptoanarchists’ Answer to Cash](http://spectrum.ieee.org/computing/software/bitcoin-the-cryptoanarchists-answer-to-cash/0) IEEE Spectrum Quote: Around the same time, Nick Szabo, a computer scientist who now blogs about law and the history of money, was one of the first to imagine a new digital currency from the ground up. Although many consider his scheme, which he calls “bit gold,” to be a precursor to Bitcoin  
+2.6: [Bit gold](http://unenumerated.blogspot.co.uk/2005/12/bit-gold.html) Nick Szabo Quote: My proposal for bit gold is based on computing a string of bits from a string of challenge bits, using functions called variously "client puzzle function," "proof of work function," or "secure benchmark function.". The resulting string of bits is the proof of work.... The last-created string of bit gold provides the challenge bits for the next-created string.  
+<span class="ref-label">2.7:
+<span class="ref-column">
+ [Bitcoin: A Peer-to-Peer Electronic Cash System](http://www.cs.kent.edu/~JAVED/class-P2P12F/papers-2012/PAPER2012-p2p-bitcoin-satoshinakamoto.pdf) 
+}} 24 May 2009 Satoshi Nakamoto Postscript: <!-- Bot inserted parameter. Either remove it; or change its value to "." for the cite to end in a ".", as necessary. -->{{inconsistent citations</span>  
+2.8: [Bitcoin P2P e-cash paper](http://article.gmane.org/gmane.comp.encryption.general/12588/)  
+2.9: [Satoshi's posts to Cryptography mailing list](http://www.mail-archive.com/search?l=cryptography@metzdowd.com&q=from:%22Satoshi+Nakamoto%22)  
+2.10: [Block 0 – Bitcoin Block Explorer](http://blockexplorer.com/block/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f)  
+2.11: [Bitcoin v0.1 released](http://www.mail-archive.com/cryptography@metzdowd.com/msg10142.html)  
+2.12: [SourceForge.net: Bitcoin](http://sourceforge.net/news/?group_id=244765)  
+2.13: [The Rise and Fall of Bitcoin](http://www.wired.com/magazine/2011/11/mf_bitcoin/) Wired  
+2.14: [WikiLeaks Asks For Anonymous Bitcoin Donations – Andy Greenberg – The Firewall – Forbes](http://blogs.forbes.com/andygreenberg/2011/06/14/wikileaks-asks-for-anonymous-bitcoin-donations/) Blogs.forbes.com 2011-06-14 Andy Greenberg  
+2.15: [/donate](https://freenetproject.org/donate.html) The Freenet Project  
+2.16: [SIAI donation page](http://singinst.org/donate/)  
+2.17: [Internet Archive donation page](http://www.archive.org/donate/index.php)  
+2.18: [Other ways to donate](https://my.fsf.org/donate/other/)  
+2.19: [EFF and Bitcoin &#124; Electronic Frontier Foundation](https://www.eff.org/deeplinks/2011/06/eff-and-bitcoin) Eff.org 2011-06-14  
+2.20: [Secure Online Storage – Backup. Sync. Share. Access Everywhere](http://www.wuala.com/en/bitcoin) Wuala  
+2.21: [BitPay Signs 1,000 Merchants to Accept Bitcoin Payments](http://www.americanbanker.com/issues/177_176/bitpay-signs-1000-merchants-to-accept-bitcoin-payments-1052538-1.html) American Banker  
+3.1: [Bitcoin: The Cryptoanarchists' Answer to Cash](http://spectrum.ieee.org/computing/software/bitcoin-the-cryptoanarchists-answer-to-cash/3) IEEE.org June 2012  
+<span class="ref-label">9.1:
+<span class="ref-column">
+ [Bitcoin: inside the encrypted, peer-to-peer digital currency](http://arstechnica.com/tech-policy/news/2011/06/bitcoin-inside-the-encrypted-peer-to-peer-currency.ars) 
+ 8 June 2011 Ars Technica Thomas Lowenthal</span>  
+9.2: [Virtual currency: Bits and bob](http://www.economist.com/blogs/babbage/2011/06/virtual-currency) Sponsored by The Economist  
+9.3: [Peer-to-peer currency Bitcoin sidesteps financial institutions (Wired UK)](http://www.wired.co.uk/news/archive/2011-05/16/bitcoin-p2p-currency) Wired.co.uk Duncan Geere  
+9.4: [Total Number of Bitcoins in Existence](http://blockexplorer.com/q/totalbc) Work: Bitcoin Block Explorer  
+9.5: [Bitcoin: Virtual money created by CPU cycles](http://lwn.net/Articles/414452/) Nathan Willis [[LWN.net]] 2010-11-10  
+9.6: [Bitcoin History Stats](http://btcserv.net/bitcoin/history/)  [[!template id="Dead_link" date=June 2012 ]]  
+10.1: [http://www.bitcoinwatch.com/](http://www.bitcoinwatch.com/)  Bitcoin statistics  
+13.1: [The Crypto-Currency](http://www.wired.com/magazine/2011/11/mf_bitcoin/all) 10 November 2011 [[Wired Magazine]] Joshua Davis  
+13.2: [Questions about Bitcoin](https://bitcointalk.org/index.php?topic=13.msg46#msg46) Bitcoin forum 2009-12-10  
+13.3: [cbitcoin](https://github.com/MatthewLM/cbitcoin)  
+13.4: [Google Engineer Releases Open Source Bitcoin Client](http://news.slashdot.org/story/11/03/23/0210207/Google-Engineer-Releases-Open-Source-Bitcoin-Client) angry tapir, timothy [[Slashdot]] 23 March 2011  
+13.5: [Bitcoin for beginners: The BitcoinJ API](http://www.javaworld.com/javaworld/jw-01-2012/120110-bitcoin-for-beginners-3.html?page=1) Dirk Merkel [[JavaWorld]] 10 January 2012  
+15.1: [About Bitcoin Mining](http://www.weusecoins.com/mining-guide.php) We Use Coins  
+17.1: [Bitpay Breaks Daily Volume Record with Butterfly ASIC mining release](http://bitcoinmagazine.net/bitpay-breaks-daily-volume-record-with-butterfly-asic-mining-release/) Bitcoin Magazine  
+19.1: [Bitcoin: An Innovative Alternative Digital Currency](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1817857) Grinberg, Reuben [[SSRN]] 9 December 2011  
+19.2: [The Pros And Cons Of Biting on Bitcoins](http://www.cnbc.com/id/45030812/The_Pros_And_Cons_Of_Biting_on_Bitcoins) Gustke, Constance [[CNBC]] 23 November 2011  
+19.3: [US senators draw a bead on Bitcoin](http://www.theregister.co.uk/2011/06/08/bitcoin_under_attack/) [[The Register]] 8 June 2011  & Richard Chirgwin  
+19.4: [Bitcoin, the City traders' anarchic new toy](http://uk.reuters.com/article/2012/04/01/uk-traders-bitcoin-idUKBRE8300JL20120401) [[Reuters]] 2 April 2012  & Naomi O'Leary  
+19.5: [Virtual Currency Schemes](http://www.ecb.europa.eu/pub/pdf/other/virtualcurrencyschemes201210en.pdf) [[European Central Bank]] October 2012  
+20.1: [Bitcoin: The Cryptoanarchists' Answer to Cash](http://spectrum.ieee.org/computing/software/bitcoin-the-cryptoanarchists-answer-to-cash/0) IEEE.org June 2012  
+20.2: [An Analysis of Anonymity in the Bitcoin System](http://anonymity-in-bitcoin.blogspot.com/2011/07/bitcoin-is-not-anonymous.html) Fergal Reid and Martin Harrigan (24 July 2011). . An Analysis of Anonymity in the Bitcoin System.  
+20.3: [Crypto Currency](http://www.forbes.com/forbes/2011/0509/technology-psilocybin-bitcoins-gavin-andresen-crypto-currency.html) Andy Greenberg (20 April 2011). . Forbes Magazine.  
+20.4: [Libertarian Dream? A Site Where You Buy Drugs With Digital Dollars](http://www.theatlantic.com/technology/archive/2011/06/libertarian-dream-a-site-where-you-buy-drugs-with-digital-dollars/239776/) [[The Atlantic Monthly]] 2011-06-01 Alexis Madrigal  
+22.1: [Senators target Bitcoin currency, citing drug sales &#124; The Digital Home – CNET News](http://news.cnet.com/8301-13506_3-20070268-17/senators-target-bitcoin-currency-citing-drug-sales/) News.cnet.com 2011-06-09 Don Reisinger  
+22.2: [LulzSec Hackers Post Sony Dev. Source Code, Get $7K Donation – Parmy Olson – Disruptors – Forbes](http://blogs.forbes.com/parmyolson/2011/06/06/lulzsec-hackers-posts-sony-dev-source-code-get-7k-donation/) Blogs.forbes.com 6 June 2011 Parmy Olson  
+<span class="ref-label">23.1:
+<span class="ref-column">
+ [Silk Road: Not Your Father's Amazon.com](http://www.npr.org/2011/06/12/137138008/silk-road-not-your-fathers-amazon-com) 
+ Staff 12 June 2011 NPR</span>  
+24.1: [Bitcoin Botnet Mining &#124; Symantec Connect Community](http://www.symantec.com/connect/blogs/bitcoin-botnet-mining) Updated: 17 June 2011 Symantec.com 2011-06-17  
+24.2: [Researchers find malware rigged with Bitcoin miner](http://www.zdnet.com/blog/security/researchers-find-malware-rigged-with-bitcoin-miner/8934) ZDNet 2011-06-29  
+24.3: [ABC employee caught mining for Bitcoins on company servers](http://thenextweb.com/au/2011/06/23/abc-employee-caught-mining-for-bitcoins-on-company-servers/) The Next Web 2011-06-23  
+24.4: [Malware mints virtual currency using victim's GPU](http://www.theregister.co.uk/2011/08/16/gpu_bitcoin_brute_forcing/) 16 August 2011<!-- 20:00 GMT --> Dan Goodin  
+24.5: [Infosecurity – Researcher discovers distributed bitcoin cracking trojan malware](http://www.infosecurity-magazine.com/view/20211/researcher-discovers-distributed-bitcoin-cracking-trojan-malware/) Infosecurity-magazine.com 2011-08-19  
+24.6: [Mac OS X Trojan steals processing power to produce Bitcoins – sophos, security, malware, Intego – Vulnerabilities – Security](http://www.techworld.com.au/article/405849/mac_os_x_trojan_steals_processing_power_produce_bitcoins) Techworld 2011-11-01  
+25.1: [Clarification of Mt Gox Compromised Accounts and Major Bitcoin Sell-Off](https://mtgox.com/press_release_20110630.html)  
+25.2: [YouTube. Bitcoin Report](http://www.youtube.com/watch?v=T1X6qQt9ONg)  
+25.3: [Inside the Mega-Hack of Bitcoin: the Full Story](http://www.dailytech.com/Inside+the+MegaHack+of+Bitcoin+the+Full+Story/article21942.htm) Jason Mick, 19 June 2011, , DailyTech  
+25.4: [Bitcoin prices plummet on hacked exchange](http://arstechnica.com/tech-policy/news/2011/06/bitcoin-price-plummets-on-compromised-exchange.ars) Timothy B. Lee, 19 June 2011, , Ars Technica  
+25.5: [Huge Bitcoin sell off due to a compromised account – rollback](https://support.mtgox.com/entries/20208066-huge-bitcoin-sell-off-due-to-a-compromised-account-rollback) Mark Karpeles, 20 June 2011, , Mt.Gox Support  
+25.6: [Bitcoin collapses on malicious trade – Mt Gox scrambling to raise the Titanic](http://www.theregister.co.uk/2011/06/19/bitcoin_values_collapse_again/) Chirgwin, Richard The Register 2011-06-19  
+25.7: [Third Largest Bitcoin Exchange Bitomat Lost Their Wallet, Over 17,000 Bitcoins Missing](http://siliconangle.com/blog/2011/08/01/third-largest-bitcoin-exchange-bitomat-lost-their-wallet-over-17000-bitcoins-missing/) . SiliconAngle  
+25.8: [MyBitcoin Spokesman Finally Comes Forward: “What Did You Think We Did After the Hack? We Got Shitfaced”](http://betabeat.com/2011/08/mybitcoin-spokesman-finally-comes-forward-what-did-you-think-we-did-after-the-hack-we-got-shitfaced/) . BetaBeat  
+25.9: [Search for Owners of MyBitcoin Loses Steam](http://betabeat.com/2011/08/search-for-owners-of-mybitcoin-loses-steam/) . BetaBeat  
+25.10: [Bitcoinica users sue for $460k in lost Bitcoins](http://arstechnica.com/tech-policy/2012/08/bitcoinica-users-sue-for-460k-in-lost-bitcoins/) . Arstechnica  
+25.11: [First Bitcoin Lawsuit Filed In San Francisco](http://spectrum.ieee.org/tech-talk/computing/networks/first-bitcoin-lawsuit-filed-in-san-francisco) . IEEE Spectrum  
+25.12: [Bitcoin ponzi scheme – investors lose $5 million USD in online hedge fund](http://rt.com/usa/news/investors-currency-digital-fund-868/) RT  
+25.13: [Suspected multi-million dollar Bitcoin pyramid scheme shuts down, investors revolt](http://www.theverge.com/2012/8/27/3271637/bitcoin-savings-trust-pyramid-scheme-shuts-down) The Verge Adrianne Jeffries  
+25.14: ["Pirateat40" Makes Off $5.6M USD in BitCoins From Pyramid Scheme](http://www.dailytech.com/Pirateat40+Makes+Off+56M+USD+in+BitCoins+From+Pyramid+Scheme/article25538.htm) DailyTech Jason Mick  
+25.15: [Bitcoin: How a Virtual Currency Became Real with a $5.6M Fraud](http://pandodaily.com/2012/08/31/bitcoin-how-a-virtual-currency-became-real-with-a-5-6m-fraud/) . PandoDaily  
+25.16: [Bitcoin 'Pirate' scandal: SEC steps in amid allegations that the whole thing was a Ponzi scheme](http://blogs.telegraph.co.uk/technology/willardfoxton2/100007836/bitcoin-pirate-scandal-sec-steps-in-amid-allegations-that-the-whole-thing-was-a-ponzi-scheme/) . The Telegraph  
+25.17: [Bitcoin theft causes Bitfloor exchange to go offline](http://www.bbc.co.uk/news/technology-19486695) . BBC  
+25.18: [Bitcoin exchange BitFloor suspends operations after $250,000 theft Bitcoin exchange BitFloor suspends operations after $250,000 theft](http://www.theverge.com/2012/9/5/3293375/bitfloor-bitcoin-exchange-suspended-theft) . The Verge  
+25.19: [Bitcoin exchange back online after hack](http://www.pcworld.com/article/2010586/bitcoin-exchange-back-online-after-hack.html?tk=rel_news) . PCWorld  
+26.1: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+26.2: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+26.3: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+26.4: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+26.5: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+26.6: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+26.7: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+26.8: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+26.9: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012
 
 
 [[!tag "Digital_currencies"]]
