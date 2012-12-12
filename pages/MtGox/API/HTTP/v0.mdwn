@@ -115,13 +115,15 @@ https://mtgox.com/api/0/withdraw.php
 POST data: group1=BTC&btca=bitcoin_address_to_send_to&amount=#
 
 * pass btca parameter to withdraw to a btc adress
-
 * pass group1 for a coupon : BTC2CODE or USD2CODE
-
 * pass group1=DWUSD&dwaccount=XXX-XXX-XXXX (no btca=xxxxxxx) for a dwolla withdraw
-
 * pass green=1 to use the new greenaddress feature ( see [[GreenAddress]] )
+* pass no_instant=1 to use the bitcoin blockchain, even if the receiving address (btca) is on MtGox
+
 * return code and status if successful
+Example response:
+{u'status': u'Funds are on their way (bitcoin transaction: 2426f19cda3332b25d02daf2479bc558b243a0631584d75dd2bb8ee45f50a118)',
+<br/> u'reference': u'58a9e537-e64a-4e66-bc45-31c1bdc3a91b'}
 
 	To make a withdraw in another Currency , use group1=USD2CODE and add a Currency parameter ( example Currency=EUR to get a mtgox EUR coupon )
 
