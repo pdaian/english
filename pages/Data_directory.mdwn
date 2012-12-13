@@ -15,6 +15,13 @@ Bitcoin's data folder will open. For most users, this is the following locations
 
 "AppData" and "Application data" are hidden by default.
 
+You can also store Bitcoin data files in any other drive or folder. 
+If you want to store them in D:\BitcoinData then click on "Properties" of Bitcoin.exe
+add -datadir=d:\BitCoinData at the end as an example:
+
+	"C:\Program Files (x86)\Bitcoin\bitcoin-qt.exe" -datadir=d:\BitCoinData
+
+Start Bitcoin, now you will see all the files are created in the new data directory
 ### Linux
 
 By default Bitcoin will put its data here:
