@@ -1,0 +1,12 @@
+A term [coined by Meni Rosenfeld](https://bitcointalk.org/index.php?topic=130222.msg1392450#msg1392450) for the following miner policy:
+
+	Ignore alternate chains if they contradict more than N blocks of history known to this miner.
+
+This proposal is a possible way to combat double spends. If honest miners cement each block N blocks after it is received, an attacker has a deadline of N blocks for the release of his alternate chain that contains the double spend transaction (this in opposed to without cementing, where an attacker can theoretically wait a very long time while building his alternate chain, in the hopes of winning the race to build the longest chain.
+
+## Potential Problems
+Cementing has some potential problems, and might not be good in practice. From the thread linked above by Meni:
+
+**I call this practice "cementing" and it has some problems, similar to what we would have if there was no blockchain at all. The basic idea is that a node could be stuck on "the wrong version" after being isolated and fed bad data from an attacker, and would have no way to recover even after being exposed to the honest network.
+
+**
