@@ -75,22 +75,16 @@ After a filter has been set, nodes don't merely stop announcing non-matching tra
 |4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2106!)
 |4 |bits |uint32_t |The calculated difficulty target being used for this block
 |4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
-|1 |txn_count |uint32_t |Number of transactions that matched the filter
-|? |transactions |merkle_tx[]|A series of merkle_tx messages, defined below, for each transaction in the block that matched the filter.
+|4 |total_transactions |uint32_t |Number of transactions in the block (including unmatched ones)
+|? |number_of_hashes |varint |Number of hashes
+|? |hashes |uint256[]|hashes in depth-first order (<= 32*N bytes)
+|? |bytes_of_flags |varint |number of bytes of flag bits (1-3 bytes)
+|? |flags |byte[]|flag bits, packed per 8 in a byte, least significant bit first (<= 2*N-1 bits)
 
 
-The <code>merkle_tx</code> message is defined below:
+See below for the format of the partial merkle tree hashes and flags.
 
-
-
-|4 |index |uint32_t |The index in the original block that the transaction appeared at.
-|32 |hash |uint256_t |The hash of the matching transaction.
-|? |merkle_branch |uint256_t[]|A vector of hashes defining the Merkle branch linking this transaction to the merkle root in the block header
-
-
-See below for the format of the merkle branch.
-
-As you can see a <code>merkleblock</code> message is a block header, plus identifying information for transactions that matched the filter, plus the Merkle branch which can be used to prove that the matching transaction data really did appear in the solved block. Clients can use this data to be sure that the remote node is not feeding them fake transactions that never appeared in a real block, although lying through omission is still possible.
+Thus, a <code>merkleblock</code> message is a block header, plus a part of a merkle tree which can be used to extract identifying information for transactions that matched the filter and prove that the matching transaction data really did appear in the solved block. Clients can use this data to be sure that the remote node is not feeding them fake transactions that never appeared in a real block, although lying through omission is still possible.
 
 ###Extensions to existing messages
 
@@ -127,19 +121,11 @@ The test for outpoints is there to ensure you can find transactions spending out
 
 By updating the bloom filter atomically in step 2 with the discovered outpoint, the filter will match against TX 2 in step 3 and the client will learn about all relevant transactions, despite that there is no pause between the node processing the first and second blocks.
 
-###Merkle branch format
+###Partial Merkle branch format
 
 A *Merkle tree* is a way of arranging a set of items as leaf nodes of tree in which the interior nodes are hashes of the concatenations of their child hashes. The root node is called the *Merkle root*. Every Bitcoin block contains a Merkle root of the tree formed from the blocks transactions. By providing some elements of the trees interior nodes (called a *Merkle branch*) a proof is formed that the given transaction was indeed in the block when it was being mined, but the size of the proof is much smaller than the size of the original block.
 
-The branch is a list of hashes that can be used with the following algorithm.
-
-1. Let H = the hash of the transaction being checked for block inclusion.
-1. Let I = the index in the original block of the transaction being checked.
-1. For each element E in the branch:
-	1. If I is even, H = SHA256(SHA256(concatenation of E and H))
-	1. If I is odd, H = SHA256(SHA256(concatenation of H and E))
-	1. Divide I by 2   (right-shift)
-1. If H is equal to the merkle root in the block header, the transaction was included
+The encoding works as follows: we traverse the tree in depth-first order, storing a bit for each traversed node, signifying whether the node is the parent of at least one matched leaf txid (or a matched txid itself). In case we are at the leaf level, or this bit is 0, its merkle node hash is stored, and its children are not explored further. Otherwise, no hash is stored, but we recurse into both (or the only) child branch. During decoding, the same depth-first traversal is performed, consuming bits and hashes as they written during encoding.
 
 ###Bloom filter format
 
