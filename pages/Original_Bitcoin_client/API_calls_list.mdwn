@@ -44,7 +44,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |gettransaction |<txid>|Returns an object about the given transaction containing:* "amount" : total amount of the transaction* "confirmations" :  number of confirmations of the transaction* "txid" : the transaction ID* "time" : time the transaction occurred* "details" - An array of objects containing:	* "account"	* "address"	* "category"	* "amount"	* "fee"|N
 |[[getwork]]|[[data]]|If [[data]]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf [[data]]is specified, tries to solve the block and returns true if it was successful. |N
 |help |[[command]]|List commands, or get help for a command. |N
-|importprivkey |<bitcoinprivkey>[[label]]|Adds a private key (as returned by dumpprivkey) to your wallet. |Y
+|importprivkey |<bitcoinprivkey>[[label]]|Adds a private key (as returned by dumpprivkey) to your wallet. This may take a while, as a [[rescan|How_to_import_private_keys#Import_Private_key.28s.29]]is done, looking for existing transactions. |Y
 |keypoolrefill ||Fills the keypool, requires wallet passphrase to be set. |Y
 |listaccounts |[[minconf=1]]|Returns Object that has account names as keys, account balances as values. |N
 |listreceivedbyaccount |[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "account" : the account of the receiving addresses* "amount" : total amount received by addresses with this account* "confirmations" : number of confirmations of the most recent transaction included|N
