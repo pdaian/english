@@ -77,10 +77,8 @@ After a filter has been set, nodes don't merely stop announcing non-matching tra
 |4 |bits |uint32_t |The calculated difficulty target being used for this block
 |4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
 |4 |total_transactions |uint32_t |Number of transactions in the block (including unmatched ones)
-|? |number_of_hashes |varint |Number of hashes
-|? |hashes |uint256[]|hashes in depth-first order (<= 32*N bytes)
-|? |bytes_of_flags |varint |number of bytes of flag bits (1-3 bytes)
-|? |flags |byte[]|flag bits, packed per 8 in a byte, least significant bit first (<= 2*N-1 bits)
+|? |hashes |uint256[]|hashes in depth-first order (including standard varint size prefix)
+|? |flags |byte[]|flag bits, packed per 8 in a byte, least significant bit first (including standard varint size prefix)
 
 
 See below for the format of the partial merkle tree hashes and flags.
