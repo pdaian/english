@@ -1,42 +1,4 @@
 
->> suggested updates
-
-"They wanted to make a cryptocoin that is considered silver to Bitcoin's gold"
-
-Remove the above (speculation & a personal opinion) & replace with:
-
-"Litecoin was designed to be for smaller, faster transactions - balancing the risk/reward equation in a way that allows for a faster block discovery time.
-It was designed to be a stand alone currency - rather than the "Silver to bitcoin's gold" as many critques suggest.
-In many ways this mirrors times past when people would carry silver in their purses rather than gold - to reduce the risk with a "lower value" coinage - this might be where the reference originates."
-
-Pyramid Scheme
-"Litecoin is no more a pyramid scheme than any cryptocoin is where mining pools are the most common form of mining.  As such this section is irrelevant to the litecoin specific pages and might better be suited for the wiki page about cryptocoins."
-
-(Slight) Premining
-
-should be changed to 
-
-"Premining - removing the (slight) and just describe what was premined."
-
-Litecoin uses Scrypt as a proof-of-work scheme. Scrypt adds memory-intensive algorithms to reduce the efficiency of GPUs down to the level of CPUs. This is good in the short term, but is almost certainly harmful if Litecoin were to gain widescale adoption
-
-Should be changed to: 
-
-Litecoin uses Scrypt as a proof-of-work scheme. Scrypt was selected due to the way it was designed - which balances the memory/rate at which it can be used to "brute force" hashes.  The default implementation of Scrypt is memory-intensive but at a higher rate of hashing.  This can be adjusted to reduce the memory used at the expense of the rate of hashing.  Due to the way that Scrypt brings memory into the equation wrt hardware - it makes it difficult to implement on FPGA's & ASIC type hardware.  As the litecoin blockchain becomes more widely adopted - we expect the efficiencies gained through properly designed hardware to encourage FPGA & ASIC manufacturers to develop suitable hardware that can be used with the Scrypt algo used by litecoin.  This broadly follows what we've seen with other blockchains such as bitcoin.
-
-Faster, Smaller Block Chain
-The Litecoin blockchain differs from its Bitcoin counterpart in that it tries to have smaller blocks, and generate them four times as fast as the Bitcoin network allows. This means that 1-confirmation (low value) merchants get faster confirmations for their online products, but increases the network overhead.
-
-should be tweaked:
-This means that 1-confirmation merchants get faster confirmations for their online products.
-There are 2 side effects to the network overheads and the number of "open" tx on the network:
-1) Due to the faster block discovery time there will be less outstanding tx on the blockchain compared to other blockchains like bitcion - assuming the avg block folds in 500 tx as assuming the number of outstanding tx is 1500 - it would take litecoin 7.5 mins to fold in an provide a single conf to the outstanding tx.  On the bitcoin blockchain this would take 30 mins.  Due to the variability of block discovery in any single retarget period - outstanding tx pile up and take a number of new blocks to clear any backlog.  
-Recently on the bitcoin network 2500 outstanding tx has been fairly common (Dec 2012) - this means it takes bitcoin 50 mins (5 blocks) to clear the backlog.  On the litecoin network this would take 12.5 mins.
-2) Due to the way nodes on the network calculate tx fees - the larger the number of outstanding tx - the greater the fees.
-Due to this - some cryptocoin blockchains have had to compromise their design & implement extra logic to allow "backdoor" tx - where a mining pool will accept lower fees for tx.  Litecoin haven't yet had to consider such an approach due to its robust network design.  It's the belief of the litecoin developers that implementing the backdoor logic for lower tx fees compromises the core ideas behind part of the network design - where block reward halves as the blockchain grows.  Ideally the rewards from tx fees should cover any reward decrease.
-=============================
-
-
 There is nothing on this discussion page about this article at the moment. Use it. Reasonable informed edits will be allowed through until a consensus is reached and the page unlocked. That is comments that are neither pro or anti litecoin, but are *neutral* and objective. [Genjix](User:Genjix) 10:01, 28 November 2011 (GMT)
 
 ## Objectivity please, missing citation
@@ -104,3 +66,41 @@ Bitcoin no longer offers 50 coins per block. [Dree12](User:Dree12) ([[talk|User_
 It's kind of absurd that this article is locked. I think it's very non-objective and we should let readers see Litecoin's opinion.
 We should add the [Litecoin Wiki](http://wiki.litecoin.net) to external links. We should also give readers a direct link to the [Comparison between Bitcoin and Litecoin](http://wiki.litecoin.net/index.php/Comparison_between_Bitcoin_and_Litecoin) article on Litecoin Wiki.
 --[Chawlindel](User:Chawlindel) ([[talk|User_talk:Chawlindel]]) 23:51, 15 December 2012 (GMT)
+
+
+## change request
+
+"They wanted to make a cryptocoin that is considered silver to Bitcoin's gold"
+
+Remove the above (speculation & a personal opinion) & replace with:
+
+"Litecoin was designed to be for smaller, faster transactions - balancing the risk/reward equation in a way that allows for a faster block discovery time.
+It was designed to be a stand alone currency - rather than the "Silver to bitcoin's gold" as many critques suggest.
+In many ways this mirrors times past when people would carry silver in their purses rather than gold - to reduce the risk with a "lower value" coinage - this might be where the reference originates."
+
+Pyramid Scheme
+"Litecoin is no more a pyramid scheme than any cryptocoin is where mining pools are the most common form of mining.  As such this section is irrelevant to the litecoin specific pages and might better be suited for the wiki page about cryptocoins."
+
+(Slight) Premining
+
+should be changed to 
+
+"Premining - removing the (slight) and just describe what was premined."
+
+Litecoin uses Scrypt as a proof-of-work scheme. Scrypt adds memory-intensive algorithms to reduce the efficiency of GPUs down to the level of CPUs. This is good in the short term, but is almost certainly harmful if Litecoin were to gain widescale adoption
+
+Should be changed to: 
+
+Litecoin uses Scrypt as a proof-of-work scheme. Scrypt was selected due to the way it was designed - which balances the memory/rate at which it can be used to "brute force" hashes.  The default implementation of Scrypt is memory-intensive but at a higher rate of hashing.  This can be adjusted to reduce the memory used at the expense of the rate of hashing.  Due to the way that Scrypt brings memory into the equation wrt hardware - it makes it difficult to implement on FPGA's & ASIC type hardware.  As the litecoin blockchain becomes more widely adopted - we expect the efficiencies gained through properly designed hardware to encourage FPGA & ASIC manufacturers to develop suitable hardware that can be used with the Scrypt algo used by litecoin.  This broadly follows what we've seen with other blockchains such as bitcoin.
+
+Faster, Smaller Block Chain
+The Litecoin blockchain differs from its Bitcoin counterpart in that it tries to have smaller blocks, and generate them four times as fast as the Bitcoin network allows. This means that 1-confirmation (low value) merchants get faster confirmations for their online products, but increases the network overhead.
+
+should be tweaked:
+
+This means that 1-confirmation merchants get faster confirmations for their online products.
+There are 2 side effects to the network overheads and the number of "open" tx on the network:
+1) Due to the faster block discovery time there will be less outstanding tx on the blockchain compared to other blockchains like bitcion - assuming the avg block folds in 500 tx as assuming the number of outstanding tx is 1500 - it would take litecoin 7.5 mins to fold in an provide a single conf to the outstanding tx.  On the bitcoin blockchain this would take 30 mins.  Due to the variability of block discovery in any single retarget period - outstanding tx pile up and take a number of new blocks to clear any backlog.  
+Recently on the bitcoin network 2500 outstanding tx has been fairly common (Dec 2012) - this means it takes bitcoin 50 mins (5 blocks) to clear the backlog.  On the litecoin network this would take 12.5 mins.
+2) Due to the way nodes on the network calculate tx fees - the larger the number of outstanding tx - the greater the fees.
+Due to this - some cryptocoin blockchains have had to compromise their design & implement extra logic to allow "backdoor" tx - where a mining pool will accept lower fees for tx.  Litecoin haven't yet had to consider such an approach due to its robust network design.  It's the belief of the litecoin developers that implementing the backdoor logic for lower tx fees compromises the core ideas behind part of the network design - where block reward halves as the blockchain grows.  Ideally the rewards from tx fees should cover any reward decrease.
