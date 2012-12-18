@@ -104,4 +104,6 @@ There are 2 side effects to the network overheads and the number of "open" tx on
 Recently on the bitcoin network 2500 outstanding tx has been fairly common (Dec 2012) - this means it takes bitcoin 50 mins (5 blocks) to clear the backlog.  On the litecoin network this would take 12.5 mins.
 2) Due to the way nodes on the network calculate tx fees - the larger the number of outstanding tx - the greater the fees.
 Due to this - some cryptocoin blockchains have had to compromise their design & implement extra logic to allow "backdoor" tx - where a mining pool will accept lower fees for tx.  Litecoin haven't yet had to consider such an approach due to its robust network design.  It's the belief of the litecoin developers that implementing the backdoor logic for lower tx fees compromises the core ideas behind part of the network design - where block reward halves as the blockchain grows.  Ideally the rewards from tx fees should cover any reward decrease.
+
+
 [laSeek](User:laSeek)
