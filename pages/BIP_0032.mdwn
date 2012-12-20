@@ -15,6 +15,8 @@ This document describes hierarchical determinstic wallets (or "HD Wallets"): wal
 
 The specification is intended to set a standard for deterministic wallets that can be interchanged between different clients. Although the wallets described here have many features, not all are required by supporting clients.
 
+The specification consists of two parts. In a first part, a system for deriving a tree of keypairs from a single seed is presented. The second part demonstrates how to build a wallet structure on top of such a tree.
+
 ##Motivation
 
 The Bitcoin reference client uses randomly generated keys. In order to avoid the necessity for a backup after every transaction, (by default) 100 keys are cached in a pool of reserve keys. Still, these wallets are not intended to be shared and used on several systems simultaneously. They support hiding their private keys by using the wallet encrypt feature and not sharing the password, but such "neutered" wallets lose the power to generate public keys as well. 
@@ -23,7 +25,7 @@ Deterministic wallets do not require such frequent backups, and elliptic curve m
 
 However, deterministic wallets typically consist of a single "chain" of keypairs. The fact that there is only one chain means that sharing a wallet happens on an all-or-nothing basis. However, in some cases one only wants some (public) keys to be shared and recoverable. In the example of a webshop, the webserver does not need access to all public keys of the merchant's wallet; only to those addresses which are used to receive customer's payments, and not for example the change addresses that are generated when the merchant spends money. Hierarchical deterministic wallets allow such selective sharing by supporting multiple keypair chains, derived from a single root.
 
-##Specification
+##Specification: Key derivation
 
 ###Conventions
 
@@ -101,7 +103,7 @@ The total number of possible extended keypairs is almost 2^512, but the produced
 
 [[BIP32-derivation.png]]
 
-###Wallet structure
+##Specification: Wallet structure
 
 The previous sections specified key trees and their nodes. The next step is imposing a wallet structure on this tree. 
 
@@ -137,7 +139,17 @@ When an unsecure webserver is used to run an e-commerce site, it needs to know p
 
 ##Compatibility
 
+To comply with this standard, a client must at least be able to import an extended public or private key, to give access to its direct descendants as wallet keys. The wallet structure (master/account/chain/subchain) presented in the second part of the specification is advisory only, but is suggested as a minimal structure for easy compatibility - even when no separate accounts or distinction between internal and external chains is made. However, implementations may deviate from it for specific needs; more complex applications may call for a more complex tree structure.
+
+##Security
+
+Private and public keys must be kept safe as usual. Leaking a private key means access to coins - leaking a public key can mean loss of privacy.
+
+Somewhat more care must be taken regarding extended keys, as these correspond to an entire (sub)tree of keys. One weakness that may not be immediately obvious, is that knowledge of the extended public key + a private key descending from it is equivalent to knowing the extended private key (i.e., every private and public key). This means that extended public keys must be treated more carefully than regular public keys.
+
 ##Test Vectors
+
+Come back soon!
 
 ##Acknowledgements
 
