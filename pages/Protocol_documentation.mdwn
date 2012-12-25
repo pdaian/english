@@ -113,6 +113,8 @@ Longer numbers are encoded in little endian.
 |- |9 |0xff followed by the length as uint64_t
 
 
+Footnote - if you're reading the Satoshi client code it refers to this as a "CompactSize" - VarInt's are something entirely different to the Satoshi code.
+
 ### Variable length string
 
 Variable length string can be stored using a variable length integer followed by the string itself.
