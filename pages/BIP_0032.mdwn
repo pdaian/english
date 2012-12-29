@@ -114,26 +114,26 @@ Each account is composed of two keypair chains: an internal and an external one.
 	* m/i/0/k corresponds to the k'th keypair of the external chain of account number i of the HDW derived from master m.
 	* m/i/1/k corresponds to the k'th keypair of the internal chain of account number i of the HDW derived from master m.
 
-##Use cases
+###Use cases
 
-###Full wallet sharing: m
+####Full wallet sharing: m
 
 In cases where two systems need to access a single shared wallet, and both need to be able to perform spendings, one needs to share the master private extended key. Nodes can keep a pool of N look-ahead keys cached for external chains, to watch for incoming payments. The look-ahead for internal chains can be very small, as no gaps are to be expected here. An extra look-ahead could be active for the first unused account's chains - triggering the creation of a new account when used. Note that the name of the account will still need to be entered manually and cannot be synchronized via the block chain.
 
-###Audits: M
+####Audits: M
 
 In case an auditor needs full access to the list of incoming and outgoing payments, one can share the master public extended key. This will allow the auditor to see all transactions from and to the wallet, in all accounts, but not a single secret key.
 
-###Per-office balances: m/i
+####Per-office balances: m/i
 
 When a business has several independent offices, they can all use wallets derived from a single master. This will allow the headquarters to maintain a super-wallet that sees all incoming and outgoing transactions of all offices, and even permit moving money between the offices.
 
-###Recurrent business-to-business transactions: M/i/0
+####Recurrent business-to-business transactions: M/i/0
 
 In case two business partners often transfer money, one can use the extended public key for the external chain of a specific account (M/i/0) as a sort of "super address", allowing frequent transactions that cannot (easily) be associated, but without needing to request a new address for each payment.
 Such a mechanism could also be used by mining pool operators as variable payout address.
 
-###Unsecure money receiver: M/i/0
+####Unsecure money receiver: M/i/0
 
 When an unsecure webserver is used to run an e-commerce site, it needs to know public addresses that be used to receive payments. The webserver only needs to know the public extended key of the external chain of a single account. This means someone illegally obtaining access to the webserver can at most see all incoming payments, but will not (trivially) be able to distinguish outgoing transactions, nor see payments received by other webservers if there are several ones.
 
