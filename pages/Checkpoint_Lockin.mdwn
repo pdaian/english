@@ -1,4 +1,4 @@
-Every once in a while, an old block hash is hardcoded into Bitcoin software. Different implementations choose different checkpoint locations. Checkpoints prevent various DOS attacks from nodes flooding unusable chains and attacks involving isolating nodes and giving them fake chains. Satoshi announced the feature [here](https://bitcointalk.org/index.php?topic=437) and it was discussed to death [here](https://bitcointalk.org/index.php?topic=1647).
+Every once in a while, an old block hash is hardcoded into Bitcoin software. Different implementations choose different checkpoint locations. Checkpoints prevent various DOS attacks from nodes flooding unusable chains and attacks involving isolating nodes and giving them fake chains, but it is primarily an optimization for the initial blockchain download. Satoshi announced the feature [here](https://bitcointalk.org/index.php?topic=437) and it was discussed to death [here](https://bitcointalk.org/index.php?topic=1647).
 
 Some alt chains use different forms of checkpointing. E.g. [[PPCoin]] uses an ongoing "central checkpointing pulse" that isn't updated only on software updates.
 
