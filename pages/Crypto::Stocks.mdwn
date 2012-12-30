@@ -9,6 +9,13 @@ A multi currency stock exchange/crowd funding platform, supporting Bitcoins, Lit
 * Multi level security issuer verification feature
 * Full trading API
 
+## Trading
+### Buying and selling 
+Buying and selling securities is straight forward. A buy order is executed partially or in full when the price bid can be matched against a sell order that is at or below the bid amount. A sell order is executed partially or in full when the price asked can be matched against a buy order that is at or above the ask amount. Orders that cannot be matched immediately remain in the orderbook until the defined order validity date. All orders must be funded, the exchange does not support unfunded orders.
+	
+### Fees
+The trading fees are 0.15% from each party of successful trades. The fees are, by default, subtracted from the proceeds of each trade.
+
 ## Options
 Any registered user can underwrite an option - be it a Call or a Put - on any of the listed securities. The options are covered by the underwriters funds, i.e. the exchange ensures that the underwriter has the required funds available in order to fulfill any obligation arising out of the underwritten options.
 
