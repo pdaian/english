@@ -306,7 +306,7 @@ A script is considered invalid, if any of these conditions meets:<br>
 <li>each instruction is (currently) limited to maximal 520 bytes. This effects only the opcodes OP_PUSHDATA2 and OP_PUSHDATA4
 <li>the executed opcode of the script has insufficient input (from stack, from script or from anywhere)
 <li>the opcode is not defined (for execution) - indicated by white or light gray background color in the table
-<li>the opcode is disabled (currently 15 opcodes) - indicated by white fontcolor in the above table
+<li>the opcode is disabled (currently 15 opcodes) - indicated by white font color in the above table
 <li>stack overflow occurs during execution of the opcode (currently the number of items on the stack and on the alternate stack is limited to 1000)
 <li>the opcodes OP_VERIF and OP_NOTVERIF invalidate a script which contains this opcode (even if this opcode is not executed!)
 <li>the opcodes OP_ELSE or OP_ENDIF has no matching OP_IF<br>
@@ -315,7 +315,7 @@ A script is considered invalid, if any of these conditions meets:<br>
 <li>the execution of OP_RETURN
 <!--li>alt stack overflow occurs (only possible during execution of OP_TOALTSTACK)-->
 <li>the numerical value of the top-stack item is negative or greater than the number of items - 2 on the stack if OP_PICK or OP_ROLL shall be executed
-<li>an item used as pubkey or signature for each of the opcodes OP_CHECKSIG, OP_CHECKSIGVERIFY, OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY can be neither a pubkey or signature (for the given hash)
+<li>an item used as public key or signature for each of the opcodes OP_CHECKSIG, OP_CHECKSIGVERIFY, OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY can be neither a public key or signature (for the given hash)
 <li>the number of signature items or the number of public key items on the stack is negative for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
 <li>there or more signatures items than public key items on the stack for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
 <li>there are (currently) more than 20 public key items on the stack for OP_CHECKMULTISIG or CHECKMULTISIGVERIFY
