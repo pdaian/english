@@ -41,8 +41,8 @@ Different colors indicate different semantic execution groups of opcodes.
 
 The opcode value 0x00 with nemonic OP_FALSE is also named OP_0 and the opcode value 0x51 with nemonic OP_1 as also named OP_TRUE.<br>
 
-## opcode descriptions
-It follows for each opcode less than decimal 185 (hexa 0xba) a description for its usage. The columns entiteld *nemonic*, *decimal* and *Hex* should be evident. The column *input* gives the needed items of the stack (and the alternate stack) and the column *output* indicates the resulting items on the stack (and the alternate stack). The naming of the entries in these two columns is chosen to reflect their interpretation. *x*,*x0*,*x1*,... means arbitrary or no interpretation, *a*, *b* and *c* as a signed integer value, *n*,*index*,*size* and *depth* non-negative integer values, *Boolean* as either a true or false.<br>
+## Opcode descriptions
+It follows for each opcode less than decimal 185 (hexa 0xba) a description for its usage. The columns entitled *nemonic*, *decimal* and *Hex* should be evident. The column *input* gives the needed items of the stack (and the alternate stack) and the column *output* indicates the resulting items on the stack (and the alternate stack). The naming of the entries in these two columns is chosen to reflect their interpretation. *x*,*x0*,*x1*,... means arbitrary or no interpretation, *a*, *b* and *c* as a signed integer value, *n*,*index*,*size* and *depth* non-negative integer values, *Boolean* as either a true or false.<br>
 Some of the more complicated opcodes are disabled out of concern that the client might have (and has) a bug in the current implementation due to the historically not as 2-complement interpretations of the byte vectors as numerical values (the most significant byte holds the sign of the byte vectors).
 
 ### Constants
