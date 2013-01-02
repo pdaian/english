@@ -13,7 +13,7 @@ The script for a typical Bitcoin transfer to destination Bitcoin address D simpl
 Scripting provides the flexibility to change the parameters of what's needed to spend transferred Bitcoins.  For example, the scripting system could be used to require two private keys, or a combination of several, or even no keys at all.
 
 A transaction is valid if nothing in the combined script triggers failure and the top stack item exists and is true (non-zero).  The party who originally *stored* the Bitcoins now being spent, dictates the script operations that will occur *last* in order to release them for use in another transaction.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (non-zero) on the stack.<br>
-Only the very first transaction in each bitcoin block has no input script (the entry there is called coinbase), because the Bitcoins created with the block are created from hot air and needed not released from a previous recorded script.
+Only the very first transaction in each bitcoin block has no input script (the entry there is called "coinbase"), because the Bitcoins created with the block are created from hot air and needed not released by a previous recorded script.
 
 ## Stack
 
