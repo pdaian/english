@@ -266,6 +266,31 @@ http://blockexplorer.com/testnet/t/6ttfeb55B1
 Spent by:
 http://blockexplorer.com/testnet/t/AFdRB1CHS3
 
+##Script validation
+A script is considered invalid, if any of these conditions meets:<br>
+<ul>
+<li>the total size of the script exceeds (currently) 10000 bytes
+<li>there are more than (currently) 201 opcodes of opcode value > 0x60 in the script
+<li>each instruction is (currently) limited to maximal 520 bytes. This effects only the opcodes OP_PUSHDATA2 and OP_PUSHDATA4
+<li>the executed opcode of the script has insufficient input (from stack, from script or from anywhere)
+<li>the opcode is not defined (for execution) - indicated by white or light gray background color in the table
+<li>the opcode is disabled (currently 15 opcodes) - indicated by white fontcolor in the above table
+<li>stack overflow occurs during execution of the opcode (currently the number of items on the stack and on the alternate stack is limited to 1000)
+<li>the opcodes OP_VERIF and OP_NOTVERIF invalidate a script which contains this opcode (even if this opcode is not executed!)
+<li>the opcodes OP_ELSE or OP_ENDIF has no matching OP_IF<br>
+<li>the script execution has been finished but there is (at least) an unmatched OP_IF<br>
+<li>the opcodes OP_VERIFY, OP_EQUALVERIFY, OP_NUMEQUALVERIFY, OP_CHECKSIGVERIFY and OP_CHECKMULTISIGVERIFY invalidate the script if the stack-top item is false
+<li>the execution of OP_RETURN
+<!--li>alt stack overflow occurs (only possible during execution of OP_TOALTSTACK)-->
+<li>the numerical value of the top-stack item is negative or greater than the number of items - 2 on the stack if OP_PICK or OP_ROLL shall be executed
+<li>(the 2nd argument of OP_WITHIN is numerical greater than the top-stack item)
+<li>an item used as pubkey or signature for each of the opcodes OP_CHECKSIG, OP_CHECKSIGVERIFY, OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY can be neither a pubkey or signature (for the given hash)
+<li>the number of signature items or the number of public key items on the stack is negative for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
+<li>there or more signatures items than public key items on the stack for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
+<li>there are (currently) more than 20 public key items on the stack for OP_CHECKMULTISIG or CHECKMULTISIGVERIFY
+<li>the script execution has been finished and the stack is empty or the top-stack item is false (numerical value 0)
+</ul>
+else the script is considered to be valid. (18.1)
 ##See Also
 
 * [[Transactions]]
@@ -274,3 +299,4 @@ http://blockexplorer.com/testnet/t/AFdRB1CHS3
 
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
+18.1: http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.7.1/bitcoin-0.7.1-linux.tar.gz
