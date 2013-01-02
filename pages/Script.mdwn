@@ -67,7 +67,7 @@ Some of the more complicated opcodes are disabled out of concern that the client
 |Nemonic|Decimal|Hex|Input|Output|Description
 |---|---|---|---|---|---
 |OP_FALSE, OP_0|0|0x00|Nothing|Empty string|A byte vector of length 0 is pushed onto the stack. (Thus, it is not a no-op!)
-|(no official nemonics)|1 - 75|0x01 - 0x4b|(operands)|x|The next <opcode>-many bytes are to be pushed onto the stack.
+|(no official nemonics)|1 - 75|0x01 - 0x4b|(operand)|x|The next <opcode>-many bytes are to be pushed onto the stack.
 |OP_PUSHDATA1|76|0x4c|(operands)|x|The next byte contains the number of bytes to be pushed onto the stack which follow this byte.
 |OP_PUSHDATA2|77|0x4d|(operands)|x|The next two bytes contain the number of bytes to be pushed onto the stack which follow theses 2 bytes.
 |OP_PUSHDATA4|78|0x4e|(operands)|x|The next four bytes contain the number of bytes to be pushed onto the stack which follow theses 4 bytes.
