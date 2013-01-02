@@ -21,7 +21,7 @@ The stacks hold byte vectors (there is the (main) stack and an alternative stack
 
 ## Opcode overview
 
-For each opcode is given: its nemonic without the leading OP_, its hexadecimal byte value, the number of stack items needed (poped) during execution, a semicolon and the number of stack items which has been pushed (after execution). A * after the needed stack items indicates that further bytes from the script following the current opcode are needed. A # indicates that items on the alternative stack are poped/pushed. A @ indicates that further (global) data from transcations is needed. A / indicates alternatives of a value. <br/>
+For each opcode is given: its nemonic without the leading OP_, its hexadecimal byte value, the number of stack items needed (poped) during execution, a semicolon and the number of stack items which has been pushed (after execution). A * after the needed stack items indicates that further bytes from the script following the current opcode are needed. A # indicates that items on the alternative stack are poped/pushed. A @ indicates that further (global) data from the transaction is needed. A / indicates alternatives of a value. <br/>
 Different colors indicate different semantic execution groups of opcodes.
 
 
