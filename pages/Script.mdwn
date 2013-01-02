@@ -74,7 +74,7 @@ Some of the more complicated opcodes are disabled out of concern that the client
 |OP_NOP|97|0x61|Nothing|Nothing|Does nothing.
 |OP_IF|99|0x63|Boolean|Nothing|If the top stack value is not 0, the statements are executed. The top stack value is removed. Lead in a logcial *<value>then [[statements]][[statements]]endif*expression
 |OP_NOTIF|100|0x64|Boolean|Nothing|If the top stack value is 0, the statements are executed. The top stack value is removed. Lead in a logcial *<value>then [[statements]][[statements]]endif*expression 
-|OP_ELSE|103|0x67|Nothing|Nothing|If the preceding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. 
+|OP_ELSE|103|0x67|Nothing|Nothing|If the preceeding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. 
 |OP_ENDIF|104|0x68|Nothing|Nothing|Ends a logcial *If <value>then [[statements]][[statements]]*expression
 |OP_VERIFY|105|0x69|Boolean|Nothing / False|If top stack value is not true then marks transaction as **invalid**. A value true is removed, but false is not.
 |OP_RETURN|106|0x6a|Nothing|Nothing|Marks transaction as **invalid**. 
