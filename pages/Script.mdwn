@@ -299,7 +299,7 @@ Spent by:
 http://blockexplorer.com/testnet/t/AFdRB1CHS3
 
 ##Script validation
-A script is considered invalid, if any of these conditions meets:<br>
+A script evaluation is considered invalid, if any of these conditions meets:<br>
 <ul>
 <li>the total size of the script exceeds (currently) 10000 bytes
 <li>there are more than (currently) 201 opcodes of opcode value > 0x60 in the script
@@ -321,7 +321,7 @@ A script is considered invalid, if any of these conditions meets:<br>
 <li>there are (currently) more than 20 public key items on the stack for OP_CHECKMULTISIG or CHECKMULTISIGVERIFY
 <li>the script execution has been finished and the stack is empty or the top-stack item is false (numerical value 0)
 </ul>
-else the script is considered to be valid. (21.1)
+else the script evaluation is considered to be valid. (21.1)
 
 ##See Also
 
