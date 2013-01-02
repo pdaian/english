@@ -310,7 +310,6 @@ A script is considered invalid, if any of these conditions meets:<br>
 <li>the execution of OP_RETURN
 <!--li>alt stack overflow occurs (only possible during execution of OP_TOALTSTACK)-->
 <li>the numerical value of the top-stack item is negative or greater than the number of items - 2 on the stack if OP_PICK or OP_ROLL shall be executed
-<li>(the 2nd argument of OP_WITHIN is numerical greater than the top-stack item)
 <li>an item used as pubkey or signature for each of the opcodes OP_CHECKSIG, OP_CHECKSIGVERIFY, OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY can be neither a pubkey or signature (for the given hash)
 <li>the number of signature items or the number of public key items on the stack is negative for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
 <li>there or more signatures items than public key items on the stack for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
@@ -318,6 +317,7 @@ A script is considered invalid, if any of these conditions meets:<br>
 <li>the script execution has been finished and the stack is empty or the top-stack item is false (numerical value 0)
 </ul>
 else the script is considered to be valid. (20.1)
+
 ##See Also
 
 * [[Transactions]]
