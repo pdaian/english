@@ -7,11 +7,13 @@ A script is essentially a list of instructions recorded with each transaction th
 
 Scripting provides the flexibility to change the parameters of what's needed to spend transferred Bitcoins.  For example, the scripting system could be used to require two private keys, or a combination of several, or even no keys at all.
 
-A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (non-zero).  The party who originally *sent* the Bitcoins now being spent, dictates the script operations that will occur *last* in order to release them for use in another transaction.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (non-zero).
+A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (non-zero).  The party who originally *sent* the Bitcoins now being spent, dictates the script operations that will occur *last* in order to release them for use in another transaction.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (non-zero).<br>
 
 Scripts are big-endian.
 
-The stacks hold byte vectors.  Byte vectors are interpreted as little-endian variable-length integers with the most significant bit determining the sign of the integer.  Thus 0x81 represents -1.  0x80 is another representation of zero (so called negative 0).  Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero.
+## stack
+
+The stacks hold byte vectors. Byte vectors are interpreted as little-endian variable-length integers with the most significant bit determining the sign of the integer.  Thus 0x81 represents -1.  0x80 is another representation of zero (so called negative 0).  Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero. At start of transaction script evaluation, the stack is empty.
 
 ## opcode overview
 
@@ -315,7 +317,7 @@ A script is considered invalid, if any of these conditions meets:<br>
 <li>there are (currently) more than 20 public key items on the stack for OP_CHECKMULTISIG or CHECKMULTISIGVERIFY
 <li>the script execution has been finished and the stack is empty or the top-stack item is false (numerical value 0)
 </ul>
-else the script is considered to be valid. (19.1)
+else the script is considered to be valid. (20.1)
 ##See Also
 
 * [[Transactions]]
@@ -323,7 +325,7 @@ else the script is considered to be valid. (19.1)
 
 ##References
 
-19.1: http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.7.1/bitcoin-0.7.1-linux.tar.gz
+20.1: http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.7.1/bitcoin-0.7.1-linux.tar.gz
 
 
 [[!tag "Technical"]]
