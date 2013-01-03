@@ -99,11 +99,12 @@ Generations have a single input, and this input has a "coinbase" parameter inste
 
 |Field|Description|Size
 |---|---|---
-|Txin-hash |doubled SHA256-ed hash of a (previous) to-be-used transaction|32 bytes
+|Txin-hash |doubled [SHA256](Wikipedia:SHA-256)-hashed of a (previous) to-be-used transaction|32 bytes
 |Txin-index|non negative integer indexing an output of the to-be-used transaction|4 bytes
 |Txin-script length|non negative integer|1 - 9 bytes
 |Txin-script / scriptSig|[[Script]]|<in-script length>-many bytes
 |sequence_no|currently ignored|4 bytes
+
 
 ### general format (inside a block) of output of a transaction - Txout
 
