@@ -331,9 +331,10 @@ A script evaluation is considered invalid, if any of these conditions meets:<br>
 <li>the number of signature items or the number of public key items on the stack is negative for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
 <li>there or more signatures items than public key items on the stack for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
 <li>there are (currently) more than 20 public key items on the stack for OP_CHECKMULTISIG or CHECKMULTISIGVERIFY
+<li>the sum of opcodes > 0x60 and the number of public keys in all executed OP_CHECKMULTISIG or CHECKMULTISIGVERIFY exceeds (currently) 201
 <li>the script execution has been finished and the stack is empty or the top-stack item is false (numerical value 0)
 </ul>
-else the script evaluation is considered to be valid. (21.1)
+else the script evaluation is considered to be valid. (21.1) These arbitrary looking limitations of 10000, 201, 520, 1000 and 20 may be increased in the future -- they serve to prevent strong slow down of the evaluation of the total script while not restricting its practical usage really.
 
 ##See Also
 
