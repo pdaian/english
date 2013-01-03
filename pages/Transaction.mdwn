@@ -107,6 +107,7 @@ Generations have a single input, and this input has a "coinbase" parameter inste
 
 
 The input sufficiently describes where and how to get the bitcoin amout to be redeemed.
+If it is the (only) input of the first transaction of a block, it is called the generation transaction input and its content completely ignored. (Historically the Previous Transaction hash is 0 and the Previous Txout-index is -1.)
 
 ### general format (inside a block) of each output of a transaction - Txout
 
