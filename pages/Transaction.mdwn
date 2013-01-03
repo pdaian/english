@@ -118,7 +118,7 @@ If it is the (only) input of the first transaction of a block, it is called the 
 |Txout-script length|non negative integer|1 - 9 bytes
 |Txout-script / scriptPubKey|[[Script]]|<out-script length>-many bytes
 
-The output sets the conditions to release this bitcoin amount later.
+The output sets the conditions to release this bitcoin amount later. The sum of the output values of the first transaction is the value of the mined bitcoins for the block plus possible transactions fees of the other transactions in the block.
 
 ##See Also
 
