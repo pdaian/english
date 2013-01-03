@@ -100,7 +100,7 @@ Generations have a single input, and this input has a "coinbase" parameter inste
 |Field|Description|Size
 |---|---|---
 |Previous Transaction hash |doubled [SHA256](Wikipedia:SHA-256)-[[hashed|hash]]of a (previous) to-be-used transaction|32 bytes
-|Previous Txin-index|non negative integer indexing an output of the to-be-used transaction|4 bytes
+|Previous Txout-index|non negative integer indexing an output of the to-be-used transaction|4 bytes
 |Txin-script length|non negative integer|1 - 9 bytes
 |Txin-script / scriptSig|[[Script]]|<in-script length>-many bytes
 |sequence_no|currently ignored|4 bytes
