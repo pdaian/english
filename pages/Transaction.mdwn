@@ -3,7 +3,7 @@ A transaction is a signed section of data that is broadcast to the [[network]] a
 
 A [[block_chain_browser]] is a site where every transaction included within the block chain can be viewed.  This is useful for seeing the technical details of transaction in action, and for payment verification purposes.
 
-### general format of Bitcoin transaction
+### general format of a Bitcoin transaction (inside a block)
 
 
 |Field|Description|Size
@@ -14,6 +14,7 @@ A [[block_chain_browser]] is a site where every transaction included within the 
 |Out-counter|positive integer|1 - 9 bytes
 |list of outputs|the first output contains the mined bitcoins for this block and possible transactions fees|<out-counter>-many outputs
 |lock_time|currently ignored|4 bytes
+
 
 ### Principle example of a Bitcoin transaction with 1 input and 1 output only
 
