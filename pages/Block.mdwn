@@ -1,5 +1,15 @@
 
 Data is permanently recorded in the Bitcoin network through files called **blocks**.  A block is a record of some or all of the most recent Bitcoin transactions that have not yet been recorded in any prior blocks.  They could be thought of like the individual pages of a city recorder's recordbook (where changes to title to real estate are recorded) or a stock transaction ledger.  In all but a few exceptional cases, new blocks are added to the end of the record (known in Bitcoin as the [[block_chain]]), and once written, are never changed or removed.  Each block memorializes what took place immediately before it was created.
+###Block structure
+
+
+|Field|Description|Size
+|---|---|---
+|Magic no|value always 0xD9B4BEF9|4 bytes
+|Blocksize|number of bytes following up to end of block|4 bytes
+|Blockheader|[[consists of 6 items|Block_hashing_algorithm]]|80 bytes
+|Transaction counter|positive integer|1 - 9 bytes
+|[[transactions]]|the (non empty) list of transactions|<Transaction counter>-many transactions
 
 ##Description
 Each block contains, among other things, a record of some or all recent [[transactions]], and a reference to the block that came immediately before it.  It also contains an answer to a difficult-to-solve mathematical puzzle - the answer to which is unique to each block.  New blocks can't be submitted to the network without the correct answer - the process of "[[Mining]]" is essentially the process of competing to be the next to find the answer that "solves" the current block.  The mathematical problem in each block is difficult to solve, but once a valid solution is found, it is very easy for the rest of the network to confirm that the solution is correct.  There are multiple valid solutions for any given block - only one of the solutions needs to be found for the block to be solved.
