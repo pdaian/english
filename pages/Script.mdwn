@@ -17,7 +17,7 @@ Only the very first transaction in each bitcoin block has no input script (the e
 
 ## Stack
 
-The stacks hold byte vectors (there is the (main) stack and an alternative stack). Byte vectors are interpreted as little-endian variable-length integers with the most significant bit determining the sign of the integer.  Thus 0x81 represents -1.  0x80 is another representation of zero (so called negative 0).  Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero. At start of a (transactioninput) script evaluation, the stack is empty.
+The stacks hold byte vectors (there is the (main) stack and an alternative stack). Byte vectors are interpreted as little-endian variable-length integers with the most significant bit determining the sign of the integer.  Thus 0x81 represents -1.  0x80 is another representation of zero (so called negative 0).  Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero.
 
 ## Opcode overview
 
