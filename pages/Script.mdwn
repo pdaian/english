@@ -158,10 +158,10 @@ Some of the more complicated opcodes are disabled out of concern that the client
 |OP_1SUB|140|0x8c|a|c|1 is subtracted from the input.
 |OP_2MUL|141|0x8d|a|c|The input is multiplied by 2. *Currently disabled.*
 |OP_2DIV|142|0x8e|a|c|The input is divided by 2. *Currently disabled.*
-|OP_NEGATE|143|0x8f|a|c|The sign of the input is flipped.
+|OP_NEGATE|143|0x8f|a|c|The sign of the input is flipped. Numerically the value is multiplied by -1
 |OP_ABS|144|0x90|a|c|The input is negative, its sign is flipped.
-|OP_NOT|145|0x91|a|Boolean|If the input is 0 or 1, it is flipped. Otherwise the output will be 0.
-|OP_0NOTEQUAL|146|0x92|a|Boolean|Returns 0 if the input is 0. 1 otherwise.
+|OP_NOT|145|0x91|a|Boolean|If the input is 0 or 1, it is flipped. Otherwise the output will be 0. Test whether its value equals 0
+|OP_0NOTEQUAL|146|0x92|a|Boolean|Returns 0 if the input is 0. 1 otherwise. Test whether its value is unequal 0
 |OP_ADD|147|0x93|a b|c|a is added to b.
 |OP_SUB|148|0x94|a b|c|b is subtracted from a.
 |OP_MUL|149|0x95|a b|c|a is multiplied by b. *Currently disabled.*
