@@ -94,14 +94,22 @@ Checking process:
 #### Generation
 
 Generations have a single input, and this input has a "coinbase" parameter instead of a scriptSig. The data in "coinbase" can be anything; it isn't used. Bitcoin puts the current compact-format [[target]] and the arbitrary-precision "extraNonce" number there, which increments every time the Nonce field in the [[block header|block_hashing_algorithm]] overflows. Outputs can be anything, but Bitcoin creates one exactly like an IP address transaction.
+### general format (inside a block) of input of a transaction - Txin
 
-##See Also
 
-* [[Script]]
-* [[BTC_Sender]] Transmit raw, hand-crafted transactions
+|Field|Description|Size
+|---|---|---
+|Txin-hash |doubled SHA256-ed hash of a (previous) to-be-used transaction|32 bytes
+|Txin-index|non negative integer indexing an output of the to-be-used transaction|4 bytes
+|Txin-script length|non negative integer|1 - 9 bytes
+|Txin-script / scriptSig|[[Script]]|<in-script length>-many bytes
+|sequence_no|currently ignored|4 bytes
 
-[[!tag "Technical"]]
-[[!tag "Vocabulary"]]
-[[de:Transaktion]]
-[[es:Transacción]]
-[[pl:Transakcje]]
+### general format (inside a block) of output of a transaction - Txout
+
+
+|Field|Description|Size
+|---|---|---
+|value|non negative integer giving the number of [[BTC/10^8|FAQ#What_do_I_call_the_various_denominations_of_bitcoins.3F]]to be transfered|8 bytes
+|Txout-script length|non negative integer|1 - 9 bytes
+|Txout-script / scriptPubKey|[[Script]]|<out-script length>-many bytes##See Also* [[Script]]* [[BTC_Sender]]Transmit raw, hand-crafted transactions[[!tag "Technical"]][[!tag "Vocabulary"]][[de:Transaktion]][[es:Transacción]][[pl:Transakcje]]
