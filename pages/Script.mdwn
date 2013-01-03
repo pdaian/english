@@ -72,9 +72,9 @@ Some of the more complicated opcodes are disabled out of concern that the client
 |OP_PUSHDATA1|76|0x4c|(operands)|x|The next byte contains the number of bytes to be pushed onto the stack which follow this byte.
 |OP_PUSHDATA2|77|0x4d|(operands)|x|The next two bytes contain the number of bytes to be pushed onto the stack which follow theses 2 bytes.
 |OP_PUSHDATA4|78|0x4e|(operands)|x|The next four bytes contain the number of bytes to be pushed onto the stack which follow theses 4 bytes.
-|OP_1NEGATE|79|0x4f|Nothing|-1|The number -1 is pushed onto the stack.
-|OP_1, OP_TRUE|81|0x51|Nothing|1|The number 1 is pushed onto the stack.
-|OP_2 - OP_16|82 - 96|0x52 - 0x60|Nothing|2-16|The value <opcode>-80 (thus, one of 2 - 16) is pushed onto the stack.
+|OP_1NEGATE|79|0x4f|Nothing|-1|The byte with value -1 is pushed onto the stack.
+|OP_1, OP_TRUE|81|0x51|Nothing|1|The byte with value 1 is pushed onto the stack.
+|OP_2 - OP_16|82 - 96|0x52 - 0x60|Nothing|2-16|The byte with value <opcode>-80 (thus, one of 2 - 16) is pushed onto the stack.
 
 
 ### Flow control
