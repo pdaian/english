@@ -237,11 +237,11 @@ Version opcodes are disabled since bitcoin 0.2.0 and should not be used. Maybe r
 
 |Nemonic|Decimal|Hex|Description
 |---|---|---|---
-|OP_RESERVED|80|0x50|Script evalution is invalid unless occuring in an unexecuted OP_IF branch
-|OP_RESERVED1|137|0x89|Script evalution is invalid unless occuring in an unexecuted OP_IF branch
-|OP_RESERVED2|138|0x8a|Script evalution is invalid unless occuring in an unexecuted OP_IF branch
+|OP_RESERVED|80|0x50|Script evalution is triggered invalid-
+|OP_RESERVED1|137|0x89|Script evalution is triggered invalid.
+|OP_RESERVED2|138|0x8a|Script evalution is triggered invalid.
 
-Each opcode not assigned (currently also every opcode value > 185) is also reserved. Using an unassigned opcode triggers the script evaluation to be invalid.
+Each opcode not assigned (currently also every opcode value > 185) is also reserved. Using any unassigned opcode triggers the script evaluation to be invalid.
 
 ##Scripts in bitcoin blocks
 This is a list of interesting scripts. Keep in mind that all constants actually use the data-pushing commands above. At start of a (transaction input) script evaluation, the stack is always empty. 
