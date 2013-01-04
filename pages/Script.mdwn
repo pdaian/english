@@ -220,6 +220,17 @@ These nemonics are used internally for assisting with transaction matching. They
 |OP_INVALIDOPCODE|255|0xff|Matches any opcode that is not yet assigned.
 
 
+### Version opcodes
+
+
+|Nemonic|Decimal|Hex|Description
+|---|---|---|---
+|OP_VER|98|0x62|Script evalution is invalid unless occuring in an unexecuted OP_IF branch
+|OP_VERIF|101|0x65|Script evalution is invalid even when occuring in an unexecuted OP_IF branch
+|OP_VERNOTIF|102|0x66|Script evalution is invalid even when occuring in an unexecuted OP_IF branch
+
+Version opcodes are disabled since bitcoin 0.2.0 and should not be used. Maybe reassigned in the future.
+
 ### Reserved opcodes
 
 
@@ -227,9 +238,6 @@ These nemonics are used internally for assisting with transaction matching. They
 |Nemonic|Decimal|Hex|Description
 |---|---|---|---
 |OP_RESERVED|80|0x50|Script evalution is invalid unless occuring in an unexecuted OP_IF branch
-|OP_VER|98|0x62|Script evalution is invalid unless occuring in an unexecuted OP_IF branch
-|OP_VERIF|101|0x65|Script evalution is invalid even when occuring in an unexecuted OP_IF branch
-|OP_VERNOTIF|102|0x66|Script evalution is invalid even when occuring in an unexecuted OP_IF branch
 |OP_RESERVED1|137|0x89|Script evalution is invalid unless occuring in an unexecuted OP_IF branch
 |OP_RESERVED2|138|0x8a|Script evalution is invalid unless occuring in an unexecuted OP_IF branch
 
@@ -334,7 +342,7 @@ A script evaluation is considered invalid, if any of these conditions meets:<br>
 <li>the sum of opcodes > 0x60 and the number of public keys in all executed OP_CHECKMULTISIG or CHECKMULTISIGVERIFY exceeds (currently) 201
 <li>the script execution has been finished and the stack is empty or the top-stack item is false (numerical value 0)
 </ul>
-else the script evaluation is considered to be valid. (22.1) These arbitrary looking limitations of 10000, 201, 520, 1000 and 20 might be increased in the future -- they serve to prevent strong slow down of the evaluation of the total script while not restricting its practical usage really.
+else the script evaluation is considered to be valid. (23.1) These arbitrary looking limitations of 10000, 201, 520, 1000 and 20 might be increased in the future -- they serve to prevent strong slow down of the evaluation of the total script while not restricting its practical usage really.
 
 ##See Also
 
@@ -343,7 +351,7 @@ else the script evaluation is considered to be valid. (22.1) These arbitrary loo
 
 ##References
 
-22.1: file src/src/script.cpp in http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.7.1/bitcoin-0.7.1-linux.tar.gz
+23.1: file src/src/script.cpp in http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.7.1/bitcoin-0.7.1-linux.tar.gz
 
 
 [[!tag "Technical"]]
