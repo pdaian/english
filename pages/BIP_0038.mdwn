@@ -110,29 +110,44 @@ Encrypting a private key with EC multiplication offers the ability for someone t
 
 Using EC multiply also allows a passphrase to be protected once by very expensive scrypt parameters, and then the protected passphrase be used to trivially generate large numbers of Bitcoin keypairs protected with the same passphrase without a correspondingly-expensive per-keypair delay or resource cost.
 
-Steps performed by the person with the passphrase (call him the *owner*):
+The person who knows the passphrase and who is the intended beneficiary of the private keys is called the *owner*.  He will generate one or more "intermediate codes", which are the first factor of a two-factor redemption system, and will give them to someone else we'll call *printer*, who generates a key pair with an intermediate code can know the address and encrypted private key, but cannot decrypt the private key without the original passphrase.
 
-1. Generate 8 bytes of random numbers, call them *ownerentropy*.  Divide it into two halves, called *ownersaltA* and *ownersaltB*.
+An intermediate code should, but is not required to, embed a printable "lot" and "sequence" number for the benefit of the user, which will be included in the encrypted private key strings.  An owner who has requested multiple private keys to be generated for him will be advised by applications to ensure that each one has a unique lot and sequence number consistent with the intermediate codes he generated.  These mainly help protect *owner* from potential mistakes and/or attacks that could be made by *printer*.
+
+The "lot" and "sequence" number are combined into a single 32 bit number.  20 bits are used for the lot number and 12 bits are used for the sequence number, such that the lot number can be any decimal number between 0 and 1048575, and the sequence number can be any decimal number between 0 and 4095.  For programs that generate batches of intermediate codes for an *owner*, it is recommended that lot numbers be chosen at random within the range 100000-999999 and that sequence numbers are assigned starting with 1.
+
+Steps performed by *owner* to generate a single intermediate code, if lot and sequence numbers are being included:
+
+1. Generate 4 random bytes, call them *ownersalt*.
+1. Encode the lot and sequence numbers as a 4 byte quantity (big-endian): lotnumber * 4096 + sequencenumber.  Call these four bytes *lotsequence*.
 1. Derive a key from the passphrase using scrypt
-1. * Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  salt is *ownersaltA*. n=16384, r=8, p=8, length=32.
+1. * Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  salt is *ownersalt*. n=16384, r=8, p=8, length=32.
 1. * Call the resulting 32 bytes *prefactor*.
-1. * Take SHA256(SHA256(*prefactor* + *ownersaltB*)) and call this *passfactor*.
+1. * Take SHA256(SHA256(*prefactor* + *lotsequence*)) and call this *passfactor*.
 1. Compute the elliptic curve point G * *passfactor*, and convert the result to compressed notation (33 bytes).  Call this *passpoint*.  Compressed notation is used for this purpose regardless of whether the intent is to create Bitcoin addresses with or without compressed public keys.
 1. Convey *ownersalt* and *passpoint* to the party generating the keys, along with a checksum to ensure integrity.
 1. * The following Base58Check-encoded format is recommended for this purpose: magic bytes "2C E9 B3 E1 FF 39 E2 51" followed by *ownersaltA*, *ownersaltB*, and then *passpoint*.  The resulting string will start with the word "passphrase" due to the constant bytes, will be 72 characters in length, and encodes 49 bytes (8 bytes constant + 8 bytes *ownersalt* + 33 bytes *passpoint*).  The checksum is handled in the Base58Check encoding.  The resulting string is called *intermediate_passphrase_string*.
 
-NOTE: The methodology for creating an intermediate code was recently modified to introduce *ownersaltB*.  This permits rapid generation of batches of unique intermediate codes on mobile devices, allowing them to have a unique *passfactor* but without having to repeat the scrypt computation for each one.  Summary of the differences: the magic ended in 0x53 instead of 0x51; the entirety of *ownerentropy* was given to scrypt as salt rather than just the first four bytes, and the double SHA256 step was skipped (so "passfactor" was the output of scrypt).  Deprecation of the old methodology is recommended.
+If lot and sequence numbers are not being included, then follow the same procedure with the following changes:
+
+* *ownersalt* is 8 random bytes instead of 4.
+* *lotsequence* is omitted.  The extra bytes in *ownersalt* take their place.
+* All 8 bytes are provided as salt to the scrypt process.
+* The SHA256 conversion of *prefactor* to *passfactor* is omitted.  Instead, the output of scrypt is used directly as *passfactor*.
+* The magic bytes are "2C E9 B3 E1 FF 39 E2 53" instead (the last byte is 0x53 instead of 0x51).
+
+For the sake of simplicity, *ownerentropy* is used in future steps to refer to the 8 bytes produced by the owner (either 4 bytes *ownersalt* plus 4 bytes *lotsequence*, or 8 bytes *ownersalt*) where the distinction doesn't matter.
 
 Steps to create new encrypted private keys given *intermediate_passphrase_string* from *owner* (so we have *ownerentropy*, and *passpoint*, but we do not have *passfactor* or the passphrase):
 
 1. Set *flagbyte*.
 1. * Turn on bit 0x20 if the Bitcoin address will be formed by hashing the compressed public key (optional, saves space, but many Bitcoin implementations aren't compatible with it)
-1. * Turn on bit 0x04 if the magic ends in 0x51 instead of 0x53.  (The decryption process needs this in order to derive the first factor from the passphrase, but the process of creating new encrypted keypairs is the same regardless of the value of this bit)
+1. * Turn on bit 0x04 if *ownerentropy* contains a value for *lotsequence*.  (While it has no effect on the keypair generation process, the decryption process needs this flag to know how to process *ownerentropy*)
 1. Generate 24 random bytes, call this *seedb*.  Take SHA256(SHA256(*seedb*)) to yield 32 bytes, call this *factorb*.
 1. ECMultiply *passpoint* by *factorb*.  Use the resulting EC point as a public key and hash it into a Bitcoin address using either compressed or uncompressed public key methodology (specify which methodology is used inside *flagbyte*).  This is the generated Bitcoin address, call it *generatedaddress*.
 1. Take the first four bytes of SHA256(SHA256(*generatedaddress*)) and call it *addresshash*.
 1. Now we will encrypt *seedb*.  Derive a second key from *passpoint* using scrypt
-1. *Parameters: *passphrase* is *passpoint* provided from the first party (expressed in binary as 33 bytes).  *salt* is *addresshash* + *ownersaltA* + *ownersaltB*, n=1024, r=1, p=1, length=64 (n, r, p are provisional and subject to consensus).  The "+" operator is concatenation.
+1. *Parameters: *passphrase* is *passpoint* provided from the first party (expressed in binary as 33 bytes).  *salt* is *addresshash* + *ownerentropy*, n=1024, r=1, p=1, length=64.  The "+" operator is concatenation.
 1. *Split the result into two 16-byte halves and call them *derivedhalf1* and *derivedhalf2*.
 1. Do AES256Encrypt(seedb[[0...15]] xor derivedhalf1[[0...15]], derivedhalf2), call the 16-byte result *encryptedpart1*
 1. Do AES256Encrypt((encryptedpart1[[8...15]] + seedb[[16...23]]) xor derivedhalf1[[16...31]], derivedhalf2), call the 16-byte result *encryptedseedb*.  The "+" operator is concatenation.
@@ -142,9 +157,9 @@ The encrypted private key is the Base58Check-encoded concatenation of the follow
 * 0x01 0x43 + *flagbyte* + *addresshash* + *ownerentropy* + *encryptedpart1*[[0...7]] + *encryptedpart2*
 
 #####Confirmation code
-The party generating the Bitcoin address has the option to return a *confirmation code* back to *owner* which allows *owner* to independently verify that he has been given a Bitcoin address that actually depends on his passphrase.  This protects *owner* from being given a Bitcoin address by the second party that is unrelated to the key derivation and possibly spendable by the second party.  If a Bitcoin address given to *owner* can be successfully regenerated through the confirmation process, *owner* can be reasonably assured that any spending without the passphrase is infeasible.  This confirmation code is 75 characters starting with "cfrm38".
+The party generating the Bitcoin address has the option to return a *confirmation code* back to *owner* which allows *owner* to independently verify that he has been given a Bitcoin address that actually depends on his passphrase, and to confirm the lot and sequence numbers (if applicable).  This protects *owner* from being given a Bitcoin address by the second party that is unrelated to the key derivation and possibly spendable by the second party.  If a Bitcoin address given to *owner* can be successfully regenerated through the confirmation process, *owner* can be reasonably assured that any spending without the passphrase is infeasible.  This confirmation code is 75 characters starting with "cfrm38".
 
-To generate it, we need *flagbyte*, *ownersaltA*, *ownersaltB*, *factorb*, *derivedhalf1* and *derivedhalf2* from the original encryption operation.
+To generate it, we need *flagbyte*, *ownerentropy*, *factorb*, *derivedhalf1* and *derivedhalf2* from the original encryption operation.
 
 1. ECMultiply *factorb* by G, call the result *pubfactorb*.  The result is 33 bytes.
 1. The first byte is 0x02 or 0x03.  XOR it by (derivedhalf2[[31]] & 0x01), call the resulting byte *pubfactorprefix*.
@@ -154,9 +169,9 @@ To generate it, we need *flagbyte*, *ownersaltA*, *ownersaltB*, *factorb*, *deri
 
 The result is a Base58Check-encoded concatenation of the following:
 
-* 0x64 0x3B 0xF6 0xA8 0x9A + *flagbyte* + *ownersaltA* + *ownersaltB* + *addresshash* + *encryptedpubfactor*
+* 0x64 0x3B 0xF6 0xA8 0x9A + *flagbyte* + *ownerentropy* + *addresshash* + *encryptedpubfactor*
 
-A confirmation tool, given a passphrase and a confirmation code, can recalculate the address, verify the address hash, and then assert the following: "It is confirmed that Bitcoin address *address* depends on this passphrase".
+A confirmation tool, given a passphrase and a confirmation code, can recalculate the address, verify the address hash, and then assert the following: "It is confirmed that Bitcoin address *address* depends on this passphrase".  If applicable: "The lot number is *lotnumber* and the sequence number is *sequencenumber*."
 
 #####Decryption
 
