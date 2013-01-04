@@ -68,6 +68,8 @@ To stop the bitcoin daemon, execute:
 |0.1.0|2009-01-09|Windows32|
 
 
+Up to and including version 0.3.19 is the "Satoshi code". The founder retired from development with end of 2009.
+
 ##Theory of Operation
 
 bitcoind is a multithreaded C++ program. It is designed to be portable across Windows, Mac, and Linux systems. The multithreaded aspect leads to some complexity and the use of certain code patterns to deal with concurrency that may be unfamiliar to many programmers. Also, the code is aggressive in the use of C++ constructs, so it will help to be fluent with map, multimap, set, string, vector, iostream, and templates. As is typical of a C++ program, a lot of code tends to end up in the header files so be sure to search both the .cpp and .h files when looking for a function.
@@ -128,19 +130,10 @@ Make a backup of that entire folder, then delete everything EXCEPT wallet.dat. S
 
 ##References
 
-<span class="ref-label">3.1:
-<span class="ref-column">
- [version 0.7.2 released](Bitcoin-Qt/bitcoind) 
-</span>  
-<span class="ref-label">3.2:
-<span class="ref-column">
- [version 0.7.1 released](Bitcoin-Qt/bitcoind) 
-</span>  
+3.1: [Bitcoin-Qt/bitcoind version 0.7.2 released](https://bitcointalk.org/index.php?topic=130819.msg1399721#msg1399721)  
+3.2: [Bitcoin-Qt/bitcoind version 0.7.1 released](https://bitcointalk.org/index.php?topic=119277.msg1283232#msg1283232)  
 3.3: [Bitcoin-Qt/bitcoind version 0.7.0 released](https://bitcointalk.org/index.php?topic=110243.msg1199467)  
-<span class="ref-label">3.4:
-<span class="ref-column">
- [/ bitcoind version 0.6.3 released](Bitcoin-Qt) 
-</span>  
+3.4: [Bitcoin-Qt / bitcoind version 0.6.3 released](https://bitcointalk.org/index.php?topic=89877.msg989356#msg989356)  
 3.5: [Re: Version 0.6.1 release candidate 2](https://bitcointalk.org/index.php?topic=78829.msg888578#msg888578)  
 3.6: [bitcoin.org: Bitcoin version 0.6.0 released](http://www.bitcoinforum.com/bitcoin-discussion/bitcoin-org-bitcoin-version-0-6-0-released/)  
 3.7: [URGENT: Windows Bitcoin-Qt update](https://bitcointalk.org/index.php?topic=69120.0)  
