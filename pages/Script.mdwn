@@ -325,7 +325,7 @@ A script evaluation is considered invalid, if any of these conditions meets:<br>
 <li>each instruction is (currently) limited to maximal 520 bytes. This effects only the opcodes OP_PUSHDATA2 and OP_PUSHDATA4
 <li>the executed opcode of the script has insufficient input (from stack, from script or from anywhere)
 <li>the opcode is not defined (for execution) - indicated by white or light gray background color in the table
-<li>the opcode is disabled (currently 15 opcodes) - indicated by white font color in the above table
+<li>the opcode is disabled (currently 15 opcodes) - indicated by white font color in the opcode overview matrix
 <li>stack overflow occurs during execution of the opcode (currently the number of items on the stack and on the alternate stack is limited to 1000)
 <li>the opcodes OP_VERIF and OP_NOTVERIF invalidate a script which contains this opcode (even if this opcode is not executed!)
 <li>the opcodes OP_ELSE or OP_ENDIF has no matching OP_IF<br>
