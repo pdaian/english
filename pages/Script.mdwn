@@ -209,6 +209,28 @@ Some of the more complicated opcodes are disabled out of concern that the client
 |OP_NOP1-OP_NOP10|176-185|0xb0-0xb9|The opcode has no effect.
 
 
+### Version opcodes
+Version opcodes are disabled since bitcoin 0.2.0 and should not be used (maybe reassigned in the future).
+
+
+|Nemonic|Decimal|Hex|Description
+|---|---|---|---
+|OP_VER|98|0x62|Script evalution is triggered invalid (Formerly pushed the bitcoin-serialize version onto stack).
+|OP_VERIF|101|0x65|Script evalution is triggered invalid (Formerly top stack item was popped and =< compared to present version)
+|OP_VERNOTIF|102|0x66|Script evalution is triggered invalid (Formerly top stack item was popped and > compared to present version)
+
+
+### Reserved opcodes
+Each opcode not assigned (currently also every opcode value > 185) is also reserved. Using any unassigned opcode triggers the script evaluation to be invalid.
+
+
+|Nemonic|Decimal|Hex|Description
+|---|---|---|---
+|OP_RESERVED|80|0x50|Script evalution is triggered invalid-
+|OP_RESERVED1|137|0x89|Script evalution is triggered invalid.
+|OP_RESERVED2|138|0x8a|Script evalution is triggered invalid.
+
+
 ###Pseudo-opcodes
 These nemonics are used internally for assisting with transaction matching. They are invalid if used in actual scripts.
 
@@ -219,29 +241,6 @@ These nemonics are used internally for assisting with transaction matching. They
 |OP_PUBKEY|254|0xfe|Represents a public key compatible with OP_CHECKSIG.
 |OP_INVALIDOPCODE|255|0xff|Matches any opcode that is not yet assigned.
 
-
-### Version opcodes
-
-
-|Nemonic|Decimal|Hex|Description
-|---|---|---|---
-|OP_VER|98|0x62|Script evalution is triggered invalid (Formerly pushed the bitcoin-serialize version onto stack).
-|OP_VERIF|101|0x65|Script evalution is triggered invalid (Formerly top stack item was popped and =< compared to present version)
-|OP_VERNOTIF|102|0x66|Script evalution is triggered invalid (Formerly top stack item was popped and > compared to present version)
-
-Version opcodes are disabled since bitcoin 0.2.0 and should not be used. Maybe reassigned in the future.
-
-### Reserved opcodes
-
-
-
-|Nemonic|Decimal|Hex|Description
-|---|---|---|---
-|OP_RESERVED|80|0x50|Script evalution is triggered invalid-
-|OP_RESERVED1|137|0x89|Script evalution is triggered invalid.
-|OP_RESERVED2|138|0x8a|Script evalution is triggered invalid.
-
-Each opcode not assigned (currently also every opcode value > 185) is also reserved. Using any unassigned opcode triggers the script evaluation to be invalid.
 
 ##Scripts in bitcoin blocks
 This is a list of interesting scripts. Keep in mind that all constants actually use the data-pushing commands above. At start of a (transaction input) script evaluation, the stack is always empty. 
