@@ -225,9 +225,9 @@ These nemonics are used internally for assisting with transaction matching. They
 
 |Nemonic|Decimal|Hex|Description
 |---|---|---|---
-|OP_VER|98|0x62|Script evalution is invalid unless occuring in an unexecuted OP_IF branch
-|OP_VERIF|101|0x65|Script evalution is invalid even when occuring in an unexecuted OP_IF branch
-|OP_VERNOTIF|102|0x66|Script evalution is invalid even when occuring in an unexecuted OP_IF branch
+|OP_VER|98|0x62|Script evalution is triggered invalid (Formerly pushed the bitcoin-serialize version onto stack).
+|OP_VERIF|101|0x65|Script evalution is triggered invalid (Formerly top stack item was popped and =< compared to present version)
+|OP_VERNOTIF|102|0x66|Script evalution is invalid invalid (Formerly top stack item was popped and > compared to present version)
 
 Version opcodes are disabled since bitcoin 0.2.0 and should not be used. Maybe reassigned in the future.
 
