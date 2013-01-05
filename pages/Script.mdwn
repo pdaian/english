@@ -243,9 +243,9 @@ These nemonics are used internally for assisting with transaction matching. They
 
 
 ##Scripts in bitcoin transactions
-This is a list of important scripts to see op-codes "at work". Keep in mind that all constants actually use the data-pushing commands above. At start of a (transaction input) script evaluation, the stack is always empty. 
+It follows a list of important (most occuring) scripts to see opcodes "at work". Keep in mind that all constants actually use the data-pushing instructions above. At start of a (transaction input) script evaluation, the stack is always empty. 
 
-###Standard Transaction to Bitcoin address
+###Standard transaction to bitcoin address
 
 	scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 	scriptSig: <sig> <pubKey>
@@ -308,7 +308,7 @@ It's possible to add arbitrary data to any transaction by just adding some data 
 |true|Empty.|Stack holds the value of signature check now.
 
 
-### Examples of non standard transaction on Testnet
+###Examples of non standard transaction on Testnet
 
 These two links below show a non standard transaction. It just prepends the hex of "bob" and the operation OP_DROP
 which just removes it. As you can see they can be spent as normal.
