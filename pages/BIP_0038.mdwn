@@ -158,15 +158,15 @@ The party generating the Bitcoin address has the option to return a *confirmatio
 
 To generate it, we need *flagbyte*, *ownerentropy*, *factorb*, *derivedhalf1* and *derivedhalf2* from the original encryption operation.
 
-1. ECMultiply *factorb* by G, call the result *pubfactorb*.  The result is 33 bytes.
-1. The first byte is 0x02 or 0x03.  XOR it by (derivedhalf2[[31]] & 0x01), call the resulting byte *pubfactorprefix*.
-1. Do AES256Encrypt(pubfactor[[1...16]] xor derivedhalf1[[0...15]], derivedhalf2) and call the result *pubfactorx1*.
-1. Do AES256Encrypt(pubfactor[[17...32]] xor derivedhalf1[[16...31]], derivedhalf2) and call the result *pubfactorx2*.
-1. Concatenate *pubfactorprefix* + *pubfactorx1* + *pubfactorx2* (total 33 bytes) and call the result *encryptedpubfactor*.
+1. ECMultiply *factorb* by G, call the result *pointb*.  The result is 33 bytes.
+1. The first byte is 0x02 or 0x03.  XOR it by (derivedhalf2[[31]] & 0x01), call the resulting byte *pointbprefix*.
+1. Do AES256Encrypt(pointb[[1...16]] xor derivedhalf1[[0...15]], derivedhalf2) and call the result *pointbx1*.
+1. Do AES256Encrypt(pointb[[17...32]] xor derivedhalf1[[16...31]], derivedhalf2) and call the result *pointbx2*.
+1. Concatenate *pointbprefix* + *pointbx1* + *pointbx2* (total 33 bytes) and call the result *encryptedpointb*.
 
 The result is a Base58Check-encoded concatenation of the following:
 
-* 0x64 0x3B 0xF6 0xA8 0x9A + *flagbyte* + *ownerentropy* + *addresshash* + *encryptedpubfactor*
+* 0x64 0x3B 0xF6 0xA8 0x9A + *flagbyte* + *ownerentropy* + *addresshash* + *encryptedpointb*
 
 A confirmation tool, given a passphrase and a confirmation code, can recalculate the address, verify the address hash, and then assert the following: "It is confirmed that Bitcoin address *address* depends on this passphrase".  If applicable: "The lot number is *lotnumber* and the sequence number is *sequencenumber*."
 
