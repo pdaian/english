@@ -1,0 +1,6 @@
+Rationale behind my changes:
+
+* Miners are not forced to accept the full subsidy under even the current rules. So decreases of total Bitcoins have already been done (both accidental and intentional) and there is no reason to even try forbidding further decreases.
+* Block 1,890,000 would be half of 1953125 satoshis, which means half a satoshi is lost unless precision is improved. It makes no sense to forbid improving precision to avoid a subsidy change before block 6,930,000.
+* Bitcoin makes no guarantee that coins will or won't be lost. People can assume that all they want, but coins can be un-lost numerous ways, and should not be prevented. For example, someone may find an old wallet.dat. Another example would be when ECDSA is broken, most lost coins may suddenly be recoverable.
+--[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 15:11, 5 January 2013 (GMT)
