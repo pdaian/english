@@ -120,23 +120,20 @@ Steps performed by *owner* to generate a single intermediate code, if lot and se
 
 1. Generate 4 random bytes, call them *ownersalt*.
 1. Encode the lot and sequence numbers as a 4 byte quantity (big-endian): lotnumber * 4096 + sequencenumber.  Call these four bytes *lotsequence*.
+1. Concatenate *ownersalt* + *lotsequence* and call this *ownerentropy*.
 1. Derive a key from the passphrase using scrypt
 1. * Parameters: *passphrase* is the passphrase itself encoded in UTF-8.  salt is *ownersalt*. n=16384, r=8, p=8, length=32.
 1. * Call the resulting 32 bytes *prefactor*.
-1. * Take SHA256(SHA256(*prefactor* + *lotsequence*)) and call this *passfactor*.
+1. * Take SHA256(SHA256(*prefactor* + *ownerentropy*)) and call this *passfactor*.
 1. Compute the elliptic curve point G * *passfactor*, and convert the result to compressed notation (33 bytes).  Call this *passpoint*.  Compressed notation is used for this purpose regardless of whether the intent is to create Bitcoin addresses with or without compressed public keys.
 1. Convey *ownersalt* and *passpoint* to the party generating the keys, along with a checksum to ensure integrity.
-1. * The following Base58Check-encoded format is recommended for this purpose: magic bytes "2C E9 B3 E1 FF 39 E2 51" followed by *ownersaltA*, *ownersaltB*, and then *passpoint*.  The resulting string will start with the word "passphrase" due to the constant bytes, will be 72 characters in length, and encodes 49 bytes (8 bytes constant + 8 bytes *ownersalt* + 33 bytes *passpoint*).  The checksum is handled in the Base58Check encoding.  The resulting string is called *intermediate_passphrase_string*.
+1. * The following Base58Check-encoded format is recommended for this purpose: magic bytes "2C E9 B3 E1 FF 39 E2 51" followed by *ownerentropy*, and then *passpoint*.  The resulting string will start with the word "passphrase" due to the constant bytes, will be 72 characters in length, and encodes 49 bytes (8 bytes constant + 8 bytes *ownersalt* + 33 bytes *passpoint*).  The checksum is handled in the Base58Check encoding.  The resulting string is called *intermediate_passphrase_string*.
 
 If lot and sequence numbers are not being included, then follow the same procedure with the following changes:
 
-* *ownersalt* is 8 random bytes instead of 4.
-* *lotsequence* is omitted.  The extra bytes in *ownersalt* take their place.
-* All 8 bytes are provided as salt to the scrypt process.
+* *ownersalt* is 8 random bytes instead of 4, and *lotsequence* is omitted.  *ownerentropy* becomes an alias for *ownersalt*.
 * The SHA256 conversion of *prefactor* to *passfactor* is omitted.  Instead, the output of scrypt is used directly as *passfactor*.
 * The magic bytes are "2C E9 B3 E1 FF 39 E2 53" instead (the last byte is 0x53 instead of 0x51).
-
-For the sake of simplicity, *ownerentropy* is used in future steps to refer to the 8 bytes produced by the owner (either 4 bytes *ownersalt* plus 4 bytes *lotsequence*, or 8 bytes *ownersalt*) where the distinction doesn't matter.
 
 Steps to create new encrypted private keys given *intermediate_passphrase_string* from *owner* (so we have *ownerentropy*, and *passpoint*, but we do not have *passfactor* or the passphrase):
 
