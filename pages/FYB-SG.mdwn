@@ -1,0 +1,57 @@
+A currency exchange which operates a BTC/SGD market based in Singapore.
+
+##Trading
+###Buying/selling
+You specify the quantity of Bitcoins you wish to buy/sell at a price.<br\>
+Once you have submitted a trade, the following chain of events take place : <br\>
+
+1. FYB will try to fill your order with other pending orders at the same or better price than you indicated.<br\> 
+In other words if you try to buy 1BTC at $10, Fyb will try to fill your order with the lowest selling price orders up till $10.<br\>
+If there are sell orders below $10, you will be filled at a better rate. 
+
+2. If your entire order is filled, execution stops.<br\> If there is a partial fill(ie. only 0.8BTC could be bought at/below $10) then the remaining qty is listed as a pending order(Buy Pending Order 0.2BTC at $10)
+
+##Adding funds
+
+###BTC
+There are no fees incurred when depositing bitcoins for deposit.<br\>
+Deposited coins require 6 confirmations before they are reflected in the account balance.
+
+###SGD
+There are 2 supported methods for SGD Deposits<br\>
+####Online Bank Transfer
+A screenshot should always be taken and saved to resolve any potential issues.<br\>
+
+####Anonymous Cash Deposit at any UOB ATM in Singapore
+A unique account code is to be written on the deposit receipt.<br\> 
+Depositor is then required to email a picture of the receipt to the exchange within 48hrs.
+
+##Withdrawing funds
+
+###BTC
+Bitcoins may be withdrawn for 0.0005BTC(Bitcoin Network fee). 
+
+###SGD
+There is no fee to withdraw SGD to a Singapore Bank account. 
+
+##Fees
+A fee of 0.6% is charged in the longed currency of any executed trade.
+
+##History
+The exchange was launched on 3rd January 2013 to coincide with Bitcoin's 4th anniversary.
+
+##See Also
+
+* [[Buying_bitcoins]]
+* [[Selling_bitcoins]]
+
+##External Links
+
+* [FYB-SG](https://www.fybsg.com) web site
+
+##References
+
+
+
+[[!tag "Exchanges"]]
+[[!tag "EWallets"]]
