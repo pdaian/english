@@ -1,16 +1,16 @@
 
-A hardware wallet is a device that stores a part of a user's [[Wallet]] securely in mostly-offline hardware. They have major advantages over other wallet types:
+A hardware wallet is a device that stores a part of a user's [[wallet]] securely in mostly-offline hardware. They have major advantages over other wallet types:
 
 * the key is often stored in a protected area of a microcontroller, and cannot be transferred out of the device in plaintext
 * immune to computer viruses that steal from software wallets
-* can be used securely and interactively, as opposed to a [[Paper_wallet]] which much be imported to software at some point
+* can be used securely and interactively, as opposed to a [[paper_wallet]] which much be imported to software at some point
 * much of the time, the software is open source, allowing a user to validate the entire operation of the device
 
 This page is an attempt to summarize all the known developments of hardware wallets that can use Bitcoin as part of their operation.
 
 ## Hardware Wallets
 Some of the more feasible (prototype stage or better) wallets are:
-### BitcoinCard - Megion Technologies-Card based wallet
+### BitcoinCard Megion Technologies-Card based wallet
 [Bitcoincard Home Page](http://www.bitcoincard.org/)
 
 [Excellent review by evoorhees](http://blog.bitinstant.com/blog/2012/6/19/our-discovery-in-vienna-the-bitcoin-card.html)
@@ -19,14 +19,14 @@ Some of the more feasible (prototype stage or better) wallets are:
 
 The closest so far to a mass market solution, incorporates a display, keypad, and radio (custom ISM band protocol.) Unfortunately it is fairly limited in terms of transaction I/O, requiring a radio gateway or another bitcoincard wherever funds need to be transferred. Possibly transactions could be delivered over giant QR codes.
 
-### piglet? - slush/stick hardware wallet
+### piglet slush/stick hardware wallet
 [ANN Hardware wallet project](https://bitcointalk.org/index.php?topic=122438.0)
 
 [img](http://i.imgur.com/A4Ga8.jpg)
 
 A simple transaction-signing device, requires software on the receiving side to send and receive transactions. Talks over USB, no keypad for entering data.
 
-### BitSafe - allten's hardware wallet
+### BitSafe allten's hardware wallet
 [ANN BitSafe Hardware Wallet Development - BOM Ready - 50 kits being prepared](https://bitcointalk.org/index.php?topic=127587.0)
 
 [img](http://i1148.photobucket.com/albums/o575/mqpickens/tmp_BitSafeDevelopment.png)
@@ -40,7 +40,7 @@ Signing transactions only, requires USB host software for transactions & USB pow
 
 Signing transactions only, requires USB host software for transactions & USB power. All work is rolled into the above BitSafe wallet currently.
 
-### BTChip - btchip USB based transaction signer and private key holder
+### BTChip btchip USB based transaction signer and private key holder
 [ANN Smartcard wallet project + btchip implementation (no reader required)](https://bitcointalk.org/index.php?topic=134999.0)
 
 [www.btchip.com](http://www.btchip.com)
