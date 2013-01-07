@@ -1,0 +1,77 @@
+
+A hardware wallet is a device that stores a part of a user's [[Wallet]] securely in mostly-offline hardware. They have major advantages over other wallet types:
+
+* the key is often stored in a protected area of a microcontroller, and cannot be transferred out of the device in plaintext
+* immune to computer viruses that steal from software wallets
+* can be used securely and interactively, as opposed to a [[Paper_wallet]] which much be imported to software at some point
+* much of the time, the software is open source, allowing a user to validate the entire operation of the device
+
+This page is an attempt to summarize all the known developments of hardware wallets that can use Bitcoin as part of their operation.
+
+## Hardware Wallets
+Some of the more feasible (prototype stage or better) wallets are:
+### BitcoinCard - Megion Technologies-Card based wallet
+[Bitcoincard Home Page](http://www.bitcoincard.org/)
+
+[Excellent review by evoorhees](http://blog.bitinstant.com/blog/2012/6/19/our-discovery-in-vienna-the-bitcoin-card.html)
+
+[img](http://blog.bitinstant.com/storage/post-images/card_medley_large.jpg?__SQUARESPACE_CACHEVERSION=1340161076023)
+
+The closest so far to a mass market solution, incorporates a display, keypad, and radio (custom ISM band protocol.) Unfortunately it is fairly limited in terms of transaction I/O, requiring a radio gateway or another bitcoincard wherever funds need to be transferred. Possibly transactions could be delivered over giant QR codes.
+
+### piglet? - slush/stick hardware wallet
+[ANN Hardware wallet project](https://bitcointalk.org/index.php?topic=122438.0)
+
+[img](http://i.imgur.com/A4Ga8.jpg)
+
+A simple transaction-signing device, requires software on the receiving side to send and receive transactions. Talks over USB, no keypad for entering data.
+
+### BitSafe - allten's hardware wallet
+[ANN BitSafe Hardware Wallet Development - BOM Ready - 50 kits being prepared](https://bitcointalk.org/index.php?topic=127587.0)
+
+[img](http://i1148.photobucket.com/albums/o575/mqpickens/tmp_BitSafeDevelopment.png)
+
+Signing transactions only, requires USB host software for transactions & USB power. Evolved out of someone42's prototype below, and has had significant contributions from someone42 as well.
+
+### someone42's (prototype) hardware wallet
+[Hardware Bitcoin wallet - a minimal Bitcoin wallet for embedded devices](https://bitcointalk.org/index.php?topic=78614.0)
+
+[img](http://i.imgur.com/H0AVo.jpg)
+
+Signing transactions only, requires USB host software for transactions & USB power. All work is rolled into the above BitSafe wallet currently.
+
+### BTChip - btchip USB based transaction signer and private key holder
+[ANN Smartcard wallet project + btchip implementation (no reader required)](https://bitcointalk.org/index.php?topic=134999.0)
+
+[www.btchip.com](http://www.btchip.com)
+
+[img](http://www.btchip.com/btchip.jpg)
+
+USB smartcard dedicated to bitcoins, no keypad or display so trust in the host device is required.
+
+### Other/Defunct but with good discussion:
+
+* natman3400's BitClip Jun 2011 [https://bitcointalk.org/index.php?topic=24852.0](https://bitcointalk.org/index.php?topic=24852.0)
+> Seems to have gone defunct around Dec 2011. Some good ideas though and seemed to have started on execution.
+
+* jim618 hardware wallet proposal Apr 2012 [Dedicated bitcoin devices - dealing with untrusted networks](https://bitcointalk.org/index.php?topic=77553.0)
+> Great discussion and good ideas from jim618. Also linked the following video:
+
+* Prof. Clemens Cap's hardware wallet? (video:)[Clemens Cap about electronic bitcoin wallet at EuroBit](https://www.youtube.com/watch?v=IavQ-Wc8S1U)
+> Clemens Cap of Uni Rostock explains the Electronic Bitcoin wallet device he's working on. It's based on adafruit microtouch device.
+
+* ripper234's discussion based on Yubikeys Aug 2012 [Having a YUBIKEY as one of the parties for m-of-n signatures](https://bitcointalk.org/index.php?topic=99492)
+> The use of Yubikeys. They only support symmetric crypto, so you'd have to trust the host device.
+
+* kalleguld's hardware wallet proposal Oct 2012 [Proposal: Hardware wallet (Win 3 BTC)](https://bitcointalk.org/index.php?topic=115294.0)
+* Vaporware: Matthew N Wright's ellet [ANN The world's first handheld Bitcoin device, the Ellet!](https://bitcointalk.org/index.php?topic=85931.0) (Vaporware)
+
+## Smart Card based wallets
+This type of device requires complete trust in the host device, as there is no method for user input.
+See [[Smart_card_wallet]]
+
+## Related Resources
+
+* piglet Hardware wallet wire protocol discussion: [Hardware wallet wire protocol](https://bitcointalk.org/index.php?topic=125383.0)
+* kjj's Todo List discussion for client protocol requirements: [in topic Re: Split private keys](https://bitcointalk.org/index.php?topic=19080.msg272348#msg272348)
+* paybitcoin's original post: [Hardware Wallet Roundup](https://bitcointalk.org/index.php?topic=134277.0)
