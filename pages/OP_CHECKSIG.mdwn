@@ -38,7 +38,7 @@ Now depending on the hashtype various things can happen to txCopy, these will be
 <li> If Hashtype = SIGHASH_SINGLE then apply the SIGHASH_SINGLE-procedure
 <li> If Hashtype & SIGHASH_ANYONECANPAY then apply the SIGHASH_ANYONECANPAY-procedure
 </ol>
-Hence, Hashtype ANYONECANPAY may be applied also to one of the other two hash_type procedures (3.1).
+Hence, Hashtype SIGHASH_ANYONECANPAY may be applied also after any other hashtype-procedure (3.1).
 
 ### Hashtype SIGHASH_ALL (default)
 
