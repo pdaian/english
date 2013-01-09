@@ -17,9 +17,9 @@ Firstly always this (the default) procedure is applied:
 1. The sig is deleted from subScript.
 1. All OP_CODESEPARATORS are removed from subScript
 1. The hashtype is removed from the last byte of the sig and stored
-1. A deep copy is made of the current transaction (hereby referred to txCopy)
-1. The scripts for all transaction inputs in txCopy are set to empty scripts
-1. The script for the current transaction input in txCopy is set to subScript
+1. A copy is made of the current transaction (hereby referred to txCopy)
+1. The scripts for all transaction inputs in txCopy are set to empty scripts (exactly 1 byte 0x00)
+1. The script for the current transaction input in txCopy is set to subScript (lead in by its length as a var-integer encoded!)
 
 Now depending on the hashtype various things can happen to txCopy, these will be discussed individually
 
