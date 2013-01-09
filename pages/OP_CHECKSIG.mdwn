@@ -10,7 +10,7 @@ In addition to the script code itself and the stack parameters, to operate OP_CH
 
 ## How it works
 Firstly always this (the default) procedure is applied:
-[[!img "Bitcoin_OpCheckSig_InDetail.png" size=120x120 class="right" title="Signature verification process using SIGHASH_ALL"]]
+[[!img "Bitcoin_OpCheckSig_InDetail.png" size=120x120 class="right" title="Signature verification process of the default procedure"]]
 
 1. the public key and the signature are popped from the stack, in that order.
 1. A new subscript is created from the instruction from the most recently parsed OP_CODESEPARATOR (last one in script) to the end of the script. If there is no OP_CODESEPARATOR the entire script becomes the subscript (hereby referred to as subScript)
