@@ -65,7 +65,7 @@ Think of this as "sign **one** of the outputs-- I don't care where the other out
 
 Think of this as "Let other people add inputs to this transaction, I don't care where the rest of the bitcoins come from."
 
-## Final signature
+##Final signature check
 
 An array of bytes is constructed from the serialized txCopy + four bytes for the hash type. This array is sha256 hashed twice, then the public key is used to to check the supplied signature against the hash.
 The secp256k1 elliptic curve is used for the verification with the given public key.
