@@ -67,7 +67,7 @@ Think of this as "Let other people add inputs to this transaction, I don't care 
 
 ###Final signature check
 
-An array of bytes is constructed from the serialized txCopy + four bytes for the hash type. This array is sha256 hashed twice, then the public key is used to to check the supplied signature against the hash.
+An array of bytes is constructed from the serialized txCopy appended by four bytes for the hash type. This array is sha256 hashed twice, then the public key is used to to check the supplied signature against the hash.
 The secp256k1 elliptic curve is used for the verification with the given public key.
 
 ## Return values
