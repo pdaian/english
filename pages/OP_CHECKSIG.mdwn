@@ -9,6 +9,7 @@ For normal transaction inputs if the creator of the current transaction can succ
 In addition to the script code itself and the stack parameters, to operate OP_CHECKSIG needs to know the current transaction, the current transaction input, and the current hashtype (discussed later)
 
 ## How it works
+Firstly always this (the default) procedure is applied:
 [[!img "Bitcoin_OpCheckSig_InDetail.png" size=120x120 class="right" title="Signature verification process using SIGHASH_ALL"]]
 
 1. the public key and the signature are popped from the stack, in that order.
@@ -26,11 +27,19 @@ Now depending on the hashtype various things can happen to txCopy, these will be
 **Hashtype Values (from script.h):**
 
 
+|SIGHASH_DEFAULT |0x00000000
 |SIGHASH_ALL |0x00000001
 |SIGHASH_NONE |0x00000002
 |SIGHASH_SINGLE |0x00000003
 |SIGHASH_ANYONECANPAY |0x00000080
 
+
+<ol>
+<li> If Hashtype = SIGHASH_NONE then apply the SIGHASH_NONE-procedure
+<li> If Hashtype = SIGHASH_SINGLE then apply the SIGHASH_SINGLE-procedure
+<li> If Hashtype BIT_WISE_AND SIGHASH_ANYONECANPAY then apply the SIGHASH_SINGLE-procedure
+</ol>
+Hence, Hashtype ANYONECANPAY may be applied also to one of the other two hash_type procedures (3.1).
 
 ### Hashtype SIGHASH_ALL (default)
 
@@ -279,3 +288,4 @@ int main()
 
 [[!tag "Technical"]]
 [[!tag "Developer"]]
+3.1: [file src/src/script.cpp in bitcoin-0.7.1](http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.7.1/bitcoin-0.7.1-linux.tar.gz)
