@@ -27,7 +27,6 @@ Now depending on the hashtype various things can happen to txCopy, these will be
 **Hashtype Values (from script.h):**
 
 
-|SIGHASH_DEFAULT |0x00000000
 |SIGHASH_ALL |0x00000001
 |SIGHASH_NONE |0x00000002
 |SIGHASH_SINGLE |0x00000003
@@ -43,16 +42,16 @@ Hence, Hashtype ANYONECANPAY may be applied also to one of the other two hash_ty
 
 ### Hashtype SIGHASH_ALL (default)
 
-No special handling occurs in the default case.  Think of this as "sign **all** of the outputs."
+No special further handling occurs in the default case.  Think of this as "sign **all** of the outputs." Which is already done by the default procedure.
 
-### Hashtype SIGHASH_NONE
+### Procedure for Hashtype SIGHASH_NONE
 
 1. The output of txCopy is set to a vector of zero size.
 1. All other inputs aside from the current input in txCopy have their nSequence index set to zero
 
 Think of this as "sign **none** of the outputs-- I don't care where the bitcoins go."
 
-### Hashtype SIGHASH_SINGLE
+### Procedure for Hashtype SIGHASH_SINGLE
 
 1. The output of txCopy is resized to the size of the current input index+1
 1. All other txCopy outputs aside from the output that is the same as the current input index are set to a blank script and a value of (long) -1;
@@ -60,7 +59,7 @@ Think of this as "sign **none** of the outputs-- I don't care where the bitcoins
 
 Think of this as "sign **one** of the outputs-- I don't care where the other outputs go."
 
-### Hashtype SIGHASH_ANYONECANPAY
+### Procedure for Hashtype SIGHASH_ANYONECANPAY
 
 1. The txCopy input vector is resized to a length of one
 1. The current input is set as the first and only member of this vector
