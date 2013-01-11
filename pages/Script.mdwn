@@ -141,11 +141,11 @@ Some of the more complicated opcodes are disabled out of concern that the client
 |Nemonic|Decimal|Hex|Input|Output|Description
 |---|---|---|---|---|---
 |OP_INVERT|131|0x83|x1|x0|Flips all of the bits in the input. *Currently disabled.*
-|OP_AND|132|0x84|x1 x2|x0|Boolean *and*between each bit in the inputs. *Currently disabled.*
-|OP_OR|133|0x85|x1 x2|x0|Boolean *or*between each bit in the inputs. *Currently disabled.*
-|OP_XOR|134|0x86|x1 x2|x0|Boolean *exclusive or*between each bit in the inputs. *Currently disabled.*
-|OP_EQUAL|135|0x87|x1 x2|Boolean|Returns 1 if the inputs are byte-wise equal, 0 otherwise.
-|OP_EQUALVERIFY|136|0x88|x1 x2|Nothing / false|Same as OP_EQUAL, but runs OP_VERIFY afterward.
+|OP_AND|132|0x84|x2 x1|x0|Boolean *and*between each bit in the inputs. *Currently disabled.*
+|OP_OR|133|0x85|x2 x1|x0|Boolean *or*between each bit in the inputs. *Currently disabled.*
+|OP_XOR|134|0x86|x2 x1|x0|Boolean *exclusive or*between each bit in the inputs. *Currently disabled.*
+|OP_EQUAL|135|0x87|x2 x1|Boolean|Returns 1 if the inputs are byte-wise equal, 0 otherwise.
+|OP_EQUALVERIFY|136|0x88|x2 x1|Nothing / false|Same as OP_EQUAL, but runs OP_VERIFY afterward.
 
 
 ### Arithmetic
