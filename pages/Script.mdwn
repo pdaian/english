@@ -337,6 +337,7 @@ A script evaluation is considered invalid, if any of these conditions meets:<br>
 <li>the execution of OP_RETURN
 <!--li>alt stack overflow occurs (only possible during execution of OP_TOALTSTACK)-->
 <li>the numerical value of the top-stack item is negative or greater than the number of items - 2 on the stack if OP_PICK or OP_ROLL shall be executed
+<li>When interpreting a stack-item of an arithmetic opcode as a signed integer its value is >= 2^31 or <= -2^31.
 <li>an item used as public key or signature for each of the opcodes OP_CHECKSIG, OP_CHECKSIGVERIFY, OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY can be neither a public key or signature (for the given hash)
 <li>the number of signature items or the number of public key items on the stack is negative for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
 <li>there or more signatures items than public key items on the stack for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
