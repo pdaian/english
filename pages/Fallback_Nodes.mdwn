@@ -23,7 +23,9 @@ You can also send [[IP_Transactions]] to these nodes. If you include your bitcoi
 
 ### Tor network
 
-To use tor .onion addresses ([[listed below|Fallback_Nodes#Tor_nodes]]), you will need to map virtual ips via the *torrc* file:
+Starting with Bitcoin 0.7, there are useful [docs](https://raw.github.com/bitcoin/bitcoin/master/doc/Tor.txt) for running clients and hidden services within Tor.
+
+To use tor .onion addresses ([[listed below|Fallback_Nodes#Tor_nodes]]), with versions of Bitcoin <0.7 you will need to map virtual ips via the *torrc* file:
 
 	mapaddress 192.0.2.2 vso3r6cmjoomhhgg.onion
 	mapaddress 192.0.2.3 sjdntqu5roj4q6lo.onion
@@ -36,12 +38,6 @@ And then put these IPs in your bitcoin.conf (or run bitcoin with -connect).
 You can use any arbitrary IP addresses with MapAddress, though some of the common non-routable ranges (10.*, 192.168.*) will not work due to a Bitcoin bug (reference?). 192.0.2.1-192.0.2.255 is the recommended range because it is both non-routable and compatible with Bitcoin.
 
 If you would like to use these nodes in addition to the hard-coded node list in the client, you can substitute "connect" with "addnode". However, if you want to keep all your Bitcoin communication strictly within the Tor network, it is recommended that you use "connect."
-
-Additional suggested settings for hidden node operators:
-
-	noirc=1
-	upnp=0
-	listen=1
 
 ## Nodes list
 
