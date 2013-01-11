@@ -127,11 +127,11 @@ Some of the more complicated opcodes are disabled out of concern that the client
 
 |Nemonic|Decimal|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_CAT|126|0x7e|x1 x2|out|Concatenates two strings resp. byte vectors. *Currently disabled.*
-|OP_SUBSTR|127|0x7f|x index size|out|Returns the section started at position <index>and of length <size>of a string resp. byte vector. *Currently disabled.*
-|OP_LEFT|128|0x80|x index|out|Keeps only characters left of the specified point in a string. *Currently disabled.*
-|OP_RIGHT|129|0x81|x index|out|Keeps only characters right of the specified point in a string. *Currently disabled.*
-|OP_SIZE|130|0x82|x|x size|Returns the length of the input string resp. byte vector resp. stack item.
+|OP_CAT|126|0x7e|x2 x1|out|Appends stack-top item at second-to top item. Concatenates two strings resp. byte vectors. *Currently disabled.*
+|OP_SUBSTR|127|0x7f|x3 index size|out|Returns the section started at position <index>and of length <size>of a string resp. byte vector. *Currently disabled.*
+|OP_LEFT|128|0x80|x2 index|out|Keeps only characters left of the specified point in second-to top item. *Currently disabled.*
+|OP_RIGHT|129|0x81|x2 index|out|Keeps only characters right of the specified point in second-to top item. *Currently disabled.*
+|OP_SIZE|130|0x82|x1|x1 size|Returns the length of the input string resp. byte vector resp. top-stack item.
 
 
 ### Bitwise logic
