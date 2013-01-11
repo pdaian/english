@@ -182,7 +182,7 @@ Some of the more complicated opcodes are disabled out of concern that the client
 |OP_GREATERTHANOREQUAL|162|0xa2|i2 i1|Boolean|Returns 1 if i2 is greater than or equal to stack-top item i1, 0 otherwise.
 |OP_MIN|163|0xa3|i2 i1|i2 / i1|Returns the smaller of i2 and i1.
 |OP_MAX|164|0xa4|i2 i1|i2 / i1|Returns the larger of i2 and i1.
-|OP_WITHIN|165|0xa5|i3 min max|Boolean|Returns 1 if i3 is within the specified range (left-inclusive) , 0 otherwise. min may be greater than the stack-top item max
+|OP_WITHIN|165|0xa5|i3 i2 i1|Boolean|Returns 1 if i3  >= i2 and i3 < i1, 0 otherwise. Thus if i2 > i1 returns always 0.
 
 
 ### Crypto
