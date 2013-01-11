@@ -59,7 +59,7 @@ The opcode value 0x00 with nemonic OP_FALSE is also named OP_0 and the opcode va
 Except later pseudo-opcode changes, the definition of OP_NOP1 - OP_NOP10 and the change of the evaluation of OP_RETURN (did no invalidation previously) which both occured in bitcoin version 0.3.6  in July 2010 were the last changes regarding opcodes  (5.1)  (5.2)  (5.3).
 
 ## Opcode descriptions
-It follows for each opcode less than decimal 185 (hexa 0xba) a description for its usage. The columns entitled *nemonic*, *decimal* and *Hex* should be evident. The column *input* gives the needed items of the stack (and the alternate stack) and the column *output* indicates the resulting items on the stack (and the alternate stack). **Stack-top is always the right most item.** The naming of the entries in these two columns is chosen to reflect their interpretation. *x*,*x0*,*x1*,... means arbitrary or no interpretation, *a*, *b* and *c* as a signed integer value, *n*,*index*,*size* and *depth* non-negative integer values, *Boolean* as either a true or false.<br>
+It follows for each opcode less than decimal 185 (hexa 0xba) a description for its usage. The columns entitled *nemonic*, *decimal* and *Hex* should be evident. The column *input* gives the needed items of the stack (and the alternate stack) and the column *output* indicates the resulting items on the stack (and the alternate stack). **Stack-top is always the right most item.** The naming of the entries in these two columns is chosen to reflect their interpretation. *x*, *x0*, *x1*, ... means arbitrary or no interpretation, *i0*, *i1* and *i2* a signed integer value, *n*,*index*,*size* and *depth* non-negative (unsigned) integer values, *Boolean* as either a true or false.<br>
 
 Some of the more complicated opcodes are disabled out of concern that the client might have (and has) a bug in the current implementation due to the historically not as 2-complement interpretations of the byte vectors as numerical values (the most significant byte holds the sign of the byte vectors).
 
@@ -156,33 +156,33 @@ Some of the more complicated opcodes are disabled out of concern that the client
 
 |Nemonic|Decimal|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_1ADD|139|0x8b|a|c|1 is added to the input.
-|OP_1SUB|140|0x8c|a|c|1 is subtracted from the input.
-|OP_2MUL|141|0x8d|a|c|The input is multiplied by 2. *Currently disabled.*
-|OP_2DIV|142|0x8e|a|c|The input is divided by 2. *Currently disabled.*
-|OP_NEGATE|143|0x8f|a|c|The sign of the input is flipped. Numerically the value is multiplied by -1
-|OP_ABS|144|0x90|a|c|The input is negative, its sign is flipped.
-|OP_NOT|145|0x91|a|Boolean|If the input is 0 or 1, it is flipped. Otherwise the output will be 0. Test whether its value equals 0
-|OP_0NOTEQUAL|146|0x92|a|Boolean|Returns 0 if the input is 0. 1 otherwise. Test whether its value is unequal 0
-|OP_ADD|147|0x93|a b|c|a is added to b.
-|OP_SUB|148|0x94|a b|c|b is subtracted from a.
-|OP_MUL|149|0x95|a b|c|a is multiplied by b. *Currently disabled.*
-|OP_DIV|150|0x96|a b|c|a is divided by b (b should be not 0). *Currently disabled.*
-|OP_MOD|151|0x97|a b|c|Returns the remainder after dividing a by b (b should be not 0). *Currently disabled.*
-|OP_LSHIFT|152|0x98|a b|c|Shifts a left by b bits, preserving sign. *Currently disabled.*
-|OP_RSHIFT|153|0x99|a b|c|Shifts a right by b bits, preserving sign. *Currently disabled.*
-|OP_BOOLAND|154|0x9a|a b|Boolean|If both a and b are not 0, the output is 1. Otherwise 0.
-|OP_BOOLOR|155|0x9b|a b|Boolean|If a or b is not 0, the output is 1. Otherwise 0.
-|OP_NUMEQUAL|156|0x9c|a b|Boolean|Returns 1 if the numbers are equal, 0 otherwise.
-|OP_NUMEQUALVERIFY|157|0x9d|a b|Nothing / False|Same as OP_NUMEQUAL, but runs OP_VERIFY afterward.
-|OP_NUMNOTEQUAL|158|0x9e|a b|Boolean|Returns 1 if the numbers are not equal, 0 otherwise.
-|OP_LESSTHAN|159|0x9f|a b|Boolean|Returns 1 if a is less than b, 0 otherwise.
-|OP_GREATERTHAN|160|0xa0|a b|Boolean|Returns 1 if a is greater than b, 0 otherwise.
-|OP_LESSTHANOREQUAL|161|0xa1|a b|Boolean|Returns 1 if a is less than or equal to b, 0 otherwise.
-|OP_GREATERTHANOREQUAL|162|0xa2|a b|Boolean|Returns 1 if a is greater than or equal to b, 0 otherwise.
-|OP_MIN|163|0xa3|a b|a / b|Returns the smaller of a and b.
-|OP_MAX|164|0xa4|a b|a / b|Returns the larger of a and b.
-|OP_WITHIN|165|0xa5|x min max|Boolean|Returns 1 if x is within the specified range (left-inclusive) , 0 otherwise. min may be greater than max
+|OP_1ADD|139|0x8b|i1|i0|1 is added to the input.
+|OP_1SUB|140|0x8c|i1|i0|1 is subtracted from the input.
+|OP_2MUL|141|0x8d|i1|i0|The input is multiplied by 2. *Currently disabled.*
+|OP_2DIV|142|0x8e|i1|i0|The input is divided by 2 (round down). *Currently disabled.*
+|OP_NEGATE|143|0x8f|i1|i0|The sign of the input is flipped. Numerically the value is multiplied by -1
+|OP_ABS|144|0x90|i1|i0|The input is negative, its sign is flipped.
+|OP_NOT|145|0x91|i1|Boolean|If the input is 0 or 1, it is flipped. Otherwise the output will be 0. Test whether its value equals 0
+|OP_0NOTEQUAL|146|0x92|i1|Boolean|Returns 0 if the input is 0. 1 otherwise. Test whether its value is unequal 0
+|OP_ADD|147|0x93|i2 i1|i0|stack-top i1 is added to i2.
+|OP_SUB|148|0x94|i2 i1|i0|stack-top i1 is subtracted from i2.
+|OP_MUL|149|0x95|i2 i1|i0|i2 is multiplied with stack-top i1. *Currently disabled.*
+|OP_DIV|150|0x96|i2 i1|i0|i2 is divided by stack-top i1 (divisor should be not 0). *Currently disabled.*
+|OP_MOD|151|0x97|i2 i1|i0|Returns the remainder after dividing i2 by stack-top i1 (divisor should be not 0). *Currently disabled.*
+|OP_LSHIFT|152|0x98|i2 i1|i0|Shifts i2 left by i1 bits, preserving sign of i2 (i1 >= 0). *Currently disabled.*
+|OP_RSHIFT|153|0x99|i2 i1|i0|Shifts i2 right by i1 bits, preserving sign of i2 (i1 >= 0). *Currently disabled.*
+|OP_BOOLAND|154|0x9a|i2 i1|Boolean|If both i2 and i1 are not 0, the output is 1. Otherwise 0.
+|OP_BOOLOR|155|0x9b|i2 i1|Boolean|If i2 or i1 is not 0, the output is 1. Otherwise 0.
+|OP_NUMEQUAL|156|0x9c|i2 i1|Boolean|Returns 1 if i2 and i1 are numerically equal, 0 otherwise.
+|OP_NUMEQUALVERIFY|157|0x9d|i2 i1|Nothing / False|Same as OP_NUMEQUAL, but runs OP_VERIFY afterward.
+|OP_NUMNOTEQUAL|158|0x9e|i2 i1|Boolean|Returns 1 if i2 and i1 are numerically not equal, 0 otherwise.
+|OP_LESSTHAN|159|0x9f|i2 i1|Boolean|Returns 1 if i2 is less than stack-top item i1, 0 otherwise.
+|OP_GREATERTHAN|160|0xa0|i2 i1|Boolean|Returns 1 if i2 is greater than stack-top item i1, 0 otherwise.
+|OP_LESSTHANOREQUAL|161|0xa1|i2 i1|Boolean|Returns 1 if i2 is less than or equal to stack-top item i1, 0 otherwise.
+|OP_GREATERTHANOREQUAL|162|0xa2|i2 i1|Boolean|Returns 1 if i2 is greater than or equal to stack-top item i1, 0 otherwise.
+|OP_MIN|163|0xa3|i2 i1|i2 / i1|Returns the smaller of i2 and i1.
+|OP_MAX|164|0xa4|i2 i1|i2 / i1|Returns the larger of i2 and i1.
+|OP_WITHIN|165|0xa5|i3 min max|Boolean|Returns 1 if i3 is within the specified range (left-inclusive) , 0 otherwise. min may be greater than the stack-top item max
 
 
 ### Crypto
