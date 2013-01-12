@@ -60,8 +60,8 @@ Think of this as "sign **one** of the outputs-- I don't care where the other out
 
 ### Procedure for Hashtype SIGHASH_ANYONECANPAY
 
-1. The txCopy input vector is resized to a length of one
-1. The current input is set as the first and only member of this vector
+1. The txCopy input vector is resized to a length of one.
+1. The subScript (lead in by its length as a var-integer encoded!) is set as the first and only member of this vector.
 
 Think of this as "Let other people add inputs to this transaction, I don't care where the rest of the bitcoins come from."
 
