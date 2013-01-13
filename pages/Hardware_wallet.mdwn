@@ -12,44 +12,41 @@ This page is an attempt to summarize all the known developments of hardware wall
 Some of the more feasible (prototype stage or better) wallets are:
 
 ### BitcoinCard Megion Technologies-Card based wallet
+[[!img "Bitcoincard-medley-large.jpg" size=400x400 size=120x120 class="left" title="Bitcoin Card"]]
 [Bitcoincard Home Page](http://www.bitcoincard.org/)
 
 [Excellent review by evoorhees](http://blog.bitinstant.com/blog/2012/6/19/our-discovery-in-vienna-the-bitcoin-card.html)
 
-[img](http://blog.bitinstant.com/storage/post-images/card_medley_large.jpg?__SQUARESPACE_CACHEVERSION=1340161076023)
+Incorporates a e-paper display, keypad, and radio (custom ISM band protocol.) Unfortunately it is fairly limited in terms of transaction I/O, requiring a radio gateway or another bitcoincard wherever funds need to be transferred.
 
-The closest so far to a mass market solution, incorporates a display, keypad, and radio (custom ISM band protocol.) Unfortunately it is fairly limited in terms of transaction I/O, requiring a radio gateway or another bitcoincard wherever funds need to be transferred. Possibly transactions could be delivered over giant QR codes.
+<br clear="all">
+### Trezor - slush/stick hardware wallet
+[[!img "Trezor-wallet-casing.jpg" size=300x300 size=120x120 class="left" title="Trezor Wallet (case)"]]
 
-### piglet slush/stick hardware wallet
 [Hardware wallet project](https://bitcointalk.org/index.php?topic=122438.0)
 
-[img](http://i.imgur.com/A4Ga8.jpg)
-
-A simple transaction-signing device, requires software on the receiving side to send and receive transactions. Talks over USB, no keypad for entering data.
-
-### BitSafe allten's hardware wallet
+A simple transaction-signing device, requires software on the receiving side to send and receive transactions. Talks over USB, OLED display, confirm/cancel buttons.
+<br clear="all">
+### BitSafe - allten/someone42's hardware wallet
+[[!img "Bitsafe-wallet-sizecompare.jpg" size=200x200 size=120x120 class="left" title="Bitsafe wallet"]]
 [BitSafe Hardware Wallet Development - BOM Ready - 50 kits being prepared](https://bitcointalk.org/index.php?topic=127587.0)
 
-[img](http://i1148.photobucket.com/albums/o575/mqpickens/tmp_BitSafeDevelopment.png)
-
-Signing transactions only, requires USB host software for transactions & USB power. Evolved out of someone42's prototype below, and has had significant contributions from someone42 as well.
-
-### someone42's (prototype) hardware wallet
+Signing transactions only, requires USB host software for transactions & USB power. Has a OLED display and Confirm/Cancel buttons. Evolved out of someone42's prototype below, and has significant contributions from someone42 as well.
+<br clear="all">
+### someone42's original prototype
+[[!img "Someone42-wallet-prototype.jpg" size=300x300 size=120x120 class="left" title="someone42's original prototype"]]
 [Hardware Bitcoin wallet - a minimal Bitcoin wallet for embedded devices](https://bitcointalk.org/index.php?topic=78614.0)
 
-[img](http://i.imgur.com/H0AVo.jpg)
-
 Signing transactions only, requires USB host software for transactions & USB power. All work is rolled into the above BitSafe wallet currently.
-
+<br clear="all">
 ### BTChip btchip USB based transaction signer and private key holder
+[[!img "Btchip-wallet.jpg" size=300x300 size=120x120 class="left" title="BTChip"]]
 [ANN Smartcard wallet project + btchip implementation (no reader required)](https://bitcointalk.org/index.php?topic=134999.0)
 
 [www.btchip.com](http://www.btchip.com)
 
-[(1)](http://www.btchip.com/btchip.jpg)
-
-USB smartcard dedicated to bitcoins, no keypad or display so trust in the host device is required.
-
+USB smartcard dedicated to bitcoins, no keypad or display so trust in the host device is required. An improvement has been implemented that uses a secret value known to the user during the transaction for additional security.
+<br clear="all">
 ### Other/Defunct but with good discussion:
 
 * natman3400's BitClip Jun 2011 [https://bitcointalk.org/index.php?topic=24852.0](https://bitcointalk.org/index.php?topic=24852.0)
@@ -73,7 +70,7 @@ See [[Smart_card_wallet]]
 
 ## Related Resources
 
-* piglet Hardware wallet wire protocol discussion: [Hardware wallet wire protocol](https://bitcointalk.org/index.php?topic=125383.0)
+* slush's Hardware wallet wire protocol discussion: [Hardware wallet wire protocol](https://bitcointalk.org/index.php?topic=125383.0)
 * kjj's Todo List discussion for client protocol requirements: [in topic Re: Split private keys](https://bitcointalk.org/index.php?topic=19080.msg272348#msg272348)
 * paybitcoin's original post: [Hardware Wallet Roundup](https://bitcointalk.org/index.php?topic=134277.0)
 * [This thread](https://bitcointalk.org/index.php?topic=135090.0) about editing this very wiki entry.
