@@ -1,252 +1,195 @@
 Bitcoin uses a scripting system for [[transactions]]. [Forth](Wikipedia:FORTH)-like, Script is simple, stack-based, and processed from left to right. It is purposefully not Turing-complete, with no loops.
 
-A script is essentially a list of instructions recorded with each transaction that describe how the next person wanting to spend the Bitcoins being transferred can gain access to them.
-
-Scripts are big-endian and their sequences of bytes is interpreted as a sequence of opcodes with operands. Only opcodes with byte values less than 0x4f have additional operands.
-
-## Scripts and Bitcoin transactions
-The script for a typical Bitcoin transfer to destination Bitcoin address D simply encumbers future spending of the bitcoins with two things: the spender must provide
+A script is essentially a list of instructions recorded with each transaction that describe how the next person wanting to spend the Bitcoins being transferred can gain access to them.  The script for a typical Bitcoin transfer to destination Bitcoin address D simply encumbers future spending of the bitcoins with two things: the spender must provide
 
 1. a public key that, when hashed, yields destination address D embedded in the script, and
 1. a signature to show evidence of the private key corresponding to the public key just provided.
 
 Scripting provides the flexibility to change the parameters of what's needed to spend transferred Bitcoins.  For example, the scripting system could be used to require two private keys, or a combination of several, or even no keys at all.
 
-A transaction is valid if nothing in the combined script triggers failure and the top stack item exists and is true (non-zero).  The party who originally *stored* the Bitcoins now being spent, dictates the script operations that will occur *last* in order to release them for use in another transaction.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (non-zero) on the stack.<br>
-Only the very first transaction in each bitcoin block has no input script (the entry there is called "coinbase"), because the Bitcoins created with the block are created from hot air and not released by a previous recorded txout-script.
+A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (non-zero).  The party who originally *sent* the Bitcoins now being spent, dictates the script operations that will occur *last* in order to release them for use in another transaction.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (non-zero).
 
-## Stack
+Scripts are big-endian.
 
-The stacks hold byte vectors (there is the (main) stack and an alternative stack). Byte vectors are interpreted as little-endian variable-length integers with the most significant bit determining the sign of the integer.  Thus 0x81 represents -1.  0x80 is another representation of zero (so called negative 0).  Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero.
+The stacks hold byte vectors.  Byte vectors are interpreted as little-endian variable-length integers with the most significant bit determining the sign of the integer.  Thus 0x81 represents -1.  0x80 is another representation of zero (so called negative 0).  Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero.
 
-## Opcode overview
+## Words
+This is a list of all Script words (commands/functions). Some of the more complicated opcodes are disabled out of concern that the client might have a bug in their implementation; if a transaction using such an opcode were to be included in the chain any fix would risk forking the chain. 
 
-For each opcode is given: its nemonic without the leading OP_, its hexadecimal byte value, the number of stack items needed (poped) during execution, a semicolon and the number of stack items which has been pushed (after execution). A * after the needed stack items indicates that further bytes from the script following the current opcode are needed. A # indicates that items on the alternative stack are poped/pushed. A @ indicates that further (global) data from the transaction is needed. A / indicates alternatives of a value. <br/>
-Different colors indicate different semantic execution groups of opcodes:
+True=1 and False=0.
 
-
-|style="border:1px solid #aaaaaa; background-color:gold;" copy a fixed number of bytes but at most 75 onto stack|style="border:1px solid #aaaaaa; background-color:#ffff00;" copy bytes onto stack which number is given by a 1, 2 or 4 byte value.|style="border:1px solid #aaaaaa; background-color:#ffb000;" copy 1 specific byte onto stack
-|style="border:1px solid #aaaaaa; background-color:#ffffff;" undefined opcode|style="border:1px solid #aaaaaa; background-color:#f0f0f0;" a pseudo-opcode, unassigned for scripts
-|style="border:1px solid #aaaaaa; background-color:#00d000;" NOP or opcode is part of a IF-flow-control construction
-|style="border:1px solid #aaaaaa; background-color:#00ff00;" (stack conditionally) invalidation of the script this opcode is part of
-|style="border:1px solid #aaaaaa; background-color:#ff8080;" stack item is moved between main stack and alternate stack|style="border:1px solid #aaaaaa; background-color:#ff4040;" stack item(s) is/are moved, copied or deleted
-|style="border:1px solid #aaaaaa; background-color:#f000f0;" byte vectors are appended or divided or their size is determined|style="border:1px solid #aaaaaa; background-color:#c000ff;" byte vectors are interpreted bit-position-independently
-|style="border:1px solid #aaaaaa; background-color:#8000ff;" byte vectors are interpreted and processed as signed integers
-|style="border:1px solid #aaaaaa; background-color:#00c0f0;" a hash value is computed or a signature checked
-
-<p>
-###Opcode byte-matrix
-The opcode value 0x00 with nemonic OP_FALSE is also named OP_0 and the opcode value 0x51 with nemonic OP_1 as also named OP_TRUE.
-
-
-|style="border:1px solid #aaaaaa; background-color:gold;" _FALSE<br/>0x00 <br/>0 ; 1(0)	|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x01<br/>0 *; 1(1)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x02<br/>0 *; 1(2)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x03<br/>0 *; 1(3)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x04<br/>0 *; 1(4)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x04<br/>0 *; 1(5)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x06<br/>0 *; 1(6)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x07<br/>0 *; 1(7)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x08<br/>0 *; 1(8)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x09<br/>0 *; 1(9)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x0a<br/>0 *; 1(10)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x0b<br/>0 *; 1(11)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x0c<br/>0 *; 1(12)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x0d<br/>0 *; 1(13)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x0e<br/>0 *; 1(14)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x0f<br/>0 *; 1(15)
-|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x10 <br/>0 *; 1(16)	|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x11 <br/>0 *; 1(17)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x12 <br/>0 *; 1(18)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x13 <br/>0 *; 1(19)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x14 <br/>0 *; 1(20)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x15 <br/>0 *; 1(21)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x16 <br/>0 *; 1(22)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x17 <br/>0 *; 1(23)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x18 <br/>0 *; 1(24)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x19 <br/>0 *; 1(25)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x1a <br/>0 *; 1(26)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x1b <br/>0 *; 1(27)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x1c <br/>0 *; 1(28)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x1d <br/>0 *; 1(29)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x1e <br/>0 *; 1(30)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x1f <br/>0 *; 1(31)
-|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x20 <br/>0 *; 1(32)	|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x21 <br/>0 *; 1(33)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x22 <br/>0 *; 1(34)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x23 <br/>0 *; 1(35)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x24 <br/>0 *; 1(36)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x25 <br/>0 *; 1(37)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x26 <br/>0 *; 1(38)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x27 <br/>0 *; 1(39)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x28 <br/>0 *; 1(40)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x29 <br/>0 *; 1(41)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x2a <br/>0 *; 1(42)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x2b <br/>0 *; 1(43)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x2c <br/>0 *; 1(44)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x2d <br/>0 *; 1(45)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x2e <br/>0 *; 1(46)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x2f <br/>0 *; 1(47)
-|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x30 <br/>0 *; 1(48)	|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x31 <br/>0 *; 1(49)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x32 <br/>0 *; 1(50)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x33 <br/>0 *; 1(51)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x34 <br/>0 *; 1(52)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x35 <br/>0 *; 1(53)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x36 <br/>0 *; 1(54)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x37 <br/>0 *; 1(55)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x38 <br/>0 *; 1(56)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x39 <br/>0 *; 1(57)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x3a <br/>0 *; 1(58)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x3b <br/>0 *; 1(59)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x3c <br/>0 *; 1(60)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x3d <br/>0 *; 1(61)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x3e <br/>0 *; 1(62)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x3f <br/>0 *; 1(63)
-|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x40 <br/>0 *; 1(64)	|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x41 <br/>0 *; 1(65)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x42 <br/>0 *; 1(66)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x43 <br/>0 *; 1(67)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x44 <br/>0 *; 1(68)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x45 <br/>0 *; 1(69)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x46 <br/>0 *; 1(70)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x47 <br/>0 *; 1(71)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x48 <br/>0 *; 1(72)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x49 <br/>0 *; 1(73)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x4a <br/>0 *; 1(74)|style="border:1px solid #aaaaaa; background-color:gold;" - <br/>0x4b <br/>0 *; 1(75)|style="border:1px solid #aaaaaa; background-color:#ffff00;" _PUSHDATA1 <br/>0x4c <br/>0 *; 1(0 - 255)|style="border:1px solid #aaaaaa; background-color:#ffff00;" _PUSHDATA2 <br/>0x4d <br/>0 *; 1(0 - 2^16-1)|style="border:1px solid #aaaaaa; background-color:#ffff00;" _PUSHDATA4 <br/>0x4e <br/>0 *; 1(0 - 2^32-1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _1NEGATE <br/>0x4f <br/>0 ; 1(1)
-|style="border:1px solid #aaaaaa; background-color:#ffffff;" _RESERVED <br/>0x50 <br/>|style="border:1px solid #aaaaaa; background-color:#ffb000;" _1 <br/>0x51 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _2 <br/>0x52 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _3 <br/>0x53 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _4 <br/>0x54 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _5 <br/>0x55 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _6 <br/>0x56 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _7 <br/>0x57 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _8 <br/>0x58 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _9 <br/>0x59 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _10 <br/>0x5a <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _11 <br/>0x5b <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _12 <br/>0x5c <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _13 <br/>0x5d <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _14 <br/>0x5e <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#ffb000;" _15 <br/>0x5f <br/>0 ; 1(1)
-|style="border:1px solid #aaaaaa; background-color:#ffb000;" _16 <br/>0x60 <br/>0 ; 1(1)|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP <br/>0x61 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#ffffff;" _VER <br/>0x62 <br/>|style="border:1px solid #aaaaaa; background-color:#00d000;" _IF <br/>0x63 <br/>1 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOTIF <br/>0x64 <br/>1 ; 0|style="border:1px solid #aaaaaa; background-color:#ffffff;" _VERIF <br/>0x65 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" _VERNOTIF <br/>0x66 <br/>|style="border:1px solid #aaaaaa; background-color:#00d000;" _ELSE <br/>0x67 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _ENDIF <br/>0x68 <br/>0 ; 0|style="border:3px solid #808080; background-color:#00ff00;" _VERIFY <br/>0x69 <br/>1 ; 0/1|style="border:3px solid #808080; background-color:#00ff00;" _RETURN <br/>0x6a <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#ff8080;" _TOALTSTACK <br/>0x6b <br/>1 ; 0|style="border:1px solid #aaaaaa; background-color:#ff8080;" _FROMALTSTACK <br/>0x6c <br/>0 #; 1|style="border:1px solid #aaaaaa; background-color:#ff4040;" _2DROP <br/>0x6d <br/>2 ; 0|style="border:1px solid #aaaaaa; background-color:#ff4040;" _2DUP <br/>0x6e <br/>2 ; 4|style="border:1px solid #aaaaaa; background-color:#ff4040;" _3DUP <br/>0x6f <br/>3 ; 6
-|style="border:1px solid #aaaaaa; background-color:#ff4040;" _2OVER <br/>0x70 <br/>4 ; 6|style="border:1px solid #aaaaaa; background-color:#ff4040;" _2ROT <br/>0x71 <br/>6 ; 6|style="border:1px solid #aaaaaa; background-color:#ff4040;" _2SWAP <br/>0x72 <br/>4 ; 4|style="border:1px solid #aaaaaa; background-color:#ff4040;" _IFDUP <br/>0x73 <br/>1 ; 1/2|style="border:1px solid #aaaaaa; background-color:#ff4040;" _DEPTH <br/>0x74 <br/>0 ; 1|style="border:1px solid #aaaaaa; background-color:#ff4040;" _DROP <br/>0x75 <br/>1 ; 0|style="border:1px solid #aaaaaa; background-color:#ff4040;" _DUP <br/>0x76 <br/>1 ; 2|style="border:1px solid #aaaaaa; background-color:#ff4040;" _NIP <br/>0x77 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#ff4040;" _OVER <br/>0x78 <br/>2 ; 3|style="border:1px solid #aaaaaa; background-color:#ff4040;" _PICK <br/>0x79 <br/>1+n+1 ; n+2|style="border:1px solid #aaaaaa; background-color:#ff4040;" _ROLL <br/>0x7a <br/>1+n+1 ; n+1|style="border:1px solid #aaaaaa; background-color:#ff4040;" _ROT <br/>0x7b <br/>3 ; 3|style="border:1px solid #aaaaaa; background-color:#ff4040;" _SWAP <br/>0x7c <br/>2 ; 2|style="border:1px solid #aaaaaa; background-color:#ff4040;" _TUCK <br/>0x7d <br/>2 ; 3|style="border:1px solid #aaaaaa; background-color:#f000f0; color:white" _CAT <br/>0x7e <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#f000f0; color:white" _SUBSTR <br/>0x7f <br/>3 ; 1
-|style="border:1px solid #aaaaaa; background-color:#f000f0; color:white" _LEFT <br/>0x80 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#f000f0; color:white" _RIGHT <br/>0x81 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#f000f0;" _SIZE <br/>0x82 <br/>1 ; 2|style="border:1px solid #aaaaaa; background-color:#c000ff; color:white" _INVERT <br/>0x83 <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#c000ff; color:white" _AND <br/>0x84 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#c000ff; color:white" _OR <br/>0x85 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#c000ff; color:white" _XOR <br/>0x86 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#c000ff;" _EQUAL <br/>0x87 <br/>2 ; 1|style="border:3px solid #808080; background-color:#c080ff;" _EQUALVERIFY <br/>0x88 <br/>2 ; 0/1|style="border:1px solid #aaaaaa; background-color:#ffffff;" _RESERVED1 <br/>0x89 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" _RESERVED2 <br/>0x8a <br/>|style="border:1px solid #aaaaaa; background-color:#8000ff;" _1ADD <br/>0x8b <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _1SUB <br/>0x8c <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff; color:white" _2MUL <br/>0x8d <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff; color:white" _2DIV <br/>0x8e <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _NEGATE <br/>0x8f <br/>1 ; 1
-|style="border:1px solid #aaaaaa; background-color:#8000ff;" _ABS <br/>0x90 <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _NOT <br/>0x91 <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _0NOTEQUAL <br/>0x92 <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _ADD <br/>0x93 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _SUB <br/>0x94 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff; color:white" _MUL <br/>0x95 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff; color:white" _DIV <br/>0x96 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff; color:white" _MOD <br/>0x97 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff; color:white" _LSHIFT <br/>0x98 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff; color:white" _RSHIFT <br/>0x99 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _BOOLAND <br/>0x9a <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _BOOLOR <br/>0x9b <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _NUMEQUAL <br/>0x9c <br/>2 ; 1|style="border:3px solid #808080; background-color:#8080ff;" _NUMEQUALVERIFY <br/>0x9d <br/>2 ; 0/1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _NUMNOTEQUAL <br/>0x9e <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _LESSTHAN <br/>0x9f <br/>2 ; 1
-|style="border:1px solid #aaaaaa; background-color:#8000ff;" _GREATERTHAN <br/>0xa0 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _LESSTHANOREQUAL <br/>0xa1 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _GREATERTHANOREQUAL <br/>0xa2 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _MIN <br/>0xa3 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _MAX <br/>0xa4 <br/>2 ; 1|style="border:1px solid #aaaaaa; background-color:#8000ff;" _WITHIN <br/>0xa5 <br/>3 ; 1|style="border:1px solid #aaaaaa; background-color:#00c0f0;" _RIPEMD160 <br/>0xa6 <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#00c0f0;" _SHA1 <br/>0xa7 <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#00c0f0;" _SHA256 <br/>0xa8 <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#00c0f0;" _HASH160 <br/>0xa9 <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#00c0f0;" _HASH256 <br/>0xaa <br/>1 ; 1|style="border:1px solid #aaaaaa; background-color:#00c0f0;" _CODESEPARATOR  <br/>0xab <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00c0f0;" _CHECKSIG <br/>0xac <br/>2 @; 1|style="border:3px solid #808080; background-color:#a0d0ff;" _CHECKSIGVERIFY <br/>0xad <br/>2 @; 0/1|style="border:1px solid #aaaaaa; background-color:#00c0f0;" _CHECKMULTISIG <br/>0xae <br/>2n+2 @; 1|style="border:3px solid #808080; background-color:#a0d0ff;" _CHECKMULTISIGVERIFY <br/>0xaf <br/>2n+2 @; 0/1
-|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP1 <br/>0xb0 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP2 <br/>0xb1 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP3 <br/>0xb2 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP4 <br/>0xb3 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP5 <br/>0xb4 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP6 <br/>0xb5 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP7 <br/>0xb6 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP8 <br/>0xb7 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP9 <br/>0xb8 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#00d000;" _NOP10 <br/>0xb9 <br/>0 ; 0|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xba <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xbb <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xbc <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xbd <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xbe <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xbf <br/>
-|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc0 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc1 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc2 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc3 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc4 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc5 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc6 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc7 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc8 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xc9 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xca <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xcb <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xcc <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xcd <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xce <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xcf <br/>
-|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd0 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd1 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd2 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd3 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd4 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd5 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd6 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd7 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd8 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xd9 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xda <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xdb <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xdc <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xdd <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xde <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xdf <br/>
-|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe0 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe1 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe2 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe3 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe4 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe5 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe6 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe7 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe8 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xe9 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xea <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xeb <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xec <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xed <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xee <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xef <br/>
-|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf0 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf1 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf2 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf3 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf4 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf5 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf6 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf7 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf8 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xf9 <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" - <br/>0xfa <br/>|style="border:1px solid #aaaaaa; background-color:#f0f0f0;" _SMALLINTEGER <br/>0xfb <br/>|style="border:1px solid #aaaaaa; background-color:#f0f0f0;" _PUBKEYS <br/>0xfc <br/>|style="border:1px solid #aaaaaa; background-color:#f0f0f0;" _PUBKEYHASH  <br/>0xfd <br/>|style="border:1px solid #aaaaaa; background-color:#f0f0f0;" _PUBKEY <br/>0xfe <br/>|style="border:1px solid #aaaaaa; background-color:#ffffff;" _INVALIDOPCODE <br/>0xff <br/>
-<br>
-Except later pseudo-opcode changes, the definition of OP_NOP1 - OP_NOP10 and the change of the evaluation of OP_RETURN (did no invalidation previously) which both occured in bitcoin version 0.3.6  in July 2010 were the last changes regarding opcodes  (5.1)  (5.2)  (5.3).
-
-## Opcode descriptions
-It follows for each opcode less than decimal 185 (hexa 0xba) a description for its usage. The columns entitled *nemonic*, *decimal* and *Hex* should be evident. The column *input* gives the needed items of the stack (and the alternate stack) and the column *output* indicates the resulting items on the stack (and the alternate stack). **Stack-top is always the right most item.** The naming of the entries in these two columns is chosen to reflect their interpretation. *x*, *x0*, *x1*, ... means arbitrary or no interpretation, *i0*, *i1* and *i2* a signed integer value, *n*,*index*,*size* and *depth* non-negative (unsigned) integer values, *Boolean* as either a true or false.<br>
-
-Some of the more complicated opcodes are disabled since version 0.3.10 out of concern that the client might have a bug in the current implementation due to the historically not as 2-complement interpretations of the byte vectors as numerical values (the most significant byte holds the sign of the byte vectors). Furthermore how some of theses opcodes should work precisely is disputable.
-
-### Push data from instruction onto stack
+### Constants
+When talking about scripts, these value-pushing words are usually omitted.
 
 
 
-|Nemonic|Decimal|Hex|Input|Output|Description
+|Word|Opcode|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_FALSE, OP_0|0|0x00|Nothing|Empty string|A byte vector of length 0 is pushed onto the stack. (Thus, it is not a no-op!)
-|(no official nemonics)|1 - 75|0x01 - 0x4b|(operand)|x|The next <opcode>-many bytes are to be pushed onto the stack.
-|OP_PUSHDATA1|76|0x4c|(operands)|x|The next byte contains the number of bytes to be pushed onto the stack which follow this byte.
-|OP_PUSHDATA2|77|0x4d|(operands)|x|The next two bytes contain the number of bytes to be pushed onto the stack which follow theses 2 bytes.
-|OP_PUSHDATA4|78|0x4e|(operands)|x|The next four bytes contain the number of bytes to be pushed onto the stack which follow theses 4 bytes.
-|OP_1NEGATE|79|0x4f|Nothing|-1|The byte with value -1 is pushed onto the stack.
-|OP_1, OP_TRUE|81|0x51|Nothing|1|The byte with value 1 is pushed onto the stack.
-|OP_2 - OP_16|82 - 96|0x52 - 0x60|Nothing|2-16|The byte with value <opcode>-80 (thus, one of 2 - 16) is pushed onto the stack.
+|OP_0, OP_FALSE|0|0x00|Nothing.|(empty value)|An empty array of bytes is pushed onto the stack. (This is not a no-op: an item is added to the stack.)
+|N/A|1-75|0x01-0x4b|(special)|data|The next *opcode*bytes is data to be pushed onto the stack
+|OP_PUSHDATA1|76|0x4c|(special)|data|The next byte contains the number of bytes to be pushed onto the stack.
+|OP_PUSHDATA2|77|0x4d|(special)|data|The next two bytes contain the number of bytes to be pushed onto the stack.
+|OP_PUSHDATA4|78|0x4e|(special)|data|The next four bytes contain the number of bytes to be pushed onto the stack.
+|OP_1NEGATE|79|0x4f|Nothing.|-1|The number -1 is pushed onto the stack.
+|OP_1, OP_TRUE|81|0x51|Nothing.|1|The number 1 is pushed onto the stack.
+|OP_2-OP_16|82-96|0x52-0x60|Nothing.|2-16|The number in the word name (2-16) is pushed onto the stack.
 
 
 ### Flow control
 
 
 
-|Nemonic|Decimal|Hex|Input|Output|Description
+|Word|Opcode|Hex|Input|Output|Description
 |---|---|---|---|---|---
 |OP_NOP|97|0x61|Nothing|Nothing|Does nothing.
-|OP_IF|99|0x63|Boolean|Nothing|If the top stack value is not 0, the statements are executed. The top stack value is removed. Lead in a logcial *<value>then [[statements]][[statements]]endif*expression
-|OP_NOTIF|100|0x64|Boolean|Nothing|If the top stack value is 0, the statements are executed. The top stack value is removed. Lead in a logcial *<value>then [[statements]][[statements]]endif*expression 
-|OP_ELSE|103|0x67|Nothing|Nothing|If the preceeding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. 
-|OP_ENDIF|104|0x68|Nothing|Nothing|Ends a logcial *If <value>then [[statements]][[statements]]*expression
-|OP_VERIFY|105|0x69|Boolean|Nothing / False|If top stack value is not true then marks transaction as **invalid**. A value true is removed, but false is not.
-|OP_RETURN|106|0x6a|Nothing|Nothing|Marks transaction as **invalid**. 
+|OP_IF|99|0x63|colspan="2"<expression>if [[statements]][[statements]]* endif|If the top stack value is not 0, the statements are executed. The top stack value is removed.
+|OP_NOTIF|100|0x64|colspan="2"<expression>if [[statements]][[statements]]* endif|If the top stack value is 0, the statements are executed. The top stack value is removed.
+|OP_ELSE|103|0x67|colspan="2"<expression>if [[statements]][[statements]]* endif|If the preceding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. 
+|OP_ENDIF|104|0x68|colspan="2"<expression>if [[statements]][[statements]]* endif|Ends an if/else block.
+|OP_VERIFY|105|0x69|True / false|Nothing / False|**Marks transaction as invalid**if top stack value is not true. True is removed, but false is not.
+|OP_RETURN|106|0x6a|Nothing|Nothing|**Marks transaction as invalid**. 
 
 
-###Stack item organization
+### Stack
 
 
 
-|Nemonic|Decimal|Hex|Input|Output|Description
+|Word|Opcode|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_TOALTSTACK|107|0x6b|x1 (alt)|(alt x1)|Puts the input onto the top of the alt stack. Removes it from the (main) stack.
-|OP_FROMALTSTACK|108|0x6c|(alt x1)|x1 (alt)|Puts the input onto the top of the (main) stack. Removes it from the alt stack.
-|OP_2DROP|109|0x6d|x2 x1|Nothing|Removes the top two stack items.
-|OP_2DUP|110|0x6e|x2 x1|x2 x1 x2 x1|Duplicates the top two stack items.
-|OP_3DUP|111|0x6f|x3 x2 x1|x3 x2 x1 x3 x2 x1|Duplicates the top three stack items.
-|OP_2OVER|112|0x70|x4 x3 x2 x1|x4 x3 x2 x1 x4 x3|Copies the pair of items two spaces back in the stack to the front.
-|OP_2ROT|113|0x71|x6 x5 x4 x3 x2 x1|x4 x3 x2 x1 x6 x5|The fifth and sixth items back are moved to the top of the stack. Twotimes left rotate.
-|OP_2SWAP|114|0x72|x4 x3 x2 x1|x2 x1 x4 x3|Swaps the top two pairs of stack items.
-|OP_IFDUP|115|0x73|x1|x1 / x1 x1|If the top stack value is not 0, duplicate it.
-|OP_DEPTH|116|0x74|Nothing|depth|Puts the number of stack items onto the stack as one little-endian coded byte-vector
-|OP_DROP|117|0x75|x1|Nothing|Removes the top stack item.
-|OP_DUP|118|0x76|x1|x1 x1|Duplicates the top stack item.
-|OP_NIP|119|0x77|x2 x1|x1|Removes the second-to-top stack item.
-|OP_OVER|120|0x78|x2 x1|x2 x1 x2|Copies the second-to-top stack item to the top.
-|OP_PICK|121|0x79|xn ... x2 x1 x0 <n>|xn ... x2 x1 x0 xn|<n>is removed and the item *n*back in the stack is copied to the top.
-|OP_ROLL|122|0x7a|xn ... x2 x1 x0 <n>|... x2 x1 x0 xn|<n>is removed and the item *n*back in the stack is moved to the top.
-|OP_ROT|123|0x7b|x3 x2 x1|x2 x1 x3|The top three items on the stack are rotated to the left.
-|OP_SWAP|124|0x7c|x2 x1|x1 x2|The top two items on the stack are swapped resp. rotated.
-|OP_TUCK|125|0x7d|x2 x1|x1 x2 x1|The item at the top of the stack is copied and inserted before the second-to-top item.
+|OP_TOALTSTACK|107|0x6b|x1|(alt)x1|Puts the input onto the top of the alt stack. Removes it from the main stack.
+|OP_FROMALTSTACK|108|0x6c|(alt)x1|x1|Puts the input onto the top of the main stack. Removes it from the alt stack.
+|OP_IFDUP|115|0x73|x|x / x x|If the top stack value is not 0, duplicate it.
+|OP_DEPTH|116|0x74|Nothing|<Stack size>|Puts the number of stack items onto the stack.
+|OP_DROP|117|0x75|x|Nothing|Removes the top stack item.
+|OP_DUP|118|0x76|x|x x|Duplicates the top stack item.
+|OP_NIP|119|0x77|x1 x2|x2|Removes the second-to-top stack item.
+|OP_OVER|120|0x78|x1 x2|x1 x2 x1|Copies the second-to-top stack item to the top.
+|OP_PICK|121|0x79|xn ... x2 x1 x0 <n>|xn ... x2 x1 x0 xn|The item *n*back in the stack is copied to the top.
+|OP_ROLL|122|0x7a|xn ... x2 x1 x0 <n>|... x2 x1 x0 xn|The item *n*back in the stack is moved to the top.
+|OP_ROT|123|0x7b|x1 x2 x3|x2 x3 x1|The top three items on the stack are rotated to the left.
+|OP_SWAP|124|0x7c|x1 x2|x2 x1|The top two items on the stack are swapped.
+|OP_TUCK|125|0x7d|x1 x2|x2 x1 x2|The item at the top of the stack is copied and inserted before the second-to-top item.
+|OP_2DROP|109|0x6d|x1 x2|Nothing|Removes the top two stack items.
+|OP_2DUP|110|0x6e|x1 x2|x1 x2 x1 x2|Duplicates the top two stack items.
+|OP_3DUP|111|0x6f|x1 x2 x3|x1 x2 x3 x1 x2 x3|Duplicates the top three stack items.
+|OP_2OVER|112|0x70|x1 x2 x3 x4|x1 x2 x3 x4 x1 x2|Copies the pair of items two spaces back in the stack to the front.
+|OP_2ROT|113|0x71|x1 x2 x3 x4 x5 x6|x3 x4 x5 x6 x1 x2|The fifth and sixth items back are moved to the top of the stack.
+|OP_2SWAP|114|0x72|x1 x2 x3 x4|x3 x4 x1 x2|Swaps the top two pairs of items.
 
 
 ### Splice
 
 
 
-|Nemonic|Decimal|Hex|Input|Output|Description
+|Word|Opcode|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_CAT|126|0x7e|x2 x1|out|Appends stack-top item at second-to top item. Concatenates two strings resp. byte vectors. *Currently disabled.*
-|OP_SUBSTR|127|0x7f|x3 index size|out|Returns the section started at position <index>and of length <size>of a string resp. byte vector. *Currently disabled.*
-|OP_LEFT|128|0x80|x2 index|out|Keeps only characters left of the specified point in second-to top item. *Currently disabled.*
-|OP_RIGHT|129|0x81|x2 index|out|Keeps only characters right of the specified point in second-to top item. *Currently disabled.*
-|OP_SIZE|130|0x82|x1|x1 size|Returns the length of the input string resp. byte vector resp. top-stack item.
+|OP_CAT|126|0x7e|x1 x2|out|Concatenates two strings. *Currently disabled.*
+|OP_SUBSTR|127|0x7f|in begin size|out|Returns a section of a string. *Currently disabled.*
+|OP_LEFT|128|0x80|in size|out|Keeps only characters left of the specified point in a string. *Currently disabled.*
+|OP_RIGHT|129|0x81|in size|out|Keeps only characters right of the specified point in a string. *Currently disabled.*
+|OP_SIZE|130|0x82|in|in size|Returns the length of the input string.
 
 
 ### Bitwise logic
 
 
 
-|Nemonic|Decimal|Hex|Input|Output|Description
+|Word|Opcode|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_INVERT|131|0x83|x1|x0|Flips all of the bits in the input. *Currently disabled.*
-|OP_AND|132|0x84|x2 x1|x0|Boolean *and*between each bit in the inputs. *Currently disabled.*
-|OP_OR|133|0x85|x2 x1|x0|Boolean *or*between each bit in the inputs. *Currently disabled.*
-|OP_XOR|134|0x86|x2 x1|x0|Boolean *exclusive or*between each bit in the inputs. *Currently disabled.*
-|OP_EQUAL|135|0x87|x2 x1|Boolean|Returns 1 if the inputs have the same length and are byte-wise equal, 0 otherwise.
-|OP_EQUALVERIFY|136|0x88|x2 x1|Nothing / false|Same as OP_EQUAL, but runs OP_VERIFY afterward.
+|OP_INVERT|131|0x83|in|out|Flips all of the bits in the input. *Currently disabled.*
+|OP_AND|132|0x84|x1 x2|out|Boolean *and*between each bit in the inputs. *Currently disabled.*
+|OP_OR|133|0x85|x1 x2|out|Boolean *or*between each bit in the inputs. *Currently disabled.*
+|OP_XOR|134|0x86|x1 x2|out|Boolean *exclusive or*between each bit in the inputs. *Currently disabled.*
+|OP_EQUAL|135|0x87|x1 x2|True / false|Returns 1 if the inputs are exactly equal, 0 otherwise.
+|OP_EQUALVERIFY|136|0x88|x1 x2|True / false|Same as OP_EQUAL, but runs OP_VERIFY afterward.
 
 
 ### Arithmetic
 
-Since version 0.3.10 the implemented arithmetic opcodes are limited to maximal 4 byte vectors (value < 2^31), in version 0.3.6 up to 0.3.8 they were limited to 258 byte vectors and prior to 0.3.6 unrestricted  (12.1) (12.2).
+Arithmetic is limited to max 4 byte integers
 
 
-|Nemonic|Decimal|Hex|Input|Output|Description
+
+|Word|Opcode|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_1ADD|139|0x8b|i1|i0|1 is added to the input.
-|OP_1SUB|140|0x8c|i1|i0|1 is subtracted from the input.
-|OP_2MUL|141|0x8d|i1|i0|The input is multiplied by 2. *Currently disabled.*
-|OP_2DIV|142|0x8e|i1|i0|The input is divided by 2 (round down). *Currently disabled.*
-|OP_NEGATE|143|0x8f|i1|i0|The sign of the input is flipped. Numerically the value is multiplied by -1
-|OP_ABS|144|0x90|i1|i0|The input is negative, its sign is flipped.
-|OP_NOT|145|0x91|i1|Boolean|If the input is 0 or 1, it is flipped. Otherwise the output will be 0. Test whether its value equals 0
-|OP_0NOTEQUAL|146|0x92|i1|Boolean|Returns 0 if the input is 0. 1 otherwise. Test whether its value is unequal 0
-|OP_ADD|147|0x93|i2 i1|i0|stack-top i1 is added to i2.
-|OP_SUB|148|0x94|i2 i1|i0|stack-top i1 is subtracted from i2.
-|OP_MUL|149|0x95|i2 i1|i0|i2 is multiplied with stack-top i1. *Currently disabled.*
-|OP_DIV|150|0x96|i2 i1|i0|i2 is divided by stack-top i1 (divisor should be not 0). *Currently disabled.*
-|OP_MOD|151|0x97|i2 i1|i0|Returns the remainder after dividing i2 by stack-top i1 (divisor should be not 0). *Currently disabled.*
-|OP_LSHIFT|152|0x98|i2 i1|i0|Shifts i2 left by i1 bits, preserving sign of i2 (i1 >= 0). *Currently disabled.*
-|OP_RSHIFT|153|0x99|i2 i1|i0|Shifts i2 right by i1 bits, preserving sign of i2 (i1 >= 0). *Currently disabled.*
-|OP_BOOLAND|154|0x9a|i2 i1|Boolean|If both i2 and i1 are not 0, the output is 1. Otherwise 0.
-|OP_BOOLOR|155|0x9b|i2 i1|Boolean|If i2 or i1 is not 0, the output is 1. Otherwise 0.
-|OP_NUMEQUAL|156|0x9c|i2 i1|Boolean|Returns 1 if i2 and i1 are numerically equal, 0 otherwise.
-|OP_NUMEQUALVERIFY|157|0x9d|i2 i1|Nothing / False|Same as OP_NUMEQUAL, but runs OP_VERIFY afterward.
-|OP_NUMNOTEQUAL|158|0x9e|i2 i1|Boolean|Returns 1 if i2 and i1 are numerically not equal, 0 otherwise.
-|OP_LESSTHAN|159|0x9f|i2 i1|Boolean|Returns 1 if i2 is less than stack-top item i1, 0 otherwise.
-|OP_GREATERTHAN|160|0xa0|i2 i1|Boolean|Returns 1 if i2 is greater than stack-top item i1, 0 otherwise.
-|OP_LESSTHANOREQUAL|161|0xa1|i2 i1|Boolean|Returns 1 if i2 is less than or equal to stack-top item i1, 0 otherwise.
-|OP_GREATERTHANOREQUAL|162|0xa2|i2 i1|Boolean|Returns 1 if i2 is greater than or equal to stack-top item i1, 0 otherwise.
-|OP_MIN|163|0xa3|i2 i1|i2 / i1|Returns the smaller of i2 and i1.
-|OP_MAX|164|0xa4|i2 i1|i2 / i1|Returns the larger of i2 and i1.
-|OP_WITHIN|165|0xa5|i3 i2 i1|Boolean|Returns 1 if i3  >= i2 and i3 < i1, 0 otherwise. Thus if i2 > i1 returns always 0.
+|OP_1ADD|139|0x8b|in|out|1 is added to the input.
+|OP_1SUB|140|0x8c|in|out|1 is subtracted from the input.
+|OP_2MUL|141|0x8d|in|out|The input is multiplied by 2. *Currently disabled.*
+|OP_2DIV|142|0x8e|in|out|The input is divided by 2. *Currently disabled.*
+|OP_NEGATE|143|0x8f|in|out|The sign of the input is flipped.
+|OP_ABS|144|0x90|in|out|The input is made positive.
+|OP_NOT|145|0x91|in|out|If the input is 0 or 1, it is flipped. Otherwise the output will be 0.
+|OP_0NOTEQUAL|146|0x92|in|out|Returns 0 if the input is 0. 1 otherwise.
+|OP_ADD|147|0x93|a b|out|a is added to b.
+|OP_SUB|148|0x94|a b|out|b is subtracted from a.
+|OP_MUL|149|0x95|a b|out|a is multiplied by b. *Currently disabled.*
+|OP_DIV|150|0x96|a b|out|a is divided by b. *Currently disabled.*
+|OP_MOD|151|0x97|a b|out|Returns the remainder after dividing a by b. *Currently disabled.*
+|OP_LSHIFT|152|0x98|a b|out|Shifts a left b bits, preserving sign. *Currently disabled.*
+|OP_RSHIFT|153|0x99|a b|out|Shifts a right b bits, preserving sign. *Currently disabled.*
+|OP_BOOLAND|154|0x9a|a b|out|If both a and b are not 0, the output is 1. Otherwise 0.
+|OP_BOOLOR|155|0x9b|a b|out|If a or b is not 0, the output is 1. Otherwise 0.
+|OP_NUMEQUAL|156|0x9c|a b|out|Returns 1 if the numbers are equal, 0 otherwise.
+|OP_NUMEQUALVERIFY|157|0x9d|a b|out|Same as OP_NUMEQUAL, but runs OP_VERIFY afterward.
+|OP_NUMNOTEQUAL|158|0x9e|a b|out|Returns 1 if the numbers are not equal, 0 otherwise.
+|OP_LESSTHAN|159|0x9f|a b|out|Returns 1 if a is less than b, 0 otherwise.
+|OP_GREATERTHAN|160|0xa0|a b|out|Returns 1 if a is greater than b, 0 otherwise.
+|OP_LESSTHANOREQUAL|161|0xa1|a b|out|Returns 1 if a is less than or equal to b, 0 otherwise.
+|OP_GREATERTHANOREQUAL|162|0xa2|a b|out|Returns 1 if a is greater than or equal to b, 0 otherwise.
+|OP_MIN|163|0xa3|a b|out|Returns the smaller of a and b.
+|OP_MAX|164|0xa4|a b|out|Returns the larger of a and b.
+|OP_WITHIN|165|0xa5|x min max|out|Returns 1 if x is within the specified range (left-inclusive), 0 otherwise.
 
 
 ### Crypto
 
 
 
-|Nemonic|Decimal|Hex|Input|Output|Description
+|Word|Opcode|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_RIPEMD160|166|0xa6|x|hash20|The input is hashed using RIPEMD-160.
-|OP_SHA1|167|0xa7|x|hash20|The input is hashed using SHA-1.
-|OP_SHA256|168|0xa8|x|hash32|The input is hashed using SHA-256.
-|OP_HASH160|169|0xa9|x|hash20|The input is hashed twice: first with SHA-256 and then with RIPEMD-160.
-|OP_HASH256|170|0xaa|x|hash32|The input is hashed two times with SHA-256.
-|OP_CODESEPARATOR|171|0xab|Nothing|Nothing|All of the signature checking opcodes will only match signatures to the data after the most recently-executed OP_CODESEPARATOR.
-|[[OP_CHECKSIG]]|172|0xac|sig pubkey|Boolean|The entire transaction's outputs, inputs, and script (from the most recently-executed OP_CODESEPARATOR to the end) are hashed. The signature used by OP_CHECKSIG must be a valid signature for a further, extern specified hash and the given public key. If it is, 1 is returned, 0 otherwise.
-|OP_CHECKSIGVERIFY|173|0xad|sig pubkey|Nothing / False|Same as OP_CHECKSIG, but OP_VERIFY is executed afterward.
-|OP_CHECKMULTISIG|174|0xae|sig1 sig2 ... <number of signatures>pub1 pub2 <number of public keys>|Boolean|For each signature and public key pair, OP_CHECKSIG is executed. If more public keys than signatures are listed, some key/sig pairs can fail. All signatures need to match a public key. If all signatures are valid, 1 is returned, 0 otherwise. Due to a bug, one extra unused value is removed from the stack.
-|OP_CHECKMULTISIGVERIFY|175|0xaf|sig1 sig2 ... <number of signatures>pub1 pub2 ... <number of public keys>|Nothing / False|Same as OP_CHECKMULTISIG, but OP_VERIFY is executed afterward.
+|OP_RIPEMD160|166|0xa6|in|hash|The input is hashed using RIPEMD-160.
+|OP_SHA1|167|0xa7|in|hash|The input is hashed using SHA-1.
+|OP_SHA256|168|0xa8|in|hash|The input is hashed using SHA-256.
+|OP_HASH160|169|0xa9|in|hash|The input is hashed twice: first with SHA-256 and then with RIPEMD-160.
+|OP_HASH256|170|0xaa|in|hash|The input is hashed two times with SHA-256.
+|OP_CODESEPARATOR|171|0xab|Nothing|Nothing|All of the signature checking words will only match signatures to the data after the most recently-executed OP_CODESEPARATOR.
+|[[OP_CHECKSIG]]|172|0xac|sig pubkey|True / false|The entire transaction's outputs, inputs, and script (from the most recently-executed OP_CODESEPARATOR to the end) are hashed. The signature used by OP_CHECKSIG must be a valid signature for this hash and public key. If it is, 1 is returned, 0 otherwise.
+|OP_CHECKSIGVERIFY|173|0xad|sig pubkey|True / false|Same as OP_CHECKSIG, but OP_VERIFY is executed afterward.
+|OP_CHECKMULTISIG|174|0xae|x sig1 sig2 ... <number of signatures>pub1 pub2 <number of public keys>|True / False|For each signature and public key pair, OP_CHECKSIG is executed. If more public keys than signatures are listed, some key/sig pairs can fail. All signatures need to match a public key. If all signatures are valid, 1 is returned, 0 otherwise. Due to a bug, one extra unused value is removed from the stack.
+|OP_CHECKMULTISIGVERIFY|175|0xaf|x sig1 sig2 ... <number of signatures>pub1 pub2 ... <number of public keys>|True / False|Same as OP_CHECKMULTISIG, but OP_VERIFY is executed afterward.
 
 
-### Expansion opcodes
+###Pseudo-words
+These words are used internally for assisting with transaction matching. They are invalid if used in actual scripts.
 
 
-|Nemonic|Decimal|Hex|Description
-|---|---|---|---
-|OP_NOP1-OP_NOP10|176-185|0xb0-0xb9|The opcode has no effect.
-
-
-### Version opcodes
-Version opcodes are disabled since bitcoin 0.2.0 and should not be used (maybe reassigned in the future).
-
-
-|Nemonic|Decimal|Hex|Description
-|---|---|---|---
-|OP_VER|98|0x62|Script evalution is triggered invalid (Formerly pushed the bitcoin-serialize version onto stack).
-|OP_VERIF|101|0x65|Script evalution is triggered invalid (Formerly top stack item was popped and =< compared to present version)
-|OP_VERNOTIF|102|0x66|Script evalution is triggered invalid (Formerly top stack item was popped and > compared to present version)
-
-
-### Reserved opcodes
-Each opcode not assigned (currently also every opcode value > 185) is also reserved. Using any unassigned opcode triggers the script evaluation to be invalid.
-
-
-|Nemonic|Decimal|Hex|Description
-|---|---|---|---
-|OP_RESERVED|80|0x50|Script evalution is triggered invalid-
-|OP_RESERVED1|137|0x89|Script evalution is triggered invalid.
-|OP_RESERVED2|138|0x8a|Script evalution is triggered invalid.
-
-
-###Pseudo-opcodes
-These nemonics are used internally for assisting with transaction matching. They are invalid if used in actual scripts.
-
-
-|Nemonic|Decimal|Hex|Description
+|Word|Opcode|Hex|Description
 |---|---|---|---
 |OP_PUBKEYHASH|253|0xfd|Represents a public key hashed with OP_HASH160.
 |OP_PUBKEY|254|0xfe|Represents a public key compatible with OP_CHECKSIG.
 |OP_INVALIDOPCODE|255|0xff|Matches any opcode that is not yet assigned.
 
 
-##Scripts in bitcoin transactions
-It follows a list of important (most occuring) scripts to see opcodes "at work". Keep in mind that all constants actually use the data-pushing instructions above. At start of a (transaction input) script evaluation, the stack is always empty. Currently less than 0.01 % of all txout-scripts / scriptPubKeys in the main block chain are not of the following two standard scripts.
+### Reserved words
+Any opcode not assigned is also reserved. Using an unassigned opcode makes the transaction invalid.
 
-###Standard transaction to bitcoin address
+
+
+|Word|Opcode|Hex|When used...
+|---|---|---|---
+|OP_RESERVED|80|0x50|Transaction is invalid unless occuring in an unexecuted OP_IF branch
+|OP_VER|98|0x62|Transaction is invalid unless occuring in an unexecuted OP_IF branch
+|OP_VERIF|101|0x65|Transaction is invalid even when occuring in an unexecuted OP_IF branch
+|OP_VERNOTIF|102|0x66|Transaction is invalid even when occuring in an unexecuted OP_IF branch
+|OP_RESERVED1|137|0x89|Transaction is invalid unless occuring in an unexecuted OP_IF branch
+|OP_RESERVED2|138|0x8a|Transaction is invalid unless occuring in an unexecuted OP_IF branch
+|OP_NOP1-OP_NOP10|176-185|0xb0-0xb9|The word is ignored.
+
+
+## Scripts
+This is a list of interesting scripts. Keep in mind that all constants actually use the data-pushing commands above.
+
+### Standard Transaction to Bitcoin address
 
 	scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 	scriptSig: <sig> <pubKey>
@@ -258,9 +201,9 @@ OP_DUP OP_HASH160    Bytes to push
 89 AB CD EF AB BA AB BA AB BA AB BA AB BA AB BA AB BA AB BA   88         AC
                       Data to push                     OP_EQUALVERIFY OP_CHECKSIG</pre>
 
-Note: scriptSig is in the input of the spending transaction and scriptPubKey is in the output of the previously storing transaction, i.e. its "available bitcoins".
+Note: scriptSig is in the input of the spending transaction and scriptPubKey is in the output of the previously unspent i.e. "available" transaction.
 
-Here is how each instruction is processed:
+Here is how each word is processed:
 
 
 |Stack |Script |Description 
@@ -274,7 +217,7 @@ Here is how each instruction is processed:
 |true|Empty.|Signature is checked for top two stack items.
 
 
-###Transaction to IP address (and generation transaction)
+### Standard Generation / transaction to IP address
 
 	scriptPubKey: <pubKey> OP_CHECKSIG
 	scriptSig: <sig>
@@ -289,11 +232,10 @@ Checking process:
 |true|Empty.|Signature is checked for top two stack items.
 
 
-In the case of a **coin generation transaction** (the first transaction of each block), there is no scriptSig, resp. its code ("coinbase") is completly ignored for the transaction. Only the scriptPubKey is used.
+### Transaction with a message
 
-###Transaction with a message
+It's possible to add arbitrary data to any transaction by just adding some data along with OP_DROP. Scripts are limited to 10,000 bytes and 201 instructions, and each individual instruction/value is limited to 520 bytes.
 
-It's possible to add arbitrary data to any transaction by just adding some data along with OP_DROP. 
 	scriptPubKey: <message> OP_DROP <pubKey> OP_CHECKSIG
 	scriptSig: <sig>
 
@@ -309,9 +251,9 @@ It's possible to add arbitrary data to any transaction by just adding some data 
 |true|Empty.|Stack holds the value of signature check now.
 
 
-###Examples of non standard transaction on Testnet
+### Example non standard transaction on Testnet
 
-These two links below show a non standard transaction. It just prepends the hex of "bob" and the operation OP_DROP
+These 2 links below show a non standard transaction. It just prepends the hex of "bob" and the operation OP_DROP
 which just removes it. As you can see they can be spent as normal.
 
 Input non-std transaction:
@@ -320,58 +262,11 @@ http://blockexplorer.com/testnet/t/6ttfeb55B1
 Spent by:
 http://blockexplorer.com/testnet/t/AFdRB1CHS3
 
-##Script validation
-A script evaluation is considered invalid, if any of these conditions meets:<br>
-<ul>
-<li>the total size of the script exceeds (currently) 10000 bytes
-<li>there are more than (currently) 201 opcodes of opcode value > 0x60 in the script
-<li>each instruction is (currently) limited to maximal 520 bytes. This effects only the opcodes OP_PUSHDATA2 and OP_PUSHDATA4
-<li>the executed opcode of the script has insufficient input (from stack, from script or from anywhere)
-<li>the opcode is not defined (for execution) - indicated by white or light gray background color in the table
-<li>the opcode is disabled (currently 15 opcodes) - indicated by white font color in the opcode overview matrix
-<li>stack overflow occurs during execution of the opcode (currently the number of items on the stack and on the alternate stack is limited to 1000)
-<li>the opcodes OP_VERIF and OP_NOTVERIF invalidate a script which contains this opcode (even if this opcode is not executed!)
-<li>the opcodes OP_ELSE or OP_ENDIF has no matching OP_IF<br>
-<li>the script execution has been finished but there is (at least) an unmatched OP_IF<br>
-<li>the opcodes OP_VERIFY, OP_EQUALVERIFY, OP_NUMEQUALVERIFY, OP_CHECKSIGVERIFY and OP_CHECKMULTISIGVERIFY invalidate the script if the stack-top item is false
-<li>the execution of OP_RETURN
-<!--li>alt stack overflow occurs (only possible during execution of OP_TOALTSTACK)-->
-<li>the numerical value of the top-stack item is negative or greater than the number of items - 2 on the stack if OP_PICK or OP_ROLL shall be executed
-<li>When interpreting a stack-item of an arithmetic opcode as a signed integer its value is >= 2^31 or <= -2^31.
-<li>an item used as public key or signature for each of the opcodes OP_CHECKSIG, OP_CHECKSIGVERIFY, OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY can be neither a public key or signature (for the given hash)
-<li>the number of signature items or the number of public key items on the stack is negative for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
-<li>there or more signatures items than public key items on the stack for OP_CHECKMULTISIG or  OP_CHECKMULTISIGVERIFY
-<li>there are (currently) more than 20 public key items on the stack for OP_CHECKMULTISIG or CHECKMULTISIGVERIFY
-<li>the sum of opcodes > 0x60 and the number of public keys in all executed OP_CHECKMULTISIG or CHECKMULTISIGVERIFY exceeds (currently) 201
-<li>the script execution has been finished and the stack is empty or the top-stack item is false (numerical value 0)
-</ul>
-else the script evaluation is considered to be valid. (23.1)
-**If invalidation of a script is triggered then the script is immediately finished.** These arbitrary looking limitations of 10000, 201, 520, 1000 and 20 might be increased in the future -- they serve to prevent strong slow down of the evaluation of a script while not restricting its practical usage really.
-
-##Withdrawn and drafted opcodes
-
-<ul>
-<li> byte value 0x89 OP_NOTEQUAL  defined in pre-0.1.0 bitcoin versions. Since 0.1.0 removed because of security concerns. 
-<li> byte value 0xb1  [[OP_EVAL|BIP_0012]]  withdraw - poll was triggered but insufficient support. 
-<li> byte value 0xb2  [[OP_CHECKHASHVERIFY|BIP_0017]]  withdraw - poll was triggered but insufficient support.
-</ul>
-
 ##See Also
 
 * [[Transactions]]
 * [[Contracts]]
 
-##References
 
-5.1: [file src/srcipt.cpp in bitcoin-0.2.0](http://mirror.transact.net.au/pub/sourceforge/b/project/bi/bitcoin/Bitcoin/bitcoin-0.2.0/bitcoin-0.2.0-linux.tar.gz)  
-5.2: [file src/srcipt.cpp in bitcoin-0.3.3](http://mirror.transact.net.au/pub/sourceforge/b/project/bi/bitcoin/Bitcoin/bitcoin-0.3.3/bitcoin-0.3.3-linux.tar.gz)  
-5.3: [file src/srcipt.cpp in bitcoin-0.3.6](http://mirror.transact.net.au/pub/sourceforge/b/project/bi/bitcoin/Bitcoin/bitcoin-0.3.6/bitcoin-0.3.6-linux.tar.gz)  
-12.1: [file src/srcipt.cpp in bitcoin-0.3.8](http://mirror.transact.net.au/pub/sourceforge/b/project/bi/bitcoin/Bitcoin/bitcoin-0.3.8/bitcoin-0.3.8-linux.tar.gz)  
-12.2: [file src/srcipt.cpp in bitcoin-0.3.10](http://mirror.transact.net.au/pub/sourceforge/b/project/bi/bitcoin/Bitcoin/bitcoin-0.3.10/bitcoin-0.3.10-linux.tar.gz)  
-23.1: [file src/src/script.cpp in bitcoin-0.7.1](http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.7.1/bitcoin-0.7.1-linux.tar.gz)
-
-<ul>
-<li>[file src/script.cpp in bitcoin-0.1.0](http://www.zorinaq.com/pub/bitcoin-0.1.0.tgz)</li>
-</ul>
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
