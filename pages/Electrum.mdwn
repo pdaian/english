@@ -71,10 +71,10 @@ There are two options in this example:
 * option -a means: 'list all addresses'. if you don't use it, change addresses are not listed.
 * option -k means: display the private keys
 
-You can also import addresses into an electrum wallet, with the 'import' command:
+You can also import addresses into an electrum wallet, with the 'importprivkey' command:
 <pre>
-$ ./electrum import 1LGoehbyeX4QBEPK1a6dhyaoMQZfqg5LKX:5JBSttEGhjEcPidSovW66Rin2EZ6LEHZ2qx8Pu2RqqNaDTBVWaF
-keypair imported
+$ ./electrum importprivkey 5JBSttEGhjEcPidSovW66Rin2EZ6LEHZ2qx8Pu2RqqNaDTBVWaF
+Keypair imported:  1LGoehbyeX4QBEPK1a6dhyaoMQZfqg5LKX
 </pre>
 Note that imported keys do not belong to the deterministic sequence of your wallet; if you import keys in a wallet, you must back it up!
 
