@@ -35,7 +35,8 @@ For example, this python code will calculate the hash of the block with the smal
 	>>> hash[[::-1]].encode('hex_codec')
 	'00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d'
 
-Note that the actual hash has lots of trailing zero bits when interpreted (by default) as a 256-bit big-endian number (in keeping with the big-endian constants in the definition of SHA-256.  But when interpreted as bitcoin does as a little-endian number, the hash has lots of leading zero bits, and this is what shows up e.g. in the output of blockexplorer.
+Note that the actual hash, which is a 256-bit number, has lots of leading zero bits. When stored or printed as a big-endian hexadecimal constant, but it has leading zero bytes and if stored or printed  as little-endian, these are the trailing zero bytes. E.g. if interpretation as a string -- lowest (or start of) string address keeps lowest significant byte, thus little-endian.
+The output of [[http://blockexplorer.com]] displays the hash values as big-endians numbers as notation for numbers is usual -- leading digits are the most significant digits read from left to right.
 
 For another example, [here](http://pastebin.com/n8UEGA86) is a version in plain C without any optimization, threading or error checking.
 
