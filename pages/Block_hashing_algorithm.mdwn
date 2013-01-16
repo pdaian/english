@@ -4,7 +4,7 @@ When generating, you constantly hash the block header. The block is also occasio
 |Field|Purpose|Updated when...|Size (Bytes)
 |---|---|---|---
 |Version|Block version number|You upgrade the software and it specifies a new version|4
-|hashPrevBlock|Hash of the previous block|A new block comes in|32
+|hashPrevBlock|Hash of the previous block header|A new block comes in|32
 |hashMerkleRoot|256-bit hash based on all of the transactions|A transaction is accepted|32
 |Time|Current timestamp as seconds since 1970-01-01T00:00 UTC|Every few seconds|4
 |Bits|Current [[target]]in compact format|The [[difficulty]]is adjusted|4
