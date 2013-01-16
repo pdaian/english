@@ -6,7 +6,7 @@ When generating, you constantly hash the block header. The block is also occasio
 |Version|Block version number|You upgrade the software and it specifies a new version|4
 |hashPrevBlock|Hash of the previous block|A new block comes in|32
 |hashMerkleRoot|256-bit hash based on all of the transactions|A transaction is accepted|32
-|Time|Current timestamp|Every few seconds|4
+|Time|Current timestamp as UTC (GMT)|Every few seconds|4
 |Bits|Current [[target]]in compact format|The [[difficulty]]is adjusted|4
 |Nonce|32-bit number (starts at 0)|A hash is tried (increments)|4
 
