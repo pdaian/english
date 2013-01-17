@@ -119,10 +119,15 @@ function mtgox_query($path, array $req = array()) {
 	// generate the POST data string
 	$post_data = http_build_query($req, *, '&');
 
+	$prefix = *;
+	if (substr($path, 0, 2) == '2/') {
+	$prefix = substr($path, 2)."\0";
+	}
+
 	// generate the extra headers
 	$headers = array(
 	'Rest-Key: '.$key,
-	'Rest-Sign: '.base64_encode(hash_hmac('sha512', $post_data, base64_decode($secret), true)),
+	'Rest-Sign: '.base64_encode(hash_hmac('sha512', $prefix.$post_data, base64_decode($secret), true)),
 	);
 
 	// our curl handle (initialize if required)
