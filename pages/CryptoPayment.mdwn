@@ -1,3 +1,11 @@
-MediaWiki extension to limit spam critically.
+#About
 
-Suggested by various people and implemented here.
+**BitcoinPayment** is a MediaWiki extension to limit spam, by requiring a small one-time bitcoin payment before a user is allowed to edit or create pages.
+
+While the payment is deliberately trivially small for a normal user, it presents a barrier to a mass-spammer. 
+
+#Usage
+
+In order to enable your user account to edit pages, log in and visit [[Special:BitcoinPayment]], and you'll be given an address to which to send a small amount of bitcoins.
+
+Once you send the requested bitcoin amount to the address displayed and your payment is confirmed, your account will automatically be added to the [trusted group](https://en.bitcoin.it/w/index.php?title=Special:ListUsers&group=trusted) and be afforded edit privileges.
