@@ -3,8 +3,8 @@ The original bitcoin client uses a multithreaded approach to socket
 handling and messages processing. There is one thread that handles
 socket communication (ThreadSocketHandler) and one (ThreadMessageHandler)
 which handles pulling messages off sockets and calling the
-processing routines. Both of these threads are in net.cpp.
-The message processing routines are in main.cpp, however.
+processing routines. Both of these threads are in [net.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp).
+The message processing routines are in [main.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/main.cpp), however.
 
 ##Socket Thread
 The socket thread reads the sockets and places data into a CDataStream
