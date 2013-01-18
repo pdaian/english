@@ -149,7 +149,7 @@ It also clears the list of the addresses we think the remote node has, which wil
 
 ####Old Address Cleanup
 
-In SendMessages() in main.cpp, there is code to remove old addresses.
+In SendMessages() in [main.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/main.cpp), there is code to remove old addresses.
 
 This is done every ten minutes, as long as there are 3 active connections.
 
