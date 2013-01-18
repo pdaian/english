@@ -45,11 +45,11 @@ Now lets look at the ways a node finds out about node addresses.
 ###Local Client's External Address
 The client uses two methods to determine its own external, routable IP address: it uses IRC, preferably, and if that does not succeed, it uses public web services which return the information.
 
-From a thread created for this work (called ThreadIRCSeed in irc.cpp), the client makes an IRC connection to 92.243.23.21 or irc.lfnet.org, if the direct IP connection fails. The port is 6667.
+From a thread created for this work (called ThreadIRCSeed in [irc.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/irc.cpp)), the client makes an IRC connection to 92.243.23.21 or irc.lfnet.org, if the direct IP connection fails. The port is 6667.
 
 If the connection succeeds, the client issues a USERHOST command to the IRC server, in order to get their own IP address.
 
-The client also runs a thread called ThreadGetMyExternalIP (in net.cpp)
+The client also runs a thread called ThreadGetMyExternalIP (in [net.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp))
 which attempts to determine the client's IP address as seen from the outside
 world.  It gives the IRC thread a chance to discover the IP address
 first, sleeping and checking periodically for 2 minutes, and then it
@@ -68,7 +68,6 @@ IP address from it.
 If this succeeds, the IP is returned, it is advertised to any connected
 nodes, and then the thread finishes (without proceeding to the next
 address).
-
 
 ###Connect Callback Address
 When a node receives an initial "version" message, and that node initiated the connection, then the node advertises its address to the remote so that it can connect back to the local node if it wants to.
