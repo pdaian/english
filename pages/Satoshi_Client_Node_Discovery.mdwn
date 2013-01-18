@@ -88,7 +88,7 @@ After learning its own address, a node encodes its own address into a string to 
 When the client discovers an address from IRC, it sets the timestamp on the address to the current time, but it uses a "penalty" of 51 minutes, which means it looks like it was actually seen almost an hour ago.
 
 ###DNS Addresses
-Upon startup, if peer node discovery is needed, the client then issues DNS requests to learn about the addresses of other peer nodes.  The client includes a list of nost names for DNS services that are seeded.  As-of May 17, 2012 the list (from net.cpp (8.1)) includes:
+Upon startup, if peer node discovery is needed, the client then issues DNS requests to learn about the addresses of other peer nodes.  The client includes a list of host names for DNS services that are seeded.  As-of May 17, 2012 the list (from net.cpp (8.1)) includes:
 
 * bitseed.xf2.org
 * dnsseed.bluematt.me
