@@ -79,7 +79,7 @@ After sending its own address, it sends a "getaddr" request message to the remot
 
 As of version 0.6.x the Bitcoin client no longer uses IRC bootstrapping by default.  This documentation below is accurate for most prior versions.
 
-In addition to learning and sharing its own address, the node learns about other node addresses via an IRC channel. See irc.cpp.
+In addition to learning and sharing its own address, the node learns about other node addresses via an IRC channel. See [irc.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/irc.cpp).
 
 After learning its own address, a node encodes its own address into a string to be used as a nickname. Then, it randomly joins an IRC channel named between #bitcoin00 and #bitcoin99. Then it issues a WHO command. The thread reads the lines as they appear in the channel and decodes the IP addresses of other nodes in the channel. It does this in a loop, forever, until the node is shutdown.
 
