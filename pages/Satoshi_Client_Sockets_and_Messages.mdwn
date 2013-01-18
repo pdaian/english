@@ -19,9 +19,9 @@ sequence, and then it sends messages to each node that should be sent
 messages. That is all it does.
 
 Specifically, ThreadMessageHandler2 calls ProcessMessages(), which is
-located in main.cpp, to pull messages off each node's socket and
+located in [main.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/main.cpp), to pull messages off each node's socket and
 process them. Then it calls SendMessages(), which is also located
-in main.cpp to create and send any messages appropriate for each node.
+in [main.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/main.cpp) to create and send any messages appropriate for each node.
 
 ProcessMessages() attempts to find a message start signature in the
 vRecv stream. If it finds a message start, it deletes everything
@@ -33,7 +33,7 @@ just send preexisting queued messages. It goes through various
 maps looking for work to do and produces a message and calls
 PushMessage method of CNode to send the message. PushMessage
 queues outbound data in the vSend data stream. (See PushMessage() in
-net.cpp). The socket thread handler then pulls data off the
+[net.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp)). The socket thread handler then pulls data off the
 vSend data stream and calls send on the socket to send the data.
 
 
