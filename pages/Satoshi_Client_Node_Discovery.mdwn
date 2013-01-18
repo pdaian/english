@@ -124,7 +124,7 @@ For every address in the message:
 1. If the timestamp is too low or too high, it is set to 5 days ago.
 1. We subtract 2 hours from the timestamp and add the address.
 
-Note that when any address is added, for any reason, the code that calls AddAddress() does not check to see if it already exists. The AddAddresss() function in net.cpp will do that, and if the address already exists, further processing is done to update the address record. If the advertised services of the address have changed, that is updated and stored.
+Note that when any address is added, for any reason, the code that calls AddAddress() does not check to see if it already exists. The AddAddresss() function in [net.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp) will do that, and if the address already exists, further processing is done to update the address record. If the advertised services of the address have changed, that is updated and stored.
 
 If the address has been seen in the last 24 hours and the timestamp is currently over 60 minutes old, then it is updated to 60 minutes ago.
 
@@ -154,7 +154,6 @@ In SendMessages() in main.cpp, there is code to remove old addresses.
 This is done every ten minutes, as long as there are 3 active connections.
 
 The node erases messages that have not been used in 14 days as long as there are at least 1000 addresses in the map, and as long as the erasing process has not taken more than 20 seconds.
-
 
 ###Addresses stored in the Database
 Addresses are stored in the database when AddAddress() is called.
