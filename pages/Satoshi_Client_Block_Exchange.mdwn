@@ -37,7 +37,7 @@ in response to the "getblocks" request sent by the local node. The remote
 node calls pFrom->PushInventory which is a method on the CNode instance that
 represents the node that requested the blocks (the local node in this
 walkthrough), and PushInventory adds the block hash to the vInventoryToSend
-variable of the CNode. The SendMessages function in main.cpp will take the
+variable of the CNode. The SendMessages function in [main.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/main.cpp) will take the
 inv items out of vInventoryToSend and add it to a vInv variable which
 means they are really ready for sending.[[4]]
 The reason for the seperate variable is that some inventory items
@@ -56,7 +56,6 @@ in batches of 1000 entries from the map.[[5]]
 The code attempts to limit redundant requests to every 2 minutes for the
 same block by using a map called mapAlreadyAskedFor to delay the message
 if necessary.[[6]]
-
 
 ## Block Batching
 
