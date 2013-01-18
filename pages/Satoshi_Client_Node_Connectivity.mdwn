@@ -127,10 +127,10 @@ Sockets are disconnected if they have not sent or received data in
 the last 90 minutes.
 
 Sockets are disconnected if the current inbound data exceeds a buffer limit.
-(Search for: if (nPos > ReceiveBufferSize()) in net.cpp)
+(Search for: if (nPos > ReceiveBufferSize()) in [net.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp))
 
 Sockets are disconnected if the current outbound data exceeds a buffer limit.
-(Search for: if (vSend.size() > SendBufferSize()) in net.cpp)
+(Search for: if (vSend.size() > SendBufferSize()) in [net.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp))
 
 
 [[!tag "Developer"]]
