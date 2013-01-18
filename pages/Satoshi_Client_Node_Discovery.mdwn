@@ -158,7 +158,7 @@ The node erases messages that have not been used in 14 days as long as there are
 ###Addresses stored in the Database
 Addresses are stored in the database when AddAddress() is called.
 
-Addresses are read on startup when AppInit2() calls LoadAddresses(), which is located in db.cpp.
+Addresses are read on startup when AppInit2() calls LoadAddresses(), which is located in [db.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/db.cpp).
 
 Currently, it appears all addresses are stored all at once whenever any address is stored or updated (14.1). Indeed, AddAddress is seen to take over .01 seconds in various testing and is typically called tens of thousands of times in the initial 12 hours of running the client.
 
