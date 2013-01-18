@@ -13,7 +13,7 @@ The Satoshi client discovers the IP address and port of nodes in several differe
 1. Nodes read addresses from a user provided text file on startup
 
 A timestamp is kept for each address to keep track of when the node
-address was last seen. The AddressCurrentlyConnected in net.cpp handles
+address was last seen. The AddressCurrentlyConnected in [net.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp) handles
 updating the timestamp whenever a message is received from a node.
 Timestamps are only updated on an address and saved to the database
 when the timestamp is over 20 minutes old.
@@ -25,7 +25,6 @@ In the first section we will cover how a node handles a request for
 addresses via the "getaddr" message. By understanding the role of
 timestamps, it will become more clear why timestamps are kept the way
 they are for each of the different ways an address is discovered.
-
 
 ##Handling Message "getaddr"
 
