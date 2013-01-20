@@ -104,16 +104,10 @@ Here are some common version bytes:
 
 [[List_of_address_prefixes]] is a more complete list.
 
-## Source
-https://github.com/bitcoin/bitcoin/blob/master/src/base58.h
+## Source code
 
-## Relevant functions in source code
-
-* inline string EncodeBase58Check(const vector<unsigned char>& vchIn)
-* inline bool DecodeBase58Check(const char* psz, vector<unsigned char>& vchRet)
-* inline bool DecodeBase58Check(const string& str, vector<unsigned char>& vchRet)
-
-
+* ["Satoshi" C++ codebase (encode/decode using BigNum library)](https://github.com/bitcoin/bitcoin/blob/master/src/base58.h)
+* [libblkmaker C code (decode only, no external libraries needed)](https://gitorious.org/bitcoin/libblkmaker/blobs/master/base58.c)
 
 [[!tag "Technical"]]
 
