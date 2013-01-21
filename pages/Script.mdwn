@@ -251,26 +251,27 @@ It's possible to add arbitrary data to any transaction by just adding some data 
 |true|Empty.|Stack holds the value of signature check now.
 
 
-### Transaction with a message
+### Transaction puzzle
 
-It's possible to add arbitrary data to any transaction by just adding some data along with OP_DROP. Scripts are limited to 10,000 bytes and 201 instructions, and each individual instruction/value is limited to 520 bytes.
+Transaction a4bfa8ab6435ae5f25dae9d89e4eb67dfa94283ca751f393c1ddc5a837bbc31b is an interesting puzzle.
 
-	scriptPubKey: <message> OP_DROP <pubKey> OP_CHECKSIG
-	scriptSig: <sig>
+	scriptPubKey: OP_HASH256 6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000 OP_EQUAL
+	scriptSig: <data>
+
+To spend the transaction you need to come up with some data such that hashing the data twice results in the given hash.
 
 
 
 |Stack |Script |Description 
 |---|---|---
-|Empty.|<sig><message>OP_DROP <pubKey>OP_CHECKSIG|
-|<sig>|<message>OP_DROP <pubKey>OP_CHECKSIG|scriptSig added to the stack.
-|<sig><message>|OP_DROP <pubKey>OP_CHECKSIG|The message has been put.
-|<sig>|<pubKey>OP_CHECKSIG|Top stack item has been removed.
-|<sig><pubKey>|OP_CHECKSIG|Checking signature against the public key.
-|true|Empty.|Stack holds the value of signature check now.
+|Empty.|<data>OP_HASH256 <given_hash> OP_EQUAL|
+|<data>|OP_HASH256 <given_hash> OP_EQUAL|scriptSig added to the stack.
+|<data_hash>|<given_hash> OP_EQUAL|The data is hashed.
+|<data_hash> <given_hash>|OP_EQUAL|The given hash is pushed to the stack.
+|true|Empty.|The hashes are compared, leaving true on the stack.
 
 
-This transaction was successfully spent by 09f691b2263260e71f363d1db51ff3100d285956a40cc0e4f8c8c2c4a80559b1. The required data happened to be the [[Genesis_block]], and the given hash was the genesis block hash. Note that while transactions like this are fun, they are not secure, because they do not contain any signatures and thus the output of the transaction can be changed by anyone.
+This transaction was successfully spent by 09f691b2263260e71f363d1db51ff3100d285956a40cc0e4f8c8c2c4a80559b1. The required data happened to be the [[Genesis_block]], and the given hash was the genesis block hash. Note that while transactions like this are fun, they are not secure, because they do not contain any signatures and thus any transaction attempting to spend them can be replaced with a different transaction sending the funds somewhere else.
 
 ##See Also
 
