@@ -251,16 +251,26 @@ It's possible to add arbitrary data to any transaction by just adding some data 
 |true|Empty.|Stack holds the value of signature check now.
 
 
-### Example non standard transaction on Testnet
+### Transaction with a message
 
-These 2 links below show a non standard transaction. It just prepends the hex of "bob" and the operation OP_DROP
-which just removes it. As you can see they can be spent as normal.
+It's possible to add arbitrary data to any transaction by just adding some data along with OP_DROP. Scripts are limited to 10,000 bytes and 201 instructions, and each individual instruction/value is limited to 520 bytes.
 
-Input non-std transaction:
-http://blockexplorer.com/testnet/t/6ttfeb55B1
+	scriptPubKey: <message> OP_DROP <pubKey> OP_CHECKSIG
+	scriptSig: <sig>
 
-Spent by:
-http://blockexplorer.com/testnet/t/AFdRB1CHS3
+
+
+|Stack |Script |Description 
+|---|---|---
+|Empty.|<sig><message>OP_DROP <pubKey>OP_CHECKSIG|
+|<sig>|<message>OP_DROP <pubKey>OP_CHECKSIG|scriptSig added to the stack.
+|<sig><message>|OP_DROP <pubKey>OP_CHECKSIG|The message has been put.
+|<sig>|<pubKey>OP_CHECKSIG|Top stack item has been removed.
+|<sig><pubKey>|OP_CHECKSIG|Checking signature against the public key.
+|true|Empty.|Stack holds the value of signature check now.
+
+
+This transaction was successfully spent by 09f691b2263260e71f363d1db51ff3100d285956a40cc0e4f8c8c2c4a80559b1. The required data happened to be the [[Genesis_block]], and the given hash was the genesis block hash. Note that while transactions like this are fun, they are not secure, because they do not contain any signatures and thus the output of the transaction can be changed by anyone.
 
 ##See Also
 
