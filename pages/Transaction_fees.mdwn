@@ -9,15 +9,16 @@ It is envisioned that over time the cumulative effect of collecting transaction 
 
 ##Minimum transaction fees
 
-As of 10 June 2012, minimum transaction fees on the original Bitcoin client are:
+As of 10 June 2012, minimum transaction fees on the reference Bitcoin implementation are:
 
-* Accept a transaction for inclusion in a block: **0.0005 BTC**
-* Relay a transaction to other Bitcoin hosts: **0.0001 BTC**
+* Accept a transaction for inclusion in a block: **0.0005 BTC** per kilobyte (size rounded up to nearest kilobyte)
+* Relay a transaction to other Bitcoin hosts: **0.0001 BTC** per kilobyte
 
-A transaction can be sent without fees if both of these conditions are met:
+A transaction can be sent without fees if these conditions are met:
 
-* It is smaller than 10 (SI) kilobytes (10.000 bytes).
+* It is smaller than 10 thousand bytes.
 * All outputs are 0.01 BTC or larger.
+* Its priority is large enough (see <a href="#Techincal_Info">Technical Info</a> below)
 
 ##Overview
 
