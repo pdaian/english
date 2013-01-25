@@ -38,6 +38,19 @@ The remaining transactions remain in the miner's "memory pool", and may be inclu
 
 The reference implementation's rules for relaying transactions across the peer-to-peer network are very similar to the rules for sending transactions, but a smaller value of 0.0001 BTC is used to determine whether or not a transaction is considered "Free". To prevent "penny-flooding" denial-of-service attacks on the network, the reference implementation caps the number of free transactions it will relay to other nodes to (by default) 15 thousand bytes per minute.
 
+###Settings
+
+
+
+|Setting |Default Value (units)
+|---|---
+|limitfreerelay |15 (thousand bytes per minute)
+|mintxfee |0.0005 (BTC)
+|paytxfee |0.0005 (BTC)
+|blockmaxsize |250000 (bytes)
+|blockminsize |0 (bytes)
+
+
 ##Technical info
 
 Transaction priority is calculated as a value-weighted sum of input age, divided by transaction size in bytes:
