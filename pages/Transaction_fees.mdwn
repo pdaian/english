@@ -7,53 +7,36 @@ Transaction fees are voluntary on the part of the person making the bitcoin tran
 
 It is envisioned that over time the cumulative effect of collecting transaction fees will allow somebody creating new blocks to "earn" more bitcoins than will be mined from new bitcoins created by the new block itself.  This is also an incentive to keep trying to create new blocks even if the value of the newly created block from the mining activity is zero in the far future.
 
-##Minimum transaction fees
+##Reference Implementation
 
-As of 10 June 2012, minimum transaction fees on the reference Bitcoin implementation are:
+The following sections describe the behavior of the [reference implementation](Original Bitcoin client) as of version 0.7. Earlier versions treated fees differently, as do other popular implementations.
 
-* Accept a transaction for inclusion in a block: **0.0005 BTC** per kilobyte (size rounded up to nearest kilobyte)
-* Relay a transaction to other Bitcoin hosts: **0.0001 BTC** per kilobyte
+###Sending
 
-A transaction can be sent without fees if these conditions are met:
+A transaction will be sent without fees if these conditions are met:
 
 * It is smaller than 10 thousand bytes.
 * All outputs are 0.01 BTC or larger.
-* Its priority is large enough (see <a href="#Techincal_Info">Technical Info</a> below)
+* Its priority is large enough (see the Technical Info section below)
 
-##Overview
+Otherwise, the reference implementation will round up the transaction size to the nearest thousand bytes and then add a fee of 0.0005 BTC per thousand bytes.
+Users may override the default 0.0005 BTC/kb fee setting, but cannot control transaction fees for each transaction. Bitcoin-Qt does prompt the user to accept the fee before the transaction is sent (they may cancel the transaction if they are not willing to pay the fee).
 
-* Whoever sends the transaction is often able to guess an appropriate fee based on their own fee rules.  The [[original client|Original_Bitcoin_client]] will always assess the transaction, and if a fee will typically be expected, it will not allow you to send the transaction without the calculated fee.
-* The user is prompted to confirm the fee before the transaction is sent.
-* The sender makes a transaction with more coins in the *In* portion than the *Out* portion so that there are “leftovers” not assigned to any address.
-* Whoever ends up publishing the [[block]] which contains this transaction will take these (and any other) leftover coins. They are included with their normal generated coins and is an extra bonus for creating the block.
-* If a mining node receives a transaction that should include a transaction fee but doesn't, they may refuse to include it in their blocks. It might be included in a later block if someone is willing to accept it. Generators can't force a certain fee on transactions -- they can only accept or reject the transaction's “fee offer”.
-[[!img "lfm_fee.png" size=120x120 title="This balance is made entirely of 0.01 BTC cents. Since sending them requires a lot of data, a very large fee is required."]]
+Note that a typical transaction is 500 bytes, so the typical transaction fee is 0.0005 BTC, regardless of the number of bitcoins sent.
 
-##Rules for calculating minimum fees
+###Including in Blocks
 
-Different bitcoin clients and different versions have different rules for determining which transactions to accept and how large a fee to send.
+This section describes how the reference implementation selects which transactions to put into new blocks, with default settings. All of the settings may be changed if a miner wants to create larger or smaller blocks containing more or fewer free transactions.
 
-Current default rules for the original Bitcoin client (Bitcoin 0.3.23):
+27.000 bytes in the block are set aside for the highest-priority transactions, regardless of transaction fee. Transactions are added highest-priority-first to this section of the block.
 
-* minimum TX fee for new transactions reduced to 0.0005 BTC.
+Then transactions that pay a fee of at least 0.0005 BTC/kb are added to the block, highest-fee transactions first, until the block is not more than 250.000 bytes big.
 
-Original Bitcoin client version 0.3.20:
+The remaining transactions remain in the miner's "memory pool", and may be included in later blocks if their priority or fee is large enough.
 
-* 0.01 BTC fee if sending any transaction less than 0.01 BTC. This is to help prevent DoS attacks against the network. Remember: fees are not network-enforced, so it's still *possible* to send these small transactions without the fee -- you just have to generate the blocks that contain them yourself (after modifying Bitcoin).
-* 0.01 BTC fee per kilobyte of transaction, but:
-	* If the blocksize (size of all transactions currently waiting to be included in a block) is less than 27 kB, transactions are free.
-	* If the blocksize is more than 250 kB, transactions get increasingly more expensive as the blocksize approaches the limit of 500 kB. Sending a transaction when the blocksize is 400 kB will cost 5 times the normal amount; sending when it's 499 kB will cost 500x, etc.
-* Transactions within each fee tier are prioritized based on several factors. Most importantly, a transaction has more priority if the coins it is using have a lot of confirmations. Someone spamming the network will almost certainly be re-using the same coins, which will lower the priority of their transactions. Priority is also increased for transactions with more BTC, and reduced for transactions with more data.
-* If the blocksize is over 4kB, free transactions in the above rules are only allowed if the transaction's priority is above a certain level.
+###Relaying
 
-Note that if you want to send a transaction with less than the default rules, or if you are a miner and want to include them in your blocks, you may need to peer with the [[Free transaction relay network|Free_transaction_relay_policy]].
-
-An advantage for bitcoin users to include a transaction fee is that the likelihood of getting a transaction included into the next block is going to be higher than if a transaction fee is not included.  This is a trade off of time vs. money put forward on the transaction fees, as you can be patient with a low or non-existent fee included in a transaction, or you can make sure that the transaction is processed immediately by including a higher fee than is typical.
-
-The rules are far from set in stone, and the network can support many different rules simultaneously. If there are mining nodes that never require a transaction fee and your client is modified to never send any transaction fee, then your transactions will eventually be picked up by one of those free nodes when they generate a block, though it will probably take a very long time. In the far future, different rules about transaction fees among mining nodes will probably create a clear choice between fees and transaction speed. For example, you might choose to spend 2% for a guaranteed spot in the next block or 0.01% for the transaction to be sent in a few hours.
-
-If you notice that your sent transactions take a very long time to confirm, this is possibly because no fee was included. Using a more recent release of the client will help lessen the chance of sending a transaction without an adequate fee.
-[[!img "feesend.png" size=120x120 title="Sending a transaction when the sender doesn't have enough money to actually pay the fee"]]
+The reference implementation's rules for relaying transactions across the peer-to-peer network are very similar to the rules for sending transactions, but a smaller value of 0.0001 BTC is used to determine whether or not a transaction is considered "Free". To prevent "penny-flooding" denial-of-service attacks on the network, the reference implementation caps the number of free transactions it will relay to other nodes to (by default) 15 thousand bytes per minute.
 
 ##Technical info
 
