@@ -103,7 +103,7 @@ Generations have a single input, and this input has a "coinbase" parameter inste
 |Previous Txout-index|non negative integer indexing an output of the to-be-used transaction|4 bytes
 |Txin-script length|non negative integer|1 - 9 bytes
 |Txin-script / scriptSig|[[Script]]|<in-script length>-many bytes
-|sequence_no|currently ignored|4 bytes
+|sequence_no|normally 0xFFFFFFFF; irrelevant unless transaction's lock_time is > 0|4 bytes
 
 
 The input sufficiently describes where and how to get the bitcoin amout to be redeemed.
