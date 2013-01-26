@@ -13,7 +13,7 @@ A [[block_chain_browser]] is a site where every transaction included within the 
 |list of inputs|[[the first input of the first transaction is also called "coinbase" (its content was ignored in earlier versions)|Transactions#general_format_.28inside_a_block.29_of_each_input_of_a_transaction_-_Txin]]|<in-counter>-many inputs
 |Out-counter|positive integer|1 - 9 bytes
 |list of outputs|[[the outputs of the first transaction spend the mined bitcoins for the block|Transactions#general_format_.28inside_a_block.29_of_each_output_of_a_transaction_-_Txout]]|<out-counter>-many outputs
-|lock_time|currently ignored|4 bytes
+|lock_time|if non-zero and sequence numbers are < 0xFFFFFFFF: block height or timestamp when transaction is final|4 bytes
 
 
 ### Principle example of a Bitcoin transaction with 1 input and 1 output only
