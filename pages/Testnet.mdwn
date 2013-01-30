@@ -8,13 +8,14 @@ Run bitcoin or bitcoind with the -testnet flag to use the testnet (or put testne
 * Bootstrapping IRC channel is #bitcoinTEST instead of #bitcoin (both on irc.lfnet.org). The built-in node list is disabled.
 * A different value of ADDRESSVERSION field ensures no testnet BitCoin addresses will work on the production network. (0x6F rather than 0x00)
 * The protocol message header bytes are shifted up (0xFABFB5DA instead of 0xF9BEB4D9) bitcoin version >= 7.0.0 testnet message header (0x0B110907)
-* Minimum [[difficulty]] of 1.0 on testnet is equal to difficulty of 0.5 on mainnet. This means that the mainnet-equivalent of any testnet difficulty is half the testnet difficulty.
+* Minimum [[difficulty]] of 1.0 on testnet is equal to difficulty of 0.5 on mainnet. This means that the mainnet-equivalent of any testnet difficulty is half the testnet difficulty. In addition if no block has been found in 20 minutes, the difficulty automatically resets back to the minimum.
 * A new genesis block
+* The IsStandard() check is disabled so that non-standard transactions can be experimented with.
 
 ##Genesis Block
 
 Testnet uses a different genesis block to the main network. You can find it at http://blockexplorer.com/testnet/b/0
-The testnet was reset with a new genesis block for the 0.3.20 bitcoin release.
+The testnet was reset with a new genesis block for the 0.7 bitcoin release.
 
 ##External links
 
