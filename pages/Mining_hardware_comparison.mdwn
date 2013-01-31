@@ -6,29 +6,28 @@ Below are some statistics about the mining performance of various hardware used 
 * Mhash/J = millions hashes per joule (energy efficiency; 1 joule of energy is 1 watt during 1 second: 1 J = 1 W*s)
 * W = watt (maximum power consumption, i.e. energy per unit of time: 1 W = 1 J/s)
 
-##FPGAs
+## FPGA
 
 
-|Board |Cores |Mhash/s |Mhash/J |Mhash/s/$ |Power [[W]]|Board price |Clock |Version |FPGA Model |Comment	
+
+|Board |Cores |Mhash/s |Mhash/J |Mhash/s/$ |Power<br />(W) |Price<br />($) |Clock<br />(MHz) |Version |Model |Comment(s)
 |---|---|---|---|---|---|---|---|---|---|---
-|Terasic DE2-115 |1 |80 |18.18 |0.13 |4.4 |$595 ($299 academic)  (2.1)|80 MHz |fpgaminer 0.03 |Altera EP4CE115C7 |Unoptimized Pipelined Version
-|Terasic DE2-115 |1 |109 ||0.18 ||$595 ($299 academic)  (2.2)|109 MHz |fpgaminer 0.03-makomk |Altera EP4CE115C7 |Makomk's Improvements
-|XUPV5-LX110T |1 |120 ||0.06 |37w |$1999 ($750 academic)  (2.3)|120 MHz |fpgaminer virtex5 |Xilinx XC5VLX110T-1FF1136 |Original non-configurable fully-unrolled Xilinx VHDL Design, PSU measured at wall, includes 12w consumed by psu
-|XUPV5-LX110T |1 |200 ||0.18 |42w |$1999 ($750 academic)  (2.4)|100 MHz |lesbos core virtex5 |Xilinx XC5VLX110T-1FF1136 |Fully-unrolled, over voltage/temp Xilinx VHDL Design,PSU measured at wall, includes 12w consumed by psu
-|Digilent Nexys 2 500K |1 |3.125 |4.0 |0.02 |0.78 |$149 ($99 academic)  (2.5)|100 MHz |fpgaminer Verilog Xilinx port |Xilinx XC3S500E-FG320-5 |
-|Avnet Spartan-6 LX150T Development Kit |1 |100 |~25 |0.10 |~4.0 |$995  (2.6)|100 MHz |fpgaminer makomk Xilinx port |Xilinx XC6SLX150T-3FGG676 |-3N 484-pin chip is ~$150, 0.67Mhash/s/$
-|Terasic DE0-Nano |1 |6.25 |?? |0.08 |?? |79$ ($59 academic) |50 MHz |Makomk-partial-unroll-speed, LOG2_LOOP=3 |Altera EP4CE22F17C6 |16k LEs from 22k used
-|Xilinx ML605 development kit |3 |375 |23 |0.21 |16 |$1795  (2.7)|125MHz |Modified verilog xilinx fpga miner port (modified for 3 cores, a PCIe interface and use of DSP48s)|Xilinx XC6VLX240T-1FFG1156 |Uses PCIe interface instead of serial interface. ML605 power manager must have its current limit increased to meet power demands.  DSP48s used to reduce logic resources.
-|Bitcoin Dominator X5000 |1 |100  |14.7 |0.23 |6.8 |$440  (2.8)|100 MHz ||Xilinx XC6SLX150-3FG484 |
-|[X6500 FPGA Miner](http://fpgamining.com)|1 |400 |23.26 |0.698 |17.20 |$572.9  (2.9)|200 MHz |ztexmerge_200MHz |Xilinx XC6SLX150-3FG484 x2 |See  (2.10)for bitstreams and frequencies
-|[Icarus](http://en.qi-hardware.com/wiki/Icarus)|2 |380 |19 |0.66 |20 |$569  (2.11)|190 MHz |Bitstream V3 |Xilinx XC6SLX150-2FGG484I x2|
-|[Lancelot](https://bitcointalk.org/index.php?topic=79835.0)|2 |380 |>19 |0.76 |<20 |$500  (2.12)|190 MHz |Bitstream V3 |Xilinx XC6SLX150-2FGG484I x2|
-|[ZTEX USB-FPGA Module 1.15b](http://www.ztex.de/usb-fpga-1/usb-fpga-1.15.e.html)|1 |90  |18.0 |0.25 |5.0 |$364  (2.13)|184 MHz |[BTCMiner](http://www.ztex.de/btcminer)-120208 |Xilinx XC6SLX75-3 |single unit price including Experimental Board 1.3 as baseboard |
-|[ZTEX USB-FPGA Module 1.15x](http://www.ztex.de/usb-fpga-1/usb-fpga-1.15x.e.html)|1 |215 (typical) |22.0 |0.54 |9.8 |$397  (2.14)|216 MHz (variable) |[BTCMiner](http://www.ztex.de/btcminer)-120417 |1 x Xilinx XC6SLX150-3/-N3 |CSG484 package with low thermal resistance |
-|[ZTEX USB-FPGA Module 1.15y](http://www.ztex.de/usb-fpga-1/usb-fpga-1.15y.e.html)|4 |860 (typical) |22.0 |1.00-0.68 |39 |$859-$1275  (2.15)|216 MHz (variable) |[BTCMiner](http://www.ztex.de/btcminer)-120417 |4 x Xilinx XC6SLX150-N3 |See  (2.16)for volume prices. CSG484 package with low thermal resistance |
-|[BitForce SHA256 Single](http://www.butterflylabs.com/product-details/)||832 +/-10% |10.4 |1.38 |80 |$599  (2.17)|||BitForce SHA256 |See  (2.18)for product details
-|[Butterflylabs Mini Rig](http://www.butterflylabs.com/products/)||26,400 (26.4GigaHash/s) |21.1 |1.72 |1141 |$15295  (2.19)|||Rig housing 30 x BitForce SHA256 |See  (2.20)for product details
-|[ModMiner Quad](http://www.btcfpga.com/index.php?route=product/product&product_id=50)|4 |800 |20 |0.75 |40 |$1069 |200Mhz ||4 x XC6SLX150-2FGG484C |Highly Efficient, Modular and Upgradeable
+Avnet Spartan-6 LX150T Development Kit (2.1)|1 |100 |25 |0.10 |4.0 |995 |100 |fpgaminer makomk Xilinx port |Xilinx XC6SLX150T-3FGG676 |-3N 484-pin chip is ~$150, 0.67Mhash/s/$
+Bitcoin Dominator X5000 (2.2)|1 |100  |14.7 |0.23 |6.8 |440 |100 ||Xilinx XC6SLX150-3FG484 |
+BitForce SHA256 Single (2.3)||832 |10.4 |1.38 |80 |599 |||BitForce SHA256 |
+Butterflylabs Mini Rig (2.4)||26,400 |21.1 |1.72 |1141 |15,295 |||Rig housing 30 x BitForce SHA256 |
+Digilent Nexys 2 500K (2.5)|1 |3.125 |4.0 |0.02 |0.78 |149 |100 |fpgaminer Verilog Xilinx port |Xilinx XC3S500E-FG320-5 |
+Icarus (2.6)|2 |380 |19 |0.66 |20 |569 |190 |Bitstream V3 |Xilinx XC6SLX150-2FGG484I x2|
+Lancelot (2.7)|2 |380 |>19 |0.76 |<20 |500 |190 |Bitstream V3 |Xilinx XC6SLX150-2FGG484I x2|
+ModMiner Quad (2.8)|4 |800 |20 |0.75 |40 |1,069 |200 ||4 x XC6SLX150-2FGG484C |Highly Efficient, Modular and Upgradeable
+Terasic DE0-Nano (2.9)|1 |6.25 ||0.08 ||79 |50 |Makomk-partial-unroll-speed, LOG2_LOOP=3 |Altera EP4CE22F17C6 |16k LEs from 22k used
+Terasic DE2-115 (2.10)|1 |80–109 |18.18 |0.13 |4.4 |595 |80 |fpgaminer 0.03 / fpgaminer 0.03-makomk |Altera EP4CE115C7 |Unoptimized Pipelined Version / Makomk's Improvements
+X6500 FPGA Miner (2.11)|1 |400 |23.26 |0.698 |17.20 |550 |200 |ztexmerge_200MHz |Xilinx XC6SLX150-3FG484 x2 |
+Xilinx ML605 development kit (2.12)|3 |375 |23 |0.21 |16 |1,795 |125 |Modified verilog xilinx fpga miner port (modified for 3 cores, a PCIe interface and use of DSP48s)|Xilinx XC6VLX240T-1FFG1156 |Uses PCIe interface instead of serial interface. ML605 power manager must have its current limit increased to meet power demands. DSP48s used to reduce logic resources.
+XUPV5-LX110T (2.13)|1 |120–200 ||0.06–0.18 |37–42 |1,999 |100–120 |fpgaminer virtex5 / lesbos core virtex5 |Xilinx XC5VLX110T-1FF1136 |Original non-configurable fully-unrolled Xilinx VHDL Design, PSU measured at wall, includes 12w consumed by psu / Fully-unrolled, over voltage/temp Xilinx VHDL Design,PSU measured at wall, includes 12w consumed by psu
+ZTEX USB-FPGA Module 1.15b (2.14)|1 |90  |18.0 |0.25 |5.0 |364 |184 |BTCMiner-120208 |Xilinx XC6SLX75-3 |Single unit price including Experimental Board 1.3 as baseboard
+ZTEX USB-FPGA Module 1.15x (2.14)|1 |215 (typical) |22.0 |0.54 |9.8 |406 |216 |BTCMiner-120417 |1 x Xilinx XC6SLX150-3/-N3 |CSG484 package with low thermal resistance
+ZTEX USB-FPGA Module 1.15y (2.14)|4 |860 |22.0 |1.00-0.68 |39 |1,304 |216 |BTCMiner-120417 |4 x Xilinx XC6SLX150-N3 |CSG484 package with low thermal resistance
 
 
 ##ASICs
@@ -976,26 +975,20 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 	* [Bitcoin Mining Power Costs Compared](http://www.pcper.com/reviews/Graphics-Cards/Bitcoin-Mining-Update-Power-Usage-Costs-Across-United-States)
 
 [[!tag "Mining"]]
-2.1: price from http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=502 on 2011-06-26  
-2.2: Price from http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=502 on 2011-06-26  
-2.3: Price from http://www.digilentinc.com/Products/Detail.cfm?NavPath=2,400,795&Prod=XUPV5 on 2011-06-26  
-2.4: Price from http://www.digilentinc.com/Products/Detail.cfm?NavPath=2,400,795&Prod=XUPV5 on 2011-06-26  
-2.5: Price from http://www.digilentinc.com/Products/Detail.cfm?Prod=NEXYS2 on 2011-06-26  
-2.6: Price from http://www.xilinx.com/products/boards-and-kits/AES-S6DEV-LX150T-G.htm on 2011-07-26  
-2.7: Price from Avnet on Aug 11, 2011  
-2.8: Price from https://bitcointalk.org/index.php?topic=37904.0  
-2.9: Price from https://bitcointalk.org/index.php?topic=40058.0  
-2.10: http://fpgamining.com/bitstreams/  
-2.11: Price from https://bitcointalk.org/index.php?topic=51371.0  
-2.12: Price from https://bitcointalk.org/index.php?topic=79835.0  
-2.13: http://shop.ztex.de  
-2.14: https://bitcointalk.org/index.php?topic=49180.0  
-2.15: https://bitcointalk.org/index.php?topic=49180.0  
-2.16: https://bitcointalk.org/index.php?topic=49180.0  
-2.17: Price from http://www.butterflylabs.com/products/  
-2.18: http://www.butterflylabs.com/product-details/  
-2.19: Price from http://www.butterflylabs.com/products/  
-2.20: http://www.butterflylabs.com/product-details/  
+2.1: ["Avnet Spartan-6 LX150T Development Kit"](http://www.xilinx.com/products/boards-and-kits/AES-S6DEV-LX150T-G.htm) . Xilinx. Retrieved January 30, 2013.  
+2.2: ["Custom FPGA Board for Sale!"](https://bitcointalk.org/index.php?topic=37904.0) NewMeat1 (August 18, 2011). . Bitcointalk.org. Retrieved January 30, 2013.  
+2.3: ["BitForce SHA256 Single – Technical Specifications"](http://www.butterflylabs.com/product-details/) . Butterfly Labs. Retrieved January 30, 2013.  
+2.4: ["Order Form – BitForce SHA256 – Mini Rig"](http://www.butterflylabs.com/order-form-bitforce-sha256-mini-rig/) . Butterfly Labs. Retrieved January 30, 2013.  
+2.5: ["Nexys™2 Spartan-3E FPGA Board"](http://www.digilentinc.com/Products/Detail.cfm?Prod=NEXYS2) . Digilent. Retrieved January 30, 2013.  
+2.6: ["FPGA development board 'Icarus' – DisContinued/ important announcement"](https://bitcointalk.org/index.php?topic=51371.0) Nzghang (November 9, 2011). . Bitcointalk.org. Retrieved January 30, 2013.  
+2.7: ["FPGA development board "Lancelot" - accept bitsteam developer's orders."](https://bitcointalk.org/index.php?topic=79835.0) Nzghang (May 6, 2012). . Bitcointalk.org. Retrieved January 30, 2013.  
+2.8: ["ModMiner Quad"](http://www.btcfpga.com/index.php?route=product/product&product_id=50) . BTCFPGA. Retrieved January 30, 2013.  
+2.9: ["DE0-Nano Development and Education Board"](http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=593) . Terasic. Retrieved January 30, 2013.  
+2.10: ["Altera DE2-115 Development and Education Board"](http://www.terasic.com.tw/cgi-bin/page/archive.pl?No=502) . Terasic. Retrieved January 30, 2013.  
+2.11: ["FPGA Mining Store"](http://store.fpgamining.com/) . FPGA Mining. Retrieved January 30, 2013.  
+2.12: ["Virtex-6 FPGA ML605 Evaluation Kit"](http://www.xilinx.com/products/boards-and-kits/EK-V6-ML605-G.htm) . Xilinx. Retrieved January 30, 2013.  
+2.13: http://www.digilentinc.com/Products/Detail.cfm?NavPath=2,400,795&Prod=XUPV5  
+2.14: ["Let's See What We Have Here"](http://shop.ztex.de/index.php?cPath=21&language=en) . ZTEX Shop. Retrieved January 30, 2013.  
 3.1: ["Avalon" ASIC, announcement & pre-order](https://bitcointalk.org/index.php?topic=120184.0)  
 3.2: https://bitcointalk.org/index.php?topic=139704.0 "Avalon" ASIC, announcement & pre-order batch #2  
 3.3: https://forums.butterflylabs.com/announcements/692-bfl-asic-status.html#post10249  
