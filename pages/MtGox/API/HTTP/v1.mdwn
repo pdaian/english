@@ -312,6 +312,10 @@ parameters : currency, type, date_start, date_end, trade_id, page
 
 only the currency parameter is mandatory
 
+valid values for the "type" parameter are : 
+'in','out','spent','earned','fee','deposit','withdraw'
+allowing you to filter on one type of transactions
+
 returns a json array with your wallet history
 
 #### Submit an order
