@@ -126,11 +126,14 @@ Almost none. These statistics were recorded before the outgoing connection limit
 
 #### Can we expand the transaction protocol so it includes a message as well as an amount?
 
-The current implementation already supports processing arbitrary data in transactions through the complex transaction scripting mechanism. However:
+The current protocol is scripted and could already be used with arbitrary comment-like data. However:
 
-* You will be charged 0.01 BTC per kilobyte, just like all other transactions.
+* This is considered an abuse of the system, as the transactions/blockchain are intended only for the actual financial exchange.
+* Your transaction will be non-standard.
+* Even if miners accept your transaction, they will probably expect a larger fee.
 * ECDSA (the public-key algorithm used by Bitcoin) doesn't support encryption, so you'll have to use something else if you want encryption.
-* The ability to actually use this feature to send messages will probably never be implemented in Bitcoin. It's not what the block chain was designed for.
+
+There has been some work toward a [payment protocol](https://gist.github.com/4120476) to make transactions more user-friendly including message support, but it has not reached maturity yet.
 
 #### What happens when two nodes generate a block at the same time?
 
