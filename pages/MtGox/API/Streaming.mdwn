@@ -23,6 +23,13 @@ websocket.mtgox.com:80/mtgox?Currency=EUR
 
 	and the websocket will give you updates in EUR currency
 
+if you need need more than one currency, you can add currency symbols like that : 
+
+websocket.mtgox.com:80/mtgox?Currency=EUR,USD
+websocket.mtgox.com:80/mtgox?Currency=EUR,USD,CHF
+
+find the list of currency symbols on https://en.bitcoin.it/wiki/MtGox/API#Currency_Symbols
+
 The session ID expires after 30 seconds
 
 ##Handling Events
