@@ -35,6 +35,23 @@ https://en.bitcoin.it/wiki/Protocol_specification#version
 Under version message there is the field version which has the type of int32_t. Shouldn't it be uint32_t? Same with the start_height.
 --[ThePiachu](User:ThePiachu) 18:04, 30 September 2011 (GMT)
 
+The modern example (protocol 60002) of the version message appears to have an incorrect checksum. When running the same data through a checksum I get 3B 64 8D 5A. Here's the output of the whole message in the same blocks as in the page:
+<pre>
+F9 BE B4 D9
+76 65 72 73 69 6F 6E 00 00 00 00 00
+64 00 00 00
+3B 64 8D 5A
+62 EA 00 00
+01 00 00 00 00 00 00 00
+11 B2 D0 50 00 00 00 00
+01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 00 00 00 00 00 00
+01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF 00 00 00 00 00 00
+3B 2E B3 5D 8C E6 17 65
+0F 2F 53 61 74 6F 73 68 69 3A 30 2E 37 2E 32 2F
+C0 3E 03 00
+</pre>
+--[papercrane](User:Papercrane) 12:29, 7 February 2013 (PST)
+
 https://en.bitcoin.it/wiki/Protocol_specification#Network_address
 
 The hexdump of the network address doesn't seem to have the time field.
