@@ -12,7 +12,7 @@ getwork without arguments provides a block header for a miner to find a solution
 |Key |Required |Type |Description
 |---|---|---|---
 |data |[[!template id=yes]]|String |Pre-processed SHA-2 input chunks, in little-endian order, as a hexadecimal-encoded string
-|target |[[!template id=yes]]|String |Proof-of-work hash target, in big endian order, as a hexadecimal-encoded string
+|target |[[!template id=yes]]|String |Proof-of-work hash target as a hexadecimal-encoded string
 |algorithm |[[!template id=no]]|String |Brief specification of proof-of-work algorithm. Not provided by bitcoind or most poolservers.
 
 
@@ -41,6 +41,9 @@ Note that since the result you must provide to getwork submissions is in the sam
 
 Many optimizations are possible with SHA256, so running a full SHA256 round is generally inadvisable.
 Most miners will precompute the SHA256 "midstate" from the first 512-bit chunk of data, and only repeat the 2nd SHA256 round with the final 512-bit chunk (which contains the nonce).
+
+The target is in standard SHA256 order (big endian), but note that Bitcoin target comparisons are done as 256-bit little endian.
+This means for pdifficulty 1, you want to check that the *last* 32 bits are zero.
 
 ##Pseudocode
 
