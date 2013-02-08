@@ -1,4 +1,52 @@
-A combined FPGA, GPU and CPU miner written in C, cross platform for Windows, Linux and OS X, based on the original CPU/GPU miner code [[CGMiner]].
+A modular FPGA, GPU and CPU miner written in C, cross platform for Linux, Mac, and Windows including support for OpenWrt-capable routers.
+
+##Features
+
+* A variety of device drivers for Bitcoin (SHA256d):
+	* [Butterfly Labs's BitForce Singles and MiniRigs](http://www.butterflylabs.com/product-details/)
+	* [Enterpoint's Cairnsmore1 FPGA mining board](http://www.enterpoint.co.uk/cairnsmore/cairnsmore1.html)
+	* [FPGA Mining X6500](http://fpgamining.com/products/x6500-rev3)
+	* Qi Hardware's [Icarus](http://en.qi-hardware.com/wiki/Icarus) and [Lancelot](http://en.qi-hardware.com/wiki/Lancelot) FPGA mining boards
+	* [BTCFPGA's ModMiner Quad FPGA-based mining device](http://www.btcfpga.com/index.php?route=product/product&product_id=50)
+	* [Ztex's FPGA boards](http://www.ztex.de/)
+	* OpenCL GPUs, such as [AMD Radeons](http://www.amd.com/us/products/Pages/graphics.aspx)
+		* Kernels (including BFI_INT patching): Diablo, DiaKGCN, Phatk and poclbm
+		* VECTOR support
+		* Dynamic intensity that keeps desktop interactive under load and maximises throughput when desktop idle
+		* Integrated overclocking and fan control (including automatic adjustment, if configured)
+		* ADL device reordering by PCI bus ID
+		* GCN (79x0) support
+	* CPU (not enabled by default nor included in Windows build)
+	* Coming soon:
+		* [Butterfly Labs's BitForce SC (ASIC) product line](http://www.butterflylabs.com/bitforce-sc-release-notes/)
+		* [ASICMINER ASICs](https://bitcointalk.org/?topic=99497)
+		* *any other device provided for development*
+* Support for new [[getblocktemplate decentralized mining protocol|Getblocktemplate]]
+* Scrypt mining support for both CPU and OpenCL (GPU)
+* Very low overhead free C code for Linux and Windows with very low CPU usage
+* Long poll support - will use longpoll from any pool if primary pool does not support it
+* epoll support for interrupting FPGA waiting when new work is available without timeout-looping
+* Self detection of new blocks with a mini-database for slow/failing longpoll scenarios, maximum work efficiency and minimum rejects
+* Heavily threaded code hands out work retrieval and work submission to separate threads to not hinder devices working
+* Caching of submissions during transient network outages
+* Preemptive fetching of work prior to completion of current work
+* Local generation of more valid work (rollntime) whenever possible, as supported on a per-work item basis
+* Prevention of stale work submission on new block (submitold also supported)
+* Automatically detects failing pools and disables them
+* Multi-device support (all or discrete selection)
+* Summarised and discrete device data statistics of requests, accepts, rejects, hw errors, efficiency and utility
+* Watchdog thread to restart idle threads but not crash machine if they don't respond
+* Summary displayed when quitting
+* Supports multiple pools with multiple intelligent failover mechanisms
+* On the fly menu based management of most settings
+* Trickling of extra work to backup pools if primary pool is responding but slow
+* On the fly enabling/disable/restarting of devices
+* Device temperature monitoring (for devices that support it)
+* Reuses persistent connections when possible
+* RPC +/- JSON interface for remote control
+* Ability to cope with slow routers
+* X-Reject-Reason support
+* Lots of other stuff I can't remember. See options.
 
 ##See Also
 
@@ -8,8 +56,8 @@ A combined FPGA, GPU and CPU miner written in C, cross platform for Windows, Lin
 ##External Links
 
 * [bfgminer](https://github.com/luke-jr/bfgminer) project page on GitHub
-* [Project Thread](https://bitcointalk.org/?topic=78192)
 * [Binaries and Source - All Versions](http://luke.dashjr.org/programs/bitcoin/files/bfgminer/)
+* [BitcoinTalk forum thread](https://bitcointalk.org/?topic=78192)
 
 ##References
 
