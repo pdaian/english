@@ -1,4 +1,46 @@
 An RPC method used by a miner to get hashing work to try to solve.
+It has mostly been superceded by the newer [[getblocktemplate]] mining protocol, but the data format is still often used internal to some miner structures.
+
+##Protocol
+getwork is a JSON-RPC method sent over a HTTP transport.
+It accepts one optional parameter;
+if provided, this must be the "data" provided by a prior request modified to meet the server's proof-of-work requirements.
+
+getwork without arguments provides a block header for a miner to find a solution for:
+
+
+|Key |Required |Type |Description
+|---|---|---|---
+|data |[[!template id=yes]]|String |Pre-processed SHA-2 input chunks, in little-endian order, as a hexadecimal-encoded string
+|target |[[!template id=yes]]|String |Proof-of-work hash target, in big endian order, as a hexadecimal-encoded string
+|algorithm |[[!template id=no]]|String |Brief specification of proof-of-work algorithm. Not provided by bitcoind or most poolservers.
+
+
+Because the data key has been preprocessed, if you have a generic SHA256 function you must first reverse the pre-processing.
+This is two steps:
+
+* Because getwork provides the data in little endian, and SHA256 works in big endian, for every 32-bit chunk you need to swap the byte order
+* Chop off the SHA-2 padding; for Bitcoin, you can just take the first 80 bytes, but otherwise you can find the correct length (in bits) as the last 64 bits of the (byteswapped) data
+
+So for example, if you receive this data:
+	000000020597ba1f0cd423b2a3abb0259a54ee5f783077a4ad45fb6200000218
+	000000008348d1339e6797e2b15e9a3f2fb7da08768e99f02727e4227e02903e
+	43a42b31511553101a051f3c0000000000000080000000000000000000000000
+	0000000000000000000000000000000000000000000000000000000080020000
+You first byteswap each 32-bit chunk from little-endian to big-endian:
+	020000001fba9705b223d40c25b0aba35fee549aa477307862fb45ad18020000
+	0000000033d14883e297679e3f9a5eb108dab72ff0998e7622e427273e90027e
+	312ba443105315513c1f051a0000000080000000000000000000000000000000
+	0000000000000000000000000000000000000000000000000000000000000280
+Then read the final 64 bits in big-endian - 0x0000000000000280 = 640 bits = 80 bytes - and chop off everything after that:
+	020000001fba9705b223d40c25b0aba35fee549aa477307862fb45ad18020000
+	0000000033d14883e297679e3f9a5eb108dab72ff0998e7622e427273e90027e
+	312ba443105315513c1f051a0000000
+
+Note that since the result you must provide to getwork submissions is in the same format as data, you must reverse this process when you make your submission.
+
+Many optimizations are possible with SHA256, so running a full SHA256 round is generally inadvisable.
+Most miners will precompute the SHA256 "midstate" from the first 512-bit chunk of data, and only repeat the 2nd SHA256 round with the final 512-bit chunk (which contains the nonce).
 
 ##Pseudocode
 
