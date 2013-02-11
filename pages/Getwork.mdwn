@@ -49,7 +49,7 @@ This means for pdifficulty 1, you want to check that the *last* 32 bits are zero
 
 (Just ignore the midstate until you understand the internals of SHA256.)
 
-calculate: hash = SHA256(SHA256(bigEndianToLittleEndianForEach32BitBlock(data)))
+calculate: hash = SHA256(SHA256(EndianFlipForEach32Bits(First80BytesOf(data))))
 
 If that meets the [[difficulty]], you win (generated a [[block|Blocks]] or share)!
 
