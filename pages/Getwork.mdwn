@@ -35,7 +35,7 @@ You first byteswap each 32-bit chunk from little-endian to big-endian:
 Then read the final 64 bits in big-endian - 0x0000000000000280 = 640 bits = 80 bytes - and chop off everything after that:
 	020000001fba9705b223d40c25b0aba35fee549aa477307862fb45ad18020000
 	0000000033d14883e297679e3f9a5eb108dab72ff0998e7622e427273e90027e
-	312ba443105315513c1f051a0000000
+	312ba443105315513c1f051a00000000
 
 Note that since the result you must provide to getwork submissions is in the same format as data, you must reverse this process when you make your submission.
 
