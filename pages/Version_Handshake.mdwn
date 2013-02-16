@@ -1,0 +1,13 @@
+On connect, [[version|Protocol_specification#version]] and [[verack|Protocol_specification#verack]] messages are exchanged, in order to ensure compatibility between peers.
+
+##Version Handshake
+
+When the local peer (L) connects to a remote peer (R), the remote peer will not send any data until it receives a version message.
+
+	L -> R: Send version message with the local peer's version
+	R -> L: Send version message back
+	R:      Sets version to the minimum of the 2 versions
+	R -> L: Send verack message
+	L:      Sets version to the minimum of the 2 versions
+
+Note: A version number of 10300 is converted to 300 before being processed and versions below 209 are no longer supported.
