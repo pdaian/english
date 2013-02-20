@@ -42,7 +42,7 @@ It can be said to have BIP 23 Level 2 support if it also implements:
 
 |Key |Type |Description
 |---|---|---
-|target |String |desired target for block template
+|target |String |desired target for block template (may be ignored)
 
 
 
@@ -51,7 +51,6 @@ It can be said to have BIP 23 Level 2 support if it also implements:
 |---|---|---
 |expires |Number |how many seconds (beginning from when the server sent the response) this work is valid for, at most
 |target |String |the number which valid results must be less than, in big-endian hexadecimal
-
 
 
 ###Block Proposal
