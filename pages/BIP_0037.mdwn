@@ -4,7 +4,7 @@
   BIP: 37
   Title: Connection Bloom filtering
   Author: Mike Hearn <hearn@google.com>, Matt Corallo <bip@bluematt.me>
-  Status: Draft
+  Status: Accepted
   Type: Standards Track
   Created: 24-10-2012
 </pre>
@@ -47,11 +47,12 @@ The <code>filterload</code> command is defined as follows:
 |? |filter |uint8_t[]|The filter itself is simply a bit field of arbitrary byte-aligned size. The maximum size is 36,000 bytes.
 |4 |nHashFuncs |uint32_t |The number of hash functions to use in this filter. The maximum value allowed in this field is 50.
 |4 |nTweak |uint32_t |A random value to add to the seed value in the hash function used by the bloom filter.
+|1 |nFlags |uint8_t |A set of flags that control how matched items are added to the filter.
 
 
 See below for a description of the Bloom filter algorithm and how to select nHashFuncs and filter size for a desired false positive rate.
 
-Upon receiving a <code>filterload</code> command, the remote peer will immediately restrict the broadcast transactions it announces (in inv packets) to transactions matching the filter, where the matching algorithm is specified below.
+Upon receiving a <code>filterload</code> command, the remote peer will immediately restrict the broadcast transactions it announces (in inv packets) to transactions matching the filter, where the matching algorithm is specified below. The flags control the update behaviour of the matching algorithm.
 
 The <code>filteradd</code> command is defined as follows:
 
@@ -96,16 +97,16 @@ The <code>version</code> command is extended with a new field:
 
 SPV clients that wish to use Bloom filtering would normally set fRelay to false in the version message, then set a filter based on their wallet (or a subset of it, if they are overlapping different peers). Being able to opt-out of inv messages until the filter is set prevents a client being flooded with traffic in the brief window of time between finishing version handshaking and setting the filter.
 
-The <code>getdata</code> command is extended to allow a new type in the <code>inv</code> submessage. The type field can now be <code>MSG_FILTERED_BLOCK (== 3)</code> rather than <code>MSG_BLOCK</code>. If no filter has been set on the connection, a request for filtered blocks is ignored. If a filter has been set, a <code>merkleblock</code> message is returned for the requested block hash. In addition, because a <code>merkleblock</code> message contains only a list of transaction hashes, transactions matching the filter should also be sent in separate tx messages. This avoids a slow roundtrip that would otherwise be required (receive hashes, didn't see some of these transactions yet, ask for them).  Note that because there is currently no way to request transactions which are already in a block from a node (aside from requesting the full block), the set of matching transactions that the requesting node hasn't either received or announced with an inv must be sent and any additional transactions which match the filter may also be sent.  This allows for clients (such as the reference client) to limit the number of invs it must remember a given node to have announced while still providing nodes with, at a minimum, all the transactions it needs.
+The <code>getdata</code> command is extended to allow a new type in the <code>inv</code> submessage. The type field can now be <code>MSG_FILTERED_BLOCK (== 3)</code> rather than <code>MSG_BLOCK</code>. If no filter has been set on the connection, a request for filtered blocks is ignored. If a filter has been set, a <code>merkleblock</code> message is returned for the requested block hash. In addition, because a <code>merkleblock</code> message contains only a list of transaction hashes, transactions matching the filter should also be sent in separate tx messages after the merkleblock is sent. This avoids a slow roundtrip that would otherwise be required (receive hashes, didn't see some of these transactions yet, ask for them).  Note that because there is currently no way to request transactions which are already in a block from a node (aside from requesting the full block), the set of matching transactions that the requesting node hasn't either received or announced with an inv must be sent and any additional transactions which match the filter may also be sent.  This allows for clients (such as the reference client) to limit the number of invs it must remember a given node to have announced while still providing nodes with, at a minimum, all the transactions it needs.
 
 ###Filter matching algorithm
 
 The filter can be tested against arbitrary pieces of data, to see if that data was inserted by the client. Therefore the question arises of what pieces of data should be inserted/tested.
 
-To determine if a transaction matches the filter, the following algorithm MUST be used. Once a match is found the algorithm aborts.
+To determine if a transaction matches the filter, the following algorithm is used. Once a match is found the algorithm aborts.
 
 1. Test the hash of the transaction itself.
-1. For each output, test each data element of the output script. This means each hash and key in the output script is tested independently. **Important:** if an output matches whilst testing a transaction, the node MUST update the filter by inserting the serialized COutPoint structure. See below for more details.
+1. For each output, test each data element of the output script. This means each hash and key in the output script is tested independently. **Important:** if an output matches whilst testing a transaction, the node might need to update the filter by inserting the serialized COutPoint structure. See below for more details.
 1. For each input, test the serialized COutPoint structure.
 1. For each input, test each data element of the input script (note: input scripts only ever contain data elements).
 1. Otherwise there is no match.
@@ -119,6 +120,16 @@ The test for outpoints is there to ensure you can find transactions spending out
 1. The second block is read from disk by the serving peer. It contains TX 2 which spends TX 1. However TX 2 does not contain any of the clients keys and is thus not sent. The client does not know the money they received was already spent.
 
 By updating the bloom filter atomically in step 2 with the discovered outpoint, the filter will match against TX 2 in step 3 and the client will learn about all relevant transactions, despite that there is no pause between the node processing the first and second blocks.
+
+The nFlags field of the filter controls the nodes precise update behaviour and is a bit field.
+
+* <code>BLOOM_UPDATE_NONE (0)</code> means the filter is not adjusted when a match is found.
+* <code>BLOOM_UPDATE_ALL (1)</code> means if the filter matches any data element in a scriptPubKey the outpoint is serialized and inserted into the filter.
+* <code>BLOOM_UPDATE_P2PUBKEY_ONLY (2)</code> means the outpoint is inserted into the filter only if a data element in the scriptPubKey is matched, and that script is of the standard "pay to pubkey" or "pay to multisig" forms.
+
+These distinctions are useful to avoid too-rapid degradation of the filter due to an increasing false positive rate. We can observe that a wallet which expects to receive only payments of the standard pay-to-address form doesn't need automatic filter updates because any transaction that spends one of its own outputs has a predictable data element in the input (the pubkey that hashes to the address). If a wallet might receive pay-to-address outputs and also pay-to-pubkey or pay-to-multisig outputs then BLOOM_UPDATE_P2PUBKEY_ONLY is appropriate, as it avoids unnecessary expansions of the filter for the most common types of output but still ensures correct behaviour with payments that explicitly specify keys.
+
+Obviously, nFlags == 1 or nFlags == 2 mean that the filter will get dirtier as more of the chain is scanned. Clients should monitor the observed false positive rate and periodically refresh the filter with a clean one.
 
 ###Partial Merkle branch format
 
