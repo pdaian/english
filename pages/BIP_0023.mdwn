@@ -155,23 +155,6 @@ If the block template contains a "mutable" key, it is a list of these to signify
 
 The format used for submitting shares with the "share/merkle" mutation shall be the 80-byte block header, the total number of transactions encoded in Bitcoin variable length number format, the coinbase transaction, and then finally the little-endian SHA256 hashes of each link in the merkle chain connecting it to the merkle root.
 
-###Full Node Optimization
-
-
-
-|Key |Type |Description
-|---|---|---
-|tx |String |format of response "transactions" key elements ("obj" per default; "hash" per full node optimization)
-
-
-If the miner is running a full node, they may request to receive the "transactions" key in their template populated with transaction ids instead of the full data.
-This is done by specifying a "tx" key in the request set to "hash".
-Note that the "coinbasetxn" key in the template will remain in "obj" format.
-
-*FIXME*: Describe gettransaction RPC method?
-
-TODO: Some way to signify that the client has its own memory pool, so the server should only send ones it is particularly interested in - but ignored if the server does not allow transactions/add mutation!
-
 ###Logical Services
 
 
