@@ -9,8 +9,8 @@ While scrypt provided resistance to GPU-based mining early on, Litecoin has sinc
 Litecoin uses scrypt as a proof-of-work scheme. Scrypt adds memory-intensive algorithms to reduce the efficiency of the kind of parallelization that GPUs offered in early Bitcoin mining. This led to Litecoin primarily being mined with CPUs at the beginning. Later CPU-based mining was largely replaced by more energy-efficient GPU-based mining, currently the dominant Litecoin mining technology.
 
 #### Faster, Smaller Block Chain
-The Litecoin blockchain differs from its Bitcoin counterpart in that it tries to have smaller blocks, and generate them four times as fast as the Bitcoin network allows.
-This means that 1-confirmation (low value) merchants get faster confirmations for their online products, but increases the network overhead.
+The Litecoin blockchain differs from Bitcoin in that it generate them four times as fast with one block targeted to be produced every 2.5 minutes.
+This means that 1-confirmation (low value) merchants get a faster first confirmation , but increases network overhead since miners will working from the non-best block a greater portion of the time due to propogation lag.
 
 #### Total Coinage
 Miners generate 50 coins per block, like Bitcoin.
