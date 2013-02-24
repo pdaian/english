@@ -180,7 +180,10 @@ The statement "The person handling your money has a responsibility to prevent fr
 
 ## Quantum computers would break Bitcoin's security
 
-Yes, ECDSA is not secure under quantum computing but quantum computers don't yet exist and probably won't for a while. The DWAVE system often written about in the press is, even if all their claims are true, not a Quantum computer of a kind that could be use for cryptography.  Bitcoin's security, when used properly with a new address on each transaction, depends on more than just ECDSA: Cryptographic hashes are much stronger than ECDSA under QC. Bitcoin's security was designed to be upgraded in a forward compatible way and could be [upgraded](http://en.wikipedia.org/wiki/Post-quantum_cryptography) if this were considered an imminent threat.
+While ECDSA is indeed not secure under quantum computing, quantum computers don't yet exist and probably won't for a while.
+The DWAVE system often written about in the press is, even if all their claims are true, not a quantum computer of a kind that could be used for cryptography.
+Bitcoin's security, when used properly with a new address on each transaction, depends on more than just ECDSA: Cryptographic hashes are much stronger than ECDSA under QC.
+Bitcoin's security was designed to be upgraded in a forward compatible way and could be [upgraded](http://en.wikipedia.org/wiki/Post-quantum_cryptography) if this were considered an imminent threat.
 
 See the implications of quantum computers on public key cryptography here http://en.wikipedia.org/wiki/Quantum_computer#Potential
 
