@@ -5,7 +5,7 @@ The minimum sized transaction type (1.1) is the [[standard transaction|Script#St
 	scriptPubKey: OP_DUP OP_HASH160 <20 byte pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 	scriptSig: <72 byte signature> <33 byte compressed pubKey>
 
-Each transaction input requires at least 41 bytes for the previous transaction reference and other headers and each transaction output requires an additional 9 bytes of headers. Finally every transaction has a header at least 10 bytes long. Added up we get 189 bytes for the minimum-sized Bitcoin transaction. For 1MiB blocks this implies a theoretical maximum rate of 8.8tx/s.
+Each transaction input requires at least 41 bytes for the previous transaction reference and other headers and each transaction output requires an additional 9 bytes of headers. Finally every transaction has a header at least 10 bytes long. Added up we get 189 bytes for the minimum-sized Bitcoin transaction. For 1MB (1,000,000 byte) blocks this implies a theoretical maximum rate of 8.8tx/s.
 
 However [[change|Change]] complicates the situation. It isn't always possible for a client to find a transaction input of the size required. Thus client software will included additional outputs to themselves for the change, and similarly they will include additional inputs to collect change outputs together when no one output is large enough.
 
