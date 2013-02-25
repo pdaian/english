@@ -217,7 +217,9 @@ Here is how each word is processed:
 |true|Empty.|Signature is checked for top two stack items.
 
 
-### Standard Generation / transaction to IP address
+### Standard Generation Transaction
+
+OP_CHECKSIG is used directly without first hashing the public key. By default the reference implementation uses this form for coinbase payment, and scriptPubKeys of this transaction form are recognized as payments to user. The disadvantage of this transaction form is that the whole public key needs to be known in advance, implying longer payment addresses, and that it provides less protection in the event of a break in the ECDSA signature algorithm.
 
 	scriptPubKey: <pubKey> OP_CHECKSIG
 	scriptSig: <sig>
