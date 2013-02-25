@@ -1,11 +1,11 @@
 The maximum transaction rate is the block size limit divided by the average transaction size. The block size limit is well known, 1MB, however the average transaction size isn't. Here we'll look at what influences that size.
 
-The minimum sized transaction type (1.1) is the [[standard transaction|Script#Standard_Transaction_to_Bitcoin_address]]:
+The minimum sized transaction type (1.1) is the [[OP_CHECKSIG transaction|Script#Standard_Generation_Transaction]]:
 
-	scriptPubKey: OP_DUP OP_HASH160 <20 byte pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
-	scriptSig: <72 byte signature> <33 byte compressed pubKey>
+	scriptPubKey: <33 byte compressed pubKey> OP_CHECKSIG
+	scriptSig: <72 byte signature>
 
-Each transaction input requires at least 41 bytes for the previous transaction reference and other headers and each transaction output requires an additional 9 bytes of headers. Finally every transaction has a header at least 10 bytes long. Added up we get 189 bytes for the minimum-sized Bitcoin transaction. For 1MB (1,000,000 byte) blocks this implies a theoretical maximum rate of 8.8tx/s.
+Each transaction input requires at least 41 bytes for the previous transaction reference and other headers and each transaction output requires an additional 9 bytes of headers. Finally every transaction has a header at least 10 bytes long. Added up we get 166 bytes for the minimum-sized Bitcoin transaction. For 1MB (1,000,000 byte) blocks this implies a theoretical maximum rate of 10tx/s.
 
 However [[change|Change]] complicates the situation. It isn't always possible for a client to find a transaction input of the size required. Thus client software will included additional outputs to themselves for the change, and similarly they will include additional inputs to collect change outputs together when no one output is large enough.
 
@@ -13,13 +13,13 @@ Users with large wallets, in particular [[eWallets]] such as Instawallet or larg
 
 ## Trust-free Combining
 
-Users can also combine their transactions to make them slightly smaller, and possibly improve privacy. A transaction is invalid until every transaction input is signed for, thus multiple users can create a joint transaction with no risk of their funds being stolen. This reduces average transaction size by 10 bytes; the size of the per-transaction header. Using this technique aggressively results in 179 byte average transactions, or 9.3tx/s.
+Users can also combine their transactions to make them slightly smaller, and possibly improve privacy. A transaction is invalid until every transaction input is signed for, thus multiple users can create a joint transaction with no risk of their funds being stolen. This reduces average transaction size by 10 bytes; the size of the per-transaction header. Using this technique aggressively results in 156 byte average transactions, or 10.7tx/s.
 
 ## Lower-bound transaction rate
 
-A reasonable, conservative, assumption is to assume that every transaction requires two outputs, including change, and two inputs, consuming change. Assuming that trust-free combining is not used gives us 368 byte transactions, or 4.5tx/s.
+A reasonable, conservative, assumption is to assume that every transaction requires two outputs, including change, and two inputs, consuming change. Assuming that trust-free combining is not used gives us 322 byte transactions, or 5.2tx/s.
 
-Actual real-world rates will likely be somewhere between those numbers, although equally rates may be less as well if multisignature transactions are become popular.
+Actual real-world rates will likely be somewhere between those numbers, although equally rates may be less as well if multi-signature transactions are become popular.
 
 ## Footnotes
 
