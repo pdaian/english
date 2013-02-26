@@ -18,6 +18,7 @@
 |[[CVE-2012-4682|#CVE-2012-4682]]||bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|||bgcolor=pink[66%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-4682.html)
 |[[CVE-2012-4683|#CVE-2012-4683]]||bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|||bgcolor=pink[66%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-4683.html)
 |[[Pending|#Unassigned-2013-0001]]|2013-01-11|bitcoind and Bitcoin-Qt|bgcolor=yellowExposure (1.3)|bgcolor=pinkEasy|Remote discovery of node's wallet addresses|bgcolor=pink17%
+|[[Pending|#Unassigned-2013-0002]]|2013-01-30|bitcoind and Bitcoin-Qt|bgcolor=limeExposure (1.3)|bgcolor=yellowEasy|Predictable change output|bgcolor=pink17%
 |[[BIP 0034|#BIP-0034]]|Future|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.8)|Mandatory block protocol update|bgcolor=pink[66%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0034.html)
 
 
@@ -260,6 +261,16 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 * [Announcement](https://bitcointalk.org/?topic=135856)
 
+## Unassigned-2013-0002
+
+	<b>Date:</b> 2013-01-30
+	<b>Summary:</b> Predictable change output 
+	<b>Fix Deployment:</b> 17%
+
+
+|Bitcoin-Qt<br>bitcoind |* - 0.4.8rc4<br>0.5.0rc1 - 0.5.7<br>0.6.0rc1 - 0.6.0.10rc4<br>0.6.1rc1 - 0.6.4rc4<br>0.7.0rc1 - 0.7.2 |0.4.9rc1<br>0.5.8rc1<br>0.6.0.11rc1<br>0.6.5rc1<br>0.7.3rc1
+
+
 ## BIP-0034
 
 	<b>Date:</b> Future
@@ -278,7 +289,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 ##Definitions
 
-A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (28.1).
+A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (29.1).
 
 ##See Also
 
@@ -286,7 +297,7 @@ A critical vulnerability is one that will have disastrous consequences if it is 
 
 ##References
 
-28.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
+29.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
 
 
 [[Cateogory:Security]]
