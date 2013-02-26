@@ -17,8 +17,8 @@
 |[[CVE-2012-3789|#CVE-2012-3789]]|2012-06-20|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|(Lack of) orphan txn resource limits|bgcolor=pink[83%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-3789)
 |[[CVE-2012-4682|#CVE-2012-4682]]||bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|||bgcolor=pink[66%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-4682.html)
 |[[CVE-2012-4683|#CVE-2012-4683]]||bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|||bgcolor=pink[66%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-4683.html)
-|[(8)](https://bitcointalk.org/?topic=135856)|2013-01-11|bitcoind and Bitcoin-Qt|bgcolor=yellowExposure (1.3)|bgcolor=pinkEasy|Remote discovery of node's wallet addresses|bgcolor=pink?
-|[[BIP 0034|#BIP-0034]]|Future|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.9)|Mandatory block protocol update|bgcolor=pink[66%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0034.html)
+|[[Pending|#Unassigned-2013-0001]]|2013-01-11|bitcoind and Bitcoin-Qt|bgcolor=yellowExposure (1.3)|bgcolor=pinkEasy|Remote discovery of node's wallet addresses|bgcolor=pink?
+|[[BIP 0034|#BIP-0034]]|Future|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.8)|Mandatory block protocol update|bgcolor=pink[66%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0034.html)
 
 
 
@@ -29,7 +29,7 @@
 1.5: Extent of possible abuse is unknown  
 1.6: Attacker can double-spend with 1 confirmation  
 1.7: Attacking requires mining block(s)  
-1.9: Attacking requires mining block(s)
+1.8: Attacking requires mining block(s)
 
 
 
@@ -246,6 +246,20 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 * [0.6.3rc1 Announcement](https://bitcointalk.org/?topic=88734)
 * [US-CERT/NIST](http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-3789)
 
+## Unassigned-2013-0001
+
+	<b>Date:</b> 2013-01-11
+	<b>Summary:</b> Remote discovery of node's wallet addresses
+	<b>Fix Deployment:</b> ?
+
+
+|Bitcoin-Qt<br>bitcoind |* - 0.4.8rc4<br>0.5.0rc1 - 0.5.7<br>0.6.0rc1 - 0.6.0.10rc4<br>0.6.1rc1 - 0.6.4rc4<br>0.7.0rc1 - 0.7.2 |0.4.9rc1<br>0.5.8rc1<br>0.6.0.11rc1<br>0.6.5rc1<br>0.7.3rc1
+
+
+### References
+
+* [Announcement](https://bitcointalk.org/?topic=135856)
+
 ## BIP-0034
 
 	<b>Date:</b> Future
@@ -253,7 +267,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 	<b>Deployment:</b> 66%
 
 
-|Bitcoin-Qt<br>bitcoind |* - 0.4.7<br>0.5.0rc1 - 0.5.7<br>0.6.0rc1 - 0.6.0.9<br>0.6.1rc1 - 0.6.3 |0.4.8rc1<br>0.5.7rc1<br>0.6.0.10rc1<br>0.6.4rc1<br>0.7.0rc1
+|Bitcoin-Qt<br>bitcoind |* - 0.4.7<br>0.5.0rc1 - 0.5.7<br>0.6.0rc1 - 0.6.0.9<br>0.6.1rc1 - 0.6.3 |0.4.8rc1<br>0.5.7rc1<br>0.6.0.10rc1<br>0.6.4rc1
 |wxBitcoin |ALL |NONE
 
 
@@ -264,7 +278,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 ##Definitions
 
-A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (26.1).
+A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (28.1).
 
 ##See Also
 
@@ -272,7 +286,7 @@ A critical vulnerability is one that will have disastrous consequences if it is 
 
 ##References
 
-26.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
+28.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
 
 
 [[Cateogory:Security]]
