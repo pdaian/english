@@ -75,31 +75,35 @@ If you are using your computer to handle bitcoins, a wallet, Bitcoin-related pas
 
 ###Linux
 
-The first step is to make a [new user,](http://www.howtogeek.com/howto/ubuntu/add-a-user-on-ubuntu-server/) so as root, run:
+The first step is to make a [new user](http://www.howtogeek.com/howto/ubuntu/add-a-user-on-ubuntu-server/). In order for that new user to have an encrypted home directory, you'll first need the encryption utility. Run:
 
-<code>adduser new_user_name</code>
+<code>sudo apt-get install ecryptfs-utils</code>
+
+Now you're ready to create a new user
+
+<code>sudo adduser --encrypt-home new_user_name</code>
+
+You'll need to come up with a [[secure|#Choosing_A_Strong_Password]] new password for that user.
 
 When you get to the prompt 'Enter the new value, or press ENTER for the default', just keep hitting ENTER.
 
-Then switch user to the new user.  To get to the new user you can use the switch user icon for your system, which on Ubuntu is in the 'System/Quit' screen, or if there is no switch icon on your system you can log out and log back in as the new user.  Then click on a folder in the new user to display the file browser, then keep going up folders until you see the new user home directory, then right click to bring up the Properties dialog, then click on the Permissions tab, then in the Others section, set the folder access to None.
+Then switch user to the new user.  To get to the new user you can use the switch user icon for your system, which on Ubuntu is in the 'System/Quit' screen, or if there is no switch icon on your system you can log out and log back in as the new user.
+
+Since the home folder of this user is encrypted, if you're not logged in as that user, data that is saved there can't be browsed, even by a root user. If something goes wrong with your system, and you need to decrypt the new user's files, you'll need its decryption key.
+
+<code>ecryptfs-unwrap-passphrase</code>
+
+It will ask you for your user's password and give you the decryption key. **WRITE DOWN OR SAVE THE CODE IT RETURNS** because you will need it if you ever have to pull your data off while the OS is not working. (You can run it again later if you need to, but run it now so that you can get your data if your Linux install gets botched.)
+
+The encrypted folder data is not encrypted while it's in memory, and so if it's ever sent to the swap partition it can be stolen from there unless that too is encrypted - be aware that this will mean you cannot use Hibernate anymore, as the bootloader won't be able to restore the hibernation data.
+
+<code>ecryptfs-setup-swap</code>
+
+Then click on a folder in the new user to display the file browser, then keep going up folders until you see the new user home directory, then right click to bring up the Properties dialog, then click on the Permissions tab, then in the Others section, set the folder access to None.
 
 For secure browsing, open Firefox, and then go into the Edit menu and click Preferences.  Starting from the left, click on the General tab, and in the 'Startup/When Firefox starts' pop up menu, choose 'Show a Blank Page'.  Then click on the Content tab, and deselect 'Load images automatically' and deselect 'Enable JavaScript'.  Then click on the Privacy tab, and in the 'History/Firefox will' pop up menu, choose 'Never remember history'.  Then click on the Security tab, and in the Passwords section, deselect 'Remember passwords for sites' and deselect 'Use a master password'.  Then click on the Advanced tab, then click on the Update tab, and then in the 'Automatically check for updates to' section, deselect 'Add-ons' and 'Search Engines'.
 
 When JavaScript is disabled, the [Linux download page](http://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.3.23/bitcoin-0.3.23-linux.tar.gz/download) will not download automatically, so you'll have to click on the 'direct link' part of the "Problems with the download? Please use this 'direct link' or try another mirror." line.
-
-After you've made your secure new user, to maintain security you should only use it for Bitcoin.
-
-It's also a good idea to encrypt the Home directory of whatever user you run Bitcoin under using ecryptfs-utils. To do this:
-
-1. If the Home directory is not empty you should back it up first, by just copying the data to an external drive or something.
-1. install ecryptfs-utils (on Ubuntu: sudo apt-get install ecryptfs-utils)
-1. log out of X (graphical system) and press Ctrl+Alt+F1 to login to the command shell (you must be logged out or some files will be open and the tool won't be able to encrypt your data)
-1. change directory to something that's not in your home folder (ex: cd / )
-1. run the migration tool (on Ubuntu: sudo ecryptfs-migrate-home -u username)
-1. if it's successful, you can now press ALT+F8 to go back to the GUI and login
-1. run 'ecryptfs-unwrap-passphrase' and **WRITE DOWN OR SAVE THE CODE IT RETURNS** because you will need it if you ever have to pull your data off while the OS is not working. (You can run it again later if you need to, but run it now so that you can get your data if your Linux install gets botched.)
-1. run 'ecryptfs-setup-swap' to encrypt your swap partition (the encrypted folder data is not encrypted while it's in memory, and so if it's ever sent to the swap partition it can be stolen from there unless that too is encrypted - be aware that this will mean you cannot use Hibernate anymore, as the bootloader won't be able to restore the hibernation data)
-(instructions from [(1)](http://bodhizazen.net/Tutorials/Ecryptfs/#Migrate))
 
 ###Mac
 This solution **does not scale**; the amount of needed space can grow beyond the image size.
