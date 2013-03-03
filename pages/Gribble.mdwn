@@ -2,6 +2,12 @@
 
 It is present on #bitcoin (general discussion), #bitcoin-dev (bitcoin information queries), #bitcoin-otc (facilitate over-the-counter trading, with the OTC order book and OTC web of trust), and a number of other channels. You can also PM commands to gribble and it will PM back.
 
+##Source code
+
+The core of gribble is a modified supybot. Code lives [here](http://gribble.sourceforge.net/).
+
+The code for bitcoin-related plugins lives [here](https://github.com/nanotube/supybot-bitcoin-marketmonitor/).
+
 ##General Info
 
 To get help on any command, try 'help <command>', to get a list of bitcoin-related aliases, run 'apropos bc', and to get a list of factoids, run command 'facts', and click on the link supplied.
@@ -17,7 +23,7 @@ To get help on any command, try 'help <command>', to get a list of bitcoin-relat
 * **bounty** - show current block reward bounty, in BTC.
 * **diff** - show the current generation difficulty
 * **diffchange** - show estimated percent change in difficulty
-* **estimate** - show the estimate of the next difficulty, based on data since last change (4.1), and for last three days.
+* **estimate** - show the estimate of the next difficulty, based on data since last change (5.1), and for last three days.
 * **genprob** - show the probability of getting at least one block at given hashrate, in a given time period, at given difficulty. uses current difficulty by default.
 * **genrate** - given the hash rate, and optional difficulty, calculate expected BTC generation per day and per hour. uses current difficulty by default.
 * **gentime** - given a hash rate, and optional difficulty level, calculate the expected average time to generate a block. uses current difficulty by default.
@@ -72,7 +78,7 @@ The above list is specifically for bitcoin-related commands. See [this page](htt
 
 ##References
 
-4.1: [Estimate is usually wildly inaccurate for 100-200 blocks after a difficulty change due to insufficient sample size.](https://bitcointalk.org/index.php?topic=3247.0)
+5.1: [Estimate is usually wildly inaccurate for 100-200 blocks after a difficulty change due to insufficient sample size.](https://bitcointalk.org/index.php?topic=3247.0)
 
 
 ##Factoids
