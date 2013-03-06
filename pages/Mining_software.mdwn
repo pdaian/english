@@ -8,8 +8,8 @@
 |related pool |[[Eligius]]|[[BitMinter]]|||||||||
 colspan='12' miner protocols
 Protocol              BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|[[getblocktemplate]]|[[!template id=yes]]|||[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|||||[[!template id=yes]]
-|[[StratumMP|Stratum]]|[[!template id=yes]]|||[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]||||[[!template id=yes]]|
+|[[getblocktemplate]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]
+|[[StratumMP|Stratum]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|
 |[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
 |[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |[[UBBP]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
@@ -26,34 +26,34 @@ Extension     BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoeni
 |switchto      |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
 colspan='12' getblocktemplate/BlkPrep functionality
 Function   BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|longpoll   |[[!template id=yes]]|||[[!template id=yes]]|n/a   |n/a   |||||
-|noncerange |[[!template id=no]]|||[[!template id=no]]|n/a   |n/a   |||||
-|proposal   |[[!template id=no]]|||[[!template id=no]]|n/a   |n/a   |||||
-|serverlist |[[!template id=no]]|||[[!template id=no]]|n/a   |n/a   |||||
+|longpoll   |[[!template id=yes]]||n/a     |[[!template id=yes]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|noncerange |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|proposal   |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|serverlist |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
 colspan='12' getblocktemplate/BlkPrep variations
 Variation       BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|coinbase/append |[[!template id=yes]]|||[[!template id=yes]]|n/a   |n/a   |||||
-|coinbase (set)  |[[!template id=yes]]|||[[!template id=no]]|n/a   |n/a   |||||
-|generation      |[[!template id=yes]]|||[[!template id=no]]|n/a   |n/a   |||||
-|share/coinbase  |[[!template id=yes]]|||[[!template id=yes]]|n/a   |n/a   |||||
-|share/merkle    |[[!template id=no]]|||[[!template id=no]]|n/a   |n/a   |||||
-|share/truncate  |[[!template id=yes]]|||[[!template id=no]]|n/a   |n/a   |||||
-|time/increment  |[[!template id=yes]]||||n/a   |n/a   |||||
-|time/decrement  |[[!template id=yes]]||||n/a   |n/a   |||||
-|txns/add        |[[!template id=no]]|||[[!template id=no]]|n/a   |n/a   |||||
-|txns/remove     |[[!template id=no]]|||[[!template id=no]]|n/a   |n/a   |||||
-|prevblock       |[[!template id=no]]|||[[!template id=no]]|n/a   |n/a   |||||
+|coinbase/append |[[!template id=yes]]||n/a     |[[!template id=yes]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|coinbase (set)  |[[!template id=yes]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|generation      |[[!template id=yes]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|share/coinbase  |[[!template id=yes]]||n/a     |[[!template id=yes]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|share/merkle    |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|share/truncate  |[[!template id=yes]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|time/increment  |[[!template id=yes]]||n/a     ||n/a   |n/a   |n/a    |n/a     |n/a     ||
+|time/decrement  |[[!template id=yes]]||n/a     ||n/a   |n/a   |n/a    |n/a     |n/a     ||
+|txns/add        |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|txns/remove     |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|prevblock       |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
 colspan='12' stratum functionality
 Function     BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|set diff     |[[!template id=yes 2.9.0]]|||[[!template id=yes 2.8.0]]|n/a |n/a     ||||[[!template id=yes 20121020]]|
-|transparency |[[!template id=yes]]|||[[!template id=no]]|n/a    |n/a     ||||[[!template id=no]]|
-|resume       |[[!template id=patch 3.0.0 alpha2]]|||[[!template id=yes 2.11.0]]|n/a|n/a     ||||[[!template id=no]]|
-|reconnect    |[[!template id=yes 2.9.0]]|||[[!template id=yes 2.8.2]]|n/a |n/a     ||||[[!template id=yes]]|
-|add peers    |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|get ver      |[[!template id=yes 2.9.0]]|||[[!template id=yes 2.8.2]]|n/a |n/a     ||||[[!template id=yes]]|
-|show msg     |[[!template id=patch git]]|||[[!template id=no]]|n/a     |n/a     ||||[[!template id=no]]|
-|get hashrate |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|get temp     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|set diff     |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.0]]|n/a |n/a     |n/a    |n/a     |n/a     |[[!template id=yes 20121020]]|
+|transparency |[[!template id=yes]]||n/a     |[[!template id=no]]|n/a    |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|
+|resume       |[[!template id=patch 3.0.0 alpha2]]|n/a||[[!template id=yes 2.11.0]]|n/a |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|
+|reconnect    |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.2]]|n/a |n/a     |n/a    |n/a     |n/a     |[[!template id=yes]]|
+|add peers    |[[!template id=no]]|[[!template id=no]]|n/a     |[[!template id=no]]|n/a     |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|get ver      |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.2]]|n/a |n/a     |n/a    |n/a     |n/a     |[[!template id=yes]]|
+|show msg     |[[!template id=patch git]]||n/a     |[[!template id=no]]|n/a     |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|
+|get hashrate |[[!template id=no]]|[[!template id=no]]|n/a     |[[!template id=no]]|n/a     |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|get temp     |[[!template id=no]]|[[!template id=no]]|n/a     |[[!template id=no]]|n/a     |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
 
 
 
