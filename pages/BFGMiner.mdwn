@@ -1,8 +1,10 @@
-A modular FPGA, GPU and CPU miner written in C, cross platform for Linux, Mac, and Windows including support for OpenWrt-capable routers.
+A modular ASIC, FPGA, GPU and CPU miner written in C, cross platform for Linux, Mac, and Windows including support for OpenWrt-capable routers.
 
 ##Features
 
 * A variety of device drivers for Bitcoin (SHA256d):
+	* [Butterfly Labs's BitForce SC (ASIC) product line](http://www.butterflylabs.com/bitforce-sc-release-notes/)
+	* [Avalon ASIC mining rig](http://launch.avalon-asics.com/)
 	* [Butterfly Labs's BitForce Singles and MiniRigs](http://www.butterflylabs.com/product-details/)
 	* [Enterpoint's Cairnsmore1 FPGA mining board](http://www.enterpoint.co.uk/cairnsmore/cairnsmore1.html)
 	* [FPGA Mining X6500](http://fpgamining.com/products/x6500-rev3)
@@ -18,7 +20,6 @@ A modular FPGA, GPU and CPU miner written in C, cross platform for Linux, Mac, a
 		* GCN (79x0) support
 	* CPU (not enabled by default nor included in Windows build)
 	* Coming soon:
-		* [Butterfly Labs's BitForce SC (ASIC) product line](http://www.butterflylabs.com/bitforce-sc-release-notes/)
 		* [ASICMINER ASICs](https://bitcointalk.org/?topic=99497)
 		* *any other device provided for development*
 * Support for new [[getblocktemplate decentralized mining protocol|Getblocktemplate]]
