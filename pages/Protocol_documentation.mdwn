@@ -207,6 +207,7 @@ Payload:
 |8 |nonce |uint64_t |Node random nonce, randomly generated every time a version packet is sent. This nonce is used to detect connections to self.
 |? |user_agent |[[var_str|#Variable_length_string]]|[[User Agent|BIP_0014]](0x00 if string is 0 bytes long)
 |4 |start_height |int32_t |The last block received by the emitting node
+|1 |relay |bool |Whether the remote peer should announce relayed transactions or not, see [[BIP_0037]]
 
 
 A "verack" packet shall be sent if the version packet was accepted.
@@ -645,6 +646,10 @@ Possible values:
 ### ping
 
 The *ping* message is sent primarily to confirm that the TCP/IP connection is still valid. An error in transmission is presumed to be a closed connection and the address is removed as a current peer. In modern protocol versions, a *pong* response is generated using a nonce included in the ping.
+
+### filterload, filteradd, filterclear, merkleblock
+
+These messages are related to Bloom filtering of connections and are defined in [[BIP_0037]].
 
 ### alert
 
