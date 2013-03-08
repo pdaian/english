@@ -52,6 +52,12 @@ Also if you want to explicitly specify pull-server to connetct, you can use pick
 * pool-us.50btc.com:8332 - Host is within the U.S.
 * pool-ru.50btc.com:8332 - Host is within the Russia
 
+Port 80 mining (Long-Polling port is 443):
+
+* pool80.50btc.com
+
+All pool-servers, except pool 80, have the stratum protocol support. All suitable miners would be auto-redirected to port 3333 on connection.
+
 ##How to run miners
 
 **Phoenix [Web site](https://bitcointalk.org/?topic=6458.0)**<br />
