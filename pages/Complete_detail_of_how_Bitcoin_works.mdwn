@@ -18,7 +18,7 @@
 * One can no longer use bitcoind (and couldn't at the time of the video,) to directly generate coins, nor is CPU mining of basically any worth.
 * Satoshi's paper doesn't fully explain how bitcoin works, or else we'd all be able to just point to that paper and let newbies read it. (4.3)
 * References 1997 work by Adam Back's hashcash anti-spam as the source of POW idea. The idea is actually much older. One counter-example is the paper by Dwork and Naor, presenting the idea of using processing power to combat junk mail to Cryto'92, (including hash-based processing-price functions)  (4.4)
-* Explanation of hashing is wrong: To get 20 bits of 0 at the beginning of a hash, you still don't get  a **guarantee** that after 2^20 hashes, you have all zeroes, and that half that number on average are what's necessary to find a 20-zero solution. Basically this whole idea is just plain wrong.
+* Explanation of hashing is wrong: To get 20 bits of 0 at the beginning of a hash, you still don't get  a **guarantee** that after 2<sup>20</sup> hashes, you have all zeroes, and that half that number on average are what's necessary to find a 20-zero solution. Basically this whole explanation is just plain wrong.
 * Hashcash didn't fail because legitimate mailing lists are indistinguishable from spammers. He states that there are no measures that could be taken to allow legit mass-mailing lists while denying spamming. This is factually incorrect.
 * The public key of the signer of a transaction is NOT included in the transaction itself. (4.3)
 * He says multiple times that all nodes on the network are busy mining. This is not the case at all, nor was it for months prior to the video's creation date, which was February, 2011.
