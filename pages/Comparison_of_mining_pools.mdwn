@@ -2,7 +2,7 @@ Reward types & explanation:
 
 * **DGM** - Double Geometric Method.  A hybrid between PPLNS and Geometric reward types that enables to operator to absorb some of the variance risk.  Operator receives portion of payout on short rounds and returns it on longer rounds to normalize payments. [(1)](https://bitcointalk.org/index.php?topic=39497.0)
 * **Prop.** - Proportional. When block is found, the reward is distributed among all workers proportionally to how much shares each of them has found.
-* **PPLNS** - Pay Per Last N Shares. Similar to proportional, but instead of looking at the number of shares in the round, instead looks at the last N shares, regardless of round boundaries.
+* **PPLNS** - Pay Per Last N Shasres. Similar to proportional, but instead of looking at the number of shares in the round, instead looks at the last N shares, regardless of round boundaries.
 * **PPS** - Pay Per Share. Each submitted share is worth certain amount of BC. Since finding a block requires <current difficulty> shares *on average*, a PPS method with 0% fee would be 25 BTC divided by <current difficulty>. It is risky for pool operators, hence the fee is highest.
 * **SMPPS** - Shared Maximum Pay Per Share. Like Pay Per Share, but never pays more than the pool earns. [(2)](http://eligius.st/wiki/index.php/Shared_Maximum_PPS)
 * **ESMPPS** - Equalized Shared Maximum Pay Per Share. Like SMPPS, but equalizes payments fairly among all those who are owed. [(3)](http://forum.bitcoin.org/index.php?topic=12181.msg378851#msg378851)
@@ -22,7 +22,7 @@ Reward types & explanation:
 |[[Bitcash.cz|Bitcash.cz]]|Czech Republic |5 |No |Prop. |kept by pool ||0% |[[getwork]]|2012-09-14 |1 |[1](http://bitcash.cz/forum/)|[Link](http://bitcash.cz/pool/)
 |[[BitClockers|Bitclockers]]|USA/EU |250 |[[NMC]]|PPS |kept by pool |8% ||[[getwork]]|2011-05-27 |1 |[1](http://forum.bitcoin.org/index.php?topic=10127.0)|[Link](http://bitclockers.com/)
 |[[Bitcoin Mining Pool|Bitcoin_Pool]]|USA |70 |No |Prop. |kept by pool ||0% (1.12)|[[getwork]]|Unknown |1 |[1](http://bitcoinpool.com/forum/)|[Link](http://www.bitcoinpool.com/)
-|[[Slush's pool (mining.bitcoin.cz)|Bitcoin_Pooled_Mining]]|EU/France |2000 |[[NMC]]|Score |shared ||2% |[[stratum]]|2010-11-27 |Choosable|[1](http://forum.bitcoin.org/index.php?topic=1976.0)|[Link](http://mining.bitcoin.cz/)
+|[[Slush's pool (mining.bitcoin.cz)|Bitcoin_Pooled_Mining]]|EU/France |3600 |[[NMC]]|Score |shared ||2% |[[stratum]]|2010-11-27 |Choosable|[1](http://forum.bitcoin.org/index.php?topic=1976.0)|[Link](http://mining.bitcoin.cz/)
 |[[Bitcoins.lc]]|EU |60 |No |Prop. |kept by pool ||0% |[[getwork]]|2011-05-27 |1 |[1](http://forum.bitcoin.org/index.php?topic=10121.0)|[Link](http://www.bitcoins.lc/)
 |[[Bitparking]]|USA |130 |[[NMC]], I0C, IXC, [[Devcoin]]|PPS |kept by pool |2.5% ||[[getwork]]|2012-01-08 |Choosable|[1](https://bitcointalk.org/index.php?topic=57148.0)|[Link](http://mmpool.bitparking.com/pool)
 |[[BitMinter]]|Germany |2000 |[[NMC]]|PPLNS |shared ||0% |[[getwork]], [[getblocktemplate]]|2011-06-26 |1 |[1](https://bitcointalk.org/index.php?topic=27062.0)|[Link](https://bitminter.com)
