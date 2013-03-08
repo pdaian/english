@@ -45,7 +45,7 @@ Device                BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGA
 colspan='12' miner protocols
 Protocol              BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
 |[[getblocktemplate]]|[[!template id=yes 2.8.0]]||[[!template id=no]]|[[!template id=yes 2.9.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]
-|[[StratumMP|Stratum]]|[[!template id=yes 2.9.0]]||[[!template id=no]]|[[!template id=yes 2.8.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]
+|[[StratumMP|Stratum]]|[[!template id=yes 2.9.0]]||[[!template id=no]]|[[!template id=yes 2.8.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=patch testing]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]
 |[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
 |[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |[[UBBP]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
@@ -81,15 +81,15 @@ Variation       BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoe
 |prevblock       |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
 colspan='12' stratum functionality
 Function     BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|set diff     |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.0]]|n/a |n/a     |n/a    |n/a     |n/a|[[!template id=yes 20121020]]|[[!template id=yes]]
-|transparency |[[!template id=yes]]||n/a     |[[!template id=no]]|n/a    |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|resume       |[[!template id=patch 3.0.0 alpha2]]||n/a|[[!template id=yes 2.11.0]]|n/a |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|reconnect    |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.2]]|n/a |n/a     |n/a    |n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]
-|add peers    |[[!template id=no]]|[[!template id=no]]|n/a     |[[!template id=no]]|n/a     |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|get ver      |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.2]]|n/a |n/a     |n/a    |n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]
-|show msg     |[[!template id=patch git]]||n/a    |[[!template id=yes 2.11.1]]|n/a |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|get hashrate |[[!template id=no]]|[[!template id=no]]|n/a     |[[!template id=no]]|n/a     |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|get temp     |[[!template id=no]]|[[!template id=no]]|n/a     |[[!template id=no]]|n/a     |n/a     |n/a    |n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|set diff     |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.0]]|n/a |n/a|[[!template id=patch testing]]|n/a   |n/a|[[!template id=yes 20121020]]|[[!template id=yes]]
+|transparency |[[!template id=yes]]||n/a     |[[!template id=no]]|n/a    |n/a     ||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|resume       |[[!template id=patch 3.0.0 alpha2]]||n/a|[[!template id=yes 2.11.0]]|n/a |n/a     ||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|reconnect    |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.2]]|n/a |n/a     ||n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]
+|add peers    |[[!template id=no]]|[[!template id=no]]|n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|get ver      |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.2]]|n/a |n/a     ||n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]
+|show msg     |[[!template id=patch git]]||n/a    |[[!template id=yes 2.11.1]]|n/a |n/a     ||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|get hashrate |[[!template id=no]]|[[!template id=no]]|n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|get temp     |[[!template id=no]]|[[!template id=no]]|n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
 
 
 
