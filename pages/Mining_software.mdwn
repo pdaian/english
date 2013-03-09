@@ -45,7 +45,7 @@ Device                BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGA
 |High-level CPU        |[[!template id=yes]]||[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
 colspan='12' miner protocols
 Protocol              BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|[[getblocktemplate]]|[[!template id=yes 2.8.0]]||[[!template id=no]]|[[!template id=yes 2.9.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]
+|[[getblocktemplate]]|[[!template id=yes 2.8.0]]||[[!template id=no]]|[[!template id=yes 2.8.6]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]
 |[[StratumMP|Stratum]]|[[!template id=yes 2.9.0]]||[[!template id=no]]|[[!template id=yes 2.8.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=patch testing]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]
 |[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
 |[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
@@ -69,10 +69,12 @@ Function   BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoenix p
 |serverlist |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
 colspan='12' getblocktemplate/BlkPrep variations
 Variation       BFG     BitMinterBTCMinercg   Diablo  gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|coinbase/append |[[!template id=yes 2.9.0]]||n/a|[[!template id=yes Required]]|n/a   |n/a   |n/a    |n/a     |n/a     ||[[!template id=yes Required]]
+|(fixed coinbase)|[[!template id=yes 2.9.0]]||n/a     |[[!template id=no]]|n/a     |n/a   |n/a    |n/a     |n/a     ||
+|coinbase/append |[[!template id=yes 2.9.0]]||n/a |[[!template id=yes 2.8.6]]|n/a     |n/a   |n/a    |n/a     |n/a     ||[[!template id=yes Required]]
 |coinbase (set) |[[!template id=yes 2.10.4]] (1.4)||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
 |generation  |[[!template id=yes 2.9.0]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
-|share/coinbase |[[!template id=yes 2.9.0]]||n/a|[[!template id=yes Required]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|(full submit)  |[[!template id=yes 2.9.0]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
+|share/coinbase |[[!template id=yes 2.9.0]]||n/a     |[[!template id=yes 2.8.6]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
 |share/merkle    |[[!template id=no]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
 |share/truncate |[[!template id=yes 2.9.0]]||n/a     |[[!template id=no]]|n/a   |n/a   |n/a    |n/a     |n/a     ||
 |time/increment |[[!template id=yes 2.9.0]]||n/a     ||n/a   |n/a   |n/a    |n/a     |n/a     ||
