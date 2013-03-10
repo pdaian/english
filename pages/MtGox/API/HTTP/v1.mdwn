@@ -6,8 +6,9 @@
 
 #### Multi Currency Ticker
 
-	https://mtgox.com/api/1/BTCUSD/ticker
-	https://mtgox.com/api/1/BTCEUR/ticker
+	http://data.mtgox.com/api/2/BTCUSD/money/ticker
+	http://data.mtgox.com/api/1/BTCUSD/ticker
+	http://data.mtgox.com/api/0/data/ticker.php?Currency=USD
 
 	returns the current ticker for the selected currency :
 
@@ -45,23 +46,21 @@
 
 #### Multi Currency depth
 
-https://mtgox.com/api/1/BTCPLN/depth?raw
-
-https://mtgox.com/api/1/BTCAUD/depth?raw
+http://data.mtgox.com/api/1/BTCUSD/depth/fetch
 
 #### Multi currency trades
 
-https://mtgox.com/api/1/BTCUSD/trades?raw
+http://data.mtgox.com/api/1/BTCUSD/trades/fetch
 
-https://mtgox.com/api/1/BTCPLN/trades?raw
+https://data.mtgox.com/api/1/BTCUSD/trades?raw
 
-https://mtgox.com/api/1/BTCAUD/trades?raw
+https://data.mtgox.com/api/1/BTCPLN/trades?raw
 
 to get only the trades since a given trade id, you can add the parameter since=<trade_id>
 
-https://mtgox.com/api/1/BTCUSD/trades?since=0
+https://data.mtgox.com/api/1/BTCUSD/trades?since=0
 
-https://mtgox.com/api/1/BTCEUR/trades?since=1316312781670700
+https://data.mtgox.com/api/1/BTCEUR/trades?since=1316312781670700
 
 For multi currency,also returns the primary value,"Y" or "N", the primary currency is always the buyers currency
 
@@ -104,20 +103,19 @@ The meaning of each field is as follows:
 
 #### Cancelled Trades
 
-https://mtgox.com/api/1/BTCUSD/cancelledtrades
+https://data.mtgox.com/api/1/BTCUSD/cancelledtrades
 
 returns a list of all the cancelled trades this last month, list of trade ids in json format .
 
 #### Full Depth
 
-https://mtgox.com/api/1/BTCUSD/fulldepth
-
+https://data.mtgox.com/api/1/BTCUSD/depth/full
 returns full depth
 
 WARNING : since this is a big download, there is a rate limit on how often you can get it, limit your requests to 5 / hour or you could be dropped / banned.
 
 #### transaction information
-https://mtgox.com/api/1/generic/bitcoin/tx_details?hash=4462c88079cc51972f1bdcb8a4240ee8757b0bb69df828ade051c95ced540fa0
+https://data.mtgox.com/api/1/generic/bitcoin/tx_details?hash=4462c88079cc51972f1bdcb8a4240ee8757b0bb69df828ade051c95ced540fa0
 
 will return :
 <code>
@@ -165,11 +163,11 @@ will return :
 #### block information
 block information can be accessed by depth ( the block number ) :
 
-https://mtgox.com/api/1/generic/bitcoin/block_list_tx?depth=188111
+https://data.mtgox.com/api/1/generic/bitcoin/block_list_tx?depth=188111
 
 or by hash :
 
-https://mtgox.com/api/1/generic/bitcoin/block_list_tx?hash=000000000000076fa606a7b67c131afc87d24d34114be2863cf24ca3d48139e7
+https://data.mtgox.com/api/1/generic/bitcoin/block_list_tx?hash=000000000000076fa606a7b67c131afc87d24d34114be2863cf24ca3d48139e7
 
 both will return ( for block 188111 ) 
 
@@ -194,21 +192,23 @@ both will return ( for block 188111 )
 </code>
 
 #### address information
-https://mtgox.com/api/1/generic/bitcoin/addr_details?hash=1f27d1fc284143729944ab89823111d2bb63dc46
+https://data.mtgox.com/api/1/generic/bitcoin/addr_details?hash=1f27d1fc284143729944ab89823111d2bb63dc46
 
 
 #### Order lag
 
-https://mtgox.com/api/1/generic/order/lag
+https://data.mtgox.com/api/1/generic/order/lag
 
 The "lag" value is the age in microseconds of the oldest order pending execution
 If it's too large it means the engine is busy, and the depth is probably not reliable
 
 #### Currency information
 
-https://mtgox.com/api/1/generic/currency
+https://data.mtgox.com/api/1/generic/currency
 
 pass parameter ?currency=<currency_symbol>
+
+https://data.mtgox.com/api/1/generic/currency?currency=EUR
 
 returns information about a currency ( number of decimals . . . )
 
