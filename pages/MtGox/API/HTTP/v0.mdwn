@@ -5,6 +5,9 @@ Version 0 of the HTTP API is available at https://mtgox.com/api/0.
 ### 0/data/getTrades.php
 This allows retrieving all trades which happened in the last 24 hours. The returned data is cached and may not reflect latest activity.
 
+	http://data.mtgox.com/api/0/data/getTrades.php?Currency=USD
+	http://data.mtgox.com/api/0/data/getTrades.php?Currency=USD&since=1
+
 Parameters:
 
 * since: Passing a tid in "since" allows retrieving all trades since that trade. The passed id is may not exist. Ie. to get all trades from the very beginning one would just call https://mtgox.com/code/data/getTrades.php?since=0 . since returns only 100 trades, and you can call the method again by passing the latest trade you have imported in since.
@@ -17,11 +20,9 @@ Parameters:
 ### 0/getDepth.php
 Get the current Market depth
 
-https://mtgox.com/api/0/data/getDepth.php?Currency=PLN
-
-https://mtgox.com/api/0/data/getDepth.php?Currency=AUD
-
-https://mtgox.com/api/0/data/getDepth.php?Currency=USD
+	https://data.mtgox.com/api/0/data/getDepth.php?Currency=PLN
+	https://data.mtgox.com/api/0/data/getDepth.php?Currency=AUD
+	https://data.mtgox.com/api/0/data/getDepth.php?Currency=USD
 
 <source lang="php">
 {"asks":[[11.37998,22.89]],[[11.38,42.44592124]],[[11.3844,165]],[[11.599,1000]],"bids":[[10.7078,0.3]],[[10.70964,0.02024837]],[[10.70978,0.55822]],[[11.2903,2.8]]}
