@@ -16,7 +16,7 @@ To get help on any command, try 'help <command>', to get a list of bitcoin-relat
 
 ###Mining/network/hashrate stats
 
-* **hextarget** - show the current difficulty target in hex. if optional block number argument is specified, show target for that block.
+* **hextarget** - show the current [[difficulty]] target in hex. if optional [[block]] number argument is specified, show target for that block.
 * **bcstats** - show some statistics about the block chain - number of blocks, difficulty, estimated next difficulty target, time to next difficulty
 * **blocks** - show the current number of blocks in the bitcoin block chain
 * **blockdiff** - show difficulty for a specified past block.
@@ -44,6 +44,7 @@ Big kudos goes out to theymos for providing a web interface to [real time statis
 * **avgprc** - show average 24h, 7d, and 30d trading prices of BTC in various currencies.
 * **bc,convert** - convert bitcoin price, based on Mt.Gox last, to currency you specify. e.g., try 'bc,convert eur' for euros.
 * **bc,fx** - show various currency exchange rates
+* **bc,xag** - show price of silver in BTC
 * **bc,xau** - show price of gold in BTC
 * **ticker** - show pretty-printed mtgox ticker. Takes a number of optional arguments to customize output.
 * **bids** - given a numeric argument, shows how many total btc are being demanded on MtGox at or over the given price. If optional '--under' argument given, looks under the price.
@@ -54,7 +55,7 @@ Big kudos goes out to theymos for providing a web interface to [real time statis
 
 ###Mining pool statistics
 
-Currently hash rates are shown in Mhps.
+Current hash rates are shown in Mhps.
 
 * **bc,slushpool**
 * **bc,eligius**
@@ -78,16 +79,6 @@ Currently hash rates are shown in Mhps.
 ###General commands
 
 The above list is specifically for bitcoin-related commands. See [this page](http://sourceforge.net/apps/mediawiki/gribble/index.php?title=Using_Gribble_on_Sourceforge) for list and help of most commonly used non-bitcoin-related gribble commands. You can find more helpful info on the [gribble](http://gribble.sourceforge.net/) project page, or by exploring the bot with 'list' and 'help' commands.
-
-##References
-
-5.1: [Estimate is usually wildly inaccurate for 100-200 blocks after a difficulty change due to insufficient sample size.](https://bitcointalk.org/index.php?topic=3247.0)
-
-
-##Factoids
-
-* [factoids for #bitcoin-dev channel](http://gribble.dreamhosters.com/viewfactoids.php?db=%23bitcoin-dev)
-* [factoids for #bitcoin-otc channel](http://gribble.dreamhosters.com/viewfactoids.php?db=%23bitcoin-otc)
 
 ##Examples
 
@@ -120,7 +111,7 @@ The above list is specifically for bitcoin-related commands. See [this page](htt
 	<me> ;;google calc 9001 USD in EUR
 	<gribble> 9001 U.S. dollars = 6 840.18542 Euros
 
-	<me> ;;later tell [ErnyFbyvq](rot13) I hate you
+	<me> ;;later tell nanotube Hey, I need to talk to you. Let me know when you're online.
 	<gribble> The operation succeeded.
 
 	<me> ;;auth me
@@ -128,25 +119,16 @@ The above list is specifically for bitcoin-related commands. See [this page](htt
 	<me> ;;verify http://pastebin.com/raw.php?i=your-pgp-signed-challenge-string-in-pasted
 	<gribble> You are now authenticated for user 'me' with key ABCDEFGH12345678
 
-###list of commands
+###List of commands
 
-?, about, action, add, alert, alias, announce, announce add, announce list, announce remove, any, aol, apply, apropos, asks, at, auth, author, azn, ban add, ban list, ban remove, base, bashorg,<br />
-bc,24hprc, bc,altprofit, bc,avgprc, bc,bcm, bc,bitpenny, bc,blockdiff, bc,blocks, bc,bounty, bc,btceur, bc,btcgbp, bc,btcguild, bc,btcrub, bc,btcto, bc,calc, bc,calcd, bc,channels, bc,convert,<br />
-bc,deepbit, bc,diff, bc,diffchange, bc,eligius, bc,estimate, bc,exchb, bc,fx, bc,gen, bc,gend, bc,halfreward, bc,help, bc,hextarget, bc,intersango, bc,interval, bc,mtgox, bc,mtgoxask, bc,mtgoxbid,<br />
-bc,mtgoxlast, bc,nethash, bc,nexttarget, bc,ozcoin, bc,p2pool, bc,p2poolalt, bc,p2pooldiff, bc,prevdiff, bc,price, bc,prob, bc,probd, bc,sectohalve, bc,silkroad, bc,sincelastblock, bc,slushpool,<br />
-bc,spotestimate, bc,stats, bc,swepool, bc,timetonext, bc,totalbc, bc,tradehill, bc,tslb, bc,wiki, bc,xag, bc,xau, bids, binary, bitcoinrss, blockmonitor, bold, book, bot, botsnack, boturl, botweb,<br />
-bsx, buy, cache, calc, call, cand, capabilities, capability add, capability list, capability remove, capability set, capability setdefault, capability unset, capitalize, ceq, change, changekey,<br />
-changename, channel, channeldb, channels, channelstats, cheer, chr, cif, clearq, cmd, coin, collect, color, colorize, command, commands, concat, config, configure, connect, contributors, convert,<br />
-cor, countargs, cpu, crypt, ctell, ctime, cut, cxor, cycle, decode, default, defaultcapability, defaultplugin, dehalfop, deleteuser, deop, devoice, dice, dict, dictionaries, direct, disable,<br />
-disconnect, dns, do, doctype, driver, drmath, drmathcheck, eauth, ebay, echo, ed, eightball, elapsed, enable, encode, environ, eregister, errno, eval, everify, exec, exn, export, factlist, facts,<br />
-feed, fetch, field, fight, fit, flush, forget, format, fortune, ge, get, getprefix, getrating, gettrust, ghost, give, giveme, giveout, gnu, gpg, google, gribble, gt, h, halfop, headers, hebrew, help,<br />
-hexip, hexlify, histsearch, hostmask, hostmask add, hostmask list, hostmask remove, hug, icalc, ident, identify, ignore, ignore add, ignore list, ignore remove, info, insert, invite, ircquote,<br />
-isitdown, jeffk, join, kban, key, kick, last, latency, le, learn, leet, len, letmein, levenshtein, limit, list, lithp, lmgtfy, load, lobotomy add, lobotomy list, lobotomy remove, lock, logmark,<br />
-lower, ls, lt, lucky, match, md5, mode, moderate, monologue, more, morse, mp, names, nceq, ne, net, netcraft, networks, nge, ngt, nick, nicks, nle, nlt, nmc,last, nne, notes, notice, oobhresponse,<br />
-op, ord, otc, outfilter, part, password, pet, petuser, pgp, phonebook, pid, ping, plugin, plugins, pong, preferredsupportlink, prefsup, private, processes, progstats, quit, rainbow, random, randomize,<br />
-rank, rate, rated, re, reconnect, redo, refresh, register, reload, remove, rename, reorder, repeat, replace, replies, reply, repr, restore, reverse, rot13, roulette, rpn, rss, sample, say, scramble,<br />
-search, seconds, seen, sell, sendquote, separator, server, set, set password, set secure, settrace, sfideasearch, sflaconica, sfticketsearch, sfuserpage, sfwikisearch, sha, show, shrink, shuffle,<br />
-simpleeval, since, size, sl, slap, slogan, smack, soundex, source, spell, spellit, squish, stats, status, stripcolor, success, sudo, suicide, supa1337, swap, synonym, targetproject, tell, texthelp,<br />
-threads, ticker, time, title, tmp, tmp1, tn,blocks, tn,diff, topic, translate, trustinfo, tz, ud, unauth, unban, unbinary, underline, undo, undup, unhexlify, unidentify, units, uniud, unload, unlock,<br />
-unmoderate, unmorse, unrate, unregister, unrename, unsettrace, until, upkeep, upper, uptime, urlquote, urlunquote, user, username, utime, vacuum, verify, version, view, voice, voiceme, whatis, whoami,<br />
-whois, wk, wotgraph, wp, wq, wtf, xagusd, xauusd, xor, and yt
+8ball, ?, about, action, add, alert, alias, announce, announce add, announce list, announce remove, any, aol, apply, apropos, asks, at, auth, author, avgprc, azn, balance, ban add, ban list, ban remove, base, bashorg, bc,24hprc, bc,avgprc, bc,bear, bc,bitpenny, bc,blockdiff, bc,blocks, bc,bounty, bc,btcguild, bc,calc, bc,calcd, bc,convert, bc,deepbit, bc,diff, bc,diffchange, bc,eligius, bc,estimate, bc,fx, bc,gen, bc,gend, bc,help, bc,hextarget, bc,intersango, bc,interval, bc,mktcap, bc,nethash, bc,nexttarget, bc,ozcoin, bc,p2pool, bc,p2poolalt, bc,p2pooldiff, bc,prevdiff, bc,prevdiffchange, bc,price, bc,prob, bc,probd, bc,silkroad, bc,sincelastblock, bc,slushpool, bc,spotestimate, bc,stats, bc,tblb, bc,timetonext, bc,totalbc, bc,tslb, bc,wiki, bc,xag, bc,xau, bcauth,  bcregister, bcstats, bcverify, bids, binary, bitcoinrss, blockdiff, blocks, bold, book, bot, botsnack, boturl, botweb, bounty, bsx, btcauth, btcregister, btcverify, buy, cache, calc, call, cand, capabilities, capability add, capability list, capability remove, capability set, capability setdefault, capability unset, capitalize, ceq, change, changeaddress, changekey, changename, channel, channeldb, channels, channelstats, cheer, chr, cif, clearq, cmd, coin, collect, color, colorize, command, commands, concat, config, configure, connect, contributors, convert, copumpkinprice, cor, countargs, cpu, crypt, ctell, ctime, cut, cxor, cycle, decode, default, defaultcapability, defaultplugin, dehalfop, deleteuser, deop, devoice, dice, dict, dictionaries, diff, diffchange, direct, disable, disconnect, dns, do, doctype, driver, drmath, drmathcheck, ea, eauth, ebay, echangekey, echo, ed, eightball, elapsed, enable, encode, environ, eregister, errno, estimate, ev, eval, events, everify, exec, exn, export, factlist, facts, feed, fetch, field, fight, fit, flush, forget, format, fortune, gangnam, ge, genprob, genrate, gentime, get, getprefix, getrating, gettrust, ghost, give, giveme, giveout, gnu, google, goxlag, goxvol, gribble, gt, h, halfop, halfreward, headers, hebrew, help, hexip, hexlify, hextarget, histsearch, hostmask, hostmask add, hostmask list, hostmask remove, hug, icalc, ident, identify, ignore, ignore add, ignore list, ignore remove, info, infographic, insert, interval, invite, ircquote, isitdown, jeffk, join, kban, key, kick, last, latency, le, learn, leet, len, letmein, levenshtein, limit, list, lithp, lmgtfy, load, lobotomy add, lobotomy list, lobotomy remove, lock, logmark, lower, ls, lt, ltcbtc, lucky, match, md5, mode, moderate, monologue, more, morse, mp, names, nceq, ne, net, netcraft, nethash, networks, nextretarget, nge, ngt, nick, nicks, nle, nlt, nmc,last, nne, notes, notice, obip, oobhresponse, op, ord, otc, outfilter, part, password, pet, petuser, pgp, phonebook, pid, ping, pl0x, plugin, plugins, pong, preferredsupportlink, prefsup, prevdiff, prevdiffchange, private, processes, progstats, quit, rainbow, random, randomize, rank, rate, rated, re, reconnect, redo, refresh, register, reload, remove, rename, reorder, repeat, replace, replies, reply, repr, restore, reverse, ripple, roar, rot13, roulette, rpn, rss, sample, say, scramble, search, seconds, seen, sell, sendquote, separator, server, set, set password, set secure, settrace, sfideasearch, sflaconica, sfticketsearch, sftwitter, sfuserpage, sfwikisearch, sha, show, shrink, shuffle, simpleeval, since, size, sl, slap, slogan, smack, soundex, source, spell, spellit, squish, stats, status, stripcolor, success, sudo, suicide, supa1337, swap, synonym, t, targetproject, tell, templatelink, texthelp, threads, ticker, tickeruk, time, timetonext, title, tmp, tn,blocks, tn,diff, topic, totalbc, translate, trustinfo, tslb, tz, ud, unauth, unban, unbinary, underline, undo, undup, unhexlify, unidentify, units, uniud, unload, unlock, unmoderate, unmorse, unrate, unregister, unrename, unsettrace, until, upkeep, upper, uptime, urlquote, urlunquote, user, username, utime, vacuum, verify, version, view, voice, voiceme, whatis, whoami, whois, wk, wotgraph, wp, wq, wrongulate, wtf, xagusd, xauusd, xor, and yt
+
+##Factoids
+
+* [factoids for #bitcoin-dev channel](http://gribble.dreamhosters.com/viewfactoids.php?db=%23bitcoin-dev)
+* [factoids for #bitcoin-otc channel](http://gribble.dreamhosters.com/viewfactoids.php?db=%23bitcoin-otc)
+
+##References
+
+5.1: [Estimate is usually wildly inaccurate for 100-200 blocks after a difficulty change due to insufficient sample size.](https://bitcointalk.org/index.php?topic=3247.0)
+
