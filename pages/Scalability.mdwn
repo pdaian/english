@@ -16,9 +16,9 @@ Today the Bitcoin network is restricted to a sustained rate of 7 tps by some art
 
 The protocol has two parts. Nodes send "inv" messages to other nodes telling them they have a new transaction. If the receiving node doesn't have that transaction it requests it with a getdata.
 
-The big cost is the crypto and block chain lookups involved with verifying the transaction. Verifying a transaction means some hashing and an ECDSA signature verification. RIPEMD-160 runs at 106 megabytes/sec (call it 100 for simplicity) and SHA256 is about the same. So hashing 1 megabyte should take around 10 milliseconds and hashing 1 kilobyte would take 0.01 milliseconds - fast enough that we can ignore it.
+The big cost is the crypto and block chain lookups involved with verifying the transaction. Verifying a transaction means some hashing and some ECDSA signature verifications. RIPEMD-160 runs at 106 megabytes/sec (call it 100 for simplicity) and SHA256 is about the same. So hashing 1 megabyte should take around 10 milliseconds and hashing 1 kilobyte would take 0.01 milliseconds - fast enough that we can ignore it.
 
-Bitcoin is currently able (with a couple of simple optimizations that are prototyped but not merged yet) to perform around 8000 signature verifications per second on an quad core [Intel Core i7-2670QM 2.2Ghz processor](http://ark.intel.com/products/53469). However the average number of inputs per transaction is around 2, so we must halve the rate. This means 4000 tps is easily achievable CPU-wise with a single fairly mainstream CPU.
+Bitcoin is currently able (with a couple of simple optimizations that are prototyped but not merged yet) to perform around 8000 signature verifications per second on an quad core [Intel Core i7-2670QM 2.2Ghz processor](http://ark.intel.com/products/53469). The average number of inputs per transaction is around 2, so we must halve the rate. This means 4000 tps is easily achievable CPU-wise with a single fairly mainstream CPU.
 
 As we can see, this means as long as Bitcoin nodes are allowed to max out at least 4 cores of the machines they run on, we will not run out of CPU capacity unless Bitcoin is handling 100 times as much traffic as PayPal. As of late 2012 the network is handling 0.5 transactions/second, so even assuming enormous growth in popularity we will not reach this level for a long time.
 
@@ -36,11 +36,11 @@ When blocks are solved, the current protocol will send the transactions again, e
 
 At very high transaction rates each block can be over half a gigabyte in size.
 
-It is not required for most fully validating nodes to store the entire chain. In Satoshis paper he describes "pruning", a way to delete unnecessary data about transactions that are fully spent. This reduces the amount of data that is needed for a fully validating node to be only the size of the current unspent output size, plus some additional data that is needed to handle re-orgs. As of October 2012 (block 203258) there have been 7,979,231 transactions, however the size of the unspent output set is less than 100MiB, which is small enough to easily fit in RAM for even quite old computers.
+It is not required for most fully validating nodes to store the entire chain. In Satoshi's paper he describes "pruning", a way to delete unnecessary data about transactions that are fully spent. This reduces the amount of data that is needed for a fully validating node to be only the size of the current unspent output size, plus some additional data that is needed to handle re-orgs. As of October 2012 (block 203258) there have been 7,979,231 transactions, however the size of the unspent output set is less than 100MiB, which is small enough to easily fit in RAM for even quite old computers.
 
 Only a small number of archival nodes need to store the full chain going back to the genesis block. These nodes can be used to bootstrap new fully validating nodes from scratch but are otherwise unnecessary.
 
-The primary limiting factor in Bitcoins performance is disk seeks once the unspent transaction output set stops fitting in memory. It is quite possible that the set will always fit in memory on dedicated server class machines, if hardware advances faster than Bitcoin usage does.
+The primary limiting factor in Bitcoin's performance is disk seeks once the unspent transaction output set stops fitting in memory. It is quite possible that the set will always fit in memory on dedicated server class machines, if hardware advances faster than Bitcoin usage does.
 
 ##Optimizations
 
@@ -50,11 +50,13 @@ However there is potential for even greater optimizations to be made in future, 
 
 ###CPU
 
-Newly developed digital signature algorithms, like [ed25519](http://ed25519.cr.yp.to/ed25519-20110705.pdf) have extremely efficient software implementations that can reach speeds of nearly 80,000 verifications per second, even on an old Westmere CPU. That is a 10x improvement over secp256k1, and most likely is even higher on more modern CPUs. Supporting this in Bitcoin would mean a "soft fork" like the one done recently for pay-to-script-hash support.
+Pieter Wuille has implemented a custom verifier tuned for secp256k1 that can go beyond 20,000 signature verifications per second. It would require careful review by professional cryptographers to gain as much confidence as OpenSSL, but this can easily halve CPU load.
+
+Newly developed digital signature algorithms, like [ed25519](http://ed25519.cr.yp.to/ed25519-20110705.pdf) have extremely efficient software implementations that can reach speeds of nearly 80,000 verifications per second, even on an old Westmere CPU. That is a 10x improvement over secp256k1, and most likely is even higher on more modern CPUs. Supporting this in Bitcoin would mean a "soft fork" like the one done recently for pay-to-script-hash support. 
 
 Algorithms exist to accelerate batch verification over elliptic curve signatures. This means if there are several inputs that are signing with the same key, it's possible to check their signatures simultaneously for another 9x speedup. This is a somewhat more complex implementation, however, it can work with existing signatures (clients don't need upgrading).
 
-Assuming no upgrades to lightweight/SPV clients, so just batch verification, we can reach 40,000 transactions per second which is far beyond the traffic levels of the entire credit card system. And with ed25519 we could go up to nearly half a million transactions per second - with todays hardware!
+Assuming no upgrades to lightweight/SPV clients, so just batch verification, we can reach 40,000 transactions per second which is far beyond the traffic levels of the entire credit card system. And with ed25519 we could go up to nearly half a million transactions per second - with todays hardware! At these speeds it is likely that bandwidth to disk would become the primary limiting factor.
 
 
 ###Simplified payment verification
@@ -63,7 +65,7 @@ It's possible to build a Bitcoin implementation that does not verify everything,
 
 In Simplified Payment Verification (SPV) mode, named after the section of Satoshi's paper that describes it, clients connect to an arbitrary full node and download only the block headers. They verify the chain headers connect together correctly and that the difficulty is high enough. They then request transactions matching particular patterns from the remote node (ie, payments to your addresses), which provides copies of those transactions along with a Merkle branch linking them to the block in which they appeared. This exploits the Merkle tree structure to allow proof of inclusion without needing the full contents of the block. 
 
-As a further optimization, block headers that are buried sufficiently deep can be thrown away after some time (eg, you only really need to store say 1000 blocks).
+As a further optimization, block headers that are buried sufficiently deep can be thrown away after some time (eg, you only really need to store say 5000 blocks).
 
 The level of difficulty required to obtain confidence the remote node is not feeding you fictional transactions depends on your threat model. If you are connecting to a node that is known to be reliable, the difficulty doesn't matter. If you want to pick a random node, the cost for an attacker to mine a block sequence containing a bogus transaction should be higher than the value to be obtained by defrauding you. By changing how deeply buried the block must be, you can trade off confirmation time vs cost of an attack.
 
