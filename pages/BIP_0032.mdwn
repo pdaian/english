@@ -53,6 +53,7 @@ To define (k<sub>n</sub>,c<sub>n</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
 * k<sub>n</sub> is equal to I<sub>L</sub>*k<sub>par</sub> (mod n).
 * c<sub>n</sub> is equal to I<sub>R</sub>.
+In case I<sub>L</sub> is 0, the resulting key is invalid.
 
 We also define a version that operates on extended public keys instead of private ones: (K<sub>n</sub>,c<sub>n</sub>) = CKD'((K<sub>par</sub>,c<sub>par</sub>),n):
 
@@ -60,6 +61,7 @@ We also define a version that operates on extended public keys instead of privat
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
 * K<sub>n</sub> is equal to I<sub>L</sub>*K<sub>par</sub>.
 * c<sub>n</sub> is equal to I<sub>R</sub>.
+In case I<sub>L</sub> is 0, the resulting key is invalid.
 
 Note that the extended public key corresponding to the evaluation of CKD(x,n) is identical to the evaluation of CKD'(X,n), with X the extended public key corresponding to x. Symbolically, CKD(x,n)*G = CKD'(x*G,n). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
 
@@ -99,7 +101,8 @@ The total number of possible extended keypairs is almost 2^512, but the produced
 * Generate a seed S of a chosen length (at least, but not limited to, 128 bits) from a (P)RNG.
 * Calculate I = HMAC-SHA512(key="Bitcoin seed", msg=S)
 * Split I into two 32-byte sequences, I<sub>l</sub> and I<sub>r</sub>.
-* Use I<sub>l</sub> as master secret key, and I<sub>r</sub> as master chain code.
+* Use I<sub>l</sub> (mod n) as master secret key, and I<sub>r</sub> as master chain code.
+In case I<sub>l</sub> is 0, the master key is invalid.
 
 [[BIP32-derivation.png]]
 
@@ -146,6 +149,9 @@ To comply with this standard, a client must at least be able to import an extend
 Private and public keys must be kept safe as usual. Leaking a private key means access to coins - leaking a public key can mean loss of privacy.
 
 Somewhat more care must be taken regarding extended keys, as these correspond to an entire (sub)tree of keys. One weakness that may not be immediately obvious, is that knowledge of the extended public key + a private key descending from it is equivalent to knowing the extended private key (i.e., every private and public key). This means that extended public keys must be treated more carefully than regular public keys.
+
+We rely on resistance against (partial) preimages in HMAC-SHA512 to prevent I<sub>L</sub> in key derivation and master key generation from being zero.
+
 
 ##Test Vectors
 
