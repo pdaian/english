@@ -94,6 +94,8 @@ This 78 byte structure can be encoded like other Bitcoin data in Base58, by firs
 
 Note that the fingerprint of the parent only serves as a checksum here, and software must be willing to deal with collisions. Internally, the full 160-bit identifier could be used.
 
+When importing a serialized extended public key, implementations must verify whether the X coordinate in the public key data corresponds to a point on the curve. If not, the extended public key is invalid.
+
 ###Master key generation
 
 The total number of possible extended keypairs is almost 2^512, but the produced keys are only 256 bits long, and offer about half of that in terms of security. Therefore, master keys are not generated directly, but instead from a potentially short seed value.
@@ -145,6 +147,13 @@ When an unsecure webserver is used to run an e-commerce site, it needs to know p
 To comply with this standard, a client must at least be able to import an extended public or private key, to give access to its direct descendants as wallet keys. The wallet structure (master/account/chain/subchain) presented in the second part of the specification is advisory only, but is suggested as a minimal structure for easy compatibility - even when no separate accounts or distinction between internal and external chains is made. However, implementations may deviate from it for specific needs; more complex applications may call for a more complex tree structure.
 
 ##Security
+
+In addition to the expectations from the EC public-key cryptography itself:
+
+* Given a public key K, an attacker cannot find the corresponding private key more efficiently than by solving the EC discrete logarithm problem (assumed to require 2<sup>128</sup> group operations).
+, the intended security properties of this standard are:
+
+* Given a child extended private key (k<sub>n</sub>,c<sub>n</sub>) and the integer n, an attacker cannot find the parent private key k<sub>par</sub> more efficiently than a 2<sup>256</sup> brute force of HMAC-SHA512.
 
 Private and public keys must be kept safe as usual. Leaking a private key means access to coins - leaking a public key can mean loss of privacy.
 
