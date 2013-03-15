@@ -1,0 +1,191 @@
+# Pictures
+ [[!img "Avalon-case.jpg" size=320x320]]  [[!img "Avalon-eth-wifi.jpg" size=320x320]]  [[!img "Avalon-side-1.jpg" size=320x320]]
+
+ [[!img "Avalon-side-2.jpg" size=320x320]]  [[!img "Avalon-fan.jpg" size=320x320]]  [[!img "Avalon-modular-4.jpg" size=320x320]]
+
+ [[!img "Avalon-detail.JPG" size=320x320]]  [[!img "Avalon-side-3.jpg" size=320x320]]
+
+ [[!img "Avalon-IR-1.jpg" size=320x320]]  [[!img "Avalon-IR-2.jpg" size=320x320]]
+
+# Hardware Information
+## [https://bitcointalk.org/index.php?topic=120184.msg1294416#msg1294416 Chip Specification]=
+	Technology Summary:
+	TSMC 0.11- micron G process
+	5 Metal
+	Core Voltage: 1.2 V
+	I/O Voltage: 3.3 V
+	Core Frequency: 256+ MHz
+	Number of Pads: 48
+	8 Data
+	40+1 Power
+	Package Type: QFN48 -0.5 Pitch
+	Packaged Chip Size: 7 mm x 7 mm
+	
+	Chip Interface
+	Data Pins (8 in total):
+	Clock                     i
+	Serial Data In  [[2]]       i
+	Serial Data Out [[2]]       o
+	Serial Data Bypass [[2]]    o
+	Reserved    [[1]]    -
+
+## Wafer
+	TSMC
+	TMEM91
+	Chip Size :   X = 3.9760 ,Y = 4.0560 mm
+	Reticle Size :   X/cell =  3 ,Y/cell =  3
+	Offset Value :   X = -3.7668 ,Y = -2.2990 mm
+	Alignment Mark :   (118.80,83.20),(-118.80,-83.20)
+	Alignment Mark Tolerant Distance :      1.6 mm
+	Notch Reserved Distance :   7.75 mm
+	Start Distance :   7.75 mm
+	Ring Edge :   3.0 mm
+	Photo Die Number:    4055
+
+## Power
+	Chip power efficienty: 6.6W/GHs @ 1.15 V
+	Module power consumption: 149W @ 20GHs/ 164W@ 22GHs
+	Machine power consumption: 595W @ 220V-AC/ 620W @ 120V-AC
+
+# User Guide
+ [[!img "Avalon-cgminer-status-screenshot.png" size=320x320]]  [[!img "Avalon-cgminer-config-screenshot.png" size=320x320]]
+
+* Connect your laptop to the eithernet port of the Avalon
+* Setup your laptop IP address 192.168.0.101
+* Open http://192.168.0.100
+* Make sure WR703N can access Internet, Configure WiFi:  Network -> WIFI -> Scan(select your WIFI network) -> Join Network -> WPA passphrase -> Submit -> Save & Apply for connect to WIFI Internet
+* setup your mining worker: Status -> Cgminer Configuration. 
+* Stop then Start the cgminer service (Restart not working. it's a known bug):  System -> Startup, 
+* Check your avalon status:  Status -> Cgminer Status
+* Setup password/using ssh
+	ssh root@192.168.0.100 # Once you setup the password the telnet service will be stop. use ssh instead.
+
+## Cgminer option
+**--avalon-options 115200:24:10:45:282**. this is the default avalon option. here is the details:
+	**115200**: the serial baud. this have to match the controller baud.
+	**24**: the miner count.(there are 3 modulars in avalon. each modular have 8 miners), if your avalon have 4 modulars. change it to 32
+	**10**: the chip count pre miner.
+	**45**: the controller timeout parameter. the valid number: 50, 47, 45, 40.
+	**282**: the chip clock. the valid number: 256, 270, 282, 300.
+
+## Run cgminer manually
+In case you need to run Cgminer in linux console please run the following command:
+
+* Stop/start Cgminer:
+	# /etc/init.d/cgminer stop
+	# /etc/init.d/cgminer start
+
+If your avalon does not mine properly, please run Cgminer in debug mode with -D --verbose option. For example:
+	# cgminer -S /dev/ttyUSB0 -o stratum.btcguild.com:3333 -O xxxx:yyyy -D --verbose --avalon-options 115200:24:10:45:282 --api-allow "W:0/0" --api-listen 2>/tmp/cgminer-debug.log
+
+## TP-LINK TL-WR703N
+There is a modify version of TP-LINK TP-WR703N inside Avalon. cgminer running at 703n, this 703n have 64MB ram and modified power supply. it power from the usb-client side(we moved a 0R resistor from J1 to R113 for that)
+
+Why there is a ugly USB HUB there? because some compatibility problems come out if you connect the 703N to the controller board directly. add a HUB can 99.999% solve this problem.
+
+After review this issue, i think maybe one or two HUB ports damaged during the delivery. just change to another USB port and try please.
+
+* Latest Avalon images is [here](http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin).
+* Reflash
+	System -> Backup / Flash Firmware -> Flash new firmware image (make sure **Keep settings** is checked)
+
+**Attention:** To avoid your WR703N become a brick, during flash your WR703N be careful DO NOT power off avalon, and DO NOT break your network connection. Just wait there till you see OpenWrt login web page again.
+
+**Attention:** If not essential please do not re-Flash your Avalon. Because not all of WR703N issue could be resolved by reset button. If you want to play WR703N I would like to recommend you order a standalone TP-LINK WR703N from ebay or somewhere for studying purpose.
+
+## WIFI or Ethernet Cable ?
+Avalon shipped with a 9db antenna after connect it to WR703N usually could establish good wireless connection with your WIFI router. But if for some reason you would like to use Ethernet Cable to connect Avalon with your network, please login OpenWrt and configure the LAN port:
+	Network -> Interfaces -> LAN -> Edit -> Common Configuration -> General Setup
+
+**Attention:** You need to configure it correctly based on your own network enviroment. If anything wrong you might could not access your WR703N any more.
+
+## Start to mine
+To maximize your Avalon miner's performance, it is recommended that you choose pools with the stratum protocol supported. The default mining pool configured in Avalon is ozco.in. To change it login to OpenWrt:
+	Status -> Cgminer Configuration
+
+Click "Save & Apply" to save your update. To make it take effect immediately you need to restart the cgminer
+	System -> Startup -> cgminer # click **Ｓtop** then **Start**. the Restart not working.
+
+Currently the stratum pools that could work stable with Avalon are:
+[ozco](http://www.ozco.in)
+[btcguild](http://www.btcguild.com)
+
+To get more information about how to configure specific pools, please check their website. If you run multiple Avalons, we recommend that you create a dedicated worker for each of them. This will make it easier to monitor your Avalons through the pool's website and identify possible problems.
+
+## Source code
+
+* https://github.com/BitSyncom/cgminer/tree/avalon
+* https://github.com/BitSyncom/cgminer-openwrt-packages
+* https://github.com/BitSyncom/luci/tree/cgminer-webui
+* https://github.com/BitSyncom/avalon-extras
+
+## FPGA controller
+About P5 jumper: close this jumper will supply 5V to the USB-B port. in this system, the controller board power the HUB and the HUB power the 703N. but if you connect the controller itself to a PC, you must remove the jumper.
+
+## Others
+
+* There is a pair of gloves in Avalon package. please put it on when assembling or carrying.
+
+* About the plastic sheets: please **remove them BEFORE** mining. we design the case as a part of heatsink, so remove the plastic sheets is a must
+
+* About FAN change: **DO NOT** change the fans to a low speed model. will cause over heat. **DO NOT** install extra fans at the rear "fan socket". will cause PSU over heat and nearly useless for module cooling.
+
+* About install extra heat-sinks on each avalon chip: please do not do that. there is a air gap between the die and package top, install a heatsink on chip is useless. and will cause overheating. because  the top PCB copper act as a heatsink too. do not cover them.
+
+* About water cooling: yes, do it.
+
+# [http://downloads.qi-hardware.com/people/xiangfu/avalon/ Firmware]
+
+* Latest Firmware http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin
+
+# How to Compile Your Own WR703N Firmware for Avalon
+1. First check if you have met the building prerequisites. Checkout this page first [OpenWrt Buildroot – Installation](http://wiki.openwrt.org/doc/howto/buildroot.exigence)
+
+For example, if your OS is Ubuntu 12.04 LTS, install the required packages like this:
+	sudo apt-get update
+	sudo apt-get install subversion build-essential
+	sudo apt-get install build-essential subversion git-core libncurses5-dev zlib1g-dev gawk flex quilt libssl-dev xsltproc libxml-parser-perl
+
+2. Now get the source code.
+	mkdir avalon
+	cd avalon
+	svn co svn://svn.openwrt.org/openwrt/trunk@35097 openwrt
+	git clone https://github.com/BitSyncom/cgminer-openwrt-packages.git
+	git clone https://github.com/BitSyncom/luci.git
+	git clone https://github.com/BitSyncom/cgminer.git cgminer-20130108
+
+3. Prepare the code and build.
+	cp -R cgminer-openwrt-packages/cgminer openwrt/package
+	tar -zcvf cgminer-20130108-HEAD.tar.gz cgminer-20130108
+	python -m SimpleHTTPServer&
+	cd openwrt
+	ln -s package/cgminer/root-files files
+	ln -s package/cgminer/data/feeds.conf
+	cp package/cgminer/data/config .config
+	sed -i 's/ck.kolivas.org\/apps\/cgminer\//localhost:8000\//g' openwrt/package/cgminer/Makefile
+	./scripts/feeds update -a &&  ./scripts/feeds install -a
+	cp package/cgminer/data/config .config #overwrite again
+	make -j4
+	cd ../luci
+	git checkout cgminer-webui
+	cp -R applications/luci-cgminer ../openwrt/build_dir/target-mips_r2_uClibc-0.9.33.2/luci-trunk+svn9679/applications/
+	cd ../openwrt
+	make -j4
+
+4. Finally you could get the freshly built firmware files under openwrt/bin/ar71xx/
+
+# IRC: ##avalon @freenode.net
+	**##avalon @freenode.net** Thanks to midnightmagic create that channel
+
+# FAQ
+
+* Why ASIC bitcoin mining?
+* Why Avalon?
+* Who made Avalon?
+* How to order one?
+
+# Links
+
+* http://launch.avalon-asics.com/
+* [Avalon ASIC users thread](https://bitcointalk.org/index.php?topic=140539.0;all)
+* http://garzikrants.blogspot.de/2013/01/avalon-asic-miner-review.html
