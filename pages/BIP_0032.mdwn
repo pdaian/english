@@ -154,7 +154,11 @@ In addition to the expectations from the EC public-key cryptography itself:
 the intended security properties of this standard are:
 
 * Given a child extended private key (k<sub>n</sub>,c<sub>n</sub>) and the integer n, an attacker cannot find the parent private key k<sub>par</sub> more efficiently than a 2<sup>256</sup> brute force of HMAC-SHA512.
-* Given any number (2 <= N <= 2<sup>32</sup>-1) of (index, extended private key) tuples (i,(p<sub>i</sub>,c<sub>i</sub>)), with distinct i's, determining whether they are derived from a common parent extended private key (i.e., whether there exists a (p<sub>par</sub>,c<sub>par</sub>) such that for each i in [[1..N]] CKD((p<sub>par</sub>,c<sub>par</sub>),i)=(p<sub>i</sub>,c<sub>i</sub>)), cannot be done more efficiently than a 2<sup>256</sup> brute force of HMAC-SHA512.
+* Given any number (2 <= N <= 2<sup>32</sup>-1) of (index, extended private key) tuples (i<sub>j</sub>,(p<sub>j</sub>,c<sub>j</sub>)), with distinct i<sub>j</sub>'s, determining whether they are derived from a common parent extended private key (i.e., whether there exists a (p<sub>par</sub>,c<sub>par</sub>) such that for each j in [[0..N-1]] CKD((p<sub>par</sub>,c<sub>par</sub>),i<sub>j</sub>)=(p<sub>j</sub>,c<sub>j</sub>)), cannot be done more efficiently than a 2<sup>256</sup> brute force of HMAC-SHA512.
+Note however that the following properties does not exist:
+
+* Given a parent extended public key (K<sub>par</sub>,c<sub>par</sub>) and a child public key (K<sub>n</sub>), it is hard to find n.
+* Given a parent extended public key (K<sub>par</sub>,c<sub>par</sub>) and a child private key (k<sub>n</sub>), it is hard to find k<sub>par</sub>.
 
 Private and public keys must be kept safe as usual. Leaking a private key means access to coins - leaking a public key can mean loss of privacy.
 
