@@ -1,11 +1,17 @@
 
-The Bitcoin [[Protocol_specification]] supports the broadcast of [[Alerts]]. An unofficial email relay is now provided that rebroadcasts these [[block_chain]] alerts via subscription to the bitcoin unofficial alert mailing list [(1)](https://groups.google.com/forum/#!forum/bitcoin-unofficial-alerts). Alternatively, to subscribe via email send an email to bitcoin-unofficial-alerts+subscribe@googlegroups.com [(2)](mailto:bitcoin-unofficial-alerts+subscribe@googlegroups.com).
+The Bitcoin [[Protocol_specification]] supports the broadcast of [[Alerts]]. An unofficial email relay is now provided that rebroadcasts these [[block_chain]] alerts via subscription to the bitcoin unofficial alert mailing list [(1)](https://groups.google.com/forum/#!forum/bitcoin-unofficial-alerts). Alternatively, to subscribe via email send an email to **bitcoin-unofficial-alerts+subscribe@googlegroups.com** [(2)](mailto:bitcoin-unofficial-alerts+subscribe@googlegroups.com) and you should receive an email asking you to verify your subscription.
 
-If you receive an alert you should **immediately verify it is official** by running "bitcoind getinfo", go to http://bitcoin.org [[http://www.bitcoin.org]] to find out more details concerning the alert, or join the #bitcoin IRC channel on freenode.
+##Verify alerts and obtain the latest status information
+If you receive an alert you should **immediately verify it is official** by running "bitcoind getinfo" (but see notes below), go to bitcoin.org [[http://www.bitcoin.org]] to obtain more details and background, or join the #bitcoin [[IRC_channels]] on freenode to obtain the latest information.
 
-Alerts are independent of blocks or transactions, and have a defined time-to-live. The email relay polls bitcoind every 5 minutes and will continue to send alerts until the alert is cleared.
+##Notes
 
-Please send any comments or requests to Gary Mulder [(3)](mailto:flyingkiwiguy@gmail.com).
+* Alerts are bitcoind are sent to a specified range of bitcoin versions. The email relay uses a specially patched version of bitcoind that should report and therefore relay *any* alert broadcast for *any* version.
+* Alerts are also independent of blocks or transactions, and have a defined time-to-live.
+* The email relay polls bitcoind every five minutes and will continue to (re-)email alerts every five minutes until the alert is ended by the core bitcoind [[Developers]].
+
+##Feedback
+Please send any comments or requests to Gary Mulder [(1)](mailto:flyingkiwiguy@gmail.com).
 
 [[!tag "Services"]]
 [[!tag "Developer"]]
