@@ -8,7 +8,7 @@ If you receive an alert you should **immediately verify it is official** by runn
 
 * Alerts are broadcast to a specified range of bitcoin versions. The email relay uses a specially patched version of bitcoind that should report and therefore relay *any* alert broadcast for *any* version.
 * Alerts are also independent of blocks or transactions, and have a defined time-to-live.
-* The email relay polls bitcoind every five minutes and will continue to (re-)email alerts every five minutes until the alert is ended by the core bitcoind [[Developers]].
+* The email relay polls bitcoind every six minutes and will continue to (re-)email alerts every six minutes until the alert is ended by the core bitcoind [[Developers]].
 
 ##Feedback
 Please send any comments or requests to Gary Mulder [(1)](mailto:flyingkiwiguy@gmail.com).
