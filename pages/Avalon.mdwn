@@ -121,6 +121,14 @@ To get more information about how to configure specific pools, please check thei
 ## FPGA controller
 About P5 jumper: close this jumper will supply 5V to the USB-B port. in this system, the controller board power the HUB and the HUB power the 703N. but if you connect the controller itself to a PC, you must remove the jumper.
 
+## P2Pool Operation with Avalon
+There is an /avalon branch Forrest committed to the p2pool github repository. Make sure that is checked out.
+
+Next, include the option:
+	**--fix-protocol**: Do not redirect to a different getwork protocol (eg. stratum)
+
+This will correct the Avalon's communications with P2Pool. Without this option, the default operation will spam share submissions and duplicate work to your running P2Pool instance.
+
 ## Others
 
 * There is a pair of gloves in Avalon package. please put it on when assembling or carrying.
