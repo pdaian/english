@@ -37,7 +37,7 @@ A Bitcoin address is based on any [[ECDSA]] [[secp256k1]] public/private [[key_p
 A Bitcoin address is the Base58Check encoding of the hash of the associated [[script]].  Specifically, it is Base58Check(version byte,[[RIPEMD160]]([[SHA256]]([[script]]))), with the following constraints:
 
 * [[RIPEMD160]] and [[SHA256]] in this case are always exactly 20 and 32 unsigned bytes respectively.  These are big-endian (most significant byte first).  (Beware of [[bignumber]] implementations that clip leading 0x00 bytes, or prepend extra 0x00 bytes to indicate sign - your code must handle these cases properly or else you may generate valid-looking addresses which can be sent to, but cannot be spent from - which would lead to the permanent loss of coins.)
-* version byte is 0x00 for pay-to-address, version_byte is 0x05 for pay-to-script-hash.
+* version byte is 0x00 for pay-to-address, version byte is 0x05 for pay-to-script-hash.
 
 Bitcoin addresses that use the version byte 0x00 start with the digit '1'. Bitcoin addresses that use the version byte 0x05 start with the digit '3'.
 
