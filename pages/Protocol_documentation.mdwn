@@ -26,15 +26,27 @@ For bitcoin addresses (RIPEMD-160) this would give:
 
 ### Merkle Trees
 
-Merkle trees are binary trees of hashes. Merkle trees in bitcoin use **Double** SHA-256, and are built up as so:
-	
-	hash(a) = sha256(sha256(a))
-	
-	hash(a) hash(b) hash(c)
-	hash(hash(a)+hash(b)) hash(hash(c)+hash(c))
-	hash(hash(hash(a)+hash(b))+hash(hash(c)+hash(c)))
+Merkle trees are binary trees of hashes. Merkle trees in bitcoin use a **double** SHA-256, the SHA-256 hash of the SHA-256 hash of something.
 
-They are paired up, with the last element being _duplicated_.
+If, when forming a row in the tree (other than the root of the tree), it would have an odd number of elements, the final double-hash is duplicated to ensure that the row has an even number of hashes.
+
+First form the bottom row of the tree with the ordered double-SHA-256 hashes of the byte streams of the transactions in the block.
+
+Then the row above it consists of half that number of hashes.  Each entry is the double-SHA-256 of the 64-byte concatenation of the corresponding two hashes below it in the tree.
+
+This procedure repeats recursively until we reach a row consisting of just a single double-hash.  This is the **merkle root** of the tree.
+
+For example, imagine a block with three transactions *a*, *b* and *c*.   The merkle tree is: 
+
+	d6=dhash(d4 concat d5)
+	d4=dhash(d1 concat d2) d5=dhash(d3 concat d3)
+	d1=dhash(a) d2=dhash(b) d3=dhash(c) d3=dhash(c)
+
+where
+	
+	dhash(a) = sha256(sha256(a))
+
+**d6** is the merkle root of the 3 transactions in this block.
 
 Note: Hashes in Merkle Tree displayed in the [[Block_Explorer]] are of little-endian notation. For some implementations and [calculations](http://www.fileformat.info/tool/hash.htm), the bits need to be reversed before they are hashed, and again after the hashing operation.
 
