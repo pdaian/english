@@ -146,43 +146,50 @@ This will correct the Avalon's communications with P2Pool. Without this option, 
 * Latest Firmware http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin
 
 ## NEXT
-	* Add device_reinit support
-	* Add frequency and modular configure on web ui
-	* Add API Allow on web ui
-	* Fliter >=100 degree result
-	* Idle chip when cgminer close avalon
-	* Idle chip after detect avalon, save power and protect your avalon overheat
-	* Start cgminer whateven ntpd return
-	* Add stratum+tcp:// by default
-	* Display Frequency on status page
+
+* Add device_reinit support
+* Add frequency and modular configure on web ui
+* Add API Allow on web ui
+* Fliter >=100 degree result
+* Idle chip when cgminer close avalon
+* Idle chip after detect avalon, save power and protect your avalon overheat
+* Start cgminer whateven ntpd return
+* Add stratum+tcp:// by default
+* Display Frequency on status page
 
 ##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130225.bin 20130225]
-	* A new cgminer status page
-	* /etc/avalon_version include all repo commit
-	* Fix temp_history_count, make sure 2~3s call adjuest_fan
 
-	==[20130218](http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130218.bin)==
-	* Update adjust_fan()
-	* Using avaon default worker
+* A new cgminer status page
+* /etc/avalon_version include all repo commit
+* Fix temp_history_count, make sure 2~3s call adjuest_fan
+
+##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130218.bin 20130218]
+
+* Update adjust_fan()
+* Using avaon default worker
 
 ##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130212.bin 20130212]
-	* Update fan pwm
+
+* Update fan pwm
 
 ##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130205.bin 20130205]
-	* Update fan pwm MAX/MIN
-	* Sync with upstream, fix the memory leak bug
-	* Monitor the Accept number
+
+* Update fan pwm MAX/MIN
+* Sync with upstream, fix the memory leak bug
+* Monitor the Accept number
 
 ##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130127.bin 20130127]
-	* Add overclock code
-	* Change the cgminer configure to UCI system
-	* Add the simple web ui
+
+* Add overclock code
+* Change the cgminer configure to UCI system
+* Add the simple web ui
 
 ##20130117
-	* Update OpenWRt to r35097
-	* Update cgminer to 2.10.4
-	* Remove /www/miner.php, change cgminer cron job to */5
-	* Start ntpd before start cgminer
+
+* Update OpenWRt to r35097
+* Update cgminer to 2.10.4
+* Remove /www/miner.php, change cgminer cron job to */5
+* Start ntpd before start cgminer
 
 ## Unofficial Firmware
 
