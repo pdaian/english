@@ -54,7 +54,7 @@
 * Open http://192.168.0.100
 * Make sure WR703N can access Internet, Configure WiFi:  Network -> WIFI -> Scan(select your WIFI network) -> Join Network -> WPA passphrase -> Submit -> Save & Apply for connect to WIFI Internet
 * setup your mining worker: Status -> Cgminer Configuration. 
-* Stop then Start the cgminer service (Restart not working. it's a known bug):  System -> Startup, 
+* Restart the cgminer service:  System -> Startup, 
 * Check your avalon status:  Status -> Cgminer Status
 * Setup password/using ssh
 	ssh root@192.168.0.100 # Once you setup the password the telnet service will be stop. use ssh instead.
@@ -103,7 +103,7 @@ To maximize your Avalon miner's performance, it is recommended that you choose p
 	Status -> Cgminer Configuration
 
 Click "Save & Apply" to save your update. To make it take effect immediately you need to restart the cgminer
-	System -> Startup -> cgminer # click **Ｓtop** then **Start**. the Restart not working.
+	System -> Startup -> cgminer # click **Restart**.
 
 Currently the stratum pools that could work stable with Avalon are:
 [ozco](http://www.ozco.in)
