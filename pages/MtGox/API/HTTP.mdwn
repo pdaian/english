@@ -2,10 +2,13 @@ Two versions of the HTTP API are currently available, see the following pages fo
 
 * [[Version 0|MtGox/API/HTTP/v0]]
 * [[Version 1|MtGox/API/HTTP/v1]]
+Version 2 Exists. Its very similar to API 1 although the method of which you hash your signature now includes the URL for better security.
 
 ## Summary
 
-All HTTP API requests are sent to URLs beginning with <nowiki>https://mtgox.com/api/*</nowiki>. It allows placing orders, performing withdrawls, deposits, and other things. All responses are in [JSON](http://json.org/) format.
+**The URL mtgox.com was changed to data.mtgox.com on March 19th 2013. https://bitcointalk.org/index.php?topic=150786.0**
+
+All HTTP API requests are sent to URLs beginning with <nowiki>https://data.mtgox.com/api/*</nowiki>. It allows placing orders, performing withdrawls, deposits, and other things. All responses are in [JSON](http://json.org/) format.
 
 There is a [Ruby gem](https://rubygems.org/gems/mtgox), [guten-mtgox](https://rubygems.org/gems/guten-mtgox) and a [Perl module](Finance::MtGox) available for interacting with the HTTP API.
 
