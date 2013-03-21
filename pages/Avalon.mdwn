@@ -195,6 +195,17 @@ This will correct the Avalon's communications with P2Pool. Without this option, 
 * Remove /www/miner.php, change cgminer cron job to */5
 * Start ntpd before start cgminer
 
+## Test Plan
+
+* New firmware don't break Avalon for sure
+* New firmware don't use all flash. have to keep some space for save configuration
+* Either and WiFI connect works fine
+* Cgminer works fine(the kernel user driver, cgminer it self, cgminer-monitor and uci configurations files)
+* After configure cgminer. [& Apply](Save) can restart the cgminer
+* The Status/API log page works fine
+* Test mining
+* Make sure 80/22/4028 open on WAN.
+
 ## Unofficial Firmware
 
 * [Untested BFGMiner 3.0 alpha1 for Avalon](https://bitcointalk.org/?topic=78192.msg1566545#msg1566545)
