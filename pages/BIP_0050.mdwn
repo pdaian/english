@@ -10,7 +10,7 @@
 </pre>
 
 ##What went wrong
-A block that had a larger number of total transaction inputs than previously seen was mined and broadcast. Bitcoin 0.8 nodes were able to handle this, but some pre-0.8 Bitcoin nodes rejected it, causing an unexpected hard fork of the chain. The pre-0.8 incompatible chain at that point had around 60% of the hash power ensuring the split did not automatically resolve.
+A block that had a larger number of total transaction inputs than previously seen was mined and broadcasted. Bitcoin 0.8 nodes were able to handle this, but some pre-0.8 Bitcoin nodes rejected it, causing an unexpected hard fork of the chain. The pre-0.8 incompatible chain at that point had around 60% of the hash power ensuring the split did not automatically resolve.
 
 In order to restore a canonical chain as soon as possible, BTCGuild and Slush downgraded their Bitcoin 0.8 nodes to 0.7 so their pools would also reject the larger block. This placed majority hashpower on the chain without the larger block.
 
