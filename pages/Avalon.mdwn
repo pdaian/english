@@ -149,6 +149,13 @@ This will correct the Avalon's communications with P2Pool. Without this option, 
 
 * The Avalon Firmware SDK is [here](http://downloads.qi-hardware.com/people/xiangfu/avalon/latest/)
 
+## [http://downloads.qi-hardware.com/people/xiangfu/avalon/next-testing/ NEXT]
+
+* Reset then Idle avalon before close it.
+* Only record matched result (Should fix the temp/fan jumping issue)
+* Fix no_matching_work only count in debug mode
+* Update cgminer-monitor,  fix [[Accept]] give null at the first few seconds of cgminer start
+
 ## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130321/ 20130321]
 <source lang="c">
 If you "check the Keep settings", you need fill API Allow to "W:127.0.0.1" after reflash, edit it here: "http://AVALON_IP/cgi-bin/luci/admin/status/cgminer/", "DO NOT" left it blank
