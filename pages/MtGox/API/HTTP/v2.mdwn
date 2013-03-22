@@ -1,0 +1,25 @@
+## API Version 2: 
+**https://data.mtgox.com/api/2/**<br />
+
+The requested path (anything after the /2/) must now be included when you compute your hashed signature (Rest-Sign) for added security.<br />
+
+##### Explanation: 
+
+This is how it was done for version 1: <br />
+
+You have your params(post_data) = the word nonce, followed by the actual *nonce* integer (params = [[(u'nonce',nonce)]]) <br />
+
+You have your header made up of *Rest-Key* (your API-KEY) and *Rest-Sign* (a hashed signature)<br />
+
+Rest-Sign is created by doing : base64encode( HMAC hash( base64decoded(API-secret), the nonce, with SHA512 digest))<br />
+
+**What differs in version 2 is now** : BEFORE the nonce, you are adding the **relative path you are requesting**(ie: BTCUSD/money/ticker) **+ a NUL char (ascii code 0)**.<br />
+
+So in my python code below which is very readable you can see everything remains the same as API v1 except now we are using api2postdatatohash = path + chr(0) + post_data          #new way to hash for API 2, includes path + NUL. <br />
+
+
+
+### Code Examples:
+C# : http://pastebin.com/ZdfCszQr<br />
+
+Python: http://pastebin.com/d6CD3nCM<br />
