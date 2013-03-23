@@ -53,7 +53,7 @@ To define (k<sub>i</sub>,c<sub>i</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
 * k<sub>i</sub> is equal to I<sub>L</sub>*k<sub>par</sub> (mod n).
 * c<sub>i</sub> is equal to I<sub>R</sub>.
-In case I<sub>L</sub> is 0 or >=n, the resulting key is invalid, and one should proceed with the next value for i.
+In case I<sub>L</sub> is 0 or >=n, the resulting key is invalid, and one should proceed with the next value for i (note that this has a chance lower than 1 in 2<sup>127</sup>).
 
 We also define a version that operates on extended public keys instead of private ones: (K<sub>i</sub>,c<sub>i</sub>) = CKD'((K<sub>par</sub>,c<sub>par</sub>),i):
 
