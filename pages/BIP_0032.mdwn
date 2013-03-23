@@ -45,7 +45,7 @@ We represent an extended private key as (k,c), with k the normal private key, an
 
 ###Child key derivation function
 
-We define the child key derivation function CKD((k<sub>par</sub>,c<sub>par</sub>),n), which takes a parent extended secret key (k<sub>par</sub>,c<sub>par</sub>) and a 32-bit integer i, to produce a child extended secret key (k<sub>i</sub>,c<sub>i</sub>).
+We define the child key derivation function CKD((k<sub>par</sub>,c<sub>par</sub>),i), which takes a parent extended secret key (k<sub>par</sub>,c<sub>par</sub>) and a 32-bit integer i, to produce a child extended secret key (k<sub>i</sub>,c<sub>i</sub>).
 
 To define (k<sub>i</sub>,c<sub>i</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),i):
 
