@@ -23,7 +23,8 @@
 |[[CVE-2013-2292|#CVE-2013-2292]]|2013-01-30|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=limeHard|A transaction that takes at least 3 minutes to verify|bgcolor=pink[-](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132292)
 |[[CVE-2013-2293|#CVE-2013-2293]]|2013-02-14|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Continuous hard disk seek|bgcolor=pink[52%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132293)
 |[[Pending|#Unassigned-20120311]]|2013-03-11|bitcoind and Bitcoin-Qt 0.8|bgcolor=pinkFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Unenforced block protocol rule|?
-|[[BIP 0034|#BIP-0034]]|Future|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.8)|Mandatory block protocol update|bgcolor=yellow[88%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0034.html)
+|[[BIP 0034|#BIP-0034]]|Near Future|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.8)|Mandatory block protocol update|bgcolor=yellow[88%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0034.html)
+|[[BIP 0050|#BIP-0050]]|2013-05-15|All Bitcoin clients|bgcolor=pinkNetsplit (1.4)|bgcolor=pinkEasy|Hard fork to remove txid limit protocol rule|bgcolor=pink?
 
 
 
@@ -364,10 +365,25 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 * [[BIP_0034]]
 
+## BIP-0050
+
+	<b>Date:</b> 2013-05-15
+	<b>Summary:</b> Hard fork to remove txid limit protocol rule
+	<b>Deployment:</b> ?
+
+
+|Bitcoin-Qt<br>bitcoind |* - 0.4.9rc1<br>0.5.0rc1 - 0.5.8rc1<br>0.6.0rc1 - 0.6.0.11rc1<br>0.6.1rc1 - 0.6.5rc1<br>0.7.0rc1 - 0.7.3rc1 |0.4.9rc2<br>0.5.8rc2<br>0.6.0.12rc1<br>0.6.5rc2<br>0.7.3rc2
+|wxBitcoin |ALL |NONE
+
+
+### References
+
+* [[BIP_0050]]
+
 
 ##Definitions
 
-A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (39.1).
+A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (41.1).
 
 ##See Also
 
@@ -375,7 +391,7 @@ A critical vulnerability is one that will have disastrous consequences if it is 
 
 ##References
 
-39.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
+41.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
 
 
 [[Cateogory:Security]]
