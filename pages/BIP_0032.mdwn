@@ -31,7 +31,7 @@ However, deterministic wallets typically consist of a single "chain" of keypairs
 
 In the rest of this text we will assume the public key cryptography used in Bitcoin, namely elliptic curve cryptography using the field and curve parameters defined by secp256k1 (http://www.secg.org/index.php?action=secg,docs_secg). Variables below are either:
 
-* integers modulo the order of the curve, serialized as 32 bytes, most significant byte first.
+* integers modulo the order of the curve (referred to as n), serialized as 32 bytes, most significant byte first.
 * coordinates of points on the curve, serialized as specified in SEC1 in compressed form: [or 0x03](0x02) + 32 byte x coordinate), where the header byte depends on the parity of the omitted y coordinate.
 * byte sequences
 
@@ -45,31 +45,31 @@ We represent an extended private key as (k,c), with k the normal private key, an
 
 ###Child key derivation function
 
-We define the child key derivation function CKD((k<sub>par</sub>,c<sub>par</sub>),n), which takes a parent extended secret key (k<sub>par</sub>,c<sub>par</sub>) and a 32-bit integer n, to produce a child extended secret key (k<sub>n</sub>,c<sub>n</sub>).
+We define the child key derivation function CKD((k<sub>par</sub>,c<sub>par</sub>),n), which takes a parent extended secret key (k<sub>par</sub>,c<sub>par</sub>) and a 32-bit integer i, to produce a child extended secret key (k<sub>i</sub>,c<sub>i</sub>).
 
-To define (k<sub>n</sub>,c<sub>n</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),n):
+To define (k<sub>i</sub>,c<sub>i</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),i):
 
-* call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=k<sub>par</sub>*G  n), where k<sub>par</sub>*G is the public key corresponding to k<sub>par</sub>,  is concatenation, and n is encoded as a 32 bits unsigned integer, most significant byte first.
+* call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=k<sub>par</sub>*G  i), where k<sub>par</sub>*G is the public key corresponding to k<sub>par</sub>,  is concatenation, and i is encoded as a 32 bits unsigned integer, most significant byte first.
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
-* k<sub>n</sub> is equal to I<sub>L</sub>*k<sub>par</sub> (mod n).
-* c<sub>n</sub> is equal to I<sub>R</sub>.
-In case I<sub>L</sub> is 0, the resulting key is invalid.
+* k<sub>i</sub> is equal to I<sub>L</sub>*k<sub>par</sub> (mod n).
+* c<sub>i</sub> is equal to I<sub>R</sub>.
+In case I<sub>L</sub> is 0 or >=n, the resulting key is invalid, and one should proceed with the next value for i.
 
-We also define a version that operates on extended public keys instead of private ones: (K<sub>n</sub>,c<sub>n</sub>) = CKD'((K<sub>par</sub>,c<sub>par</sub>),n):
+We also define a version that operates on extended public keys instead of private ones: (K<sub>i</sub>,c<sub>i</sub>) = CKD'((K<sub>par</sub>,c<sub>par</sub>),i):
 
-* call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  n), where n is encoded a 32 bits unsigned integer, most significant byte first.
+* call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  i), where i is encoded a 32 bits unsigned integer, most significant byte first.
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
-* K<sub>n</sub> is equal to I<sub>L</sub>*K<sub>par</sub>.
-* c<sub>n</sub> is equal to I<sub>R</sub>.
-In case I<sub>L</sub> is 0, the resulting key is invalid.
+* K<sub>i</sub> is equal to I<sub>L</sub>*K<sub>par</sub>.
+* c<sub>i</sub> is equal to I<sub>R</sub>.
+In case I<sub>L</sub> is 0 or >=n, the resulting key is invalid, and one should proceed with the next value for i.
 
-Note that the extended public key corresponding to the evaluation of CKD(x,n) is identical to the evaluation of CKD'(X,n), with X the extended public key corresponding to x. Symbolically, CKD(x,n)*G = CKD'(x*G,n). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
+Note that the extended public key corresponding to the evaluation of CKD(x,i) is identical to the evaluation of CKD'(X,i), with X the extended public key corresponding to x. Symbolically, CKD(x,i)*G = CKD'(x*G,i). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
 
 The HMAC-SHA512 function is specified in [RFC 4231](http://tools.ietf.org/html/rfc4231).
 
 ###The key tree
 
-The next step is cascading several CKD constructions to build a tree. We start with one root, the master extended key m. By evaluating CKD(m,n) for several values of n, we get a number of first-degree derivative nodes. As each of these is again an extended key, CKD can be applied to those as well. To shorten notation, we will write CKD(CKD(CKD(m,n<sub>1</sub>),n<sub>2</sub>),n<sub>3</sub>) as m/n<sub>1</sub>/n<sub>2</sub>/n<sub>3</sub> now.
+The next step is cascading several CKD constructions to build a tree. We start with one root, the master extended key m. By evaluating CKD(m,i) for several values of i, we get a number of first-degree derivative nodes. As each of these is again an extended key, CKD can be applied to those as well. To shorten notation, we will write CKD(CKD(CKD(m,i<sub>1</sub>),i<sub>2</sub>),i<sub>3</sub>) as m/i<sub>1</sub>/i<sub>2</sub>/i<sub>3</sub> now.
 
 Each leaf node in the tree corresponds to an actual keypair, while the internal nodes correspond to the collection of keypairs that descends from them. The chain codes of the leaf nodes are ignored, and only their embedded private or public key is used. Because of this construction, knowing an extended private key allows reconstruction of all descendant private keys and public keys, and knowing an extended public keys allows reconstruction of all descendant public keys.
 
@@ -86,7 +86,7 @@ Extended public and private keys are serialized as follows:
 * 4 byte: version bytes (mainnet: 0x0488B21E public, 0x0488ADE4 private; testnet: 0x043587CF public, 0x04358394 private)
 * 1 byte: depth: 0x00 for master nodes, 0x01 for level-1 descendants, .... 
 * 4 bytes: the fingerprint of the parent's key (0x00000000 if master key)
-* 4 bytes: child number. This is the number n in x<sub>n</sub> = x<sub>par</sub>/n, with x<sub>n</sub> the key being serialized. This is encoded in MSB order. (0x00000000 if master key)
+* 4 bytes: child number. This is the number i in x<sub>i</sub> = x<sub>par</sub>/i, with x<sub>i</sub> the key being serialized. This is encoded in MSB order. (0x00000000 if master key)
 * 32 bytes: the chain code
 * 33 bytes: the public key or private key data (0x02 + X or 0x03 + X for public keys, 0x00 + k for private keys)
 
@@ -104,7 +104,7 @@ The total number of possible extended keypairs is almost 2^512, but the produced
 * Calculate I = HMAC-SHA512(key="Bitcoin seed", msg=S)
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
 * Use I<sub>L</sub> (mod n) as master secret key, and I<sub>R</sub> as master chain code.
-In case I<sub>L</sub> is 0, the master key is invalid.
+In case I<sub>L</sub> is 0 or >=n, the master key is invalid.
 
 [[BIP32-derivation.png]]
 
@@ -153,12 +153,12 @@ In addition to the expectations from the EC public-key cryptography itself:
 * Given a public key K, an attacker cannot find the corresponding private key more efficiently than by solving the EC discrete logarithm problem (assumed to require 2<sup>128</sup> group operations).
 the intended security properties of this standard are:
 
-* Given a child extended private key (k<sub>n</sub>,c<sub>n</sub>) and the integer n, an attacker cannot find the parent private key k<sub>par</sub> more efficiently than a 2<sup>256</sup> brute force of HMAC-SHA512.
+* Given a child extended private key (k<sub>i</sub>,c<sub>i</sub>) and the integer i, an attacker cannot find the parent private key k<sub>par</sub> more efficiently than a 2<sup>256</sup> brute force of HMAC-SHA512.
 * Given any number (2 <= N <= 2<sup>32</sup>-1) of (index, extended private key) tuples (i<sub>j</sub>,(p<sub>j</sub>,c<sub>j</sub>)), with distinct i<sub>j</sub>'s, determining whether they are derived from a common parent extended private key (i.e., whether there exists a (p<sub>par</sub>,c<sub>par</sub>) such that for each j in [[0..N-1]] CKD((p<sub>par</sub>,c<sub>par</sub>),i<sub>j</sub>)=(p<sub>j</sub>,c<sub>j</sub>)), cannot be done more efficiently than a 2<sup>256</sup> brute force of HMAC-SHA512.
 Note however that the following properties does not exist:
 
-* Given a parent extended public key (K<sub>par</sub>,c<sub>par</sub>) and a child public key (K<sub>n</sub>), it is hard to find n.
-* Given a parent extended public key (K<sub>par</sub>,c<sub>par</sub>) and a child private key (k<sub>n</sub>), it is hard to find k<sub>par</sub>.
+* Given a parent extended public key (K<sub>par</sub>,c<sub>par</sub>) and a child public key (K<sub>i</sub>), it is hard to find i.
+* Given a parent extended public key (K<sub>par</sub>,c<sub>par</sub>) and a child private key (k<sub>i</sub>), it is hard to find k<sub>par</sub>.
 
 Private and public keys must be kept safe as usual. Leaking a private key means access to coins - leaking a public key can mean loss of privacy.
 
