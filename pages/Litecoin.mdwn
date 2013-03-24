@@ -10,9 +10,11 @@ In March 2013, Litecoin reached a market cap of $10 million and acheived a netwo
 #### Scrypt Proof of Work
 Litecoin uses scrypt as a proof-of-work scheme. Scrypt adds memory-intensive algorithms to reduce the efficiency of the kind of parallelization that GPUs offered in early Bitcoin mining. This led to Litecoin primarily being mined with CPUs at the beginning. Later CPU-based mining was largely replaced by more energy-efficient GPU-based mining, currently the dominant Litecoin mining technology.
 
-#### Faster Confirmations
+#### Faster Blocks
 The Litecoin blockchain differs from Bitcoin in that it generates blocks every 2.5 minutes on average (four times Bitcoin's rate).
-This means that merchants who accept 1-confirmation transactions get that first confirmation more quickly. Unfortunately, this increases the number of hashes that are wasted in mining since miners will working from the non-best block more of the time.
+This means that merchants who accept transactions only 1 block deep get that confirmation quicker.
+However, it should be noted that more blocks are required to achieve the same amount of confirmation strength as Bitcoin (6 blocks of litecoin are not equivalent to 6 blocks of bitcoin).
+Unfortunately, this increases the number of hashes that are wasted in mining since miners will working from the non-best block more of the time.
 
 #### 84 Million Litecoins
 Litecoin started with miners generating 50 coins per block as with Bitcoin, but to maintain Bitcoin's inflation rate chage schedule, the block reward gets halved every 840,000 blocks. As a result, the newtork is scheduled to produce a total of 84 million litecoins.
