@@ -128,7 +128,7 @@ About P5 jumper: close this jumper will supply 5V to the USB-B port. in this sys
 ## P2Pool Operation with Avalon
 There is an /avalon branch Forrest committed to the p2pool github repository. Make sure that is checked out.
 
-Next, include the option:
+Next, the following option must be passed to Avalon's cgminer:
 	**--fix-protocol**: Do not redirect to a different getwork protocol (eg. stratum)
 
 This will correct the Avalon's communications with P2Pool. Without this option, the default operation will spam share submissions and duplicate work to your running P2Pool instance.
