@@ -1,10 +1,4 @@
-A lottery style gambling site with 99% payout of a monthly jackpot to an almost always sole winner. Because of this, the odds of winning the lottery are approx 1 out of the total jackpot size. 
-
-The winners are calculated based off of a hash of a block and Mega Millions lottery numbers. This method is used as the operator can not manipulate or cheat who wins.  
-
-The Bitcoin transaction hash of the 0.25 BTC purchase is used as the "pick" and to see who sent it, and therefore know where the winnings should go. The algorithm for converting the winning lotto numbers to the characters in the entrant's Bitcoin transaction hash is documented on BitLotto's site.
-
-Multi-ticket purchases may be made in amounts that are multiples of the 0.25 BTC per-ticket price.  For example, sending 1.0 BTC will result in the equivalent of having bought four ticket entries.  Purchase amounts that are not exact multiples of 0.25 BTC are rounded down.  For example, a 0.30 BTC payment would be treated as just one ticket purchase.  Amounts smaller than the minimum 0.25 BTC purchase price are returned as ineligible.
+BitLotto was an online lottery.  <font color="red">It failed to distribute the payout from March 2013 so further wagering is not recommended</font>.
 
 ##History
 
@@ -12,21 +6,16 @@ The service was launched on April 6th, 2011 (2.1). An extended outage occurred f
 
 The April 4th, 2012 lotto was the first to accommodate multi-ticket purchases (i.e., send an amount that equals the number of tickets times the per-ticket price) (2.3).
 
-On Marcy 17th, 2012 an affiliate program was introduced which allows ticket purchases using an address assigned to the affiliate.  The affiliate earns a 1% commission on all ticket purchases made towards that affiliates address (2.4).
+On March 17th, 2012 an affiliate program was introduced which allows ticket purchases using an address assigned to the affiliate.  The affiliate earns a 1% commission on all ticket purchases made towards that affiliates address (2.4).
 
 The method for choosing a winner was revised using an improved method beginning with the April 6, 2012 and subsequent draws.  BitLotto uses a public processes that selects the winner but a an independent party built an open source tool to verify the results (2.5) (Java).
+
+The March 2013 winner has not been paid out.  The site's operator has not provided an explanation.  
 
 ##Criticism
 When a winner is paid, the funds are sent to the Bitcoin address that bought the winning entry. <b>If the user buys the ticket using an [[eWallet]] service</b> those funds are lost as any winnings will then go to someone else.  The site does clearly provide a warning about this, however.
 
 Unlike other [[gambling|tags/Gambling]] sites, BitLotto requires Bitcoin payments in this specific manner because of how tickets are tracked and winnings paid out. BitLotto has chosen to operate in this way to increase the transparency of the lottery.
-
-##External Sites
-
-* [BitLotto](http://bitlotto.com) website
-* [BitLotto Affiliate](http://bitlotto.com/affiliate.html) website
-* [MegaMillions lottery](http://www.megamillions.com) (source of "winning numbers")
-* [bitlotto archive](https://github.com/sgornick/bitlotto) For tracking of changes to the site.
 
 ##References
 
@@ -36,5 +25,3 @@ Unlike other [[gambling|tags/Gambling]] sites, BitLotto requires Bitcoin payment
 2.4: [Next draw is April 4! March Jackpot was over 100 BTC!](https://bitcointalk.org/index.php?topic=34007.msg806114#msg806114)  
 2.5: [BitLotto Verify on GitHub](http://github.com/baldrickv/BitLottoVerify)
 
-
-[[!tag "Gambling"]]
