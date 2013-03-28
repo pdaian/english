@@ -1,7 +1,40 @@
-[[!template id=stub]]
-
 **Bitcoin-JSON-RPC-Client** is a lightweight Java bitcoin JSON-RPC client binding. It does not require any external dependencies.
 
+##Code example
+
+<source lang="java">
+	private static final Bitcoin bitcoin = new BitcoinJSONRPCClient();
+
+	public static void sendCoins() throws BitcoinException {
+	bitcoin.sendToAddress("1EzGDMdqKW5ubTDNHSqCKciPkybGSvWgrj", 10);
+	}
+
+	public static void receiveCoins() throws BitcoinException {
+	final BitcoinAcceptor acceptor = new BitcoinAcceptor(bitcoin);
+
+	System.out.println("Send bitcoins to " + bitcoin.getNewAddress("NewAccount"));
+
+	acceptor.addListener(new ConfirmedPaymentListener() {
+	HashSet processed = new HashSet();
+
+	@Override
+	public void confirmed(Transaction transaction) {
+	if (!processed.add(transaction.txId()))
+	return; // already processed
+
+	System.out.println("Payment received, amount: " + transaction.amount() + "; account: " + transaction.account());
+	try {
+	if (bitcoin.getBalance("NewAccount") >= 10)
+	acceptor.stopAccepting();
+	} catch (BitcoinException ex) {
+	ex.printStackTrace();
+	}
+	}
+
+	});
+	acceptor.run();
+	}
+</source>
 
 ##See Also
 
