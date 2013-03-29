@@ -153,6 +153,7 @@ This will remove the seed from 'wallet', and save it to a file named 'wallet.see
 |create |create a new wallet |create |no |no
 |deseed |Remove seed from wallet and store it to .seed file  |deseed |no |no
 |eval |call python eval |eval <expression>|no |no
+|getseed |print your seed |seed |yes |no
 |help |display the help for a command |help [[command]]|no |no
 |history |print the transaction history |history |no |yes
 |import |import a keypair |import <address:private_key> |yes |no
@@ -163,7 +164,6 @@ This will remove the seed from 'wallet', and save it to a file named 'wallet.see
 |reseed |take seed from .seed file and add it to wallet (it checks that keys are consistent). |reseed |no |no
 |restore |restore a wallet from seed |restore |no |yes
 |sendtx |broadcast a transaction |sendtx <tx>|no |yes
-|seed |print your seed |seed |yes |no
 |signmessage |sign a message (as in bitcoind) |signmessage <address><message>|yes |no
 |validateaddress |check is the argument is a valid bitcoin address |validateaddress <address>|no |no
 |verifymessage |verify a message (as in bitcoind) |verifymessage <address><signature><message>|no |no
