@@ -98,7 +98,7 @@ The node software for the Bitcoin network is based on peer-to-peer networking, d
 
 Satoshi Nakamoto designed the first Bitcoin node and mining software (13.1) and developed the majority of the first implementation, Bitcoind, from 2007 to mid-2010. (13.2)
 
-Node implementations include core software such as Bitcoind/Bitcoin-Qt, [[libbitcoin]], [[cbitcoin]] (13.3)  and BitCoinJ. (13.4) (13.5)
+Node implementations include core software such as Bitcoind/Bitcoin-Qt, [[libbitcoin]], [[cbitcoin]] (13.3) and [[bitcoinj|BitCoinJ]]. (13.4) (13.5)
 
 Every node in the Bitcoin network collects all the unacknowledged transactions it knows of in a file called a *block*, which also contains a reference to the previous valid block known to that node. It then appends a [[nonce]] value to this previous block and computes the SHA-256 cryptographic hash of the block and the appended nonce value. The node repeats this process until it adds a nonce that allows for the generation of a hash with a value lower than a specified *target*. Because computers cannot practically reverse the hash function, finding such a nonce is hard and requires on average a predictable amount of repetitious trial and error. This is where the *[[proof-of-work]]* concept comes in to play.  When a node finds such a solution, it announces it to the rest of the network. Peers receiving the new solved block validate it by computing the hash and checking that it really starts with the given number of zero bits (i.e., that the hash is within the target). Then they accept it and add it to the chain.
 
