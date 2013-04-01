@@ -56,6 +56,7 @@ These are protocol rules built to prevent DoS:
 
 1. Restricts the block size to 1 megabyte.
 1. Restricts the maximum number of signature checks a transaction input may request
+1. Limits the size of each script (up to 10000 bytes)
 1. Limits the size of each value pushed while evaluating a a script (up to 520 bytes)
 1. Limits the number of expensive operations in a script (up to 201 operations). All but pushs are considered expensive. Also each key argument of signature checking in multi-signature checking (OP_CHECKMULTISIG) is considered an additional operation.
 1. Limits the number of key arguments OP_CHECKMULTISIG can use (up to 20 keys)
