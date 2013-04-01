@@ -34,7 +34,6 @@ These are the current Bitcoin Satoshi client protections to deter DoS attacks, a
 1. Does not forward orphan transactions/blocks
 1. Does not forward double-spend transactions
 1. Does not forward the same block, transaction or alert twice to the same peer.
-1. Restricts the maximum number of signature checks a transaction input may request
 1. Continuous rate-limit of free transactions to mitigate 'penny-flooding'
 1. Keeps a DoS score of each connected peer and disconnects from a peer that send messages that fail to comply with the rules.
 1. Bans IP addresses that misbehave for a time lapse (24 hours default)
@@ -49,14 +48,21 @@ These are the current Bitcoin Satoshi client protections to deter DoS attacks, a
 1. In RPC: Only sends a HTTP 403 response if it's not using SSL to prevent a DoS during the SSL handshake.
 1. In RPC: Sleeps some time if authorization fails to deter brute-forcing short passwords.
 1. In GUI: Limits URI length to prevent a DoS against the QR-Code dialog
+1. Considers non-standard signature scripts with size greater than 500 bytes.
+1. Considers non-standard signature scripts that contain operations that are not PUSHs.
+1. Does not forward nor process non-standard transactions
+
+These are protocol rules built to prevent DoS:
+
+1. Restricts the block size to 1 megabyte.
+1. Restricts the maximum number of signature checks a transaction input may request
 1. Limits the size of each value pushed while evaluating a a script (up to 520 bytes)
 1. Limits the number of expensive operations in a script (up to 201 operations). All but pushs are considered expensive. Also each key argument of signature checking in multi-signature checking (OP_CHECKMULTISIG) is considered an additional operation.
 1. Limits the number of key arguments OP_CHECKMULTISIG can use (up to 20 keys)
 1. Limits the number of the stack elements that can be stored simultaneously (up to 1000 elements, in standard and alt stacks together)
-
+1. Limits the number of signature checks a block may request (up to 20000 checks)
 
 These are the Satoshi client protections added in version 0.8.0: 
-
 
 1. Transactions greater than 100 Kbytes are considered non-standard (protects from variations of the https://bitcointalk.org/index.php?topic=140078.0 attack).
 1. Only the UXTO (Unspent Transaction Output Set) is stored in memory, the remaining data is stored on disk.
