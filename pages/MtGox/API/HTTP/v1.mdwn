@@ -215,13 +215,13 @@ returns information about a currency ( number of decimals . . . )
 So just remove private/ and should still work/return the same info.
 #### Private info
 
-https://mtgox.com/api/1/generic/private/info
+https://data.mtgox.com/api/1/generic/private/info
 
 returns information about your account, funds, fees, API privileges, withdraw limits . . .
 
 #### get a bitcoin deposit address
 
-https://mtgox.com/api/1/generic/bitcoin/address
+https://data.mtgox.com/api/1/generic/bitcoin/address
 
 get a bitcoin address linked to your account.
 the returned address can be used to deposit bitcoins in your mtgox account
@@ -244,7 +244,7 @@ ipn : an URL that will be pinged when this new address receives a transaction, t
 
 #### redeem a private key
 
-https://mtgox.com/api/1/generic/private/bitcoin/addpriv
+https://data.mtgox.com/api/1/generic/private/bitcoin/addpriv
 
 	allows you to add a private key to your account
 
@@ -257,7 +257,7 @@ https://mtgox.com/api/1/generic/private/bitcoin/addpriv
 
 #### redeem a wallet.dat
 
-https://mtgox.com/api/1/generic/bitcoin/wallet_add
+https://data.mtgox.com/api/1/generic/bitcoin/wallet_add
 
 	allows you to add a wallet.dat file to your account
 
@@ -268,7 +268,7 @@ https://mtgox.com/api/1/generic/bitcoin/wallet_add
 * returns : "amount" ( total number of btcs in this wallet ) + count ( number of bitcoin addresses in this wallet )
 
 #### Withdraw bitcoins
-https://mtgox.com/api/1/generic/bitcoin/send_simple
+https://data.mtgox.com/api/1/generic/bitcoin/send_simple
 
 Send bitcoins from your account to a bitcoin address.
 
@@ -289,14 +289,14 @@ Answer unknown at the time of writing
 
 #### idKey
 
-https://mtgox.com/api/1/generic/private/idkey
+https://data.mtgox.com/api/1/generic/private/idkey
 
 Returns the idKey used to subscribe to a user's private updates channel in the websocket API. The key is valid for 24 hours.
 
 
 #### Your wallet history
 
-https://mtgox.com/api/1/generic/private/wallet/history
+https://data.mtgox.com/api/1/generic/private/wallet/history
 
 **README!** if the above call does not work please use: https://mtgox.com/api/1/generic/wallet/history
 
@@ -312,7 +312,7 @@ returns a json array with your wallet history
 
 #### Submit an order
 
-https://mtgox.com/api/1/BTCUSD/private/order/add
+https://data.mtgox.com/api/1/BTCUSD/private/order/add
 
 parameters: 
 
@@ -330,9 +330,21 @@ submits an order and returns the OID and info about success or error
 	"result": "success"
 }</source>
 
+#### Cancel an Order
+API v2 URL: https://data.mtgox.com/api/2/BTCUSD/money/order/cancel <br>
+API v1 URL (guessing): https://data.mtgox.com/api/1/BTCUSD/private/order/cancel <br>
+
+
+Returns data in the same format as above, (with API2, all "return" keys are changed to "data" <br>
+If order not found: {"result":"error","error":"Order not found","token":"unknown_error"} <br>
+
+parameters: <br>
+
+* oid <the order ID> <br>
+
 #### Your open orders
 
-https://mtgox.com/api/1/generic/private/orders
+https://data.mtgox.com/api/1/generic/private/orders
 	
 Returns information about your current open orders. Valid order statuses are: pending, executing, post-pending, open, stop, and invalid.
 
@@ -394,7 +406,7 @@ valid amount and invalid amount will be updated when funds are added or when oth
 
 #### Order result
 
-https://mtgox.com/api/1/generic/private/order/result
+https://data.mtgox.com/api/1/generic/private/order/result
 
 parameters : type ( bid or ask ) and order (the order id)
 
@@ -417,13 +429,13 @@ order_id: '1234234-e9ef-4b75-aa1c-90cd109d24ea',
 
 #### HOTP key
 
-https://mtgox.com/api/1/generic/hotp_gen
+https://data.mtgox.com/api/1/generic/hotp_gen
 
 used to generate a new HOTP key ( useful for developers )
 
 #### App activation
 
-https://mtgox.com/api/1/generic/api/activate
+https://data.mtgox.com/api/1/generic/api/activate
 
 parameters:
 
@@ -437,7 +449,7 @@ used in mobile apps to obtain an API key/secret pair. Contact MagicalTux on free
 
 #### Order Creation
 
-https://mtgox.com/api/1/generic/private/merchant/order/create
+https://data.mtgox.com/api/1/generic/private/merchant/order/create
 
 ##### Required Parameters:
 
