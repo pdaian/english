@@ -2,8 +2,15 @@ After a transaction is broadcast to the Bitcoin network, it may be included in a
 
 The classic bitcoin client will show a transaction as "n/unconfirmed" until 6 blocks confirm the transaction.  Merchants and exchanges who accept [[bitcoins as payment|trade]] can set their own threshold as to how many confirmations are required until funds can be considered valid.  When potential loss due to double spending as nominal, as with very inexpensive or non-fungible items, payments can be considered confirmed as soon as it is seen on the network.  Most [[exchanges|tags/Exchanges]] and other merchants who bear the risk from double spending require 6 or more blocks. 
 
+<blockquote>There is nothing special about the default, often-cited figure of 6 confirmations. It was chosen based on the assumption that an attacker is unlikely to amass more than 10% of the hashrate, and that a negligible risk of less than 0.1% is acceptable. Both these figures are arbitrary, however; 6 confirmations are overkill for casual attackers, and at the same time powerless against more dedicated attackers with much more than 10% hashrate.</blockquote> (1.1).
+
 Coins generated aren't considered confirmed by the Bitcoin protocol for 100 blocks. It is advisable to wait some additional time for a better chance that the transaction will be propogated by all nodes. The classic bitcoin client won't show generated coins as confirmed until the 120th block.
 
 ##See Also
 
 * [[Blocks]]
+
+##References
+
+1.1: [Analysis of hashrate-based double-spending](https://bitcoil.co.il/Doublespend.pdf)
+
