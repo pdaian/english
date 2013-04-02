@@ -88,6 +88,9 @@ oid: Order ID
 
 type: 1 for sell order or 2 for buy order
 
+This will return THE ENTIRE list of all open orders (after the cancel).<br>
+Consider switching to V1/V2 if you do not need the complete list returned after every call to cancelOrder.php
+
 ### 0/redeemCode.php
 Used to redeem a mtgox coupon code
 
