@@ -21,8 +21,12 @@ Rest-Sign is created by doing : base64encode( HMAC hash( base64decoded(API-secre
 
 **What differs in version 2 is now** : BEFORE the nonce, you are adding the **relative path you are requesting**(ie: BTCUSD/money/ticker) **+ a NUL char (ascii code 0)**.
 
+**The URL is now ** something along the lines of BTCUSD/money/order/add instead of BTCUSD/private/order/add in api1. <br>
 So in my python code below which is very readable you can see everything remains the same as API v1 except now we are using api2postdatatohash = path + chr(0) + post_data          #new way to hash for API 2, includes path + NUL.
 
+
+BTCUSD/money/order/quote
+<@MagicalTux> it estimate the result of running an order at a given price based on market depth
 
 
 ### Code Examples:
