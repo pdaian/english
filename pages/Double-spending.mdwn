@@ -28,7 +28,7 @@ This attack has a chance to work even if the merchant waits for some confirmatio
 
 The attacker submits to the merchant/network a transaction which pays the merchant, while privately mining a blockchain fork in which a double-spending transaction is included instead. After waiting for *n* confirmations, the merchant sends the product. If the attacker happened to find more than *n* blocks at this point, he releases his fork and regains his coins; otherwise, he can try to continue extending his fork with the hope of being able to catch up with the network. If he never manages to do this, the attack fails and the payment to the merchant will go through.
 
-The probability of success is a function of the attacker's hashrate (as a proportion of the total network hashrate) and the number of confirmations the merchant waits for. For example, if the attacker controls 10% of the network hashrate but the merchant waits for 6 confirmations, the success probability is on the order of 0.1%.
+The probability of success is a function of the attacker's hashrate (as a proportion of the total network hashrate) and the number of confirmations the merchant waits for. For example, if the attacker controls 10% of the network hashrate but the merchant waits for 6 confirmations, the success probability is on the order of 0.1% (6.1).
 
 ###>50% attack
 
@@ -50,7 +50,8 @@ There are third-party services to assist traders and merchants to help manage th
 ##References
 
 3.1: [BitcoinTalk Thread - Two Bitcoins at the Price of One](http://bitcointalk.org/index.php?topic=79090.msg881283#msg881283)  
-4.1: [Best practice for fast transaction acceptance - how high is the risk?](http://www.bitcointalk.org/index.php?topic=3441.msg48384#msg48384)
+4.1: [Best practice for fast transaction acceptance - how high is the risk?](http://www.bitcointalk.org/index.php?topic=3441.msg48384#msg48384)  
+6.1: [Analysis of hashrate-based double-spending](https://bitcoil.co.il/Doublespend.pdf)
 
 
 [[!tag "Technical"]]
