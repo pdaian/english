@@ -1,0 +1,25 @@
+
+* <Block header is on stack>
+* OP_SHA256d
+* PUSH...: various other merged chains as merkle links
+* PUSH: N of merkle links
+* OP_MERKLEROOT_FROMLINKS
+
+Inside parent chain coinbase:
+
+* PUSH: coinbase prefix midstate
+* OP_SWAP
+* OP_SHA256FINISH
+* OP_SHA256 (to get a SHA256d result; the parent chain coinbase's txid)
+* PUSH...: various other transactions in parent chain (as merkle links)
+* PUSH: N of merkle links
+* OP_MERKLEROOT_FROMLINKS (stack now has the parent chain tx merkleroot)
+* PREPEND: parent chain version
+* APPEND: parent chain header ending
+* OP_SHA256d (stack now has the proof-of-work)
+
+Dedicated merged mining:
+
+* APPEND: 16-bit time offset
+* APPEND: 48-bit nonce
+* OP_SHA256d
