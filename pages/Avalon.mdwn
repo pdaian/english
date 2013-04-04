@@ -284,13 +284,16 @@ For example, if your OS is Ubuntu 12.04 LTS, install the required packages like 
 2. Now get the source code, prepare the code and build.
 	wget https://raw.github.com/BitSyncom/avalon-extras/master/scripts/build-avalon-image.sh
 	chmod +x build-avalon-image.sh
-	./build-avalon-image.sh --clone #prepare the code and build
+	./build-avalon-image.sh --clone #prepare the code and build, **ONLY NEED ONCE**
 	./build-avalon-image.sh
 
-3. Only rebuild cgminer
+3. Update all repos
+	./build-avalon-image.sh --update
+
+4. Only rebuild cgminer
 	./build-avalon-image.sh --cgminer
 
-4. Finally you could get the freshly built firmware files under **avalon/openwrt/bin/ar71xx/**
+5. Finally you could get the freshly built firmware files under **avalon/openwrt/bin/ar71xx/**
 
 # IRC: #avalon @freenode.net
 	**#avalon @freenode.net** Thanks to midnightmagic create that channel
