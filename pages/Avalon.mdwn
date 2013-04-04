@@ -254,33 +254,16 @@ For example, if your OS is Ubuntu 12.04 LTS, install the required packages like 
 	sudo apt-get install subversion build-essential
 	sudo apt-get install build-essential subversion git-core libncurses5-dev zlib1g-dev gawk flex quilt libssl-dev xsltproc libxml-parser-perl
 
-2. Now get the source code.
-	mkdir avalon
-	cd avalon
-	svn co svn://svn.openwrt.org/openwrt/trunk@35097 openwrt
-	git clone https://github.com/BitSyncom/cgminer-openwrt-packages.git
-	git clone https://github.com/BitSyncom/luci.git
-	git clone https://github.com/BitSyncom/cgminer.git cgminer-20130108
+2. Now get the source code, prepare the code and build.
+	wget https://raw.github.com/BitSyncom/avalon-extras/master/scripts/build-avalon-image.sh
+	chmod +x build-avalon-image.sh
+	./build-avalon-image.sh --init #prepare the code and build
+	./build-avalon-image.sh
 
-3. Prepare the code and build.
-	cp -R cgminer-openwrt-packages/cgminer openwrt/package
-	tar -zcvf cgminer-20130108-HEAD.tar.gz cgminer-20130108
-	python -m SimpleHTTPServer&
-	cd openwrt
-	ln -s package/cgminer/root-files files
-	ln -s package/cgminer/data/feeds.conf
-	cp package/cgminer/data/config .config
-	sed -i 's/ck.kolivas.org\/apps\/cgminer\//localhost:8000\//g' openwrt/package/cgminer/Makefile
-	./scripts/feeds update -a &&  ./scripts/feeds install -a
-	cp package/cgminer/data/config .config #overwrite again
-	make -j4
-	cd ../luci
-	git checkout cgminer-webui
-	cp -R applications/luci-cgminer ../openwrt/build_dir/target-mips_r2_uClibc-0.9.33.2/luci-trunk+svn9679/applications/
-	cd ../openwrt
-	make -j4
+3. Only rebuild cgminer
+	./build-avalon-image.sh --cgminer
 
-4. Finally you could get the freshly built firmware files under openwrt/bin/ar71xx/
+4. Finally you could get the freshly built firmware files under **avalon/openwrt/bin/ar71xx/**
 
 # IRC: #avalon @freenode.net
 	**#avalon @freenode.net** Thanks to midnightmagic create that channel
