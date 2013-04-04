@@ -104,6 +104,8 @@ Consider switching to V1/V2 if you do not need the complete list returned after 
 ### 0/redeemCode.php
 Used to redeem a mtgox coupon code
 
+Most likely requires deposit privileges on the API Key.
+
 https://data.mtgox.com/api/0/redeemCode.php
 
 * call with a post parameter "code" containing the code to redeem
@@ -111,8 +113,9 @@ https://data.mtgox.com/api/0/redeemCode.php
 * it will return an array with amount (float amount value of code), currency (3 letters, BTC or USD), reference (the transaction id), and status
 
 ### 0/redeemBtcPrivkey.php
-
 used to redeem a private key via the API
+
+Most likely requires deposit privileges on the API Key.
 
 https://data.mtgox.com/api/0/redeemBtcPrivkey.php
 
@@ -125,6 +128,7 @@ https://data.mtgox.com/api/0/redeemBtcPrivkey.php
 
 ### 0/withdraw.php
 withdraw / Send BTC
+You NEED Withdraw privileges set up to enabled on the API key.
 
 https://data.mtgox.com/api/0/withdraw.php
 
@@ -147,6 +151,8 @@ Example error:
 
 ### 0/btcAddress.php
 get a bitcoin deposit adress for your account 
+
+You NEED Deposit privileges set up to enabled on the API key.
 
 https://data.mtgox.com/api/0/btcAddress.php
 
