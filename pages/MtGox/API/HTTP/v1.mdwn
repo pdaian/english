@@ -340,11 +340,12 @@ API v1 URL: https://data.mtgox.com/api/1/BTCUSD/private/order/cancel <br>
 Both are the format as shown below, but with API2, all "return" keys are changed to "data" <br>
 <br>
 
-parameters: <br>
+Parameters:
 
 * oid <the order ID> <br>
 
 Example Response: 
+<source lang="javascript">
 {
 "return": {
 	"qid": "09354767-455f-412e-9a0c-efb7bb98c958", 
@@ -352,13 +353,16 @@ Example Response:
 	}, 
 "result": "success"
 }
+</source>
 
 Example Error:
+<source lang="javascript">
 {
 "token": "unknown_error", 
 "result": "error", 
 "error": "Order not found"
 }
+</source>
 
 #### Your open orders
 
