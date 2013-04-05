@@ -409,24 +409,41 @@ valid amount and invalid amount will be updated when funds are added or when oth
 
 #### Order result
 
-https://data.mtgox.com/api/1/generic/private/order/result
+https://data.mtgox.com/api/1/generic/private/order/result     (the /private is not needed anymore)
 
 parameters : type ( bid or ask ) and order (the order id)
 
-returns a json array like this : 
+Returns JSON. trades is a list. everything is a string.
 
 <source lang="javascript">
-order_id: '1234234-e9ef-4b75-aa1c-90cd109d24ea',
-	trades:
-	 { 						[[Object]],
-	price: [[Object]],
-	date: '2012-05-10 00:52:23' } ,
-	total_amount:
-	{ value: '0.01000000',
-	value_int: '1000000',
-	display: '0.01000000 BTC',
-	display_short: '0.01 BTC',
-	currency: 'BTC' } }</source>
+{
+"return": {
+	"order_id": "30f3311c-1d6d-4313-b22d-f45c048fd004", 
+	"total_spent": {
+	"value_int": "8484299", 
+	"currency": "USD", 
+	"display_short": "$84.84", 
+	"display": "$84.84299", 
+	"value": "84.84299"
+	}, 
+	"trades": {		{						}		{						}			{						}				}["market"]("properties":), 
+	"total_amount": {
+	"value_int": "81705496", 
+	"currency": "BTC", 
+	"display_short": "0.82\u00a0BTC", 
+	"display": "0.81705496\u00a0BTC", 
+	"value": "0.81705496"
+	}, 
+	"avg_cost": {
+	"value_int": "10384000", 
+	"currency": "USD", 
+	"display_short": "$103.84", 
+	"display": "$103.84000", 
+	"value": "103.84000"}
+	}, 
+"result": "success"
+}
+</source>
 
 ### Application API
 
