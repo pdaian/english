@@ -335,15 +335,30 @@ submits an order and returns the OID and info about success or error
 
 #### Cancel an Order
 API v2 URL: https://data.mtgox.com/api/2/BTCUSD/money/order/cancel <br>
-API v1 URL (guessing): https://data.mtgox.com/api/1/BTCUSD/private/order/cancel <br>
+API v1 URL: https://data.mtgox.com/api/1/BTCUSD/private/order/cancel <br>
 
-
-Returns data in the same format as above, (with API2, all "return" keys are changed to "data" <br>
-If order not found: {"result":"error","error":"Order not found","token":"unknown_error"} <br>
+Both are the format as shown below, but with API2, all "return" keys are changed to "data" <br>
+<br>
 
 parameters: <br>
 
 * oid <the order ID> <br>
+
+Example Response: 
+{
+"return": {
+	"qid": "09354767-455f-412e-9a0c-efb7bb98c958", 
+	"oid": "fda8917a-63d3-4415-b827-758408013690"
+	}, 
+"result": "success"
+}
+
+Example Error:
+{
+"token": "unknown_error", 
+"result": "error", 
+"error": "Order not found"
+}
 
 #### Your open orders
 
