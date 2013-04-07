@@ -124,6 +124,9 @@ The attacker *can't*:
 * Create coins out of thin air
 * Send coins that never belonged to him
 
+With less than 50%, the same kind of attacks are possible, but with less than 100% rate of success.
+For example, someone with only 40% of the network computing power can overcome a 6-deep confirmed transaction with a 50% success rate.
+
 It's much more difficult to change historical blocks, and it becomes exponentially more difficult the further back you go. As above, changing historical blocks only allows you to exclude and change the ordering of transactions. It's impossible to change blocks created before the last checkpoint.
 
 Since this attack doesn't permit all that much power over the network, it is expected that no one will attempt it. A profit-seeking person will always gain more by just following the rules, and even someone trying to destroy the system will probably find other attacks more attractive. However, if this attack is successfully executed, it will be difficult or impossible to "untangle" the mess created -- any changes the attacker makes might become permanent.
