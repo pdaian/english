@@ -5,14 +5,6 @@ I don't know if the vulnerable to loss from no backup is something that should f
 
 If a computer problem such as a disk crash occurs or for whatever reason there is no longer access to the wallet, and backups are either unavailable or not current enough, loss of coins can result.  Though backups are recommended, the client itself does not manage backups.
 
-### New wallets vulnerable with old passwords via backups
-
-I'd like to add the above in as another wallet/backup vulnerability, this time through unexpected behaviour. While the following isn't a bitcoin protocol weakness, I do think it a weakness of how bitcoin clients interact both with users and the user's device.
-
-An old copy of a wallet with its old password is often retrievable via an existing backup facility (*particularly Apple Time-machine*): draining that old wallet, with its old password, drains the current wallet with the current password -- this is contrary to most non-technical users expectation of what 'change the password on your wallet' should mean following password compromise.
-
-An initial solution is to mandate (either in code or as expressed policy) that changing a wallet's password causes (or asks the user to cause) the creation of a new wallet with new addresses, and the sending of existing sums to them. Backed-up copies of the original wallet with the original password would then be empty, should they be compromised. On the downside, the password-changing process would potentially take much longer, cost a transaction fee or more, and - intially at least - is no longer backed up. On the upside, non-technical users won't find their wallets drained from security compromises they believed they had closed, nor be required to locate existing backups of a wallet in order to destroy them. [Diary404](User:Diary404) ([[talk|User_talk:Diary404]]) 23:41, 30 March 2013 (GMT)
-
 ## Illegal Content In the Blockchain
 
 This following appears to be speculation as to how a resolution to the problem might be arrived at.  That has been moved here as speculation of potential solutions doesn't go in the Weaknesses article. - [Sgornick](User:Sgornick) ([[talk|User_talk:Sgornick]]) 06:39, 29 September 2012 (GMT)
