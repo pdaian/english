@@ -3,6 +3,12 @@
 
 The [[wallet]] is stored unencrypted, by default, and thus becomes a valuable target for theft.  Recent releases of the Bitcoin client now supports encryption to protect the wallet data, though the user must opt-in.
 
+#### New wallets vulnerable with old passwords via backups
+
+An old copy of a wallet with its old password is often easily retrievable via an existing backup facility (particularly Apple Time-Machine): draining that old wallet, with its old password, drains the current wallet with the current password -- this is contrary to most non-technical users expectation of what 'change the password on your wallet' should mean following password compromise.
+
+An initial solution is to mandate (either in code or as expressed policy) that changing a wallet's password causes (or asks the user to cause) the creation of a new wallet with new addresses, and the sending of existing sums to them. Backed-up copies of the original wallet with the original password would then be empty, should they be compromised. On the downside, the password-changing process would potentially take much longer, cost a transaction fee or more, and - intially at least - the new wakllet is no longer backed up. On the upside, non-technical users won't find their wallets drained from security compromises they believed they had closed, nor be required to locate existing backups of a wallet in order to destroy them.
+
 ### Tracing a coin's history
 Tracing a coin's history can be used to connect identities to addresses. [[More info|Anonymity]].
 
