@@ -1,15 +1,22 @@
 ## API Version 2: 
-v2 api is found at :
+The V2 API URL is:
 
 **https://data.mtgox.com/api/2/**
 
-official docs are on  :
+### Documentation
+**unofficial** documentation (So far the best we have) is provided at :
+
+**https://bitbucket.org/nitrous/mtgox-api/overview** <br>
+(The bitcointalk forum link is: **https://bitcointalk.org/index.php?topic=164404.0**
+<br>
+
+**official** docs are on  :
 
 **https://github.com/MtGox/mtgox-doc**
 
-The requested path (anything after the /2/) must now be included when you compute your hashed signature (Rest-Sign) for added security.
+##### Technical Use Explanation: 
 
-##### Explanation: 
+The requested path (anything after the /2/) must now be included when you compute your hashed signature (Rest-Sign) for added security.
 
 This is how it was done for version 1:
 
