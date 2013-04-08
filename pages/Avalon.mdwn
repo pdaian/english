@@ -177,12 +177,12 @@ About P5 jumper: close this jumper will supply 5V to the USB-B port. in this sys
 ## P2Pool Operation with Avalon
 There is an /avalon branch Forrest committed to the p2pool github repository. Make sure that is checked out.
 
-Next, the following option must be passed to Avalon's cgminer:
+Next, the following option may need to be passed to Avalon's cgminer:
 	**--fix-protocol**: Do not redirect to a different getwork protocol (eg. stratum)
 
-This will correct the Avalon's communications with P2Pool. Without this option, the default operation will spam share submissions and duplicate work to your running P2Pool instance.
+The current /avalon branch from Forrest is likely now functional. Please test and report your findings to the IRC channel.
 
-**NOTE**: The best performance the small handful of users who got this working have reported is still about 30% DOA against P2Pool (versus the usual DOA of 8-15% or so.) So it's close to desired, but be aware that getting things working in this limping-along state currently requires command-line skills and the ability to check-out branches from p2pool's git repository. For the moment, your most efficient options are solo-mining with local pool software, or just using one of the online pools.
+**NOTE**: The best performance the small handful of users who got this working have reported is still about 25-30% DOA against P2Pool (versus the usual DOA of 8-15% or so.) So it's close to desired, but be aware that getting things working in this state currently requires command-line skills and the ability to check-out branches from p2pool's git repository. For the moment, your most efficient options are solo-mining with local pool software, or just using one of the online pools.
 
 ## Others
 
