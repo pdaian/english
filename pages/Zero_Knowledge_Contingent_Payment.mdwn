@@ -1,6 +1,6 @@
-Its possible to make a transaction in bitcoin that requires the spender to provide a "secret" which hashes to a specified value. [The 0.01 output here with the SHA256 opcode](https://blockexplorer.com/tx/9969603dca74d14d29d1d5f56b94c7872551607f8c2d6837ab9715c60721b50e) is an example of such a transaction.
+Its possible to author a payment in the Bitcoin system that requires the redeemer to provide a "secret" which hashes to a specified value. [The 0.01 output here with the SHA256 opcode](https://blockexplorer.com/tx/9969603dca74d14d29d1d5f56b94c7872551607f8c2d6837ab9715c60721b50e) is an example of such a transaction.
 
-Used directly, like in this example, this is insecure. Once you've published the spending transaction a trouble making miner could just drop your transaction and use the password in a new transaction that pays him instead.
+Used directly, like in this example, this is insecure. Once you've published the spending transaction another node could just drop your transaction and use the password in a new transaction that pays him instead.
 
 So— the advice is that you shouldn't use a password alone, you should require a signature and a password.  But then what is the use of that?
 
@@ -10,20 +10,28 @@ There are a couple uses but I'll give an example here of one of the more impress
 
 Let H() be a complicated computer program. For some H(X)=Y you want to know some X that gives you a particular Y.
 
-Perhaps H() is a password hashing algorithm and you're looking for the password that gives you a particular hash in order to crack it. Or perhaps H() is a complicated program that decides if a image is one you would find beautiful (e.g. Y is either zero or one, and you want some X where Y==1). We'll use password cracking here, but this works for all programs.
+Perhaps H() is a password hashing algorithm and you're looking for the password that gives you a particular hash in order to crack it. Or perhaps H() is a complicated program that decides if a image is one you would find beautiful (e.g. Y is either zero or one, and you want some X where Y==1).
 
-Say I happen to _know_ some X that answers your question... and I'd like to sell it to you. But we don't trust each other at all, and because we're computer geeks we have no friends who can act as trusted mediators. Can we make this exchange using bitcoin with zero trust?  Yes.
+Say I happen to _know_ some X that answers your question... and I'd like to sell it to you. But we don't trust each other at all, and because we're computer geeks we have no friends who can act as trusted mediators. Can we make this exchange using Bitcoin with zero trust?  Yes.
 
 A [zero-knowledge proof](https://en.wikipedia.org/wiki/Zero-knowledge_proof) lets someone prove a mathematical fact to another person without teaching them anything about the fact itself. It has been proven that you can convert any computer program into a zero-knowledge proof(e.g. [PSPACE⊂IP](http://en.wikipedia.org/wiki/IP_%28complexity%29#PSPACE_is_a_subset_of_IP) <!-- IIRC there is a better more direct statement about this someplace but I forget what to look for, please provide a better link -->).  So, using a zero-knowledge proof I could prove to you that I know some X such that H(X)=Y ... which is helpful but it's not enough because you could pay me and I could not tell you the answer (or I could tell you and then you don't pay). Here is where the password locked transactions come in.
 
 First I encrypt X with random key K, Ex=AES(X,K).
 then I construct the program:
 
-Ex=AES(X,K);Hk=SHA256(K);H(UNAES(Ex,K))+Ex+Hk==Y+Ex+Hk
+<pre>
+Program(K,Ex) =>  [Ex,Hk,Y] {
+  Hk=SHA256(K);
+  Y=H(UNAES(Ex,K));
+  return [Ex,Hk,Y];
+}
+</pre>
 
-and I convert that program into a zero knowledge proof. Externally to bitcoin I tell you Ex,Hk and then prove the above statement to be true.
+In English: The program takes the encrypted solution and the key to decrypt it, and outputs the encrypted solution, the hash of the decryption key, and the result of running the program on the solution.
 
-You then form a bitcoin payment which requires both my public key and password K.  In order to redeem this transaction I must disclose K, the key you need to decrypt Ex and give you your solution. So neither of us can cheat, so no trust is required.
+I convert that program into a zero knowledge proof. Externally to Bitcoin I tell you Ex,Hk,Y and then prove that I executed the program faithfully.
+
+You then form a Bitcoin payment which requires both my public key and password K.  In order to redeem this transaction I must disclose K, the key you need to decrypt Ex and give you your solution. So neither of us can cheat, so no trust is required.
 
 The reason this isn't something people are using yet is because while the academics have proven it to be possible actually converting complicated programs like compositions of ciphers and hash-functions into zero-knowledge proofs is apparently not something anyone has figured out how to do practically.
 
