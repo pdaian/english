@@ -20,7 +20,7 @@ First I encrypt X with random key K, Ex=AES(X,K).
 then I construct the program:
 
 <pre>
-Program(K,Ex) =>  [Ex,Hk,Y] {
+Program(K,Ex,H()) =>  [Ex,Hk,Y] {
   Hk=SHA256(K);
   Y=H(UNAES(Ex,K));
   return [Ex,Hk,Y];
