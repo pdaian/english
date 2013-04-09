@@ -104,43 +104,7 @@ Note that imported keys do not belong to the deterministic sequence of your wall
 It is possible to create a transaction on an offline computer,
 and to broadcast them from another computer, with a wallet that does not have the seed or private keys.
 
-####How to prepare an offline wallet
-
-* step 1: create a wallet on your offline computer
-<pre>
-[offline]$ electrum -o -w wallet create
-</pre>
-
-* step 2: extract the seed from your wallet file:
-<pre>
-[offline]$ electrum -o -w wallet deseed 
-</pre>
-This will remove the seed from 'wallet', and save it to a file named 'wallet.seed'
-
-* step 3: transfer the deseeded wallet to the online computer (for example with a usb stick)
-* step 4: run electrum on the online computer; this will synchronize your wallet with the bitcoin network, and you will be able to monitor incoming transactions:
-<pre>
-[online]$ electrum -w wallet
-</pre>
-
-####How to send a transaction with an offline wallet
-
-* step 1: copy the synchronized wallet file to your offline computer, in the directory where the seed is.
-* step 2: restore the seed in the wallet file:
-<pre>
-[offline]$ electrum -w wallet reseed
-</pre>
-
-* step 3: create the transaction
-<pre>
-[offline]$ electrum -w wallet mktx <recipient> <amount>  >  tx_file
-</pre>
-
-* step 4: with the usb stick, copy the transaction to the online computer:
-* step 5: broadcast the transaction on the online computer:
-<pre>
-[online]$ electrum -w wallet sendtx  `cat tx_file`
-</pre>
+see http://electrum.org/offline_wallets.html
 
 ### List of commands
 
@@ -172,7 +136,7 @@ This will remove the seed from 'wallet', and save it to a file named 'wallet.see
 
 ##History
 
-Electrum was announced November 5, 2011 (12.1).
+Electrum was announced November 5, 2011 (10.1).
 
 ##See Also
 
@@ -189,7 +153,7 @@ Electrum was announced November 5, 2011 (12.1).
 
 ##References
 
-12.1: [Electrum - a new thin client](http://bitcointalk.org/index.php?topic=50936.0)
+10.1: [Electrum - a new thin client](http://bitcointalk.org/index.php?topic=50936.0)
 
 
 [[!tag "Clients"]]
