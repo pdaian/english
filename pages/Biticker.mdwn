@@ -1,27 +1,63 @@
-A Chrome extension that displays a ticker of the average Bitcoin price on [[MtGox]] on the upper right corner of Chrome. Clicking the icon opens a currency converter as well as a three month graph of BTC versus USD. The currency displayed in the ticker can be customized from the extensions options. Due to privacy concerns of users the average price is mirrored from MtGox to another server and therefore the extension does not need permission for your data on MtGox.
+Biticker is a Chrome extension by [[User:Tritonio]] that provides a ticker for the current [[Bitcoin]] price, a price graph, a currency converter and price desktop notifications.
 
-* Currencies supported
-	* BTC: [[Bitcoin]]
-	* USD: United States Dollar
-	* EUR: Euro
-	* GBP: Great Britain Pound
-	* AUD: Australian Dollar
-	* CAD: Canadian Dollar
-	* RUB: Russian Ruble
-	* PLN: Polish Złoty
-	* SLL: Second Life [[Linden Dollar|Linden_Dollars]]
-	* GAU: Gold gram ([[Pecunix]])
-	* JPY: Japanese Yen
-	* CHF: Swiss Franc
-	* SEK: Swedish Krona
-	* DKK: Danish Krone
-	* NOK: Norwegian Krone
-	* NZD: New Zealand Dollar
-	* INR: Indian rupee
-	* XAU: Gold ounce      
-	* XAG: Silver ounce      
-	* XPT: Platinum ounce      
-	* XPD: Palladium ounce
+## Main features
+
+* Bitcoin ticker. Constantly shows the current exchange rate between Bitcoin and a currency of your choice.
+* Currency converter. Includes precious metals, virtual currencies and the most common fiat currencies.
+* Desktop notifications for when the current price exceeds some user selected values.
+* Choose between average or current Bitcoin price for the conversions and the ticker.
+
+## Supported currencies and precious metals
+
+* BTC [[Bitcoin]]		
+* LTC Litecoin		
+* NMC Namecoin
+* PPC PPcoin	
+* IXC IXcoin
+* TRC Terracoin
+* DVC Devcoin	
+* SLL Linden dollar (Second Life)		
+* USD USA dollar		
+* EUR Euro		
+* RUB Russian ruble		
+* CAD Canadian dollar		
+* GBP Pound sterling		
+* AUD Australian dollar		
+* PLN Polish zloty		
+* UAH Ukrainian hryvnia		
+* CNY Chinese Renminbi		
+* SEK Swedish krona		
+* CZK Czech koruna		
+* BRL Brazilian real		
+* CHF Swiss franc		
+* NOK Norwegian krone		
+* ARS Argentine peso		
+* DKK Danish krone		
+* RON Romanian leu		
+* ILS Israeli new shekel		
+* BGN Bulgarian lev		
+* NZD New Zealand dollar		
+* JPY Japanese yen		
+* MXN Mexican peso		
+* INR Indian rupee		
+* HKD Hong Kong dollar		
+* XAG Silver troy ounce		
+* XAU Gold troy ounce		
+* XPT Platinum troy ounce		
+* XPD Paladium troy ounce		
+* GAG Silver gram		
+* GAU Gold gram (also [[Pecunix]])		
+* GPT Platinum gram		
+* GPD Paladium gram
+
+## Permissions needed
+
+* Notifications: To show desktop notifications
+* bittit.info: This is where price data and graphs are mirrored to relieve data providers.
+
+## Data providers
+Data is provided by MtGox, Bitstamp, BitcoinCharts, VirWox, BTC-E, Vircurex and Yahoo. Data is mirrored on bittit.info to relieve the data providers.
+Bitcoin prices update every 5-6 minutes. On average there will be about 2-3 minutes lag. Other rates update less often since they are changing more slowly.
 
 ##See Also
 
