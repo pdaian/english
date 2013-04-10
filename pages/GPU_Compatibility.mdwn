@@ -1,4 +1,6 @@
-This page attempts to document compatibility between various GPU mining facets:
+This page attempts to document compatibility between various GPU mining facets.
+
+##Table
 
 
 
@@ -9,3 +11,25 @@ This page attempts to document compatibility between various GPU mining facets:
 |6870 |Linux 3.2.1 |Catalyst 12.3 |898.1 |diablo121016Bartsv2w128l4 |BFG 2.10.2 |[[!template id=yes]]<!-- luke-jr -->
 |6870 |Linux 2.6.38 |Catalyst ?? |595.10 (2.4) |phatk121016Bartsv2w128l8 |cg 2.10.0a |[[!template id=yes]]<!-- smooth -->
 
+
+##How to find info
+###GPU
+FIXME: How can people find this?
+
+###Linux kernel version
+	uname -r
+
+###Driver version
+FIXME: How can people find this?
+
+###OpenCL/Kernel/Software version
+Run BFGMiner or cgminer with the --debug --text-only options. Look for these lines:
+
+Software version:
+	Started bfgminer 3.0.0
+
+OpenCL version:
+	CL Platform 0 version: OpenCL 1.2 AMD-APP (1084.4)
+
+Kernel version:
+	Loaded binary image phatk121016Bartsv2w128l8.bin
