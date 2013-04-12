@@ -266,6 +266,10 @@ please see http://en.wikipedia.org/wiki/VWAP
 
 will show the list of all unconfirmed pending txs tracked by mtgox
 
+when you place a tx on mtgox, we try to broadcast it, but if after 2 hours it hasn't appeared in the blockchain, it'll appear in this API
+
+containing the raw signed tx number in base64
+
 ### pending transactions
 
 	https://data.mtgox.com/api/0/bitcoin_tx.php
