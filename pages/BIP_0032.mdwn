@@ -162,7 +162,7 @@ the intended security properties of this standard are:
 Note however that the following properties does not exist:
 
 * Given a parent extended public key (K<sub>par</sub>,c<sub>par</sub>) and a child public key (K<sub>i</sub>), it is hard to find i.
-* Given a parent extended public key (K<sub>par</sub>,c<sub>par</sub>) and a child private key (k<sub>i</sub>), it is hard to find k<sub>par</sub>.
+* Given a parent extended public key (K<sub>par</sub>,c<sub>par</sub>) and a child private key (k<sub>i</sub>), it is hard to find k<sub>par</sub>. <span style="color:red">This is considered a weakness, and is planned to be changed.</span>
 
 Private and public keys must be kept safe as usual. Leaking a private key means access to coins - leaking a public key can mean loss of privacy.
 
