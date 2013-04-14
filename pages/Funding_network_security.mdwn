@@ -1,46 +1,163 @@
-One open question is how will **funding of network security** (mining) work if there's no competition for block space. If funding for proof of work comes from fees attached to transactions and the fees are motivated by scarcity of block space, then the funding mechanism is clear, though whether it will achieve "enough" funding is not.
+What Bitcoin provides is a means to determine what is the consensus version
+of the transaction history, with the consensus determined by what a majority of
+hashing power applied to the proof of work problem by miners accepts as the
+true history. Since those who own Bitcoins, and who have access to hashing
+power, are not necessarily the same group there needs to be a mechanism for the
+former to fund the latter. The risk is that mechanism failing, and the majority
+of hashing power acting in a way that is against the wishes of the majority of
+economic interests.
 
-This page is written by [[Mike_Hearn]]. Please contact him with questions rather than using the Talk page.
+An attacker with a majority of hashing power can either publish blocks they
+mine as they mine them, or withhold them. The former simply makes it impossible
+to get transactions confirmed that the attacker does not wish to be confirmed.
+The latter however can be used to rewrite the blockchain after the fact,
+causing transactions that appeared to be confirmed to become unconfirmed and
+vulnerable to reversal. In addition the attacker can exploit [[Transaction_Malleability]] to make it impossible for those transactions to ever be included
+in the blockchain again.
 
-In a world where block sizes are always large enough to meet demand for space, we can fund mining using per-block [assurance contracts](https://en.bitcoin.it/wiki/Contracts#Example_3:_Assurance_contracts). From Wikipedia:
+The hashing power majority does not need to constitute a single individual or
+coherent group. For instance the economic majority may see [[fungibility]] as
+important, and thus want to ensure transaction outputs can not be blacklisted (1.1) to prevent transactions spending them from being confirmed,
+even if those outputs are known to be involved with illegal activity such as theft or fraud.
+However the actions of mining pools are usually public knowledge; which blocks
+they mine is usually published on the pool website. If mining a transaction
+output known to be involved in illegal activity is made illegal, mining pools
+may independently seek out sources of information on transaction outputs known
+to be involved in illegal activity, and prohibit transactions spending those
+outputs from the blocks they mine, as well as delibrately trying to mine blocks
+that would [[orphan blocks|Orphan_Block]] with such transactions.
 
-> An assurance contract, also known as a provision point mechanism, is a game theoretic mechanism and a financial technology that facilitates the voluntary creation of public goods and club goods in the face of the free rider problem.
+Similarly it could be made illegal to mine a transaction if the identity of the
+person making the transaction is not known, in conjunction with ways for
+transactions to make that identity public. Again, even if the economic majority
+would prefer to be able to make anonymous transactions, the hashing power
+majority may not want to take that risk.
 
-> The free rider problem is that there may be actions that would benefit a large group of people, but once the action is taken, there is no way to exclude those who did not pay for the action from the benefits. This leads to a game theoretic problem: all members of a group might be better off if an action were taken, and the members of the group contributed to the cost of the action, but many members of the group may make the perfectly rational decision to let others pay for it, then reap the benefits for free, possibly with the result that no action is taken. The result of this rational game play is lower utility for everyone.
+Conversely the opposite may be true in either example; what "security" is may not always be obvious or easily agreed upon.
 
-This describes network security with large block sizes. Everyone needs mining to be done, but nobody wants to be the one who pays for it given that everyone else will get the benefits for free.
+## Inflation Subsidy
 
-As described on the contracts wiki page, an assurance contract is one in which an entrepreneur says "I will pay X towards the cost of a public good, but only if other people chip in enough to reach Y (the cost of providing the good)". If not enough people pledge money, the contract does not complete and nobody pays anything. This mechanism has a proven track record of funding public goods, mostly obviously via Kickstarter.
+Currently each block [[creates 25 BTC|Controlled_Currency_Supply]] as the block
+reward; as of April 2013 that inflates the currency supply by about 11% per
+year, in effect transferring 11% of the value of all the Bitcoins in existence
+to miners to pay for the security they provide. However, every four years the
+block reward is decreased by half, thus halving the overall inflation subsidy
+that pays miners.
 
-## What is the target?
+The inflation subsidy pays miners directly from Bitcoin as a whole; in effect
+everyone holding Bitcoins is paying for security directly. However at some
+point it will become small enough that Bitcoin could be attacked by someone
+with very little resources. In addition a miner can still collect the inflation
+subsidy without including any transactions at all in the blocks they mine, an activity that can be seen as an attack. (2.1)
 
-We need to figure out what "enough" mining means. This is related to the maximum time-value of transactions on the network. For micropayments, you don't need a whole lot of mining to protect all of them because the value of reversing them is very low, and any given attacker isn't trying to reverse all transactions but only the one for their own payment (they can't reverse arbitrary transactions). If you have very high value transactions where the receivers are willing to wait six months then you also don't need a whole lot. If you have very high value transactions that are occurring only between people/entities who trust each other, again, don't need much mining. That might sound unrealistic, but once you go above a certain level transactions almost always take place between people who know and can find each other - think about billion dollar business deals, etc. You don't need miners to ensure that won't be reversed. You just need a functioning legal system.
+It is predicted that the inflation subsidy will reach less than 1% of the
+Bitcoin nominal market cap sometime in 2033. However that figure is subject to
+the amount of [[lost_coins]] from the early days of Bitcoin; it is unknown what
+the market cap of coins with owners able to spend them actually is.
 
-The type of transaction that's most tricky to secure are kind of middle of the road transactions - not billion dollar business deals, not micropayments but the ones where some real value is moving and it's not worth enough to sue the other side if something goes wrong. If there is enough mining to secure this kind of transaction, then there's enough for the other kinds too. There should be a lot of these, and there should also be a lot of participants.
+## Transaction Fees
 
-For an assurance contract to work, do you need everyone who benefits to be a participant? No, some freeloading is OK, as long as those freeloaders weren't going to contribute anyway. Let's imagine that 200 major Bitcoin participants get together and form an assurance contract that funds 10 terahashes of mining (numbers are arbitrary). Does their agreement break if 200,000 users then make 500,000 micropayments? Not really - those micropayments hardly need any mining to be secure and those users weren't going to pay for 10 Thash no matter what, not even collectively. There's no downside to them being able to benefit from the extra mining you pay for and indeed, there may be indirect upsides (your Bitcoins become more valuable because they have greater utility).
+Transactions may include [[fees|transaction_fees]] which are given to the miner
+who included the transaction in a block. These fees can range from 0% to 100%
+of the transaction inputs technically speaking, although what is economically
+practical is a subset of that.
 
-## Implementation
+Fees can align the economic interests of Bitcoin users with the interests of
+miners. For instance in the above example of anonymous transactions fees can
+encourage miners to mine anonymous transactions regardless of the legal risk,
+or to take (possibly expensive) measures to reduce that risk.
 
-Implementation can be done effectively via the introduction of a new network rule. It says that money spent to an output that contains an unspendable script can be claimed as fees. We're already introducing the idea of OP_RETURN outputs that simply result in insta-pruning of that output, as it's provably unspendable. Allowing that value to be claimed as fees is a hard-forking rule change, but it's also a relatively straightforward one (the alternative is to have the money be destroyed ... which is bad), and we need to hard fork to increase the block size anyway. Once this is done, we can have a separate P2P broadcast network in which participants broadcast pledges. The pledge is an invalid transaction that takes X coins with a SIGHASH_ANYONECANPAY signature and then re-allocates it to an unspendable output of Y coins, where Y > X. X is the pledge and Y is the target, of course. Peers listen and when they have seen enough pledges to sum up to a value of greater than Y, they just combine them to make the tx valid and broadcast it on the regular Bitcoin network. Peers can do this in parallel - there's a chance of naturally occurring double spends but rules on how to construct the contract out of the pledges can probably reduce that to a trivial level.
+### The Blocksize Limit
 
-Note that it is possible to do spend-to-fee assurance contracts without the new rule, but it'd be complicated and involve a multi-round protocol in which people first announce they want to pledge an output, then someone has to build a template transaction based on all the announcements, then the group signs it in parallel. It can be done but it's messier.
+Currently blocks are limited to 1MB in size, and further limited by "gentlemans
+agreement" in the form of a 500KB default maximum. While miners can choose to
+mine blocks exceeding the 500KB limit, the 1MB limit is fixed and any block
+larger than it is invalid; block space is a scarce resource. Provided that the
+demand for transactions is greater than about [[seven|Maximum_transaction_rate]] we can expect transaction fees to be greater than the marginal
+costs required to accept a transaction, thus creating a profit that can be used
+to fund the operation of hashing power.
 
-What are X and Y set to? That depends on what the participants want. It'd be nice to find economic research on the case where the public good in question is continuous, but I don't know of any at the moment. I think it'd likely work like this - merchants that have noticed that they start seeing double spends when network speed drops below 5 THash/sec would clearly be targeting that amount and no more. Other merchants might only care about 1 Thash/sec. In that case, the first class of merchants can set their Y to 1 Thash and just broadcast multiple independent contracts, this means there is a chance that they'll get less than what they wanted (which weakens the definition of the target) but there's more of a chance of the contracts completing. At any rate, they would reduce their pledge size as well for each contract, so they aren't exposing themselves to freeloaders at any greater level.
+### Off-chain Transactions
 
-For X, I imagine that if you start from a steady state your goal is to lower it as much as possible without stopping the contracts from completing entirely. One way is to lower your pledge and see how fast the contract completes - if the contract doesn't complete within your required time limit, you can just (anonymously) broadcast a second pledge to make it back to what you were previously pledging. But other players don't know you might do that.
+If making a transaction becomes too expensive it can become worthwhile to use
+an off-chain payment system to move the funds instead, either one denominated
+in Bitcoins, or in a different currency entirely; the availability of off-chain
+transactions limits the maximum fees that miners can charge, in turn limiting the value of transactions as a way to fund security.
 
-In a healthy system I'd expect there to be many independent, overlapping contracts being formed. They're simple to construct so doing one per block is reasonable.
+## Alternatives
 
-## Conclusion 
+If transaction fees and the inflation subsidy do not pay for adequate security
+alternatives exist. In particular users who own Bitcoins, yet do not perform
+transactions, possibly because they are holding onto their Bitcoins as an
+investment and/or use off-chain transactions, only pay for security through the
+inflation subsidy.
 
-Obviously whilst there are many participants with different ideas about what network speed is "enough", with only one chain there can only be one speed. People with extreme needs would end up not being able to use the block chain for their security and would have to find alternative arrangements, or just accept that they'd be subsidising the activities of others who can tolerate lower security.
+In addition one approach to the [[scalability problem|scalability]] posed by
+the current 1MB blocksize limit is to remove or increase that limit. Without
+the blocksize limit it is expected that transaction fees will fall to the
+[[marginal_costs_of_a_transaction]], which means that fees will not pay for any
+security at all.
 
-I think the next piece of work needed to explore this idea is searching the literature for studies of assurance contracts for continuous public goods, as the primary difference between what this scheme would do and proven models like Kickstarter is the need for group consensus on what "enough" mining means.
+### Individual
 
-That said, I note that the alternative proposal (restrict block size and charge fees to get in) doesn't even try to answer the question of how much mining is enough. It's just assumed that some arbitrary byte limit would result in demand exceeding supply to the level that mining is well funded. The problem being that limiting blocks by physical size doesn't jive with the fact that they move abstract value - if anything, for such a scheme to work, block sizes should be limited by satoshis transferred. Otherwise you could get a bunch of very high value transactions that end up with tiny fees because that's all that's necessary to get into the block, as lower value transactions have long since given up on the system and gone elsewhere.
+As individuals Bitcoin owners can fund network security in a variety of ways,
+including artifical fee-paying transactions, paying abnormally high fees,
+donating directly to known miners, and operating their own mining equipment.
+The latter two methods have the advantage that the donator has control over the
+policy followed by the miner being funded.
+
+However mining is a public good: any individual can also simply hope that
+others will fund security for them, also known as the
+[free rider problem](http://en.wikipedia.org/wiki/Free_rider_problem).
+
+### Assurance Contracts
+
+An assurance contract, also known as a provision point mechanism, is a game
+theoretic mechanism and a financial technology that facilitates the voluntary
+creation of public goods and club goods in the face of the free rider
+problem. (8.1)
+
+The free rider problem is that there may be actions that would benefit a large
+group of people, but once the action is taken, there is no way to exclude those
+who did not pay for the action from the benefits. In Bitcoin the problem is
+that mining is costly and benefits everyone who owns Bitcoins and/or performs
+transactions. A mining assurance contract needs to be constructed in such a way
+that participants agree that if some large amount of funds are commited, those
+funds will go to mining in some way, with the amount set to be large enough for
+a sufficiently high percentage of the economic activity of Bitcoin must have
+participated to avoid the free rider problem.
+
+Bitcoin already supports assurance contracts as a transaction
+type (8.2) - for a
+mining assurance contract the transaction output would be set to either an
+[[anyone can spend|Script#Anyone-Can-Spend_Outputs]] output, or an address owned
+by a specific miner. However as-is they have a serious problem: a miner can
+always collect the funds pledged to date by simply adding a sufficient amount
+of their own funds to the outstanding contract, and mining that transaction
+themselves, thus turning the contract into a simple
+donation. (8.3)
+(modulo the small chance of the block being orphaned; if the chance is large, the assurance contract is not encouraging orderly mining) The problem can be mitigated somewhat by forcing donators to reveal their identity in a provable way, but then high participation is difficult to achieve.
+
+With [[nLockTime]] a transaction can be created where the miner who will
+actually collect it is unknown in advance. As the deadline approaches, if the
+contract is not fully funded, participants double-spend their pledged
+transaction outputs to invalidate the contract. However this mechanism has the
+problem that anyone can make the contract fail, even if it is fully funded.
+That problem can be solved if Bitcoin's scripting language is extended to allow
+for transaction outputs that can only be spent by transactions following
+certain forms - the outputs would be locked to the contract until some time
+after the contract
+expires. (8.4)
 
 ## References
+
+1.1: [Decentralised crime fighting using private set intersection protocols](https://bitcointalk.org/index.php?topic=157130.0)  
+2.1: [Miners that refuse to include transactions are becoming a problem](https://bitcointalk.org/index.php?topic=69423.0)  
+8.1: http://en.wikipedia.org/wiki/Assurance_contract  
+8.2: [[Contracts#Example_3:_Assurance_contracts]]  
+8.3: [[https://bitcointalk.org/index.php?topic=157141.msg1821770#msg1821770]]  
+8.4: [[https://bitcointalk.org/index.php?topic=157141.msg1822138#msg1822138]]
+
 
 * [Bitcointalk thread](https://bitcointalk.org/index.php?topic=157141.0)
 [[!tag "Technical"]]
