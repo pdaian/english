@@ -130,7 +130,7 @@ a sufficiently high percentage of the economic activity of Bitcoin must have
 participated to avoid the free rider problem.
 
 Bitcoin already supports assurance contracts as a transaction
-type (8.2); for a
+type (8.2) - for a
 mining assurance contract the transaction output would be set to either an
 [[anyone can spend|Script#Anyone-Can-Spend_Outputs]] output, or an address owned
 by a specific miner. However as-is they have a serious problem: a miner can
@@ -138,9 +138,7 @@ always collect the funds pledged to date by simply adding a sufficient amount
 of their own funds to the outstanding contract, and mining that transaction
 themselves, thus turning the contract into a simple
 donation. (8.3)
-The problem can be mitigated somewhat by forcing donators to reveal their
-identity in a provable way, but then high participation is difficult to
-achieve.
+(modulo the small chance of the block being orphaned - if the chance is large, the assurance contract is not encouraging orderly mining) The problem can be mitigated somewhat by forcing donators to reveal their identity in a provable way, but then high participation is difficult to achieve.
 
 With [[nLockTime]] a transaction can be created where the miner who will
 actually collect it is unknown in advance. As the deadline approaches, if the
