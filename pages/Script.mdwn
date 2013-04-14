@@ -244,6 +244,15 @@ OP_RETURN immediately marks the script as invalid, guaranteeing that no scriptSi
 
 Note that this mechanism is not yet a standard transaction type, and thus will not be relayed by nodes on mainnet.
 
+### Anyone-Can-Spend Outputs
+
+Conversely a transaction can be made spendable by anyone at all:
+
+	scriptPubKey: (empty)
+	scriptSig: OP_TRUE
+
+With some software changes such transactions can be used as a way to donate funds to miners in addition to transaction fees, as any miner who mines such a transaction can also include an additional one after it sending the funds to an address they control. This mechanism may be used in the future for [[fidelity_bonds]] to sacrifice funds in a provable way.
+
 ### Transaction with a message
 
 It's possible to add arbitrary data to any transaction by just adding some data along with OP_DROP. Scripts are limited to 10,000 bytes and 201 instructions, and each individual instruction/value is limited to 520 bytes.
