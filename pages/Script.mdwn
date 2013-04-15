@@ -251,7 +251,9 @@ Conversely a transaction can be made spendable by anyone at all:
 	scriptPubKey: (empty)
 	scriptSig: OP_TRUE
 
-With some software changes such transactions can be used as a way to donate funds to miners in addition to transaction fees, as any miner who mines such a transaction can also include an additional one after it sending the funds to an address they control. This mechanism may be used in the future for [[fidelity_bonds]] to sacrifice funds in a provable way.
+With some software changes such transactions can be used as a way to donate funds to miners in addition to transaction fees: any miner who mines such a transaction can also include an additional one after it sending the funds to an address they control. This mechanism may be used in the future for [[fidelity_bonds]] to sacrifice funds in a provable way.
+
+Anyone-Can-Spend outputs are currently considered non-standard, and are not relayed on the P2P network.
 
 ### Transaction with a message
 
