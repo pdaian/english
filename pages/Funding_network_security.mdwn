@@ -19,9 +19,11 @@ causing transactions that appeared to be confirmed to become unconfirmed and
 vulnerable to reversal. In addition the attacker can exploit [[Transaction_Malleability]] to make it impossible for those transactions to ever be included
 in the blockchain again.
 
+## What is security?
+
 The hashing power majority does not need to constitute a single individual or
 coherent group. For instance the economic majority may see [[fungibility]] as
-important, and thus want to ensure transaction outputs can not be blacklisted (1.1) to prevent transactions spending them from being confirmed,
+important, and thus want to ensure transaction outputs can not be blacklisted (2.1) to prevent transactions spending them from being confirmed,
 even if those outputs are known to be involved with illegal activity such as theft or fraud.
 However the actions of mining pools are usually public knowledge; which blocks
 they mine is usually published on the pool website. If mining a transaction
@@ -52,7 +54,7 @@ The inflation subsidy pays miners directly from Bitcoin as a whole; in effect
 everyone holding Bitcoins is paying for security directly. However at some
 point it will become small enough that Bitcoin could be attacked by someone
 with very little resources. In addition a miner can still collect the inflation
-subsidy without including any transactions at all in the blocks they mine, an activity that can be seen as an attack. (2.1)
+subsidy without including any transactions at all in the blocks they mine, an activity that can be seen as an attack. (3.1)
 
 It is predicted that the inflation subsidy will reach less than 1% of the
 Bitcoin nominal market cap sometime in 2033. However that figure is subject to
@@ -116,7 +118,7 @@ others will fund security for them, also known as the
 An assurance contract, also known as a provision point mechanism, is a game
 theoretic mechanism and a financial technology that facilitates the voluntary
 creation of public goods and club goods in the face of the free rider
-problem. (8.1)
+problem. (9.1)
 
 The free rider problem is that there may be actions that would benefit a large
 group of people, but once the action is taken, there is no way to exclude those
@@ -129,14 +131,14 @@ a sufficiently high percentage of the economic activity of Bitcoin must have
 participated to avoid the free rider problem.
 
 Bitcoin already supports assurance contracts as a transaction
-type (8.2) - for a
+type (9.2) - for a
 mining assurance contract the transaction output would be set to either an
 [[anyone can spend|Script#Anyone-Can-Spend_Outputs]] output, or an address owned
 by a specific miner. However as-is they have a serious problem: a miner can
 always collect the funds pledged to date by simply adding a sufficient amount
 of their own funds to the outstanding contract, and mining that transaction
 themselves, thus turning the contract into a simple
-donation. (8.3)
+donation. (9.3)
 (modulo the small chance of the block being orphaned; if the chance is large, the assurance contract is not encouraging orderly mining) The problem can be mitigated somewhat by forcing donators to reveal their identity in a provable way, but then high participation is difficult to achieve.
 
 With [[nLockTime]] a transaction can be created where the miner who will
@@ -148,16 +150,16 @@ That problem can be solved if Bitcoin's scripting language is extended to allow
 for transaction outputs that can only be spent by transactions following
 certain forms - the outputs would be locked to the contract until some time
 after the contract
-expires. (8.4)
+expires. (9.4)
 
 ## References
 
-1.1: [Decentralised crime fighting using private set intersection protocols](https://bitcointalk.org/index.php?topic=157130.0)  
-2.1: [Miners that refuse to include transactions are becoming a problem](https://bitcointalk.org/index.php?topic=69423.0)  
-8.1: http://en.wikipedia.org/wiki/Assurance_contract  
-8.2: [[Contracts#Example_3:_Assurance_contracts]]  
-8.3: [[https://bitcointalk.org/index.php?topic=157141.msg1821770#msg1821770]]  
-8.4: [[https://bitcointalk.org/index.php?topic=157141.msg1822138#msg1822138]]
+2.1: [Decentralised crime fighting using private set intersection protocols](https://bitcointalk.org/index.php?topic=157130.0)  
+3.1: [Miners that refuse to include transactions are becoming a problem](https://bitcointalk.org/index.php?topic=69423.0)  
+9.1: http://en.wikipedia.org/wiki/Assurance_contract  
+9.2: [[Contracts#Example_3:_Assurance_contracts]]  
+9.3: [[https://bitcointalk.org/index.php?topic=157141.msg1821770#msg1821770]]  
+9.4: [[https://bitcointalk.org/index.php?topic=157141.msg1822138#msg1822138]]
 
 
 * [Bitcointalk thread](https://bitcointalk.org/index.php?topic=157141.0)
