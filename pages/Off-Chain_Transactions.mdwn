@@ -28,7 +28,7 @@ If the sender and recipient do not trust each other, or would simply prefer some
 
 The difficulty with third-parties is achieving that trust. Outside of Bitcoin PayPal has been criticized (7.1) for arbitrarily freezing accounts. Within Bitcoin multiple E-Wallet services such as [[MyBitcoin]] and [[Instawallet]] have failed due to hacks as well as technical mistakes resulting in the loss of some or all funds held on behalf of their customers.
 
-### Auditing Third Parties
+### Auditing
 
 In addition to hacks, currently no trusted third party payment systems in Bitcoin provide any way for users to determine if the services actually hold the Bitcoins they claim to hold. Conventionally banks and payment processors are [audited](http://en.wikipedia.org/wiki/Financial_audit) regularly by third-parties - because Bitcoin is based on cryptography auditing can be done in a cryptographically provable way.
 
@@ -38,10 +38,15 @@ The service proves they control the Bitcoins they claim to by signing statements
 
 Clients check that their account is included in that tree by regularly demanding proof, in the form of a merkle path, that their account leads to the claimed tip. Any discrepancy is evidence of fraud on by the service, or at least poor record-keeping.
 
+### Proving Fraud
+
+If the communication protocol between client and service is designed correctly fraud by the service can be proven to others. For instance if the service cryptographically signs all communications an inconsistency between the claimed merkle-tip of the accounts held by the service and the merkle-path from a particular account to that tip can be proven by providing the signed tip, and the signed merkle-path. This fraud proof can be self-authenticating, and thus anyone who comes in possession of such a proof can broadcast it to their peers. With appropriate software all participating clients of the service can be informed of any fraud immediately, taking "advantage of the nature of information being easy to spread but hard to stifle." (9.1)
+
 ## References
 
 
 5.1: [How to send BitCoins with LOW TX FEE (Not No TX Fee)](https://bitcointalk.org/index.php?topic=156334.0)  
 7.1: [PayPal - Criticism](http://en.wikipedia.org/wiki/PayPal#Criticism)  
-8.1: private communication on IRC (gmaxwell: do you have a writeup somewhere?)
+8.1: private communication on IRC (gmaxwell: do you have a writeup somewhere?)  
+9.1: [Satoshi](http://sourceforge.net/mailarchive/message.php?msg_id=30482839)
 
