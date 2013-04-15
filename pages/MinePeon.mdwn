@@ -1,5 +1,26 @@
-An ArchLinux ARM based OS built for the Raspberry PI.
+**An ArchLinux ARM based OS built for the Raspberry PI.**
 
+MinePeon is intended to be a lean purpose build mining device with emphasis on stability and performance.  The intention is that it is a configure and forget device, you should be able to install it, configure it and then leave it to do it's work forever and a day without human interaction.
+
+What it is;-
+
+* **Lean**, anything that is not direly related to mining will probably not be included, the intention is for it to run off a 2 GB SD Card.
+
+* **Stable**, it is intended as a Embedded OS with emphasis on reliability.  Its packages are fully tested and the latest stable versions.
+
+* **Fast**, If it takes a CPU cycle away from mining you probably wont find it in MinePeon.  It is somewhat uncertain how many GH/s you can attach to a Raspberry PI without it dropping shares.
+
+* **Up to Date**, Latest packages and practices, a big example of this is to use systemd for init rather that SystemV.
+
+* **Hacker Friendly**, If you have more than a passing familiarity with Linux you should be able to make it do just about anything.
+
+* **Mining Friendly**, Even a newbie should be able to set it up and get it mining in 5 minutes. 
+
+What it's not;-
+
+* **A Desktop OS**, MinePeon is not intended to be a Desktop Operating system, they are already available for the Raspberry PI http://www.raspberrypi.org/downloads Raspbian “wheezy” but while they can mine, they are not optimised for it.
+
+* **Newbie Friendly**, While the Mining UI is intended for newbies the architecture underneath is not, if there is ever a choice between making the underneath friendly or perform better, performance always wins.
 
 ##External Links
 
