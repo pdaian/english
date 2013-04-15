@@ -18,8 +18,30 @@ All on-chain transactions are recorded publicly on the block chain; Bitcoin tran
 
 Miners usually charge [[fees|Transaction_fees]] to confirm a transaction. While currently the demand for transactions is sufficiently low that fees are relatively small, and transactions can often be confirmed for free, for many applications even paying a few cents per transaction is unaffordable. (5.1) In addition Bitcoin currently has a limit of 7 transactions per second, the [[blocksize_limit]]. This limit is related to the [[scalability|Scalability]] of the system as a whole, and one option to achieve higher transaction volumes is to keep the blocksize limit as is and use off-chain transactions for lower-value transactions; with higher volumes fees for transactions done on-chain will rise due to supply and demand.
 
+## Methods
+
+The most simple example of an off-chain transaction is perhaps two friends who agree on a debt between them. The "transaction" happens by the act of agreeing that the debt exists, and the validity of it is based solely on the trust that one friend has in the other. Further transactions can be agreed upon, possibly in exchange for something of value such one friend buying the other a meal. Multiple mutually trusting parties can participate, creating a network of value owed from one to the other. As an example the [Ripple monetary system](http://en.wikipedia.org/wiki/Ripple_monetary_system) takes this concept, and adds to it an automated ledger to record all the mutual debts between participating parties. However actually acting upon those debts is still a matter of trust between the parties, the system only records and can-not by itself cause Bitcoins or some other object of value to change hands.
+
+### Trusted Third Parties
+
+If the sender and recipient do not trust each other, or would simply prefer someone else record and guarantee the transaction, they can use a [trusted third party](http://en.wikipedia.org/wiki/Trusted_third_party) to record and guarantee the transaction. The vast majority of conventional banking and electronic payment systems work this way. For instance in the PayPal system, PayPal is trusted to keep an accurate record of all transactions, including within the PayPal system, as well as transactions that move funds to and from PayPal. Within Bitcoin [[redeemable code|Redeemable_code]] systems exist where a third party, such as Mt. Gox, records codes issued and promise to redeem them for either new codes, balances within the system, or Bitcoins via on-chain transactions. In addition [[E-Wallet]] services such as [[Easywallet.org]] often allow users to transfer funds between addresses within the system without creating an on-chain transaction.
+
+The difficulty with third-parties is achieving that trust. Outside of Bitcoin PayPal has been criticized (7.1) for arbitrarily freezing accounts. Within Bitcoin multiple E-Wallet services such as [[MyBitcoin]] and [[Instawallet]] have failed due to hacks as well as technical mistakes resulting in the loss of some or all funds held on behalf of their customers.
+
+### Auditing Third Parties
+
+In addition to hacks, currently no trusted third party payment systems in Bitcoin provide any way for users to determine if the services actually hold the Bitcoins they claim to hold. Conventionally banks and payment processors are [audited](http://en.wikipedia.org/wiki/Financial_audit) regularly by third-parties - because Bitcoin is based on cryptography auditing can be done in a cryptographically provable way.
+
+Gregory Maxwell has proposed (8.1) to use [[merkle-sum_trees]] of accounts to audit funds held by third parties. Each account with the service is assigned a number, such as a SHA256 digest, and those digests are formed into a merkle tree. Additionally for every node in the tree the sum of the account balances on both leaves is computed, and that sum becomes part of the data hashed by the parent node. The tip of the tree is then the sum of all balances for all accounts.
+
+The service proves they control the Bitcoins they claim to by signing statements with the private keys capable of spending transaction outputs present on the blockchain, and in addition regularly sign statements attesting what is the current tip of the account merkle-sum tree.
+
+Clients check that their account is included in that tree by regularly demanding proof, in the form of a merkle path, that their account leads to the claimed tip. Any discrepancy is evidence of fraud on by the service, or at least poor record-keeping.
+
 ## References
 
 
-5.1: [How to send BitCoins with LOW TX FEE (Not No TX Fee)](https://bitcointalk.org/index.php?topic=156334.0)
+5.1: [How to send BitCoins with LOW TX FEE (Not No TX Fee)](https://bitcointalk.org/index.php?topic=156334.0)  
+7.1: [PayPal - Criticism](http://en.wikipedia.org/wiki/PayPal#Criticism)  
+8.1: private communication on IRC (gmaxwell: do you have a writeup somewhere?)
 
