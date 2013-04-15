@@ -40,7 +40,7 @@ Clients check that their account is included in that tree by regularly demanding
 
 ### Proving Fraud
 
-If the communication protocol between client and service is designed correctly fraud by the service can be proven to others. For instance if the service cryptographically signs all communications an inconsistency between the claimed merkle-tip of the accounts held by the service and the merkle-path from a particular account to that tip can be proven by providing the signed tip, and the signed merkle-path. This fraud proof can be self-authenticating, and thus anyone who comes in possession of such a proof can broadcast it to their peers. With appropriate software all participating clients of the service can be informed of any fraud immediately, taking "advantage of the nature of information being easy to spread but hard to stifle." (9.1)
+If the communication protocol between client and service is designed correctly fraud by the service can be proven to others. For instance if the service cryptographically signs all communications an inconsistency between the claimed merkle-tip of the accounts held by the service and the merkle-path from a particular account to that tip can be proven by providing the signed tip, and the signed merkle-path. This fraud proof can be self-authenticating, and thus anyone who comes in possession of such a proof can broadcast it to their peers. With appropriate software all participating clients of the service can be informed of any fraud immediately taking "advantage of the nature of information being easy to spread but hard to stifle", a core concept underlying the security of Bitcoin itself. (9.1)
 
 ## References
 
