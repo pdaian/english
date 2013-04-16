@@ -76,21 +76,19 @@ $ ./electrum -w /path/to/my/wallet/wallet_name
 
 ###Export and import addresses
 
-You can export your private keys using the 'addresses' command:
+You can export your private keys using the 'dumpprivkeys' command:
 <pre>
-$ ./electrum addresses -ak
+$ ./electrum dumpprivkeys
 Password:
-1LGoehbyeX4QBEPK1a6dhyaoMQZfqg5LKX:5JBSttEGhjEcPidSovW66Rin2EZ6LEHZ2qx8Pu2RqqNaDTBVWaF   
-1KcsBJa2cCxVkGJfSsg5bUeXN7Y5uLa8mP:5KiP4uiNT6KG8jnXbainCM8rDWRrgxt3PAyut4FFpDoCo1Rh6VM   
-1PXsn7LVXTccGhJPTUL8r2EGB4fF9kvex3:5Kj8mvBJReyk8xEBMx5cTnciQCxto5JmudiTPkqwMcd61Kf1Jqc   
-1KteSFTAphyByLTtUfFiVQ9s7fMVmx7c2h:5JeZ3FTbWcksLt3PKydd5U9p952UQRHwv3LoxzCA9LZ7V2bku5p   
-1GE5ZChAobeTEPLHDCDDKTSg3XvLkcQFjS:5JwtGEygTwF2nouhRVzW3w5DWZd1sCgxLtnd1v51wjkbUrp5sqH   
-12YNehfAoYTiwjTXULwaZqTCauu2D61fq6:5Jvcq19ePCXKcVun4n7US99CsrEByUK2kgxXBA3rBVBqYZjhfwD  [change] 
+{
+"1LGoehbyeX4QBEPK1a6dhyaoMQZfqg5LKX": "5JBSttEGhjEcPidSovW66Rin2EZ6LEHZ2qx8Pu2RqqNaDTBVWaF"   
+"1KcsBJa2cCxVkGJfSsg5bUeXN7Y5uLa8mP": "5KiP4uiNT6KG8jnXbainCM8rDWRrgxt3PAyut4FFpDoCo1Rh6VM"   
+"1PXsn7LVXTccGhJPTUL8r2EGB4fF9kvex3": "5Kj8mvBJReyk8xEBMx5cTnciQCxto5JmudiTPkqwMcd61Kf1Jqc"   
+"1KteSFTAphyByLTtUfFiVQ9s7fMVmx7c2h": "5JeZ3FTbWcksLt3PKydd5U9p952UQRHwv3LoxzCA9LZ7V2bku5p"   
+"1GE5ZChAobeTEPLHDCDDKTSg3XvLkcQFjS": "5JwtGEygTwF2nouhRVzW3w5DWZd1sCgxLtnd1v51wjkbUrp5sqH"   
+"12YNehfAoYTiwjTXULwaZqTCauu2D61fq6": "5Jvcq19ePCXKcVun4n7US99CsrEByUK2kgxXBA3rBVBqYZjhfwD"  [change] 
+}
 </pre>
-There are two options in this example:
-
-* option -a means: 'list all addresses'. if you don't use it, change addresses are not listed.
-* option -k means: display the private keys
 
 You can also import addresses into an electrum wallet, with the 'importprivkey' command:
 <pre>
