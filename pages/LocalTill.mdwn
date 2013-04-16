@@ -1,5 +1,13 @@
-**LocalTill** is an anonymous merchant cash processing service that authenticates deposits based on a unique code embedded in last digits of the deposit by adding a variable fee between 1% and 4%.
+[[!img "Bank_of_America_deposit_to_LocalTill.jpg" size=320x320 size=120x120 class="right" title="Bank of America customer receipt for LocalTill cash deposit"]]
 
-For example, a 500 USD deposit with a merchant may require the user to deposit 509.21 USD at a bank, whereby "9.21" is interpreted as a unique identifier for the deposit. No personal data is requested of the user who makes the deposit.
+**LocalTill** is an anonymous merchant cash processing service based in the state of New York, that identifies deposits based on a unique code embedded in last digits of the deposit amount by adding a variable fee between 1% and 4%.
 
-Localtill is used by [[Bitfloor]] in the USA, allowing users to make cash deposits (towards bitcoin purchases) at [[Bank_of_America]] branches using an out of state deposit slip. No identification is required. Bank of America tellers may ask for a phone number "for reference", which is actuality never used.
+For example, a 500 USD deposit with a merchant may require the user to deposit 509.21 USD at a bank, whereby "9.21" is interpreted as a unique identifier for the deposit.
+
+Localtill is used by [[Bitfloor]] in the USA, allowing users to make cash deposits (towards bitcoin purchases) at [[Bank_of_America]] branches using an "out of state deposit" slip. Deposits are usually credited within 30 minutes, as long as they are made before 5pm Eastern Time.
+
+##Anonymity
+LocalTill does not request any data identifying the user who makes the deposit. Bank of America does not require identification when making cash deposits, but CCTV footage is likely recorded. The bank teller may ask for a phone number "for reference", which is in actuality not used.
+
+##Fees
+LocalTill's fee serves as a deposit identified and is generated randomly when requesting the deposit. It is possible to get lower fees by repeatedly initiating deposit requests.
