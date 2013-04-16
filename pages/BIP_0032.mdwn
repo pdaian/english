@@ -77,7 +77,7 @@ The HMAC-SHA512 function is specified in [RFC 4231](http://tools.ietf.org/html/r
 
 ###The key tree
 
-The next step is cascading several CKD constructions to build a tree. We start with one root, the master extended key m. By evaluating CKD(m,i) for several values of i, we get a number of first-degree derivative nodes. As each of these is again an extended key, CKD can be applied to those as well. To shorten notation, we will write CKD(CKD(CKD(m,0x8000003),0x2),0x5) as m/s<sub>3'</sub>/p<sub>2</sub>/p<sub>5</sub> now.
+The next step is cascading several CKD constructions to build a tree. We start with one root, the master extended key m. By evaluating CKD(m,i) for several values of i, we get a number of first-degree derivative nodes. As each of these is again an extended key, CKD can be applied to those as well. To shorten notation, we will write CKD(CKD(CKD(m,0x8000003),0x2),0x5) as m/3'/2/5 now.
 
 Each leaf node in the tree corresponds to an actual keypair, while the internal nodes correspond to the collection of keypairs that descends from them. The chain codes of the leaf nodes are ignored, and only their embedded private or public key is used. Because of this construction, knowing an extended private key allows reconstruction of all descendant private keys and public keys, and knowing an extended public keys allows reconstruction of all descendant public keys derived using public derivation.
 
