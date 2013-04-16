@@ -116,9 +116,9 @@ see http://electrum.org/offline_wallets.html
 |balance |shows the balance of your wallet or of an address |balance [[address]]|no |yes
 |contacts |print your list of contacts |contacts |no |no
 |create |create a new wallet |create |no |no
-|deseed |Remove seed from wallet and store it to .seed file  |deseed |no |no
+|deseed |Create a seedless version of a wallet with the suffix .seedless  |deseed |no |no
 |eval |call python eval |eval <expression>|no |no
-|getseed |print your seed |seed |yes |no
+|getseed |write the seed and its mnemonic to stdout |seed |yes |no
 |help |display the help for a command |help [[command]]|no |no
 |history |print the transaction history |history |no |yes
 |import |import a keypair |import <address:private_key> |yes |no
