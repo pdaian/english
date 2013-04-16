@@ -116,19 +116,37 @@ see http://electrum.org/offline_wallets.html
 |balance |shows the balance of your wallet or of an address |balance [[address]]|no |yes
 |contacts |print your list of contacts |contacts |no |no
 |create |create a new wallet |create |no |no
+|createmultisig |?? |createmultisig |?? |??
+|createrawtransaction|?? |createrawtransaction |?? |??
+|decoderawtransaction |?? |decoderawtransaction |?? |??
 |deseed |Create a seedless version of a wallet with the suffix .seedless  |deseed |no |no
+|dumpprivkey |?? |dumpprivkey |?? |??
+|dumpprivkeys |?? |dumpprivkeys |?? |??
 |eval |call python eval |eval <expression>|no |no
+|freeze |?? |freeze |?? |??
+|getaddresshistory |?? |getaddresshistory |?? |??
+|getbalance |?? |getbalance |?? |??
+|getconfig |?? |getconfig |?? |??
 |getseed |write the seed and its mnemonic to stdout |seed |yes |no
 |help |display the help for a command |help [[command]]|no |no
 |history |print the transaction history |history |no |yes
 |import |import a keypair |import <address:private_key> |yes |no
+|importprivkey |?? |importprivkey |?? |??
 |label |change the label of a transaction or address |label <label>|no |no
+|listaddresses |?? |listaddresses |?? |??
+|listunspent |?? |listunspent |?? |??
 |mktx |create a transaction and dump it |mktx [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |no
 |password |update your password |password |yes |no
 |payto |create and broadcast a transaction |payto [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |yes
+|prioritize |?? |prioritize |?? |??
 |restore |restore a wallet from seed |restore |no |yes
-|sendtx |broadcast a transaction |sendtx <tx>|no |yes
+|sendrawtransaction |broadcast a transaction |sendrawtransaction <tx>|no |yes
+|setconfig |?? |setconfig |?? |??
+|setlabel |?? |setlabel |?? |??
 |signmessage |sign a message (as in bitcoind) |signmessage <address><message>|yes |no
+|signrawtransaction |?? |signrawtransaction |?? |??
+|unfreeze |?? |unfreeze |?? |??
+|unprioritize |?? |unprioritize |?? |??
 |validateaddress |check is the argument is a valid bitcoin address |validateaddress <address>|no |no
 |verifymessage |verify a message (as in bitcoind) |verifymessage <address><signature><message>|no |no
 
