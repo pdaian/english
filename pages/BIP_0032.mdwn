@@ -54,9 +54,9 @@ We define the child key derivation function CKD((k<sub>par</sub>,c<sub>par</sub>
 To define (k<sub>i</sub>,c<sub>i</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),i):
 
 * Check whether the highest bit (0x80000000) of i is set:
-		* If 0, "public derivation" is used: let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  i) (with K<sub>par</sub> = k<sub>par</sub>*G, EC multiplication)
-		* If 1, "secret derivation" is used: let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=k<sub>par</sub>  i)
-		* (in the above, i is encoded as a 32 bits unsigned integer, most significant byte first; '' represents concatenation)
+	* If 0, "public derivation" is used: let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  i) (with K<sub>par</sub> = k<sub>par</sub>*G, EC multiplication)
+	* If 1, "secret derivation" is used: let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=k<sub>par</sub>  i)
+	* (in the above, i is encoded as a 32 bits unsigned integer, most significant byte first; '' represents concatenation)
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
 * k<sub>i</sub> is equal to I<sub>L</sub>*k<sub>par</sub> (mod n).
 * c<sub>i</sub> is equal to I<sub>R</sub>.
