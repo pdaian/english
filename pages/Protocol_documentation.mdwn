@@ -219,7 +219,7 @@ Payload:
 |8 |nonce |uint64_t |Node random nonce, randomly generated every time a version packet is sent. This nonce is used to detect connections to self.
 |? |user_agent |[[var_str|#Variable_length_string]]|[[User Agent|BIP_0014]](0x00 if string is 0 bytes long)
 |4 |start_height |int32_t |The last block received by the emitting node
-|1 |relay |bool |Whether the remote peer should announce relayed transactions or not, see [[BIP_0037]]
+|1 |relay |bool |Whether the remote peer should announce relayed transactions or not, see [[BIP_0037]], since version >= 70001
 
 
 A "verack" packet shall be sent if the version packet was accepted.
@@ -290,8 +290,6 @@ Version message:
  0F 2F 53 61 74 6F 73 68 69 3A 30 2E 37 2E 32 2F                               - "/Satoshi:0.7.2/" sub-version string (string is 15 bytes long)
  C0 3E 03 00                                                                   - Last block sending node has is block #212672
 </pre>
-
-
 
 ### verack
 
