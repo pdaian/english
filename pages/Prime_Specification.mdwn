@@ -1,0 +1,75 @@
+##Functional
+
+###User
+
+* sign up with e-mail activation
+* sign in / out
+* password reset
+	* one-time, 24h valid password reset link
+* edit password and e-mail
+	* with e-mail confirmation
+* two factor authentication 
+	* configuration
+	* sign in
+* complete account removal (privacy feature)
+
+###Dashboard
+
+####Order book
+
+* live chart
+* live table
+
+####Last trades
+
+* live chart
+* live table
+
+###Account
+
+* Balances for the current market
+* History
+	* every balance change must have a corresponding transaction
+* Open orders
+	* cancel order
+
+###Deposit
+
+####Bitcoins
+
+* generation of personal input address
+	* internal maintenance of user input addresses (every user has a list of input addresses)
+* displaying address and instructions to the user
+	* funding user balance with incoming bitcoins
+		* create entry in account history, remember bitcoin tx id
+
+####Fiat
+
+* internal (LAN-only) API for custom scripts to bump fiat balance
+	* create entry in account history, remember fiat tx id
+
+###Withdraw
+
+####Bitcoins
+
+* edit bitcoin output address
+* confirm with e-mail link or Google Authenticator OTP
+* displaying form to send bitcoins
+	* amount
+	* instructions and fee information
+	* send button with summary and confirmation
+* mechanism to actually send bitcoins
+	* create entry in account history, remember bitcoin tx id
+
+####Fiat
+
+* edit bank account details
+* confirm with e-mail link or Google Authenticator OTP
+* display form to send fiat
+	* amount
+	* instructions
+	* send button with summary and confirmation
+* add FiatWithdrawal entry to the list of pending fiat withdrawal requests
+	* publish pending fiat withdrawals in internal API
+	* accept request to mark specific FiatWithdrawal as fulfilled
+		* create entry in account history, remember fiat tx id(?)
