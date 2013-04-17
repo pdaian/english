@@ -11,6 +11,8 @@ In March 2013, Litecoin reached a market cap of $10 million and achieved a netwo
 #### Scrypt Proof of Work
 Litecoin uses scrypt as a proof-of-work scheme. Scrypt adds memory-intensive algorithms to reduce the efficiency of the kind of parallelization that GPUs offered in early Bitcoin mining. This led to Litecoin primarily being mined with CPUs at the beginning. CPU-based mining has been challenged by the appearance of more energy-efficient GPU-based mining around July/August of 2012 bringing a roughly ten-fold increase in network hashing strength. GPUs are currently the dominant Litecoin mining technology.
 
+Scrypt has been less widely used and tested than the SHA2 hashing algorithm used in bitcoin, so there is some concern about possible weaknesses in its cryptographic scheme being discovered in the future.
+
 #### Faster Blocks
 The Litecoin blockchain differs from Bitcoin in that it generates blocks every 2.5 minutes on average (four times Bitcoin's rate).
 This means that merchants who accept transactions only 1 block deep get that confirmation quicker.
