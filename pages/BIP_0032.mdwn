@@ -108,7 +108,7 @@ When importing a serialized extended public key, implementations must verify whe
 
 The total number of possible extended keypairs is almost 2^512, but the produced keys are only 256 bits long, and offer about half of that in terms of security. Therefore, master keys are not generated directly, but instead from a potentially short seed value.
 
-* Generate a seed S of a chosen length (at least, but not limited to, 128 bits) from a (P)RNG.
+* Generate a seed S of a chosen length (at least 128 bits, but 256 is advised) from a (P)RNG.
 * Calculate I = HMAC-SHA512(key="Bitcoin seed", msg=S)
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
 * Use I<sub>L</sub> (mod n) as master secret key, and I<sub>R</sub> as master chain code.
