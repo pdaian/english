@@ -73,3 +73,36 @@
 	* publish pending fiat withdrawals in internal API
 	* accept request to mark specific FiatWithdrawal as fulfilled
 		* create entry in account history, remember fiat tx id(?)
+
+
+###Buy/Sell
+
+####Buy bitcoins
+
+* Instant buy
+	* "I want to buy [[____]] BTC instantly."
+	* "You will spend about ____ USD. Average BTC price will be about ____ USD."
+	* "Please be aware this is only aproximation. Order book can change every second."
+	* Technically equals to submitting buy order with infinite price.
+* Buy with price limit
+	* "I want to buy [[____]] BTC at price [[____]] USD/BTC."
+	* "You will spend about ____ USD. Average BTC price will be about ____ USD."
+	* "You need at least ____ USD at hand to submit this order."
+	* Validate user has enough funds to submit the order (assuming worst case scenario)
+	* Block funds
+	* Match with existing orders
+
+####Sell bitcoins
+
+* Instant sell
+	* "I want to sell [[____]] BTC instantly."
+	* "You will receive about ____ USD. Average BTC price will be about ____ USD."
+	* "Please be aware..."
+	* Technically equals to submitting sell order with 0 price.
+* Sell with price limit
+	* "I want to sell [[____]] BTC at price [[____]] USD/BTC."
+	* "You will receive about ____ USD. Average BTC price will be about ____ USD."
+	* Validate user has enough funds to submit the order
+	* Block funds
+	* Match with existing orders
+	* Smart defaults: all BTC, market price.
