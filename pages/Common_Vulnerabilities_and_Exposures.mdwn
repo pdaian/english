@@ -22,8 +22,8 @@
 |[[CVE-2013-2273|#CVE-2013-2273]]|2013-01-30|bitcoind and Bitcoin-Qt|bgcolor=limeExposure (1.3)|bgcolor=yellowEasy|Predictable change output|bgcolor=yellow[87%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132273)
 |[[CVE-2013-2292|#CVE-2013-2292]]|2013-01-30|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=limeHard|A transaction that takes at least 3 minutes to verify|bgcolor=pink[-](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132292)
 |[[CVE-2013-2293|#CVE-2013-2293]]|2013-02-14|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Continuous hard disk seek|bgcolor=yellow[87%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132293)
-|[[Pending|#Unassigned-20120311]]|2013-03-11|bitcoind and Bitcoin-Qt 0.8.0|bgcolor=pinkFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Unenforced block protocol rule|?
-|[[Pending|#Unassigned-20120312]]|2013-03-11|bitcoind and Bitcoin-Qt|bgcolor=pinkNetsplit (1.4)|bgcolor=limeHard|Inconsistent BDB lock limit interactions|?
+|[[Pending|#Unassigned-20130311]]|2013-03-11|bitcoind and Bitcoin-Qt 0.8.0|bgcolor=pinkFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Unenforced block protocol rule|bgcolor=yellow91%
+|[[Pending|#Unassigned-20130312]]|2013-03-11|bitcoind and Bitcoin-Qt|bgcolor=pinkNetsplit (1.4)|bgcolor=limeHard|Inconsistent BDB lock limit interactions|bgcolor=yellow87%
 |[[BIP 0034|#BIP-0034]]|2013-03-25|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.8)|Mandatory block protocol update|bgcolor=lime[96%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0034.html)
 |[[BIP 0050|#BIP-0050]]|2013-05-15|All Bitcoin clients|bgcolor=pinkNetsplit (1.4)|bgcolor=pinkImplicit (1.9)|Hard fork to remove txid limit protocol rule|bgcolor=yellow[87%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?50)
 
@@ -361,11 +361,11 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 * [Announcement](https://bitcointalk.org/?topic=144122)
 * [Gentoo bug](https://bugs.gentoo.org/show_bug.cgi?id=462046)
 
-## Unassigned-20120311
+## Unassigned-20130311
 
 	<b>Date:</b> 2013-03-11
 	<b>Summary:</b> Unenforced block protocol rule
-	<b>Fix Deployment:</b> ?
+	<b>Fix Deployment:</b> 91%
 
 
 |Bitcoin-Qt<br>bitcoind |0.8.0rc1 - 0.8.0 |0.8.1
@@ -375,14 +375,14 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 * [[BIP 50|BIP_0050]]
 
-## Unassigned-20120312
+## Unassigned-20130312
 
 	<b>Date:</b> 2013-03-11
 	<b>Summary:</b> Inconsistent BDB lock limit interactions
-	<b>Fix Deployment:</b> ?
+	<b>Fix Deployment:</b> 87%
 
 
-|Bitcoin-Qt<br>bitcoind |* - 0.4.9rc1<br>0.5.0rc1 - 0.5.8rc1<br>0.6.0rc1 - 0.6.5rc1<br>0.7.0rc1 - 0.7.3rc1 |0.4.9rc2<br>0.5.8rc2<br>0.6.5rc2<br>0.7.3rc2
+|Bitcoin-Qt<br>bitcoind |* - 0.4.9rc1<br>0.5.0rc1 - 0.5.8rc1<br>0.6.0rc1 - 0.6.0.11rc1<br>0.6.1rc1 - 0.6.5rc1<br>0.7.0rc1 - 0.7.3rc1 |0.4.9rc2<br>0.5.8rc2<br>0.6.0.12rc1<br>0.6.5rc2<br>0.7.3rc2
 |wxBitcoin |ALL |NONE
 
 
