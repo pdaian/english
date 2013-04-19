@@ -203,19 +203,25 @@ The current /avalon branch from Forrest is likely now functional. Please test an
 * The Avalon Firmware SDK is [here](http://downloads.qi-hardware.com/people/xiangfu/avalon/latest/)
 
 ## [http://downloads.qi-hardware.com/people/xiangfu/avalon/next-testing/ NEXT]
+	Please always using the latest testing image for testing. (check the date version number)
 
-* Please always using the latest testing image. (check the date version number)
-* Reset then Idle avalon before close it.
-* Only record matched result, only record the last result in one batch read (should fix the temp/fan jumping issue)
+* Merged to cgminer upstream. update cgminer to 2.11.4, use new queue work. BIG Thanks to conman.
+* Idle avalon chips after reset. for save power. (idle needs ~50W)
+* Fix the cgminer restart bug.
+* Fix temp/fan issues
 * Fix no_matching_work only count in debug mode
-* Update cgminer-monitor,  fix [[Accept]] give null at the first few seconds of cgminer start
-* Fix a typo on /usr/bin/cgminer-monitor, which make it cannot restart cgminer when no Accept
-* If one batch read give all wrong result. reinit Avalon
-* root@OpenWrt:~# cat /etc/avalon_version 
-	20130325
-	cgminer-07eae74
-	luci-3aee26f
-	openwrt-package-af46871
+* Update cgminer-monitor,  release [[Accept]] with [Work](Diff1), add killall before restart. 
+* Fix a typo on /usr/bin/cgminer-monitor, which make it cannot restart cgminer
+* More check/fliter on result. this make Avalon more stable
+* Fix the fan control. now base on the max value of temp2/3
+* New status page, new api log.
+* Improve the cgminer service. a restart takes ~2 seconds now. no needs ntpd before restart cgminer
+* Quiet some improvment on software develop. compile Avalon firmware is much eaiser with [build-avalon-image.sh](https://github.com/BitSyncom/avalon-extras/blob/master/scripts/build-avalon-image.sh)
+* Frimware version:
+	[Version](Firmware) => 20130419
+	cgminer-8e8313c
+	luci-28b4ff2
+	cgminer-openwrt-packages-f2bc5dc
 
 ## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130321/ 20130321]
 
