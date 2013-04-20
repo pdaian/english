@@ -205,8 +205,10 @@ There is nothing that prevents you from creating a Prime fronted that supports o
 
 ###Performance
 
+* Disallow small value orders (see [[Performance]] Settings in Admin panel)
+	* Prevents order and transaction spam. Spammed order book is slow to match. Spammed transaction history can become to large to handle.
 * Limit requests per minute for signed in user
-	* Further requests will be rejected
+	* Further requests will be rejected with [429 Too Many Requests](http://tools.ietf.org/html/rfc6585#section-4)
 	* Does not insert logs into database. Works buy incrementing user request_counter in scope of minute stored in request_counter_at. When current minute is larger than request_counter_at, it zeroes out request_counter and sets request_counter_at to the current minute.
 
 ##Limitation of v1.0
