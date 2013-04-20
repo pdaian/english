@@ -205,18 +205,20 @@ The current /avalon branch from Forrest is likely now functional. Please test an
 ## [http://downloads.qi-hardware.com/people/xiangfu/avalon/next-testing/ NEXT]
 	Please always using the latest testing image for testing. (check the date version number)
 
-* Merged to cgminer upstream. update cgminer to 2.11.4, use new queue work. BIG Thanks to conman.
+## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130419 20130419]
+
+* **Merged to cgminer. BIG thanks to conman**. so we have all cgminer's improvment
 * Idle avalon chips after reset. for save power. (idle needs ~50W)
 * Fix the cgminer restart bug.
-* Fix temp/fan issues
-* Fix no_matching_work only count in debug mode
-* Update cgminer-monitor,  release [[Accept]] with [Work](Diff1), add killall before restart. 
-* Fix a typo on /usr/bin/cgminer-monitor, which make it cannot restart cgminer
-* More check/fliter on result. this make Avalon more stable
+* Fix temp/fan have wrong value(the wrong result from fpga controller)
 * Fix the fan control. now base on the max value of temp2/3
-* New status page, new api log.
-* Improve the cgminer service. a restart takes ~2 seconds now. no needs ntpd before restart cgminer
-* Quiet some improvment on software develop. compile Avalon firmware is much eaiser with [build-avalon-image.sh](https://github.com/BitSyncom/avalon-extras/blob/master/scripts/build-avalon-image.sh)
+* Fix no_matching_work only count in debug mode
+* Update cgminer-monitor,  replace [[Accept]] with [Work](Diff1), add killall before restart. 
+* Fix a typo on /usr/bin/cgminer-monitor
+* **More check/fliter on result. this make Avalon more stable**
+* New status page, new api log page.
+* Improve the cgminer service. a restart takes ~2 seconds now. no needs ntpd when restart
+* Quiet some improvments on software develop/codeing. compile Avalon firmware is much eaiser with [build-avalon-image.sh](https://github.com/BitSyncom/avalon-extras/blob/master/scripts/build-avalon-image.sh)
 * Frimware version:
 	[Version](Firmware) => 20130419
 	cgminer-8e8313c
