@@ -164,9 +164,14 @@ As explained on [bitcoincharts](http://bitcoincharts.com/about/exchanges/).
 
 ####Performance
 
-* Number of users being online 
-* Number of transactions per hour
-* Job queue length
+* Hot
+	* Number of users online 
+	* Number of transactions in last minute
+	* Job queue length
+	* Pending fiat withdrawals (number, volume and the longest waiting)
+* Historical
+	* Number of transactions per hour chart (TODO: necessary in v1.0?)
+
 ####Security
 
 * Shutdown the service
