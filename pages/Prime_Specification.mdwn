@@ -136,10 +136,15 @@ As explained on [bitcoincharts](http://bitcoincharts.com/about/exchanges/).
 ###Admin panel
 ####Stats
 
-* Totals for every fiat and cryptocurrency
-* Number of users online and total
+* Total funds on the exchange
+	* Total funds accumulated on the exchange for each fiat (calculated from a database)
+	* Total funds accumulated on the exchange for each cryptocurrency (calculated from a database)
+* Hot wallets
+	* Number and percentage of funds in a hot wallet (actual value taken from a bitcoind) for each cryptocurrency
+* Number of users being online and total registered
 * Number of buy and sell offers
 * Number and volume of transactions
+
 ####Export
 
 * emails.csv
