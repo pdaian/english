@@ -134,25 +134,41 @@ As explained on [bitcoincharts](http://bitcoincharts.com/about/exchanges/).
 As explained on [bitcoincharts](http://bitcoincharts.com/about/exchanges/).
 
 ###Admin panel
-####Stats
+####Dashboard
+
+* To be decided what goes on a dashboard
+####Financial
 
 * Total funds on the exchange
 	* Total funds accumulated on the exchange for each fiat (calculated from a database)
 	* Total funds accumulated on the exchange for each cryptocurrency (calculated from a database)
-* Hot wallets
-	* Number and percentage of funds in a hot wallet (actual value taken from a bitcoind) for each cryptocurrency
-* Number of users being online and total registered
 * Number of buy and sell offers
 * Number and volume of transactions
+####How wallets
 
-####Export
+	* Number and percentage of funds in a hot wallet (actual value taken from a bitcoind) for each cryptocurrency
+####Users
 
-* emails.csv
-###Actions
+* Total number of registered users
+* Export emails.csv (i.e. for mass mailing via external software)
+* Generate comprehensive report users.csv
+	* designed to be open in a spreadsheat software (Excel, Calc, etc.)
+	* e-mail **hash**, total balance BTC, total balance USD, ..., paid fees, number of transactions, transaction volume, singed up at, singed up with IP, last sign in at, last signed in with IP, number of sign ins, number of open offers
+* Search user by e-mail, username, name, or e-mail hash (to look up users from the report)
+	* View user details
+	* Deactivate / Activate
+	* Impersonate
+####Performance
 
-* Stop the service
-###Rollback
+* Number of users being online 
+* Number of transactions per hour
+* Job queue length
+####Security
 
+* Shutdown the service
+* Rollback to the point in time (TODO: define details)
+	* "Rollback wreaks havoc, causes some users and exchange to loose money and can be illegal in your jurisdiction. Rollback is irreversible.  Rollback is a bad idea 99.999% of the time. Proceed only if you fully understand the consequences!!!"
+	* Rollback should not be available through the web app, only as a command line tool
 
 ##Non functional
 ###Supported browsers
