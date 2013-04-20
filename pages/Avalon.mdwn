@@ -129,9 +129,13 @@ There is a modify version of TP-LINK TP-WR703N inside Avalon. cgminer running at
 
 Why there is a ugly USB HUB there?  you can find more information about AR9331's usb stability issue [here](https://forum.openwrt.org/viewtopic.php?id=39956).
 
-* Latest Avalon images is [here](http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin).
-* Reflash
+### How to reflash
+
+1. Download latest Avalon [image](http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin) to your PC.
+1. Goto:
 	System -> Backup / Flash Firmware -> Flash new firmware image (make sure **Keep settings** is checked)
+
+1. Select the image you just download. then compare the md5 in next page. if everything fine. click **Proceed**
 
 **Attention:** To avoid your WR703N become a brick, during flash your WR703N be careful DO NOT power off avalon, and DO NOT break your network connection. Just wait there till you see OpenWrt login web page again.
 
