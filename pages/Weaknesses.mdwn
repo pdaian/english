@@ -90,6 +90,15 @@ It's possible but unlikely that a newly discovered bug or security vulnerability
 Starting from version 0.7.0, Bitcoin client can be considered a mature project. The security critical sections of the source code are updated less and less frequently and those parts have been reviewed by many computer security experts. Also Bitcoin Satoshi client has passed the test of being on-line for more than 3 years, without a single vulnerability being exploited *in the wild*. 
 See [[Common_Vulnerabilities_and_Exposures]] for a detailed list of vulnerabilities detected and fixed.
 
+### Energy Consumption
+Energy consumption for mining has a high correlation with bitcoin value (exchange rate). Because variable costs of [[mining]] are dominated by electricity price, the economic equilibrium for the mining rate is reached when global electricity costs for mining approximate the value of [[mining]] reward plus  [[transaction fees|transaction_fee]]. 
+
+So the higher the value of one bitcoin, the higher the value of mining rewards and transaction fees, the higher the energy consumption of the bitcoin network in the long run.
+
+* more efficient mining gear does not reduce energy use of the bitcoin network. It will only raise the network [[difficulty]]
+* cheaper energy linearly increases mining energy use of the bitcoin network
+* the same conclusions apply to all [[proof_of_work]] based currencies (i.e. [[Litecoin]]).
+
 ## Probably not a problem
 
 ###Breaking the cryptography
