@@ -118,9 +118,8 @@
 ## Run cgminer manually
 In case you need to run Cgminer in linux console please run the following command:
 
-* Stop/start Cgminer:
-	# /etc/init.d/cgminer stop
-	# /etc/init.d/cgminer start
+* Restart Cgminer:
+	# /etc/init.d/cgminer restart
 
 If your avalon does not mine properly, please run Cgminer in debug mode with -D --verbose option. For example:
 	# cgminer -S /dev/ttyUSB0 -o stratum.btcguild.com:3333 -O xxxx:yyyy -D --verbose --avalon-options 115200:24:10:45:282 --api-allow "W:0/0" --api-listen 2>/tmp/cgminer-debug.log
