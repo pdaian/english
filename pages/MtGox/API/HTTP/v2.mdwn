@@ -4,32 +4,14 @@ The V2 API URL is:
 **https://data.mtgox.com/api/2/**
 
 ### Documentation
-**unofficial** documentation (So far the best we have) is provided at :
+**Unofficial** documentation (So far the best we have) is provided at : https://bitbucket.org/nitrous/mtgox-api/overview (The bitcointalk forum link is: https://bitcointalk.org/index.php?topic=164404.0 )
 
-**https://bitbucket.org/nitrous/mtgox-api/overview** <br>
-(The bitcointalk forum link is: **https://bitcointalk.org/index.php?topic=164404.0**
-<br>
+**Official** docs are on: https://github.com/MtGox/mtgox-doc
 
-**official** docs are on  :
+##### Differences between v1 and v2: 
 
-**https://github.com/MtGox/mtgox-doc**
-
-##### Technical Use Explanation: 
-
-The requested path (anything after the /2/) must now be included when you compute your hashed signature (Rest-Sign) for added security.
-
-This is how it was done for version 1:
-
-You have your params(post_data) = the word nonce, followed by the actual *nonce* integer (params = [[(u'nonce',nonce)]])
-
-You have your header made up of *Rest-Key* (your API-KEY) and *Rest-Sign* (a hashed signature)
-
-Rest-Sign is created by doing : base64encode( HMAC hash( base64decoded(API-secret), the nonce, with SHA512 digest))
-
-**What differs in version 2 is now** : BEFORE the nonce, you are adding the **relative path you are requesting**(ie: BTCUSD/money/ticker) **+ a NUL char (ascii code 0)**.
-
-**The URL is now ** something along the lines of BTCUSD/money/order/add instead of BTCUSD/private/order/add in api1. <br>
-So in my python code below which is very readable you can see everything remains the same as API v1 except now we are using api2postdatatohash = path + chr(0) + post_data          #new way to hash for API 2, includes path + NUL.
+* The **URL** is now something along the lines of BTCUSD/money/order/add instead of BTCUSD/private/order/add in api1. All current known methods are found in the money category.
+* The *requested path*  must now be included when you compute your **hashed signature (Rest-Sign)** for added security.<br><br> In version 1, Rest-Sign is created through base64-encoding the 256-digest HMAC hashing of your post data (which of course must include your nonce) with your API secret, previously base64 decoded. Now in version 2,  you must simply add *before* your post data the relative path you are requesting (anything after the /api/2/ base, ie: BTCUSD/money/ticker), concatenated with a NUL character (ASCII code 0). So the signature is now made starting from your relative path + NUL character + post data (which must include your nonce!).
 
 ### Explanation of Methods
 **BTCUSD/money/order/quote** <br>
