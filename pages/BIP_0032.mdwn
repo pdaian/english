@@ -4,6 +4,11 @@
 WARNING: please do not assume this specification is final.
 </div>
 
+RECENT CHANGES:
+
+* [Apr 2013](16) Added private derivation for i >= 0x80000000 (less risk of parent private key leakage)
+* [Apr 2013](30) Switched from multiplication by I_L to addition of I_L (faster, easier implementation)
+
 <pre>
   BIP: 32
   Title: Hierarchical Deterministic Wallets
@@ -58,18 +63,18 @@ To define (k<sub>i</sub>,c<sub>i</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),
 	* If 1, "secret derivation" is used: let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=0x00  k<sub>par</sub>  i) (The 0x00 makes sure the data being hashed aligns with the public version)
 	* (in the above, i is encoded as a 32 bits unsigned integer, most significant byte first; '' represents concatenation)
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
-* k<sub>i</sub> is equal to I<sub>L</sub>*k<sub>par</sub> (mod n).
+* k<sub>i</sub> is equal to I<sub>L</sub>+k<sub>par</sub> (mod n).
 * c<sub>i</sub> is equal to I<sub>R</sub>.
-In case I<sub>L</sub> is 0 or >=n, the resulting key is invalid, and one should proceed with the next value for i (note that this has a chance lower than 1 in 2<sup>127</sup>).
+In case I<sub>L</sub> is >=n, the resulting key is invalid, and one should proceed with the next value for i (note that this has a chance lower than 1 in 2<sup>127</sup>).
 
 We also define a version that operates on extended public keys instead of private ones: (K<sub>i</sub>,c<sub>i</sub>) = CKD'((K<sub>par</sub>,c<sub>par</sub>),i):
 
 * If i has its highest bit set, return error
 * call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  i)
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
-* K<sub>i</sub> is equal to I<sub>L</sub>*K<sub>par</sub> (EC multiplication).
+* K<sub>i</sub> is equal to I<sub>L</sub>*G + K<sub>par</sub> (EC addition).
 * c<sub>i</sub> is equal to I<sub>R</sub>.
-In case I<sub>L</sub> is 0 or >=n, the resulting key is invalid, and one should proceed with the next value for i.
+In case I<sub>L</sub> is >=n, the resulting key is invalid, and one should proceed with the next value for i.
 
 Note that the extended public key corresponding to the evaluation of CKD(x,i) with public derivation (so with i < 0x80000000) is identical to the evaluation of CKD'(X,i), with X the extended public key corresponding to x. Symbolically, CKD(x,i)*G = CKD'(x*G,i). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
 
