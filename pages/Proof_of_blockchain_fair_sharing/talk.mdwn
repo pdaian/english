@@ -6,15 +6,15 @@ How about the following implementation.  Everything stays the same as current Bi
 
 over all blocks *i* in the chain, we define chain weight as *work-fee since checkpoint*:
 
-	SUM(fee[[j]]*SUM(difficulty[[i]]))
+	SUM(fee[[j]]*difficulty[[i]])
 
 Here, *j* ranges over all fee-bearing transactions in a given branch **since the last checkpoint,** and *i* ranges over all valid blocks that contain transaction *j,* directly or through an ancestor, **including orphaned blocks.**  Checkpoints may be specified by administrative fiat, by a central authority (as currently), or by one of the proposed proof-of-stake checkpointing schemes, so long as one can disregard questionable checkpoints when one notices an attack in progress.
 
-Network disagreement over checkpoints and knowledge of orphaned blocks will eventually work itself out, I think, faster and more automatically than under current conditions (which rely on manual intervention to develop and patch the block-acceptance algorithm in reaction to attacks).
+Network disagreement over checkpoints and knowledge of orphaned blocks will eventually work itself out, I think, faster and more automatically than under current conditions (which rely on manual intervention to develop and patch the block-acceptance algorithm in reaction to attacks).  Note that even the existing client allows a some ambiguity in best-chain selection: when blocks of equal chain-work compete, it prefers the first received.
 
-For simplicity, assume there is no block-size limit.  A typical chain under 90% attack will have a side chain about every ninth block.  Side chains occasionally grow longer than one block, but typically, the *first* block in a side chain contains all the excluded transactions from previous side chains since the attack began.  Eventually, each side-chain-initial block will outweigh nine of the attacker's blocks.
+For simplicity, assume there is no block-size limit.  A typical chain under 90% attack will have a side chain about every ninth block.  Side chains occasionally grow longer than one block, but typically, the *first* block in a side chain contains all the excluded transactions from previous side chains since the attack began.  Eventually, each side-chain-initial block will outweigh nine of the attacker's blocks.  Excluded transactions will have multiple confirmations with increasing frequency.  Only during periods of high attacker luck will they revert to unconfirmed, and such events will occur with decreasing frequency over time.  Merchants might reasonably begin to count orphaned blocks as contributing something to the number of transaction confirmations.
 
-How soon?  It depends on the checkpoint age and the proportion of transaction fees excluded by the attacker.  In the happy case where the last checkpoint immediately precedes the attack, my calculations show an approximate upper bound of
+How soon will one honest block weigh the same as nine of the attacker's blocks?  It depends on the checkpoint age and the proportion of transaction fees excluded by the attacker.  In the happy case where the last checkpoint immediately precedes the attack, my calculations show an approximate upper bound of
 
 	2 * (A/H)^3 * (I/E)
 
@@ -26,6 +26,10 @@ A 70% attacker can exclude 10% of transaction fees for
 
 	2 * (0.7/0.3)^3 * (0.9/0.1) =~ 230 blocks
 
+The more draconian the attacker, the shorter the attack.  An attacker with 90% who tries to exclude 90% of transaction fees will fail after
+
+	2 * (0.9/0.1)^3 * (0.1/0.9) =~ 162 blocks
+
 In practice, I suspect the time would be less; my calculations are still rough.  However, if the checkpoint is further in the past, it takes longer.
 
 Corollaries:
@@ -36,6 +40,6 @@ Corollaries:
 * Conversely, an attacker submitting self-transactions to increase *I* would put those fees at risk of capture by the (eventually victorious) honest network.
 * Keeping up-to-date on checkpoints protects users by speeding up the resolution of this kind of attack.
 * Intuitively, the chain weight formula rewards **confirmation of fee-bearing transactions** as opposed to simply "work".
-* This change does not affect block acceptance criteria, so it is arguably not a hard fork or mandatory upgrade.  However, it works best with unlimited block size, at least as regards fee-bearing transactions.
+* This change does not affect block acceptance criteria, so it is arguably not a hard fork or a mandatory upgrade.  However, it works best with unlimited block size, at least as regards fee-bearing transactions.
 
 [JohnTobey253](User:JohnTobey253) ([[talk|User_talk:JohnTobey253]]) 17:52, 2 May 2013 (GMT)
