@@ -68,7 +68,7 @@ wfscp (double attacker_share, double inclusion_rate, double avg_tx_per_block,
   printf ("attacker share: %f%%\n", 100.0 * attacker_share);
   printf ("attacker transaction inclusion rate: %f%%\n", 100.0 * inclusion_rate);
   printf ("average transactions per block: %f\n", avg_tx_per_block);
-  printf ("checkpoint age: %u\n", checkpoint_age);
+  printf ("checkpoint age in blocks: %u\n", checkpoint_age);
   printf ("blocks per run: %u\n", blocks_per_iter);
 
   for (;; iter++)
