@@ -8,7 +8,7 @@ over all blocks *i* in the chain, we define chain weight as *chain work-fee sinc
 
 	SUM(fee[[j]]*SUM(difficulty[[i]]))
 
-Here, *j* ranges over all fee-bearing transactions in a given branch **since the last checkpoint,** and *i* ranges over all valid blocks that contain transaction *j,* directly or indirectly, **including orphaned blocks.**  Checkpoints may be specified by administrative fiat, by a central authority (as currently), or by one of the proposed proof-of-stake checkpointing schemes, so long as one can disregard questionable checkpoints when one notices an attack in progress.
+Here, *j* ranges over all fee-bearing transactions in a given branch **since the last checkpoint,** and *i* ranges over all valid blocks that contain transaction *j,* directly or indirectly, **including orphaned blocks.**  Checkpoints may be specified by administrative fiat, by a central authority (as currently), or by one of the proposed proof-of-stake checkpointing schemes.
 
 Network disagreement over checkpoints and knowledge of orphaned blocks will eventually work itself out, I think, faster and more automatically than under current conditions (which rely on manual intervention to develop and patch the block-acceptance algorithm in reaction to attacks).
 
