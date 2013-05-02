@@ -30,7 +30,176 @@ The more draconian the attacker, the shorter the attack.  An attacker with 90% w
 
 	2 * (0.9/0.1)^3 * (0.1/0.9) =~ 162 blocks
 
-In practice, I suspect the time would be less; my calculations are still rough.  However, if the checkpoint is further in the past, it takes longer.
+In practice, I suspect the time would be less; my calculations are rough.  Simulation confirms that after the calculated number of blocks, an honest block is usually in the lead.  However, if the checkpoint is further in the past, it takes longer.  Here is the C program I used to simluate attacks:
+
+	<nowiki>// Public domain.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+static int
+usage ()
+{
+  printf ("Usage: wfscp [ATTACKER_SHARE [INCLUSION_RATE [TX_PER_BLOCK [CP_AGE [BLOCKS_PER_ITER [ITERS [RANDOM_SEED]]]]]]]\n");
+  printf ("Simulate work-fee-since-checkpoint under attack by an entity\n");
+  printf ("controlling ATTACKER_SHARE%% (between 0 and 100) of hash power\n");
+  printf ("and seeking to include only INCLUSION_RATE%% (0 to 100) of\n");
+  printf ("transactions (weighted by fee).\n");
+  printf ("Run ITERS simulations, each lasting BLOCKS_PER_ITER blocks.\n");
+  printf ("TX_PER_BLOCK is the rate of transactions per block, pre-attack.\n");
+  printf ("CP_AGE is the difference in height between the last pre-attack\n");
+  printf ("block and the last checkpoint.\n");
+  printf ("The integer RANDOM_SEED initializes the random number stream.\n");
+  printf ("For simplicity, all transactions are assumed to carry an equal fee.\n");
+  printf ("For simplicity, difficulty is assumed constant.\n");
+  return 0;
+}
+
+static void
+wfscp (double attacker_share, double inclusion_rate, double avg_tx_per_block,
+       unsigned int checkpoint_age, unsigned int blocks_per_iter,
+       unsigned int iters)
+{
+  unsigned int iter = 0;
+  double sum_reorgs = 0.0;
+  double sum_honest_lead = 0.0;
+  double sum_max_lead = 0.0;
+
+  printf ("attacker share: %f%%\n", 100.0 * attacker_share);
+  printf ("attacker transaction inclusion rate: %f%%\n", 100.0 * inclusion_rate);
+  printf ("average transactions per block: %f\n", avg_tx_per_block);
+  printf ("checkpoint age: %u\n", checkpoint_age);
+  printf ("blocks per run: %u\n", blocks_per_iter);
+
+  for (;; iter++)
+    {
+      unsigned int attacker_blocks = 0, honest_blocks = 0;
+      double attacker_weight = checkpoint_age * (checkpoint_age + 1) * avg_tx_per_block / 2;
+      double honest_weight = attacker_weight;
+      double included_tx = checkpoint_age * avg_tx_per_block, excluded_tx = 0.0;
+      unsigned int honest_lead = 0;
+      unsigned int max_lead = 0;
+      unsigned int reorgs = 0;
+
+      if (iters > 0)
+        {
+          printf ("\rAvg after %u runs: %.4f reorgs, honest lead %.4f, max lead %.4f  ",
+                  iter, sum_reorgs / iter, sum_honest_lead / iter,
+                  sum_max_lead / iter);
+        }
+      if (iter >= iters)
+        {
+          break;
+        }
+
+      for (; attacker_blocks + honest_blocks < blocks_per_iter;)
+        {
+          double r = drand48 () * (avg_tx_per_block + 1.0);
+
+          if (r < attacker_share)
+            {
+              // Attacker extends the last attacker block.
+              attacker_blocks++;
+
+              // New weight is the parent block's weight
+              // (attacker_weight) plus SUM(fee[j]) over included
+              // transactions.  Difficulty assumed constant 1.0.
+              attacker_weight += included_tx;
+
+              if (honest_lead > 0 && attacker_weight > honest_weight)
+                {
+                  reorgs++;
+                  honest_lead = 0;
+                }
+            }
+          else if (r < 1.0)
+            {
+              // Honest miner extends the best block.
+              honest_blocks++;
+
+              if (honest_lead == 0)
+                {
+                  // Extending attacker's block.
+                  // New weight is the parent block's value (attacker_weight)
+                  // plus excluded fees times the number of orphan blocks,
+                  // plus sum of current fees.
+                  honest_weight = attacker_weight +
+                    (excluded_tx * honest_blocks) + included_tx;
+                }
+              else
+                {
+                  // Extending an honest block.
+                  // Weight adds just current fees.
+                  honest_weight += included_tx + excluded_tx;
+                }
+
+              honest_lead += 1;
+              if (honest_lead > max_lead)
+                {
+                  max_lead = honest_lead;
+                }
+            }
+          else if (r < inclusion_rate * avg_tx_per_block + 1.0)
+            {
+              included_tx += 1.0;
+            }
+          else
+            {
+              excluded_tx += 1.0;
+            }
+        }
+      sum_reorgs += reorgs;
+      sum_honest_lead += honest_lead;
+      sum_max_lead += max_lead;
+    }
+  printf ("\n");
+}
+
+int
+main (int argc, char** argv)
+{
+  double attacker_share = 0.7;
+  double inclusion_rate = 0.5;
+  double avg_tx_per_block = 300.0;
+  unsigned int checkpoint_age = 0;
+  unsigned int blocks_per_iter = 1000;
+  unsigned int iters = 1000;
+
+  if (argc > 1 && argv[1][0])
+    attacker_share = atof (argv[1]) / 100.0;
+  if (attacker_share == 0.0)
+    return usage ();
+  if (argc > 2 && argv[2][0])
+    inclusion_rate = atof (argv[2]) / 100.0;
+  if (argc > 3 && argv[3][0])
+    avg_tx_per_block = atof (argv[3]);
+  if (argc > 4 && argv[4][0])
+    checkpoint_age = atoi (argv[4]);
+  if (argc > 5 && argv[5][0])
+    blocks_per_iter = atoi (argv[5]);
+  if (argc > 6 && argv[6][0])
+    iters = atoi (argv[6]);
+  if (argc > 7 && argv[7][0])
+    srand48 (atol (argv[7]));
+
+  wfscp (attacker_share, inclusion_rate, avg_tx_per_block, checkpoint_age,
+         blocks_per_iter, iters);
+
+  return 0;
+}
+</nowiki>
+
+Here is an example run where the attacker generates 90% of blocks and seeks to exclude 40% of transactions.  A checkpoint occurs (or is placed during the attack) at the start of the attack.  The simulation lasts 2200 blocks and repeats 1000 times:
+
+	$ ./wfscp 90 60 100 0 2200 1000 0
+	attacker share: 90.000000%
+	attacker transaction inclusion rate: 60.000000%
+	average transactions per block: 100.000000
+	checkpoint age: 0
+	blocks per run: 2200
+	Avg after 1000 runs: 33.2040 reorgs, honest lead 9.7170, max lead 22.0240  
+
+The result: The attacker caused a reorg (sending the honest transactions back to the memory pool) on average 33.2 times in 2200 blocks.  Over those 2200 blocks, on average there were 9.7 honest blocks at the end of the longest chain.  Based on the simulation, one expects to see a longest string of 22.0 honest blocks somewhere during the same period.
 
 Corollaries:
 
@@ -43,4 +212,4 @@ Corollaries:
 * This change does not affect block acceptance criteria, so it is arguably not a hard fork or a mandatory upgrade.  However, it works best with unlimited block size, at least as regards fee-bearing transactions.
 * This formula works best when transaction fees dominate block-generation rewards.  The attacker keeps its generated coins even after giving up.  This encourages miners to join the attack.
 
-[JohnTobey253](User:JohnTobey253) ([[talk|User_talk:JohnTobey253]]) 17:52, 2 May 2013 (GMT)
+[JohnTobey253](User:JohnTobey253) ([[talk|User_talk:JohnTobey253]]) 23:38, 2 May 2013 (GMT)
