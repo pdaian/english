@@ -1,0 +1,39 @@
+How about the following implementation.  Everything stays the same as current Bitcoin except the definition of best chain.  Instead of total chain work as defined by
+
+	SUM(difficulty[[i]])
+
+over all blocks *i* in the chain, we define chain weight as *chain work-fee since checkpoint*:
+
+	SUM(fee[[j]]*SUM(difficulty[[i]]))
+
+Here, *j* ranges over all fee-bearing transactions in a given branch **since the last checkpoint,** and *i* ranges over all valid blocks that contain transaction *j,* directly or indirectly, **including orphaned blocks.**  Checkpoints may be specified by administrative fiat, by a central authority (as currently), or by one of the proposed proof-of-stake checkpointing schemes, so long as one can prevent questionable checkpoints when one notices an attack in progress.
+
+Network disagreement regarding checkpoints and orphaned blocks seen will eventually work itself out, I think, faster and more automatically than under current conditions (which rely on manual intervention to develop and patch the block-acceptance algorithm in reaction to attacks).
+
+For simplicity, assume there is no block-size limit.  A typical chain under 90% attack will have a side chain about every ninth block.  Side chains occasionally grow longer than one block, but typically, the *first* block in a side chain contains all the excluded transactions from previous side chains since the attack began.  Eventually, each side-chain-initial block will outweigh several of the attacker's blocks.
+
+How soon?  It depends on the checkpoint age and the proportion of transaction fees excluded by the attacker.  In the happy case where the last checkpoint immediately precedes the attack, my calculations show an approximate upper bound of
+
+	2 * (A/H)^3 * (I/E)
+
+blocks, where *A* is the attacker strength, *H* is the honest network strength, *I* is the average fees *included* by the attacker, per block, and *E* is the average available fees foregone by the attacker, per block.  For example, an attacker with 90% trying to exclude 40% of transactions (weighted by fee) can succeed for
+
+	2 * (0.9/0.1)^3 * (0.6/0.4) =~ 2200 blocks
+
+A 70% attacker can exclude 10% of transaction fees for
+
+	2 * (0.7/0.3)^3 * (0.9/0.1) =~ 230 blocks
+
+In practice, I suspect the time would be less; my calculations are still rough.  However, if the checkpoint is further in the past, it takes longer.
+
+Corollaries:
+
+* Orphaned block hashes are no longer wasted but protect the network.
+* Transaction fees protect the network in a new, more direct way.
+* Good citizens may be able to fight an attack by submitting fee-bearing transactions that the attacker would exclude, increasing *E.*
+* Conversely, an attacker submitting self-transactions to increase *I* would put those fees at risk of capture by the victorious honest network.
+* Keeping up-to-date on checkpoints protects users by speeding up the resolution of this kind of attack.
+* Intuitively, the chain weight formula rewards **confirmation of fee-bearing transactions** as opposed to simply "work".
+* This change does not affect block acceptance criteria, so it is arguably not a hard fork or mandatory upgrade.  However, it works best with unlimited block size, at least as regards fee-bearing transactions.
+
+[JohnTobey253](User:JohnTobey253) ([[talk|User_talk:JohnTobey253]]) 17:52, 2 May 2013 (GMT)
