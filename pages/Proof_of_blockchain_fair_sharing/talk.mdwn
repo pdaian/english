@@ -12,7 +12,7 @@ Here, *j* ranges over all fee-bearing transactions in a given branch **since the
 
 Network disagreement over checkpoints and knowledge of orphaned blocks will eventually work itself out, I think, faster and more automatically than under current conditions (which rely on manual intervention to develop and patch the block-acceptance algorithm in reaction to attacks).
 
-For simplicity, assume there is no block-size limit.  A typical chain under 90% attack will have a side chain about every ninth block.  Side chains occasionally grow longer than one block, but typically, the *first* block in a side chain contains all the excluded transactions from previous side chains since the attack began.  Eventually, each side-chain-initial block will outweigh several of the attacker's blocks.
+For simplicity, assume there is no block-size limit.  A typical chain under 90% attack will have a side chain about every ninth block.  Side chains occasionally grow longer than one block, but typically, the *first* block in a side chain contains all the excluded transactions from previous side chains since the attack began.  Eventually, each side-chain-initial block will outweigh nine of the attacker's blocks.
 
 How soon?  It depends on the checkpoint age and the proportion of transaction fees excluded by the attacker.  In the happy case where the last checkpoint immediately precedes the attack, my calculations show an approximate upper bound of
 
