@@ -30,7 +30,20 @@ The more draconian the attacker, the shorter the attack.  An attacker with 90% w
 
 	2 * (0.9/0.1)^3 * (0.1/0.9) =~ 162 blocks
 
-In practice, I suspect the time would be less; my calculations are rough.  Simulation confirms that after the calculated number of blocks, an honest block is usually in the lead.  However, if the checkpoint is far in the past, it takes longer.  Here is the C program I used to simluate attacks:
+In practice, I suspect the time would be less; my calculations are rough.  Simulation confirms that after the calculated number of blocks, an honest block is usually in the lead.  However, if the checkpoint is far in the past, it takes longer.
+
+Corollaries:
+
+* Orphaned block hashes are no longer wasted but protect the network.
+* Transaction fees protect the network in a new, more direct way.
+* Good citizens may be able to fight an attack by submitting fee-bearing transactions that the attacker would exclude, increasing *E.*
+* Conversely, an attacker submitting self-transactions to increase *I* would put those fees at risk of capture by the (eventually victorious) honest network.
+* Keeping up-to-date on checkpoints protects users by speeding up the resolution of this kind of attack.
+* Intuitively, the chain weight formula rewards **confirmation of fee-bearing transactions** as opposed to simply "work".
+* This change does not affect block acceptance criteria, so it is arguably not a hard fork or a mandatory upgrade.  However, it works best with unlimited block size, at least as regards fee-bearing transactions.
+* This formula works best when transaction fees dominate block-generation rewards.  The attacker keeps its generated coins even after giving up.  Thus, block-generation rewards still encourage miners to join the attack.
+
+Here is the C program I used to simluate attacks:
 
 	<nowiki>// Public domain.
 
@@ -213,16 +226,5 @@ Here, our 90% attacker has to wait up to 50 blocks between times when it has the
 	checkpoint age in blocks: 0
 	blocks per run: 1000
 	1000 run avg: 0.903 reorgs, honest lead 298.030, max lead 298.030, honest 100.0%
-
-Corollaries:
-
-* Orphaned block hashes are no longer wasted but protect the network.
-* Transaction fees protect the network in a new, more direct way.
-* Good citizens may be able to fight an attack by submitting fee-bearing transactions that the attacker would exclude, increasing *E.*
-* Conversely, an attacker submitting self-transactions to increase *I* would put those fees at risk of capture by the (eventually victorious) honest network.
-* Keeping up-to-date on checkpoints protects users by speeding up the resolution of this kind of attack.
-* Intuitively, the chain weight formula rewards **confirmation of fee-bearing transactions** as opposed to simply "work".
-* This change does not affect block acceptance criteria, so it is arguably not a hard fork or a mandatory upgrade.  However, it works best with unlimited block size, at least as regards fee-bearing transactions.
-* This formula works best when transaction fees dominate block-generation rewards.  The attacker keeps its generated coins even after giving up.  Thus, block-generation rewards still encourage miners to join the attack.
 
 [JohnTobey253](User:JohnTobey253) ([[talk|User_talk:JohnTobey253]]) 23:38, 2 May 2013 (GMT)
