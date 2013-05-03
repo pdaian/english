@@ -197,7 +197,7 @@ Here is an example run where the attacker generates 90% of blocks and seeks to e
 	blocks per run: 2200
 	1000 run avg: 49.980 reorgs, honest lead 5.608, max lead 15.016, honest 89.6%
 
-The result: The attacker caused a reorg (sending all honest transactions back to the memory pool) on average 50 times in 2200 blocks.  At the end of those 2200 blocks, on average there were 5.6 honest blocks at the end of the longest chain.  In 89.6% of the runs, the 2200th block was honest.  Based on the simulation, one expects to see a longest string of 15.0 honest blocks somewhere among the 2200 blocks.  Running to 10 thousand blocks, we get:
+The result: The attacker caused a reorg (sending all disapproved transactions back to the memory pool) on average 50 times in 2200 blocks.  At the end of those 2200 blocks, on average there were 5.6 honest blocks at the end of the longest chain.  In 89.6% of the runs, the 2200th block was honest.  Based on the simulation, one expects to see a longest string of 15.0 honest blocks somewhere among the 2200 blocks.  Running to 10 thousand blocks, we get:
 
 	$ ./wfscp 90 60 100 0 10000 1000 0
 	...same as above...
