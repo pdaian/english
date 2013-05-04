@@ -54,27 +54,41 @@ We represent an extended private key as (k,c), with k the normal private key, an
 
 ###Child key derivation function
 
-We define the child key derivation function CKD((k<sub>par</sub>,c<sub>par</sub>),i), which takes a parent extended secret key (k<sub>par</sub>,c<sub>par</sub>) and a 32-bit integer i, to produce a child extended secret key (k<sub>i</sub>,c<sub>i</sub>).
+We allow for two different types of derivation: public and private.
 
-To define (k<sub>i</sub>,c<sub>i</sub>) = CKD((k<sub>par</sub>,c<sub>par</sub>),i):
+* Private derivation: knowledge of the private key k<sub>par</sub> and c<sub>par</sub> is required to compute both k<sub>i</sub> and K<sub>i</sub>.
+* Public derivation: knowledge of the public key K<sub>par</sub> and c<sub>par</sub> suffices to compute K<sub>i</sub> (but not k<sub>i</sub>).
+
+We define the private and public child key derivation functions:
+
+* CKD((k<sub>par</sub>,c<sub>par</sub>),i) →  (k<sub>i</sub>,c<sub>i</sub>), defined for both private and public derivation.
+* CKD'((K<sub>par</sub>,c<sub>par</sub>),i) → (K<sub>i</sub>,c<sub>i</sub>), defined only for public derivation.
+
+We use the most significant bit of i to specify which type of derivation to use. i is encoded as a 32 bits unsigned integer, most significant byte first; '' represents concatenation.
+
+####Private child key derivation
+
+To define CKD((k<sub>par</sub>,c<sub>par</sub>),i) → (k<sub>i</sub>,c<sub>i</sub>):
 
 * Check whether the highest bit (0x80000000) of i is set:
-	* If 0, "public derivation" is used: let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  i) (with K<sub>par</sub> = k<sub>par</sub>*G, EC multiplication)
-	* If 1, "secret derivation" is used: let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=0x00  k<sub>par</sub>  i) (The 0x00 makes sure the data being hashed aligns with the public version)
-	* (in the above, i is encoded as a 32 bits unsigned integer, most significant byte first; '' represents concatenation)
+	* If 1, private derivation is used: let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=0x00  k<sub>par</sub>  i) (The 0x00 makes sure the data being hashed aligns with the public version)
+	* If 0, public derivation is used: let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=k<sub>par</sub>*G  i) (with K<sub>par</sub> = k<sub>par</sub>*G, EC multiplication)
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
-* k<sub>i</sub> is equal to I<sub>L</sub>+k<sub>par</sub> (mod n).
-* c<sub>i</sub> is equal to I<sub>R</sub>.
-In case I<sub>L</sub> is >=n, the resulting key is invalid, and one should proceed with the next value for i (note that this has a chance lower than 1 in 2<sup>127</sup>).
+* k<sub>i</sub> = I<sub>L</sub> + k<sub>par</sub> (mod n).
+* c<sub>i</sub> = I<sub>R</sub>.
+In case I<sub>L</sub> ≥ n, the resulting key is invalid, and one should proceed with the next value for i (note that this has a chance lower than 1 in 2<sup>127</sup>).
 
-We also define a version that operates on extended public keys instead of private ones: (K<sub>i</sub>,c<sub>i</sub>) = CKD'((K<sub>par</sub>,c<sub>par</sub>),i):
+####Public child key derivation
 
-* If i has its highest bit set, return error
-* call I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  i)
+To define CKD'((K<sub>par</sub>,c<sub>par</sub>),i) → (K<sub>i</sub>,c<sub>i</sub>):
+
+* Check whether the highest bit (0x80000000) of i is set:
+	* If 1, return error
+	* If 0, let I = HMAC-SHA512(Key=c<sub>par</sub>, Data=K<sub>par</sub>  i)
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
-* K<sub>i</sub> is equal to I<sub>L</sub>*G + K<sub>par</sub> (EC addition).
-* c<sub>i</sub> is equal to I<sub>R</sub>.
-In case I<sub>L</sub> is >=n, the resulting key is invalid, and one should proceed with the next value for i.
+* K<sub>i</sub> = (I<sub>L</sub> + k<sub>par</sub>)*G = I<sub>L</sub>*G + K<sub>par</sub> (EC operations).
+* c<sub>i</sub> = I<sub>R</sub>.
+In case I<sub>L</sub> ≥ n, the resulting key is invalid, and one should proceed with the next value for i.
 
 Note that the extended public key corresponding to the evaluation of CKD(x,i) with public derivation (so with i < 0x80000000) is identical to the evaluation of CKD'(X,i), with X the extended public key corresponding to x. Symbolically, CKD(x,i)*G = CKD'(x*G,i). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
 
