@@ -82,17 +82,17 @@ In case I<sub>L</sub> ≥ n, the resulting key is invalid, and one should procee
 
 ####Public child key derivation
 
-To define CKD'((K<sub>par</sub>,c<sub>par</sub>),i) → (K<sub>i</sub>,c<sub>i</sub>):
+To define CKD'((K<sub>par</sub>, c<sub>par</sub>), i) &rarr; (K<sub>i</sub>, c<sub>i</sub>):
 
 * Check whether the highest bit (0x80000000) of i is set:
 	* If 1, return error
-	* If 0, let I = HMAC-SHA512(Key = c<sub>par</sub>, Data = parity byte  x coordinate(K<sub>par</sub>)  i)
-* Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
-* K<sub>i</sub> = (I<sub>L</sub> + k<sub>par</sub>)*G = I<sub>L</sub>*G + K<sub>par</sub> (EC operations).
+	* If 0, let I = HMAC-SHA512(Key = c<sub>par</sub>, Data = &chi;(K<sub>par</sub>)  i)
+* Split I = I<sub>L</sub>  I<sub>R</sub> into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
+* K<sub>i</sub> = (I<sub>L</sub> + k<sub>par</sub>)*G = I<sub>L</sub>*G + K<sub>par</sub>
 * c<sub>i</sub> = I<sub>R</sub>.
 In case I<sub>L</sub> ≥ n, the resulting key is invalid, and one should proceed with the next value for i.
 
-Note that the extended public key corresponding to the evaluation of CKD(k<sub>ext</sub>,i) with public derivation (so with i < 0x80000000) is identical to the evaluation of CKD'(K<sub>ext</sub>,i), with K<sub>ext</sub> the extended public key corresponding to k<sub>ext</sub>. Symbolically, CKD((k,c),i)*G = CKD'((k*G,c),i). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
+Note that the extended public key corresponding to the evaluation of CKD(k<sub>ext</sub>, i) with public derivation (so with i < 0x80000000) is identical to the evaluation of CKD'(K<sub>ext</sub>, i), with K<sub>ext</sub> the extended public key corresponding to k<sub>ext</sub>. Symbolically, CKD((k, c), i)*G = CKD'((k*G, c), i). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
 
 The HMAC-SHA512 function is specified in [RFC 4231](http://tools.ietf.org/html/rfc4231).
 
