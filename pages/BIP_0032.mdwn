@@ -44,6 +44,8 @@ In the rest of this text we will assume the public key cryptography used in Bitc
 * coordinates of points on the curve, serialized as specified in SEC1 in compressed form: [or 0x03](0x02) + 32 byte x coordinate), where the header byte depends on the parity of the omitted y coordinate.
 * byte sequences
 
+We shall represent the compressed form of point P by &chi;(P), which for secp256k1 will always be 33 bytes long.
+
 Addition (+) of two coordinates is defined as application of the EC group operation. Multiplication (*) of an integer and a coordinate is defined as repeated application of the EC group operation. The generator element of the curve is called G. The public key K corresponding to the private key k is calculated as k*G. We do not distinguish between numbers or coordinates and their serialization as byte sequences.
 
 ###Extended keys
