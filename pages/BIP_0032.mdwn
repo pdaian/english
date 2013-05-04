@@ -52,7 +52,7 @@ Addition (+) of two coordinates is defined as application of the EC group operat
 
 In what follows, we will define a function that derives a number of child keys from a parent key. In order to prevent these from depending solely on the key itself, we extend both private and public keys first with an extra 256 bits of entropy. This extension, called the chain code, is identical for corresponding private and public keys, and consists of 32 bytes.
 
-We represent an extended private key as (k,c), with k the normal private key, and c the chain code. An extended public key is represented as (K,c), with K = k*G and c the chain code.
+We represent an extended private key as (k, c), with k the normal private key, and c the chain code. An extended public key is represented as (K, c), with K = k*G and c the chain code.
 
 ###Child key derivation functions
 
