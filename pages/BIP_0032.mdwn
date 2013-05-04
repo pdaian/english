@@ -64,7 +64,7 @@ We define the private and public child key derivation functions:
 * CKD((k<sub>par</sub>,c<sub>par</sub>),i) →  (k<sub>i</sub>,c<sub>i</sub>), defined for both private and public derivation.
 * CKD'((K<sub>par</sub>,c<sub>par</sub>),i) → (K<sub>i</sub>,c<sub>i</sub>), defined only for public derivation.
 
-We use the most significant bit of i to specify which type of derivation to use. i is encoded as a 32 bits unsigned integer, most significant byte first; '' represents concatenation.
+We use the most significant bit of i to specify which type of derivation to use. i is encoded as a 32 bit unsigned integer, most significant byte first; '' represents concatenation.
 
 ####Private child key derivation
 
