@@ -1,1 +1,24 @@
+[[!template id=bip]]
+
+<pre>
+  BIP: BIP-0039
+  Title: Mnemonic code for deterministic keys
+  Author: Pavol Rusnak <stick@gk2.sk>, Marek Palatinus <info@bitcoin.cz>
+  Status: Draft
+  Type: Standards Track
+  Created: 14-02-2013
+</pre>
+
+##Abstract
+
+This BIP proposes a scheme for translating binary data (usually master seeds for deterministic keys, but it can be applied to any binary data) into a group of easy to remember words also known as mnemonic code or mnemonic sentence.
+
+##Motivation
+
+Such mnemonic code or mnemonic sentence is much easier to work with than working with the binary data directly (or its hexadecimal interpretation). The sentence could be writen down on paper (e.g. for storing in a secure location such as safe), told over telephone or other voice communication method, or memorized in ones memory (also called as brainwallet).
+
 Draft and reference implementation is under construction here: https://github.com/prusnak/mnemonic/blob/master/BIP_0039.txt
+
+[[!tag "Developer"]]
+[[!tag "Technical"]]
+[[!tag "BIP"]]
