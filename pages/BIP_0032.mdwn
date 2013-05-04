@@ -70,15 +70,16 @@ We use the most significant bit of i to specify which type of derivation to use.
 
 ####Private child key derivation
 
-To define CKD((k<sub>par</sub>,c<sub>par</sub>),i) → (k<sub>i</sub>,c<sub>i</sub>):
+To define CKD((k<sub>par</sub>, c<sub>par</sub>), i) &rarr; (k<sub>i</sub>, c<sub>i</sub>):
 
 * Check whether the highest bit (0x80000000) of i is set:
 	* If 1, private derivation is used: let I = HMAC-SHA512(Key = c<sub>par</sub>, Data = 0x00  k<sub>par</sub>  i) [The 0x00 pads the private key to make it 33 bytes long.](Note:)
 	* If 0, public derivation is used: let I = HMAC-SHA512(Key = c<sub>par</sub>, Data = &chi;(k<sub>par</sub>*G)  i)
-* Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
+* Split I = I<sub>L</sub>  I<sub>R</sub> into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
 * k<sub>i</sub> = I<sub>L</sub> + k<sub>par</sub> (mod n).
 * c<sub>i</sub> = I<sub>R</sub>.
-In case I<sub>L</sub> ≥ n, the resulting key is invalid, and one should proceed with the next value for i (note that this has a chance lower than 1 in 2<sup>127</sup>).
+In case I<sub>L</sub> ≥ n, the resulting key is invalid, and one should proceed with the next value for i.
+<sup></sup>[[.]]
 
 ####Public child key derivation
 
