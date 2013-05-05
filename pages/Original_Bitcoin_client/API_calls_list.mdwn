@@ -30,12 +30,13 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |getblockcount ||Returns the number of blocks in the longest block chain. |N
 |getblockhash |<index>|Returns hash of block in best-block-chain at <index>|N
 |getblocknumber ||**Deprecated**. **Removed in version 0.7**. Use getblockcount. |N
+|getblocktemplate |[[params]]|Returns data needed to construct a block to work on |N
 |getconnectioncount ||Returns the number of connections to other nodes. |N
 |getdifficulty ||Returns the proof-of-work difficulty as a multiple of the minimum difficulty. |N
 |getgenerate ||Returns true or false whether bitcoind is currently generating hashes |N
 |gethashespersec ||Returns a recent hashes per second performance measurement while generating. |N
 |getinfo ||Returns an object containing various state info. |N
-|getmemorypool |[[data]]|If [[data]]is not specified, returns data needed to construct a block to work on:* "version" : block version* "previousblockhash" : hash of current highest block* "transactions" : contents of non-coinbase transactions that should be included in the next block* "coinbasevalue" : maximum allowable input to coinbase transaction, including the generation award and transaction fees* "time" : timestamp appropriate for next block* "bits" : compressed target of next blockIf [[data]]is specified, tries to solve the block and returns true if it was successful.|N
+|getmemorypool |[[data]]|**Replaced in v0.7.0 with getblocktemplate, submitblock, getrawmempool``` |N
 |getmininginfo ||Returns an object containing mining-related information:* blocks* currentblocksize* currentblocktx* difficulty* errors* generate* genproclimit* hashespersec* pooledtx* testnet|N
 |getnewaddress |[[account]]|Returns a new bitcoin address for receiving payments.  If [[account]]is specified (recommended), it is added to the address book so payments received with the address will be credited to [[account]]. |N
 |getpeerinfo ||**version 0.7**Returns data about each connected node. |N
@@ -44,6 +45,8 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |getreceivedbyaccount |[[account]][[minconf=1]]|Returns the total amount received by addresses with [[account]]in transactions with at least [[minconf]]confirmations. If [[account]]not provided return will include all transactions to all accounts. (version 0.3.24) |N
 |getreceivedbyaddress |<bitcoinaddress>[[minconf=1]]|Returns the total amount received by <bitcoinaddress>in transactions with at least [[minconf]]confirmations. While some might consider this obvious, value reported by this only considers *receiving* transactions. It does not check payments that have been made *from* this address. In other words, this is not "getaddressbalance". Works only for addresses in the local wallet, external addresses will always show 0. |N
 |gettransaction |<txid>|Returns an object about the given transaction containing:* "amount" : total amount of the transaction* "confirmations" :  number of confirmations of the transaction* "txid" : the transaction ID* "time" : time associated with the transaction (4.1).* "details" - An array of objects containing:	* "account"	* "address"	* "category"	* "amount"	* "fee"|N
+|gettxout |<txid><n>[[includemempool=true]]|Returns details about an unspent transaction output |N
+|gettxoutsetinfo ||Returns statistics about the unspent transaction output set |N
 |[[getwork]]|[[data]]|If [[data]]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf [[data]]is specified, tries to solve the block and returns true if it was successful. |N
 |help |[[command]]|List commands, or get help for a command. |N
 |importprivkey |<bitcoinprivkey>[[label]][[rescan=true]]|Adds a private key (as returned by dumpprivkey) to your wallet. This may take a while, as a [[rescan|How_to_import_private_keys#Import_Private_key.28s.29]]is done, looking for existing transactions. **Optional [[rescan]]parameter added in 0.8.0.**|Y
@@ -64,10 +67,11 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |sendtoaddress |<bitcoinaddress><amount>[[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Returns the transaction ID <txid>if successful. |Y
 |setaccount |<bitcoinaddress><account>|Sets the account associated with the given address. Assigning address that is already assigned to the same account will create a new address associated with that account. |N
 |setgenerate |<generate>[[genproclimit]]|<generate>is true or false to turn generation on or off.<br/>Generation is limited to [[genproclimit]]processors, -1 is unlimited. |N
+|settxfee |<amount>|<amount>is a real and is rounded to the nearest 0.00000001 |N
 |signmessage |<bitcoinaddress><message>|Sign a message with the private key of an address. |Y
 |signrawtransaction |<hexstring>{}[[,...]][[<privatekey1>,...]]|**version 0.7**Adds signatures to a [[raw transaction|Raw_Transactions]]and returns the resulting raw transaction. |Y/N
-|settxfee |<amount>|<amount>is a real and is rounded to the nearest 0.00000001 |N
 |stop ||Stop bitcoin server. |N
+|submitblock |<hex data>[[optional-params-obj]]|Attempts to submit new block to network. |N
 |validateaddress |<bitcoinaddress>|Return information about <bitcoinaddress>. |N
 |verifymessage |<bitcoinaddress><signature><message>|Verify a signed message. |N
 |walletlock ||Removes the wallet encryption key from memory, locking the wallet. After calling this method,  you will need to call walletpassphrase again before being able to call any methods which require the wallet to be unlocked. |N
