@@ -221,14 +221,21 @@ The result: The attacker caused a reorg (sending all disapproved transactions ba
 	blocks per run: 10000
 	1000 run avg: 82.755 reorgs, honest lead 21.567, max lead 50.008, honest 97.3%
 
-Here, our 90% attacker has to wait up to 50 blocks between times when it has the lead.  The last 7800 blocks see only about 33 reorgs, compared to the first 2200's 50.  Of course, 90% is a pretty strong operation, and 60% compliance with the gum mint's registration requirement seems rather high.  If the attack had only 70% power and 20% compliance, already after 1000 blocks it would be essentially over:
+Here, our 90% attacker has to wait up to 50 blocks between times when it has the lead.  The last 7800 blocks see only about 33 reorgs, compared to 50 in the first 2200.  Of course, 90% is a pretty strong operation, and 60% compliance with the gum mint's registration requirement seems rather high.  If the attack had only 70% power and 20% compliance, it would satisfy the constraint mentioned above, namely:
 
-	$ ./wfscp 70 20 100 0 1000 1000 0
+	A   * I   < H   * (I+E)
+	0.7 * 0.2 < 0.3 * 1
+
+After just 100 blocks, it would be essentially over:
+
+	./wfscp 70 20 100 0 100 1000 0
 	attacker share: 70.000000%
 	attacker transaction inclusion rate: 20.000000%
 	average fee-bearing transactions per block: 100.000000
 	checkpoint age in blocks: 0
-	blocks per run: 1000
-	1000 run avg: 0.903 reorgs, honest lead 298.030, max lead 298.030, honest 100.0%
+	blocks per run: 100
+	1000 run avg: 0.898 reorgs, honest lead 27.927, max lead 28.004, honest 100.0%
+
+Note here that the theoretical maxium honest lead is 30 (30% power over 100 blocks) and so 27.9 indicates very few honest blocks lost in the attack.
 
 [JohnTobey253](User:JohnTobey253) ([[talk|User_talk:JohnTobey253]]) 23:38, 2 May 2013 (GMT)
