@@ -10,7 +10,7 @@ over all blocks *i* in the chain, we define chain weight as *work-fee since chec
 
 Here, *j* ranges over all fee-bearing transactions in a given branch **since the last checkpoint,** and *i* ranges over all valid blocks that contain transaction *j,* directly or through an ancestor, **including orphaned blocks.**  Checkpoints may be specified by administrative fiat, by a central authority (as currently), or by one of the proposed proof-of-stake checkpointing schemes, so long as one can disregard questionable checkpoints when one notices an attack in progress.
 
-Network disagreement over checkpoints and varying knowledge of orphaned blocks will eventually work itself out, I think, faster and more automatically than under current conditions (which rely on manual intervention to develop and patch the block-acceptance algorithm in reaction to attacks).  Note that even the existing client allows some ambiguity in best-chain selection: when blocks of equal chain-work compete, it prefers the first received.
+Network disagreement over checkpoints and varying knowledge of orphaned blocks will eventually work itself out, I think, faster and more automatically than under current conditions (which rely on manual intervention to develop and patch the block-acceptance algorithm in reaction to attacks).  Note that even the original client allows some ambiguity in best-chain selection: when blocks of equal chain-work compete, it prefers the first received.  The new formula yields practically the same result in the absence of 51% attacks and network partitions.  Each new block adds weight in proportion to its difficulty.  The fee component usually affects only contests between blocks of equal height, in which case it rewards transaction inclusion.
 
 For simplicity, assume that we have abolished the block-size limit.  A typical chain under 90% attack will have a side chain about every ninth block.  Side chains occasionally grow longer than one block, but typically, the *first* block in a side chain contains all the excluded transactions from previous side chains since the attack began.  Eventually, each such first block will outweigh nine (or any number) of the attacker's blocks.  Excluded transactions will have multiple confirmations with increasing frequency.  Only during periods of high attacker luck will they revert to unconfirmed, and such events will occur with decreasing frequency over time.  Merchants might reasonably begin to count orphaned blocks as contributing something to the number of transaction confirmations.
 
@@ -30,7 +30,11 @@ The more draconian the attacker, the shorter the attack.  An attacker with 90% w
 
 	2 * (0.9/0.1)^3 * (0.1/0.9) =~ 162 blocks
 
-In practice, I suspect the time would be less; my calculations are rough.  Simulation confirms that after the calculated number of blocks, an honest block is usually in the lead.  However, if the checkpoint is far in the past, it takes longer.
+In simulated attacks, the time is less; my calculations are rough.  If the checkpoint is far in the past, it takes longer, but the eventual result is the same: the honest network creates ever-longer side chains.  Indeed, if the checkpoint is well placed and
+
+	A*I < H * (I+E)
+
+the attacker's advantage is nullified, and the honest network wins without intervention.  Otherwise, the lead keeps going back and forth, with ever longer honest branches, until the honest participants agree on a checkpoint that decides the contest in their favour.
 
 Corollaries:
 
