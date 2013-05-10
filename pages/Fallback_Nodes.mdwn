@@ -23,31 +23,22 @@ You can also send [[IP_Transactions]] to these nodes. If you include your bitcoi
 
 ### Tor network
 
-Starting with Bitcoin 0.7, there are useful [docs](https://raw.github.com/bitcoin/bitcoin/master/doc/Tor.txt) for running clients and hidden services within Tor.
+To use Bitcoin with a Tor hidden service, open a Terminal/Console and start it like this (where abcde.onion needs to be substituted with one of the [[Tor nodes below|Fallback_Nodes#Tor_nodes]]):
+	bitcoin -proxy=127.0.0.1:9050 -connect=abcde.onion
 
-To use tor .onion addresses ([[listed below|Fallback_Nodes#Tor_nodes]]), with versions of Bitcoin <0.7 you will need to map virtual ips via the *torrc* file:
+You can find detailed information on running clients and hidden services within Tor in the [documentation](https://raw.github.com/bitcoin/bitcoin/master/doc/Tor.txt).
 
-	mapaddress 192.0.2.2 vso3r6cmjoomhhgg.onion
-	mapaddress 192.0.2.3 sjdntqu5roj4q6lo.onion
-
-And then put these IPs in your bitcoin.conf (or run bitcoin with -connect).
-
-	connect=192.0.2.2
-	connect=192.0.2.3
-
-You can use any arbitrary IP addresses with MapAddress, though some of the common non-routable ranges (10.*, 192.168.*) will not work due to a Bitcoin bug (reference?). 192.0.2.1-192.0.2.255 is the recommended range because it is both non-routable and compatible with Bitcoin.
-
-If you would like to use these nodes in addition to the hard-coded node list in the client, you can substitute "connect" with "addnode". However, if you want to keep all your Bitcoin communication strictly within the Tor network, it is recommended that you use "connect."
+These parameters can be added to [[bitcoin.conf|Running_Bitcoin#Bitcoin.conf_Configuration_File]] to make them permanent.
 
 ## Nodes list
 
 ### IPv6 Nodes
 
 
-<!-- BEGIN NODELIST -->|2001:470:8:2e1::40 |? |2001:470:8:2e1::40 |[[!template id=table_value_yes]]|[[!template id=fallback_nodes/node_down]]||Yes
+<!-- BEGIN NODELIST -->|caffeinator.net |[Atrophy](User:Atrophy)|||[[!template id=fallback_nodes/node_up]]|2013-05-10 |
+|2001:470:8:2e1::40 |? |2001:470:8:2e1::40 |[[!template id=table_value_yes]]|[[!template id=fallback_nodes/node_down]]||Yes
 |x.jine.se |jine |213.112.52.246 |[[!template id=table_value_no]]|[[!template id=fallback_nodes/node_down]]||Yes
-|messier.bzfx.net |BZFX/[A Meteorite](User:A Meteorite)|2001:41d0:1:d632::1 |[[!template id=table_value_yes]]
-|caffeinator.net |[Atrophy](User:Atrophy)<!-- END NODELIST -->
+|messier.bzfx.net |BZFX/[A Meteorite](User:A Meteorite)|2001:41d0:1:d632::1 |[[!template id=table_value_yes]]<!-- END NODELIST -->
 
 
 ### IPv4 Nodes
@@ -83,35 +74,34 @@ There is a list of nodes which have been seen on the network recently at http://
 
 
 
-|6hgmaxwellgpv2oe.onion|Gmaxwell |up |2012-07-01 |No
-|pqosrh6wfaucet32.onion|bitcoin street |up |2012-08-29 |No
-|btc4ulpftizx5b72.onion |TorNode |up |2012-06-22 |Yes
-|7hxvg2lvr2ashzli.onion |Tuxavant |up |2012-06-23 |?
-|siqdznszjf4e6v5j.onion |Tuxavant |up |2012-06-23 |?
-|fpt6orohw2nuf2kn.onion |Tril |up |2012-06-23 |No
-|vso3r6cmjoomhhgg.onion |echelon |up |2012-09-16 |Yes
-|sjdntqu5roj4q6lo.onion |torservers |up |2012-05-19 |?
-|bitcoin2bkgm3fke.onion |? |down |2012-05-19 |Yes
-|ijzt2eeizty3p5xe.onion |? |? |2011-02-11 |Yes
-|j43z65b6r2usg3vk.onion |Dybbuk |? |2011-02-11 |Yes
-|pvuif6nonbhj3o3r.onion |? |? |2011-02-11 |Yes
-|c5qvugpewwyyy5oz.onion |? |? |2011-02-11 |Yes
-|bitcoinbudtoeks7.onion |? |? |2011-02-11 |?
-|iy6ni3wkqazp4ytu.onion |? |? |2011-02-11 |?
-|h4kklwodpcmo6cbq.onion |? |? |2011-02-11 |?
-|vv6kcfscuntybrzm.onion |? |? |2011-02-11 |?
-|nlnsivjku4x4lu5n.onion |? |? |2011-02-11 |?
-|xqzfakpeuvrobvpj.onion |? |? |2010-11-13 |No
-|4lmduyac3svgrrav.onion |? |? |2011-02-11 |No
+|btc4ulpftizx5b72.onion |TorNode |Up |2013-05-10 |Yes
+|vso3r6cmjoomhhgg.onion |echelon |Up |2013-05-10 |Yes
+|yyl3ipdmyjkfypmx.onion |redemerald |Up |2013-05-10 |Yes
+|pqosrh6wfaucet32.onion |bitcoin street |Up |2013-05-10 |No
+|fpt6orohw2nuf2kn.onion |Tril |Up |2013-05-10 |No
+|e3tn727fywnioxrc.onion |Zedd |Up |2013-05-10 |No
+|6hgmaxwellgpv2oe.onion |Gmaxwell |Up |2012-07-01 |No
+|kjy2eqzk4zwi5zd3.onion |sipa |Up |2013-05-10 |No
+|siqdznszjf4e6v5j.onion |Tuxavant |Up |2013-05-10 |?
+|sjdntqu5roj4q6lo.onion |torservers |Down |2012-05-19 |?
+|bitcoin2bkgm3fke.onion |? |Down |2012-05-19 |Yes
+|7hxvg2lvr2ashzli.onion |Tuxavant |Down |2013-05-10 |?
+|j43z65b6r2usg3vk.onion |Dybbuk |Down |2011-02-11 |Yes
+|pvuif6nonbhj3o3r.onion |? |Down |2011-02-11 |Yes
+|c5qvugpewwyyy5oz.onion |? |Down |2011-02-11 |Yes
+|mutqcuh7hwxmhx3k.onion |Xirafe |Down |2012-06-23 |?
+|ijzt2eeizty3p5xe.onion |? |Down |2011-02-11 |Yes
+|r4de4zf4lyniu4mx.onion:8444 |? |Down |2012-06-26 |?
+|bitcoinprwwpuinm.onion:8333 |? |Down |2012-06-26 |?
+|x3danbeag2kyx644.onion |redemerald |Down |2013-01-04 |Yes
+|bitcoinbudtoeks7.onion |? |Down |2011-02-11 |?
+|iy6ni3wkqazp4ytu.onion |? |Down |2011-02-11 |?
+|h4kklwodpcmo6cbq.onion |? |Down |2011-02-11 |?
+|vv6kcfscuntybrzm.onion |? |Down |2011-02-11 |?
+|nlnsivjku4x4lu5n.onion |? |Down |2011-02-11 |?
+|xqzfakpeuvrobvpj.onion |? |Down |2010-11-13 |No
+|4lmduyac3svgrrav.onion |? |Down |2011-02-11 |No
 |usasx4urod3yj4az.onion |? |? |2011-02-11 |No
-|e3tn727fywnioxrc.onion |Zedd |up |2013-01-15 |No
-|yyl3ipdmyjkfypmx.onion |redemerald |up |2013-01-04 |Yes
-|x3danbeag2kyx644.onion |redemerald |up |2013-01-04 |Yes
-|bxfna6fhddpzduck.onion |? |? |? |?
-|kjy2eqzk4zwi5zd3.onion |sipa |up |2012-06-23 |No
-|mutqcuh7hwxmhx3k.onion |Xirafe |up |2012-06-23 |?
-|r4de4zf4lyniu4mx.onion:8444 |? |up |2012-06-26 |?
-|bitcoinprwwpuinm.onion:8333 |? |up |2012-06-26 |?
 
 
 ## Adding a node
