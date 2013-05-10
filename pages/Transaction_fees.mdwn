@@ -59,7 +59,7 @@ Transaction priority is calculated as a value-weighted sum of input age, divided
 Transactions need to have a priority above 57,600,000 to avoid the enforced limit (as of client version 0.3.21).  This threshold is written in the code as COIN * 144 / 250, suggesting that the threshold represents a one day old, 1 btc coin (144 is the expected number of blocks per day) and a transaction size of 250 bytes.
 
 So, for example, a transaction that has 2 inputs, one of 5 btc with 10 confirmations, and one of 2 btc with 3 confirmations, and has a size of 500bytes, will have a priority of
-	(500000000 * 10 + 200000000 * 3) / 500 = 11,800,000
+	(500000000 * 10 + 200000000 * 3) / 500 = 11,200,000
 
 ##See Also
 
