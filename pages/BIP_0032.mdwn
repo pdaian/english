@@ -78,7 +78,7 @@ To define CKD((k<sub>par</sub>, c<sub>par</sub>), i) &rarr; (k<sub>i</sub>, c<su
 * Split I = I<sub>L</sub>  I<sub>R</sub> into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
 * k<sub>i</sub> = I<sub>L</sub> + k<sub>par</sub> (mod n).
 * c<sub>i</sub> = I<sub>R</sub>.
-In case I<sub>L</sub> ≥ n, the resulting key is invalid, and one should proceed with the next value for i.
+In case I<sub>L</sub> ≥ n or k<sub>i</sub> = 0, the resulting key is invalid, and one should proceed with the next value for i.
 <sup></sup>[[.]]
 
 ####Public child key derivation
@@ -91,7 +91,7 @@ To define CKD'((K<sub>par</sub>, c<sub>par</sub>), i) &rarr; (K<sub>i</sub>, c<s
 * Split I = I<sub>L</sub>  I<sub>R</sub> into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
 * K<sub>i</sub> = (I<sub>L</sub> + k<sub>par</sub>)*G = I<sub>L</sub>*G + K<sub>par</sub>
 * c<sub>i</sub> = I<sub>R</sub>.
-In case I<sub>L</sub> ≥ n, the resulting key is invalid, and one should proceed with the next value for i.
+In case I<sub>L</sub> ≥ n or K<sub>i</sub> is the point at infinity, the resulting key is invalid, and one should proceed with the next value for i.
 
 Note that the extended public key corresponding to the evaluation of CKD(k<sub>ext</sub>, i) with public derivation (so with i < 0x80000000) is identical to the evaluation of CKD'(K<sub>ext</sub>, i), with K<sub>ext</sub> the extended public key corresponding to k<sub>ext</sub>. Symbolically, CKD((k, c), i)*G = CKD'((k*G, c), i). This implies that CKD' can be used to derive all public keys corresponding to the private keys that CKD would find. It cannot be used to retrieve the private keys, however.
 
