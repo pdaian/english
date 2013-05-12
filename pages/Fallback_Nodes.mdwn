@@ -24,7 +24,7 @@ You can also send [[IP_Transactions]] to these nodes. If you include your bitcoi
 ### Tor network
 
 To use Bitcoin with a Tor hidden service, open a Terminal/Console and start it like this (where abcde.onion needs to be substituted with one of the [[Tor nodes below|Fallback_Nodes#Tor_nodes]]):
-	bitcoin -proxy=127.0.0.1:9050 -connect=abcde.onion
+	bitcoin-qt -proxy=127.0.0.1:9050 -connect=abcde.onion
 
 You can find detailed information on running clients and hidden services within Tor in the [documentation](https://raw.github.com/bitcoin/bitcoin/master/doc/Tor.txt).
 
