@@ -1,31 +1,31 @@
 An open-source Bitcoin solution written in Go language (golang).
-
-Can be built for every platform that has a working Go compiler.
-
-Gocoin is licensed under GPL version 3.
+It can be built for every platform that has a working Go compiler.
+The software is licensed under GPL version 3.
 
 ##Features
 
-###Client
+Gocoin has a several unique features, that distinguish it from the original bitcoin client.
+
+###Node
 
 * All the unspent outputs are kept in memory, so switching between different wallets is very fast.
 * Allows a user to limit the upload and download network bandwidth used by the client.
+* Works with its own implementation of a cold storage wallet.
 
 ###Wallet
 
-* For security reasons, it is supposed to be used with a PC that has never been connected to a network.
+* For security reasons, it is supposed to be used with a PC that has never been (and will never be) connected to a network.
 * The wallet is deterministic and a seed-password based, so as long as you remember the password, you do not need to backup it, ever.
 * Additionally you can import private keys for your existing bitcoin wallet.
 * Has very low hardware requirements, so you can use it with i.e. Raspberry Pi
 
 ##Requirements
-The client node requires 64-bit platform and at least 4GB of system memory.
+The client node requires 64-bit platform and at least 4GB of system memory. It also requires a file system that can handle files larger than 4GB.
 
 ##Limitations
 
 * No GUI
-* Works only with entire (mined) blocks - does not rely transactions, except from sending own transactions to the network
-* Requires a file system that supports large files (bigger than 4GB)
+* Works only with entire (mined) blocks and does not rely transactions, except from sending own transactions to the network
 
 ##History
 
