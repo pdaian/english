@@ -146,7 +146,7 @@ It is used in the following algorithm:
 
 If, and only if, the oracle agrees that the man is dead, the grandson can broadcast the two transactions (the contract and the claim) and take the coins.
 
-The oracle does not need to be highly trusted. It has not seen the transaction the grandson is trying to unlock, as it was never broadcast, thus, the oracle cannot hold the grandson to ransom because it does not know whether the transaction it's signing for even exists. People can, and should, regularly challenge the oracle in an automated fashion to ensure it always outputs what is expected. The challenges can be done without spending any coins because the tx to be signed can be invalid (ie, connected to transactions that don't exist). The oracle has no way to know whether a request to be signed is random or real. CHECKSIGVERIFY can be replaced with CHECKMULTISIGVERIFY to allow for n-of-m oracles if need be.
+The oracle does not need to be highly trusted. It has not seen the transaction the grandson is trying to unlock, as it was never broadcast, thus, the oracle cannot hold the grandson to ransom because it does not know whether the transaction it's signing for even exists. People can, and should, regularly challenge the oracle in an automated fashion to ensure it always outputs what is expected. The challenges can be done without spending any coins because the tx to be signed can be invalid (ie, connected to transactions that don't exist). The oracle has no way to know whether a request to be signed is random or real. How to challenge the oracle with conditions that are not yet true is however an open research question. CHECKSIGVERIFY can be replaced with CHECKMULTISIGVERIFY to allow for n-of-m oracles if need be. Trusted computing allows for remote attestation, which is another way to minimise required trust levels. 
 
 Oracles can potentially evaluate anything, yet the output script form in the block chain can always be the same. Consider the following possibilities:
 
@@ -163,6 +163,8 @@ Oracles can potentially evaluate anything, yet the output script form in the blo
 	return 1JxgRXEHBi86zYzHN2U4KMyRCg4LvwNUrp;
 
 The conditions that control whether the oracle signs can be arbitrarily complex, but the block chain never needs to contain more than a single hash.
+
+As of May 2013 work on implementing this protocol has begun. Please contact Mike if you would like to work on this to avoid duplication of effort.
 
 ##Example 5: Trading across chains
 
