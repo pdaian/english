@@ -8,7 +8,7 @@ Sending bitcoins to an IP address is just a convenient way of sending bitcoins t
 Unfortunately, the current implementation provides no authentication, so any "man in the middle" can intercept your Bitcoins during the transaction. When they see that you're sending a Bitcoin payment by IP address, they pretend to be the actual destination and send back *their* Bitcoin address. You end up sending Bitcoins to the wrong person. It's therefore not a good idea to send Bitcoins in this way, *especially* if you're using a proxy.
 
 ##Status
-Receiving transactions by IP address is disabled by default with the classic Bitcoin client. You can enable it by running Bitcoin with the *-allowreceivebyip* switch.  This feature may ultimately get removed from the classic Bitcoin client (2.1)
+Receiving transactions by IP address is disabled by default with the classic Bitcoin client. You can enable it by running Bitcoin with the *-allowreceivebyip* switch.  This feature has been removed from the classic Bitcoin client, as-of v0.8.0 (2.1)
 
 ##References
 
