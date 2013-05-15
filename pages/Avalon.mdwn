@@ -322,6 +322,11 @@ For example, if your OS is Ubuntu 12.04 LTS, install the required packages like 
 
 5. Finally you could get the freshly built firmware files under **avalon/bin/**
 
+## Compile with kernel usbmon
+
+* You need apply [this patch](https://lists.openwrt.org/pipermail/openwrt-devel/2013-May/020107.html) to your OpenWrt for enable usbmon
+* Run **make menuconfig** goto  **Kernel modules** --> **USB Support** enable **kmod-usb-mon**
+
 # IRC: #avalon @freenode.net
 	**#avalon @freenode.net** Thanks to midnightmagic create that channel
 
