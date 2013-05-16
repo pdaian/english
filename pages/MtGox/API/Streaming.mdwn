@@ -426,30 +426,30 @@ $query = pack('H*', str_replace('-',*,$apiKey)).$sign.$query;
 $call = array('op' => 'call', 'call' => base64_encode($query), 'id' => $id, 'context' => 'mtgox.com');
 // $call can now be pushed out to the websocket</source>
 
-## examples
+## Examples
 
-### ticker
-javascript, using hookio : 
+### Tickers
 
-http://github.com/cronopio/hook.io-mtgox
+* https://github.com/ralphtheninja/goxstream (Node.js readable stream)
+* https://github.com/ralphtheninja/goxtick (Node.js EventEmitter, works in the browser with browserify)
+* https://github.com/cronopio/hook.io-mtgox (Node.js)
+* https://github.com/timmolter/XChange (Java)
 
-A Java example:
-https://github.com/timmolter/XChange
+### Websockets
 
-### arbitrage
+* https://github.com/cronopio/hook.io-ws (Node.js)
+* https://github.com/progrium/wssh (Python)
+* https://github.com/sta/websocket-sharp (C#)
+
+### REST
+
+* https://github.com/ameen3/node-mtgox-apiv2 (Node.js)
+* https://bitbucket.org/pipe2grep/cryptocoinxchange (C#)
+
+### Arbitrage
 
 * https://github.com/goteppo/ArBit
 * https://github.com/vbmithr/breakbot
-
-### websocket tools
-https://github.com/cronopio/hook.io-ws
-
-https://github.com/progrium/wssh
-<source lang="bash">wssh websocket.mtgox.com:80/mtgox  grep depth 1>>depth.txt</source>
-
-https://github.com/sta/websocket-sharp
-
-https://bitbucket.org/pipe2grep/cryptocoinxchange
 
 ##See Also
 
