@@ -370,11 +370,11 @@ Example Error:
 
 https://data.mtgox.com/api/1/generic/private/orders
 	
-	Returns a list of all your currently existing orders with oid and status .
+Returns a list of all your currently existing orders with oid and status .
 
-	Valid order statuses are: pending, executing, post-pending, open, stop, and invalid.
+Valid order statuses are: pending, executing, post-pending, open, stop, and invalid.
 
-	The order can have 2 amounts, the valid amount and the invalid ( unfunded ) amount.
+The order can have 2 amounts, the valid amount and the invalid ( unfunded ) amount.
 valid amount and invalid amount will be updated when funds are added or when other orders are removed
 
 <source lang="PHP">
