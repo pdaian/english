@@ -17,3 +17,18 @@ Currently a new spam user is created every few minutes, and the [Recent Changes]
 
 >  Payment is only required to activate edit privileges, hence the flood of spam users.  but it's not a bad idea to have it be required for user creation too, to avoid that spam. The problem is that it'd require more development, and mtux doesn't really have time to do this for the wiki right now. 
 >  In the meantime as a quick hack, you can just filter the recent changes list to exclude everything from the User namespace. [try this](https://en.bitcoin.it/w/index.php?namespace=2&invert=1&title=Special%3ARecentChanges). It's not perfect, since it also excludes user page edits... but it's good. :) [Nanotube](User:Nanotube) ([[talk|User_talk:Nanotube]]) 13:44, 30 April 2013 (GMT)
+
+## Informing new users
+
+It's not very clear right now that people need to visit this page to learn how to contribute. I didn't find out until I was reading through some questions on StackExchange, saw somebody someone ask why he couldn't edit.
+
+I know there's a line on the front page in font-size 10 saying "Anti-spam protection from BitcoinPayment", but people unfamliar with BitcoinPayment will not notice that. When they don't see an edit button they're likely to assume that you either need to wait for manual approval or that you need to know the right people within the community.
+
+It's been ages since I tried to write code for MediaWiki, so I don't know if on of the following suggestions is possible:
+
+* don't hide the edit link, but instead redirect the user to this page for instructions
+* next to the "Show source" link, show "Want to contribute?"
+
+Or this solution, which doesn't require code:
+
+* put a text like "If you want to contribute, please read these instructions" in a very prominent place on the landing page.
