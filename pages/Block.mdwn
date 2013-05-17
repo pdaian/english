@@ -16,7 +16,7 @@ Each block contains, among other things, in its block header a record of some or
 
 Because there is a reward of brand new Bitcoins for solving each block, every block also contains a record of which [[Bitcoin_address]] is entitled to receive the reward.  This record is known as a generation transaction, or a [[coinbase]] transaction, and is always the first transaction appearing in every block.  The number of [[Bitcoins]] generated per block starts at 50 and is halved every 210,000 blocks (about four years).
 
-Bitcoin transactions are broadcast to the [[network]] by the sender, and all peers trying to solve blocks collect the transaction records and add them to the block they're working to solve. 
+Bitcoin transactions are [[broadcast|transaction_broadcasting]] to the [[network]] by the sender, and all peers trying to solve blocks collect the transaction records and add them to the block they're working to solve. 
 
 The difficulty of the mathematical problem is automatically adjusted by the network, such that it targets a goal of solving an average of 6 blocks per hour.  Every 2016 blocks (about two weeks), all Bitcoin clients compare the actual number created with this goal and modify the target by the percentage that it varied.  This increases (or decreases) the difficulty of generating blocks.
 
