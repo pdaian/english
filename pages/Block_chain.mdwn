@@ -1,4 +1,4 @@
-[[!img "blockchain.png" size=120x120 title="Blocks in the main chain (black) are the longest series of blocks that go from the genesis block (green) to the current block. Orphan blocks (purple) are blocks that are not in the longest chain."]]
+[[!img "blockchain.png" size=120x120 title="Blocks in the main chain (black) are the longest series of blocks that go from the genesis block (green) to the current block. Purple blocks are blocks that are not in the longest chain and therefore not used."]]
 
 A **block chain** is a transaction database shared by all [[nodes|Node]] participating in a system based on the Bitcoin protocol.  A full copy of a currency's block chain contains every [[transaction]] ever executed in the currency.  With this information, one can find out how much value belonged to each [[address]] at any point in history.
 
@@ -8,7 +8,9 @@ Honest generators only build onto a block (by referencing it in blocks they crea
 
 For any block on the chain, there is only one path to the genesis block. Coming from the genesis block, however, there can be forks. One-block forks are created from time to time when two blocks are created just a few seconds apart. When that happens, generating nodes build onto whichever one of the blocks they received first. Whichever block ends up being included in the next block becomes part of the main chain because that chain is longer. More serious forks have occurred after fixing bugs that required backward-incompatible changes.
 
-Blocks in shorter chains (or invalid chains) are called "orphan blocks", and while they are stored, they are not used for anything. When a block becomes an orphan block, all of its valid transactions are re-added to the pool of queued transactions and will be included in another block. The reward for the orphan block will be lost, which is why a network-enforced 100-block maturation time for generations exists.
+Blocks in shorter chains (or invalid chains) are not used for anything. When the bitcoin client switches to another, longer chain, all valid transactions of the blocks inside the shorter chain are re-added to the pool of queued transactions and will be included in another block. The reward for the blocks on the shorter chain will not be present in the longest chain, so they will be practically lost, which is why a network-enforced 100-block maturation time for generations exists.
+
+These blocks on the shorter chains are often called "orphan" blocks.  This is because the generation transactions do not have a parent block in the longest chain, so these generation transactions show up as orphan in the listtransactions RPC call.  Several pools have misinterpreted these messages and started calling their blocks "orphans".  In reality, these blocks have a parent block, and might even have children.
 
 Because a block can only reference one previous block, it is impossible for two forked chains to merge.
 
