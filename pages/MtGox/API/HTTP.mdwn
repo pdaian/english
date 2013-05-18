@@ -23,7 +23,7 @@ USD, AUD, CAD, CHF, CNY, DKK, EUR, GBP, HKD, JPY, NZD, PLN, RUB, SEK, SGD, THB
 
 ## tonce et nonce
 
-Each request to the private http PI need to have a nonce or a tonce
+Each request to the private http API ( v0, v1 , or v2 ) needs to have a nonce or a tonce
 
 Please have a look at http://en.wikipedia.org/wiki/Cryptographic_nonce for explanations of what is a nonce .
 
@@ -43,6 +43,7 @@ A few facts about nonce and tonce :
 
 * As long as your tonce value is unique and is within +/-10secs of now, it doesn't need to be incremental
 
+* depending of which you want to use, you will add the "tonce=" or "nonce=" parameter to your api request
 
 ## Authentication
 
