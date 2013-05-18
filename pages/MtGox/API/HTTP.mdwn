@@ -21,6 +21,29 @@ List of the currency symbols available with the API:
 
 USD, AUD, CAD, CHF, CNY, DKK, EUR, GBP, HKD, JPY, NZD, PLN, RUB, SEK, SGD, THB
 
+## tonce et nonce
+
+Each request to the private http PI need to have a nonce or a tonce
+
+Please have a look at http://en.wikipedia.org/wiki/Cryptographic_nonce for explanations of what is a nonce .
+
+See also http://en.wikipedia.org/wiki/System_time and http://en.wikipedia.org/wiki/Unix_time
+
+The tonce is a variant of the nonce.
+
+A few facts about nonce and tonce :
+
+* The value of the nonce must always increase, if you use a very high value during your tests, you could have to generate new api keys to be allowed to get back to lower values
+
+* The value of the tonce is based on the current timestamp, needs to be current microtime with +/- 10secs, and needs to be unique
+
+* Your computer's time needs to be exact if you want to use the tonce parameter
+
+* For the tonce you will use the time in microseconds , besed on http://en.wikipedia.org/wiki/Unix_time
+
+* As long as your tonce value is unique and is within +/-10secs of now, it doesn't need to be incremental
+
+
 ## Authentication
 
 Authentication is performed by signing each request using HMAC-SHA512. The request must contain an extra value "nonce" which must be an always incrementing numeric value.  A reference implementation is provided here:
