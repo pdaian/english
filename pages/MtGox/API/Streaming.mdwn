@@ -395,6 +395,8 @@ These commands require an API key and secret pair to sign requests. Any of the [
 
 <REQUEST ID> can be any string, it's used to identify the response as belonging to this request when an answer comes back. md5'ing your nonce is a good way to get an id. 
 
+Find a few explanations about tonce and nonce on : https://en.bitcoin.it/wiki/MtGox/API/HTTP#tonce_and_nonce
+
 "call" must be a base-64 encoded string consisting of, in order: an API key, a signed copy of the request, and the request text itself.
 
 The queries themselves look like:
