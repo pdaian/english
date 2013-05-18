@@ -35,7 +35,7 @@ A few facts about nonce and tonce :
 
 * The value of the nonce must always increase, if you use a very high value during your tests, you could have to generate new api keys to be allowed to get back to lower values
 
-* The value of the tonce is based on the current timestamp in microseconds. It needs to be current microtime with +/- 10secs, and needs to be unique
+* The value of the tonce is based on the current timestamp in microseconds ( example : 1368892862123456 ) . It needs to be current microtime with +/- 10secs, and needs to be unique
 
 * Your computer's time needs to be exact if you want to use the tonce parameter
 
