@@ -11,7 +11,7 @@ A [[block_chain_browser]] is a site where every transaction included within the 
 |Version no|currently 1|4 bytes
 |In-counter|positive integer [[VI = VarInt|Protocol_specification#Variable_length_integer]]|1 - 9 bytes 
 |list of inputs|[[the first input of the first transaction is also called "coinbase" (its content was ignored in earlier versions)|Transactions#general_format_.28inside_a_block.29_of_each_input_of_a_transaction_-_Txin]]|<in-counter>-many inputs
-|Out-counter|positive integer|1 - 9 bytes
+|Out-counter|positive integer [[VI = VarInt|Protocol_specification#Variable_length_integer]]|1 - 9 bytes
 |list of outputs|[[the outputs of the first transaction spend the mined bitcoins for the block|Transactions#general_format_.28inside_a_block.29_of_each_output_of_a_transaction_-_Txout]]|<out-counter>-many outputs
 |lock_time|if non-zero and sequence numbers are < 0xFFFFFFFF: block height or timestamp when transaction is final|4 bytes
 
@@ -103,7 +103,7 @@ The extranonce contributes to enlarge the domain for the proof of work function.
 |---|---|---
 |Previous Transaction hash |doubled [SHA256](Wikipedia:SHA-256)-[[hashed|hash]]of a (previous) to-be-used transaction|32 bytes
 |Previous Txout-index|non negative integer indexing an output of the to-be-used transaction|4 bytes
-|Txin-script length|non negative integer|1 - 9 bytes
+|Txin-script length|non negative integer [[VI = VarInt|Protocol_specification#Variable_length_integer]]|1 - 9 bytes
 |Txin-script / scriptSig|[[Script]]|<in-script length>-many bytes
 |sequence_no|normally 0xFFFFFFFF; irrelevant unless transaction's lock_time is > 0|4 bytes
 
@@ -117,7 +117,7 @@ If it is the (only) input of the first transaction of a block, it is called the 
 |Field|Description|Size
 |---|---|---
 |value|non negative integer giving the number of [[Satoshis(BTC/10^8)|FAQ#What_do_I_call_the_various_denominations_of_bitcoins.3F]]to be transfered|8 bytes
-|Txout-script length|non negative integer|1 - 9 bytes
+|Txout-script length|non negative integer|1 - 9 bytes [[VI = VarInt|Protocol_specification#Variable_length_integer]]
 |Txout-script / scriptPubKey|[[Script]]|<out-script length>-many bytes
 
 The output sets the conditions to release this bitcoin amount later. The sum of the output values of the first transaction is the value of the mined bitcoins for the block plus possible transactions fees of the other transactions in the block.
