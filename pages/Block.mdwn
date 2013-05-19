@@ -8,7 +8,7 @@ Data is permanently recorded in the Bitcoin network through files called **block
 |Magic no|value always 0xD9B4BEF9|4 bytes
 |Blocksize|number of bytes following up to end of block|4 bytes
 |Blockheader|[[consists of 6 items|Block_hashing_algorithm]]|80 bytes
-|Transaction counter|positive integer|1 - 9 bytes
+|Transaction counter|positive integer [[VI = VarInt|Protocol_specification#Variable_length_integer]]|1 - 9 bytes
 |[[transactions]]|the (non empty) list of transactions|<Transaction counter>-many transactions
 
 ##Description
