@@ -18,8 +18,8 @@ In order to convert the **int** to a **decimal** you can...
 |kind of field |...divide by |...multiply by
 |---|---|---
 |BTC (volume, amount) |1E8 (100,000,000) |0.00000001
-|USD, AUD, CAD, CHF, CNY, DKK, EUR, GBP, HKD, NZD, PLN, RUB, SEK, SGD, THB, NOK, CZK (price) |1E5 (100,000) |0.00001
-|JPY (price) |1E3 (1,000) |0.001
+|USD, AUD, CAD, CHF, CNY, DKK, EUR, GBP, HKD, NZD, PLN, RUB, SGD, THB, NOK, CZK (price) |1E5 (100,000) |0.00001
+|JPY, SEK (price) |1E3 (1,000) |0.001
 
 
 Implementation advice: it's probably best to use **int** or **Decimal** (if your language/db offers such a type) in your clients. Using **float** will likely lead to nasty rounding problems.
