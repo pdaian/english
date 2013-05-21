@@ -172,7 +172,11 @@ To get more information about how to configure specific pools, please check thei
 * https://github.com/BitSyncom/avalon-extras
 
 ## FPGA controller
-About P5 jumper: close this jumper will supply 5V to the USB-B port. in this system, the controller board power the HUB and the HUB power the 703N. but if you connect the controller itself to a PC, you must remove the jumper.
+About **P5** jumper: close this jumper will supply 5V to the USB-B port. in this system, the controller board power the 703N from the client side. if you connect the controller itself to a PC, you better remove the jumper.
+
+## Update FPGA controller firmware
+
+* Update under Avalon 703N: http://downloads.qi-hardware.com/people/xiangfu/avalon/fpga-controller/
 
 ## P2Pool Operation with Avalon
 There is an /avalon branch Forrest committed to the p2pool github repository. Make sure that is checked out.
