@@ -65,7 +65,7 @@ That is the overall premise, and specifically for the AuxPOW protocol, it's been
 The first <tt>branch_hash</tt> is used first, and the least-significant bit of the <tt>branch_side_mask</tt> determines its hash position. Then the second <tt>branch_hash</tt> is applied with the second-least-significant bit of the <tt>branch_side_mask</tt>, etc. So for Alice's example, <tt>branch_length</tt> would be 3, the hashes would be given in the order #9, #3, then #2, and the <tt>branch_side_mask</tt> would be <tt>0b011</tt> = 3.
 
 ## Merged mining coinbase
-Insert exactly one of these headers into the scriptSig of the coinbase transaction in the parent block.
+Insert exactly one of these headers into the <tt>scriptSig</tt> of the coinbase transaction in the parent block.
 
 
 
