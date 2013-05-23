@@ -34,7 +34,7 @@ style="background-color:#DDD; color:#999;"|? |txns |tx[]|
 
 For the <tt>coinbase_branch</tt> merkle branch, because the coinbase transaction is the first transaction in the block (if using Bitcoin as a parent chain, i.e. hash #7 in the example given [[below|#Merkle_Branch]]), the <tt>branch_side_mask</tt> is always going to be all zeroes, because the branch hashes will always be "on the right" of the working hash.
 
-When only working on one auxiliary blockchain, the <tt>blockchain_branch</tt> link is not needed, and is nulled-out by being presented as 5 bytes of zeros (interpreted as a one-byte var_int indicating a <tt>branch_length</tt> of zero, and a 32-bit (4 byte) <tt>branch_side_mask</tt> of all zeroes.
+When only working on one auxiliary blockchain, the <tt>blockchain_branch</tt> link is not needed, and is nulled-out by being presented as 5 bytes of zeros (interpreted as a one-byte <tt>var_int</tt> indicating a <tt>branch_length</tt> of zero, and a 32-bit (4 byte) <tt>branch_side_mask</tt> of all zeroes).
 
 ## Merkle Branch
 Say Alice created a Merkle tree, and it's root element is publicly available. For example:
