@@ -15,30 +15,51 @@ When receiving an Aux proof-of-work block in a <tt></tt>[["|Protocol_specificati
 
 
 
-|? |coinbase_txn |[[txn|Protocol_specification#tx]]|Coinbase transaction linking the aux to its parent block
-|? |merkle_link |[[mrkllink|#Merkle_link]]|The merkle branch linking the coinbase (above) to its block
-|? |aux_branch_count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of merkle branches linking this aux chains to the aux root
-|32* |aux_branch[]|char[[32]]|The merkle branch linking all auxiliary blockchains being mined against together
-|4 |index |int32_t |Index of "this" blockchain in the auxiliary blockchain list
+|? |coinbase_txn |[[txn|Protocol_specification#tx]]|Coinbase transaction [[linking|#Merged_mining_coinbase]]the AuxPOW block to its parent block
+|32 |block_hash |char[[32]]|Hash of the parent block header
+|? |coinbase_branch |[[merkle_branch|#Merkle_Branch]]|The merkle branch linking the <tt>coinbase_txn</tt>to the parent block's <tt>merkle_root</tt>
+|? |blockchain_branch |[[merkle_branch|#Merkle_Branch]]|The merkle branch linking this auxiliary blockchain to the others, when used in a merged mining setup with multiple auxiliary chains
 |80 |parent_block |[[block header|Protocol_specification#block]]|Parent block header
 
 
-## Merkle link
+For the <tt>coinbase_branch</tt> merkle branch, because the coinbase transaction is the first transaction in the block (if using Bitcoin as a parent chain, i.e. hash #7 in the example given [[below|#Merkle_Branch]]), the <tt>branch_side_mask</tt> is always going to be all zeroes, because the branch hashes will always be "on the right" of the working hash.
+
+When only working on one auxiliary blockchain, the <tt>blockchain_branch</tt> link is not needed, and is nulled-out by being presented as 5 bytes of zeros (interpreted as a one-byte var_int indicating a <tt>branch_length</tt> of zero, and a 32-bit (4 byte) <tt>branch_side_mask</tt> of all zeroes.
+
+## Merkle Branch
+Say Alice created a Merkle tree, and it's root element is publicly available. For example:
+
+<pre>
+             merkleRoot (0)
+              /        \
+             /          \
+            1            2
+           / \          / \
+          /   \        /   \
+         3     4      5     6
+        / \   / \    / \   / \
+       7   8 9  10  11 12 13 14
+</pre>
+
+Now she wants to prove to Bob that a given hash (#10) was part of that tree, but Bob doesn't have the full tree (only the public root; hash #0). Alice can send Bob all the hashes she used to make the tree in the first place (hashes #7-#14, total of 7 extra hashes), so Bob can build the whole tree to verify the root is the same, but that's rather data-intensive. Instead, she could give Bob hashes #9, #3, and #2 (one from each level of the tree, working #10 back to the root). Without Bob knowing the structure of the tree, Alice also has to tell Bob what order to apply the hashes in (since <tt>hash(#9, #10) == #4</tt>, but <tt>hash(#10, #9) != #4</tt>). So Alice tells Bob "left, left, right" to indicate which operand #9, #3, and #2 are, respectively. That can be encoded as a bitmask and take up very little data to transmit. So, instead of transmitting 7 hashes to Bob, Alice transmits 3 hashes and a bitmask. The data savings get even more pronounced if the merkle tree gets even bigger.
+
+That is the overall premise, and specifically for the AuxPOW protocol, it's been termed a "merkle branch" (since it's one pathway of a merkle tree), and is transmitted thusly:
 
 
 
-|32 |block_hash |char[[32]]|Hash of the parent block header
-|? |branch_count |[[var_int|Protocol_specification#Variable_length_integer]]|The number of links to bring the coinbase transaction to the parent block's merkle root
-|32* |branch[]|char[[32]]|Linking merkle branches
-|4 |mask |int32_t |Bitmask of which "side" of the merkle tree hashing algorithm the branch elements need to be applied on
+|? |branch_length |[[var_int|Protocol_specification#Variable_length_integer]]|The number of hashes making up the branch
+|? |branch_hash[]|char[[32]]|Individual hash in the branch; repeated <tt>branch_length</tt>number of times
+|4 |branch_side_mask |int32_t |Bitmask of which side of the merkle hash function the <tt>branch_hash</tt>element should go on. Zero means it goes on the right, One means on the left.
 
+
+The first <tt>branch_hash</tt> is used first, and the least-significant bit of the <tt>branch_side_mask</tt> determines its hash position. Then the second <tt>branch_hash</tt> is applied with the second-least-significant bit of the <tt>branch_side_mask</tt>, etc. So for Alice's example, <tt>branch_length</tt> would be 3, the hashes would be given in the order #9, #3, then #2, and the mask would be <tt>0b011</tt> = 3.
 
 ## Merged mining coinbase
-Insert exactly one of these headers into the scriptSig of the coinbase on the parent chain.
+Insert exactly one of these headers into the scriptSig of the coinbase transaction in the parent block.
 
 
 
-|4 |magic |char[[4]]|0xfa, 0xbe, 'm', 'm' **(required iff over 20 bytes prior to aux merkle root in coinbase)**
+|4 |magic |char[[4]]|<tt>0xfa</tt>, <tt>0xbe</tt>, 'm', 'm' **(required iff over 20 bytes prior to aux merkle root in coinbase)**
 |32 |block_hash |char[[32]]|Hash of the AuxPOW block header
 |4 |merkle_size |int32_t |Number of entries in aux work merkle tree. **Must be a power of 2.**
 |4 |merkle_nonce |int32_t |Nonce used to calculate indexes into aux work merkle tree; you may as well leave this at zero
