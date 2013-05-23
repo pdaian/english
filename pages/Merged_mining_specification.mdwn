@@ -17,9 +17,9 @@ When receiving an Aux proof-of-work block in a <tt></tt>[["|Protocol_specificati
 
 |? |coinbase_txn |[[txn|Protocol_specification#tx]]|Coinbase transaction [[linking|#Merged_mining_coinbase]]the AuxPOW block to its parent block
 |32 |block_hash |char[[32]]|Hash of the parent block header
-|? |coinbase_branch |[[merkle_branch|#Merkle_Branch]]|The merkle branch linking the <tt>coinbase_txn</tt>to the parent block's <tt>merkle_root</tt>
-|? |blockchain_branch |[[merkle_branch|#Merkle_Branch]]|The merkle branch linking this auxiliary blockchain to the others, when used in a merged mining setup with multiple auxiliary chains
-|80 |parent_block |[[block header|Protocol_specification#block]]|Parent block header
+|? |coinbase_branch |[[Merkle branch|#Merkle_Branch]]|The merkle branch linking the <tt>coinbase_txn</tt>to the parent block's <tt>merkle_root</tt>
+|? |blockchain_branch |[[Merkle branch|#Merkle_Branch]]|The merkle branch linking this auxiliary blockchain to the others, when used in a merged mining setup with multiple auxiliary chains
+|80 |parent_block |[[Block header|Protocol_specification#block]]|Parent block header
 
 
 For the <tt>coinbase_branch</tt> merkle branch, because the coinbase transaction is the first transaction in the block (if using Bitcoin as a parent chain, i.e. hash #7 in the example given [[below|#Merkle_Branch]]), the <tt>branch_side_mask</tt> is always going to be all zeroes, because the branch hashes will always be "on the right" of the working hash.
