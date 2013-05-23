@@ -1,0 +1,45 @@
+An easy service allowing you to sell your digital goods in a fully automated mode, with no human interference.
+Can be used to send to customers software registration codes, eBook passwords, access codes to resume or dating sites and so on.
+To use it you need to register (no private info required) and to use customizable "pay with buttons" buttons provider by the service.
+No programming skills required, except for HTML copy-paste.
+
+### How It Works
+
+* User provides sufficient number of Bitcoin addresses. A number that is required depends on the expected sales volume. 
+* User provides registration info for each product.
+* A customizable "Pay with Bitcoins" button (or a text link) is placed at user's web site. The Snowcron site has a button generator to make task easier.
+* When a customer clicks the "buy" button, he is asked to provide an e.mail address, and then receives a Bitcoin address (one from the list provided by the user of a service).
+* Once payment to that address is confirmed, Snowcron sends an e.mail with the purchase information to a customer's e.mail.
+
+### Security Details
+
+* Payments are performed to user provided addresses, therefore, stealing from Snowcron is not possible.
+
+### Technical Details
+
+* A typical code for Snowcron button is plain HTML and can be customized in any text editor:
+	
+<a href="https://snowcron.com/bitcoin_user.cgi?
+	request_type=PayStep1&user_id=1&item_id=3">
+	<img src="https://snowcron.com/images/bitcoin_btn.png" border="0"></a>
+
+##External Links
+
+* [Snowcron Bitcoin Engine](http://snowcron.com) web site
+
+##See Also
+
+* [[Buying_bitcoins]]
+* [[Selling_bitcoins]]
+
+[[!tag "EWallets"]]
+[[!tag "Wallets"]]
+[[!tag "Exchanges"]]
+[[!tag "Shopping_Cart_Interfaces"]]
+[[!tag "Services"]]
+[[!tag "Frontends"]]
+[[!tag "Clients"]]
+[[!tag "Mobile"]]
+[[!tag "Block_chain_browsers"]]
+[[!tag "ECommerce"]]
+[[!tag "Shopping"]]
