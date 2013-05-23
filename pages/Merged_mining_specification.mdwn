@@ -92,6 +92,128 @@ Once you know where in the merkle tree the different chains go, *reverse the byt
 
 The aux proof-of-work also needs a merkle branch, which is built as follows: find the location of the block's hash in the merkle tree, and add the other value that you hashed it with in building the merkle tree. Now add the value you hashed that result with. Keep doing this until you reach the root. The merkle root itself is *never* included in the merkle branch. If you just have a single aux chain, this can be left entirely empty. (It also appears you *don't* need to reverse these hashes.)
 
+## Example
+This is the AuxPOW block at [height 19200](http://explorer.dot-bit.org/b/19200) in the Namecoin chain (the first block that allowed AuxPOW authentication). It has a hash of <tt>d8a7c3e01e1e95bcee015e6fcc7583a2ca60b79e5a3aa0a171eddd344ada903d</tt>, and only has one Namecoin transaction (coinbase sending 50 NMC to the miner's address). The parent block that was used as Proof of Work has a hash less than the difficulty target of Namecoin at the time, but not the Bitcoin target:
+<pre>
+0000000000003d47277359fb969c43e3c7e7c0306a17f6444b8e91e19def03a9 -- parent block hash
+000000000000b269000000000000000000000000000000000000000000000000 -- Namecoin difficulty target
+00000000000009ee5d0000000000000000000000000000000000000000000000 -- Bitcoin difficulty target
+</pre>
+
+Hence, this AuxPOW block was valid in the Namecoin blockchain, but not in the Bitcoin blockchain (you will find no Bitcoin block with the hash starting <tt>3d47277359fb969c</tt>)
+
+<pre>
+Block Header:
+ 01 01 01 00                                        // Version
+
+ 36 90 9a c0 7a 16 73 da f6 5f a7 d8 28 88 2e 66    // Previous block hash
+ c9 e8 9f 85 46 cd d5 0a 9f b1 00 00 00 00 00 00
+
+ 0f 5c 65 49 bc d6 08 ab 7c 4e ac 59 3e 5b d5 a7    // Merkle root
+ 3b 2d 43 2e b6 35 18 70 8f 77 8f c7 dc df af 88
+
+ 8d 1a 90 4e                                        // Timestamp
+ 69 b2 00 1b                                        // Bits
+ 00 00 00 00                                        // Nonce
+
+Coinbase Transaction:
+ 01 00 00 00                                              // Version
+
+ 01                                                       // TxIn Count
+
+ 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    // Previous Out
+ 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff
+
+ 35                                                       // Script size
+ 04 5d ee 09 1a 01 4d 52 2c fa be 6d 6d d8 a7 c3          // Script
+ e0 1e 1e 95 bc ee 01 5e 6f cc 75 83 a2 ca 60 b7
+ 9e 5a 3a a0 a1 71 ed dd 34 4a da 90 3d 01 00 00
+ 00 00 00 00 00
+
+ ff ff ff ff                                              // Sequence Number
+
+ 01                                                       // TxOut Count
+
+ 60 a0 10 2a 01 00 00 00                                  // Amount
+
+ 43                                                       // Script Size
+ 41 04 f8 bb e9 7e d2 ac bc 5b ba 11 c6 8f 6f 1a          // Script
+ 03 13 f9 18 f3 d3 c0 e8 47 50 55 e3 51 e3 bf 44
+ 2f 8c 8d ce e6 82 d2 45 7b dc 53 51 b7 0d d9 e3
+ 40 26 76 6e ba 18 b0 6e ae e2 e1 02 ef d1 ab 63
+ 46 67 ac
+
+ 00 00 00 00                                              // Lock Time
+
+Coinbase Link:
+ a9 03 ef 9d e1 91 8e 4b 44 f6 17 6a 30 c0 e7 c7    // Hash of parent block header
+ e3 43 9c 96 fb 59 73 27 47 3d 00 00 00 00 00 00
+
+ 05                                                 // Number of links in branch
+
+ 05 0a c4 a1 a1 e1 bc e0 c4 8e 55 5b 1a 9f 93 52    // Hash #1
+ 81 96 8c 72 d6 37 9b 24 72 9c a0 42 5a 3f c3 cb
+
+ 43 3c d3 48 b3 5e a2 28 06 cf 21 c7 b1 46 48 9a    // Hash #2
+ ef 69 89 55 1e b5 ad 23 73 ab 61 21 06 0f 30 34
+
+ 1d 64 87 57 c0 21 7d 43 e6 6c 57 ea ed 64 fc 18    // Hash #3
+ 20 ec 65 d1 57 f3 3b 74 19 65 18 3a 5e 0c 85 06
+
+ ac 26 02 df e2 f5 47 01 2d 1c c7 50 04 d4 8f 97    // Hash #4
+ ab a4 6b d9 93 0f f2 85 c9 f2 76 f5 bd 09 f3 56
+
+ df 19 72 45 79 d6 5e c7 cb 62 bf 97 94 6d fc 6f    // Hash #5
+ b0 e3 b2 83 9b 7f da b3 7c db 60 e5 51 22 d3 5b
+
+ 00 00 00 00                                        // Branch sides bitmask
+
+Aux Blockchain Link:
+ 00             // Number of links in branch
+ 00 00 00 00    // Branch sides bitmask
+
+Parent Block:
+ 01 00 00 00                                        // Version
+
+ 08 be 13 29 5c 03 e6 7c b7 0d 00 da e8 1e a0 6e    // Previous block hash
+ 78 b9 01 4e 5c eb 7d 9b a5 04 00 00 00 00 00 00
+
+ e0 fd 42 db 8e f6 d7 83 f0 79 d1 26 be a1 2e 2d    // Merkle root
+ 10 c1 04 c0 92 7c d6 8f 95 4d 85 6f 9e 81 11 e5
+
+ 9a 23 90 4e                                        // Timestamp
+ 5d ee 09 1a                                        // Bits
+ 1c 65 50 86                                        // Nonce
+
+Transactions:
+ 01                                                       // Tx  Count
+ 
+ 01 00 00 00                                              // Version
+
+ 01                                                       // TxIn Count
+
+ 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    // Previous Out
+ 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff
+
+ 08                                                       // Script size
+ 04 69 b2 00 1b 01 01 52                                  // Script
+
+ ff ff ff ff                                              // Sequence number
+
+ 01                                                       // TxOut Count
+
+ 00 f2 05 2a 01 00 00 00                                  // Amount
+
+ 43                                                       // Script size
+ 41 04 89 fe 91 e6 28 47 57 5c 98 de ea b0 20 f6          // Script
+ 5f df f1 7a 3a 87 0e bb 05 82 0b 41 4f 3d 80 97
+ 21 8e c9 a6 5f 1e 0a e0 ac 35 af 72 47 bd 79 ed
+ 1f 2a 24 67 5f ff b5 aa 6f 96 20 e1 92 0a d4 bf
+ 5a a6 ac
+
+ 00 00 00 00                                              // Lock Time
+</pre>
+
 ##Notes
 
 6.1: https://bitcointalk.org/index.php?topic=51069.0
