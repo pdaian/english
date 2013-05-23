@@ -111,7 +111,7 @@ Block Header:
  69 b2 00 1b                                                                                        // Bits
  00 00 00 00                                                                                        // Nonce
 
-Coinbase Transaction:
+Parent Block Coinbase Transaction:
  01 00 00 00                                              // Version
  01                                                       // TxIn Count
 
@@ -147,7 +147,7 @@ Aux Blockchain Link:
  00             // Number of links in branch
  00 00 00 00    // Branch sides bitmask
 
-Parent Block:
+Parent Block Header:
  01 00 00 00                                                                                        // Version
  08 be 13 29 5c 03 e6 7c b7 0d 00 da e8 1e a0 6e 78 b9 01 4e 5c eb 7d 9b a5 04 00 00 00 00 00 00    // Previous block hash
  e0 fd 42 db 8e f6 d7 83 f0 79 d1 26 be a1 2e 2d 10 c1 04 c0 92 7c d6 8f 95 4d 85 6f 9e 81 11 e5    // Merkle root
