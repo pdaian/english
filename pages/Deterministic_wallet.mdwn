@@ -30,11 +30,14 @@ Not sure on the details, but mention was made of a "type-2 deterministic wallet"
 ###BIP 0032 deterministic wallet
 Described in [[BIP_0032]] (currently a draft) and described as a *hierarchical deterministic* (HD) wallet, a BIP 0032 deterministic wallet allows sharing smaller deterministic wallets that are subportions of a larger one.
 
+###Twelve Word Passphrase deterministic wallet
+A common format shared by Brainwallet.org, CarbonWallet.org and [[Electrum]]. The same 12-word passphrase gives access to the same bitcoin addresses when used with any of the services.
+
 ###Electrum deterministic wallet
-[[Electrum]] implements a Type-2 deterministic wallet format based on a 128-bit seed.  It uses a word list and converts the seed to a series of words as an aid to help the user record the seed.
+[[Electrum]] implements a Type-2 deterministic wallet format based on a 128-bit seed.  It uses a word list and converts the seed to a twelve word passphrase as an aid to help the user record the seed.
 
 ###CarbonWallet deterministic wallet
-[[CarbonWallet]] also implements a Type-2 deterministic wallet format based on a 128-bit seed.  It uses the same word list as Electrum and is therefore compatible with Electrum passphrases.
+[[CarbonWallet]] also implements a Type-2 deterministic wallet format based on a 128-bit seed.  It uses the same word list as Electrum and is therefore compatible with Electrum twelve word passphrases.
 
 ###Armory deterministic wallet
 [[Armory]] has its own Type-2 deterministic wallet format based on a "root key" and a "chain code."  The Armory client has a "Paper Backup" screen that allows the user to print these data or copy it down by hand.  Earlier versions of Armory required backing up both the "root key" and "chaincode," while newer versions start deriving the chaincode from the private key in a non-reversible way.  These newer Armory wallets (0.89+) only require the single, 256-bit root key.
