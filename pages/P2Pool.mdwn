@@ -27,7 +27,7 @@ Unlike Bitcoin, nodes do not know the entire chain - instead they only hold the 
 
 Each share contains a generation transaction that pays to the previous *n* shares, where *n* is the number of shares whose total work is equal to 3 times the average work required to solve a block, or 8640 (= 24 hours of shares), whichever is smaller. Payouts are weighted based on the amount of work each share took to solve, which is proportional to the p2pool difficulty at that time.
 
-The block reward (currently 50BTC) and the transaction fees are combined and apportioned according to these rules:
+The block reward (currently 25BTC) and the transaction fees are combined and apportioned according to these rules:
 
 A subsidy of 0.5% is sent to the node that solved the block in order to discourage not sharing solutions that qualify as a block. (A miner with the aim to harm others could withhold the block, thereby preventing anybody from getting paid. He can NOT redirect the payout to himself.) The remaining 99.5% is distributed evenly to miners based on work done recently.
 
