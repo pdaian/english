@@ -45,15 +45,6 @@ By default Bitcoin will put its data here:
 
 ##Directory Contents
 
-###Subdirectories
-
-* blocks
-	* [and above](v0.8) Contains blockchain data.
-* database
-	* Contains BDB journaling files
-* testnet3
-	* Contains testnet versions of these files (if running with -testnet)
-
 ###Files
 
 * .lock
@@ -61,7 +52,7 @@ By default Bitcoin will put its data here:
 * bitcoin.conf [[optional]]
 	* Contains [[configuration options|Running_Bitcoin#Bitcoin.conf_Configuration_File]].  
 * blk*xxxx*.dat [prior to v0.8.0](Versions)
-	* Contains concatenated raw blocks
+	* Contains concatenated raw blocks.  Stored are actual Bitcoin blocks, in network format, dumped to disk raw.
 * blkindex.dat [prior to v0.8.0](Versions)
 	* Indexing information used with blk*xxxx*.dat
 * __db.*xxx*
@@ -74,8 +65,41 @@ By default Bitcoin will put its data here:
 * addr.dat [prior to v0.7.0](Versions)
 	* Storage for ip addresses to make a reconnect easier
 * peers.dat [v0.7.0 and later](Versions)
-	* Storage for peer information to make a reconnect easier.  This file uses a bitcoin-specific file format, unrelated to any database system (8.1).
+	* Storage for peer information to make a reconnect easier.  This file uses a bitcoin-specific file format, unrelated to any database system (7.1).
 The data, index and log files are used by Oracle [Berkeley DB](http://en.wikipedia.org/wiki/Berkeley_DB), the embedded key/value data store that Bitcoin uses.
+
+###database subdirectory
+
+* Contains BDB journaling files
+
+###testnet3 subdirectory
+
+* Contains testnet versions of these files (if running with -testnet)
+
+###blocks subdirectory
+
+* [and above](v0.8) Contains blockchain data.  
+
+####Files
+
+* blk*.dat 
+	* Stored are actual Bitcoin blocks, in network format, dumped to disk raw.  They are only needed for re-scanning missing transactions in a wallet, reorganizing to a different part of the chain, and serving the block data to other nodes that are synchronizing.
+
+####index subdirectory
+
+* [and above](v0.8) A LevelDB database that contains metadata about all known blocks, and where to find them on disk. Without this, finding a block would be very slow.
+
+###chainstate subdirectory
+
+* [and above](v0.8) A LevelDB database with a compact representation of all currently unspent transaction outputs and some metadata about the transactions they are from. The data here is necessary for validating new incoming blocks and transactions. It can theoretically be rebuilt from the block data (see the -reindex command line option), but this takes a rather long time. Without it, you could still theoretically do validation indeed, but it would mean a full scan through the blocks (7 GB as of may 2013) for every output being spent.
+
+###locks subdirectory
+
+* [and above](v0.8) Contains "undo" data. 
+
+####Files
+rev*.dat
+You can see blocks as 'patches' to the chain state (they consume some unspent outputs, and produce new ones), and see the undo data as reverse patches. They are necessary for rolling back the chainstate, which is necessary in case of reorganizations.
 
 ##See Also
 
@@ -84,7 +108,7 @@ The data, index and log files are used by Oracle [Berkeley DB](http://en.wikiped
 
 ##References
 
-8.1: [Ultraprune merged in mainline](http://bitcointalk.org/index.php?topic=119525.msg1287284#msg1287284)
+7.1: [Ultraprune merged in mainline](http://bitcointalk.org/index.php?topic=119525.msg1287284#msg1287284)
 
 
 [[!tag "Technical"]]
