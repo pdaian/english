@@ -81,7 +81,7 @@ Contains testnet versions of these files (if running with -testnet)
 	* Stored are actual Bitcoin blocks, in network format, dumped to disk raw.  They are only needed for re-scanning missing transactions in a wallet, reorganizing to a different part of the chain, and serving the block data to other nodes that are synchronizing.
 
 * blocks/index subdirectory
-* & [and above](v0.8) A LevelDB database that contains metadata about all known blocks, and where to find them on disk. Without this, finding a block would be very slow.
+	* [and above](v0.8) A LevelDB database that contains metadata about all known blocks, and where to find them on disk. Without this, finding a block would be very slow.
 
 ###chainstate subdirectory
 
