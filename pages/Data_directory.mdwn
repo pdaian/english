@@ -87,11 +87,9 @@ Contains testnet versions of these files (if running with -testnet)
 [and above](v0.8) A LevelDB database with a compact representation of all currently unspent transaction outputs and some metadata about the transactions they are from. The data here is necessary for validating new incoming blocks and transactions. It can theoretically be rebuilt from the block data (see the -reindex command line option), but this takes a rather long time. Without it, you could still theoretically do validation indeed, but it would mean a full scan through the blocks (7 GB as of may 2013) for every output being spent.
 
 ###locks subdirectory
+[and above](v0.8) Contains "undo" data. 
 
-* [and above](v0.8) Contains "undo" data. 
-
-####Files
-rev*.dat
+* rev*.dat
 You can see blocks as 'patches' to the chain state (they consume some unspent outputs, and produce new ones), and see the undo data as reverse patches. They are necessary for rolling back the chainstate, which is necessary in case of reorganizations.
 
 ##See Also
