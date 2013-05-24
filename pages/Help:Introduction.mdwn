@@ -39,9 +39,9 @@ To guarantee that a third-party, let's call her Eve, cannot spend other people's
 
 Suppose Alice wants to send a bitcoin to Bob.
 
-* Bob sends his address (from which the public key can be derived) to Alice.
-* Alice adds Bob’s public key and the amount of bitcoins to transfer to a message: a 'transaction' message.
-* Alice signs the transaction with her private key.
+* Bob sends his address to Alice.
+* Alice adds Bob’s address and the amount of bitcoins to transfer to a message: a 'transaction' message.
+* Alice signs the transaction with her private key, and announces her public key for signature verification.
 * Alice broadcasts the transaction on the Bitcoin network for all to see.
 
 (Only the first two steps require human action. The rest is done by the Bitcoin client software.)
@@ -51,13 +51,13 @@ Looking at this transaction from the outside, anyone who knows that these addres
 Later on, when Bob wishes to transfer the same bitcoins to Charley, he will do the same thing:
 
 * Charlie sends Bob his address.
-* Bob adds Charlie's public key and the amount of bitcoins to transfer to a message: a 'transaction' message.
-* Bob signs the transaction with his private key.
-* Bob broadcasts the transaction on the Bitcoin network for all to see. 
+* Bob adds Charlie's address and the amount of bitcoins to transfer to a message: a 'transaction' message.
+* Bob signs the transaction with his private key, and announces his public key for signature verification.
+* Bob broadcasts the transaction on the Bitcoin network for all to see.
 
 Only Bob can do this because only he has the private key that can create a valid signature for the transaction.
 
-Eve cannot change whose coins these are by replacing Bob’s public key with her public key, because Alice signed the transfer to Bob using her own private key, which is kept secret from Eve, and instructing that the coins which were hers now belong to Bob. So if Charlie accepts that the original coin was in the hands of Alice, he will also accept the fact that this coin was later passed to Bob, and now Bob is passing this same coin to him.
+Eve cannot change whose coins these are by replacing Bob’s address with her address, because Alice signed the transfer to Bob using her own private key, which is kept secret from Eve, and instructing that the coins which were hers now belong to Bob. So if Charlie accepts that the original coin was in the hands of Alice, he will also accept the fact that this coin was later passed to Bob, and now Bob is passing this same coin to him.
 
 ###Preventing [[double-spending]]
 The process described above does not prevent Alice from using the same bitcoins in more than one transaction. The following process does; this is the primary innovation behind Bitcoin.
