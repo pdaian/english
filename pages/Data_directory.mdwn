@@ -84,8 +84,7 @@ Contains testnet versions of these files (if running with -testnet)
 	* [and above](v0.8) A LevelDB database that contains metadata about all known blocks, and where to find them on disk. Without this, finding a block would be very slow.
 
 ###chainstate subdirectory
-
-* [and above](v0.8) A LevelDB database with a compact representation of all currently unspent transaction outputs and some metadata about the transactions they are from. The data here is necessary for validating new incoming blocks and transactions. It can theoretically be rebuilt from the block data (see the -reindex command line option), but this takes a rather long time. Without it, you could still theoretically do validation indeed, but it would mean a full scan through the blocks (7 GB as of may 2013) for every output being spent.
+[and above](v0.8) A LevelDB database with a compact representation of all currently unspent transaction outputs and some metadata about the transactions they are from. The data here is necessary for validating new incoming blocks and transactions. It can theoretically be rebuilt from the block data (see the -reindex command line option), but this takes a rather long time. Without it, you could still theoretically do validation indeed, but it would mean a full scan through the blocks (7 GB as of may 2013) for every output being spent.
 
 ###locks subdirectory
 
