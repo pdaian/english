@@ -75,8 +75,7 @@ Contains BDB journaling files
 Contains testnet versions of these files (if running with -testnet)
 
 ###blocks subdirectory
-
-* [and above](v0.8) Contains blockchain data.  
+[and above](v0.8) Contains blockchain data.  
 
 * blk*.dat 
 	* Stored are actual Bitcoin blocks, in network format, dumped to disk raw.  They are only needed for re-scanning missing transactions in a wallet, reorganizing to a different part of the chain, and serving the block data to other nodes that are synchronizing.
