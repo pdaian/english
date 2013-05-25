@@ -35,9 +35,7 @@ A common format shared by Brainwallet.org, CarbonWallet.org and [[Electrum]]. Th
 
 ###Electrum deterministic wallet
 [[Electrum]] implements a Type-2 deterministic wallet format based on a 128-bit seed.  It uses a word list and converts the seed to a twelve word passphrase as an aid to help the user record the seed.
-
-###CarbonWallet deterministic wallet
-[[CarbonWallet]] also implements a Type-2 deterministic wallet format based on a 128-bit seed.  It uses the same word list as Electrum and is therefore compatible with Electrum twelve word passphrases.
+[[CarbonWallet]] has also implemented compatible support for Electrum wallets.
 
 ###Armory deterministic wallet
 [[Armory]] has its own Type-2 deterministic wallet format based on a "root key" and a "chain code."  The Armory client has a "Paper Backup" screen that allows the user to print these data or copy it down by hand.  Earlier versions of Armory required backing up both the "root key" and "chaincode," while newer versions start deriving the chaincode from the private key in a non-reversible way.  These newer Armory wallets (0.89+) only require the single, 256-bit root key.
