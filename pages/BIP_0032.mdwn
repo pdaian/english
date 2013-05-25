@@ -192,7 +192,6 @@ Private and public keys must be kept safe as usual. Leaking a private key means 
 
 Somewhat more care must be taken regarding extended keys, as these correspond to an entire (sub)tree of keys. One weakness that may not be immediately obvious, is that knowledge of the extended public key + a private key descending from it is equivalent to knowing the extended private key (i.e., every private and public key) in case public derivation is used. This means that extended public keys must be treated more carefully than regular public keys. This is the reason why accounts at the first level of the default wallet layout use private derivation, so a leak of account-specific (or below) private key never risks compromising the master.
 
-We rely on resistance against (partial) preimages in HMAC-SHA512 to prevent I<sub>L</sub> in key derivation and master key generation from being zero.
 
 ##Test Vectors
 
