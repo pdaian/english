@@ -1,8 +1,5 @@
 [[!template id=bip]]
 
-<div style="color:red">
-WARNING: please do not assume this specification is final.
-</div>
 
 RECENT CHANGES:
 
@@ -198,7 +195,45 @@ We rely on resistance against (partial) preimages in HMAC-SHA512 to prevent I<su
 
 ##Test Vectors
 
-I'll publish test vectors as soon as the specification is assumed to be final.
+* Master (hex): 000102030405060708090a0b0c0d0e0f
+	* [m](Chain)
+	* ext pub: xpub661MyMwAqRbcFtXgS5sYJABqqG9YLmC4Q1Rdap9gSE8NqtwybGhePY2gZ29ESFjqJoCu1Rupje8YtGqsefD265TMg7usUDFdp6W1EGMcet8
+	* ext prv: xprv9s21ZrQH143K3QTDL4LXw2F7HEK3wJUD2nW2nRk4stbPy6cq3jPPqjiChkVvvNKmPGJxWUtg6LnF5kejMRNNU3TGtRBeJgk33yuGBxrMPHi
+	* [m/0'](Chain)
+	* ext pub: xpub68Gmy5EVb2BirTFP4SuLeZw3sn3TC9o4ZwRHbQFe6M7t6b3o6oAHtM2DHZ34QSrHhwnkAcN6XyWKWCJmkXnXdCDqh5gGQuJnayTxrhi9oAm
+	* ext prv: xprv9uHRZZhbkedRdyAuxRNLHRzKKkCxnh5DCiVgo1r2Y1auDnieZFr3LYhjSHBPYxueVFVwAj8PYPvoT3BD9rVgjLqYmcpva2bs1wNWwpp3xqH
+	* [m/0'/1](Chain)
+	* ext pub: xpub6ASuArnXPAkxrYAJZEXBQRZXBmxFRSLgbhnWrr3nPTiQA1KugzrQWo9nRosbXKzKekW2tYfMCeEh871nutUf5T85udprZ2HJQvhgabyHAE3
+	* ext prv: xprv9wTYmMFdYoCfe45qTCzB3Hcndk7m1ycqEUrv4TeAq8BRHCzm9TY9xzqJaWkQrq7NvRLrv4ZyBB87cafdyDouH7QJCk6PJGLxsxPpuoQpGZm
+	* [m/0'/1/2'](Chain)
+	* ext pub: xpub6D4BDPcEpAEonFzrRZxqsHcg6wRarryz1Kr6sLoxHfUbAYuHYjokqTDHcY6e7uGAnEHa2LJoG3evu67ochEgqxxk3Y31MDd6qizZkTmksfm
+	* ext prv: xprv9z4pot5LyngWZmvPKYRqW9fwYub6TQG8e6vW4xQLjKwcHka91CVWHetomG1EymTQCr442wBjH3oHASN7Ywwb7GXn7MtxASs2CLWncyE79fZ
+	* [m/0'/1/2'/2](Chain)
+	* ext pub: xpub6FHa3pjLLJSfQmtahE1mHR8tU4Nm29BBxVAe5ocavBEyeEj1XDaZfN36LbkuJpCyrc7TsPsuF6FMoyy3Z9pm6L8F8zd4A2MzbU51aJ5eaef
+	* ext prv: xprvA2JDeKCSVvtNCHp7bCUkvHC9v2YGcgTLbGF3HRCyMqhzmSPrygGK7ZicVK5aDYeushtUMuWT8Awkz6mobXdoqRp4hH1uh9Xo6N9YomRreS6
+	* [m/0'/1/2'/2/1000000000](Chain)
+	* ext pub: xpub6H1LXWLWVdyPxBs9No8ZDmJF398PzxRZNFzrGfxvgAa68MWgAEQQU8w75csHPsxDs6pgwb1gzubwuVb2UGurDhoGwdh3F5EPePwzoqtnm3h
+	* ext prv: xprvA41z7zocfGR6jhngGmbYrdMWV7HubVhi135FUHZK7q37FZBXch69vLcdEN4DNGSX1uiQi7hPBq8sVN18wsEnEVyWxsS36daGcfxyYB3vzmp
+
+* Master (hex): fffcf9f6f3f0edeae7e4e1dedbd8d5d2cfccc9c6c3c0bdbab7b4b1aeaba8a5a29f9c999693908d8a8784817e7b7875726f6c696663605d5a5754514e4b484542
+	* [m](Chain)
+	* ext pub: xpub661MyMwAqRbcFW31YEwpkMuc5THy2PSt5bDMsktWQcFF8syAmRUapSCGu8ED9W6oDMSgv6Zz8idoc4a6mr8BDzTJY47LJhkJ8UB7WEGuduB
+	* ext prv: xprv9s21ZrQH143K31xYSDQpPDxsXRTUcvj2iNHm5NUtrGiGG5e2DtALGdso3pGz6ssrdK4PFmM8NSpSBHNqPqm55Qn3LqFtT2emdEXVYsCzC2U
+	* [m/0](Chain)
+	* ext pub: xpub69H7F5d8KSRgmmdJg2KhpAK8SR3DjMwAdkxj3ZuxV27CprR9LgpeyGmXUbC6wb7ERfvrnKZjXoUmmDznezpbZb7ap6r1D3tgFxHmwMkQTPH
+	* ext prv: xprv9vHkqa6EV4sPZHYqZznhT2NPtPCjKuDKGY38FBWLvgaDx45zo9WQRUT3dKYnjwih2yJD9mkrocEZXo1ex8G81dwSM1fwqWpWkeS3v86pgKt
+	* [m/0/2147483647'](Chain)
+	* ext pub: xpub6ASAVgeehLbnwdqV6UKMHVzgqAG8Gr6riv3Fxxpj8ksbH9ebxaEyBLZ85ySDhKiLDBrQSARLq1uNRts8RuJiHjaDMBU4Zn9h8LZNnBC5y4a
+	* ext prv: xprv9wSp6B7kry3Vj9m1zSnLvN3xH8RdsPP1Mh7fAaR7aRLcQMKTR2vidYEeEg2mUCTAwCd6vnxVrcjfy2kRgVsFawNzmjuHc2YmYRmagcEPdU9
+	* [m/0/2147483647'/1](Chain)
+	* ext pub: xpub6DF8uhdavm4Heqy6MGM3swJq91Pt5bxSd7oGXhEEV3pZfG6PDmy37noxcDLSR23EBPhUWGGa5uknBpb7Bg72nuRBg8wnUBi5WGmfnPuR8Ky
+	* ext prv: xprv9zFnWC6h6PVzSMtdFEp3WoN6ayZPg9EbFtsfjJpcviHanTmEgEenZzVUkuwURjHUdBNKuYnssvxTxrzYaFkzqFaMeBhy8zeLUPjev2dM8z8
+	* [m/0/2147483647'/1/2147483646'](Chain)
+	* ext pub: xpub6ERApfZwQbhPicHkhUQKzUFC77LjjSiJVHzrd5SJEztkh3G5Q4WKZDS8sz3mkkJTNna4qqpHtyzUVCpaBpUp2bMWUgiXekZ8UAmZojPj4Cv
+	* ext prv: xprvA1RpRA33aE96W8DHbSsKdLJTZ5WFKyzT855Fph2ggfMmpEvvrXC51R7f2jFhCWQYQhsykT3t2mStRj9zQTvm3RVPzmhXuURbuefVUBDHron
+	* [m/0/2147483647'/1/2147483646'/2](Chain)
+	* ext pub: xpub6FnCn6nT87VYJer3zxBQrgkuR7fc5USLtkQCBs2K11Xvu6LWSn2AsRzWziFJfnYz2uwrp9bgdzeD12GxYXGp4MMHKtNEeiDQVxamjrYLJcT
+	* ext prv: xprvA2nrNbFZHjwF6AmatveQVYpAs5q7g1iVXXUbPUchSfzx2J1MuEhvKdg39U3x8zPSb5uGjaxgLAvKVfSPfPQ5ouNK1f2f2UvrxWd4pCHQBvC
 
 ##Acknowledgements
 
