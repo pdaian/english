@@ -13,6 +13,13 @@ The V2 API URL is:
 * The **URL** is now something along the lines of BTCUSD/money/order/add instead of BTCUSD/private/order/add in api1. All current known methods are found in the money category.
 * The *requested path*  must now be included when you compute your **hashed signature (Rest-Sign)** for added security.<br><br> In version 1, Rest-Sign is created through base64-encoding the 256-digest HMAC hashing of your post data (which of course must include your nonce) with your API secret, previously base64 decoded. Now in version 2,  you must simply add *before* your post data the relative path you are requesting (anything after the /api/2/ base, ie: BTCUSD/money/ticker), concatenated with a NUL character (ASCII code 0). So the signature is now made starting from your relative path + NUL character + post data (which must include your nonce!).
 
+* fast ticker
+	http://data.mtgox.com/api/2/BTCUSD/money/ticker_fast
+
+and
+	
+	http://data.mtgox.com/api/2/BTCUSD/money/ticker_fast?pretty
+
 ### Explanation of Methods
 **BTCUSD/money/order/quote** <br>
 <@MagicalTux> it estimate the result of running an order at a given price based on market depth<br>
