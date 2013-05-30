@@ -6,6 +6,7 @@ If you want to mine Bitcoins, but also need to use your computer for other GPU-i
 
 Windows keeps a log of various types of events that occur on your computer. These events include software crashes and system service notifications, among other things. This event log is closely tied to another feature of Windows known as security auditing. Basically, every time certain tasks are performed that require user authentication, such as logging on to your computer, it creates a log entry. This feature is designed mainly for professionals who need to monitor corporate networks, but it can be useful for this purpose too. How? It is possible to program Windows to run programs whenever specific types of events occur.
 
+[[!img "Windows_Audit_Configuration.png" size=120x120 class="right" size=350x350 title="Configuring Windows to log when the computer is locked and unlocked."]]
 Locking and unlocking your computer are two things that Windows can log, but by default it is not configured to do so. To enable this:
 
 1. Open the Run dialog (Windows+R) and type "secpol.msc".
@@ -13,5 +14,3 @@ Locking and unlocking your computer are two things that Windows can log, but by 
 1. On the right, double-click "Audit Other Logon/Logoff Events".
 1. In the dialog that appears, make sure "Configure the following audit events" and "Success" are checked.
 1. Click OK, and close the Local Security Policy window.
-
-[[Windows Audit Configuration.png]]
