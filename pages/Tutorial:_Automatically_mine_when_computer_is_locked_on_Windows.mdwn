@@ -3,10 +3,10 @@
 If you want to mine Bitcoins, but also need to use your computer for other GPU-intensive tasks like gaming, it can be annoying to start mining each time you stop using your computer. On Microsoft Windows, there is a little-known way to automate tasks like this. For this tutorial, we will be using [[cgminer]]. If you don't already have it, [download it from here](https://bitcointalk.org/index.php?topic=28402.0), and extract it to a folder somewhere on your hard drive.
 
 ##Configuring the security auditing settings
+[[!img "Windows_Audit_Configuration.png" size=120x120 class="right" size=350x350 title="Configuring Windows to log when the computer is locked and unlocked."]]
 
 Windows keeps a log of various types of events that occur on your computer. These events include software crashes and system service notifications, among other things. This event log is closely tied to another feature of Windows known as security auditing. Basically, every time certain tasks are performed that require user authentication, such as logging on to your computer, it creates a log entry. This feature is designed mainly for professionals who need to monitor corporate networks, but it can be useful for this purpose too. How? It is possible to program Windows to run programs whenever specific types of events occur.
 
-[[!img "Windows_Audit_Configuration.png" size=120x120 class="right" size=350x350 title="Configuring Windows to log when the computer is locked and unlocked."]]
 Locking and unlocking your computer are two things that Windows can log, but by default it is not configured to do so. To enable this:
 
 1. Open the Run dialog (Windows+R) and type "secpol.msc".
