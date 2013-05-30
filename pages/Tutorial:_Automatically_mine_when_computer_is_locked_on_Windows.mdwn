@@ -14,3 +14,20 @@ Locking and unlocking your computer are two things that Windows can log, but by 
 1. On the right, double-click "Audit Other Logon/Logoff Events".
 1. In the dialog that appears, make sure "Configure the following audit events" and "Success" are checked.
 1. Click OK, and close the Local Security Policy window.
+
+##Using the Task Scheduler
+
+Next, we need to tell Windows to respond to these events. There are two tasks we need to program: one to start mining when the computer is locked, and one to stop mining when the computer is unlocked.
+
+###Start mining when the computer is locked
+
+1. Open the Run dialog (Windows+R) and type "taskschd.msc".
+1. On the very right, select "Create Basic Task..." from the menu.
+1. Give it a name, such as "Start Bitcoin Mining". What exactly you type here doesn't matter, as long as you remember what it is in case you need to change something later. Click Next.
+1. Select "When a specific event is logged" from the list, and click Next.
+1. For "Log", select "Security". For "Source", select "Microsoft Windows security auditing." For "Event ID", type 4800. Click Next.
+1. Select "Start a program" from the list, and click Next.
+1. For "Program/script", click "Browse..." and select cgminer.exe. (You do remember where you extracted it, right?)
+1. For "Add arguments (optional)", type in the command line parameters. Make sure to add <code>--api-listen --api-allow W:127.0.0.1</code> to the end.
+1. :If you're unfamiliar with cgminer, you can use the following template: <code>-o ''[pool server]'' -u ''[user/worker name]'' -p ''[password]'' --api-listen --api-allow W:127.0.0.1</code>
+1. Click Next, and then Finish.
