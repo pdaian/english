@@ -1,0 +1,17 @@
+***Note:** This tutorial is created with Windows 7 in mind. The exact steps are likely different for other versions of Windows.*
+
+If you want to mine Bitcoins, but also need to use your computer for other GPU-intensive tasks like gaming, it can be annoying to start mining each time you stop using your computer. On Microsoft Windows, there is a little-known way to automate tasks like this. For this tutorial, we will be using [[cgminer]]. If you don't already have it, [download it from here](https://bitcointalk.org/index.php?topic=28402.0), and extract it to a folder somewhere on your hard drive.
+
+##Configuring the security auditing settings
+
+Windows keeps a log of various types of events that occur on your computer. These events include software crashes and system service notifications, among other things. This event log is closely tied to another feature of Windows known as security auditing. Basically, every time certain tasks are performed that require user authentication, such as logging on to your computer, it creates a log entry. This feature is designed mainly for professionals who need to monitor corporate networks, but it can be useful for this purpose too. How? It is possible to program Windows to run programs whenever specific types of events occur.
+
+Locking and unlocking your computer are two things that Windows can log, but by default it is not configured to do so. To enable this:
+
+1. Open the Run dialog (Windows+R) and type "secpol.msc".
+1. On the left, expand "Advanced Audit Policy Configuration", "System Audit Policies - Local Group Policy Object", and select "Logon/Logoff".
+1. On the right, double-click "Audit Other Logon/Logoff Events".
+1. In the dialog that appears, make sure "Configure the following audit events" and "Success" are checked.
+1. Click OK, and close the Local Security Policy window.
+
+[[Windows Audit Configuration.png]]
