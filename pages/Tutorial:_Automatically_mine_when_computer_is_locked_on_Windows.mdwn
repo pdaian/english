@@ -1,4 +1,4 @@
-***Note:** This tutorial is created with Windows 7 in mind. The exact steps are likely different for other versions of Windows.*
+***Note:** This tutorial is created with Windows 7 in mind. The exact steps are likely different for other versions of Windows. In addition, any text surrounded by quotes is to be entered without quotes.*
 
 If you want to mine Bitcoins, but also need to use your computer for other GPU-intensive tasks like gaming, it can be annoying to start mining each time you stop using your computer. On Microsoft Windows, there is a little-known way to automate tasks like this. For this tutorial, we will be using [[cgminer]]. If you don't already have it, [download it from here](https://bitcointalk.org/index.php?topic=28402.0), and extract it to a folder somewhere on your hard drive.
 
@@ -31,3 +31,18 @@ Next, we need to tell Windows to respond to these events. There are two tasks we
 1. For "Add arguments (optional)", type in the command line parameters. Make sure to add <code>--api-listen --api-allow W:127.0.0.1</code> to the end.
 1. :If you're unfamiliar with cgminer, you can use the following template: <code>-o ''[pool server]'' -u ''[user/worker name]'' -p ''[password]'' --api-listen --api-allow W:127.0.0.1</code>
 1. Click Next, and then Finish.
+
+###Stop mining when the computer is unlocked
+
+To stop cgminer when the computer is unlocked is trickier than it might seem. On my computer (and likely others as well) simply killing the process causes the video driver to temporarily stop responding. This can cause other applications to crash, and it's also just annoying as you need to wait 10 seconds or more to use your computer. For obvious reasons, it would be VERY annoying to have this happen every time you unlock your computer. (Even if this exact problem doesn't occur, cgminer may need to "clean up" when it's done, so it's best to use this method anyway.)
+
+Luckily, cgminer provides an API to allow other applications to control it. All we need to do is send the command "quit" to the local computer on network port 4028. For this, we'll use a program called [netcat](http://joncraton.org/blog/46/netcat-for-windows). Download this, and extract "nc.exe" to your cgminer directory.
+
+Now we need to create two new files in this directory. Open Notepad, and type the word "quit". Do **NOT** press Enter afterwards. For some strange reason, cgminer doesn't accept commands ending in a newline character. This is why we need to create a file in the first place, rather than simply using the <code>echo</code> command. Save the file to your cgminer directory as "quit.txt".
+
+Go to File>New, and type the following:
+
+	@echo off
+	nc 127.0.0.1 4028 < quit.txt
+
+Save the file in the same directory as "quit.bat".
