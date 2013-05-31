@@ -178,7 +178,7 @@ About **P5** jumper: close this jumper will supply 5V to the USB-B port. in this
 ### V1.5
  [[!img "Avalon_fpga_controller_v1.5.jpg" size=320x320]]  [[!img "Avalon_fpga_controller_v1.5_usb_hub.jpg" size=320x320]]
 
-* Remove the **F1(Fuse)** for fix the USB-HUB chip overheat, if you are batch2 user and your received Avalon between Apr 26 2013 ~ May 31 2013, your FPGA contoller board still have F1 mounted. you need do this by yourself.
+* Remove the **F1(Fuse)** for fix the USB-HUB chip overheat, if you are batch2 user and your received Avalon between Apr 26 2013 ~ May 31 2013, your FPGA contoller board still have F1 mounted. you need do this by yourself.  removing F1 will not make the usb hub stop working, F1 powers the USB-A1 plug (which is normally unused), more info please checkout [here](https://github.com/BitSyncom/avalon-ref/issues/5)
 
 ## Update FPGA controller firmware
 
