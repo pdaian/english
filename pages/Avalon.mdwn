@@ -189,12 +189,11 @@ The current /avalon branch from Forrest is likely now functional. Please test an
 **NOTE**: The best performance the small handful of users who got this working have reported is still about 25-30% DOA against P2Pool (versus the usual DOA of 8-15% or so.) So it's close to desired, but be aware that getting things working in this state currently requires command-line skills and the ability to check-out branches from p2pool's git repository. For the moment, your most efficient options are solo-mining with local pool software, or just using one of the online pools.
 
 ## About [usb 1-1: clear tt 1 (8030) error -71]
+	Not all 703n have this problem. ignore this section if you never meet this error
 
-* Not all 703n have this problem. ignore this section if you never meet this error
+* There is a power issue with the 703N, The 702N is drawing to much power it caused the USB HUB chip on Senseless's FPGA controller to nearly destroy itself. See the destruction  [here](http://www.mysenselesslife.com/avalon/DSCN5212.JPG)
 
-There is a power issue with the 703N, The 702N is drawing to much power it caused the USB HUB chip on Senseless's FPGA controller to nearly destroy itself. See the destruction  [here](http://www.mysenselesslife.com/avalon/DSCN5212.JPG)
-
-In order to fix it you need had to **power down the WiFi modem by disable it**, use Eithernet instead. The kernel no long remove -71 errors. thanks to senseless.
+* In order to fix it you need had to **power down the WiFi modem by disable it**, use Eithernet instead. The kernel no long remove -71 errors. thanks to senseless.
 
 ## Others
 
