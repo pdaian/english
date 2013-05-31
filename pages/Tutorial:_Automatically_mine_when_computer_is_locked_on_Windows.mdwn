@@ -40,9 +40,24 @@ Luckily, cgminer provides an API to allow other applications to control it. All 
 
 Now we need to create two new files in this directory. Open Notepad, and type the word "quit". Do **NOT** press Enter afterwards. For some strange reason, cgminer doesn't accept commands ending in a newline character. This is why we need to create a file in the first place, rather than simply using the <code>echo</code> command. Save the file to your cgminer directory as "quit.txt".
 
-Go to File>New, and type the following:
+Click File>New, and type the following:
 
 	@echo off
 	nc 127.0.0.1 4028 < quit.txt
 
 Save the file in the same directory as "quit.bat".
+
+Now we need to schedule a new task. Do this the same way as you did before, with a few differences:
+
+* Type a different name (should be obvious)
+* Instead of 4800, enter 4801 for the event ID.
+* For "Program/script", select the "quit.bat" you just created instead of "cgminer.exe".
+* Leave "Add arguments (optional)" blank, and select the cgminer directory for "Start in (optional)".
+
+##You're done!
+
+Lock your computer (Windows+L), wait 15 seconds or so, and unlock it. While it's locked, you should hear your GPU fan start spinning. When you unlock your computer, you should see cgminer appear for a second, then exit.
+
+If it didn't work properly, leave a comment on [[!template id=pagename]][this article's talk page](Talk:). If it did, great!
+
+If you want to thank me, my Bitcoin address is <code>14jPnCGuRNeXe32DN3LHB1sghstkkgxYDP</code>. Send me some bitcoins if you want. Thanks!
