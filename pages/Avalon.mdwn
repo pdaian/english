@@ -172,7 +172,12 @@ To get more information about how to configure specific pools, please check thei
 * https://github.com/BitSyncom/avalon-extras
 
 ## FPGA controller
+### V1.0 ~ V1.2
 About **P5** jumper: close this jumper will supply 5V to the USB-B port. in this system, the controller board power the 703N from the client side. if you connect the controller itself to a PC, you better remove the jumper.
+
+### V1.5
+
+* Remove the **F1(Fuse)** for fix the USB-HUB chip overheat, if you are batch2 user and your received Avalon before May 31 2013, your FPGA contoller board still have F1 mounted. you need do this by yourself.
 
 ## Update FPGA controller firmware
 
