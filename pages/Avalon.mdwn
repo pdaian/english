@@ -144,6 +144,7 @@ Why there is a ugly USB HUB there?  you can find more information about AR9331's
 ## WIFI or Ethernet Cable ?
 Avalon shipped with a 9db antenna after connect it to WR703N usually could establish good wireless connection with your WIFI router. But if for some reason you would like to use Ethernet Cable to connect Avalon with your network, please login OpenWrt and configure the LAN port:
 	Network -> Interfaces -> LAN -> Edit -> Common Configuration -> General Setup
+	Disable the DHCP on Lan port
 
 **Attention:** You need to configure it correctly based on your own network enviroment. If anything wrong you might could not access your WR703N any more.
 
