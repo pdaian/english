@@ -69,9 +69,9 @@ Insert exactly one of these headers into the <tt>scriptSig</tt> of the coinbase 
 
 
 
-|4 |magic |char[[4]]|<tt>0xfa</tt>, <tt>0xbe</tt>, 'm', 'm' **(required iff over 20 bytes prior to aux merkle root in coinbase)**
+|4 |magic |char[[4]]|<tt>0xfa</tt>, <tt>0xbe</tt>, 'm', 'm' **(only required if over 20 bytes past the start of the script; optional otherwise)**
 |32 |block_hash |char[[32]]|Hash of the AuxPOW block header
-|4 |merkle_size |int32_t |Number of entries in aux work merkle tree. **Must be a power of 2.**
+|4 |merkle_size |int32_t |Number of entries in aux work merkle tree. **(Must be a power of 2)**
 |4 |merkle_nonce |int32_t |Nonce used to calculate indexes into aux work merkle tree; you may as well leave this at zero
 
 
