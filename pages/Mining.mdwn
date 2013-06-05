@@ -10,6 +10,9 @@ Bitcoin's public ledger (the 'block chain') was started on January 3rd, 2009 at 
 
 Bitcoin mining is so called because it resembles the mining of other commodities: it requires exertion and it slowly makes new currency available at a rate that resembles the rate at which commodities like gold are mined from the ground. See [[Controlled_Currency_Supply]]. 
 
+## Mining contracts
+Provides mining services with performance specified by contract. An example would be where a specific level of mining capacity is rented out for a set price for a specific duration. One of the biggest mining contractors is [[Minerlease]]
+
 ## Difficulty
 ### The Computationally-Difficult Problem
 Mining a block is difficult because the SHA-256 hash of a block's header must be lower than or equal to the [[target|Target]] in order for the block to be accepted by the network. This problem can be simplified for explanation purposes: The hash of a block must start with a certain number of zeros. The probability of calculating a hash that starts with many zeros is very low, therefore many attempts must be made. In order to generate a new hash each round, a [[nonce|Nonce]] is incremented. See [[Proof_of_work]] for more information.
