@@ -131,7 +131,7 @@ The total number of possible extended keypairs is almost 2^512, but the produced
 * Generate a seed S of a chosen length (at least 128 bits, but 256 is advised) from a (P)RNG.
 * Calculate I = HMAC-SHA512(key="Bitcoin seed", msg=S)
 * Split I into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
-* Use I<sub>L</sub> (mod n) as master secret key, and I<sub>R</sub> as master chain code.
+* Use I<sub>L</sub> as master secret key, and I<sub>R</sub> as master chain code.
 In case I<sub>L</sub> is 0 or >=n, the master key is invalid.
 
 [[BIP32-derivation.png]]
