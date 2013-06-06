@@ -52,7 +52,7 @@ Second, create a PHP file with the following and visit it with your browser to t
 
 ## Precision
 
-Bitcoin amounts can range from 1 (0.00000001 BTC) to nearly 2,100,000,000,000,000 (21,000,000 BTC).  To avoid rounding errors, you must make sure your PHP implementation supports the full range of Bitcoin values without losing precision.  Most PHP implementations use IEEE 64-bit double-precision floating point numbers with 53 bits of precision, which is enough to correctly represent the full range of bitcoin values.
+Bitcoin amounts can range from 1 Satoshi (0.00000001 BTC) to nearly 2,100,000,000,000,000 (21,000,000 BTC).  To avoid rounding errors, you must make sure your PHP implementation supports the full range of Bitcoin values without losing precision.  Most PHP implementations use IEEE 64-bit double-precision floating point numbers with 53 bits of precision, which is enough to correctly represent the full range of bitcoin values.
 
 See [[Proper_Money_Handling_(JSON-RPC)]] for more information.
 
