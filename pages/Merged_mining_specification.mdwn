@@ -24,7 +24,7 @@ style="background-color:#DDD; color:#999;"|4 |timestamp |uint32_t |
 style="background-color:#DDD; color:#999;"|4 |bits |uint32_t |
 style="background-color:#DDD; color:#999;"|4 |nonce |uint32_t |
 |? |coinbase_txn |[[txn|Protocol_specification#tx]]|Coinbase transaction that is in the parent block, [[linking|#Merged_mining_coinbase]]the AuxPOW block to its parent block
-|32 |block_hash |char[[32]]|Hash of the parent block header
+|32 |block_hash |char[[32]]|Hash of the <tt>parent_block</tt>header
 |? |coinbase_branch |[[Merkle branch|#Merkle_Branch]]|The merkle branch linking the <tt>coinbase_txn</tt>to the parent block's <tt>merkle_root</tt>
 |? |blockchain_branch |[[Merkle branch|#Merkle_Branch]]|The merkle branch linking this auxiliary blockchain to the others, when used in a merged mining setup with multiple auxiliary chains
 |80 |parent_block |[[Block header|Protocol_specification#block]]|Parent block header
@@ -35,6 +35,8 @@ style="background-color:#DDD; color:#999;"|? |txns |tx[]|
 For the <tt>coinbase_branch</tt> merkle branch, because the coinbase transaction is the first transaction in the block (if using Bitcoin as a parent chain, i.e. hash #7 in the example given [[below|#Merkle_Branch]]), the <tt>branch_side_mask</tt> is always going to be all zeroes, because the branch hashes will always be "on the right" of the working hash.
 
 When only working on one auxiliary blockchain, the <tt>blockchain_branch</tt> link is not needed, and is nulled-out by being presented as 5 bytes of zeros (interpreted as a one-byte <tt>var_int</tt> indicating a <tt>branch_length</tt> of zero, and a 32-bit (4 byte) <tt>branch_side_mask</tt> of all zeroes).
+
+Note that the <tt>block_hash</tt> element is not needed as you have the full <tt>parent_block</tt> header element and can calculate the hash from that. The current Namecoin client doesn't check this field for validity, and as such some AuxPOW blocks have it little-endian, and some have it big-endian.
 
 ## Merkle Branch
 Say Alice created a Merkle tree, and it's root element is publicly available. For example:
