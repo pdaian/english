@@ -40,7 +40,7 @@ Luckily, cgminer provides an API to allow other applications to control it. All 
 
 Now we need to create two new files in this directory. Open Notepad, and type the word "quit". Do **NOT** press Enter afterwards. For some strange reason, cgminer doesn't accept commands ending in a newline character. This is why we need to create a file in the first place, rather than simply using the <code>echo</code> command. Save the file to your cgminer directory as "quit.txt".
 
-Click File>New, and type the following:
+Click File&rarr;New, and type the following:
 
 	@echo off
 	nc 127.0.0.1 4028 < quit.txt
