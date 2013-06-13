@@ -43,3 +43,7 @@ A proof-of-stake system is likely the only viable long-term solution. Preparing 
 
 There have been at least four generations now of essentially the same proposal. I just added etotheipi's and DiThi's. The language for them has changed has many times. Should this be consolidated somewhere else? For what it's worth, I now prefer "hash graph" as the general term including chains, trees, and skiplists.
 --[Amiller](User:Amiller) ([[talk|User_talk:Amiller]]) 08:37, 9 August 2012 (GMT)
+
+## 'Permanent Forwarding'
+
+As roughly sketched in the proposal bullet, this proposes some kind of new blockchain transaction-like directive to indicate permanent retirement of an old key and by-rule delegation of outputs to a new key. (This could solve some usability problems with prominently-advertised, but then lost or compromised, or suspected-compromised, keys.) This new categorical directive would not be understood by older nodes/mining software, so they'd reject blocks containing the directive. Thus as far as I can tell, this feature requires a hard fork. Of course, if there's a way to implement the same benefit in a compatible way, I'd appreciate hearing about it here on the talk page or elsewhere on the wiki. [WargeGeoshington](User:WargeGeoshington) ([[talk|User_talk:WargeGeoshington]]) 10:52, 13 June 2013 (GMT)
