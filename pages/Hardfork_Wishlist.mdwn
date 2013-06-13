@@ -19,7 +19,6 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * Allow soft-spending of generation outputs without confirmations (outputs of these transactions might also appear as generation themselves)
 * Allow additional inputs to generation transactions
 * Add new signature hashtype to include value of TxOut being spent, in the hash to be signed.  Doing this would remove the requirement that offline signing devices be sent all supporting transactions with the transaction-to-be-signed, just to confirm the transaction fee.
-* Allow insertion of "permanent forwarding directive" transaction, so that a well-known public address with a (suspected or soon-to-be) compromised private key can be replaced for all signing/paying purposes with a new address. (This directive might only be insertable if approved by N-of-M prior declared guardian keys. The directive might involve a one-time fee, after which the old address is null and the new address replaces it in perpetuity, or might include a declared service fee that can be deducted to miners on each future use of the new-key to draw on dead-key outputs.)
 
 ####Cryptographic changes
 
