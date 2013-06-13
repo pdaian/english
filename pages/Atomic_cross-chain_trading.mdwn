@@ -66,12 +66,11 @@ Assuming the altchain has actual economic value to support it, it can even serve
 
 ### Opcodes and altchain special rules
 
-* <b>bitcointxid</b> evaluates to true if txid (and blankhash is equal to tx body) are in bitcoin blockchain (altchain client must consult bitcoin for that) and it's outputs are spendable (ie verify it's standard tx).
-* The transaction is constructed in such a way it is valid to be included in altchain ledger even if there is no matching ```txid/blankhash``` in bitcoin
+* <b>bitcointxid</b> evaluates to true if <b>txid</b> (and <b>blankhash</b> is equal to tx body) are seen confirmed in the bitcoin blockchain (altchain client must consult bitcoin for that) and it's outputs are spendable (ie verify it's standard tx).
+* The transaction is constructed in such a way it is valid to be included in altchain even if there is no matching <b>txid/blankhash</b> in bitcoin
 * Its outputs are not spendable and inputs are free to be spent by another tx (i know, ugly!) until bitcoin txid confirmed "freezes" the tx (at which point it consumes inputs, and it's outputs become spendable).
 * Optionally there could be bitcoin block# parameter at which point the freeze occurs (effectively dictating number of confirms on bitcoin side).
 * It is legal for inputs to be mentioned multiple times, first (in blockheight order) transaction which gets "frozen" wins and other same-input consumers become invalid.
-
 
 ## Other references
 
