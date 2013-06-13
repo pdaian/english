@@ -59,10 +59,13 @@ Assuming the altchain has actual economic value to support it, it can even serve
 
 ### Algorithm
 
-* In bitcoin, you create and sign the transaction as usual and compute its <b>txid</b>. You <b>txid</b> and the transaction body <b>with input scripts/signature blanked</b> to altchain counterparty.
-* Altchain counterparty computes hash of the blanked body, call it <b>blankhash</b>, and constructs transaction with special <b>bitcointxid(blankhash,txid)</b> opcode. Broadcasts the transaction to altchain.
-* Bitcoin party waits for altchain tx to confirm and verify its outputs are as agreed - at that point it releases the "uncensored" tx. Altchain user receives the bitcoin funds, which will also enable the altchain tx at the same time (this is the atomic point).
-* Bitcoin party releases its tx only if it is sufficiently confident the altchain will not reorg its transactions, thus possibly double spend. This might imply that *many* confirmations in altchain should come first - during that time each of them might decide to cancel the trade with no further consequences.
+Alice=AltChain
+Bob=Bitcoin
+
+* Bob create and sign the transaction as usual and compute its <b>txid</b>. He sends <b>txid</b> and the transaction body <b>with input scripts/signature blanked</b> to Alice.
+* Alice computes hash of the blanked body, call it <b>blankhash</b>, and constructs transaction with special <b>bitcointxid(blankhash,txid)</b> opcode. Broadcasts the transaction to altchain.
+* Bob waits for altchain tx to confirm and verify its outputs are as previously agreed - at that point he sends the "uncensored" Bitcoin tx to Alice who'll broadcast it. Alice is therefore credited the bitcoin funds, which in turn validate altchain transaction at the same time (this is the atomic point).
+* Note that bob releases his tx only if he is sufficiently confident the altchain will not reorg its transactions, thus possibly double spend. This might imply that *many* confirmations in altchain should come first, however during that time each of them might decide to cancel the trade with no further consequences.
 
 ### Opcodes and altchain special rules
 
