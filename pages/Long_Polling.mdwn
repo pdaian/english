@@ -1,0 +1,3 @@
+Long polling is a method used by some Bitcoin pools by which notifications are sent to all miners when a valid block has been generated and added to the blockchain.  This serves the purpose of stopping work on the old block and beginning to work on a fresh block, thus reducing the production of [[stale_shares]].
+
+Without long polling, if a miner was in the middle of an assigned workload when a new block was discovered by someone else, it would continue working on the old obsolete block solution until it was finished - thus wasting effort.
