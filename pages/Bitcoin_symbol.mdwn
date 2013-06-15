@@ -11,7 +11,7 @@ B⃦ has been the standard currency sign for BTC for a long time. Some existing 
 
 ### New Unicode symbol
 
-In some discussions [41](https://bitcointalk.org/index.php?topic=41.0), [369](https://bitcointalk.org/index.php?topic=369.0) and [7215](https://bitcointalk.org/index.php?topic=7215.0) on the bitcoin forum several designs of an official Bitcoin sign have been proposed. This section on the Wiki is intended to streamline the process of arriving at an official Bitcoin currency sign with its own Unicode character code.
+In some discussions [41](https://bitcointalk.org/index.php?topic=41.0), [369](https://bitcointalk.org/index.php?topic=369.0) and [7215](https://bitcointalk.org/index.php?topic=7215.0) on the Bitcoin forum several designs of an official Bitcoin sign have been proposed. This section on the Wiki is intended to streamline the process of arriving at an official Bitcoin currency sign with its own Unicode character code.
 
 #### Goal
 Having a unique Bitcoin currency sign will allow typographers to add their currency sign design in their fonts. This is similar as implementing support for the euro sign. Each font has its own version of the euro sign that fits with the style observed in the characters in the rest of the fonts of their typefaces. Note that the Unicode Consortium does not endorse Bitcoin in any way by assigning a Unicode character code, however, having a Unicode for the Bitcoin sign will also be good for PR and help having Bitcoin be taken more seriously.
@@ -20,32 +20,32 @@ Having a unique Bitcoin currency sign will allow typographers to add their curre
 
 A reference Bitcoin sign could/should/must be:
 
-* recognizable as a [currency sign](https://secure.wikimedia.org/wikipedia/en/wiki/Currency_sign) such as $ € ¥ £ ¢ (e.g. with one or two vertical or horzontal bars)
-* not confusing with existing currency sign such as Thai Baht ฿
-* build from recognizable existing characters found on most [QWERTY keyboards](https://secure.wikimedia.org/wikipedia/en/wiki/Keyboard_layout#United_States) such as bar , minus -, hash # and/or capital B referring to currencies and **B**itcoin
+* recognizable as a [currency sign](https://secure.wikimedia.org/wikipedia/en/wiki/Currency_sign) such as $ € ¥ £ ¢ (e.g. with one or two vertical or horizontal bars)
+* distinct from existing currency signs such as the Thai Baht, ฿
+* built from recognizable existing characters found on most [QWERTY keyboards](https://secure.wikimedia.org/wikipedia/en/wiki/Keyboard_layout#United_States) such as bar , minus -, hash # and/or capital B referring to currencies and **B**itcoin
 * easy to use in handwriting
-* easy to compose with one or more [compose seuquences](https://help.ubuntu.com/community/GtkComposeTable#The%20Gtk%20Compose%20Table) that are still free and refer to the elements recognizable in the sign (For example the euro sign can be composed from = and C even though the = and C are not part of how it is pronounced.)
+* easy to compose with one or more [compose sequences](https://help.ubuntu.com/community/GtkComposeTable#The%20Gtk%20Compose%20Table) that are still free and refer to the elements recognizable in the sign (for example the euro sign can be composed from = and C even though the = and C are not part of how it is pronounced)
 * *possible* to implement in [serif and sans-serif](https://secure.wikimedia.org/wikipedia/en/wiki/Serif) (Most of the [Unicode reference implementations](http://www.unicode.org/charts/PDF/U20A0.pdf) are made with serifs but sans-serif also exist in sans-serif fonts. So a reference implementation in serif to what is found in the PDF is preferred.)
 * *possible* to implement in regular, italic, bold and bold italic (for sans-serif the italic will simply be a slanted version)
-* in [SVG](https://secure.wikimedia.org/wikipedia/en/wiki/SVG) and use this [template](http://pastebin.com/raw.php?i=FVY8W1W3) (save as bitcoin-sign-20110719-template.svg) with updated metadata and public domain or similar free/open/libre license
+* in [SVG](https://secure.wikimedia.org/wikipedia/en/wiki/SVG) and use this [template](http://pastebin.com/raw.php?i=FVY8W1W3) (save as <tt>bitcoin-sign-20110719-template.svg</tt>) with updated metadata and public domain or similar free/open/libre license
 
 Note that a reference Bitcoin sign will only be used as a reference by the Unicode Consortium and it is up to typographers to implement their version matching the style of their typefaces and fonts.
 
 #### Submissions
 
-It is possible to submit proposals for a **reference implementation** below until (community must determine date). They will be judged by (community must form committee for this). If you have problems submitting your design, ask a friend with knowledge on editing wikipedia for help.
+It is possible to submit proposals for a **reference implementation** below until (community must determine date). They will be judged by (community must form committee for this). If you have problems submitting your design, ask someone with knowledge on editing Wikipedia for help.
 
 
 
 |Preview |Handwritten |Associations |Compose sequence(s) |Designer |Link to SVG file |Notes
 |---|---|---|---|---|---|---
-|[[!img "Bitcoin-proposal-1.png" size=128x128]]|[[!img "Hashbtc.jpg" size=128x128]]|hash (#), numeral three (3)|B#, #B, 3#, #3|Wareen|[Bitcoin-proposal-1.svg](http://pastebin.com/raw.php?i=MRfcm0Cn)|proposal based on original design idea from [RylandAlmanza](https://bitcointalk.org/index.php?topic=41.msg348274#msg348274)and [netrin](https://bitcointalk.org/index.php?topic=25102.msg325489#msg325489)
 |[[!img "Bitcoin-sign-20110719.png" size=128x128]]|[[!img "Img075.jpg" size=128x128]]|double barred dollar sign ($), capital b (B)|B, B, B=, =B|Pander|[bitcoin-sign-20110719.svg](http://pastebin.com/raw.php?i=XYsc9DeS)|example submission based on [[F33980a445.png]]
+|[[!img "Bitcoin-proposal-1.png" size=128x128]]|[[!img "Hashbtc.jpg" size=128x128]]|hash (#), numeral three (3)|B#, #B, 3#, #3|Wareen|[Bitcoin-proposal-1.svg](http://pastebin.com/raw.php?i=MRfcm0Cn)|proposal based on original design idea from [RylandAlmanza](https://bitcointalk.org/index.php?topic=41.msg348274#msg348274)and [netrin](https://bitcointalk.org/index.php?topic=25102.msg325489#msg325489)
 
 
 ### Existing Unicode symbol
 
-There is a discussion over [which Unicode symbol might be the best suited](https://bitcointalk.org/index.php?topic=369.0) for bitcoin.
+There is a discussion over [which Unicode symbol might be the best suited](https://bitcointalk.org/index.php?topic=369.0) for Bitcoin.
 
 To type Unicode characters, refer to:
 
@@ -60,7 +60,7 @@ It has led to the following options:
 |---|---|---|---|---
 |<center><big>฿</big></center>|* Pros: Displayed correctly on all known OSes * Cons: It is already used as the Thai Baht (THB) symbol|THAI CURRENCY SYMBOL BAHT ||Alt +0E3F
 |<center><big>Ƀ</big></center>|* Pros: Displayed correctly on all known OSes; standard Latin Extended-B character; [See the project Ƀ Another Bitcoin identity](http://www.ecogex.com/bitcoin/)|LATIN CAPITAL LETTER B WITH STROKE ||Alt +0243
-|<center><big>ᗸ</big></center>|Resembles the striked B while being different from Baht symbol |CANADIAN SYLLABICS CARRIER KHEE ||Alt +15F8
+|<center><big>ᗸ</big></center>|Resembles the struck B while being different from Baht symbol |CANADIAN SYLLABICS CARRIER KHEE ||Alt +15F8
 |<center><big>B⃦</big></center>|* Pros: Similar to current bitcoin.org logo|LATIN CAPITAL LETTER B + COMBINING DOUBLE VERTICAL STROKE OVERLAY ||U+0042 U+20E6
 |<center><big>B⃫</big></center>||LATIN CAPITAL LETTER B + COMBINING LONG DOUBLE SOLIDUS OVERLAY ||U+0042 U+20EB
 |<center><big>Ⓑ</big></center>|* Pros: Similar to current bitcoin.org logo|CIRCLED LATIN CAPITAL LETTER B ||Alt +24B7
@@ -79,10 +79,8 @@ It has led to the following options:
 |<center><big>ϭ</big></center>||(Unicode Block: Greek and Coptic) COPTIC SMALL LETTER SHIMA ||Alt +03ED
 |<center><big>ⓢ</big></center>|Purposed as a smaller unit of bitcoin. E.g. A hundredth of a bitcoin |CIRCLED LATIN SMALL LETTER S  ||Alt +24E2
 |<center><big>◪</big></center>||(Unicode Block: Geometric Shapes) SQUARE WITH LOWER RIGHT DIAGONAL HALF BLACK  ||Alt +25EA
-|<center><big>☺</big></center>||WHITE SMILING FACE||Alt +263A
-|<center><big>☻</big></center>||BLACK SMILING FACE||Alt +263B
 |<center><big>㋡</big></center>||CIRCLED KATAKANA TU' (Japanese)||Alt +32E1
-|<center>[[!img "Bat.png" size=24x24 title="alt=The b'at"]]<br>the b'at</center>|* Pros: Is round like a coin. Contains the B for Bitcoin. Borrows a style widelly associated with the internet. Not used for other meanings.* Cons: Does not exist in the Unicode standard* Cons: Very similar to the existing trademarked Broad logo [[http://www.broad.com/]]|n/a ||
+|<center>[[!img "Bat.png" size=24x24 title="alt=The b'at"]]<br>the b'at</center>|* Pros: Is round like a coin. Contains the B for Bitcoin. Borrows a style widely associated with the Internet. Not used for other meanings.* Cons: Does not exist in the Unicode standard* Cons: Very similar to the existing trademarked logo of [Broad](http://www.broad.com)|n/a ||
 |<center>[[!img "Bitcoin_Symbol_Suggestion_circled_struck-through_B.png" size=24x24]]</center>|* Cons: Does not exist in the Unicode standard|n/a ||
 |<center>[[!img "Bitcoin_Symbol_Suggestion_rotated_power.png" size=24x24]]</center>|* Cons: Does not exist in the Unicode standard|n/a ||
 |<center>A 'C' with '1' and '0' inside [[http://img829.imageshack.us/img829/8840/bitcoinlogodraft.png]]</center>|* Cons: Does not exist in the Unicode standard |n/a ||
