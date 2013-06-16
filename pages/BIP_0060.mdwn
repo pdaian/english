@@ -11,6 +11,12 @@
 
 ##Abstract
 
+[[BIP_0037]] introduced a new flag to version messages which says whether to relay new transaction messages to that node.
+
+The protocol version was upgraded to 70001, and the (now accepted) BIP 0037 became implemented.
+
+The implementation is problematic because the RelayTransactions flag is an optional part of the version message stream.
+
 ##Motivation
 
 ##Design rationale
