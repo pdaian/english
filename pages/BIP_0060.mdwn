@@ -25,8 +25,6 @@ As an example, the length of version messages might be checked to ensure the byt
 
 Another property of fixed-length field messages is the ability to pass stream operators around for deserialization. This property is also lost, as now the deserialisation code must know the remaining length of bytes to parse. The parser now requires an additional piece of information (remaining size of the stream) for parsing instead of being a dumb reader.
 
-##Design rationale
-
 ##Specification
 
 ##Copyright
