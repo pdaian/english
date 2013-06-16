@@ -26,7 +26,7 @@ As an example, the length of version messages might be checked to ensure the byt
 Another property of fixed-length field messages is the ability to pass stream operators around for deserialization. This property is also lost, as now the deserialisation code must know the remaining length of bytes to parse. The parser now requires an additional piece of information (remaining size of the stream) for parsing instead of being a dumb reader.
 
 ##Specification
-## version
+### version
 
 When a node creates an outgoing connection, it will immediately [[advertise|Version_Handshake]] its version. The remote node will respond with its version. No futher communication is possible until both peers have exchanged their version.
 
@@ -54,6 +54,27 @@ The following services are currently assigned:
 
 |1 |NODE_NETWORK |This node can be asked for full blocks instead of just headers.
 
+
+### Code Updates
+
+fRelayTx is added to the PushMessage() call inside PushVersion() (net.cpp)
+
+<pre>
+void CNode::PushVersion()
+{
+    /// when NTP implemented, change to just nTime = GetAdjustedTime()
+    int64 nTime = (fInbound ? GetAdjustedTime() : GetTime());
+    CAddress addrYou = (addr.IsRoutable() && !IsProxy(addr) ? addr : CAddress(CService("0.0.0.0",0)));
+    CAddress addrMe = GetLocalAddress(&addr);
+    RAND_bytes((unsigned char*)&nLocalHostNonce, sizeof(nLocalHostNonce));
+    printf("send version message: version %d, blocks=%d, us=%s, them=%s, peer=%s\n", PROTOCOL_VERSION, nBestHeight, addrMe.ToString().c_str(), addrYou.ToString().c_str(), addr.ToString().c_str());
+    PushMessage("version", PROTOCOL_VERSION, nLocalServices, nTime, addrYou, addrMe,
+                nLocalHostNonce, FormatSubVersion(CLIENT_NAME, CLIENT_VERSION, std::vector<string>()),
+                nBestHeight, fRelayTxes);
+}
+</pre>
+
+Additionally the protocol version is increased from 70001 to 70002.
 
 ##Copyright
 
