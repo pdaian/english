@@ -116,7 +116,7 @@ An elaboration of this concept is described by Tabarrok in his paper, [“The pr
 
 ##Example 4: Using external state
 
-Scripts are, by design, pure functions. They cannot poll external servers or import any state that may change as it would allow an attacker to outrun the block chain. But we can make transactions connected to the world in other ways.
+Scripts are, by design, pure functions. They cannot poll external servers or import any state that may change as it would allow an attacker to outrun the block chain. What's more, the scripting language is extremely limited in what it can do. Fortunately, we can make transactions connected to the world in other ways.
 
 Consider the example of an old man who wishes to give an inheritance to his grandson, either on the grandson's 18th birthday or when the man dies, whichever comes first. 
 
@@ -126,13 +126,13 @@ The death condition is harder. As Bitcoin nodes cannot measure arbitrary conditi
 
 Here is an example. The man creates a transaction spending his output, and sets the output to:
 
-	<sons pubkey> CHECKSIGVERIFY <oracle pubkey> CHECKSIGVERIFY <hash> OP_TRUE
+	<hash> OP_DROP 2 <sons pubkey> <oracle pubkey> CHECKMULTISIG
 
-This is the oracle script. It has an unusual form - after signature checking it pushes data to the stack then does not use it. The pubkey is published on the oracle's website and is well-known. The hash is set to be the hash of the user-provided expression stating that he has died, written in a form the oracle knows how to evaluate. For example, it could be the hash of the string:
+This is the oracle script. It has an unusual form - it pushes data to the stack then immediately deletes it again. The pubkey is published on the oracle's website and is well-known. The hash is set to be the hash of the user-provided expression stating that he has died, written in a form the oracle knows how to evaluate. For example, it could be the hash of the string:
 
-	if (has_died('john smith', born_on=1950/01/02)) return 1JxgRXEHBi86zYzHN2U4KMyRCg4LvwNUrp;
+	if (has_died('john smith', born_on=1950/01/02)) return (10.0, 1JxgRXEHBi86zYzHN2U4KMyRCg4LvwNUrp);
 
-This little language is hypothetical, it'd be defined by the oracle and could be anything. The return value is an address owned by the grandson.
+This little language is hypothetical, it'd be defined by the oracle and could be anything. The return value is an output: an amount of value and an address owned by the grandson.
 
 Once more, the man creates this transaction but gives it directly to his grandson instead of broadcasting it. He also provides the expression that is hashed into the transaction and the name of the oracle that can unlock it.
 
@@ -141,12 +141,10 @@ It is used in the following algorithm:
 1. The oracle accepts a measurement request. The request contains the user-provided expression, a copy of the output script, and a partially complete transaction provided by the user. Everything in this transaction is finished except for the scriptSig, which contains just one signature (the grandson's) - not enough to unlock the output.
 1. The oracle checks the user-provided expression hashes to the value in the provided output script. If it doesn't, it returns an error.
 1. The oracle evaluates the expression. If the result is not the destination address of the output, it returns an error.
-1. Otherwise the oracle signs the transaction and inserts the signature into the scriptSig. Note that when signing a Bitcoin transaction, the input script is set to the connected output script. The reason is that when OP_CHECKSIG runs, the script containing the opcode is put in the input being evaluated, _not_ the script containing the signature itself. The oracle has never seen the full output it is being asked to sign, but it doesn't have to. It knows the output script, its own public key, and the hash of the user-provided expression, which is everything it needs to check the output script and finish the transaction.
-1. The oracle returns the newly signed, unbroadcast transaction to the user.
+1. Otherwise the oracle signs the transaction and returns the signature to the user. Note that when signing a Bitcoin transaction, the input script is set to the connected output script. The reason is that when OP_CHECKSIG runs, the script containing the opcode is put in the input being evaluated, _not_ the script containing the signature itself. The oracle has never seen the full output it is being asked to sign, but it doesn't have to. It knows the output script, its own public key, and the hash of the user-provided expression, which is everything it needs to check the output script and finish the transaction.
+1. The user accepts the new signature, inserts it into the scriptSig and broadcasts the transaction.
 
 If, and only if, the oracle agrees that the man is dead, the grandson can broadcast the two transactions (the contract and the claim) and take the coins.
-
-The oracle does not need to be highly trusted. It has not seen the transaction the grandson is trying to unlock, as it was never broadcast, thus, the oracle cannot hold the grandson to ransom because it does not know whether the transaction it's signing for even exists. People can, and should, regularly challenge the oracle in an automated fashion to ensure it always outputs what is expected. The challenges can be done without spending any coins because the tx to be signed can be invalid (ie, connected to transactions that don't exist). The oracle has no way to know whether a request to be signed is random or real. How to challenge the oracle with conditions that are not yet true is however an open research question. CHECKSIGVERIFY can be replaced with CHECKMULTISIGVERIFY to allow for n-of-m oracles if need be. Trusted computing allows for remote attestation, which is another way to minimise required trust levels. 
 
 Oracles can potentially evaluate anything, yet the output script form in the block chain can always be the same. Consider the following possibilities:
 
@@ -164,7 +162,19 @@ Oracles can potentially evaluate anything, yet the output script form in the blo
 
 The conditions that control whether the oracle signs can be arbitrarily complex, but the block chain never needs to contain more than a single hash.
 
-As of May 2013 work on implementing this protocol has begun. Please contact Mike if you would like to work on this to avoid duplication of effort.
+As of May 2013 work on implementing this protocol has begun. Please contact Mike if you would like to work on this, so you can be put in touch with the people who are already implementing it.
+
+###Minimizing trust in the oracle
+
+There are various ways to reduce the level of required trust in the oracle.
+
+Going back to our first example, the oracle has not seen the transaction the grandson is trying to unlock, as it was never broadcast, thus, it cannot hold the grandson to ransom because it does not know whether the transaction it's signing for even exists. People can, and should, regularly challenge the oracle in an automated fashion to ensure it always outputs what is expected. The challenges can be done without spending any coins because the tx to be signed can be invalid (ie, connected to transactions that don't exist). The oracle has no way to know whether a request to be signed is random or real. How to challenge the oracle with conditions that are not yet true is however an open research question. 
+
+The number of keys in the CHECKMULTISIG can be increased to allow for n-of-m oracles if need be. 
+
+Using commodity hardware, you can use Intel TXT or the AMD equivalent (SKINIT) to set up a trusted, sealed hardware environment and then use the TPM chip to attest that fact to a third party. That third party can verify the hardware was in the required state. Defeating this requires someone to be able to interfere with the execution of a program that may run entirely on the CPU, even in extreme cases without any data traversing the memory bus (you can run entirely using on-die cache if the program is small enough).
+
+Cryptographers have recently been making excellent progress in the field of **verifiable computation**. This allows an untrusted server to execute a pure function in which some inputs can be private, and produce a proof that it was executed correctly. If the oracle program can be expressed as a pure function, then this technique can be powerfully applied. However there are performance limits. The current state of the art as of summer 2013 is [Pinnochio](http://research.microsoft.com/pubs/180286/pinocchio.pdf), an open source system from Microsoft Research. For some classes of functions checking the proof can be faster than executing the program itself, for others it is still slower - however, quite within the realms of feasibility. Because the programs are pure functions, they cannot do any I/O, therefore no access to the internet. This is quite restrictive as often the point of an oracle program is to measure external state. We can work around this restriction by providing signed data to the program and have the program itself check the signatures - to make it as easy as possible to get signed data from as many sources as possible, an extension to the SSL/TLS protocol that allows for signing of arbitrary sessions may be appropriate.
 
 ##Example 5: Trading across chains
 
