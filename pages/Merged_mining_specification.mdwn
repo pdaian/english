@@ -55,7 +55,7 @@ Say Alice created a Merkle tree, and it's root element is publicly available. Fo
 
 Now she wants to prove to Bob that a given hash (#10) was part of that tree, but Bob doesn't have the full tree (only the public root; hash #0). Alice can send Bob all the hashes she used to make the tree in the first place (hashes #7-#14, total of 7 extra hashes), so Bob can build the whole tree to verify the root is the same, but that's rather data-intensive. Instead, she could give Bob hashes #9, #3, and #2 (one from each level of the tree, working #10 back to the root). Without Bob knowing the structure of the tree, Alice also has to tell Bob what order to apply the hashes in (since <tt>hash(#9, #10) == #4</tt>, but <tt>hash(#10, #9) != #4</tt>). So Alice tells Bob "left, left, right" to indicate which operand #9, #3, and #2 are, respectively. That can be encoded as a bitmask and take up very little data to transmit. So, instead of transmitting 7 hashes to Bob, Alice transmits 3 hashes and a bitmask. The data savings get even more pronounced if the merkle tree gets even bigger.
 
-That is the overall premise, and specifically for the AuxPOW protocol, it's been termed a "merkle branch" (since it's one pathway of a merkle tree), and is transmitted thusly:
+That is the overall premise, and specifically for the AuxPOW protocol, it's been termed a "merkle branch" (since it's one pathway of a merkle tree), and is transmitted thus:
 
 
 
