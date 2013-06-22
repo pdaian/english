@@ -181,11 +181,18 @@ About **P5** jumper: close this jumper will supply 5V to the USB-B port. in this
 
 * Remove the **[F1(Fuse)](http://www3.picturepush.com/photo/a/13207881/1024/Anonymous/avf1.png)** for fix the USB-HUB chip overheat, if you are batch2 user and your received Avalon between Apr 26 2013 ~ May 31 2013, your FPGA contoller board still have F1 mounted. you need do this by yourself.  removing F1 will not make the usb hub stop working, F1 powers the USB-A1 plug (which is normally unused), more info please checkout [here](https://github.com/BitSyncom/avalon-ref/issues/5)
 
-## Update FPGA controller firmware
+## Update FPGA controller firmware (NOT FINISHED/FULL DOCUMENT YET)
 [[Fpga-controller-jtag-pins.png]]
 
 * Update under Avalon 703N: http://downloads.qi-hardware.com/people/xiangfu/avalon/fpga-controller/
 * http://en.qi-hardware.com/w/images/f/ff/M1_JTAGserialpod_Pins.JPG
+
+	#mini-jtag load xc6slx16-2-ftg256.bscan_s6_spi_isf_ext.bit && sleep 1 && xc3sprog -c qi -v -I fpga_controller_2013-05-02-D.bit
+	xc3sprog -c qi xc6slx16-2-ftg256.bscan_s6_spi_isf_ext.bit && sleep 1 && xc3sprog -c qi -v -I fpga_controller_2013-05-02-D.bit
+	xc3sprog -c qi -v -I file.bin:R:0:bin
+	dd if=file.bin bs=68 skip=1 of=file2.bin
+	xc3sprog -c qi -v -I file2.bin:w:0:bin
+	rm -f file.bin file2.bin
 
 ## P2Pool Operation with Avalon
 There is an /avalon branch Forrest committed to the p2pool github repository. Make sure that is checked out.
