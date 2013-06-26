@@ -133,10 +133,9 @@ def GenerateKeys(numKeys = 10):
 	totalCandidates += 1
 	except KeyboardInterrupt:
 	break
-	print('\n%s: %i\n%s: %i\n%s: %r\n%s: %.1f' %
+	print('\n%s: %i\n%s: %i\n%s: %.1f' %
 	('Keys Generated', keysGenerated,
 	'Total Candidates', totalCandidates,
-	'Additional Security', additionalSecurity,
 	'Reject Percentage',
 	100*(1.0-keysGenerated/float(totalCandidates))))
 
