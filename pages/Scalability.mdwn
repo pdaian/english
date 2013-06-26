@@ -58,8 +58,8 @@ Algorithms exist to accelerate batch verification over elliptic curve signatures
 
 Assuming no upgrades to lightweight/SPV clients, so just batch verification, we can reach 40,000 transactions per second which is far beyond the traffic levels of the entire credit card system. And with ed25519 we could go up to nearly half a million transactions per second - with todays hardware! At these speeds it is likely that bandwidth to disk would become the primary limiting factor.
 
-
 ###Simplified payment verification
+<!-- "Simplified payment verification" redirects here. Update the redirect if you change the section title -->
 
 It's possible to build a Bitcoin implementation that does not verify everything, but instead relies on either connecting to a trusted node, or puts its faith in high difficulty as a proxy for proof of validity. [[bitcoinj]] is an implementation of this mode.
 
