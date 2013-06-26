@@ -47,12 +47,13 @@ Big kudos goes out to theymos for providing a web interface to [real time statis
 * **bc,fx** - show various currency exchange rates
 * **bc,xag** - show price of silver in BTC
 * **bc,xau** - show price of gold in BTC
-* **ticker** - show pretty-printed mtgox ticker. Takes a number of optional arguments to customize output.
+* **ticker** - show pretty-printed ticker. takes a number of optional arguments to customize output.
 * **bids** - given a numeric argument, shows how many total btc are being demanded on MtGox at or over the given price. If optional '--under' argument given, looks under the price.
 * **asks** - given a numeric argument, shows how many total btc are being offered on MtGox at or below given price. If optional '--over' argument given, looks over the price.
 * **market buy** - supply number of btc to buy (or with --usd option, number of dollars to spend buying), to see the results of such a market order.
 * **market sell** - supply number of btc to sell (or with --usd option, number of dollars receive from selling), to see the results of such a market order.
 * **obip** - order book implied price. finds the weighted average price of BTC by averaging over the order book N coins away from the spread in both directions.
+* **baratio** - shows total USD volume of bids, total BTC volume of asks, and ratio of the two.
 
 ###Mining pool statistics
 
