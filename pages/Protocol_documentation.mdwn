@@ -39,8 +39,12 @@ This procedure repeats recursively until we reach a row consisting of just a sin
 For example, imagine a block with three transactions *a*, *b* and *c*.   The merkle tree is: 
 
 	d6=dhash(d4 concat d5)
-	d4=dhash(d1 concat d2) d5=dhash(d3 concat d3)
-	d1=dhash(a) d2=dhash(b) d3=dhash(c) d3=dhash(c)
+	d4=dhash(d1 concat d2)
+	d5=dhash(d3 concat d3)
+	d1=dhash(a)
+	d2=dhash(b)
+	d3=dhash(c)
+	d3=dhash(c)
 
 where
 	
