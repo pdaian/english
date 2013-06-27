@@ -206,6 +206,8 @@ You can see how long all other recent transactions have taken here: [BitcoinStat
 
 Ten minutes was specifically chosen by [[Satoshi]] as a tradeoff between first confirmation time and the amount of work wasted due to chain splits. After a block is mined, it takes time for other miners to find out about it, and until then they are actually competing against the new block instead of adding to it. If someone mines another new block based on the old block chain, the network can only accept one of the two, and all the work that went into the other block gets wasted. For example, if it takes miners 1 minute on average to learn about new blocks, and new blocks come every 10 minutes, then the overall network is wasting about 10% of its work. Lengthening the time between blocks reduces this waste.
 
+As a thought experiment, what if the Bitcoin network grew to include Mars? From the farthest points in their orbits, it takes about 20 minutes for a signal to travel from Earth to Mars. With only 10 minutes between new blocks, miners on Mars would always be 2 blocks behind the miners on Earth. It would be almost impossible for them to contribute to the block chain. If we wanted collaborate with those kinds of delays, we would need at least a few hours between new blocks. 
+
 [[TransactionConfirmationTimesExample.PNG]]
 
 ### Do you have to wait until my transactions are confirmed in order to buy or sell things with Bitcoin?
