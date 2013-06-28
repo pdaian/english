@@ -16,7 +16,7 @@ An implementation of [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fid
 1. MPK = master public key
 1. TM = current block height
 1. Create and sign transaction T2. Broadcast if desired.
-	1. must include Hash160(MPK) OP_TRUE output with value >= 0.001BTC
+	1. must include Hash160(MPK) OP_TRUE anyone-can-spend output with value >= 0.001BTC
 	1. nlocktime = TM + 144 blocks
 	1. no more than 1000 bytes in size
 1. Create, sign and broadcast transaction T1
