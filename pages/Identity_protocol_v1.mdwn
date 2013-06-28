@@ -36,8 +36,9 @@ A SIN is the unique record identifier by which this identity will be known.
 ##Validating the root identity information
 
 1. B1 = block w/ T1, B2 = block w/ T2
-1. Verify B2 height - 144 >= B1 height.  Fail and waste sacrifice if not.
+1. Verify B2 height - 144 >= B1 height.
 1. Verify mined T2 == announced T2
+1. Fail and waste sacrifice if not.
 
 
 Thus a minimal root record is MPK and is provably
