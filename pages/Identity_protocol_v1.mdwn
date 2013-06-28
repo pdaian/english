@@ -33,10 +33,6 @@ Craft a bytestream that represents the root SIN record.
 1. MD = ripemd160(MPK)
 1. Prefix = 0x18, SIN_Version = 0x01
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
-1. PPK = Preferred Public Key, new public key for root of trust
-1. Build root record,
-	1. SIN
-	1. MPK
 
 Thus a minimal root record is
 
