@@ -14,15 +14,14 @@ Similar to [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fidelity_bond
 
 1. TM = current block time (not block height)
 1. create transaction T2.
-	1. must include >= 0.01 BTC fee
+	1. must include OP_RETURN <digest of master pubkey>
 	1. nlocktime = TM + 24 hours
-	1. no more than 10 inputs
+	1. no more than 1000 bytes in size
 1. create transaction T1
 	1. must include >= 0.01 BTC fee
 	1. must include OP_RETURN txid(T2)
-	1. no more than 10 inputs
+	1. no more than 1000 bytes in size
 1. broadcast T1, T2 until confirmed
-
 
 ##Creating root record
 
