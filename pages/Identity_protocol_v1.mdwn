@@ -35,7 +35,7 @@ An implementation of [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fid
 1. SIN_Version = 0x01, similar to how a [UUID's](http://en.wikipedia.org/wiki/Universally_unique_identifier) form is dictated by a UUID's self-identified version
 1. MD = Hash160(MPK)
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
-1. Hyphenate or space SIN for easier human reading
+1. Hyphenate SIN for easier human reading
 
 ##Validating the root identity information
 
