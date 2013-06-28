@@ -21,10 +21,10 @@ Creation cost is attached to decentralized identity by means of sacrificing a sm
 An implementation of [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fidelity_bonds#Announce.2FCommit_Sacrifices).  That author's feedback on this protocol was very helpful.
 
 1. MPK = master public key
-1. TM = current block height
+1. BH = current block height
 1. Create and sign transaction T2. Broadcast if desired.
 	1. must include Hash160(MPK) OP_TRUE anyone-can-spend output with value >= 0.001BTC
-	1. nlocktime = TM + 144 blocks
+	1. nlocktime = BH + 144 blocks
 	1. no more than 1000 bytes in size
 1. Create, sign and broadcast transaction T1
 	1. must include OP_RETURN serialized(T2) output as last txout
