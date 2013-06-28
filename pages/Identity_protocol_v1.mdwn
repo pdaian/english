@@ -27,31 +27,25 @@ Similar to [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fidelity_bond
 
 Craft a bytestream that represents the root SIN record.
 
+1. MPK = master public key
 1. B1 = block w/ T1, B2 = block w/ T2
-1. Verify B2 time >= (24-4) hours B1 time.  Fail and waste sacrifice if not.
-1. MD = ripemd160(B1.hash + T1.txid + B2.hash + T2.txid)
+1. Verify B2 height >= 144 blocks of B1 height.  Fail and waste sacrifice if not.
+1. MD = ripemd160(MPK)
 1. Prefix = 0x18, SIN_Version = 0x01
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
 1. PPK = Preferred Public Key, new public key for root of trust
 1. Build root record,
-	1. root = SIN + PPK
-	1. H_ROOT = hash(root)
-	1. For each (T1, T2),      -- prove we control 100% of the inputs for T1, T2
-		1. For each input
-			1. Obtain referenced output
-			1. Obtain public key from output (if necessary, look up in local node db from pubkeyhash)
-			1. signature = sign H_ROOT with key associated with just-retrieved public key
-			1. root += (public key, signature)
+	1. SIN
+	1. MPK
 
 Thus a minimal root record is
 
 * SIN
-* PPK
-* list of (public key, signature)
+* MPK
 
 and is provably
 
 * linked to the sacrifices
-* PPK starts a new chain of digital signature trust, for further record updates
+* MPK starts a new chain of digital signature trust, for further record updates
 
 After that, additional key-value pairs may be associated with the root record via updates verified by PPK, stored in an alt-blockchain or DHT somewhere.  That is outside the scope of this minimal document.
