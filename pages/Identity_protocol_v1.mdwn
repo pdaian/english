@@ -15,7 +15,7 @@ Similar to [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fidelity_bond
 1. MPK = master public key
 1. TM = current block height
 1. create transaction T2.
-	1. must include OP_RETURN <digest of MPK> output
+	1. must include OP_RETURN ripemd160(MPK) output
 	1. nlocktime = TM + 144 blocks
 	1. no more than 1000 bytes in size
 1. create transaction T1
