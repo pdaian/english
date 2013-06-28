@@ -30,8 +30,6 @@ An implementation of [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fid
 
 ##Creating a SIN
 
-A SIN ("System Identification Number") is the unique record identifier by which this identity will be known.
-
 1. Prefix = 0x18
 1. SIN_Version = 0x01, similar to how [UUIDs](http://en.wikipedia.org/wiki/Universally_unique_identifier)' form is dictated by a UUID's self-identified version
 1. MD = Hash160(MPK)
