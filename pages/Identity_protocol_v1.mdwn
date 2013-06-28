@@ -19,7 +19,7 @@ Similar to [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fidelity_bond
 	1. nlocktime = TM + 144 blocks
 	1. no more than 1000 bytes in size
 1. create transaction T1
-	1. must include >= 0.01 BTC fee
+	1. must include >= 0.001 BTC fee
 	1. must include OP_RETURN serialized(T2) output
 	1. no more than 1000 bytes in size
 1. broadcast T1, T2 until confirmed
