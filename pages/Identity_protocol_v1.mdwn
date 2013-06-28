@@ -1,0 +1,58 @@
+
+##Design goals
+
+Decentralized identity.
+
+* Has some creation cost
+* Sacrifice may be digitally proven, bootstrapping root of trust from blockchain data
+* Start as anonymous; opt out of anonymity by attaching identifying key-value pairs (real.name = "John Smith").
+
+
+##Creating sacrifice transactions
+
+Similar to [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fidelity_bonds#Announce.2FCommit_Sacrifices)
+
+1. TM = current block time (not block height)
+1. create transaction T2.
+	1. must include >= 0.01 BTC fee
+	1. nlocktime = TM + 24 hours
+	1. no more than 10 inputs
+1. create transaction T1
+	1. must include >= 0.01 BTC fee
+	1. must include OP_RETURN txid(T2)
+	1. no more than 10 inputs
+1. broadcast T1, T2 until confirmed
+
+
+##Creating root record
+
+Craft a bytestream that represents the root SIN record.
+
+1. B1 = block w/ T1, B2 = block w/ T2
+1. Verify B2 time >= (24-4) hours B1 time.  Fail and waste sacrifice if not.
+1. MD = ripemd160(B1.hash + T1.txid + B2.hash + T2.txid)
+1. Prefix = 0x18, SIN_Version = 0x01
+1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
+1. PPK = Preferred Public Key, new public key for root of trust
+1. Build root record,
+	1. root = SIN + PPK
+	1. H_ROOT = hash(root)
+	1. For each (T1, T2),      -- prove we control 100% of the inputs for T1, T2
+		1. For each input
+			1. Obtain referenced output
+			1. Obtain public key from output (if necessary, look up in local node db from pubkeyhash)
+			1. signature = sign H_ROOT with key associated with just-retrieved public key
+			1. root += (public key, signature)
+
+Thus a minimal root record is
+
+* SIN
+* PPK
+* list of (public key, signature)
+
+and is provably
+
+* linked to the sacrifices
+* PPK starts a new chain of digital signature trust, for further record updates
+
+After that, additional key-value pairs may be associated with the root record via updates verified by PPK, stored in an alt-blockchain or DHT somewhere.  That is outside the scope of this minimal document.
