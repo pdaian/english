@@ -36,7 +36,8 @@ A SIN ("System Identification Number") is the unique record identifier by which 
 
 1. B1 = block w/ T1, B2 = block w/ T2
 1. Verify B2 height - 144 >= B1 height.
-1. Verify mined T2 == announced T2
+1. Verify announced T2 is valid
+1. Verify mined T2 spends same inputs as announced T2 (not equal to account for [[Transaction_Malleability]])
 1. Fail and waste sacrifice if not.
 
 
