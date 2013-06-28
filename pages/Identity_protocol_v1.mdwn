@@ -29,7 +29,7 @@ Craft a bytestream that represents the root SIN record.
 
 1. MPK = master public key
 1. B1 = block w/ T1, B2 = block w/ T2
-1. Verify B2 height >= 144 blocks of B1 height.  Fail and waste sacrifice if not.
+1. Verify B2 height - 144 >= B1 height.  Fail and waste sacrifice if not.
 1. MD = ripemd160(MPK)
 1. Prefix = 0x18, SIN_Version = 0x01
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
