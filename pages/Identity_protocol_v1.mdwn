@@ -31,7 +31,7 @@ A SIN ("System Identification Number") is the unique record identifier by which 
 1. SIN_Version = 0x01
 1. MD = ripemd160(MPK)
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
-
+1. Hyphenate or space SIN for easier human reading
 
 ##Validating the root identity information
 
