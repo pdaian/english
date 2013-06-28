@@ -12,9 +12,10 @@ Decentralized identity.
 
 Similar to [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fidelity_bonds#Announce.2FCommit_Sacrifices)
 
+1. MPK = master public key
 1. TM = current block height
 1. create transaction T2.
-	1. must include OP_RETURN <digest of master pubkey> output
+	1. must include OP_RETURN <digest of MPK> output
 	1. nlocktime = TM + 144 blocks
 	1. no more than 1000 bytes in size
 1. create transaction T1
@@ -23,23 +24,21 @@ Similar to [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fidelity_bond
 	1. no more than 1000 bytes in size
 1. broadcast T1, T2 until confirmed
 
-##Creating root record
+##Creating a SIN
 
-Craft a bytestream that represents the root SIN record.
+A SIN is the unique record identifier by which this identity will be known.
 
-1. MPK = master public key
-1. B1 = block w/ T1, B2 = block w/ T2
-1. Verify B2 height - 144 >= B1 height.  Fail and waste sacrifice if not.
+1. Prefix = 0x18
+1. SIN_Version = 0x01
 1. MD = ripemd160(MPK)
-1. Prefix = 0x18, SIN_Version = 0x01
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
 
-Thus a minimal root record is
+##Validating the root identity information
 
-* SIN
-* MPK
+1. B1 = block w/ T1, B2 = block w/ T2
+1. Verify B2 height - 144 >= B1 height.  Fail and waste sacrifice if not.
 
-and is provably
+Thus a minimal root record is MPK and is provably
 
 * linked to the sacrifices
 * MPK starts a new chain of digital signature trust, for further record updates
