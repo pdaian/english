@@ -31,7 +31,7 @@ An implementation of [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fid
 
 ##Creating a SIN
 
-1. Prefix = 0x18 (mainnet) or 0x19 (testnet3)
+1. Prefix = 0x18 (mainnet) or 0x19 (testnet)
 1. SIN_Version = 0x01, similar to how a [UUID's](http://en.wikipedia.org/wiki/Universally_unique_identifier) form is dictated by a UUID's self-identified version
 1. MD = Hash160(MPK)
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
