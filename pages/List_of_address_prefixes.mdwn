@@ -24,6 +24,8 @@ Blockchain-based currencies use addresses, which are a [[Base58Check_encoding]] 
 |0x142, 0x143|6P|Encrypted private key ([[BIP 38|BIP_0038]])|<tt>6PRVWUbkzzsbcVac2qwfssoUJAN1Xhrg6bNk8J7Nzm5H7kxEbn2Nh2ZoGg </tt>
 
 
+Note that private keys for compressed and uncompressed bitcoin public keys use the same version byte. The reason for the compressed form starting with a different character is because a 0x01 byte is appended to the private key before base58 encoding.
+
 The following table shows the leading symbol(s) and address length(s) for 160 bit hashes for each of the possible decimal version values:
 
 
