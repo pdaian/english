@@ -201,7 +201,7 @@ Block headers are sent in a headers packet in response to a getheaders message.
 |4 |version |uint32_t |Block version information, based upon the software version creating this block
 |32 |prev_block |char[[32]]|The hash value of the previous block this particular block references
 |32 |merkle_root |char[[32]]|The reference to a Merkle tree collection which is a hash of all transactions related to this block
-|4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2106!)
+|4 |timestamp |uint32_t |A timestamp recording when this block was created (Will overflow in 2106 (14.1))
 |4 |bits |uint32_t |The calculated difficulty target being used for this block
 |4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
 |1 |txn_count |uint8_t |Number of transaction entries, this value is always 0
@@ -742,7 +742,8 @@ A dissector for wireshark is being developed at https://github.com/blueCommand/b
 
 ##References
 
-6.1: [Block 0 Network Fork](http://bitcointalk.org/index.php?topic=119645.msg1288552#msg1288552)
+6.1: [Block 0 Network Fork](http://bitcointalk.org/index.php?topic=119645.msg1288552#msg1288552)  
+14.1: http://en.wikipedia.org/wiki/Unix_time#Notable.C2.A0events.C2.A0in.C2.A0Unix.C2.A0time
 
 
 [[zh-cn:协议说明]]
