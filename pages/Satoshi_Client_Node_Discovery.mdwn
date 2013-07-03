@@ -4,7 +4,6 @@ The Satoshi client discovers the IP address and port of nodes in several differe
 
 1. Nodes discover their own external address by various methods.
 1. Nodes receive the callback address of remote nodes that connect to them.
-1. Nodes connect to IRC to receive addresses.
 1. Nodes makes DNS request to receive IP addresses.
 1. Nodes can use addresses hard coded into the software.
 1. Nodes exchange addresses with other nodes.
@@ -43,29 +42,23 @@ Now lets look at the ways a node finds out about node addresses.
 
 
 ###Local Client's External Address
-The client uses two methods to determine its own external, routable IP address: it uses IRC, preferably, and if that does not succeed, it uses public web services which return the information.
+The client uses public web services which return the information to determine its own external, routable IP address.
 
-From a thread created for this work (called ThreadIRCSeed in [irc.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/irc.cpp)), the client makes an IRC connection to 92.243.23.21 or irc.lfnet.org, if the direct IP connection fails. The port is 6667.
-
-If the connection succeeds, the client issues a USERHOST command to the IRC server, in order to get their own IP address.
-
-The client also runs a thread called ThreadGetMyExternalIP (in [net.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp))
+The client runs a thread called ThreadGetMyExternalIP (in [net.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp))
 which attempts to determine the client's IP address as seen from the outside
-world.  It gives the IRC thread a chance to discover the IP address
-first, sleeping and checking periodically for 2 minutes, and then it
-proceeds if the IRC method did not succeed.
+world.
 
 First, it attempts to connect to 91.198.22.70 port 80, which should be
 the checkip.dyndns.org server. If connection fails, a DNS request is made
 for checkip.dyndns.org and a connection is attempted to that address.
-Next, it attemps to connect to 74.208.43.192 port 80, which should be
+Next, it attempts to connect to 74.208.43.192 port 80, which should be
 the www.showmyip.com server. If connection fails, a DNS request is made
 for www.showmyip.com and a connection is attempted to that address.
 
 For each address attempted above, the client attempts to connect,
 send a HTTP request, read the appropriate response line, and parse the
 IP address from it.
-If this succeeds, the IP is returned, it is advertised to any connected
+If this succeeds, the IP address is returned, it is advertised to any connected
 nodes, and then the thread finishes (without proceeding to the next
 address).
 
@@ -77,16 +70,16 @@ After sending its own address, it sends a "getaddr" request message to the remot
 
 ###IRC Addresses
 
-As of version 0.6.x the Bitcoin client no longer uses IRC bootstrapping by default.  This documentation below is accurate for most prior versions.
+As of version 0.6.x the Bitcoin client no longer uses IRC bootstrapping by default, and as of version 0.8.2 support for IRC bootstrapping has been removed completely.  This documentation below is accurate for most prior versions.
 
-In addition to learning and sharing its own address, the node learns about other node addresses via an IRC channel. See [irc.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/irc.cpp).
+In addition to learning and sharing its own address, the node learned about other node addresses via an IRC channel. See [irc.cpp](https://github.com/bitcoin/bitcoin/blob/847593228de8634bf6ef5933a474c7e63be59146/src/irc.cpp).
 
-After learning its own address, a node encodes its own address into a string to be used as a nickname. Then, it randomly joins an IRC channel named between #bitcoin00 and #bitcoin99. Then it issues a WHO command. The thread reads the lines as they appear in the channel and decodes the IP addresses of other nodes in the channel. It does this in a loop, forever, until the node is shutdown.
+After learning its own address, a node encoded its own address into a string to be used as a nickname. Then, it randomly joined an IRC channel named between #bitcoin00 and #bitcoin99. Then it issued a WHO command. The thread read the lines as they appeared in the channel and decoded the IP addresses of other nodes in the channel. It did this in a loop, forever, until the node was shutdown.
 
-When the client discovers an address from IRC, it sets the timestamp on the address to the current time, but it uses a "penalty" of 51 minutes, which means it looks like it was actually seen almost an hour ago.
+When the client discovered an address from IRC, it set the timestamp on the address to the current time, but it used a "penalty" of 51 minutes, which means it looked like it was actually seen almost an hour earlier.
 
 ###DNS Addresses
-Upon startup, if peer node discovery is needed, the client then issues DNS requests to learn about the addresses of other peer nodes.  The client includes a list of host names for DNS services that are seeded.  As-of May 17, 2012 the list (from net.cpp (8.1)) includes:
+Upon startup, if peer node discovery is needed, the client then issues DNS requests to learn about the addresses of other peer nodes.  The client includes a list of host names for DNS services that are seeded.  As-of May 17, 2012 the list (from chainparams.cpp (8.1)) includes:
 
 * bitseed.xf2.org
 * dnsseed.bluematt.me
@@ -186,7 +179,7 @@ Addresses loaded from the text file are initially given a zero timestamp, theref
 
 ##References
 
-8.1: [bitcoin/src/net.cpp at master](https://github.com/bitcoin/bitcoin/blob/master/src/net.cpp)  
+8.1: [bitcoin/src/chainparams.cpp at master](https://github.com/bitcoin/bitcoin/blob/master/src/chainparams.cpp#L139)  
 14.1: [Lots of disk activity on Bitcoin startup: easy fix?](http://bitcointalk.org/index.php?topic=26436.0)
 
 
