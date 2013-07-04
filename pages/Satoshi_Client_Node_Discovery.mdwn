@@ -130,7 +130,7 @@ Once addresses are added from an "addr" message (see above), they then may be re
 1. And fGetAddr is not set on the node. fGetAddr starts false, is set to true when we request addresses from a node, and it is cleared when we receive less than 1000 addresses from a node.
 1. The address must be routable.
 
-For every address that meets the above criteria, the node hash the address, the current day (in the form of an integer), and a random 256 bit value (generated at client startup). The node takes the two addresses with the lowest hash values and relays "addr" messages to them. This ensures that each node only relays "addr" messages to two other clients, that the two other clients are randomly selected, and that the random selection starts over at least once every 24 hours.
+For every address that meets the above criteria, the node hash the address, the current day (in the form of an integer), and a random 256 bit value (generated at client startup). The node takes the two addresses with the lowest hash values and relays "addr" messages to them. This ensures that each node only relays "addr" messages to two other clients at any given time, that the two other clients are randomly selected, and that the random selection starts over at least once every 24 hours.
 
 ####Self broadcast
 
