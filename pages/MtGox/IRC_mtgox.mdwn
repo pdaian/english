@@ -59,6 +59,17 @@ This isn't an exhaustive list of news but if something of note appears, i'll try
 **23/05/2013 - [Raids force Liberty Reserve offline](http://www.bbc.co.uk/news/technology-22680297)** [More Links](http://www.nytimes.com/2013/05/29/nyregion/liberty-reserve-operators-accused-of-money-laundering.html?hp&_r=0) 
 
 
+## Websocket / API Changes
+
+**08/07/2013 Websocket Changes**
+
+A new field has been added to the user_order broadcast. The field is called 'reason'. This field tells you exactly why an order has been removed from the order book. These are:
+
+> * "requested" for when the customer manually requested the order to be cancelled
+> * "completed_active" for orders that complete instantly (market orders and invalid orders)
+> * "complete_passive" for limit orders
+
+
 ## Trading Questions
 
 **Q. Is there a limit to open orders per account?**
