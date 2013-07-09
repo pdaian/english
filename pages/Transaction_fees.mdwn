@@ -19,10 +19,10 @@ A transaction will be sent without fees if these conditions are met:
 * All outputs are 0.01 BTC or larger.
 * Its priority is large enough (see the Technical Info section below)
 
-Otherwise, the reference implementation will round up the transaction size to the nearest thousand bytes and then add a fee of 0.0005 BTC per thousand bytes.
-Users may override the default 0.0005 BTC/kb fee setting, but cannot control transaction fees for each transaction. Bitcoin-Qt does prompt the user to accept the fee before the transaction is sent (they may cancel the transaction if they are not willing to pay the fee).
+Otherwise, the reference implementation will round up the transaction size to the nearest thousand bytes and then add a fee of 0.0001 BTC per thousand bytes (3.1).
+Users may override the default 0.0001 BTC/kb fee setting, but cannot control transaction fees for each transaction. Bitcoin-Qt does prompt the user to accept the fee before the transaction is sent (they may cancel the transaction if they are not willing to pay the fee).
 
-Note that a typical transaction is 500 bytes, so the typical transaction fee is 0.0005 BTC, regardless of the number of bitcoins sent.
+Note that a typical transaction is 500 bytes, so the typical transaction fee is 0.0001 BTC, regardless of the number of bitcoins sent.
 
 ###Including in Blocks
 
@@ -70,3 +70,4 @@ So, for example, a transaction that has 2 inputs, one of 5 btc with 10 confirmat
 [[!tag "Vocabulary"]]
 [[!tag "Mining"]]
 [[de:Transaktionsgebühren]]
+3.1: [Default fee dropped in v0.8.2](http://bitcointalk.org/index.php?topic=219504.0)
