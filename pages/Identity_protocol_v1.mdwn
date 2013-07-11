@@ -53,7 +53,7 @@ An implementation of [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fid
 ##Creating a SIN
 
 1. Prefix = 0x18
-1. SIN_Type = {0x01  0x02  0x11  0x12 -- See below for discussion of SIN types.
+1. SIN_Type = {0x01  0x02  0x11 -- See below for discussion of SIN types.
 1. MD = Hash160(MPK)
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
 1. Hyphenate SIN for easier human reading
