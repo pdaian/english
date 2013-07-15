@@ -51,27 +51,11 @@ An **output** contains instructions for sending bitcoins. **Value** is the numbe
 To verify that inputs are authorized to collect the values of referenced outputs, Bitcoin uses a custom Forth-like [[scripting|script]] system. The input's scriptSig and the *referenced* output's scriptPubKey are evaluated (in that order), with scriptPubKey using the values left on the stack by scriptSig. The input is authorized if scriptPubKey returns true. Through the scripting system, the sender can create very complex conditions that people have to meet in order to claim the output's value. For example, it's possible to create an output that can be claimed by anyone without any authorization. It's also possible to require that an input be signed by ten different keys, or be redeemable with a password instead of a key.
 
 ### Types of Transaction
-Bitcoin currently only creates three different scriptSig/scriptPubKey pairs. These are described below.
+Bitcoin currently creates two different scriptSig/scriptPubKey pairs. These are described below.
 
 It is possible to design more complex types of transactions, and link them together into cryptographically enforced agreements. These are known as [[Contracts]].
 
-#### Transfer to IP address
-
-	scriptPubKey: <pubKey> OP_CHECKSIG
-	scriptSig: <sig>
-The sender gets the public key when talking to the recipient over IP. When redeeming coins that have been sent to an IP address, the recipient provides only a signature. The signature is checked against the public key in scriptPubKey.
-
-Checking process:
-
-
-|Stack |Script |Description 
-|---|---|---
-|Empty.|<sig><pubKey>OP_CHECKSIG|scriptSig and scriptPubKey are combined.
-|<sig><pubKey>|OP_CHECKSIG|Constants are added to the stack.
-|true|Empty.|Signature is checked for top two stack items.
-
-
-#### Transfer to Bitcoin address
+#### Pay-to-PubkeyHash
 
 	scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 	scriptSig: <sig> <pubKey>
@@ -90,6 +74,12 @@ Checking process:
 |<sig><pubKey>|OP_CHECKSIG|Equality is checked between the top two stack items.
 |true|Empty.|Signature is checked for top two stack items.
 
+
+#### Pay-to-ScriptHash
+
+[[!template id=stub]]
+
+See also [[BIP_0016]]
 
 #### Generation
 
