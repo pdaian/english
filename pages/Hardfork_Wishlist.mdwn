@@ -1,18 +1,18 @@
-This page is to record changes to Bitcoin that might be desirable, but that will require a "hard" block-chain split (everybody must upgrade, old software will not accept blocks/transactions created with the new [[rules|Protocol_rules]], considering them to be [[invalid blocks|Invalid_block]]).
+The **Hardfork Wishlist** is to record changes to Bitcoin that might be desirable, but that will require a "hard" block-chain split (everybody must upgrade, old software will not accept blocks/transactions created with the new [[rules|Protocol_rules]], considering them to be [[invalid blocks|Invalid_block]]).
 
 This page is *not* for changes that can be accomplished in way that is compatible with old software (for example, by making transactions [[nonstandard|Nonstandard_block]] or by [[discouraging blocks|Discouraged_block]]).
 
-####Changes to hard-coded limits
+## Changes to hard-coded limits 
 
 * Replace hard-coded maximum block size (1,000,000 bytes) and maximum number of signature operations per block (20,000) with ???.
 
-####Major structural changes
+## Major structural changes
 
 * "Flip the chain", instead of committing to new transactions, commit to the summaries of open transactions: [(1)](https://bitcointalk.org/index.php?topic=505.0) [(2)](https://bitcointalk.org/index.php?topic=21995.0) [(3)](https://en.bitcoin.it/wiki/User:DiThi/MTUT#PROPOSAL:_Merkle_tree_of_unspent_transactions_.28MTUT.29.2C_for_serverless_thin_clients_and_self-verifiable_prunned_blockchain.) [(4)](https://bitcointalk.org/index.php?topic=88208.0)
 * Increased efficiency for merged mining: restructure the primary header to make the bitcoin specific data non-mandatory. (e.g. the block chain specific stuff would go into second header connected by a header tree), making the primary headers pure timestamps and nonces.
 * Switch to block hashing algorithm secure against block withholding attacks.
 
-####Transaction behavior changes
+## Transaction behavior changes
 
 * Improved signature types to allow for partial malleability of outputs.  (e.g. make it easier to add a fee onto someone elses transaction, or to take fees from a transaction without outputs set aside for that putpose)
 * Elimination of output scripts: all transactions pay-to-scripthash, probably with a single byte indicating the scripthash type.  Other than reducing effective output script secrecy (which is not possible without OP_EVAL anyways) this is believed to be costless, and the secrecy can be recovered with recursive OP_EVAL. The motivation here is that data in outputs is far more expensive than inputs because some outputs may be never prunable, and pay-to-scripthash minimizes output size without harming total size.
@@ -20,24 +20,24 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * Allow additional inputs to generation transactions
 * Add new signature hashtype to include value of TxOut being spent, in the hash to be signed.  Doing this would remove the requirement that offline signing devices be sent all supporting transactions with the transaction-to-be-signed, just to confirm the transaction fee.
 
-####Cryptographic changes
+## Cryptographic changes
 
 * Pervasive ECC public key-recovery to reduce transaction sizes (can be done partially without breaking compatibility completely)
 * [Ed25519](http://ed25519.cr.yp.to/) (variant*) for much faster validation operations. (variant because the normal way Ed25519 is specified is not key recovery compatible)
 * Support for a post-quantum signature scheme. [Lamport signatures](http://en.wikipedia.org/wiki/Lamport_signature) have nice intuitive security properties, but it and all other similar schemes have extreme space requirements that would require structural changes to the blockchain to accommodate, (e.g. flip-chain+paytoscripthash+extensive pruning). Additional signature types could be kludged into the existing system with script extensions but would be better supported natively.
 
-####Currency changes
+## Currency changes
 *Please don't list anything here which would significantly change the committed overall economics of the system, it's safe to assume anything with significant economic impact will _never_ be changed in Bitcoin (6.1), because such changes would undermine the trust people have in the system, though they may form the basis of an interesting [[alternative_chain]].
 
 * Increase currency divisibility.
 
-####Navel gazing / Protocol housekeeping
+## Navel gazing / Protocol housekeeping
 
 * Byte order consistency (big endian)
 * Eliminate redundancies in the variable length integer encodings, possibly switch to a standard.
 * Avoiding hashes covering malleable fields
 
-####Bug fixes
+## Bug fixes
 
 * CHECKMULTISIG popping one-too-many items off the stack
 * Difficulty adjustment periods should overlap (prevent potential 'timejacking') Note: An ideal adjustment algorithm would ensure there is no easy dispute on "next target" for any block. Eg, it should not be possible for MinerX to set his block time 2 hours in the future to achieve a slightly higher difficulty and win any same-block-height race by default.
