@@ -1,0 +1,12 @@
+## Adding IPv6
+Support for IPv6 is a very important transition, both for TOR, and for general internet connectivity.
+
+* In Oct 2012, support for TOR clients connecting to relays as well as relays publishing IPv6 addresses and accepting clients connecting over IPv6 had been implemented.
+* By Jan 2013, support for exiting to IPv6 destinations had been implemented.
+
+Please see the [[https://trac.torproject.org/projects/tor/wiki/org/roadmaps/Tor/IPv6 TOR on IPv6 roadmap]] for additional details regarding TOR and IPv6.
+
+Using [IPv6-test.com](http://ipv6-test.com), I've tested for accessibility to each provider's homepage via IPv6. The following is proposed for satisfying a **yes** listing critera:
+
+* [IPv6-test.com](http://ipv6-test.com/validate.php) must report a valid AAAA record for provider's homepage.
+* [IPv6-test.com](http://ipv6-test.com/validate.php) must be able to load the provider's homepage via IPv6.
