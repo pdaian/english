@@ -35,6 +35,14 @@ SIN_Type 0x02
 
 Type-2 SINs may be generated at any time, without network activity, much like bitcoin addresses.
 
+##Creating a SIN
+
+1. Prefix = 0x18
+1. SIN_Type =   [0x02 ](0x01) -- See below for discussion of SIN types.
+1. MD = Hash160(MPK)
+1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
+1. Hyphenate SIN for easier human reading
+
 ##Creating sacrifice transactions
 
 Creation cost is attached to decentralized identity by means of sacrificing a small amount of value.
@@ -49,14 +57,6 @@ An implementation of [Announce/Commit Sacrifices](https://en.bitcoin.it/wiki/Fid
 	1. no more than 1000 bytes in size
 1. Create, sign and broadcast transaction T1
 	1. must include OP_RETURN serialized(T2) output as last txout
-
-##Creating a SIN
-
-1. Prefix = 0x18
-1. SIN_Type =   [0x02 ](0x01) -- See below for discussion of SIN types.
-1. MD = Hash160(MPK)
-1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
-1. Hyphenate SIN for easier human reading
 
 ##Validating the root identity information
 
