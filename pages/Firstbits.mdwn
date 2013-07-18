@@ -18,6 +18,12 @@ This is especially true for vanity addresses, where they may be "squatted" like 
 Not only is it effectively encouraged by the design of Firstbits, but the creator himself is known to have squatted numerous identifiers in this way.
 This affects all Bitcoin users, even without their consent to Firstbits.
 
+### Most good names were rapidly snatched up
+The near zero cost of producing many firstbits addresses encouraged people to go out and mass register whole dictionaries of names. Firstbits addresses cannot be securely transferred because the original party might retain a copy of the private key, so many of these names are likely forever useless, and new firstbits users often have to settle for longer names.
+
+### Vulnerable to confusion
+Because firstbits identifiers are short and entered manually it's easy to make a typo or a misreading which gives you another valid firstbits address.  A malicious party can intentionally and very cheaply register all the common typos around a popular firstbits address. Normal Bitcoin addresses contain a 32-bit checksum to make typos nearly impossible, but firstbit addresses can have no such protection. As usual for Bitcoin misdirected funds cannot be recovered. The need to use longer versions of short names such as "1baseballs" instead of "1baseball"— which may or may not be the same address depending on if another "1baseball" was used first— further increases the risk of error.
+
 ### Contradicts design of Bitcoin
 Bitcoin was designed such that addresses should only be used once, for a single transaction.
 Firstbits, by contrast, encourages people to find and use a single address for multiple transactions.
@@ -33,6 +39,9 @@ Thus, even light nodes are required to store an eternally, rapidly growing index
 SPV nodes, which download data only as they require it for their own wallet's maintenance, never see most transactions and cannot build the Firstbits index at all.
 This means that it is impossible to support Firstbits in SPV nodes.
 Eventually, all Bitcoin clients will likely use SPV as an initialization state, which makes it additionally confusing for end users.
+
+### Encourages the use of centralized services
+Because of the cost and storage of creating and maintaining a separate index for firstbits queries an otherwise secure SPV user may feel pressured to use a centralized service to resolve firstbits prefixes given to him by other parties. There are multiple centralized firstbits resolution services already. If a resolution service is compromised and returns wrong results funds will be sent to the wrong destinations.
 
 ## See also
 
