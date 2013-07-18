@@ -23,6 +23,11 @@ SPV nodes, which download data only as they require it for their own wallet's ma
 This means that it is impossible to support Firstbits in SPV nodes.
 Eventually, all Bitcoin clients will likely use SPV as an initialization state, which makes it additionally confusing for end users.
 
+### Contradicts design of Bitcoin
+Bitcoin was designed such that addresses may only be used once, for a single transaction.
+Firstbits, by contrast, encourages people to find and use a single address for multiple transactions.
+This breaks numerous assumptions of the Bitcoin system (to be addressed on another page).
+
 ### Transaction spam
 Firstbits effectively encourages its users to spam the blockchain with a dummy send to their address, in order to get the shortest possible firstbits before anyone else.
 This is especially true for vanity addresses, where they may be "squatted" like domain names in hopes of selling them to a trademark or obvious company/person they represent.
