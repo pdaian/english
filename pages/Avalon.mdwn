@@ -206,14 +206,8 @@ you need do this by yourself.  removing F1 will not make the usb hub stop workin
 	rm -f file.bin file2.bin
 
 ## P2Pool Operation with Avalon
-There is an /avalon branch Forrest committed to the p2pool github repository. Make sure that is checked out.
 
-Next, the following option may need to be passed to Avalon's cgminer:
-	**--fix-protocol**: Do not redirect to a different getwork protocol (eg. stratum)
-
-The current /avalon branch from Forrest is likely now functional. Please test and report your findings to the IRC channel.
-
-**NOTE**: The best performance the small handful of users who got this working have reported is still about 25-30% DOA against P2Pool (versus the usual DOA of 8-15% or so.) So it's close to desired, but be aware that getting things working in this state currently requires command-line skills and the ability to check-out branches from p2pool's git repository. For the moment, your most efficient options are solo-mining with local pool software, or just using one of the online pools.
+Doing anything special is no longer required as of commit 11d63ef66 (which is yet unreleased). Since the recent P2Pool hardfork, dead-on-arrival rates of about 6% are normal, close to normal GPU rates (1-2%), so mining is nearly as efficient as solo mining.
 
 ## About [usb 1-1: clear tt 1 (8030) error -71]
 	Not all 703n have this problem. ignore this section if you never meet this error
