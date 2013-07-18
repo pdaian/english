@@ -9,8 +9,24 @@ Unlike Bitcoin addresses, firstbits are deemed assigned in a **case-insensitive*
 The firstbits of the very first address to be used by [[Satoshi]] in the [[genesis_block]] of the [[block_chain]] will have been **"1"**.
 
 ##Criticism
-Firstbits is generally considered to be a bad idea because it encourages transaction spam.
-This position is held by most, if not all, of Bitcoin developers.
+Firstbits is considered by many, including most (if not all) Bitcoin developers to be a bad idea.
+This is for a number of reasons:
+
+### Increases storage requirements of light nodes
+Firstbits requires nodes to keep an unpruned index of every address ever used, which means it will grow forever.
+Note that all existing indexes required for fully-verifying Bitcoin nodes may be pruned.
+Since Bitcoin is designed so that every transaction should have a unique address, this index will also grow for every transaction.
+Thus, even light nodes are required to store an eternally, rapidly growing index for as long as Bitcoin (or at least Firstbits) is used.
+
+### Incompatible with SPV nodes
+SPV nodes, which download data only as they require it for their own wallet's maintenance, never see most transactions and cannot build the Firstbits index at all.
+This means that it is impossible to support Firstbits in SPV nodes.
+Eventually, all Bitcoin clients will likely use SPV as an initialization state, which makes it additionally confusing for end users.
+
+### Transaction spam
+Firstbits effectively encourages its users to spam the blockchain with a dummy send to their address, in order to get the shortest possible firstbits before anyone else.
+This is especially true for vanity addresses, where they may be "squatted" like domain names in hopes of selling them to a trademark or obvious company/person they represent.
+Not only is it effectively encouraged by the design of Firstbits, but the creator himself is known to have squatted numerous identifiers in this way.
 
 ## See also
 
