@@ -13,13 +13,10 @@ Firstbits is considered by many, including most (if not all) Bitcoin developers 
 This is for a number of reasons:
 
 ### Blockchain bloat
-Firstbits effectively encourages its users to bloat the blockchain with a dummy send to their address, in order to get the shortest possible firstbits before anyone else.
-This is especially true for vanity addresses, where they may be "squatted" like domain names in hopes of selling them to a trademark or obvious company/person they represent.
-Not only is it effectively encouraged by the design of Firstbits, but the creator himself is known to have squatted numerous identifiers in this way.
-This affects all Bitcoin users, even without their consent to Firstbits.
+Firstbits' design encourages its users to bloat the blockchain with a dummy self-send transactions in order to get the shortest possible firstbits before anyone else. The creator of firstbits himself is known to have mass registered numerous identifiers to get many short addresses before other people. The transaction churn created by firstbits registrations increases the size of the blockchain and make operating Bitcoin nodes more expensive and cause them to take longer to perform their initial synchronization. This affects all Bitcoin users, even without their consent to Firstbits.
 
-### Most good names were rapidly snatched up
-The near zero cost of producing many firstbits addresses encouraged people to go out and mass register whole dictionaries of names. Firstbits addresses cannot be securely transferred because the original party might retain a copy of the private key, so many of these names are likely forever useless, and new firstbits users often have to settle for longer names.
+### Most good names have already been snatched up
+The near zero cost of producing many firstbits addresses encouraged people to go out and mass register whole dictionaries of names. This is especially true for vanity addresses, where they may be "squatted" like domain names in hopes of selling them to a trademark or obvious company/person they represent. But since Firstbits addresses cannot be securely transferred to a new owner— because the original party might retain a copy of the private key— many of these names are likely forever useless. New firstbits users often have to settle for longer names.
 
 ### Vulnerable to confusion
 Because firstbits identifiers are short and entered manually it's easy to make a typo or a misreading which gives you another valid firstbits address.  A malicious party can intentionally and very cheaply register all the common typos around a popular firstbits address. Normal Bitcoin addresses contain a 32-bit checksum to make typos nearly impossible, but firstbit addresses can have no such protection. As usual for Bitcoin misdirected funds cannot be recovered. The need to use longer versions of short names such as "1baseballs" instead of "1baseball"— which may or may not be the same address depending on if another "1baseball" was used first— further increases the risk of error.
