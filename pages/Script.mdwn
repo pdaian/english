@@ -262,25 +262,6 @@ With some software changes such transactions can be used as a way to donate fund
 
 Anyone-Can-Spend outputs are currently considered non-standard, and are not relayed on the P2P network.
 
-### Transaction with a message
-
-It's possible to add arbitrary data to any transaction by just adding some data along with OP_DROP. Scripts are limited to 10,000 bytes and 201 instructions, and each individual instruction/value is limited to 520 bytes.
-
-	scriptPubKey: <message> OP_DROP <pubKey> OP_CHECKSIG
-	scriptSig: <sig>
-
-
-
-|Stack |Script |Description 
-|---|---|---
-|Empty.|<sig><message>OP_DROP <pubKey>OP_CHECKSIG|
-|<sig>|<message>OP_DROP <pubKey>OP_CHECKSIG|scriptSig added to the stack.
-|<sig><message>|OP_DROP <pubKey>OP_CHECKSIG|The message has been put.
-|<sig>|<pubKey>OP_CHECKSIG|Top stack item has been removed.
-|<sig><pubKey>|OP_CHECKSIG|Checking signature against the public key.
-|true|Empty.|Stack holds the value of signature check now.
-
-
 ### Transaction puzzle
 
 Transaction a4bfa8ab6435ae5f25dae9d89e4eb67dfa94283ca751f393c1ddc5a837bbc31b is an interesting puzzle.
