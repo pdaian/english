@@ -35,6 +35,12 @@ SIN_Type 0x02
 
 Type-2 SINs may be generated at any time, without network activity, much like bitcoin addresses.
 
+##Definitions
+
+MPK: Master Public Key.  ECDSA, using same curve as bitcoin.
+Hash160: ripemd160(sha256(data))
+base58_encode_check: see bitcoin source code
+
 ##Creating a SIN
 
 1. Prefix = 0x18
