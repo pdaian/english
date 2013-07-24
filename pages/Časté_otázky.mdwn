@@ -196,8 +196,6 @@ This may sound rather foreboding, so bear in mind that introduction of new and p
 
 10 minutes is the average time taken to find a block. It can be significantly more or less time than that depending on luck; 10 minutes is simply the average case. 
 
-You can see how long all other recent transactions have taken here: [BitcoinStats.org](http://bitcoinstats.org/). 
-
 [[Blocks]] (shown as "confirmations" in the GUI) are how the Bitcoin achieves consensus on who owns what. Once a block is found everyone agrees that you now own those coins, so you can spend them again. Until then it's possible that some network nodes believe otherwise, if somebody is attempting to defraud the system by reversing a transaction. The more confirmations a transaction has, the less risk there is of a reversal. Only 6 blocks or 1 hour is enough to make reversal computationally impractical. This is dramatically better than credit cards which can see chargebacks occur up to three months after the original transaction!
 
 Ten minutes was specifically chosen by [[Satoshi]] as a tradeoff between propagation time of new blocks in large networks and the amount of work wasted due to chain splits. For a more technical explanation, see Satoshi's [original technical paper](http://www.bitcoin.org/bitcoin.pdf).
