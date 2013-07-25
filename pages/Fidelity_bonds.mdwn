@@ -28,6 +28,16 @@ The proof of the sacrifice is then two transactions: the proof the announcement 
 
 Coinbase transactions are unique in that they can't be spent for 100 blocks, thus solving the problem of proving a transaction output was made public prior to it being possible to spend that output in a single transaction. In addition coinbase transactions can be created anonymously without linking the transaction to any other transaction provided that the creator has the ability to mine anonymously. (or have someone else do so on their behalf)
 
+A proof for a coinbase txout is particularly short if the txout is the last txout and the script is meant to be unspendable. SHA256 midstate compression can then be used to prove the committed digest, and that the last opcode was OP_RETURN; it is not possible for a script to return true unless without the last opcode being executed. Fortunately the anyone-can-spend version can-not be proven so easily - consider the following txout fragment:
+
+	<SHA256 midstate> <scriptPubKey length> <digest> <nLockTime>
+
+The problem is the fragment could actually be part of this scriptPubkey:
+
+	<pubkey> OP_CHECKSIGVERIFY OP_PUSHDATA (<scriptPubKey length> <digest>)
+
+In reality this isn't a true sacrifice. The only way around this problem is if the proven data is greater than the maximum pushdata length allowed, 520 bytes, which undesirably depends on a constant whose value may be changed in a future hard-fork.
+
 ## Passports
 
 This wiki combats spam, while still allowing for users to sign up anonymously, by requiring users to pay a small amount of Bitcoins to the wiki before editing privileges are granted. Creating large numbers of "sock-puppets" to add spam content to articles is thus made expensive. The fee approach can be generalized with the concept of a Passport, first proposed by Mike Hearn, (6.1) tied to the users identity. Wikis, forums, webmail and other services can then create blacklists of users who violate the rules of the services, with those blacklists tied to passports.
