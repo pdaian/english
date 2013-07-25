@@ -24,21 +24,25 @@ Finally the inner transaction becomes valid when the [[nLockTime]] is reached. B
 
 The proof of the sacrifice is then two transactions: the proof the announcement transaction exists in the chain, and the proof that the inner sacrifice exists in the chain. (possibly with proof of the inner sacrifice inputs to prove what fees were actually paid)
 
+### Coinbase TxOut Sacrifices
+
+Coinbase transactions are unique in that they can't be spent for 100 blocks, thus solving the problem of proving a transaction output was made public prior to it being possible to spend that output in a single transaction. In addition coinbase transactions can be created anonymously without linking the transaction to any other transaction provided that the creator has the ability to mine anonymously. (or have someone else do so on their behalf)
+
 ## Passports
 
-This wiki combats spam, while still allowing for users to sign up anonymously, by requiring users to pay a small amount of Bitcoins to the wiki before editing privileges are granted. Creating large numbers of "sock-puppets" to add spam content to articles is thus made expensive. The fee approach can be generalized with the concept of a Passport, first proposed by Mike Hearn, (5.1) tied to the users identity. Wikis, forums, webmail and other services can then create blacklists of users who violate the rules of the services, with those blacklists tied to passports.
+This wiki combats spam, while still allowing for users to sign up anonymously, by requiring users to pay a small amount of Bitcoins to the wiki before editing privileges are granted. Creating large numbers of "sock-puppets" to add spam content to articles is thus made expensive. The fee approach can be generalized with the concept of a Passport, first proposed by Mike Hearn, (6.1) tied to the users identity. Wikis, forums, webmail and other services can then create blacklists of users who violate the rules of the services, with those blacklists tied to passports.
 
 The advantage of fidelity bonds in that application over simply charging fees is re-usability of an identity across multiple services, as well as the neutrality: if the value required to create the passport provably does not go to the person adding the passport to a blacklist, there is no incentive to do so to collect new sign-up fees.
 
 ## Financial Services
 
-Fidelity bonds can be used to make financial fraud unprofitable. For instance one early proposal (6.1) was to use fidelity bonds - called "Trusted identities" by the proposal's author - to create decentralized [[green addresses|Green_address]]. Someone wishing for their transactions to be accepted without confirmations would first purchase a fidelity bond of some value tied to their identity. Someone determining if they should accept a payment without confirmations can check that the bond was sufficiently expensive to make it unprofitable for the sender to commit fraud. If the sender does commit fraud by double-spending the payment, the recipient can prove that fraud to the world by providing both transactions spending the same inputs. This proof is added to some sort of blacklisted, centralized or decentralized, which later recipients can consult to determine if the fidelity bond is now invalidated.
+Fidelity bonds can be used to make financial fraud unprofitable. For instance one early proposal (7.1) was to use fidelity bonds - called "Trusted identities" by the proposal's author - to create decentralized [[green addresses|Green_address]]. Someone wishing for their transactions to be accepted without confirmations would first purchase a fidelity bond of some value tied to their identity. Someone determining if they should accept a payment without confirmations can check that the bond was sufficiently expensive to make it unprofitable for the sender to commit fraud. If the sender does commit fraud by double-spending the payment, the recipient can prove that fraud to the world by providing both transactions spending the same inputs. This proof is added to some sort of blacklisted, centralized or decentralized, which later recipients can consult to determine if the fidelity bond is now invalidated.
 
 ## References
 
 
 3.1: [[https://bitcointalk.org/index.php?topic=140711.msg1498806#msg1498806]]  
 4.1: [Purchasing fidelity bonds by provably throwing away bitcoins](https://bitcointalk.org/index.php?topic=134827.0)  
-5.1: [Creating Bitcoin passports using sacrifices](https://bitcointalk.org/index.php?topic=140711.0)  
-6.1: [Trusted identities](http://sourceforge.net/mailarchive/message.php?msg_id=29185108)
+6.1: [Creating Bitcoin passports using sacrifices](https://bitcointalk.org/index.php?topic=140711.0)  
+7.1: [Trusted identities](http://sourceforge.net/mailarchive/message.php?msg_id=29185108)
 
