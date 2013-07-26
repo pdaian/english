@@ -68,6 +68,11 @@ This isn't an exhaustive list of news but if something of note appears, i'll try
 
 ## Websocket / API Changes
 
+**26/07/2013 API Change**
+
+For anyone calling ticker/etc directly from https://mtgox.com/api/* or https://mtgox.com/code/* now you are going through a proxy, and not directly to MtGox anymore. It is strongly suggested to switch to data.mtgox.com
+
+
 **08/07/2013 Websocket Changes**
 
 A new field has been added to the user_order broadcast. The field is called 'reason'. This field tells you exactly why an order has been removed from the order book. These are:
