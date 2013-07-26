@@ -7,7 +7,7 @@ Hardness goes from 0 (extremely soft) to 10 (completely non-reversible).
 style="text-align: center; background-color: #f0f0ff;"|Method |Currencies |Hardness |Notes
 |---|---|---
 |[[Bank_wire]]|Various |10 |Very good match for trading bitcoin.  Quick (but expensive) transfers that are not reversible. (Note: be sure the wire has fully cleared. Also can't hurt to confirm with your bank that they won't yank it upon sender request without asking your permission.)
-|Euro SEPA transfer |EUR |8 |Usually free wire transfer between European banks. Cleared in one working day after the transaction is done. Unauthorized transfers can be reversed. One trader got his bank account closed and an entry in the database of financially unreliable people after receiving a fraudulent transfer.
+|Euro [SEPA](https://en.wikipedia.org/wiki/Single_Euro_Payments_Area)transfer |EUR |8 |Usually free wire transfer between European banks. Cleared in one working day after the transaction is done. Unauthorized transfers can be reversed. One trader got his bank account closed and an entry in the database of financially unreliable people after receiving a fraudulent transfer.
 |[[OKPay]]|USD, EUR, GBP, RUB, CHF, CZK, AUD, CAD, JPY etc |10 |Simple Bitcoin processing service. Completely non-reversible. Support of 19 world currencies.
 |[[Perfect_Money]]|EUR, USD, XAU |10 |Very good match for trading bitcoin. Absolutely no chargebacks. Funding of Perfect Money e-currency is possible via Bank Transfer and using other methods via third-party exchangers. There is built-in Credit Exchange inside Perfect Money.
 |Webmoney |USD, RUB, BYR, EUR, XAU |10 |Very good match for trading bitcoin. Requires funding by bank wire though, which may be expensive for small amounts.
@@ -24,7 +24,7 @@ style="text-align: center; background-color: #f0f0ff;"|Method |Currencies |Hardn
 |AliPay |CNY |n/a |Though reports of reversed AliPay payments can be found on the Internet, the operator of [[Bitcoinica]]asserts that AliPay transaction are "non-reversible" (1.2).
 |[[UKash]]|many |n/a |A cash-based voucher system. 
 |[[CashU]]|many |n/a |A cash-based prepaid card / redeemable code.
-|[[TransferWise]]|GBP to EUR |? |
+|[[TransferWise]]|many combinations |? |Presumably if the sending transaction got reversed, TransferWise could and would reverse the counterparty transaction too.
 |Neteller |? |? |
 |[[MoneyPak]]|USD |9 |Moneypaks are reversible if purchased with a stolen credit card due to a cashier's incompetence in allowing the purchase. See the paypal row for risk when using paypal. There is less than a handful of first-hand reports on the entire internet where the party who (1) redeemed a MoneyPak number to their debit card (2) refused to provide a copy of the receipt used to purchase the Moneypak to their debit card company when they asked and (3) never received the funds after vigilantly pressing the card company to disburse the funds (1.3) (1.4) (1.5) (1.6) (1.7). Ask for a copy of the receipt when accepting MP to protect yourself from this virtually non-existent risk of loss. Alternatively, lower the risk to zero by walking to an ATM and withdrawing the cash that was loaded.
 |Money Order |Many currencies |5 |A money order can be lost or stolen and there are procedures for reporting that.  Losses could occur even weeks after the check has cleared (1.8).
@@ -32,7 +32,7 @@ style="text-align: center; background-color: #f0f0ff;"|Method |Currencies |Hardn
 |Bank ACH |USD |5 |Sometimes referred to a type of ACH transaction, a direct deposit. Though not very easily, ACH can actually be clawed back if the transaction was the result of fraud.
 |[[Popmoney]]ACH |USD |5 |Since Popmoney transfers occur via ACH, Popmoney will reverse payments if the funds were the result of fraud. 
 |[[ING_Person2Person]]|USD |5 |Since Person2Person transfers occur via ACH, ING will reverse payments if the funds were the result of fraud. 
-|[[Pingit]]|UK |5 |Barclays will reverse payments if the funds were the result of fraud. 
+|UK [FPS](https://en.wikipedia.org/wiki/Faster_Payments_Service), [BACS](https://en.wikipedia.org/wiki/BACS), [Pingit](https://en.wikipedia.org/wiki/Barclays_Pingit), [PYC](http://www.natwest.com/personal/mobile-phone-banking/g2/pay-your-contacts.ashx)|GBP |8 |Banks can reverse payments if the funds were the result of fraud; this includes the sender claiming their account was stolen.
 |Interac e-Transfer |CAD |3 |A funds transfer service between personal and business accounts at participating Canadian financial institutions.  In cases of identity theft the transfer may be reversed, especially if both parties are with the same financial institution (1.9).
 |Chase QuickPay |USD |3 |Chase has reversed legitimate transactions as the result of anti-fraud measures (1.10)requiring the sender to be trusted to re-pay.  The sender can also request a reversal after submitting an affidavit alleging that fraud occurred.
 |Amazon Gift Card |various |? |4.	Fraud.	Amazon.com will have the right to close customer accounts and bill alternative forms of payment if a fraudulently obtained Amazon.com Gift Card is redeemed and/or used to make purchases on amazon.com or any of its affiliated websites set forth above. (http://www.amazon.com/gp/gc)
