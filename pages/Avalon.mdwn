@@ -254,10 +254,9 @@ Doing anything special is no longer required as of commit 11d63ef66 (which is ye
 	--avalon-temp <arg> Set avalon target temperature (default: 50)
 
 * Add more overclock options (325, 350, 375)
-* **Two new options on webui for the new batch3 machine
-	Target Temperature(--avalon-temp): The fan will goes to full speed when reach this temperature
-	Overheat Cut Off Temperature(--avalon-cutoff):  The avalon will idle chips when reach this temperature
-	**The batch3 machine have some hardware improvment, one is the temperature sensor was mounted on PCB. (no long glue to the heatsink) so the temperature will be higher compare to the old design (temperature tip), so by default we set the Target Temperature to 70℃ and Overheat Cut Off Temperature to 90℃, the new temperature sensor chip will be ~20℃ higher compare to the termperature tip when avalon work at same condition.**
+* **Two new options on webui for the new batch3 machine**,  **The batch3 machine have some hardware improvment, one is the temperature sensor was mounted on PCB. (no long glue to the heatsink) so the temperature will be higher compare to the old design (temperature tip), so by default we set the Target Temperature to 70℃ and Overheat Cut Off Temperature to 90℃, the new temperature sensor chip will be ~20℃ higher compare to the termperature tip when avalon work at same condition.**
+	* Target Temperature(--avalon-temp): The fan will goes to full speed when reach this temperature
+	* Overheat Cut Off Temperature(--avalon-cutoff):  The avalon will idle chips when reach this temperature
 
 ## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130607/ 20130607]
 
