@@ -8,7 +8,7 @@ On-chain transactions have disadvantages that make them unsuitable for some appl
 
 ### Speed
 
-On-chain transactions take some time to accumulate enough [[confirmations|Confirmation]] to ensure that they can-not be reversed; accepting a transaction [[without any confirmations|Zero-Conf_Transactions]] is potentially risky. Confirmations take time and the time they take to accumulate is random. Off-chain transaction systems can record that a transaction has happened immediately, and, subject to the guarantees of the system itself, immediately guarantee it won't be reversed.
+On-chain transactions take some time to accumulate enough [[confirmations|Confirmation]] to ensure that they can-not be reversed; accepting a transaction without any confirmations is potentially risky. Confirmations take time and the time they take to accumulate is random. Off-chain transaction systems can record that a transaction has happened immediately, and, subject to the guarantees of the system itself, immediately guarantee it won't be reversed.
 
 ### Privacy/Anonymity
 
@@ -18,7 +18,7 @@ All on-chain transactions are recorded publicly on the block chain; Bitcoin tran
 
 Miners usually charge [[fees|Transaction_fees]] to confirm a transaction. While currently the demand for transactions is sufficiently low that fees are relatively small, and transactions can often be confirmed for free, for many applications even paying a few cents per transaction is unaffordable. (5.1) In addition Bitcoin currently has a limit of 7 transactions per second, the [[blocksize_limit]]. This limit is related to the [[scalability|Scalability]] of the system as a whole, and one option to achieve higher transaction volumes is to keep the blocksize limit as is and use off-chain transactions for lower-value transactions; with higher volumes fees for transactions done on-chain will rise due to supply and demand.
 
-Currently, [[!img "inputs.png" link=https://inputs.io]] [Inputs.io](https://inputs.io) is the only offchain payment network that provides all three benefits.
+Currently, [[Inputs.io]] is the only offchain payment network that provides all three benefits.
 
 ## Methods
 
@@ -47,7 +47,7 @@ If the communication protocol between client and service is designed correctly f
 ## References
 
 
-5.1: [How to send BitCoins with LOW TX FEE (Not No TX Fee)](https://bitcointalk.org/index.php?topic=156334.0)  
+5.1: [How to send Bitcoins with LOW TX FEE (Not No TX Fee)](https://bitcointalk.org/index.php?topic=156334.0)  
 7.1: [PayPal - Criticism](http://en.wikipedia.org/wiki/PayPal#Criticism)  
 8.1: private communication on IRC (gmaxwell: do you have a writeup somewhere?)  
 9.1: [Satoshi](http://sourceforge.net/mailarchive/message.php?msg_id=30482839)
