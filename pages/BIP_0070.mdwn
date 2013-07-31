@@ -19,36 +19,20 @@ the payment process.
 
 The current, minimal Bitcoin payment protocol operates as follows:
 
-1. Customer adds items to an online shopping basket, and decides to pay
-using Bitcoin.
-
-1. Merchant generates a unique payment address, associates it with the
-customer's order, and asks the customer to pay.
-
-1. Customer copies the Bitcoin address from the merchant's web page and pastes
-it into whatever wallet they are using OR follows a bitcoin: link and
-their wallet is launched with the amount to be paid.
-
-1. Customer authorizes payment to the merchant's address and broadcasts the
-transaction through the Bitcoin p2p network.
-
-1. Merchant's server detects payment and after sufficient transaction
-confirmations considers the transaction final.
+1. Customer adds items to an online shopping basket, and decides to pay using Bitcoin.
+1. Merchant generates a unique payment address, associates it with the customer's order, and asks the customer to pay.
+1. Customer copies the Bitcoin address from the merchant's web page and pastes it into whatever wallet they are using OR follows a bitcoin: link and their wallet is launched with the amount to be paid.
+1. Customer authorizes payment to the merchant's address and broadcasts the transaction through the Bitcoin p2p network.
+1. Merchant's server detects payment and after sufficient transaction confirmations considers the transaction final.
 
 This BIP extends the above protocol to support several new features:
 
-1. Human-readable, secure payment destinations-- customers will be asked to
-authorize payment to "website.com" instead of an inscrutable, 34-character
+1. Human-readable, secure payment destinations-- customers will be asked to authorize payment to "website.com" instead of an inscrutable, 34-character
 bitcoin address.
 
-1. Secure proof of payment, which the customer can use in case of a
-dispute with the merchant.
-
-1. Payment received messages, so the customer knows immediately that the
-merchant has received, and has processed (or is processing) their payment.
-
-1. Refund addresses, automatically given to the merchant by the customer's wallet
-software, so merchants do not have to contact customers before refunding
+1. Secure proof of payment, which the customer can use in case of a dispute with the merchant.
+1. Payment received messages, so the customer knows immediately that the merchant has received, and has processed (or is processing) their payment.
+1. Refund addresses, automatically given to the merchant by the customer's wallet software, so merchants do not have to contact customers before refunding
 overpayments or orders that cannot be fulfilled for some reason.
 
 ##Protocol
@@ -130,16 +114,11 @@ A PaymentRequest is PaymentDetails optionally tied to a merchant's identity:
 When a Bitcoin wallet application receives a PaymentRequest, it must
 authorize payment by doing the following:
 
-1. Validate the merchant's identity and signature using the PKI
-system, if the pki_type is not "none".
-
-1. Validate that the time on the customer's system is before
-PaymentDetails.expires. If it is not, then the payment request
+1. Validate the merchant's identity and signature using the PKI system, if the pki_type is not "none".
+1. Validate that the time on the customer's system is before PaymentDetails.expires. If it is not, then the payment request
 must be rejected.
 
-1. Display the merchant's identity and ask the customer if they would
-like to submit payment (e.g. display the "Common Name" in the first
-X.509 certificate).
+1. Display the merchant's identity and ask the customer if they would like to submit payment (e.g. display the "Common Name" in the first X.509 certificate).
 
 PaymentRequest messages larger than 50,000 bytes should be rejected by
 the merchant's server, to mitigate denial-of-service attacks.
@@ -163,13 +142,9 @@ Payment messages are sent after the customer has authorized payment:
 
 If the customer authorizes payment, then the Bitcoin client:
 
-1. Creates and signs one or more transactions that satisfy (pay in
-full) PaymentDetails.outputs
-
+1. Creates and signs one or more transactions that satisfy (pay in full) PaymentDetails.outputs
 1. Broadcast the transactions on the Bitcoin p2p network.
-1. If PaymentDetails.payment_url is specified, POST a Payment message
-to that URL. The Payment message is serialized and sent as the body
-of the POST request.
+1. If PaymentDetails.payment_url is specified, POST a Payment message to that URL. The Payment message is serialized and sent as the body of the POST request.
 
 Errors communicating with the payment_url server should be communicated to the user.
 
