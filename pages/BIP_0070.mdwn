@@ -111,9 +111,7 @@ A PaymentRequest is PaymentDetails optionally tied to a merchant's identity:
 When a Bitcoin wallet application receives a PaymentRequest, it must authorize payment by doing the following:
 
 1. Validate the merchant's identity and signature using the PKI system, if the pki_type is not "none".
-1. Validate that the time on the customer's system is before PaymentDetails.expires. If it is not, then the payment request
-must be rejected.
-
+1. Validate that the time on the customer's system is before PaymentDetails.expires. If it is not, then the payment request must be rejected.
 1. Display the merchant's identity and ask the customer if they would like to submit payment (e.g. display the "Common Name" in the first X.509 certificate).
 
 PaymentRequest messages larger than 50,000 bytes should be rejected by
