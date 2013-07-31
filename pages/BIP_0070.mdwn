@@ -115,7 +115,7 @@ When a Bitcoin wallet application receives a PaymentRequest, it must authorize p
 1. Display the merchant's identity and ask the customer if they would like to submit payment (e.g. display the "Common Name" in the first X.509 certificate).
 
 PaymentRequest messages larger than 50,000 bytes should be rejected by
-the merchant's server, to mitigate denial-of-service attacks.
+the wallet application, to mitigate denial-of-service attacks.
 
 ###Payment
 
