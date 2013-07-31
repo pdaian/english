@@ -61,7 +61,7 @@ to specify where refund should be sent.
 </pre>
 
 |amount |Number of satoshis (0.00000001 BTC) to be paid
-|script |a "TxOut" script where payment should be sent. This will normallybe one of the standard Bitcoin transaction scripts (e.g. pubkey OP_CHECKSIG).This is optional to enable future extensions to this protocol that deriveOutputs from a master public key and the PaymentRequest data itself.
+|script |a "TxOut" script where payment should be sent. This will normally be one of the standard Bitcoin transaction scripts (e.g. pubkey OP_CHECKSIG). This is optional to enable future extensions to this protocol that derive Outputs from a master public key and the PaymentRequest data itself.
 
 
 ###PaymentDetails/PaymentRequest
@@ -82,13 +82,13 @@ about the merchant and a digital signature.
     }        
 </pre>
 
-|network |either "main" for payments on the production Bitcoinnetwork, or "test" for payments on test network. If a client receivesa PaymentRequest for a network it does not support it must reject therequest.
-|outputs|one or more outputs where Bitcoins are to be sent. If thesum of outputs.amount is zero, the customer will be asked how much topay, and the bitcoin client may choose any or all of the Outputs (ifthere are more than one) for payment. If the sum of outputs.amount isnon-zero, then the customer will be asked to pay the sum, and thepayment shall be split among the Outputs with non-zero amounts (ifthere are more than one; Outputs with zero amounts shall be ignored).
-|time|Unix timestamp (seconds since 1-Jan-1970) when thePaymentRequest was created.
-|expires|Unix timestamp after which the PaymentRequest should beconsidered invalid.
-|memo|UTF-8 encoded, plain-text (no formatting) note that should bedisplayed to the customer, explaining what this PaymentRequest isfor.
-|payment_url|Secure (usually https) location where a Paymentmessage (see below) may be sent to obtain a PaymentACK.
-|merchant_data |Arbitrary data that may be used by the merchant toidentify the PaymentRequest. May be omitted if the merchant does notneed to associate Payments with PaymentRequest or if they associateeach PaymentRequest with a separate payment address.
+|network |either "main" for payments on the production Bitcoin network, or "test" for payments on test network. If a client receives a PaymentRequest for a network it does not support it must reject the request.
+|outputs|one or more outputs where Bitcoins are to be sent. If the sum of outputs.amount is zero, the customer will be asked how much to pay, and the bitcoin client may choose any or all of the Outputs (if there are more than one) for payment. If the sum of outputs.amount is non-zero, then the customer will be asked to pay the sum, and the payment shall be split among the Outputs with non-zero amounts (if there are more than one; Outputs with zero amounts shall be ignored).
+|time|Unix timestamp (seconds since 1-Jan-1970) when the PaymentRequest was created.
+|expires|Unix timestamp after which the PaymentRequest should be considered invalid.
+|memo|UTF-8 encoded, plain-text (no formatting) note that should be displayed to the customer, explaining what this PaymentRequest is for.
+|payment_url|Secure (usually https) location where a Payment message (see below) may be sent to obtain a PaymentACK.
+|merchant_data |Arbitrary data that may be used by the merchant to identify the PaymentRequest. May be omitted if the merchant does not need to associate Payments with PaymentRequest or if they associate each PaymentRequest with a separate payment address.
 
 
 A PaymentRequest is PaymentDetails optionally tied to a merchant's identity:
@@ -103,13 +103,12 @@ A PaymentRequest is PaymentDetails optionally tied to a merchant's identity:
 </pre>
 
 |payment_details_version |See below for a discussion of versioning/upgrading. 
-|pki_type  |public-key infrastructure (PKI) system being used toidentify the merchant. All implementation should support "none","x509+sha256" and "x509+sha1".
-|pki_data |PKI-system data that identifies the merchant and can beused to create a digital signature. In the case of X.509 certificates,pki_data one or more X.509 certificates (see Certificates sectionbelow).
-|serialized_payment_details |A protocol-buffer serializedPaymentDetails message.
-|signature |digital signature over a hash of the protocol bufferserialized variation of the PaymentRequest message, where signature isa zero-byte array and fields are serialized in numerical order (allcurrent protocol buffer implementations serialize fields in numericalorder), using the public key in pki_data.
+|pki_type  |public-key infrastructure (PKI) system being used to identify the merchant. All implementation should support "none", "x509+sha256" and "x509+sha1".
+|pki_data |PKI-system data that identifies the merchant and can be used to create a digital signature. In the case of X.509 certificates, pki_data one or more X.509 certificates (see Certificates section below).
+|serialized_payment_details |A protocol-buffer serialized PaymentDetails message.
+|signature |digital signature over a hash of the protocol buffer serialized variation of the PaymentRequest message, where signature is a zero-byte array and fields are serialized in numerical order (all current protocol buffer implementations serialize fields in numerical order), using the public key in pki_data.
 
-When a Bitcoin wallet application receives a PaymentRequest, it must
-authorize payment by doing the following:
+When a Bitcoin wallet application receives a PaymentRequest, it must authorize payment by doing the following:
 
 1. Validate the merchant's identity and signature using the PKI system, if the pki_type is not "none".
 1. Validate that the time on the customer's system is before PaymentDetails.expires. If it is not, then the payment request
@@ -132,10 +131,10 @@ Payment messages are sent after the customer has authorized payment:
     }
 </pre>
 
-|merchant_data |copied from PaymentDetails.merchant_data. Merchantsmay use invoice numbers or any other data they require to matchPayments to PaymentRequests.
-|transactions |One or more valid, signed Bitcoin transactions thatfully pay the PaymentRequest
-|refund_to |One or more outputs where the merchant may returnfunds, if necessary.
-|memo |UTF-8 encoded, plain-text note from the customer to themerchant.
+|merchant_data |copied from PaymentDetails.merchant_data. Merchants may use invoice numbers or any other data they require to match Payments to  PaymentRequests.
+|transactions |One or more valid, signed Bitcoin transactions that fully pay the PaymentRequest
+|refund_to |One or more outputs where the merchant may return funds, if necessary.
+|memo |UTF-8 encoded, plain-text note from the customer to the merchant.
 
 If the customer authorizes payment, then the Bitcoin client:
 
@@ -166,7 +165,7 @@ Payment message:
     }
 </pre>
 
-|memo |UTF-8 encoded note that should be displayed to the customergiving the status of the transaction (e.g. "Payment of 1 BTC foreleven tribbles accepted for processing.")
+|memo |UTF-8 encoded note that should be displayed to the customer giving the status of the transaction (e.g. "Payment of 1 BTC for eleven tribbles accepted for processing.")
 
 
 ##Localization
