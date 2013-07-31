@@ -27,13 +27,10 @@ The current, minimal Bitcoin payment protocol operates as follows:
 
 This BIP extends the above protocol to support several new features:
 
-1. Human-readable, secure payment destinations-- customers will be asked to authorize payment to "website.com" instead of an inscrutable, 34-character
-bitcoin address.
-
+1. Human-readable, secure payment destinations-- customers will be asked to authorize payment to "website.com" instead of an inscrutable, 34-character bitcoin address.
 1. Secure proof of payment, which the customer can use in case of a dispute with the merchant.
 1. Payment received messages, so the customer knows immediately that the merchant has received, and has processed (or is processing) their payment.
-1. Refund addresses, automatically given to the merchant by the customer's wallet software, so merchants do not have to contact customers before refunding
-overpayments or orders that cannot be fulfilled for some reason.
+1. Refund addresses, automatically given to the merchant by the customer's wallet software, so merchants do not have to contact customers before refunding overpayments or orders that cannot be fulfilled for some reason.
 
 ##Protocol
 
