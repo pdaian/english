@@ -130,7 +130,7 @@ Payment messages are sent after the customer has authorized payment:
     }
 </pre>
 
-|merchant_data |copied from PaymentDetails.merchant_data. Merchants may use invoice numbers or any other data they require to match Payments to  PaymentRequests.
+|merchant_data |copied from PaymentDetails.merchant_data. Merchants may use invoice numbers or any other data they require to match Payments to  PaymentRequests. Note that malicious clients may modify the merchant_data, so should be authenticated in some way (for example, signed with a merchant-only key).
 |transactions |One or more valid, signed Bitcoin transactions that fully pay the PaymentRequest
 |refund_to |One or more outputs where the merchant may return funds, if necessary.
 |memo |UTF-8 encoded, plain-text note from the customer to the merchant.
@@ -143,7 +143,7 @@ If the customer authorizes payment, then the Bitcoin client:
 
 Errors communicating with the payment_url server should be communicated to the user.
 
-PaymentDetails.payment_url must be secure against man-in-the-middle
+PaymentDetails.payment_url should be secure against man-in-the-middle
 attacks that might alter Payment.refund_to (if using HTTP, it must be
 TLS-protected).
 
