@@ -198,6 +198,11 @@ you need do this by yourself.  removing F1 will not make the usb hub stop workin
 * Move the Fan power from FPGA controller to PDU. reduce the interference.
 * Please DO NOT flash old fpga controller firmware to V1.61 controller board (new batch3 machine). it may make your Avalon not working.
 
+### Issues
+
+* The QFN ft232 chip have soldering problems. if kernel cannot detect the ft232 chip. we should do a re-work
+* The task buffer LED never on.(Should be light when power on. off when cgminer start working).
+
 ## Update FPGA controller firmware (NOT FINISHED/FULL DOCUMENT YET)
 [[Fpga-controller-jtag-pins.png]]
 
