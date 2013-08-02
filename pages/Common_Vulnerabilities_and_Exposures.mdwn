@@ -14,7 +14,7 @@
 | 2012-06-16
 | Bitcoin p2p protocol
 |bgcolor=yellow| DoS<ref name="DoS"/>|bgcolor=yellowMiners (1.7)|Poor miner incentives|(no fix)-->
-|[[CVE-2012-3789|#CVE-2012-3789]]|2012-06-20|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|(Lack of) orphan txn resource limits|bgcolor=lime[98%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-3789)
+|[[CVE-2012-3789|#CVE-2012-3789]]|2012-06-20|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|(Lack of) orphan txn resource limits|bgcolor=lime[99%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-3789)
 |[[CVE-2012-4682|#CVE-2012-4682]]||bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|||bgcolor=lime[97%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-4682.html)
 |[[CVE-2012-4683|#CVE-2012-4683]]|2012-08-23|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Targeted DoS by CPU exhaustion using alerts|bgcolor=lime[97%](http://luke.dashjr.org/programs/bitcoin/files/charts/CVE-2012-4683.html)
 |[[CVE-2012-4684|#CVE-2012-4684]]|2012-08-24|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Network-wide DoS using malleable signatures in alerts|bgcolor=lime[97%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20124684)
@@ -22,11 +22,11 @@
 |[[CVE-2013-2273|#CVE-2013-2273]]|2013-01-30|bitcoind and Bitcoin-Qt|bgcolor=limeExposure (1.3)|bgcolor=yellowEasy|Predictable change output|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132273)
 |[[CVE-2013-2292|#CVE-2013-2292]]|2013-01-30|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=limeHard|A transaction that takes at least 3 minutes to verify|bgcolor=pink[-](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132292)
 |[[CVE-2013-2293|#CVE-2013-2293]]|2013-02-14|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Continuous hard disk seek|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132293)
-|[[CVE-2013-3219|#CVE-2013-3219]]|2013-03-11|bitcoind and Bitcoin-Qt 0.8.0|bgcolor=pinkFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Unenforced block protocol rule|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20133219)
-|[[CVE-2013-3220|#CVE-2013-3220]]|2013-03-11|bitcoind and Bitcoin-Qt|bgcolor=pinkNetsplit (1.4)|bgcolor=limeHard|Inconsistent BDB lock limit interactions|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20133220)
+|[[CVE-2013-3219|#CVE-2013-3219]]|2013-03-11|bitcoind and Bitcoin-Qt 0.8.0|bgcolor=pinkFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Unenforced block protocol rule|bgcolor=yellow[94%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20133219)
+|[[CVE-2013-3220|#CVE-2013-3220]]|2013-03-11|bitcoind and Bitcoin-Qt|bgcolor=pinkNetsplit (1.4)|bgcolor=limeHard|Inconsistent BDB lock limit interactions|bgcolor=yellow[94%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20133220)
 |[[BIP 0034|#BIP-0034]]|2013-03-25|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.8)|Mandatory block protocol update|bgcolor=lime[97%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0034.html)
 |[[BIP 0050|#BIP-0050]]|2013-05-15|All Bitcoin clients|bgcolor=pinkNetsplit (1.4)|bgcolor=pinkImplicit (1.9)|Hard fork to remove txid limit protocol rule|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?50)
-|[[CVE-2013-4627|#CVE-2013-4627]]|2013-06-??|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=yellowEasy|Memory exhaustion with excess tx message data|bgcolor=pink-
+|[[CVE-2013-4627|#CVE-2013-4627]]|2013-06-??|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=yellowEasy|Memory exhaustion with excess tx message data|bgcolor=pink[12%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?50)
 
 
 
@@ -243,7 +243,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2012-06-20
 	<b>Summary:</b> (Lack of) orphan txn resource limits
-	<b>Fix Deployment:</b> 97%
+	<b>Fix Deployment:</b> 99%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.7rc2<br>0.5.0rc1 - 0.5.6rc2<br>0.6.0rc1 - 0.6.0.8rc2<br>0.6.1rc1 - 0.6.2.2 |0.4.7rc3<br>0.5.6rc3<br>0.6.0.9rc1<br>0.6.3rc1
@@ -259,7 +259,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 
 	<b>Summary:</b> 
-	<b>Fix Deployment:</b> 96%
+	<b>Fix Deployment:</b> 97%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.7rc2<br>0.5.0rc1 - 0.5.6rc2<br>0.6.0rc1 - 0.6.0.8rc2<br>0.6.1rc1 - 0.6.2.2 |0.4.7rc3<br>0.5.6rc3<br>0.6.0.9rc1<br>0.6.3rc1
@@ -274,7 +274,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2012-08-23
 	<b>Summary:</b> Targeted DoS by CPU exhaustion using alerts
-	<b>Fix Deployment:</b> 96%
+	<b>Fix Deployment:</b> 97%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.7rc2<br>0.5.0rc1 - 0.5.6rc2<br>0.6.0rc1 - 0.6.0.8rc2<br>0.6.1rc1 - 0.6.2.2 |0.7.0 
@@ -290,7 +290,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2012-08-24
 	<b>Summary:</b> Network-wide DoS using malleable signatures in alerts
-	<b>Fix Deployment:</b> 96%
+	<b>Fix Deployment:</b> 97%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.7rc2<br>0.5.0rc1 - 0.5.6rc2<br>0.6.0rc1 - 0.6.0.8rc2<br>0.6.1rc1 - 0.6.2.2 - 0.6.3rc1 |0.7.0 
@@ -305,7 +305,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-01-11
 	<b>Summary:</b> Remote discovery of node's wallet addresses
-	<b>Fix Deployment:</b> 87%
+	<b>Fix Deployment:</b> 93%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.8rc4<br>0.5.0rc1 - 0.5.7<br>0.6.0rc1 - 0.6.0.10rc4<br>0.6.1rc1 - 0.6.4rc4<br>0.7.0rc1 - 0.7.2 |0.4.9rc1<br>0.5.8rc1<br>0.6.0.11rc1<br>0.6.5rc1<br>0.7.3rc1
@@ -320,7 +320,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-01-30
 	<b>Summary:</b> Predictable change output
-	<b>Fix Deployment:</b> 87%
+	<b>Fix Deployment:</b> 93%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.8rc4<br>0.5.0rc1 - 0.5.7<br>0.6.0rc1 - 0.6.0.10rc4<br>0.6.1rc1 - 0.6.4rc4<br>0.7.0rc1 - 0.7.2 |0.4.9rc1<br>0.5.8rc1<br>0.6.0.11rc1<br>0.6.5rc1<br>0.7.3rc1
@@ -350,7 +350,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-02-14
 	<b>Summary:</b> Continuous hard disk seek
-	<b>Fix Deployment:</b> 87%
+	<b>Fix Deployment:</b> 93%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.7.3rc1 |No fix yet (0.8.0 unaffected)
@@ -366,7 +366,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-03-11
 	<b>Summary:</b> Unenforced block protocol rule
-	<b>Fix Deployment:</b> 91%
+	<b>Fix Deployment:</b> 94%
 
 
 |Bitcoin-Qt<br>bitcoind |0.8.0rc1 - 0.8.0 |0.8.1
@@ -380,7 +380,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-03-11
 	<b>Summary:</b> Inconsistent BDB lock limit interactions
-	<b>Fix Deployment:</b> 87%
+	<b>Fix Deployment:</b> 94%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.9rc1<br>0.5.0rc1 - 0.5.8rc1<br>0.6.0rc1 - 0.6.5rc1<br>0.7.0rc1 - 0.7.3rc1 |0.4.9rc2<br>0.5.8rc2<br>0.6.5rc2<br>0.7.3rc2
@@ -395,7 +395,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-03-25
 	<b>Summary:</b> Mandatory block protocol update
-	<b>Deployment:</b> 96%
+	<b>Deployment:</b> 97%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.7<br>0.5.0rc1 - 0.5.7<br>0.6.0rc1 - 0.6.0.9<br>0.6.1rc1 - 0.6.3 |0.4.8rc1<br>0.5.7rc1<br>0.6.0.10rc1<br>0.6.4rc1
@@ -410,7 +410,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-05-15
 	<b>Summary:</b> Hard fork to remove txid limit protocol rule
-	<b>Deployment:</b> 87%
+	<b>Deployment:</b> 93%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.9rc1<br>0.5.0rc1 - 0.5.8rc1<br>0.6.0rc1 - 0.6.5rc1<br>0.7.0rc1 - 0.7.3rc1 |0.4.9rc2<br>0.5.8rc2<br>0.6.5rc2<br>0.7.3rc2
@@ -421,9 +421,22 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 * [[BIP_0050]]
 
+## CVE-2013-4627
+
+	<b>Date:</b> 2013-06-??
+	<b>Summary:</b> Memory exhaustion with excess tx message data
+	<b>Fix Deployment:</b> 12%
+
+
+|Bitcoin-Qt<br>bitcoind |* - 0.4.9rc3<br>0.5.0rc1 - 0.5.8rc3<br>0.6.0rc1 - 0.6.5rc3<br>0.7.0rc1 - 0.7.3rc3<br>0.8.0rc1 - 0.8.2 |0.4.9rc4<br>0.5.8rc4<br>0.6.5rc4<br>0.7.3rc4<br>0.8.3
+|wxBitcoin |ALL |NONE
+
+
+### References
+
 ##Definitions
 
-A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (46.1).
+A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (48.1).
 
 ##See Also
 
@@ -431,7 +444,7 @@ A critical vulnerability is one that will have disastrous consequences if it is 
 
 ##References
 
-46.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
+48.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
 
 
 [[!tag "Security"]]
