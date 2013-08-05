@@ -191,6 +191,9 @@ you need do this by yourself.  removing F1 will not make the usb hub stop workin
 * New temperature sensors, mounted on PCB.
 * Move the Fan power from FPGA controller to PDU. reduce the interference.
 * Please DO NOT flash old fpga controller firmware to V1.61 controller board (new batch3 machine). it may make your Avalon not working.
+* LEDs
+	Left: Green --> Power-on, Red --> PSU issue, OFF: --> No power 
+	Right: Yellow --> FPGA Buffer empty(no task send out to fpga), OFF --> FPGA Buffer full(means mining)
 
 ### Issues
 
