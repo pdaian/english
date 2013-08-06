@@ -22,6 +22,36 @@ Bit777 Casino's games are using the Mersenne Twister randomizing technology.
 
 * 3 & 5 Reel Slots
 
+##Instant Gamble
+
+Instant Gamble Rules
+
+
+1. Choose % to Gamble instantly on the deposit page [here](click)
+2. Deposit Bitcoins to your Bit777 deposit address [here](click)
+3. If the Gamble is won, the bonus is automatically credited to your account (-1% commission). If the Gamble is lost, the set % is withheld from your deposit
+
+
+NOTE:
+	- The Gamble is active for all consecutive deposits, unless switched off by the user
+	- The maximum Gamble is 1btc (100 credits)
+
+How the Instant Gamble works:
+
+After you set a %, the system will enter standby mode, awaiting your next deposit. Once the deposit is received, the system takes the hashes that come with the transaction and converts them in True/False state
+
+If the result is:
+TRUE – You win! Your account is credited with the set percentage minus 1% commission
+FALSE – You lose. The set percentage is deducted from your account
+
+
+How TRUE/FALSE is determined:
+True/False is based on Odd/Even
+The blockchain generates 2 hashes with every deposit of yours
+We combine HASH1 and HASH2 and get the final HASH
+Each symbol in the HASH has a unique digit value. We sum up all digits to get a True/False result
+ASCII Characters: http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
+
 ##Mystery Jackpots
 
 Bit777‘s Mystery Jackpots offer the players an additional chance to win even if they don’t have a winning combination. Over and above the standard jackpots, Mystery Jackpot payouts won’t affect player's normal game play or the standard jackpot amounts. To win a Mystery Jackpot grab a seat at any marked table game and get playing!
