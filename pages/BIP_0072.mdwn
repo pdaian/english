@@ -27,6 +27,10 @@ The bitcoin: URI scheme is extended with an additional, optional
 message should be fetched (unsafe and reserved octets in the URL value
 must be encoded as described in RFC 1738).
 
+If the "request" parameter is provided and backwards compatibility
+is not required, then the bitcoin address portion of the URI may be
+omitted (the URI will be of the form: bitcoin:?request=... ).
+
 When Bitcoin wallet software that supports this BIP receives a
 bitcoin: URI with a request parameter, it should ignore the bitcoin
 address/amount/label/message in the URI and instead fetch a
