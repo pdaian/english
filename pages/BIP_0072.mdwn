@@ -45,10 +45,12 @@ payment processing system is unavailable.
 Wallet software that does not support this BIP will simply ignore the
 request parameter and will initiate a payment to bitcoin address.
 
-##Example
-
+##Examples
+A backwards-compatible request:
 <pre>
 bitcoin:mq7se9wy2egettFxPbmn99cK8v5AFq55Lx?amount=0.11&request=https%3A%2F%2Fmerchant.com%2Fpay.php%3Fh%3D2a8628fc2fbe
 </pre>
+Non-backwards-compatible equivalent:
+bitcoin:?request=https%3A%2F%2Fmerchant.com%2Fpay.php%3Fh%3D2a8628fc2fbe
 
 [[!tag "BIP"]]
