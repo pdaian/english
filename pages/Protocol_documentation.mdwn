@@ -132,7 +132,7 @@ Longer numbers are encoded in little endian.
 |- |9 |0xff followed by the length as uint64_t
 
 
-Footnote - if you're reading the Satoshi client code it refers to this as a "CompactSize" - VarInt's are something entirely different to the Satoshi code.
+If you're reading the Satoshi client code (BitcoinQT) it refers to this as a "CompactSize". Modern BitcoinQT has also CVarInt class which implements even more compact integer for the purpose of local storage (which is incompatible with "CompactSize" described here). CVarInt is not a part of the protocol.
 
 ### Variable length string
 
