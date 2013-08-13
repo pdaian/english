@@ -53,7 +53,7 @@ calculate: hash = SHA256(SHA256(EndianFlipForEach32Bits(First80BytesOf(data))))
 
 If that meets the [[difficulty]], you win (generated a [[block|Blocks]] or share)!
 
-If not, increment the [[Nonce]] that is a number stored in portion of the data that starts 640 bits in (bytes 76 to 79), and try again.
+If not, increment the [[Nonce]] that is a number stored in portion of the data that starts 608 bits in (bytes 76 to 79), and try again.
 
 If the incremented portion overflows, get new work (see also [[rollntime extension|#rollntime]]).
 
