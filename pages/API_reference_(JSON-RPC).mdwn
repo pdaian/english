@@ -22,6 +22,8 @@ Running Bitcoin with the -server argument (or running bitcoind) tells it to func
 
 Bitcoin supports SSL (https) JSON-RPC connections beginning with version 0.3.14.  See the [[rpcssl wiki page|Enabling_SSL_on_original_client_daemon]] for setup instructions and a list of all bitcoin.conf configuration options.
 
+Allowing arbitrary machines to access the JSON-RPC port (using the rpcallowip configuration option) is dangerous and *strongly discouraged*-- access should be strictly limited to trusted machines.
+
 To access the server you should find a [suitable library](http://json-rpc.org/wiki/implementations) for your language.
 
 ## Proper money handling
