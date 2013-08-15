@@ -4,19 +4,19 @@ The game launched on 20th July 2013 and was [announced on bitcointalk](https://b
 
 ##Odds
 
-The user can pick their chance of winning.  Any chance between 0.0001% (one in a million) and 98% (49 in 50) is allowed, to 4 decimal places.  The payout is calculated such that the house has an edge of 1%.  The payout multiplier is 99/chance.  So for example the 50% game pays out 99/50 = 1.98 times the wagered amount.
+Users can pick their chance of winning.  Any chance between 0.0001% (one in a million) and 98% (49 in 50) to 4 decimal places is allowed.  The payout is calculated such that the house has a 1% edge.  The payout multiplier is 99/chance.  For example the 50% game pays out 99/50 = 1.98 times the wagered amount.
 
 ##Bankroll
 
-The bankroll of the site is provided by its users.  Users can contribute part or all of their balance to the site's bankroll.  Their contribution is then used to pay out winning bets of other users.  This allows the site to offer very large maximum bets since at the time of writing over 50,000 BTC has been contributed to the site's bankroll by its users.
+The bankroll of the site is provided by its users.  Users can contribute part or all of their balance to the site's bankroll.  These contributions are combined and used to pay out the winning bets of players.  At the time of writing over 50,000 BTC has been contributed to the site's bankroll.  This allows the site to offer very large maximum bets.
 
 ##Large Bets
 
-The site sets the maximum bet such that each roll can profit by a maximum of 1% of the bankroll.  So when the bankroll is 50,000 BTC, the site is willing to risk 500 BTC per bet.  That corresponds to a max bet of 500 BTC for the 49.5% (2x payout) game, and a max bet of 49,000 BTC for the 98% (1.010204x payout) game.  That's right; you can bet up to 49,000 BTC on a single roll at Just-Dice!
+Gamblers can profit to a maximum of 1% of the bankroll on every bet.  When the bankroll is 50,000 BTC, the site is willing to risk 500 BTC per bet.  This corresponds to a max bet of 500 BTC for the 49.5% (2x payout) game, and a max bet of 49,000 BTC for the 98% (1.010204x payout) game.  That's right; you can bet up to 49,000 BTC on a single roll at Just-Dice!
 
 ##Random Number Generation
 
-To determine if a wager is a winner or loser, the site uses a method to produce a number between 0 and 999,999, similar to how a random number generator (RNG) would be used.  To select the number, the service uses a pair of seeds (one chosen at random by the server and kept secret, and one chosen by the user) and a nonce which starts at 1 when the seeds are selected and is incremented with each bet.  The sha256 hash of the server seed is shown to the user before he selects his own seed, which prevents the site from being able to cheat the user by picking "bad" server seeds.
+The site uses [HMAC-sha512](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code) to produce a number between 0 and 999,999, to determine if a wager is a winner or loser.  To select the number, the service uses a pair of seeds (one chosen at random by the server and kept secret, and one chosen by the user) and a nonce which starts at 1 when the seeds are selected and is incremented with each bet.  The sha256 hash of the server seed is shown to the user before he selects his own seed, which prevents the site from being able to cheat the user by picking "losing" server seeds.  Details of the algorithm used are shown on the site's "Fair?" tab. 
 
 ##External Links
 
