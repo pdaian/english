@@ -93,7 +93,7 @@ This should be advertised iff the miner supports generating its own midstates. I
 
 In addition to X-Mining-Extensions, the miner should also send X-Mining-Hashrate, with an integer value of expected hashrate measured in full hashes per second.
 The server may then add an additional field to the JSON response, "noncerange", which contains two 32-bit integers specifying the starting and final nonce the miner is allowed to scan.
-While both values are (as with the rest of the response) given in big endian, miners should iterate over the range in their native 32-bit integer type (SHA256 works with 32-bit integers, not character data).
+While both values are given in big endian, miners should iterate over the range in their native 32-bit integer type (SHA256 works with 32-bit integers, not character data).
 The miner should implement rollntime by starting from the first nonce in the range every second.
 
 Example:
