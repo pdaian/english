@@ -608,6 +608,12 @@ The getaddr message sends a request to a node asking for information about known
 
 No additional data is transmitted with this message.
 
+### mempool
+
+The mempool message sends a request to a node asking for information about transactions it has verified but which have not yet confirmed. The response to receiving this message is an inv message containing the transaction hashes for all the transactions in the node's mempool.
+
+No additional data is transmitted with this message.
+
 ### checkorder
 
 This message is used for [[IP_Transactions]], to ask the peer if it accepts such transactions and allow it to look at the content of the order.
