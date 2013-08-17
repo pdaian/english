@@ -614,6 +614,8 @@ The mempool message sends a request to a node asking for information about trans
 
 No additional data is transmitted with this message.
 
+It is specified in [[BIP_0035|BIP_35]]. Since [[BIP_0037|BIP_37]], only transactions matching the filter are replied.
+
 ### checkorder
 
 This message is used for [[IP_Transactions]], to ask the peer if it accepts such transactions and allow it to look at the content of the order.
