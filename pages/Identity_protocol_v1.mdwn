@@ -43,7 +43,7 @@ Type-2 SINs may be generated at any time, without network activity, much like bi
 
 ##Creating a SIN
 
-1. Prefix = 0x18
+1. Prefix = 0x0F
 1. SIN_Type =   [0x02 ](0x01) -- See below for discussion of SIN types.
 1. MD = Hash160(MPK)
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
