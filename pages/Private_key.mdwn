@@ -4,7 +4,7 @@ Because the private key is the "ticket" that allows someone to spend bitcoins, i
 
 In order to create a transaction with a private key, it must be available to a program or service that allows entry or importing of private keys. Some wallets allow the private key to be imported without generating any transactions while other wallets or services require that the private key be swept. When a private key is swept, a transaction is broadcast that sends the entire balance held by the private key to another address in the wallet or securely controlled by the service in question. 
 
-An example of private key sweeping is the method used on [[MtGox]]'s Add Funds screen. Just as with any other deposit, there is risk of double-spending so funds are deposited to the MtGox account after a six-confirmation wait (typically one hour).  In contrast [[BlockChain.info]]'s My Wallet service and Bitcoin-QT each provide a facility to import a private key without creating a sweep transaction.
+An example of private key sweeping is the method used on [[MtGox]]'s Add Funds screen and [[BIPS]] Import screen. Just as with any other deposit, there is risk of double-spending so funds are deposited to the MtGox account after a six-confirmation wait (typically one hour).  In contrast [[BlockChain.info]]'s My Wallet service and Bitcoin-QT each provide a facility to import a private key without creating a sweep transaction.
 
 ##An example private key
 In Bitcoin, a private key is a 256-bit number, which can be represented one of several ways.  Here is a private key in hexadecimal - 256 bits in hexadecimal is 32 bytes, or 64 characters in the range 0-9 or A-F.
