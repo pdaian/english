@@ -196,7 +196,7 @@ Any opcode not assigned is also reserved. Using an unassigned opcode makes the t
 ## Scripts
 This is a list of interesting scripts. Keep in mind that all constants actually use the data-pushing commands above. Note that there is a small number of standard script forms that are relayed from node to node; non-standard scripts are accepted if they are in a block, but nodes will not relay them.
 
-### Standard Transaction to Bitcoin address (pay-to-script-hash)
+### Standard Transaction to Bitcoin address (pay-to-pubkey-hash)
 
 	scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 	scriptSig: <sig> <pubKey>
