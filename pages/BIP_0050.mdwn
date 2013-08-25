@@ -70,3 +70,7 @@ Start running bots on the testnet that grab some coins from a testnet faucet, ge
 ###Double spending
 
 A double spend attack was successful, despite that both sides of the chain heard about the transactions in the same order. The reason is most likely that the memory pools were cleared when the mining pool nodes were downgraded. A solution is for nodes to sync their mempools to each other at startup, however, this requires a memory pool expiry policy to be implemented as currently node restarts are the only way for unconfirmed transactions to be evicted from the system.
+
+###Resolution
+
+On 22 August, 2013 block 22,451 was accepted by the main network, forking unpatched nodes off the network.
