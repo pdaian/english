@@ -86,15 +86,17 @@ A SIN record is a series of key/value pairs, validated by MPK digital signature.
 uint32_t: an unsigned, little endian integer
 
 Basic layout:
-uint32_t pair count
-[of key/value pairs](list)
-Hash160(prior data)
+
+* uint32_t pair count
+* [of key/value pairs](list)
+* Hash160(prior data)
 
 Basic layout of a key/value pair:
-uint32_t key length
-uint32_t value length
-[bytes of valid UTF8-encoded data](key-length)
-[bytes of opaque data](value-length)
+
+* uint32_t key length
+* uint32_t value length
+* [bytes of valid UTF8-encoded data](key-length)
+* [bytes of opaque data](value-length)
 
 The order of key/value pairs must be preserved, to ensure hash stability.
 
