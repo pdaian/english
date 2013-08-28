@@ -57,10 +57,17 @@ URIs should be ignored.
 
 ##Compatibility
 
-QR scanning wallets that do not support this BIP will not be able to process QR 
-codes containing non bitcoin URIs.  There are two possible workarounds: 1) the
-server gives the user an option to change the QR code to a bitcoin: URI or 2) the
-user scans the code with a generic QR code scanner.
+Only QR scanning wallets that implement this BIP will be able to process QR 
+codes containing payment request URLs.  There are two possible workarounds QR
+scanning wallets that do not implement this BIP: 1) the server gives the user an 
+option to change the QR code to a bitcoin: URI or 2) the user scans the code with 
+a generic QR code scanner.
+
+In the second scenario, if the server responds with a webpage containing a link 
+to a bitcoin URI, the user can complete the payment by clicking that link provided
+the user has a wallet installed on their device and it supports bitcoin URIs.  If the 
+wallet/device does not have support for bitcoin URIs, the user can fall back on
+address copy/paste.
 
 This BIP should be fully compatible with BIP 70 assuming it is required that wallets
 implementing BIP 70 make use of the Accept: HTTP header when retrieving a
