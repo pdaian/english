@@ -38,7 +38,9 @@ PaymentRequest message and then follow the payment protocol, as
 described in BIP 70.
 
 Bitcoin wallets must support fetching PaymentRequests via http and
-https protocols; they may support other protocols.
+https protocols; they may support other protocols. Wallets must
+include an Accept HTTP header in HTTP requests:
+<pre>Accept: application/bitcoin-paymentrequest</pre>
 
 If a PaymentRequest cannot be obtained (perhaps the server is
 unavailable), then the customer should be informed that the merchant's
