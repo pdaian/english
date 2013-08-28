@@ -46,7 +46,7 @@ rendering in a browser.  An HTML response will ensure that QR codes scanned
 by non Bitcoin wallet QR scanners are useful (they could render an HTML page
 with a payment link that when clicked would open a wallet on the device).
 
-It is not request that the client and server support the full semantics of an 
+It is not required that the client and server support the full semantics of an 
 HTTP Accept header.  If application/bitcoin-paymentrequest is specified in the
 header, the server should send a payment request regardless of anything else
 specified in the Accept header.  If text/uri-list is specified (but not 
