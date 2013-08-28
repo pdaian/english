@@ -147,6 +147,12 @@ PaymentDetails.payment_url should be secure against man-in-the-middle
 attacks that might alter Payment.refund_to (if using HTTP, it must be
 TLS-protected).
 
+Wallet software sending Payment messages via HTTP must set appropriate
+Content-Type and Accept headers, as specified in BIP 71:
+<pre>Content-Type: application/bitcoin-payment
+Accept: application/bitcoin-paymentack
+</pre>
+
 When the merchant's server receives the Payment message, it must
 determine whether or not the transactions satisfy conditions of
 payment. If and only if they do, if should broadcast the
