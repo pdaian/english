@@ -86,20 +86,30 @@ DANGER:  This section is under heavy development and discussion.  It might morph
 A SIN record is a series of key/value pairs, validated by MPK digital signature.  Each SIN record has a stable binary encoding designed to ensure stable hash values.
 
 uint32_t: an unsigned, little endian integer
+uint256_t: bitcoin-like 256-bit hash value
 
-Basic layout:
+Layout of a SIN record:
 
 * uint32_t magic number (and/or version number) == 0x88, 0x41, 0x92, 0xA4
-* uint32_t pair count
-* [of key/value pairs](list)
-* Hash160(prior data)
+* uint256_t merkle root
+* uint32_t data record count
+* [of data records](list)
+* Signature
 
-Basic layout of a key/value pair:
+Layout of a data record:
 
-* uint32_t key length
-* uint32_t value length
-* [bytes of valid UTF8-encoded data](key-length)
-* [bytes of opaque data](value-length)
+* uint32_t: record type (== 0x1 for hash, 0x2 for key/value pair)
+[record-specific data](data)
+
+Layout of a hash data record:
+[bytes of hash data](32)
+
+Layout of a key/value data record:
+uint32_t key length
+uint32_t value length
+[UTF8-encoded key](key-length)
+[opaque data](value-length)
+
 
 The order of key/value pairs must be preserved, to ensure hash stability.
 
