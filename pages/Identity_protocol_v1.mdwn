@@ -87,6 +87,7 @@ uint32_t: an unsigned, little endian integer
 
 Basic layout:
 
+* uint32_t magic number (and/or version number) == 0x88, 0x41, 0x92, 0xA4
 * uint32_t pair count
 * [of key/value pairs](list)
 * Hash160(prior data)
