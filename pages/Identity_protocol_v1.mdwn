@@ -99,16 +99,18 @@ Layout of a SIN record:
 Layout of a data record:
 
 * uint32_t: record type (== 0x1 for hash, 0x2 for key/value pair)
-[record-specific data](data)
+* [record-specific data](data)
 
 Layout of a hash data record:
-[bytes of hash data](32)
+
+* [bytes of hash data](32)
 
 Layout of a key/value data record:
-uint32_t key length
-uint32_t value length
-[UTF8-encoded key](key-length)
-[opaque data](value-length)
+
+* uint32_t key length
+* uint32_t value length
+* [UTF8-encoded key](key-length)
+* [opaque data](value-length)
 
 
 The order of key/value pairs must be preserved, to ensure hash stability.
