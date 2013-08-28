@@ -674,13 +674,24 @@ Possible values:
 
 ### ping
 
-The *ping* message is sent primarily to confirm that the TCP/IP connection is still valid. An error in transmission is presumed to be a closed connection and the address is removed as a current peer. In modern protocol versions, a *pong* response is generated using a nonce included in the ping.
+The *ping* message is sent primarily to confirm that the TCP/IP connection is still valid. An error in transmission is presumed to be a closed connection and the address is removed as a current peer.
 
 Payload:
 
 
 
 |8 |nonce |uint64_t |random nonce
+
+
+### pong
+
+The *pong* message is sent in response to a "ping" message. In modern protocol versions, a *pong* response is generated using a nonce included in the ping.
+
+Payload:
+
+
+
+|8 |nonce |uint64_t |nonce from ping
 
 
 ### filterload, filteradd, filterclear, merkleblock
