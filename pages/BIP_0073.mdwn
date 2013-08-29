@@ -41,7 +41,7 @@ A wallet client uses the Accept: HTTP header to specify whether it can accept
 a payment request, a URI, or both.  A media type of text/uri-list specifies that
 the client accepts a bitcoin URI. A media type of application/bitcoin-paymentrequest
 specifies that the client can process a payment request.  In the absence of an 
-Accept: header, the server is expect to respond with text/html suitable for 
+Accept: header, the server is expected to respond with text/html suitable for 
 rendering in a browser.  An HTML response will ensure that QR codes scanned
 by non Bitcoin wallet QR scanners are useful (they could render an HTML page
 with a payment link that when clicked would open a wallet on the device).
