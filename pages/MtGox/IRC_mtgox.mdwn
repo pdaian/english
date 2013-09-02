@@ -8,7 +8,7 @@ Delerium (MtGox Customer)
 
 ## Service Status
 
-**30/08/2013 18:29 BST - No issues reported**
+**02/09/2013 16:42 BST - No issues reported**
 
 
 ## Known Issues / Recent Announcements
@@ -192,7 +192,19 @@ If you do insist you want to donate, I have setup a generated a vanity bitcoin a
 You can read about the good progress they have already made here. http://www.cancerresearchuk.org/home/
 
 
-## Rebroadcasting Transactions from MtGox Yourself
+## How to rebroadcast transactions missing from the blockchain
+
+**Single Transactions**
+
+Please follow the following guide to re-broadcast your single transaction:
+
+http://www.skanner.net/gethex.php
+
+
+
+**Script to rebroadcast the lot from Mt Gox transaction file**
+
+Note: This will only work if your bitcoind has fully synced to the blockchain. If in doubt, simply just do the transaction you want processed with the guide above.
 
 This is a quick guide (For MS Windows) explaining how to rebroadcast all the transactions in the mtgox queue (http://data.mtgox.com/api/0/bitcoin_tx.php) that haven't arrived on the blockchain yet. 
 
@@ -207,6 +219,14 @@ You will need the following:
 1. Open 2 command lines by clicking 'start' then type cmd and press enter.
 1. Navigate to your php directory and then type 'bitcoind -daemon'. This will run a bitcoind instance which we will use to connect to the bitcoin blockchain. Once this step is done, you can minimise (NOT CLOSE) this window.
 1. Now in the second command line, again navigate to your php directory and type 'php mybroadcastbc.php' and press enter. After a few seconds, you will see it trying to rebroadcast the transactions in the queue. It will end with a summary once finished. Thats all there is to this.
+
+
+## My Transaction Won't Confirm!! Why?
+
+There's two common reasons why a transaction might not confirm in a timely manner on the blockchain. First one is that ample transaction fee has not been added to the transaction. They will 'probably' be processed but they would not be a priority for miners and would take a long long time. 
+
+The second reason could be that the transaction contains coins which are too new to have transactions for them. The bitcoin protocol requires 100 network blocks to pass after a new coin has been created to see any transaction which contains it as valid. If you check the source bitcoin addresses on your transaction on blockchain.info and click 'output' next to it, you can see if its a new coin and which block it was created in. Now if you find the latest block in the chain just by going to blockchain.info and look at the top 'height' number at the top left, it will show you which block the network is on now. Simply take the block now from the block number of the coin created and if its < 100 then you will need to wait the difference in blocks for your transaction to become valid. Approx time between blocks is 8 mins.
+
 
 
 Contributors additional to me: Ne0futur.
