@@ -1,6 +1,6 @@
 [[!img "alert.png" size=120x120 size=300x300 class="right"]]
 
-Bitcoin versions 0.3.10 and later have an alert system which allows messages about critical network problems to be broadcast to all clients. When an alert is in effect, the message it contains will appear in the status bar of all clients, and also in the "errors" field of RPC *getinfo*.
+Bitcoin versions 0.3.10 and later have an alert system which allows messages about critical network problems to be broadcast to all clients. When an alert is in effect, the message it contains will appear in the status bar of all clients, in the "errors" field of RPC *getinfo*, and will notify any script registered with Bitcoin-Qt/bitcoind -alertnotify command-line option.
 
 [[!img "Bitcoin-alert-cli.png" size=120x120 size=300x300 class="right"]]
 
