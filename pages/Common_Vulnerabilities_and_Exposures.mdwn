@@ -22,13 +22,13 @@
 |[[CVE-2013-2273|#CVE-2013-2273]]|2013-01-30|bitcoind and Bitcoin-Qt|bgcolor=limeExposure (1.3)|bgcolor=yellowEasy|Predictable change output|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132273)
 |[[CVE-2013-2292|#CVE-2013-2292]]|2013-01-30|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=limeHard|A transaction that takes at least 3 minutes to verify|bgcolor=pink[-](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132292)
 |[[CVE-2013-2293|#CVE-2013-2293]]|2013-02-14|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Continuous hard disk seek|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20132293)
-|[[CVE-2013-3219|#CVE-2013-3219]]|2013-03-11|bitcoind and Bitcoin-Qt 0.8.0|bgcolor=pinkFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Unenforced block protocol rule|bgcolor=yellow[94%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20133219)
+|[[CVE-2013-3219|#CVE-2013-3219]]|2013-03-11|bitcoind and Bitcoin-Qt 0.8.0|bgcolor=pinkFake Conf (1.6)|bgcolor=yellowMiners (1.7)|Unenforced block protocol rule|bgcolor=yellow[100%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20133219)
 |[[CVE-2013-3220|#CVE-2013-3220]]|2013-03-11|bitcoind and Bitcoin-Qt|bgcolor=pinkNetsplit (1.4)|bgcolor=limeHard|Inconsistent BDB lock limit interactions|bgcolor=yellow[94%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20133220)
 |[[BIP 0034|#BIP-0034]]|2013-03-25|All Bitcoin clients|bgcolor=yellowFake Conf (1.6)|bgcolor=yellowMiners (1.8)|Mandatory block protocol update|bgcolor=lime[97%](http://luke.dashjr.org/programs/bitcoin/files/charts/BIP-0034.html)
 |[[BIP 0050|#BIP-0050]]|2013-05-15|All Bitcoin clients|bgcolor=pinkNetsplit (1.4)|bgcolor=pinkImplicit (1.9)|Hard fork to remove txid limit protocol rule|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?50)
-|[[CVE-2013-4627|#CVE-2013-4627]]|2013-06-??|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=yellowEasy|Memory exhaustion with excess tx message data|bgcolor=pink[12%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?50)
-|[[CVE-2013-4165|#CVE-2013-4165]]|2013-07-20|bitcoind and Bitcoin-Qt|bgcolor=pinkTheft (1.2)|bgcolor=limeLocal|Timing leak in RPC authentication|bgcolor=pink-
-|[[CVE-2013-5700|#CVE-2013-5700]]|2013-09-04|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Remote p2p crash via bloom filters|bgcolor=pink-
+|[[CVE-2013-4627|#CVE-2013-4627]]|2013-06-??|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=yellowEasy|Memory exhaustion with excess tx message data|bgcolor=pink[2%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20134627)
+|[[CVE-2013-4165|#CVE-2013-4165]]|2013-07-20|bitcoind and Bitcoin-Qt|bgcolor=pinkTheft (1.2)|bgcolor=limeLocal|Timing leak in RPC authentication|bgcolor=pink[2%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20134165)
+|[[CVE-2013-5700|#CVE-2013-5700]]|2013-09-04|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Remote p2p crash via bloom filters|bgcolor=pink[9%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?20135700)
 
 
 
@@ -368,7 +368,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-03-11
 	<b>Summary:</b> Unenforced block protocol rule
-	<b>Fix Deployment:</b> 94%
+	<b>Fix Deployment:</b> 100%
 
 
 |Bitcoin-Qt<br>bitcoind |0.8.0rc1 - 0.8.0 |0.8.1
@@ -427,7 +427,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-06-??
 	<b>Summary:</b> Memory exhaustion with excess tx message data
-	<b>Fix Deployment:</b> 12%
+	<b>Fix Deployment:</b> 2%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.9rc3<br>0.5.0rc1 - 0.5.8rc3<br>0.6.0rc1 - 0.6.5rc3<br>0.7.0rc1 - 0.7.3rc3<br>0.8.0rc1 - 0.8.3 |0.4.9rc4<br>0.5.8rc4<br>0.6.5rc4<br>0.7.3rc4<br>0.8.4
@@ -440,7 +440,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-07-20
 	<b>Summary:</b> Timing leak in RPC authentication
-	<b>Fix Deployment:</b> -
+	<b>Fix Deployment:</b> 2%
 
 
 |Bitcoin-Qt<br>bitcoind |* - 0.4.9rc3<br>0.5.0rc1 - 0.5.8rc3<br>0.6.0rc1 - 0.6.5rc3<br>0.7.0rc1 - 0.7.3rc3<br>0.8.0rc1 - 0.8.3 |0.4.9rc4<br>0.5.8rc4<br>0.6.5rc4<br>0.7.3rc4<br>0.8.4rc1
@@ -455,7 +455,7 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 	<b>Date:</b> 2013-09-04
 	<b>Summary:</b> Remote p2p crash via bloom filters
-	<b>Fix Deployment:</b> -
+	<b>Fix Deployment:</b> 9%
 
 
 |Bitcoin-Qt<br>bitcoind |0.8.0rc1 - 0.8.3 |0.8.4rc1
