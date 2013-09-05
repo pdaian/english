@@ -28,6 +28,7 @@
 |[[BIP 0050|#BIP-0050]]|2013-05-15|All Bitcoin clients|bgcolor=pinkNetsplit (1.4)|bgcolor=pinkImplicit (1.9)|Hard fork to remove txid limit protocol rule|bgcolor=yellow[93%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?50)
 |[[CVE-2013-4627|#CVE-2013-4627]]|2013-06-??|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=yellowEasy|Memory exhaustion with excess tx message data|bgcolor=pink[12%](http://luke.dashjr.org/programs/bitcoin/files/charts/security.html?50)
 |[[CVE-2013-4165|#CVE-2013-4165]]|2013-07-20|bitcoind and Bitcoin-Qt|bgcolor=pinkTheft (1.2)|bgcolor=limeLocal|Timing leak in RPC authentication|bgcolor=pink-
+|[[CVE-2013-5700|#CVE-2013-5700]]|2013-09-04|bitcoind and Bitcoin-Qt|bgcolor=yellowDoS (1.1)|bgcolor=pinkEasy|Remote p2p crash via bloom filters|bgcolor=pink-
 
 
 
@@ -448,9 +449,25 @@ This could be used to fork the blockchain, including deep double-spend attacks.
 
 ### References
 
+* [Bitcoin-Qt 0.8.4 release notes](https://bitcointalk.org/index.php?topic=287351)
+
+## CVE-2013-5700
+
+	<b>Date:</b> 2013-09-04
+	<b>Summary:</b> Remote p2p crash via bloom filters
+	<b>Fix Deployment:</b> -
+
+
+|Bitcoin-Qt<br>bitcoind |0.8.0rc1 - 0.8.3 |0.8.4rc1
+
+
+### References
+
+* [Bitcoin-Qt 0.8.4 release notes](https://bitcointalk.org/index.php?topic=287351)
+
 ##Definitions
 
-A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (50.1).
+A critical vulnerability is one that will have disastrous consequences if it is exploited.  A serious vulnerability is one that will have serious consequences if it is exploited (52.1).
 
 ##See Also
 
@@ -458,7 +475,7 @@ A critical vulnerability is one that will have disastrous consequences if it is 
 
 ##References
 
-50.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
+52.1: [http://bitcointalk.org/index.php?topic=88892.0](http://bitcointalk.org/index.php?topic=88892.0)
 
 
 [[!tag "Security"]]
