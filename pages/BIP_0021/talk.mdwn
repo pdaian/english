@@ -74,7 +74,7 @@ Further enhancement: Sending amount and tip to separate addresses:
 	bitcoinurn     = "bitcoin:" bitcoinaddress  [bitcoinparams]("?")
 	bitcoinaddress = base58 *base58
 	bitcoinparams  = *bitcoinparam
-	bitcoinparam   = amountparam  labelparam  messageparam  <span style="color:#0000FF">**tipparam **</span> otherparam  reqparam
+	bitcoinparam   = amountparam  labelparam  messageparam  <span style="color:#0000FF">**tipparam **</span> <span style="color:#E20074">**tipaddrparam **</span> otherparam  reqparam
 	amountparam    = "amount=" *digit  [*digit](".")
 	labelparam     = "label=" *pchar
 	messageparam   = "message=" *pchar
