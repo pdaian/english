@@ -1,1 +1,54 @@
 Marian on IRC reports: "The BNF [[here]] is erroneous, regarding the params, it says  [bitcoinparams]("?") while bitcoinparams is just *bitcoinparam, thus with that BNF there are no separators between the parameters". --[Gmaxwell](User:Gmaxwell) ([[talk|User_talk:Gmaxwell]]) 23:04, 23 April 2013 (GMT)
+
+## Suggesting usability enhancement in BIP 0021 for paying tips in restaurant/bar conveniently
+
+I am suggesting a simple downward compatible enhancement of BIP 0021 to allow effortless tipping in restaurants, bars, pubs, etc.
+
+When watching bitpay's mobile checkout demo video "http://www.youtube.com/watch?v=YZ-pqo0cLcE" it is clear that paying tips is somewhat cumbersome for the customer with today's wallet and merchant solutions. This can be dramatically improved with some support by the client app and a minor enhancement of BIP 0021.
+
+<span style="color:#0000FF">**Enhancement proposal**</span>:
+
+	bitcoinurn     = "bitcoin:" bitcoinaddress  [bitcoinparams]("?")
+	bitcoinaddress = base58 *base58
+	bitcoinparams  = *bitcoinparam
+	bitcoinparam   = amountparam  labelparam  messageparam  <span style="color:#0000FF">**tipparam **</span> otherparam  reqparam
+	amountparam    = "amount=" *digit  [*digit](".")
+	labelparam     = "label=" *pchar
+	messageparam   = "message=" *pchar
+	<span style="color:#0000FF">**tipparam       = "tip="   [*digit](".")   [["25"]]  **</span>
+	otherparam     = pchar *pchar "=" *pchar
+	reqparam       = "req-" pchar *pchar "=" *pchar
+
+Actually, "tipparam" is just a special case of "otherparam", hence completely downwards compatible.
+
+The tip can be specified in BTC or in percent of the amount, and it acts as a recommended or default tip setting in the customer's wallet app.
+
+**Examples** for the following scenario:
+> Request 0.567 BTC from the customer of a restaurant and make the customer's bitcoin app show an advanced send dialog that allows adding a tip:
+
+Ex. 1) The pre-set tip value in the send dialog is set to zero (or to the client's pre-configured default tip value):
+
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=**</span>
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=0**</span>
+
+Ex. 2) The pre-set tip value is 15% of 0.567 BTC, i.e. 0.08508 BTC:
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=0.08505**</span>
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=15%25**</span>
+	[code of the percentage character is "%25"](URI)
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=15%**</span>
+	[notation, omitting the "25"]("lazy")
+
+Ex. 3) The pre-set tip value is 0.08508 BTC, and the "notes" field in the client app is pre-occupied with the name of the restaurant:
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=15%**</span>&message=Charly%27s%20Bar
+
+Explanation:
+
+* The new parameter has no "req-" prefix, i.e. if an old bitcoin client app does not know it, it can safely ignore it.
+* Otherwise, the customer's bitcoin client will not open the normal but an enhanced send dialog where the customer can specify a tip that will be added to the bill to be paid. In examples 2 and 3 above the tip shall be pre-configured with the amount specified in the URI, so the customer can most conveniently just accept it by a simple tap, if the client app is well-written.
+
+The details are of course dependent on the client app implementation, a best practice-example is demonstrated in the following images.
+
+[[!img "bitcoin-app-tipOFF_BIP_0021.png" title="border"]]
+
+
+[[!img "bitcoin-app-tipON_BIP_0021.png" title="border"]]
