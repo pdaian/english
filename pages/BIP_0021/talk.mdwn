@@ -6,7 +6,7 @@ Marian on IRC reports: "The BNF [[here]] is erroneous, regarding the params, it 
 	bitcoinparamamp = "&" bitcoinparam
 
 
-## Suggesting usability enhancement in BIP 0021 for paying tips in restaurant/bar conveniently
+## Suggesting usability enhancement in BIP 0021 for paying tips in restaurant/bar conveniently ("tips w/o taps")
 ([Michael_S](User:Michael_S) ([[talk|User_talk:Michael_S]]) 8 Sept 2013)
 
 I am suggesting a simple downward compatible enhancement of BIP 0021 to allow effortless tipping in restaurants, bars, pubs, etc.
@@ -62,3 +62,37 @@ The details are of course dependent on the client app implementation, a best pra
 
 
 [[!img "bitcoin-app-tipON_BIP_0021.png" title="border"]]
+
+
+## Further enhancement for paying tips in restaurant/bar: "tip address"
+([Michael_S](User:Michael_S) ([[talk|User_talk:Michael_S]]) 9 Sept 2013)
+
+Further enhancement: Sending amount and tip to separate addresses:
+
+(Note: This feature is typically invisible in the GUI of the customer's wallet app)
+
+	bitcoinurn     = "bitcoin:" bitcoinaddress  [bitcoinparams]("?")
+	bitcoinaddress = base58 *base58
+	bitcoinparams  = *bitcoinparam
+	bitcoinparam   = amountparam  labelparam  messageparam  <span style="color:#0000FF">**tipparam **</span> otherparam  reqparam
+	amountparam    = "amount=" *digit  [*digit](".")
+	labelparam     = "label=" *pchar
+	messageparam   = "message=" *pchar
+	<span style="color:#0000FF">**tipparam       = "tip="   [*digit](".")   [["25"]]  **</span>
+	<span style="color:#E20074">**tipaddrparam   = "tipaddr=" bitcoinaddress**</span>
+	otherparam     = pchar *pchar "=" *pchar
+	reqparam       = "req-" pchar *pchar "=" *pchar
+
+Example:
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=15%25&</span><span style="color:#E20074">&tipaddr=1waiter7b38klseWrTZm5sE8PrrupPB2Q2**</span>
+
+The "tipaddr" parameter specifies that if the wallet app sends a tip in addition to the "amount", it shall ***preferably*** send it to the specifed "tip address". However, this is not mandatory (because it is an optional parameter w/o "req-"), so if the wallet app sends amount and tip to the main address, the merchant shall still be able to figure this out.
+
+If the merchant cannot handle tips sent to the same address as the billing amount, he shall instead make use of this parameter:
+
+	<span style="color:#a20024">**reqtipaddrparam = "req-tipaddr=" bitcoinaddress**</span>
+
+Example:
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=15%25&</span><span style="color:#a20024">&req-tipaddr=1waiter7b38klseWrTZm5sE8PrrupPB2Q2**</span>
+
+In this case, the wallet app is guaranteed to send the tip to the separate address, or will otherwise reject the complete URI. Upon rejection, the waiter knows that the customer has a non-compliant wallet app and can start a second try showing the URI without any tip parameters (or with "tip=0". The tip can then be paid in a separate transaction (or classically by cash).
