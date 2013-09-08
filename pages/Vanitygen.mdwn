@@ -44,6 +44,108 @@ Radeon 58XX outperforms Radeon 69XX by a very comfortable margin.  Oclvanitygen 
 
 In custom builds, CPU performance will be less than expected if the OpenSSL library is an older version (<1.0.0d) or is not built with the appropriate optimizations enabled.
 
+## Vanity addresses for other crypto-coins
+While bitcoin all addresses start with a "1" (one), some other crypto-coins use different address name spaces. Vanitygen (as of version 0.22) can be used to produce vanity addresses for these crypto coins as well (but not for [bitmessage](http://bitmessage.org) addresses), by using the "-X" option. The following list provides some example command line calls and also indicates the address range for the respective coin:
+
+Generate **Bitcoin** (BTC), **Devcoin** (DVC), **Freicoin** (FRC), **Terracoin** (TRC) addresses:
+	$ ./vanitygen -X 0 1 -k
+or simply just
+	$ ./vanitygen 1 -k
+
+Generate **Novacoin** (NVC) addresses:
+	$ ./vanitygen -X 8 4 -k
+	$ ./vanitygen -X 8 4D -k
+	$ ./vanitygen -X 8 4Z -k
+	$ ./vanitygen -X 8 4a -k
+	$ ./vanitygen -X 8 4d -k
+
+Generate **Feathercoin** (FTC) addresses:
+	$ ./vanitygen -X 14 6 -k
+	$ ./vanitygen -X 14 6d -k
+	$ ./vanitygen -X 14 6z -k
+	$ ./vanitygen -X 14 7 -k
+	$ ./vanitygen -X 14 71 -k
+	$ ./vanitygen -X 14 72 -k
+	$ ./vanitygen -X 14 73 -k
+
+Generate **Anoncoin** (ANC) addresses:
+	$ ./vanitygen -X 23 A -k
+	$ ./vanitygen -X 23 AF -k
+	$ ./vanitygen -X 23 AZ -k
+	$ ./vanitygen -X 23 Aa -k
+	$ ./vanitygen -X 23 Af -k
+
+Generate **Chinacoin** (CNC) addresses:
+	$ ./vanitygen -X 28 C -k
+	$ ./vanitygen -X 28 CG -k
+	$ ./vanitygen -X 28 CZ -k
+	$ ./vanitygen -X 28 Ca -k
+	$ ./vanitygen -X 28 Cf -k
+
+Generate **Digitalcoin** (DGC) addresses:
+	$ ./vanitygen -X 30 D -k
+	$ ./vanitygen -X 30 D5 -k
+	$ ./vanitygen -X 30 D9 -k
+	$ ./vanitygen -X 30 DA -k
+	$ ./vanitygen -X 30 DU -k
+
+Generate **Litecoin** (LTC) addresses:
+	$ ./vanitygen -X 48 L -k
+	$ ./vanitygen -X 48 LK -k
+	$ ./vanitygen -X 48 LZ -k
+	$ ./vanitygen -X 48 La -k
+	$ ./vanitygen -X 48 Li -k
+
+Generate **Namecoin** (NMC) addresses:
+	$ ./vanitygen -X 52 M -k
+	$ ./vanitygen -X 52 Mv -k
+	$ ./vanitygen -X 52 Mz -k
+	$ ./vanitygen -X 52 N -k
+	$ ./vanitygen -X 52 N1 -k
+	$ ./vanitygen -X 52 N9 -k
+	$ ./vanitygen -X 52 NA -k
+	$ ./vanitygen -X 52 NK -k
+
+Generate **PPCoin** (PPC) addresses:
+	$ ./vanitygen -X 55 P -k
+	$ ./vanitygen -X 55 P8 -k
+	$ ./vanitygen -X 55 P9 -k
+	$ ./vanitygen -X 55 PA -k
+	$ ./vanitygen -X 55 PX -k
+
+Generate **YaCoin** (YAC) addresses:
+	$ ./vanitygen -X 77 X -k
+	$ ./vanitygen -X 77 Xz -k
+	$ ./vanitygen -X 77 Y -k
+	$ ./vanitygen -X 77 Y1 -k
+	$ ./vanitygen -X 77 Y9 -k
+	$ ./vanitygen -X 77 YA -k
+	$ ./vanitygen -X 77 YP -k
+
+Generate **BBQcoin** (BQC) addresses:
+	$ ./vanitygen -X 85 b -k
+	$ ./vanitygen -X 85 bC -k
+	$ ./vanitygen -X 85 bZ -k
+	$ ./vanitygen -X 85 ba -k
+	$ ./vanitygen -X 85 bc -k
+
+Generate **Ixcoin** (IXC) addresses:
+	$ ./vanitygen -X 138 x -k
+	$ ./vanitygen -X 138 xX -k
+	$ ./vanitygen -X 138 xZ -k
+	$ ./vanitygen -X 138 xa -k
+	$ ./vanitygen -X 138 xv -k
+
+Generally, to find out the address format of a given crypto-coin (i.e. the number after the -X option of vanitygen) one can use this service:
+	<nowiki>http://darkgamex.ch:2751/q/decode_address/<Address></nowiki>
+Example: Take any Litecoin address, e.g. "LNipKabgGoTPnzhxsyFwTZdjVSXybjWucp", and submit this URL:
+	http://darkgamex.ch:2751/q/decode_address/LNipKabgGoTPnzhxsyFwTZdjVSXybjWucp
+The browser output will be:
+	30:265dcf8616a9723d3b4ba35c246b041e20013597
+The **30** is Litecoin's address format in hex (!), i.e. 30 (hex) = 48 (decimal), i.e. use **-X 48** in vanitygen to generate Liteoin addresses.
+
+Some related info here: https://en.bitcoin.it/wiki/List_of_address_prefixes
+
 ## See also
 
 * [[Firstbits]]
