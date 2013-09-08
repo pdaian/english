@@ -1,5 +1,11 @@
 Marian on IRC reports: "The BNF [[here]] is erroneous, regarding the params, it says  [bitcoinparams]("?") while bitcoinparams is just *bitcoinparam, thus with that BNF there are no separators between the parameters". --[Gmaxwell](User:Gmaxwell) ([[talk|User_talk:Gmaxwell]]) 23:04, 23 April 2013 (GMT)
 
+--> (Michael_S) So should it rather be written something like this (I am not a BNF expert, just following my logic):
+	bitcoinurn      = "bitcoin:" bitcoinaddress   [[bitcoinparams]] 
+	bitcoinparams   = *bitcoinparamamp
+	bitcoinparamamp = "&" bitcoinparam
+
+
 ## Suggesting usability enhancement in BIP 0021 for paying tips in restaurant/bar conveniently
 
 I am suggesting a simple downward compatible enhancement of BIP 0021 to allow effortless tipping in restaurants, bars, pubs, etc.
