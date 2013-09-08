@@ -33,9 +33,12 @@ The tip can be specified in BTC or in percent of the amount, and it acts as a re
 **Examples** for the following scenario:
 > Request 0.567 BTC from the customer of a restaurant and make the customer's bitcoin app show an advanced send dialog that allows adding a tip:
 
-Ex. 1) The pre-set tip value in the send dialog is set to zero (or to the client's pre-configured default tip value):
+Ex. 1a) The pre-set tip value in the send dialog is undefined (user must specify) or set to the client's pre-configured default tip value:
 
 	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=**</span>
+
+Ex. 1b) The pre-set tip value in the send dialog is explicitly set to zero (this restaurant is on "service charge included in 'amount'" policy and informs the client about this explicitly by "tip=0" in the URI):
+
 	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=0**</span>
 
 Ex. 2) The pre-set tip value is 15% of 0.567 BTC, i.e. 0.08508 BTC:
