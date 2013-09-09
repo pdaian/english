@@ -63,6 +63,9 @@ The details are of course dependent on the client app implementation, a best pra
 
 [[!img "bitcoin-app-tipON_BIP_0021.png" title="border"]]
 
+Discussion: It has been argued that the described improvement of the user experience for the scenario "make payment with a tip" can be achieved by sole improvement of the wallet app, without any protocol change.
+
+But this is only partly true. Certainly enhancement of the wallet app to provide an advanced "send" dialog for easy tipping is crucial. However, with the legacy BIP 0021 the wallet app cannot know whether it shall display the standard send dialog (no tip) or the advanced send dialog (with tip option) to the user. So the user has to select this manually. With the optional "tip" parameter in the URI, the wallet app can readily display the appropriate send dialog without extra user interaction, thereby providing ultimate user experience.
 
 ## Further enhancement for paying tips in restaurant/bar: "tip address"
 ([Michael_S](User:Michael_S) ([[talk|User_talk:Michael_S]]) 9 Sept 2013)
