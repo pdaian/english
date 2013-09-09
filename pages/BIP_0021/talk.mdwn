@@ -84,7 +84,7 @@ Further enhancement: Sending amount and tip to separate addresses:
 	reqparam       = "req-" pchar *pchar "=" *pchar
 
 Example:
-	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=15%25&</span><span style="color:#E20074">&tipaddr=1waiter7b38klseWrTZm5sE8PrrupPB2Q2**</span>
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=15%25</span><span style="color:#E20074">&tipaddr=1waiter7b38klseWrTZm5sE8PrrupPB2Q2**</span>
 
 The "tipaddr" parameter specifies that if the wallet app sends a tip in addition to the "amount", it shall ***preferably*** send it to the specifed "tip address". However, this is not mandatory (because it is an optional parameter w/o "req-"), so if the wallet app sends amount and tip to the main address, the merchant shall still be able to figure this out.
 
@@ -96,3 +96,30 @@ Example:
 	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567</nowiki><span style="color:#0000FF">**&tip=15%25&</span><span style="color:#a20024">&req-tipaddr=1waiter7b38klseWrTZm5sE8PrrupPB2Q2**</span>
 
 In this case, the wallet app is guaranteed to send the tip to the separate address, or will otherwise reject the complete URI. Upon rejection, the waiter knows that the customer has a non-compliant wallet app and can start a second try showing the URI without any tip parameters (or with "tip=0". The tip can then be paid in a separate transaction (or classically by cash).
+
+
+## Short parameter tags yielding shorter URIs for QR codes
+([Michael_S](User:Michael_S) ([[talk|User_talk:Michael_S]]) 10 Sept 2013)
+
+Another proposal: Allow short forms for the parameter tags, to shorten the URIs.
+
+This is not important for URIs when used in links on web pages, but it can become relevant when generating QR codes. The longer the URI, the more difficult it will be to scan and decode the QR code by a smartphone due to smaller QR code block size or lower error protection level.
+
+Hence a simple table of equivalent ALIASES is proposed, to shorten the URI:
+
+	**Parameter Tag       Alias**
+	amount=             a=
+	label=              l=
+	message=            m=
+	tip=                t=
+	tipaddr=            i=
+	req-                -
+	req-tipaddr=        -i=
+
+Hence, for example the following URIs are fully equivalent:
+
+151 characters:
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567&tip=15%25&tipaddr=1waiter7b38klseWrTZm5sE8PrrupPB2Q2&message=Thank%20You&label=Charly%27s%20Bar</nowiki>
+
+127 characters:
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?a=.567&t=15%25&i=1waiter7b38klseWrTZm5sE8PrrupPB2Q2&m=Thank%20You&l=Charly%27s%20Bar</nowiki>
