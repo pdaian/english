@@ -40,35 +40,34 @@ will be used, so this is not an issue.
 Our proposal is inspired by implementation used in Electrum, but we enhanced
 the wordlist and algorithm so it meets the following criteria:
 
-<pre>
 a) smart selection of words
-   - wordlist is created in such way that it's enough to type just first four
-     letters to unambiguously identify the word
+	- wordlist is created in such way that it's enough to type just first four
+	letters to unambiguously identify the word
 
 b) similar words avoided
-   - words as "build" and "built", "woman" and "women" or "quick" or "quickly"
-     not only make remembering the sentence difficult, but are also more error
-     prone and more difficult to guess (see point below)
-   - we avoid these words by carefully selecting them during addition
+	- words as "build" and "built", "woman" and "women" or "quick" or "quickly"
+	not only make remembering the sentence difficult, but are also more error
+	prone and more difficult to guess (see point below)
+	- we avoid these words by carefully selecting them during addition
 
 c) sorted wordlists
-   - wordlist is sorted which allow more efficient lookup of the code words
-     (i.e. implementation can use binary search instead of linear search)
-   - this also allows trie (prefix tree) to be used, e.g. for better compression
+	- wordlist is sorted which allow more efficient lookup of the code words
+	(i.e. implementation can use binary search instead of linear search)
+	- this also allows trie (prefix tree) to be used, e.g. for better compression
 
 d) localized wordlists
-   - we would like to allow localized wordlists, so it is easier for users
-     to remember the code in their native language
-   - by using wordlists with no colliding words among languages, it's easy to
-     determine which language was used just by checking the first word of
-     the sentence
+	- we would like to allow localized wordlists, so it is easier for users
+	to remember the code in their native language
+	- by using wordlists with no colliding words among languages, it's easy to
+	determine which language was used just by checking the first word of
+	the sentence
 
 e) mnemonic checksum
-   - this leads to better user experience, because user can be notified
-     if the mnemonic sequence is wrong, instead of showing the confusing
-     data generated from the wrong sequence. 
+	- this leads to better user experience, because user can be notified
+	if the mnemonic sequence is wrong, instead of showing the confusing
+	data generated from the wrong sequence. 
 
-==Specification==
+##Specification
 
 <pre>
 Our proposal implements two methods - "encode" and "decode".
@@ -98,9 +97,11 @@ checksum sizes for the most common usecases:
 |   224  |    28   |    21   |     7    |
 |   256  |    32   |    24   |     8    |
 +--------+---------+---------+----------+
+</pre>
 
-Algorithm:
+###Algorithm:
 
+<pre>
 Encoding:
 1. Read input data (I).
 2. Make sure its length (L) is divisable by 32 bits.
