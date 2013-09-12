@@ -1,12 +1,24 @@
 ## Introduction
 
-You can have different [[addresses|address]] in order to receive payments. Think of addresses as multiple postboxes around the outside of your house. Bitcoin allows accounts too. Each account owns a bunch of addresses. Taking our earlier analogy, you can imagine separate accounts as different houses. You (Bitcoin user) receive all the mail (balance shown in Bitcoin). Mail goes to a postbox (address) at one of your houses (accounts).
+Think about what happens when you give a bank teller some cash and ask that it be deposited into your account. You tell them your account number, and they credit your account with that amount of money.
 
-The balance you see displayed is a total from all your accounts.
+The money itself is mixed up with all of the other money in the bank, and is given out to other customers with other account numbers.
+
+With the Bitcoin "accounts" feature, you are the bank. The balance you see is the total balance for all accounts, and you can create an arbitrary number of accounts.
+
+When you receive bitcoins, they are always assigned to one of your accounts, and you can change which account is credited based on which bitcoin address receives the coins, just like you tell a bank teller which account to credit when you deposit cash in your bank. However, sending bitcoins is like withdrawing cash from the bank; the coins that are sent out are almost always not the same coins that were deposited.
 
 ## Accounts
 
-Bitcoin version 0.3.18 and later implements several RPC methods to maintain separate account balances in a single Bitcoin wallet.  The accounts feature makes it easy to create web services that maintain a separate bitcoin balance for each customer.
+Bitcoin version 0.3.18 and later implements several RPC methods to maintain separate account balances in a single Bitcoin wallet.  The accounts feature makes it easy to keep track of how much money you have received from different sources or to keep track of how much money you have spent on different things.
+
+## Account Weaknesses
+
+Since the accounts feature was introduced, several services have used it to keep track of customer's bitcoin balances and have had the following problems:
+
+* Wallet backups are an issue; if you rely on a good backup of wallet.dat then a backup must be done every time an address is associated with an account and every time the 'move' command is used.
+* The accounts code does not scale up to thousands of accounts with tens of thousands of transactions, because by-account (and by-account-by-time) indices are not implemented. So many operations (like computing an account balance) require accessing every wallet transaction.
+* Most applications already have a customer database, implemented with MySQL or some other relational database technology. It is awkward at best to keep the bitcoin-maintained Berkely DB database and the application database backed up and synchronized at all times.
 
 ## Account Names
 
