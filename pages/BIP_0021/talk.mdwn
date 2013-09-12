@@ -129,3 +129,22 @@ Hence, for example the following URIs are fully equivalent:
 
 128 characters:
 	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?a=.567&t=15%25&-i=1waiter7b38klseWrTZm5sE8PrrupPB2Q2&m=Thank%20You&l=Charly%27s%20Bar</nowiki>
+
+## Critical Improvement of BIP 0021 for "req-" param
+([Michael_S](User:Michael_S) ([[talk|User_talk:Michael_S]]) 12 Sept 2013)
+
+One aspect of current BIP 0021 is critical:
+
+It says that wallets that do not know any of the "req-" keys in the URI should reject (i.e. not process) the complete URI, to avoid doing anything in the wrong way.
+
+However, even older wallet apps may have not even implemented this rule and may still process the "known part" of the URI, thereby causing an unwanted result.
+
+The solution to the problem is to specify BIP 0021 in a way that, in case that at least one "req-" key is used, some other details of the URI must be modified too, such that it becomes "incompatible" and "undecodable" by older apps.
+
+The concrete proposal here is to append "R-" directly after "bitcoin:". Then a string with a "req-" parameter would look like this:
+	<nowiki>bitcoin:</nowiki>**R-**<nowiki>175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567&tip=15%25&</nowiki>**req-**<nowiki>tipaddr=1waiter7b38klseWrTZm5sE8PrrupPB2Q2&message=Thank%20You&label=Charly%27s%20Bar</nowiki>
+
+
+The BFN Syntax then looks as follows:
+	bitcoinurn     = "bitcoin:" ** [["R-"]]** bitcoinaddress  [bitcoinparams]("?")
+where "R-" is mandatory as soon as at least one "reqparam" is used.
