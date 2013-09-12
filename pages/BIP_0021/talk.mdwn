@@ -118,17 +118,18 @@ Hence a simple table of equivalent ALIASES is proposed, to shorten the URI:
 	label=              l=
 	message=            m=
 	tip=                t=
-	tipaddr=            i=
+	tipaddr=            ta=
 	req-                -
-	req-tipaddr=        -i=
+	req-tipaddr=        -ta=
+	req-aal=            -aal=
 
 Hence, for example the following URIs are fully equivalent:
 
 155 characters:
 	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567&tip=15%25&req-tipaddr=1waiter7b38klseWrTZm5sE8PrrupPB2Q2&message=Thank%20You&label=Charly%27s%20Bar</nowiki>
 
-128 characters:
-	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?a=.567&t=15%25&-i=1waiter7b38klseWrTZm5sE8PrrupPB2Q2&m=Thank%20You&l=Charly%27s%20Bar</nowiki>
+129 characters:
+	<nowiki>bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?a=.567&t=15%25&-ta=1waiter7b38klseWrTZm5sE8PrrupPB2Q2&m=Thank%20You&l=Charly%27s%20Bar</nowiki>
 
 ## Critical Improvement of BIP 0021 for "req-" param
 ([Michael_S](User:Michael_S) ([[talk|User_talk:Michael_S]]) 12 Sept 2013)
