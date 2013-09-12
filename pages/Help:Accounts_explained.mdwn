@@ -18,7 +18,7 @@ Since the accounts feature was introduced, several services have used it to keep
 
 * Wallet backups are an issue; if you rely on a good backup of wallet.dat then a backup must be done every time an address is associated with an account and every time the 'move' command is used.
 * The accounts code does not scale up to thousands of accounts with tens of thousands of transactions, because by-account (and by-account-by-time) indices are not implemented. So many operations (like computing an account balance) require accessing every wallet transaction.
-* Most applications already have a customer database, implemented with MySQL or some other relational database technology. It is awkward at best to keep the bitcoin-maintained Berkely DB database and the application database backed up and synchronized at all times.
+* Most applications already have a customer database, implemented with MySQL or some other relational database technology. It is awkward at best to keep the bitcoin-maintained Berkely DB wallet database and the application database backed up and synchronized at all times.
 
 ## Account Names
 
