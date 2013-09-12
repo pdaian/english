@@ -148,3 +148,17 @@ The concrete proposal here is to append "R-" directly after "bitcoin:". Then a s
 The BFN Syntax then looks as follows:
 	bitcoinurn     = "bitcoin:" ** [["R-"]]** bitcoinaddress  [bitcoinparams]("?")
 where "R-" is mandatory as soon as at least one "reqparam" is used.
+
+
+## Paying to Multiple Outputs
+([Michael_S](User:Michael_S) ([[talk|User_talk:Michael_S]]) 12 Sept 2013)
+
+Another Enhancement relates to the "Humble Bundle" scenario: Paying one transaction with multiple outputs, specifying a dedicated amount for each output address.
+
+This scenario allows to specify additional pairs of addresses and amounts. Optionally, also further labels can be specified. We call the new parameter "**req-aal**" for **a**ddress-**a**mount-**l**abel, and we specify it as a **req**uired parameter because procesing an incomplete URI would result in sending only a partial amount.
+
+	bitcoinparam   = amountparam  labelparam  **reqaalparam ** messageparam  tipparam  tipaddrparam  otherparam  reqparam
+	reqaalparam    = "req-aal=" bitcoinaddress ":" *digit  [*digit](".")  [*pchar](":")
+
+Example:
+	<nowiki>bitcoin:R-175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=0.567&label=book&req-aal=1tZdShH7b38klseWrTZm5sE8PrtZPwqdK:0.123:game&message=Thank%20You</nowiki>
