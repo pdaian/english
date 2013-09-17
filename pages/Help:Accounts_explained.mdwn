@@ -46,7 +46,7 @@ Use the *getaddressesbyaccount* method to list all addresses associated with an 
 
 ## Sending
 
-The *sendfrom* method sends coins and debits the specified account.  It does **not** change Bitcoin's algorithm for selecting which coins in the wallet are sent-- you should think of the coins in the wallet as being mixed together when they are received.  There is no way to ask Bitcoin to "create a payment transaction using the coins received from these previously received transactions."
+The *sendfrom* method sends coins and debits the specified account.  It does **not** change Bitcoin's algorithm for selecting which coins in the wallet are sent-- you should think of the coins in the wallet as being mixed together when they are received.  There is no way to ask Bitcoin to "create a payment transaction using the coins received from these previously received transactions" without using the raw transactions API(which is not part of the account system.)
 
 The *sendtoaddress* method works like *sendfrom*, but always debits the default account.
 
