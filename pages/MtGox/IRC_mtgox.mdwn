@@ -8,7 +8,7 @@ Delerium (MtGox Customer)
 
 ## Service Status
 
-**21/09/2013 12:56 BST - No Issues Reported
+**24/09/2013 11:49 BST - No Issues Reported
 
 
 ## Known Issues / Recent Announcements
@@ -83,7 +83,7 @@ This isn't an exhaustive list of news but if something of note appears, i'll try
 
 **25/06/2013 - [MtGox Update Magneto Merchant Plugin](https://www.facebook.com/MtGox/posts/485909238160155)
 
-**21/06/2013 Clarity on USD Withdrawls + More!** - [Very informative post by Mt.Gox PR Team. Keep up the good work!](https://www.facebook.com/MtGox/posts/484532824964463?_fb_noscript=1)
+**21/06/2013 - Clarity on USD Withdrawls + More!** - [Very informative post by Mt.Gox PR Team. Keep up the good work!](https://www.facebook.com/MtGox/posts/484532824964463?_fb_noscript=1)
 
 **20/06/2013 - MtGox Update their buy/sell webpage form with a confirmation box!!! Great news for those that mistype or misclick (like me)
 
@@ -97,6 +97,16 @@ This isn't an exhaustive list of news but if something of note appears, i'll try
 
 
 ## Websocket / API Changes
+
+**24/09/2013 Order Statuses - not a change, just for info**
+
+> * "pending" order is awaiting processing by the trade engine
+> * "executing" order is being processed by the trade engine
+> * "post-pending" temporary status which occurs after an order is executed before it moves onto the next stage eg. Open etc
+> * "open" order is open and on the market awaiting to be filled 
+> * "stop" relates to stop orders. These aren't available currently on MtGox. This status is waiting for a specific market move to be executed
+> * "invalid" this relates to an order which is not valid to be open. For example if an account doesn't have the funds to fulfil this order, this status would be displayed.
+
 
 **26/07/2013 API Change**
 
