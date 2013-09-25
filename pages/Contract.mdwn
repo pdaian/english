@@ -199,7 +199,7 @@ The chain-trade script could look like this:
 	IF 
 	2 <key A> <key B> 2 CHECKMULTISIGVERIFY
 	ELSE
-	<key B> CHECKSIGVERIFY SHA256 <hash of secret A> EQUALVERIFY <hash of secret B> EQUALVERIFY
+	<key B> CHECKSIGVERIFY SHA256 <hash of secret A> EQUALVERIFY SHA256 <hash of secret B> EQUALVERIFY
 	ENDIF
 
 The contract input script looks like either:
