@@ -1,9 +1,15 @@
-ICBIT is a trading website which runs a few markets. Both the Exchange (currency exchange, stocks and bonds trading) and Futures markets are live now, however the most active is the Futures market.
+ICBIT is a trading website which runs a few markets. Both the Exchange and Futures markets are live now.
+	
+This site is said<sup>[[source?]]</sup> to be founded by Fireball and [[DeepBit]] by combining best practices in high-performance trading and Bitcoin experience.
+
+**ICBIT is not an exchange** since it does not act as a central counterparty. [According to their website](http://web.archive.org/web/20130510221928/https://icbit.se/margincall) users **are totally exposed to counterparty risk from other traders** whose identities are concealed from them; the exchange does not pledge its own assets to back the full extent of the other side of a customer's position -- it pledges only "as much to profiting traders as loosing traders lost (in total)".  Traders are not allowed to conduct background or reputation checks of any kind on these anonymous counterparties.  ICBIT recently modified the linked page and it **now contains self-contradictory information,** such as "we do pledge our own assets, it's not always the case" and "your profitable position will be closed" at whatever price the exchange deems convenient rather than value-at-maturity.  Since the exchange pledges only "as much to profiting traders as loosing traders lost (in total)" it is, by definition, not the [counterparty](http://en.wikipedia.org/wiki/Counterparty) -- the "loosing [[sic]] traders" are the counterparty.
+
+A third party's assessment (1.1) of the situation is that "ICBIT it is not acting as a clearing house, nor is it the counterparty to the futures trades it brokers.  There is no clearing house guarantee, and counterparty risk remains largely unknown."
 
 This site is said<sup>[[source?]]</sup> to be founded by Fireball and [[DeepBit]] by combining best practices in high-performance trading and Bitcoin experience.
 
 ## Counterparty risks
-The ICBIT exchange acts as the central counterparty for trades in futures contracts. Unfortunately, however, it does not act as a final guarantor for the clearing process itself, with the results of the clearing process still ultimately dependent upon the exchange’s ability to effect margin calls where necessary; should that process fail due to counterparty risk from individual traders, the exchange does not guarantee to make up the difference. Thus, the exchange acts as counterparty only until it decides it won’t because it is unable to extract funds from traders on the wrong side of contracts which it holds.  (2.1)
+The ICBIT site acts as the central intermediary for trades in futures contracts.  It does not act as a final guarantor for the clearing process itself, with the results of the clearing process still ultimately dependent upon the counterparty risk exposure to other traders. Thus, the exchange does not act as a counterparty.
 
 Margin call policy is explained on the [ICBIT website](https://icbit.se/margincall).
 
@@ -105,7 +111,7 @@ Finally in January, 2012 the currency exchange section went live  (15.4)
 
 ## References
 
-2.1: [Bitcoin Derivatives, Liquidity and Counterparty Risk](http://psychologicalinvestor.com/lib/real-markets/bitcoin-derivatives-liquidity-counterparty-risk-134/)  
+1.1: http://psychologicalinvestor.com/lib/real-markets/bitcoin-derivatives-liquidity-counterparty-risk-134/  
 15.1: [Bitcoin Stock Exchange Security Standards thread](https://bitcointalk.org/index.php?topic=20377.msg319099#msg319099)  
 15.2: [Fireball's statement about ongoing futures exchange work](https://bitcointalk.org/index.php?topic=15818.msg250391#msg250391)  
 15.3: [ICBIT derivatives market thread](https://bitcointalk.org/index.php?topic=50817.msg605807#msg605807)  
