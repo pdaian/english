@@ -2,7 +2,10 @@ ICBIT is a trading website which runs a few markets. Both the Exchange (currency
 
 This site is said<sup>[[source?]]</sup> to be founded by Fireball and [[DeepBit]] by combining best practices in high-performance trading and Bitcoin experience.
 
-ICBIT Exchange acts as a central counterparty for all trades however [according to their website](https://icbit.se/margincall) users could be exposed to risk of traders going bankrupt; the exchange may [pledge its own assets](https://bitcointalk.org/index.php?topic=50817.msg1402414#msg1402414) to back the other side of a customer's position, however it's not always the case. Traders are not allowed to conduct any background or reputation checks of other traders. This is part of trading rules there.
+## Counterparty risks
+The ICBIT exchange acts as the central counterparty for trades in futures contracts. Unfortunately, however, it does not act as a final guarantor for the clearing process itself, with the results of the clearing process still ultimately dependent upon the exchange’s ability to effect margin calls where necessary; should that process fail due to counterparty risk from individual traders, the exchange does not guarantee to make up the difference. Thus, the exchange acts as counterparty only until it decides it won’t because it is unable to extract funds from traders on the wrong side of contracts which it holds.  (2.1)
+
+Margin call policy is explained on the [ICBIT website](https://icbit.se/margincall).
 
 ## Features
 For its currency exchange section ICBIT makes an accent on the following:
@@ -82,11 +85,11 @@ Funds can be withdrawn from the account's Russian ruble EWallet as QIWI vouchers
 Accounts can be protected where both login and any money withdrawal operation requires the one-time password (OTP) feature known as two-step authentication.  A mobile smartphone with Google Authenticator is the most commonly used OTP device.
 
 ## History
-First mentions of ICBIT appeared in June and July 2011 in the Bitcoin Stock Exchange Security Standards thread at bitcointalk.org (14.1) and Bitcoin futures market discussion  (14.2). By that time a very first version of the trading engine was developed.
+First mentions of ICBIT appeared in June and July 2011 in the Bitcoin Stock Exchange Security Standards thread at bitcointalk.org (15.1) and Bitcoin futures market discussion  (15.2). By that time a very first version of the trading engine was developed.
 
-A more detailed thread specific to ICBIT futures market was started  (14.3) in November, 2011. The first closed test of futures market was performed, and work on the new version of web trading client was started.
+A more detailed thread specific to ICBIT futures market was started  (15.3) in November, 2011. The first closed test of futures market was performed, and work on the new version of web trading client was started.
 
-Finally in January, 2012 the currency exchange section went live  (14.4)
+Finally in January, 2012 the currency exchange section went live  (15.4)
 
 ##See Also
 
@@ -102,10 +105,11 @@ Finally in January, 2012 the currency exchange section went live  (14.4)
 
 ## References
 
-14.1: [Bitcoin Stock Exchange Security Standards thread](https://bitcointalk.org/index.php?topic=20377.msg319099#msg319099)  
-14.2: [Fireball's statement about ongoing futures exchange work](https://bitcointalk.org/index.php?topic=15818.msg250391#msg250391)  
-14.3: [ICBIT derivatives market thread](https://bitcointalk.org/index.php?topic=50817.msg605807#msg605807)  
-14.4: [Bitcointalk announcement of a new exchange live testing](https://bitcointalk.org/index.php?topic=60548.0)
+2.1: [Bitcoin Derivatives, Liquidity and Counterparty Risk](http://psychologicalinvestor.com/lib/real-markets/bitcoin-derivatives-liquidity-counterparty-risk-134/)  
+15.1: [Bitcoin Stock Exchange Security Standards thread](https://bitcointalk.org/index.php?topic=20377.msg319099#msg319099)  
+15.2: [Fireball's statement about ongoing futures exchange work](https://bitcointalk.org/index.php?topic=15818.msg250391#msg250391)  
+15.3: [ICBIT derivatives market thread](https://bitcointalk.org/index.php?topic=50817.msg605807#msg605807)  
+15.4: [Bitcointalk announcement of a new exchange live testing](https://bitcointalk.org/index.php?topic=60548.0)
 
 
 [[!tag "Exchanges"]]
