@@ -270,6 +270,21 @@ You will be prompted for your rpcpassword, and then will see something like:
 	"genproclimit":-1,"difficulty":16.61907875185736,"error":null,"id":"curltest"}
 </source>
 
+## Clojure
+
+[clj-btc](https://github.com/aviad/clj-btc) is a Clojure wrapper for the bitcoin API.
+
+<source lang="clojure">
+user=> (require '[:as btc](clj-btc.core))
+nil
+user=> (btc/getinfo)
+{"timeoffset" 0, "protocolversion" 70001, "blocks" 111908, "errors" "",
+	"testnet" true, "proxy" "", "connections" 4, "version" 80500,
+	"keypoololdest" 1380388750, "paytxfee" 0E-8M,
+	"difficulty" 4642.44443532M, "keypoolsize" 101, "balance" 0E-8M,
+	"walletversion" 60000}
+</source>
+
 ## See Also
 
 * [[API calls list|Original_Bitcoin_client/API_Calls_list]]
