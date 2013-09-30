@@ -13,6 +13,9 @@ Delerium (MtGox Customer)
 
 ## Known Issues / Recent News / Recent Announcements
 
+**30/09/2013 SEPA Withdrawl Queue Explained** [Click Here!](https://en.bitcoin.it/w/index.php?title=MtGox/IRC_mtgox&action=submit#Withdrawls)
+
+
 **28/09/2013 Looks like OKPay are Back (Although only for deposits)**
 
 Browsing through the Mt.Gox website today, I came across the option to deposit with OKPay. I clicked it and found that the link now seems to work and you can actually deposit again with OK Pay. I know this currently only for deposits but it shows that Mt.Gox are actively working through issues with their financial partners with a view to restore full service. Great news for customers! :)
@@ -99,6 +102,48 @@ Funds deposited with Mt.Gox must come from the bank account with the name that m
 
 ## Withdrawls
 
+
+**SEPA (Single European Payments Area) Withdrawals**
+
+
+*General Information*
+
+* Withdrawals are processed in the order at which they are placed where possible. 
+
+* MtGox use a Polish Bank that processes SEPA (Single European Payments Area) transfers
+
+* Up to 50,000 Euros each day can be processed by the bank.
+
+* The maximum withdrawal for any one SEPA transfer is also 50,000 Euros. 
+
+* Amounts more than 50,000 Euros need to be split it into multiple transfers or use the International Wire payment method.
+
+* Due to queue size, each customer is currently only allowed 1 withdrawal every 20 days (estimate)
+
+* If your withdrawal amount is smaller there is a greater chance that it will be processed quicker.
+
+* Each transfer is processed in the order of requests but there are exceptions to this rule (See below)
+
+
+*The queue process*
+
+The 50,000 Euro bank limit each day is made of of withdrawals in request order until the limit has been reached.  Some requests will be passed until the next day if they are greater than the available amount left. For example, if the first 3 withdrawal amounts are 20,000 euros and the fourth and fifth is 5,000, the third request we be passed to the next day and the smaller fourth and fifth withdrawals will be included in order to reach the 50,000 euro daily limit.
+
+
+> Request 1 – 20,000		processed day 1
+
+> Request 2 – 20,000		processed day 1
+
+> Request 3 – 20,000		passed to day 2 as bigger than 50,000 limit
+
+> Request 4 – 5,000		processed day 1
+
+> Request 5 – 5,000		processed day 1
+
+
+If your withdrawal amount is smaller there is a greater chance that it will be processed quicker.
+
+
 **Q. What do the individual statuses on Withdrawls mean?**
 
 "confirmed' : In the MtGox withdrawl queue
@@ -126,6 +171,7 @@ The limits on mtgox's polish bank account limit the volume of SEPA transfers the
 **Q. Is okpay withdrawal still viable / working? (Added 24/06/2013)**
 
 No. Even though this option is currently on the website, it will give you an error stating this method is not available anymore.
+
 
 ## Verification
 
