@@ -1,0 +1,22 @@
+[BitcoinPaperWallet.com](https://bitcoinpaperwallet.com) is an open-source paper wallet generator based on the [[BitAddress]] generator. It runs on any modern web browser and relies on JavaScript for all cryptographic functionality.
+
+## Differences from BitAddress
+
+While BitAddress is capable of generating so-called "brain wallets", pool-generated vanity wallets, and bulk wallets, BitcoinPaperWallet has been simplified such that its only function is to produce paper wallets. Additionally:
+
+* Paper wallets printed using BitcoinPaperWallet feature a tri-fold design that is sealed shut so as to hide the wallet's private key and QR code from view.
+* The reverse side of the design includes instructions for general use as well as a ledger for writing down deposits or other notes.
+* The overall design includes a number of features to discourage casual tampering efforts that might otherwise reveal the private key without notice.
+* The generator includes an option for printing a paper wallet by pasting in a self-generated private key or vanity address, bypassing the random address generator altogether
+
+[[BitcoinPaperWallet-sample.jpg]]
+
+## Similarities to BitAddress
+
+BitcoinPaperWallet is a GitHub "fork" of BidAddress and uses identical cryptography functions and methods. Similarly:
+
+* The generator works entirely from within a web browser.
+* Addresses are never transmitted over the Internet
+* The full source code can be examined via "view source" in web browser.
+* Cryptographic work is done using the the browser's built-in JavaScript crypto API along with open-source JavaScript libraries
+* The generator can be run offline by [downloading a ZIP archive](https://github.com/cantonbecker/bitcoinpaperwallet) of the HTML from GitHub.
