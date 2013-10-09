@@ -5,17 +5,19 @@ __TOC__
 A Bitcoin [[private_key]] can be represented in several formats, but is typically a string of numbers and letters no more than about 51 characters in length.  This is easy to print on paper, and if kept secret, can securely hold an unlimited quantity of Bitcoins.
 
 ##Producing safe paper wallets
-Several tools exist for producing paper wallets, including [[BitAddress.org]], [[vanitygen]], [[LinuxCoin]], and [[Bitcoin_Address_Utility]].  Paper wallets must be produced securely in order to be safe, because any leak of the private key constitutes the ability for an attacker to steal any present and future balance of the address.  Consider the following:
+
+Several tools exist for producing paper wallets, including [[BitAddress.org]], [[BitcoinPaperWallet]],[[vanitygen]], [[LinuxCoin]], and [[Bitcoin_Address_Utility]].  Paper wallets must be produced securely in order to be safe, because any leak of the private key constitutes the ability for an attacker to steal any present and future balance of the address. Consider the following:
 
 * Paper wallets should be produced on a computer not connected to the Internet.
 * Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your paper wallet.  Also consider that antivirus software cannot completely rule out the possibility of malware.  However, using bootable CD's prevents the vast majority of malware from being able to run.  If you can generate a paper wallet with a bootable CD such as [[LinuxCoin]], the likelihood of malware being able to compromise your keys is very low.
 * The private keys of paper wallets should never be saved to a computer hard drive.  You should also never scan your paper wallet into your computer or type the private keys or save them in e-mail, except at the moment you are redeeming the balance.
-* A web-based paper wallet generator should be written so that all of the generation happens on your computer, not the web server.  After you load the paper wallet generating website in your web browser, you should disconnect from the internet, and observe that the paper wallet generator continues to function.  Afterward, you should close your browser before reconnecting to the internet.
-* A paper wallet generator should use an appropriate source of random numbers (entropy).  This means that the generated addresses aren't predictable.  If the addresses come from a predictable or partially-predictable pattern, someone else who can predict the pattern addresses can steal the balance. Generally, this rules out any "web-based" generator unless you know the technical capabilities of the browser it's running in and audit the code.
+* If possible, the private key of a paper wallet should be kept hidden, for example by folding the paper to hide the private key so that a photograph or photocopy of the wallet will not reveal or replicate the private key.
+* A web-based paper wallet generator should be written so that all of the generation happens on your computer, not the web server.  After you load the paper wallet generating website in your web browser, you should disconnect from the internet, and observe that the paper wallet generator continues to function.  Afterward, you should close your browser before reconnecting to the Internet.
+* A paper wallet generator should use an appropriate source of random numbers (entropy).  This means that the generated addresses aren't predictable.  If the addresses come from a predictable or partially-predictable pattern, someone else who can predict the pattern addresses can steal the balance. Generally, this rules out any "web-based" generator unless you can be sure that both your browser and the JavaScript code are taking advantage of the strongest cryptographic routines available.[(1)](http://www.w3.org/TR/WebCryptoAPI/)
 
 ###Printer Security
 
-Some printers will store the output using storage in which the data can be recovered from the printer's memory or from a hard drive (if the printer has one) and stores its print jobs there.  Most larger commercial printers have hard drives but whether or not documents are stored on them will vary based on manufacturer and model.
+Some printers will store the output using storage in which the data can be recovered from the printer's memory or from a hard drive (if the printer has one) and stores its print jobs there.  Most larger commercial printers have hard drives but whether or not documents are stored on them will vary based on manufacturer and model. Similarly, some operating system and print drivers will save a cache of printed documents.
 
 ##Redeeming Keys
 
