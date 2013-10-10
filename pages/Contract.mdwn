@@ -178,19 +178,18 @@ Cryptographers have recently been making excellent progress in the field of **ve
 
 ##Example 5: Trading across chains
 
-The Bitcoin technology can be adapted to create [[multiple, independent currencies|Alternative_chain]]. NameCoin is an example of one such currency that operates under a slightly different set of rules, and can also be used to rent names in a namespace. Currencies that implement the same ideas as Bitcoin can be traded freely against each other with limited trust. However, because distinct blockchains have different views of time, currently known proposals are susceptible to either a) a loss of funds if one party fails to complete the protocol; or, b) if timeouts are used, a race condition whereby one party could take all the funds. [This was first pointed out](https://bitcointalk.org/index.php?topic=91843) by Sergio Demian-Lerner, who proposed a solution requiring the validation rules for one blockchain to be effectively encoded into the validation rules for the other.
+The Bitcoin technology can be adapted to create [[multiple, independent currencies|Alternative_chain]]. NameCoin is an example of one such currency that operates under a slightly different set of rules, and can also be used to rent names in a namespace. Currencies that implement the same ideas as Bitcoin can be traded freely against each other with limited trust. 
 
 For example, imagine a consortium of companies that issue EURcoins, a crypto-currency that is backed 1:1 by deposits in the consortium's bank accounts. Such a currency would have a different set of tradeoffs to Bitcoin: more centralized, but without FX risk. People might wish to trade Bitcoins for EURcoins back and forth, with the companies only getting involved when cashing in/out of the regular banking system.
 
-To implement this, a protocol proposed by luxgladius can be used:
+To implement this, a [protocol proposed by TierNolan](https://bitcointalk.org/index.php?topic=193281.msg2224949#msg2224949) can be used:
 
-1. Both parties generate a new key and some random data (the secret).
-1. Party 'B' sends a hash of his secret to 'A' along with his public key.
-1. Party 'A' generates Tx1 (the payment) containing an output with the chain-trade script in it. See below for this script and a discussion of it. It allows coin release either by signing with the two keys (key 'A' and key 'B') or with (secret 'A', secret 'B', key 'B'). This transaction is not broadcast. The chain release script contains hashes, not the actual secrets themselves.
-1. Party 'A' generates Tx2 (the contract), which spends Tx1 and has an output going back to key 'A'. It has a lock time in the future and the input has a sequence number of zero, so it can be replaced. 'A' signs Tx2 and sends it to 'B', who also signs it and sends it back. Alternatively, they can simply agree on what form the contract takes, e.g., by using the same software, and then 'A' can simply send 'B' the hash of Tx1 and receive back a signature.
+1. Party 'A' generates some random data, x (the secret).
+1. Party 'A' generates Tx1 (the payment) containing an output with the chain-trade script in it. See below for this script and a discussion of it. It allows coin release either by signing with the two keys (key 'A' and key 'B') or with (secret 'x', key 'B'). This transaction is not broadcast. The chain release script contains hashes, not the actual secrets themselves.
+1. Party 'A' generates Tx2 (the contract), which spends Tx1 and has an output going back to key 'A'. It has a lock time in the future and the input has a sequence number of zero, so it can be replaced. 'A' signs Tx2 and sends it to 'B', who also signs it and sends it back.
 1. 'A' broadcasts Tx1 and Tx2. Party 'B' can now see the coins but cannot spend them because it does not have an output going to him, and the tx is not finalized anyway.
-1. 'B' performs the same scheme in reverse on the alternative chain. Both sides of the trade are now pending but incomplete.
-1. 'A' sends his secret (random data) to 'B', who then uses it to re-issue the now-finalized contract using (secret 'A', secret 'B', key 'B') and an output of his choice. 'B' now owns the coins, but in the process of claiming them, revealed his secret, allowing 'A' to claim the other side of the trade.
+1. 'B' performs the same scheme in reverse on the alternative chain. The lock time for 'B' should be much larger than the lock time for 'A'. Both sides of the trade are now pending but incomplete.
+1. Since 'A' knows the secret, 'A' can claim his coins immediately. However, 'A', in the process of claiming his coin, reveals the secret 'x' to 'B', who then uses it to finish the other side of the trade with ('x', key 'B').
 
 This protocol makes it feasible to do trades automatically in an entirely peer-to-peer manner, which should ensure good liquidity.
 
@@ -199,7 +198,7 @@ The chain-trade script could look like this:
 	IF 
 	2 <key A> <key B> 2 CHECKMULTISIGVERIFY
 	ELSE
-	<key B> CHECKSIGVERIFY SHA256 <hash of secret A> EQUALVERIFY SHA256 <hash of secret B> EQUALVERIFY
+	<key B> CHECKSIGVERIFY SHA256 <hash of secret x> EQUALVERIFY
 	ENDIF
 
 The contract input script looks like either:
@@ -208,13 +207,15 @@ The contract input script looks like either:
 
 or
 
-	<secret B> <secret A> <sig B> 0
+	<secret x> <sig B> 0
 
 i.e., the first data element selects which phase is being used.
 
-See [[Atomic_cross-chain_trading]] for details and alternative implementations.
+See [[Atomic_cross-chain_trading]] for details.
 
 Note that whilst EURcoins is a natural idea, there are other ways to implement peer-to-peer currency exchange (Bitcoin to fiat and vice versa), see the [[Ripple_currency_exchange]] article for more information.
+
+Sergio Demian-Lerner proposed [P2PTradeX](https://bitcointalk.org/index.php?topic=91843.0), a solution requiring the validation rules for one blockchain to be effectively encoded into the validation rules for the other.
 
 ##Example 7: Rapidly-adjusted (micro)payments to a pre-determined party
 
