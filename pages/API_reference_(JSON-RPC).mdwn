@@ -152,6 +152,20 @@ The JSON::RPC package from CPAN can be used to communicate with Bitcoin.  You mu
 	}
 </source>
 
+## Go
+
+The [btcjson package](https://github.com/conformal/btcjson) can be used to communicate with Bitcoin.  You must provide credentials to match the client you are communicating with.
+
+<source lang="go">
+	import "github.com/conformal/btcjson"
+	msg, err := btcjson.CreateMessage("getinfo")
+	if err != nil {
+	// Do your error handling
+	}
+	// Use your username and password here.
+	reply, err := btcjson.RpcCommand("user", "password", "localhost:8332", msg)
+</source>
+
 ## .NET (C#)
 The communication with rpc service can be achieved using the standard httprequest/response objects.
 A library for serialising and deserialising Json will make your life a lot easier:
