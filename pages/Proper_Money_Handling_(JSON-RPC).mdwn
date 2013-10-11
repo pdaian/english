@@ -36,6 +36,23 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 	return sprintf '%.0f', 1e8 * shift;
 	}
 
+## Go
+The [btcjson package](https://github.com/conformal/btcjson) provides a more complete version of this function (error checking and so on), but for illustrative purposes, this is useful.
+
+	func JSONToAmount(jsonAmount float64) (int64) {
+	var amount int64
+	tempVal := 1e8 * jsonAmount
+	if tempVal < 0 {
+	tempVal = tempVal - 0.5
+	}
+	if tempVal > 0 {
+	tempVal = tempVal + 0.5
+	}
+	// Then just rely on the integer truncating
+	amount = int64(tempVal)
+	return amount
+	}
+
 ## PHP
 	function JSONtoAmount($value) {
 	return round($value * 1e8);
