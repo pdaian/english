@@ -87,6 +87,11 @@ A new field has been added to the user_order broadcast. The field is called 'rea
 
 ## Trading Questions
 
+**Q. What is Midas?**
+
+Midas is the code name for Mt.Gox's brand new trading engine. Its been written from scratch and hopes to provide a very low latency trading engine allowing hundreds of thousands of concurrent orders processed at once. (Currently only hundreds can be). This is a prerequisite for any new currencies to be released on MtGox to ensure a good trading experience is maintained.
+
+
 **Q. Is there a limit to open orders per account?**
 
 Yes, 200. 
@@ -95,11 +100,6 @@ Yes, 200.
 **Q. How are people submitting the same order on all currency trading books?**
 
 They aren't. There is only one order book, the orders you see on one currency specific order book are also on all currency order books. There is a 2.5% currency conversion fee (added into the price). Eg. If someone buys in GBP from someone selling their BTC in EUR then the price of the EUR order appears in the order book as the price converted to GBP+2.5%.
-
-
-**Q. What is Midas?**
-
-Midas is the code name for Mt.Gox's brand new trading engine. Its been written from scratch and hopes to provide a very low latency trading engine allowing hundreds of thousands of concurrent orders processed at once. (Currently only hundreds can be). This is a prerequisite for any new currencies to be released on MtGox to ensure a good trading experience is maintained.
 
 
 ## Deposits
