@@ -1,127 +1,130 @@
 
-|Info      |BFG         |BitMinter |BTCMiner |cgminer |Diablo |EasyMiner |gMinor |MPBM   |OSFPGABM |Phoenix |poclbm |Ufasoft
-|---|---|---|---|---|---|---|---|---|---|---|---|---
-|language  |C          |Scala     |Java     |C     |Java   ||Python |Python |Tcl      |Twisted |Python |C++
-|license   |GPL-3       |All rights reserved|GPL-3    |GPL-3 |GPL-3  ||PD     |GPL-2+ |GPL-3    |MIT     |PD     |GPL-3
-|website|[link](https://github.com/luke-jr/bfgminer)|[link](https://bitminter.com)|[link](http://www.ztex.de/btcminer/)|[link](https://github.com/ckolivas/cgminer)|[link](https://github.com/Diablo-D3/DiabloMiner)|[link](http://butterflylabs.com/drivers/)||[link](https://github.com/TheSeven/Modular-Python-Bitcoin-Miner)|[link](https://github.com/progranism/Open-Source-FPGA-Bitcoin-Miner)|[link](https://github.com/phoenix2/phoenix)|[link](https://github.com/m0mchil/poclbm)|[link](http://ufasoft.com/coin/)
-|forum|[link](https://bitcointalk.org/?topic=78192)|[link](https://bitcointalk.org/?topic=31163)|[link](https://bitcointalk.org/?topic=40047)|[link](https://bitcointalk.org/?topic=28402)|[link](https://bitcointalk.org/?topic=1721)|[link](https://forums.butterflylabs.com/easyminer-support/)||[link](https://bitcointalk.org/?topic=62823)|[link](https://bitcointalk.org/?topic=9047)|[link](https://bitcointalk.org/?topic=75786)|[link](https://bitcointalk.org/?topic=1334)|[link](https://bitcointalk.org/?topic=3486)
-|related pool |[[Eligius]]|[[BitMinter]]|||||||||
-colspan='13' operating systems
-OS                    BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|Arch                |[[!template id=yes pkg]]|||[[!template id=patch src,ARM bin]]||||||||
-|Debian            |[[!template id=patch src]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=yes pkg]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
-|Fedora          |[[!template id=patch src]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch bin]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
-|Gentoo            |[[!template id=yes pkg]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch src]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
-|Mac OS X        |[[!template id=yes hmbrw]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch src]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
-|OpenWrt             |[[!template id=yes pkg]]|||[[!template id=patch bin]]||[[!template id=no]]||||||
-|Raspbian     |[[!template id=patch src]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch bin]]|[[!template id=no]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]||[[!template id=patch py]]|[[!template id=patch py]]|
-|Ubuntu              |[[!template id=yes PPA]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch bin]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
-|Windows (32-bit)      |[[!template id=yes zip]]|[[!template id=yes Java]]|[[!template id=yes jar]]|[[!template id=yes zip]]|[[!template id=yes jar]]|[[!template id=yes]]|[[!template id=yes]]|||[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
-|Windows (64-bit) (1.1)	[[!template id=yes zip]]|[[!template id=yes Java]]|[[!template id=yes jar]]|[[!template id=patch W32<ref name="win64"/>]]	[[!template id=yes jar]]|||||||
-colspan='13' mining devices (virtual)
-Virtual device        BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|getwork server    |[[!template id=yes 3.2.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
-|stratum server    |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
+|Info      |BFG   |Bitcoin Miner |BitMinter |BTCMiner |cgminer |Diablo |EasyMiner |gMinor |MPBM   |OSFPGABM |Phoenix |poclbm |Ufasoft
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---
+|language  |C    |C++           |Scala     |Java     |C       |Java   ||Python |Python |Tcl      |Twisted |Python |C++
+|license   |GPL-3 |Windows Store |All rights reserved|GPL-3    |GPL-3   |GPL-3  ||PD     |GPL-2+ |GPL-3    |MIT     |PD     |GPL-3
+|website|[link](https://github.com/luke-jr/bfgminer)|[link](http://www.groupfabric.com/bitcoin-miner/)|[link](https://bitminter.com)|[link](http://www.ztex.de/btcminer/)|[link](https://github.com/ckolivas/cgminer)|[link](https://github.com/Diablo-D3/DiabloMiner)|[link](http://butterflylabs.com/drivers/)||[link](https://github.com/TheSeven/Modular-Python-Bitcoin-Miner)|[link](https://github.com/progranism/Open-Source-FPGA-Bitcoin-Miner)|[link](https://github.com/phoenix2/phoenix)|[link](https://github.com/m0mchil/poclbm)|[link](http://ufasoft.com/coin/)
+|forum|[link](https://bitcointalk.org/?topic=78192)|[link](http://www.groupfabric.com/bitcoin-miner/support/)|[link](https://bitcointalk.org/?topic=31163)|[link](https://bitcointalk.org/?topic=40047)|[link](https://bitcointalk.org/?topic=28402)|[link](https://bitcointalk.org/?topic=1721)|[link](https://forums.butterflylabs.com/easyminer-support/)||[link](https://bitcointalk.org/?topic=62823)|[link](https://bitcointalk.org/?topic=9047)|[link](https://bitcointalk.org/?topic=75786)|[link](https://bitcointalk.org/?topic=1334)|[link](https://bitcointalk.org/?topic=3486)
+|related pool |[[Eligius]]||[[BitMinter]]||||||||||
+colspan='14' operating systems
+OS               BFG         Bitcoin MinerBitMinter  BTCMiner    cgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|Arch             |[[!template id=yes pkg]]|[[!template id=no]]|||[[!template id=patch src,ARM bin]]||||||||
+|Debian           |[[!template id=patch src]]|[[!template id=no]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=yes pkg]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
+|Fedora           |[[!template id=patch src]]|[[!template id=no]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch bin]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
+|Gentoo           |[[!template id=yes pkg]]|[[!template id=no]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch src]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
+|Mac OS X         |[[!template id=yes hmbrw]]|[[!template id=no]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch src]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
+|OpenWrt          |[[!template id=yes pkg]]|[[!template id=no]]|||[[!template id=patch bin]]||[[!template id=no]]||||||
+|Raspbian         |[[!template id=patch src]]|[[!template id=no]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch bin]]|[[!template id=no]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]||[[!template id=patch py]]|[[!template id=patch py]]|
+|Ubuntu           |[[!template id=yes PPA]]|[[!template id=no]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch bin]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]
+|Windows (32-bit) |[[!template id=yes zip]]|[[!template id=yes]]|[[!template id=yes Java]]|[[!template id=yes jar]]|[[!template id=yes zip]]|[[!template id=yes jar]]|[[!template id=yes]]|[[!template id=yes]]|||[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
+|Windows (64-bit) (1.1)	[[!template id=yes zip]]|[[!template id=yes]]|[[!template id=yes Java]]|[[!template id=yes jar]]|[[!template id=patch W32<ref name="win64"/>]]	[[!template id=yes jar]]|||||||
+|Windows RT        |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+colspan='14' mining devices (virtual)
+Virtual device    BFG         Bitcoin MinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|getwork server    |[[!template id=yes 3.2.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
+|stratum server    |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|
 colspan='13' mining devices (asic)
-Device                BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|Avalon            |[[!template id=yes 3.0.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.10.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|BitBurner             |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 3.3.2]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|BitForce SC 5 Gh/s|[[!template id=yes 3.0.0]]|[[!template id=yes 1.4.0]]|[[!template id=no]]|[[!template id=yes 3.1.0]]|[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|BitForce SC 25 Gh/s|[[!template id=yes 3.1.1]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 3.3.1]]|[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|BitForce SC 50 Gh/s|[[!template id=yes 3.1.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 3.3.1]]|[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|BitFury GPIO      |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
-|Bitfury S.B.      |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
-|Block Erupter Blade|[[!template id=yes 3.2.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|Block Erupter USB|[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|LittleFury        |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
-|Metabank BitFury  |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
-|Red/BlueFury      |[[!template id=yes 3.3.0]]||[[!template id=no]]|[[!template id=yes 3.5.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
-|Klondike          ||||[[!template id=yes 3.6.0]]||||||||
-colspan='13' mining devices (fpga)
-Device                BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|Avnet LX150T Devkit   |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|BitForce Single       |[[!template id=yes 2.2.0]]|[[!template id=yes 1.2.0]]|[[!template id=no]]|[[!template id=yes 2.2.0]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=patch git]]|[[!template id=yes]]
-|BFL MiniRig           |[[!template id=yes 2.4.3]]|[[!template id=yes 1.2.0]]|[[!template id=no]]|[[!template id=yes 2.5.0]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|
-|Cairnsmore1           |[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|Digilent Nexys 2 500K |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|Icarus                |[[!template id=yes 2.2.7]]|[[!template id=yes 1.3.0]]|[[!template id=no]]|[[!template id=yes 2.2.7]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|Lancelot              |[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|ModMiner              |[[!template id=yes 2.4.3]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.4.3]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|Terasic DE2-115       |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|X5000                 |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|X6500                 |[[!template id=yes 2.9.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|ZTEX 1.15b            |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|ZTEX 1.15x            |[[!template id=yes 2.3.4]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no 3.5.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|ZTEX 1.15y            |[[!template id=yes 2.4.1]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no 3.5.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-colspan='13' mining devices (gpu)
-Device                BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|OpenCL (Mesa AMD)  |[[!template id=yes 3.0.1]]||[[!template id=no]]|[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|||
-|OpenCL (Mesa NV)      |||[[!template id=no]]|||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|||
-|OpenCL (AMD APP)      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
-|OpenCL (nvidia)       |[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|||
-|CUDA (nvidia)         |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|[[!template id=yes]]
-colspan='13' mining devices (cpu)
-Device                BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|Intel SHA256          |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|SSE4 (x86_64)         |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
-|SSE2 (x86_32)         |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
-|SSE2 (x86_64)         |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
-|Altivec (PPC)         |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
-|VIA PadLock           |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
-|Assembly (x86_32)     |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
-|High-level CPU        |[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
-colspan='13' miner protocols
-Protocol              BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|[[getblocktemplate]]|[[!template id=yes 2.8.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.10.5]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]
-|[[StratumMP|Stratum]]|[[!template id=yes 2.9.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.8.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=patch testing]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]
-|[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
-|[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|[[UBBP]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-colspan='13' getwork extensions
-Extension     BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|hostlist      |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]
-|longpoll      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=notadv]]|[[!template id=no]] (1.2)|[[!template id=notadv]]|[[!template id=yes]]
-|midstate      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=notadv]]|[[!template id=yes 0.1]]|[[!template id=no]]|[[!template id=notadv]]|[[!template id=yes]]|[[!template id=yes]]
-|noncerange    |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
-|reject-reason |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=yes 0.0]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=patch]]|[[!template id=yes]]
-|rollntime     |[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]
-|expire=N      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|submitold     |[[!template id=yes]]|[[!template id=notadv]] (1.3)|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|[[!template id=notadv 0.0]] (1.4)|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|switchto      |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
-colspan='13' getblocktemplate/BlkPrep functionality
-Function   BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|longpoll   |[[!template id=yes]]|n/a     |n/a     |[[!template id=yes]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=yes]]
-|noncerange |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
-|proposal   |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
-|serverlist |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
-colspan='13' getblocktemplate/BlkPrep variations
-Variation       BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|(fixed coinbase)|[[!template id=yes 2.9.0]]|n/a     |n/a     |[[!template id=no]]|n/a     ||n/a   |n/a    |n/a     |n/a     ||
-|coinbase/append |[[!template id=yes 2.9.0]]|n/a     |n/a |[[!template id=yes 2.8.7]]|n/a     ||n/a   |n/a    |n/a     |n/a     ||[[!template id=yes Required]]
-|coinbase (set) |[[!template id=yes 2.10.4]] (1.5)|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
-|generation  |[[!template id=yes 2.9.0]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
-|(full submit)  |[[!template id=yes 2.9.0]]|n/a  |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
-|share/coinbase |[[!template id=yes 2.9.0]]|n/a  |n/a     |[[!template id=yes 2.8.7]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
-|share/merkle    |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
-|share/truncate |[[!template id=yes 2.9.0]]|n/a  |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
-|time/increment |[[!template id=yes 2.9.0]]|n/a  |n/a     ||n/a   ||n/a   |n/a    |n/a     |n/a     ||
-|time/decrement |[[!template id=yes 2.9.0]]|n/a  |n/a     ||n/a   ||n/a   |n/a    |n/a     |n/a     ||
-|txns/add        |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
-|txns/remove     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
-|prevblock       |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
-colspan='13' stratum functionality
-Function     BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
-|roll ntime   |[[!template id=yes 3.1.4]]|n/a |n/a     |[[!template id=no]]|n/a |n/a       |n/a||n/a   |n/a||
-|set diff     |[[!template id=yes 2.9.0]]|n/a |n/a     |[[!template id=yes 2.8.0]]|n/a |n/a       |n/a|[[!template id=patch testing]]|n/a   |n/a|[[!template id=yes 20121020]]|[[!template id=yes]]
-|transparency |[[!template id=yes 2.9.2]]|n/a |n/a     |[[!template id=no]]|n/a    |n/a       |n/a     ||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|resume       |[[!template id=yes 3.0.0]]|n/a |n/a|[[!template id=yes 2.11.0]]|n/a |n/a       |n/a     ||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|reconnect    |[[!template id=yes 2.9.0]]|n/a |n/a     |[[!template id=yes 2.8.2]]|n/a |n/a       |n/a     ||n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]
-|add peers    |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|get ver      |[[!template id=yes 2.9.0]]|n/a |n/a     |[[!template id=yes 2.8.2]]|n/a |n/a       |n/a     ||n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]
-|show msg     |[[!template id=yes 3.0.0]]|n/a |n/a    |[[!template id=yes 2.11.1]]|n/a |n/a       |n/a     ||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|suggest target|[[!template id=yes 3.2.0]]|n/a |n/a     |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|get hashrate |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
-|get temp     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+Device             BFG          Bitcoin MinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|Avalon             |[[!template id=yes 3.0.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.10.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|BitBurner          |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 3.3.2]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|BitForce SC 5 Gh/s |[[!template id=yes 3.0.0]]|[[!template id=no]]|[[!template id=yes 1.4.0]]|[[!template id=no]]|[[!template id=yes 3.1.0]]|[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|BitForce SC 25 Gh/s|[[!template id=yes 3.1.1]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 3.3.1]]|[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|BitForce SC 50 Gh/s|[[!template id=yes 3.1.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 3.3.1]]|[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|BitFury GPIO       |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
+|Bitfury S.B.       |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
+|Block Erupter Blade|[[!template id=yes 3.2.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|Block Erupter USB  |[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|LittleFury         |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
+|Metabank BitFury   |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
+|Red/BlueFury       |[[!template id=yes 3.3.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 3.5.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|
+|Klondike           |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes 3.6.0]]||||||||
+colspan='14' mining devices (fpga)
+Device                BFG         Bitcoin MinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|Avnet LX150T Devkit   |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|BitForce Single       |[[!template id=yes 2.2.0]]|[[!template id=no]]|[[!template id=yes 1.2.0]]|[[!template id=no]]|[[!template id=yes 2.2.0]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=patch git]]|[[!template id=yes]]
+|BFL MiniRig           |[[!template id=yes 2.4.3]]|[[!template id=no]]|[[!template id=yes 1.2.0]]|[[!template id=no]]|[[!template id=yes 2.5.0]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|
+|Cairnsmore1           |[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|Digilent Nexys 2 500K |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|Icarus                |[[!template id=yes 2.2.7]]|[[!template id=no]]|[[!template id=yes 1.3.0]]|[[!template id=no]]|[[!template id=yes 2.2.7]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|Lancelot              |[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.6.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|ModMiner              |[[!template id=yes 2.4.3]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.4.3]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|Terasic DE2-115       |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|X5000                 |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|X6500                 |[[!template id=yes 2.9.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|ZTEX 1.15b            |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|ZTEX 1.15x            |[[!template id=yes 2.3.4]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no 3.5.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|ZTEX 1.15y            |[[!template id=yes 2.4.1]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no 3.5.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+colspan='14' mining devices (gpu)
+Device                BFG         BitcoinMinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|OpenCL (Mesa AMD)     |[[!template id=yes 3.0.1]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|||
+|OpenCL (Mesa NV)      ||[[!template id=no]]||[[!template id=no]]|||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|||
+|OpenCL (AMD APP)      |[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
+|OpenCL (nvidia)       |[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|||
+|CUDA (nvidia)         |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|[[!template id=yes]]
+|DirectCompute         |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+colspan='14' mining devices (cpu)
+Device                BFG     Bitcoin MinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|Intel SHA256          |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|SSE4 (x86_64)         |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
+|SSE2 (x86_32)         |[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
+|SSE2 (x86_64)         |[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
+|Altivec (PPC)         |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
+|VIA PadLock           |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
+|Assembly (x86_32)     |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
+|High-level CPU        |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no 2.x]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
+|NEON (ARM)            |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+colspan='14' miner protocols
+Protocol              BFG        Bitcoin MinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|[[getblocktemplate]]|[[!template id=yes 2.8.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.10.5]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]
+|[[Stratum]]|[[!template id=yes 2.9.0]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes 2.8.0]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=patch testing]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]
+|[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
+|[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|[[UBBP]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+colspan='14' getwork extensions
+Extension     BFG     Bitcoin MinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|hostlist      |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]
+|longpoll      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=notadv]]|[[!template id=no]] (1.2)|[[!template id=notadv]]|[[!template id=yes]]
+|midstate      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=notadv]]|[[!template id=yes 0.1]]|[[!template id=no]]|[[!template id=notadv]]|[[!template id=yes]]|[[!template id=yes]]
+|noncerange    |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
+|reject-reason |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=yes 0.0]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=patch]]|[[!template id=yes]]
+|rollntime     |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]
+|expire=N      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|submitold     |[[!template id=yes]]|[[!template id=no]]|[[!template id=notadv]] (1.3)	[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|[[!template id=notadv 0.0]] (1.4)|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|switchto      |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
+colspan='14' getblocktemplate/BlkPrep functionality
+Function   BFG     Bitcoin MinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|longpoll   |[[!template id=yes]]|n/a         |n/a     |n/a     |[[!template id=yes]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=yes]]
+|noncerange |[[!template id=no]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
+|proposal   |[[!template id=no]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
+|serverlist |[[!template id=no]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
+colspan='14' getblocktemplate/BlkPrep variations
+Variation       BFG         Bitcoin MinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|(fixed coinbase)|[[!template id=yes 2.9.0]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a     ||n/a   |n/a    |n/a     |n/a     ||
+|coinbase/append |[[!template id=yes 2.9.0]]|n/a         |n/a     |n/a |[[!template id=yes 2.8.7]]|n/a     ||n/a   |n/a    |n/a     |n/a     ||[[!template id=yes Required]]
+|coinbase (set)  |[[!template id=yes 2.10.4]] (1.5)|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
+|generation      |[[!template id=yes 2.9.0]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
+|(full submit)   |[[!template id=yes 2.9.0]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
+|share/coinbase  |[[!template id=yes 2.9.0]]|n/a         |n/a     |n/a     |[[!template id=yes 2.8.7]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
+|share/merkle    |[[!template id=no]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
+|share/truncate  |[[!template id=yes 2.9.0]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||
+|time/increment  |[[!template id=yes 2.9.0]]|n/a         |n/a     |n/a     ||n/a   ||n/a   |n/a    |n/a     |n/a     ||
+|time/decrement  |[[!template id=yes 2.9.0]]|n/a         |n/a     |n/a     ||n/a   ||n/a   |n/a    |n/a     |n/a     ||
+|txns/add        |[[!template id=no]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
+|txns/remove     |[[!template id=no]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
+|prevblock       |[[!template id=no]]|n/a         |n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a    |n/a     |n/a     ||[[!template id=no]]
+colspan='14' Stratum functionality
+Function      BFG         BitcoinMinerBitMinterBTCMinercgminer Diablo  EasyMiner gMinor  MPBM  OSFPGABMPhoenix poclbm  Ufasoft
+|roll ntime    |[[!template id=yes 3.1.4]]|[[!template id=no]]|n/a     |n/a    |[[!template id=no]]|n/a |n/a       |n/a||n/a   |n/a||
+|set diff      |[[!template id=yes 2.9.0]]|[[!template id=yes]]|n/a     |n/a    |[[!template id=yes 2.8.0]]|n/a |n/a       |n/a|[[!template id=patch testing]]|n/a   |n/a|[[!template id=yes 20121020]]|[[!template id=yes]]
+|transparency  |[[!template id=yes 2.9.2]]|[[!template id=no]]|n/a     |n/a    |[[!template id=no]]|n/a    |n/a       |n/a     ||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|resume        |[[!template id=yes 3.0.0]]|[[!template id=no]]|n/a     |n/a     |[[!template id=yes 2.11.0]]|n/a |n/a       |n/a     ||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|reconnect     |[[!template id=yes 2.9.0]]|[[!template id=no]]|n/a     |n/a    |[[!template id=yes 2.8.2]]|n/a |n/a       |n/a     ||n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]
+|add peers     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a    |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|get ver       |[[!template id=yes 2.9.0]]|[[!template id=no]]|n/a     |n/a    |[[!template id=yes 2.8.2]]|n/a |n/a       |n/a     ||n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]
+|show msg      |[[!template id=yes 3.0.0]]|[[!template id=no]]|n/a     |n/a    |[[!template id=yes 2.11.1]]|n/a |n/a       |n/a     ||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|suggest target|[[!template id=yes 3.2.0]]|[[!template id=no]]|n/a      |n/a     |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|get hashrate  |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
+|get temp      |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]
 
 
 
