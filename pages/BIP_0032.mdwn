@@ -87,7 +87,7 @@ To define CKD'((K<sub>par</sub>, c<sub>par</sub>), i) &rarr; (K<sub>i</sub>, c<s
 	* If 1, return error
 	* If 0, let I = HMAC-SHA512(Key = c<sub>par</sub>, Data = &chi;(K<sub>par</sub>)  i)
 * Split I = I<sub>L</sub>  I<sub>R</sub> into two 32-byte sequences, I<sub>L</sub> and I<sub>R</sub>.
-* K<sub>i</sub> = (I<sub>L</sub> + K<sub>par</sub>)*G = I<sub>L</sub>*G + K<sub>par</sub>
+* K<sub>i</sub> = (I<sub>L</sub> + k<sub>par</sub>)*G = I<sub>L</sub>*G + K<sub>par</sub>
 * c<sub>i</sub> = I<sub>R</sub>.
 In case I<sub>L</sub> ≥ n or K<sub>i</sub> is the point at infinity, the resulting key is invalid, and one should proceed with the next value for i.
 
