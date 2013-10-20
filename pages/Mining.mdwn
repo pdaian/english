@@ -5,15 +5,9 @@
 
 Mining is intentionally designed to be resource-intensive and difficult so that the number of blocks found each day by miners remains steady. Individual [[blocks]] must contain a [[proof of work|proof_of_work]] to be considered valid. This proof of work is verified by other Bitcoin nodes each time they receive a block. 
 
-## History
-Bitcoin's public ledger (the 'block chain') was started on January 3rd, 2009 at 18:15 UTC presumably by [[Satoshi_Nakamoto]]. The first block is known as the [[genesis_block]]. The first transaction recorded in the first block was a single transaction paying the reward of 50 new bitcoins to its creator.
+While the primary purpose of mining is to allow Bitcoin nodes to reach a secure, tamper-resistant, consensus mining is also the mechanism used to introduce Bitcoins into the system: Miners are paid any transaction fees as well as a "subsidy" of newly created coins. This both serves the purpose of disseminating new coins in a decentralized manner as well as motivating people to provide security for the system.
 
 Bitcoin mining is so called because it resembles the mining of other commodities: it requires exertion and it slowly makes new currency available at a rate that resembles the rate at which commodities like gold are mined from the ground. See [[Controlled_Currency_Supply]]. 
-
-## Mining services
-Mining contracts - provides mining services with performance specified by contract. An example would be where a specific level of mining capacity is rented out for a set price for a specific duration. Short list of mining contractors is [[Minerlease]], [e-pickaxe](http://e-pickaxe.com)
-
-Mining shares - provides Mining as a Service (MaaS) model; break large-scale datacenter mining down to easily manageable pieces that are available in the form of shares of equipment. Mining shares are available from such companies as [[ASICMINER]] or [[Bit-miner.com]]
 
 ## Difficulty
 ### The Computationally-Difficult Problem
@@ -27,22 +21,35 @@ When a block is discovered, the discoverer may award themselves a certain number
 
 Additionally, the miner is awarded the fees paid by users sending transactions. The fee is an incentive for the miner to include the transaction in their block. In the future, as the number of new bitcoins miners are allowed to create in each block dwindles, the fees will make up a much more important percentage of mining income.
 
-## Hardware
+## The mining ecosystem
+
+### Hardware
 [[!img "Usb-fpga_module_1.15x-hs-800.jpg" size=120x120 class="right" title="FPGA Module"]]
 Users have used various types of hardware over time to mine blocks. Hardware specifications and performance statistics are detailed on the [[Mining_Hardware_Comparison]] page.
-### CPU Mining 
-Early Bitcoin client versions allowed users to use their CPUs to mine. The advent of GPU mining made CPU mining financially unwise. The option still exists in the reference Bitcoin client, but it is disabled by default.
+#### CPU Mining 
+Early Bitcoin client versions allowed users to use their CPUs to mine. As the network hashrate grew with more power efficient GPU miners the amount of Bitcoin's produced by CPU mining became lower than the cost of power to operate the CPUS. The option still exists in the reference Bitcoin client, but it is disabled by default.
 
-### GPU Mining
+#### GPU Mining
 GPU Mining is drastically faster and more efficient than CPU mining. See the main article: [[Why_a_GPU_mines_faster_than_a_CPU]]. A variety of popular [[mining rigs|Mining_rig]] have been documented.
-### FPGA Mining
+#### FPGA Mining
 FPGA mining is a very efficient and fast way to mine, comparable to GPU mining and drastically outperforming CPU mining. FPGAs typically consume very small amounts of power with relatively high hash ratings, making them more viable and efficient than GPU mining. See [[Mining_Hardware_Comparison]] for FPGA hardware specifications and statistics.
-### ASIC Mining
+#### ASIC Mining
 An application-specific integrated circuit, or *ASIC*, is a microchip designed and manufactured for a very specific purpose. ASICs designed for Bitcoin mining were first released in 2013 and (at the time of this writing) are in the hands of a very limited number of miners. For the amount of power they consume, they are vastly faster than all previous technologies and already has made GPU mining financially unwise in some countries and setups.
 
-## Pools
-As mining a block became more and more difficult, individuals found that they were working for months without finding a block and receiving *any* reward for their mining efforts. Thus they started organizing themselves into [[pools|Pooled_mining]] so that they could share rewards more evenly. See [[Pooled_mining]] and [[Comparison_of_mining_pools]].
-[[!tag "Mining"]][[!tag "Vocabulary"]]
+#### Mining services
+Mining contracts - provides mining services with performance specified by contract. An example would be where a specific level of mining capacity is rented out for a set price for a specific duration. Short list of mining contractors is [[Minerlease]].
+
+Mining shares - provides Mining as a Service (MaaS) model; break large-scale datacenter mining down to easily manageable pieces that are available in the form of shares of equipment. Mining shares are available from such companies as [[ASICMINER]] or [[Bit-miner.com]]
+
+Hosted mining services create some systemic risk for the Bitcoin system because they undermine the security assumption that the control of mining power is well distributed. If too much mining becomes consolidated in large hosting providers and an attacker is able to compromise some of these providers they could potentially disrupt the Bitcoin system or rip off people they transact with with reversals.
+
+### Pools
+As more and more miners competed for the limited supply of blocks, individuals found that they were working for months without finding a block and receiving reward for their mining efforts. This made mining something of a gamble. To address the variance in their income miners started organizing themselves into [[pools|Pooled_mining]] so that they could share rewards more evenly. See [[Pooled_mining]] and [[Comparison_of_mining_pools]].
+
+Similar to cloud mining traditional mining pools also create some potentially risky consolidation of control over hashing power. Although the individual miners are free to move to other pools if a pool misbehaves it can take days for them to notice misbehavior and react.  Decentralized mining pools such as [[P2Pool]] exist to eliminate this risk but are more complicated to use.
+
+### History
+Bitcoin's public ledger (the 'block chain') was started on January 3rd, 2009 at 18:15 UTC presumably by [[Satoshi_Nakamoto]]. The first block is known as the [[genesis_block]]. The first transaction recorded in the first block was a single transaction paying the reward of 50 new bitcoins to its creator.
 
 ##See Also
 
@@ -51,3 +58,4 @@ As mining a block became more and more difficult, individuals found that they we
 * [Simplified Explanation of Bitcoin Mining](http://www.reddit.com/r/Bitcoin/comments/18q2jx/eli5_bitcoin_mining_xpost_in_eli5/) by reddit user [azotic](http://www.reddit.com/user/azotic)
 
 [[ru:Mining]]
+[[!tag "Mining"]][[!tag "Vocabulary"]]
