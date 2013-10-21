@@ -296,7 +296,7 @@ To provide security for the Bitcoin network, the calculations involved need to h
 The incentive for miners to include transactions is in the fees that come along with them. If we were to implement some minimum number of transactions per block it would be trivial for a miner to create and include transactions merely to surpass that threshold. As the network matures, the block reward drops, and miners become more dependent on transactions fees to pay their costs, the problem of zero transaction blocks should diminish over time.
 
 ###How does the proof-of-work system help secure Bitcoin?
-To give a general idea of the mining process, imagine this setup:
+Bitcoin uses the [hashcash](http://en.wikipedia.org/wiki/Hashcash) proof of work with a minor adaption.  To give a general idea of the mining process, imagine this setup:
 
 	payload = <some data related to things happening on the Bitcoin network>
 	nonce = 1
