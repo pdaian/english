@@ -32,7 +32,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |getblockcount ||Returns the number of blocks in the longest block chain. |N
 |getblockhash |<index>|Returns hash of block in best-block-chain at <index>; index 0 is the [[genesis_block]]|N
 |getblocknumber ||**Deprecated**. **Removed in version 0.7**. Use getblockcount. |N
-|getblocktemplate |[[params]]|Returns data needed to construct a block to work on |N
+|getblocktemplate |[[params]]|Returns data needed to construct a block to work on.  See [[BIP_0022]]for more info on params.|N
 |getconnectioncount ||Returns the number of connections to other nodes. |N
 |getdifficulty ||Returns the proof-of-work difficulty as a multiple of the minimum difficulty. |N
 |getgenerate ||Returns true or false whether bitcoind is currently generating hashes |N
