@@ -107,6 +107,21 @@ Avalon is the first product name of Avalon project using 110nm ASIC chips(About 
 * Setup password/using ssh
 	ssh root@192.168.0.100 # Once you setup the password the telnet service will be stop. use ssh instead.
 
+## Cgminer status page
+	**MinerCount: The small miner count, each modular have 8 miners**
+	**AsicCount: The asic count on each miner. it is fixed 10**
+	**Frequency: Chip running frequcney**
+	**Fan1/2/3: The fan speed round per minute**
+	**Temp1: The air-in temperature**
+	**Temp2/3: The air-out temperature**
+	**DH(%): Hardwre error rate**
+	**NMW: Non-match work count**
+	**Firmware: the Openwrt firmware version**
+	**Controller: The FPGA controller firmware version, 0: mean read nothing**
+
+## Cgminer API LOG page
+	**[[match_work_count*]]: the work matched to which miner. is the number is very low compare to others mean it is unhealth**
+
 ## Cgminer option
 **--avalon-options 115200:24:10:45:282**. this is the default avalon option. here is the details:
 	**115200**: the serial baud. this have to match the controller baud.
