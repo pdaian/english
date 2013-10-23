@@ -84,17 +84,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 
 ##Error Codes
 
-I don't see a list of error codes, so I figured I could just paste them here, or on some other page as I find them.
-
-
-
-|Raw |Error  |Code |Notes
-|---|---|---|---
-|{[value is type str, expected real](Error:)code: -1 }|value is type str, expected real |-1
-|{[Invalid amount](Error:)code: -3 }|Invalid amount |-3
-|{[Insufficient funds](Error:)code: -4 }|Insufficient funds |-4 |seems to happen when they need to pay a fee
-|{[Account has insufficient funds](Error:)code: -6 }|Account has insufficient funds |-6
-
+See [bitcoinrpc.h](https://github.com/bitcoin/bitcoin/blob/master/src/bitcoinrpc.h#L34) for the list of error codes and their meanings.
 
 ##See Also
 
