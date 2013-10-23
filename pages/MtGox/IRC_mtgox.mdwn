@@ -222,26 +222,6 @@ Please follow the following guide to re-broadcast your single transaction:
 http://www.skanner.net/gethex.php
 
 
-
-**Script to rebroadcast the lot from Mt Gox transaction file**
-
-Note: This will only work if your bitcoind has fully synced to the blockchain. If in doubt, simply just do the transaction you want processed with the guide above.
-
-This is a quick guide (For MS Windows) explaining how to rebroadcast all the transactions in the mtgox queue (http://data.mtgox.com/api/0/bitcoin_tx.php) that haven't arrived on the blockchain yet. 
-
-You will need the following:
-
-* PHP Installed - (http://www.php.net/downloads.php)
-* This script - (http://pastebin.com/0cnDd8kQ) and name it mybroadcastbc.php
-* Bitcoind.exe - (http://bitcoin.org/en/download) - Comes bundled with bitcoin-qt
-
-
-1. Once php is installed, place the php script downloaded above and the bitcoind.exe in your php directory.
-1. Open 2 command lines by clicking 'start' then type cmd and press enter.
-1. Navigate to your php directory and then type 'bitcoind -daemon'. This will run a bitcoind instance which we will use to connect to the bitcoin blockchain. Once this step is done, you can minimise (NOT CLOSE) this window.
-1. Now in the second command line, again navigate to your php directory and type 'php mybroadcastbc.php' and press enter. After a few seconds, you will see it trying to rebroadcast the transactions in the queue. It will end with a summary once finished. Thats all there is to this.
-
-
 ## My Transaction Won't Confirm!! Why?
 
 There's two common reasons why a transaction might not confirm in a timely manner on the blockchain. First one is that ample transaction fee has not been added to the transaction. They will 'probably' be processed but they would not be a priority for miners and would take a long long time. 
