@@ -30,7 +30,7 @@ PREFIX contains metadata about the wallet version.
 
 The first 4 or 12 bits of PREFIX encode the length of the metadata (0 to e, f00 to fff)
 
-The length of the metadata in bits is 4*(n+1) where n is the value that is encoded.
+The length of the metadata in bits is 4*(n+1) where n is the value that is encoded in the first bits.
 
 The format of the metadata itself remains to be defined. 
 
@@ -42,3 +42,5 @@ Examples:
 * 100 to 1ff : length = 8 bits. 256 possible version numbers. (00 is used for Electrum's wallet structure)
 * 2000 to 2fff
 * etc.
+
+[ThomasV](User:ThomasV) ([[talk|User_talk:ThomasV]]) 15:06, 26 October 2013 (GMT)
