@@ -1,0 +1,44 @@
+Here is a simple implementation of my proposal to 'mine' for a seed: 
+
+<pre>
+from electrum import mnemonic
+import ecdsa
+import time
+import hmac
+import hashlib
+
+PREFIX = "100"
+n = len(PREFIX)
+entropy = ecdsa.util.randrange( pow(2,160) )
+nonce = 0
+
+while True:
+  ss = "%040x"%(entropy+nonce)
+  s = hashlib.sha256(ss.decode('hex')).digest().encode('hex')
+  words = mnemonic.mn_encode(s)[0:13] # 13 random words                                                                                                                          
+  seed = ' '.join(words)
+  I = hmac.new("Bitcoin mnemonic", seed, hashlib.sha512).digest().encode('hex')
+  if I[0:n] == PREFIX:
+    break
+  nonce += 1
+
+print seed
+print I
+</pre>
+
+PREFIX contains metadata about the wallet version. 
+
+The first 4 or 12 bits of PREFIX encode the length of the metadata (0 to e, f00 to fff)
+
+The length of the metadata in bits is 4*(n+1) where n is the value that is encoded.
+
+The format of the metadata itself remains to be defined. 
+
+The most compact way to use it is probably to allocate version numbers.
+
+Examples:
+
+* 00 to 0f :  length = 4 bits. 16 possible version numbers
+* 100 to 1ff : length = 8 bits. 256 possible version numbers. (00 is used for Electrum's wallet structure)
+* 2000 to 2fff
+* etc.
