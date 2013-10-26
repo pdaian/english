@@ -18,7 +18,7 @@ A *ratings agency* evaluates the creditworthiness of bond sellers and assigns bo
 
 A common problem encountered when designing advanced financial markets on top of Bitcoin is the need for a place to temporarily store small pieces of data, keyed by hash. This is because the block chain is not always the right place to put non-trivial amounts of data. The Kademlia protocol and similar designs have solved this problem, albiet in a way that is vulnerable to a variety of DoS and Sybil attacks. But there is no network designed specifically for use in Bitcoin related systems. Today, their most common usage is in file sharing networks that are typically used for copyright infringement.
 
-A separate Kademlia network can be built that is optimized solely for financial usage. Nodes would restrict the size of the stored data and artificially throttle the serving of it, thus discouraging storage of movies, games, MP3s and other such things. This means users who are interested in the financial applications but don't wish to assist file sharing can donate their resources to the network without issue.
+A separate Kademlia network can be built that is optimized solely for financial usage. Nodes would restrict the size of the stored data and artificially throttle the serving of it, thus discouraging storage of movies, games, MP3s and other such things. Initial insertion or value longevity could be made subject to proof of a Bitcoin stake (aged balances or posted bond), deterring garbage. This means users who are interested in the financial applications but don't wish to assist file sharing can donate their resources to the network without issue.
 
 ## A P2P bond network
 
