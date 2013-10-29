@@ -2,9 +2,9 @@ This page explains hashcash and how bitcoin uses it.
 
 ##Hashcash
 
-Bitcoin uses the hashcash proof-of-work function as the mining core.  All bitcoin miners whether CPU, GPU, FPGA or ASICs are expending their effort creating hashcash proofs-of-work which act as a vote in the blockchain evolution and validate the blockchain transaction log.
+Bitcoin uses the [hashcash](http://en.wikipedia.org/wiki/Hashcash) [[Proof_of_work]] function as the mining core.  All bitcoin miners whether CPU, GPU, FPGA or ASICs are expending their effort creating hashcash proofs-of-work which act as a vote in the blockchain evolution and validate the blockchain transaction log.
 
-Hashcash is a proof-of-work function invented in 1997 by Adam Back, and proposed for anti-DoS uses including preventing: anonymous remailer and mail2news gateway abuse, nym name squatting on nymservers (replyable pseudonymous mail severs), as well as general email anti-spam and general network abuse throttling.  Before bitcoin, hashcash was used by SpamAssasin, and (with an incompatible format) by microsoft (with the name "email postmark") in hotmail, exchange, outlook etc and by i2p anonymity network, mixmaster anonymous remailer components and other systems.  Hashcash was also used by Hal Finney's bitcoin precursor RPOW as a way to mine coins.  Wei Dai's [[B-money_Proposal]], and Nick Szabo's similar [(1)](https://en.bitcoin.it/wiki/Bit_Gold_proposal) bitcoin precursors, also were proposed in the context of hashcash mining.
+The hashcash proof-of-work function was invented in 1997 by Adam Back, and proposed for anti-DoS uses including preventing: anonymous remailer and mail2news gateway abuse, nym name squatting on nymservers (replyable pseudonymous remailer severs), as well as general email anti-spam and general network abuse throttling.  Before bitcoin, hashcash was used by SpamAssasin, and (with an incompatible format) by microsoft (with the name "email postmark") in hotmail, exchange, outlook etc and by i2p anonymity network, mixmaster anonymous remailer components and other systems.  Hashcash was also used by Hal Finney's bitcoin precursor RPOW as a way to mine coins.  Wei Dai's [[B-money_Proposal]], and Nick Szabo's similar [[Bit_Gold_proposal]] bitcoin precursors, also were proposed in the context of hashcash mining.
 
 Like many cryptographic algorithms hashcash uses a hash function as a building block, in the same way that HMAC, or RSA signatures are defined on a pluggable hash-function (commonly denoted by the naming convention of algorithm-hash: HMAC-SHA1, HMAC-MD5, HMAC-SHA256, RSA-SHA1, etc), hashcash can be instantiated with different functions, hashcash-SHA1 (original), hashcash-SHA256^2 (bitcoin), hashcash-Scrypt(iter=1) (litecoin).
 
@@ -14,7 +14,7 @@ In the original 1997 algorithm hashcash used SHA1 because at that time, this was
 
 ###Double Hash
 
-Also bitcoin is using two hash iterations (SHA256^2) somewhat similarly to how HMAC uses two hash iterations.  The double invocation of SHA256 that bitcoin uses as the hashcash hash, reduces the reliance on SHA256 security properties and so makes the algorithm still secure even if SHA256 is weakened in some ways by new cryptanalytic attacks.  This usage pattern offers different protection beyond doubling the number of internal hash rounds.  In the HMAC algorithm, which also uses a similar double hash construct, the double hash ensures that even though MD5 as bare hash is significantly weak now, HMAC-MD5 is still considered secure.
+Bitcoin is using two hash iterations (SHA256^2) somewhat similarly to how HMAC uses two hash iterations.  The double invocation of SHA256, reduces the reliance on SHA256 security properties and so makes hashcash still secure even if SHA256 is weakened in some ways by new cryptanalytic attacks.  This usage pattern offers different protection beyond doubling the number of internal hash rounds.  In the HMAC algorithm, which also uses a similar double hash construct, the double hash ensures that even though MD5 as bare hash is significantly weak now, HMAC-MD5 is still considered secure.
 
 ##Hashcash function
 
