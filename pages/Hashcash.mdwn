@@ -12,7 +12,7 @@ Like many cryptographic algorithms hashcash uses a hash function as a building b
 
 In the original 1997 algorithm hashcash used SHA1 because at that time, this was the defacto and NIST recommended hash, and the previous defacto hash MD5 had recently started to show signs of weakness.  Bitcoin being specified/released in 2008/2009 uses SHA256; and as bitcoin is a high assurance application for added security it actually uses SHA256 twice (denoted SHA256^2 ie "SHA256 function squared").  There is actually no strong reason SHA1 would not have worked also, hashcash relies only on the hash partial preimage resistance property (security up to hash-size, 160-bit with SHA1) and not birthday collision hardness (security up to 80-bit), so the SHA1 hash is big enough.  Bitcoin is anyway built to 128-bit security because 256-bit ECDSA is used, which also offers 128-bit security.  Never the less SHA256 is the correct and more conservative choice because even SHA1 has started to show some weakenesses, though only in birthday collision, not in 2nd-preimage.  
 
-##Double Hash=
+###Double Hash
 
 Also bitcoin is using two hash iterations (SHA256^2) somewhat similarly to how HMAC uses two hash iterations.  The double invocation of SHA256 that bitcoin uses as the hashcash hash, reduces the reliance on SHA256 security properties and so makes the algorithm still secure even if SHA256 is weakened in some ways by new cryptanalytic attacks.  This usage pattern offers different protection beyond doubling the number of internal hash rounds.  In the HMAC algorithm, which also uses a similar double hash construct, the double hash ensures that even though MD5 as bare hash is significantly weak now, HMAC-MD5 is still considered secure.
 
