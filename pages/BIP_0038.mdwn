@@ -166,7 +166,7 @@ To generate it, we need *flagbyte*, *ownerentropy*, *factorb*, *derivedhalf1* an
 
 The result is a Base58Check-encoded concatenation of the following:
 
-* 0x64 0x3B 0xF6 0xA8 0x9A + *flagbyte* + *ownerentropy* + *addresshash* + *encryptedpointb*
+* 0x64 0x3B 0xF6 0xA8 0x9A + *flagbyte* + *addresshash* + *ownerentropy* + *encryptedpointb*
 
 A confirmation tool, given a passphrase and a confirmation code, can recalculate the address, verify the address hash, and then assert the following: "It is confirmed that Bitcoin address *address* depends on this passphrase".  If applicable: "The lot number is *lotnumber* and the sequence number is *sequencenumber*."
 
