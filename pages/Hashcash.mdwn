@@ -52,7 +52,7 @@ But because bitcoin needs more precise and dynamic control of work (to target 10
 
 Hashcash expresses security margin in the standard cryptographic security terms O(2^k) where for comparison DES offers k=56-bits of security, ECDSA-256 offers k=128-bits of security, and because its widely used this log2 way of expressing work and security can also be useful for making security comparisons.
 
-Bitcoin rate of work is called the [network hashrate](https://blockchain.info/q/hashrate) in  GH/sec.  As the target block interval is 10 minutes that can be converted to cryptographic security as log2(hashrate*600), so that of Nov 2013 hashrate is 3.8 petahash/sec and bitcoin's hashcash-256^2 proofs-of-works are 72-bits (including +1 for double hash).
+Bitcoin rate of work is called the [network hashrate](https://blockchain.info/q/hashrate) in  TH/sec.  As the target block interval is 10 minutes that can be converted to cryptographic security as log2(hashrate*600), so that of Nov 2013 hashrate is 3.8 petahash/sec and bitcoin's hashcash-256^2 proofs-of-works are 72-bits (including +1 for double hash).
 
 Bitcoin also defines a new notion of (relative) difficulty which is the work required so that at current network hashrate a block is expected to be found every 10minutes.  It is expressed relative to a minimum work unit of 2^32 iterations (approximately, technically minimum work is 0xFFFF000 due to bitcoin implementation level details).  Bitcoin difficulty is simple to approximately convert to log2 cryptographic security: k=log2(difficulty)+32 (or for high accuracy log2(difficulty*0xFFFF0000)).  Difficulty is related to the target simply as difficulty = target / 0xFFFF000.
 
