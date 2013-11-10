@@ -3,7 +3,7 @@ Avalon2 is the second machine of Avalon project. using the 55nm ASIC chips
 # Prototype
  [[!img "Avalon2_55nm_prototype.jpeg" size=320x320]]
 
-## FPGA controller
+## Firmware
 ### TIMEOUT
 
 * TIMEOUT的有效值范围为[[0,255]]，FPGA controller根据TIMEOUT的配置来控制申请/计算任务的时间。当TIMEOUT值配置为1时，FPGA controller会每隔0.033s申请一次任务，也表示芯片已计算完当前HASH区间。
@@ -18,14 +18,14 @@ Avalon2 is the second machine of Avalon project. using the 55nm ASIC chips
 ### [http://downloads.canaan-creative.com/hardware/A3255/prototype/FIRMWARE/2013-11-05/ 2013-11-05]
 
 * Upload the [703n firmware](http://downloads.canaan-creative.com/hardware/A3255/prototype/FIRMWARE/2013-11-05/)
+* Upload the [FPGA controller firmware](http://downloads.canaan-creative.com/hardware/A3255/prototype/FIRMWARE/2013-11-05/FPGA/)
 * Support 8, 16, 24 miners, **8 and 16 have tested**
-* Support 6 ~ 10  chip in each miner, **6 and 10 have tested**.
-* **There are bug on 32 miners**
+* 32 miners not working
+* Support 6 ~ 10  chip in each miner, **6 and 10 have tested**
 
 ### [http://downloads.canaan-creative.com/hardware/A3255/prototype/FIRMWARE/2013-10-07/ 2013-10-07]
 
 * Only support 16 miners, each miner have 6 A3255
-* Cgminer: https://github.com/BitSyncom/cgminer/tree/avalon-55nm, https://github.com/BitSyncom/cgminer/commit/9d9450628923337646f4c50c1efd42652c97c7f9
 
 # Links 
 
