@@ -9,7 +9,7 @@ There have been three generations of testnet. Testnet2 was just the first testne
 * Default Bitcoin network protocol listen port is 18333 (instead of 8333)
 * Default RPC connection port is 18332 (instead of 8332)
 * Bootstrapping IRC channel is #bitcoinTEST instead of #bitcoin (both on irc.lfnet.org). The built-in node list is disabled.
-* A different value of ADDRESSVERSION field ensures no testnet BitCoin addresses will work on the production network. (0x6F rather than 0x00)
+* A different value of ADDRESSVERSION field ensures no testnet Bitcoin addresses will work on the production network. (0x6F rather than 0x00)
 * The protocol message header bytes are 0x0B110907 (instead of 0xF9BEB4D9) 
 * Minimum [[difficulty]] of 1.0 on testnet is equal to difficulty of 0.5 on mainnet. This means that the mainnet-equivalent of any testnet difficulty is half the testnet difficulty. In addition, if no block has been found in 20 minutes, the difficulty automatically resets back to the minimum for a single block, after which it returns to its previous value.
 * A new genesis block
