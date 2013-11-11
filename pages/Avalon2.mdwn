@@ -45,6 +45,25 @@ Avalon2 is the second machine of Avalon project. using the 55nm ASIC chips
 	2^32 / 10*1000*1000*1000 = 0.4s
 	0.4s/0.033s = 12 # TIMEOUT应配置为12
 
+* 如果使用prototype中的FPGA固件，你们的硬件设计一定要满足下面的式子：
+	发送全部任务的时间 一定要小于 FPGA申请任务的时间(也就是ASIC算完自己区间的时间)
+	((11+2+chip_num)*4*10/115200)*miner_num*1000 + DELAY_IN_MS*miner_num < (128591 / chip_num / frequency) * 33ms
+
+	解释一下：
+	11+2+chip_num)*4 ==> CHIP_NUM的任务长度，单位Byte
+	((11+2+chip_num)*4*10/115200)*miner_num*1000 ==> 发送MINER_NUM个这样的任务所需要的时间，单位是ms
+	DELAY_IN_MS*miner_num ==> 总的Delay时间，DELAY_IN_MS见cgminer代码：driver-avalon.c:1132
+	(128591 / chip_num / frequency) * 33ms ==> TIMEOUT值，详见Wiki文档
+
+	几个测试的例子，仅供参考：
+	MINER_NUM:CHIP_NUM:FREQUENCY:TIMEOUT
+	==> 16:10:1000:12 works
+	==> 16:10:1500:8  works
+	==> 32:10:1000:12 works
+	==> 32:10:1500:8  not working
+	==> 32:6:1000:21  works
+	==> 32:6:1500:12  works
+
 ### [http://downloads.canaan-creative.com/hardware/A3255/prototype/FIRMWARE/2013-11-08/ 2013-11-08]
 
 * 8, 16 miners works just fine
