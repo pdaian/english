@@ -213,17 +213,17 @@ As a thought experiment, what if the Bitcoin network grew to include Mars? From 
 
 ### Do you have to wait until my transactions are confirmed in order to buy or sell things with Bitcoin?
 
-YES, you do, IF the transaction is non-recourse. The Bitcoin reference software does not display transactions as confirmed until six blocks have passed (confirmations). As transactions are burred in the chain they become increasingly non-reversible but are very reversible before the first confirmation. Two to six confirmations are recommended for non-recourse situations depending on the value of the transactions involved.
+YES, you do, IF the transaction is non-recourse. The Bitcoin reference software does not display transactions as confirmed until six blocks have passed (confirmations). As transactions are buried in the chain they become increasingly non-reversible but are very reversible before the first confirmation. Two to six confirmations are recommended for non-recourse situations depending on the value of the transactions involved.
 
-When people ask this question they are usually thinking about applications like supermarkets.  This generally is a recourse situation: if somebody tries to double-spend on a face-to-face transaction it might work a few times, but probabalistically speaking eventually one of the double-spends will get noticed, and the penalty for shoplifting charges in most localities is calibrated to be several times worse than the proceeds of a single shoplifting event.
+When people ask this question they are usually thinking about applications like supermarkets. This generally is a recourse situation: if somebody tries to double-spend on a face-to-face transaction it might work a few times, but probabalistically speaking eventually one of the double-spends will get noticed, and the penalty for shoplifting charges in most localities is calibrated to be several times worse than the proceeds of a single shoplifting event.
 
-Double-spends might be a concern for something like a snack machine in a low-traffic area with no nearby security cameras.  Such a machine shouldn't honor 0-confirmation payments, and should instead use some other mechanism of clearing Bitcoin or validating transactions against reversal, see the wiki article [[here|Myths#Point_of_sale_with_bitcoins_isn.27t_possible_because_of_the_10_minute_wait_for_confirmation]] for alternatives.
+Double-spends might be a concern for something like a snack machine in a low-traffic area with no nearby security cameras. Such a machine shouldn't honor zero-confirmation payments, and should instead use some other mechanism of clearing Bitcoin or validating transactions against reversal, see the wiki article [[here|Myths#Point_of_sale_with_bitcoins_isn.27t_possible_because_of_the_10_minute_wait_for_confirmation]] for alternatives.
 
 Applications that require immediate payment processing, like supermarkets or snack machines, need to manage the risks. Here is one way to reverse an unconfirmed payment:
 
 A [[Finney attack|Double-spending#Finney_attack]], in which an attacker mines a block containing a movement of some coins back to themselves. Once they find a block solution, they quickly go to a merchant and make a purchase, then broadcast the block, thus taking back the coins. This attack is a risk primarily for goods that are dispatched immediately, like song downloads or currency trades. Because the attacker can't choose the time of the attack, it isn't a risk for merchants such as supermarkets where you can't choose exactly when to pay (due to queues, etc). The attack can fail if somebody else finds a block containing the purchasing transaction before you release your own block, therefore, merchants can reduce but not eliminate the risk by making purchasers wait some length of time that's less than a confirm.
 
-Because pulling off this attack is not trivial, merchants who need to sell things automatically and instantly are most likely to just price the cost of reversal fraud in, or use insurance.
+Because pulling off this attack is not trivial, merchants who need to sell things automatically and instantly are most likely to adjust the price to include the cost of reversal fraud, or elect to use special insurance.
 
 ### I was sent some bitcoins and they haven't arrived yet! Where are they?
 
