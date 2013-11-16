@@ -67,7 +67,7 @@ Avalon2 is the second machine of Avalon project. using the 55nm ASIC chips
 ### [http://downloads.canaan-creative.com/hardware/A3255/prototype/FIRMWARE/2013-11-08/ 2013-11-08]
 
 * 8, 16 miners works just fine
-* **ISSUE**: 24, 32 miners still not working with 1.5Ghs, works fine with 1Ghs
+* **ISSUE**: 32 miners with 10 chips still not working because [TIMEOUT issue](https://en.bitcoin.it/wiki/Avalon2#TIMEOUT)
 * Both [703n firmware](http://downloads.canaan-creative.com/hardware/A3255/prototype/FIRMWARE/2013-11-08/openwrt) and  [FPGA controller firmware](http://downloads.canaan-creative.com/hardware/A3255/prototype/FIRMWARE/2013-11-08/FPGA/) have uploaded
 * Change `core_count to 64 to compatible with ealier cgminer 
 * Software should follow equation below when handle A3255 based miner
