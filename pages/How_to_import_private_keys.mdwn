@@ -1,11 +1,45 @@
+# Using Blockchain.info
+As of August 2012, possibly the easiest way to import a private key is using [[Blockchain.info]]'s My Wallet service. When successully imported through the "Import/Export" screen, the bitcoins assigned to a private key can be immediately sent to any Bitcoin address. The [[MtGox]] Bitcoin exchange will allow individual private keys to be redeemed but since they must sweep the address, the user must wait 6 confirmations for access to the funds. There is an API method to import an entire wallet.dat as well.
 
+# Using BIPS
+As of August 2013, [[!img "BIPS.gif" size=20x20 link=https://bips.me]] [[BIPS]] allows for easy import of private key using Paper Wallet - Import. User can choose to type in the private key manually or scan a QR code containing the private key using the camera. The user must wait 6 confirmations for access to the funds, and system is based on batch importation.
+
+# Using MyCelium
+Steps described are with the following settings:
+
+* Export mode enabled
+* Aggregated view disabled
+
+## Partial spend from Cold Storage
+Use this function if you would like to keep some funds on the paper wallet.
+
+1. Download [Mycelium](https://play.google.com/store/apps/details?id=com.mycelium.wallet&hl=en) from the Android Play Store
+1. Press the menu button and select "Cold Storage"
+1. Scan in private key
+1. Select your destination address
+1. Select the amount 
+	1. Press the blue currency tag at the top to toggle currency.
+1. Send!
+
+After spending, the private key in memory is destroyed so the paper private key remains somewhat secure.
+
+## Import key from a paper wallet
+Use this function if you would like to import a private key so all funds are immediately available for spending.
+
+1. Download [Mycelium](https://play.google.com/store/apps/details?id=com.mycelium.wallet&hl=en) from the Android Play Store
+1. Key Management
+1. Press the blue '+' symbol
+1. Scan in private key
+
+After importing this paper private key, you might consider destroying the original so it cannot be found and your funds stolen. Alternatively, you can keep it safe to be used as an offline backup.
+
+# Using bitcoind
 **If you have Version 7 or later it is now trival.** See: [[How_to_import_private_keys_v7+]]
 
 If you are using [[Cold_storage]], a [[Paper_wallet]] or generating [vanity addresses](https://bitcointalk.org/index.php?topic=25804.0) you may have a need to import a [[Private_key]]. Since Bitcoin-QT/bitcoind v0.6.0, you can import private keys using built-in RPC command [[importprivkey]]. Before v0.6.0, you needed to rely on third-party [[wallet.dat]] manipulation tool such as [[Pywallet]]. 
 
-As of August 2012, possibly the easiest way to import a private key is using [[Blockchain.info]]'s My Wallet service. When successully imported through the "Import/Export" screen, the bitcoins assigned to a private key can be immediately sent to any Bitcoin address. The [[MtGox]] Bitcoin exchange will allow individual private keys to be redeemed but since they must sweep the address, the user must wait 6 confirmations for access to the funds. There is an API method to import an entire wallet.dat as well.
 
-As of August 2013, [[!img "BIPS.gif" size=20x20 link=https://bips.me]] [[BIPS]] allows for easy import of private key using Paper Wallet - Import. User can choose to type in the private key manually or scan a QR code containing the private key using the camera. The user must wait 6 confirmations for access to the funds, and system is based on batch importation.
+
 
 This article describes how to import a private key through the RPC API of bitcoind, which is a topic for advanced users.
 
