@@ -90,7 +90,11 @@ Avalon2 is the second machine of Avalon project. using the 55nm ASIC chips
 * Only support 16 miners, each miner have 6 A3255 ASICs
 
 ## Work without LDO RT9187
-连接C20右侧脚和C15或者C14左侧脚，另外注意保持Vcore电压在0.95-1.05之间即可，按照原始BOM表的话，是1V的，不要动就没问题，如果遇到晶振不起振的情况，可以尝试缩小R28的值。默认值1K，可以慢慢降低试试看。如果还不行就换一个晶振。
+
+* Connect the C20 right pad to C15 or C14 left pad
+* Please keep the Vcore to between 0.95v and 1.05v, the origin design was 1v. 
+* If the crystal  not working, try to reduce the R28(by default it's 1K), if reduce the R28 didn't make crystal  back to working. try repace the crystal with a better brand.
+
  [[!img "Avalon2_work_without_LDO_RT9187_2.jpeg" size=320x320]]   [[!img "Avalon2_work_without_LDO_RT9187_1.jpeg" size=320x320]]
 
 # Links 
