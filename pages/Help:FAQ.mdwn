@@ -281,7 +281,7 @@ If you want to restrict your firewall rules to a few IPs, you can find stable no
 
 ### How does the peer finding mechanism work?
 
-Bitcoin finds peers primarily by forwarding peer announcements within its own network and each node saves a database of peers that it's aware of, for future use. In order to bootstrap this process Bitcoin needs a list of initial peers, these can be provided manually but normally it obtains them by querying a set of DNS domain names which have automatically updated lists, if that doesn't work it falls back to a built-in list which is updated from time to time in new versions of the software. In the reference software tnitial peers can also be specified manually by adding an addr.txt to the data directory or via the addnode parameter.
+Bitcoin finds peers primarily by forwarding peer announcements within its own network and each node saves a database of peers that it's aware of, for future use. In order to bootstrap this process Bitcoin needs a list of initial peers, these can be provided manually but normally it obtains them by querying a set of DNS domain names which have automatically updated lists, if that doesn't work it falls back to a built-in list which is updated from time to time in new versions of the software. In the reference software initial peers can also be specified manually by adding an addr.txt to the data directory or via the addnode parameter.
 
 ##Mining
 ###What is mining?
