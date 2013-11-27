@@ -1,22 +1,89 @@
-Coinkite is a web wallet with merchant services, POS terminals and debit cards.  (1.1) (1.2) (1.3) (1.4) (1.5) (1.6) (1.7) (1.8) (1.9)
+Coinkite (1.1) (1.2) (1.3) (1.4) (1.5) (1.6) (1.7) (1.8) (1.9) offers a number of useful bitcoin and litecoin services. It aims to become a full service cryptobank and safe place for holding coins for immediate use and long-term saving.
 
-"Coinkite is a [[cryptobank]], the Bitcoin way."
+##Main features
 
-They let customers and merchants transact in Bitcoin, Litecoin and other crypto currencies, in both the online and physical worlds — just as you would with online banking and debit cards.
+* Powerful, easy to use web wallet. Receive and send bitcoin amounts from a web interface. Two factor authentication, memorable image (to resist phishing attempts) and many other security features are in place. Users are free of the burden of securing their own computer.
+
+* Point-of-sale payment terminal. Coinkite sells a hardware device, complete with QR scanner and receipt printer that can be used to perform bitcoin transactions without a computer and in a retail setting.
+
+* "Debit" Card. Coinkite offers all it's members a plastic card which can be used at the payment terminals, but is also useful anywhere as it was a bitcoin address in QR code on the back. Bitcoin sent to that address are linked to the user's Coinkite balance.
 
 ##Services
 
-- Secure and easy-to-use [online wallets](https://coinkite.com/faq/money)
+* multiple sub-accounts for grouping funds (ie. "Savings", "Chequing")
 
-- Merchant hardware [payment terminals](https://coinkite.com/faq/terminal)
+* all transactions occur in the public blockchain, and there is no "internal bookkeeping" of funds.
 
-- Bitcoin  [debit cards](https://coinkite.com/faq/terminal)
+* monlthly, yearly and pay as you go membership plans are offered.
 
+* detailed transaction logging, real-time on-screen alerts as funds as received
+
+* multiple cryptocurrenies: bitcoin, litecoin, testnet coins are offered with equal features
+
+* Coinkite is the first Litecoin web wallet on the market (Oct 2013)
+
+####Services Links
+
+* [Online wallets](https://coinkite.com/faq/money)
+
+* [Merchant Point-of-Sale terminals](https://coinkite.com/faq/terminal)
+
+* [Bitcoin debit cards](https://coinkite.com/faq/terminal)
+
+##Unique BIPS32 Feature
+
+Coinkite is internally based on BIPS32 Hierarchical Deterministic (HD) wallets. Each new member receives a "welcome email" which contains the "xpubkey" (extended public key) for their deposits, and an *encrypted* copy of the corresponding xprivkey. The xpubkey (used for both Litecoin and Bitcoin) can be used by the account owner to see all public keys associated with their account (both past and future). Combined with the "audit" feature, the user can fetch a list of all UTXO (unspent transaction outputs) associated with their account and verify the public key's subpath from the given xpubkey. Similarly, they can check the UTXO is correctly stored on the blockchain.
+
+
+Coinkite has stated that in the event of the closure or other failure of the business, they will publicize the symmetric key protecting the xprivkey values that have been distributed to members. With that key, each user could recover their funds by re-generating the private keys for each UTXO. 
+
+
+The founders of Coinkite understood the inherent risk of trusting a third party with the private keys for your bitcoins, and this application of BIPS32 helps to address these concerns should the business disappear. The company calls this system "full reserve" since the users are in a position to verify that their funds are not being used for any other purpose than safe-keeping, while on deposit at Coinkite.
+
+##Debit Card
+
+For a small fee (and included in some membership plans), Coinkite users may receive a physical card. This eases use of their Coinkite account at the POS terminal and the QR code on the rear is useful for making deposits.
+
+##POS Terminal
+
+Coinkite sells a hardware device which can perform a number of transactions. It connects via GPRS (cell) or Wifi to Coinkite backend servers which perform the blockchain operations. It does not directly connect to the P2P network.
+
+Users can log into their Coinkite account at the machine, using either their Coinkite card (and a 4-6 digit PIN, plus optionally a 2FA token) or use a one-time QR code from the Coinkite website. Once connected to their account, they can perform many types of transactions:
+
+* print out their current balances
+
+* scan a QR and pay it using their balance
+
+* withdraw funds to cash (requires the retail to become the counter-party)
+
+* deposit cash (buying coins from the retailer)
+
+* make a printed invoice (ie. a unique bitcoin address for payment of a specific amount)
+
+* verify a payment has been received (by scanning any receipt printed by a Coinkite terminal)
+
+The POS terminal is also useful to enable the bitcoin-based retail business. Cashiers (authorized users) can print a receipt with QR code that maybe presented to customers as a bill in bitcoin to be paid. Once paid, using any bitcoin wallet of choice, the payment can be easily verified at the terminal by scanning it's QR code. The number of confirmations for the incoming funds is displayed and appropriate warnings are shown for zero confirmation transactions. It is up to the retailer to define their policy on number of required confirmations and presumably the size of the transaction will be a deciding factor.
+
+Other "non account holder" transactions that are possible:
+
+* print current exchange rates (Bitcoin vs. fiat) to a receipt
+
+* deposit cash into bitcoin/litecoin (ie. retailer is selling bitcoins)
+
+* coins are delivered to a URL or private key.
+
+* scan bitcoin QR to pay (retailer is selling bitcoins, paid directly to settle bitcoin debt)
+
+* scan to verify transaction (prints amount received, and confirmation status for Coinkite transactions)
+
+The POS terminal supports both Litecoin and Bitcoin for all operations. Coins can be delivered as a paper wallet, directly into a Coinkite account (must be pre-existing) or into web voucher (PIN code and short URL).
 
 ##External Links
 
 * [Coinkite Home page](https://www.coinkite.com)
+
 * [FAQ page](https://www.coinkite.com/faq)
+
 * [Sign-up](https://coinkite.com/promo/wiki)
 
 ##References
@@ -33,9 +100,9 @@ They let customers and merchants transact in Bitcoin, Litecoin and other crypto 
 
 
 ##Images
-[[!img "Coinkite_interfaces.png" title="alt=Coinkite interfaces" title="Coinkite interfaces"]]
-[[!img "Bitcoin-pos-terminal.png" title="alt=Bitcoin POs Terminal" title="Coinkite terminal"]]
-[[!img "Coinkite_logo.png" title="alt=Coinkite logo" title="Coinkite logo"]]
+[[!img "Coinkite_interfaces.png" size=300x300 title="alt=Coinkite interfaces" title="Coinkite interfaces"]]
+[[!img "Bitcoin-pos-terminal.png" size=300x300 title="alt=Bitcoin POs Terminal" title="Coinkite terminal"]]
+[[!img "Coinkite_logo.png" size=300x300 title="alt=Coinkite logo" title="Coinkite logo"]]
 
 [[!tag "Debit_Cards"]]
 [[!tag "Wallets"]]
