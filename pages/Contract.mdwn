@@ -13,6 +13,7 @@ This page also lists some smaller examples.
 Many of the ideas underlying Bitcoin contracts were first described by Nick Szabó in his seminal paper, 
 [Formalizing and Securing Relationships on Public Networks](http://szabo.best.vwh.net/formalize.html). These pages were written by [Mike Hearn](mailto:mike@plan99.net). Contact him if you have an idea for a new type of contract. You can watch **[a video of a talk on contracts](https://www.youtube.com/watch?feature=player_embedded&v=mD4L7xDNCmA)** that was presented at the Bitcoin 2012 conference in London.
 
+
 ##Theory
 
 Every [[transaction]] in Bitcoin has one or more inputs and outputs. Each input/output has a small, pure function associated with it called a [[script]]. Scripts can contain signatures over simplified forms of the transaction itself.
@@ -162,17 +163,30 @@ Oracles can potentially evaluate anything, yet the output script form in the blo
 
 The conditions that control whether the oracle signs can be arbitrarily complex, but the block chain never needs to contain more than a single hash.
 
-###Minimizing trust in the oracle
+###Trust minimization: challenges
 
 There are various ways to reduce the level of required trust in the oracle.
 
 Going back to our first example, the oracle has not seen the transaction the grandson is trying to unlock, as it was never broadcast, thus, it cannot hold the grandson to ransom because it does not know whether the transaction it's signing for even exists. People can, and should, regularly **challenge** the oracle in an automated fashion to ensure it always outputs what is expected. The challenges can be done without spending any coins because the tx to be signed can be invalid (ie, connected to transactions that don't exist). The oracle has no way to know whether a request to be signed is random or real. How to challenge the oracle with conditions that are not yet true is however an open research question. 
 
-The number of keys in the CHECKMULTISIG can be increased to allow for **n-of-m** oracles if need be. 
+###Trust minimization: multiple independent oracles
+
+The number of keys in the CHECKMULTISIG can be increased to allow for **n-of-m** oracles if need be.  Of course, it is vital to check that the oracles really are independent and not in collusion.
+
+###Trust minimization: trusted hardware
 
 Using commodity hardware, you can use **trusted computing** in the form of Intel TXT or the AMD equivalent (SKINIT) to set up a sealed hardware environment and then use the TPM chip to attest that fact to a third party. That third party can verify the hardware was in the required state. Defeating this requires someone to be able to interfere with the execution of a program that may run entirely on the CPU, even in extreme cases without any data traversing the memory bus (you can run entirely using on-die cache if the program is small enough).
 
-Cryptographers have recently been making excellent progress in the field of **verifiable computation**. This allows an untrusted server to execute a pure function in which some inputs can be private, and produce a proof that it was executed correctly. If the oracle program can be expressed as a pure function, then this technique can be powerfully applied. However there are performance limits. The current state of the art as of summer 2013 is [Pinnochio](http://research.microsoft.com/pubs/180286/pinocchio.pdf), an open source system from Microsoft Research. For some classes of functions checking the proof can be faster than executing the program itself, for others it is still slower - however, quite within the realms of feasibility. Because the programs are pure functions, they cannot do any I/O, therefore no access to the internet. This is quite restrictive as often the point of an oracle program is to measure external state. We can work around this restriction by providing signed data to the program and have the program itself check the signatures - to make it as easy as possible to get signed data from as many sources as possible, an extension to the SSL/TLS protocol that allows for signing of arbitrary sessions may be appropriate.
+###Trust minimization: verifiable computation
+
+Cryptographers have recently been making excellent progress in the field of **verifiable computation**. This allows an untrusted server to execute a pure function in which some inputs can be private, and produce a proof that it was executed correctly. If the oracle program can be expressed as a pure function, then this technique can be powerfully applied. However there are performance limits. The current best available code as of summer 2013 is [Pinnochio](http://research.microsoft.com/pubs/180286/pinocchio.pdf), an open source system from Microsoft Research. The academic state of the art is [TinyRAM](http://www.scipr-lab.org/tinyram), which is based on [this paper](http://www.scipr-lab.org/system/files/csnark-20130815.pdf), but the code is presently unavailable. They plan to open source it at some point.
+
+For some classes of functions checking the proof can be faster than executing the program itself, for others it is still slower - however, quite within the realms of feasibility. Because the programs are pure functions, they cannot do any I/O, therefore no access to the internet. This is quite restrictive as often the point of an oracle program is to measure external state. We can work around this restriction by providing signed data to the program and have the program itself check the signatures - to make it as easy as possible to get signed data from as many sources as possible, an extension to the SSL/TLS protocol that allows for signing of arbitrary sessions may be appropriate.
+
+###Trust minimization: Amazon AWS oracles
+
+Finally, perhaps the most practical approach currently is to use Amazon Web Services. As of November 2013, the closest we have to a working oracle is [this recipe for creating a trusted computing environment using AWS](https://bitcointalk.org/index.php?topic=301538.0), built in support of [this project for doing selective SSL logging and decryption](https://bitcointalk.org/index.php?topic=173220.0). The idea is that an oracle, which can be proven trustworthy using the Amazon APIs with Amazon as the root of trust, records encrypted SSL sessions to an online banking interface in such a way that later if there is a dispute about a person-to-person exchange, the logs can be decrypted and the dispute settled.
+
 
 ##Example 5: Trading across chains
 
