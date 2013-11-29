@@ -32,9 +32,9 @@ Coinkite (2.1) (2.2) (2.3) (2.4) (2.5) (2.6) (2.7) (2.8) (2.9) offers a number o
 
 * [Bitcoin debit cards](https://coinkite.com/faq/terminal)
 
-##Unique [[BIPS]]32 Feature
+##Unique [[BIP]] 32 Feature
 
-Coinkite is internally based on BIPS32 [[Hierarchical_Deterministic]] (HD) wallets. Each new member receives a "welcome email" which contains the "xpubkey" (extended public key) for their deposits, and an *encrypted* copy of the corresponding xprivkey. The xpubkey (used for both Litecoin and Bitcoin) can be used by the account owner to see all public keys associated with their account (both past and future). Combined with the "audit" feature, the user can fetch a list of all UTXO (unspent transaction outputs) associated with their account and verify the public key's subpath from the given xpubkey. Similarly, they can check the UTXO is correctly stored on the blockchain.
+Coinkite is internally based on BIP 32 [[Hierarchical_Deterministic]] (HD) wallets. Each new member receives a "welcome email" which contains the "xpubkey" (extended public key) for their deposits, and an *encrypted* copy of the corresponding xprivkey. The xpubkey (used for both Litecoin and Bitcoin) can be used by the account owner to see all public keys associated with their account (both past and future). Combined with the "audit" feature, the user can fetch a list of all UTXO (unspent transaction outputs) associated with their account and verify the public key's subpath from the given xpubkey. Similarly, they can check the UTXO is correctly stored on the blockchain.
 
 
 Coinkite has stated that in the event of the closure or other failure of the business, they will publicize the symmetric key protecting the xprivkey values that have been distributed to members. With that key, each user could recover their funds by re-generating the private keys for each UTXO. 
