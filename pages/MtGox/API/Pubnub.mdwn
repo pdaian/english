@@ -23,7 +23,7 @@ A very simple sample implementation: https://www.mtgox.com/lag.html (shows trade
 
 Private channels can be accessed by first calling the https://www.mtgox.com/api/2/stream/private_get api. This API will return details to access the private API (subscribe key, auth key, encryption key, etc).
 
-Private messages are encrypted using PubNub's standard encryption method (AES128 CBC) and a shared secret obtained through the API. This guarantees that PubNub has no knowledge of the private key and as such can't possibly read the private messages unless you access the console (as it's passed as parameter). As long as you don't call the stream/private_get api, no data for your user will be sent to PubNub.
+Private messages are encrypted using PubNub's standard encryption method (AES128 CBC w/ 14 cycles of repetition for 256-bit keys) and a shared secret obtained through the API. This guarantees that PubNub has no knowledge of the private key and as such can't possibly read the private messages unless you access the console (as it's passed as parameter). As long as you don't call the stream/private_get api, no data for your user will be sent to PubNub.
 
 Once the number of seconds specified in "renew" has passed, you should call the API again to renew the auth key and password. If the auth key has changed, you will need to subscribe again to continue getting updates.
 Once the number of seconds specified in "expires" has passed, no data will be sent anymore unless the API was called again.
