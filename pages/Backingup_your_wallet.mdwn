@@ -83,6 +83,104 @@ Don't forget to mount your image before using Bitcoin and unmount after quitting
 
 If one *doesn't* want to use encrypted Disk images, then a **small shell script** can be used instead that takes care of decrypting the wallet, launching bitcoin client, and encrypting it after the client exits. This script works on both OSX and Gnu/Linux: [bitcoin-launch-script](http://lorelei.kaverit.org/bitcoin.sh)
 
+### Email-based Archival and Remote Backup
+One of the simplest methods for storing an appropriately **encrypted** archive of your wallet.dat file is to send the archive as an email attachment to your own e-mail address.  Services like Gmail use very comprehensive distributed networks that make the loss of data very unlikely.  One can even obfuscate the name of the files within the archive, and name the archive something less inviting, such as: 'personal notes' or 'car insurance'.
+
+Another solution is to use a file storage service like [Wuala](http://www.wuala.com/bitcoin) ( encrypted, [instructions](http://www.bitcoin.org/smf/index.php?topic=5817.0)), [Dropbox](http://www.dropbox.com) (after encrypting the wallet first) and [others](http://en.wikipedia.org/wiki/Comparison_of_online_backup_services), including the more secure [SpiderOak](http://www.spideroak.com).
+
+### Automated backups using Cron, Bash and GNU/Linux
+
+Linux users can setup backups using cron by telling it to run a backup script at set intervals of time. Run 'crontab -e' and add this line near the bottom:
+
+	01 * * * * /usr/local/bin/backupwallet.sh
+
+This cron line will run the /usr/local/bin/backupwallet.sh script at the 01 minute of every hour. Remember to add a newline after the last line of the crontab file, or else the last line won't run. You may also wish to ignore the script's output by appending " > /dev/null 2>&1" to the line (this will also prevent emails from being sent).
+
+Create /usr/local/bin/backupwallet.sh:
+
+	#!/bin/bash
+	# /usr/local/bin/backupwallet.sh
+	#
+	# Performs backup of bitcoin wallet.
+	#
+	# Written by: https://en.bitcoin.it/wiki/Securing_your_wallet
+	
+	#
+	# Standard Options
+	#
+	TS=$(date "+%Y%m%d-%H%M")
+	WALLET=/tmp/wallet-${TS}
+	WALLET_E=/tmp/wallet-${TS}.crypt
+	BITCOIN=bitcoind  # /path/to/bitcoind
+	GPG=gpg  # /path/to/gpg
+	GPG_USER=username  # Username of gpg recipient. User should have gpg setup.
+	RM=rm
+	RM_OPTS='--force'
+	USE_SHRED=0  # Flip to 1 to use `shred` instead of `rm`.
+	SHRED=shred
+	SHRED_OPTS='--force --iterations=9 --zero --remove'
+	
+	#
+	# Storage Options
+	# Only 1 set of options should be un-commented (the last one will be used).
+	# Update CP_DEST paths as neccessary.
+	#
+	# CP - Storage on a local machine. Could be Dropbox/Wuala folder.
+	#CP=cp
+	#CP_DEST='/var/data/backups/'  # '~/Dropbox/', etc.
+	#
+	# SSH - Storage on a remote machine.
+	CP=scp
+	CP_DEST='remoteuser@example.com:~/wallets/'
+	#
+	# S3 - Storage on Amazon's S3. Be sure s3cmd is installed and properly setup.
+	# You may need "s3cmd put --force" if you use a sub-directory in CP_DEST.
+	#CP=s3cmd put
+	#CP_DEST='s3://bucket'
+	
+	do_clean() {
+	# Remove temporary wallets.
+	if  [-eq $USE_SHRED](1); then
+	$SHRED $SHRED_OPTS $WALLET $WALLET_E
+	else
+	$RM $RM_OPTS $WALLET $WALLET_E
+	fi
+	}
+	
+	do_fail() {
+	do_clean
+	echo failed!
+	exit 1
+	}
+	
+	# Perform the backup.
+	echo -n Making backup...
+	$BITCOIN backupwallet $WALLET
+	 [-s "$WALLET"](!) && do_fail  # If the backup does not exist or is empty, fail.
+	echo done.
+	echo -n Encrypting backup...
+	$GPG -r $GPG_USER --output $WALLET_E --encrypt $WALLET
+	 [-ne $?](0) && do_fail  # If gpg returns a non-zero result, fail.
+	echo done.
+	echo -n Copying to backup location...
+	$CP $WALLET_E "$CP_DEST"
+	 [-ne $?](0) && do_fail  # If the $CP command returns a non-zero result, fail.
+	echo done.
+	do_clean
+	
+	exit 0
+
+The shell script:
+
+* Calls bitcoind backupwallet to create a time/date-stamped wallet.
+* GPG encrypts the wallet with your public key.
+* Copies the result using one of several storage options (cp, scp, and s3cmd).
+* Uses the rm or shred command to remove the temporary wallet files.
+
+Be sure to modify the script options to fit your setup. After you save, make sure the file can be executed properly by the cron user. Common permissions for files in /usr/local/bin/ can be applied using (verify with your distribution!):
+
+	cd /usr/local/bin/ && chown root:root backupwallet.sh && chmod 755 backupwallet.sh
+
 ##Restoring your wallet file
 
 Assuming your backup is recent enough that you haven't used up all of your key pool... restoring a wallet to a new (or old) location and rescanning the block chain should leave you with all your coins. Just follow these steps:
