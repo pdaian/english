@@ -7,7 +7,13 @@ __TOC__
 [[!img "BitcoinPaperWallet-sample.jpg" class="right" size=400x400 title="Wallet with private key secured beneath folds (BitcoinPaperWallet.com)"]]
 A Bitcoin [[private_key]] can be represented in several formats, but Wallet Import Format (WIF) is typically used for paper wallets since these keys are very short (51 characters) and thus easy to re-enter when importing or "sweeping" the wallet for withdrawal.
 
-Several tools exist for producing paper wallets, including [[BitAddress.org]], [[BitcoinPaperWallet.com|BitcoinPaperWallet]], [[vanitygen]], [Safe Paper Wallet](https://safepaperwallet.com), and [[Bitcoin_Address_Utility]]. Care must be taken to securely generate paper wallets since an attacker can steal the present *and future* balance of a paper wallet if the private key is exposed, transmitted, or generated with insufficient entropy.
+Several tools exist for producing paper wallets, including [[BitAddress.org]], [[BitcoinPaperWallet.com|BitcoinPaperWallet]], [[vanitygen]], [Safe Paper Wallet](https://safepaperwallet.com), and [[Bitcoin_Address_Utility]]. 
+
+Care must be taken to securely generate paper wallets since an attacker can steal the present *and future* balance of a paper wallet if the private key is exposed, transmitted, or generated with insufficient entropy.
+
+[[BitAddress.org]] and [[BitcoinPaperWallet.com|BitcoinPaperWallet]] feature a free client-side paper wallet generator written in JavaScript. The HTML for either of these generators can be downloaded from GitHub and used on an offline computer. Using either of these generators offline (not directly running from their websites) is relatively safe, but extra precautions should be taken when used while being connected to ensure that keys are not compromised by spyware that may be monitoring browser activity. 
+
+Blockchain.info offers a [tutorial on how to generate a paper wallet](https://blockchain.info/wallet/paper-tutorial) with an online component so you can check your balance easily.
 
 **Recommendations:**
 
