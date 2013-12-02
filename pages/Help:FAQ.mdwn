@@ -326,7 +326,7 @@ Also see [Hashcash](http://en.wikipedia.org/wiki/Hashcash) and [Proof-of-work sy
 
 ###Why was the "Generate coin" option of the client software removed?
 
-In the early days of Bitcoin, it was easy for anyone to find new blocks using standard CPUs. As more and more people started mining, the [[difficulty]] of finding new blocks has greatly increased to the point where the average time for a CPU to find a single block can be many years. The only cost-effective method of [[mining|Mining]] is using a high-end graphics card with special software (see also [[Why_a_GPU_mines_faster_than_a_CPU]]) and/or joining a [[mining pool|Bitcoin_Pool]]. Since solo CPU mining is essentially useless, it was removed from the GUI of the Bitcoin software.
+The option wasn't removed, but it is now only accessible via the command-line or the configuration file.  The reason for this is that many users were complaining after they turned on and expecting to receive coins. Without specialized mining hardware a user is exceptionally unlikely generate a block on their own at the network's current [[security level|difficulty]].
 
 ##Security
 
