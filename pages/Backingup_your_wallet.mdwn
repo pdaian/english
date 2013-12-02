@@ -82,3 +82,11 @@ Don't forget to mount your image before using Bitcoin and unmount after quitting
 **Automation**: You can create a small application using [Automator](http://en.wikipedia.org/wiki/Automator_%28software%29) (included in OS X) to automatically mount the wallet and then launch Bitcoin App. See the Screenshot on how to do this.
 
 If one *doesn't* want to use encrypted Disk images, then a **small shell script** can be used instead that takes care of decrypting the wallet, launching bitcoin client, and encrypting it after the client exits. This script works on both OSX and Gnu/Linux: [bitcoin-launch-script](http://lorelei.kaverit.org/bitcoin.sh)
+
+##Restoring your wallet file
+
+Assuming your backup is recent enough that you haven't used up all of your key pool... restoring a wallet to a new (or old) location and rescanning the block chain should leave you with all your coins. Just follow these steps:
+
+* Shut down the Bitcoin program.
+* Copy your backed-up wallet.dat into your bitcoin data directory.
+* If you are copying in a backed-up wallet.dat that was last used on a Bitcoin version prior to 0.3.21 into an existing profile, delete files *blk*.dat* to make the client re-download the block chain. You may also need to do this if your transactions don't all show up after you restart Bitcoin.
