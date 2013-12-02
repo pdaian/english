@@ -1,10 +1,10 @@
 ## Introduction
 
-MtGox is now using the services of [Pubnub](http://www.pubnub.com) to stream real time data, due to the difficulty to cope with the kind of volumes of data we need to broadcast realtime while keeping a reliable service.
+MtGox is now using the services of [PubNub](https://www.pubnub.com/) to stream real-time data due to the difficulty to cope with the kind of volumes of data we need to broadcast real-time while keeping a reliable service.
 
-Pubnub provides SDK in various languages: http://www.pubnub.com/developers
+PubNub provides SDK in various languages: https://www.pubnub.com/developers
 
-If you already use socketio, you may want to check https://github.com/pubnub/javascript/tree/master/socket.io
+If you already use Socket.IO, you may want to check https://github.com/pubnub/javascript/tree/master/socket.io
 
 ### Access to public channels
 
@@ -12,10 +12,10 @@ It is possible to subscribe directly to any public channel listed on https://mtg
 
 Subscribe key for MtGox: <code>sub-c-50d56e1e-2fd9-11e3-a041-02ee2ddab7fe</code> (it's the same for everyone who want to use MtGox)
 
-Some sample feeds on the pubnub console:
+Some sample feeds on the PubNub console:
 
-* http://www.pubnub.com/console?sub=sub-c-50d56e1e-2fd9-11e3-a041-02ee2ddab7fe&pub=demo&channel=d5f06780-30a8-4a48-a2f8-7ed181b4a13f&origin=pubsub.pubnub.com <- to access BTCUSD ticker
-* http://www.pubnub.com/console?sub=sub-c-50d56e1e-2fd9-11e3-a041-02ee2ddab7fe&pub=demo&channel=dbf1dee9-4f2e-4a08-8cb7-748919a71b21&origin=pubsub.pubnub.com <- BTC trades
+* https://www.pubnub.com/console?sub=sub-c-50d56e1e-2fd9-11e3-a041-02ee2ddab7fe&pub=demo&channel=d5f06780-30a8-4a48-a2f8-7ed181b4a13f&origin=pubsub.pubnub.com&ssl=true <- to access BTCUSD ticker
+* https://www.pubnub.com/console?sub=sub-c-50d56e1e-2fd9-11e3-a041-02ee2ddab7fe&pub=demo&channel=dbf1dee9-4f2e-4a08-8cb7-748919a71b21&origin=pubsub.pubnub.com&ssl=true <- BTC trades
 
 A very simple sample implementation: https://www.mtgox.com/lag.html (shows trade engine lag in realtime)
 
@@ -23,7 +23,7 @@ A very simple sample implementation: https://www.mtgox.com/lag.html (shows trade
 
 Private channels can be accessed by first calling the https://www.mtgox.com/api/2/stream/private_get api. This API will return details to access the private API (subscribe key, auth key, encryption key, etc).
 
-Private messages are encrypted using Pubnub's standard encryption method (AES128 CBC) and a shared secret obtained through the API. This guarantees that Pubnub has no knowledge of the private key and as such can't possibly read the private messages unless you access the console (as it's passed as parameter). As long as you don't call the stream/private_get api, no data for your user will be sent to Pubnub.
+Private messages are encrypted using PubNub's standard encryption method (AES256 CBC) and a shared secret obtained through the API. This guarantees that PubNub has no knowledge of the private key and as such can't possibly read the private messages unless you access the console (as it's passed as parameter). As long as you don't call the stream/private_get api, no data for your user will be sent to PubNub.
 
 Once the number of seconds specified in "renew" has passed, you should call the API again to renew the auth key and password. If the auth key has changed, you will need to subscribe again to continue getting updates.
 Once the number of seconds specified in "expires" has passed, no data will be sent anymore unless the API was called again.
