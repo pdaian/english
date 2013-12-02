@@ -1,0 +1,84 @@
+## Locating Bitcoin's data directory
+The [[data_directory]] is the location where Bitcoin's data files are stored, including the wallet data file.
+
+### Gnu/Linux
+
+By default Bitcoin will put its data here:
+
+	~/.bitcoin/
+
+You need to do a "ls -a" to see directories that start with a dot.
+
+If that's not it, you can do a search like this:
+
+	find / -name wallet.dat -print 2>/dev/null
+
+To change the directory Bitcoin stores its data in:
+	Run in terminal or script: ./bitcoin-qt -datadir=./[[Directory_Name]]
+
+### Mac OSX
+
+By default Bitcoin will put its data here:
+
+	~/Library/Application Support/Bitcoin/
+
+### Windows
+Go to Start -> Run (or press WinKey+R) and run this:
+
+	explorer %APPDATA%\Bitcoin
+
+Bitcoin's data folder will open. For most users, this is one of the following locations:
+
+	C:\Documents and Settings\YourUserName\Application data\Bitcoin (Windows XP)
+	
+	C:\Users\YourUserName\Appdata\Roaming\Bitcoin (Windows Vista and 7)
+
+If you have trouble browsing to these folders, note that "AppData" and "Application data" are hidden by default.
+
+##Backing up your wallet files
+
+**Note**: Using Dropbox to back up your Bitcoin data is not recommended as doing so introduces the following [security concerns](https://en.wikipedia.org/wiki/Dropbox_(service)#Reception):
+
+1. Dropbox stores your encryption key (meaning that a disgruntled Dropbox employee or an attacker who gained access to the system could decrypt your Dropbox data and steal your bitcoins)
+1. the Dropbox client only needs a password for the first login. After it authenticates once, the server assigns it a token which it uses to show that, at one time, its user knew the password rather than sending the actual password (meaning that if you ever use the Dropbox client on another PC, that PC's users can access your Dropbox - even if you change your password - and can steal your bitcoins or get a virus that will steal your bitcoins).
+
+For these reasons, an alternative that always uses password authentication such as [Wuala](http://www.wuala.com/en/bitcoin) should be used. Wuala's servers do not store your encryption key and the program authenticates with the password each time it is started.
+
+Whether you use Dropbox as your backup or not, it is advised to use what Steve Gibson calls "pre-Internet encryption" which means to use some form of encryption on your files before you back them up, in case an attacker gains access to that backup. Make sure to pick a password that is memorable but secure.
+
+The only file you need to back up is "wallet.dat" which can be done one of two ways. To make a copy of the wallet.dat file, ensure that Bitcoin is closed and copy this file somewhere else. The other way is to use the [[backupwallet|api]] JSON-RPC command to back up without shutting down Bitcoin. 
+
+Once a copy has been made, encrypt it, and put it in two or more safe locations. Consider the risk due to theft, fire, or natural disaster in proportion to the value of bitcoins stored in the wallet.
+
+###Backup wallet and blochain data
+Follow these instructions to backup all the bitcoin data (wallet and block chains) to an encrypted disk image.
+
+1. Open Disk Utility
+1. Click New Image and choose a big enough size, 128-bit or 256-bit (faster or more secure) encryption and single partition.
+1. Save it somewhere you won't lose it (like your Wuala, Dropbox, Strongspace or whatever)
+1. Choose a safe and strong password
+1. Move everything from ~/Library/Application Support/Bitcoin/ to the image
+1. Symlink it back so the app would be able to use it
+> ln -s /Volumes/Bitcoin ~/Library/Application Support/Bitcoin
+
+Don't forget to mount your image before using Bitcoin and unmount it after quitting.
+
+###Backing up just your wallet file
+Follow these instructions to backup just the wallet.dat file. This results in a smaller disk image, but it's more complicated to do.
+
+1. Open Disk Utility
+1. Click New Image and choose a big enough size, 128-bit or 256-bit (faster or more secure) encryption and single partition.
+1. Save it somewhere you won't lose it (like your Wuala, Dropbox, Strongspace or whatever)
+1. Choose a safe and strong password
+1. Move your wallet.dat file to the image
+1. Symlink it back so the app would be able to use it
+> ln -s /Volumes/Bitcoin/wallet.dat ~/Library/Application Support/Bitcoin/wallet.dat
+
+[[!img "MountWalletAndLauchnBitcoin_OSX_Automator.png" title="thumbnail" size=150x150 title="Mount Wallet and launch Bitcoin"]]
+Don't forget to mount your image before using Bitcoin and unmount after quitting it.
+
+**Note**: If you start the Bitcoin application without having the image mounted, the application will overwrite your symlink with a new wallet. If that happens, don't panic. Just delete the new wallet.dat, mount the image, and recreate the symlink like above.
+
+**Automation**: You can create a small application using [Automator](http://en.wikipedia.org/wiki/Automator_%28software%29) (included in OS X) to automatically mount the wallet and then launch Bitcoin App. See the Screenshot on how to do this.
+
+If one *doesn't* want to use encrypted Disk images, then a **small shell script** can be used instead that takes care of decrypting the wallet, launching bitcoin client, and encrypting it after the client exits. This script works on both OSX and Gnu/Linux: [bitcoin-launch-script](http://lorelei.kaverit.org/bitcoin.sh)
