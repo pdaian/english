@@ -251,7 +251,7 @@ We define the client to be the party sending value, and the server to be the par
 
 This continues until the session ends, or the 1-day period is getting close to expiry. The AP then signs and broadcasts the last transaction it saw, allocating the final amount to itself. The refund transaction is needed to handle the case where the server disappears or halts at any point, leaving the allocated value in limbo. If this happens then once the time lock has expired the client can broadcast the refund transaction and get back all the money.
 
-Mike Hearn is working on an implementation of this protocol in bitcoinj. Please [contact him](mailto:mike@plan99.net) for more information.
+This protocol has [been implemented in bitcoinj](https://code.google.com/p/bitcoinj/wiki/WorkingWithMicropayments).
 
 When nLockTime'd transactions are able to enter the memory pool (once more) and transaction replacement has been re-enabled, a variant on the protocol must be used. In this case, no refund transaction is used. Instead each T3 has a sequence number one higher than the previous and all T3's have a time lock set to the same period as above. Each time a payment is made the sequence number is incremented, ensuring that the last version will take precedence. If the channel protocol is not closed cleanly, this means the value transfer won't commit until the time lock expires. To avoid this both parties can cooperate by signing a T3 that has a sequence number of 0xFFFFFFFF resulting in immediate confirmation regardless of the value of nLockTime.
 
