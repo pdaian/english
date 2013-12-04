@@ -23,16 +23,16 @@ bitcoin wallets.
 ##Specification
 
 The bitcoin: URI scheme is extended with an additional, optional
-"request" parameter, whose value is a URL from which a PaymentRequest
+"r" parameter, whose value is a URL from which a PaymentRequest
 message should be fetched (unsafe and reserved octets in the URL value
 must be encoded as described in RFC 1738).
 
-If the "request" parameter is provided and backwards compatibility
+If the "r" parameter is provided and backwards compatibility
 is not required, then the bitcoin address portion of the URI may be
-omitted (the URI will be of the form: bitcoin:?request=... ).
+omitted (the URI will be of the form: bitcoin:?r=... ).
 
 When Bitcoin wallet software that supports this BIP receives a
-bitcoin: URI with a request parameter, it should ignore the bitcoin
+bitcoin: URI with a r parameter, it should ignore the bitcoin
 address/amount/label/message in the URI and instead fetch a
 PaymentRequest message and then follow the payment protocol, as
 described in BIP 70.
@@ -49,15 +49,15 @@ payment processing system is unavailable.
 ##Compatibility
 
 Wallet software that does not support this BIP will simply ignore the
-request parameter and will initiate a payment to bitcoin address.
+r parameter and will initiate a payment to bitcoin address.
 
 ##Examples
 A backwards-compatible request:
 <pre>
-bitcoin:mq7se9wy2egettFxPbmn99cK8v5AFq55Lx?amount=0.11&request=https%3A%2F%2Fmerchant.com%2Fpay.php%3Fh%3D2a8628fc2fbe
+bitcoin:mq7se9wy2egettFxPbmn99cK8v5AFq55Lx?amount=0.11&r=https%3A%2F%2Fmerchant.com%2Fpay.php%3Fh%3D2a8628fc2fbe
 </pre>
 Non-backwards-compatible equivalent:
 <pre>
-bitcoin:?request=https%3A%2F%2Fmerchant.com%2Fpay.php%3Fh%3D2a8628fc2fbe
+bitcoin:?r=https%3A%2F%2Fmerchant.com%2Fpay.php%3Fh%3D2a8628fc2fbe
 </pre>
 [[!tag "BIP"]]
