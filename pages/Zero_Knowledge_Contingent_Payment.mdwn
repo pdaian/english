@@ -39,7 +39,9 @@ I convert that program into a zero knowledge proof. Externally to Bitcoin I tell
 
 You then form a Bitcoin payment which requires both my public key and password K.  In order to redeem this transaction I must disclose K, the key you need to decrypt Ex and give you your solution. So neither of us can cheat, so no trust is required.
 
-The reason this isn't something people are using yet is because while the academics have proven it to be possible actually converting complicated programs like compositions of ciphers and hash-functions into zero-knowledge proofs is apparently not something anyone has figured out how to do practically. *2013 Update*: This is rapidly changing and [practical systems](http://scipr-lab.org/) now appear practically possible.
+The reason this isn't something people are using yet is because while the academics have proven it to be possible actually converting complicated programs like compositions of ciphers and hash-functions into zero-knowledge proofs is apparently not something anyone has figured out how to do practically.
+
+*2013 Update*: This is rapidly changing and [practical systems](http://scipr-lab.org/) now appear practically possible. "[Verifying computations without reexecuting them: from theoretical possibility to near practicality](http://eccc.hpi-web.de/report/2013/165/download/)" gives a good overview, of recent progress.
 
 ##But what if they're just anti-social and don't redeem the txn?
 
