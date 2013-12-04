@@ -223,6 +223,14 @@ Note that whilst EURcoins is a natural idea, there are other ways to implement p
 
 Sergio Demian-Lerner proposed [P2PTradeX](https://bitcointalk.org/index.php?topic=91843.0), a solution requiring the validation rules for one blockchain to be effectively encoded into the validation rules for the other.
 
+##Example 6: Pay-for-proof contracts: buying a solution to any pure function
+
+In example 4, we saw how to make payments conditional on the output of some arbitrary program. Those programs are very powerful and can do anything a regular program can do, like fetching web pages. The downside is that a third party is required (an oracle). Although there are techniques that can help reduce the trust needed in the oracle, none can reduce it to zero.
+
+For a restricted class of programs, pure functions, new cryptographic techniques are starting to become available that can actually reduce the trust needed all the way to zero with no third parties. These programs cannot perform any I/O, but in many cases this restriction turns out to be unimportant or can be worked around in other ways, like by giving the program a signed/timestamped document as an input instead of having the program download it.
+
+Read an explanation of the protocol here: [[User:Gmaxwell/why_hash_locked]]
+
 ##Example 7: Rapidly-adjusted (micro)payments to a pre-determined party
 
 Bitcoin transactions are very cheap relative to traditional payment systems, but still have a cost due to the need for it to be mined and stored. There are some cases in which you want to rapidly and cheaply adjust the amount of money sent to a particular recipient without incurring the cost of a broadcast transaction.
@@ -252,6 +260,11 @@ When nLockTime'd transactions are able to enter the memory pool (once more) and 
 The lock time and sequence numbers avoid an attack in which the AP provides connectivity, and then the user [[double-spends|double-spending]] the output back to themselves using the first version of TX2, thus preventing the cafe from claiming the bill. If the user does try this, the TX won't be included right away, giving the access point a window of time in which it can observe the TX broadcast, and then broadcast the last version it saw, overriding the user's attempted double-spend.
 
 The latter protocol that relies on transaction replacement is more flexible because it allows the value allocated to go down as well as up during the lifetime of the channel as long as the client receives signatures from the server, but for many use cases this functionality is not required. Replacement also allows for more complex configurations of channels that involve more than two parties. Elaboration on such use cases is a left as an exercise for the reader.
+
+##Example 8: Multi-party decentralised lotteries
+
+Using some of the techniques from example 6 and some very advanced scripting, it becomes possible to build a multi-party lottery with no operator. The exact protocol used is explained in the paper ["Secure multiparty computations on Bitcoin"](http://eprint.iacr.org/2013/784). A shorter explanation of how it works may be added to this wiki at some point in the future.
+
 
 ##See Also
 
