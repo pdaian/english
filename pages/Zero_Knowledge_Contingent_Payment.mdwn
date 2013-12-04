@@ -1,3 +1,6 @@
+
+##Hash locked transactions
+
 Its possible to author a payment in the existing Bitcoin system that requires the redeemer to provide a "secret" which hashes to a specified value. [The 0.01 output here with the SHA256 opcode](https://blockexplorer.com/tx/9969603dca74d14d29d1d5f56b94c7872551607f8c2d6837ab9715c60721b50e) is an example of such a transaction.  "To collect these funds your transaction must provide a value that hashes to this other value."
 
 Used directly, like in the above example, this is insecure: Once you've published the spending transaction another node could just drop your transaction and use the password in a new transaction that pays him instead.
