@@ -60,15 +60,22 @@ To determine whether the minikey is valid:
 1. If the first byte is 00, the string is a well-formed minikey.  If the first byte is not 00, the string should be rejected as a minikey.
 
 ###Example with SHA256
-Here is an example with the sample private key S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy.
+Here is an example with the sample private key <tt>S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy</tt>.
 
-The string "S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy?" has a SHA256 value that begins with 00, so it is well-formed.
+The string "<tt>S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy?</tt>" has a SHA256 value that begins with 00, so it is well-formed.
 
 To obtain the full 256-bit private key, simply take the SHA256 hash of the entire string.  There is no encoding for line breaks in the string, even if the key is broken into multiple lines for printing.  The SHA256 should be taken of exactly thirty bytes.
 
 	SHA256("S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy") = 4C7A9640C72DC2099F23715D0C8A0D8A35F8906E3CAB61DD3F78B67BF887C9AB  
 
-This sample key in [[wallet_export_format]] is 5JPy8Zg7z4P7RSLsiqcqyeAF1935zjNUdMxcDeVrtU1oarrgnB7, and the corresponding [[Bitcoin_address]] is 1CciesT23BNionJeXrbxmjc7ywfiyM4oLW.
+This sample key in [[wallet_export_format]] is <tt>5JPy8Zg7z4P7RSLsiqcqyeAF1935zjNUdMxcDeVrtU1oarrgnB7</tt>, and the corresponding [[Bitcoin_address]] is <tt>1CciesT23BNionJeXrbxmjc7ywfiyM4oLW</tt>.
+
+#### Command line verification
+To calculate SHA256 from the command line on OSX or Linux devices:
+
+	echo -n "S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy?"  shasum -a 256
+
+That should output a line of text like "<tt>000f2453798ad4f951eecced2242eaef3e1cbc8a7c813c203ac7ffe57060355d  -</tt>". Since the first two characters are <tt>00</tt> the verification passes for the mini key <tt>S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy</tt>
 
 ##Check code
 The mini private key format offers a simple typo check code.  Mini private keys must be generated in a "brute force" fashion, keeping only keys that conform to the format's rules.  If a key is well-formed (30 Base58 characters starting with S), but fails the hash check, then it probably contains a typo.
