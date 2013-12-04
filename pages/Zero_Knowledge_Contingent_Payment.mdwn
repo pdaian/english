@@ -1,7 +1,8 @@
 
 It's possible to make payments using Bitcoin which are released if and only if some knoweldge is disclosed by the payee and to do this in a trustless manner where neither the payer or payee can cheat. This is accomplished using the combination of a hash-locked transaction and a bitcoin-external protocol to set things up so that the data revealed in the hashlock release is the data they need.
 
-##Hash locked transactions
+##Protocol outline
+###Hash locked transactions
 
 Its possible to author a payment in the existing Bitcoin system that requires the redeemer to provide a "secret" which hashes to a specified value. [The 0.01 output here with the SHA256 opcode](https://blockexplorer.com/tx/9969603dca74d14d29d1d5f56b94c7872551607f8c2d6837ab9715c60721b50e) is an example of such a transaction.  "To collect these funds your transaction must provide a value that hashes to this other value."
 
@@ -11,7 +12,7 @@ So— the advice is that you shouldn't use a password alone, you should require 
 
 There are a couple uses but I'll give an example here of one of the more impressive and and far-out ones:
 
-##Zero knoweldge proof to binding 
+###Zero knoweldge proof to binding 
 
 Let H() be a complicated computer program. For some H(X)=Y you want to know some X that gives you a particular Y.
 
@@ -40,10 +41,13 @@ You then form a Bitcoin payment which requires both my public key and password K
 
 The reason this isn't something people are using yet is because while the academics have proven it to be possible actually converting complicated programs like compositions of ciphers and hash-functions into zero-knowledge proofs is apparently not something anyone has figured out how to do practically. *2013 Update*: This is rapidly changing and [practical systems](http://scipr-lab.org/) now appear practically possible.
 
-####But what if they're just anti-social and don't redeem the txn?
+##But what if they're just anti-social and don't redeem the txn?
 
 If you're concerned that they might rather leave the funds unspent rather than disclose their password, perhaps an effort to extort you, you could construct the payment so that it can alternatively be spent by a "refund transaction" which has a signature from both you and the other party.
 
 You first create the ZKP payment transaction which requires (Password+Their_signature) OR (Their signature plus Your signature).  You keep this transaction private. You then write a new transaction, the refund transaction, which spends the payment back to you but has an nlocktime set in the future (e.g. 1000 blocks from now). You sign it, and give it to the other party to sign. He is able to sign it without actually seeing the payment transaction (he only sees its hash). When he returns it, you then release the payment transaction.  If he does not redeem the payment transaction before the locktime expires you transmit the refund and recover it yourself. Because of the locktime you are unable to steal the payment back right after sending it to him.
 
 Alternatively, you could construct the payment as an anyone can pay transaction where the output is greater than the input you provide. You would give him this transaction, then he would add funds of his own and announce it and wait for it to be mined before announcing the key in the transaction spending it. This way he could not lock up your funds without locking up funds of his own.
+
+##Improving privacy
+A ZK-payment can be transformed using the [https://bitcointalk.org/index.php?topic=321228.0](CoinSwap) approach where they payer first pays into an ordinary 2-of-2 escrow+refund with the payee. The then would perform the ZK-payment transactions described above externally to the Bitcoin network, and if everything goes through without cheating the payer just signs a 2-of-2 release to pay the payee directly, without disclosing to the network that a hashlocked transaction was used. If the payer fails to release the escrow directly, the payee can just release it by announcing the hashlock and hashlock redeem.
