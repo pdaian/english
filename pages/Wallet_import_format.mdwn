@@ -7,7 +7,7 @@ http://gobittest.appspot.com/PrivateKey
 ##Private key to WIF
 1 - Take a private key
 	0C28FCA386C7A227600B2FE50B7CAE11EC86D3BF1FBE471BE89827E19D72AA1D
-2 - Add a 0x80 byte in front of it
+2 - Add a 0x80 byte in front of it for mainnet addresses or 0xef for testnet addresses
 	800C28FCA386C7A227600B2FE50B7CAE11EC86D3BF1FBE471BE89827E19D72AA1D
 3 - Perform SHA-256 hash on the extended key
 	8147786C4D15106333BF278D71DADAF1079EF2D2440A4DDE37D747DED5403592
@@ -44,6 +44,6 @@ http://gobittest.appspot.com/PrivateKey
 	507A5B8D
 6 - Make sure it is the same, as the last 4 bytes from point 2
 	507A5B8D
-7 - If they are, and the byte string from point 2 starts with 0x80, there is no error.
+7 - If they are, and the byte string from point 2 starts with 0x80 (0xef for testnet addresses), then there is no error.
 
 [[!template id=stub]]
