@@ -2,7 +2,7 @@
 
 Splash differs from Ripple in that the built-in currency is [[mined|Mining]] - created by proof of work - rather than declared to exist by software fiat from the beginning. All else is unchanged. In particular, the history of transactions is validated by Ripple's consensus algorithm, not by proof of work.
 
-Splash is currently in development. A forum announcement by [Iain Stewart](User:Ids) should follow shortly.
+Splash is currently in development. A forum announcement by [Iain Stewart](User:Ids) should follow shortly. In the meantime here's [a "pre-announcement"](https://bitcointalk.org/index.php?topic=372486.0), to encourage discussion.
 
 ## Sketch of Splash's mining protocol
 In Splash, proof of work is used solely to create new units of the built-in currency (XSP). Unlike in Bitcoin, it plays no role in validation of new blocks (ledgers) of transactions. In fact, it's an individual transaction, not a ledger, which can optionally contain proof of work (i.e. which can hash to a suitably impressively low value). A ledger can then in turn contain such proof-of-work transactions, as well as the more traditional kind of transaction not involving proof of work. But at ledger level, there is nothing special about proof-of-work transactions - their presence or absence doesn't influence the Splash consensus-forming process, which is the same as Ripple's.
@@ -20,7 +20,7 @@ Once new built-in coins (XSP) are born in Splash, they can be used in exactly th
 Unlike the Ripple genesis ledger, which creates all XRP at the start by software fiat, and assigns them by software fiat to RippleLabs, Inc. (by placing them in accounts controlled by RippleLabs's keys), the Splash genesis ledger will contain **no XSP at all**. All XSP must be born subsequently, by proof of work. The Splash genesis ledger will simply contain some provably recent text (like a newspaper headline), so as to make "pre-mining" (creation of proof of work, by the developers or other insiders, before the public launch of the currency) impossible. (This is the same trick Satoshi used with Bitcoin. Splash proof-of-work transactions must contain a hash of some recent ledger; and no-one knows the hash of tomorrow's newspaper headline today.) Thus Splash, unlike Ripple, puts all its users on an equal footing from the start. It has no privileged holders of XSP or any other asset.
 
 ## Launch date
-[Iain Stewart](User:Ids), the current developer, currently estimates late February 2014 to be a plausible target launch date for Splash. A forum announcement should follow, closer to the time.
+[Iain Stewart](User:Ids), the current developer, currently estimates late February 2014 to be a plausible target launch date for Splash. A forum announcement should follow, closer to the time. (As advertised above, here's [a "pre-announcement"](https://bitcointalk.org/index.php?topic=372486.0) to encourage discussion in the meantime.)
 
 ## See also
 
