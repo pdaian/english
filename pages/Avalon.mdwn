@@ -228,7 +228,8 @@ you need do this by yourself.  removing F1 will not make the usb hub stop workin
 * The task buffer LED never on.(Should be light when power on. off when cgminer start working). below is the correct led cable connector:
  [[!img "Avalon-batch3-led-connector.JPG" size=160x160]]
 
-## Update FPGA controller firmware (NOT FINISHED/FULL DOCUMENT YET)
+## Update FPGA controller firmware
+### Using XC3SPROG
 [[Fpga-controller-jtag-pins.png]]  [[!img "M1_JTAGserialpod_Pins.JPG" size=100x100]]
 
 * Update under Avalon 703N: http://downloads.qi-hardware.com/people/xiangfu/avalon/fpga-controller/
@@ -240,6 +241,18 @@ you need do this by yourself.  removing F1 will not make the usb hub stop workin
 	dd if=file.bin bs=68 skip=1 of=file2.bin
 	xc3sprog -c qi -v -I file2.bin:w:0:bin
 	rm -f file.bin file2.bin
+
+### Using Xilinx iMpact
+
+1. Connect the board to your PC by using Xilinx platform cable USB [ taobao link](http://item.taobao.com/item.htm?spm=a1z10.1.w6461276-4508018527.7.LOwESz&id=26013452167)
+1. Open iMPACT
+1. The cable will detect the Xilinx FPGA and the SPI flash automaticly.
+1. Right click the SPI flash. choose: **Assign New configuration File...** and choose the file you want reflash. (a .mcs file)
+	SPI PROM: W25Q80BV
+	Data Width: 4
+
+1. Right click the SPI flash. choose: **Program**
+1. A green bar will come out when success finished.
 
 ## P2Pool Operation with Avalon
 
