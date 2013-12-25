@@ -41,7 +41,11 @@ Network alerts are broadcast with *alert* messages. No *inv*-like system is used
 
 At the start of a connection, you send a *getblocks* message containing the hash of the latest block you know about. If the peer doesn't think that this is the latest block, it will send an *inv* that contains up to 500 blocks ahead of the one you listed. You will then request all of these blocks with *getdata*, and the peer will send them to you with *block* messages. After you have downloaded and processed all of these blocks, you will send another *getblocks*, etc., until you have all of the blocks.
 
-0.3.18 introduced new *headers* and *getheaders* messages. These are not currently used, but they will be used by non-generators to download block headers without the corresponding block bodies. Only the headers are necessary for verifying received transactions -- full blocks are needed only by generators. Instead of the *getblocks/inv/getdata/block* sequence, non-generators will send a *getheaders* message (very like *getblocks*), and the peer will immediately respond with a *headers* message containing up to 2,000 of the next headers. This will make initial block download *much* faster.
+## Thin SPV Clients
+
+[[BIP_0037]] introduced support for thin or lite clients by way of Simple Payment Verification. SPV clients do not need to download the full block contents to verify the existence of funds in the blockchain, but rely on the chain of block headers and bloom filters to obtain the data they need from other nodes. This method of client communication allows high security trustless communication with full nodes, but at the expensive of some privacy as the peers can deduce which addresses the SPV client is seeking information about. 
+
+[[MultiBit]] and [[Bitcoin_Wallet]] work in this fashion using the library [[bitcoinj]] as their foundation.  
 
 ## Bootstrapping
 
@@ -79,7 +83,8 @@ If ninety minutes has passed since a peer node has communicated any messages, th
 
 * [[Protocol_Specification]]
 * [[Satoshi_Client_Node_Discovery]]
-* [Current Network Status](http://bitcoinstatus.rowit.co.uk/)
+* [Historical Network Status (no longer updated)](http://bitcoinstatus.rowit.co.uk/)
+* [Bitnodes.io's network size estimate](http://getaddr.bitnodes.io/)
 
 [[!tag "Technical"]]
 
