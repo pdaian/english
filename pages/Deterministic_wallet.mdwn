@@ -1,38 +1,22 @@
-A deterministic wallet is a wallet where private and public keys are all derived from a starting seed value. This could be a long passcode/password, or be a random series of letters and numbers. 
+A deterministic wallet is a system of deriving keys from a single starting point known as a seed. The seed allows a user to easily back up and restore a wallet without needing any other information and can in some cases allow the creation of public addresses without the knowledge of the private key. 
 
 ## Benefits
 
-A typical wallet creates private and public keys on demand for the user. This means that the wallet needs to be backed up frequently, otherwise coins may be lost. Also, having multiple machines with wallets on them means it is difficult to manage all of your coins together.
+Early clients such as the [[Satoshi_client]] generate a buffer of fresh random private keys to be used as receiving and [[change addresses|change]] in the future. This has the effect of invalidating backups after a short period when the keypool buffer (typically 100 addresses) is exhausted, deterministic wallets can generate an unlimited number of addresses on the fly and as such don't suffer from this issue. As the addresses are generated in a known fashion rather than randomly some clients can be used on multiple devices without the risk of losing funds. Users can conveniently create a single backup of the seed in a human readable format that will last the life of the wallet, without the worry of this backup becoming stale. 
 
-A deterministic wallet can be backed up by simply copying the starting seed value to a secure location, and this only needs to be done once. If the wallet ever gets lost, all private and public keys can be regenerated from the initial seed.
+Certain types of deterministic wallet (BIP0032 and Armory) additionally allow for the complete separation of private and public key creation for greater security and convenience. In this model a server can be set up to only know the Master Public Key of a particular deterministic wallet. This allows the server to create as many public keys as is necessary for receiving funds, but a compromise of the MPK will not allow an attacker to spend from the wallet. They can alternatively be used in [[Electrum]] and [[Armory]] to enable completely offline storage and spending, where an offline computer knows the private key and an online one knows only the MPK. Transactions spending coins are ferried between the two computers via USB storage which avoids exposing the offline computer to a network-based attack. 
 
-Also, multiple devices could host the same wallet based off of the same seed and automatically stay in sync with eachother. Non-critical information such as address books would need to be stored and copied between wallets.
-
-##Drawbacks
-
-If the initial seed value was either guessed or taken, the attacker could take all of the coins from the wallet. Also, they could retain that seed value, and wait until some future date to take all of the coins. 
-
-##Passwords vs Random Strings
-
-The passcode/password has the benefit of being memorizable by the user, but at the expense of being either forgotten, or weak enough that the password could be guessed or brute forced. If a user used a password such as abc123, and an attacker might simply go through a list of common passwords, create wallets for them, and see if the public addresses match anything currently in the blockchain.
-
-A long string of letters and numbers would be a way to prevent a brute force attack. This has the drawback of having to be actually stored somewhere. If this code was ever lost, the wallet would be lost forever.
-
-##Types of deterministic wallet in use
-Each implementer of deterministic wallets should make sure that this article leads to a publicly available reference describing how to reconstitute the deterministic wallet from its seed.
+##Types
 
 ###Type 1 deterministic wallet
-A Type 1 deterministic wallet is created from a string.  Simply take SHA256(string + n), where n is an ASCII-coded number that starts from 1 and increments as additional keys are needed.  This simple type of wallet can be created by Casascius Bitcoin Address Utility.
+A type 1 deterministic wallet is a simple method of generating addresses from a known starting string, as such it does not allow advanced features such as a Master Public Key. To generate a private key take SHA256(string + n), where n is an ASCII-coded number that starts from 1 and increments as additional keys are needed. 
 
-###Type 2 deterministic wallet
-Not sure on the details, but mention was made of a "type-2 deterministic wallet" in [[BIP_0032]] and credited to Gregory Maxwell, so this is a placeholder to describe that implementation. The relevant form topic is [here](https://bitcointalk.org/index.php?topic=19137.0).
+This  type of wallet can be created by Casascius Bitcoin Address Utility.
 
-###BIP 0032 deterministic wallet
-Described in [[BIP_0032]] (currently a draft) and described as a *hierarchical deterministic* (HD) wallet, a BIP 0032 deterministic wallet allows sharing smaller deterministic wallets that are subportions of a larger one.
+###Type 2 hierarchical deterministic wallet
+This wallet type is described in [[BIP_0032]] and is fully implemented in [[Electrum]] and [[CarbonWallet]]. The seed is a random 128 bit value presented to the user as a 12 word mnemonic using common English words. The seed is used after 100,000 rounds of SHA256 to slow down attacks against weak user-chosen strings. [(1)](https://bitcointalk.org/index.php?topic=330672.msg3547258#msg3547258). 
 
-###Twelve Word Passphrase deterministic wallet (Electrum)
-[[Electrum]] implements a Type-2 deterministic wallet format based on a 128-bit seed.  It uses a word list and converts the seed to a twelve word passphrase as an aid to help the user record the seed.
-[[CarbonWallet]] and Brainwallet.org have also implemented compatible support for these wallets.
+The initial description and workings of this wallet type is credited to Gregory Maxwell. [(2)](https://bitcointalk.org/index.php?topic=19137.msg239768#msg239768)
 
 ###Armory deterministic wallet
-[[Armory]] has its own Type-2 deterministic wallet format based on a "root key" and a "chain code."  The Armory client has a "Paper Backup" screen that allows the user to print these data or copy it down by hand.  Earlier versions of Armory required backing up both the "root key" and "chaincode," while newer versions start deriving the chaincode from the private key in a non-reversible way.  These newer Armory wallets (0.89+) only require the single, 256-bit root key.
+[[Armory]] has its own Type-2 deterministic wallet format based on a "root key" and a "chain code." Earlier versions of Armory required backing up both the "root key" and "chaincode," while newer versions start deriving the chaincode from the private key in a non-reversible way.  These newer Armory wallets (0.89+) only require the single, 256-bit root key. This older format is intended to be phased out in favor of the standard BIP0032 format. [(1)](https://bitcointalk.org/index.php?topic=351099.msg3770818#msg3770818)
