@@ -27,7 +27,7 @@ Bitcoin makes these attacks more difficult by only making an outbound connection
 Looking for suspiciously low network hash-rates may help prevent the second one.
 
 ### Packet sniffing
-Someone who can see all of your Internet traffic can easily see when you send a transaction that you didn't receive (which means that it's yours). This would be made more difficult (but not impossible) if node-to-node encryption was used.
+Someone who can see all of your Internet traffic can easily see when you send a transaction that you didn't receive (which suggests you originated it). Bitcoin-QT has good Tor integration which closes this attack vector if used.
 
 ### Denial of Service (DoS) attacks
 Sending lots of data to a node may make it so busy it cannot process normal Bitcoin transactions.  Bitcoin has some denial-of-service prevention built-in, but is likely still vulnerable to more sophisticated denial-of-service attacks.
