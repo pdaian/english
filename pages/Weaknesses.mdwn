@@ -26,9 +26,6 @@ Bitcoin makes these attacks more difficult by only making an outbound connection
 
 Looking for suspiciously low network hash-rates may help prevent the second one.
 
-### No authentication for IP transfers
-Since there's no authentication when sending to an [[IP_address]] (as opposed to a [[Bitcoin address|Address]]), executing a man-in-the-middle attack and stealing the sent BitCoins is trivial. This attack is downright *likely* if you're using Tor. For this reason, IP transfers are disabled by default in modern Bitcoin clients, though the feature can be enabled with a command line argument if desired.
-
 ### Packet sniffing
 Someone who can see all of your Internet traffic can easily see when you send a transaction that you didn't receive (which means that it's yours). This would be made more difficult (but not impossible) if node-to-node encryption was used.
 
