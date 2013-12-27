@@ -13,9 +13,9 @@ An initial solution is to mandate (either in code or as expressed policy) that c
 Tracing a coin's history can be used to connect identities to addresses. [[More info|Anonymity]].
 
 ### Sybil attack
-It's trivial for an attacker to fill the network with clients controlled by him. This might be helpful in the execution of other attacks.
+An attacker can attempt to fill the network with clients controlled by him, you would then be very likely to connect only to attacker nodes. Although Bitcoin never uses a count of nodes for anything completely isolating a node from the honest network can be helpful in the execution of other attacks.
 
-For example, an attacker might connect 100,000 IP addresses to the IRC bootstrap channel. You would then be very likely to connect only to attacker nodes. This state can be exploited in (at least) the following ways:
+This state can be exploited in (at least) the following ways:
 
 * The attacker can refuse to relay blocks and transactions from everyone, disconnecting you from the network.
 * The attacker can relay only blocks that he creates, putting you on a separate network. You're then open to [[double-spending]] attacks.
