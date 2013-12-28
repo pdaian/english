@@ -172,9 +172,7 @@ So everyone begins with slightly different blocks and everyone truly has a rando
 ###Generate "valid" blocks with a lower difficulty than normal
 Using unmodified Bitcoin code, an attacker could segment himself from the main network and generate a long block chain with a lower difficulty than the real network. These blocks would be totally valid for his network. However, it would be impossible to combine the two networks (and the "false" chain would be destroyed in the process).
 
-* Even though your network's difficulty can be less than the real difficulty, this doesn't give you any advantage over the real network. You'll gain ground when the real network is taking more than 10 minutes to generate a block, but you'll lose ground when the network takes less than 10 minutes.
-* Every few releases of Bitcoin, a recent block hash is hardcoded into the source code. Any blocks before that point can't be changed. An attacker starting at that point would have to reduce the difficulty, but this would require him to generate blocks at a much slower rate than once per 10 minutes. By the time he finally gets to a difficulty of 1, a new version of Bitcoin with an updated hardcoded block will probably have been released.
-* "Block chain length" is calculated from the combined difficulty of all the blocks, not just the number of blocks in the chain. The one that represents the most CPU usage will win.
+"Block chain length" is calculated from the combined difficulty of all the blocks, not just the number of blocks in the chain. The one that represents the most computation will win.
 
 ##See Also
 
