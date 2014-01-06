@@ -2,17 +2,24 @@
 
 ### What is "difficulty"?
 
-Difficulty is a measure of how difficult it is to find a new [[block]] compared to the easiest it can ever be.
+Difficulty is a measure of how difficult it is to find a hash below a given target.
 
-### How often does the difficulty change?
+The Bitcoin network has a global block difficulty. Valid blocks must have a hash below this target.
+Mining pools also have a pool-specific share difficulty setting a lower limit for shares.
+
+### How often does the network difficulty change?
 
 Every 2016 [[blocks|block]].
 
 ### What is the formula for difficulty?
 
-difficulty = maximum_target / current_target 
+difficulty = difficulty_1_target / current_target 
 
 (target is a 256 bit number)
+
+difficulty_1_target can be different for various ways to measure difficulty.
+Traditionally, it represents a hash where the leading 32 bits are zero and the rest are one (this is known as "pool difficulty" or "pdiff").
+The Bitcoin protocol represents targets as a custom floating point type with limited precision; as a result, Bitcoin clients often approximate difficulty based on this (this is known as "bdiff").
 
 ###How is difficulty stored in blocks?
 
@@ -69,8 +76,6 @@ int main()
 }
 </source>
 
-Unfortunately I don't have much use for it in libbitcoin. Maybe some miner will find it useful.
-
 To see the math to go from the normal difficulty calculations (which require large big ints bigger than the space in any normal integer) to the calculation above, here's some python:
 
 <source lang="python">
@@ -88,7 +93,7 @@ print l(0x00ffff / float(0x0404cb)) + (0x1d - 0x1b)*l(2**8)
 </source>
 
 ### What is the current difficulty?
-[Current difficulty](http://blockexplorer.com/q/getdifficulty), as output by BitCoin's getDifficulty.
+[Current difficulty](http://blockexplorer.com/q/getdifficulty), as output by Bitcoin's getDifficulty.
 
 [Estimated next difficulty](http://blockexplorer.com/q/estimate)
 
@@ -96,11 +101,11 @@ print l(0x00ffff / float(0x0404cb)) + (0x1d - 0x1b)*l(2**8)
 
 ### What is the maximum difficulty?
 
-There is no minimum target. The maximum difficulty is roughly: maximum_target / 1 (since 0 would result in infinity), which is a ridiculously huge number (about 2^224). 
+There is no minimum target. The maximum difficulty is roughly: maximum_target / 1 (since 0 would result in infinity), which is a ridiculously huge number (about 2^224).
 
 The actual maximum difficulty is when current_target=0, but we would not be able to calculate the difficulty if that happened. (fortunately it never will, so we're ok.)
 
-### Can the difficulty go down?
+### Can the network difficulty go down?
 Yes it can. See discussion in [[target]].
 
 ### What is the minimum difficulty?
