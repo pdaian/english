@@ -22,6 +22,8 @@ Another attack the trader or merchant is exposed to when accepting payment on 0/
 
 Also referred to as a one-confirmation attack, is a combination of the race attack and the Finney attack such that a transaction that even has one confirmation can still be double-spent.  The same protective action for the race attack (no incoming connections, explicit outgoing connection to a well-connected node) significantly reduces the risk of this occurring.
 
+It is worth noting that a successful attack costs the attacker one block - they need to 'sacrifice' a block by not broadcasting it, and instead relaying it only to the attacked node.
+
 [See on bitcointalk](https://bitcointalk.org/index.php?topic=36788.msg463391#msg463391)
 
 ###Brute force attack
