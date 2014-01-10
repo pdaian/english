@@ -31,11 +31,6 @@ Unlike any preexisting pool approach, this means that the shares contributed tow
 In order to spare participating miners from transaction fees, rewards are only paid out if a miner has earned at least 0.67108864 BTC (400 [[TBC|Tonal_Bitcoin]]). If the amount owed is less, it will be added to the earnings of a later block (which may then total over the threshold amount).
 If a miner does not submit a share for over a week, the pool sends any balance remaining, regardless of its size.
 
-###The Triplemining approach
-The [[Triplemining]] approach is to bring together a medium-sized pool with no fees and clever redistribution of 1% of every found block to allow your share to grow more rapidly than on any other bitcoin mining pool. 
-
-For every found block, Triplemining redistributes 1% of the profits to all minipool owners (people with 1 or more friends mining with them). The redistribution is connected to the shares found by the members of the minipool. So if the hash rate of the minipool members equals or is bigger than yours, the part in the redistribution will be equally bigger.
-
 ###P2Pool approach
 
 [[P2Pool]] mining nodes work on a chain of shares similar to Bitcoin’s blockchain. When a block is found, the reward is divided among the most recent shares in this share-blockchain. Like the puddinpop and Luke-Jr approaches, p2pool pays via generation.
