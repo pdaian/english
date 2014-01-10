@@ -322,6 +322,18 @@ bitcoind interface:
                         cause P2Pool to read them from bitcoin.conf)
 </pre>
 
+## Interoperability table
+P2pool works fine with most hardware. This lists some of the hardware confirmed to work and any special configuration required.
+
+* ASICminer blade 10GH/s (Requires adding +1 to username or proxy)
+* Avalon 110nm 60-110 GH/s
+* Avalon based 55nm 200 GH/s (specific makers?)
+* Bitmain Antminer S1 180GH/s ([Requires 20131226 firmware.](https://github.com/AntMiner/AntGen1/tree/master/firmware))
+* BFL Jalapeno
+* BFL SC 30, and 50GH/s
+
+(Various GPU and most FPGAs other than BFL single FPGAs work fine too)
+
 ## Protocol description
 
 P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same framing (prefix, command, length, checksum, payload) and similar commands:
@@ -337,9 +349,9 @@ P2Pool's protocol mirrors Bitcoin's P2P protocol in many ways. It uses the same 
 
 ##History
 
-This project was announced on June 17, 2011 by Forrest Voight (14.1).
+This project was announced on June 17, 2011 by Forrest Voight (15.1).
 
-The pool began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (14.2).
+The pool began testing against mainnet in mid-July, 2011.  The pool was reviewed on a [[Bitcoin_Miner]] post on July 26, 2011 (15.2).
 
 The software author's address for donations can be found in the signature section of his [forum profile](http://forum.bitcoin.org/index.php?action=profile;u=6447).
 
@@ -384,8 +396,8 @@ Thanks to:
 
 ##References
 
-14.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
-14.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
+15.1: [p2pool: Decentralized, DoS-resistant, Hop-Proof - Now active on mainnet!](https://forum.bitcoin.org/index.php?topic=18313.0)  
+15.2: [P2Pool Decentralized Pool Nearly Ready For Prime-Time](http://www.bitcoinminer.com/post/8101660461)
 
 
 [[!tag "Pool_Operators"]]
