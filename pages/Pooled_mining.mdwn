@@ -16,14 +16,6 @@ The problem with pooled mining is that steps must be taken to prevent cheating b
 
 [[Bitcoin_Pooled_Mining]] (BPM), sometimes referred to as "slush's pool", follows a score-based method.  Older shares (from beginning of the round) have lower weight than more recent shares, which reduces the motivation to cheat by switching between pools within a round.
 
-###The puddinpop approach
-
-(As of February, 2011, there are no puddinpop pools running.)
-
-Another approach is the 'metahash' technique, used by puddinpop's [[remote_miner]]. Clients generate hashes, and also submit 'metahashes', which are hashes of a large chunk of generated hashes. The server checks that the metahashes are correct (in a round-robin fashion, picking up a metahash from a client that hasn't been checked on the longest), thus preventing clients from simply claiming that they have done work without actually doing it. The withholding of good blocks by the clients is prevented by the server's possession of the private key, just as in the previous approach. Rewards are distributed based on the number of metahashes submitted by the clients.
-
-The generated blocks contain multiple keys in the generation transaction, giving fractional bitcoin amounts to each key in proportion to their hashing contribution for that block.
-
 ###The Pay-per-Share approach
 
 The Pay-per-Share (PPS) approach, first described by [[BitPenny]], is to offer an instant flat payout for each share that is solved.  The payout is offered from the pool's existing balance and can therefore be withdrawn immediately, without waiting for a block to be solved or confirmed.  The possibility of cheating the miners by the pool operator and by timing attacks is thus completely eliminated. 
