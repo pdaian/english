@@ -52,7 +52,7 @@ In custom builds, CPU performance will be less than expected if the OpenSSL libr
 ## Vanity addresses for other crypto-coins
 While all "normal" bitcoin addresses start with a "1" (one) (except multi-signature addresses that start with "3"), some other crypto-coins use different address name spaces. Vanitygen (as of version 0.22) can be used to produce vanity addresses for these crypto coins as well (but not for [bitmessage](http://bitmessage.org) addresses), by using the "-X" option. The following list provides some example command line calls and also indicates the address range for the respective coin:
 
-Generate **Bitcoin** (BTC), **Devcoin** (DVC), **Freicoin** (FRC), **Terracoin** (TRC) addresses:
+Generate **Bitcoin** (BTC), **Dogecoin** (DOGE), **Devcoin** (DVC), **Freicoin** (FRC), **Terracoin** (TRC) addresses:
 	$ ./vanitygen -X 0 1 -k
 or simply just
 	$ ./vanitygen 1 -k
@@ -63,6 +63,14 @@ Generate **Bitcoin** (BTC) etc. **multi-signature** addresses:
 	$ ./vanitygen -X 5 39 -k
 	$ ./vanitygen -X 5 3A -k
 	$ ./vanitygen -X 5 3R -k
+
+Generate **Dogecoin** (DOGE) addresses:
+	$ ./vanitygen -X 30 D -k
+	$ ./vanitygen -X 30 Dmoon -k
+	$ ./vanitygen -X 30 Dmuch -k
+	$ ./vanitygen -X 30 Dmany -k
+
+(Unfortunately, "Dwow" is not possible).
 
 Generate **Novacoin** (NVC) addresses:
 	$ ./vanitygen -X 8 4 -k
