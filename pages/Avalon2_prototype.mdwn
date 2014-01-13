@@ -1,0 +1,104 @@
+
+## Documents
+
+* [Reference design](http://downloads.canaan-creative.com/hardware/A3255/prototype/)
+* [Assemble Manual](http://downloads.canaan-creative.com/hardware/A3256/avalon/Manual/110G%20Hash%20Avalon%20Assemble%20Manual.pdf)
+
+## Firmware
+**For latest 703N firmware please goto here: http://downloads.canaan-creative.com/software/avalon/latest/. from 20131229. the cgminer will support both Avalon 110nm and Avalon A3255 prototype machine.**
+
+### [http://downloads.canaan-creative.com/hardware/A3255/prototype/ 2013-12-07]
+
+* 8, 16 miners works just fine
+* **ISSUE**: 32 miners with 10 chips still not working because [TIMEOUT issue](https://en.bitcoin.it/wiki/Avalon2#TIMEOUT)
+* Change `core_count to 64 to compatible with ealier cgminer 
+* Software should follow equation below when handle A3255 based miner
+	nonce_send_to_pool = nonce_receive_from_miner-0xc0
+
+* Include all hardware design files under this tar ball
+
+### TIMEOUT
+
+* TIMEOUT的有效值范围为[[0,255]]，FPGA controller根据TIMEOUT的配置来控制申请/计算任务的时间。当TIMEOUT值配置为1时，FPGA controller会每隔0.033s申请一次任务，也表示芯片已计算完当前HASH区间。
+* TIMEOUT配置与申请/计算任务时间间隔的公式为 
+	TIME_OF_MINER_FINISH_HASH_RANGE = TIMEOUT * 0.033s
+	TIMEOUT = TIME_OF_MINER_FINISH_HASH_RANGE / 0.033s
+
+* 若FPGA controller连接的一个小模块上的计算能力为10GHs（10个芯片，每芯片1G），则FPGA controller申请任务的时间间隔为
+	2^32 / 10*1000*1000*1000 = 0.4s
+	0.4s/0.033s = 12 # TIMEOUT应配置为12
+
+* 如果使用prototype中的FPGA固件，你们的硬件设计一定要满足下面的式子：
+	发送全部任务的时间 一定要小于 FPGA申请任务的时间(也就是ASIC算完自己区间的时间)
+	((11+2+chip_num)*4*10/115200)*miner_num*1000 + DELAY_IN_MS*miner_num < (128591 / chip_num / frequency) * 33ms
+
+	解释一下：
+	11+2+chip_num)*4 ==> CHIP_NUM的任务长度，单位Byte
+	((11+2+chip_num)*4*10/115200)*miner_num*1000 ==> 发送MINER_NUM个这样的任务所需要的时间，单位是ms
+	DELAY_IN_MS*miner_num ==> 总的Delay时间，DELAY_IN_MS见cgminer代码：driver-avalon.c:1132
+	(128591 / chip_num / frequency) * 33ms ==> TIMEOUT值，详见Wiki文档
+
+	几个测试的例子，仅供参考：
+	MINER_NUM:CHIP_NUM:FREQUENCY:TIMEOUT
+	==> 16:10:1000:12 works fine
+	==> 16:10:1500:8   works fine
+	==> 24:10:1000:12 works fine
+	==> 24:10:1500:8   works fine
+	==> 32:6:1000:21   works fine
+	==> 32:6:1500:12   works fine
+	==> 32:10:1000:12 works fine
+	==> **32:10:1500:8   not working**
+
+## Work without LDO RT9187
+
+* Connect the C20 right pad to C15 or C14 left pad
+* Please keep the Vcore to between 0.95v and 1.05v, the origin design was 1v. 
+* If the crystal  not working, try to reduce the R28(by default it's 1K), if reduce the R28 didn't make crystal  back to working. try repace the crystal with a better brand.
+
+ [[!img "Avalon2_work_without_LDO_RT9187_2.jpeg" size=320x320]]   [[!img "Avalon2_work_without_LDO_RT9187_1.jpeg" size=320x320]]
+
+# 55nm open design
+
+* form
+	https://github.com/formtapez/avalon
+	https://bitcointalk.org/index.php?topic=323175.0
+	Supported by official BFGMiner 3.8+
+
+* flyonwall
+	https://bitcointalk.org/index.php?topic=323175.msg3759895#msg3759895
+
+* Technobit Team
+	https://bitcointalk.org/index.php?topic=323727.0
+	here is the design, BOM：
+	http://ge.tt/2B4qW051/v/0?c
+	Here is CGminer patch and dd-wrt cgminer build
+	http://technobit.eu/index.php?controller=attachment&id_attachment=30
+	Windows drivers
+	http://technobit.eu/index.php?controller=attachment&id_attachment=9
+	Windows HEXminer software
+	http://technobit.eu/index.php?controller=attachment&id_attachment=29
+	Specs
+	16 chip board
+	Hash rate - about 24 Gh/s overclocked
+	16 bit PIC controller
+	2 line power suply
+	Voltage controled by command in the software/firmware
+	USB connector
+	molex 4 pin power connector
+	Review: https://bitcointalk.org/index.php?topic=355323.0
+
+* George Hahn
+	https://github.com/GeorgeHahn/Avalon
+
+* Dan
+	http://arselin.com/drillbit/2013/12/01/avalon-gen2-miners-by-drillbit-systems/
+	http://www.drillbitsystem.com/avalon/
+
+* Carlos
+	https://github.com/ctapang/DesignEntry/
+
+* Zhaodong
+	https://github.com/BitDragonfly/A3256-mono
+
+* Ardulon 2
+	https://code.google.com/p/ardulon-miner/source/browse/#svn%2Ftrunk
