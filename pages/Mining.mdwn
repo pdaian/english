@@ -43,13 +43,15 @@ FPGA mining is a very efficient and fast way to mine, comparable to GPU mining a
 #### ASIC Mining
 An application-specific integrated circuit, or *ASIC*, is a microchip designed and manufactured for a very specific purpose. ASICs designed for Bitcoin mining were first released in 2013. For the amount of power they consume, they are vastly faster than all previous technologies and already has made GPU mining financially unwise in some countries and setups.
 
-### Pools
-As more and more miners competed for the limited supply of blocks, individuals found that they were working for months without finding a block and receiving reward for their mining efforts. This made mining something of a gamble. To address the variance in their income miners started organizing themselves into [[pools|Pooled_mining]] so that they could share rewards more evenly. See [[Pooled_mining]] and [[Comparison_of_mining_pools]].
-
-### Mining services
+#### Mining services
 [[Mining contractors|tags/Mining_contractors]] provide mining services with performance specified by contract. They may, for example, rent out a specific level of mining capacity for a set price for a specific duration.
 
 Mining shares provide Mining as a Service (MaaS). These break large-scale datacenter mining down to easily manageable pieces that are available in the form of shares of equipment.
+
+Hosted mining services create some systemic risk for the Bitcoin system because they undermine the security assumption that the control of mining power is well distributed. If too much mining becomes consolidated in large hosting providers and an attacker is able to compromise some of these providers they could potentially disrupt the Bitcoin system or rip off people they transact with with reversals.
+
+### Pools
+As more and more miners competed for the limited supply of blocks, individuals found that they were working for months without finding a block and receiving reward for their mining efforts. This made mining something of a gamble. To address the variance in their income miners started organizing themselves into [[pools|Pooled_mining]] so that they could share rewards more evenly. See [[Pooled_mining]] and [[Comparison_of_mining_pools]].
 
 ### History
 Bitcoin's public ledger (the 'block chain') was started on January 3rd, 2009 at 18:15 UTC presumably by [[Satoshi_Nakamoto]]. The first block is known as the [[genesis_block]]. The first transaction recorded in the first block was a single transaction paying the reward of 50 new bitcoins to its creator.
