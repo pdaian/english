@@ -14,6 +14,10 @@ Many of the ideas underlying Bitcoin contracts were first described by Nick Szab
 [Formalizing and Securing Relationships on Public Networks](http://szabo.best.vwh.net/formalize.html). These pages were written by [Mike Hearn](mailto:mike@plan99.net). Contact him if you have an idea for a new type of contract. You can watch **[a video of a talk on contracts](https://www.youtube.com/watch?feature=player_embedded&v=mD4L7xDNCmA)** that was presented at the Bitcoin 2012 conference in London.
 
 
+##A warning about the mempool transaction replacement mechanism
+
+This page repeatedly refers to the obsolete and insecure nSequence-based transaction mempool replacement mechanism. This mechanism existed in very early versions of the Bitcoin sourcecode, but was not tested and did not work. It was disabled in [2010](https://github.com/bitcoin/bitcoin/commit/401926283a200994ecd7df8eae8ced8e0b067c46), and more recently the code has been [removed completely](https://github.com/bitcoin/bitcoin/commit/98c7c8fd1d3712e02be0e9f2eeca7e02aa54d197). Mempool transaction replacement is a form of zero-conf transaction and is vulnerable to double-spending like any other zero-conf transaction is. The replacement mechanism is also trivially vulnerable to DoS attacks. Mike Hearn's views that replacement is a viable mechanism are not shared by other Bitcoin developers. Implementors should take this into account and create contract mechanisms that do not rely on mempool replacement if they wish to have their implementations work in the forseeable future. Finally, note that the nLockTime mechanism *is* supported in Bitcoin, and nLockTime-using transactions are accepted into the mempool and mined when the lock expires and then become final, and sequence numbers are still signed as described below by signatures, and nLockTime is disabled if all sequence numbers are equal to UINT_MAX.
+
 ##Theory
 
 Every [[transaction]] in Bitcoin has one or more inputs and outputs. Each input/output has a small, pure function associated with it called a [[script]]. Scripts can contain signatures over simplified forms of the transaction itself.
