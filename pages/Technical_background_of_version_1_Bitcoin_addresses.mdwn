@@ -34,7 +34,7 @@ Since Bitcoin addresses are basically random numbers, it is possible, although e
 	D61967F63C7DD183914A4AE452C9F6AD5D462CE3D277798075B107615C1A8A30
 7 - Take the first 4 bytes of the second SHA-256 hash. This is the address checksum
 	D61967F6
-8 - Add the 4 checksum bytes from point 7 at the end of extended RIPEMD-160 hash from point 4. This is the 25-byte binary Bitcoin Address.
+8 - Add the 4 checksum bytes from stage 7 at the end of extended RIPEMD-160 hash from stage 4. This is the 25-byte binary Bitcoin Address.
 	00010966776006953D5567439E5E39F86A0D273BEED61967F6
 9 - Convert the result from a byte string into a base58 string using [[Base58Check_encoding]]. This is the most commonly used Bitcoin Address format
 	16UwLL9Risc3QfPqBUvKofHmBQ7wMtjvM
