@@ -1,0 +1,53 @@
+This new feature in SX should be considered experimental for the time being. This page will be updated accordingly.
+
+There are 2 people in our scenario: Mr. Sender and Mr. Receiver.
+
+SX main website: http://sx.dyne.org/
+
+## Mr. Receiver generates a new seed
+
+The receiving person generates a new secret:
+
+<pre>
+$ sx stealth-new
+Secret: c8edfa93b0475d617de98643673ddbd3f25b08a98261a2b3f913ea29990ef6f6
+Address: SxjHZmrj1GrtuyW8dLmtYbNsLTEUGCQzpbk6iFRHEiBiZ5Z8Nq8EVt
+</pre>
+
+Mr. Receiver puts his address somewhere public like on an internet forum or website somewhere.
+
+## Mr. Sender finds the pubkey and wants to send some BTC
+
+Armed with the address of the recipient, the sender now wants to generate a securely anonymous address to send funds:
+
+<pre>
+$ sx stealth-send
+sx stealth-send ADDRESS
+$ sx stealth-send SxjHZmrj1GrtuyW8dLmtYbNsLTEUGCQzpbk6iFRHEiBiZ5Z8Nq8EVt
+Nonce: 03f3f8509a9ac713d269670119862416f377428fa1b40119fa418c3f24a610b11f
+Address: 1vTNCd9NtWS77aPsfGWMeqNP1jsfbGQZ4
+</pre>
+
+Mr. Sender can send funds to 1vTNCd9NtWS77aPsfGWMeqNP1jsfbGQZ4. As long as the receiving party has knowledge of the nonce somehow, he can recover the funds.
+
+Mr. Sender transmits the nonce to Mr. Receiver. As long as they both keep their identities hidden, the public knowledge of the nonce does not matter. For instance, Mr. Sender might choose to put it in the blockchain so that Mr. Receiver is able to retrieve the value (assuming he's scanning for such a nonce periodically). Or he might send it to him over encrypted email, or post it publically on a forum somewhere where Mr. Sender knows that Mr. Receiver expects to see this nonce.
+
+## Mr. Receiver takes the nonce and attempts to see if it's a payment for him
+
+Mr. Receiver kept his secret key from earlier which he can use to regenerate the private keys in order to send funds transmitted to him. Using the nonce, he attempts to recreate the address:
+
+<pre>
+$ sx stealth-recv
+sx stealth-recv SECRET NONCE
+$ sx stealth-recv c8edfa93b0475d617de98643673ddbd3f25b08a98261a2b3f913ea29990ef6f6 03f3f8509a9ac713d269670119862416f377428fa1b40119fa418c3f24a610b11f
+Address: 1vTNCd9NtWS77aPsfGWMeqNP1jsfbGQZ4
+Private key: 5JDUsvi6bGL5M3Wk2qvgrEHvp3proSRStHakfwtsdMfauXekqR4
+</pre>
+
+Maybe someone linked to a transaction on the blockchain and posted a nonce on a forum somewhere. He attempts to recreate the Bitcoin address, and notices that the address in the linked transaction combined with the provided nonce matches what he gets! The money was destined for him.
+
+He can now spend it by importing the private key into his Bitcoin wallet.
+
+## Thanks
+
+Shout outs to: Jeremy Spilman for creating the [first implementation](https://gist.github.com/jspilman/8396495) - I reviewed it heavily ;) and Peter Todd (and others) for coming up with the idea / popularising it.
