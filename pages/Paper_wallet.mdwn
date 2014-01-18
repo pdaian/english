@@ -1,28 +1,28 @@
-A **paper wallet** is a mechanism for storing bitcoins offline as a physical document that can be secured like cash or anything else of real-world value. Paper wallets are generally created by printing a brand new public address and private key onto paper, and then sending bitcoins from a "live" wallet to the printed wallet's public address for safekeeping. If good security practices are followed, paper wallets are one of the safest ways to to store a virtually unlimited number of Bitcoins. 
+A **paper wallet** is a mechanism for storing bitcoins offline as a physical document that can be secured like cash or anything else of real-world value. Paper wallets are generally created by printing a brand new public address and private key onto paper, and then sending bitcoins from a "live" wallet to the printed wallet's public address for safekeeping. If good security practices are followed, paper wallets are one of the safest ways to to store Bitcoins. 
 
 __TOC__
 
 ##Producing safe paper wallets
 
-[[!img "BitcoinPaperWallet-sample.jpg" class="right" size=400x400 title="Wallet with private key secured beneath folds (BitcoinPaperWallet.com)"]]
-A Bitcoin [[private_key]] can be represented in several formats, but Wallet Import Format (WIF) is typically used for paper wallets since these keys are very short (51 characters) and thus easy to re-enter when importing or "sweeping" the wallet for withdrawal.
+[[OfflineAddress.com|OfflineAddress]] 
+[[!img "BitcoinPaperWallet-sample.jpg" size=120x120 class="right" size=300x300 title="Wallet with private key secured beneath folds (BitcoinPaperWallet.com)"]]
+A Bitcoin [[private_key]] can be represented in several formats. For paper wallets typically used format is Wallet Import Format (WIF), since keys represented that way are very short (51 characters) and thus easy to re-enter when importing or "sweeping" the wallet for withdrawal.
 
-Several tools exist for producing paper wallets, including [[BitAddress.org]], [[BitcoinPaperWallet.com|BitcoinPaperWallet]], [[vanitygen]], [Safe Paper Wallet](https://safepaperwallet.com), and [[Bitcoin_Address_Utility]]. 
+Several tools exist for producing paper wallets, including [[BitAddress.org|BitAddress]], [[OfflineAddress.org|OfflineAddress]], [[BitcoinPaperWallet.com|BitcoinPaperWallet]], [[vanitygen]], [[SafePaperWallet.com|SafePaperWallet]], and [[Bitcoin_Address_Utility]]. 
 
-Care must be taken to securely generate paper wallets since an attacker can steal the present *and future* balance of a paper wallet if the private key is exposed, transmitted, or generated with insufficient entropy.
+Care must be taken to securely generate paper wallets since an attacker can steal the present *and future* balance of a paper wallet if the private key is exposed, transmitted, or generated with [insufficient entropy](http://www.offlineaddress.com/?site=about#security-risk).
 
-[[BitAddress.org]] and [[BitcoinPaperWallet.com|BitcoinPaperWallet]] feature a free client-side paper wallet generator written in JavaScript. The HTML for either of these generators can be downloaded from GitHub and used on an offline computer. Using either of these generators offline (not directly running from their websites) is relatively safe, but extra precautions should be taken when used while being connected to ensure that keys are not compromised by spyware that may be monitoring browser activity. 
-
-Blockchain.info offers a [tutorial on how to generate a paper wallet](https://blockchain.info/wallet/paper-tutorial) with an online component so you can check your balance easily.
+Some services feature a free open-source client-side paper wallet generators written in JavaScript, which can be used offline. Using these generators is relatively safe while disconnected from internet. It's advisable to use those services from [live disc](https://en.wikipedia.org/wiki/Live_CD), to ensure that private keys are not compromised by spyware. 
 
 **Recommendations:**
 
 * Paper wallets should be produced on a computer not connected to the Internet.
-* Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your paper wallet.  Also consider that antivirus software cannot completely rule out the possibility of malware.  However, using bootable CD's prevents the vast majority of malware from being able to run.  If you can generate a paper wallet with a bootable CD such as an Ubuntu LiveCD, the likelihood of malware being able to compromise your keys is very low.
+* Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your paper wallet.  Also consider that antivirus software cannot completely rule out the possibility of malware.  However, using bootable [live disc](https://en.wikipedia.org/wiki/Live_CD) prevents malware from running.
 * The private keys of paper wallets should never be saved to a computer hard drive.  You should also never scan your paper wallet into your computer or type the private keys or save them in e-mail, except at the moment you are redeeming the balance.
 * If possible, the private key of a paper wallet should be kept hidden, for example by folding the paper to hide the private key so that a photograph or photocopy of the wallet will not reveal or replicate the private key.
 * A web-based paper wallet generator should be written so that all of the generation happens on your computer, not the web server.  After you load the paper wallet generating website in your web browser, you should disconnect from the Internet, and observe that the paper wallet generator continues to function.  Afterward, you should close your browser before reconnecting to the Internet.
-* A paper wallet generator should use an appropriate source of random numbers (entropy).  This means that the generated addresses aren't predictable.  If the addresses come from a predictable or partially-predictable pattern, someone else who can predict the pattern addresses can steal the balance. Generally, this rules out any "web-based" generator unless you can be sure that both your browser and the JavaScript code are taking advantage of the strongest cryptographic routines available.[(1)](http://www.w3.org/TR/WebCryptoAPI/)
+* A paper wallet generator should use an appropriate source of random numbers (entropy).  This means that the generated addresses aren't predictable.  If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers  (2.1), someone else who can predict the pattern can steal the balance. Ideally, randomness has to be human provided (i.e. from mouse movements, as in [[offlineaddress.com|OfflineAddress]]). This rules out any "web-based" generator unless you can be sure that both your browser and the JavaScript code are taking advantage of the strongest cryptographic routines available. (2.2)
+
 
 ###Operating System Cache Security
 
@@ -51,6 +51,8 @@ the exchange will then create a "sweep" transaction that spends any amount for t
 
 ##References
 
+2.1: [Pseudorandomness](https://en.wikipedia.org/wiki/Pseudorandomness#Cryptography)  '' is not enough for strong cryptography''  
+2.2: [w3.org](http://www.w3.org/TR/WebCryptoAPI/)  ''WebCryptoAPI''  
 3.1: [BitcoinPaperWallet.com](https://bitcoinpaperwallet.com/#security)  ''Security Tips''  
 5.1: [reddit.com](http://www.reddit.com/r/Bitcoin/comments/1c9xr7/psa_using_paper_wallets_understanding_change/)  ''Using Paper Wallets and Understanding Change''
 
@@ -63,9 +65,7 @@ the exchange will then create a "sweep" transaction that spends any amount for t
 
 * [[How_to_import_private_keys]]
 
-* [Guide to paper wallets](http://localbitcoins.blogspot.fi/2012/11/start-your-own-money-press.html)
-
-* [YouTube video demonstration of generating a paper wallet](https://www.youtube.com/watch?v=a47rrYBWjWQ)
+* [Blockchain.info tutorial](https://blockchain.info/wallet/paper-tutorial) on how to generate a paper wallet.
 
 [[!tag "Security"]]
 
