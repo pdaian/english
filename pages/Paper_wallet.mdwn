@@ -4,24 +4,24 @@ __TOC__
 
 ##Producing safe paper wallets
 
+[[BitcoinPaperWallet.com|BitcoinPaperWallet]] 
 [[OfflineAddress.com|OfflineAddress]] 
-[[!img "BitcoinPaperWallet-sample.jpg" size=120x120 class="right" size=300x300 title="Wallet with private key secured beneath folds (BitcoinPaperWallet.com)"]]
 A Bitcoin [[private_key]] can be represented in several formats. For paper wallets typically used format is Wallet Import Format (WIF), since keys represented that way are very short (51 characters) and thus easy to re-enter when importing or "sweeping" the wallet for withdrawal.
 
-Several tools exist for producing paper wallets, including [[BitAddress.org|BitAddress]], [[OfflineAddress.com|OfflineAddress]], [[BitcoinPaperWallet.com|BitcoinPaperWallet]], [[vanitygen]], [[SafePaperWallet.com|SafePaperWallet]], and [[Bitcoin_Address_Utility]]. 
+Several tools exist for producing paper wallets, including [[BitAddress.org|BitAddress]],  [[Bitcoin_Address_Utility]], [[BitcoinPaperWallet.com|BitcoinPaperWallet]],  [[OfflineAddress.com|OfflineAddress]], [[SafePaperWallet.com|SafePaperWallet]], and  [[vanitygen]]. 
 
-Care must be taken to securely generate paper wallets since an attacker can steal the present *and future* balance of a paper wallet if the private key is exposed, transmitted, or generated with [insufficient entropy](http://www.offlineaddress.com/?site=about#security-risk).
+Care must be taken to securely generate paper wallets since an attacker can steal the present *and future* balance of a paper wallet if the private key is exposed, transmitted, or generated with insufficient entropy.
 
-Some services feature a free open-source client-side paper wallet generators written in JavaScript, which can be used offline. Using these generators is relatively safe while disconnected from internet. It's advisable to use those services from [live disc](https://en.wikipedia.org/wiki/Live_CD), to ensure that private keys are not compromised by spyware. 
+Some services feature a free open-source client-side paper wallet generators written in JavaScript, which can be used offline. Using these generators is relatively safe when the source code hash can be checked against the author's signature. It's advisable to use those services from a [live bootable CD](https://en.wikipedia.org/wiki/Live_CD), to ensure that private keys are not compromised by spyware. 
 
 **Recommendations:**
 
 * Paper wallets should be produced on a computer not connected to the Internet.
-* Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your paper wallet.  Also consider that antivirus software cannot completely rule out the possibility of malware.  However, using bootable [live disc](https://en.wikipedia.org/wiki/Live_CD) prevents malware from running.
+* Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your paper wallet.  Also consider that antivirus software cannot completely rule out the possibility of malware.  However, booting from a [live disc](https://en.wikipedia.org/wiki/Live_CD) prevents malware from running.
 * The private keys of paper wallets should never be saved to a computer hard drive.  You should also never scan your paper wallet into your computer or type the private keys or save them in e-mail, except at the moment you are redeeming the balance.
-* If possible, the private key of a paper wallet should be kept hidden, for example by folding the paper to hide the private key so that a photograph or photocopy of the wallet will not reveal or replicate the private key.
-* A web-based paper wallet generator should be written so that all of the generation happens on your computer, not the web server.  After you load the paper wallet generating website in your web browser, you should disconnect from the Internet, and observe that the paper wallet generator continues to function.  Afterward, you should close your browser before reconnecting to the Internet.
-* A paper wallet generator should use an appropriate source of random numbers (entropy).  This means that the generated addresses aren't predictable.  If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers  (2.1), someone else who can predict the pattern can steal the balance. Ideally, randomness has to be human provided (i.e. from mouse movements, as in [[offlineaddress.com|OfflineAddress]]). This rules out any "web-based" generator unless you can be sure that both your browser and the JavaScript code are taking advantage of the strongest cryptographic routines available. (2.2)
+* If possible, the private key of a paper wallet should be kept hidden, for example by using BIP38 encryption, or by folding the paper to hide the private key so that a photograph or photocopy of the wallet will not reveal or replicate the private key.
+* A web-based paper wallet generator should be written such that that all of the generation happens on your computer, not the web server.  Ideally, the HTML/JavaScript for the web generator should be downloaded to your computer, verified, and then run "locally" from an offline computer. Running a paper wallet generator directly from a live website is not recommended unless you can verify that the code has not been tampered with by computing the hash and comparing it with a signed hash by the author.
+* A paper wallet generator should use an appropriate source of random numbers (entropy).  This means that the generated addresses aren't predictable.  If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers  (2.1), someone else who can predict the pattern can steal the balance. Ideally, randomness should to be human provided (i.e. using dice rolling or random mouse movements or key strokes.) When using a web-based generator it's important to ensure that both the web browser and the JavaScript code are taking advantage of the strongest cryptographic routines available. (2.2)
 
 
 ###Operating System Cache Security
