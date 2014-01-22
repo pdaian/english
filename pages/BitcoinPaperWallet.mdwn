@@ -19,12 +19,12 @@ While BitAddress is capable of generating "brain wallets", pool-generated vanity
 
 ## Similarities to BitAddress
 
-BitcoinPaperWallet is a GitHub "fork" of BidAddress and uses identical cryptography functions and methods. Similarly:
+BitcoinPaperWallet is a GitHub "fork" of BidAddress and uses verifiably identical cryptographic functions and methods. Similarly:
 
 * The generator works entirely from within a web browser.
-* Addresses are never transmitted over the Internet
+* Addresses are never transmitted over the Internet, and no Internet connection is required for the generator to work.
 * The full source code can be examined via "view source" in web browser.
-* Cryptographic work is done using the the browser's built-in JavaScript crypto API along with open-source JavaScript libraries
+* Cryptographic work, random number generation, and random data seeding ("gathering entropy") is accomplished using JavaScript.
 * The generator can be run offline by [downloading a ZIP archive](https://github.com/cantonbecker/bitcoinpaperwallet) of the HTML from GitHub.
 
 ## Designs
