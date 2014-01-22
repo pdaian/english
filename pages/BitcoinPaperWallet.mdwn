@@ -1,5 +1,11 @@
 [BitcoinPaperWallet.com](https://bitcoinpaperwallet.com) is an open-source paper wallet generator based on the [[BitAddress]] generator. It runs on any modern web browser and relies on JavaScript for all cryptographic functionality.
 
+## Secure usage
+
+* The easiest way to use this generator is directly from the website at [(1)](https://bitcoinpaperwallet.com/bitcoinpaperwallet/generate-wallet.html) -- however this is also the least secure method.
+* A more secure process is to download the generator from GitHub at [(2)](https://github.com/cantonbecker/bitcoinpaperwallet) so that it can be run as a "local" webpage using a secure offline computer. No Internet connection is required to generate new paper wallets and Bitcoin addresses.
+* For the highest level of security, install the BitcoinPaperWallet generator onto an absolutely clean (virus-free, no extra applications) "Live CD" or bootable USB thumbdrive. Ubuntu LiveCDs with the BitcoinPaperWallet generator pre-installed are available from [(3)](https://bitcoinpaperwallet.com).
+
 ## Differences from BitAddress
 
 While BitAddress is capable of generating "brain wallets", pool-generated vanity wallets, and bulk wallets, BitcoinPaperWallet has been simplified such that its only function is to produce paper wallets. Additionally:
@@ -20,3 +26,9 @@ BitcoinPaperWallet is a GitHub "fork" of BidAddress and uses identical cryptogra
 * The full source code can be examined via "view source" in web browser.
 * Cryptographic work is done using the the browser's built-in JavaScript crypto API along with open-source JavaScript libraries
 * The generator can be run offline by [downloading a ZIP archive](https://github.com/cantonbecker/bitcoinpaperwallet) of the HTML from GitHub.
+
+## Designs
+
+The BitcoinPaperWallet design is available in 12 different languages. Designs for special occasions are also available, for example this design for giving money in red envelopes (e.g. for Chinese New Year.)
+
+[[Bitcoinpaperwallet-chinese-new-year.jpeg‎‎]]
