@@ -131,12 +131,13 @@ Avalon Mini  is a two module power house clocking the 110nm chips at 375Mhz, 595
 	**[[match_work_count*]]: the work matched to which miner. is the number is very low compare to others mean it is unhealth**
 
 ## Cgminer option
-**--avalon-options 115200:24:10:45:282**. this is the default avalon option. here is the details:
+**--avalon-options 115200:24:10:45:282:110**. this is the default avalon option. here is the details:
 	**115200**: the serial baud. this have to match the controller baud.
 	**24**: the miner count.(there are 3 modulars in avalon. each modular have 8 miners), if your avalon have 4 modulars. change it to 32
 	**10**: the chip count pre miner.
 	**45**: the controller timeout parameter. the valid number: 50, 47, 45, 40.
 	**282**: the chip clock. the valid number: 256, 270, 282, 300, 325 , 350, 375
+	**110**: the latest cgminer support 110nm and 55nm, two type of Avalon.
 
 ## Run cgminer manually
 In case you need to run Cgminer in linux console please run the following command:
