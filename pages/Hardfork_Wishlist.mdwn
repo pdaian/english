@@ -19,6 +19,7 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * Allow soft-spending of generation outputs without confirmations (outputs of these transactions might also appear as generation themselves)
 * Allow additional inputs to generation transactions
 * Add new signature hashtype to include value of TxOut being spent, in the hash to be signed.  Doing this would remove the requirement that offline signing devices be sent all supporting transactions with the transaction-to-be-signed, just to confirm the transaction fee.
+* Allow a "permanent forwarding order" in the blockchain, which by-rule irrevocably declares that any future transaction outputs directed at the retired-target are no longer spendable via the old key, but some new replacement key. (Requires hard-fork because older software oblivious to the forwarding-order could create or accept/forward blocks with no-longer-valid transactions through a forwarded address.)
 
 ## Cryptographic changes
 
