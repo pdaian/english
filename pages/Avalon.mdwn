@@ -146,7 +146,7 @@ In case you need to run Cgminer in linux console please run the following comman
 	# /etc/init.d/cgminer restart
 
 If your avalon does not mine properly, please run Cgminer in debug mode with -D --verbose option. For example:
-	# cgminer -S /dev/ttyUSB0 -o stratum.btcguild.com:3333 -O xxxx:yyyy -D --verbose --avalon-options 115200:24:10:45:282 --api-allow "W:0/0" --api-listen 2>/tmp/cgminer-debug.log
+	# cgminer -o stratum.btcguild.com:3333 -O xxxx:yyyy -D --verbose --avalon-options 115200:24:10:45:282 --api-allow "W:0/0" --api-listen 2>/tmp/cgminer-debug.log
 
 ## TP-LINK TL-WR703N
 There is a modify version of TP-LINK TP-WR703N inside Avalon. cgminer running at 703n, this 703n have 64MB ram and modified power supply. it power from the usb-client side(we moved a 0R resistor from **J1** to **R113** for that)
