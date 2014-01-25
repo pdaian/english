@@ -155,7 +155,7 @@ Why there is a ugly USB HUB there?  you can find more information about AR9331's
 
 ### How to reflash
 
-1. Download latest Avalon [image](http://downloads.qi-hardware.com/people/xiangfu/avalon/latest/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin) to your PC.
+1. Download latest Avalon [image](http://downloads.canaan-creative.com/software/avalon/latest/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin) to your PC.
 1. Goto:
 	System -> Backup / Flash Firmware -> Flash new firmware image (make sure **Keep settings** is checked)
 
@@ -235,7 +235,7 @@ you need do this by yourself.  removing F1 will not make the usb hub stop workin
 ### Using XC3SPROG
 [[Fpga-controller-jtag-pins.png]]  [[!img "M1_JTAGserialpod_Pins.JPG" size=100x100]]
 
-* Update under Avalon 703N: http://downloads.qi-hardware.com/people/xiangfu/avalon/fpga-controller/
+* Update under Avalon 703N: http://downloads.canaan-creative.com/software/avalon/fpga-controller/
 * http://en.qi-hardware.com/w/images/f/ff/M1_JTAGserialpod_Pins.JPG
 
 	#mini-jtag load xc6slx16-2-ftg256.bscan_s6_spi_isf_ext.bit && sleep 1 && xc3sprog -c qi -v -I fpga_controller_2013-05-02-D.bit
@@ -286,11 +286,11 @@ Doing anything special is no longer required as of commit 11d63ef66. Since the r
 
 * If you are overclocking, even just a little, and your Avalon stops functioning, and there are no visible signs of heat-related damage, consider testing and/or replacing the power supply. You should probably not be overclocking without a replacement PSU anyway. Make sure PSU is rated for 750W or more (if overclocking.)
 
-# [http://downloads.qi-hardware.com/people/xiangfu/avalon/ Firmware]
+# [http://downloads.canaan-creative.com/software/avalon/ Firmware]
 
 * Check your firmware version by goto **Cgminer Status** page
-* Latest Firmware is [here](http://downloads.qi-hardware.com/people/xiangfu/avalon/latest/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin)
-* The Avalon firmware SDK: [here](http://downloads.qi-hardware.com/people/xiangfu/avalon/latest/OpenWrt-SDK-ar71xx-for-linux-x86_64-gcc-4.6-linaro_uClibc-0.9.33.2.tar.bz2)
+* Latest Firmware is [here](http://downloads.canaan-creative.com/software/avalon/latest/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin)
+* The Avalon firmware SDK: [here](http://downloads.canaan-creative.com/software/avalon/latest/OpenWrt-SDK-ar71xx-for-linux-x86_64-gcc-4.6-linaro_uClibc-0.9.33.2.tar.bz2)
 
 ## [http://downloads.canaan-creative.com/software/avalon/next-testing/ NEXT]
 Please always use the latest "next-testing" image for testing. testing images will remove as long as a new release come out.
@@ -301,14 +301,14 @@ Please always use the latest "next-testing" image for testing. testing images wi
 * Update OpenWrt to r38817
 * **Add [[Avalon2]] A3255 prototype machine support**, new option for A3255, (A3255 frequency: **1000-2000Mhs**).
 
-## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130923/ 20130923]
+## [http://downloads.canaan-creative.com/software/avalon/20130923/ 20130923]
 
 * **Update Cgminer to latest(Version: 3.4.3 Latest commit: d5f61e9, Sep 22 2013)**, [Cgminer Changelog](https://bitcointalk.org/index.php?topic=28402.msg3144100#msg3144100)
 * Update OpenWrt to r38031, Linux update to 3.10.12
 * Display new informations on status page, (include Device Hardware, Pool Quote and the FPGA controller firmware version)
 * Display share/help links for Avalon users, (this wiki page and IRC channel)
 
-## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130723/ 20130723]
+## [http://downloads.canaan-creative.com/software/avalon/20130723/ 20130723]
 
 * Update OpenWrt to r37008 (we have Linux version 3.8.13)
 * **Update cgminer to 3.3.1 (Jun 21, 37815e0)**. new options for Avalon, please read [API-README](https://github.com/ckolivas/cgminer/blob/master/API-README) for more information.
@@ -326,7 +326,7 @@ Please always use the latest "next-testing" image for testing. testing images wi
 	* Target Temperature(--avalon-temp): The fan will goes to full speed when reach this temperature
 	* Overheat Cut Off Temperature(--avalon-cutoff):  The avalon will idle chips when reach this temperature
 
-## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130607/ 20130607]
+## [http://downloads.canaan-creative.com/software/avalon/20130607/ 20130607]
 
 * **Update cgminer to 3.2.1**, we have the direct USB feature now.
 * Add --lowmem by default
@@ -336,7 +336,7 @@ Please always use the latest "next-testing" image for testing. testing images wi
 * Remove custom DNS (8.8.8.8)
 * Some minor changes on web page
 
-## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130519/ 20130519]
+## [http://downloads.canaan-creative.com/software/avalon/20130519/ 20130519]
 
 * **Update cgminer to 3.1.1**
 * Add **More Options** on web configure page(you can add 4th,5th pool here now)
@@ -349,7 +349,7 @@ Please always use the latest "next-testing" image for testing. testing images wi
 * Switch buildhost from Ubuntu 12.10 to Debian 7.0.0
 * NOTE: If your Pool URLs have trailing slash **remove the trailing slash** (symptom is: [19:05:30](2013-06-04) Failed to resolve (?wrong URL) host.name.com:PORT/ and/or all Pools with trailing slash listed as DEAD in status)
 
-## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130419 20130419]
+## [http://downloads.canaan-creative.com/software/avalon/20130419 20130419]
 
 * **Merged to cgminer. BIG thanks to conman**. so we have all cgminer's improvment
 * Idle avalon chips after reset. for save power. (idle needs ~50W)
@@ -369,7 +369,7 @@ Please always use the latest "next-testing" image for testing. testing images wi
 	luci-28b4ff2
 	cgminer-openwrt-packages-f2bc5dc
 
-## [http://downloads.qi-hardware.com/people/xiangfu/avalon/20130321/ 20130321]
+## [http://downloads.canaan-creative.com/software/avalon/20130321/ 20130321]
 
 * For fix the cgminer-monitor, please run this command after you reflash
 	**sed -i 's/ $B / "$B" /' /usr/bin/cgminer-monitor**
@@ -395,28 +395,28 @@ If you "uncheck the Keep settings" when reflashing, Please "reconfigure your Ava
 * Fliter >=100 degree result for debug
 * Replace TempMax with No Matching Work
 
-##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130225.bin 20130225]
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130225.bin 20130225]
 
 * A new cgminer status page
 * /etc/avalon_version include all repo commit
 * Fix temp_history_count, make sure 2~3s call adjuest_fan
 
-##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130218.bin 20130218]
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130218.bin 20130218]
 
 * Update adjust_fan()
 * Using avaon default worker
 
-##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130212.bin 20130212]
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130212.bin 20130212]
 
 * Update fan pwm
 
-##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130205.bin 20130205]
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130205.bin 20130205]
 
 * Update fan pwm MAX/MIN
 * Sync with upstream, fix the memory leak bug
 * Monitor the Accept number
 
-##[http://downloads.qi-hardware.com/people/xiangfu/avalon/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130127.bin 20130127]
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130127.bin 20130127]
 
 * Add overclock code
 * Change the cgminer configure to UCI system
