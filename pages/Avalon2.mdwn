@@ -36,7 +36,8 @@ Please the direct serial console on 703N (the /dev/ttyATH0)
 
 ## Raspberry Pi
 
-* Memory card: http://item.jd.com/632744.html
+* 8GB Memory card: http://item.jd.com/632744.html
+* Reflash: sudo dd if=openwrt-brcm2708-sdcard-vfat-ext4.img of=/dev/sdb bs=4M #/dev/sdb is your memory card
 
 # [[Avalon2_prototype]]
 This design is use the Avalon first product design, replace the A3256 with A3255, some hardware pins modify and use different FPGA firmware. please [ check here](http://downloads.canaan-creative.com/hardware/A3255/prototype/) for details and all design files and firmware files.
