@@ -83,6 +83,9 @@ The USB on the AR9331 have bugs. if you want use serial console, please the dire
 
 * 8GB Memory card: http://item.jd.com/632744.html
 * Reflash: sudo dd if=openwrt-brcm2708-sdcard-vfat-ext4.img of=/dev/sdb bs=4M #/dev/sdb is your memory card
+* The default firmware IP address is **192.168.0.100**, you can access it by http://192.168.0.100
+* You may need update the address/DNS to your local configuration. DO NOT FORGET your IP address.
+* If Rpi can access internet the cgminer should automatic start
 
 # [[Avalon2_prototype]]
 This design is use the Avalon first product design, replace the A3256 with A3255, some hardware pins modify and use different FPGA firmware. please [ check here](http://downloads.canaan-creative.com/hardware/A3255/prototype/) for details and all design files and firmware files.
