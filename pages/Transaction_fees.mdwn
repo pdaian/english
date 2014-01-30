@@ -36,7 +36,7 @@ The remaining transactions remain in the miner's "memory pool", and may be inclu
 
 ###Relaying
 
-The reference implementation's rules for relaying transactions across the peer-to-peer network are very similar to the rules for sending transactions, as a value of 0.0001 BTC is used to determine whether or not a transaction is considered "Free". To prevent "penny-flooding" denial-of-service attacks on the network, the reference implementation caps the number of free transactions it will relay to other nodes to (by default) 15 thousand bytes per minute.
+The reference implementation's rules for relaying transactions across the peer-to-peer network are very similar to the rules for sending transactions, as a value of 0.0001 BTC is used to determine whether or not a transaction is considered "Free". However, the rule that all outputs must be 0.01 BTC or larger does not apply. To prevent "penny-flooding" denial-of-service attacks on the network, the reference implementation caps the number of free transactions it will relay to other nodes to (by default) 15 thousand bytes per minute.
 
 ###Settings
 
