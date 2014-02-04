@@ -58,7 +58,7 @@ Think of this as "sign **none** of the outputs-- I don't care where the bitcoins
 
 Think of this as "sign **one** of the outputs-- I don't care where the other outputs go".
 
-Note: The transaction that uses SIGHASH_SINGLE type of signature should not have more outputs than inputs.
+Note: The transaction that uses SIGHASH_SINGLE type of signature should not have more inputs than outputs.
 However if it does (because of the pre-existing implementation), it shall not be rejected, but instead for every "illegal" input (meaning: an input that has an index bigger than the maximum output index) the node should still verify it, though assuming the hash of 0000000000000000000000000000000000000000000000000000000000000001 [(1)](https://bitcointalk.org/index.php?topic=260595.0)
 
 ### Procedure for Hashtype SIGHASH_ANYONECANPAY
