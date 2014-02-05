@@ -67,35 +67,35 @@ All pool-servers, except pool 80, have Stratum protocol support. All suitable mi
 
 **Phoenix [Web site](https://bitcointalk.org/?topic=6458.0)**<br />
 
-phoenix -u http://WorkerName@Example.com@pool.50btc.com:8332 -k phatk BFI_INT FASTLOOP VECTORS AGGRESSION=11 WORKSIZE=128 DEVICE=0
+phoenix -u http://WorkerName@Example.com@pool.50btc.com:3333 -k phatk BFI_INT FASTLOOP VECTORS AGGRESSION=11 WORKSIZE=128 DEVICE=0
 
 
 **CGMINER [Web site](https://bitcointalk.org/index.php?topic=28402.0)**<br />
 
-cgminer.exe -o http://pool.50btc.com:8332 -u WorkerName@Example.com -p 123 -v 2 -w 256 -g 4 -k phatk -I 8
+cgminer.exe -o http://pool.50btc.com:3333 -u WorkerName@Example.com -p 123 -v 2 -w 256 -g 4 -k phatk -I 8
 
 
 **DiabloMiner [Web site](https://bitcointalk.org/index.php?topic=1721.0)**<br />
 
 *Windows:*<br />
-DiabloMiner-Windows.exe -u WorkerName@Example.com -p pass -o pool.50btc.com -r 8332 -v 2 -w 256<br />
+DiabloMiner-Windows.exe -u WorkerName@Example.com -p pass -o pool.50btc.com -r 3333 -v 2 -w 256<br />
 
 <nowiki>*</nowiki>*nix*:<br />
-DiabloMiner-YourOS.sh -u WorkerName@Example.com -p 123 -o pool.50btc.com -r 8332 -v 2 -w 256
+DiabloMiner-YourOS.sh -u WorkerName@Example.com -p 123 -o pool.50btc.com -r 3333 -v 2 -w 256
 
 
 **Ufasoft Miner [Web site](https://bitcointalk.org/index.php?topic=3486.0)**<br />
 
-bitcoin-miner.exe -o http://pool.50btc.com:8332 -u WorkerName@Example.com
+bitcoin-miner.exe -o http://pool.50btc.com:3333 -u WorkerName@Example.com
 
 
 **jgarzik's CPU miner [Web site](https://bitcointalk.org/index.php?topic=1925.0)**<br />
 
 *Windows:*<br /> 
-minerd.exe -s 20 -t 4 --url http://pool.50btc.com:8332 --userpass WorkerName@Example.com:123
+minerd.exe -s 20 -t 4 --url http://pool.50btc.com:3333 --userpass WorkerName@Example.com:123
 
 <nowiki>*</nowiki>*nix*:<br />
-minerd -s 20 -t 4 --url http://pool.50btc.com:8332 --userpass WorkerName@Example.com:123
+minerd -s 20 -t 4 --url http://pool.50btc.com:3333 --userpass WorkerName@Example.com:123
 
 
 **50miner [Web site](http://50miner.org/)**<br />
