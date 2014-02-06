@@ -80,6 +80,7 @@ Source code is here: https://github.com/bitsyncom/mm
 The USB on the AR9331 have bugs. if you want use serial console, please the direct serial console on 703N (the **/dev/ttyATH0**). it's far more stable then USB-serial convertor.
 
 ## Raspberry Pi
+   [[!img "13_ports_usb_hub.png" title="320px " title="thumb " title="The 13 ports USB HUB "]]
 
 * 8GB Memory card: http://item.jd.com/632744.html
 * Reflash: sudo dd if=openwrt-brcm2708-sdcard-vfat-ext4.img of=/dev/sdb bs=4M #/dev/sdb is your memory card
@@ -87,7 +88,6 @@ The USB on the AR9331 have bugs. if you want use serial console, please the dire
 * You may need update the address/DNS to your local configuration. DO NOT FORGET your IP address.
 * If Rpi can access internet the cgminer should automatic start
 * USB Hub
-	    [[!img "13_ports_usb_hub.png" title="320px " title="thumb " title="The 13 ports USB HUB "]]
 
 # [[Avalon2_prototype]]
 This design is use the Avalon first product design, replace the A3256 with A3255, some hardware pins modify and use different FPGA firmware. please [ check here](http://downloads.canaan-creative.com/hardware/A3255/prototype/) for details and all design files and firmware files.
