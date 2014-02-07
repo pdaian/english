@@ -33,17 +33,21 @@ It is also possible to pass the API key as a request param:
 
 	GET /v1/prv/deposit_address/:currency_name.json
 
+* **currency_name** - obligatory cryptocurrency name, i.e BTC, LTC
+
 Example:
 <source lang="bash">
 curl -v --request GET http://localhost:3000/v1/prv/deposit_address/BTC.json --header "Authorization: PrimeExchange 84ffsOscok1Asbbqj28gcscv86M3nj4bRIamFaKe"
 </source>
 
 Response:
+	200 OK
 <source lang="javascript">
 	{"address":"n2Ccn5em9gcQyBe2QvZnfzzXq8EZh1ncJj"}
 </source>
 
 Error response:
+	422 Unprocessable Entity
 <source lang="javascript">
 	{"errors":{"currency_name":"is invalid"}}
 </source>
@@ -58,6 +62,7 @@ curl -i --request GET http://localhost:3000/v1/prv/user.json --header "Authoriza
 </source>
 
 Response:
+	200 OK
 <source lang="javascript">
 {
 	"user": {
@@ -70,6 +75,47 @@ Response:
 
 * **available** - the amount you can manage, i.e. to place a new offer
 * **total** - the amount including funds reserved for offers, withdrawals, etc.
+
+
+###Create a withdrawal request (of cryptocurrency)
+
+	POST /v1/prv/withdrawal_request.json
+
+* **currency_name** - obligatory name of the currency like BTC, LTC, PLN
+* **address** - obligatory only for cryptocurrencies
+* **amount** - obligatory
+* **otp** - obligatory when user has set up a Google Authenticator One-Time-Passwords for withdrawals
+
+Example:
+<source lang="bash">
+curl -i --request POST http://localhost:3000/v1/prv/withdrawal_requests.json --header "Authorization: PrimeExchange 84ffsOscok1Asbbqj28gcscv86M3nj4bRM6sLRdM" \
+--data "currency_name=BTC&address=mm2SjeJ64vQokDjnkhvhcv9mGk1VfEJRsk&amount=0.03"
+</source>
+
+Response:
+	201 Created
+
+Error response (missing or invalid OTP):
+	401 Unauthorized
+<source lang="javascript">
+{
+	"errors": {
+	"otp": "is invalid"
+	}
+}
+</source>
+
+Error response (invalid params):
+	422 Unprocessable Entity
+<source lang="javascript">
+{
+	"errors": {
+	"currency_name": "is invalid",
+	"address": "is_invalid",
+	"amount": "is invalid"
+	}
+}
+</source>
 
 ##References
 
