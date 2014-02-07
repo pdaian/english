@@ -21,8 +21,15 @@ Private API calls require authentication via:
 
 Private API is **off by default**. You need to enable it in your profile.
 
-###Get my deposit address
+You are expected to **pass the API key as a HTTP header**:
+	Authorization: PrimeExchange 84ffsOscok1Asbbqj28gcscv86M3nj4bRIamFaKe
+...where the long string is of course your API key.
 
+It is also possible to pass the API key as a request param:
+	?api_key=84ffsOscok1Asbbqj28gcscv86M3nj4bRIamFaKe
+...although this is not recommended as sensitive data should not be passed in the URI.
+
+###Get my deposit address
 
 	GET /v1/prv/deposit_address/:currency_name.json
 
@@ -40,6 +47,29 @@ Error response:
 <source lang="javascript">
 	{"errors":{"currency_name":"is invalid"}}
 </source>
+
+###Get balances and user data
+
+	GET /v1/prv/user.json
+
+Example:
+<source lang="bash">
+curl -i --request GET http://localhost:3000/v1/prv/user.json --header "Authorization: PrimeExchange 84ffsOscok1Asbbqj28gcscv86M3nj4bRIamFaKe"
+</source>
+
+Response:
+<source lang="javascript">
+{
+	"user": {
+	"username": "adalovelace",
+	"email": "adalovelace@bitcoinfoundation.org",
+	"balances": 	{				}	{				}	{				}	["LTC"]("currency_name":)
+	}
+}
+</source>
+
+* **available** - the amount you can manage, i.e. to place a new offer
+* **total** - the amount including funds reserved for offers, withdrawals, etc.
 
 ##References
 
