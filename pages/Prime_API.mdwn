@@ -1,5 +1,11 @@
 Prime API is based on JSON, delivered through HTTPS and is mostly REST-ful.
 
+API URIs always start with a marker "/v1" to make the version explicit.
+
+All timestamps are returned in ISO 8601 format:
+
+	YYYY-MM-DDTHH:MM:SSZ
+
 ##Public API
 
 Public API calls are available without authentication.
@@ -16,10 +22,19 @@ Private API is **off by default**. You need to enable it in your profile.
 ###Get my deposit address
 
 
-	GET /v1/private/deposit_address/:currency_name.json
+	GET /v1/prv/deposit_address/:currency_name.json
 
+Example:
 <source lang="bash">
-curl -v --request GET http://localhost:3000/v1/private/deposit_address/BTC.json --header 'Authorization: PrimeExchange 84ffsOscok1Asbbqj28gcscv86M3nj4bRIamFaKe'
+curl -v --request GET http://localhost:3000/v1/prv/deposit_address/BTC.json --header "Authorization: PrimeExchange 84ffsOscok1Asbbqj28gcscv86M3nj4bRIamFaKe"
 </source>
 
-{"address":"n2Ccn5em9gcQyBe2QvZnfzzXq8EZh1ncJj"}
+Response:
+<source lang="javascript">
+	{"address":"n2Ccn5em9gcQyBe2QvZnfzzXq8EZh1ncJj"}
+</source>
+
+Error response:
+<source lang="javascript">
+	{"errors":{"currency_name":"is invalid"}}
+</source>
