@@ -15,8 +15,11 @@ Private API is **off by default**. You need to enable it in your profile.
 
 ###Get my deposit address
 
+
 	GET /v1/private/deposit_address/:currency_name.json
 
 <source lang="bash">
 curl -v --request GET http://localhost:3000/v1/private/deposit_address/BTC.json --header 'Authorization: PrimeExchange 84ffsOscok1Asbbqj28gcscv86M3nj4bRIamFaKe'
 </source>
+
+{"address":"n2Ccn5em9gcQyBe2QvZnfzzXq8EZh1ncJj"}
