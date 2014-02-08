@@ -1,0 +1,512 @@
+
+	2 modulars(160 ASICs), Hashrate：60GH/s, Chip:375MHz, 595W
+	3 modulars(240 ASICs), Hashrate：72GH/s, Chip:300MHz, 600W
+	4 modulars(320 ASICs), Hashrate：90GH/s, Chip:282MHz, 750W
+
+# Pictures (Batch#1)
+ [[!img "Avalon-case.jpg" size=160x160]]  [[!img "Avalon-eth-wifi.jpg" size=160x160]]  [[!img "Avalon-side-1.jpg" size=160x160]]  [[!img "Avalon-side-2.jpg" size=160x160]]  [[!img "Avalon-fan.jpg" size=160x160]]  [[!img "Avalon-modular-4.jpg" size=160x160]]
+
+ [[!img "Avalon-detail.JPG" size=160x160]]  [[!img "Avalon-side-3.jpg" size=160x160]]  [[!img "Avalon-IR-1.jpg" size=160x160]]  [[!img "Avalon-IR-2.jpg" size=160x160]]
+
+# Pictures (Batch#2)
+
+# Pictures (Batch#3)
+ [[!img "Avalon_b3_front.jpg" size=160x160]]  [[!img "Avalon_4_modulars.jpeg" size=160x160]]
+
+# Pictures (Avalon Mini)
+Avalon Mini  is a two module power house clocking the 110nm chips at 375Mhz, 595W
+
+ [[!img "Avalon_mini_2_modulars.jpeg" size=160x160]]  [[!img "Avalon_mini_2_modulars_1.jpg" size=160x160]]  [[!img "Avalon_mini_2_modulars_inside.jpeg" size=160x160]]  [[!img "Avalon_mini_2_modulars_inside_1.jpeg" size=160x160]]   [[!img "Avalon_mini_2_modulars_details.jpeg" size=160x160]]  [[!img "Avalon_mini_2_modulars_details_1.jpeg" size=80x80]]
+
+# Hardware Information
+## [https://bitcointalk.org/index.php?topic=120184.msg1294416#msg1294416 Chip Specification]=
+ [[!img "Avalon-A3256-Q48-front.png" size=160x160]]  [[!img "Avalon-A3256-Q48-foot.png" size=160x160]]  [[!img "Avalon-A3256-Q48-foot-side.png" size=160x160]]  [[!img "Avalon-A3256-Q48-foot-1.png" size=160x160]]  [[!img "Avalon-A3256-Q48-foot-detail.png" size=160x160]]  [[!img "Avalon-A3256-Q48-front-side-1.png" size=160x160]]
+
+	Technology Summary:
+	TSMC 0.11- micron G process
+	5 Metal
+	Core Voltage: 1.2 V
+	I/O Voltage: 3.3 V
+	Core Frequency: 256+ MHz
+	Number of Pads: 48
+	8 Data
+	40+1 Power
+	Package Type: QFN48 -0.5 Pitch
+	Packaged Chip Size: 7 mm x 7 mm
+	
+	Chip Interface
+	Data Pins (8 in total):
+	Clock                     i
+	Serial Data In  [[2]]       i
+	Serial Data Out [[2]]       o
+	Serial Data Bypass [[2]]    o
+	Reserved    [[1]]    -
+
+## Wafer
+	TSMC
+	TMEM91
+	Chip Size :   X = 3.9760 ,Y = 4.0560 mm
+	Reticle Size :   X/cell =  3 ,Y/cell =  3
+	Offset Value :   X = -3.7668 ,Y = -2.2990 mm
+	Alignment Mark :   (118.80,83.20),(-118.80,-83.20)
+	Alignment Mark Tolerant Distance :      1.6 mm
+	Notch Reserved Distance :   7.75 mm
+	Start Distance :   7.75 mm
+	Ring Edge :   3.0 mm
+	Photo Die Number:    4055
+
+## Power
+	Chip power efficienty: 6.6W/GHs @ 1.15 V
+	Module power consumption: 149W @ 20GHs / 164W@ 22GHs
+	Machine power consumption: 595W @ 220V-AC / 620W @ 120V-AC
+
+### Comfirmed working PSU list
+
+* For 2,3 modulars machine
+1. [ANTEC EA-650 GREEN](http://www.antec.com.cn/product.php?id=NzA0MjY0)
+1. [Enermax GX650](http://www.enermax.cn/Products_Pages.asp?ID=188&SortID=1)
+1. [Enermax GX750](http://www.enermax.cn/Products_Pages.asp?ID=189&SortID=1)
+1. [CORSAIR GS700](http://www.corsair.com/cn/power-supply-units/gs-series-power-supply-units/gs-series-gs700-80-plus-bronze-certified-power-supply-840.html)
+1. [CORSAIR GS800](http://www.corsair.com/cn/power-supply-units/gs-series-power-supply-units/gs-series-gs800-80-plus-bronze-certified-power-supply-841.html)
+1. [Super-Flower(振华) SF-650P14XE(GX)](http://www.super-flower.com.cn/gb/pro_detail.asp?id=212)
+* For 4 modulars machine
+1. [Enermax 金魔冰核1000W(suit for 4 modules, a little bit long)](http://www.enermax.cn/Products_Pages.asp?ID=145&SortID=1)
+1. [OCZ ZX Series 1250W](http://ocz.com/consumer/psu/zx-series-850w-1250w-power-supply)
+
+### The PSU Spec
+
+* **155mm** recommend,  MAX: 170mm
+* For 3 module units:    650W, 48A 12V, at least. recommend for a 20% margin.
+* For 4 module units:    750W, 60A 12V, at least. recommend for a 20% margin.
+* Plugs:
+	* 1X ATX 24PIN
+	* 1X EPS 12V (8PIN)
+	* 2X PCIE 12V (8PIN)
+
+## The TP-LINK WR703N
+ [[!img "avalon-703n-back.JPG" size=320x320]]  [[!img "avalon-703n-front.JPG" size=320x320]]
+
+## Control Unit
+ [[!img "avalon-controlunit-v1.2.JPG" size=160x160]]   [[!img "avalon-controlunit-v1.2-fpga.JPG" size=160x160]]  [[!img "avalon-controlunit-v1.2-usb-serail-chip.JPG" size=160x160]]  [[!img "avalon-controlunit-v1.2-spi-flash.JPG" size=160x160]]  [[!img "avalon-controlunit-v1.2-usb-connector.JPG" size=160x160]]   [[!img "avalon-temperature-sensor-1.JPG" size=160x160]]
+
+ [[!img "avalon-controlunit-v1.2-P5.JPG" size=160x160]]  [[!img "avalon-controlunit-v1.2-by-ngzhang.JPG" size=160x160]]
+
+## PDU
+ [[!img "avalon-pdu-v1.2.JPG" size=160x160]]  [[!img "avalon-pdu-v1.2-side.JPG" size=160x160]]
+
+## Parts
+ [[!img "avalon-fpga-controller-led-detail.JPG" size=160x160]]  [[!img "avalon-fpga-controller-led.JPG" size=160x160]]  [[!img "avalon-modular-date-cable-head.JPG" size=160x160]]  [[!img "avalon-modular-date-cable.JPG" size=160x160]]  [[!img "avalon-modular-power-cable-head.JPG" size=160x160]]  [[!img "avalon-modular-power-cable.JPG" size=160x160]]
+
+ [[!img "avalon-temperature-sensor-detail.JPG" size=160x160]]  [[!img "avalon-temperature-sensor.JPG" size=160x160]]
+
+## [http://downloads.canaan-creative.com/hardware/A3256/avalon/Manual/110G%20Hash%20Avalon%20Assemble%20Manual.pdf Assemble manual]
+
+* [Assemble manual](http://downloads.canaan-creative.com/hardware/A3256/avalon/Manual/110G%20Hash%20Avalon%20Assemble%20Manual.pdf)
+
+# User Guide
+
+* Connect your laptop to the eithernet port of the Avalon
+* Setup your laptop IP address 192.168.0.101
+* Open http://192.168.0.100
+* Make sure WR703N can access Internet, Configure WiFi:  Network -> WIFI -> Scan(select your WIFI network) -> Join Network -> WPA passphrase -> Submit -> Save & Apply for connect to WIFI Internet
+* setup your mining worker: Status -> Cgminer Configuration. 
+* Restart the cgminer service:  System -> Startup, 
+* Check your avalon status:  Status -> Cgminer Status
+* Setup password/using ssh
+	ssh root@192.168.0.100 # Once you setup the password the telnet service will be stop. use ssh instead.
+
+## Cgminer status page
+	**MinerCount: The small miner count, each modular have 8 miners**
+	**AsicCount: The asic count on each miner. it is fixed 10**
+	**Frequency: Chip running frequcney**
+	**Fan1/2/3: The fan speed round per minute**
+	**Temp1: The air-in temperature**
+	**Temp2/3: The air-out temperature**
+	**DH(%): Hardwre error rate**
+	**NMW: Non-match work count**
+	**Firmware: the Openwrt firmware version**
+	**Controller: The FPGA controller firmware version, 0: mean read nothing**
+
+## Cgminer API LOG page
+	**[[match_work_count*]]: the work matched to which miner. is the number is very low compare to others mean it is unhealth**
+
+## Cgminer option
+**--avalon-options 115200:24:10:45:282:110**. this is the default avalon option. here is the details:
+	**115200**: the serial baud. this have to match the controller baud.
+	**24**: the miner count.(there are 3 modulars in avalon. each modular have 8 miners), if your avalon have 4 modulars. change it to 32
+	**10**: the chip count pre miner.
+	**45**: the controller timeout parameter. the valid number: 50, 47, 45, 40.
+	**282**: the chip clock. the valid number: 256, 270, 282, 300, 325 , 350, 375
+	**110**: the latest cgminer support 110nm and 55nm, two type of Avalon.
+
+## Run cgminer manually
+In case you need to run Cgminer in linux console please run the following command:
+
+* Restart Cgminer:
+	# /etc/init.d/cgminer restart
+
+If your avalon does not mine properly, please run Cgminer in debug mode with -D --verbose option. For example:
+	# cgminer -o stratum.btcguild.com:3333 -O xxxx:yyyy -D --verbose --avalon-options 115200:24:10:45:282 --api-allow "W:0/0" --api-listen 2>/tmp/cgminer-debug.log
+
+## TP-LINK TL-WR703N
+There is a modify version of TP-LINK TP-WR703N inside Avalon. cgminer running at 703n, this 703n have 64MB ram and modified power supply. it power from the usb-client side(we moved a 0R resistor from **J1** to **R113** for that)
+
+Why there is a ugly USB HUB there?  you can find more information about AR9331's usb stability issue [here](https://forum.openwrt.org/viewtopic.php?id=39956).
+
+### How to reflash
+
+1. Download latest Avalon [image](http://downloads.canaan-creative.com/software/avalon/latest/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin) to your PC.
+1. Goto:
+	System -> Backup / Flash Firmware -> Flash new firmware image (make sure **Keep settings** is checked)
+
+1. Select the image you just download. then compare the md5 in next page. if everything fine. click **Proceed**
+
+**Attention:** To avoid your WR703N become a brick, during flash your WR703N be careful DO NOT power off avalon, and DO NOT break your network connection. Just wait there till you see OpenWrt login web page again.
+
+**Attention:** If not essential please do not re-Flash your Avalon. Because not all of WR703N issue could be resolved by reset button. If you want to play WR703N I would like to recommend you order a standalone TP-LINK WR703N from ebay or somewhere for studying purpose.
+
+## WIFI or Ethernet Cable ?
+Avalon shipped with a 9db antenna after connect it to WR703N usually could establish good wireless connection with your WIFI router. But if for some reason you would like to use Ethernet Cable to connect Avalon with your network, please login OpenWrt and configure the LAN port:
+	Network -> Interfaces -> LAN -> Edit -> Common Configuration -> General Setup
+	Disable the DHCP on Lan port
+
+**Attention:** You need to configure it correctly based on your own network enviroment. If anything wrong you might could not access your WR703N any more.
+
+## Start to mine
+To maximize your Avalon miner's performance, it is recommended that you choose pools with the stratum protocol supported. The default mining pool configured in Avalon is ozco.in. To change it login to OpenWrt:
+	Status -> Cgminer Configuration
+	Click "Save & Apply" to save your update and restart cgminer immediately
+
+Currently the stratum pools that could work stable with Avalon are:
+
+* [50BTC.com](http://50btc.com/)
+* [Solo mining with Eloipool](https://bitcointalk.org/index.php?topic=158105.0)
+* [BitMinter](http://bitminter.com)
+* [Eligius](http://eligius.st)
+* [Ozcoin](https://www.ozcoin.net)
+* [btcguild](http://www.btcguild.com)
+* [slush's pool](http://mining.bitcoin.cz)
+* [Triplemining](http://www.triplemining.com)
+
+To get more information about how to configure specific pools, please check their website. If you run multiple Avalons, we recommend that you create a dedicated worker for each of them. This will make it easier to monitor your Avalons through the pool's website and identify possible problems.
+
+## Source code
+
+* https://github.com/BitSyncom/cgminer/tree/avalon
+* https://github.com/BitSyncom/cgminer-openwrt-packages
+* https://github.com/BitSyncom/luci/tree/cgminer-webui
+* https://github.com/BitSyncom/avalon-extras
+
+## FPGA controller
+### V1.0 ~ V1.2
+About **P5** jumper: close this jumper will supply 5V to the USB-B port. in this system, the controller board power the 703N from the client side. if you connect the controller itself to a PC, you better remove the jumper.
+
+### V1.5
+ [[!img "Avalon_fpga_controller_v1.5.jpg" size=160x160]]  [[!img "Avalon_fpga_controller_v1.5_usb_hub.jpg" size=160x160]]
+
+* Remove the **[F1(Fuse)](http://www3.picturepush.com/photo/a/13207881/1024/Anonymous/avf1.png)** for fix the USB-HUB chip overheat, 
+1. if you are batch2 user and your received Avalon between **Apr 26 2013 ~ May 31 2013**
+1. the FPGA controller is **1.5**
+1. your FPGA contoller board still have **F1 mounted**
+you need do this by yourself.  removing F1 will not make the usb hub stop working, F1 powers the USB-A1 plug (which is normally unused), more info please checkout [here](https://github.com/BitSyncom/avalon-ref/issues/5)
+
+### V1.51
+
+* Fixed USB-HUB chip overheat, NO NEEDS remove F1 anymore
+
+### V1.61
+ [[!img "Avalon_batch3_V1.61_detail.png" size=160x160]]  [[!img "Avalon_batch3_V1.61_detail1.png" size=160x160]]
+
+* Some of batch3 macine will use new case and V1.61 FPGA controller (all new case have V1.61 FPGA controller)
+* New temperature sensors, mounted on PCB.
+* Move the Fan power from FPGA controller to PDU. reduce the interference.
+* Please DO NOT flash old fpga controller firmware to V1.61 controller board (new batch3 machine). it may make your Avalon not working.
+* LEDs
+	Left: Green --> Power-on, Red --> PSU issue, OFF: --> No power 
+	Right: Yellow --> FPGA Buffer empty(no task send out to fpga), OFF --> FPGA Buffer full(means mining)
+
+### Issues
+
+* If kernel cannot detect the ft232 chip. The probability is the QFN ft232 chip have soldering problem. then you need do a re-work on this FT232 QFN chip.
+* The task buffer LED never on.(Should be light when power on. off when cgminer start working). below is the correct led cable connector:
+ [[!img "Avalon-batch3-led-connector.JPG" size=160x160]]
+
+## Update FPGA controller firmware
+### Using XC3SPROG
+[[Fpga-controller-jtag-pins.png]]  [[!img "M1_JTAGserialpod_Pins.JPG" size=100x100]]
+
+* Update under Avalon 703N: http://downloads.canaan-creative.com/software/avalon/fpga-controller/
+* http://en.qi-hardware.com/w/images/f/ff/M1_JTAGserialpod_Pins.JPG
+
+	#mini-jtag load xc6slx16-2-ftg256.bscan_s6_spi_isf_ext.bit && sleep 1 && xc3sprog -c qi -v -I fpga_controller_2013-05-02-D.bit
+	xc3sprog -c qi xc6slx16-2-ftg256.bscan_s6_spi_isf_ext.bit && sleep 1 && xc3sprog -c qi -v -I fpga_controller_2013-05-02-D.bit
+	xc3sprog -c qi -v -I file.bin:R:0:bin
+	dd if=file.bin bs=68 skip=1 of=file2.bin
+	xc3sprog -c qi -v -I file2.bin:w:0:bin
+	rm -f file.bin file2.bin
+
+### Using Xilinx iMpact
+
+1. Connect the board to your PC by using Xilinx platform cable USB [ taobao link](http://item.taobao.com/item.htm?spm=a1z10.1.w6461276-4508018527.7.LOwESz&id=26013452167)
+1. Open iMPACT
+1. The cable will detect the Xilinx FPGA and the SPI flash automaticly.
+1. Right click the SPI flash. choose: **Assign New configuration File...** and choose the file you want reflash. (a .mcs file)
+	SPI PROM: W25Q80BV
+	Data Width: 4
+
+1. Right click the SPI flash. choose: **Program**
+1. A green bar will come out when success finished.
+
+## P2Pool Operation with Avalon
+
+Doing anything special is no longer required as of commit 11d63ef66. Since the recent P2Pool hardfork, dead-on-arrival rates of about 6% or more are normal. GPU rates are usually (1-2%). Mining with Avalons on P2Pool is nearly as efficient as solo mining.
+
+## About [usb 1-1: clear tt 1 (8030) error -71]
+	Not all 703n have this problem. ignore this section if you never meet this error
+
+* There is a power issue with the 703N, The 703N is drawing to much power it caused the USB HUB chip on [Bitcointalk users Senseless](https://bitcointalk.org/index.php?action=profile;u=32660)'s FPGA controller to nearly destroy itself. See the destruction [here](http://www.mysenselesslife.com/avalon/DSCN5212.JPG)
+
+* In order to fix it you need had to **power down the WiFi modem by disable it**, use Eithernet instead. The kernel no long report -71 errors. thanks to [Bitcointalk user Senseless](https://bitcointalk.org/index.php?action=profile;u=32660) and others who help on identify the issue.
+
+* If your avalon was far away from your router. eithernet cable not fit. you may want try those kind of devices
+	* TP-LINK TL-PA500(For mainland China) : http://www.tp-link.com.cn/product_adapter_263.html
+	* TP-LINK TL-PA511 : http://www.tp-link.com/en/products/details/?model=TL-PA511
+
+## Others
+
+* There is a pair of gloves in Avalon package. please put it on when assembling or carrying.
+
+* About the plastic sheets: please **remove them BEFORE** mining. we design the case as a part of heatsink, so remove the plastic sheets is a must
+
+* About FAN change: **DO NOT** change the fans to a low speed model. will cause over heat. **DO NOT** install extra fans at the rear "fan socket". will cause PSU over heat and nearly useless for module cooling.
+
+* About install extra heat-sinks on each avalon chip: please do not do that. there is a air gap between the die and package top, install a heatsink on chip is useless. and will cause overheating. because  the top PCB copper act as a heatsink too. do not cover them.
+
+* About water cooling: yes, do it.
+
+* If you are overclocking, even just a little, and your Avalon stops functioning, and there are no visible signs of heat-related damage, consider testing and/or replacing the power supply. You should probably not be overclocking without a replacement PSU anyway. Make sure PSU is rated for 750W or more (if overclocking.)
+
+# [http://downloads.canaan-creative.com/software/avalon/ Firmware]
+
+* Check your firmware version by goto **Cgminer Status** page
+* Latest Firmware is [here](http://downloads.canaan-creative.com/software/avalon/latest/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin)
+* The Avalon firmware SDK: [here](http://downloads.canaan-creative.com/software/avalon/latest/OpenWrt-SDK-ar71xx-for-linux-x86_64-gcc-4.6-linaro_uClibc-0.9.33.2.tar.bz2)
+
+## [http://downloads.canaan-creative.com/software/avalon/next-testing/ NEXT]
+Please always use the latest "next-testing" image for testing. testing images will remove as long as a new release come out.
+
+## [http://downloads.canaan-creative.com/software/avalon/20131229/ 20131229]
+
+* **Update Cgminer to latest(Version: 3.9.0)
+* Update OpenWrt to r38817
+* **Add [[Avalon2]] A3255 prototype machine support**, new option for A3255, (A3255 frequency: **1000-2000Mhs**).
+
+## [http://downloads.canaan-creative.com/software/avalon/20130923/ 20130923]
+
+* **Update Cgminer to latest(Version: 3.4.3 Latest commit: d5f61e9, Sep 22 2013)**, [Cgminer Changelog](https://bitcointalk.org/index.php?topic=28402.msg3144100#msg3144100)
+* Update OpenWrt to r38031, Linux update to 3.10.12
+* Display new informations on status page, (include Device Hardware, Pool Quote and the FPGA controller firmware version)
+* Display share/help links for Avalon users, (this wiki page and IRC channel)
+
+## [http://downloads.canaan-creative.com/software/avalon/20130723/ 20130723]
+
+* Update OpenWrt to r37008 (we have Linux version 3.8.13)
+* **Update cgminer to 3.3.1 (Jun 21, 37815e0)**. new options for Avalon, please read [API-README](https://github.com/ckolivas/cgminer/blob/master/API-README) for more information.
+	--avalon-auto       Adjust avalon overclock frequency dynamically for best hashrate
+	--avalon-cutoff <arg> Set avalon overheat cut off temperature (default: 60)
+	--avalon-fan <arg>  Set fanspeed percentage for avalon, single value or range (default: 20-100)
+	--avalon-freq <arg> Set frequency range for avalon-auto, single value or range
+	--avalon-temp <arg> Set avalon target temperature (default: 50)
+
+* Add more overclock options (325, 350, 375)
+* **Two new options on webui for the new batch3 machine**,  **The batch3 machine have some hardware improvment, one is the temperature sensor was mounted on PCB. (no long glue to the heatsink) so the temperature will be ~20℃ higher compare to the old design (temperature tip) on same condition, so by default we set the:**
+	**New  Batch3 Machine: Target Temperature to 70℃ and Overheat Cut Off Temperature to 90℃**
+	**Before Batch3 Machine: Target Temperature to 50℃ and Overheat Cut Off Temperature to 70℃**
+
+	* Target Temperature(--avalon-temp): The fan will goes to full speed when reach this temperature
+	* Overheat Cut Off Temperature(--avalon-cutoff):  The avalon will idle chips when reach this temperature
+
+## [http://downloads.canaan-creative.com/software/avalon/20130607/ 20130607]
+
+* **Update cgminer to 3.2.1**, we have the direct USB feature now.
+* Add --lowmem by default
+* cgminer-monitor: change the schedule from 5mins to 2mins
+* cgminer-monitor: switch from Diff1 work to Last Valid Work
+* Disable DHCP on lan port.
+* Remove custom DNS (8.8.8.8)
+* Some minor changes on web page
+
+## [http://downloads.canaan-creative.com/software/avalon/20130519/ 20130519]
+
+* **Update cgminer to 3.1.1**
+* Add **More Options** on web configure page(you can add 4th,5th pool here now)
+* Disable hotplug. useless on Avalon
+* Include  **usbmon** in firmware, prepare/debug for usb code, this was for developers
+* Dynamic display [[match_work_count*]] base on Modular Count
+* You may want add **--real-quiet** under Cgminer Configuration --> More Options after upgrade
+* Change 300MHS timeout from 40 to 43
+* Change Modular Count(3 ~ 4) to Miner Count(1 ~ 32) on webui
+* Switch buildhost from Ubuntu 12.10 to Debian 7.0.0
+* NOTE: If your Pool URLs have trailing slash **remove the trailing slash** (symptom is: [19:05:30](2013-06-04) Failed to resolve (?wrong URL) host.name.com:PORT/ and/or all Pools with trailing slash listed as DEAD in status)
+
+## [http://downloads.canaan-creative.com/software/avalon/20130419 20130419]
+
+* **Merged to cgminer. BIG thanks to conman**. so we have all cgminer's improvment
+* Idle avalon chips after reset. for save power. (idle needs ~50W)
+* Fix the cgminer restart bug.
+* Fix temp/fan have wrong value(the wrong result from fpga controller)
+* Fix the fan control. now base on the max value of temp2/3
+* Fix no_matching_work only count in debug mode
+* Update cgminer-monitor,  replace [[Accept]] with [Work](Diff1), add killall before restart. 
+* Fix a typo on /usr/bin/cgminer-monitor
+* **More check/fliter on result. this make Avalon more stable**
+* New status page, new api log page.
+* Improve the cgminer service. a restart takes ~2 seconds now. no needs ntpd when restart
+* Quiet some improvments on software develop/codeing. compile Avalon firmware is much eaiser with [build-avalon-image.sh](https://github.com/BitSyncom/avalon-extras/blob/master/scripts/build-avalon-image.sh)
+* Frimware version:
+	[Version](Firmware) => 20130419
+	cgminer-8e8313c
+	luci-28b4ff2
+	cgminer-openwrt-packages-f2bc5dc
+
+## [http://downloads.canaan-creative.com/software/avalon/20130321/ 20130321]
+
+* For fix the cgminer-monitor, please run this command after you reflash
+	**sed -i 's/ $B / "$B" /' /usr/bin/cgminer-monitor**
+
+<source lang="c">
+If you "check the Keep settings", you need fill API Allow to "W:127.0.0.1" after reflash, edit it here: "http://AVALON_IP/cgi-bin/luci/admin/status/cgminer/", "DO NOT" left it blank
+</source>
+<source lang="c">
+If you "uncheck the Keep settings" when reflashing, Please "reconfigure your Avalon" after reflash
+</source>
+
+* Update Linux from 3.6 to 3.8.3
+* Update OpenWrt to r36095
+* When there is no network. automatic idle chip after detect avalon, save power and protect your avalon overheat
+* Idle chip when cgminer close avalon
+* Add device_reinit support
+* Add frequency, modular configure on web ui
+* Add API Allow on web ui
+* Add pool balance on web ui, by default balance on all 3 pools
+* Add stratum+tcp:// by default
+* Display Frequency on status page
+* Fix the [kern.err kernel:    ... ath: phy0: ...](https://bitcointalk.org/index.php?topic=155455.0) bug
+* Fliter >=100 degree result for debug
+* Replace TempMax with No Matching Work
+
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130225.bin 20130225]
+
+* A new cgminer status page
+* /etc/avalon_version include all repo commit
+* Fix temp_history_count, make sure 2~3s call adjuest_fan
+
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130218.bin 20130218]
+
+* Update adjust_fan()
+* Using avaon default worker
+
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130212.bin 20130212]
+
+* Update fan pwm
+
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130205.bin 20130205]
+
+* Update fan pwm MAX/MIN
+* Sync with upstream, fix the memory leak bug
+* Monitor the Accept number
+
+##[http://downloads.canaan-creative.com/software/avalon/history/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory-20130127.bin 20130127]
+
+* Add overclock code
+* Change the cgminer configure to UCI system
+* Add the simple web ui
+
+##20130117
+
+* Update OpenWRt to r35097
+* Update cgminer to 2.10.4
+* Remove /www/miner.php, change cgminer cron job to */5
+* Start ntpd before start cgminer
+
+## Test Plan
+
+* New firmware don't break Avalon for sure
+* New firmware don't use all flash. have to keep some space for save configuration
+* Either and WiFI connect works fine
+* Cgminer works fine(the kernel user driver, cgminer it self, cgminer-monitor and uci configurations files)
+* After configure cgminer. [& Apply](Save) can restart the cgminer
+* The Status/API log page works fine
+* Test mining
+* Test the cgminer-monitor
+* Make sure 80/22/4028 open on WAN.
+
+## Unofficial Firmware
+
+* [Untested BFGMiner 3.0 alpha1 for Avalon](https://bitcointalk.org/?topic=78192.msg1566545#msg1566545)
+
+# How to Compile Your Own Firmware for Avalon
+1. First check if you have met the building prerequisites. Checkout this page first [OpenWrt Buildroot – Installation](http://wiki.openwrt.org/doc/howto/buildroot.exigence)
+
+For example, if your OS is Ubuntu/Debian, install the required packages like this:
+	sudo apt-get update
+	sudo apt-get install  gawk flex quilt xsltproc  unzip subversion git-core build-essential libxml-parser-perl libncurses5-dev zlib1g-dev libssl-dev liblua5.1-0-dev
+
+2. Now get the source code, prepare the code and build. **this needs ~6GB**
+	wget https://raw.github.com/BitSyncom/avalon-extras/master/scripts/build-avalon-image.sh
+	chmod +x build-avalon-image.sh
+	./build-avalon-image.sh --clone #prepare the code and build, **ONLY NEED ONCE**
+	./build-avalon-image.sh
+
+3. Update all repos
+	./build-avalon-image.sh --update
+
+4. Only rebuild cgminer
+	./build-avalon-image.sh --cgminer
+
+5. Finally you could get the freshly built firmware files under **avalon/bin/**
+
+## Compile with kernel usbmon
+
+* You need apply [this patch](https://lists.openwrt.org/pipermail/openwrt-devel/2013-May/020107.html) to your OpenWrt for enable [usbmon](https://www.kernel.org/doc/Documentation/usb/usbmon.txt)
+* Run **make menuconfig** goto  **Kernel modules** --> **USB Support** enable **kmod-usb-mon**
+
+# Get help
+
+* First ask help from where you bought it. :-)
+* Read this document slowly
+* Try google.
+* IRC: **#avalon @freenode.net** Thanks to midnightmagic create that channel
+* Mailing list: **http://lists.canaan-creative.com**, Thanks to Will help on mailing list service.
+
+# FAQ
+
+* Why there is a USB hub inside?
+	[ Because the AR9331's usb stability issue](https://forum.openwrt.org/viewtopic.php?id=39956)
+
+* Where to buy?
+	http://avalon-asics.com/shop/
+
+# References
+
+
+
+# Links
+
+* Avalon project official website: http://avalon-asics.com
+* [Avalon ASIC users thread](https://bitcointalk.org/index.php?topic=140539.0;all)
+* http://garzikrants.blogspot.de/2013/01/avalon-asic-miner-review.html
+* Jgarzik's solo mining [configuration](https://bitcointalk.org/index.php?topic=158105.0)
+* [Reverse-Engineering work on the TL-WR703N 150M 802.11n Wi-Fi Router](http://squonk42.github.io/TL-WR703N/)
+* http://3.14.by/en/read/avalon-bitcoin-microscope-photos
+
+# Donation
+
+* Ngzhang0: [1kBGUHDxmSAegACRB6fcE2vrnVAfPJarW](https://blockchain.info/address/1kBGUHDxmSAegACRB6fcE2vrnVAfPJarW)
+* Con Kolivas: [15qSxP1SQcUX3o4nhkfdbgyoWEFMomJ4rZ](https://blockchain.info/address/15qSxP1SQcUX3o4nhkfdbgyoWEFMomJ4rZ)
+* Kanoi: [1KanoiBupPiZfkwqB7rfLXAzPnoTshAVmb](https://blockchain.info/address/1KanoiBupPiZfkwqB7rfLXAzPnoTshAVmb)
+* Xiangfu: [19BT2rcGStUK23vwrmF6y6s3ZWpxzQQn8x](https://blockchain.info/address/19BT2rcGStUK23vwrmF6y6s3ZWpxzQQn8x)
+
+[[zh-cn:阿瓦隆]]
+
+[[!tag "Hardware"]]
