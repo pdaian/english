@@ -31,6 +31,21 @@ Avalon2 is the second machine of Avalon project. using the 55nm ASIC chips
 
  [[!img "avalon2-power.jpg" size=320x320]]  [[!img "avalon2-power-usb.jpg" size=320x320]]  [[!img "avalon2-top.jpg" size=320x320]]
 
+# User manaul
+## TP LINK WR703N
+The USB on the AR9331 have bugs. if you want use serial console, please the direct serial console on 703N (the **/dev/ttyATH0**). it's far more stable then USB-serial convertor. you may want add a usb-hub between machine and 703n
+
+## Raspberry Pi
+   [[!img "13_ports_usb_hub.png" title="320px " title="thumb " title="The 13 ports USB HUB "]]
+
+* The default firmware IP address is **192.168.0.100**, you can access it by http://192.168.0.100
+* You may need update the address/DNS to your local configuration. DO NOT FORGET your IP address.
+* If Rpi can access internet the cgminer should automatic start
+
+* 8GB Memory card: http://item.jd.com/632744.html
+* Reflash: sudo dd if=openwrt-brcm2708-sdcard-vfat-ext4.img of=/dev/sdb bs=4M #/dev/sdb is your memory card
+* USB Hub, [UNITEK Y-2132 USB2.0 13ports](http://item.jd.com/511117.html)
+
 # Avalon2 Single Modular
 ## Specification
 	Module hash speed: ~105GHS
@@ -69,21 +84,6 @@ Avalon2 is the second machine of Avalon project. using the 55nm ASIC chips
 * Display all modules status include 2 fan, 2 temperature sensors, voltage and frequency
 * Voltage display as encode mode. needs to be changed to human readable
 * Include an ASIC cores testing python script
-
-# Host(OpenWrt + Cgminer)
-## TP LINK WR703N
-The USB on the AR9331 have bugs. if you want use serial console, please the direct serial console on 703N (the **/dev/ttyATH0**). it's far more stable then USB-serial convertor. you may want add a usb-hub between machine and 703n
-
-## Raspberry Pi
-   [[!img "13_ports_usb_hub.png" title="320px " title="thumb " title="The 13 ports USB HUB "]]
-
-* The default firmware IP address is **192.168.0.100**, you can access it by http://192.168.0.100
-* You may need update the address/DNS to your local configuration. DO NOT FORGET your IP address.
-* If Rpi can access internet the cgminer should automatic start
-
-* 8GB Memory card: http://item.jd.com/632744.html
-* Reflash: sudo dd if=openwrt-brcm2708-sdcard-vfat-ext4.img of=/dev/sdb bs=4M #/dev/sdb is your memory card
-* USB Hub, [UNITEK Y-2132 USB2.0 13ports](http://item.jd.com/511117.html)
 
 # Donation
 
