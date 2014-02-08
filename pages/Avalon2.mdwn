@@ -31,15 +31,8 @@ Avalon2 is the second machine of Avalon project. using the 55nm ASIC chips
 
  [[!img "avalon2-power.jpg" size=320x320]]  [[!img "avalon2-power-usb.jpg" size=320x320]]  [[!img "avalon2-top.jpg" size=320x320]]
 
-# A3255
-
-* Datasheet: http://downloads.canaan-creative.com/hardware/A3255/datasheet/
-
-## Hardware design documents
-
-* http://downloads.canaan-creative.com/hardware/A3255/avalon2
-
-# Single Modular
+# Avalon2 Single Modular
+## Specification
 	Module hash speed: ~105GHS
 	Chip operating speed: 1.5GHS 
 	Chip working voltage: 1.0V 
@@ -48,51 +41,49 @@ Avalon2 is the second machine of Avalon project. using the 55nm ASIC chips
 	Power Module conversion efficiency: >= 87% 
 	Design Operating temperature: 85C (chip temperature), 60C (PCB, temperature sensor measurements) 
 	Fan: 4PIN PWM speed control, report fan speed back.
-	Include: Single modular, USB Connector (NOTICE: DON'T INCLUDE POWER AND CABLES)
+	Include: Single modular, USB Connector
 
 # The Avalon2
+
+* A3255 ASIC Datasheet: http://downloads.canaan-creative.com/hardware/A3255/datasheet/
+* The Hardware design files: http://downloads.canaan-creative.com/hardware/A3255/avalon2
+## Specification
 	315GH/s, 1020W@220V in normal mode. 
 	210GH/s, 420W@220V in ECO mode. 
 
 # Firmware
 ## Source code
 
-* https://github.com/BitSyncom/mm/ #For the module FPGA firmware
-* https://github.com/BitSyncom/cgminer/tree/avalon2 # The cgminer
-* https://github.com/BitSyncom/luci/tree/cgminer-webui-avalon2/applications/luci-cgminer # OpenWrt LUCI page
-* https://github.com/BitSyncom/cgminer-openwrt-packages # OpenWrt cgminer package, files and config
-* https://github.com/BitSyncom/avalon-extras/blob/master/scripts/build-avalon-image.sh # Build script file
+* [[https://github.com/BitSyncom/mm/ MM(Miner Manager)]]
+* [ The cgminer Avalon2 support](https://github.com/BitSyncom/cgminer/tree/avalon2)
+* [OpenWrt LUCI page](https://github.com/BitSyncom/luci/tree/cgminer-webui-avalon2/applications/luci-cgminer)
+* [OpenWrt cgminer package, files and config](https://github.com/BitSyncom/cgminer-openwrt-packages)
+* [Build script file](https://github.com/BitSyncom/avalon-extras/blob/master/scripts/build-avalon-image.sh)
 
 ## [http://downloads.canaan-creative.com/software/avalon2/2014-01-23/  20140123]
 
 * Include the first stable version of MM firmware
-* Include the RPi OpenWrt firmware with LUCI web UI configure/status page
-* Support static Fan speed
-* Display all modulars status include 2 fan, 2 temperature sensors, voltage and frequency
+* Include the RPi OpenWrt firmware
+* Include the 703N OpenWrt firmware 
+* Support fixed fan speed, support A3255 frequency from 1G to 2G, support adjust voltage for 0.65v to 1.1v
+* Display all modules status include 2 fan, 2 temperature sensors, voltage and frequency
 * Voltage display as encode mode. needs to be changed to human readable
-* Upload the ASIC cores testing script file
-
-# MM
-Source code is here: https://github.com/bitsyncom/mm
+* Include an ASIC cores testing python script
 
 # Host(OpenWrt + Cgminer)
 ## TP LINK WR703N
-The USB on the AR9331 have bugs. if you want use serial console, please the direct serial console on 703N (the **/dev/ttyATH0**). it's far more stable then USB-serial convertor.
+The USB on the AR9331 have bugs. if you want use serial console, please the direct serial console on 703N (the **/dev/ttyATH0**). it's far more stable then USB-serial convertor. you may want add a usb-hub between machine and 703n
 
 ## Raspberry Pi
    [[!img "13_ports_usb_hub.png" title="320px " title="thumb " title="The 13 ports USB HUB "]]
 
-* 8GB Memory card: http://item.jd.com/632744.html
-* Reflash: sudo dd if=openwrt-brcm2708-sdcard-vfat-ext4.img of=/dev/sdb bs=4M #/dev/sdb is your memory card
 * The default firmware IP address is **192.168.0.100**, you can access it by http://192.168.0.100
 * You may need update the address/DNS to your local configuration. DO NOT FORGET your IP address.
 * If Rpi can access internet the cgminer should automatic start
+
+* 8GB Memory card: http://item.jd.com/632744.html
+* Reflash: sudo dd if=openwrt-brcm2708-sdcard-vfat-ext4.img of=/dev/sdb bs=4M #/dev/sdb is your memory card
 * USB Hub, [UNITEK Y-2132 USB2.0 13ports](http://item.jd.com/511117.html)
-
-# [[Avalon2_prototype]]
-This design is use the Avalon first product design, replace the A3256 with A3255, some hardware pins modify and use different FPGA firmware. please [ check here](http://downloads.canaan-creative.com/hardware/A3255/prototype/) for details and all design files and firmware files.
-
-There are some [55nm Open Design files](https://en.bitcoin.it/wiki/Avalon2_prototype#55nm_open_design) for you.
 
 # Donation
 
@@ -105,6 +96,7 @@ There are some [55nm Open Design files](https://en.bitcoin.it/wiki/Avalon2_proto
 
 * 55nm open design contest: http://avalon-asics.com/avalon-gen2-55nm-open-source-design-contest/
 * Documents release by Avalon: http://downloads.canaan-creative.com/hardware/A3255/
+* [[Avalon2_prototype]] by using Avalon1 hardware design
 
 [[zh-cn:阿瓦隆2]]
 
