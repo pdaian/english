@@ -1,17 +1,18 @@
 **Eligius**, also sometimes referred to as Éloi or "[[Luke-Jr's|Luke_Dashjr]] pool", is a [[mining pool|Pooled_mining]].
 As of October 23, 2012, Eligius is maintained by [wizkid057](User:Wizkid057).  (1.1)
 
-To use it, a miner merely needs to be directed to mining.eligius.st on port 8337, with the username set to a valid bitcoin address (which receives the payout). **No registration is needed.**
+To use it, a miner merely needs to be directed to stratum.mining.eligius.st on port 3334, with the username set to a valid bitcoin address (which receives the payout). **No registration is needed.**
 
 Donation address: 1E1igiusfEjs1pCaGjEERExE9gYcrFwow7 / Mx5FUQn8oBCoRdyBTUFu9JW5SsdEku56PP
 
 Basic concepts:
 
-* The pool charges no fees and shares are managed under the [CPPSRB](http://eligius.st/wiki/index.php/Capped_PPS#CPPS_with_Recent_Backpay_.28CPPSRB.29) reward system at 100% value at the time of mining.  (1.2)
-* When a block is found, all miners who have reached the minimum payout threshold (currently about 0.17 BTC) are paid via the Generation transaction.
+* The pool charges no fees and shares are managed under the [CPPSRB](http://eligius.st/wiki/index.php/Capped_PPS_with_Recent_Backpay) reward system at 100% value at the time of mining.  (1.2)
+* When a block is found, all miners who have reached the minimum payout threshold (currently about 0.04 BTC and is configurable) are paid via the Generation transaction.
 * The pool almost never has miner's funds, as they are paid directly to the miners from the block reward.
 * If a block is orphaned, its shares become part of the next block's reward distribution.
 * No registration. Just send username with the address you want payouts to (password can be anything).
+* A signed message based control panel was added for securely setting options for miners, including namecoin merged mining and donation amounts.
 
 Eligius was announced on April 27, 2011 (1.3).  At the time the service was operated without a name, paying out even tiny coins immediately.
 
@@ -30,8 +31,9 @@ Eligius was announced on April 27, 2011 (1.3).  At the time the service was oper
 
 * [Main webpage](http://eligius.st)
 * [Pool statistics (hashrate, found blocks, per-address balance stats)](http://eligius.st/~wizkid057/newstats/)
-* [Total pool hashrate (EU + US, estimate)](http://eligius.st/~luke-jr/raw/combined/hashrate.txt)
+* [Total pool hashrate](http://eligius.st/~wizkid057/newstats/bot.php?poolhashrate=1&numeric=1)
 * [JSON API](http://eligius.st/~luke-jr/raw/)
+* [New API and details](http://eligius.st/~gateway/pool-apis)
 
 ##See Also
 
