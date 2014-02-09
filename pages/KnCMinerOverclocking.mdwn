@@ -1,0 +1,55 @@
+### Overview
+
+The KnC Miner hardware runs as a BeagleBoard controlling a number of ASIC modules. Each of the ASIC modules has 4 or 8 "dies". During the starting of the miner the clock rate of the ASICs is set via the SPI protocol to each die. Therefore we can adjust the clock rate of each die to find a good balance for each miner.
+
+The BeagleBoard is running a minimal Linux operating system. You'll need to understand a bit about ssh, bash and maybe scp in order to achieve an over-clock.
+
+### Model Differences
+
+The October released miners have the "easiest" firmware to modify, the commands to set the speed of the dies is located within /etc/init.d/cgminer.
+
+With the November miners we'll need to add similar code to perform the setting of the clock rate.
+
+### Frequency Values
+
+
+
+
+
+|MHz||
+|---|---|---
+|700.0|1B1|372
+|712.5||382
+|725.0|1C1|392
+|737.5||3A2
+|750.0|1D1|3B2
+|762.5||3C2
+|775.0|1E1|3D2
+|787.5||3E2
+|800.0|1F1|3F2
+|812.5||402
+|825.0|201|412
+|837.5||422
+|850.0|211|432
+|862.5||442
+|875.0|221|452
+|887.5||462
+|900.0|231|472
+|912.5||482
+|925.0|241|492
+|937.5||4A2
+|950.0|251|4B2
+
+
+### Over-clocking Guide
+
+1. Determine miner model
+1. Setup SSH access to miner
+1. Install bgminer
+1. Update /etc/init.d scripts to use bgminer
+1. Setup method to monitor temps/current/voltage/wattage
+1. Update init.d scripts with new clock rate
+1. Restart bfgminer
+1. Monitor temps/etc
+1. If performing badly or temps/draw very high stop mining go back to 6
+1. Profit!
