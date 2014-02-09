@@ -1,3 +1,8 @@
+##Obsolete item in "Bug Fixes"?
+
+* Use the previous block hash as an explicit or implicit prev_in in coinbases when hashing them to make it ~impossible to get a duplicate coinbase, thus removing the need for a pruning node to remember coinbase hashes to prevent duplicates consistently with the rest of the network
+As of [BIP 34](https://github.com/bitcoin/bips/blob/master/bip-0034.mediawiki), isn't this item obsolete? --[Airbreather](User:Airbreather) ([[talk|User_talk:Airbreather]]) 19:06, 9 February 2014 (GMT)
+
 ##Proposals which reduce security
 "Difficulty adjustment should adapt to sudden hashrate loss"
 
