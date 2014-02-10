@@ -22,6 +22,20 @@ Let's say the base string that we are going to do work on is "Hello, world!". Ou
 
 In Bitcoin things are a bit more complex, especially since the header contains the [Merkle tree](http://en.wikipedia.org/wiki/Merkle_tree) which depends on the included [[transactions]]. This includes the generation transaction, a transaction "out of nowhere" to our own address, which in addition to providing the miner with incentive to do the work, also ensures that every miner hashes a unique data set.
 
+## List of algorithms
+
+### Traditional proof of work
+
+1. hashcash / SHA256
+1. SCRYPT
+1. Momentum
+1. Various other proof of works functions (e.g. Ethereum had a few candidates)
+
+### Proof of X
+
+1. Proof of Stake (Peercoin, Nxt)
+1. Proof of Burn (XCP)
+
 [[!tag "Vocabulary"]]
 
 [[fr:Preuve de travail]]
