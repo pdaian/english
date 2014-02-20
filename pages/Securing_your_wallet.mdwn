@@ -85,6 +85,52 @@ If you are using your computer to handle bitcoins, a wallet, Bitcoin-related pas
 
 ###Debian-based Linux
 
+#### Store all into an encrypted folder (Tomb)
+
+Tomb is a simple tool to manage encrypted storage on GNU/Linux. Among its features are bind-hooks to set up a tomb's contents in the place where other programs expect them, for example in our case mount -o bind the .bitcoin directory in a user's home.
+
+First install tomb from https://files.dyne.org/tomb (homepage is on http://www.dyne.org/software/tomb)
+
+Among the requirements: zsh, cryptsetup, pinentry-curses, gnupg, sudo.
+
+Recommended: wipe, dcfldd, steghide, qrencode.
+
+Then create a tomb (we name it bitcoin) with three commands:
+
+<code>tomb dig -s 100 bitcoin.tomb</code>
+
+<code>tomb forge bitcoin.tomb.key</code>
+
+<code>tomb lock  bitcoin.tomb -k bitcoin.tomb.key</code>
+
+Then open it
+
+<code>tomb open bitcoin.tomb</code>
+
+This will require you to input again the password you selected.
+
+Once open the tomb contents are in /media/bitcoin.tomb
+
+Move there your bitcoin wallet:
+
+<code>mv ~/.bitcoin /media/bitcoin.tomb/my-safe-wallet</code>
+
+Then create a file "/media/bitcoin.tomb/bind-hooks" and put a single line:
+
+<code>my-safe-wallet    .bitcoin</code>
+
+Which means that every time the tomb is open, the directory my-safe-wallet needs to be bound to ~/.bitcoin. Just make sure an empty ~/.bitcoin directory exists in your home.
+
+Now close the tomb and store its keys safely, make sure you memorize the password. Have a look at Tomb's documentation, there is a number of things you can do like steganography or printing out keys on a paper to hide and such.
+
+That's it. Every time you like to access your wallet open the tomb and the .bitcoin will be in place. One can also store the bitcoin binary inside the tomb and even start the bitcoin client using the exec-hooks. Tomb's manual page "man tomb" explains the possibilities.
+
+The advantage of this approach over an encrypted home is that it becomes extremely portable across computers and even online shells: a Tomb is just a file and its key can be stored far away, on different shells, usb sticks or mobile phones.
+
+
+
+
+#### Secure the whole user home directory
 The first step is to make a [new user](http://www.howtogeek.com/howto/ubuntu/add-a-user-on-ubuntu-server/). In order for that new user to have an encrypted home directory, you'll first need the encryption utility. Run:
 
 <code>sudo apt-get install ecryptfs-utils</code>
