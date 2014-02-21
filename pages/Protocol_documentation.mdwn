@@ -626,23 +626,7 @@ This message was used for [[IP_Transactions]]. As IP transactions have been depr
 
 ### reply
 
-Generic reply for [[IP_Transactions]]
-
-Payload:
-
-
-
-|4 |reply |uint32_t |reply code
-
-
-Possible values:
-
-
-
-|0 |SUCCESS |The IP Transaction can proceed (*checkorder*), or has been accepted (*submitorder*)
-|1 |WALLET_ERROR |AcceptWalletTransaction() failed
-|2 |DENIED |IP Transactions are not accepted by this node
-
+This message was used for [[IP_Transactions]]. As IP transactions have been deprecated, it is no longer used.
 
 ### ping
 
