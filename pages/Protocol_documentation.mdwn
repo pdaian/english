@@ -618,27 +618,7 @@ It is specified in [[BIP 35|BIP_0035]]. Since [[BIP 37|BIP_0037]], only transact
 
 ### checkorder
 
-This message is used for [[IP_Transactions]], to ask the peer if it accepts such transactions and allow it to look at the content of the order.
-
-It contains a CWalletTx object
-
-Payload:
-
-
-
-|colspan="4"Fields from CMerkleTx
-|? |hashBlock
-|? |vMerkleBranch
-|? |nIndex
-|colspan="4"Fields from CWalletTx
-|? |vtxPrev
-|? |mapValue
-|? |vOrderForm
-|? |fTimeReceivedIsTxTime
-|? |nTimeReceived
-|? |fFromMe
-|? |fSpent
-
+This message was used for [[IP_Transactions]]. As IP transactions have been deprecated, it is no longer used.
 
 ### submitorder
 
