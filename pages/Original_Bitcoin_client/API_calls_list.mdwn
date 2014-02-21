@@ -52,7 +52,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |gettxoutsetinfo ||Returns statistics about the unspent transaction output (UTXO) set |N
 |[[getwork]]|[[data]]|If [[data]]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf [[data]]is specified, tries to solve the block and returns true if it was successful. |N
 |help |[[command]]|List commands, or get help for a command. |N
-|importprivkey |<bitcoinprivkey>[[label]][[rescan=true]]|Adds a private key (as returned by dumpprivkey) to your wallet. This may take a while, as a [[rescan|How_to_import_private_keys#Import_Private_key.28s.29]]is done, looking for existing transactions. **Optional [[rescan]]parameter added in 0.8.0.**|Y
+|importprivkey |<bitcoinprivkey>[[label]][[rescan=true]]|Adds a private key (as returned by dumpprivkey) to your wallet. This may take a while, as a [[rescan|How_to_import_private_keys#Import_Private_key.28s.29]]is done, looking for existing transactions. **Optional [[rescan]]parameter added in 0.8.0.**Note: There's no need to import public key, as in [[ECDSA|Elliptic_Curve_Digital_Signature_Algorithm]](as opposed to RSA) this can be computed from private key. |Y
 |keypoolrefill ||Fills the keypool, requires wallet passphrase to be set. |Y
 |listaccounts |[[minconf=1]]|Returns Object that has account names as keys, account balances as values. |N
 |listaddressgroupings ||**version 0.7**Returns all addresses in the wallet and info used for coincontrol. |N
