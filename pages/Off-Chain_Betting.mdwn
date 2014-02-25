@@ -1,0 +1,38 @@
+This work builds on the scheme for [off-chain payments with two-phase commit](User:Aakselrod/Draft).
+
+## Example
+
+Alice and Bob would like to make a bet about whether a bitcoin is worth more or less than $500 in two weeks.  Carole commits to announcing the result of the event:  she signs and publishes a statement that if a bitcoin is worth at least $500 in two weeks, she'll reveal the preimage to Hash<sub>A</sub> and if it's worth less than $500 in two weeks, she'll reveal the preimage to Hash<sub>B</sub>.
+
+Alice and Bob create a "bet channel" output together:  let's say each contributes .5 BTC to the output, which must be signed by both Alice and Bob to be spent.  The refund transaction, signed by both of them, has an nLockTime of one year in the future.
+
+Alice would like to bet .1 BTC that a bitcoin will be worth at least $500, and Bob would like to bet .1 BTC that a bitcoin will be worth less than $500 in 2 weeks.  Alice and Bob sign two versions of a transaction with nLockTime earlier (say, by a day) than the most recent bet (or the refund transaction, if there's no bets on this channel) with outputs as follows:
+
+Version I.
+	1. .6 BTC to SHA256 Hash<sub>A</sub> EQUALVERIFY Pubkey<sub>Alice</sub> CHECKSIG
+	2. .4 BTC to SHA256 Hash<sub>A</sub> EQUALVERIFY Pubkey<sub>Bob</sub> CHECKSIG
+
+Version II.
+	1. .4 BTC to SHA256 Hash<sub>B</sub> EQUALVERIFY Pubkey<sub>Alice</sub> CHECKSIG
+	2. .6 BTC to SHA256 Hash<sub>B</sub> EQUALVERIFY Pubkey<sub>Bob</sub> CHECKSIG
+
+If a bitcoin is worth at least $500 in two weeks, Carole reveals the preimage to Hash<sub>A</sub>.  The only transaction version from which it's possible for Alice and Bob to get their money back is I.  If a bitcoin is worth less than $500, the opposite is true.
+
+If Alice wins the bet, Bob's only choice is to concede.  If Bob were to try to publish transaction version II, he won't be able to redeem his output as he doesn't know the preimage to Hash<sub>B</sub>.  Cheating by Carole is easily proven publicly by publishing the preimages of both Hash<sub>A</sub> and Hash<sub>B</sub>.
+
+After the winning preimage is published, the channel can be reused for another bet.
+
+There are multiple variations on this theme:  for example, you can make do with only one transaction, you can have bets with more than two outcomes, etc.  You can also adjust the amount of the bet as time goes on, as long as you're betting on the same event and in the same direction, in the same way as you can adjust payment channel allocations back and forth.
+
+This construct can be used for bets on any subject providing there's an oracle or arbitrator willing to perform Carole's job.  The oracle would need to publish all events it's willing to adjudicate, and upon the event's conclusion, to reveal the preimage corresponding with the event's outcome.
+
+In a friend-to-friend network, it becomes possible to hedge exchange risk (or any other risk).  As an example, Overstock.com would like to hedge the risk that Bitcoin prices will go down before they can pay their suppliers for merchandise.  Overstock would offer several counterparties similar bets based on Coindesk's price index.
+
+Coindesk could publish on their website or via an API, daily, signed sets of preimages for future announcements.  For example, they publish a set of preimages for two weeks in advance:
+
+* If a bitcoin is worth between $0 and $100, reveal the preimage to Hash<sub>A</sub>
+* If a bitcoin is worth between $100 and $200, reveal the preimage to Hash<sub>B</sub>
+* If a bitcoin is worth between $200 and $300, reveal the preimage to Hash<sub>C</sub>
+* And so on
+
+Overstock would make bets with its counterparties similar to above that the price will be lower (like being long a binary put option or short a binary call option).  Its counterparties, each with its own internal order book, could then hedge that risk with other counterparties, which maybe would like to get money if bitcoin prices go up (like being short a binary put option or long a binary call option).  The end result is a distributed derivatives market based on Coindesk's price index.  Competing price indexes such as the Winkdex could also be used.
