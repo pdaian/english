@@ -15,6 +15,10 @@ GHash.IO and [CEX.IO](https://en.bitcoin.it/wiki/CEX.IO) have the same account c
 ##Hashrate
 Although the hash rate of GHash.IO differs, on average the company has about 7 PH/s of power.
 
+##PPLNS
+GHash.IO uses PPLNS (“Pay per last N shares”), a reward scheme, according to which payment is given to shares in a window, starting with the last share submitted and going backwards up to some number N of shares. Shares older than the window are not paid.
+Shares are hashes, smaller than the target for difficulty of 1 (Usually, pools use such difficulty as the target for share, but technically, any difficulty could be used). Every hash created has a 1 in 232 possibility of being a valid share. In order to get Bitcoins in a more distributed and predictable way, miners use pools. If this is the case, miners are awarded Bitcoins, according to their shares.
+
 ##Compensated Downtime
 The pool’s policy provides compensation for CEX.IO mining hardware. Individual miners are not compensated. 
 
