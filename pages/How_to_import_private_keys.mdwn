@@ -9,9 +9,6 @@ As of August 2012, possibly the easiest way to import a private key is using [[B
 # Using BIPS
 As of August 2013, [[!img "BIPS.gif" size=20x20 link=https://bips.me]] [[BIPS]] allows for easy import of private key using Paper Wallet - Import. User can choose to type in the private key manually or scan a QR code containing the private key using the camera. The user must wait 6 confirmations for access to the funds, and system is based on batch importation.
 
-# Using Mt. Gox
-The [[MtGox]] Bitcoin exchange will allow individual private keys to be redeemed but since they must sweep the address, the user must wait 6 confirmations for access to the funds. There is an API method to import an entire wallet.dat as well.
-
 # Using Mycelium
 Steps described are with the following settings:
 
@@ -29,7 +26,7 @@ Use this function if you would like to keep some funds on the paper wallet.
 	1. Press the blue currency tag at the top to toggle currency.
 1. Send!
 
-After spending, the private key in memory is destroyed so the paper private key remains somewhat secure.
+After spending, the private key in memory is destroyed so the paper private key remains somewhat secure. Despite this, best practice is to immediately send the remaining balance to a paper wallet that was generated offline.
 
 ## Import key from a paper wallet
 Use this function if you would like to import a private key so all funds are immediately available for spending.
