@@ -1,0 +1,47 @@
+##ANX Exchange API v2
+
+[[!img "ANX_logo.png" size=500x500]]
+
+
+
+The ANX Exchange API provides methods to access information from account enquiry, market data to placing orders. The primary objective of v2 is to provide transparent compatibility to existing mtgox client. At this moment, we support BTC only. Altcoins support will be added shortly.
+
+
+## Migrate from MtGox
+Version 2 of this API is compatible with MtGox v2 implementation. For general information on the MtGox v2 API see: https://bitbucket.org/nitrous/mtgox-api
+
+Any MtGox v2 (polling) client should work, by simply changing the base url to https://anxpro.com
+
+**Key differences between MtGox and ANX:**
+
+* The ANX send_money service call does not return a blockchain TXID. We will expose this in a future enhancement.
+
+
+## Quickstart Catalog
+
+###Account
+
+* Account Enquiry - Your account balance
+* Bitcoin Deposit - Get a bitcoin deposit address
+* Bitcoin Withdrawal - Send bitcoin to a bitcoin address.
+* Wallet History - A full history of transactions in each of your wallet
+
+
+###Market Data
+
+* Ticker - Get latest data (high, low, volume, buy, sell, vwap) of a currency pair
+* Order Book - Get the full order book
+
+
+### Trading
+
+* Quote - Quote an estimated amount to buy/sell a currency pair
+* Place Order - Place a market/limit order
+* Cancel Order - Cancel a market/limit order
+* Order Status - Get the status of all open orders
+* Order Result - Get the result of an executed order
+
+
+
+## See Also
+[ANX Exchange API v2: Official Documentation](http://docs.anxv2.apiary.io/)
