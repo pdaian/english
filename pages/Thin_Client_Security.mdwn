@@ -4,12 +4,11 @@ Recently there have been a number of proposals for bitcoin clients which do not 
 
 It is important to distinguish between block height verification and block depth verification.
 
-A client verifies the height H of a block by checking that there are H block **before** it, all of which are well-formed and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client and libbitcoin do block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
+A client verifies the height H of a block by checking that there are H block **before** it, all of which are well-formed and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client,  libbitcoin, and btcd do block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
 
 A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV clients substitute block depth for block height as a transaction validity check.  All clients use block depth as a measure of the liklihood of a [[blockchain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction (i.e. [[orphaning|Orphan_Block]] its block).
 
 See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
-
 
 ## Full-Chain Clients
 
