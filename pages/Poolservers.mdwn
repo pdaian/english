@@ -1,89 +1,89 @@
 
-|Info |bitcoind |ecoinpool |Eloipool |PoolServerJ |pushpool |p2pool |BitPenny |Stratum
-|---|---|---|---|---|---|---|---|---
-|language |C++ |Erlang |Python3 |Java |C |Twisted |C++ |Twisted
-|license |MIT |GPL-3 |AGPL-3 |GPL-3 |GPL-2 |GPL-3 |[[!template id=no]]|AGPL-3
-|ref. pool ||[[BTCServ]]|[[Eligius]]|||[[P2Pool]]|[[BitPenny]]|[[Slushs_pool]]
-|website |[link](http://sf.net/projects/bitcoin)|[link](https://ecoinpool.p2k-network.org/)|[link](http://gitorious.org/bitcoin/eloipool)|[link](http://poolserverj.org/)|[link](https://github.com/jgarzik/pushpool)|[link](https://github.com/forrestv/p2pool/)||[Link](https://github.com/slush0/stratum-mining)
-colspan='9' miner protocols
-Protocol bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny |Stratum
-|[[getblocktemplate]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|[[StratumMP|Stratum]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
-|[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
-|[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]
-|[[UBBP]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-colspan='9' getwork extensions
-Extension bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
-|hostlist |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |n/a
-|longpoll |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |n/a
-|midstate |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |n/a
-|noncerange |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jrs-pushpool/commit/2dd2ad48e7d21f917dae3b5d9186563c78942e38]]|[[!template id=no]]|n/a |n/a
-|reject-reason |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|n/a |n/a
-|rollntime |[[!template id=notadv]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |n/a
-|expire=N |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |n/a
-|submitold |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=patch]]|[[!template id=yes]]|n/a |n/a
-|switchto |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |n/a
-colspan='9' getblocktemplate/BlkPrep functionality
-Function bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum
-|longpoll |[[!template id=no]]|n/a |[[!template id=yes]]|n/a |n/a |n/a |n/a |n/a
-|noncerange |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a
-|proposal |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a
-|serverlist |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a
-colspan='9' getblocktemplate/BlkPrep variations
-Variation bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum
-|coinbase/append |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a |[[!template id=yes]]|n/a
-|coinbase (set) |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
-|generation |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a |[[!template id=no]]|n/a
-|share/coinbase |n/a |n/a |[[!template id=yes]]|n/a |n/a |n/a ||n/a
-|share/merkle |n/a |n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
-|share/truncate |n/a |n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
-|time/increment |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a ||n/a
-|time/decrement |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a ||n/a
-|txns/add |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
-|txns/remove |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
-|prevblock |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a
-colspan='9' stratum functionality
-Function bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum
-|job freq |n/a |n/a |55s |n/a |n/a ||n/a |30s
-|transparency |n/a |n/a |[[!template id=yes]]|n/a |n/a ||n/a |[[!template id=no]]
-|resume |n/a |n/a |[[!template id=no]]|n/a |n/a ||n/a |[[!template id=no]]
-|reconnect |n/a |n/a |[[!template id=no]]|n/a |n/a ||n/a |[[!template id=no]]
-colspan='9' share targets
-Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum
-|default |network |1 |1 |1 |1 |1 |8 |1
-|config |[[!template id=no]]||[[!template id=yes]]||[[!template id=no]]|||[[!template id=no]]
-|dynamic |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]
-colspan='9' work generation
-Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
-|getwork |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|ntime roll |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jrs-pushpool/commits/ntimes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
-|getmemorypool |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
-|[[getblocktemplate]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
-|coinbaser |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
-|gotwork |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
-|setworkaux |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
-|getauxblock |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]
-|title='merged-mining getmemorypool'MM gmp|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
-|full node |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]
-colspan='9' account management
-Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum
-|multiuser |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
-|explicit users |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]
-|anon users |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]
-|explicit workers |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]
-|anon workers |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]
-|saved worklog |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]||
-|saved sockets |[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
-|share logging |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|
-|invalid logging |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||
-colspan='9' databases
-Database bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush
-|couchdb |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]
-|mysql |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=yes]]
-|plaintext |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]
-|postgres |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]
-|rrd |[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]
-|sqlite |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]
+|Info |bitcoind |ecoinpool |Eloipool |PoolServerJ |pushpool |p2pool |BitPenny |Stratum |Coinium
+|---|---|---|---|---|---|---|---|---|---
+|language |C++ |Erlang |Python3 |Java |C |Twisted |C++ |Twisted |C#
+|license |MIT |GPL-3 |AGPL-3 |GPL-3 |GPL-2 |GPL-3 |[[!template id=no]]|AGPL-3 |GPL-3
+|ref. pool ||[[BTCServ]]|[[Eligius]]|||[[P2Pool]]|[[BitPenny]]|[[Slushs_pool]]|
+|website |[link](http://sf.net/projects/bitcoin)|[link](https://ecoinpool.p2k-network.org/)|[link](http://gitorious.org/bitcoin/eloipool)|[link](http://poolserverj.org/)|[link](https://github.com/jgarzik/pushpool)|[link](https://github.com/forrestv/p2pool/)||[Link](https://github.com/slush0/stratum-mining)|[link](https://github.com/CoiniumServ/coinium)
+colspan='10' miner protocols
+Protocol bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny |Stratum |Coinium
+|[[getblocktemplate]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|[[StratumMP|Stratum]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]
+|[[getwork]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
+|[[BlkPrep]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
+|[[UBBP]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+colspan='10' getwork extensions
+Extension bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush Coinium
+|hostlist |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |n/a |n/a
+|longpoll |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |n/a |n/a
+|midstate |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |n/a |n/a
+|noncerange |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jrs-pushpool/commit/2dd2ad48e7d21f917dae3b5d9186563c78942e38]]|[[!template id=no]]|n/a |n/a |n/a
+|reject-reason |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|n/a |n/a |n/a
+|rollntime |[[!template id=notadv]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |n/a |n/a
+|expire=N |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|n/a |n/a |n/a
+|submitold |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=patch]]|[[!template id=yes]]|n/a |n/a |n/a
+|switchto |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|n/a |n/a |n/a
+colspan='10' getblocktemplate/BlkPrep functionality
+Function bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum Coinium
+|longpoll |[[!template id=no]]|n/a |[[!template id=yes]]|n/a |n/a |n/a |n/a |n/a |n/a
+|noncerange |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a |n/a
+|proposal |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a |n/a
+|serverlist |[[!template id=no]]|n/a |[[!template id=no]]|n/a |n/a |n/a |n/a |n/a |n/a
+colspan='10' getblocktemplate/BlkPrep variations
+Variation bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum Coinium
+|coinbase/append |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a |[[!template id=yes]]|n/a |n/a
+|coinbase (set) |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a |n/a
+|generation |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a |[[!template id=no]]|n/a |n/a
+|share/coinbase |n/a |n/a |[[!template id=yes]]|n/a |n/a |n/a ||n/a |n/a
+|share/merkle |n/a |n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a |n/a
+|share/truncate |n/a |n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a |n/a
+|time/increment |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a ||n/a |n/a
+|time/decrement |[[!template id=yes]]|n/a |[[!template id=yes]]|n/a |n/a |n/a ||n/a |n/a
+|txns/add |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a |n/a
+|txns/remove |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a |n/a
+|prevblock |[[!template id=yes]]|n/a |[[!template id=no]]|n/a |n/a |n/a ||n/a |n/a
+colspan='10' stratum functionality
+Function bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum Coinium
+|job freq |n/a |n/a |55s |n/a |n/a ||n/a |30s |n/a
+|transparency |n/a |n/a |[[!template id=yes]]|n/a |n/a ||n/a |[[!template id=no]]|n/a
+|resume |n/a |n/a |[[!template id=no]]|n/a |n/a ||n/a |[[!template id=no]]|n/a
+|reconnect |n/a |n/a |[[!template id=no]]|n/a |n/a ||n/a |[[!template id=no]]|n/a
+colspan='10' share targets
+Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum Coinium
+|default |network |1 |1 |1 |1 |1 |8 |1 |1
+|config |[[!template id=no]]||[[!template id=yes]]||[[!template id=no]]|||[[!template id=no]]|
+|dynamic |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=no]]|
+colspan='10' work generation
+Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush Coinium
+|getwork |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]
+|ntime roll |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=patch uri=http://gitorious.org/~Luke-Jr/bitcoin/luke-jrs-pushpool/commits/ntimes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|getmemorypool |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|[[getblocktemplate]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]
+|coinbaser |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]
+|gotwork |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]
+|setworkaux |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]
+|getauxblock |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]
+|title='merged-mining getmemorypool'MM gmp|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]
+|full node |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
+colspan='10' account management
+Feature bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Stratum Coinium
+|multiuser |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|
+|explicit users |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|
+|anon users |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|
+|explicit workers |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|
+|anon workers |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|
+|saved worklog |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|||
+|saved sockets |[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|
+|share logging |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||
+|invalid logging |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|||
+colspan='10' databases
+Database bitcoind ecoinpool Eloipool PoolServerJ pushpool p2pool BitPenny Slush Coinium
+|couchdb |[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]
+|mysql |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=yes]]|[[!template id=yes]]
+|plaintext |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]
+|postgres |[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]
+|rrd |[[!template id=no]]||[[!template id=no]]||[[!template id=no]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=no]]
+|sqlite |[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|[[!template id=no]]
 
 
 
