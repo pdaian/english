@@ -18,6 +18,10 @@ The "thick" bitcoin client downloads a copy of the entire chain, including all t
 
 A full-chain client trusts the difficultywise-longest [well-formed](https://en.bitcoin.it/wiki/Protocol_rules#Blocks) blockchain it can find.  Any transaction on the difficultywise-longest well-formed chain is considered valid.  Therefore, the validity of a transaction is determined by its height -- i.e. how many blocks come *before* it.  A transaction's *depth* (the number of blocks *after* it) is used to determine the likelihood of the transaction being invalidated due to the emergence of a longer fork.
 
+#### [[bitcoin core|bitcoind]]
+
+#### [https://github.com/conformal/btcd btcd
+
 ## Header-Only Clients
 
 These client downloads a complete copy of the headers for all blocks in the entire blockchain.  This means that the download and storage requirements scale linearly with the amount of time since bitcoin was invented; it would be preferable to have the scaling be logarithmic or even constant.
@@ -77,7 +81,7 @@ These clients involve some (usually low) level of trust in the server they rely 
 
 All thin clients listed below currently connect to a single server, and are vulnerable to an attack similar to a double-spend. The attack can be run by that single server - the server can just lie to them that they received a Bitcoin transaction, and they, assuming the server does not lie, perform some service, transfer funds or send goods without actually receiving any Bitcoin in exchange. Therefore, they are implicitly trusting it.
 
-Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (12.1).  [This post](https://bitcointalk.org/index.php?topic=88208.msg975201#msg975201) on bitcointalk explains how some governments (notably Iran and China) already perform these sorts of attacks on their own citizens, with the coerced assistance of SSL certificate authorities.
+Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (14.1).  [This post](https://bitcointalk.org/index.php?topic=88208.msg975201#msg975201) on bitcointalk explains how some governments (notably Iran and China) already perform these sorts of attacks on their own citizens, with the coerced assistance of SSL certificate authorities.
 
 Clients with a checkpoint (even a very old one) that download and validate the headers for the whole blockchain are [not vulnerable](http://bitcoinmedia.com/the-irc-bootstrap-method-is-flawed/#comment-4243) to Sybil attacks in the following sense: they can always ensure that an attack would cost more than the amount being stolen.
 
@@ -96,4 +100,4 @@ Clients with a checkpoint (even a very old one) that download and validate the h
 [[!tag "Technical"]]
 [[!tag "Clients"]]
 [[!tag "Security"]]
-12.1: http://en.wikipedia.org/wiki/Sybil_attack
+14.1: http://en.wikipedia.org/wiki/Sybil_attack
