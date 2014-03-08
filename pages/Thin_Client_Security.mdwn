@@ -18,7 +18,7 @@ The "thick" bitcoin client downloads a copy of the entire chain, including all t
 
 A full-chain client trusts the difficultywise-longest [well-formed](https://en.bitcoin.it/wiki/Protocol_rules#Blocks) blockchain it can find.  Any transaction on the difficultywise-longest well-formed chain is considered valid.  Therefore, the validity of a transaction is determined by its height -- i.e. how many blocks come *before* it.  A transaction's *depth* (the number of blocks *after* it) is used to determine the likelihood of the transaction being invalidated due to the emergence of a longer fork.
 
-#### [[bitcoin core|bitcoind]]
+#### [[bitcoin-qt|bitcoind]]
 
 #### [https://github.com/conformal/btcd btcd]
 
