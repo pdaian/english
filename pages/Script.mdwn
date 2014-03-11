@@ -9,7 +9,12 @@ Scripting provides the flexibility to change the parameters of what's needed to 
 
 A transaction is valid if nothing in the combined script triggers failure and the top stack item is true (non-zero).  The party who originally *sent* the Bitcoins now being spent, dictates the script operations that will occur *last* in order to release them for use in another transaction.  The party wanting to spend them must provide the input(s) to the previously recorded script that results in those operations occurring last leaving behind true (non-zero).
 
-The stacks hold byte vectors.  Byte vectors are interpreted as little-endian variable-length integers with the most significant bit determining the sign of the integer.  Thus 0x81 represents -1.  0x80 is another representation of zero (so called negative 0).  Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero.
+The stacks hold byte vectors.
+When used as numbers, byte vectors are interpreted as little-endian variable-length integers with the most significant bit determining the sign of the integer.
+Thus 0x81 represents -1.
+0x80 is another representation of zero (so called negative 0).
+Positive 0 is represented by a null-length vector.
+Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero.
 
 ## Words
 This is a list of all Script words (commands/functions). Some of the more complicated opcodes are disabled out of concern that the client might have a bug in their implementation; if a transaction using such an opcode were to be included in the chain any fix would risk forking the chain. 
