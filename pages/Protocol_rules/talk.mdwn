@@ -22,3 +22,5 @@ I think this proposal makes a lot of sense. Also, if someone did try to double-s
 ## Clarification of what is rejected during block verification
 
 With the sentences like "For each input, if we are using the nth output of the earlier transaction, but it has fewer than n+1 outputs, reject", it's not clear what's being rejected: the input, the transaction, or the block.  Please could this be stated explicitly in each case.
+
+> I thought it was pretty clear when I read this.  From a step entitled "x verification", there are two possible results (ignoring side effects): "x is accepted" or "x is rejected".  Therefore "reject" in such a step means to immediately follow the "x is rejected" branch.  Short answer: the block is rejected.  [Airbreather](User:Airbreather) ([[talk|User_talk:Airbreather]]) 00:50, 11 March 2014 (GMT)
