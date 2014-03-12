@@ -92,6 +92,17 @@ Contains testnet versions of these files (if running with -testnet)
 * rev*.dat
 You can see blocks as 'patches' to the chain state (they consume some unspent outputs, and produce new ones), and see the undo data as reverse patches. They are necessary for rolling back the chainstate, which is necessary in case of reorganizations.
 
+###Personally identifiable data [v0.8 and above]
+This section may be of use to you if you wish to send a friend the blockchain, avoiding them a hefty download.
+
+wallet.dat contains addresses and transactions linked to them.
+db.log may contain information pertaining to your wallet.
+debug.log may contain IP addresses and transaction ID's.
+The 'database/' folder (exists when bitcoin-qt is currently running) contains information (BDB state) relating to your wallet.
+peers.dat - unknown - may be safely deleted.
+
+Other files and folders (blocks, blocks/index, chainstate) may be safely transferred/archived as they contain information pertaining only to the public blockchain.
+
 ##See Also
 
 * [[Running_Bitcoin]]
