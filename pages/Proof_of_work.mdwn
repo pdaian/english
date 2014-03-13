@@ -26,9 +26,10 @@ In Bitcoin things are a bit more complex, especially since the header contains t
 
 ### Traditional proof of work
 
-1. hashcash / SHA256
-1. [[scrypt]]
-1. [[Momentum]]
+1. hashcash with double iterated SHA256
+1. hashcash with [[scrypt]] internal hash
+1. [[Momentum]] birthday collision
+1. Cuckoo hash proof of work https://github.com/tromp/cuckoo 
 1. Various other proof of works functions (e.g. [[Ethereum]] had a few candidates)
 
 ### Proof of X
