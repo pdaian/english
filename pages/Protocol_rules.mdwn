@@ -78,13 +78,12 @@ These messages hold a single transaction.
 1. Reject if we already have matching tx in the pool, or in a block in the main branch
 1. Reject if any other tx in the pool uses the same transaction output as one used by this tx. (7.5)
 1. For each input, look in the main branch and the transaction pool to find the referenced output transaction. If the output transaction is missing for any input, this will be an orphan transaction. Add to the orphan transactions, if a matching transaction is not in there already.
-1. For each input, if we are using the *n*th output of the earlier transaction, but it has fewer than n+1 outputs, reject this transaction
 1. For each input, if the referenced output transaction is coinbase (i.e. only 1 input, with hash=0, n=-1), it must have at least COINBASE_MATURITY (100) confirmations; else reject this transaction
-1. Verify crypto signatures for each input; reject if any are bad
-1. For each input, if the referenced output has already been spent by a transaction in the main branch, reject this transaction (7.6)
+1. For each input, if the referenced output does not exist (e.g. never existed or has already been spent), reject this transaction (7.6)
 1. Using the referenced output transactions to get input values, check that each input value, as well as the sum, are in legal money range
 1. Reject if the sum of input values < sum of output values
 1. Reject if transaction fee (defined as sum of input values minus sum of output values) would be too low to get into an empty block
+1. Verify the [[scriptPubKey|Script]] accepts for each input; reject if any are bad
 1. Add to transaction pool (7.7)
 1. "Add to wallet if mine"
 1. Relay transaction to peers
