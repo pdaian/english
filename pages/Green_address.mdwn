@@ -1,23 +1,25 @@
-A **green address** is a special trusted [[Bitcoin_address]] that is used to indicate the origin of funds to a recipient.  Assuming the recipient trusts the owner of the address to not attempt a [[double spend|Double-spending]], the recipient may treat the funds as confirmed the moment they arrive.
+**Green addresses** was a proposed use of special trusted ECDSA keypairs that to indicate the origin of funds to a recipient.
+Assuming the recipient trusts the operator of the keypair to not attempt a [[double spend|Double-spending]], the recipient may treat the funds as confirmed the moment they arrive.
+**This proposal is generally considered a bad idea and not advisable to implement.**
 
-As an example, assume website Z accepts incoming Bitcoin payments, but also trusts the green address published by [[Mt._Gox]].  Customer C wants to withdraw funds from Mt. Gox and send them to a payment address of website Z.  A customer who does a withdrawal from Mt. Gox can click the *use green address* checkbox, which will result in the payment being sent to the green address as an intermediate step before forwarding the payment to site Z.  Site Z can confirm that the payment passed through Mt. Gox's green address and trust the payment as confirmed immediately, since it knows that the only party who could potentially perform an attack to reverse the payment is Mt. Gox, which is presumed unlikely.
+As an example, assume website Z accepts incoming Bitcoin payments, but also trusts the green address published by [[Mt._Gox]].
+Customer C wants to withdraw funds from Mt. Gox and send them to a payment address of website Z.
+A customer who does a withdrawal from Mt. Gox could click the *use green address* checkbox, which will result in the payment being sent to the "green address" derived from the special keypair as an intermediate step before forwarding the payment to site Z.
+Site Z can confirm that the payment passed through Mt. Gox's keypair and trust the payment as confirmed immediately, since it knows that the only party who could potentially perform an attack to reverse the payment is Mt. Gox.
 
-The concept originated on the forums and was discussed in two threads (1.1) (1.2).  Since then, it has been implemented by [[Instawallet]] [[closed]] and [[Mt._Gox]].
+The concept originated on the Bitcoin Talk forum in 2011 and was discussed in two threads (1.1) (1.2).
+Since then, it was implemented by [[Instawallet]] and [[Mt._Gox]], both of which have since been compromised and closed.
+
+##Criticism
+###Confusion between wallet/controller and owner
+Bitcoin signatures do not infer any particular legal origin of bitcoins, and when the signature is used to imply some origin, it seems to infer this myth.
+
+###Blockchain spam
+In order to actually use green addresses, it is necessary to create an extra transaction to the special ECDSA keypair before then forwarding it on to its final destination.
 
 ##See Also
 
 * [What Are Green Addresses](http://bitcoin.stackexchange.com/questions/1730/what-are-green-addresses/1731#1731) Q&A on StackExchange
-
-##External Links
-###Sites that allow withdrawals from green addresses
-
-* [MtGox](https://mtgox.com)
-* [Bridgewalker Bitcoin Wallet](https://www.bridgewalkerapp.com/)
-
-###Sites that recognize green addresses
-
-* [[BTCTip|Btctip]]
-* [Bridgewalker Bitcoin Wallet](https://www.bridgewalkerapp.com/)
 
 ##References
 
