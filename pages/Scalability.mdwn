@@ -20,7 +20,9 @@ The big cost is the crypto and block chain lookups involved with verifying the t
 
 Bitcoin is currently able (with a couple of simple optimizations that are prototyped but not merged yet) to perform around 8000 signature verifications per second on an quad core [Intel Core i7-2670QM 2.2Ghz processor](http://ark.intel.com/products/53469). The average number of inputs per transaction is around 2, so we must halve the rate. This means 4000 tps is easily achievable CPU-wise with a single fairly mainstream CPU.
 
-As we can see, this means as long as Bitcoin nodes are allowed to max out at least 4 cores of the machines they run on, we will not run out of CPU capacity unless Bitcoin is handling 100 times as much traffic as PayPal. As of late 2012 the network is handling 0.5 transactions/second, so even assuming enormous growth in popularity we will not reach this level for a long time.
+As we can see, this means as long as Bitcoin nodes are allowed to max out at least 4 cores of the machines they run on, we will not run out of CPU capacity for signature checking unless Bitcoin is handling 100 times as much traffic as PayPal. As of late 2012 the network is handling 0.5 transactions/second, so even assuming enormous growth in popularity we will not reach this level for a long time.
+
+Of course Bitcoin does other things beyond signature checking, most obviously, managing the database. We use LevelDB which does the bulk of the heavy lifting on a separate thread, and is capable of very high read/write loads. Overall Bitcoin's CPU usage is dominated by ECDSA.
 
 ##Network
 
@@ -52,11 +54,11 @@ However there is potential for even greater optimizations to be made in future, 
 
 Pieter Wuille has implemented a custom verifier tuned for secp256k1 that can go beyond 20,000 signature verifications per second. It would require careful review by professional cryptographers to gain as much confidence as OpenSSL, but this can easily halve CPU load.
 
-Newly developed digital signature algorithms, like [ed25519](http://ed25519.cr.yp.to/ed25519-20110705.pdf) have extremely efficient software implementations that can reach speeds of nearly 80,000 verifications per second, even on an old Westmere CPU. That is a 10x improvement over secp256k1, and most likely is even higher on more modern CPUs. Supporting this in Bitcoin would mean a "soft fork" like the one done recently for pay-to-script-hash support. 
-
 Algorithms exist to accelerate batch verification over elliptic curve signatures. This means if there are several inputs that are signing with the same key, it's possible to check their signatures simultaneously for another 9x speedup. This is a somewhat more complex implementation, however, it can work with existing signatures (clients don't need upgrading).
 
-Assuming no upgrades to lightweight/SPV clients, so just batch verification, we can reach 40,000 transactions per second which is far beyond the traffic levels of the entire credit card system. And with ed25519 we could go up to nearly half a million transactions per second - with todays hardware! At these speeds it is likely that bandwidth to disk would become the primary limiting factor.
+Newly developed digital signature algorithms, like [ed25519](http://ed25519.cr.yp.to/ed25519-20110705.pdf) have extremely efficient software implementations that can reach speeds of nearly 80,000 verifications per second, even on an old Westmere CPU. That is a 10x improvement over secp256k1, and most likely is even higher on more modern CPUs. Supporting this in Bitcoin would mean a chain fork. This ECC algorithm has also been shown to be [easily accelerated using GPUs](http://eprint.iacr.org/2014/198), yielding scalar point multiplication times of less than a microsecond (i.e. a million point multiplications per second).
+
+At these speeds it is likely that disk and memory bandwidth would become the primary limiting factor, rather than signature checking.
 
 ###Simplified payment verification
 <!-- "Simplified payment verification" redirects here. Update the redirect if you change the section title -->
