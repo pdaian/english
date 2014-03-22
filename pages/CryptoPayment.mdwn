@@ -1,27 +1,26 @@
-**BitcoinPayment** is a MediaWiki extension to limit spam, by requiring a small one-time bitcoin payment before a user is allowed to edit or create pages.
+**CryptoPayment** is a MediaWiki extension to limit spam, by requiring a small one-time bitcoin payment before a user is allowed to edit or create pages.
 
 While the payment is deliberately trivially small for a normal user, it presents a barrier to a mass-spammer. 
 
-Funds sent to this wiki will be used to keep the wiki online (cost of domain name and hosting), and remaining funds will be donated to the [Bitcoin Foundation](https://www.bitcoinfoundation.org/). 
+Funds sent to this wiki will be used to keep the wiki online (cost of domain name and hosting), and remaining funds will be used to support Bitcoin development.
 
 ##Usage
 
-In order to enable your user account to edit pages, log in and visit [[Special:BitcoinPayment]], and you'll be given an address to which to send a small amount of bitcoins.
+In order to enable your user account to edit pages, log in and visit [[Special:CryptoPayment]], and you'll be given an address to which to send a small amount of bitcoins.
 
 Once you send the requested bitcoin amount to the address displayed and your payment is confirmed, your account will automatically be added to the [trusted group](https://en.bitcoin.it/w/index.php?title=Special:ListUsers&group=trusted) and be afforded edit privileges.
 
 ###Confirmations
 
-Payments require the customary 6 blocks to confirm. However, if you send from MtGox, and don't choose the *open transaction* option, confirmation is instant (since the wiki receiving wallet is also MtGox).
-
+Payments will be considered paid after it is confirmed in a Bitcoin block.
 
 ## Code
-https://github.com/MtGox/BitcoinPayment
+Source will be released after the backend interface to bitcoind is rewritten.
 
 ##Uso (Español)
 
-Si pagas tu acceso a la wiki en inglés (subdominio en.bitcoin.it/wiki) no podrás editar las páginas en Español. Para editar la wiki en Español (subdominio es.bitcoin.it/wiki/) el enlace a Especial:BitcoinPayment es este https://es.bitcoin.it/wiki/Especial:BitcoinPayment
+Si pagas tu acceso a la wiki en inglés (subdominio en.bitcoin.it/wiki) no podrás editar las páginas en Español. Para editar la wiki en Español (subdominio es.bitcoin.it/wiki/) el enlace a Especial:CryptoPayment es este https://es.bitcoin.it/wiki/Especial:CryptoPayment
 
 ##Questions or comments?
 
-If you have questions or would like help with the process, drop by on [#bitcoin-wiki on freenode IRC](http://webchat.freenode.net/?channels=#bitcoin-wiki). Notice that the channel is not very active, so be prepared to stick around for a few hours before you get a response.
+If you have questions, comments or a support request, please post in the [Bitcoin Wiki Support forum](https://bitcointalk.org/index.php?board=168.0).  We also have a chatroom at [#bitcoin-wiki on freenode IRC](http://webchat.freenode.net/?channels=#bitcoin-wiki).  Please ask your question and be prepared to stick around for a few hours before you get a response.
