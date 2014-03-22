@@ -20,6 +20,7 @@ This page is *not* for changes that can be accomplished in way that is compatibl
 * Allow soft-spending of generation outputs without confirmations (outputs of these transactions might also appear as generation themselves)
 * Allow additional inputs to generation transactions
 * Add new signature hashtype to include value of TxOut being spent, in the hash to be signed.  Doing this would remove the requirement that offline signing devices be sent all supporting transactions with the transaction-to-be-signed, just to confirm the transaction fee.
+* Pay-to-[SNARK](http://eprint.iacr.org/2013/507.pdf) (aka [CoinWitness](https://bitcointalk.org/index.php?topic=277389.0)).  This allows payment to a user who can produce cryptographic evidence that they ran a certain (time-bounded) program on a certain input argument.  The size of the cryptographic evidence is linear in the input argument but constant with respect to the size and running time of the program, so bounding the size of the input argument bounds the size of the data that needs to be put into the blockchain.  Unfortunately the time+space constant factors are, with current algorithms, rather large.
 
 ## Cryptographic changes
 
