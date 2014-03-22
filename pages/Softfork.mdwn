@@ -1,0 +1,5 @@
+A Softfork is a change to the bitcoin protocol that requires only a majority of the miners upgrade.
+
+New transaction types can often be added as softforks, requiring only that the sender and the miners understand the new transaction type.  This is done by having the new transaction appear to older clients as a pay-to-anybody transaction (of a special form), and getting the miners to agree to reject blocks including the pay-to-anybody transaction unless the transaction validates under the new rules.  This is how [[P2SH]] was added to Bitcoin.
+
+See also: [[Hardfork]]
