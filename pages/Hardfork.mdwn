@@ -1,0 +1,5 @@
+A Hardfork is a change to the bitcoin protocol that requires all users upgrade.
+
+Any alteration to bitcoin which increases the set of valid transactions is a hardfork.  However, some of these changes can be implemented by having the new transaction appear to older clients as a pay-to-anybody transaction (of a special form), and getting the miners to agree to reject blocks including the pay-to-anybody transaction unless the transaction validates under the new rules.  This is how [[P2SH]] was added to Bitcoin.
+
+See also: [[Softfork]]
