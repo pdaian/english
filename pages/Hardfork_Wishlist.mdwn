@@ -13,7 +13,6 @@ This page is also not for changes that can be accomplished by a [[Softfork]].  S
 * "Flip the chain", instead of committing to new transactions, commit to the summaries of open transactions: [(1)](https://bitcointalk.org/index.php?topic=505.0) [(2)](https://bitcointalk.org/index.php?topic=21995.0) [(3)](https://en.bitcoin.it/wiki/User:DiThi/MTUT#PROPOSAL:_Merkle_tree_of_unspent_transactions_.28MTUT.29.2C_for_serverless_thin_clients_and_self-verifiable_prunned_blockchain.) [(4)](https://bitcointalk.org/index.php?topic=88208.0)
 * Increased efficiency for merged mining: restructure the primary header to make the bitcoin specific data non-mandatory. (e.g. the block chain specific stuff would go into second header connected by a header tree), making the primary headers pure timestamps and nonces.
 * Switch to block hashing algorithm secure against block withholding attacks.
-* Require a [UTXO tree](https://en.bitcoin.it/wiki/Thin_Client_Security#Unused_Output_Tree_in_the_Blockchain_.28UOT.29) in every block
 
 ## Transaction behavior changes
 
@@ -22,21 +21,13 @@ This page is also not for changes that can be accomplished by a [[Softfork]].  S
 * Allow soft-spending of generation outputs without confirmations (outputs of these transactions might also appear as generation themselves)
 * Allow additional inputs to generation transactions
 * Add new signature hashtype to include value of TxOut being spent, in the hash to be signed.  Doing this would remove the requirement that offline signing devices be sent all supporting transactions with the transaction-to-be-signed, just to confirm the transaction fee.
-* Pay-to-[SNARK](http://eprint.iacr.org/2013/507.pdf) (aka [CoinWitness](https://bitcointalk.org/index.php?topic=277389.0)).  This allows payment to a user who can produce cryptographic evidence that they ran a certain (time-bounded) program on a certain input argument.  The size of the cryptographic evidence is linear in the input argument but constant with respect to the size and running time of the program, so bounding the size of the input argument bounds the size of the data that needs to be put into the blockchain.  Unfortunately the time+space constant factors are, with current algorithms, rather large.
-
-## Cryptographic changes
-
-* Pervasive ECC public key-recovery to reduce transaction sizes (can be done partially without breaking compatibility completely)
-* [Ed25519](http://ed25519.cr.yp.to/) (variant*) for much faster validation operations. (variant because the normal way Ed25519 is specified is not key recovery compatible)
-* Support for more than one public-key cryptosystem (ECDSA-k1) and key size (256bits) as a hedge against future cryptanalysis or designed-in flaws in any one algorithm.  Every node must support validation of signatures with every cryptosystem, but a small number of very-cryptograpically-diverse options is still better than just one. Additional signature types could be kludged into the existing system with script extensions but would be better supported natively.
-* Support for a [post-quantum](http://en.wikipedia.org/wiki/Post-quantum_cryptography) signature scheme. [Lamport signatures](http://en.wikipedia.org/wiki/Lamport_signature) have nice intuitive security properties, but it has extreme space requirements that would require structural changes to the blockchain to accommodate, (e.g. flip-chain+paytoscripthash+extensive pruning).  However other post-quantum schemes like [IEEE1363.1](http://en.wikipedia.org/wiki/NTRU) (patent expires in 2016) do not.  See the [introductory chapter of DJB's book](http://pqcrypto.org/www.springer.com/cda/content/document/cda_downloaddocument/9783540887010-c1.pdf) and the [PQCrypto conference webpage](http://pqcrypto.org) for full details.
 
 ## Privacy
 
 * Better privacy using [NIZKP](http://en.wikipedia.org/wiki/Non-interactive_zero-knowledge_proof)s, as proposed in [Zerocoin](http://zerocoin.org) or similar. 
 
 ## Currency changes
-*Please don't list anything here which would significantly change the committed overall economics of the system, it's safe to assume anything with significant economic impact will _never_ be changed in Bitcoin (7.1), because such changes would undermine the trust people have in the system, though they may form the basis of an interesting [[alternative_chain]].
+*Please don't list anything here which would significantly change the committed overall economics of the system, it's safe to assume anything with significant economic impact will _never_ be changed in Bitcoin (6.1), because such changes would undermine the trust people have in the system, though they may form the basis of an interesting [[alternative_chain]].
 
 * Increase currency divisibility.
 
@@ -65,7 +56,7 @@ This changes would involve converting old blocks:
 
 ##References
 
-7.1: [Suggested MAJOR change to Bitcoin](http://bitcointalk.org/index.php?topic=45468.msg542375#msg542375)
+6.1: [Suggested MAJOR change to Bitcoin](http://bitcointalk.org/index.php?topic=45468.msg542375#msg542375)
 
 
 [[!tag "Technical"]]
