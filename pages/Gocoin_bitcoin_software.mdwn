@@ -35,13 +35,12 @@ It can also sign text messages with private keys and decode raw transactions.
 Unlike the client, the wallet is not an app that is meant te be running continuously. 
 A user runs it with the requested task - the wallet does the job and exits (back to the command prompt).
 
-###The downloader
+###Block chain downloader
 For optimized initial block chain download, Gocoin has a special tool called downloader.
 
 Among other optimizations, the downloader allows a user to skip verification of all the blocks up to a certain one that he defines as trusted. This can speed up the bootstrap process significantly (e.g. from days to hours).
 
 After it finishes downloading of all the blocks, it will exit automatically. In that moment the client should be started and it will keep up with all the new blocks, that will  appear in the network.
-
 
 ###Other tools
 There is also a set of more and less useful tools (*github.com/piotrnar/gocoin/tools*) that are an integral part of the Gocoin bitcoin software.
