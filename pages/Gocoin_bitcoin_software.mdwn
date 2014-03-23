@@ -2,10 +2,58 @@ An open-source Bitcoin solution written in Go language (golang).
 It can be built for every platform that has a working Go compiler.
 It uses a proprietary license, though is free to use for non-commercial purposes.
 
+##Architecture
+
+Gocoin's architecture is quite different from the reference implementation (of the satioshi client).
+
+###Libraries
+
+####btc
+The core of the software is a library that essentially provides the blockchain protocol parser. That includes script parsing, ECDSA signature verification, but also things like address encoding, parsing of canonical signatures or extracting hashes that need to be signed for specific inputs of a given transaction.
+
+It is a relatively big library, that contains many useful bitcoin function.
+
+Inside the package, there is also a blocks persistent storage database (blockdb.go) - it is just a simple plain storage (that can only grow), with an index. It uses snappy compression, allowing to save about 30% of the disk space.
+
+####qdb
+The core library interfaces directly with a UTXO database backed.
+For this purpose Gocoin uses its own database engine, that has been designed to deal with the specific characteristics of bitcoin's UTXO database. 
+
+####newec
+To speed up the ECDSA operations [the secp256k1 library by sipa](https://github.com/bitcoin/secp256k1) has been ported to Go.
+It is used as a default ECDSA library by the online node (client).
+
+###Online client
+The online client is a kind of a server software that is meant to be running all the time.
+
+It handles the network related communication, feeds the core lib with new incoming blockchain data, monitors balances on the wallets' addresses,  manages transaction memory pool and the peers database. It also provides an interactive user interface.
+
+###Offline wallet client
+The wallet application is responsible for creating private keys (from a seed password) and for signing transactions with them.
+It can also sign text messages with private keys and decode raw transactions.
+
+Unlike the client, the wallet is not an app that is meant te be running continuously. 
+A user runs it with the requested task - the wallet does the job and exits (back to the command prompt).
+
+###The downloader
+For optimized initial block chain download, Gocoin has a special tool called downloader.
+
+Among other optimizations, the downloader allows a user to skip verification of all the blocks up to a certain one that he defines as trusted. This can speed up the bootstrap process significantly (e.g. from days to hours).
+
+After it finishes downloading of all the blocks, it will exit automatically. In that moment the client should be started and it will keep up with all the new blocks, that will  appear in the network.
+
+
+###Other tools
+There is also a set of more and less useful tools (*github.com/piotrnar/gocoin/tools*) that are an integral part of the Gocoin bitcoin software.
+
+For instance **btcversig** can verify a validity of a bitcoin signature - it is the substitute of the reference client's **verifymessage** RPC-API.
+
+The tool **type2determ** can, at the other hand, calculate Type-2 deterministic addresses, without a need to access the wallet (the private keys).
+
+
 ##Features
 
 Gocoin has a several unique features, that distinguish it from the original bitcoin client.
-
 ###Node / Client
 
 * All the unspent outputs are kept in memory, which makes switching between different wallets, as well as checking a balance of any address, relatively fast (few seconds max).
@@ -41,7 +89,7 @@ The client node requires 64-bit platform and at least 4GB of system memory. It a
 
 Gocoin was written by a single person for a private purposes.
 
-The software's first public release was announced in May 2013 on Bitcointalk forum. (8.1)
+The software's first public release was announced in May 2013 on Bitcointalk forum. (17.1)
 Ever since then, the software has been actively maintained and further developed, being armed with new features, further optimized and cleaned up from issues.
 
 It happened twice that the client wasn't able to catch up with the block chain, because of the implementation difference of the chain parsing protocol that was causing it to reject a block (transaction) that the reference implementation would accept. In both cases the issue was fixed within single days. The fist case happened in July 2013 and the fix was introduced in version 0.5.7. The second time was in March 2014 - the fix came with release 0.9.3.
@@ -54,7 +102,7 @@ It happened twice that the client wasn't able to catch up with the block chain, 
 
 ##References
 
-8.1: https://bitcointalk.org/index.php?topic=199306.0
+17.1: https://bitcointalk.org/index.php?topic=199306.0
 
 
 [[!tag "Software"]]
