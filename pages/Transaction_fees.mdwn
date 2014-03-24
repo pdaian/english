@@ -28,9 +28,9 @@ Note that a typical transaction is 500 bytes, so the typical transaction fee for
 
 This section describes how the reference implementation selects which transactions to put into new blocks, with default settings. All of the settings may be changed if a miner wants to create larger or smaller blocks containing more or fewer free transactions.
 
-30,000 bytes in the block are set aside for the highest-priority transactions, regardless of transaction fee. Transactions are added highest-priority-first to this section of the block.
+50,000 bytes in the block are set aside for the highest-priority transactions, regardless of transaction fee. Transactions are added highest-priority-first to this section of the block.
 
-Then transactions that pay a fee of at least 0.0001 BTC/kb are added to the block, highest-fee transactions first, until the block is not more than 300,000 bytes big.
+Then transactions that pay a fee of at least 0.00001 BTC/kb are added to the block, highest-fee transactions first, until the block is not more than 700,000 bytes big.
 
 The remaining transactions remain in the miner's "memory pool", and may be included in later blocks if their priority or fee is large enough.
 
