@@ -30,7 +30,7 @@ This section describes how the reference implementation selects which transactio
 
 50,000 bytes in the block are set aside for the highest-priority transactions, regardless of transaction fee. Transactions are added highest-priority-first to this section of the block.
 
-Then transactions that pay a fee of at least 0.00001 BTC/kb are added to the block, highest-fee transactions first, until the block is not more than 700,000 bytes big.
+Then transactions that pay a fee of at least 0.00001 BTC/kb are added to the block, highest-fee transactions first, until the block is not more than 750,000 bytes big.
 
 The remaining transactions remain in the miner's "memory pool", and may be included in later blocks if their priority or fee is large enough.
 
