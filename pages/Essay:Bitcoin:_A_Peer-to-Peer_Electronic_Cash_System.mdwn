@@ -147,7 +147,7 @@ p = probability an honest node finds the next block
 
 q = probability the attacker finds the next block
 
-qz = probability the attacker will ever catch up from z blocks behind
+q<sub>z</sub> = probability the attacker will ever catch up from z blocks behind
 </code>
 
 
@@ -157,7 +157,7 @@ qz = probability the attacker will ever catch up from z blocks behind
 
 
 
-Given our assumption that p > q, the probability drops exponentially as the number of blocks the attacker has to catch up with increases. With the odds against him, if he doesn't make a lucky lunge forward early on, his chances become vanishingly small as he falls further behind.
+Given our assumption that *p > q*, the probability drops exponentially as the number of blocks the attacker has to catch up with increases. With the odds against him, if he doesn't make a lucky lunge forward early on, his chances become vanishingly small as he falls further behind.
 
 We now consider how long the recipient of a new transaction needs to wait before being sufficiently certain the sender can't change the transaction. We assume the sender is an attacker who wants to make the recipient believe he paid him for a while, then switch it to pay back to himself after some time has passed. The receiver will be alerted when that happens, but the sender hopes it will be too late.
 
@@ -191,23 +191,25 @@ Rearranging to avoid summing the infinite tail of the distribution...
 
 Converting to C code...
 
-<code>#include <math.h>
+<syntaxhighlight lang="c">
+
+1. include <math.h>
 double AttackerSuccessProbability(double q, int z)
 {
-	::double p = 1.0 - q;
-	::double lambda = z * (q / p);
-	::double sum = 1.0;
-	::int i, k;
-	::for (k = 0; k <= z; k++)
-	::{
-	:::::double poisson = exp(-lambda);
-	:::::for (i = 1; i <= k; i++)
-	::::::::poisson *= lambda / i;
-	:::::sum -= poisson * (1 - pow(q / p, z - k));
-	::}
-	::return sum;
+> double p = 1.0 - q;
+> double lambda = z * (q / p);
+> double sum = 1.0;
+> int i, k;
+> for (k = 0; k <= z; k++)
+> {
+> double poisson = exp(-lambda);
+> for (i = 1; i <= k; i++)
+> poisson *= lambda / i;
+> sum -= poisson * (1 - pow(q / p, z - k));
+> }
+> return sum;
 }
-</code>
+</syntaxhighlight>
 
 
 
