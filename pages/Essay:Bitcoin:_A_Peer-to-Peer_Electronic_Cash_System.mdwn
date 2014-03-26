@@ -86,7 +86,7 @@ The incentive may help encourage nodes to stay honest. If a greedy attacker is a
 
 
 ## Reclaiming Disk Space
-<div style="text-align:justify;">Once the latest transaction in a coin is buried under enough blocks, the spent transactions before it can be discarded to save disk space. To facilitate this without breaking the block's hash, transactions are hashed in a Merkle Tree  (10.1)  [[2]] [[5]], with only the root included in the block's hash. Old blocks can then be compacted by stubbing off branches of the tree. The interior hashes do not need to be stored.
+<div style="text-align:justify;">Once the latest transaction in a coin is buried under enough blocks, the spent transactions before it can be discarded to save disk space. To facilitate this without breaking the block's hash, transactions are hashed in a Merkle Tree  (10.1)  (6.1)  (6.4), with only the root included in the block's hash. Old blocks can then be compacted by stubbing off branches of the tree. The interior hashes do not need to be stored.
 
 
 [[!img "bitcoin-reclaiming-disk-space.png" title="center" title="alt=Bitcoin Reclaiming Disk Space"]]
