@@ -86,7 +86,7 @@ The incentive may help encourage nodes to stay honest. If a greedy attacker is a
 
 
 ## Reclaiming Disk Space
-<div style="text-align:justify;">Once the latest transaction in a coin is buried under enough blocks, the spent transactions before it can be discarded to save disk space. To facilitate this without breaking the block's hash, transactions are hashed in a Merkle Tree [[7]][[2]][[5]], with only the root included in the block's hash. Old blocks can then be compacted by stubbing off branches of the tree. The interior hashes do not need to be stored.
+<div style="text-align:justify;">Once the latest transaction in a coin is buried under enough blocks, the spent transactions before it can be discarded to save disk space. To facilitate this without breaking the block's hash, transactions are hashed in a Merkle Tree  (10.1)   (10.2)  (10.3), with only the root included in the block's hash. Old blocks can then be compacted by stubbing off branches of the tree. The interior hashes do not need to be stored.
 
 
 [[!img "bitcoin-reclaiming-disk-space.png" title="center" title="alt=Bitcoin Reclaiming Disk Space"]]
@@ -94,8 +94,6 @@ The incentive may help encourage nodes to stay honest. If a greedy attacker is a
 
 
 A block header with no transactions would be about 80 bytes. If we suppose blocks are generated every 10 minutes, 80 bytes * 6 * 24 * 365 = 4.2MB per year. With computer systems typically selling with 2GB of RAM as of 2008, and Moore's Law predicting current growth of 1.2GB per year, storage should not be a problem even if the block headers must be kept in memory.</div>
-
-
 
 ## Simplified Payment Verification
 <div style="text-align:justify;">It is possible to verify payments without running a full network node. A user only needs to keep a copy of the block headers of the longest proof-of-work chain, which he can get by querying network nodes until he's convinced he has the longest chain, and obtain the Merkle branch linking the transaction to the block it's timestamped in. He can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it.
@@ -308,5 +306,8 @@ trust requirements," In 20th Symposium on Information Theory in the Benelux, May
 <span class="ref-column">
  S. Haber, W.S. Stornetta, "Secure names for bit-strings," In Proceedings of the 4th ACM Conference
 on Computer and Communications Security, pages 28-35, April 1997.</span>  
-7.1: A. Back, "Hashcash - a denial of service counter-measure," http://www.hashcash.org/papers/hashcash.pdf, 2002.
+7.1: A. Back, "Hashcash - a denial of service counter-measure," http://www.hashcash.org/papers/hashcash.pdf, 2002.  
+10.1: R.C. Merkle, "Protocols for public key cryptosystems," In Proc. 1980 Symposium on Security and Privacy, IEEE Computer Society, pages 122-133, April 1980.  
+10.2: [[2]]  
+10.3: [[5]]
 
