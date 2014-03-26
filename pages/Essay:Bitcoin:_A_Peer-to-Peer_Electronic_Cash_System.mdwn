@@ -86,7 +86,7 @@ The incentive may help encourage nodes to stay honest. If a greedy attacker is a
 
 
 ## Reclaiming Disk Space
-<div style="text-align:justify;">Once the latest transaction in a coin is buried under enough blocks, the spent transactions before it can be discarded to save disk space. To facilitate this without breaking the block's hash, transactions are hashed in a Merkle Tree  (10.1)   (10.2)  (10.3), with only the root included in the block's hash. Old blocks can then be compacted by stubbing off branches of the tree. The interior hashes do not need to be stored.
+<div style="text-align:justify;">Once the latest transaction in a coin is buried under enough blocks, the spent transactions before it can be discarded to save disk space. To facilitate this without breaking the block's hash, transactions are hashed in a Merkle Tree  (10.1)  [[2]] [[5]], with only the root included in the block's hash. Old blocks can then be compacted by stubbing off branches of the tree. The interior hashes do not need to be stored.
 
 
 [[!img "bitcoin-reclaiming-disk-space.png" title="center" title="alt=Bitcoin Reclaiming Disk Space"]]
@@ -307,7 +307,5 @@ trust requirements," In 20th Symposium on Information Theory in the Benelux, May
  S. Haber, W.S. Stornetta, "Secure names for bit-strings," In Proceedings of the 4th ACM Conference
 on Computer and Communications Security, pages 28-35, April 1997.</span>  
 7.1: A. Back, "Hashcash - a denial of service counter-measure," http://www.hashcash.org/papers/hashcash.pdf, 2002.  
-10.1: R.C. Merkle, "Protocols for public key cryptosystems," In Proc. 1980 Symposium on Security and Privacy, IEEE Computer Society, pages 122-133, April 1980.  
-10.2: [[2]]  
-10.3: [[5]]
+10.1: R.C. Merkle, "Protocols for public key cryptosystems," In Proc. 1980 Symposium on Security and Privacy, IEEE Computer Society, pages 122-133, April 1980.
 
