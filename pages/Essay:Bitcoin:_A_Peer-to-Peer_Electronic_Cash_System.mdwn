@@ -217,78 +217,84 @@ double AttackerSuccessProbability(double q, int z)
 Running some results, we can see the probability drop off exponentially with z.
 
 
+<syntaxhighlight lang="c">
+q = 0.1
 
-q=0.1
+z = 0   P = 1.0000000
 
-z=0   P=1.0000000
+z = 1   P = 0.2045873
 
-z=1   P=0.2045873
+z = 2   P = 0.0509779
 
-z=2   P=0.0509779
+z = 3   P = 0.0131722
 
-z=3   P=0.0131722
+z = 4   P = 0.0034552
 
-z=4   P=0.0034552
+z = 5   P = 0.0009137
 
-z=5   P=0.0009137
+z = 6   P = 0.0002428
 
-z=6   P=0.0002428
+z = 7   P = 0.0000647
 
-z=7   P=0.0000647
+z = 8   P = 0.0000173
 
-z=8   P=0.0000173
+z = 9   P = 0.0000046
 
-z=9   P=0.0000046
-
-z=10   P=0.0000012
-
+z = 10   P = 0.0000012
+</syntaxhighlight>
 
 
-q=0.3
 
-z=0   P=1.0000000
+<syntaxhighlight lang="c">
+q = 0.3
 
-z=5   P=0.1773523
+z = 0   P = 1.0000000
 
-z=10   P=0.0416605
+z = 5   P = 0.1773523
 
-z=15   P=0.0101008
+z = 10   P = 0.0416605
 
-z=20   P=0.0024804
+z = 15   P = 0.0101008
 
-z=25   P=0.0006132
+z = 20   P = 0.0024804
 
-z=30   P=0.0001522
+z = 25   P = 0.0006132
 
-z=35   P=0.0000379
+z = 30   P = 0.0001522
 
-z=40   P=0.0000095
+z = 35   P = 0.0000379
 
-z=45   P=0.0000024
+z = 40   P = 0.0000095
 
-z=50   P=0.0000006
+z = 45   P = 0.0000024
+
+z = 50   P = 0.0000006
+</syntaxhighlight>
 
 
 Solving for P less than 0.1%...
 
 
+<syntaxhighlight lang="c">
 P < 0.001
 
-q=0.10   z=5
+q = 0.10   z = 5
 
-q=0.15   z=8
+q = 0.15   z = 8
 
-q=0.20   z=11
+q = 0.20   z = 11
 
-q=0.25   z=15
+q = 0.25   z = 15
 
-q=0.30   z=24
+q = 0.30   z = 24
 
-q=0.35   z=41
+q = 0.35   z = 41
 
-q=0.40   z=89
+q = 0.40   z = 89
 
-q=0.45   z=340</div>
+q = 0.45   z = 340
+</syntaxhighlight>
+</div>
 
 ## Conclusion
 <div style="text-align:justify;">We have proposed a system for electronic transactions without relying on trust. We started with the usual framework of coins made from digital signatures, which provides strong control of ownership, but is incomplete without a way to prevent double-spending. To solve this, we proposed a peer-to-peer network using proof-of-work to record a public history of transactions that quickly becomes computationally impractical for an attacker to change if honest nodes control a majority of CPU power. The network is robust in its unstructured simplicity. Nodes work all at once with little coordination. They do not need to be identified, since messages are not routed to any particular place and only need to be delivered on a best effort basis. Nodes can leave and rejoin the network at will, accepting the proof-of-work chain as proof of what happened while they were gone. They vote with their CPU power, expressing their acceptance of valid blocks by working on extending them and rejecting invalid blocks by refusing to work on them. Any needed rules and incentives can be enforced with this consensus mechanism.</div>
