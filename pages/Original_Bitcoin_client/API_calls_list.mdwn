@@ -23,7 +23,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 |dumpprivkey |<bitcoinaddress>|Reveals the private key corresponding to <bitcoinaddress>|Y
 |encryptwallet |<passphrase>|Encrypts the wallet with <passphrase>. |N
 |getaccount |<bitcoinaddress>|Returns the account associated with the given address. |N
-|getaccountaddress |<account>|Returns the current bitcoin address for receiving payments to this account. |N
+|getaccountaddress |<account>|Returns the current bitcoin address for receiving payments to this account. If <account>does not exist, it will be created along with an associated new address that will be returned. |N
 |getaddednodeinfo |<dns>[[node]]|**version 0.8**Returns information about the given added node, or all added nodes(note that onetry addnodes are not listed here)If dns is false, only a list of added nodes will be provided,otherwise connected information will also be available.
 |getaddressesbyaccount |<account>|Returns the list of addresses for the given account. |N
 |getbalance |[[account]][[minconf=1]]|If [[account]]is not specified, returns the server's total available balance.<br/>If [[account]]is specified, returns the balance in the account. |N
