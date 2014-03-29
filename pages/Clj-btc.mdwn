@@ -1,0 +1,20 @@
+[[!template id=lowercase]][[!template id=stub]]
+clj-btc provides Clojure bindings for [[Bitcoin Core|bitcoind]]'s [[JSON-RPC|Original_Bitcoin_client/API_Calls_list]] API.
+
+Example use from the REPL:
+
+<source lang="clojure">
+user=> (require '[:as btc](clj-btc.core))
+nil
+user=> (btc/getinfo)
+{"timeoffset" 0, "protocolversion" 70001, "blocks" 111908, "errors" "",
+	"testnet" true, "proxy" "", "connections" 4, "version" 80500,
+	"keypoololdest" 1380388750, "paytxfee" 0E-8M,
+	"difficulty" 4642.44443532M, "keypoolsize" 101, "balance" 0E-8M,
+	"walletversion" 60000}
+</source>
+
+Sources can be found [on GitHub](https://github.com/aviad/clj-btc).
+
+[[!tag "Software"]]
+[[!tag "Clojure"]]
