@@ -46,9 +46,7 @@ This page is also not for changes that can be accomplished by a [[Softfork]].  S
 * Miners/relays should not be able to inject extra arbitrary data into transactions?
 * Use the previous block hash as an explicit or implicit prev_in in coinbases when hashing them to make it ~impossible to get a duplicate coinbase, thus removing the need for a pruning node to remember coinbase hashes to prevent duplicates consistently with the rest of the network.  Note that this problem has already been solved with a softfork in [BIP34](https://bitcointalk.org/index.php?topic=92558.0).
 * coinbases must be parseable.
-This changes would involve converting old blocks:
-
-* uint64_t for timestamp field in blocks.
+* This changes would involve converting old blocks: uint64_t for timestamp field in blocks.
 * Retarget using previous 2016 intervals instead of 2015 intervals; this bug enables Artforz' [time warp attack](https://bitcointalk.org/index.php?topic=43692.msg521772#msg521772).
 
 ##See Also
