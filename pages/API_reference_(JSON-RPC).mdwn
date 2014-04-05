@@ -174,11 +174,10 @@ The [btcjson package](https://github.com/conformal/btcjson) can be used to commu
 </source>
 
 ## .NET (C#)
-The communication with rpc service can be achieved using the standard httprequest/response objects.
-A library for serialising and deserialising Json will make your life a lot easier:
+The communication with rpc service can be achieved using the standard http request/response objects.
+A library for serialising and deserializing Json will make your life a lot easier:
 
-* JayRock for .NET 4.0
-* Json.Net for .NET 2.0 and above 
+Json.Net ( http://james.newtonking.com/json ) is a high performance JSON package for .Net.  It is also available via NuGet from the package manager console ( Install-Package Newtonsoft.Json ).
 
 The following example uses Json.Net:
 
