@@ -1,11 +1,22 @@
-The Stratum protocol is used for pooled mining as a replacement for the obsolete [[getwork|Getwork]] protocol. The details of the specification, as provided in many places, have be gathered here: [Stratum protocol documentation](https://bitcointalk.org/index.php?topic=557866.0) The original mining service specification was available on [Slush's pool website](http://mining.bitcoin.cz/stratum-mining/).  Other examples are available on [BTC Guild's website](https://www.btcguild.com/new_protocol.php). See also [on the forums](https://bitcointalk.org/index.php?topic=55842.0) and [the official site](http://blog.bitcoin.cz/stratum).
-Stratum is also a proposal for an open source client-server "Overlay" protocol that enables thin clients (currently used by Electrum client).
+Stratum is a proposal for an open source client-server "overlay" protocol that enables thin clients.
+It is currently used by [[Electrum]].
+While originally announced right before 2012 (1.1), the protocol has not yet been completed and proposed as a [[BIP]] for standardisation.
 
+##Mining extensions
+
+The stratum protocol was extended to support pooled mining as a replacement for obsolete [[getwork|Getwork]] protocol in late 2012.
+Developed behind closed doors, the mining service specification was initially announced via [[Slushs_pool]]'s website (2.1).
+Shortly thereafter, alternative "cheat sheet" style documentation was provided by [[BTCGuild]] (2.2).
+As the extension lacks a formal [[BIP]] describing an official standard, it has further developed only by discussion and implementation (2.3).
+
+###Software support
 
 Tables showing miner/server support for Stratum mining protocol:
 
 * [[Mining_software]]
 * [[Poolservers]]
+
+###Pool support
 
 
 
@@ -13,12 +24,17 @@ style="font-size: 100%"|Server |get transactions |dynamic difficulty |job freque
 |---|---|---|---
 |Bitminter |[[!template id=no]]|[[!template id=yes]]|30s |[[!template id=no]]
 |Slush's pool |[[!template id=no]]|[[!template id=yes]]|30s |[[!template id=no]]
-|BtcGuild |[[!template id=no]]|[[!template id=yes]]|30s |[[!template id=no]]
+|BTCGuild |[[!template id=no]]|[[!template id=yes]]|30s |[[!template id=no]]
 |Eloipool |[[!template id=yes]]|[[!template id=yes]]|55s |[[!template id=no]]
 |HHTT |[[!template id=no]]|[[!template id=no]](User selected difficulty) |30s |[[!template id=no]]
 |50BTC |[[!template id=no]]|[[!template id=no]](User selected difficulty) |5s |[[!template id=no]]<!-- NOTE: mining.resume protocol was discarded for new resume proposed by Eleuthria on IRC -->
 |Ozcoin |[[!template id=no]]|Yes or user selected |30s |[[!template id=no]]
 
 
+##References
 
+1.1: [Original stratum protocol announcement on BitcoinTalk](https://bitcointalk.org/?topic=55842)  
+2.1: [Stratum mining protocol specification at slush's pool's website](http://mining.bitcoin.cz/stratum-mining/)  
+2.2: [Stratum mining protocol cheat sheet at BTCGuild's website](https://www.btcguild.com/new_protocol.php)  
+2.3: [ckolivas's collection of most proposed stratum mining extensions](https://bitcointalk.org/?topic=557866)
 
