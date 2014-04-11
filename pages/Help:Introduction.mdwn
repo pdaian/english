@@ -26,6 +26,7 @@ Bitcoin is a system of owning and voluntarily transferring amounts of so-called 
 ##Bitcoin Basics
 
 ###Creation of coins
+
 The creation of coins must be limited for the currency to have any value. 
 
 New coins are slowly [[mined|Mining]] into existence by following a mutually agreed-upon set of rules. A user [[mining|Mining]] bitcoins is running a software program that searches tirelessly for a solution to a very difficult math problem whose difficulty is precisely known. The difficulty is automatically adjusted regularly so that the number of solutions found globally, by everyone, for a given unit of time is constant: an average of 6 per hour. When a solution is found, the user may tell everyone of the existence of this newly found solution, along with other information, packaged together in what is called a "[[block|Block]]". 
@@ -35,6 +36,7 @@ Blocks create 25 new bitcoins at present. This amount, known as the block reward
 Because the block reward will decrease over the long term, miners will some day instead pay for their hardware and electricity costs by collecting [[transaction fees|Transaction_fee]]. The sender of money may voluntarily pay a small transaction fee which will be kept by whoever finds the next block. Paying this fee will encourage miners to include the transaction in a block more quickly.
 
 ###Sending payments
+
 To guarantee that a third-party, let's call her Eve, cannot spend other people's bitcoins by creating transactions in their names, Bitcoin uses [public key cryptography](Wikipedia:Public-key_cryptography) to make and verify digital signatures. In this system, each person, such as Alice or Bob, has one or more addresses each with an associated pair of public and private keys that they may hold in a [[wallet|Wallet]]. Only the user with the private key can sign a transaction to give some of their bitcoins to somebody else, but anyone can validate the signature using that user’s public key.
 
 Suppose Alice wants to send a bitcoin to Bob.
@@ -60,6 +62,7 @@ Only Bob can do this because only he has the private key that can create a valid
 Eve cannot change whose coins these are by replacing Bob’s address with her address, because Alice signed the transfer to Bob using her own private key, which is kept secret from Eve, and instructing that the coins which were hers now belong to Bob. So if Charlie accepts that the original coin was in the hands of Alice, he will also accept the fact that this coin was later passed to Bob, and now Bob is passing this same coin to him.
 
 ###Preventing [[double-spending]]
+
 The process described above does not prevent Alice from using the same bitcoins in more than one transaction. The following process does; this is the primary innovation behind Bitcoin.
 
 * Details about the [[transaction|Transactions]] are [[sent and forwarded|Network]] to all or as many other computers as possible.
@@ -71,6 +74,7 @@ The process described above does not prevent Alice from using the same bitcoins 
 When Bob sees that his transaction has been included in a block, which has been made part of the single longest and fastest-growing block chain (extended with significant computational effort), he can be confident that the transaction by Alice has been accepted by the computers in the network and is permanently recorded, preventing Alice from creating a second transaction with the same coin. In order for Alice to thwart this system and double-spend her coins, she would need to muster more computing power than all other Bitcoin users combined.
 
 ###Anonymity
+
 When it comes to the Bitcoin network itself, there are no "accounts" to set up, and no e-mail addresses, user-names or passwords are required to hold or spend bitcoins. Each balance is simply associated with an address and its public-private key pair. The money "belongs" to anyone who has the private key and can sign transactions with it. Moreover, those keys do not have to be registered anywhere in advance, as they are only used when required for a transaction. Transacting parties do not need to know each other's identity in the same way that a store owner does not know a cash-paying customer's name.
 
 A [[Bitcoin address|Address]] mathematically corresponds to a public key and looks like this:
@@ -80,9 +84,11 @@ A [[Bitcoin address|Address]] mathematically corresponds to a public key and loo
 Each person can have many such addresses, each with its own balance, which makes it very difficult to know which person owns what amount. In order to protect his [[privacy|Anonymity]], Bob can generate a new public-private key pair for each individual receiving transaction and the Bitcoin software encourages this behavior by default. Continuing the example from above, when Charlie receives the bitcoins from Bob, Charlie will not be able to identify who owned the bitcoins before Bob.
 
 ###Capitalization / Nomenclature
+
 Since Bitcoin is both a currency and a protocol, capitalization can be confusing. Accepted practice is to use *Bitcoin* (singular with an upper case letter B) to label the protocol, software, and community, and *bitcoins* (with a lower case b) to label units of the currency.
 
 ##Where to see and explore
+
 You can directly explore the system in action by visiting [Biteasy.com](https://www.biteasy.com/), [Blockchain.info](http://blockchain.info/), [Blokr.io Bitcoin Block Explorer](http://btc.blockr.io/) or [Bitcoin Block Explorer](http://blockexplorer.com/).
 The site shows you the latest blocks in the block chain. The [[block chain|Block_chain]] contains the agreed history of all transactions that took place in the system.
 Note how many blocks were generated in the last hour, which on average will be 6. Also notice the number of transactions and the total amount transferred in the last hour (last time I checked it was about 64 and 15K).
