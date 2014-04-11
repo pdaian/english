@@ -1,4 +1,4 @@
-Bitcoin allows us to create **distributed markets** for the trading of securities, like stocks and bonds. Such markets have no central clearing house and can support securities of a size too small to be practical with todays techniques. It's also possible to build a P2P replacement for *investment funds*.
+Bitcoin allows us to create **distributed markets** for the trading of securities, like stocks and bonds. Such markets have no central clearing house and can support securities of a size too small to be practical with today's techniques. It's also possible to build a P2P replacement for *investment funds*.
 
 This page was written by [Mike Hearn](mailto:mike@plan99.net). Contact him if you have any questions. Jeff Garzik has started implementing some of these ideas in his [smartcoin](https://github.com/jgarzik/smartcoin) project. 
 
@@ -16,7 +16,7 @@ A *ratings agency* evaluates the creditworthiness of bond sellers and assigns bo
 
 ## Detour: a financial distributed hashmap
 
-A common problem encountered when designing advanced financial markets on top of Bitcoin is the need for a place to temporarily store small pieces of data, keyed by hash. This is because the block chain is not always the right place to put non-trivial amounts of data. The Kademlia protocol and similar designs have solved this problem, albiet in a way that is vulnerable to a variety of DoS and Sybil attacks. But there is no network designed specifically for use in Bitcoin related systems. Today, their most common usage is in file sharing networks that are typically used for copyright infringement.
+A common problem encountered when designing advanced financial markets on top of Bitcoin is the need for a place to temporarily store small pieces of data, keyed by hash. This is because the block chain is not always the right place to put non-trivial amounts of data. The Kademlia protocol and similar designs have solved this problem, albeit in a way that is vulnerable to a variety of DoS and Sybil attacks. But there is no network designed specifically for use in Bitcoin related systems. Today, their most common usage is in file sharing networks that are typically used for copyright infringement.
 
 A separate Kademlia network can be built that is optimized solely for financial usage. Nodes would restrict the size of the stored data and artificially throttle the serving of it, thus discouraging storage of movies, games, MP3s and other such things. Initial insertion or value longevity could be made subject to proof of a Bitcoin stake (aged balances or posted bond), deterring garbage. This means users who are interested in the financial applications but don't wish to assist file sharing can donate their resources to the network without issue.
 
@@ -100,11 +100,11 @@ Bitcoin payments today must be to a specific, concrete owner. By combining Bitco
 1. *ceo or (accounts_department AND manager)* - a policy that allows the CEO of the company access, or a manager in the accounts department, but not any other kind of manager or member of accounting.
 1. *master_key OR (3 OF (a, b, c, d, e))* - a threshold policy that is overridable by a master key. Your key must have at least 3 of the 5 lettered attributes to be usable.
 1. *verification_class=MtGoxBasicKYC AND common_name=MikeHearn AND access_level > 5* - a policy that requires a key with a basic identity assertion of a specific name, verified according to the MtGox basic class, and which has an "access level" above a certain number.
-1. *debt_rating(bobs_rating_agency) > 3 AND mining_bond AND interest_rate > 2300 AND interest_rate < 5000 AND repayment_months < 6* - a policy stating that it can be unlocked by anyone in posession of a key that asserts it was issued for a mining bond with better than a rating of "3" (imagine an AAA like rating system), that will repay fully within 6 months and with an interest rate between 2.3 and 5%.
+1. *debt_rating(bobs_rating_agency) > 3 AND mining_bond AND interest_rate > 2300 AND interest_rate < 5000 AND repayment_months < 6* - a policy stating that it can be unlocked by anyone in possession of a key that asserts it was issued for a mining bond with better than a rating of "3" (imagine an AAA like rating system), that will repay fully within 6 months and with an interest rate between 2.3 and 5%.
 
 The policy is encoded into the ciphertext at encryption time, and the result can only be unlocked by a key that matches the policy. Keys attributes are assigned by an issuing authority.
 
-It may at first appear that some of the policies expressed above are also expressable with script. For instance, if each attribute is considered to be a separate private key, you could try expressing the first example as a script that uses some CHECKSIGs along with boolean operators. But there are some problems with that approach.
+It may at first appear that some of the policies expressed above are also expressible with script. For instance, if each attribute is considered to be a separate private key, you could try expressing the first example as a script that uses some CHECKSIGs along with boolean operators. But there are some problems with that approach.
 
 The first problem is that people can collude to give themselves "superkeys". The Sahai-Waters scheme is collusion-resistant. In the first example, a manager who is not in accounting could team up with somebody who's not a manager but in the right department, and combine their keys to be able to spend the companies money. With CP-ABE the keys cannot be combined to merge attributes like that.
 
