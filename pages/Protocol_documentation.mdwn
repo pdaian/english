@@ -678,7 +678,7 @@ The payload is serialized into a var_str to ensure that versions using incompati
 |8 |Expiration |int64_t |The timestamp beyond which this alert is no longer in effect and should be ignored
 |4 |ID |int32_t |A unique ID number for this alert
 |4 |Cancel |int32_t |All alerts with an ID number less than or equal to this number should be canceled: deleted and not accepted in the future
-|? |setCancel |set<int>|All alert IDs contained in this set should be canceled as above
+|? |setCancel |set<int32_t> |All alert IDs contained in this set should be canceled as above
 |4 |MinVer |int32_t |This alert only applies to versions greater than or equal to this version. Other versions should still relay it.
 |4 |MaxVer |int32_t |This alert only applies to versions less than or equal to this version. Other versions should still relay it.
 |? |setSubVer |set<string>|If this set contains any elements, then only nodes that have their subVer contained in this set are affected by the alert. Other versions should still relay it.
