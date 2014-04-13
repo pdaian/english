@@ -688,6 +688,8 @@ The payload is serialized into a var_str to ensure that versions using incompati
 |? |Reserved |string |Reserved
 
 
+Note: **set<*type*>** in the table above is a  [[variable length integer|#Variable_length_integer]] followed by the number of fields of the given *type* (either int32_t or  [[variable length string|#Variable_length_string]])
+
 Sample alert (no message header):
 	73010000003766404f00000000b305434f00000000f2030000f1030000001027000048ee0000
 	0064000000004653656520626974636f696e2e6f72672f666562323020696620796f75206861
