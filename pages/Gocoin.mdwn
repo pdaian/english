@@ -77,8 +77,15 @@ It is possible to use Gocoin's wallet, without a need to have a running client n
 In such a case the required balance files are fetched with a tool called **FetchBal**, from two popular block explorer services; [[BlockChain.info]] and [[BlockExplorer.com]].
 
 ##Requirements
-The client node requires 64-bit platform and at least 4GB of system memory, though these days rather 8GB is recommended.
-The file system that stores the blockchain data (for the node) must be able to handle files larger than 4GB.
+###Client
+Requires 64-bit platform and at least 4GB of system memory, though these days rather 8GB is recommended.
+
+The file system that stores the blockchain data must be able to handle files larger than 4GB.
+
+###Wallet
+The wallet app has very little hardware requirements.
+As long as you can build it for a specific architecture, it should work there.
+There is no knowledge of Gocoin wallet to be tested on platforms like Raspberry Pi, but theoretically there is no reason why it would not work there.
 
 ##Limitations
 
@@ -95,7 +102,7 @@ The file system that stores the blockchain data (for the node) must be able to h
 
 Gocoin was written by a single person for a private purposes.
 
-The software's first public release was announced in May 2013 on Bitcointalk forum. (17.1)
+The software's first public release was announced in May 2013 on Bitcointalk forum. (19.1)
 Ever since then, the software has been actively maintained and further developed, being armed with new features, further optimized and cleaned up from issues.
 
 It happened twice that the client wasn't able to catch up with the blockchain, because of the implementation difference of the chain parsing protocol that was causing it to reject a block (transaction) that the reference implementation would accept. In both cases the issue was fixed within single days. The fist case happened in July 2013 and the fix was introduced in version 0.5.7. The second time was in March 2014 - the fix came with release 0.9.3.
@@ -108,7 +115,7 @@ It happened twice that the client wasn't able to catch up with the blockchain, b
 
 ##References
 
-17.1: https://bitcointalk.org/index.php?topic=199306.0
+19.1: https://bitcointalk.org/index.php?topic=199306.0
 
 
 [[!tag "Software"]]
