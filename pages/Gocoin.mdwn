@@ -64,10 +64,10 @@ Gocoin has a several unique features, that distinguish it from the original bitc
 
 * For security reasons, it is supposed to be used with a PC that has never been (and will never be) connected to a network.
 * The wallet is deterministic and a seed-password based. As long as you can remember the password, there is no need for any backups.
-* Additionally it can import private keys from an existing bitcoin wallet (that comes in the base58 format).
+* Additionally it can import private keys from an existing bitcoin wallet (must be in  [[Base 58 Wallet Import format|Private_key#Base_58_Wallet_Import_format]] format).
 * Has very low hardware requirements. Can be run on i.e. Raspberry Pi
 * Can generate [Type-2](https://bitcointalk.org/index.php?topic=19137.0) deterministic keys/addresses
-* Supports signing of P2SH multisig transactions.
+* Supports signing of [[P2SH]] multisig transactions (the ones that use  [[OP_CHECKMULTISIG opcode|Script#Crypto]]).
 
 ###Node-less mode
 It is possible to use Gocoin's wallet, without a need to have a running client node.
