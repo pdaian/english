@@ -72,9 +72,9 @@ Gocoin has a several unique features, that distinguish it from the original bitc
 * Supports signing of [[P2SH]] multisig transactions (the ones that use  [[OP_CHECKMULTISIG opcode|Script#Crypto]]).
 
 ###Node-less mode
-It is possible to use Gocoin's wallet, without a need to have a running client node.
+It is possible to use Gocoin's wallet, without a need to have a running client node, which may come handy since the node requires quite a decent hardware and the block chain takes  a lot of time for the initial download.
 
-In such a case the required balance files are fetched with a tool called **FetchBal**, from two popular block explorer services; [[BlockChain.info]] and [[BlockExplorer.com]].
+In such a case the required balance files are fetched with a tool called **FetchBal**, from two popular block explorer services. The list of unspent outputs is first fetched from [[BlockChain.info]] and then the raw transaction data (for these outputs) are downloaded from either [webbtc.com](http://webbtc.com), [blockr.io](http://btc.blockr.io/)  or [[BlockExplorer.com]] (in that order).
 
 ##Requirements
 ###Client
