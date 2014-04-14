@@ -1,0 +1,25 @@
+## Installing LPCXpresso 6.1.4 on ubuntu 13.10
+
+* Download: http://www.lpcware.com/lpcxpresso/downloads/linux
+* http://www.lpcware.com/content/forum/notes-installing-lpcxpresso-6-ubuntu-1310-64-bit
+* sudo apt-get install libxtst6:i386 libusb-1.0-0:i386 libusb-0.1-4:i386 libgtk2.0-0:i386 tk:i386 libncurses5:i386 libstdc++6:i386
+* Connection refused error: http://www.lpcware.com/content/faq/lpcxpresso/connection-refused-linux
+	cd /lib/i386-linux-gnu/
+	sudo ln -sf libudev.so.1 libudev.so.0
+
+* Udev rules
+	vi /etc/udev/rules.d/99-YOUR_USER_GROUP.rules
+
+	SUBSYSTEMS=="usb", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0003", GROUP="YOUR_USER_GROUP"
+	SUBSYSTEMS=="usb", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0009", GROUP="YOUR_USER_GROUP"
+	SUBSYSTEMS=="usb", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0083", GROUP="YOUR_USER_GROUP"
+	SUBSYSTEMS=="usb", ATTRS{idVendor}=="0471", ATTRS{idProduct}=="df55", GROUP="YOUR_USER_GROUP"
+
+* Source code:
+	http://www.lpcware.com/system/files/lpcopen_v2_00a_lpcxpresso_nxp_lpcxpresso_11u14.zip
+
+* Documents:
+	http://www.nxp.com/documents/user_manual/UM10462.pdf
+	http://www.lpcware.com/system/files/LPCXpresso_User_Guide_0.pdf
+	TPS51462: www.ti.com/lit/ds/slusaq1/slusaq1.pdf
+	TMP102: http://www.ti.com.cn/cn/lit/ds/symlink/tmp102.pdf
