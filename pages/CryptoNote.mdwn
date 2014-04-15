@@ -1,0 +1,71 @@
+CryptoNote is an open-source technology that allows creation of completely anonymous CPU-based cryptocurrencies. It proposes concepts and features, which haven't become mainstream in the altcoins yet. The only known digital currency to be based on CryptoNote is [[BCN]].
+
+## Features 
+
+### Untraceable payments
+
+Unlike traditional cryptocurrencies that mostly use unambiguous signatures to verify the transfer, CryptoNote utilizes ring signature. In this case the transaction is signed by a group of users. Thus, the verifier may only identify that one of them was a signer, but not who exactly that was. The public key of a user may appear in a large number of ring signatures even if it was already used to sign her own transaction.
+
+### Unlinkable transactions
+
+CryptoNote automatically creates multiple unique one-time addresses for each of the payments, which are created from the single public key. Even though the payment is sent to a public address, in the block chain it appears as if sent to a one-time address.
+
+The sender uses randam data and the public address of the receiver to calculate this one-time key of the payment. The redemption of the funds requires the receiver's private key, so only the latter may receive the money sent to the one-time address. Moreover, no third party can discover the link between the one-time key and the receiver's public address.
+
+### Double-spending proof
+
+In spite of being anonymous, CryptoNote's ring signatures restrict the double-spending attempt by linking the transactions with the same private key. The protocol uses the key image, derived from a private key through a one-way function. All the users keep the list of all the used key images, which are checked against a new transaction. In case there is a duplicate key image, the transaction is rejected as a double-spending attempt. However, the identity of the sender would still be unknown, since it is impossible to get the private key from its image.
+
+### Block chain analysis resistance 
+
+CryptoNote creates an obstacle for an analyst by using ring signatures and one-time addresses covered above. Every address of the payment is a unique one-time key, which is created from both the sender's and the receiver's data, and the usage of ring signature hides the exact outputs that have been spent for the input. Therefore, each next transaction increases the number of possible senders and hides the actual connection even more.
+
+### Adaptive limits 
+
+There are no hard constants and magic numbers in CryptoNote. Each limit (e.g., max block size, or min fee amount) is re-calculated based on the historical data of the system. Moreover, the difficulty and the max block size are automatically adjusted with each new block.
+
+### Smooth emission
+
+The coins are emitted smoothly, as the reward changes with each new block. This allows a predictable steady growth of money supply determined by the formula (8.1):
+
+	BaseReward = (MSupply - A) >> 18
+	MSupply = 2^64 - 1 (atomic units)
+
+### Egalitarian proof of work
+
+CryptoNote uses [[CryptoNight]] hashing algorithm as its proof-of-work. Its main feature is that it is suitable only for the ordinary PCs, since CryptoNight utilizes built-in CPU instructions, which are too expensive to implement in the special purpose devices. Therefore, unlike Bitcoin, it allows preserving the equality among various users and prohibits centralization of the network in the hands of several miners.
+
+## Origins
+
+Little is known about CryptoNote's origins. The official website uses supposedly fake names for the team members, while the white paper's author is Nicolas van Saberhagen, which is also likely to be a pseudonym. The white paper "CryptoNote v 2.0" is dated back to October 2013 (10.1).
+
+The developers have mentioned at CryptoNote's official forum that the team actually consists of cryptographers, developers, and economists, but their identities have to be concealed currently (10.2). It was also mentioned that CryptoNote's team and Bytecoin's team have been developing the technology and the currency in a cooperation, but separated soon after the launch (10.3). 
+
+CryptoNote is likely to have been under development for some time before Bytecoin's launch (July 2012), but there is no evidence of the exact years of R&D. CryptoNote's website mentions "2011—2014" in a footer.
+
+## Implementation
+
+The first alternate currency to be based on CryptoNote is [[Bytecoin]]. CryptoNote forum has a separate branch for those who would like to implement the protocol in another altcoin (11.1). However, the reference code is still Bytecoin (11.2).
+
+## See also
+
+* [[Bytecoin]]
+* [[CryptoNight]]
+
+## External links=
+
+* [CryptoNote website](https://cryptonote.org)
+* [Official forum](https://forum.cryptonote.org)
+* [Reference code](https://github.com/amjuarez/bytecoin)
+* [White paper](https://cryptonote.org/whitepaper.pdf)
+
+## References
+
+
+8.1: hhttps://cryptonote.org/inside.php#smooth-emission  
+10.1: https://cryptonote.org/whitepaper.pdf  
+10.2: https://forum.cryptonote.org/viewtopic.php?f=3&t=21#p61  
+10.3: https://forum.cryptonote.org/viewtopic.php?f=3&t=21#p73  
+11.1: https://forum.cryptonote.org/viewtopic.php?f=6&t=7  
+11.2: https://forum.cryptonote.org/viewtopic.php?f=6&t=6#p8
+
