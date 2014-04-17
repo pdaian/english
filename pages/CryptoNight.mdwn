@@ -9,7 +9,7 @@ CryptoNight relies on random access to the slow memory and emphasizes latency de
 1. GPUs may run hundreds of concurrent instances, but they are limited in other ways. GDDR5 memory is slower than the CPU L3 cache and remarkable for its bandwidth, not random access speed.
 1. Significant expansion of the scratchpad would require an increase in iterations, which in turn implies an overall time increase. "Heavy" calls in a trustless p2p network may lead to serious vulnerabilities, because nodes are obliged to check every new block's proof-of-work. If a node spends a considerable amount of time on each hash evaluation, it can be easily DDoSed by a flood of fake objects with arbitrary work data (nonce values).
 
-CryptoNote was created with the state-of-the-art cryptography with sufficient security level for the next decades. Schnorr signatures and 256-bit ECC keys (the basis for EdDSA) are very strong cryptos, which have passed the test of times. It has been implemented in various systems (not only ours). There have been tons of papers with analysis and researches on that top. I can't say the same applies to pairing-based cryptography or NTRU.
+
 ## See Also
 
 * [[Bytecoin]]
