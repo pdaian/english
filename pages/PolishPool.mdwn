@@ -1,32 +1,101 @@
-1) Full statistics (Real-time)
+PolishPool.pl [[mining pool|Pooled_mining]].
 
-2) Minimum payout is 0.01 BTC
 
-3) Pay-per-share (PPS) with 0% fee
+##Reward distribution
 
-4) Pay for stale shares
+* Pay-per-share (PPS) with 0% fee, current rates are displayed on the website
 
-5) Registration not required
+* Minimum payout is 0.001 BTC
 
-6) Fast and responsible support
+* Paid stale shares
 
-7) Stratum
+* Handy payouts: BTC 
 
-8) Vardiff
+##Features
 
-9) Automatic payout every 15 min.
+* 2-step verification with Google Authenticator
+* Full statistics (Real-time)
+* Currency converter
+* Reward calculator
+* IP white list
+* SSL encrypted user interface
+* API in JSON format
+* Long Polling 
+* Teams
+* Currency charts (Live)
+* Multilingual user interface: Polish ,English, German and Russian
+* Fast and responsible support
+* Email payout notifications
+* Stratum
+* Vardiff
+* Port 3333 mining
+* ASIC Accepted
+* Sms notifitacion
 
-Details: 
-Automatic withdrawal min 0.005 BTC! 
-We add to firts payment of 2% Bonus on your earnings! 
-Payment Systems: PPS and PPLNS 
-Do not charge a commission fees! 
-GWK: Yes 
-STM: Yes 
-GBT: Yes 
-Difficulty: Dynamic 
+##Actions
 
-Forum: http://polishpool.boards.net/
-Home English: https:/polishpool.pl/indexen.php
+* 04.18.2014 - 05.17.2014<br />
+“Note Competnion Win 1 BTC for Mining.
 
-Welcome to our Mine All Mine Workers!
+##Hosts
+
+Hosts:
+
+* 185.5.98.234:3333  - Stratum mining serwer 
+* 185.5.98.234:8332  - Getwork Serwer 
+* 185.5.98.234:8882  - GBT Serwer 
+
+If you want to specify a pull-server to connect to, you can choose from:
+
+All pool-servers, except pool 3333, have Stratum protocol support. All suitable miners would be automatically redirected to port 3333 on connection.
+
+##How to run miners
+
+**Phoenix [Web site](https://bitcointalk.org/?topic=6458.0)**<br />
+
+phoenix -u http://WorkerName@Example.com@pool.50btc.com:3333 -k phatk BFI_INT FASTLOOP VECTORS AGGRESSION=11 WORKSIZE=128 DEVICE=0
+
+
+**CGMINER [Web site](https://bitcointalk.org/index.php?topic=28402.0)**<br />
+
+cgminer.exe -o http://pool.50btc.com:3333 -u WorkerName@Example.com -p 123 -v 2 -w 256 -g 4 -k phatk -I 8
+
+
+**DiabloMiner [Web site](https://bitcointalk.org/index.php?topic=1721.0)**<br />
+
+*Windows:*<br />
+DiabloMiner-Windows.exe -u WorkerName@Example.com -p pass -o pool.50btc.com -r 3333 -v 2 -w 256<br />
+
+<nowiki>*</nowiki>*nix*:<br />
+DiabloMiner-YourOS.sh -u WorkerName@Example.com -p 123 -o pool.50btc.com -r 3333 -v 2 -w 256
+
+
+**Ufasoft Miner [Web site](https://bitcointalk.org/index.php?topic=3486.0)**<br />
+
+bitcoin-miner.exe -o http://pool.50btc.com:3333 -u WorkerName@Example.com
+
+
+**jgarzik's CPU miner [Web site](https://bitcointalk.org/index.php?topic=1925.0)**<br />
+
+*Windows:*<br /> 
+minerd.exe -s 20 -t 4 --url http://pool.50btc.com:3333 --userpass WorkerName@Example.com:123
+
+<nowiki>*</nowiki>*nix*:<br />
+minerd -s 20 -t 4 --url http://pool.50btc.com:3333 --userpass WorkerName@Example.com:123
+
+
+**50miner [Web site](http://50miner.org/)**<br />
+
+[[!img "50miner_setup.png" size=300x300]]
+
+##See Also
+
+* [[Comparison_of_mining_pools]]
+* [[Pooled_Mining]]
+
+##External Links
+
+* [50btc.com](https://50btc.com) Web site
+* [bitcointalk.org](https://bitcointalk.org/index.php?topic=54673.0) Topic on bitcointalk.org
+
+[[!tag "Pool_Operators"]]
