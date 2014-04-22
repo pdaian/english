@@ -49,45 +49,6 @@ If you want to specify a pull-server to connect to, you can choose from:
 
 All pool-servers, except pool 3333, have Stratum protocol support. All suitable miners would be automatically redirected to port 3333 on connection.
 
-##How to run miners
-
-**Phoenix [Web site](https://bitcointalk.org/?topic=6458.0)**<br />
-
-phoenix -u http://WorkerName@Example.com@pool.50btc.com:3333 -k phatk BFI_INT FASTLOOP VECTORS AGGRESSION=11 WORKSIZE=128 DEVICE=0
-
-
-**CGMINER [Web site](https://bitcointalk.org/index.php?topic=28402.0)**<br />
-
-cgminer.exe -o http://pool.50btc.com:3333 -u WorkerName@Example.com -p 123 -v 2 -w 256 -g 4 -k phatk -I 8
-
-
-**DiabloMiner [Web site](https://bitcointalk.org/index.php?topic=1721.0)**<br />
-
-*Windows:*<br />
-DiabloMiner-Windows.exe -u WorkerName@Example.com -p pass -o pool.50btc.com -r 3333 -v 2 -w 256<br />
-
-<nowiki>*</nowiki>*nix*:<br />
-DiabloMiner-YourOS.sh -u WorkerName@Example.com -p 123 -o pool.50btc.com -r 3333 -v 2 -w 256
-
-
-**Ufasoft Miner [Web site](https://bitcointalk.org/index.php?topic=3486.0)**<br />
-
-bitcoin-miner.exe -o http://pool.50btc.com:3333 -u WorkerName@Example.com
-
-
-**jgarzik's CPU miner [Web site](https://bitcointalk.org/index.php?topic=1925.0)**<br />
-
-*Windows:*<br /> 
-minerd.exe -s 20 -t 4 --url http://pool.50btc.com:3333 --userpass WorkerName@Example.com:123
-
-<nowiki>*</nowiki>*nix*:<br />
-minerd -s 20 -t 4 --url http://pool.50btc.com:3333 --userpass WorkerName@Example.com:123
-
-
-**50miner [Web site](http://50miner.org/)**<br />
-
-[[!img "50miner_setup.png" size=300x300]]
-
 ##See Also
 
 * [[Comparison_of_mining_pools]]
