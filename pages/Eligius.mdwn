@@ -3,8 +3,11 @@ As of October 23, 2012, Eligius is maintained by [wizkid057](User:Wizkid057). (1
 
 To use it, a miner merely needs to be directed to stratum.mining.eligius.st on port 3334, with the username set to a valid bitcoin address (which receives the payout). **No registration is needed.**
 
-Donation address: 1E1igiusfEjs1pCaGjEERExE9gYcrFwow7 / Mx5FUQn8oBCoRdyBTUFu9JW5SsdEku56PP (1.2)
+Donation address: 1E1igiusfEjs1pCaGjEERExE9gYcrFwow7 / Mx5FUQn8oBCoRdyBTUFu9JW5SsdEku56PP
 
+Basic concepts:
+
+* The pool charges no fees and shares are managed under the [CPPSRB](http://eligius.st/wiki/index.php/Capped_PPS_with_Recent_Backpay) reward system at 100% value at the time of mining.  (1.2)
 * When a block is found, all miners who have reached the minimum payout threshold (currently about 0.04 BTC and is configurable) are paid via the Generation transaction.
 * The pool almost never has miner's funds, as they are paid directly to the miners from the block reward.
 * If a block is orphaned, its shares become part of the next block's reward distribution.
