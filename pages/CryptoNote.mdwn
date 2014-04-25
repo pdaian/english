@@ -4,7 +4,7 @@ CryptoNote is an open-source technology that allows creation of completely anony
 
 ### Untraceable payments
 
-Unlike traditional cryptocurrencies that mostly use unambiguous signatures to verify the transfer, CryptoNote utilizes ring signature. In this case the transaction is signed by a group of users. Thus, the verifier may only identify that one of them was a signer, but not who exactly that was. The public key of a user may appear in a large number of ring signatures even if it was already used to sign her own transaction.
+Unlike traditional cryptocurrencies that mostly use unambiguous signatures to verify the transfer, CryptoNote utilizes ring signature. Ring signature is a more sophisticated scheme, which in fact may demand several different public keys for verification. In this case the transaction is signed by a group of users. Thus, the verifier may only identify that one of them was a signer, but not who exactly that was. The public key of a user may appear in a large number of ring signatures even if it was already used to sign her own transaction.
 
 ### Unlinkable transactions
 
