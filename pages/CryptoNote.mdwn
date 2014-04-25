@@ -15,7 +15,6 @@ The sender uses randam data and the public address of the receiver to calculate 
 ### Double-spending proof
 
 In spite of being anonymous, CryptoNote's ring signatures restrict the double-spending attempt by linking the transactions with the same private key. The protocol uses the key image, derived from a private key through a one-way function. All the users keep the list of all the used key images, which are checked against a new transaction. In case there is a duplicate key image, the transaction is rejected as a double-spending attempt. However, the identity of the sender would still be unknown, since it is impossible to get the private key from its image.
-All users keep the list of the used key images (compared with the history of all valid transactions it requires an insignificant amount of storage) and immediately reject any new ring signature with a duplicate key image. It will not identify the misbehaving user, but it does prevent any double-spending attempts, caused by malicious intentions or software errors.
 
 ### Block chain analysis resistance 
 
