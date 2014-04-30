@@ -691,15 +691,15 @@ Alert format:
 
 
 
-|? |payload |var_str |Serialized alert payload
-|? |signature |var_str |An ECDSA signature of the message
+|? |payload |uchar[]|Serialized alert payload
+|? |signature |uchar[]|An ECDSA signature of the message
 
 
 The developers of Satoshi's client use this public key for signing alerts:
 	04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284
 	(hash) 1AGRxqDa5WjUKBwHB9XYEjmkv1ucoUUy1s
 
-The payload is serialized into a var_str to ensure that versions using incompatible alert formats can still relay alerts among one another. The current alert payload format is:
+The payload is serialized into a uchar[] to ensure that versions using incompatible alert formats can still relay alerts among one another. The current alert payload format is:
 
 
 |4 |Version |int32_t |Alert format version
