@@ -1,4 +1,5 @@
 **sweepprivkey** is a PROPOSED Bitcoin RPC command that, given a Bitcoin private key, allows sweeping of some or all of the funds to another address.
+Despite this specification, this proposal has never been implemented, and cannot be considered for inclusion until it is.
 
 This function is useful for merchants who wish to accept typed or scanned Bitcoin private keys as payments, without imposing any specific methodology on how the payments must be processed.  *sweepprivkey* has no direct effect on anything in the local wallet or transaction history -- the function simply generates a transaction in real-time to sweep the funds to another address, and broadcasts it.  That destination address may or may not be in the local wallet.
 
