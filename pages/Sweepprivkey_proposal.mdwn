@@ -22,19 +22,14 @@ The syntax of *sweepprivkey* is as follows:
 * *amount* and *changeaddress* are optional.  When not present, the command will attempt to sweep all funds available via the private key to the extent those funds have enough confirmations to satisfy *minconfirms*.  If an amount is present, the command will only sweep that amount, reporting a failure if amount (plus fee) is greater than the funds available.  If the private key contains funds that satisfy *minconfirms* as well as funds that do not, only the sufficiently confirmed funds are swept.  If a specific amount is requested and a transaction fee must be paid, it will be deducted out of the change rather than the requested transfer amount (FIXME: this seems irrational). *changeaddress* address specifies a destination for any leftover change that may be the result of sweeping a partial amount.  Not all partial-balance transactions will generate change, particularly if the private key's received amount satisfies exactly the sweep amount.  If there is no change, the change address is ignored.
 
 ##Proposed flowchart
-The *sweepprivkey* function depends on the ability to quickly find transactions in the block chain belonging to a given address.  It relies on an in-memory hashtable that is built the first time it is needed, and is maintained in memory until bitcoind is shut down.  As a result, the first time *sweepprivkey* is used, a delay of a few minutes can be expected.  This delay can be avoided by starting bitcoind with the --(whatever) command line switch. *(ideally this should be persistable to disk, as this delay only gets longer as the blockchain grows).*
-
-To conserve resources, the hash table is simple.  It associates the first 32 bits of the Bitcoin address (in hash160 form) with a list of the blocks that reference addresses with that prefix.  The hashtable is created upon first use, and updated each time a block is received.
-
-*sweepprivkey* will also scan the in-memory transaction pool and incorporate unconfirmed transactions when the *minconfirms* parameter is zero.
+The *sweepprivkey* function depends on the ability to quickly find transactions in the UTXO set controlled by a given private key; simply, a UTXO index on scriptPubKey.
 
 When the *sweepprivkey* command is run, bitcoind will:
 
-1. Ensure the address hash table is being maintained in memory.  If not, it will be built before continuing.
-1. Scan all of the blocks that might contain unspent transactions belonging to the address.  If minconfirms=0, then scan the in-memory transaction pool as well, to create a list of such transactions.
-1. Confirm that there is a non-zero balance available, and that (if *amount* is specified), that the balance is equal to or greater than it.
+1. Ensure the necessary UTXO index is being maintained.  If not, it will be built before continuing.
+1. Find the UTXO which is assigned to a standard scriptPubKey redeemable with only the given private key, and ensure it is buried under enough blocks to satisfy the desired level of *minconfirms*.
+1. Confirm that, if *amount* is specified, the amount received is equal to or greater than it.
 1. Do getnewaddress if a wallet account was specified.
-1. If *amount* is specified, eliminate all transactions from the list from largest to smallest that will not be needed to satisfy the amount.
-1. Construct a new transaction in memory that sends funds from the Bitcoin address represented by *privkey* to the destination address and change address, if necessary.  Sign the transaction with *privkey*.
+1. Construct a new transaction in memory that spends funds from the found UTXO to the destination address and, if necessary, the change address.  Sign the transaction with *privkey*.
 1. Treat the signed transaction the same as if it had come from a peer, including relaying it to all connected peers.
 1. Return success with the txid and (if applicable) the new address that was gathered via *getnewaddress*.
