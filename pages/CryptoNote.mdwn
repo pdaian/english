@@ -22,7 +22,8 @@ CryptoNote creates an obstacle for an analyst by using ring signatures and one-t
 
 ### Adaptive limits 
 
-There are no hard constants and magic numbers in CryptoNote. Each limit (e.g., max block size, or min fee amount) is re-calculated based on the historical data of the system. Moreover, the difficulty and the max block size are automatically adjusted with each new block.
+There are no hard constants and magic numbers in CryptoNote. Each limit (e.g., max block size, or min fee amount) is re-calculated based on the historical data of the system. Moreover, the difficulty and the max block size are automatically adjusted with each new block. 
+The main idea of the algorithm is to sum all the work that nodes have performed during the last 720 blocks and divide it by the time they have spent to accomplish it. The measure of the work is the corresponding difficulty value for each of the blocks. 
 
 ### Smooth emission
 
