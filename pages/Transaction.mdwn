@@ -91,13 +91,6 @@ The scriptPubKey in the funding transaction is script which ensures that the scr
 
 In the scriptSig above, 'signatures' refers to any script which is sufficient to satisfy the following serialized script. 
 
-While multi-signature transactions are the most common P2SH address, there is one other simple example:
-http://webbtc.com/tx/112ae9859731f671ec3593de5790ed026d06d23134ba284aec811bc8f50e96b3 - the 7th P2SH transaction recorded in the blockchain.
-
-This transaction redeems funds sent to the address 37paP4uTjmA4Pi85LG6CF9huift3Dw1kFT. The script is revealed to be: 5357; which when interpreted just leaves the stack with two numbers: 3 and 7. Since this is non-zero, the script evaluates to true - anyone with knowledge of the script could have redeemed the funds. 
-
-This is a simple use of P2SH compared to multi-signature transactions, and many more are possible.
-
 Checking process:
 
 
