@@ -1,4 +1,4 @@
-Avalon2 is the second machine of [[Avalon]] project. using the 55nm ASIC chips
+Avalon2 is the second machine of [[Avalon]] project. It uses 55nm ASIC chips.
 
 # Pictures
 ## A3255
@@ -36,14 +36,14 @@ Avalon2 is the second machine of [[Avalon]] project. using the 55nm ASIC chips
 
 # User manual
 ## TP LINK WR703N
-The USB on the AR9331 have bugs. if you want use serial console, please the direct serial console on 703N (the **/dev/ttyATH0**). it's far more stable than USB-serial convertor. you may want add a usb-hub between machine and 703n
+The USB on the AR9331 has bugs. If you want use serial console, please use the direct serial console on 703N (the **/dev/ttyATH0**). It's far more stable than USB-serial converter. You may want add a USB hub between machine and 703n
 
 ## Raspberry Pi
    [[!img "13_ports_usb_hub.png" title="320px " title="thumb " title="The 13 ports USB HUB "]]
 
 * The default firmware IP address is **192.168.0.100**, you can access it by http://192.168.0.100
 * You may need update the address/DNS to your local configuration. DO NOT FORGET your IP address.
-* If Rpi can access internet the cgminer should automatic start
+* If the Raspberry Pi can access internet, cgminer should automatic start
 
 * 8GB Memory card: http://item.jd.com/632744.html
 * Reflash: sudo dd if=openwrt-brcm2708-sdcard-vfat-ext4.img of=/dev/sdb bs=4M #/dev/sdb is your memory card
@@ -58,9 +58,7 @@ The USB on the AR9331 have bugs. if you want use serial console, please the dire
 ## Overclock
 
 * Chip Freq: 1700, Voltage: 10750 --> 119GHs
-	Extra cooling is recommended, GJPMiningco recommend remove the slide 
-	panel that covers the heatsink and add some fans that blow down into
-	the heatsink at least 3 fans evenly spaced along the heatsink
+	Extra cooling is recommended, GJPMiningco recommends removing the slide panel that covers the heatsink and adding some fans that blow down into the heatsink - at least 3 fans evenly spaced along the heatsink.
 
 # The Avalon2
 ## Power supply
@@ -81,7 +79,7 @@ The USB on the AR9331 have bugs. if you want use serial console, please the dire
 	Fan: 4PIN PWM speed control, report fan speed back.
 	Include: Single modular, USB Connector
 ### LEDS
-	from bottom(FPGA) to top is 1 to 8 
+	From bottom (FPGA) to top is 1 to 8:
 	1, 2, 3, 4, 5: Blink when found nonce
 	6, 7, Data transfer
 	8: Error or under testing
