@@ -21,7 +21,7 @@ In this section, you'll learn where to get the client, how to install it on diff
 First, download the bitcoin client from http://bitcoin.org/. Choose the appropriate link depending on your operating system, and install in the usual manner. For Windows, easiest is probably the executable installer. For Linux, note that the tar.gz contains the binary build, in addition to the source, so if you run a recent distribution, you should be able to just run the binary without compiling yourself.
 
 ###Issues with Linux package repositories
-Be warned that the version of Bitcoin Core in some package repositories are severely out of date and may be harmful to use. For Debian, users should use [the package from the 'unstable' repository](https://packages.debian.org/source/unstable/bitcoin). For Ubuntu, please use the PPA link [on bitcoin.org](https://bitcoin.org/en/download). Please see [this guide](https://launchpad.net/+help-soyuz/ppa-sources-list.html) for details on how to use the PPA. You can also choose to use the static binary or to compile from source (both are in the 'tgz' file on the bitcoin.org download page), although updates will not be automated. Please refer to [this page](https://bitcoin.org/en/download) for the latest version number.
+Be warned that the version of Bitcoin Core in some package repositories are severely out of date and may be harmful to use. For Debian, users should use [the package from the 'unstable' repository](https://packages.debian.org/source/unstable/bitcoin). For Ubuntu and derivatives, please use the PPA link [on bitcoin.org](https://bitcoin.org/en/download). Please see [this guide](https://launchpad.net/+help-soyuz/ppa-sources-list.html) for details on how to use the PPA. You can also choose to use the static binary or to compile from source (both are in the 'tgz' file on the bitcoin.org download page), although updates will not be automated. Please refer to [this page](https://bitcoin.org/en/download) for the latest version number.
 
 ##Starting the client and connecting to the network
 
@@ -51,6 +51,12 @@ Once you submit the form successfully, you should see a new transaction in your 
 
 Once your transaction makes it into the block chain, the confirmation count will grow in step with the number of blocks in the chain. By default, the client stops showing "unconfirmed" after the transaction is 6 blocks deep in the chain:
 [[!img "Six_confirms_bitcoin_client.png"]]
+
+##Transaction confirmations
+
+write about [[blocks|Blocks]] and [[confirmations|Confirmation]] here.
+
+thanks to the [[block chain|Block_chain]], you don't need to be online for receiving BTC...
 
 ##Bitcoin addresses
 
