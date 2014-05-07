@@ -16,11 +16,16 @@ There are a couple uses but I'll give an example here of one of the more impress
 
 Let H() be a complicated computer program. For some H(X)=Y you want to know some X that gives you a particular Y.
 
-Perhaps H() is a password hashing algorithm and you're looking for the password that gives you a particular hash in order to crack it. Or perhaps H() is a complicated program that decides if a image is one you would find beautiful (e.g. Y is either zero or one, and you want some X where Y==1).
+Say I happen to _know_ some X that answers your question... and I'd like to sell it to you. But we don't trust each other at all, and because we're computer geeks we have no friends who can act as trusted mediators. Can we make this exchange using Bitcoin with zero trust?  The answer turns out to be yes.
 
-Say I happen to _know_ some X that answers your question... and I'd like to sell it to you. But we don't trust each other at all, and because we're computer geeks we have no friends who can act as trusted mediators. Can we make this exchange using Bitcoin with zero trust?  Yes.
+Here are some examples of what H() could be:
 
-A [zero-knowledge proof](https://en.wikipedia.org/wiki/Zero-knowledge_proof) lets someone prove a mathematical fact to another person without teaching them anything about the fact itself. It has been proven that you can convert any computer program into a zero-knowledge proof(e.g. [PSPACE⊂IP](http://en.wikipedia.org/wiki/IP_%28complexity%29#PSPACE_is_a_subset_of_IP) <!-- IIRC there is a better more direct statement about this someplace but I forget what to look for, please provide a better link -->).  So, using a zero-knowledge proof I could prove to you that I know some X such that H(X)=Y ... which is helpful but it's not enough because you could pay me and I could not tell you the answer (or I could tell you and then you don't pay). Here is where the password locked transactions come in.
+* H() could be a password hashing algorithm and you're looking for the password that gives you a particular hash in order to crack it.
+* Perhaps H() is a complicated program that decides if a piece of music is one you would find beautiful (i.e. Y is a true/false output)
+* H() could be a program that verifies possession of a valid [machine readable travel document](http://en.wikipedia.org/wiki/Machine-readable_passport) issued to a particular person. In this case, you would be able to define a payment to someone based on some arbitrary attributes about them, such as their name + date of birth, or perhaps by providing a photo of their face that's then matched against the travel document using the Eigenfaces algorithm. There would be no need to obtain a public key from them ahead of time meaning that, for example, you could send money to someone who was only just born and doesn't yet have a wallet.
+* H() could be a program that interprets another program on some secret input and yields true if the input data manages to put the program into a corrupted state. This would allow security researchers to sell exploits to software developers so they can be fixed, but in an anonymous and low trust way.
+
+A [zero-knowledge proof](https://en.wikipedia.org/wiki/Zero-knowledge_proof) lets someone prove a mathematical fact to another person without teaching them anything about the fact itself. It has been proven that you can convert any computer program into a zero-knowledge proof (this is referred to mathematically as [PSPACE⊂IP](http://en.wikipedia.org/wiki/IP_%28complexity%29#PSPACE_is_a_subset_of_IP) <!-- IIRC there is a better more direct statement about this someplace but I forget what to look for, please provide a better link -->).  So, using a zero-knowledge proof I could prove to you that I know some X such that H(X)=Y ... which is helpful but it's not enough because you could pay me and I could not tell you the answer (or I could tell you and then you don't pay). Here is where the password locked transactions come in.
 
 First I encrypt X with random key K, Ex=AES(X,K).
 then I construct the program:
@@ -39,9 +44,7 @@ I convert that program into a zero knowledge proof. Externally to Bitcoin I tell
 
 You then form a Bitcoin payment which requires both my public key and password K.  In order to redeem this transaction I must disclose K, the key you need to decrypt Ex and give you your solution. So neither of us can cheat, so no trust is required.
 
-The reason this isn't something people are using yet is because while the academics have proven it to be possible actually converting complicated programs like compositions of ciphers and hash-functions into zero-knowledge proofs is apparently not something anyone has figured out how to do practically.
-
-*2013 Update*: This is rapidly changing and [practical systems](http://scipr-lab.org/) now appear practically possible. "[Verifying computations without reexecuting them: from theoretical possibility to near practicality](http://eccc.hpi-web.de/report/2013/165/download/)" gives a good overview, of recent progress.
+The reason this isn't something people are using yet is because while the academics have proven it to be possible, actually converting complicated programs like compositions of ciphers and hash-functions into zero-knowledge proofs with useful levels of performance currently requires toolkits that are not yet publicly available. However, the [SCIPR Lab team](http://scipr-lab.org/) have claimed they will open source their software some time in 2014. "[Verifying computations without reexecuting them: from theoretical possibility to near practicality](http://eccc.hpi-web.de/report/2013/165/download/)" is a good paper that gives an overview of progress fo far.
 
 ##But what if they're just anti-social and don't redeem the txn?
 
