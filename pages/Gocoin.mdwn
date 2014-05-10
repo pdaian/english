@@ -23,7 +23,7 @@ For this purpose Gocoin uses its own database engine, that has been designed to 
 To speed up the Elliptic Curve operations [the secp256k1 library by sipa](https://github.com/bitcoin/secp256k1) has been ported to Go.
 
 ###Online client
-The online client is a kind of a server software that is meant to be running all the time.
+The online client is a kind of a server software (or a peer-to-peer node) that is meant to be running all the time.
 
 It handles the network related communication, feeds the core lib with new incoming blockchain data, monitors balances on the wallets' addresses,  manages transaction memory pool and the peers database. It also provides an interactive user interface.
 
