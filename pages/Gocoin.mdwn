@@ -19,9 +19,8 @@ Inside the package, there is also a blocks persistent storage database (blockdb.
 The core library interfaces directly with a UTXO database backed.
 For this purpose Gocoin uses its own database engine, that has been designed to deal with the specific characteristics of bitcoin's UTXO database. 
 
-####newec
-To speed up the ECDSA operations [the secp256k1 library by sipa](https://github.com/bitcoin/secp256k1) has been ported to Go.
-It is used as a default ECDSA library by the online node (client).
+####secp256k1
+To speed up the Elliptic Curve operations [the secp256k1 library by sipa](https://github.com/bitcoin/secp256k1) has been ported to Go.
 
 ###Online client
 The online client is a kind of a server software that is meant to be running all the time.
