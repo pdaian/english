@@ -1,0 +1,75 @@
+Altcoins are cryptocurrencies other than Bitcoin that use Bitcoin technology including the blockchain. The majority of altcoins are forks of Bitcoin with small uninteresting changes. This page is organized by how the altcoin modified Bitcoin and explains the advantages and disadvantages of these altcoins.
+
+##Different Hashing Algorithm
+
+The hashing algorithm used for mining Bitcoin is SHA2. It was chosen because it is fast to verify and has been critically analyzed. SHA2 has had ASICs developed for it meaning there is a much smaller risk of centralization. Changing the hashing algorithm is one of the most common and easiest changes you can make. This is why a majority of altcoins have a different hashing algorithm. The following mining algorithms are being used in different altcoins:
+
+* Scrypt Mining Algorithm
+	* Litecoin
+	* Dogecoin (Litecoin Fork)
+	* Vertcoin (Scrypt-n)
+* Many algorithms at once (each block is hashed with a combination of algorithms)
+	* Quark
+	* Darkcoin
+* Many algorithms in parallel (each block can be hashed by an algorithm of your choosing)
+	* Myriadcoin
+
+The problem with having an algorithm that is "easy to mine with" (referring to the ability to CPU or GPU mine profitably) is that mining should be hard in order to secure the network. When a mining algorithm is difficult to make ASICs for, you risk a group creating ASICs and monopolizing the market. Many argue that the creators of the developers could simply change the mining algorithm when an ASIC is developed, but this defeats the purpose of decentralized consensus by causing centralization. (2.1)
+
+If these cryptocurrencies do have a healthy number of companies producing ASICs and have avoided centralization, they still have algorithms that take longer to verify than SHA2 in use. Therefore, at best these cryptocurrencies are as good as an exact clone of Bitcoin and not better. Because Bitcoin already exists, these cryptocurrencies have no use.
+
+##Proof Of Stake
+
+In [[Proof_of_Stake]], instead of sacrificing energy to mine a block, a user must prove they own a certain amount of the cryptocurrency to generate a block. The more stake you own, the more likely you are to generate a block. In theory, this should prevent users from creating forks because it will devalue their stake and it should save a lot of energy. The following cryptocurrencies use Proof of Stake:
+
+* Proof of Stake combined with Proof of Work
+	* Peercoin
+* "Pure" Proof of Stake
+	* Blackcoin
+	* NXT
+
+Proof of Stake sounds like a good idea, but ironically, there is the "Nothing at Stake" problem. Because mining Bitcoin is costly, it is not smart to waste your energy on a fork that won't earn you any money, however with Proof of Stake, it is free to mine a fork.
+
+An example of a nothing at stake attack is an attacker buying 51% of the cryptocurrency, then selling it all back, and finally once they have been paid for the currency they sold, they begin forging blocks starting at a block where they owned the 51% stake. The attacker still has been paid for their sold coins, but they can earn them back easily.
+
+This attack isn't computationally expensive, but it does require a large amount of money to buy 51% of the currency. There are also "stake grinding" attacks which require a trivial amount of currency. In a stake grinding attack, the attacker has a small amount of stake and goes through the history of the blockchain and finds places where their stake wins a block. In order to consecutively win, they modify the next block header until some stake they own wins once again. This attack requires a bit of computation, but definately isn't impractical. Because this attack exists, proof of stake cryptocurrencies including Peercoin (3.1) and Blackcoin (3.2) have "master" public keys that control the blockchain. NXT was closed source until recently, so the difficulty of reverse engineering their cryptocurrency protected them from nothing at stake attacks.
+
+This class of cryptocurrency is either insecure or centralized.
+
+##Application Built on top Of Cryptocurrency
+
+Bitcoin is a lot like HTTP. It is an application layer protocol and tools can be built on it (like websites can be built on HTTP). There is a class of cryptocurrencies that promise features like casino websites and exchanges and anonymity protocols to be built on top of them.
+
+When creating a new website, one doesn't make a new protocol unless it is necessary. For example, HTTPS is an encrypted version of HTTP, therefore it is useful and necessary. When creating an app such as "[DarkSend](https://bitcointalk.org/index.php?topic=467857.0)", one doesn't need to make a new protocol such as "Darkcoin".
+
+Because Darkcoin is by far the most popular cryptocurrency of this class I will only cover it in this section.
+
+The Darkcoin devs created a tool called DarkSend. DarkSend is an implementation of coinjoin (an anonymity feature originally implemented in Bitcoin (4.1)) which utilizes the Darkcoin network to organize the coinjoins. If DarkSend becomes open source and is useful, it will be ported to Bitcoin with a few small modifications. Currently DarkSend masternodes are paid 10% of the block reward after they pay 1000DRK to become a masternode. (4.2) This is flawed because while paying 1000DRK is trustlessly verifiable, a user running a DarkSend masternode isn't trustlessly verifiable. It is also costs bandwidth to run a masternode, therefore there is an incentive to pay 1000DRK to get a fraction of the 10% block reward masternodes are being paid, but not actually act as a masternode. For this reason, DarkSend would work better if the masternodes were paid by those they were helping coinjoin, or if there wasn't a masternode at all and everyone collaborated in a decentralized fashion. The better implementation not vulnerable to the attack I have described is compatible with Bitcoin, therefore, the Darksend protocol serves no purpose.
+
+There are proposed protocols such as the [[Zerocoin]] protocol that wouldn't be compatible with the Bitcoin protocol and do have a purpose.
+
+##Demographic Based Premined Cryptocurrencies
+
+This is a new class of altcoin that is targeted at a certain demographic including:
+
+* Auroracoin - Targeted at Iceland which suffers from inflation
+* Isracoin - Targeted at Israel
+* Karplescoin - Targeted at MtGox victims
+
+All of these cryptocurrencies have a large premine intended to be paid to members of that demographic. Ultimately, all of these coins have suffered (or are suffering) their fate of an immediate sell off after the "airdrop" (term for distribution of coins to the target demographic) begins.
+
+##Useful Cryptocurrencies
+
+A cryptocurrency is useful is it accomplishes a task that Bitcoin cannot. Useful cryptocurrencies include:
+
+* Namecoin - Able to act as a keystore for things like decentralized domain registration
+* Freicoin - Can be used to create digital assets used to transact smart property, stocks and other goods
+
+##References
+
+2.1: [ASIC FAQ](https://download.wpsoftware.net/bitcoin/asic-faq.pdf)  
+3.1: [Centralized Checkpointing Public Key](https://github.com/ppcoin/ppcoin/blob/master/src/checkpoints.cpp#L370)  Centralized Checkpointing Public Key  
+3.2: [Centralized Checkpointing Public Key](https://github.com/rat4/blackcoin/blob/master/src/checkpoints.cpp#L361)  Centralized Checkpointing Public Key  
+4.1: https://bitcointalk.org/index.php?topic=279249.0  
+4.2: [DarkSend Payment Scheme](https://darkcointalk.org/threads/darkcoin-update-masternode-requirements-masternode-payments.225/)
+
