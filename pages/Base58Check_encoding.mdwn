@@ -67,7 +67,7 @@ The Base58 symbol chart used in Bitcoin is specific to the Bitcoin project and i
 |56|y|57|z
 
 
-The algorithm for encoding address_byte_string (consisting of 0x01 + hash + 4-byte_check_code) is
+The algorithm for encoding address_byte_string (consisting of 1-byte_version + hash_or_other_data + 4-byte_check_code) is
 
 	code_string = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
 	x = convert_bytes_to_big_integer(hash_result)
