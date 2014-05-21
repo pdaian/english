@@ -87,6 +87,8 @@ Checking process:
 
 P2SH addresses were created with the motivation of moving "the responsibility for supplying the conditions to redeem a transaction from the sender of the funds to the redeemer. They allow the sender to fund an arbitrary transaction, no matter how complicated, using a 20-byte hash"[1](https://github.com/bitcoin/bips/blob/master/bip-0016.mediawiki#motivation). Pay-to-Pubkey-hash addresses are similarly a 20-byte hash of the public key. 
 
+Pay-to-script-hash provides a means for complicated transactions, unlike the Pay-to-pubkey-hash, which has a specific definition for scriptPubKey, and scriptSig. The specification places no limitations on the script, and hence absolutely any contract can be funded using these addresses. 
+
 The scriptPubKey in the funding transaction is script which ensures that the script supplied in the redeeming transaction hashes to the script used to create the address. 
 
 In the scriptSig above, 'signatures' refers to any script which is sufficient to satisfy the following serialized script. 
