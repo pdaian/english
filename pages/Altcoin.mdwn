@@ -32,7 +32,7 @@ Proof of Stake sounds like a good idea, but ironically, there is the "Nothing at
 
 An example of a nothing at stake attack is an attacker buying 51% of the cryptocurrency, then selling it all back, and finally once they have been paid for the currency they sold, they begin forging blocks starting at a block where they owned the 51% stake. The attacker still has been paid for their sold coins, but they can earn them back easily.
 
-This attack isn't computationally expensive, but it does require a large amount of money to buy 51% of the currency. There are also "stake grinding" attacks which require a trivial amount of currency. In a stake grinding attack, the attacker has a small amount of stake and goes through the history of the blockchain and finds places where their stake wins a block. In order to consecutively win, they modify the next block header until some stake they own wins once again. This attack requires a bit of computation, but definately isn't impractical. Because this attack exists, proof of stake cryptocurrencies including Peercoin (3.1) and Blackcoin (3.2) have "master" public keys that control the blockchain. NXT was closed source until recently, so the difficulty of reverse engineering their cryptocurrency protected them from nothing at stake attacks.
+This attack isn't computationally expensive, but it does require a large amount of money to buy 51% of the currency. There are also "stake grinding" attacks which require a trivial amount of currency. In a stake (3.1) grinding attack, the attacker has a small amount of stake and goes through the history of the blockchain and finds places where their stake wins a block. In order to consecutively win, they modify the next block header until some stake they own wins once again. This attack requires a bit of computation, but definately isn't impractical. Because this attack exists, proof of stake cryptocurrencies including Peercoin (3.2) and Blackcoin (3.3) have "master" public keys that control the blockchain. NXT was closed source until recently, so the difficulty of reverse engineering their cryptocurrency protected them from nothing at stake attacks.
 
 This class of cryptocurrency is either insecure or centralized, however proof of stake (based on a PoW currency) is useful in some systems because gaining stake is costly, but it isn't workable for bootstrapping distributed consensus.
 
@@ -68,8 +68,9 @@ A cryptocurrency is useful if it accomplishes a task that Bitcoin cannot. Useful
 ##References
 
 2.1: [ASIC FAQ](https://download.wpsoftware.net/bitcoin/asic-faq.pdf)  
-3.1: [Centralized Checkpointing Public Key](https://github.com/ppcoin/ppcoin/blob/master/src/checkpoints.cpp#L370)  Centralized Checkpointing Public Key  
-3.2: [Centralized Checkpointing Public Key](https://github.com/rat4/blackcoin/blob/master/src/checkpoints.cpp#L361)  Centralized Checkpointing Public Key  
+3.1: [Peercoin Security Analysis](https://bitcointalk.org/index.php?topic=131901.0)  
+3.2: [Centralized Checkpointing Public Key](https://github.com/ppcoin/ppcoin/blob/master/src/checkpoints.cpp#L370)  Centralized Checkpointing Public Key  
+3.3: [Centralized Checkpointing Public Key](https://github.com/rat4/blackcoin/blob/master/src/checkpoints.cpp#L361)  Centralized Checkpointing Public Key  
 4.1: [BitcoinTalk](https://bitcointalk.org/index.php?topic=279249.0)  BitcoinTalk  
 4.2: [Rotating Coinjoiner](https://www.wpsoftware.net/coinjoin/)  
 4.3: [DarkSend Payment Scheme](https://darkcointalk.org/threads/darkcoin-update-masternode-requirements-masternode-payments.225/)
