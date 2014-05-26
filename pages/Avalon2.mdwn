@@ -145,8 +145,18 @@ The USB on the AR9331 has bugs. If you want use serial console, please use the d
 
 # Test plan
 
+* New firmware don't break Avalon for sure
+* New firmware don't use all flash. have to keep some space for save configuration
+* Either and WiFi(703N) connect works fine
+* Cgminer works fine(the kernel user driver, cgminer it self, cgminer-monitor and uci configurations files)
+* After configure cgminer. [& Apply](Save) can restart the cgminer
+* The Status/API log page works fine
+* Test mining. the hashrate should be correct
+* Test the cgminer-monitor. make sure it can restart cgminer
+* When network was down poweroff ASIC
+* Automatic fan adjustment
+* Make sure 80/22/4028 open on WAN.
 * Test 10 avalon2 single module with one host (703N or RPi)
-
 
 # Testing on ASIC cores
 
