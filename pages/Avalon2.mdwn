@@ -103,6 +103,22 @@ The USB on the AR9331 has bugs. If you want use serial console, please use the d
 
 # Firmware
 
+## [http://downloads.canaan-creative.com/software/avalon2/2014-05-26 20140526]
+
+* Update to OpenWrt r40859, Update cgminer to 4.3.3
+* Add option: **--avalon2-cutoff** <arg> Set Avalon2 overheat cut off temperature (default: 88)
+* Add option: **--avalon2-fixed-speed** Set Avalon2 fan to fixed speed
+* Update default modulars from **3 to 4**
+* Only display the module that attached
+* Ignore frequent stratum message. make MM have more time to hashing
+* Fix the share cannot count to correct device(miner thread)
+* Cut the ASIC power when network was down for 3 minutes
+* Automatic fan speed adjustment
+* New feature. module indicator by using the red led
+* Fixed hashrate count when start and ignore disabled module
+* **Fixed a bug that may lose hashrate. 5% ~ 8% hashreate improvement.**
+* Code improvement: dev type detect, job_id crc16 compare, display GHS, etc.
+
 ## [http://downloads.canaan-creative.com/software/avalon2/2014-04-23 20140423]
 
 * Here: http://downloads.canaan-creative.com/software/avalon2/2014-04-23
@@ -143,20 +159,6 @@ The USB on the AR9331 has bugs. If you want use serial console, please use the d
 ## [http://downloads.canaan-creative.com/software/avalon2/NEXT-TESTING/ NEXT-TESTING]
 
 * NOTICE: Only for testing
-
-* Update to OpenWrt r40859, Update cgminer to 4.3.3
-* Add option: **--avalon2-cutoff** <arg> Set Avalon2 overheat cut off temperature (default: 88)
-* Add option: **--avalon2-fixed-speed** Set Avalon2 fan to fixed speed
-* Update default modulars from **3 to 4**
-* Only display the module that attached
-* Ignore frequent stratum message. make MM have more time to hashing
-* Fix the share cannot count to correct device(miner thread)
-* Cut the ASIC power when network was down for 3 minutes
-* Automatic fan speed adjustment
-* New feature. module indicator by using the red led
-* Fixed hashrate count when start and ignore disabled module
-* **Fixed a bug that may lose hashrate. 5% ~ 8% hashreate improvement.**
-* Code improvement: dev type detect, job_id crc16 compare, display GHS, etc.
 
 # Test plan
 
