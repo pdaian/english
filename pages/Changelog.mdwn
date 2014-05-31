@@ -3,6 +3,19 @@ Note that some download links are not longer valid as highly insecure versions m
 
 #Changelogs
 
+https://bitcoin.org/en/release/v0.7.1
+##0.7.X
+
+###0.7.1<ref>[https://bitcoin.org/en/release/v0.7.1 0.7.1 release announcement]</ref>
+
+New features:
+
+* Added a boolean argument to the RPC stop command, if true sets -detachdb to create standalone database .dat files before shutting down.
+
+* -salvagewallet command-line option, which moves any existing wallet.dat to wallet.{timestamp}.dat and then attempts to salvage public/private keys and master encryption keys (if the wallet is encrypted) into a new wallet.dat. This should only be used if your wallet becomes corrupted, and is not intended to replace regular wallet backups.
+
+* Import $DataDir/bootstrap.dat automatically, if it exists.
+
 ##0.6.X
 After 0.6.3, all subsequent releases are stable maintenance releases, 0.7.0 is based on 0.6.3.
 
