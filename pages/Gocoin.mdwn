@@ -8,7 +8,7 @@ Gocoin's architecture is quite different from the reference implementation (of t
 
 ###Libraries
 
-####btc
+####btc / chain / script
 The core of the software is a library that essentially provides the blockchain protocol parser. That includes script parsing, ECDSA signature verification, but also things like address encoding, parsing of canonical signatures or extracting hashes that need to be signed for specific inputs of a given transaction.
 
 It is a relatively big library, that contains many useful bitcoin function.
