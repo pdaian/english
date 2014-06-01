@@ -17,11 +17,11 @@ When bitcoins are stored online, the provider retains full control of those amou
 Other relevant things:
 
 * You typically have less anonymity with respect to those who run the online wallet site.
-* If a payment is made from an online wallet, the transaction's "from" [[address]] is an address for the wallet provider and not an address reserved specifically for the sender.  This is because the wallet service provider may service the payment from any coins in its possession - your balance is not associated with any particular coins, any more than your balance at your local bank is associated with any specific bills.  Thus if the recipient were to "return" any bitcoins to the same address they were sent from, the sender would not receive those bitcoins.
+* If a payment is made from an online wallet, the last-sent-to [[address]] (often [incorrectly called a 'from' address](https://iwilcox.me.uk/2014/no-from-address)) is an address for the wallet provider and not an address reserved specifically for the sender.  This is because the wallet service provider may service the payment from any coins in its possession - your balance is not associated with any particular coins, any more than your balance at your local bank is associated with any specific bills.  Thus if the recipient were to "return" any bitcoins to the last-sent-to address, the sender would not receive those bitcoins &mdash; but last-sent-to addresses are [completely unsuitable for that anyway](https://iwilcox.me.uk/2014/no-from-address#assumptions).
 
 * Not all wallet providers reserve a bitcoin address for the account holder indefinitely.  Bitcoin addresses generally work best when one is assigned for each use.  There is the risk of showing an address from a wallet provider in a directory or on a web page (for donations, as an example) as there is the possibility that at the future date when those bitcoins are sent that the intended recipient still has the wallet account.  The same concern applies should the wallet provider cease operations.
 
-* There is no trivial way to guarantee that the amount of bitcoins showing for the account holder's balance are truly being held in reserve by the wallet provider.
+* While there are ways for the wallet provider to [demonstrate that they operate with full reserves](https://iwilcox.me.uk/2014/proving-bitcoin-reserves), the practice is not widespread and doesn't protect against security breaches or the owner suddenly absconding with all funds.
 
 * Transactions to a Bitcoin address from the same wallet provider are usually completed internally and, if so, will not be processed on the Bitcoin P2P network.  Auditing tools such as the [[Block_Explorer]] will not show any activity for this transaction.
 	* Some wallet providers allow amounts below 0.01 BTC to be sent if the transaction is to another account holder on the same service.  This allows an inexpensive and immediate method to detect if the recipient is using the same wallet provider. 
@@ -30,14 +30,21 @@ Other relevant things:
 
 ##Hybrid e-wallets
 
-After several online bitcoin wallets were hacked, a second wave of online Bitcoin wallets entered the market. Hybrid wallets generally use Javascript on the users browser to manage private keys and create payments.
+After several online bitcoin wallets were hacked, a second wave of online Bitcoin wallets entered the market. Hybrid wallets generally use Javascript in the user's browser to manage private keys and create payments.
 
 These wallets differed from traditional online wallet services because the user actually owns the private keys inside their wallet. This approach has several advantages:
 
-* The "from" address of a transaction originates from the actual bitcoin address of the user.
-* The user can lookup their account balance in the blockchain and which guarantees their account balance is correct.
-* Users can easily export their private keys out of a wallet to use with another bitcoin client or wallet provider.
-* The users keys are stored encrypted on the server offering some protection for security breaches.
+* The user can look up their account balance in the blockchain and which guarantees their account balance is correct.
+* Users can easily export their private keys out of a wallet to use with another bitcoin client or wallet provider; if they take backups of the code and wallet data, this may even be possible if the provider disappears.
+* The users' keys are stored encrypted on the server, offering some protection for security breaches if strongly encrypted.
+* As each address has only one user, it's less likely that [misguided attempts to "return" coins](https://iwilcox.me.uk/2014/no-from-address) to their last-sent-to address will result in loss of coins.
+
+However, there are limits on what this model can achieve:
+
+* A single server compromise or abuse of trust can still result in losses for many users if the site serves maliciously modified Javascript.
+* Unless users make use of the backup/export facility, they're no less exposed to wallet data loss or confiscation by the provider.
+* The user's browser still presents a relatively large attack surface for exploits.
+* Facilities for obtaining entropy in the browser of a grade suitable for strong cryptography are currently poor, and custom entropy code almost never undergoes qualified review, so any keys or nonces created at the browser end may be weak.
 
 ##See Also
 
