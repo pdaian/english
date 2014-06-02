@@ -6,7 +6,7 @@ The "raw transaction API" was introduced with  [[Bitcoin-Qt/bitcoind version 0.7
 ### listunspent [minconf=1] [maxconf=999999]==
 Returns an array of unspent transaction outputs in the wallet that have between minconf and maxconf (inclusive) confirmations. Each output is a 5-element object with keys: txid, output, scriptPubKey, amount, confirmations. txid is the hexadecimal transaction id, output is which output of that transaction, scriptPubKey is the hexadecimal-encoded CScript for that output, amount is the value of that output and confirmations is the transaction's depth in the chain.
 ### lockunspent unlock? [{"txid":txid,"vout":n},...]
-Temporarily lock (true) or unlock (false) specified transaction outputs.  A locked transaction output will not be chosen by automatic coin selection, when spending bitcoins.  Locks are stored in memory only.  Nodes start with zero locked outputs, and the locked output list is always cleared (by virtue of process exit) when a node stops or fails.
+Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs. A locked transaction output will not be chosen by automatic coin selection, when spending bitcoins.  Locks are stored in memory only.  Nodes start with zero locked outputs, and the locked output list is always cleared (by virtue of process exit) when a node stops or fails.
 
 ### listlockunspent
 List all temporarily locked transaction outputs.
