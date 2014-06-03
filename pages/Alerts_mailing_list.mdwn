@@ -1,1 +1,22 @@
-This service is no longer offered.
+The Bitcoin [[Protocol_specification]] supports the broadcast of [[Alerts]]. An unofficial email relay is now provided that rebroadcasts these [[block_chain]] related alerts. To subscribe via email send an email to **bitcoin-unofficial-alerts+subscribe@googlegroups.com** [(1)](mailto:bitcoin-unofficial-alerts+subscribe@googlegroups.com) and you should receive an email asking you to verify your subscription.
+
+Alternatively, you can browse to the Google Group for the list [(2)](https://groups.google.com/forum/#!forum/bitcoin-unofficial-alerts). By default Google Groups does not send emails, so when you sign up you will likely want to choose to get notifications via email.
+
+##Verify alerts and obtain the latest status information
+If you receive an alert you should **immediately verify it is official** by running "bitcoind getinfo" (but see notes below), go to bitcoin.org [[http://www.bitcoin.org]] to obtain more details and background, or join the #bitcoin [[IRC_channels]] on freenode to obtain the latest information.
+
+##Notes
+
+* Alerts are broadcast to a specified range of Bitcoin versions.
+* The email relay uses a specially patched version of bitcoind that should report and therefore relay *any* alert broadcast for *any* version.
+* You will therefore have to verify whether or not the alert is actually relevant to your particular version of Bitcoin client.
+* Alerts are also independent of blocks or transactions, and have a defined time-to-live.
+* The email relay polls bitcoind every six minutes.
+
+##Feedback
+Please send any comments or requests to Gary Mulder [(1)](mailto:flyingkiwiguy@gmail.com).
+
+[[!tag "Services"]]
+[[!tag "Developer"]]
+[[!tag "ECommerce"]]
+[[!tag "Defunct_products_or_services"]]
