@@ -1,10 +1,10 @@
 ## OpenSSL Without Elliptic Curve Support
 
-Some algorithms in OpenSSL library may be restricted by patent law. Due to strong coupling between the elliptic curve support Bitcoin requires and these nominally non-free algorithms, some Linux distributions (most notably Fedora) ship OpenSSL libraries with elliptic curve support disabled. Since Bitcoin depends on elliptic curve cryptography, it cannot be used with such libraries.
+Some algorithms in OpenSSL library may be restricted by patent law. Due to strong coupling between the elliptic curve support Bitcoin requires and these nominally non-free algorithms, some Linux distributions (most notably Fedora) ship OpenSSL libraries with elliptic curve support disabled. Since Bitcoin depends on elliptic curve cryptography (although *not* on any restricted algorithms), it cannot be used with such libraries.
 
 ## Fixes / Workarounds
 
 Some fixes are
 
 * Compile your own OpenSSL and use this rather than the distribution package manager's library.
-* Use the RPMs provided by gmaxwell [(1)](https://people.xiph.org/~greg/openssl/) rather than the distribution package manager's library. (Warning: as of May 2014, these libraries are still vulnerable to the Heartbleed exploit, which does not seriously affect Bitcoin but may expose other parts of your system.)
+* Use the RPMs provided by gmaxwell [(1)](https://people.xiph.org/~greg/openssl/) rather than the distribution package manager's library. (Warning: as of May 2014, these libraries are still vulnerable to the Heartbleed exploit, which affects Bitcoin through the RPC interface and payment protocol; it may also expose other applications on your system which use OpenSSL).
