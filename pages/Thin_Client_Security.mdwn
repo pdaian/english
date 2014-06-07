@@ -6,7 +6,7 @@ It is important to distinguish between block height verification and block depth
 
 A client verifies the height H of a block by checking that there are H block **before** it, all of which are well-formed and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client,  libbitcoin, and btcd do block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
 
-A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV clients substitute block depth for block height as a transaction validity check.  All clients use block depth as a measure of the liklihood of a [[blockchain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction (i.e. [[orphaning|Orphan_Block]] its block).
+A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV clients substitute block depth for block height as a transaction validity check.  All clients use block depth as a measure of the liklihood of a [[block chain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction (i.e. [[orphaning|Orphan_Block]] its block).
 
 See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
 
@@ -16,7 +16,7 @@ The "thick" bitcoin client downloads a copy of the entire chain, including all t
 
 ### Block '''Height''' as a Transaction Validity Check
 
-A full-chain client trusts the difficultywise-longest [well-formed](https://en.bitcoin.it/wiki/Protocol_rules#Blocks) blockchain it can find.  Any transaction on the difficultywise-longest well-formed chain is considered valid.  Therefore, the validity of a transaction is determined by its height -- i.e. how many blocks come *before* it.  A transaction's *depth* (the number of blocks *after* it) is used to determine the likelihood of the transaction being invalidated due to the emergence of a longer fork.
+A full-chain client trusts the [[difficultywise-longest|Protocol_rules#Blocks_well-formed]] block chain it can find.  Any transaction on the difficultywise-longest well-formed chain is considered valid.  Therefore, the validity of a transaction is determined by its height -- i.e. how many blocks come *before* it.  A transaction's *depth* (the number of blocks *after* it) is used to determine the likelihood of the transaction being invalidated due to the emergence of a longer fork.
 
 #### [[bitcoin-qt|bitcoind]]
 
@@ -24,7 +24,7 @@ A full-chain client trusts the difficultywise-longest [well-formed](https://en.b
 
 ## Header-Only Clients
 
-These client downloads a complete copy of the headers for all blocks in the entire blockchain.  This means that the download and storage requirements scale linearly with the amount of time since bitcoin was invented; it would be preferable to have the scaling be logarithmic or even constant.
+These client downloads a complete copy of the headers for all blocks in the entire block chain.  This means that the download and storage requirements scale linearly with the amount of time since bitcoin was invented; it would be preferable to have the scaling be logarithmic or even constant.
 
 ### Simplified Payment Verification (SPV)
 
@@ -61,19 +61,19 @@ The library (libccoin) that picocoin is based on includes code for validating sc
 ThomasV [claims](https://en.bitcoin.it/w/index.php?title=Thin_Client_Security&action=historysubmit&diff=42844&oldid=36519) that "Electrum, it is doing SPV since 2012".
 
 
-### Unused Output Tree in the Blockchain (UOT)
+### Unused Output Tree in the Block chain (UOT)
 
-There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell, who called it an "open transaction tree", although the term "open" is now taken to mean "not yet mined into the blockchain" rather than "unspent") to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).  This will be called an Unused Output Tree (UOT).  The first detailed proposal so far appears to be [Alberto Torres' proposal](https://en.bitcoin.it/wiki/User:DiThi/MTUT); etotheipi's [ultimate blockchain compression](https://bitcointalk.org/index.php?topic=88208.0) is a variant of this.
+There have been several proposals (the first appears to be [this one](https://bitcointalk.org/index.php?topic=21995.0) by gmaxwell, who called it an "open transaction tree", although the term "open" is now taken to mean "not yet mined into the block chain" rather than "unspent") to form a tree of unused transaction outputs at each block in the chain, hash it as a Merkle tree, and encode the root hash in the block chain (probably as part of the coinbase input).  This will be called an Unused Output Tree (UOT).  The first detailed proposal so far appears to be [Alberto Torres' proposal](https://en.bitcoin.it/wiki/User:DiThi/MTUT); etotheipi's [ultimate block chain compression](https://bitcointalk.org/index.php?topic=88208.0) is a variant of this.
 
-If such UOT hashes were included in the blockchain, a client which shipped with a [checkpoint](https://en.bitcoin.it/wiki/Vocabulary) block that had a UOT would only need to download blocks after the checkpoint.  Moreover, once the client had downloaded those blocks and confirmed their UOTs, it could discard all but the most recent block containing a UOT.
+If such UOT hashes were included in the block chain, a client which shipped with a [checkpoint](https://en.bitcoin.it/wiki/Vocabulary) block that had a UOT would only need to download blocks after the checkpoint.  Moreover, once the client had downloaded those blocks and confirmed their UOTs, it could discard all but the most recent block containing a UOT.
 
-This would also let a thin client reduce the question of "is this output unspent" to the question of "is this block super-well-formed" where "well-formed" means "well-formed according to the normal blockchain rules and additionally has an Unused Output Tree which is accurate and truthful".  This is still a long way from the low level of trust involved in the thick client, but it is a major improvement over all existing proposals.
+This would also let a thin client reduce the question of "is this output unspent" to the question of "is this block super-well-formed" where "well-formed" means "well-formed according to the normal block chain rules and additionally has an Unused Output Tree which is accurate and truthful".  This is still a long way from the low level of trust involved in the thick client, but it is a major improvement over all existing proposals.
 
-It is unlikely that bitcoin would ever arrive at a state where every single block had a UOT, since this would require upgrading 100% of the miners on the network, or else convincing enough miners to reject blocks which do not contain a UOT.  The latter strategy risks creating blockchain forks, which can be expensive (in reward terms) to miners.  Therefore, any UOT strategy would need to cope with the fact that not every block contains a UOT.
+It is unlikely that bitcoin would ever arrive at a state where every single block had a UOT, since this would require upgrading 100% of the miners on the network, or else convincing enough miners to reject blocks which do not contain a UOT.  The latter strategy risks creating block chain forks, which can be expensive (in reward terms) to miners.  Therefore, any UOT strategy would need to cope with the fact that not every block contains a UOT.
 
 Hostile miners may insert blocks into the chain which have what claims to be a UOT, but which is actually invalid.  It is unlikely that such blocks could be kept out of the chain because, again, this would require adding a new block well-formedness criterion, and miners implementing this new criterion would risk "mining on the wrong side" of a fork, which could cost them a lot of money.  Therefore, any UOT strategy would need to cope with the fact that not every block containing a UOT entry can be trusted.
 
-Note that at the present moment no standard format for such Unused Output Tree hashes has been agreed upon, nor do any of the blocks in the chain contain them.  The [ultraprune](https://bitcointalk.org/index.php?topic=91954) feature added to bitcoind-0.8 maintains a similar data structure on the client's disk.  It does not put this data structure or its hash anywhere in the blockchain.
+Note that at the present moment no standard format for such Unused Output Tree hashes has been agreed upon, nor do any of the blocks in the chain contain them.  The [ultraprune](https://bitcointalk.org/index.php?topic=91954) feature added to bitcoind-0.8 maintains a similar data structure on the client's disk.  It does not put this data structure or its hash anywhere in the block chain.
 
 ## Server-Trusting Clients
 
@@ -83,7 +83,7 @@ All thin clients listed below currently connect to a single server, and are vuln
 
 Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (14.1).  [This post](https://bitcointalk.org/index.php?topic=88208.msg975201#msg975201) on bitcointalk explains how some governments (notably Iran and China) already perform these sorts of attacks on their own citizens, with the coerced assistance of SSL certificate authorities.
 
-Clients with a checkpoint (even a very old one) that download and validate the headers for the whole blockchain are [not vulnerable](http://bitcoinmedia.com/the-irc-bootstrap-method-is-flawed/#comment-4243) to Sybil attacks in the following sense: they can always ensure that an attack would cost more than the amount being stolen.
+Clients with a checkpoint (even a very old one) that download and validate the headers for the whole block chain are [not vulnerable](http://bitcoinmedia.com/the-irc-bootstrap-method-is-flawed/#comment-4243) to Sybil attacks in the following sense: they can always ensure that an attack would cost more than the amount being stolen.
 
 ### [[BCCAPI]]
 
