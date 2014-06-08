@@ -1,6 +1,6 @@
 ##Coinkite
 
-Coinkite (2.1) (2.2) (2.3) (2.4) (2.5) (2.6) (2.7) (2.8) (2.9) offers a number of useful [[bitcoin]] and [[litecoin]] services, including wallet and a hardware payment network.
+Coinkite (2.1) (2.2) (2.3) (2.4) (2.5) (2.6) (2.7) (2.8) (2.9) offers a number of useful [[bitcoin]] services, including wallet and a hardware payment network.
 
 ##Main features
 
@@ -22,8 +22,6 @@ Coinkite (2.1) (2.2) (2.3) (2.4) (2.5) (2.6) (2.7) (2.8) (2.9) offers a number o
 
 * multiple [[cryptocurrenies]]: bitcoin, litecoin, testnet coins are offered with equal features
 
-* Coinkite is the first Litecoin web wallet on the market (Oct 2013)
-
 ####Services Links
 
 * [Online wallets](https://coinkite.com/faq/money)
@@ -34,7 +32,7 @@ Coinkite (2.1) (2.2) (2.3) (2.4) (2.5) (2.6) (2.7) (2.8) (2.9) offers a number o
 
 ##Unique [[BIP]] 32 Feature
 
-Coinkite is internally based on BIP 32 [[Hierarchical_Deterministic]] (HD) wallets. Each new member receives a "welcome email" which contains the "xpubkey" (extended public key) for their deposits, and an *encrypted* copy of the corresponding xprivkey. The xpubkey (used for both Litecoin and Bitcoin) can be used by the account owner to see all public keys associated with their account (both past and future). Combined with the "audit" feature, the user can fetch a list of all UTXO (unspent transaction outputs) associated with their account and verify the public key's subpath from the given xpubkey. Similarly, they can check the UTXO is correctly stored on the blockchain.
+Coinkite is internally based on BIP 32 [[Hierarchical_Deterministic]] (HD) wallets. Each new member receives a "welcome email" which contains the "xpubkey" (extended public key) for their deposits, and an *encrypted* copy of the corresponding xprivkey. The xpubkey can be used by the account owner to see all public keys associated with their account (both past and future). Combined with the "audit" feature, the user can fetch a list of all UTXO (unspent transaction outputs) associated with their account and verify the public key's subpath from the given xpubkey. Similarly, they can check the UTXO is correctly stored on the blockchain.
 
 
 Coinkite has stated that in the event of the closure or other failure of the business, they will publicize the symmetric key protecting the xprivkey values that have been distributed to members. With that key, each user could recover their funds by re-generating the private keys for each UTXO. 
@@ -70,7 +68,7 @@ Other "non account holder" transactions that are possible:
 
 * print current exchange rates (Bitcoin vs. fiat) to a receipt
 
-* deposit cash into bitcoin/litecoin (ie. retailer is selling bitcoins)
+* deposit cash into bitcoin (ie. retailer is selling bitcoins)
 
 * coins are delivered to a URL or private key.
 
@@ -78,7 +76,7 @@ Other "non account holder" transactions that are possible:
 
 * scan to verify transaction (prints amount received, and confirmation status for Coinkite transactions)
 
-The POS terminal supports both Litecoin and Bitcoin for all operations. Coins can be delivered as a paper wallet, directly into a Coinkite account (must be pre-existing) or into web voucher (PIN code and short URL).
+The POS terminal supports Bitcoin for all operations. Coins can be delivered as a paper wallet, directly into a Coinkite account (must be pre-existing) or into web voucher (PIN code and short URL).
 
 ##External Links
 
