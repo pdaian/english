@@ -9,6 +9,8 @@ SHA2 has had ASICs developed for it meaning there is a much smaller risk of cent
 The following mining algorithms are being used in different altcoins:
 
 * [[Scrypt_proof_of_work]]
+* Combination of hashing algorithms in series (e.g. X11)
+* Combination of hashing algorithms in parallel (e.g. Myriad algorithm)
 
 The problem with having an algorithm that is "easy to mine with" (referring to the ability to CPU or GPU mine profitably) is that mining should be hard in order to secure the network. When a mining algorithm is difficult to make ASICs for, there is a higher barrier to entry. A high barrier to entry increases the time that the first group to create ASICs will monopolize the market (and the time the network is vulnerable to a 51% attack from a single source). Many argue that the creators or the developers could simply change the mining algorithm when an ASIC is developed, but this defeats the purpose of decentralized consensus by causing centralization. (2.1)
 
@@ -22,7 +24,7 @@ Proof of Stake sounds like a good idea, but ironically, there is the "Nothing at
 
 An example of a nothing at stake attack is an attacker buying 51% of the cryptocurrency, then selling it all back, and finally once they have been paid for the currency they sold, they begin forging blocks starting at a block where they owned the 51% stake. The attacker still has been paid for their sold coins, but they can earn them back easily.
 
-This attack isn't computationally expensive, but it does require a large amount of money to buy 51% of the currency. There are also "stake grinding" attacks which require a trivial amount of currency. In a stake (3.1) grinding attack, the attacker has a small amount of stake and goes through the history of the blockchain and finds places where their stake wins a block. In order to consecutively win, they modify the next block header until some stake they own wins once again. This attack requires a bit of computation, but definately isn't impractical. Because this attack exists, many proof of stake cryptocurrencies have "master" public keys that control the blockchain.
+This attack isn't computationally expensive, but it does require a large amount of money to buy 51% of the currency. There are also "stake grinding" attacks which require a trivial amount of currency. In a stake (3.1) grinding attack, the attacker has a small amount of stake and goes through the history of the blockchain and finds places where their stake wins a block. In order to consecutively win, they modify the next block header until some stake they own wins once again. This attack requires a bit of computation, but definately isn't impractical. Because this attack exists, including Peercoin (3.2) and Blackcoin (3.3) proof of stake cryptocurrencies have "master" public keys that control the blockchain.
 
 This class of cryptocurrency is either insecure or centralized, however proof of stake (based on a PoW currency) is useful in some systems because gaining stake is costly, but it isn't workable for bootstrapping distributed consensus.
 
@@ -48,10 +50,16 @@ Note: These cryptocurrencies aren't government initiatives, but are independentl
 
 A cryptocurrency is useful if it accomplishes a task that Bitcoin cannot.
 
+* Acting as a keystore for things like decentralized domain registration.
+* Using demmurage to incentivize sidechains.
+* Allowing creation of and transmission of digital assets.
+
 ##References
 
 2.1: [ASIC FAQ](https://download.wpsoftware.net/bitcoin/asic-faq.pdf)  
 3.1: [Peercoin Security Analysis](https://bitcointalk.org/index.php?topic=131901.0)  
+3.2: [Centralized Checkpointing Public Key](https://github.com/ppcoin/ppcoin/blob/master/src/checkpoints.cpp#L370)  Centralized Checkpointing Public Key  
+3.3: [Centralized Checkpointing Public Key](https://github.com/rat4/blackcoin/blob/master/src/checkpoints.cpp#L361)  Centralized Checkpointing Public Key  
 4.1: [BitcoinTalk](https://bitcointalk.org/index.php?topic=279249.0)  BitcoinTalk  
 4.2: [Rotating Coinjoiner](https://www.wpsoftware.net/coinjoin/)  
 4.3: [DarkSend Payment Scheme](https://darkcointalk.org/threads/darkcoin-update-masternode-requirements-masternode-payments.225/)
