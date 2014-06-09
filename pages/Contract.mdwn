@@ -177,7 +177,11 @@ Going back to our first example, the oracle has not seen the transaction the gra
 
 ###Trust minimization: multiple independent oracles
 
-The number of keys in the CHECKMULTISIG can be increased to allow for **n-of-m** oracles if need be.  Of course, it is vital to check that the oracles really are independent and not in collusion. An implementation of such a system, and explanation was published in the  **[Orisi whitepaper](http://github.com/orisi/wiki/wiki/Orisi-White-Paper)**
+The number of keys in the CHECKMULTISIG can be increased to allow for **n-of-m** oracles if need be.  Of course, it is vital to check that the oracles really are independent and not in collusion. An implementation of such a system, and explanation was published in the  **[Orisi whitepaper](http://github.com/orisi/wiki/wiki/Orisi-White-Paper)**.
+
+The idea, in short, is that independent oracles could be run by a set of trustworthy independent actors. Contract participants would first settle upon a set of oracles they both are comfortable using - for example by trusting [ a dedicated site](http://oracles.lo/) - and then sign a contract requiring most of the oracles signatures to resolve.
+
+One of the interesting properties of such a system is that it can possibly implement very complicated sets of scripts and external inputs, while being based on a set of standard bitcoin scripts. Another property is that the oracles can possibly replace each ones by forwarding the funds to new multisig addresses when they discover that one of the oracles is faulty/corrupted. Finally, such oracles could be used to implement sidechains without dedicated blockchain opcodes.
 
 ###Trust minimization: trusted hardware
 
