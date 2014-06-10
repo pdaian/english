@@ -6,6 +6,10 @@ Hashcash proofs of work are used in Bitcoin for block generation. Proofs of work
 
 For a block to be valid it must hash to a value less than the current [[target]]; this means that each block indicates that work has been done generating it. Each block contains the hash of the preceding block, thus each block has a [[chain|block_chain]] of blocks that together contain a large amount of work. Changing a block (which can only be done by making a new block containing the same predecessor) requires regenerating all successors and redoing the work they contain. This protects the block chain from tampering.
 
+The most widely used proof-of-work schemes are SHA-256, which was introduced by [[Bitcoin]], and scrypt, which is used by currencies such as Litecoin. (1.1) Some other hashing algorithms that are used for proof-of-work include Blake-256, CryptoNight, (1.2) HEFTY1, Quark, SHA-3, scrypt-jane, scrypt-n, X11, and X13.
+
+Some cryptocurrencies, such as Peercoin, use a combined [[proof-of-work]]/[[proof-of-stake]] scheme, (1.3) while others such as Nxt (1.4) exclusively use proof-of-stake.
+
 ## Example
 
 Let's say the base string that we are going to do work on is "Hello, world!". Our target is to find a variation of it that SHA-256 hashes to a value beginning with '000'. We vary the string by adding an integer value to the end called a [[nonce]] and incrementing it each time. Finding a match for "Hello, world!" takes us 4251 tries (but happens to have zeroes in the first four digits):
@@ -41,3 +45,11 @@ In Bitcoin things are a bit more complex, especially since the header contains t
 [[!tag "Proof-of-x"]]
 
 [[fr:Preuve de travail]]
+
+##References
+
+1.1: [SCRYPT CRYPTOCOINS - CryptoCoinTalk](http://cryptocointalk.com/forum/178-scrypt-cryptocoins/)  
+1.2: [Equal Proof-of-Work](https://cryptonote.org/inside.php#equal-proof-of-work) , Cryptonote.org  
+1.3: [PPCoin: Peer-to-Peer Crypto-Currency with Proof-of-Stake](http://barkingshibes.com/wp-content/uploads/2014/02/ppcoin-paper.pdf) Sunny King, Scott Nadal January 2014 Work: http://barkingshibes.com/wp-content/uploads/2014/02/ppcoin-paper.pdf, 19-08-2012  
+1.4: [NXTcrypto](http://www.nxtcrypto.org/) NXTcrypto
+
