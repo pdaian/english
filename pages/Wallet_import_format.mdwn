@@ -7,7 +7,7 @@ http://gobittest.appspot.com/PrivateKey
 ##Private key to WIF
 1 - Take a private key
 	0C28FCA386C7A227600B2FE50B7CAE11EC86D3BF1FBE471BE89827E19D72AA1D
-2 - Add a 0x80 byte in front of it for mainnet addresses or 0xef for testnet addresses
+2 - Add a 0x80 byte in front of it for mainnet addresses or 0xef for testnet addresses. Also add a 0x01 byte at the end if the private key will correspond to a compressed public key
 	800C28FCA386C7A227600B2FE50B7CAE11EC86D3BF1FBE471BE89827E19D72AA1D
 3 - Perform SHA-256 hash on the extended key
 	8147786C4D15106333BF278D71DADAF1079EF2D2440A4DDE37D747DED5403592
@@ -27,7 +27,7 @@ http://gobittest.appspot.com/PrivateKey
 	800C28FCA386C7A227600B2FE50B7CAE11EC86D3BF1FBE471BE89827E19D72AA1D507A5B8D
 3 - Drop the last 4 checksum bytes from the byte string
 	800C28FCA386C7A227600B2FE50B7CAE11EC86D3BF1FBE471BE89827E19D72AA1D
-4 - Drop the first byte (it should be 0x80). This is the private key
+4 - Drop the first byte (it should be 0x80). If the private key corresponded to a compressed public key, also drop the last byte (it should be 0x01). If it corresponded to a compressed public key, the WIF string will have started with K or L instead of 5 (or c instead of 9 on testnet). This is the private key.
 	0C28FCA386C7A227600B2FE50B7CAE11EC86D3BF1FBE471BE89827E19D72AA1D
 ##WIF checksum checking
 1 - Take the Wallet Import Format string
