@@ -49,7 +49,7 @@ When talking about scripts, these value-pushing words are usually omitted.
 |OP_NOTIF|100|0x64|colspan="2"<expression>if [[statements]][[statements]]* endif|If the top stack value is 0, the statements are executed. The top stack value is removed.
 |OP_ELSE|103|0x67|colspan="2"<expression>if [[statements]][[statements]]* endif|If the preceding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. 
 |OP_ENDIF|104|0x68|colspan="2"<expression>if [[statements]][[statements]]* endif|Ends an if/else block. All blocks must end, or the transaction is **invalid**. An OP_ENDIF without OP_IF earlier is also **invalid**.
-|OP_VERIFY|105|0x69|True / false|Nothing / False|**Marks transaction as invalid**if top stack value is not true. True is removed, but false is not.
+|OP_VERIFY|105|0x69|True / false|Nothing / False|**Marks transaction as invalid**if top stack value is not true.
 |OP_RETURN|106|0x6a|Nothing|Nothing|**Marks transaction as invalid**. 
 
 
