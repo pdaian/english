@@ -48,7 +48,7 @@ When talking about scripts, these value-pushing words are usually omitted.
 |OP_IF|99|0x63|colspan="2"<expression>if [[statements]][[statements]]* endif|If the top stack value is not 0, the statements are executed. The top stack value is removed.
 |OP_NOTIF|100|0x64|colspan="2"<expression>if [[statements]][[statements]]* endif|If the top stack value is 0, the statements are executed. The top stack value is removed.
 |OP_ELSE|103|0x67|colspan="2"<expression>if [[statements]][[statements]]* endif|If the preceding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. 
-|OP_ENDIF|104|0x68|colspan="2"<expression>if [[statements]][[statements]]* endif|Ends an if/else block.
+|OP_ENDIF|104|0x68|colspan="2"<expression>if [[statements]][[statements]]* endif|Ends an if/else block. All blocks must end, or the transaction is **invalid**. An OP_ENDIF without OP_IF earlier is also **invalid**.
 |OP_VERIFY|105|0x69|True / false|Nothing / False|**Marks transaction as invalid**if top stack value is not true. True is removed, but false is not.
 |OP_RETURN|106|0x6a|Nothing|Nothing|**Marks transaction as invalid**. 
 
@@ -181,19 +181,19 @@ These words are used internally for assisting with transaction matching. They ar
 
 
 ### Reserved words
-Any opcode not assigned is also reserved. Using an unassigned opcode makes the transaction invalid.
+Any opcode not assigned is also reserved. Using an unassigned opcode makes the transaction **invalid**.
 
 
 
 |Word|Opcode|Hex|When used...
 |---|---|---|---
-|OP_RESERVED|80|0x50|Transaction is invalid unless occuring in an unexecuted OP_IF branch
-|OP_VER|98|0x62|Transaction is invalid unless occuring in an unexecuted OP_IF branch
-|OP_VERIF|101|0x65|Transaction is invalid even when occuring in an unexecuted OP_IF branch
-|OP_VERNOTIF|102|0x66|Transaction is invalid even when occuring in an unexecuted OP_IF branch
-|OP_RESERVED1|137|0x89|Transaction is invalid unless occuring in an unexecuted OP_IF branch
-|OP_RESERVED2|138|0x8a|Transaction is invalid unless occuring in an unexecuted OP_IF branch
-|OP_NOP1-OP_NOP10|176-185|0xb0-0xb9|The word is ignored.
+|OP_RESERVED|80|0x50|**Transaction is invalid**unless occuring in an unexecuted OP_IF branch
+|OP_VER|98|0x62|**Transaction is invalid**unless occuring in an unexecuted OP_IF branch
+|OP_VERIF|101|0x65|**Transaction is invalid even when occuring in an unexecuted OP_IF branch**
+|OP_VERNOTIF|102|0x66|**Transaction is invalid even when occuring in an unexecuted OP_IF branch**
+|OP_RESERVED1|137|0x89|**Transaction is invalid**unless occuring in an unexecuted OP_IF branch
+|OP_RESERVED2|138|0x8a|**Transaction is invalid**unless occuring in an unexecuted OP_IF branch
+|OP_NOP1-OP_NOP10|176-185|0xb0-0xb9|The word is ignored. Does not mark transaction as invalid.
 
 
 ## Scripts
