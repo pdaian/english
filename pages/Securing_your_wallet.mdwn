@@ -81,7 +81,10 @@ You should now have a new wallet with all the bitcoins from the old wallet.
 
 ##Making a secure workspace
 
-If you are using your computer to handle bitcoins, a wallet, Bitcoin-related passwords, or Bitcoin private keys, you must take care that the system is free of malware, viruses, keyloggers, remote access tools, and other tools that may be used to make remote copies of any of the above. In the case that your computer is compromised, the precautions taken below may provide additional protection.
+Unless you are using a [[hardware_wallet]], you must take care that the system is free of malware, viruses, keyloggers, remote access tools, and other tools that may be used to make remote copies of your wallet, Bitcoin-related passwords, or Bitcoin private keys. When your computer is compromised, the precautions taken below may provide additional protection.
+
+A [[hardware_wallet]] typically holds the private keys on its internal storage that is not accessible by any malware. The device signs the transactions internally and only transmits the signed transactions to the computer. The separation of the private keys from the vulnerable environment allows the user to spend bitcoins on a compromised computer without any risk. 
+
 
 ###Debian-based Linux
 
