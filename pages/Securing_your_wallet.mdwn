@@ -1,5 +1,7 @@
 ##Introduction
 
+Unless you are using a [[hardware_wallet]] it is strongly recommended to read this page.
+
 Wallet security can be broken down into two independent goals:
 
 1. Protecting your wallet against loss.
@@ -32,7 +34,7 @@ To generate a safer paper wallet, first save the paper wallet generating code to
 
 * Using a very basic printer is advisable since high-end office printers may have WiFi or internal storage that keeps a cache of printed documents.
 
-* Remember, spyware and viruses often attempt to monitor your computer activities so that their authors can steal from you. They are interested in passwords to online accounts, and anything of value. Bitcoin wallets and private keys are something of value that have already been targeted by malware. If your computer is infected with spyware or viruses - even if there are no symptoms, or your antivirus isn't reporting anything - then anything you type, view, or save on your computer, could potentially be stolen by someone remotely controlling your computer. Your private key can then be intercepted while you enter it, so only enter a Bitcoin private key into your computer when your intent is to redeem its value *immediately*.
+* Remember, spyware and viruses often attempt to monitor your computer activities so that their authors can steal from you. They are interested in passwords to online accounts, and anything of value. Bitcoin wallets and private keys are something of value that have already been targeted by malware. If your computer is infected with spyware or viruses - even if there are no symptoms, or your antivirus isn't reporting anything - then anything you type, view, or save on your computer, could potentially be stolen by someone remotely controlling your computer. Your private key can then be intercepted while you enter it, so only enter a Bitcoin private key into your computer when your intent is to redeem its value *immediately* or when you want to transfer your funds into a secure [[hardware_wallet]].
 
 ## Hardware wallets
 [[Hardware_wallet]]s are a major step to enhanced security and usability.
@@ -245,11 +247,17 @@ For Windows, the built-in command *cipher /W* will shred all previously-deleted 
 
 ##Online and Mobile Wallets
 
-Thus far, this article has been discussing the security of a wallet file for Bitcoin-QT or bitcoind that is under your sole control. Additional wallets applications and services have become available that offer other features and more convenience but not without introducing additional risk. When storing bitcoins with an [[eWallet]] such as Instawallet or Easywallet, you are essentially storing your private keys or wallet with that provider. 
+Thus far, this article has been discussing the security of a wallet file for Bitcoin-QT or bitcoind that is under your sole control. 
 
-Online wallets have a number of pros and cons to consider. For example, you can access your wallet on any computer in the world, but depending on the service, your bitcoins may be lost if the service is compromised. 
 
-Mobile wallet applications are available for Android devices that allow you to send bitcoins by QR code or NFC, but this opens up the possibility of loss if mobile device is compromised. It may be possible to encrypt and backup the wallet or private keys on a mobile device but it is not advisable to store a large amount of bitcoins there without doing your own research and testing.
+Online wallets have a number of pros and cons to consider. For example, you can access your wallet on any computer in the world, but you are essentially storing your private keys or wallet with the provider of the online wallet. 
+Depending on the level of security of such service, your bitcoins may be lost if the service is compromised. 
+
+The invention of [[hardware_wallet]]s makes it possible to use online wallets in a more secure manner.
+A hardware wallet keeps your private keys apart from the computer and internet. An online wallet compatible with a hardware wallet (such as [myTREZOR.com](http://mytrezor.com)) then does not need to store any sensitive data (private keys, passwords or email addresses) and only serves as tool for broadcasting transactions signed in the hardware wallet out to the blockchain. 
+
+
+Mobile wallet applications are available for Android devices that allow you to send bitcoins by QR code or NFC, but this opens up the possibility of loss if mobile device is compromised. It may be possible to encrypt and backup the wallet or private keys on a mobile device but it is not advisable to store a large amount of bitcoins there without doing your own research and testing. Mobile wallets are useful for small spending and not for storing your bitcoin savings.
 
 ##See Also
 
