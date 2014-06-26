@@ -2,17 +2,22 @@
 
 
 TREZOR is a hardware wallet providing the highest level of security and convenience for a common computer user.
-
-[[!img "Trezor-tx.jpg" size=300x300 size=120x120 class="left" title="Confirming transaction with TREZOR"]]
-
-
 Unlike for example a cold storage (offline storage or paper wallet), TREZOR also signs transactions internally. Like this spending bitcoins is made securely without exposing your private keys to a compromised or vulnerable computer.
 
+
+[[!img "Trezor-tx.jpg" size=300x300 size=120x120 class="right" title="Confirming transaction with TREZOR"]]
+
+
+
+## TREZOR Hardware Design
 It is a small USB device with a display and two buttons.
 
 It connects to a computer via a micro USB (like a mouse or a  keyboard). The limited USB protocol only allows to send a transaction template to the device and protects the wallet against malware.
 
 The display allows the user to visually verify the payment address and the amount to be sent. In order to proceed the transaction, a physical human interaction (pressing the button) is required. 
+
+
+## TREZOR Software Design & Security
 
 TREZOR uses hierarchical deterministic wallet creation ([[BIP_0032]]) which makes regular backups unnecessary. When first initialized, a mnemonic code of 12,18 or 24 words, the recovery seed, is created. In case the device gets lost or stolen, the user can recover the entire holdings including transaction history into a new device or other compatible wallet.
 
@@ -21,5 +26,13 @@ TREZOR provides the user optional protection mechanisms: PIN protection and pass
 A PIN is set by the user during the setup. It protects TREZOR against being used by unauthorized persons. The wallet creators have invented a secure way of entering the PIN that can’t be keylogged and misused.
 
 Encryption passphrase can be set on top of the PIN. This protects the device in case of seizure. Multiple passphrases can be used for plausible deniability.
+
+## Compatibility of TREZOR
+
+TREZOR is supporting Bitcoin, Litecoin and Namecoin. Currently no LTC and NMC clients do not fulfill conditions for full integration with the TREZOR.
+
+TREZOR needs an online wallet or a desktop client which serves as a tool for broadcasting the transactions signed by TREZOR to the blockchain.
+
+
 
 TREZOR FAQ: [www.bitcointrezor.com/faq](https://bitcointrezor.com/faq)
