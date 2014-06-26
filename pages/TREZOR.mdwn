@@ -1,15 +1,14 @@
 [BitcoinTrezor.com](https://bitcointrezor.com)
 
-
-TREZOR is a hardware wallet providing the highest level of security and convenience for a common computer user.
-Unlike for example a cold storage (offline storage or paper wallet), TREZOR also signs transactions internally. Like this spending bitcoins is made securely without exposing your private keys to a compromised or vulnerable computer.
-
-
 [[!img "Trezor-tx.jpg" size=300x300 size=120x120 class="right" title="Confirming transaction with TREZOR"]]
+**TREZOR is a hardware wallet providing the highest level of security and convenience for a common computer user.**
+
+Unlike for example a cold storage (offline storage or paper wallet), TREZOR also signs transactions internally. 
+Spending bitcoins is made securely without exposing your private keys to a malware.
 
 
 
-### TREZOR Hardware Design
+## TREZOR Hardware Design
 TREZOR is a small USB device with a display and two buttons.
 
 It connects to a computer via a micro USB (like a mouse or a  keyboard). The limited USB protocol only allows to send a transaction template to the device and protects the wallet against malware.
@@ -20,7 +19,9 @@ The display allows the user to visually verify the payment address and the amoun
 
 ## TREZOR Software Design & Security
 
-TREZOR uses hierarchical deterministic wallet creation ([[BIP_0032]]) which makes regular backups unnecessary. When first initialized, a mnemonic code of 12,18 or 24 words, the recovery seed, is created. In case the device gets lost or stolen, the user can recover the entire holdings including transaction history into a new device or other compatible wallet.
+TREZOR uses hierarchical deterministic wallet creation ([[BIP_0032]]) which makes regular backups of private keys unnecessary. 
+
+When first initialized, a mnemonic code of 12,18 or 24 words, the recovery seed, is created. In case the device gets lost or stolen, the user can recover the entire holdings including transaction history into a new device or other compatible wallet.
 
 TREZOR provides the user optional protection mechanisms: PIN protection and passphrase encryption.
 
@@ -30,10 +31,38 @@ Encryption passphrase can be set on top of the PIN. This protects the device in 
 
 ## Compatibility of TREZOR
 
-TREZOR is supporting Bitcoin, Litecoin and Namecoin. Currently no LTC and NMC clients do not fulfill conditions for full integration with the TREZOR.
+**by cointype**
 
-TREZOR needs an online wallet or a desktop client which serves as a tool for broadcasting the transactions signed by TREZOR to the blockchain.
+TREZOR is supporting Bitcoin, Litecoin and Namecoin. The developers are open to add support for other significant altecoins in the future.
+Currently no Litecoin or Namecoin clients are ready to work with TREZOR. 
 
+**by wallet**
+
+The hardware wallet can be used with a desktop client or a web wallet with full [[BIP_0032]] and [[BIP_0039]] support.
+
+Today it is compatible with:
+
+[myTREZOR Web Wallet](https://mytrezor.com)
+
+[Wallet32 for Android](https://play.google.com/store/apps/details?id=com.bonsai.wallet32&hl=en)
+
+## Usage of TREZOR
+TREZOR needs an online wallet or a desktop client to broadcast the transactions signed by the device to the blockchain.
+
+When first using the device: 
+
+* go to [myTREZOR.com](https://mytrezor.com)
+* allow the browser plugin to be installed (you will be prompted)
+* enter the Setup page and
+* define Device Label
+* choose the length of the recovery seed (12, 18 or 24 words)
+* set PIN
+* and optionally a passphrase encryption
+
+In the following step, a recovery seed is generated. This seed needs to be written down on a paper and kept in a safe place.
+
+
+to be continued ... :)
 
 
 TREZOR FAQ: [www.bitcointrezor.com/faq](https://bitcointrezor.com/faq)
@@ -42,4 +71,3 @@ TREZOR FAQ: [www.bitcointrezor.com/faq](https://bitcointrezor.com/faq)
 [[!tag "Security"]]
 [[!tag "Wallets"]]
 [[!tag "Hardware"]]
-[[!tag "Hardware_wallet"]]
