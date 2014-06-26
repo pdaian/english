@@ -25,14 +25,11 @@ TREZOR uses hierarchical deterministic wallet creation ([[BIP_0032]]) which make
 
 When first initialized, a mnemonic code of 12,18 or 24 words, the recovery seed, is created. In case the device gets lost or stolen, the user can recover the entire holdings including transaction history into a new device or other compatible wallet, using the recovery seed.
 
-### Protection mechanisms
-TREZOR provides the user with optional protection mechanisms.
-
-#### PIN protection 
+### PIN protection 
 
 A PIN is set by the user during the setup. It protects TREZOR against being used by unauthorized persons. The wallet creators have invented a secure way of entering the PIN that can’t be keylogged and misused.
 
-#### Passphrase encryption
+### Passphrase encryption
 Another level of protection is the encryption passphrase which protects the device in case of seizure. Multiple passphrases can be used for plausible deniability.
 
 ## Compatibility of TREZOR
