@@ -16,6 +16,8 @@ It connects to a computer via a micro USB (like a mouse or a  keyboard). The lim
 
 The display allows the user to visually verify the payment address and the amount to be sent. In order to proceed the transaction, a physical human interaction (pressing the button) is required.
 
+<br clear="all">
+
 ## TREZOR Software Design & Security
 
 TREZOR uses hierarchical deterministic wallet creation ([[BIP_0032]]) which makes regular backups unnecessary. When first initialized, a mnemonic code of 12,18 or 24 words, the recovery seed, is created. In case the device gets lost or stolen, the user can recover the entire holdings including transaction history into a new device or other compatible wallet.
