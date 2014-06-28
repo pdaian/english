@@ -193,7 +193,7 @@ func main() {
 	}
 	// iterate over accounts (map[[string]]btcutil.Amount) and write to stdout
 	for label, amount := range accounts {
-	log.Printf("%s: %d", label, amount)
+	log.Printf("%s: %s", label, amount)
 	}
 
 	// prepare a sendMany transaction
@@ -206,8 +206,8 @@ func main() {
 	log.Fatalf("address receiver2 seems to be invalid: %v", err)
 	}
 	receivers := map[[btcutil.Address]]btcutil.Amount{
-	receiver1: btcutil.Amount(42),  // 42 satoshi
-	receiver2: btcutil.Amount(100), // 100 satoshi
+	receiver1: 42,  // 42 satoshi
+	receiver2: 100, // 100 satoshi
 	}
 
 	// create and send the sendMany tx
