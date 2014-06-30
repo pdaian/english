@@ -6,6 +6,8 @@ The compression function works upon 16 32-bit unsigned words. This requires the 
 
 [[!img "Ripemd_padding.png" size=300x300 title="center" title="alt=Padding"]]
 
+The length of the message should then be added to the second to last element (the length is saved a 64-bit value across the last 2 words, but it is unlikely the message will be this long; 32-bits will certainly suffice for Bitcoin software.)
+
 ##Compression Function
 
 [[!img "RIPEMD160_block.png" size=120x120 title="upright=1.2" title="alt=Sub block." title="Sub block of the compression function."]]
