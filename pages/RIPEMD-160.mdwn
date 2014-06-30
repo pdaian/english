@@ -1,0 +1,5 @@
+RIPEMD-160 is a cryptographic hash function based upon the Merkle–Damgård construction. It is used in the Bitcoin standard. It is a a strengthened version of the RIPEMD algorithm whihc produces a 128 bit hash digest while the RIPEMD-160 algorithm produces a 160-bit output. The compression function is made up of 80 stages made up of 5 blocks that run 16 times each. This pattern runs twice with the results being combined at the bottom using modulo 32 addition.
+
+##Padding
+
+The compression function works upon 16 32-bit unsigned words. This requires the message to be padded to a multiple of 512 bits and the byte stream input to be padded into 32-bit words. The padding scheme is identical to MD4 using Merkle–Damgård strengthening to prevent length extension attacks. This consists of a one being added to the end of the message and the length of the message (in bits) being added to the end of the block. The bytes are pushed into the word low end first. Here are 4 examples of messages being padded into a word to show the possible patterns for different message lengths:
