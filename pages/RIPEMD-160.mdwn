@@ -8,6 +8,9 @@ The compression function works upon 16 32-bit unsigned words. This requires the 
 
 ##Compression Function
 
+[[!img "RIPEMD160_block.png" size=120x120 title="upright=1.2" title="alt=Sub block." title="Sub block of the compression function."]]
+[[!img "RIPEMD160_compression_function.png" size=120x120 title="upright=1.2" title="alt=Compression function." title="The full compression function."]]
+
 The compression function is made up of a variable sub block that the message block is passed though 16 times. There are 5 different variations for a total of 80 runs. This process occurs twice with the data meeting at the bottom to be moved on to the next block (if there is one) or added to the hash register is there isn't. The sub block can be varied by the design of a nonlinear function, the order in which the message block is read in per round, the amount of a left rotate and a k constant. The design of the sub block and the overall layout of the compression function is shown to the right. 
 
 Pseudocode for the process:
