@@ -1,0 +1,19 @@
+A tool used to easily and securely create a paper wallet. It is designed to work with the Pirate Linux live disc (version 2.0 alpha 3).
+
+What makes it different from the current paper wallet solutions?
+
+- Pirate Linux does not use Ubuntu, but instead hardened Gentoo, regarded by many as the most secure operating system.
+
+- Cwallet does not use a web browser. It is coded in pure C, and has both a graphical (gtk+) and command line interface.
+
+- Cwallet uses one-time-pads for encryption of the private keys. The passphrase is converted to a base-256 one-time pad that is byte-wise added to the base-256 private key.
+
+- Cwallet performs many robust checks to make sure that the data that you print out is correct and not corrupted in the process. The last thing you want is to find out that you have the wrong private key for the address you sent your funds to.
+
+- Cwallet has some other nice little features to make it easier to use.
+
+##External Links
+
+* [Guide](https://piratelinux.org/?page_id=774) with screenshots and more information
+* [Forum discussion](https://bitcointalk.org/index.php?topic=669684.msg7574268#msg7574268)
+* [Reddit discussion](http://www.reddit.com/r/Bitcoin/comments/29egro/pirate_linux_20_alpha_3_fully_working_paper/)
