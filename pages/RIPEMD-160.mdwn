@@ -1,5 +1,47 @@
-RIPEMD-160 is a cryptographic hash function based upon the Merkle–Damgård construction. It is used in the Bitcoin standard. It is a a strengthened version of the RIPEMD algorithm whihc produces a 128 bit hash digest while the RIPEMD-160 algorithm produces a 160-bit output. The compression function is made up of 80 stages made up of 5 blocks that run 16 times each. This pattern runs twice with the results being combined at the bottom using modulo 32 addition.
+RIPEMD-160 is a cryptographic hash function based upon the Merkle–Damgård construction. It is used in the Bitcoin standard. It is a a strengthened version of the RIPEMD algorithm which produces a 128 bit hash digest while the RIPEMD-160 algorithm produces a 160-bit output. The compression function is made up of 80 stages made up of 5 blocks that run 16 times each. This pattern runs twice with the results being combined at the bottom using modulo 32 addition.
 
 ##Padding
 
 The compression function works upon 16 32-bit unsigned words. This requires the message to be padded to a multiple of 512 bits and the byte stream input to be padded into 32-bit words. The padding scheme is identical to MD4 using Merkle–Damgård strengthening to prevent length extension attacks. This consists of a one being added to the end of the message and the length of the message (in bits) being added to the end of the block. The bytes are pushed into the word low end first. Here are 4 examples of messages being padded into a word to show the possible patterns for different message lengths:
+
+[[!img "Ripemd_padding.png" size=300x300 title="center" title="alt=Padding"]]
+
+##Compression Function
+
+The compression function is made up of a variable sub block that the message block is passed though 16 times. There are 5 different variations for a total of 80 runs. This process occurs twice with the data meeting at the bottom to be moved on to the next block (if there is one) or added to the hash register is there isn't. The sub block can be varied by the design of a nonlinear function, the order in which the message block is read in per round, the amount of a left rotate and a k constant. The design of the sub block and the overall layout of the compression function is shown to the right. 
+
+Pseudocode for the process:
+
+<code>
+for(i := 0 to blocks - 1) {
+    aLeft := h0
+    bLeft := h1
+    cLeft := h2
+    dLeft := h3
+    eLeft := h4
+
+    aRight := h0
+    bRight := h1
+    cRight := h2
+    dRight := h3
+    eRight := h4
+
+    for(int j := 0 to 79) {
+        t := rotleft(s[j]) (aLeft + f(bLeft, cLeft, dLeft) + X[r[i]]) + eLeft
+        aLeft := eLeft;
+        eLeft := dLeft
+        dLeft := rotleft(10) (c)
+        cLeft := bLeft
+        bLeft := t
+
+        Do same for right
+    }
+
+    t := h1 + cLeft + dRight
+    h1 := h2 + dLeft + eRight
+    h2 := h3 + eLeft + aRight
+    h3 := h4 + aLeft + bRight
+    h4 := h0 + bLeft + cRight
+    h0 := t
+}
+</code>
