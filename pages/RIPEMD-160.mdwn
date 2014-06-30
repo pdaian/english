@@ -12,36 +12,42 @@ The compression function is made up of a variable sub block that the message blo
 
 Pseudocode for the process:
 
-<code>
 for(i := 0 to blocks - 1) {
-    aLeft := h0
-    bLeft := h1
-    cLeft := h2
-    dLeft := h3
-    eLeft := h4
+	aLeft := h0
+	bLeft := h1
+	cLeft := h2
+	dLeft := h3
+	eLeft := h4
 
-    aRight := h0
-    bRight := h1
-    cRight := h2
-    dRight := h3
-    eRight := h4
+	aRight := h0
+	bRight := h1
+	cRight := h2
+	dRight := h3
+	eRight := h4
 
-    for(int j := 0 to 79) {
-        t := rotleft(s[j]) (aLeft + f(bLeft, cLeft, dLeft) + X[r[i]]) + eLeft
-        aLeft := eLeft;
-        eLeft := dLeft
-        dLeft := rotleft(10) (c)
-        cLeft := bLeft
-        bLeft := t
+	for(int j := 0 to 79) {
+	t := rotleft(s[[j]]) (aLeft + f(bLeft, cLeft, dLeft) + X[[i]]) + eLeft
+	aLeft := eLeft;
+	eLeft := dLeft
+	dLeft := rotleft(10) (c)
+	cLeft := bLeft
+	bLeft := t
 
-        Do same for right
-    }
+	Do same for right
+	}
 
-    t := h1 + cLeft + dRight
-    h1 := h2 + dLeft + eRight
-    h2 := h3 + eLeft + aRight
-    h3 := h4 + aLeft + bRight
-    h4 := h0 + bLeft + cRight
-    h0 := t
+	t := h1 + cLeft + dRight
+	h1 := h2 + dLeft + eRight
+	h2 := h3 + eLeft + aRight
+	h3 := h4 + aLeft + bRight
+	h4 := h0 + bLeft + cRight
+	h0 := t
 }
-</code>
+
+The nonlinear functions are applied in the opposite directions up and down the left and right lines. The design of the functions from top to bottom on the left and bottom to top on the right are (Java syntax for operations):
+
+1: x ^ y ^ z
+2: (x & y)  (~x & z)
+3: (x  ~y) ^ z
+4: (x & z)  (y & ~z)
+5: z ^ (y  ~z)
