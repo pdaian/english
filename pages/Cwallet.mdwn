@@ -6,6 +6,8 @@ What makes it different from the other paper wallet solutions?
 
 - Cwallet does not use a web browser. It is coded in pure C, and has both a graphical (gtk+) and command line interface.
 
+- Cwallet uses only real random numbers from /dev/random and asks you to shake your mouse if it stalls and needs more entropy.
+
 - Cwallet uses one-time-pads for encryption of the private keys. The passphrase is converted to a base-256 one-time pad that is byte-wise added to the base-256 private key.
 
 - Cwallet performs many robust checks to make sure that the data that you print out is correct and not corrupted in the process. The last thing you want is to find out that you have the wrong private key for the address you sent your funds to.
