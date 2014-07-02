@@ -90,6 +90,9 @@ It is used in order to decide when to stop the recovery procedure.
 If you need to have more receiving addresses in your wallet, you may increase your gap limit (expert mode).
 This, however, means that you will need to remember the new limit in order to be able to recover your wallet from seed.
 
+Here is how to configure your Gap Limit (1000 for example):
+	wallet.storage.put('gap_limit', 1000)
+
 ##More on the Electrum GUI
 
 ###Send tab and completions
