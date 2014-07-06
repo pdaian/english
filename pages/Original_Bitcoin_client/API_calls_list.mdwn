@@ -14,7 +14,7 @@ Required arguments are denoted inside &lt; and &gt; Optional arguments are insid
 
 
 
-|addmultisigaddress |<nrequired><'[["key","key"]]'> [[account]]|Add a nrequired-to-sign multisignature address to the wallet. Each key is a bitcoin address or hex-encoded public key. If [[account]]is specified, assign address to [[account]]. |N
+|addmultisigaddress |<nrequired><'[["key","key"]]'> [[account]]|Add a nrequired-to-sign multisignature address to the wallet. Each key is a bitcoin address or hex-encoded public key. If [[account]]is specified, assign address to [[account]]. Returns a string containing the address. |N
 |addnode |<node><add/remove/onetry> |**version 0.8**Attempts add or remove <node>from the addnode list or try a connection to <node>once. |N
 |backupwallet |<destination>|Safely copies wallet.dat to destination, which can be a directory or a path with filename. |N
 |createmultisig |<nrequired><'[["key,"key"]]'> |Creates a multi-signature address and returns a json object |
