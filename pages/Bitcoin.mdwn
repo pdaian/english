@@ -71,6 +71,23 @@ the price of a Bitcoin is not static.
 
 In August 2012, 1 BTC traded at around $10.00 USD. Taking into account the total number of Bitcoins mined, the monetary base of the Bitcoin network stands at over 110 million USD. (10.1)
 
+## Anonymity<!--Please keep as starting template-->
+> Main article: [[Anonymity|Anonymity_&_Security]]
+
+### Transactions
+
+While using bitcoins is an excellent way to make your purchases, donations, and p2p payments, without losing money through inflated transaction fees, transactions are never truly anonymous. Buying Bitcoin you pass identification, Bitcoin transactions are stored publicly and permanently on the network, which means anyone can see the balance and transactions of any Bitcoin address. Bitcoin activities are recorded and available publicly via the [[blockchain]], a comprehensive database which keeps a record of bitcoin transactions.
+
+### Buying/selling bitcoins
+
+All exchanges require the user to scan ID documents, and large transactions must be reported to the proper governmental authority. When you use Bitcoin to pay for goods and services, you will of course need to provide your name and address to the seller for delivery purposes.
+
+This means that a third party with an interest in tracking your activities can use your visible balance and ID information as a basis from which to track your future transactions or to study previous activity. In short, you have compromised your [[security]] and [[privacy]].
+
+### Mixing services
+
+[Mixing services](http://anonymity.co.in/mixing_services.html) are used to avoid compromising of privacy and security. Mixing services provide to periodically exchange your bitcoins for different ones which cannot be associated with the original owner.
+
 ## Security<!--Please keep as starting template-->
 > Main article: [[Weaknesses]]
 
@@ -95,9 +112,9 @@ Nakamoto compared the generation of new coins by expending CPU time and electric
 
 The node software for the Bitcoin network is based on peer-to-peer networking, digital signatures and cryptographic proof to make and verify transactions. Nodes broadcast transactions to the network, which records them in a public record of all transactions, called the *blockchain*, after validating them with a [[proof-of-work system|proof-of-work]].
 
-Satoshi Nakamoto designed the first Bitcoin node and mining software (13.1) and developed the majority of the first implementation, Bitcoind, from 2007 to mid-2010. (13.2)
+Satoshi Nakamoto designed the first Bitcoin node and mining software (17.1) and developed the majority of the first implementation, Bitcoind, from 2007 to mid-2010. (17.2)
 
-Node implementations include core software such as Bitcoind/Bitcoin-Qt, [[libbitcoin]], [[cbitcoin]] (13.3) and [[bitcoinj|BitCoinJ]]. (13.4) (13.5)
+Node implementations include core software such as Bitcoind/Bitcoin-Qt, [[libbitcoin]], [[cbitcoin]] (17.3) and [[bitcoinj|BitCoinJ]]. (17.4) (17.5)
 
 Every node in the Bitcoin network collects all the unacknowledged transactions it knows of in a file called a *block*, which also contains a reference to the previous valid block known to that node. It then appends a [[nonce]] value to this previous block and computes the SHA-256 cryptographic hash of the block and the appended nonce value. The node repeats this process until it adds a nonce that allows for the generation of a hash with a value lower than a specified *target*. Because computers cannot practically reverse the hash function, finding such a nonce is hard and requires on average a predictable amount of repetitious trial and error. This is where the *[[proof-of-work]]* concept comes in to play.  When a node finds such a solution, it announces it to the rest of the network. Peers receiving the new solved block validate it by computing the hash and checking that it really starts with the given number of zero bits (i.e., that the hash is within the target). Then they accept it and add it to the chain.
 
@@ -109,7 +126,7 @@ The network never creates more than a 50&nbsp;BTC reward per block and this amou
 ###Mining pools
 > Main article: [[Pooled_mining]]
 
-Bitcoin users often pool computational effort to increase the stability of the collected fees and subsidy they receive. (15.1)
+Bitcoin users often pool computational effort to increase the stability of the collected fees and subsidy they receive. (19.1)
 
 ###Mining difficulty
 > Main article: [[Difficulty]]
@@ -123,51 +140,51 @@ Difficulty is intended as an automatic stabilizer allowing mining for Bitcoins t
 ###Mining hardware
 > Main article: [[Mining_Hardware_Comparison]]
 
-Bitcoins used to be mined through Intel/AMD CPUs. As of   2012, mining has gradually moved to [[GPU]] and [[FPGA]] hardware. [[ASIC|Application-specific_integrated_circuit]]-based hardware for Bitcoin mining has been announced by several manufacturers who intend to ship products from late 2012 to early 2013. (17.1)
+Bitcoins used to be mined through Intel/AMD CPUs. As of   2012, mining has gradually moved to [[GPU]] and [[FPGA]] hardware. [[ASIC|Application-specific_integrated_circuit]]-based hardware for Bitcoin mining has been announced by several manufacturers who intend to ship products from late 2012 to early 2013. (21.1)
 
 ##Concerns
 
 ###As an investment
-Bitcoin describes itself as an experimental digital currency. Reuben Grinberg has noted that Bitcoin's supporters have argued that Bitcoin is neither a security or an investment because it fails to meet the criteria for either category. (19.1)  Although it is a virtual currency, some people see it as an investment (19.2) or accuse it of being a form of investment fraud known as a Ponzi scheme. (19.3) (19.4) A report by the European Central Bank, using the U.S. Securities and Exchange Commission's definition of a Ponzi scheme, found that the use of bitcoins shares some characteristics with Ponzi schemes, but also has characteristics of its own which contradict several common aspects of Ponzi schemes. (19.5)
+Bitcoin describes itself as an experimental digital currency. Reuben Grinberg has noted that Bitcoin's supporters have argued that Bitcoin is neither a security or an investment because it fails to meet the criteria for either category. (23.1)  Although it is a virtual currency, some people see it as an investment (23.2) or accuse it of being a form of investment fraud known as a Ponzi scheme. (23.3) (23.4) A report by the European Central Bank, using the U.S. Securities and Exchange Commission's definition of a Ponzi scheme, found that the use of bitcoins shares some characteristics with Ponzi schemes, but also has characteristics of its own which contradict several common aspects of Ponzi schemes. (23.5)
 
 ###Privacy
-Because transactions are broadcast to the entire network, they are inherently public. Unlike regular banking, (20.1) which preserves customer privacy by keeping transaction records private, loose transactional privacy is accomplished in Bitcoin by using many unique addresses for every wallet, while at the same time publishing all transactions. As an example, if Alice sends 123.45 BTC to Bob, the network creates a public record that allows anyone to see that 123.45 has been sent from one address to another. However, unless Alice or Bob make their ownership of these addresses known, it is difficult for anyone else to connect the transaction with them. However, if someone connects an address to a user at any point they could follow back a series of transactions as each participant likely knows who paid them and may disclose that information on request or under duress.
+Because transactions are broadcast to the entire network, they are inherently public. Unlike regular banking, (24.1) which preserves customer privacy by keeping transaction records private, loose transactional privacy is accomplished in Bitcoin by using many unique addresses for every wallet, while at the same time publishing all transactions. As an example, if Alice sends 123.45 BTC to Bob, the network creates a public record that allows anyone to see that 123.45 has been sent from one address to another. However, unless Alice or Bob make their ownership of these addresses known, it is difficult for anyone else to connect the transaction with them. However, if someone connects an address to a user at any point they could follow back a series of transactions as each participant likely knows who paid them and may disclose that information on request or under duress.
 
-It can be difficult to associate Bitcoin identities with real-life identities. (20.2) This property makes Bitcoin transactions attractive to sellers of illegal products. (20.3) (20.4)
+It can be difficult to associate Bitcoin identities with real-life identities. (24.2) This property makes Bitcoin transactions attractive to sellers of illegal products. (24.3) (24.4)
 
 ###Illicit use
 
 ####Cracking
-The cracking organization "LulzSec" accepted donations in Bitcoin, having said that the group "needs Bitcoin donations to continue their hacking efforts". (22.1) (22.2)
+The cracking organization "LulzSec" accepted donations in Bitcoin, having said that the group "needs Bitcoin donations to continue their hacking efforts". (26.1) (26.2)
 
 ####Silk Road
-[[Silk_Road]] is an anonymous black market that uses only the Bitcoin. (23.1) 
+[[Silk_Road]] is an anonymous black market that uses only the Bitcoin. (27.1) 
 
-In a 2011 letter to Attorney General Eric Holder and the Drug Enforcement Administration, senators Charles Schumer of New York and Joe Manchin of West Virginia called for an investigation into Silk Road and the Bitcoin. (23.1)
+In a 2011 letter to Attorney General Eric Holder and the Drug Enforcement Administration, senators Charles Schumer of New York and Joe Manchin of West Virginia called for an investigation into Silk Road and the Bitcoin. (27.1)
 Schumer described the use of Bitcoins at Silk Road as a form of money laundering. (9.1)
 
 ####Botnet mining
-In June 2011, Symantec warned about the possibility of botnets engaging in covert "mining" of Bitcoins, (24.1) (24.2) consuming computing cycles, using extra electricity and possibly increasing the temperature of the computer. Later that month, the Australian Broadcasting Corporation caught an employee using the company's servers to generate Bitcoins without permission. (24.3) Some malware also uses the parallel processing capabilities of the GPUs built into many modern-day video cards. (24.4) In mid August 2011, Bitcoin miner botnets were found; (24.5) trojans infecting Mac OS X have also been uncovered. (24.6)
+In June 2011, Symantec warned about the possibility of botnets engaging in covert "mining" of Bitcoins, (28.1) (28.2) consuming computing cycles, using extra electricity and possibly increasing the temperature of the computer. Later that month, the Australian Broadcasting Corporation caught an employee using the company's servers to generate Bitcoins without permission. (28.3) Some malware also uses the parallel processing capabilities of the GPUs built into many modern-day video cards. (28.4) In mid August 2011, Bitcoin miner botnets were found; (28.5) trojans infecting Mac OS X have also been uncovered. (28.6)
 
 ###Theft and fraud
-On 19 June 2011, a security breach of the Mt.Gox (an acronym for *M*agic: *T*he *G*athering *O*nline E*x*change, its original purpose) Bitcoin Exchange caused the price of a Bitcoin to briefly drop to US$0.01 on the Mt.Gox exchange (though it remained unaffected on other exchanges) after a hacker allegedly used credentials from a Mt.Gox auditor's compromised computer to illegally transfer a large number of Bitcoins to him- or herself and sell them all, creating a massive "ask" order at any price. Within minutes the price rebounded to over $15 before Mt.Gox shut down their exchange and canceled all trades that happened during the hacking period. (25.1) (25.2) The exchange rate of Bitcoins quickly returned to near pre-crash values. (25.3) (25.4) (25.5) (25.6) Accounts with the equivalent of more than USD 8,750,000 were affected. (25.3)
+On 19 June 2011, a security breach of the Mt.Gox (an acronym for *M*agic: *T*he *G*athering *O*nline E*x*change, its original purpose) Bitcoin Exchange caused the price of a Bitcoin to briefly drop to US$0.01 on the Mt.Gox exchange (though it remained unaffected on other exchanges) after a hacker allegedly used credentials from a Mt.Gox auditor's compromised computer to illegally transfer a large number of Bitcoins to him- or herself and sell them all, creating a massive "ask" order at any price. Within minutes the price rebounded to over $15 before Mt.Gox shut down their exchange and canceled all trades that happened during the hacking period. (29.1) (29.2) The exchange rate of Bitcoins quickly returned to near pre-crash values. (29.3) (29.4) (29.5) (29.6) Accounts with the equivalent of more than USD 8,750,000 were affected. (29.3)
 
-In July 2011, The operator of Bitomat, the third largest Bitcoin exchange, announced that he lost access to his wallet.dat file with about 17,000 BitCoins (roughly equivalent to 220,000 USD at that time). He announced that he would sell the service for the missing amount, aiming to use funds from the sale to refund his customers. (25.7)
+In July 2011, The operator of Bitomat, the third largest Bitcoin exchange, announced that he lost access to his wallet.dat file with about 17,000 BitCoins (roughly equivalent to 220,000 USD at that time). He announced that he would sell the service for the missing amount, aiming to use funds from the sale to refund his customers. (29.7)
 
-In August 2011, MyBitcoin, one of popular Bitcoin transaction processors, declared that it was hacked, which resulted in it being shut down, with paying 49% on customer deposits, leaving more than 78,000 BitCoins (roughly equivalent to 800,000 USD at that time) unaccounted for. (25.8) (25.9)
+In August 2011, MyBitcoin, one of popular Bitcoin transaction processors, declared that it was hacked, which resulted in it being shut down, with paying 49% on customer deposits, leaving more than 78,000 BitCoins (roughly equivalent to 800,000 USD at that time) unaccounted for. (29.8) (29.9)
 
-In early August 2012, a lawsuit was filed in San Francisco court against Bitcoinica, claiming about 460,000 USD from the company. Bitcoinica was hacked twice in 2012, which led to allegations of neglecting the safety of customers' money and cheating them out of withdrawal requests. (25.10) (25.11)
+In early August 2012, a lawsuit was filed in San Francisco court against Bitcoinica, claiming about 460,000 USD from the company. Bitcoinica was hacked twice in 2012, which led to allegations of neglecting the safety of customers' money and cheating them out of withdrawal requests. (29.10) (29.11)
 
-In late August 2012, Bitcoin Savings and Trust was shut down by the owner, allegedly leaving around $5.6 million in debts; this led to allegations of the operation being a Ponzi scheme. (25.12) (25.13) (25.14) (25.15) In September 2012, it was reported that U.S. Securities and Exchange Commission has started an investigation on the case. (25.16)
+In late August 2012, Bitcoin Savings and Trust was shut down by the owner, allegedly leaving around $5.6 million in debts; this led to allegations of the operation being a Ponzi scheme. (29.12) (29.13) (29.14) (29.15) In September 2012, it was reported that U.S. Securities and Exchange Commission has started an investigation on the case. (29.16)
 
-In September 2012, Bitfloor Bitcoin exchange also reported being hacked, with 24,000 BitCoins (roughly equivalent to 250,000 USD) stolen. As a result, Bitfloor suspended operations. (25.17) (25.18) The same month, Bitfloor resumed operations, with its founder saying that he reported the theft to FBI, and that he is planning to repay the victims, though the time frame for such repayment is unclear. (25.19)
+In September 2012, Bitfloor Bitcoin exchange also reported being hacked, with 24,000 BitCoins (roughly equivalent to 250,000 USD) stolen. As a result, Bitfloor suspended operations. (29.17) (29.18) The same month, Bitfloor resumed operations, with its founder saying that he reported the theft to FBI, and that he is planning to repay the victims, though the time frame for such repayment is unclear. (29.19)
 
 ###Taxation
-In September 2012, the Intra-European Organization of Tax Administrations (IOTA), in Tbilisi, Georgia, held a workshop titled "Auditing Individuals and Legal Entities in the Use of e-Money." The workshop was attended by representatives from 23 countries. (26.1)  Jerry Taylor, IOTA's technical taxation expert, said, "There's an awful lot happening on the Internet environment which is fascinating at the moment and introducing new challenges for auditors when it comes to virtual currency." (26.2)  Bitcoin was mentioned during the workshop. (26.3)  
+In September 2012, the Intra-European Organization of Tax Administrations (IOTA), in Tbilisi, Georgia, held a workshop titled "Auditing Individuals and Legal Entities in the Use of e-Money." The workshop was attended by representatives from 23 countries. (30.1)  Jerry Taylor, IOTA's technical taxation expert, said, "There's an awful lot happening on the Internet environment which is fascinating at the moment and introducing new challenges for auditors when it comes to virtual currency." (30.2)  Bitcoin was mentioned during the workshop. (30.3)  
 
-Matthew Elias, founder of the [[Cryptocurrency_Legal_Advocacy_Group]] (CLAG) published "Staying Between the Lines: A Survey of U.S. Income Taxation and its Ramifications on Cryptocurrencies", which discusses "the taxability of cryptocurrencies such as bitcoin." (26.4)  CLAG "stressed the importance for taxpayers to determine on their own whether taxes are due on a bitcoin-related transaction based on whether one has "experienced a realization event." (26.5)  Such examples are "when a taxpayer has provided a service in exchange for bitcoins, a realization event has probably occurred, and any gain or loss would likely be calculated using fair market values for the service provided." (26.6)
+Matthew Elias, founder of the [[Cryptocurrency_Legal_Advocacy_Group]] (CLAG) published "Staying Between the Lines: A Survey of U.S. Income Taxation and its Ramifications on Cryptocurrencies", which discusses "the taxability of cryptocurrencies such as bitcoin." (30.4)  CLAG "stressed the importance for taxpayers to determine on their own whether taxes are due on a bitcoin-related transaction based on whether one has "experienced a realization event." (30.5)  Such examples are "when a taxpayer has provided a service in exchange for bitcoins, a realization event has probably occurred, and any gain or loss would likely be calculated using fair market values for the service provided." (30.6)
 
-[[Peter_Vessenes]], [[Bitcoin Foundation's|Bitcoin_Foundation]] executive director, said, since the foundation is trying to pay for everything in bitcoin, including salaries, "How do we W-2 someone for their bitcoins? Do we mark-to-market every time a transfer happens? Payroll companies cringe." (26.7)  The Bitcoin Foundation hopes "to push for solid guidance about its legal and tax treatment." [[Patrick_Murck]], legal counsel for the Bitcoin Foundation, said he would like "to help regulators understand the technology better so they can make better decisions." (26.8) Murck said, "Bitcoin has the potential to become much more than a niche currency, but it needs the guidance and understanding of regulators." and "The full potential of bitcoin could be realized through clearer guidelines and a better understanding by financial and tax regulators." and "Part of making that happen is to talk to regulators, the IRS, and tax professionals and helping them understand that bitcoin is not this nefarious thing, it's just software, it's a community, and there's nothing inherently nefarious about either of those things." (26.9)
+[[Peter_Vessenes]], [[Bitcoin Foundation's|Bitcoin_Foundation]] executive director, said, since the foundation is trying to pay for everything in bitcoin, including salaries, "How do we W-2 someone for their bitcoins? Do we mark-to-market every time a transfer happens? Payroll companies cringe." (30.7)  The Bitcoin Foundation hopes "to push for solid guidance about its legal and tax treatment." [[Patrick_Murck]], legal counsel for the Bitcoin Foundation, said he would like "to help regulators understand the technology better so they can make better decisions." (30.8) Murck said, "Bitcoin has the potential to become much more than a niche currency, but it needs the guidance and understanding of regulators." and "The full potential of bitcoin could be realized through clearer guidelines and a better understanding by financial and tax regulators." and "Part of making that happen is to talk to regulators, the IRS, and tax professionals and helping them understand that bitcoin is not this nefarious thing, it's just software, it's a community, and there's nothing inherently nefarious about either of those things." (30.9)
 
 ##See Also
 
@@ -215,62 +232,62 @@ Matthew Elias, founder of the [[Cryptocurrency_Legal_Advocacy_Group]] (CLAG) pub
 9.4: [Total Number of Bitcoins in Existence](http://blockexplorer.com/q/totalbc) Work: Bitcoin Block Explorer  
 9.5: [Bitcoin: Virtual money created by CPU cycles](http://lwn.net/Articles/414452/) Nathan Willis LWN.net 2010-11-10  
 10.1: [http://www.bitcoinwatch.com/](http://www.bitcoinwatch.com/)  Bitcoin statistics  
-13.1: [The Crypto-Currency](http://www.wired.com/magazine/2011/11/mf_bitcoin/all) 10 November 2011 Wired Magazine Joshua Davis  
-13.2: [Questions about Bitcoin](https://bitcointalk.org/index.php?topic=13.msg46#msg46) Bitcoin forum 2009-12-10  
-13.3: [cbitcoin](https://github.com/MatthewLM/cbitcoin)  
-13.4: [Google Engineer Releases Open Source Bitcoin Client](http://news.slashdot.org/story/11/03/23/0210207/Google-Engineer-Releases-Open-Source-Bitcoin-Client) angry tapir, timothy Slashdot 23 March 2011  
-13.5: [Bitcoin for beginners: The BitcoinJ API](http://www.javaworld.com/javaworld/jw-01-2012/120110-bitcoin-for-beginners-3.html?page=1) Dirk Merkel JavaWorld 10 January 2012  
-15.1: [About Bitcoin Mining](http://www.weusecoins.com/mining-guide.php) We Use Coins  
-17.1: [Bitpay Breaks Daily Volume Record with Butterfly ASIC mining release](http://bitcoinmagazine.net/bitpay-breaks-daily-volume-record-with-butterfly-asic-mining-release/) Bitcoin Magazine  
-19.1: [Bitcoin: An Innovative Alternative Digital Currency](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1817857) Grinberg, Reuben SSRN 9 December 2011  
-19.2: [The Pros And Cons Of Biting on Bitcoins](http://www.cnbc.com/id/45030812/The_Pros_And_Cons_Of_Biting_on_Bitcoins) Gustke, Constance CNBC 23 November 2011  
-19.3: [US senators draw a bead on Bitcoin](http://www.theregister.co.uk/2011/06/08/bitcoin_under_attack/) The Register 8 June 2011  & Richard Chirgwin  
-19.4: [Bitcoin, the City traders' anarchic new toy](http://uk.reuters.com/article/2012/04/01/uk-traders-bitcoin-idUKBRE8300JL20120401) Reuters 2 April 2012  & Naomi O'Leary  
-19.5: [Virtual Currency Schemes](http://www.ecb.europa.eu/pub/pdf/other/virtualcurrencyschemes201210en.pdf) European Central Bank October 2012  
-20.1: [Bitcoin: The Cryptoanarchists' Answer to Cash](http://spectrum.ieee.org/computing/software/bitcoin-the-cryptoanarchists-answer-to-cash/0) IEEE.org June 2012  
-20.2: [An Analysis of Anonymity in the Bitcoin System](http://anonymity-in-bitcoin.blogspot.com/2011/07/bitcoin-is-not-anonymous.html) Fergal Reid and Martin Harrigan (24 July 2011). . An Analysis of Anonymity in the Bitcoin System.  
-20.3: [Crypto Currency](http://www.forbes.com/forbes/2011/0509/technology-psilocybin-bitcoins-gavin-andresen-crypto-currency.html) Andy Greenberg (20 April 2011). . Forbes Magazine.  
-20.4: [Libertarian Dream? A Site Where You Buy Drugs With Digital Dollars](http://www.theatlantic.com/technology/archive/2011/06/libertarian-dream-a-site-where-you-buy-drugs-with-digital-dollars/239776/) The Atlantic Monthly 2011-06-01 Alexis Madrigal  
-22.1: [Senators target Bitcoin currency, citing drug sales &#124; The Digital Home – CNET News](http://news.cnet.com/8301-13506_3-20070268-17/senators-target-bitcoin-currency-citing-drug-sales/) News.cnet.com 2011-06-09 Don Reisinger  
-22.2: [LulzSec Hackers Post Sony Dev. Source Code, Get $7K Donation – Parmy Olson – Disruptors – Forbes](http://blogs.forbes.com/parmyolson/2011/06/06/lulzsec-hackers-posts-sony-dev-source-code-get-7k-donation/) Blogs.forbes.com 6 June 2011 Parmy Olson  
-<span class="ref-label">23.1:
+17.1: [The Crypto-Currency](http://www.wired.com/magazine/2011/11/mf_bitcoin/all) 10 November 2011 Wired Magazine Joshua Davis  
+17.2: [Questions about Bitcoin](https://bitcointalk.org/index.php?topic=13.msg46#msg46) Bitcoin forum 2009-12-10  
+17.3: [cbitcoin](https://github.com/MatthewLM/cbitcoin)  
+17.4: [Google Engineer Releases Open Source Bitcoin Client](http://news.slashdot.org/story/11/03/23/0210207/Google-Engineer-Releases-Open-Source-Bitcoin-Client) angry tapir, timothy Slashdot 23 March 2011  
+17.5: [Bitcoin for beginners: The BitcoinJ API](http://www.javaworld.com/javaworld/jw-01-2012/120110-bitcoin-for-beginners-3.html?page=1) Dirk Merkel JavaWorld 10 January 2012  
+19.1: [About Bitcoin Mining](http://www.weusecoins.com/mining-guide.php) We Use Coins  
+21.1: [Bitpay Breaks Daily Volume Record with Butterfly ASIC mining release](http://bitcoinmagazine.net/bitpay-breaks-daily-volume-record-with-butterfly-asic-mining-release/) Bitcoin Magazine  
+23.1: [Bitcoin: An Innovative Alternative Digital Currency](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1817857) Grinberg, Reuben SSRN 9 December 2011  
+23.2: [The Pros And Cons Of Biting on Bitcoins](http://www.cnbc.com/id/45030812/The_Pros_And_Cons_Of_Biting_on_Bitcoins) Gustke, Constance CNBC 23 November 2011  
+23.3: [US senators draw a bead on Bitcoin](http://www.theregister.co.uk/2011/06/08/bitcoin_under_attack/) The Register 8 June 2011  & Richard Chirgwin  
+23.4: [Bitcoin, the City traders' anarchic new toy](http://uk.reuters.com/article/2012/04/01/uk-traders-bitcoin-idUKBRE8300JL20120401) Reuters 2 April 2012  & Naomi O'Leary  
+23.5: [Virtual Currency Schemes](http://www.ecb.europa.eu/pub/pdf/other/virtualcurrencyschemes201210en.pdf) European Central Bank October 2012  
+24.1: [Bitcoin: The Cryptoanarchists' Answer to Cash](http://spectrum.ieee.org/computing/software/bitcoin-the-cryptoanarchists-answer-to-cash/0) IEEE.org June 2012  
+24.2: [An Analysis of Anonymity in the Bitcoin System](http://anonymity-in-bitcoin.blogspot.com/2011/07/bitcoin-is-not-anonymous.html) Fergal Reid and Martin Harrigan (24 July 2011). . An Analysis of Anonymity in the Bitcoin System.  
+24.3: [Crypto Currency](http://www.forbes.com/forbes/2011/0509/technology-psilocybin-bitcoins-gavin-andresen-crypto-currency.html) Andy Greenberg (20 April 2011). . Forbes Magazine.  
+24.4: [Libertarian Dream? A Site Where You Buy Drugs With Digital Dollars](http://www.theatlantic.com/technology/archive/2011/06/libertarian-dream-a-site-where-you-buy-drugs-with-digital-dollars/239776/) The Atlantic Monthly 2011-06-01 Alexis Madrigal  
+26.1: [Senators target Bitcoin currency, citing drug sales &#124; The Digital Home – CNET News](http://news.cnet.com/8301-13506_3-20070268-17/senators-target-bitcoin-currency-citing-drug-sales/) News.cnet.com 2011-06-09 Don Reisinger  
+26.2: [LulzSec Hackers Post Sony Dev. Source Code, Get $7K Donation – Parmy Olson – Disruptors – Forbes](http://blogs.forbes.com/parmyolson/2011/06/06/lulzsec-hackers-posts-sony-dev-source-code-get-7k-donation/) Blogs.forbes.com 6 June 2011 Parmy Olson  
+<span class="ref-label">27.1:
 <span class="ref-column">
  [Silk Road: Not Your Father's Amazon.com](http://www.npr.org/2011/06/12/137138008/silk-road-not-your-fathers-amazon-com) 
  Staff 12 June 2011 NPR</span>  
-24.1: [Bitcoin Botnet Mining &#124; Symantec Connect Community](http://www.symantec.com/connect/blogs/bitcoin-botnet-mining) Updated: 17 June 2011 Symantec.com 2011-06-17  
-24.2: [Researchers find malware rigged with Bitcoin miner](http://www.zdnet.com/blog/security/researchers-find-malware-rigged-with-bitcoin-miner/8934) ZDNet 2011-06-29  
-24.3: [ABC employee caught mining for Bitcoins on company servers](http://thenextweb.com/au/2011/06/23/abc-employee-caught-mining-for-bitcoins-on-company-servers/) The Next Web 2011-06-23  
-24.4: [Malware mints virtual currency using victim's GPU](http://www.theregister.co.uk/2011/08/16/gpu_bitcoin_brute_forcing/) 16 August 2011<!-- 20:00 GMT --> Dan Goodin  
-24.5: [Infosecurity – Researcher discovers distributed bitcoin cracking trojan malware](http://www.infosecurity-magazine.com/view/20211/researcher-discovers-distributed-bitcoin-cracking-trojan-malware/) Infosecurity-magazine.com 2011-08-19  
-24.6: [Mac OS X Trojan steals processing power to produce Bitcoins – sophos, security, malware, Intego – Vulnerabilities – Security](http://www.techworld.com.au/article/405849/mac_os_x_trojan_steals_processing_power_produce_bitcoins) Techworld 2011-11-01  
-25.1: [Clarification of Mt Gox Compromised Accounts and Major Bitcoin Sell-Off](https://mtgox.com/press_release_20110630.html)  
-25.2: [YouTube. Bitcoin Report](http://www.youtube.com/watch?v=T1X6qQt9ONg)  
-25.3: [Inside the Mega-Hack of Bitcoin: the Full Story](http://www.dailytech.com/Inside+the+MegaHack+of+Bitcoin+the+Full+Story/article21942.htm) Jason Mick, 19 June 2011, , DailyTech  
-25.4: [Bitcoin prices plummet on hacked exchange](http://arstechnica.com/tech-policy/news/2011/06/bitcoin-price-plummets-on-compromised-exchange.ars) Timothy B. Lee, 19 June 2011, , Ars Technica  
-25.5: [Huge Bitcoin sell off due to a compromised account – rollback](https://support.mtgox.com/entries/20208066-huge-bitcoin-sell-off-due-to-a-compromised-account-rollback) Mark Karpeles, 20 June 2011, , Mt.Gox Support  
-25.6: [Bitcoin collapses on malicious trade – Mt Gox scrambling to raise the Titanic](http://www.theregister.co.uk/2011/06/19/bitcoin_values_collapse_again/) Chirgwin, Richard The Register 2011-06-19  
-25.7: [Third Largest Bitcoin Exchange Bitomat Lost Their Wallet, Over 17,000 Bitcoins Missing](http://siliconangle.com/blog/2011/08/01/third-largest-bitcoin-exchange-bitomat-lost-their-wallet-over-17000-bitcoins-missing/) . SiliconAngle  
-25.8: [MyBitcoin Spokesman Finally Comes Forward: “What Did You Think We Did After the Hack? We Got Shitfaced”](http://betabeat.com/2011/08/mybitcoin-spokesman-finally-comes-forward-what-did-you-think-we-did-after-the-hack-we-got-shitfaced/) . BetaBeat  
-25.9: [Search for Owners of MyBitcoin Loses Steam](http://betabeat.com/2011/08/search-for-owners-of-mybitcoin-loses-steam/) . BetaBeat  
-25.10: [Bitcoinica users sue for $460k in lost Bitcoins](http://arstechnica.com/tech-policy/2012/08/bitcoinica-users-sue-for-460k-in-lost-bitcoins/) . Arstechnica  
-25.11: [First Bitcoin Lawsuit Filed In San Francisco](http://spectrum.ieee.org/tech-talk/computing/networks/first-bitcoin-lawsuit-filed-in-san-francisco) . IEEE Spectrum  
-25.12: [Bitcoin ponzi scheme – investors lose $5 million USD in online hedge fund](http://rt.com/usa/news/investors-currency-digital-fund-868/) RT  
-25.13: [Suspected multi-million dollar Bitcoin pyramid scheme shuts down, investors revolt](http://www.theverge.com/2012/8/27/3271637/bitcoin-savings-trust-pyramid-scheme-shuts-down) The Verge Adrianne Jeffries  
-25.14: ["Pirateat40" Makes Off $5.6M USD in BitCoins From Pyramid Scheme](http://www.dailytech.com/Pirateat40+Makes+Off+56M+USD+in+BitCoins+From+Pyramid+Scheme/article25538.htm) DailyTech Jason Mick  
-25.15: [Bitcoin: How a Virtual Currency Became Real with a $5.6M Fraud](http://pandodaily.com/2012/08/31/bitcoin-how-a-virtual-currency-became-real-with-a-5-6m-fraud/) . PandoDaily  
-25.16: [Bitcoin 'Pirate' scandal: SEC steps in amid allegations that the whole thing was a Ponzi scheme](http://blogs.telegraph.co.uk/technology/willardfoxton2/100007836/bitcoin-pirate-scandal-sec-steps-in-amid-allegations-that-the-whole-thing-was-a-ponzi-scheme/) . The Telegraph  
-25.17: [Bitcoin theft causes Bitfloor exchange to go offline](http://www.bbc.co.uk/news/technology-19486695) . BBC  
-25.18: [Bitcoin exchange BitFloor suspends operations after $250,000 theft Bitcoin exchange BitFloor suspends operations after $250,000 theft](http://www.theverge.com/2012/9/5/3293375/bitfloor-bitcoin-exchange-suspended-theft) . The Verge  
-25.19: [Bitcoin exchange back online after hack](http://www.pcworld.com/article/2010586/bitcoin-exchange-back-online-after-hack.html?tk=rel_news) . PCWorld  
-26.1: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
-26.2: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
-26.3: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
-26.4: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
-26.5: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
-26.6: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
-26.7: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
-26.8: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
-26.9: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012
+28.1: [Bitcoin Botnet Mining &#124; Symantec Connect Community](http://www.symantec.com/connect/blogs/bitcoin-botnet-mining) Updated: 17 June 2011 Symantec.com 2011-06-17  
+28.2: [Researchers find malware rigged with Bitcoin miner](http://www.zdnet.com/blog/security/researchers-find-malware-rigged-with-bitcoin-miner/8934) ZDNet 2011-06-29  
+28.3: [ABC employee caught mining for Bitcoins on company servers](http://thenextweb.com/au/2011/06/23/abc-employee-caught-mining-for-bitcoins-on-company-servers/) The Next Web 2011-06-23  
+28.4: [Malware mints virtual currency using victim's GPU](http://www.theregister.co.uk/2011/08/16/gpu_bitcoin_brute_forcing/) 16 August 2011<!-- 20:00 GMT --> Dan Goodin  
+28.5: [Infosecurity – Researcher discovers distributed bitcoin cracking trojan malware](http://www.infosecurity-magazine.com/view/20211/researcher-discovers-distributed-bitcoin-cracking-trojan-malware/) Infosecurity-magazine.com 2011-08-19  
+28.6: [Mac OS X Trojan steals processing power to produce Bitcoins – sophos, security, malware, Intego – Vulnerabilities – Security](http://www.techworld.com.au/article/405849/mac_os_x_trojan_steals_processing_power_produce_bitcoins) Techworld 2011-11-01  
+29.1: [Clarification of Mt Gox Compromised Accounts and Major Bitcoin Sell-Off](https://mtgox.com/press_release_20110630.html)  
+29.2: [YouTube. Bitcoin Report](http://www.youtube.com/watch?v=T1X6qQt9ONg)  
+29.3: [Inside the Mega-Hack of Bitcoin: the Full Story](http://www.dailytech.com/Inside+the+MegaHack+of+Bitcoin+the+Full+Story/article21942.htm) Jason Mick, 19 June 2011, , DailyTech  
+29.4: [Bitcoin prices plummet on hacked exchange](http://arstechnica.com/tech-policy/news/2011/06/bitcoin-price-plummets-on-compromised-exchange.ars) Timothy B. Lee, 19 June 2011, , Ars Technica  
+29.5: [Huge Bitcoin sell off due to a compromised account – rollback](https://support.mtgox.com/entries/20208066-huge-bitcoin-sell-off-due-to-a-compromised-account-rollback) Mark Karpeles, 20 June 2011, , Mt.Gox Support  
+29.6: [Bitcoin collapses on malicious trade – Mt Gox scrambling to raise the Titanic](http://www.theregister.co.uk/2011/06/19/bitcoin_values_collapse_again/) Chirgwin, Richard The Register 2011-06-19  
+29.7: [Third Largest Bitcoin Exchange Bitomat Lost Their Wallet, Over 17,000 Bitcoins Missing](http://siliconangle.com/blog/2011/08/01/third-largest-bitcoin-exchange-bitomat-lost-their-wallet-over-17000-bitcoins-missing/) . SiliconAngle  
+29.8: [MyBitcoin Spokesman Finally Comes Forward: “What Did You Think We Did After the Hack? We Got Shitfaced”](http://betabeat.com/2011/08/mybitcoin-spokesman-finally-comes-forward-what-did-you-think-we-did-after-the-hack-we-got-shitfaced/) . BetaBeat  
+29.9: [Search for Owners of MyBitcoin Loses Steam](http://betabeat.com/2011/08/search-for-owners-of-mybitcoin-loses-steam/) . BetaBeat  
+29.10: [Bitcoinica users sue for $460k in lost Bitcoins](http://arstechnica.com/tech-policy/2012/08/bitcoinica-users-sue-for-460k-in-lost-bitcoins/) . Arstechnica  
+29.11: [First Bitcoin Lawsuit Filed In San Francisco](http://spectrum.ieee.org/tech-talk/computing/networks/first-bitcoin-lawsuit-filed-in-san-francisco) . IEEE Spectrum  
+29.12: [Bitcoin ponzi scheme – investors lose $5 million USD in online hedge fund](http://rt.com/usa/news/investors-currency-digital-fund-868/) RT  
+29.13: [Suspected multi-million dollar Bitcoin pyramid scheme shuts down, investors revolt](http://www.theverge.com/2012/8/27/3271637/bitcoin-savings-trust-pyramid-scheme-shuts-down) The Verge Adrianne Jeffries  
+29.14: ["Pirateat40" Makes Off $5.6M USD in BitCoins From Pyramid Scheme](http://www.dailytech.com/Pirateat40+Makes+Off+56M+USD+in+BitCoins+From+Pyramid+Scheme/article25538.htm) DailyTech Jason Mick  
+29.15: [Bitcoin: How a Virtual Currency Became Real with a $5.6M Fraud](http://pandodaily.com/2012/08/31/bitcoin-how-a-virtual-currency-became-real-with-a-5-6m-fraud/) . PandoDaily  
+29.16: [Bitcoin 'Pirate' scandal: SEC steps in amid allegations that the whole thing was a Ponzi scheme](http://blogs.telegraph.co.uk/technology/willardfoxton2/100007836/bitcoin-pirate-scandal-sec-steps-in-amid-allegations-that-the-whole-thing-was-a-ponzi-scheme/) . The Telegraph  
+29.17: [Bitcoin theft causes Bitfloor exchange to go offline](http://www.bbc.co.uk/news/technology-19486695) . BBC  
+29.18: [Bitcoin exchange BitFloor suspends operations after $250,000 theft Bitcoin exchange BitFloor suspends operations after $250,000 theft](http://www.theverge.com/2012/9/5/3293375/bitfloor-bitcoin-exchange-suspended-theft) . The Verge  
+29.19: [Bitcoin exchange back online after hack](http://www.pcworld.com/article/2010586/bitcoin-exchange-back-online-after-hack.html?tk=rel_news) . PCWorld  
+30.1: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+30.2: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+30.3: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+30.4: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+30.5: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+30.6: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+30.7: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+30.8: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012  
+30.9: Stewart, David D. and Soong Johnston, Stephanie D. Issue: 2012 TNT 209-4 Journal: Tax Notes Today Month: October 29 Volume: 2012 TNT 209-4 Year: 2012
 
 
 [[!tag "Digital_currencies"]]
