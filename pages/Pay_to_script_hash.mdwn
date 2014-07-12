@@ -1,8 +1,10 @@
-**Pay to script hash** transactions were standardised on [[BIP 16|BIP_0016]].
+**Pay to script hash** (P2SH) transactions were standardised in [[BIP 16|BIP_0016]]. They allow transactions to be sent to a script hash (addresses starting with 3) instead of a public key hash (addresses starting with 1). To spend bitcoins sent via P2SH, the recipient must provide a [[script]] matching the script hash and data which makes the script evaluate to true.
+
+Using P2SH, you can send bitcoins to an address that is secured in various unusual ways without knowing anything about the details of how the security is set up. You just send bitcoins to the ~34-character P2SH address. The recipient might need the signatures of several people to spend these bitcoins, or a password might be required, or the requirements could be completely unique.
 
 ## Addresses
 
-[[BIP 13|BIP_0013]] specifies the address format.
+[[BIP 13|BIP_0013]] specifies the address format. Bitcoin P2SH addresses always start with 3.
 
 ## History
 
