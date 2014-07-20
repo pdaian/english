@@ -1,0 +1,21 @@
+Address reuse is the practice of sending multiple transactions to the same address.
+This works by "accident", not by design.
+It is considered a bad practice, and not something that should be done.
+
+## Problems
+### Privacy
+Address reuse harms the privacy of not only yourself, but also others - including many not related to the transaction.
+In some cases, these risks are serious enough that they are likely in violation of reasonable consumer protection laws.
+
+### Security
+Bitcoin does not, at a low level, have any concept of addresses, only individual coins.
+Address reuse, at this layer, requires producing multiple digital signatures when you spend bitcoins.
+Multiple situations have been found where more than one digital signature can be used to calculate the private key needed to spend bitcoins.
+Even if you spend all the bitcoins claimed by this private key at once, it is still possible to double-spend them in theft before they confirm.
+While the situations for finding the private key from signatures have been fixed, it is not prudent to assume there aren't more such situations yet unknown.
+
+### Accidental loss
+In Bitcoin abstraction, an address is an invoice for a specific payment.
+Once that payment is made, the receiving party has no reason to retain the data for the address (technical details simplified) and may discard it.
+Even if someone does not choose to discard that data, it may have since been lost in an accident or compromised.
+In any of these situations, any future payments to the same address would go in to a "black hole", and be forever lost through no fault of the recipient.
