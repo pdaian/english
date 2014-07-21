@@ -103,6 +103,19 @@ The USB on the AR9331 has bugs. If you want use serial console, please use the d
 
 # Firmware
 
+## [http://downloads.canaan-creative.com/software/avalon2/2014-07-19/ 20140719]
+
+* Update OpenWrt to r41240
+* Add new parameter for polling delay: --avalon2-polling-delay (Default: 20ms)
+* Add new parameter for stratum ignore time: --stratum-ignore (Default: 30s)
+* Add LED status on API log
+* Support unlimited socket receive size for cgminer-api
+* Try to detect module twice when start
+* Don't count HW works on hashrate
+* Support cgminer restart on status page
+* Display indicator status on status page
+* Change introduction on luci-cgminer
+
 ## [http://downloads.canaan-creative.com/software/avalon2/2014-05-26 20140526]
 
 * Update to OpenWrt r40859, Update cgminer to 4.3.3
