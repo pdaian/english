@@ -683,6 +683,49 @@ CCodes
 
 These messages are related to Bloom filtering of connections and are defined in [BIP 0037](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki).
 
+
+The <code>filterload</code> command is defined as follows:
+
+
+
+|? |filter |uint8_t[]|The filter itself is simply a bit field of arbitrary byte-aligned size. The maximum size is 36,000 bytes.
+|4 |nHashFuncs |uint32_t |The number of hash functions to use in this filter. The maximum value allowed in this field is 50.
+|4 |nTweak |uint32_t |A random value to add to the seed value in the hash function used by the bloom filter.
+|1 |nFlags |uint8_t |A set of flags that control how matched items are added to the filter.
+
+
+See below for a description of the Bloom filter algorithm and how to select nHashFuncs and filter size for a desired false positive rate.
+
+Upon receiving a <code>filterload</code> command, the remote peer will immediately restrict the broadcast transactions it announces (in inv packets) to transactions matching the filter, where the matching algorithm is specified below. The flags control the update behaviour of the matching algorithm.
+
+The <code>filteradd</code> command is defined as follows:
+
+
+
+|? |data |uint8_t[]|The data element to add to the current filter.
+
+
+The data field must be smaller than or equal to 520 bytes in size (the maximum size of any potentially matched object).
+
+The given data element will be added to the Bloom filter. A filter must have been previously provided using <code>filterload</code>. This command is useful if a new key or script is added to a clients wallet whilst it has connections to the network open, it avoids the need to re-calculate and send an entirely new filter to every peer (though doing so is usually advisable to maintain anonymity).
+
+The <code>filterclear</code> command has no arguments at all.
+
+After a filter has been set, nodes don't merely stop announcing non-matching transactions, they can also serve filtered blocks. A filtered block is defined by the <code>merkleblock</code> message and is defined like this:
+
+
+
+|4 |version |uint32_t |Block version information, based upon the software version creating this block
+|32 |prev_block |char[[32]]|The hash value of the previous block this particular block references
+|32 |merkle_root |char[[32]]|The reference to a Merkle tree collection which is a hash of all transactions related to this block
+|4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2106!)
+|4 |bits |uint32_t |The calculated difficulty target being used for this block
+|4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
+|4 |total_transactions |uint32_t |Number of transactions in the block (including unmatched ones)
+|? |hashes |uint256[]|hashes in depth-first order (including standard varint size prefix)
+|? |flags |byte[]|flag bits, packed per 8 in a byte, least significant bit first (including standard varint size prefix)
+
+
 ### alert
 
 An **alert** is sent between nodes to send a general notification message throughout the network. If the alert can be confirmed with the signature as having come from the the core development group of the Bitcoin software, the message is suggested to be displayed for end-users. Attempts to perform transactions, particularly automated transactions through the client, are suggested to be halted. The text in the Message string should be relayed to log files and any user interfaces.
