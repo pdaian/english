@@ -14,6 +14,10 @@ Multiple situations have been found where more than one digital signature can be
 Even if you spend all the bitcoins claimed by this private key at once, it is still possible to double-spend them in theft before they confirm.
 While the situations for finding the private key from signatures have been fixed, it is not prudent to assume there aren't more such situations yet unknown.
 
+In the case of spending all the TXOs in a single transaction, there is an additional risk if someone is actively monitoring the network for vulnerable transactions:
+upon receiving such a transaction, they can split up their double spends such that there is only one ECDSA verification per transaction (making a single transaction for each TXO);
+this will cause the attacker's transactions to relay across the rest of the nodes *faster* than the legitimate one, increasing success of a double spend.
+
 ### Accidental loss
 In Bitcoin abstraction, an address is an invoice for a specific payment.
 Once that payment is made, the receiving party has no reason to retain the data for the address (technical details simplified) and may discard it.
