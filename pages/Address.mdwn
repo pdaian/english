@@ -11,11 +11,10 @@ However, *unlike* e-mail addresses, people have many different Bitcoin addresses
 Most Bitcoin software and websites will help with this by generating a brand new address each time you create an invoice or payment request.
 
 ##Addresses can be created offline
-Creating addresses can be done without an Internet connection and does not require any contact or registration with the Bitcoin network.  The network starts tracking an address when it is first seen in a valid payment transaction.
-
-It is possible to create large batches of addresses offline using freely available software tools.  Generating batches of addresses is useful in several scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer who chooses a "pay with Bitcoin" option.
-
-An average desktop computer can generate thousands of new Bitcoin addresses a minute.  Addresses are created simply by generating random numbers and then performing mathematical operations to derive matching pairs of "public" and "private" keys.  Because addresses can be created easily and at minimal cost, it is not uncommon to create temporary addresses that can be discarded if unused.
+Creating addresses can be done without an Internet connection and does not require any contact or registration with the Bitcoin network.
+It is possible to create large batches of addresses offline using freely available software tools.
+Generating batches of addresses is useful in several scenarios, such as e-commerce websites where a unique pre-generated address is dispensed to each customer who chooses a "pay with Bitcoin" option.
+Newer "HD wallets" can generate a "seed" token which can be used to allow untrusted systems (such as webservers) to generate an unlimited number of addresses without the ability to spend the bitcoins received.
 
 ##Addresses are case sensitive and exact
 Bitcoin addresses are case-sensitive.  Bitcoin addresses should be copied and pasted using the computer's clipboard wherever possible. If you hand-key a Bitcoin address, and each character is not transcribed exactly - including capitalization - the incorrect address will most likely be rejected by the Bitcoin software.  You will have to check your entry and try again.
