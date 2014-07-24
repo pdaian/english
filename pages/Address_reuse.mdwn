@@ -18,6 +18,11 @@ In the case of spending all the TXOs in a single transaction, there is an additi
 upon receiving such a transaction, they can split up their double spends such that there is only one ECDSA verification per transaction (making a single transaction for each TXO);
 this will cause the attacker's transactions to relay across the rest of the nodes *faster* than the legitimate one, increasing success of a double spend.
 
+#### Known attacks
+
+* Same K in multiple signatures
+* Timing sidechannel
+
 ### Accidental loss
 In Bitcoin abstraction, an address is an invoice for a specific payment.
 Once that payment is made, the receiving party has no reason to retain the data for the address (technical details simplified) and may discard it.
