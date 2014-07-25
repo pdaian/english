@@ -71,7 +71,7 @@ Transactions are cryptographically signed records that reassign ownership of Bit
 
 Each *input* must have a cryptographic digital signature that unlocks the funds from the prior transaction.  Only the person possessing the appropriate [[private_key]] is able to create a satisfactory signature; this in effect ensures that funds can only be spent by their owners.
 
-Each *output* determines which Bitcoin address (or other criteria, see [[Scripting]]) is the recipient of the funds.
+Each *output* determines which Bitcoin address (or other criteria, see [[Script]]) is the recipient of the funds.
 
 In a transaction, the sum of all inputs must be equal to or greater than the sum of all outputs.  If the inputs exceed the outputs, the difference is considered a [[transaction_fee]], and is redeemable by whoever first includes the transaction into the block chain.
 
