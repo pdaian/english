@@ -37,7 +37,7 @@ Now depending on the hashtype various things can happen to txCopy, these will be
 <li> If (hashtype&31) = SIGHASH_SINGLE then apply the SIGHASH_SINGLE-procedure
 <li> If hashtype & SIGHASH_ANYONECANPAY then apply the SIGHASH_ANYONECANPAY-procedure
 </ol>
-Hence, hashtype SIGHASH_ANYONECANPAY may be applied also after any other hashtype-procedure (3.1). Besides the four listed hashtypes only a hashtype of value 0 appears a few types in the (main) block chain (and is handled like SIGHASH_ALL).
+Hence, hashtype SIGHASH_ANYONECANPAY may be applied also after any other hashtype-procedure (3.1). Besides the four listed hashtypes only a hashtype of value 0 appears a few times in the (main) block chain (and is handled like SIGHASH_ALL).
 
 ### Hashtype SIGHASH_ALL (default)
 
