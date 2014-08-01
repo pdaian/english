@@ -10,7 +10,7 @@ An old copy of a wallet with its old password is often easily retrievable via an
 An initial solution is to mandate (either in code or as expressed policy) that changing a wallet's password causes (or asks the user to cause) the creation of a new wallet with new addresses, and the sending of existing sums to them. Backed-up copies of the original wallet with the original password would then be empty, should they be compromised. On the downside, the password-changing process would potentially take much longer, cost a transaction fee or more, and - intially at least - the new wallet is no longer backed up. On the upside, non-technical users won't find their wallets drained from security compromises they believed they had closed, nor be required to locate existing backups of a wallet in order to destroy them.
 
 ### Tracing a coin's history
-Tracing a coin's history can be used to connect identities to addresses. [[More info|Anonymity]].
+Tracing a coin's history can be used to connect identities to addresses. [[More info|Anonymity_&_Security]].
 
 ### Sybil attack
 An attacker can attempt to fill the network with clients controlled by him, you would then be very likely to connect only to attacker nodes. Although Bitcoin never uses a count of nodes for anything completely isolating a node from the honest network can be helpful in the execution of other attacks.
@@ -176,6 +176,7 @@ Using unmodified Bitcoin code, an attacker could segment himself from the main n
 
 ##See Also
 
+* [[Anonymity_&_Security]]
 * [[Double-spending]]
 * [Stack Exchange](http://bitcoin.stackexchange.com/questions/10025/where-can-i-find-well-written-criticism-about-bitcoin)
 
