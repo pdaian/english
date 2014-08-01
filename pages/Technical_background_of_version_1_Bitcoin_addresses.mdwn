@@ -5,7 +5,7 @@ A [[Bitcoin_address]] is a 160-bit hash of the public portion of a public/privat
 
 A new keypair is generated for each receiving address. Bitcoin addresses (the public keys) and their associated private keys are stored in the [[wallet]] data file. This is the only file you need to [[back up|backup]]. A "send" transaction to a specific Bitcoin address requires that the corresponding private key exist in the recipient's wallet. This has the implication that if you create a receiving address and receive coins to that address, then restore the wallet from an earlier backup, before the address was generated, then the coins associated with that address are lost.  Addresses are added to an address [[key_pool]] prior to being used for receiving coins. If you lose your wallet entirely, all of your coins are lost and can never be recovered.
 
-Bitcoin allows you to create as many addresses as you want, and each one is completely separate. There is no "master address": the "Your Bitcoin address" area in the Bitcoin UI has no special importance. It's only there for your convenience, and it will change automatically from time to time to enhance your anonymity. All of your other addresses will continue to work forever. They're listed in the "your receiving addresses" section. Each address takes up only about 500 bytes, so having a large number of addresses in your wallet is generally not a problem.
+Bitcoin allows you to create as many addresses as you want, and each one is completely separate. There is no "master address": the "Your Bitcoin address" area in the Bitcoin UI has no special importance. It's only there for your convenience, and it will change automatically from time to time to enhance your [[anonymity|Anonymity_&_Security]]. All of your other addresses will continue to work forever. They're listed in the "your receiving addresses" section. Each address takes up only about 500 bytes, so having a large number of addresses in your wallet is generally not a problem.
 
 Bitcoin addresses contain a built-in check code, so it's generally not possible to send Bitcoins to a mistyped address. However, if the address is well-formed but no one owns it (or the owner lost their wallet.dat), any coins sent to that address will be lost forever.
 
@@ -41,5 +41,5 @@ Since Bitcoin addresses are basically random numbers, it is possible, although e
 
 * [[Address]]
 * [Address testing suite](http://gobittest.appspot.com/Address)
-
+* [[Anonymity_&_Security]]
 [[!tag "Technical"]]
