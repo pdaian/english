@@ -86,7 +86,7 @@ If you will be using accounts for multiple deposits and withdrawals long-term, y
 
 ### getnewaddress vs getaccountaddress
 
-Using getnewaddress helps increase maintain anonymity of your users by making it hard for a malicious agent to track payments flowing through your application. Running getnewaddress too often, however, will cause your wallet to become filled with many empty addresses.
+Using getnewaddress helps increase maintain [[anonymity|Anonymity_&_Security]] of your users by making it hard for a malicious agent to track payments flowing through your application. Running getnewaddress too often, however, will cause your wallet to become filled with many empty addresses.
 
 It is therefore recommended to in some way limit the number of unfunded addresses each user can request. Here is an example using sessions:
 <source lang="php">
@@ -114,6 +114,7 @@ This creates a new address at the beginning of every new session, and stores it 
 
 ##See Also
 
+* [[Anonymity_&_Security]]
 * [[API_reference_(JSON-RPC)]]
 * [[Lazy_API]]
 * [[Merchant_Howto]]
