@@ -49,6 +49,56 @@ Type-2 SINs may be generated at any time, without network activity, much like bi
 1. SIN = base58_encode_check( Prefix + SIN_Version + MD )
 1. Hyphenate SIN for easier human reading if desired, inserting one hyphen after every 5th character.
 
+
+For example, using the public key:
+
+<code>
+0445286F7B5CAB821CED2184AD69D5FADBF81A8B0334243373D89865D741AE6AA2FB50104BDD66FF40FF5E64EF8FDBFC48096F49A9863242F3FB7FC86B2D222A3D
+</code>
+
+
+Step 1 (SHA-256 of public key):
+
+<code>
+	 a935ced8278c80da3f5fe555906e847d894b8847d5dde55481f48862f9c5a05f
+</code>
+
+Step 2 (RIPEMD-160 of Step 1):
+
+<code>
+	 d5caffd3e024269af98ad6f6221929e228151579
+</code>
+
+Step 3 (Prefix + SIN_Version + Step 2):
+
+<code>
+	 0F02d5caffd3e024269af98ad6f6221929e228151579
+</code>
+
+Step 4 (Double SHA-256 of Step 3):
+
+<code>
+	 73a06d3a5cd12105c67045f0161cb028ecfa7c4597e21a0056c31586aab75bad
+</code>
+
+Step 5 (Checksum):
+
+<code>
+	 73a06d3a
+</code>
+
+Step 6 (Step 5 + Step 3):
+
+<code>
+	 0F02d5caffd3e024269af98ad6f6221929e22815157973a06d3a
+</code>
+
+SIN (Base58 encoded):
+
+<code>
+	 TfH2s4hD98LthqXendoFvTj3486JffDzwrZ
+</code>
+
 ##Creating sacrifice transactions
 
 Creation cost is attached to decentralized identity by means of sacrificing a small amount of value.
