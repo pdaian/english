@@ -1,23 +1,15 @@
 # Host Apps
-## Windows
 
-* http://downloads.canaan-creative.com/software/avalon_nano/software/latest/
-
-## Linux
-./bfgminer -S ICA:/dev/ttyACM0 -o stratum+tcp://stratum.ozco.in:80 -O user:pass --set-device ICA:baud=115200 --set-device ICA:reopen=timeout --set-device ICA:work_division=1 --set-device ICA:fpga_count=1 --set-device ICA:probe_timeout=100 --set-device ICA:timing=0.22 --api-listen 2>log
-
-or
-
-./cgminer -o stratum+tcp://stratum.ozco.in:80 -O user:pass --icarus-options 115200:1:1 --icarus-timing 0.22 --api-listen 2>log
-
-## MacOS
+* [AvalonMiner](http://downloads.canaan-creative.com/software/avalon_nano/software/latest/) (Windows only)
+* [[BFGMiner]]: bfgminer -S ICA:/dev/ttyACM0 --set-device ICA:baud=115200 --set-device ICA:reopen=timeout --set-device ICA:work_division=1 --set-device ICA:fpga_count=1 --set-device ICA:probe_timeout=100 --set-device ICA:timing=0.22 --api-listen 2>log
+* [[cgminer]]: cgminer --icarus-options 115200:1:1 --icarus-timing 0.22 --api-listen 2>log
 
 # Miner Support
 
 * Cgminer (https://github.com/BitSyncom/cgminer/tree/avalon-usb)
 * bfgminer (https://github.com/luke-jr/bfgminer)
 
-# Frimware
+# Firmware
 
 * http://downloads.canaan-creative.com/software/avalon_nano/firmware/latest/
 
