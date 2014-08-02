@@ -56,6 +56,13 @@ valign="top"|7500|550|1689~1743|1747
 ## Debug port
  [[!img "DEBUG.jpeg" size=300x300]]
 
+# Using BFGMiner
+
+Avalon 3 units communicate with a UART, usually attached to your host via a generic USB UART adapter.
+First, figure out what COM port (or /dev/ttyUSB on Linux) and run BFGMiner with:
+
+<code>bfgminer -S avalonmm:\\.\COM22 --set avalonmm:clock=450 --set avalonmm:voltage=0.6625 --set avalonmm:fan=80</code>
+
 # Firmware
 ## 703n/RPi Host Firmware
 After **[20140320](https://en.bitcoin.it/wiki/Avalon2#20140320)**, the Avalon2 firmware support both Avalon2 and Avalon3 out of box. Please download the firmware here:
