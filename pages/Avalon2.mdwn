@@ -50,6 +50,13 @@ The USB on the AR9331 has bugs. If you want use serial console, please use the d
 * USB Hub, [UNITEK Y-2132 USB2.0 13ports](http://item.jd.com/511117.html)
 * USB WiFi, [EDUP EP-N8508GS](http://item.jd.com/509932.html)
 
+## Using BFGMiner
+
+Avalon 2 units communicate with a UART, usually attached to your host via a generic USB UART adapter.
+First, figure out what COM port (or /dev/ttyUSB on Linux) and run BFGMiner with:
+
+<code>bfgminer -S avalonmm:\\.\COM22 --set avalonmm:clock=1500 --set avalonmm:voltage=1 --set avalonmm:fan=80</code>
+
 ## Manual by others
 
 * [彩云比特中文评测](http://www.cybtc.com/article-565-1.html)
