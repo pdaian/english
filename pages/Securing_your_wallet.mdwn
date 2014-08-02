@@ -56,7 +56,7 @@ The wallet contains a pool of queued keys. By default there are 100 keys in the 
 
 Creating a new address generates a new pair of public and private keys, which are added to your wallet. Each keypair is mostly random numbers, so they cannot be known prior to generation. If you backup your wallet and then create more than 100 new addresses, the keypair associated with the newest addresses will not be in the old wallet because the new keypairs are only known after creating them. Any coins received at these addresses will be lost if you restore from the backup.
 
-The situation is made somewhat more confusing because the receiving addresses shown in the UI are not the only keys in your wallet. Each Bitcoin generation is given a new public key, and, more importantly, each sent transaction also sends some number of Bitcoins back to yourself at a new key. When sending Bitcoins to anyone, you generate a new keypair for yourself and simultaneously send Bitcoins to your new public key and the actual recipient's public key. This is an [[anonymity|Anonymity_&_Security]] feature – it makes tracking Bitcoin transactions much more difficult.
+The situation is made somewhat more confusing because the receiving addresses shown in the UI are not the only keys in your wallet. Each Bitcoin generation is given a new public key, and, more importantly, each sent transaction also sends some number of Bitcoins back to yourself at a new key. When sending Bitcoins to anyone, you generate a new keypair for yourself and simultaneously send Bitcoins to your new public key and the actual recipient's public key. This is an anonymity feature – it makes tracking Bitcoin transactions much more difficult.
 
 So if you create a backup, do more than 100 things that cause a new key to be used, and then restore from the backup, some Bitcoins will be lost. Bitcoin has not deleted any keys (keys are never deleted) – it has created a new key that is not in your old backup and then sent Bitcoins to it.
 
@@ -264,7 +264,6 @@ Mobile wallet applications are available for Android devices that allow you to s
 
 ##See Also
 
-* [[Anonymity_&_Security]]
 * [[Data_directory]]
 * [[How_to_import_private_keys]]
 * [Where to get a Bitcoin wallet](http://bitcoinx.io/wallets/)
