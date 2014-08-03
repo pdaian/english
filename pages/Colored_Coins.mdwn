@@ -1,0 +1,35 @@
+Colored Coins is a colored bitcoin minting and exchange protocol that works on top of the Bitcoin blockchain infrastructure.
+
+Colored coins allow you to store assets on the [[Bitcoin blockchain|Coinprism.info]]. There are many interesting applications to colored coin. You could have an IPO on the blockchain by issuing shares as a colored coins, and send them to your shareholders. The shares can then be traded almost instantaneously and for free through the Bitcoin blockchain. You could have smart properties represented by colored coins. You could store your house on the blockchain by issuing a single coin, then the ownership of the house can be transferred with a simple Bitcoin transaction.
+
+##Block Explorer
+[[Coinprism]] offers a colored coin [[Bitcoin blockchain|Coinprism.info]] explorer.
+
+##Open Assets
+[Open Assets](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki) is a Colored Coin implementation based on the OP_RETURN operator. Metadata is linked from the Blockchain and stored on the web.
+
+###Example of an Open Assets OP_RETURN marker output
+This example illustrates how a marker output is decoded. Assuming the marker output is output 1:
+
+	Data in the marker output      Description
+	-----------------------------  -------------------------------------------------------------------
+	0x6a                           The OP_RETURN opcode.
+	0x10                           The marker output is 16 bytes long.
+	0x4f 0x41                      The Open Assets Protocol tag.
+	0x01 0x00                      Version 1 of the protocol.
+	0x03                           There are 3 items in the asset quantity list.
+	0xac 0x02 0x00 0xe5 0x8e 0x26  The asset quantity list:
+	- '0xac 0x02' means output 0 has an asset quantity of 300.
+	- Output 1 is skipped and has an asset quantity of 0
+	because it is the marker output.
+	- '0x00' means output 2 has an asset quantity of 0.
+	- '0xe5 0x8e 0x26' means output 3 has an asset quantity of 624,485.
+	- Outputs after output 3 (if any) have an asset quantity of 0.
+	0x04                           The metadata is 4 bytes long.
+	0x12 0x34 0x56 0x78            Some arbitrary metadata.
+
+###Current projects leveraging Open Assets
+
+* [[Coinprism]] colored coins web wallet
+* [[Coinprism.info]] colored coins blockchain explorer
+* [Coinprism Assets directory](https://www.coinprism.info/assets)
