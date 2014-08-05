@@ -5,9 +5,32 @@
 * [[CGMiner]]: cgminer --icarus-options 115200:1:1 --icarus-timing 0.22 --api-listen 2>log
 
 # Miner Support
+## [https://github.com/luke-jr/bfgminer BFGMiner]
 
-* BFGMiner (https://github.com/luke-jr/bfgminer)
-* CGMiner (https://github.com/BitSyncom/cgminer/tree/avalon-usb)
+* How to run under Linux?
+	./bfgminer \
+	-S ICA:/dev/ttyACM0 \
+	-o url -O workername:workerpassword \
+	--set-device ICA:baud=115200 \
+	--set-device ICA:reopen=timeout \
+	--set-device ICA:work_division=1 \
+	--set-device ICA:fpga_count=1 \
+	--set-device ICA:probe_timeout=100 \
+	--set-device ICA:timing=0.22 \
+	--api-listen \
+	2>log
+	**Note: /dev/ttyACM0 is an Avalon nano.**
+
+## [https://github.com/BitSyncom/cgminer/tree/avalon-usb CGMiner]
+
+* How to run under Linux?
+	./cgminer \
+	-o url -O workername:workerpassword \
+	--icarus-options 115200:1:1 \
+	--icarus-timing 0.22 \
+	--api-listen \
+	2>log
+	**Note: Make sure you have right to access the Avalon nano dev(eg./dev/ttyACM0)**
 
 # Firmware
 
