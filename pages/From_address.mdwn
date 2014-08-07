@@ -186,9 +186,9 @@ before that, the world knew only the address (a hash of the public key) and woul
 While it’s pretty unlikely, ECDSA is relatively new and could be found to be weak;
 private keys may somehow be found to be easily derived from public ones, exposing any unspent coins where the public key is known.
 
-Re-using addresses also probably increased the [losses suffered via the Android SecureRandom bug](http://tradeblock.com/research/security-vulnerability-in-all-android-bitcoin-wallets/), since [exploiting it](http://tradeblock.com/research/security-vulnerability-in-all-android-bitcoin-wallets/) required seeing two transactions with the same last-sent-to and the same r values.
+Re-using addresses also probably increased the [losses suffered via the Android SecureRandom bug](http://tradeblock.com/research/security-vulnerability-in-all-android-bitcoin-wallets/), since [exploiting it](http://www.nilsschneider.net/2013/01/28/recovering-bitcoin-private-keys.html) required seeing two transactions with the same last-sent-to and the same r values.
 
-The discoverers of the OpenSSL ECDSA [“FLUSH+RELOAD” attack estimated that under the right conditions they could recover a private key by observing as few as 200 signatures (in Bitcoin’s case, typical transactions) made with it.](http://arstechnica.com/security/2014/03/scientist-devised-crypto-attack-could-one-day-steal-secret-bitcoin-keys/)
+The discoverers of the OpenSSL ECDSA [“FLUSH+RELOAD” attack](http://arstechnica.com/security/2014/03/scientist-devised-crypto-attack-could-one-day-steal-secret-bitcoin-keys/) estimated that under the right conditions they could recover a private key by observing as few as 200 signatures (in Bitcoin’s case, typical transactions) made with it.
 
 Hopefully those are the last bugs we’ll see related to re-use, but we can’t be sure.
 
