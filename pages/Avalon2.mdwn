@@ -67,6 +67,27 @@ First, figure out what COM port (or /dev/ttyUSB on Linux) and run BFGMiner with:
 * Chip Freq: 1700, Voltage: 10750 --> 119GHs
 	Extra cooling is recommended, GJPMiningco recommends removing the slide panel that covers the heatsink and adding some fans that blow down into the heatsink - at least 3 fans evenly spaced along the heatsink.
 
+## Avalon3 CGMiner Under Ubuntu 14.04
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get install libcurl4-openssl-dev pkg-config libtool libncurses5-dev libudev-dev screen xterm
+	sudo apt-get install git-core
+	sudo apt-get install openssh-server byobu
+	sudo apt-get install autoconf
+	sudo apt-get install automake
+
+	Inside your home directory, download Cgminer
+	sudo git clone https://github.com/ckolivas/cgminer
+
+	cd cgminer
+	sudo ./autogen.sh --enable-avalon2
+	sudo make -j 4
+
+	-
+	sudo ./cgminer -S /dev/ttyUSB0 --avalon2-freq 500 --avalon2-voltage 7250 --avalon2-fan 50 -o http://stratum.pool:3333 -u  work -p pass 
+	or
+	sudo ./cgminer -S /dev/ttyUSB0 --avalon2-freq 500 --avalon2-voltage 7250 --avalon2-fan 50 -o http://stratum.pool:3333 -u  work -p pass --api-allow W:192.168.2,W:192.168.2.1 --api-listen $@ 2>./log
+
 # The Avalon2
 ## Power supply
  [[!img "Avalon2_power_supply.jpg" size=300x300]]
