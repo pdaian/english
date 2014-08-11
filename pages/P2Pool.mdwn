@@ -370,8 +370,6 @@ For example, a bash script to donate 10 btc is:
 
 You can replace "" with "accountname" if you want to pay from some specific bitcoind account, and you need to replace 127.0.0.1 with the address of your P2Pool node if you're not running one locally.
 
-**Alternatively**, there is a donation tool available on [Blisterpool](http://blisterpool.com/p2pdonate), a p2pool node / extra services pool. This tool is provided for those who do not run their own p2pool node, and pays the donation via sendmany on your behalf.
-
 Note that the amount you donate will be allocated to recent miners in proportion to the amount of work they've done in the last 24 hours or so, but all the miner whose shares of the donated amount are less than 0.01 BTC will have their shares combined into a single amount which is awarded to one of them at random, with the chance of winning this 'lottery' weighted by the miner's recent amount of work done.  You can change this 0.01 BTC threshold like this, for example, which says to pay 10 BTC, but to share it amongst more miners that the default, cutting off at 0.001 BTC instead of at 0.01 BTC.
 <pre>
 ~/src/bitcoin/src/bitcoind sendmany "" "$(GET http://127.0.0.1:9332/patron_sendmany/10/0.001)"
