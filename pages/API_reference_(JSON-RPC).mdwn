@@ -41,12 +41,13 @@ Generally, this version is recommended.
 While BitcoinRPC lacks a few obscure features from jsonrpc, software using only the ServiceProxy class can be written the same to work with either version the user might choose to install:
 
 <source lang="python">
-	from jsonrpc import ServiceProxy
+from jsonrpc import ServiceProxy
 	
-	access = ServiceProxy("http://user:password@127.0.0.1:8332")
-	access.getinfo()
-	access.listreceivedbyaddress(6)
-	#access.sendtoaddress("11yEmxiMso2RsFVfBcCa616npBvGgxiBX", 10)
+access = ServiceProxy("http://user:password@127.0.0.1:8332")
+access.getinfo()
+access.listreceivedbyaddress(6)
+
+1. access.sendtoaddress("11yEmxiMso2RsFVfBcCa616npBvGgxiBX", 10)
 </source>
 
 The latest version of python-bitcoinrpc has a new syntax.
