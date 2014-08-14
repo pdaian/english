@@ -25,13 +25,13 @@ I don't know if this is the correct place to make these suggestions, but I would
 	1. Select a single coin for payment, with a value much greater than the value of the payment (for some definition of "much greater"). About 2x the payment value is good, because then the payment and the change are about the same, and a snooper won't be able to tell which is which.
 	1. Choose multiple coins such that the value of the payment is greater than the value of the smallest coin, but less than the value of the largest coin. For example, your payment is 7 BTC. Choose coins valued at 5, 8, and 10, giving a payment of 7 and change of 16.
 	1. The existing "best fit" algorithm, modified so that it only selects a single coin with the exact value as a last resort.
-
+[[!template id=unsigned Jhyslop 06:14, 4 March 2011]]
 > That does sound like an improvement. I don't think most people care much about anonymity right now, though, and it's not *that* easy to track transactions, so the solution needs to be good for average users (or there needs to be an option). Most of those changes will increase transaction sizes, which will increase fees. [theymos](User:Theymos) 05:10, 5 March 2011 (GMT)
 
 ## Attacker forcing you to disclosure who you send money to
 
 It is said that trying to use your own addresses to clean tracks is dangerous due to this: "However, an investigator is still likely to find you and demand to know who you sent the coins to."
 
-Using a mixing service might not help much then. He'll ask what have you used those coins for anyway, and you won't be able to tell "I was just hiding them from you". You'll need a convincing excuse.
+Using a mixing service might not help much then. He'll ask what have you used those coins for anyway, and you won't be able to tell "I was just hiding them from you". You'll need a convincing excuse. [[!template id=unsigned Caveden 11:34, 8 June 2011]]
 
 > He won't be able to find you to ask you anything. Tracing the coins just leads him to a random person who used the mixing service -- not you. [theymos](User:Theymos) 21:05, 9 June 2011 (GMT)
