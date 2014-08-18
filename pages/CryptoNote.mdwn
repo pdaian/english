@@ -1,21 +1,16 @@
-CryptoNote is an open-source technology that allows creation of completely anonymous cryptocurrencies.
-It proposes concepts and features, which aren't supported by Bitcoin yet.
+CryptoNote is an open-sourced protocol that allows for increased privacy in cryptocurrency transactions.
 
 ## Features 
 
-### Untraceable payments
+###Difficult to trace and link payments
 
-Unlike traditional cryptocurrencies that mostly use unambiguous signatures to verify the transfer, CryptoNote utilizes [ring signature](https://en.wikipedia.org/wiki/Ring_signature). Ring signature is a more sophisticated scheme, which in fact may demand several different public keys for verification. In this case the transaction is signed by a group of users. Thus, the verifier may only identify that one of them was a signer, but not who exactly that was. The public key of a user may appear in a large number of ring signatures even if it was already used to sign her own transaction.
+Unlike traditional cryptocurrencies that mostly use unambiguous signatures to verify the transfer, CryptoNote utilizes [ring signature](https://en.wikipedia.org/wiki/Ring_signature). Ring signature is a more sophisticated scheme that demand several different public keys for verification. In this case the transaction is signed by a group of users. Thus, the verifier may only identify that one of them was a signer, but not who exactly that was. Though this does not offer provable anonymity (like [[Zerocoin]]), the increase in privacy in comparison to Bitcoin is considerable. 
 
-### Unlinkable transactions
-
-CryptoNote automatically creates multiple unique one-time addresses for each of the payments, which are created from the single public key. Even though the payment is sent to a public address, in the block chain it appears as if sent to a one-time address.
-
-The sender uses randam data and the public address of the receiver to calculate this one-time key of the payment. The redemption of the funds requires the receiver's private key, so only the latter may receive the money sent to the one-time address. Moreover, no third party can discover the link between the one-time key and the receiver's public address.
+CryptoNote automatically creates multiple unique one-time addresses for each of the payments, which are created from the single public key. Even though the payment is sent to a public address, in the block chain it appears as if it is sent to a one-time address. The sender uses random data and the public address of the receiver to calculate this one-time key of the payment. The redemption of the funds requires the receiver's private key, so only the latter may receive the money sent to the one-time address. Moreover, no third party can discover the link between the one-time key and the receiver's public address.
 
 ### Double-spending proof
 
-In spite of being anonymous, CryptoNote's ring signatures restrict the double-spending attempt by linking the transactions with the same private key. The protocol uses the key image, derived from a private key through a one-way function. All the users keep the list of all the used key images, which are checked against a new transaction. In case there is a duplicate key image, the transaction is rejected as a double-spending attempt. However, the identity of the sender would still be unknown, since it is impossible to get the private key from its image.
+CryptoNote's ring signatures restrict the double-spending attempt by linking the transactions with the same private key. The protocol uses the key image, derived from a private key through a one-way function. All the users keep the list of all the used key images, which are checked against a new transaction. In case there is a duplicate key image, the transaction is rejected as a double-spending attempt. However, the identity of the sender would still be unknown, since it is impossible to get the private key from its image.
 
 ### Block chain analysis resistance 
 
@@ -23,12 +18,11 @@ CryptoNote creates an obstacle for an analyst by using ring signatures and one-t
 
 ### Adaptive limits 
 
-There are no hard constants and magic numbers in CryptoNote. Each limit (e.g., max block size, or min fee amount) is re-calculated based on the historical data of the system. Moreover, the difficulty and the max block size are automatically adjusted with each new block. 
-The main idea of the algorithm is to sum all the work that nodes have performed during the last 720 blocks and divide it by the time they have spent to accomplish it. The measure of the work is the corresponding difficulty value for each of the blocks. 
+There are no hard constants and magic numbers in CryptoNote. Each limit (e.g., max block size, or min fee amount) is re-calculated based on the historical data of the system. Moreover, the difficulty and the max block size are automatically adjusted with each new block.  The main idea of the algorithm is to sum all the work that nodes have performed during the last 720 blocks and divide it by the time they have spent to accomplish it. The measure of the work is the corresponding difficulty value for each of the blocks. 
 
 ### Smooth emission
 
-The coins are emitted smoothly, as the reward changes with each new block. This allows a predictable steady growth of money supply determined by the formula (8.1):
+The coins are emitted smoothly, as the reward changes with each new block. This allows a predictable steady growth of money supply determined by the formula (7.1):
 
 	BaseReward = (MSupply - A) >> 18
 	MSupply = 2^64 - 1 (atomic units)
@@ -45,11 +39,7 @@ The proof of work mechanism is actually a voting system. Users vote for the righ
 
 The first version of CN – CryptoNote v.1 (December 12 2012) was published in Tor http://ol346fucnsjru223.onion/whitepaper.pdf 
 
-Little is known about CryptoNote's origins. The official website uses supposedly fake names for the team members, while the white paper's author is Nicolas van Saberhagen, which is also likely to be a pseudonym. The white paper "CryptoNote v 2.0" is dated back to October 2013 (10.1).
-
-The developers have mentioned at CryptoNote's official forum that the team actually consists of cryptographers, developers, and economists, but their identities have to be concealed currently (10.2). It was also mentioned that the team developing CryptoNote had experience a schism and went separate ways (10.3). 
-
-CryptoNote's website mentions "2011—2014" in the footer.
+Little is known about CryptoNote's origins. The official website uses supposedly fake names for the team members, while the white paper's author is Nicolas van Saberhagen, which is also likely to be a pseudonym. The white paper "CryptoNote v 2.0" is dated back to October 2013 (9.1), [but this date appears to have been faked](https://bitcointalk.org/index.php?topic=740112.0). It was also mentioned that the team developing CryptoNote had experience a schism and went separate ways (9.2).
 
 ## Philosophy
 
@@ -68,14 +58,12 @@ The economy should be separated from politics, communities should set new transp
 * [White paper](https://cryptonote.org/whitepaper.pdf)
 * [CryptoNote Currencies](https://cryptonote.org/coins.php)
 
-
 ## References
 
 
-8.1: https://cryptonote.org/inside.php#smooth-emission  
-10.1: https://cryptonote.org/whitepaper.pdf  
-10.2: https://forum.cryptonote.org/viewtopic.php?f=3&t=21#p61  
-10.3: https://forum.cryptonote.org/viewtopic.php?f=3&t=21#p73
+7.1: https://cryptonote.org/inside.php#smooth-emission  
+9.1: https://cryptonote.org/whitepaper.pdf  
+9.2: https://forum.cryptonote.org/viewtopic.php?f=3&t=21#p73
 
 
 [[!tag "Digital_currencies"]]
