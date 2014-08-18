@@ -1,8 +1,9 @@
-A modified Base 58 [binary-to-text encoding](http://en.wikipedia.org/wiki/Binary-to-text_encoding) known as **Base58Check** is used for encoding [[Bitcoin_address]]es.
+A modified Base 58 [binary-to-text encoding](http://en.wikipedia.org/wiki/Binary-to-text_encoding) known as **Base58Check** is used for encoding [[Bitcoin addresses|Bitcoin_address]].
 
-More generically, Base58Check encoding is used for encoding byte arrays in Bitcoin into human-typable strings.  A Bitcoin address is simply a Base58Check-encoded string with a 20-byte payload, the payload being the hash of the  [[public_key]] associated with the address.
+More generically, Base58Check encoding is used for encoding byte arrays in Bitcoin into human-typable strings.
 
-The original Bitcoin client source code discusses the reasoning behind base58 encoding:
+##Background
+The original Bitcoin client source code explains the reasoning behind base58 encoding:
 
 base58.h:
 	// Why base-58 instead of standard base-64 encoding?
@@ -24,7 +25,7 @@ Base58Check has the following features:
 ##Creating a Base58Check string
 A Base58Check string is created from a version/application byte and payload as follows.
 
-1. Take the version/application byte and payload bytes, and concatenate them together (bytewise).
+1. Take the version byte and payload bytes, and concatenate them together (bytewise).
 1. Take the first four bytes of SHA256(SHA256(results of step 1))
 1. Concatenate the results of step 1 and the results of step 2 together (bytewise).
 1. Treating the results of step 3 - a series of bytes - as a single big-endian bignumber, convert to base-58 using normal mathematical steps (bignumber division) and the base-58 alphabet described below.  The result should be normalized to not have any leading base-58 zeroes (character '1').
@@ -32,17 +33,18 @@ A Base58Check string is created from a version/application byte and payload as f
 1. Concatenate the 1's from step 5 with the results of step 4.  **This is the Base58Check result.**
 
 ##Encoding a Bitcoin address
-A Bitcoin address is based on any [[ECDSA]] [[secp256k1]] public/private [[key_pair]].
+Bitcoin addresses are implemented using the Base58Check encoding of the hash of either:
 
-A Bitcoin address is the Base58Check encoding of the hash of the associated [[script]].  Specifically, it is Base58Check(version byte,[[RIPEMD160]]([[SHA256]]([[script]]))), with the following constraints:
+* Pay-to-script-hash (p2sh): payload is [[RIPEMD60]]([[SHA256]](redeemScript the wallet knows how to spend)); version 0x05 (these addresses begin with the digit '3')
+* Pay-to-pubkey-hash (p2pkh): payload is [[RIPEMD60]]([[SHA256]](ECDSA public key the wallet knows the private key for)); version 0x00 (these addresses begin with the digit '1')
 
-* [[RIPEMD160]] and [[SHA256]] in this case are always exactly 20 and 32 unsigned bytes respectively.  These are big-endian (most significant byte first).  (Beware of [[bignumber]] implementations that clip leading 0x00 bytes, or prepend extra 0x00 bytes to indicate sign - your code must handle these cases properly or else you may generate valid-looking addresses which can be sent to, but cannot be spent from - which would lead to the permanent loss of coins.)
-* version byte is 0x00 for pay-to-address, version byte is 0x05 for pay-to-script-hash.
-
-Bitcoin addresses that use the version byte 0x00 start with the digit '1'. Bitcoin addresses that use the version byte 0x05 start with the digit '3'.
+The resulting hash in both of these cases is always exactly 20 bytes.
+These are big-endian (most significant byte first).  (Beware of [[bignumber]] implementations that clip leading 0x00 bytes, or prepend extra 0x00 bytes to indicate sign - your code must handle these cases properly or else you may generate valid-looking addresses which can be sent to, but cannot be spent from - which would lead to the permanent loss of coins.)
 
 ##Encoding a private key
-Base58Check encoding is also used for encoding [[private_key]]s in the [[Wallet_import_format]].  This is formed exactly the same as a Bitcoin address, except that 0x80 is used for the version/application byte, and the payload is 32 bytes instead of 20 (a private key in Bitcoin is a single 32-byte unsigned big-endian integer).  Such encodings will always yield a 51-character string that starts with '5', or more specifically, either '5H', '5J', or '5K'.
+Base58Check encoding is also used for encoding [[ECDSA private keys|private_key]] in the [[wallet_import_format]].
+This is formed exactly the same as a Bitcoin address, except that 0x80 is used for the version/application byte, and the payload is 32 bytes instead of 20 (a private key in Bitcoin is a single 32-byte unsigned big-endian integer).
+Such encodings will always yield a 51-character string that starts with '5', or more specifically, either '5H', '5J', or '5K'.
 
 ##Base58 symbol chart
 The Base58 symbol chart used in Bitcoin is specific to the Bitcoin project and is not intended to be the same as any other Base58 implementation used outside the context of Bitcoin.
@@ -107,6 +109,7 @@ Here are some common version bytes:
 ## Source code
 
 * ["Satoshi" C++ codebase (encode/decode using BigNum library)](https://github.com/bitcoin/bitcoin/blob/master/src/base58.h)
+* [libbase58 C code (decode and encode, no external libraries needed)](https://github.com/luke-jr/libbase58)
 * [libblkmaker C code (decode only, no external libraries needed)](https://gitorious.org/bitcoin/libblkmaker/blobs/master/base58.c)
 
 [[!tag "Technical"]]
