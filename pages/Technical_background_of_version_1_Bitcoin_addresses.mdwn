@@ -3,9 +3,16 @@ This article may be too technical for some users. The more basic article on [[Bi
 
 A [[Bitcoin_address]] is a 160-bit hash of the public portion of a public/private [ECDSA](Wikipedia:Elliptic_Curve_DSA) keypair. Using [public-key cryptography](Wikipedia:Public-key_cryptography), you can "sign" data with your [[private_key]] and anyone who knows your public key can verify that the signature is valid.
 
-A new keypair is generated for each receiving address. Bitcoin addresses (the public keys) and their associated private keys are stored in the [[wallet]] data file. This is the only file you need to [[back up|backup]]. A "send" transaction to a specific Bitcoin address requires that the corresponding private key exist in the recipient's wallet. This has the implication that if you create a receiving address and receive coins to that address, then restore the wallet from an earlier backup, before the address was generated, then the coins associated with that address are lost.  Addresses are added to an address [[key_pool]] prior to being used for receiving coins. If you lose your wallet entirely, all of your coins are lost and can never be recovered.
+A new keypair is generated for each receiving address (with newer HD wallets, this is done deterministically).
+The public key and their associated private keys (or the seed needed to generate them) are stored in the [[wallet]] data file.
+This is the only file users should need to [[backup|backup]].
+A "send" transaction to a specific Bitcoin address requires that the corresponding wallet knows the private key implementing it.
+This has the implication that if you create an address and receive coins to that address, then restore the wallet from an earlier backup, before the address was generated, then the coins received with that address are lost; this is not an issue for HD wallets where all addresses are generated from a single seed.
+Addresses are added to an address [[key_pool]] prior to being used for receiving coins. If you lose your wallet entirely, all of your coins are lost and can never be recovered.
 
-Bitcoin allows you to create as many addresses as you want, and each one is completely separate. There is no "master address": the "Your Bitcoin address" area in the Bitcoin UI has no special importance. It's only there for your convenience, and it will change automatically from time to time to enhance your anonymity. All of your other addresses will continue to work forever. They're listed in the "your receiving addresses" section. Each address takes up only about 500 bytes, so having a large number of addresses in your wallet is generally not a problem.
+Bitcoin allows you to create as many addresses as you want, and use a new one for every transaction.
+There is no "master address": the "Your Bitcoin address" area in some wallet UIs has no special importance.
+It's only there for your convenience, and it should change automatically when used.
 
 Bitcoin addresses contain a built-in check code, so it's generally not possible to send Bitcoins to a mistyped address. However, if the address is well-formed but no one owns it (or the owner lost their wallet.dat), any coins sent to that address will be lost forever.
 
@@ -27,6 +34,7 @@ It is more likely that the Earth is destroyed in the next 5 seconds, than that a
 	010966776006953D5567439E5E39F86A0D273BEE
 4 - Add version byte in front of RIPEMD-160 hash (0x00 for Main Network)
 	00010966776006953D5567439E5E39F86A0D273BEE
+*(note that below steps are the [[Base58Check_encoding]], which has multiple library options available implementing it)*<br>
 5 - Perform SHA-256 hash on the extended RIPEMD-160 result
 	445C7A8007A93D8733188288BB320A8FE2DEBD2AE1B47F0F50BC10BAE845C094
 6 - Perform SHA-256 hash on the result of the previous SHA-256 hash
@@ -41,6 +49,7 @@ It is more likely that the Earth is destroyed in the next 5 seconds, than that a
 ##See Also
 
 * [[Address]]
+* [[Base58Check_encoding]]
 * [Address testing suite](http://gobittest.appspot.com/Address)
 
 [[!tag "Technical"]]
