@@ -1,18 +1,18 @@
 ## Controlling Bitcoin
 
-Run *bitcoind* or *bitcoin-qt -server*. You can control it via the command-line or by [HTTP JSON-RPC](http://json-rpc.org/wiki/specification) commands.
+Run *bitcoind* or *bitcoin-qt -server*. You can control it via the command-line bitcoin-cli utility or by [HTTP JSON-RPC](http://json-rpc.org/wiki/specification) commands.
 
 You must create a bitcoin.conf configuration file setting an rpcuser and rpcpassword; see [[Running_Bitcoin]] for details.
 
 Now run:
 	$ ./bitcoind -daemon
 	bitcoin server starting
-	$ ./bitcoind help
+	$ ./bitcoin-cli help
 	# shows the help text
 
 A [[list of RPC calls|Original_Bitcoin_client/API_Calls_list]] will be shown.
 
-	$ ./bitcoind getbalance
+	$ ./bitcoin-cli getbalance
 	2000.00000
 
 ## JSON-RPC
