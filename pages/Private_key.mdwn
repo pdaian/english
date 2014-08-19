@@ -1,29 +1,44 @@
-A **private key** in the context of Bitcoin is a secret number that allows bitcoins to be spent.  Every Bitcoin address has a matching private key, which is saved in the wallet file of the person who owns the balance.  The private key is mathematically related to the Bitcoin address, and is designed so that the Bitcoin address can be calculated from the private key, but importantly, the same cannot be done in reverse.
+A **private key** in the context of Bitcoin is a secret number that allows bitcoins to be spent.
+Every Bitcoin wallet contains one or more private keys, which are saved in the wallet file.
+The private keys are mathematically related to all Bitcoin addresses generated for the wallet.
 
-Because the private key is the "ticket" that allows someone to spend bitcoins, it is important that these are kept secure.  Private keys can be kept on computer files, but they are also short enough that they can be printed on paper.  An example of a utility that allows extraction of private keys from your wallet file for printing purposes is [[pywallet]].
+Because the private key is the "ticket" that allows someone to spend bitcoins, it is important that these are kept secure.
+Private keys can be kept on computer files, but in some cases are also short enough that they can be printed on paper.
 
-In order to create a transaction with a private key, it must be available to a program or service that allows entry or importing of private keys. Some wallets allow the private key to be imported without generating any transactions while other wallets or services require that the private key be swept. When a private key is swept, a transaction is broadcast that sends the entire balance held by the private key to another address in the wallet or securely controlled by the service in question. 
+Some wallets allow private keys to be imported without generating any transactions while other wallets or services require that the private key be swept.
+When a private key is swept, a transaction is broadcast that sends the balance controlled by the private key to a new address in the wallet.
+Just as with any other transaction, there is risk of swept transactions to be double-spending.
 
-An example of private key sweeping is the method used on [[MtGox]]'s Add Funds screen and [[BIPS]] Import screen. Just as with any other deposit, there is risk of double-spending so funds are deposited to the MtGox account after a six-confirmation wait (typically one hour).  In contrast [[BlockChain.info]]'s My Wallet service and Bitcoin-QT each provide a facility to import a private key without creating a sweep transaction.
+In contrast, bitcoind provides a facility to import a private key without creating a sweep transaction.
+This is considered very dangerous, and not intended to be used even by power users or experts except in very specific cases.
+Bitcoins can be easily stolen at any time, from a wallet which has imported an untrusted or otherwise insecure private key - this can include private keys generated offline and never seen by someone else.
 
 ##An example private key
-In Bitcoin, a private key is a 256-bit number, which can be represented one of several ways.  Here is a private key in hexadecimal - 256 bits in hexadecimal is 32 bytes, or 64 characters in the range 0-9 or A-F.
+In Bitcoin, a private key is usually a 256-bit number (some newer wallets may use between 128 and 512 bits), which can be represented one of several ways.
+Here is a private key in hexadecimal - 256 bits in hexadecimal is 32 bytes, or 64 characters in the range 0-9 or A-F.
 
 	E9 87 3D 79 C6 D8 7D C0 FB 6A 57 78 63 33 89 F4 45 32 13 30 3D A6 1F 20 BD 67 FC 23 3A A3 32 62
 
-##Range of valid private keys
-Nearly every 256-bit number is a valid private key.  Specifically, any 256-bit number from 0x1 to 0xFFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFE BAAE DCE6 AF48 A03B BFD2 5E8C D036 4140 is a valid private key.
+##Range of valid ECDSA private keys
+Nearly every 256-bit number is a valid ECDSA private key.  Specifically, any 256-bit number from 0x1 to 0xFFFF FFFF FFFF FFFF FFFF FFFF FFFF FFFE BAAE DCE6 AF48 A03B BFD2 5E8C D036 4140 is a valid private key.
 
 The range of valid private keys is governed by the [[secp256k1]] ECDSA standard used by Bitcoin.
 
-##Base 58 Wallet Import format
-When we represent private keys in Bitcoin, however, we use a shorter format known as [[wallet_import_format]], which offers a few advantages.  The wallet import format is shorter, and includes built-in error checking codes so that typos can be automatically detected and/or corrected (which is impossible in hex format) and type bits indicating the network it's valid on.  Wallet import format is the most common way to represent private keys in Bitcoin.  For private keys associated with uncompressed public keys, they are 51 characters and always start with the number 5 on mainnet (9 on testnet). Private keys associated with compressed public keys are 52 characters and start with a capital L or K on mainnet (c on testnet). This is the same private key in (mainnet) wallet import format:
+Newer wallets may use [[BIP 32|BIP_0032]] seeds for their private keys, which can be as long as 512 bits.
+
+##Base58 Wallet Import format
+When importing or sweeping ECDSA private keys, a shorter format known as [[wallet_import_format]] is often used, which offers a few advantages.
+The wallet import format is shorter, and includes built-in error checking codes so that typos can be automatically detected and/or corrected (which is impossible in hex format) and type bits indicating how it is intended to be used.
+Wallet import format is the most common way to represent private keys in Bitcoin.
+For private keys associated with uncompressed public keys, they are 51 characters and always start with the number 5 on mainnet (9 on testnet). Private keys associated with compressed public keys are 52 characters and start with a capital L or K on mainnet (c on testnet). This is the same private key in (mainnet) wallet import format:
 
 	5Kb8kLf9zgWQnogidDA76MzPL6TsZZY36hWXMssSzNydYXYB9KF
 
-When a private key is imported, it always corresponds to exactly one [[Bitcoin address|Address]].  Any utility which performs the conversion can display the matching Bitcoin address.  The mathematical conversion is somewhat complex and best left to a computer, but it's notable that each private key will always correspond to the same address no matter which program is used to convert it.
+When a WIF private key is imported, it always corresponds to exactly one [[Bitcoin address|Address]].
+Any utility which performs the conversion can display the matching Bitcoin address.
+The mathematical conversion is somewhat complex and best left to a computer, but it's notable that the WIF guarantees it will always correspond to the same address no matter which program is used to convert it.
 
-The Bitcoin address corresponding to the sample above is: 1CC3X2gu58d6wXUWMffpuzN9JAfTUWu4Kj
+The Bitcoin address implemented using the sample above is: 1CC3X2gu58d6wXUWMffpuzN9JAfTUWu4Kj
 
 ##Mini private key format
 Some applications use the [[mini_private_key_format]].  Not every private key or Bitcoin address has a corresponding mini private key - they have to be generated a certain way in order to ensure a mini private key exists for an address.  The mini private key is used for applications where space is critical, such as in QR codes and in [[physical_bitcoins]].  The above example has a mini key, which is:
@@ -31,9 +46,12 @@ Some applications use the [[mini_private_key_format]].  Not every private key or
 	SzavMBLoXU6kDrqtUVmffv
 
 ##Summary
-Any Bitcoins sent to the address 1CC3X2gu58d6wXUWMffpuzN9JAfTUWu4Kj can be spent by anybody who knows the private key in *any* of the three formats.  That includes bitcoins presently at the address, as well as any bitcoins that are ever sent to it in the future.  The private key is only needed to spend the balance, not necessarily to see it.  The Bitcoin balance of the address can be determined by anybody with the public [[Block_Explorer]] at http://www.blockexplorer.com/address/1CC3X2gu58d6wXUWMffpuzN9JAfTUWu4Kj - even if they don't have the private key.
+Any Bitcoins sent to the address 1CC3X2gu58d6wXUWMffpuzN9JAfTUWu4Kj can be spent by anybody who knows the private key implementing it in *any* of the three formats, regardless of when the bitcoins were sent, unless the wallet receiving them has since made use of the coins generated.
+The private key is only needed to spend the bitcoins, not necessarily to see the value of them.
 
-If a private key with a Bitcoin balance is compromised or stolen, the bitcoin balance can only be protected if it is immediately spent to a different address whose private key is not compromised.  Because bitcoins can only be spent once, when they are spent away from a private key, the private key is worthless unless more coins are sent to the address.
+If a private key controlling unspent bitcoins is compromised or stolen, the value can only be protected if it is immediately spent to a different output which is secure.
+Because bitcoins can only be spent once, when they are spent using a private key, the private key becomes worthless.
+It is often possible, but inadvisable and insecure, to use the address implemented by the private key again, in which case the same private key would be reused.
 
 ##See Also
 
