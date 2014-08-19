@@ -7,13 +7,15 @@ You must create a bitcoin.conf configuration file setting an rpcuser and rpcpass
 Now run:
 	$ ./bitcoind -daemon
 	bitcoin server starting
-	$ ./bitcoin-cli help
+	$ ./bitcoin-cli -rpcwait help
 	# shows the help text
 
 A [[list of RPC calls|Original_Bitcoin_client/API_Calls_list]] will be shown.
 
 	$ ./bitcoin-cli getbalance
 	2000.00000
+
+If you are learning the API, it is a very good idea to use the test network (run bitcoind -testnet and bitcoin-cli -testnet).
 
 ## JSON-RPC
 
