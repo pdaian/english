@@ -323,7 +323,7 @@ Payload:
 
 
 |1+ |count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of address entries (max: 1000)
-|30x? |addr_list |(uint32_t + net_addr)[]|Address of other nodes on the network. version < 209 will only read the first one. The uint32_t is a timestamp (see note below).
+|30x? |addr_list |(uint32_t + [[net_addr|#Network_address]])[]|Address of other nodes on the network. version < 209 will only read the first one. The uint32_t is a timestamp (see note below).
 
 
 **Note**: Starting version 31402, addresses are prefixed with a timestamp. If no timestamp is present, the addresses should not be relayed to other peers, unless it is indeed confirmed they are up.
