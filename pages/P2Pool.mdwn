@@ -330,7 +330,6 @@ P2pool works fine with most hardware. This lists some of the hardware confirmed 
 * Avalon 110nm 60-110 GH/s (All batches)
 * Avalon based 55nm 200 GH/s (specific makers?)
 * Avalon prototype 55nm 120GH/s (~ 20 exist)
-* Cointerra Terraminer IV (very low stale rate, maybe the lowest of any mining asic)
 * Icarus FPGA
 * Bitfury strikes back H-card and M-card ([instructions](https://bitcointalk.org/index.php?topic=18313.msg4424081#msg4424081))
 * Bitmain Antminer S1 180GH/s ([Requires 20131226 firmware.](https://github.com/AntMiner/AntGen1/tree/master/firmware))
@@ -338,6 +337,11 @@ P2pool works fine with most hardware. This lists some of the hardware confirmed 
 * BFL SC Jalapeno, SC Single 30, 50, & 60 GH/s
 
 (Various GPU and most FPGAs other than BFL single FPGAs work fine too)
+
+This is alist of hardware with known issues that should not be used on p2pool.
+
+* Cointerra Terraminer IV (10-20% hash rate loss when mining on p2pool)
+* Btimain Antminer S2 (10-20% hash rate loss when mining on p2pool, the S1 & S3 both work well on p2pool)
 
 ## Protocol description
 
