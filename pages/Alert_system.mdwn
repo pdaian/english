@@ -17,7 +17,7 @@ Alerts contain this information:
 * Alert priority.
 * The alert text.
 
-Only alerts that are signed by a specific ECDSA public key are considered valid. A copy of the private key is held by at least Satoshi, Gavin, and theymos.
+Only alerts that are signed by a specific ECDSA public key are considered valid. The known private key holders are [[Satoshi_Nakamoto]], [Gavin Andresen](User:gavinandresen) and [theymos](User:Theymos). There are other people able to issue alerts in the event of the incapacitation of the aforementioned. (2.1)
 
 ###Safe mode
 Until version 0.3.20, Bitcoin went into safe mode when a valid alert was received. In safe mode, all RPC commands that send BTC or get info about received BTC return an error. Current Bitcoin versions no longer go into safe mode in response to alerts, though Bitcoin *will* still go into safe mode when it detects on its own that something is seriously wrong with the network.
@@ -49,3 +49,8 @@ To test safe mode, run Bitcoin with the -testsafemode switch. To override a real
 
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
+
+##References
+
+2.1: http://www.reddit.com/r/Bitcoin/comments/2dz9ri/why_in_the_world_does_theymos_have_the_private/cjuu360
+
