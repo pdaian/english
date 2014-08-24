@@ -1,6 +1,26 @@
-Tonal Bitcoin is a representation of the Bitcoin network aimed toward providing a use-case for adoption of Bitcoin to people who prefer the Tonal number system.
-This is an alternative to the decimal and metric system, which improves usability by allowing for infinite binary division (note that Bitcoin protocol support is still finite).
+Tonal Bitcoin is a representation of the Bitcoin system aimed toward people who prefer the Tonal number system.
+
+## Number system
+
+The Tonal number system is an alternative to the decimal and SI ("metric") system, which improves usability by allowing for infinite binary division (note that Bitcoin protocol support is still finite).
 For more information on the Tonal system in general, please see [the book](http://www.lulu.com/product/file-download/tonal-system/10991091).
+
+## As an altcoin
+
+While Tonal Bitcoin shares a common blockchain and network with decimal Bitcoin (BTC), it is still also considered to be alternative cryptocurrency ("altcoin") since the units are non-trivially presented differently.
+That is, merchants who wish to advertise their product to TBC users would be best to advertise an equivalent TBC price alongside the BTC price.
+Additionally, had a separate [[block_chain]] ("altchain") been created for TBC, there would have been no advantage to it, and instead enabled a number of abuses and reduced compatibility.
+Therefore, as an altcoin, TBC demonstrates an ideal way to extend Bitcoin without needing to resort to unnecessary complications.
+
+From the altcoin perspective, TBC is seen to have a number of benefits over more common altchain-based altcoins:
+
+* It shares the same blockchain as BTC, so benefits from the full security and difficulty backing the Bitcoin blockchain.
+* TBC is mined together with BTC - unlike ordinary merged mining, you don't get BTC plus TBC, just one or the other at your choice.
+* TBC is completely compatible with all Bitcoin addresses: if you send BTC to a TBC client's address, it will automatically get converted and vice-versa.
+
+Tonal Bitcoin is also notably the first altcoin ever, having been created in 2011 January.
+
+## Specification
 
 Please note, that all numbers of TBC and its divisions/multipliers are written in [Tonal](http://en.wikipedia.org/wiki/Tonal_System), not decimal.
 This means that instead of counting 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10-- you count: 0, 1, 2, 3, 4, 5, 6, 7, 8, , 9, , , , , , 10. Some higher-value digits may require installing a [font](http://luke.dashjr.org/education/tonal/glyphs/fonts/).
@@ -29,7 +49,7 @@ The total number of Tonal Bitcoins ever (analogous to the 21mil BTC in decimal r
 
 While all Bitcoin clients will correctly approximate values in decimal bitcoin, actual Tonal compatibility is sparse.
 
-* [[Spesmilo]], despite its name, can be configured to display TBC
+* [[Spesmilo]], despite its name, could be configured to display TBC
 
 ## Guessing TBC or BTC
 
