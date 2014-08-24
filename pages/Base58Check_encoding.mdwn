@@ -44,7 +44,7 @@ These are big-endian (most significant byte first).  (Beware of [[bignumber]] im
 ##Encoding a private key
 Base58Check encoding is also used for encoding [[ECDSA private keys|private_key]] in the [[wallet_import_format]].
 This is formed exactly the same as a Bitcoin address, except that 0x80 is used for the version/application byte, and the payload is 32 bytes instead of 20 (a private key in Bitcoin is a single 32-byte unsigned big-endian integer).
-Such encodings will always yield a 51-character string that starts with '5', or more specifically, either '5H', '5J', or '5K'.
+For private keys associated with an uncompressed public key, such encodings will always yield a 51-character string that starts with '5', or more specifically, either '5H', '5J', or '5K'.
 
 ##Base58 symbol chart
 The Base58 symbol chart used in Bitcoin is specific to the Bitcoin project and is not intended to be the same as any other Base58 implementation used outside the context of Bitcoin.
