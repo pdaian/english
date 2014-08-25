@@ -201,17 +201,10 @@ First, figure out what COM port (or /dev/ttyUSB on Linux) and run BFGMiner with:
 
 * NOTICE: Only for testing
 
-* Update OpenWrt to r41240
-* Add new parameter for polling delay: --avalon2-polling-delay (Default: 20ms)
-* Add new parameter for stratum ignore time: --stratum-ignore (Default: 30s)
-* Add LED status on API log
-* Support unlimited socket receive size for cgminer-api
-* Try to detect module twice when start
-* Don't count HW works on hashrate
-* Fix typo etc
-* Support cgminer restart on status page
-* Display indicator status on status page
-* Change introduction on luci-cgminer
+* Merge cgminer to ckolivas's trunk(V4.5.0)
+* Support p2pool(with [MM Version: 331408-a15cac80](http://downloads.canaan-creative.com/software/avalon3/2014-08-08/))
+* Fan speed auto adjust with new method,range support.(cgminer param: --avalon2-fan 50-100)
+* Support hotplug usb cable by cgminer.
 
 # Test plan
 
