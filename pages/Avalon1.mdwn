@@ -148,6 +148,31 @@ In case you need to run Cgminer in linux console please run the following comman
 If your avalon does not mine properly, please run Cgminer in debug mode with -D --verbose option. For example:
 	# cgminer -o stratum.btcguild.com:3333 -O xxxx:yyyy -D --verbose --avalon-options 115200:24:10:45:282 --api-allow "W:0/0" --api-listen 2>/tmp/cgminer-debug.log
 
+## How to maintain cgminer-openwrt-packages for avalon
+You must have an openwrt development environment and know how to compile an firmware.
+If you don't have an proper environment,you can try [build-avalon-image.sh](https://github.com/Canaan-Creative/Avalon-extras/blob/master/scripts/build-avalon-image.sh) to get all you need for dev. 
+
+The following must be done under openwrt's root directory
+### Patch cgminer manually
+
+* make package/cgminer/{clean,prepare} V=s QUILT=1
+* cd build_dir/target-*/cgminer-*
+* quilt push -a
+* make package/cgminer/compile V=s
+
+### How to edit Patch
+
+* make package/cgminer/{clean,prepare} V=s QUILT=1
+* cd build_dir/target-*/cgminer-*
+* quilt push -a
+* quilt edit fileyouwanttoedit    (you modify the file under last patch file)
+* make package/cgminer/compile V=s
+if you finish patch work,then update patch like this
+**make package/cgminer/update V=s**
+
+### Patch for OpenWrt Reference
+[Working with patches](http://wiki.openwrt.org/doc/devel/patches)
+
 ## TP-LINK TL-WR703N
 There is a modify version of TP-LINK TP-WR703N inside Avalon. cgminer running at 703n, this 703n have 64MB ram and modified power supply. it power from the usb-client side(we moved a 0R resistor from **J1** to **R113** for that)
 
