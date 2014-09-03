@@ -130,6 +130,13 @@ First, figure out what COM port (or /dev/ttyUSB on Linux) and run BFGMiner with:
 * [Build script file](https://github.com/BitSyncom/avalon-extras/blob/master/scripts/build-avalon-image.sh)
 
 # Firmware
+## [http://downloads.canaan-creative.com/software/avalon2/2014-08-27/ 20140827]
+
+* Merge cgminer to ckolivas's trunk(V4.5.0)
+* Support p2pool(with MM Version: [331408-a15cac80](http://downloads.canaan-creative.com/software/avalon3/2014-08-08/))
+* Fan speed auto adjust with new method,range support.(cgminer param: --avalon2-fan 50-100 or --avalon2-fan 50)
+* Support hotplug usb cable by cgminer.
+* Ignore balcklisted and zombie devices on luci status page.
 
 ## [http://downloads.canaan-creative.com/software/avalon2/2014-07-19/ 20140719]
 
@@ -200,12 +207,6 @@ First, figure out what COM port (or /dev/ttyUSB on Linux) and run BFGMiner with:
 ## [http://downloads.canaan-creative.com/software/avalon2/NEXT-TESTING/ NEXT-TESTING]
 
 * NOTICE: Only for testing
-
-* Merge cgminer to ckolivas's trunk(V4.5.0)
-* Support p2pool(with [MM Version: 331408-a15cac80](http://downloads.canaan-creative.com/software/avalon3/2014-08-08/))
-* Fan speed auto adjust with new method,range support.(cgminer param: --avalon2-fan 50-100 or --avalon2-fan 50)
-* Support hotplug usb cable by cgminer.
-* Ignore balcklisted and zombie devices at status page.
 
 # Test plan
 
