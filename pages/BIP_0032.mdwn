@@ -6,6 +6,7 @@ RECENT CHANGES:
 * [Apr 2013](16) Added private derivation for <tt>i >= 0x80000000</tt> (less risk of parent private key leakage)
 * [Apr 2013](30) Switched from multiplication by <tt>I<sub>L</sub></tt> to addition of <tt>I<sub>L</sub></tt> (faster, easier implementation)
 * [May 2013](25) Added test vectors
+* [Jan 2014](15) Rename keys with index ≥ 0x8000000 to hardened keys, and add explicit conversion functions.
 
 <pre>
   BIP: 32
