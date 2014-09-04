@@ -99,16 +99,16 @@ So the higher the value of one bitcoin, the higher the value of mining rewards a
 ## Probably not a problem
 
 ###Breaking the cryptography
-SHA-256 and ECDSA are considered very strong currently, but they might be broken in the far future. If that happens, BitCoin can shift to a stronger algorithm. [More info](https://bitcointalk.org/index.php?topic=191.msg1585#msg1585).
+SHA-256 and ECDSA are considered very strong currently, but they might be broken in the far future. If that happens, Bitcoin can shift to a stronger algorithm. [More info](https://bitcointalk.org/index.php?topic=191.msg1585#msg1585).
 
 ###Scalability
-BitCoin can easily scale beyond the level of traffic VISA sees globally today. See the discussion on the [[scalability]] page for more information.
+Bitcoin can easily scale beyond the level of traffic VISA sees globally today. See the discussion on the [[scalability]] page for more information.
 
 ###Segmentation
 If there is even a "trickle" of a connection between two sides of a segmented network, things should still work perfectly. When block chains are combined, all of the non-generation transactions in the shorter chain are re-added to the transaction pool -- they'll start over at 0/unconfirmed, but they'll still be valid. No mature transactions will be lost unless the segmentation persists for longer than ~120 blocks. Then generations will start to mature, and any transactions based on those generations will become invalid when recombined with the longer chain. [More info](https://bitcointalk.org/index.php?topic=241.msg2071#msg2071).
 
 ### Attacking all users
-The IP addresses of most users are totally public. You can use Tor to hide this, but the network won't work if everyone does this. BitCoin requires that *some* country is still free.
+The IP addresses of most users are totally public. You can use Tor to hide this, but the network won't work if everyone does this. Bitcoin requires that *some* country is still free.
 
 ### Dropping transactions
 Nodes that generate blocks can choose not to include a transaction in their blocks. When this happens, the transaction remains "active" and can be included in a later block. Two things discourage this:
@@ -147,7 +147,7 @@ This is made expensive by the [[fees|transaction_fee]] that would be required af
 Named for Hal Finney, who first described this variation of a double-spend attack involving accepting [0-confirmation transactions](http://www.bitcointalk.org/index.php?topic=3441.msg48384#msg48384).  Accepting 0-confirmation large-value transactions is problematic; accepting them for low-value transactions (after waiting several seconds to detect an ordinary double-spend attempt) is probably safe.
 
 ###Rival/malicious client code
-Any rival client must follow Bitcoin's rules or else all current BitCoin clients will ignore it. You'd have to actually get people to *use* your client. A better client that pretends to follow the same rules, but with an exception known only to the author (possibly by making it closed source), might conceivably be able to gain widespread adoption. At that point, its author could use his exception and go largely unnoticed.
+Any rival client must follow Bitcoin's rules or else all current Bitcoin clients will ignore it. You'd have to actually get people to *use* your client. A better client that pretends to follow the same rules, but with an exception known only to the author (possibly by making it closed source), might conceivably be able to gain widespread adoption. At that point, its author could use his exception and go largely unnoticed.
 
 ## Definitely not a problem
 
