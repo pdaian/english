@@ -48,7 +48,7 @@ Now transfer a small amount of bitcoins (0.0002 BTC is enough) to that newly cre
 Run the following command to issue one million colored coins:<br/>
 <code>  python colorcore.py issueasset <address> 1000000</code><br/>
 You can issue up to 9,223,372,036,854,775,807 colored coins at once. Unlike older colored coins implementations, you only need 0.000006 BTC for issuing coins, regardless of the quantity you want to issue.
-This command will return a transaction hash. You can look up that transaction hash on the coinprism.info block explorer.
+This command will return a transaction hash. You can look up that transaction hash on the [[Coinprism.info]] block explorer.
 
 * **How do I give my asset a name?**<br />
 Of course, this is not very useful if you can't identify what asset is what. In order to link information such as a name to your coin, you need to create a metadata file, and host it on your web server. Of course, this doesn't introduce centralization since you are already the issuer of the coin, and the value of your coin (if any) already comes from you. Since you are responsible for the value of the coin you are issuing, it is not an issue if you also host the information about this coin. The metadata file is a JSON file and contains the following information:
@@ -72,12 +72,12 @@ Of course, this is not very useful if you can't identify what asset is what. In 
 </code>
 The assuming you have placed that file at: https://yoursite.com/icecream, use the following argument when issuing the coins:
 <code>  python colorcore.py issueasset <address> 1000000 --metadata u=https://yoursite.com/icecream</code><br />
-You can then lookup the color address on coinprism.info, and you should see all that information.
+You can then lookup the color address on [[Coinprism.info]], and you should see all that information.
 <br />
 Only the URL (https://yoursite.com/icecream) is stored on the Blockchain.
 ##History
 
-* Coinprism launches [Colorcore](https://github.com/OpenAssets/colorcore), an open source colored coin wallet compatible with open assets and Coinprism: September 2nd 2014  (5.1)
+* [[Coinprism]] launches [Colorcore](https://github.com/OpenAssets/colorcore), an open source colored coin wallet compatible with open assets and Coinprism: September 2nd 2014  (5.1)
 
 ##External Links
 
