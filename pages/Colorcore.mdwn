@@ -39,7 +39,6 @@ You are now ready to run Colorcore.
 ##How to use Colorcore?
 
 1. **Get your balance**
-<br />
 Run the following command to get your balance:
 
 <code>python colorcore.py getbalance</code>
@@ -50,28 +49,20 @@ All the addresses with a non-zero balance on your Bitcoin Core wallet will be di
 
 1. **Create your own asset**<br />
 First, you need to create an address in Bitcoin Core. This address will represent your asset, and the private key associated will be required for any issuance of the asset. Note that the protocol supports multi-sig addresses for issuance, though that is not implemented in Colorcore 1.0.
-
 Run the following command on bitcoind (not Colorcore):
-
 <code>bitcoind getnewaddress</code>
 <br />
 This will generate a private key and return the address. Make sure your wallet.dat file is properly backed up.
-
 Now transfer a small amount of bitcoins (0.0002 BTC is enough) to that newly created address.
-
 Run the following command to issue one million colored coins:
-
 <code>python colorcore.py issueasset <address> 1000000</code>
-
 You can issue up to 9,223,372,036,854,775,807 colored coins at once. Unlike older colored coins implementations, you only need 0.000006 BTC for issuing coins, regardless of the quantity you want to issue.
-
 This command will return a transaction hash. You can look up that transaction hash on the coinprism.info block explorer.
 
 1. **How do I give my asset a name?**<br />
 Of course, this is not very useful if you can't identify what asset is what. In order to link information such as a name to your coin, you need to create a metadata file, and host it on your web server. Of course, this doesn't introduce centralization since you are already the issuer of the coin, and the value of your coin (if any) already comes from you. Since you are responsible for the value of the coin you are issuing, it is not an issue if you also host the information about this coin. The metadata file is a JSON file and contains the following information:
 <br />
-<code>{
-  "source_addresses": [
+<code>{"source_addresses": [
     "source address for the coin (can be obtained from the getbalance call)"
   ],
   "contract_url": "https://yoursite.com/more-info-about-the-coin",
@@ -88,7 +79,6 @@ Of course, this is not very useful if you can't identify what asset is what. In 
   "version": "1.0"}
 </code><br />
 The assuming you have placed that file at: https://yoursite.com/icecream, use the following argument when issuing the coins:
-
 <code>
 python colorcore.py issueasset <address> 1000000 --metadata u=https://yoursite.com/icecream
 </code><br />
