@@ -46,11 +46,11 @@ All the addresses with a non-zero balance on your Bitcoin Core wallet will be di
 
 * **Create your own asset**<br />
 First, you need to create an address in Bitcoin Core. This address will represent your asset, and the private key associated will be required for any issuance of the asset. Note that the protocol supports multi-sig addresses for issuance, though that is not implemented in Colorcore 1.0.
-Run the following command on bitcoind (not Colorcore):
+Run the following command on bitcoind (not Colorcore):<br/>
 <code>  bitcoind getnewaddress</code><br />
 This will generate a private key and return the address. Make sure your wallet.dat file is properly backed up.
 Now transfer a small amount of bitcoins (0.0002 BTC is enough) to that newly created address.
-Run the following command to issue one million colored coins:
+Run the following command to issue one million colored coins:<br/>
 <code>  python colorcore.py issueasset <address> 1000000</code><br/>
 You can issue up to 9,223,372,036,854,775,807 colored coins at once. Unlike older colored coins implementations, you only need 0.000006 BTC for issuing coins, regardless of the quantity you want to issue.
 This command will return a transaction hash. You can look up that transaction hash on the coinprism.info block explorer.
