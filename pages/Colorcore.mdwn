@@ -7,21 +7,38 @@
 
 ##Features
 
-* Issue you own coins
+* **Issue you own coins**
 Anybody can issue their own coins. It only takes a single Bitcoin transaction. The only fee you have to pay is the Bitcoin transaction fee (which can be zero), which makes Colorcore much more efficient than alternatives like XCP (about $20 to issue an asset).
 Also, you don't need to buy any intermediary coin (like XCP) since colored coins work directly on top of Bitcoin.
 
-* Send and receive assets
+* **Send and receive assets**
 Use your address to receive assets from other people. You can also send assets, again for the price of a standard Bitcoin transaction.
 
-* Manage crowdfunding campaigns
+* **Manage crowdfunding campaigns**
 Finally a way to manage a truly decentralized crowdfuding campaign. You don't have to trust a complex and limited exchange protocol, the "distribute" feature creates standard Bitcoin transactions. There is no magic behind it.
 
 Every asset created or exchanged using Colorcore are visible on the  [[Coinprism.info block explorer|Coinprism.info]], and can be sent to a [[Coinprism]] web-wallet.
 
+##Installation and dependencies
+Colorcore does not connect to any external service. All it needs is access to the Bitcoin blockchain, via Bitcoin Core. Therefore in order to run Colorcore, you need Bitcoin Core running with RPC enabled and the -txindex=1 -server=1 flags.
+
+Follow these instructions to install Colorcore:
+
+* Windows users: make sure you have Python 3 and pip installed on your machine
+* Run the following commands:
+
+<code>git clone https://github.com/OpenAssets/colorcore.git
+cd colorcore
+pip install --upgrade -r requirements.txt
+</code>
+
+* Edit the config.ini file with the username, password and port for your local Bitcoin Core instance (rpcurl setting).
+
+You are now ready to run Colorcore.
+
 ##History
 
-* Coinprism launches [Colorcore](https://github.com/OpenAssets/colorcore), an open source colored coin wallet compatible with open assets and Coinprism: September 2nd 2014  (5.1)
+* Coinprism launches [Colorcore](https://github.com/OpenAssets/colorcore), an open source colored coin wallet compatible with open assets and Coinprism: September 2nd 2014  (6.1)
 
 ##External Links
 
@@ -45,7 +62,7 @@ Flavien Charlon
 
 ##References
 
-5.1: [Colorcore: the colored coin wallet compatible with open assets](http://www.reddit.com/r/Bitcoin/comments/2f9sfy/announcing_colorcore_the_open_source_colored_coin/)
+6.1: [Colorcore: the colored coin wallet compatible with open assets](http://www.reddit.com/r/Bitcoin/comments/2f9sfy/announcing_colorcore_the_open_source_colored_coin/)
 
 
 ##Screenshots
