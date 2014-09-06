@@ -37,13 +37,33 @@ pip install --upgrade -r requirements.txt
 You are now ready to run Colorcore.
 
 ##How to use Colorcore?
-Get your balance
+**Get your balance**
 Run the following command to get your balance:
 
 <code>python colorcore.py getbalance</code>
 
 [[!img "Colorcore_1.png‎‎" size=400x400]]
 
+All the addresses with a non-zero balance on your Bitcoin Core wallet will be displayed. The 'assets' field will show how much assets you have. If you don't have any asset, it will be empty. Each asset has a 'assetAddress' field as well as a 'quantity' field. 'assetAddress' is what identifies the asset. It is cryptographically secure, and it is impossible for two people to be owner of the same asset address. 'quantity' is an integer indicating how many units of that asset you own.
+
+**Create your own asset**
+First, you need to create an address in Bitcoin Core. This address will represent your asset, and the private key associated will be required for any issuance of the asset. Note that the protocol supports multi-sig addresses for issuance, though that is not implemented in Colorcore 1.0.
+
+Run the following command on bitcoind (not Colorcore):
+
+<code>bitcoind getnewaddress</code>
+
+This will generate a private key and return the address. Make sure your wallet.dat file is properly backed up.
+
+Now transfer a small amount of bitcoins (0.0002 BTC is enough) to that newly created address.
+
+Run the following command to issue one million colored coins:
+
+<code>python colorcore.py issueasset <address> 1000000</code>
+
+You can issue up to 9,223,372,036,854,775,807 colored coins at once. Unlike older colored coins implementations, you only need 0.000006 BTC for issuing coins, regardless of the quantity you want to issue.
+
+This command will return a transaction hash. You can look up that transaction hash on the coinprism.info block explorer.
 ##History
 
 * Coinprism launches [Colorcore](https://github.com/OpenAssets/colorcore), an open source colored coin wallet compatible with open assets and Coinprism: September 2nd 2014  (7.1)
