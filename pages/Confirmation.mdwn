@@ -1,10 +1,20 @@
-After a transaction is broadcast to the Bitcoin network, it may be included in a block that is published to the network. When that happens it is said that one confirmation has occurred for the transaction. With each subsequent block that is found, the number of confirmations is increased by one. To protect against [[double_spending]], a transaction should not be considered as **confirmed** until a certain number of blocks confirm, or verify that transaction.  
+After a transaction is broadcast to the Bitcoin network, it may be included in a block that is published to the network.
+When that happens it is said that the transaction has been mined at a depth of 1 block.
+With each subsequent block that is found, the number of blocks deep is increased by one.
+To be secure against [[double_spending]], a transaction should not be considered as **confirmed** until it is a certain number of blocks deep.
 
-The classic bitcoin client will show a transaction as "n/unconfirmed" until 6 blocks confirm the transaction.  Merchants and exchanges who accept [[bitcoins as payment|trade]] can set their own threshold as to how many confirmations are required until funds can be considered valid.  When potential loss due to double spending as nominal, as with very inexpensive or non-fungible items, payments can be considered confirmed as soon as it is seen on the network.  Most [[exchanges|tags/Exchanges]] and other merchants who bear the risk from double spending require 6 or more blocks. 
+The classic bitcoin client will show a transaction as "n/unconfirmed" until the transaction is 6 blocks deep.
+Merchants and exchanges who accept [[bitcoins as payment|trade]] can and should set their own threshold as to how many blocks are required until funds are considered confirmed.
+When potential loss due to double spending as nominal, as with very inexpensive or non-fungible items, people may choose not to wait for a transaction to be confirmed, and complete the exchange as soon as it is seen on the network.
+Most [[exchanges|tags/Exchanges]] and other merchants who bear the risk from double spending require 6 or more blocks.
 
-<blockquote>There is nothing special about the default, often-cited figure of 6 confirmations. It was chosen based on the assumption that an attacker is unlikely to amass more than 10% of the hashrate, and that a negligible risk of less than 0.1% is acceptable. Both these figures are arbitrary, however; 6 confirmations are overkill for casual attackers, and at the same time powerless against more dedicated attackers with much more than 10% hashrate. (1.1)</blockquote>
+There is nothing special about the default, often-cited figure of 6 blocks. It was chosen based on the assumption that an attacker is unlikely to amass more than 10% of the hashrate, and that a negligible risk of less than 0.1% is acceptable.
+Both these figures are arbitrary, however;
+6 blocks are overkill for casual attackers, and at the same time powerless against more dedicated attackers with much more than 10% hashrate. (1.1)
 
-Coins generated aren't considered confirmed by the Bitcoin protocol for 100 blocks. It is advisable to wait some additional time for a better chance that the transaction will be propogated by all nodes. The classic bitcoin client won't show generated coins as confirmed until the 120th block.
+Coins generated aren't considered valid by the Bitcoin protocol for 100 blocks.
+It is advisable to wait some additional time for a better chance that the transaction will be propogated by all nodes.
+Some older bitcoin clients won't show generated coins as confirmed until they are 120 blocks deep.
 
 ##See Also
 
