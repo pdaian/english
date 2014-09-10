@@ -6,9 +6,9 @@
 
 # BFGMiner
 
-* Avalon3 nano BFGminer 运行参数
+* Run under Linux
 	./bfgminer \
-	-S ICA:/dev/ttyACM0 \
+	-S ICA:/dev/ttyACMx \
 	-o stratum+tcp://stratum.ozco.in:80 -O mikeqin.avalon:1234 \
 	--set-device ICA:baud=115200 \
 	--set-device ICA:reopen=timeout \
@@ -17,6 +17,19 @@
 	--set-device ICA:probe_timeout=100 \
 	--set-device ICA:timing=0.22 \
 	--api-listen \
+	2>log
+
+* Run under Windows
+	bfgminer.exe ^
+	-S ICA:\\.\COMn ^
+	-o stratum+tcp://stratum.ozco.in:80 -O mikeqin.avalon:1234 ^
+	--set-device ICA:baud=115200 ^
+	--set-device ICA:reopen=timeout ^
+	--set-device ICA:work_division=1 ^
+	--set-device ICA:fpga_count=1 ^
+	--set-device ICA:probe_timeout=100 ^
+	--set-device ICA:timing=0.22 ^
+	--api-listen ^
 	2>log
 
 	备注：timing详见bfgminer的README，如果当前配置的频率是400MHz,则Hashrate=400*11.8=~4Gh/s
