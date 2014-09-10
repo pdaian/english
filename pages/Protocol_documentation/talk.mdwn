@@ -90,3 +90,5 @@ The maximum size for a Block or a Transaction is 1MB. The overall message size i
 ## txn_count
 
 In [[Header#Block_Headers]], it says txn_count is always zero. Why is this? --[Rebroad](User:Rebroad) ([[talk|User_talk:Rebroad]]) 03:32, 10 September 2014 (UTC)
+
+>  IIRC, it's because the txn_count is the number of transactions *actually* being sent - which in the header request is zero because you're only getting the headers. --[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 05:23, 10 September 2014 (UTC)
