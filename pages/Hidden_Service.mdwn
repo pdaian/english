@@ -1,7 +1,11 @@
-Tor can also provide anonymity to websites and other servers. Servers configured to receive inbound connections only through Tor are called hidden services. Rather than revealing a server's IP address (and thus its network location), a hidden service is accessed through its onion address. The Tor network understands these addresses and can route data to and from hidden services, even to those hosted behind firewall or network address translators (NAT), while preserving the anonymity of both parties. Tor is necessary to access hidden services.
+Tor can also provide anonymity to websites and other servers. Servers configured to receive inbound connections only through Tor are called hidden services. Rather than utilizing a server's IP address (and thus its network location,) a hidden service is accessed through its .onion address. The Tor network understands these addresses and can route data to and from hidden services, even to those hosted behind firewall or network address translators (NAT), while preserving the anonymity of both parties. Tor is necessary to access hidden services.
 
 Hidden services have been deployed on the Tor network since 2004. Other than the database that stores the hidden-service descriptors, Tor is decentralized by design; there is no direct readable list of all hidden services, although a number of hidden services catalog publicly known onion addresses.
 
-Because hidden services do not use exit nodes, connection to a hidden service is encrypted end-to-end and not subject to eavesdropping. There are, however, security issues involving Tor hidden services. For example, services that are reachable through Tor hidden services *and* the public Internet, are susceptible to correlation attacks and thus not perfectly hidden. Other pitfalls include misconfigured services (e.g. identifying information included by default in web server error responses), uptime and downtime statistics, intersection attacks, and user error.
+Because hidden services do not use exit nodes, connection to a hidden service is encrypted end-to-end and not subject to eavesdropping. Contrary to popular opinion, this makes an additional traditional TLS layer atop a hidden service not only redundant, but also pointless. There are, however, security issues involving Tor hidden services. For example, services that are reachable through Tor hidden services *and* the public Internet, are susceptible to correlation attacks and thus not perfectly hidden. Other pitfalls include misconfigured services (e.g. identifying information included by default in web server error responses), uptime and downtime statistics, intersection attacks, and user error.
 
-Hidden services can store and transact bitcoin with relative anonymity and safety.
+Hidden services can help users store and transact bitcoin with relative privacy and safety.
+
+## See also
+
+* [[Tor]]
