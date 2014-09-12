@@ -31,7 +31,7 @@ Run bitcoind with -proxy=127.0.0.1:9050 (or whatever your SocksPort is).
 bitcoind will detect that you are using a proxy on 9050 and will force the "nolisten" flag.  If you are not running tor on 9050, you need to set "nolisten" manually otherwise you will listen on your public IP and possibly reveal that you are running a node.
 
 #Hidden services
- [[Hidden services|Hidden_Service]] run within the Tor network. You can connect to them using the -connect= parameter to bitcoind so long as bitcoin is configured to use a Tor proxy. Users do not need to use hidden services, since Tor can be used to increase anonymity of normal internet traffic, including bitcoin connections. There are some technical reasons why hidden services may be beneficial; for more information see the Tor project's documentation for more information.
+ [[Hidden services|Hidden_Service]] run within the Tor network and can be connected to using the -connect= parameter to bitcoind so long as bitcoin is configured to use a Tor proxy. Bitcoin users do not need to use hidden services, since Tor can be used to increase anonymity of normal internet traffic, including bitcoin connections, but there are some technical reasons why hidden services may be beneficial; for more information see the Tor project's documentation.
 
 Services are listed at [[Fallback_Nodes#Tor_network]] along with instructions for using them.
 
