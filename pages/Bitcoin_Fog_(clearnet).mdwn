@@ -1,0 +1,27 @@
+**[Bitcoin Fog](http://bitcoinfog.org/)(clearnet)** acts as a mixing service or an online wallet. The [[bitcoin]] network might be [[anonymous|anonymity]] in terms of single-handedly revealing your ip address, but the transaction history is recorded in the block chain and is publically available, which makes your anonymity very vulnerable. Once the interested parties, be it authorities or just interested researchers have acquired any one of your addresses or transactions, they could easily track your money around the network.
+
+And knowing your transaction history, connecting your [[bitcoin addresses|Bitcoin_address]] to real you is possible, because you will at some point need to exchange your bitcoins to or from a fiat currency using a bank account number, a credit card, LR account or similar service which is much less anonymous than the bitcoin network.
+
+We are providing a solution for this: using our service you mix up your bitcoins in our own pool with other users' bitcoins, and get paid back to other addresses from our mixed pool, which, if properly done by you can eliminate any chance of finding your payments and making it impossible to prove any connection between a deposit and a withdraw inside our service.
+
+##How the service works
+
+You register an account on our website and deposit bitcoins to the designated address. After a couple of network confirmations, your money is registered on your Fog account, and you can schedule withdrawals. Each withdrawal will be split in a random number of payouts, depending on the amount, and the relative size of each payout will be randomized as well. Even the timing of those payouts will be randomly spread out over a period of time you will specify.
+
+Ideally you should deposit an amount of bitcoins to the Fog, wait some time (for amounts above 100BTC we recommend a day, above 300 BTC a couple of days, about a week for 1000BTC, etc.) and request a withdrawal, which will not have the same amount as the original deposit, leaving some funds in the Fog.
+
+Then you should deposit another batch of bitcoins and withdraw yet another amount, again different from the amount you have deposited. This time it can be lower than deposited, or higher, adding the funds you have left from the previous deposit. This way there is no practically reliable way to do statistical analysis on the block chain and link your deposits to your withdrawals.
+
+##Keeping Logs
+
+We keep logs for 1 week for debugging and troubleshooting purposes. After that they are automatically deleted. ALL logs are taken care of. Even the bitcoin client we use is purged every week, starting with a fresh installation of only the block chain, and importing all the addresses we need at that point automatically. That way, if you have received a payment from us a month ago, not even the address will be left on our server. If any service tells you that they don't keep any logs at all, they are most probably lying, becauase when clients come asking for funds they think are missing, not having any history is like turning our backs on them and not being able to provide any support.
+
+##External Links
+[Bitcoin Fog](http://bitcoinfog.org/) - Bitcoin Fog (clearnet)
+
+##See Also
+
+* [[Anonymity]]
+* [RFC: Bitcoin Mixnet](http://www.bitcoin.org/smf/index.php?topic=2893.0)
+
+[[!tag "Mixing_Services"]]
