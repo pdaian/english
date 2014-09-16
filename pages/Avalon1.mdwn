@@ -148,6 +148,9 @@ In case you need to run Cgminer in linux console please run the following comman
 If your avalon does not mine properly, please run Cgminer in debug mode with -D --verbose option. For example:
 	# cgminer -o stratum.btcguild.com:3333 -O xxxx:yyyy -D --verbose --avalon-options 115200:24:10:45:282 --api-allow "W:0/0" --api-listen 2>/tmp/cgminer-debug.log
 
+if you use cgminer 4.5.0, the command will like this:
+	# cgminer -o stratum.btcguild.com:3333 -O xxxx:yyyy -D --verbose --api-allow "W:0/0" --api-listen 2>/tmp/cgminer-debug.log
+
 ## How to maintain cgminer-openwrt-packages for avalon
 You must have an openwrt development environment and know how to compile an firmware.
 If you don't have an proper environment,you can try [build-avalon-image.sh](https://github.com/Canaan-Creative/Avalon-extras/blob/master/scripts/build-avalon-image.sh) to get all you need for dev. 
