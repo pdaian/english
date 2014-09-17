@@ -201,6 +201,12 @@ Why there is a ugly USB HUB there?  you can find more information about AR9331's
 	diskutil umountDisk /dev/disk1
 	sudo dd bs=1m if=openwrt-brcm2708-sdcard-vfat-ext4.img of=/dev/<span style="color:#FF0000">**r**</span>disk1
 
+### Flash SD Card for RPi(Linux)
+
+1. Download latest Avalon [image](http://downloads.canaan-creative.com/software/avalon2/latest/openwrt-brcm2708-sdcard-vfat-ext4.img) to your PC.
+1. Then open the following
+	http://wiki.openwrt.org/toh/raspberry_pi#flash.the.sd.card
+
 ## WIFI or Ethernet Cable ?
 Avalon shipped with a 9db antenna after connect it to WR703N usually could establish good wireless connection with your WIFI router. But if for some reason you would like to use Ethernet Cable to connect Avalon with your network, please login OpenWrt and configure the LAN port:
 	Network -> Interfaces -> LAN -> Edit -> Common Configuration -> General Setup
