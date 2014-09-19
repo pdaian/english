@@ -10,9 +10,9 @@ A [[block_chain_browser]] is a site where every transaction included within the 
 |---|---|---
 |Version no|currently 1|4 bytes
 |In-counter|positive integer [[VI = VarInt|Protocol_specification#Variable_length_integer]]|1 - 9 bytes 
-|list of inputs|[[the first input of the first transaction is also called "coinbase" (its content was ignored in earlier versions)|Transactions#general_format_.28inside_a_block.29_of_each_input_of_a_transaction_-_Txin]]|<in-counter>-many inputs
+|list of inputs|[[the first input of the first transaction is also called "coinbase" (its content was ignored in earlier versions)|Transaction#general_format_.28inside_a_block.29_of_each_input_of_a_transaction_-_Txin]]|<in-counter>-many inputs
 |Out-counter|positive integer [[VI = VarInt|Protocol_specification#Variable_length_integer]]|1 - 9 bytes
-|list of outputs|[[the outputs of the first transaction spend the mined bitcoins for the block|Transactions#general_format_.28inside_a_block.29_of_each_output_of_a_transaction_-_Txout]]|<out-counter>-many outputs
+|list of outputs|[[the outputs of the first transaction spend the mined bitcoins for the block|Transaction#general_format_.28inside_a_block.29_of_each_output_of_a_transaction_-_Txout]]|<out-counter>-many outputs
 |lock_time|if non-zero and sequence numbers are < 0xFFFFFFFF: block height or timestamp when transaction is final|4 bytes
 
 
