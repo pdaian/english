@@ -1,4 +1,4 @@
-**Bitcoin-Qt** is the third [[Bitcoin]] [[client|Clients]], developed by [[Wladimir_J._van_der_Laan]] based on the original reference code by [[Satoshi_Nakamoto]]. (1.1) (1.2) (1.3) It has been bundled with [[bitcoind]] since version 0.5. (1.4)
+**Bitcoin-Qt** is the third [[Bitcoin]] [[client|Clients]], developed by [[Wladimir_J._van_der_Laan]] based on the original reference code by [[Satoshi_Nakamoto]]. (1.1) (1.2) (1.3) It has been bundled with [[bitcoind]] since version 0.5. (1.4) Bitcoin-Qt has been rebranded to **[[Bitcoin_Core]]** since version 0.9.0  (1.5)
 
 ##History
 
@@ -21,9 +21,9 @@ Source code (and build instructions for supported platforms) can be found at the
 * Splash screen that details progress
 
 ##Criticism
-Bitcoin Core is often criticized for being slow in downloading and verifying the Bitcoin transaction database (often called the Blockchain).  
+Bitcoin-Qt is often criticized for being slow in downloading and verifying the Bitcoin transaction database (often called the Blockchain).  
 
-If Bitcoin Core is run with port 8333 open to outside connections, it has also been criticized for hogging one's upload bandwidth when peers connect to download the blockchain. This issue has been [discussed extensively on GitHub](https://github.com/bitcoin/bitcoin/issues/273).  Windows users can work around this issue [by downloading Netbalancer](http://seriousbit.com/netbalancer/) and throttling bitcoin-qt's upload bandwidth to ensure that one has enough upload bandwidth available for regular computer and internet use to be unaffected.
+If Bitcoin-Qt is run with port 8333 open to outside connections, it has also been criticized for hogging one's upload bandwidth when peers connect to download the blockchain. This issue has been [discussed extensively on GitHub](https://github.com/bitcoin/bitcoin/issues/273).  Windows users can work around this issue [by downloading Netbalancer](http://seriousbit.com/netbalancer/) and throttling Bitcoin-Qt's upload bandwidth to ensure that one has enough upload bandwidth available for regular computer and internet use to be unaffected.
 
 Wallet management is also cumbersome. Unlike clients such as [[Armory]], [[MultiBit]], [[Electrum]] and others only one wallet at a time is supported, and its location is required to be the same as the blockchain storage, making it [[difficult to place the wallet on an encrypted drive|Securing_your_wallet#Making_a_secure_workspace]].
 
@@ -36,7 +36,8 @@ Wallet management is also cumbersome. Unlike clients such as [[Armory]], [[Multi
 1.1: [Bitcoin Client Software](http://bitcoin.org/clients.html) Bitcoin.org Quote: The original software written by Satoshi Nakamoto, the project's founder.  
 1.2: http://gavintech.blogspot.co.uk/2012/03/full-disclosure-bitcoin-qt-on-windows.html, Full disclosure: Bitcoin-Qt on Windows vulnerability, 21st October 2012  
 1.3: http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-4682, Vulnerability Summary for CVE-2012-4682, 21st October 2012  
-1.4: [Bitcoin-Qt/Bitcoind Releases](http://bitcoin.org/news.html) Bitcoin.org
+1.4: [Bitcoin-Qt/Bitcoind Releases](http://bitcoin.org/news.html) Bitcoin.org  
+1.5: [Bitcoin Core version 0.9.0 released](https://bitcoin.org/en/release/v0.9.0) Bitcoin.org
 
 
 ##See also
