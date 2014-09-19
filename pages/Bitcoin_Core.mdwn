@@ -21,7 +21,9 @@ Source code (and build instructions for supported platforms) can be found at the
 * Splash screen that details progress
 
 ##Criticism
-Bitcoin-Qt is often criticized for being slow in downloading and verifying the Bitcoin transaction database (often called the Blockchain).
+Bitcoin-Qt is often criticized for being slow in downloading and verifying the Bitcoin transaction database (often called the Blockchain).  
+
+It has also been criticized for hogging one's upload bandwidth when peers connect to download the blockchain.  This issue has been [discussed extensively on GitHub](https://github.com/bitcoin/bitcoin/issues/273).  Windows users can work around this issue [by downloading Netbalancer](http://seriousbit.com/netbalancer/) and throttling bitcoin-qt's upload bandwidth to ensure that one has enough upload bandwidth available for regular computer and internet use to be unaffected.
 
 Wallet management is also cumbersome. Unlike clients such as [[MultiBit]], only one wallet at a time is supported, and its location is required to be the same as the blockchain storage, making it [[difficult to place the wallet on an encrypted drive|Securing_your_wallet#Making_a_secure_workspace]].
 
