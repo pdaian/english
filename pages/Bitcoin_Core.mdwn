@@ -21,14 +21,18 @@ Source code (and build instructions for supported platforms) can be found at the
 * Splash screen that details progress
 
 ##Criticism
-Bitcoin-Qt is often criticized for being slow in downloading and verifying the Bitcoin transaction database (often called the Blockchain).  
 
+###Sync time
+Bitcoin-Qt is often criticized for being slow in downloading and verifying the Bitcoin transaction database (the [[blockchain]]).
+
+###Bandwidth use
 It has also been criticized for "hogging" upload bandwidth when peers connect to download the blockchain (possible only when run with port 8333 accessible to outside connections).
 This perceived "issue" has been [discussed extensively on GitHub](https://github.com/bitcoin/bitcoin/issues/273).
 Most modern routers support quality-of-service that can be configured to properly share the internet connection across all services, and even deprioritise Bitcoin traffic.
 Bitcoin Core includes a script for Linux to configure QoS on an individual host.
 Windows users can also use third-party software such as [Netbalancer](http://seriousbit.com/netbalancer/) to throttle the application's upload bandwidth and ensure that one has enough upload bandwidth available for regular computer and internet use to be unaffected.
 
+###Lack of multiwallet support; node+wallet tied together
 Wallet management is also cumbersome. Unlike clients such as [[Armory]], [[MultiBit]], [[Electrum]] and others only one wallet at a time is supported, and its location is required to be the same as the blockchain storage, making it [[difficult to place the wallet on an encrypted drive|Securing_your_wallet#Making_a_secure_workspace]].
 
 ##External Links
