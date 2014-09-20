@@ -1,0 +1,24 @@
+[[!template id=transaction hash=1d5e512a9723cbef373b970eb52f1e9598ad67e7408077a82fdac194b65333c9 in1=17TASsYPbdLrJo3UDxFfCMu5GXmxFwVZSW val1=0.5 out1=1Hk51V49a58fC2r471hScXopEQpioDEuqx pay1=92,233,720,368.54275808 out2=12vRJXnnA21YAaLacWXpNshy7MBAwrigtQ pay2=92,233,720,368.54275808 fee=0.51 time=? size=? special=a]]
+On August 15 2010, it was discovered that block 74638 contained a transaction that created over 184 billion bitcoins for two different addresses. (1.1) This was possible because the code used for checking transactions before including them in a block didn't account for the case of outputs so large that they overflowed when summed. (1.2) A new version was published within a few hours of the discovery. The block chain had to be forked. Although many unpatched nodes continued to build on the "bad" block chain, the "good" block chain overtook it at a block height of 74691. The bad transaction no longer exists for people using the longest chain. Therefore, the bitcoins created by it do not exist either.
+
+The block and transaction:
+<pre>CBlock(hash=0000000000790ab3, ver=1, hashPrevBlock=0000000000606865, hashMerkleRoot=618eba,
+nTime=1281891957, nBits=1c00800e, nNonce=28192719, vtx=2)
+  CTransaction(hash=012cd8, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+    CTxIn(COutPoint(000000, -1), coinbase 040e80001c028f00)
+    CTxOut(nValue=50.51000000, scriptPubKey=0x4F4BA55D1580F8C3A8A2C7)
+  CTransaction(hash=1d5e51, ver=1, vin.size=1, vout.size=2, nLockTime=0)
+    CTxIn(COutPoint(237fe8, 0), scriptSig=0xA87C02384E1F184B79C6AC)
+    CTxOut(nValue=92233720368.54275808, scriptPubKey=OP_DUP OP_HASH160 0xB7A7)
+    CTxOut(nValue=92233720368.54275808, scriptPubKey=OP_DUP OP_HASH160 0x1512)
+  vMerkleTree: 012cd8 1d5e51 618eba
+
+Block hash: 0000000000790ab3f22ec756ad43b6ab569abf0bddeb97c67a6f7b1470a7ec1c
+Transaction hash: 1d5e512a9723cbef373b970eb52f1e9598ad67e7408077a82fdac194b65333c9</pre>
+
+The transaction does not exist anymore, but the 0.5 BTC output used in it does. It has not been spent after the fork. This fund appears to have come from a faucet.
+## References
+
+1.1: https://bitcointalk.org/index.php?topic=822.0  
+1.2: http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-5139
+
