@@ -1,4 +1,4 @@
-Each block contains a [Unix time](http://en.wikipedia.org/wiki/Unix_time) timestamp. In addition to serving as a source of variation for the [[block hash|Block_hashing_algorithm]], there are also validity checks, that make it more difficult for an adversary to manipulate the block chain.
+Each block contains a [Unix time](http://en.wikipedia.org/wiki/Unix_time) timestamp. In addition to serving as a source of variation for the [[block hash|Block_hashing_algorithm]], they also make it more difficult for an adversary to manipulate the block chain.
 
 A timestamp is accepted as valid if it is greater than the median timestamp of previous 11 blocks, and less than the network-adjusted time + 2 hours. "Network-adjusted time" is the median of the timestamps returned by all nodes connected to you.
 
