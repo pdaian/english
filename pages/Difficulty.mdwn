@@ -114,7 +114,7 @@ Yes it can. See discussion in [[target]].
 The minimum difficulty, when the target is at the maximum allowed value, is 1.
 
 ### What network hash rate results in a given difficulty?
-The difficulty is adjusted every 2016 blocks based on the time it took to find the previous 2016 blocks.  At the desired rate of one block each 10 minutes, 2016 blocks would take exactly two weeks to find.  If the previous 2016 blocks took more than two weeks to find, the difficulty is reduced.  If they took less than two weeks, the difficulty is increased.  The change in difficulty is in proportion to the amount of time over or under two weeks the previous 2016 blocks took to find.
+The difficulty is adjusted every 2016 blocks based on the [[time|Block_timestamp]] it took to find the previous 2016 blocks.  At the desired rate of one block each 10 minutes, 2016 blocks would take exactly two weeks to find.  If the previous 2016 blocks took more than two weeks to find, the difficulty is reduced.  If they took less than two weeks, the difficulty is increased.  The change in difficulty is in proportion to the amount of time over or under two weeks the previous 2016 blocks took to find.
 
 To find a block, the hash must be less than the target.  The hash is effectively a random number between 0 and 2**256-1.  The offset for difficulty 1 is
 	0xffff * 2**208
