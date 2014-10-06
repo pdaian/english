@@ -1,0 +1,48 @@
+CKPool [[mining pool|Pooled_mining]].
+
+CKPool was started on the 20th of September, 2014  (1.1)
+
+The pool and pool software is created and run by the [[CGMiner]] developers
+
+
+## Servers to use
+
+* Stratum - Use for ALL stratum capable Bitcoin mining software
+	stratum+tcp://stratum.kano.is:3333 USA
+
+##Reward distribution
+
+* Pay Per Last N Shares PPLNS - see: [[Comparison_of_mining_pools]]
+* 0.9% fee
+* Pay out TXN fees
+* Payout after 120 confirmations.
+
+##Extra features
+
+* Email notification of change to account settings
+* Email on payout
+* IRC chanel at irc.freenode.net #ckpool
+* API in json
+
+##How to run miners
+
+**CGMiner [Forum](https://bitcointalk.org/index.php?topic=28402.0)**<br />
+
+cgminer.exe -o stratum+tcp://stratum.kano.is:3333 -u username_workername -p X
+
+##See also
+
+* [[Comparison_of_mining_pools]]
+* [[Pooled_Mining]]
+
+##External links
+
+* [CKPool](http://www.kano.is) web site
+
+##References
+
+1.1: [CKPool (www.kano.is) from the cgminer devs](https://bitcointalk.org/index.php?topic=789369.0)
+
+
+[[!tag "Pool_Operators"]]
+[[!template id=pools]]
