@@ -4,6 +4,8 @@ There are likely many possible variants of proof of burn. This page currently de
 
 ## Iain Stewart's version of proof of burn
 
+*(**Note:** Iain Stewart's version of proof of burn is an attempt at a protocol which could be used **within one cryptocurrency** for ongoing generation of its blockchain (i.e. mining). For the much simpler task of burning one currency to create another, any reasonable algorithm for creating units of the second currency upon detection of fresh burns of the first will suffice. The subtleties of this version - in particular, the simulation of mining rigs, and the reliance on low-bit-rate external randomness - will not be necessary.)*
+
 ### Introduction and motivation
 
 The key idea of proof-of-burn (this would also apply to proof-of-stake, by the way) is that when choosing the thing which is to qualify as a "difficulty", i.e. to require miners to exhibit proof that they've "done something that's tough to do", all that matters is that *an individual miner* finds the task expensive. (Well... it also matters that everyone else should find it cheap to verify that it has been done.) It doesn't need to be the case that real resources are consumed in the real economy.
