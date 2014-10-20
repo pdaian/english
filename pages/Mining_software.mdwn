@@ -154,7 +154,7 @@ Function      BFG         BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  Gro
 |add peers     |[[!template id=no]]|n/a     |n/a    |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |set diff      |[[!template id=yes 2.9.0]]|n/a     |n/a |[[!template id=yes 2.8.0]]|n/a    |n/a       |n/a     |[[!template id=yes]]|[[!template id=patch testing]]|n/a |n/a  |[[!template id=yes 20121020]]|[[!template id=yes]]|[[!template id=no]]
 |suggest target|[[!template id=yes 3.2.0]] (1.5)|n/a     |n/a    |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|suggest difficulty|[[!template id=no]]|n/a     |n/a    |[[!template id=yes 4.7.0]] (1.6)|n/a     |n/a       |n/a     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|suggest difficulty|[[!template id=no]]|n/a     |n/a    |[[!template id=yes 4.7.0]]Uses difficulty syntax in method name, implemented Sep 29, 2014 [commit 37c6dfc438](https://github.com/ckolivas/cgminer/commits/37c6dfc438)as per the [stratum designers suggested implementation](https://bitcointalk.org/index.php?topic=108533.msg1543341#msg1543341)Feb 20, 2013|n/a     |n/a       |n/a     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |transparency  |[[!template id=patch partial]]|n/a     |n/a    |[[!template id=no]]|n/a    |n/a       |n/a     |[[!template id=no]]||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |get ver       |[[!template id=yes 2.9.0]]|n/a     |n/a    |[[!template id=yes 2.8.2]]|n/a |n/a       |n/a     |[[!template id=yes]]||n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
 |show msg      |[[!template id=yes 3.0.0]]|n/a     |n/a   |[[!template id=yes 2.11.1]]|n/a |n/a       |n/a     |[[!template id=no]]||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
@@ -171,6 +171,5 @@ Function      BFG         BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  Gro
 1.2: Supported, but has bugs.  
 1.3: Not advertised, but generally doesn't discard shares.  
 1.4: Older versions have serious bugs.  
-1.5: [slush's suggestion](https://bitcointalk.org/?topic=108533.msg1543341#msg1543341) Uses specific string target in parameter, implemented Aug 12, 2013  based on   
-1.6: [slush's suggestion](https://bitcointalk.org/?topic=108533.msg1543341#msg1543341) Uses difficulty syntax in method name, implemented Sep 29, 2014  based on 
+1.5: [slush's suggestion](https://bitcointalk.org/?topic=108533.msg1543341#msg1543341) Uses specific string target in parameter, implemented Aug 12, 2013  based on 
 
