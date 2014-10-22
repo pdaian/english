@@ -28,24 +28,24 @@ Get insights and analytics on bitcoin addresses and transactions using BlockTrai
 
 ##Examples
 <code>
-$client->address('1NcXPMRaanz43b1kokpPuYDdk6GGDvxT2T');
+$ curl "https://api.blocktrail.com/v1/btc/address/1NcXPMRaanz43b1kokpPuYDdk6GGDvxT2T?api_key=MY_APIKEY"
 </code>
 
 <code>
- [
-    "address" => "1NcXPMRaanz43b1kokpPuYDdk6GGDvxT2T",
-    "hash160" => "ED12908714FFD43142BF9832692017E8AD54E9A8",
-    "balance" => 49497392,
-    "received" => 115015000,
-    "sent" => 65517608,
-    "unconfirmed_received" => 0,
-    "unconfirmed_sent" => 0,
-    "unconfirmed_transactions" => 0,
-    "total_transactions_in" => 4,
-    "total_transactions_out" => 10,
-    "category" => "donations",
-    "tag" => "blocktrail"
- ]
+ {
+    "address": "1NcXPMRaanz43b1kokpPuYDdk6GGDvxT2T",
+    "hash160": "ED12908714FFD43142BF9832692017E8AD54E9A8",
+    "balance": 49497392,
+    "received": 115015000,
+    "sent": 65517608,
+    "unconfirmed_received": 0,
+    "unconfirmed_sent": 0,
+    "unconfirmed_transactions": 0,
+    "total_transactions_in": 4,
+    "total_transactions_out": 10,
+    "category": "donations",
+    "tag": "blocktrail"
+ }
 </code>
 
 ##Links
