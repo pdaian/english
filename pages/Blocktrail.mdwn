@@ -27,6 +27,7 @@ Get insights and analytics on bitcoin addresses and transactions using BlockTrai
 [BlockTrail Block Explorer](https://www.blocktrail.com)
 
 ##Examples
+#### Get Bitcoin Address
 <code>
 $ curl "https://api.blocktrail.com/v1/btc/address/1NcXPMRaanz43b1kokpPuYDdk6GGDvxT2T?api_key=MY_APIKEY"
 </code>
@@ -45,6 +46,30 @@ $ curl "https://api.blocktrail.com/v1/btc/address/1NcXPMRaanz43b1kokpPuYDdk6GGDv
     "total_transactions_out": 10,
     "category": "donations",
     "tag": "blocktrail"
+ }
+</code>
+
+#### Get Latest Block
+<code>
+$ curl "https://api.blocktrail.com/v1/btc/block/latest?api_key=MY_APIKEY"
+</code>
+
+<code>
+ {
+    "hash": "000000000000000005afebaa75ff40714a1ed96539adb1266bbf7be9aaf767ae",
+    "height": "321129",
+    "block_time": "2014-09-17T09:00:26+0000",
+    "difficulty": "29829733124.00000000",
+    "merkleroot": "aaadea1a8c2cb1777d822d47e6acd0360b2f2e4f3c7c1f79cb4284866457ade3",
+    "prev_block": "000000000000000019bea784e37fe450d522b9a4f0a4e8dcad4bd7c9283e4203",
+    "next_block": null,
+    "byte_size": "670679",
+    "confirmations": 1,
+    "transactions": "727",
+    "value": "277325560913",
+    "miningpool_name": "Eligius",
+    "miningpool_url": "http://eligius.st",
+    "miningpool_slug": "eligius"
  }
 </code>
 
