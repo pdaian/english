@@ -1,18 +1,60 @@
+
+
 [[!img "Blocktrail-logo-black.png" link=https://www.blocktrail.com]]
 
 
-BlockTrail is a Block Explorer for Bitcoin and other cryptocurrencies, enabling insights and information on addresses, transactions, blocks and economic figures.
+[BlockTrail.com](https://www.blocktrail.com) provides a Bitcoin API, developers platform, and block explorer for Bitcoin and other cryptocurrencies. 
 
-## BlockTrail - Bitcoin Developers Platform and Block Explorer
 
-BlockTrail provides secure bitcoin infrastructure for developers and enterprises, enabling advanced transaction functionality and access to refined economic data-sets. Based in Amsterdam, the Netherlands, BlockTrail is dedicated to delivering better tools for the bitcoin economy.
+## Bitcoin API and Developers Platform
+BlockTrail provides secure bitcoin infrastructure for developers and enterprises, enabling advanced transaction functionality and access to refined economic data-sets. BlockTrail's RESTful HTTP API is free-to-use under rate-limited conditions (1 request per second). [Signup](https://www.blocktrail.com/signup) to receive your API Key. 
 
-**[BlockTrail.com](https://www.blocktrail.com)**
+* **Secure Bitcoin Transactions** - Easily create secure transactions without giving up access to your Bitcoins, using a multi-signature HD wallet API
+* **Blockchain Data and Insights** - Refined data on transactions, addresses, and economy analytics delivered via queries, webhooks or firehose 
+* **Developer friendly** - BlockTrail comes complete with SDK's for PHP, Python, NodeJS and more!
 
-##External Links
+[BlockTrail Bitcoin API](https://www.blocktrail.com/api)
 
-* [BlockTrail Bitcoin Block Explorer](http://www.blocktrail.com)
-* [Twitter](https://twitter.com/blocktrail)
+## Block Explorer 2.0
+Get insights and analytics on bitcoin addresses and transactions using BlockTrail's online Block Explorer
+
+* **Time-based balance analysis** - Get usage information based on selectable time periods 
+* **Mentions** - Easily see if your searched address appears in any third-party data source  
+* **Address Tags** -  Quickly determine if the address was involved in known transactions (gambling, donations, etc). 
+* **Search via QR** - Search any QR code in one click, directly from our homepage
+* **Bookmarks & Lists** - Easily bookmark addresses and add them to lists for grouped summaries of transactions and balances.
+
+[BlockTrail Block Explorer](https://www.blocktrail.com)
+
+
+##Examples
+<code>
+$client->address('1NcXPMRaanz43b1kokpPuYDdk6GGDvxT2T');
+</code>
+
+<code>
+ [
+    "address" => "1NcXPMRaanz43b1kokpPuYDdk6GGDvxT2T",
+    "hash160" => "ED12908714FFD43142BF9832692017E8AD54E9A8",
+    "balance" => 49497392,
+    "received" => 115015000,
+    "sent" => 65517608,
+    "unconfirmed_received" => 0,
+    "unconfirmed_sent" => 0,
+    "unconfirmed_transactions" => 0,
+    "total_transactions_in" => 4,
+    "total_transactions_out" => 10,
+    "category" => "donations",
+    "tag" => "blocktrail"
+ ]
+</code>
+
+##Links
+
+* [BlockTrail.com](https://www.blocktrail.com) 
+* [Follow @blocktrail on twitter](https://www.twitter.com/blocktrail) 
+* [API Documentation](https://www.blocktrail.com/api/docs) 
+
 
 [[!tag "Services"]]
 [[!tag "Block_chain_browsers"]]
