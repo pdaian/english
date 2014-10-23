@@ -30,6 +30,11 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 	function JSONtoAmount(value) {
 	return Math.round(1e8 * value);
 	}
+## Java
+
+	public long JSONtoAmount(double value){
+	return (long)(value*100000000L);
+	}
 
 ## Perl
 	sub JSONtoAmount {
