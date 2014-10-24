@@ -239,10 +239,7 @@ If the transaction is based on a coin that was in a recent transaction then it c
 
 ### Why does my Bitcoin address keep changing?
 
-Unlike postal or email addresses, Bitcoin addresses are single-use.
-This means that whenever you want to receive a payment, you need to generate a new address.
-
-While it is technically possible to receive coins multiple times with a single address, this compromises your wallet's security as well as the privacy of the entire Bitcoin network, and also makes it impossible to know for certain who sent the coins or why.
+While Bitcoin addresses, like bank account numbers, can be used for arbitrary number of transactions, an increasing number of wallet implementations treat them as single-use and generate new address whenever you want to receive another payment. This is done in order to increase the privacy of the Bitcoin network by making it much more difficult to track the transactions and the owners of particular Bitcoin addresses.
 
 ###How much will the transaction fee be?
 
