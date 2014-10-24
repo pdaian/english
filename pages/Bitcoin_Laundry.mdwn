@@ -1,25 +1,32 @@
-Accepts your payment, deducts pretty significant commission (4.555%) and then forwards the balance on to a Bitcoin [[address]] that you designate. The higher the volume of transactions handled by the bitcoin laundry, the greater the degree of anonymity it provides, although it depends on the bitcoin laundry service provider as a trusted party to facilitate anonymity and return the funds. 
 
-The [[mixing_service]] was announced on December 03, 2010 (1.1). 
+*BitLaundry - For all your Bitcoin washing needs.**
 
-##Criticism
+##How BitLaundry works
 
-This service has been reported to be only lightly used and as a result you may get your own coins back.
+BitLaundry is designed to help unlink accounts from each other. It does that by providing a well-known, and hopefully popular service. Here's how it works:
 
-##See Also
-
-* [[Anonymity]]
-* [RFC: Bitcoin Mixnet](http://www.bitcoin.org/smf/index.php?topic=2893.0)
-* [[Mixing_service]]
+Imagine that Alice wishes to send Bitcoins to Bob.
+Bob, sadly, is not well liked. Alice would rather not have anyone know that she sent Bob Bitcoins.
+So, Alice enters Bob's Bitcoin address into the form at BitLaundry, and selects a delivery schedule.
+Alice gets a one-time-use address from BitLaundry.
+Alice sends her Bitcoins to that address, and they get all mixed up with BitLaundry's other Bitcoins.
+BitLaundry waits until Alice's Bitcoins are received with 10 confirmations.
+BitLaundry deletes the database link between the one-time-use address and Bob's address.
+BitLaundry sends Bitcoins out to Bob according to the delivery schedule.
 
 ##External Links
 
-* [Bitcoin Laundry](http://www.bitcoinlaundry.com) website
+<span style="color:red;font-size:1.25em">**http://laundryzlzgnni4n.onion/**</span> Original Link
 
-##References
+* [Official website](http://laundryzlzgnni4n.onion/)
 
-
-1.1: [Announcing the Bitcoin Laundry (beta)](http://www.bitcoin.org/smf/index.php?topic=2053.0)
-
-
+[[!tag "Android"]]
+[[!tag "Services"]]
+[[!tag "Frontends"]]
+[[!tag "Clients"]]
+[[!tag "Mobile"]]
+[[!tag "eWallets"]]
+[[!tag "HybridEWallets"]]
 [[!tag "Mixing_Services"]]
+[[!tag "Wallets"]]
+[[!tag "Software"]]
