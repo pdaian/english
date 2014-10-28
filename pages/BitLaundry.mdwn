@@ -1,21 +1,23 @@
-Designed to help unlink accounts from each other.
+*BitLaundry - For all your Bitcoin washing needs.**
 
-This [[mixing_service]] was introduced on September 1, 2010 (1.1) and on May 19, 2011 a new operator announced having acquired the service (1.2)
+##How BitLaundry works
 
-##See Also
+BitLaundry is designed to help unlink accounts from each other. It does that by providing a well-known, and hopefully popular service. Here's how it works:
 
-* [[Anonymity]]
-* [RFC: Bitcoin Mixnet](http://www.bitcoin.org/smf/index.php?topic=2893.0)
-* [[Mixing_service]]
+Imagine that Alice wishes to send Bitcoins to Bob.
+Bob, sadly, is not well liked. Alice would rather not have anyone know that she sent Bob Bitcoins.
+So, Alice enters Bob's Bitcoin address into the form at BitLaundry, and selects a delivery schedule.
+Alice gets a one-time-use address from BitLaundry.
+Alice sends her Bitcoins to that address, and they get all mixed up with BitLaundry's other Bitcoins.
+BitLaundry waits until Alice's Bitcoins are received with 10 confirmations.
+BitLaundry deletes the database link between the one-time-use address and Bob's address.
+BitLaundry sends Bitcoins out to Bob according to the delivery schedule.
 
 ##External Links
 
-* [BitLaundry](http://bitlaundry.appspot.com) website
+<span style="color:red;font-size:1.25em">**http://laundryzlzgnni4n.onion/**</span> Original Link
 
-##References
-
-1.1: [Announcing: BitLaundry -- decorrelated payment service](http://forum.bitcoin.org/?topic=963.0)  
-1.2: [BitLaundry re-launch!](http://forum.bitcoin.org/index.php?topic=9018.0)
+* [Official website](http://laundryzlzgnni4n.onion/)
 
 
 [[!tag "Mixing_Services"]]
