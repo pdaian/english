@@ -70,3 +70,8 @@ Instead of telling lies that "bitcoin addresses are /designed/ to be used exactl
 > *d71fd2f64c0b34465b7518d240c00e83f6a5b10138a7079d1252858fe7e6b577
 
 > [Taras](User:Taras) ([[talk|User_talk:Taras]]) 22:24, 28 October 2014 (UTC)
+
+> Bitcoin was designed as a scripting-based consensus system. Payments were sent to a specific IP address: you would connect to the IP you wanted to pay, and it would give you a unique script to use for the pubkey-script in the Bitcoin consensus system. Manually-conveyed addresses were only later added on top of this as an abstractional hack until a proper solution could be found/implemented to solve the MITM attack it had earlier.
+> Address reuses does *not* always work, and you cannot assume it will work. Even when it works, it does not work correctly since it is insecure and harms the privacy of not only the users involved, but the whole network.
+> As for reference, please see section 10 of bitcoin.pdf, which focuses on privacy. For actual reuse-CAUSED losses, you can Google to find various incidents; the obvious case is when people pay an address they've paid before, but is no longer recognised by the recipient as valid: many with the address reuse misconception have tried to double-deposit to exchanges this way, to find their coins lost forever. Less obvious are the reused r/k constants in signatures, which allowed attackers to calculate the private key holding the rest of the bitcoins received by the addresses in question. There are other ways to lose bitcoins when addresses are being used, but I think these two cases cover both major risk vectors.
+>  --[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 03:08, 29 October 2014 (UTC)
