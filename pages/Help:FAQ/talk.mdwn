@@ -58,7 +58,7 @@ Instead of telling lies that "bitcoin addresses are /designed/ to be used exactl
 
 >  OK, you won. I am not going to change the section again. I know you'll put your (untrue) words back anyway and I have better things to do than push this back and forth on an idealistic crusade. But I try again and urge you to help people understand things by providing facts *ONLY*, rather than personal beliefs/wishes/opinions. Something backed with references to reliable sources, showing clearly, beyond doubt that your words provide a solid information.
 
-> [[!template id=unsigned Silverdr 20:20, 28 October 2014‎ (UTC)]]
+> [Silverdr](User:Silverdr) ([[talk|User_talk:Silverdr]]) 04:33, 29 October 2014 (UTC)
 
 > While I agree that address reuse should be discouraged, saying that addresses were designed to be single-use is probably not true. See the following transactions, broadcast by Satoshi Nakamoto:
 
@@ -75,3 +75,47 @@ Instead of telling lies that "bitcoin addresses are /designed/ to be used exactl
 > Address reuses does *not* always work, and you cannot assume it will work. Even when it works, it does not work correctly since it is insecure and harms the privacy of not only the users involved, but the whole network.
 > As for reference, please see section 10 of bitcoin.pdf, which focuses on privacy. For actual reuse-CAUSED losses, you can Google to find various incidents; the obvious case is when people pay an address they've paid before, but is no longer recognised by the recipient as valid: many with the address reuse misconception have tried to double-deposit to exchanges this way, to find their coins lost forever. Less obvious are the reused r/k constants in signatures, which allowed attackers to calculate the private key holding the rest of the bitcoins received by the addresses in question. There are other ways to lose bitcoins when addresses are being used, but I think these two cases cover both major risk vectors.
 >  --[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 03:08, 29 October 2014 (UTC)
+
+
+
+> * Address reuses does *not* always work,
+
+>  Please give proper examples when it would not work.
+
+> * and you cannot assume it will work.
+
+>  Please explain why or add reliable references.
+
+> * Even when it works, it does not work correctly
+
+>  It does work correctly. The downside is that it is easier to de-anonymise the transactions and participants.
+
+> * since it is insecure
+
+>  Please explain why or add reliable references. Please use currently known security holes, which haven't been addressed yet.
+
+> * and harms the privacy of not only the users involved, but the whole network.
+
+>  Please explain why or add reliable references.
+
+> * As for reference, please see section 10 of bitcoin.pdf, which focuses on privacy.
+
+>  Of course. It says: "As an additional firewall, a new key pair should be used for each transaction to keep them from being linked to a common owner. Some linking is still unavoidable [[...]]". What if someone doesn't give a damn about his transactions being linked to a common owner (himself)?
+
+> * For actual reuse-CAUSED losses, you can Google to find various incidents;
+
+>  So far I couldn't find any, which would be caused by address reuse per-se. Misinformed people lose their coins in many ways. That's why it is important to give CORRECT and FULL information rather than unbacked opinions.
+
+> * the obvious case is when people pay an address they've paid before, but is no longer recognised by the recipient as valid: many with the address reuse misconception have tried to double-deposit to exchanges this way, to find their coins lost forever.
+
+>  Which is CAUSED by loss of private portion of the key pair. NOT by address reuse.
+
+> * Less obvious are the reused r/k constants in signatures, which allowed attackers to calculate the private key holding the rest of the bitcoins received by the addresses in question.
+
+>  Hasn't that been already addressed some time ago?
+
+> * There are other ways to lose bitcoins when addresses are being used, but I think these two cases cover both major risk vectors.
+
+>  As there are many other ways to lose them when addresses are NOT being [[re]]used. I believe that you know that the only real cause for loss of bitcoins is the loss or disclosure of private portion of a keypair. It doesn't matter at all for how many transactions the keypair has been used. If you lose the private key for an address that has been used only once, your coins are lost the same way as when the address has been used multiple times and vice-versa. It is NOT the number of transactions that causes losses (some implementation problems aside). It is the loss of private key, which causes them.
+
+> P.S. @Taras: yes. Very well said. And I fully agree: address reuse should be discouraged. By giving full and reliable information. Not by spreading FUD and misinformation. I tried already twice to change the words in the FAQ into something more correct and unbiased, only to find the changes reversed back the next moment. The problem is that those who try to learn and understand this very difficult for new users subject - are instead of facts, presented with opinions of little informational value (if not plainly untrue) with no explanations and no proper references to help them gather the important knowledge. Instead of explaining what really causes the coin losses, they are told that address reuse causes the loss and that sending coins to the same address works by "accident"... [Silverdr](User:Silverdr) ([[talk|User_talk:Silverdr]]) 04:33, 29 October 2014 (UTC)
