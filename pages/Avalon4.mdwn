@@ -14,6 +14,27 @@
 ## SPI Example
  [[!img "Avalon4-SPI-EXAMPLE.jpeg" size=640x640]]
 
+	a real data:
+	1st:
+	work n chip1
+	{576'hc16801619d8d4242e06e5fab25a54bbe222e8b877848c34beea79cd6528caf7e33cde02a983dab158119ce2a1c9fc4eddac8ce296d0fd9da6e18f645087e051a2d547050e8dc86b1, 64'ha, 32'h1, 32'h1, 32'h1} 
+	work n chip0
+	{576'h1bed3ba0a2cb45c1d8f8ef6712146495c44192c07145fd6d974bf4bb8f41371d65c90d1e9cb18a17fa77fe7d13cdfd7b0063910762a5f25c06b168ae087e051a895170504ac1d001, 64'h5, 32'h1, 32'h1, 32'h1}
+	
+	2nd:
+	work n+1 chip1
+	{576'h0, 64'hb, 32'h1, 32'h1, 32'h1}
+	work n+1 chip0
+	{576'h0, 64'h6, 32'h1, 32'h1, 32'h1}
+	
+	3rd:
+	work n+2 chip1
+	{576'h0, 64'hc, 32'h1, 32'h1, 32'h1}
+	work n+2 chip0
+	{576'h0, 64'h7, 32'h1, 32'h1, 32'h1}
+
+	then get nonce 32'h1beebba0 for chip0, 32'hc1698161 for chip1;
+
 # Avalon4
 Each module include 40 A3222 ASICs, the mdoule should be working at 1TH/S and using 700W power.
 
