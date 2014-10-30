@@ -43,7 +43,7 @@
 	备注：timing详见bfgminer的README，如果当前配置的频率是400MHz,则Hashrate=400*11.8=~4Gh/s
 	<math>\mbox{timing} = \frac{1}{4\times 10^9}\times 10^9</math>
 
-* BFGMiner MHS Cur计算
+* BFGMiner MHS Cur
 	MHS Cur = Diff1 Work * (Difficulty Accepted/(Difficulty Accepted+Difficulty Rejected+Difficulty Stale)*60/(Elapsed)*71582788/(1000000)
 	所有的信息可以通过./bfgminer-rpc -o summary获取。
 	注：如果Difficulty Accepted+Difficulty Rejected+Difficulty Stale = 0，则Difficulty Accepted/(Difficulty Accepted+Difficulty Rejected+Difficulty Stale) 取1。
@@ -172,25 +172,13 @@
 
 # Windows GUI
 
-## 背景介绍
-	* 我们的设备： 针对消费类电子的 USB 设备，尺寸比一般U盘会大一些。
-	* 后台／命令行的程序已经做完成，我们需要做一个展示的界面。
-	* 展示界面：
-	一个状态界面，一个配置界面。
-	配置与状态必须使用后台程序的 Socket API 来通信。
-	* 参考资料
-	比特币挖矿入门 https://bitcoin.org/zh_CN/faq#what-is-bitcoin-mining
-	一些常见USB挖矿机的使用方法
-	http://support.dualminer.com/how-to-install/
-	http://rdmsnippets.com/tag/install-block-erupter-on-windows-7/
-	http://www.usberupter.com/how-to-mine-bitcoins-using-usb-stick/
+## CLI 
 
-## 要求
-	* 时间要求：3周
-	* 支持 MS Windows 7/8
-	* 界面参照 360 随身 WiFi 的界面
-	* 在主页上增加广告推送的地方，用户可以接受。
-	* 简单的安装程序（需要安装1.驱动或者相应的库(libusb)；2.后台程序；3.界面主程序）
+* BFGMiner (C:\Program Files (x86)\Avalon Nano\BfgMiner)
+	1. Copy BfgMiner to a safe place.
+	2. Uninstall Avalon GUI Miner
+	3. Modify the icadbg.cmd(under BfgMiner folder) with your correct com port.
+	4. Double click icadbg.cmd.
 
 # Links
 
