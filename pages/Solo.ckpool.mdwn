@@ -1,0 +1,59 @@
+solo.ckpool.org is a solo mining pool implementation without the need to setup a local bitcoind.
+
+solo.ckpool was started on the 31. August 2014  (1.1). For developers there is also a testnet implementation available.
+
+Pool code created and operated by Con Kolivas, creator of [[cgminer]] and [[ckpool]].
+
+## Servers to use
+
+* [[Stratum]] - Use for ALL stratum capable Bitcoin mining software
+	stratum+tcp://solo.ckpool.org:3333
+Set your username to your btcaddress with any or even no worker extension, and any password.
+
+
+* [[Testnet]]
+	stratum+tcp://testnet.ckpool.org:3333
+Note this is mining worthless testnet coins only! Also, you must be using a testnet bitcoin address on this edition.
+
+##Reward distribution
+
+* If you find a block, 99.5% of the 25BTC + transaction fees get generated directly at your bitcoin address.
+* 0.5% goes to the operator to operate the pool and contribute to further ckpool code development.
+
+
+For testnet:
+
+* If you find a block, 100% of the testnet coins + transaction fees get generated directly at your bitcoin address.
+
+##Extra features
+
+* No overheads of running a full bitcoin node
+* Connected to high speed low latency bitcoin nodes for rapid block change notification and propagation.
+* No transaction-free blocks due to the ultra-scaleable code which has miners on both new blocks and transactions concurrently.
+* No registration required, no payment schemes, no pool operator wallets
+* The miner remains anonymous apart from his BTC address.
+
+##How to run miners
+
+**CGMiner [Forum](https://bitcointalk.org/index.php?topic=28402.0)**<br />
+
+cgminer -o stratum+tcp://solo.ckpool.org:3333 -u 1YOUROWNBITCOINADDRESS.0 -p x
+If you enter an invalid address you will be rejected.
+
+##See also
+
+* [[Comparison_of_mining_pools]]
+* [[Pooled_Mining]]
+
+##External links
+
+* [solo.ckpool](http://solo.ckpool.org/) web site
+* [solo.ckpool testnet](http://testnet.ckpool.org/) web site
+
+##References
+
+1.1: [YH](∞)  solo.ckpool.org 0.5% fee anonymous solo bitcoin and free testnet mining!
+
+
+[[!tag "Pool_Operators"]]
+[[!template id=pools]]
