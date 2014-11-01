@@ -6,9 +6,9 @@ __TOC__
 
 ## Smart phones
 
-The best solution is to use smart phones. Communication can be via QR codes, unencrypted Bluetooth or using NFC. Near field communications is a form of radio that travels only a few centimeters, so to use it devices must be touched together. In such a setup, you touch your phone to another NFC aware device like another phone, or for the supermarket a simple NFC transmitter. That device sends a Bitcoin address and a requested amount, which is displayed on the devices screen. Confirming the payment causes the phone to create, sign and broadcast the Bitcoin transaction as normal. The supermarkets Bitcoin node will receive the transaction a few seconds later.
+The best solution is to use smart phones. Communication can be via QR codes (2.1), unencrypted Bluetooth (2.2) or using Near Field Communications (NFC) (2.3). NFC is a form of radio that travels only a few centimeters, so to use it devices must be touched together. In such a setup, you touch your phone to another NFC aware device like another phone, or for the supermarket a simple NFC transmitter. That device sends a Bitcoin address and a requested amount, which is displayed on the devices screen. Confirming the payment causes the phone to create, sign and broadcast the Bitcoin transaction as normal. The supermarkets Bitcoin node will receive the transaction a few seconds later.
 
-To ensure you're paying who you think you're paying, the address can itself be signed with an 'extended validation' certificate as issued by various SSL certificate authorities. The EV standard and auditing process ensures they are only issued to organizations that can prove their identity to a high level of assurance. The phone can then show the organizational name rather than the raw Bitcoin address.
+To ensure you're paying who you think you're paying, the address can itself be signed with an Extended Validation Certificate (EV) (2.4) as issued by various SSL certificate authorities. The EV standard and auditing process ensures they are only issued to organizations that can prove their identity to a high level of assurance. The phone can then show the organizational name rather than the raw Bitcoin address.
 
 An alternative to EV issued certificate signing would be to have the merchant sign a one-time string using the private key of the intended payment address. While not as verifiable as an EV certificate signature it would at least ensure that the merchant is in possession of the corresponding private key for the payment address. This gives at least as much confidence in the transaction as current cash transactions.
 
@@ -30,7 +30,7 @@ It's worth noting that the physical smart card form is an accident of history. V
 
 ## Paper Bitcoins
 
-Another common way to pay at the supermarket is with paper money. There have been various efforts to allow Bitcoins to be printed out and passed around, for instance [this one](http://www.bitcoin.org/smf/index.php?topic=3716.0). The private keys are printed on the paper. But putting private keys on the paper itself simply means anyone who receives the note can take away the underlying Bitcoins backing it.
+Another common way to pay at the supermarket is with paper money. There have been various efforts to allow Bitcoins to be printed out and passed around, for instance using this python script (4.1). The private keys are printed on the paper. But putting private keys on the paper itself simply means anyone who receives the note can take away the underlying Bitcoins backing it.
 
 Solution to this would be to create a paper money where you can see if someone have been using the private key, and a solution to this is found here [Bitbills](http://bitbills.com/). But even this is secure (or secure enough) only through huge anti-counterfeiting efforts by a large central authority, in the USA this is the Secret Service. The techniques of making paper money hard to forge are not widely available.
 
@@ -39,5 +39,14 @@ Solution to this would be to create a paper money where you can see if someone h
 * [[Merchant_Howto]]
 * [[BitcoinNotify]]
 * [[Open_Transactions]]
+
+##References
+
+2.1: [What are QR codes and How do you use them as request payment from Wallet?](https://bitcoin.stackexchange.com/questions/8111/what-are-qr-codes-and-how-do-you-use-them-as-request-payment-from-wallet)  
+2.2: [Offline Transactions and Bluetooth!](https://bitcointalk.org/index.php?topic=278237.0)  
+2.3: [NFC initiated Bitcoin payments with Bitcoin Wallet for Android](https://bitcointalk.org/index.php?topic=29490.0)  
+2.4: [Extended Validation Certificate](https://en.wikipedia.org/wiki/Extended_Validation_Certificate)  
+4.1: [Instant printable bitcoins (Internet Archive copy)](http://web.archive.org/web/20110529121124/http://bitcoin.modernjob.info/print.html)
+
 
 [[!tag "Technical"]]
