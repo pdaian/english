@@ -456,7 +456,7 @@ For the block locator object in this packet, the same rules apply as for the [[g
 |9+ |tx_out |tx_out[]|A list of 1 or more transaction outputs or destinations for coins
 |4 |lock_time |uint32_t |The block number or timestamp at which this transaction is locked:
 
-|0 |Always locked
+|0 |Not locked
 |< 500000000  |Block number at which this transaction is locked
 |>= 500000000 |UNIX timestamp at which this transaction is locked
 
