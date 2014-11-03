@@ -20,7 +20,7 @@ The body of the block contains the transactions. These are hashed only indirectl
 The compact format of target is a special kind of floating-point encoding using 3 bytes mantissa, the leading byte as exponent (where only the 5 lowest bits are used) and its base is 256.
 Most of these fields will be the same for all users. There might be some minor variation in the timestamps. The nonce will usually be different, but it increases in a strictly linear way. "Nonce" starts at 0 and is incremented for each hash. Whenever Nonce overflows (which it does frequently), the extraNonce portion of the generation transaction is incremented, which changes the Merkle root.
 
-The nonce parameter (extraNonce field in bitcoin) is designed to prevent different miners accidentally or maliciously generating the same hash.  In addition it is extremely unlikely for two people However, it is (nearly) impossible for two people to have the same Merkle root because the first transaction in your block is a generation "sent" to one of *your* unique Bitcoin addresses. Since your block is different from everyone else's blocks, you are (nearly) guaranteed to produce different hashes. Every hash you calculate has the same chance of winning as every other hash calculated by the network.
+Moreover, it is extremely unlikely for two people to have the same Merkle root because the first transaction in your block is a generation "sent" to one of *your* unique Bitcoin addresses. Since your block is different from everyone else's blocks, you are (nearly) guaranteed to produce different hashes. Every hash you calculate has the same chance of winning as every other hash calculated by the network.
 
 Bitcoin uses: SHA256(SHA256(Block_Header)) but you have to be careful about byte-order.
 
