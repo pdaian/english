@@ -188,6 +188,7 @@ The object type is currently defined as one of the following possibilities:
 |0 |ERROR |Any data of with this number may be ignored
 |1 |MSG_TX |Hash is related to a transaction
 |2 |MSG_BLOCK |Hash is related to a data block
+|3 |MSG_FILTERED_BLOCK |Hash of a block header; identical to MSG_BLOCK.  When used in a getdata message, this indicates the reply should be a merkleblock message rather than a block message; this only works if a bloom filter has been set.
 
 
 Other Data Type values are considered reserved for future implementations.
