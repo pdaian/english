@@ -117,7 +117,8 @@ def formatBitcoin(n, addSign = False):
 
 ### Hexadecimal could be done without new fonts as characters
 
-The tonal notation requires extra fonts.  Within the programming community there is a widely accepted convention for hexadecimal notation: use A-F for the higher order digits.  Thus, one counts 0,1,2,3, ... , 9,A,B,C,D,E,F,10,11 ....  There are even two conventions, (which are lacking in tonal notation) for distinguishing a base-16 number from a decimal.  The C convention prefixes 0x and the Motorola convention suffixes h.  So, the number san, 256 (decimal) would be written 0x100 or 100h.  In tonal notation, it would only be written 100, and thus potentially confused with decimal 100 which is 0x64, though this confusion is less of a problem for Bitcoin since the context is always explicit (SI/BTC vs Tonal/TBC units).
+The tonal notation is not supported by fonts bundled with popular operating systems, and so usually requires extra fonts to use.
+Within the programming community there is a widely accepted convention for hexadecimal notation: use A-F for the higher order digits.  Thus, one counts 0,1,2,3, ... , 9,A,B,C,D,E,F,10,11 ....  There are even two conventions, (which are lacking in tonal notation) for distinguishing a base-16 number from a decimal.  The C convention prefixes 0x and the Motorola convention suffixes h.  So, the number san, 256 (decimal) would be written 0x100 or 100h.  In tonal notation, it would only be written 100, and thus potentially confused with decimal 100 which is 0x64, though this confusion is less of a problem for Bitcoin since the context is always explicit (SI/BTC vs Tonal/TBC units).
 
 Thus hexadecimal notation accomplishes most of the same goals as tonal notation, at least for Bitcoin, with no requirement for changing fonts, thus is more suited to wider usage.  Further the prefix and suffix conventions lead to less ambiguity within the tonal community.
 
