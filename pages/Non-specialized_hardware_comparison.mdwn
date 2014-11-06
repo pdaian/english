@@ -729,6 +729,157 @@ Often, the best combination to be is to throttle CPU miner to -5% **AND** set it
 ###Intel
 
 
+|Model |p/t |Mhash/s |Mhash/J |Mhash / $/€|ACP [[W]]|Clock [[GHz]]|Version |Comment
+|---|---|---|---|---|---|---|---|---
+|Pentium III (Coppermine) |2 |0.39 |0.008 ||TDP 2× 26.1 W |1 |Ufasoft 0.32 (compiled from source), Debian Squeeze |[source](http://en.wikipedia.org/wiki/List_of_Intel_Pentium_III_microprocessors#.22Coppermine.22_.28180_nm.29)
+|Pentium III mobile ? |1 |0.3 |0.014 ||21 |1.07 |0.3.1x/Win2K |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg24699#msg24699)[source](http://ark.intel.com/Product.aspx?id=27380)
+|Pentium M 1.6ghz |1 |0.4 ||||1.6 |minerd (jgarzik's 1.0) |cryppto, Windows 7
+|Pentium M 1.6ghz |1 |0.62 ||||1.6 |Ufasoft 0.20 |Windows XP Professional
+|Pentium M 1.6ghz |1 |0.71 ||||1.6 |[pooler's cpuminer](http://github.com/pooler/cpuminer)2.2 |Gentoo Linux
+|Pentium M 1.73ghz |1 |0.5 ||||1.73 |minerd (jgarzik's 1.0) |cryppto, Windows 7
+|Old Xeon 512k (Dual) |2x1/2 |2.0 ||||3.0 |cpuminer (v0.8.1-1-g69529c3) |HT disabled, algo=4way (twice as fast as the 2nd best algo)
+|Pentium 4 2.0A |1 |0.85 ||||2.0 |[ufasoft-0.4](http://www.bitcoin.org/smf/index.php?topic=3486.0)/WinXP |-g no -t 2
+|Pentium 4 630 |1/2 |1.29 ||||3.0 |ufasoft 0.23 |Windows XP
+|Pentium Dual-Core E2180 |2/2 |1.75 ||||2.0 |rpcminer-cpu |Win7-64
+|Pentium Dual-Core E2180 |2/2 |4.1 ||||2.0 |cpuminer |sse2_64
+|Pentium Dual-Core E2180 |2/2 |4.5 ||||2.0 |ufasoft v0.11 |Win7-64
+|Pentium Dual-Core E5400 |2/2 |2.27 |0.03 ||65 |2.7 |bitcoind |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg19426#msg19426)
+|Celeron E330 |2/2 |2.2  |0.03 ||65 |2.5 |0.3.19/Ubuntu10.04 |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg37620#msg37620)
+
+|Celeron E3400 |2/2 |5.9 |- |- |- |2.6 |Ufasoft v0.13 / GUIMiner v2011-06-14 |WinXP 32 bit, SSE2, Flags "-g no" 
+|Core 2 Quad Q6600 |4/4 |11.0 ||0.02/0.06 |105 |2.40 |bitcoin-miner 0.10 |-a 60 -g no -t 4
+|Core 2 Quad Q8200 |4/4 |10.9 ||0.06/0.10 ||2.33 |Ufasoft 0.14 |-g no -l yes -t 4
+|Core 2 Quad Q9400 |4/4 |11 |0.046 |0.06/0.07 |95 |2.66 |bitcoin-miner 0.10 |-a 60 -g no -t 4
+|Core 2 Quad Q9650 |4/4 |18.67 ||0.05/0.06 |95 |4.00 |bitcoin-miner 0.10 |-a 60 -g no -t 4
+|Core i3 530 |2/4 |8.31 |0.10 |0.06/0.10  |80 |3.66 |Ufasoft 0.7 |-v -a5 -g no -t 4
+|Core i3 M350 |2/4 |1.48 |0.04 ||35 |2.27 |bitcoind |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg19426#msg19426)
+|Core i3-2100 |2/4 |8.28 ||||3.1 |ufasoft v0.20 |
+|Core i5 M450 |2/4 |1.8  |0.05 ||35 |1.2  |0.3.17/Win7-54 |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg26292#msg26292)
+|Core i5-650  |2/4 |5.1 |0.04 ? |0.02/0.03 ||3.2 |cpuminer-0.7 |-4way
+|Core i5-750  |4/4 |14 ||0.06/0.10  ||3.2 |bitcoin-miner 0.11 |-a 5 -g no -t 4
+|Core i5 ?  |4/? |6.5 |||||client from svn |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg37621#msg37621)
+|Core i5-2400 |4/4 |4.5 |0.05 |0.02/0.03 |95 |3.1 |cpuminer git (2011-01-22) |cryptopp_asm32
+|Core i5-2400 |4/4 |14 |0.15 |0.07/0.09 |95 |3.1 |cpuminer git (2011-03-26) |sse2_64
+|Core i5-2400S |4/4 |16.6 |||65 |2.5 |[pooler's cpuminer](http://github.com/pooler/cpuminer)2.2.3 |Linux Mint 13
+|Core i5 2500K |4/4 |20.6 ||0.10/0.12 ||4.2 |bitcoin-miner |-g no
+|Core i5 2600K |4/8 |17.3 |||75 |3.4 |bitcoin-miner |-g no. 75W for the whole System without monitor (MSI Board). CPU underclocked to 3,4Ghz and undervolted to 1,012Vcore. Passive Cooling! 3.6ghz results in 18,4 Mhash/s
+|Core i7 2600K |4/8 |18.6 |||95 W max. |3.4 |Ufasoft bitcoin-miner 0.20 |-g no -t 8  CPU @ 3.511Ghz 1.176V
+|Core i7 2600 |4/8 |23.9 ||||3.4 |[pooler's cpuminer](http://github.com/pooler/cpuminer)2.2 |Ubuntu Linux 11.10
+|Core i7 620M   |2/4 |1.888 ||||2.66 |[RPCMiner GUI](http://forum.bitcoin.org/index.php?topic=8994.0)v2011-05-22 / Mac OS X 10.6.7 |Model: MacBookPro6,2 RAM: 4GB
+|Core i7 620M   |2/4 |6.5 ||||3.33 |This is achieved by running RPC 4 way miner in VMware Fusion 4 (running win 7 in the VM) while in Mac OSX / Mac OS X 10.6.8 |Model: MacBookPro6,2 RAM: 8GB.The CPU appears to turbo boost to 3.33GHz in this way from 2.67GHz when running it in this way.The MBP gets very hot and uses a lot of energy though so watch those temps.It'll throttle after a while unless you keep the air vents clear underneath (ie don't put int in your lap,etc).
+|Core i7 720QM   |4/8 |7.9 |?||45 |2.8 |[ufasoft](http://www.bitcoin.org/smf/index.php?topic=3486.0)|stream processors overclocked from 1.6 GHz; Dell Precision M6500, Win7-64, 8GB DDR3
+|Core i7 820   |4/8 |13.8 ||||2.8 |[ufasoft](http://www.bitcoin.org/smf/index.php?topic=3486.0)|-t 8
+|Core i7 920   |4/8 |19.2 |0.10 ||195 |4.0 (x21) |[ufasoft](http://www.bitcoin.org/smf/index.php?topic=3486.0)|-a 5
+|Core i7 950   |4/8 |5.88 |0.039 ||150 |3.83 (x23) |bitcoin-0.3.20.2 Win7-64 |
+|Core i7 950   |4/8 |18.9 |0.126 ||150 |3.83 (x23) |[ufasoft](http://www.bitcoin.org/smf/index.php?topic=3486.0)v0.4 |
+|Core i7 980x   |6/12 |19.2 |0.15 ||130 |4.4 (x33) |cpuminer/Win7-64 |
+|Core i7 980x   |6/12 |8.7 ||||3.9 (x27) |0.3.17/Win7-64 |
+|Core i7 990x   |6/12 |33.3 ||||4.5 (x32) |ufasoft/Win2008 R2-64 |Ram - 12Gb, Rampage III BlackEdition, Water cooling
+|Core i7 2635QM   |4/8 |2.93 ||||2.00 |[RPCMiner GUI](http://forum.bitcoin.org/index.php?topic=8994.0)v2011-05-22 / Mac OS X 10.6.7 |Model: MacBookPro8,2 RAM: 4GB
+|Core i7 620M   |2/4 |6.3 |0.18 ||35 |2.66 |[ufasoft](http://www.bitcoin.org/smf/index.php?topic=3486.0)v0.4 |
+|Core i7 2600k   |4/4 |6.7 ||||4.00 |phoenix 0.48 |
+|Core i7 3770k   |4/8 |5.2 ||||4.4 |Guiminer v2012-12-03 |Windows 7 x64 : -v argument increased Mhash/s from 5.0 to 5.2
+|Core i7 3930k   |6/12 |66.6 ||||4.625 (125 x 37) |Ufasoft bitcoin-miner v0.28 |Windows 7 x64, uses ~190watts : -v argument increased Mhash/s from 36.0 to 66.6
+|Core 2 Duo U7600 |1 |1.1 ||||1.2 |minerd (jgarzik's 1.0) |cryppto, Windows 7
+|Core 2 Duo E5200 |2/2 |6.2 |0.086 ||72 |2.76 |Ufasoft/Win7-64 |TDP is 65W + 7W overclock
+|Core 2 Duo E6550 |1/2 |2.45 ||||2.33 |cpuminer 0.7.1 (Linux) |--algo=sse2_64
+|Core 2 Duo E6850 |2/2 |6.75 |0.10 ||65 |3.0 |ufasoft-0.3 |
+|Core 2 Duo E7300 |2/2 |7.76 |0.11 ||70 |3.33 |ufasoft-0.3 |uncertain of overclock; miner optimized for Intel Core
+|Core 2 Duo E7300 |2/2 |2.52 |0.04 ||65 |2.66 |bitcoind |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg19426#msg19426)
+|Core 2 Duo E8200 |2/2 |2.3 |0.035 ||65 |2.66 |rpcminer-cpu |
+|Core 2 Duo E8400 |2/2 |6.9 |0.106 ||65 |3.0 |ufasoft v0.10 |windows 7/64bit (-t 2)
+|Core 2 Duo E8500 |1/2 |3.6 ||||3.16 |guiminer v2011-06-14 |windows vista 32bit
+|Core 2 Duo E8500 |2/2 |7.2 ||||3.16 |guiminer v2011-06-14 |windows vista 32bit
+|Core 2 Duo P8700 |2/2 |5.9 ||||2.53 |ufasoft v0.21 |windows 7/64bit 
+|Core 2 Duo T5450 |2/2 |2.5 |0.07 ||35  |1.63 |bitcoin-miner 0.10 |Ubuntu 11.04
+|Core 2 Duo T5500 |2/2 |4.3 ||||1.66 |[pooler's cpuminer](http://github.com/pooler/cpuminer)2.2 |Gentoo Linux (amd64)
+|Core 2 Duo T6400 |2/2 |4.2 |0.12 ||35  |2.00 |cpuminer git (Linux) |--algo=sse2_64
+|Core 2 Duo T7250 |2/2 |4.5 |0.13 ||35  |2.00 |bitcoin-miner 0.13/WinXP |No GPU
+|Core 2 Duo T7450 |2/2 |3.7 |0.10 ||35  |2.13 |bitcoin-miner 0.10 |Ubuntu 11.04
+|Core 2 Duo T9400 |2/2 |4.2 ||||2.53 |ufasoft v0.13 |Win7-64
+|Core 2 Extreme X9000 |2/2 |2.37 ||||2.8 |rpcminer-cpu |Win7-64
+|Core 2 Extreme X9000 |2/2 |6.2 ||||2.8 |ufasoft v0.11 |Win7-64
+|Core 2 Extreme X9000 |2/2 |7.2 ||||3.2 |ufasoft v0.11 |Win7-64 Overclocked from 2.8 GHz to 3.2 GHz
+|Xeon 2.8 |2/2 |0.8 ||||2.8 |cpuminer |cryptopp_asm32 
+|Xeon 3060 |1/2 |2.03 |0.03 ||65 |2. |cpuminer 0.8.1 (Linux) |--algo=cryptopp_asm32
+|Xeon Prestonia 2.4 (dual) |2x1/2 |2.16 |0.017 ||130 |2.4 |ufasoft v0.4 |
+|Xeon X5355 (dual) |2x4/4 |10.13 |0.16 ||120 |2.6 |bitcoind |Roughly the same speed as the "c" algo in cpuminer
+|Xeon E3-1230 V2 (quad) |4/8 |19.7 |? |? |? |3.70 |cgminer 2.8.3 |-O2 -march=core-avx-i algo=sse2_64
+|Xeon X5355 (dual) |2x4/4 |22.76 |0.09 ||120 |2.6 |cpuminer (v0.8.1-1-g69529c3) |-O2 -march=core2, algo=sse2_64
+|Xeon X5365 (dual) |2x4/4 |26.00 |? ||? |3.0 |cpuminer git (2011-06-15) |algo=sse2_64
+|Xeon X5650 |2x6/24 |28.6 |? |? |? |2.67 |cpuminer 1.0.2 |--algo 4way
+|Xeon x5680 (dual) |2x6/24 |48 |? |? |? |3.33GHz |Ufasoft 0.29 |CentOS 6.2 x86_64
+|Xeon x5690 (dual) |2x6/24 |52 |? |? |? |3.46GHz |Ufasoft 0.29 |CentOS 6.2 x86_64
+|Xeon E5-2690 (dual) |2x8/32 |66 |? |? |2x135W |2.9GHz |Ufasoft 64-bit 0.31 |Windows Server 2008R2 x64
+|Xeon E5335 |4/4 |9.35 |0.12 ||80 |2.00 |ufasoft v0.11 |Vista-32
+|Xeon E5410 |4/4 |9.8 |? ||80 |2.33|ufasoft v0.10 |CentOS 5.5 x64 
+|Xeon E5440 |4/8 |7.3 |? ||80 |2.66|Kiv's poclbm-gui |FIXME: Either wrong model # or wrong threads/speed info
+|Xeon E5506 |4/4 |9.6 |? ||80 |2.13|ufasoft v0.10 |CentOS 5.5 x64 
+|Xeon E5520 |4/8 |6.5 |0.08 ||80 |2.27 |bitcoind |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg19426#msg19426)
+|Xeon E5530 |4/8 |7.14 |0.09 ||80 |2.4 |bitcoind |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg19426#msg19426)
+|Xeon E5620 |4/8 |11.2 |? ||80 |2.4 |ufasoft v0.10 -t 4 |CentOS 5.5 x64 Hyper-Threading is off
+|Xeon E5630 (dual) |2x4/8 |8 |0.1 ||80 |2.53 |0.3.17/Win7-64 |[source](http://www.bitcoin.org/smf/index.php?topic=1628.msg29471#msg29471)
+|Xeon E6520 (dual) |2x4/8 |24.7 ||||2.53 |ufasoft v0.10 |windows 2008 R2 64bit (-t 16)
+|Xeon E7220 |2/2 |6.3 |? ||80 |2.93|ufasoft v0.10 |CentOS 5.5 x64 
+|Xeon E7320 (dual) |2x2 |1.5 ||||2.8 |cgminer v1.2.8 |2x2.8ghz dual core running Ubuntu 11.04 x86 (individual cores get 0.4 MH/s)
+|Xeon E7450 (quad) |4x6/24 |60 ||||2.40 |ufasoft v0.13 |-t 24
+|Xeon E7520 (dual) |2x4/16 |18 |||95 |1.87 |ufasoft v0.10 |windows 2008 R2 64bit (-t 16)
+|Xeon W3680 |6/12 |18 |||130 |3.33 |cpuminer v1.0.2 --algo=4way |Ubuntu 11.04 64bit
+|Atom Z520 |1/2 |1.20 |||2 |1.7 |ufasoft 1.18 |Asus Eee 1101HA with overclocking capabilities
+|Atom N230 |1/2 |0.375 |||4 |1.6 |rpcminer-cpu |
+|Atom N230 |1/2 |0.245 |||4 |1.6 |rpcminer-4way |
+|Atom N230 |1/2 |0.97 |||4 |1.6 |ufasoft v0.10 |
+|Atom N270 |1/2 |1.19 |0.24 ||5 |1.6 |ufasoft v0.10 |
+|Atom N450 |1/2 |1.60 |0.31 ||6.5 |2.06 |ufasoft v0.10 |
+|Atom N550 |2/4 |1.97 ||||1.5 |ufasoft v0.21 |Windows 7/64 bit
+|Atom 330 |2/4 |1.80 |||8 |1.6 |ufasoft v0.13  |-t 4
+|Atom D510 |2/4 |1.00 ||||1.6 |cpuminer w cryptopp_asm32 |debian linux 6.0, headless system, 2 GB RAM, running from usb-flash
+|Atom D510 |4/4 |2.3 |0.07 ||30  |1.6 |bitcoin-miner 0.10 |Ubuntu 11.04 Server
+
+
+<references>
+ (8.1)
+ (8.2)
+</references>
+
+###Other
+
+
+|Model |p/t |Mhash/s |Mhash/J |Mhash/s/$ |ACP [[W]]|Clock |Version |Comment
+|---|---|---|---|---|---|---|---|---
+|Cell |6 |21 |0.35 |0.07 |60W |3.2 GHz |Cellminer |Sony Playstation 3 (FAT): Needs custom firmware. [source](https://github.com/verement/cellminer)[source](http://www.bitcoin.org/smf/index.php?topic=4704.20)Total power usage of PS3 fat is 120W but only the Cell cpu is active.
+|Cell |7 |26.6 |? |? |60W |3.2 GHz |Cellminer |Sony Playstation 3 (FAT): Needs custom firmware. [source](https://github.com/verement/cellminer)[source](http://www.bitcoin.org/smf/index.php?topic=4704.20)Running with 7th spu enabled and both ppe cores.
+|Cell |6 |21 |0.7 |0.07 |35W |3.2 GHz |cellminer |Sony Playstation 3 (SLIM): Total power usage of PS3 slim is 70W but only the Cell cpu is active.
+|MIPS |1 |0.026 |? |? |? |200 MHz |cpuminer |ASUS WL-500G Deluxe Router Running [OpenWrt](http://openwrt.org/)
+|VIA Eden |1 |1.3 |0.17 ||8W |1600 MHz |cpuminer |VIA Eden w/ padlock
+|PowerPC 7447A |1 |0.53 ||||1420 MHz |cpuminer |
+|PowerPC 7450 (G4e) |1 |1.29 ||||1670 MHz |cgminer 2.0.7 |PowerBook5,6; Mac OS X 10.5.8; Altivec
+|PowerPC 750 (G3) |1 |0.140 ||||600 MHz |cpuminer |iBook G3 600 w/ Cryptopp
+|IBM POWER4+ 2/way |2/1 |0.58 ||||1450 MHz |cpuminer 2.2.3 |CRUX PPC (64bit), cpuminer -a sha256d -t 1
+|IBM Power7 (PowerPC) ||7.6 ||||3.5 Ghz |cgminer |IBM Power7 770, SuSE Linux 11.1, 4 cores, OpenCL, YASM, Altivec
+|Google App Engine |1 |0.144 |||0W ||pyminer |Modified version of [pyminer](https://github.com/jgarzik/pyminer)for GAE.
+|Open Shift |1 |0.059 |||0W ||pyminer |
+
+
+<references></references>
+
+##See Also
+
+* [[TPs_Bitcoin_Calculator]]
+* [[Mining_rig]]
+* [[ZTEX_FPGA_Boards_for_Bitcoin_Mining]]
+* [[Generation_Calculator]]
+* [[Power_Calc]]
+* [[OpenCL_miner]]
+* [ATI Stream vs. NVIDIA CUDA - GPGPU computing battle royale](http://www.pcper.com/article.php?aid=745) 
+* [Bitminer.info](http://bitminer.info/) 
+* [Bitcoin Mining Performance Compared](http://www.pcper.com/reviews/Graphics-Cards/Bitcoin-Currency-and-GPU-Mining-Performance-Comparison)
+	* [Bitcoin Mining Power Costs Compared](http://www.pcper.com/reviews/Graphics-Cards/Bitcoin-Mining-Update-Power-Usage-Costs-Across-United-States)
+	* [Bitcoin Mining Hardware](http://112bit.com)
+[[!tag "Mining"]]
+[[!tag "Hardware"]]
 3.1: $ Prices from http://www.amazon.com on 2011-06-25  
 4.1: [NVIDIA](http://www.nvidia.de/object/tesla_s1070_de.html) The S1070 is a dedicated supercomputing platform that features four Tesla units (GT200). Technical data taken from   
-4.2: [Wikipedia](http://de.wikipedia.org/wiki/Nvidia_Tesla) The S2070 is a dedicated supercomputing platform that features four Fermi units (C2070). Technical data taken from  (Documentation from NVIDIA webpage is confusing)
+4.2: [Wikipedia](http://de.wikipedia.org/wiki/Nvidia_Tesla) The S2070 is a dedicated supercomputing platform that features four Fermi units (C2070). Technical data taken from  (Documentation from NVIDIA webpage is confusing)  
+8.1: $ Prices from http://www.amazon.com on 2011-06-25  
+8.2: € Prices from http://geizhals.at/eu on 2011-06-25
