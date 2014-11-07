@@ -4,50 +4,11 @@ While originally announced right before 2012 (1.1), the protocol has not yet bee
 
 ##Mining extensions
 
-The stratum protocol was extended to support pooled mining as a replacement for obsolete [[getwork|Getwork]] protocol in late 2012.
-The mining service specification was initially announced via [[Slushs_pool]]'s website (2.1).
-Shortly thereafter, alternative "cheat sheet" style documentation was provided by [[BTCGuild]] (2.2).
-As the extension lacks a formal [[BIP]] describing an official standard, it has further developed only by discussion and implementation (2.3).
+Main page: [[Stratum_mining_protocol]]
 
-###Software support
-
-Tables showing miner/server support for Stratum mining protocol:
-
-* [[Mining_software]]
-* [[Poolservers]]
-
-###Pool support
-
-
-
-style="font-size: 100%"|Server |get transactions |dynamic difficulty |job frequency |resume
-|---|---|---|---
-|Bitminter |[[!template id=no]]|[[!template id=yes]]|30s |[[!template id=no]]
-|Slush's pool |[[!template id=no]]|[[!template id=yes]]|30s |[[!template id=no]]
-|BTCGuild |[[!template id=no]]|[[!template id=yes]]|30s |[[!template id=no]]
-|Eloipool |[[!template id=yes]]|[[!template id=yes]]|55s |[[!template id=no]]
-|HHTT |[[!template id=no]]|[[!template id=no]](User selected difficulty) |30s |[[!template id=no]]
-|50BTC |[[!template id=no]]|[[!template id=no]](User selected difficulty) |5s |[[!template id=no]]<!-- NOTE: mining.resume protocol was discarded for new resume proposed by Eleuthria on IRC -->
-|Ozcoin |[[!template id=no]]|Yes or user selected |30s |[[!template id=no]]
-
-
-###Criticism
-
-####Closed development
-
-The mining extensions have been criticised as having been developed behind closed doors without input from the wider development and mining community, resulting in various obvious problems that could have been addressed had it followed the standard [[BIP]] drafting process (6.1).
-
-####Displacing GBT
-
-The mining extensions were announced after the community had spent months developing a mostly superior open standard protocol for mining ([[getblocktemplate]]) (7.1).
-Because stratum's mining extensions launched backed by a major mining pool, GBT adoption suffered, and decentralised mining is often neglected while stratum is deployed.
+In addition to its use for bitcoin wallets, the stratum protocol is also in common use with mining extensions.
 
 ##References
 
-1.1: [Original stratum protocol announcement on BitcoinTalk](https://bitcointalk.org/?topic=55842)  
-2.1: [Stratum mining protocol specification at slush's pool's website](http://mining.bitcoin.cz/stratum-mining/)  
-2.2: [Stratum mining protocol cheat sheet at BTCGuild's website](https://www.btcguild.com/new_protocol.php)  
-2.3: [ckolivas' collection of most proposed stratum mining extensions](https://bitcointalk.org/?topic=557866)  
-6.1: [BitcoinTalk: Criticism of stratum's closed creation](https://bitcointalk.org/?topic=557991.msg6079772#msg6079772)  
-7.1: [BitcoinTalk: Criticism of stratum displacing GBT](https://bitcointalk.org/?topic=557991.msg6105355#msg6105355)
+1.1: [Original stratum protocol announcement on BitcoinTalk](https://bitcointalk.org/?topic=55842)
 
