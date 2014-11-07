@@ -78,6 +78,11 @@ From left to right
 	or
 	sudo ./cgminer --avalon4-fan 60 --avalon4-freq 200 --avalon4-voltage 7125 --lowmem  -o http://stratum.pool:3333 -u  work -p pass --api-allow W:192.168.2,W:192.168.2.1 --api-listen $@ 2>./log
 
+## Technical details
+
+* The auc take **1~2ms** betwwen write and read. even the polling delay is 0 (4800 means 1ms)
+* The cgminer each polling takes **~20ms**. even the polling delay is 0ms
+
 # AUC
 Avalon USB2IIC converter, USD VID:PID **29f1:33f2**
 
