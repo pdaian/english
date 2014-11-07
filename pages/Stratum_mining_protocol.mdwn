@@ -11,7 +11,7 @@ As the extension lacks a formal [[BIP]] describing an official standard, it has 
 ###Methods (client to server)
 
 ####mining.authorize
-	mining.authorize("username"["password"](,))
+	mining.authorize("username", "password")
 
 The result from an authorize request is usually true (successful), or false.
 The password may be omitted if the server does not require passwords.
@@ -52,7 +52,7 @@ Client submissions contain:
 Server response is result: true for accepted, false for rejected (or you may get an error with more details).
 
 ####mining.subscribe
-	mining.subscribe("user agent/version"["extranonce1"](,))
+	mining.subscribe("user agent/version", "extranonce1")
 
 The optional second parameter specifies an extranonce1 the client wishes to resume working with (possibly due to a dropped connection).
 If provided, a server MAY (at its option) issue the connection the same extranonce1.
@@ -79,9 +79,9 @@ Servers are not required to honour this request, even if they support the stratu
 The client should send a result String with its name and version.
 
 ####client.reconnect
-	client.reconnect([[,_waittime]])
+	client.reconnect("hostname", port, waittime)
 
-The client should disconnect, wait *waittime* seconds, then connect to the given host/port (which defaults to the current server).
+The client should disconnect, wait *waittime* seconds (if provided), then connect to the given host/port (which defaults to the current server).
 Note that for security purposes, clients may ignore such requests if the destination is not the same or similar.
 
 ####client.show_message
@@ -112,7 +112,7 @@ The miner should begin enforcing the new difficulty on the next job received.
 Some pools may force a new job out when set_difficulty is sent, using clean_jobs to force the miner to begin using the new difficulty immediately.
 
 ####mining.set_extranonce
-	mining.set_extranonce("extranonce1"[extranonce2_size](,))
+	mining.set_extranonce("extranonce1", extranonce2_size)
 
 These values, when provided, replace the initial subscription values beginning with the next mining.notify job.
 
