@@ -8,7 +8,6 @@ As the extension lacks a formal [[BIP]] describing an official standard, it has 
 ###Overview
 [See also: Original example on slush's pool site](http://mining.bitcoin.cz/stratum-mining/#example)
 
-
 ###Methods (client to server)
 
 ####mining.authorize
@@ -17,7 +16,7 @@ As the extension lacks a formal [[BIP]] describing an official standard, it has 
 The result from an authorize request is usually true (successful), or false.
 The password may be omitted if the server does not require passwords.
 
-####mining.capabilities
+####mining.capabilities (DRAFT)
 NOTE: This is a draft extension proposal. It is not yet in use, and may change at any moment.
 
 	mining.capabilities(["set_difficulty", "set_goal"]("notify",), {"suggested_target": "hex target"})
@@ -117,8 +116,7 @@ Some pools may force a new job out when set_difficulty is sent, using clean_jobs
 
 These values, when provided, replace the initial subscription values beginning with the next mining.notify job.
 
-####mining.set_goal
-
+####mining.set_goal (DRAFT)
 NOTE: This is a draft extension proposal. It is not yet in use, and may change at any moment.
 
 	mining.set_goal("goal name", {"malgo": "SHA256d", ...})
