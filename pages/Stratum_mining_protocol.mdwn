@@ -69,6 +69,11 @@ Servers are not required to honour this request, even if they support the stratu
 The client should disconnect, wait *waittime* seconds, then connect to the given host/port (which defaults to the current server).
 Note that for security purposes, clients may ignore such requests if the destination is not the same or similar.
 
+####client.show_message
+	client.show_message("human-readable message")
+
+The client should display the message to its user in some reasonable way.
+
 ####mining.notify
 	mining.notify(...)
 
@@ -107,11 +112,11 @@ Tables showing miner/server support for Stratum mining protocol:
 
 ###Closed development
 
-The mining extensions have been criticised as having been developed behind closed doors without input from the wider development and mining community, resulting in various obvious problems that could have been addressed had it followed the standard [[BIP]] drafting process (18.1).
+The mining extensions have been criticised as having been developed behind closed doors without input from the wider development and mining community, resulting in various obvious problems that could have been addressed had it followed the standard [[BIP]] drafting process (19.1).
 
 ###Displacing GBT
 
-The mining extensions were announced after the community had spent months developing a mostly superior open standard protocol for mining ([[getblocktemplate]]) (19.1).
+The mining extensions were announced after the community had spent months developing a mostly superior open standard protocol for mining ([[getblocktemplate]]) (20.1).
 Because stratum's mining extensions launched backed by a major mining pool, GBT adoption suffered, and decentralised mining is often neglected while stratum is deployed.
 
 ##References
@@ -119,6 +124,6 @@ Because stratum's mining extensions launched backed by a major mining pool, GBT 
 1.1: [Stratum mining protocol specification at slush's pool's website](http://mining.bitcoin.cz/stratum-mining/)  
 1.2: [Stratum mining protocol cheat sheet at BTCGuild's website](https://www.btcguild.com/new_protocol.php)  
 1.3: [ckolivas' collection of most proposed stratum mining extensions](https://bitcointalk.org/?topic=108533.0)  
-18.1: [BitcoinTalk: Criticism of stratum's closed creation](https://bitcointalk.org/?topic=557991.msg6079772#msg6079772)  
-19.1: [BitcoinTalk: Criticism of stratum displacing GBT](https://bitcointalk.org/?topic=557991.msg6105355#msg6105355)
+19.1: [BitcoinTalk: Criticism of stratum's closed creation](https://bitcointalk.org/?topic=557991.msg6079772#msg6079772)  
+20.1: [BitcoinTalk: Criticism of stratum displacing GBT](https://bitcointalk.org/?topic=557991.msg6105355#msg6105355)
 
