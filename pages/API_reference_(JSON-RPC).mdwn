@@ -132,6 +132,8 @@ The easiest way to tell Java to use HTTP Basic authentication is to set a defaul
 
 Once that is done, [any JSON-RPC library for Java](http://json-rpc.org/wiki/implementations) (or ordinary URL POSTs) may be used to communicate with the Bitcoin server.
 
+Instead to write your wrapper you can use an [[existing implementation|Bitcoin-JSON-RPC-Client]].
+
 ## Perl
 
 The JSON::RPC package from CPAN can be used to communicate with Bitcoin.  You must set the client's credentials; for example:
