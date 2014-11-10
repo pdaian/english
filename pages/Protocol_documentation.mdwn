@@ -615,7 +615,7 @@ The mempool message sends a request to a node asking for information about trans
 
 No additional data is transmitted with this message.
 
-It is specified in [BIP 35](https://github.com/bitcoin/bips/blob/master/bip-0035.mediawiki). Since [BIP 37](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki), only transactions matching the filter are replied.
+It is specified in [BIP 35](https://github.com/bitcoin/bips/blob/master/bip-0035.mediawiki). Since [BIP 37](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki), if a [[bloom filter|Protocol_specification#filterload.2C_filteradd.2C_filterclear.2C_merkleblock]] is loaded, only transactions matching the filter are replied.
 
 ### checkorder
 
