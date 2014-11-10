@@ -127,6 +127,18 @@ Avalon USB2IIC converter, USD VID:PID **29f1:33f2**
 * First version of Avalon4 firmware
 
 # MM Firmware
+##[http://downloads.canaan-creative.com/software/avalon4/mm/2014-11-09/ 20141109]
+
+* Version: **401410-c6ba5180**
+* Big Code cleanup, Update MM protocol. 
+* Update timeout value to 90% the theory value.
+* Fix the hashrate couning.
+* Fix watchdog issue. enable watchdog.
+* Remove g_module_id check since we use I2C
+* Move adjust fan in polling package.
+* Update MM idle default fan speed to 10%
+
+
 ##[http://downloads.canaan-creative.com/software/avalon4/mm/2014-11-05/ 20141105]
 
 * Version: **401410-fe698050**
