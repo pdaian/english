@@ -5,10 +5,10 @@ Sending bitcoins to an IP address was a convenient way of sending bitcoins to a 
 * The server generates a brand new Bitcoin address and sends it to you.
 * You send coins to this [[address]] in the normal way
 
-Unfortunately, the current implementation provides no authentication, so any "man in the middle" can intercept your Bitcoins during the transaction. When they see that you're sending a Bitcoin payment by IP address, they pretend to be the actual destination and send back *their* Bitcoin address. You end up sending Bitcoins to the wrong person. It's therefore no longer a good idea to send Bitcoins in this way, *especially* if you're using a proxy.
+Unfortunately, the implementation provided no authentication, so any "man in the middle" could have intercepted your bitcoins during the transaction. When they see that you're sending a Bitcoin payment by IP address, they pretend to be the actual destination and send back *their* Bitcoin address. You end up sending bitcoins to the wrong person. It's therefore no longer a good idea to send bitcoins in this way, *especially* if you're using a proxy.
 
 ##Status
-Receiving transactions by IP address is disabled by default with the classic Bitcoin client. You can enable it by running Bitcoin with the *-allowreceivebyip* switch.  This feature has been removed from the classic Bitcoin client, as-of v0.8.0 (2.1)
+This feature has been removed from Bitcoin Core as-of v0.8.0 (2.1)
 
 ##References
 
