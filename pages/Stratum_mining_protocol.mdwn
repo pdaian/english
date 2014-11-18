@@ -19,13 +19,14 @@ The password may be omitted if the server does not require passwords.
 ####mining.capabilities (DRAFT)
 NOTE: This is a draft extension proposal. It is not yet in use, and may change at any moment.
 
-	mining.capabilities(["set_difficulty", "set_goal"]("notify",), {"suggested_target": "hex target"})
+	mining.capabilities({"notify":[], "set_difficulty":{}, "set_goal":{}, "suggested_target": "hex target"})
 
 The client may send this to inform the server of its capabilities and options.
-The first parameter is a list of capabilities;
-the implied list defaults to ["set_difficulty"]("notify",), but as soon as this method is used these must be explicitly included if desired.
-The second parameter is an Object with key/value option pairs.
+The singleton parameter is an Object describing capabilities;
+by default, it is considered as {"notify":{}, "set_difficulty":[]}, but as soon as this method is used these must be explicitly included if desired.
 The "suggested_target" key may supersede the mining.suggest_target method.
+
+Note that most of the keys do not have any meaningful value at this time, and the values thereof should be ignored (ie, only their presence matters).
 
 ####mining.extranonce.subscribe
 	mining.extranonce.subscribe()
