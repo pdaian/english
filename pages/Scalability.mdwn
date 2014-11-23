@@ -67,7 +67,7 @@ It's possible to build a Bitcoin implementation that does not verify everything,
 
 In Simplified Payment Verification (SPV) mode, named after the section of Satoshi's paper that describes it, clients connect to an arbitrary full node and download only the block headers. They verify the chain headers connect together correctly and that the difficulty is high enough. They then request transactions matching particular patterns from the remote node (ie, payments to your addresses), which provides copies of those transactions along with a Merkle branch linking them to the block in which they appeared. This exploits the Merkle tree structure to allow proof of inclusion without needing the full contents of the block. 
 
-As a further optimization, block headers that are buried sufficiently deep can be thrown away after some time (eg, you only really need to store say 5000 blocks).
+As a further optimization, block headers that are buried sufficiently deep can be thrown away after some time (eg. you only really need to store as low as 2016 headers).
 
 The level of difficulty required to obtain confidence the remote node is not feeding you fictional transactions depends on your threat model. If you are connecting to a node that is known to be reliable, the difficulty doesn't matter. If you want to pick a random node, the cost for an attacker to mine a block sequence containing a bogus transaction should be higher than the value to be obtained by defrauding you. By changing how deeply buried the block must be, you can trade off confirmation time vs cost of an attack.
 
