@@ -287,6 +287,17 @@ implementing Bitcoin API in more convenient way:
 	Console.WriteLine("Balance:" + inf[["balance"]]);
 </source>
 
+A more complete library and wrapper for Bitcoin (also for Litecoin and all Bitcoin clones) is [BitcoinLib](https://github.com/GeorgeKimionis/BitcoinLib) (https://github.com/GeorgeKimionis/BitcoinLib) which is also available via [NuGet](https://www.nuget.org/packages/BitcoinLib/) from the package manager console (Install-Package BitcoinLib). 
+
+Querying the daemon with [BitcoinLib](https://github.com/GeorgeKimionis/BitcoinLib) is as simple as:
+
+<source lang="csharp">
+	IBitcoinService bitcoinService = new BitcoinService();
+
+	double networkDifficulty = bitcoinService.GetDifficulty();
+	decimal myBalance = bitcoinService.GetBalance();
+</source>
+
 ## Node.js
 
 * [node-bitcoin](https://github.com/freewil/node-bitcoin) (npm: bitcoin) 
