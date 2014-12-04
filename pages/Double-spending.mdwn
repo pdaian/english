@@ -8,7 +8,7 @@ Bitcoin has some exposure to fraudulent double-spending when a transaction is fi
 
 ###Race attack
 
-Traders and merchants who accept a payment immediately on seeing "0/unconfirmed" are exposed to a double-spend occurring is there was a fraudulent attempt that successfully communicated one transaction to the merchant yet communicated a different transaction that spends the same coin that was first to eventually make it into the block chain.
+Traders and merchants who accept a payment immediately on seeing "0/unconfirmed" are exposed to a double-spend occurring, if there was a fraudulent attempt that successfully communicated one transaction to the merchant yet communicated a different transaction that spends the same coin that was first to eventually make it into the block chain.
 
 Merchants can take precautions (e.g., disable incoming connections, only connect to well connected nodes) to lessen the risk of a race attack but the risk cannot be eliminated.  Therefore, the cost/benefit of the risk needs to be considered when accepting payment on 0/unconfirmed when there is no recourse against the attacker.
 
