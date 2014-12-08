@@ -52,19 +52,21 @@
 	http://luke.dashjr.org/programs/bitcoin/files/bfgminer/
 
 #Cgminer for Avalon nano
+## CGMiner Under Ubuntu 14.04
+###  Download
+	Inside your home directory, download Cgminer
+	git clone https://github.com/Canaan-Creative/cgminer
+	
+### Compile
+	cd cgminer
+	git checkout origin/avalon-usb -b avalon-usb
+	./autogen.sh --enable-icarus
+	make -j 4
 
-* Cgminer（Icarus）compile guide
-	sudo apt-get install libudev-dev 
-	./autogen.sh && ./configure --enable-icarus && make
-
-* Cgminer（Icarus）Run params
-	./cgminer \
-	-o stratum+tcp://stratum.ozco.in:80 -O mikeqin.avalon:1234 \
-	--icarus-options 115200:1:1 \
-	--icarus-timing 0.22 \
-	--api-listen \
-	2>log
-	Note：Please add 01-cgminer.rules to your udev rules before you run.
+### Run
+	sudo ./cgminer ./cgminer --icarus-options 115200:1:1 --icarus-timing 0.22 -o http://stratum.pool:3333 -u  work -p pass 
+	or
+	sudo ./cgminer ./cgminer --icarus-options 115200:1:1 --icarus-timing 0.22 -o http://stratum.pool:3333 -u  work -p pass --api-allow W:192.168.2,W:192.168.2.1 --api-listen $@ 2>./log
 
 # LED
 	IDLE：Green。
