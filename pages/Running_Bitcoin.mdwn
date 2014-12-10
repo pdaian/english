@@ -63,8 +63,8 @@ Options:
 	-rpcport=<port>        Listen for JSON-RPC connections on <port> (default: 8332 or testnet: 18332)
 	-rpcallowip=<ip>       Allow JSON-RPC connections from specified IP address
 	-rpcthreads=<n>        Set the number of threads to service RPC calls (default: 4)
-	-blocknotify=<cmd>     Execute command when the best block changes (%s in cmd is replaced by block hash)
-	-alertnotify=<cmd>     Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)
+	-blocknotify=<cmd>     Execute command when the best block changes (all %s in cmd are replaced by block hash)
+	-alertnotify=<cmd>     Execute command when a relevant alert is received or we see a really long fork (all %s in cmd are replaced by message)
 	-keypool=<n>           Set key pool size to <n> (default: 100)
 	-checkblocks=<n>       How many blocks to check at startup (default: 288, 0 = all)
 	-checklevel=<n>        How thorough the block verification is (0-4, default: 3)
@@ -81,7 +81,7 @@ Wallet options:
 	-salvagewallet         Attempt to recover private keys from a corrupt wallet.dat
 	-upgradewallet         Upgrade wallet to latest format
 	-wallet=<file>         Specify wallet file (within data directory)
-	-walletnotify=<cmd>    Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)
+	-walletnotify=<cmd>    Execute command when a wallet transaction changes (all %s in cmd are replaced by TxID)
 	-spendzeroconfchange   Spend unconfirmed change when sending transactions (default: 1)
 
 Block creation options:
