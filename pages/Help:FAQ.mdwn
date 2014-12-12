@@ -239,8 +239,12 @@ If the transaction is based on a coin that was in a recent transaction then it c
 
 ### Why does my Bitcoin address keep changing?
 [[!template id=seealso Address reuse]]
-While it is technically possible to use an address for an arbitrary number of payments, this is considered a bad practice.
-The most important concerns involve loss of privacy, but with some early implementations there were also security concerns involved. For these reasons, most current wallet implementations generate new address for every single transaction and treat it strictly as single-use only.
+Unlike postal and email addresses, Bitcoin addresses are designed to be used exactly once only, for a single transaction.
+Originally, wallets would display only a single address at a time, and change it when a transaction was received, but an increasing number of wallet implementations now generate an address when you explicitly want to receive a payment.
+
+While it is technically possible to use an address for an arbitrary number of payments, this works by accident and harms both yourself *and other unrelated third parties*, so it is considered a bad practice.
+The most important concerns with such misuse involve loss of privacy and security:
+both can be put into jeopardy when addresses are used for more than a single transaction only.
 
 ###How much will the transaction fee be?
 
