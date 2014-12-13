@@ -1,39 +1,32 @@
-[[!img "FirstBitcoinBills.jpg" size=120x120 class="right" size=200x200 title="Casascius holding early paper wallets"]]
-A **paper wallet** is a mechanism for storing bitcoins offline as a physical document that can be secured like cash or anything else of real-world value. Paper wallets are generally created by printing a brand new public address and private key onto paper, and then sending bitcoins from a "live" wallet to the printed wallet's public address for safekeeping. If good security practices are followed, paper wallets are one of the safest ways to store Bitcoins. 
+[[!img "FirstBitcoinBills.jpg" size=120x120 class="right" size=200x200 title="Casascius holding early paper ECDSA private keys"]]
+A **paper ECDSA private key** is a mechanism for storing bitcoins offline as a physical document that can be secured like cash or anything else of real-world value.
+They are generally created by printing a brand new public address and private key onto paper, and then sending bitcoins from a wallet to the printed key's public address for safekeeping.
+Storing bitcoins this way is generally considered a bad idea.
 
 __TOC__
 
-##Producing safe paper wallets
+##Producing safe paper keys
 
 [[BitcoinPaperWallet.com|BitcoinPaperWallet]] 
 [[OfflineAddress.com|OfflineAddress]] 
-A Bitcoin [[private_key]] can be represented in several formats. For paper wallets typically used format is Wallet Import Format (WIF), since keys represented that way are very short (51 characters) and thus easy to re-enter when importing or "sweeping" the wallet for withdrawal.
+An ECDSA [[private_key]] can be represented in several formats, but typically the Wallet Import Format (WIF) is used, since keys represented that way are very short (51 characters) and thus easy to re-enter when importing or "sweeping" it for withdrawal.
 
-Several tools exist for producing paper wallets, including [[BitAddress.org|BitAddress]],  [[Bitcoin_Address_Utility]], [[BitcoinPaperWallet.com|BitcoinPaperWallet]],  [[OfflineAddress.com|OfflineAddress]],  [[vanitygen]], and [[Cwallet]]. 
+Several tools exist for producing paper keypairs, including [[Bitcoin_Address_Utility]], [[vanitygen]], and [[Cwallet]]. 
 
-Care must be taken to securely generate paper wallets since an attacker can steal the present *and future* balance of a paper wallet if the private key is exposed, transmitted, or generated with insufficient entropy.
+Care must be taken to securely generate keys since an attacker can steal stored bitcoins if it is exposed, transmitted, or generated with insufficient entropy.
 
-Some services feature a free open-source client-side paper wallet generators written in JavaScript, which can be used offline. Using these generators is relatively safe when the source code hash can be checked against the author's signature. It's advisable to use those services from a [live bootable CD](https://en.wikipedia.org/wiki/Live_CD), to ensure that private keys are not compromised by spyware. 
+Some websites feature a free open-source client-side paper keypair generators written in JavaScript.
+Using these is generally considered a bad idea and inherently insecure.
 
 **Recommendations:**
 
-* Paper wallets should be produced on a computer not connected to the Internet.
-* Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your paper wallet.  Also consider that antivirus software cannot completely rule out the possibility of malware.  However, booting from a [live disc](https://en.wikipedia.org/wiki/Live_CD) prevents malware from running.
-* The private keys of paper wallets should never be saved to a computer hard drive.  You should also never scan your paper wallet into your computer or type the private keys or save them in e-mail, except at the moment you are redeeming the balance.
-* If possible, the private key of a paper wallet should be kept hidden, for example by using BIP38 encryption, or by folding the paper to hide the private key so that a photograph or photocopy of the wallet will not reveal or replicate the private key.
-* A web-based paper wallet generator should be written such that that all of the generation happens on your computer, not the web server.  Ideally, the HTML/JavaScript for the web generator should be downloaded to your computer, verified, and then run "locally" from an offline computer. Running a paper wallet generator directly from a live website is not recommended unless you can verify that the code has not been tampered with by computing the hash and comparing it with a signed hash by the author.
-* A paper wallet generator should use an appropriate source of random numbers (entropy).  This means that the generated addresses aren't predictable.  If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers  (2.1), someone else who can predict the pattern can steal the balance. Ideally, randomness should to be human provided (i.e. using dice rolling or random mouse movements or key strokes.) When using a web-based generator it's important to ensure that both the web browser and the JavaScript code are taking advantage of the strongest cryptographic routines available. (2.2)
-
-
-###Operating System Cache Security
-
-The problem with printing out secure documents—even if your computer is 100% virus/trojan free—is that your printer driver and/or operating system may be keeping copies of the documents you print in a "spool" or print queue. If a hacker or virus gets into your computer and knows to look for these cache files, then they can get your private keys and sweep your paper wallets. Precautions to mitigate this type of attack include:
-
-* Enabling encryption of your entire filesystem so that cache files cannot be 'undeleted'.
-
-* Setting up a symbolic link from your OS spool directory (e.g. /private/var/spool/cups/cache/ on OS X) to a removable media volume (e.g. a SD card) and disconnecting it when not in use.
-
-* Using a live-boot CD instead of a regular hard drive OS install. This way when you reboot your computer, all cache files are deleted from memory and no jobs are ever written to disk. (3.1)
+* Keys should be produced on a computer not connected to the Internet.
+* Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your key.  Also consider that antivirus software cannot completely rule out the possibility of malware.  However, booting from a [live disc](https://en.wikipedia.org/wiki/Live_CD) prevents most malware from running.
+* The private keys should never be saved to a computer hard drive.  You should also never scan your key into your computer or type them or save them in e-mail, except at the moment you are redeeming it.
+* If possible, the private key should be kept hidden, for example by using BIP38 encryption, or by folding the paper to hide the private key so that a photograph or photocopy of it will not reveal or replicate the private key.
+* A web-based generator should not be used.
+* A generator should use an appropriate source of random numbers (entropy).  This means that the generated keys aren't predictable.  If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers  (2.1), someone else who can predict the pattern can steal the balance. Ideally, randomness should NOT be human generated.
+* Remember that unlike wallets, a single ECDSA private key is only good to receive a single payment, and must be redeemed in its entirety.
 
 ###Printer Security
 
@@ -41,19 +34,23 @@ Some advanced printers have internal storage (even hard drives) that preserve co
 
 ##Redeeming Keys and Withdrawing Funds
 
-Paper wallets are very different from "live" wallets such as the Bitcoin-QT client in that it is not possible to transfer (withdraw) a *portion* of a paper wallet's bitcoin balance. The only way to withdraw funds from a paper wallet is to import or "sweep" the *entire* balance of the paper wallet to a new address, typically a live wallet or online exchange. Once the transfer has been confirmed, *the paper wallet should no longer be used*. (5.1)
+ECDSA private keys are very different from wallets such as Bitcoin Core in that it is not possible to transfer (withdraw) a *portion* of a key's bitcoins.
+The only way to withdraw funds is to import or "sweep" the *entire* received amount to a new address, typically a wallet or online exchange.
+Once the transfer has been confirmed, *the key should not be reused*. (4.1)
 
-There are various methods for copying the private key data from a paper wallet to other wallets.
-bitcoind supports an "importprivkey" RPC method for this purpose.
-Bitcoin-Qt's debug console can also be used in a similar way (see also [[how_to_import_private_keys_v7+]]).
-[[BlockChain.info]] and [[Armory]] can also import them directly into wallets.
+There are various methods for copying the private key data to other wallets.
+
+* bitcoind supports an "importprivkey" RPC method for this purpose.
+* Bitcoin-Qt's debug console can also be used in a similar way (see also [[how_to_import_private_keys_v7+]]).
+* [[BlockChain.info]] and [[Armory]] can also import them directly into wallets.
+
+Note that importing a private key that may be compromised can result in the entire wallet being insecure.
+For this reason, sweeping is generally recommended over importing.
 
 ##References
 
 2.1: [Pseudorandomness](https://en.wikipedia.org/wiki/Pseudorandomness#Cryptography)  '' is not enough for strong cryptography''  
-2.2: [w3.org](http://www.w3.org/TR/WebCryptoAPI/)  ''WebCryptoAPI''  
-3.1: [BitcoinPaperWallet.com](https://bitcoinpaperwallet.com/#security)  ''Security Tips''  
-5.1: [reddit.com](http://www.reddit.com/r/Bitcoin/comments/1c9xr7/psa_using_paper_wallets_understanding_change/)  ''Using Paper Wallets and Understanding Change''
+4.1: [reddit.com](http://www.reddit.com/r/Bitcoin/comments/1c9xr7/psa_using_paper_wallets_understanding_change/)  ''Using Paper Wallets and Understanding Change''
 
 
 ##See Also
