@@ -203,6 +203,10 @@ Avalon USB2IIC converter, USD VID:PID **29f1:33f2**
 * Fix display on avalon index page
 
 # MM Firmware
+## Daily Building
+
+* **http://build.canaan-creative.com:8080/~mikeqin/mm/**
+
 ##[http://downloads.canaan-creative.com/software/avalon4/mm/2014-11-22/ 20141122]
 
 * Version **401411-cad52ec0**
@@ -247,9 +251,13 @@ Avalon USB2IIC converter, USD VID:PID **29f1:33f2**
 
 * First version of Avalon4 firmware
 
-## Daily Building
+##[http://downloads.canaan-creative.com/software/avalon4/mm/NEXT-TESTING/ NEXT-TESTING]
 
-* **http://build.canaan-creative.com:8080/~mikeqin/mm/**
+* Support MBOOT
+* Keep the nonce2_offse and nonce2_range since g_module_id didn't change
+* Keep mm working when temp is greater than IDLE_TEMP
+* Add parameter for test core count
+* Warning when no fan connect
 
 # Design file
 
