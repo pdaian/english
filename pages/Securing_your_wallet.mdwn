@@ -14,35 +14,10 @@ In the case that your current wallet hasn't been protected adequately (e.g. put 
 *For a brief overview see also: [[Wallet Security Dos and Don'ts|Wallet_Security_Dos_and_Donts]]*
 
 ##Paper Wallets
+Main page: [[Paper_wallet]]
+
 [[Paper_wallet]]s can be used to store bitcoins offline in non-digital format. Using securely generated paper wallets significantly decreases the chances of your bitcoins being stolen by hackers or computer viruses.
-
 Fundamentally, a paper wallet is merely a physical record of a HD wallet private seed.
-The private seed is used to prove your right to spend the bitcoins transferred to the paper wallet, and as such should be kept hidden and secret.
-If the private seed on a paper wallet is exposed (for example in a photograph) then the wallet may be used by anyone who sees it.
-To guard against accidental revelation, the private key displayed on the paper wallet may be encrypted or split into several different parts ("Shamir's secret sharing scheme").
-At the very least, the private key should be well hidden e.g. by folding the wallet in half and sealing it shut.
-
-You can use the public seed to generate as many addresses as you need to receive bitcoins, and they will be inaccessible until the private seed is loaded.
-
-### Software for using paper wallets
-
-Currently, at least [[Armory]] and [[Electrum]] support generating mnemonic codes for their wallets, which can be written down or printed to make a paper wallet.
-
-### Tips for making paper wallets
-
-For the most security, it is advisable to generate your wallet from a [live disc](https://en.wikipedia.org/wiki/Live_CD), to ensure that the private seed is not compromised by spyware.
-To generate a safer paper wallet in this way, first "clean-boot" your computer with a bootable CD (such as a Linux Live CD) while disconnected from the Internet.
-Download a verified version of your preferred wallet software, and disconnect the computer from the internet.
-Print your paper wallets or store them on external media (do not save them on the computer), and then shut down the computer.
-You may need to load an appropriate printer driver in order to print while booted from the live CD.
-
-* Disconnecting from the Internet guarantees that that the paper wallet generator is truly self-contained and isn't transmitting your keys online. 
-
-* Verifying the integrity of the code (and the trustworthiness of the author) is important to make sure a hacker hasn't modified the download so that it generates predictable seeds instead of truly random ones.
-
-* Using a very basic printer is advisable since high-end office printers may have WiFi or internal storage that keeps a cache of printed documents.
-
-* Remember, spyware and viruses often attempt to monitor your computer activities so that their authors can steal from you. They are interested in passwords to online accounts, and anything of value. Bitcoin wallets are something of value that have already been targeted by malware. If your computer is infected with spyware or viruses - even if there are no symptoms, or your antivirus isn't reporting anything - then anything you type, view, or save on your computer, could potentially be stolen by someone remotely controlling your computer. Your private seed can then be intercepted while you enter it, so only enter a Bitcoin private seed into your computer when you are certain it is secure (such as a fresh boot of a LiveCD).
 
 ## Hardware wallets
 [[Hardware_wallet]]s are a major step to enhanced security and usability.
