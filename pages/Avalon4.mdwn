@@ -108,6 +108,15 @@ valign="top"|PG1/PG2|-|Power good|Some of small PMU failed|
 * The auc take **1~2ms** betwwen write and read. even the polling delay is 0 (4800 means 1ms)
 * The cgminer each polling takes **~20ms**. even the polling delay is 0ms
 
+## MM Notes
+
+* Compile flags
+
+
+|0|No mboot|Support MM-4.0|Disable debug
+|1|Support mboot|Support MM-4.1|Enable debug
+
+
 # AUC
 Avalon USB2IIC converter, USD VID:PID **29f1:33f2**
 
