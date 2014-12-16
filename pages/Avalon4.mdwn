@@ -109,8 +109,31 @@ valign="top"|PG1/PG2|-|Power good|Some of small PMU failed|
 * The cgminer each polling takes **~20ms**. even the polling delay is 0ms
 
 ## MM Notes
+### mm-tools for Raspberry Pi
+mm-tools is a program to upgrade Avalon4 mm firmware through Raspberry Pi.
+In order to use mm-tools, you should use RASPBIAN image on your Raspberry Pi.
 
-* Compile flags
+* How to use mm-tools
+	1. Enable iic on Raspberry Pi
+	
+	a. Commit "blacklist i2c-bcm2708" in raspi-blacklist.conf under /etc/modprobe.d first.
+	the example of raspi-blacklist.conf:
+	# blacklist spi and i2c by default (many users don't need them)
+	
+	blacklist spi-bcm2708
+	#blacklist i2c-bcm2708
+	
+	b. Add i2c.conf under /etc/modprobe.d.
+	the example of i2c.conf:
+	options i2c_bcm2708 baudrate=400000
+
+	2. Clone & Compile & Run
+	git clone https://github.com/Canaan-Creative/Avalon-extras.git
+	cd ./Avalon-extras/mm-tools;make
+	sudo su
+	make download && ./mm_tools
+
+### Compile flags
 
 
 |0|No mboot|Support MM-4.0|Disable debug
