@@ -46,4 +46,10 @@ Therefore, it is critical for Bitcoin's survival that the great majority of the 
 
 Lightweight nodes are sometimes able to be temporarily tricked into accepting transactions or blocks that are not actually valid. This could cause serious financial damage, especially for websites that automatically process Bitcoin transactions. Full nodes provide the maximum security possible, and so they should be used by all businesses, and also by regular users whenever doing so is convenient.
 
+## How to run a full node
+
+If you run the [[Bitcoin_Core]]/[[bitcoind]] wallet, you are running a full node. If you open port 8333, you will contribute to the network's capacity. If you actually use the wallet feature, or if you use a lightweight client like [[MultiBit]] but configure it to connect exclusively to your full node, then you will contribute to the network's economic strength and receive protection from some possible attacks against lightweight nodes.
+
+There are a few alternate full node implementations, but they are not recommended for serious use because it is currently difficult to determine whether they implement the consensus rules with 100% accuracy. Even very slight inaccuracies could cause serious problems for the users of these alternate clients.
+
 [[!tag "Technical"]]
