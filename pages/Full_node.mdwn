@@ -1,0 +1,16 @@
+Any computer that connects to the Bitcoin [[network]] is called a **node**. Nodes that fully enforce all of the rules of Bitcoin are called **full nodes**. Most nodes on the network are [[lightweight_node]]s instead of full nodes, but full nodes form the backbone of the network.
+
+##What makes a full node?
+
+Full nodes download every block and transaction and check them against Bitcoin's core consensus rules. Here are examples of consensus rules, though there are many more:
+
+* Blocks may only create a certain number of bitcoins. (Currently 25 BTC per block.)
+* Transactions must have correct signatures for the bitcoins being spent.
+* Transactions/blocks must be in the correct data format.
+* Within a single [[block_chain]], a transaction output cannot be double-spent.
+
+If a transaction or block violates the consensus rules, then it is absolutely rejected, even if every other node on the network thinks that it is valid. This is one of the most important characteristics of full nodes: they do what's right *no matter what*. For full nodes, miners actually have fairly limited power: they can only reorder or remove transactions, and only by expending a lot of computing power. A powerful miner is able to execute [[some serious attacks|Weaknesses#Attacker_has_a_lot_of_computing_power]], but because full nodes do not rely on the majority of mining power being honest, miners could not completely change or destroy Bitcoin.
+
+Nodes that have different *consensus* rules are actually using two different networks/currencies. Changing any of the consensus rules requires a [[hard_fork]], which can be thought of as creating a new currency and having everyone move to it. Consensus rules are different from *policy* rules, which specify how a node or miner prioritizes or discourages certain things. Policy rules can be changed freely, and different nodes can have different policy rules. Because all full nodes must use *exactly* the same consensus rules in order to remain compatible with each other, even duplicating bugs and oddities in the original consensus rules, creating a full node from scratch is extremely difficult and dangerous. It is therefore recommended that everyone who wishes to run a full node use software based on the [[reference_client]], which is the only client guaranteed to behave correctly.
+
+At minimum, a full node must download every transaction that has ever taken place, all new transactions, and all new block headers and Merkle trees. Additionally, full nodes must store information about every unspent transaction output until it is spent. Modern-day full nodes are inefficient in that they download each new transaction at least twice, and they store the entire block chain (>30 GB) forever, even though only the unspent transaction outputs (<1 GB) are required.
