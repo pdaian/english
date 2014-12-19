@@ -77,6 +77,10 @@ The last command unlocked your wallet temporarily for 120 seconds, during which 
 
 The importing process is now started. Bitcoind will rescan the entire block data to ensure this key has not been used before. This process will take from one to two minutes, depending on your CPU performance. DO NOT abort it before finishing!
 
+To avoid rescanning run the following.
+
+	(space)bitcoind importprivkey 5yourveryveryveryverylongprivatekeystring" "label-here" rescan=false
+
 If no errors occurs, the import is a success and Bitcoin-QT users will be able to see the new address in the GUI immediately. If you need to import more keys, just repeat the instructions above. There is currently no command to import a batch of private keys so you will need to wait a minute or two for each key to be imported.
 
 ## Cleaning up
