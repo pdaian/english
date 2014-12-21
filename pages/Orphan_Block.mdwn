@@ -1,3 +1,5 @@
-An orphan block is a well-formed block which is no longer part of the difficultywise-longest well-formed blockchain.
+An orphan block is a block that doesn't have a known parent in the longest chain.
 
-The block reward in an orphaned block is no longer spendable on the difficultywise-longest well-formed blockchain; therefore whoever mined that block does not actually get the reward (or the transaction fees).  This phenomenon must be taken into account by mining pools that use any payout strategy other than "proportional".
+Not to be confused with a stale block, which is a well-formed block which is no longer part of the difficultywise-longest well-formed blockchain.
+
+The block reward in a staled block is no longer spendable on the difficultywise-longest well-formed blockchain; therefore whoever mined that block does not actually get the reward (or the transaction fees).  This phenomenon must be taken into account by mining pools that use any payout strategy other than "proportional".
