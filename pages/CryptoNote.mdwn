@@ -27,6 +27,8 @@ The coins are emitted smoothly, as the reward changes with each new block. This 
 	BaseReward = (MSupply - A) >> 18
 	MSupply = 2^64 - 1 (atomic units)
 
+CryptoNote forks DarkNote and MonetaVerde implement alternative emission logic: in DarkNote emission halves each month and in MonetaVerde block reward increases with difficulty.
+
 ### Egalitarian proof of work
 
 CryptoNote uses [[CryptoNight]] hashing algorithm as its proof-of-work.
