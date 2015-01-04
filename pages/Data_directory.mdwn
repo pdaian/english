@@ -93,7 +93,7 @@ Contains testnet versions of these files (if running with -testnet)
 You can see blocks as 'patches' to the chain state (they consume some unspent outputs, and produce new ones), and see the undo data as reverse patches. They are necessary for rolling back the chainstate, which is necessary in case of reorganizations.
 
 ###Bootstrapping the blockchain from a snapshot distributed through BitTorrent
-There is a [torrent file that gets updated](https://bitcoin.org/bin/blockchain/) every few months that enables a much faster download of the blockchain. Once downloaded, the bootstrap.dat file can be placed in the root of the data directory, and bitcoin core 0.7.1 and above will automatically import it  (13.1)
+There is a [torrent file that gets updated](https://bitcoin.org/bin/blockchain/) every few months that enables a much faster download of the blockchain. Once downloaded, the bootstrap.dat file can be placed in the root of the data directory, and bitcoin core 0.7.1 and above will automatically import it.  (13.1)
 
 ###Personally identifiable data [v0.8 and above]
 This section may be of use to you if you wish to send a friend the blockchain, avoiding them a hefty download.
