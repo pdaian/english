@@ -98,6 +98,102 @@ if $0 == __FILE__
 end
 </source>
 
+## Erlang
+Get the rebar dependency from https://github.com/edescourtis/ebitcoind (By default the client will use the configuration in <code>$HOME/.bitcoin/bitcoin.conf</code>). Here is a usage example:
+<source lang="erlang">
+1> {ok,Pid} = ebitcoind:start_link().
+{ok,<0.177.0>}
+2> ebitcoind:getbalance(Pid).
+8437.02478294
+3> ebitcoind:getinfo(Pid).
+{ok, #{<<"balance">> => 8437.02478294,
+	<<"blocks">> => 260404,
+	<<"connections">> => 8,
+	<<"difficulty">> => 148819199.80509263,
+	<<"errors">> => <<>>,
+	<<"keypoololdest">> => 1420307921,
+	<<"keypoolsize">> => 102,
+	<<"paytxfee">> => 0.0,
+	<<"protocolversion">> => 70002,
+	<<"proxy">> => <<>>,
+	<<"relayfee">> => 1.0e-5,
+	<<"testnet">> => false,
+	<<"timeoffset">> => -3,
+	<<"version">> => 90300,
+	<<"walletversion">> => 60000}}
+4> ebitcoind:setgenerate(Pid,true).
+{ok, null}
+5> ebitcoind:getblocktemplate(Pid, #{}).                     
+{ok,#{<<"bits">> => <<"181b0dca">>,
+	<<"coinbaseaux">> => #{<<"flags">> => <<"062f503253482f">>},
+	<<"coinbasevalue">> => 2518690558,
+	<<"curtime">> => 1420421249,
+	<<"height">> => 337533,
+	<<"mintime">> => 1420416332,
+	<<"mutable">> => <"time"><"transactions"><"prevblock">[[>]],
+	<<"noncerange">> => <<"00000000ffffffff">>,
+	<<"previousblockhash">> => <<"000000000000000017ce0a0d328bf84cc597785844393e899e9a971a81679a5f">>,
+	<<"sigoplimit">> => 20000,
+	<<"sizelimit">> => 1000000,
+	<<"target">> => <<"00000000000000001b0dca00000000000000000000000000000000000000"...>>,
+	<<"transactions">> => {<"data">	<"depends">[],
+	<<"fee">> => 0,
+	<<"hash">> => <<"6d0d76e1f27b3a6f7325923710dcdb4107c9"...>>,
+	<<"sigops">> => 1},
+	#{<<"data">> => <<"01000000015072ea92bb330a3ef04bcf170c244bea7e"...>>,
+	<<"depends">> => [],
+	<<"fee">> => 1000,
+	<<"hash">> => <<"32528460a50ae4eb40c53b9f4cdd4e64"...>>,
+	<<"sigops">> => 1},
+	#{<<"data">> => <<"010000000432c35cd9be53c27f39e96d5af23617"...>>,
+	<<"depends">> => [],
+	<<"fee">> => 0,
+	<<"hash">> => <<"6bd3f1d8e67ae101341c9f66074a"...>>,
+	<<"sigops">> => 2},
+	#{<<"data">> => <<"01000000020e1d51c50de8e34844d733ad4c"...>>,
+	<<"depends">> => [],
+	<<"fee">> => 20000,
+	<<"hash">> => <<"23fcb2f2b52ed1f79c211b3b"...>>,
+	<<"sigops">> => 1},
+	#{<<"data">> => <<"010000000584e494f0c0f22eeffd8b60"...>>,
+	<<"depends">> => [],
+	<<"fee">> => 0,
+	<<"hash">> => <<"4a3e8526daff8e04568f"...>>,
+	<<"sigops">> => 1},
+	#{<<"data">> => <<"0100000002a8545d91579925ef12"...>>,
+	<<"depends">> => [],
+	<<"fee">> => 20000,
+	<<"hash">> => <<"f6dce7acf65f04ea"...>>,
+	<<"sigops">> => 2},
+	#{<<"data">> => <<"01000000130439f489e8e9c2"...>>,
+	<<"depends">> => [],
+	<<"fee">> => 30000,
+	<<"hash">> => <<"9fc0ab68f4a6"...>>,
+	<<"sigops">> => 2},
+	#{<<"data">> => <<"01000000013fdbac949b"...>>,
+	<<"depends">> => [],
+	<<"fee">> => 20000,
+	<<"hash">> => <<"b773a227"...>>,
+	<<"sigo"...>> => 2},
+	#{<<"data">> => <<"0100000004ae4fbc"...>>,
+	<<"depends">> => [],
+	<<"fee">> => 10000,
+	<<"hash">> => <<"f9e3"...>>,
+	<<...>> => 2},
+	#{<<"data">> => <<"010000000896"...>>,
+	<<"depends">> => [],
+	<<"fee">> => 20000,
+	<<...>> => <<...>>,...},
+	#{<<"data">> => <<"01000000"...>>,
+	<<"depe"...>> => [],
+	<<...>> => 10000,...},
+	#{<<"data">> => <<"0100"...>>,<<...>> => [],...},
+	#{<<...>> => <<...>>,...},
+	#{...}...,
+	<<"version">> => 2}}
+
+</source>
+
 ## PHP
 
 The [JSON-RPC PHP](http://jsonrpcphp.org/) library also makes it very easy to connect to Bitcoin.  For example:
