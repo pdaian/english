@@ -99,7 +99,10 @@ end
 </source>
 
 ## Erlang
-Get the rebar dependency from https://github.com/edescourtis/ebitcoind (By default the client will use the configuration in <code>$HOME/.bitcoin/bitcoin.conf</code>). Here is a usage example:
+Get the rebar dependency from https://github.com/edescourtis/ebitcoind . By default the client will use the configuration in <code>$HOME/.bitcoin/bitcoin.conf</code> or you can instead specify a URI like this:
+<source lang="erlang">ebitcoind:start_link(<<"http://user:password@localhost:8332/">>).</source>
+
+Here is a usage example:
 <source lang="erlang">
 1> {ok,Pid} = ebitcoind:start_link().
 {ok,<0.177.0>}
@@ -140,58 +143,7 @@ Get the rebar dependency from https://github.com/edescourtis/ebitcoind (By defau
 	<<"fee">> => 0,
 	<<"hash">> => <<"6d0d76e1f27b3a6f7325923710dcdb4107c9"...>>,
 	<<"sigops">> => 1},
-	#{<<"data">> => <<"01000000015072ea92bb330a3ef04bcf170c244bea7e"...>>,
-	<<"depends">> => [],
-	<<"fee">> => 1000,
-	<<"hash">> => <<"32528460a50ae4eb40c53b9f4cdd4e64"...>>,
-	<<"sigops">> => 1},
-	#{<<"data">> => <<"010000000432c35cd9be53c27f39e96d5af23617"...>>,
-	<<"depends">> => [],
-	<<"fee">> => 0,
-	<<"hash">> => <<"6bd3f1d8e67ae101341c9f66074a"...>>,
-	<<"sigops">> => 2},
-	#{<<"data">> => <<"01000000020e1d51c50de8e34844d733ad4c"...>>,
-	<<"depends">> => [],
-	<<"fee">> => 20000,
-	<<"hash">> => <<"23fcb2f2b52ed1f79c211b3b"...>>,
-	<<"sigops">> => 1},
-	#{<<"data">> => <<"010000000584e494f0c0f22eeffd8b60"...>>,
-	<<"depends">> => [],
-	<<"fee">> => 0,
-	<<"hash">> => <<"4a3e8526daff8e04568f"...>>,
-	<<"sigops">> => 1},
-	#{<<"data">> => <<"0100000002a8545d91579925ef12"...>>,
-	<<"depends">> => [],
-	<<"fee">> => 20000,
-	<<"hash">> => <<"f6dce7acf65f04ea"...>>,
-	<<"sigops">> => 2},
-	#{<<"data">> => <<"01000000130439f489e8e9c2"...>>,
-	<<"depends">> => [],
-	<<"fee">> => 30000,
-	<<"hash">> => <<"9fc0ab68f4a6"...>>,
-	<<"sigops">> => 2},
-	#{<<"data">> => <<"01000000013fdbac949b"...>>,
-	<<"depends">> => [],
-	<<"fee">> => 20000,
-	<<"hash">> => <<"b773a227"...>>,
-	<<"sigo"...>> => 2},
-	#{<<"data">> => <<"0100000004ae4fbc"...>>,
-	<<"depends">> => [],
-	<<"fee">> => 10000,
-	<<"hash">> => <<"f9e3"...>>,
-	<<...>> => 2},
-	#{<<"data">> => <<"010000000896"...>>,
-	<<"depends">> => [],
-	<<"fee">> => 20000,
-	<<...>> => <<...>>,...},
-	#{<<"data">> => <<"01000000"...>>,
-	<<"depe"...>> => [],
-	<<...>> => 10000,...},
-	#{<<"data">> => <<"0100"...>>,<<...>> => [],...},
-	#{<<...>> => <<...>>,...},
-	#{...}...,
-	<<"version">> => 2}}
-
+	...
 </source>
 
 ## PHP
