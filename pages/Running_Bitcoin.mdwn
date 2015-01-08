@@ -184,12 +184,13 @@ Here is a sample bitcoin.conf file.
 	
 	# By default, only RPC connections from localhost are allowed.  Specify
 	# as many rpcallowip= settings as you like to allow connections from
-	# other hosts (and you may use * as a wildcard character).
+	# other hosts. As of Bitcoin Core 0.10.0, wildcards are no longer allowed.  Use one of the sample forms below.
 	# NOTE: opening up the RPC port to hosts outside your local
 	# trusted network is NOT RECOMMENDED, because the rpcpassword
 	# is transmitted over the network unencrypted.
 	#rpcallowip=10.1.1.34
-	#rpcallowip=192.168.1.*
+	#rpcallowip=192.168.1.0/255.255.255.0
+	#rpcallowip=172.16.0.0/24
 	
 	# Listen for RPC connections on this TCP port:
 	#rpcport=8332
