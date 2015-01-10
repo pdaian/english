@@ -16,7 +16,7 @@ Many of the ideas underlying Bitcoin contracts were first described by Nick Szab
 
 ##A warning about the mempool transaction replacement mechanism
 
-In places this page refers to the ability to use the nSequence field for transaction mempool replacement. This mechanism was disabled in [2010](https://github.com/bitcoin/bitcoin/commit/401926283a200994ecd7df8eae8ced8e0b067c46), and more recently the code has been [removed completely](https://github.com/bitcoin/bitcoin/commit/98c7c8fd1d3712e02be0e9f2eeca7e02aa54d197), due to concerns over people using it to perform DoS attacks. Implementors should take this into account and try to create contract mechanisms that do not rely on mempool replacement if they wish to have their implementations work with current implementations. If Bitcoin changes in future to allow mempool replacement once again, this page will be updated.
+In places this page refers to the ability to use the nSequence field for transaction mempool replacement. This mechanism was disabled in [2010](https://github.com/bitcoin/bitcoin/commit/05454818dc7ed92f577a1a1ef6798049f17a52e7#diff-118fcbaaba162ba17933c7893247df3aR522), and more recently the code has been [removed completely](https://github.com/bitcoin/bitcoin/commit/98c7c8fd1d3712e02be0e9f2eeca7e02aa54d197), due to concerns over people using it to perform DoS attacks. Implementors should take this into account and try to create contract mechanisms that do not rely on mempool replacement if they wish to have their implementations work with current implementations. If Bitcoin changes in future to allow mempool replacement once again, this page will be updated.
 
 ##Theory
 
