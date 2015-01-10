@@ -1,19 +1,20 @@
-Scrypt adds memory-intensive algorithms to reduce the efficiency of logic circuits.
-It has been less widely used and analyzed than the SHA2 hashing algorithm used in Bitcoin, so there is some concern about possible weaknesses in its cryptographic scheme being discovered in the future.
+**Scrypt proof of work** is an alternative mining scheme that adds memory-intensive algorithms to reduce the efficiency of logic circuits. This was a relatively successful attempt to make CPU and GPU mining remain profitable, even with the advent of FPGAs and ASICs for SHA mining.
 
 ## History
-Originally introduced as part of the altcoin "Tenebrix" by ArtForz and Lolcust, it was claimed to be resistant to GPU, FPGA, and ASIC implementation (2.1).
-Around mid-2012, GPU-based mining began to become widespread anyway, and in late 2013 ASICs began shipping.
+Originally introduced as part of the [[altcoin]] **Tenebrix** (TBX) by ArtForz and Lolcust, it was claimed to be resistant to GPU, FPGA, and ASIC implementation. (2.1) Tenebrix was heavily premined, so **Fairbrix** (FBX) was later launched as an alternative.
+
+### Specialized hardware
+Around mid-2012, GPU-based Scrypt mining began to become widespread, and by late 2013 Scrypt ASICs had began shipping. As Scrypt is no longer GPU-resistant, FPGA-resistant or ASIC-resistant, it is left with little use other than speculative altcoins.
 
 ## Problems
 
 ### Vulnerability to mining monopoly
 
 "51% attacks" become more difficult to launch and maintain as the hash rate of the network grows.
-However, this argument posits that since scrypt is designed to be inefficient on all common computer components (both CPUs and GPUs), a malicious entity need only produce a small batch of specialized/custom hardware to overtake all the commodity mining systems combined.
+However, this argument posits that since Scrypt is designed to be inefficient on all common computer components (both CPUs and GPUs), a malicious entity need only produce a small batch of specialized/custom hardware to overtake all the commodity mining systems combined.
 
-#### Memory bandwidth refutation
-Some attempt to refute this by arguing that scrypt is not designed to be inefficient, but is instead designed to be highly dependent on memory bandwidth.
+### Memory bandwidth refutation
+This issue is commonly refuted by arguing that Scrypt is not designed to be inefficient, but is instead designed to be highly dependent on memory bandwidth.
 Since the high-speed cache RAM on modern processors already takes up most of the die space, no sizeable improvement could then be made by creating custom chips.
 If we accept this argument we then estimate the cost of attack utilizing GPUs that are available today. 
 
@@ -22,10 +23,10 @@ The total amount of equipment necessary to match and takeover this network via 5
 
 ## Variations
 
-In mid-2013, a user nicknamed pocopoco introduced an altcoin ("YACoin") using scrypt with an adaptive "N-factor" (6.1).
+In mid-2013, a user nicknamed pocopoco introduced an altcoin ("YACoin") using scrypt with an adaptive "N-factor" (7.1).
 
 ## References
 
 2.1: [BitcoinTalk discussion thread for the "Tenebrix" altcoin](https://bitcointalk.org/?topic=45667)  
-6.1: [BitcoinTalk discussion thread for the "YACoin" altcoin](https://bitcointalk.org/?topic=196196)
+7.1: [BitcoinTalk discussion thread for the "YACoin" altcoin](https://bitcointalk.org/?topic=196196)
 
