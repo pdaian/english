@@ -117,7 +117,7 @@ valign="top"|PG1/PG2|-|Power good|Some of small PMU failed|
 ## MM Notes
 ### mm-tools for Raspberry Pi (Model B)
 mm-tools is a program to upgrade Avalon4 mm firmware through Raspberry Pi.
-In order to use mm-tools, you should use RASPBIAN image on your Raspberry Pi.
+In order to use mm-tools, you should use [RASPBIAN](http://downloads.raspberrypi.org/NOOBS_latest) image on your Raspberry Pi.
 
 * How to use mm-tools
 	1. Enable iic on Raspberry Pi
@@ -132,6 +132,9 @@ In order to use mm-tools, you should use RASPBIAN image on your Raspberry Pi.
 	b. Add i2c.conf under /etc/modprobe.d.
 	the example of i2c.conf:
 	options i2c_bcm2708 baudrate=400000
+	
+	c. Load i2c-dev module from start
+	echo "i2c-dev" >> /etc/modules
 
 	2. Clone & Compile & Run
 	git clone https://github.com/Canaan-Creative/Avalon-extras.git
