@@ -106,8 +106,8 @@ valign="top"|PG1/PG2|-|Power good|Some of small PMU failed|
 	eg: cgminer-api "ascset0,fan,10" or cgminer-api "ascset0,fan,10-100"
 
 * Voltage
-	Format: **ascsetASCN,voltage,MMID-value**
-	eg: cgminer-api "ascset0,voltage,1-7750"
+	Format: **ascsetASCN,voltage,MMID-value[[-miner_id-val_offset]]**
+	eg: cgminer-api "ascset0,voltage,1-7750",cgminer-api "ascset0,voltage,1-7750-0-125"
 
 ## Technical details
 
