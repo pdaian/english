@@ -118,10 +118,14 @@ valign="top"|PG1/PG2|-|Power good|Some of small PMU failed|
 ## MM Notes
 ### mm-tools for Raspberry Pi (Model B)
 mm-tools is a program to upgrade Avalon4 mm firmware through Raspberry Pi.
-In order to use mm-tools, you should use [RASPBIAN](http://downloads.raspberrypi.org/NOOBS_latest) image on your Raspberry Pi.
 
 Support mm versions(MM-4.0: >= **401412-7ef4ab10**, MM-4.1: **Any one**)
-	
+
+Ugrade file link: [For MM-4.0](http://downloads.canaan-creative.com/software/avalon4/mm/latest/mm-no-mboot/mm.mcs) [For MM-4.1](http://downloads.canaan-creative.com/software/avalon4/mm41/latest/mm-no-mboot/mm.mcs)
+
+#### Method 1:Upgrade it through CLI
+In order to use mm-tools, you should use [RASPBIAN](http://downloads.raspberrypi.org/NOOBS_latest) image on your Raspberry Pi.
+
 * How to use mm-tools
 	1. Enable iic on Raspberry Pi
 	
@@ -144,6 +148,10 @@ Support mm versions(MM-4.0: >= **401412-7ef4ab10**, MM-4.1: **Any one**)
 	cd ./Avalon-extras/mm-tools;make
 	sudo su
 	make download && ./mm_tools
+
+#### Method 2:Upgrade it through LuCI
+Use the latest avalon firmware for Raspberry Pi(Model B) [openwrt-brcm2708-sdcard-vfat-ext4.img](http://downloads.canaan-creative.com/software/avalon4/openwrt/latest/openwrt-brcm2708-sdcard-vfat-ext4.img)
+You can upgrade mm firmware through the page: Status->MM Upgrade
 
 ### Compile flags
 
