@@ -1,0 +1,21 @@
+[[!template id=stub]]
+Bitcoin F# is a full-node implementation in F# by [hhanh00](https://github.com/hhanh00/).  Commenting on motivations [on Bitcointalk](https://bitcointalk.org/index.php?topic=923409.msg10146701#msg10146701), he says:
+<blockquote>I'm implementing a full node for a couple of things. 1. to make sure i have a complete understanding of the implementation that goes beyond reviewing code. For me, it's like reading a book versus writing one. 2. all the implementations i have seen follow a similar logic specially wrt blockchain management and scripting. i wanted to do it my way to see if it's better or worse. 3. i'm aiming for short. no wallet, no mining, no dos protection.
+These goals in mind, it is clearly not fit for wide distribution. It's working fine though - being able to sync up from the beginning while validating, holding a mempool content identical to the core client and etc.</blockquote>
+
+Its [project page on GitHub](https://github.com/bitcoinfs/bitcoinfs) says:
+<blockquote>
+
+* Bitcoin F# has fully validated the existing mainnet blockchain and passes all the integration tests including large reorg tests.
+* It is also the only implementation in a functional language and comes under 2.5 kLOC, making it the smallest client too.
+</blockquote>
+
+Commenting on its completeness [on Bitcointalk](https://bitcointalk.org/index.php?topic=923409.msg10204174#msg10204174), he says:
+<blockquote>it bootstraps, syncs and validates the blockchain. It passes the acceptance tests from Matt too. As a relay node, it keeps a tx pool, validates, relays new tx and you can trim old blocks just by deleting files. I've been running for a while.
+At about 2k lines of code, it fits my requirement of small code that I can fit in my brain but I understand it's not 100% compatible and will never be.</blockquote>
+There's a [walkthrough of the (short!) code](https://bitcoinfs.github.io/bitcoinfs/index.html) available.
+
+[[!tag "F_Sharp"]]
+[[!tag "Stubs"]]
+[[!tag "Nodes"]]
+[[!tag "Software"]]
