@@ -12,7 +12,7 @@ Bitcoin does not, at a low level, have any concept of addresses, only individual
 Address reuse, at this layer, requires producing multiple digital signatures when you spend bitcoins.
 Multiple situations have been found where more than one digital signature can be used to calculate the private key needed to spend bitcoins.
 Even if you spend all the bitcoins claimed by this private key at once, it is still possible to double-spend them in theft before they confirm.
-While the situations for finding the private key from signatures have been fixed, it is not prudent to assume there aren't more such situations yet unknown.
+While the known situations for finding the private key from signatures have been fixed, it is not prudent to assume there aren't more such situations yet unknown.
 
 In the case of spending all the TXOs in a single transaction, there is an additional risk if someone is actively monitoring the network for vulnerable transactions:
 upon receiving such a transaction, they can split up their double spends such that there is only one ECDSA verification per transaction (making a single transaction for each TXO);
