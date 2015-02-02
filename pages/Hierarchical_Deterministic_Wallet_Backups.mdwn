@@ -1,20 +1,42 @@
-Paper wallets are wallets that are contained entirely on paper.
-This is preferably in the form of a mnemonic  [[HD wallet|Deterministic_wallet]] seed.
-They are generally used with the goal of storing bitcoins offline in non-digital format to prevent unauthorized access.
-Using securely generated paper wallets properly will nullify the chances of your bitcoins being stolen by hackers or computer viruses.
+A paper wallet is a mechanism for storing bitcoins offline as a physical document that can be secured like cash or anything else of real-world value. Paper wallets are generally created by printing a brand new public address and private key onto paper, and then sending bitcoins from a "live" wallet to the printed wallet's public address for safekeeping. If good security practices are followed, paper wallets are one of the safest means for storing Bitcoins. 
+
+Similarly, a mnemonic  [[HD wallet|Deterministic_wallet]] seed may be written down on paper as a means of deriving keys from a single starting point. This allows a user to easily back up and restore a wallet without needing any other information.
+
+Paper wallets are generally used with the goal of storing bitcoins offline in non-digital format to prevent unauthorized access. Using securely generated paper wallets properly will nullify the chances of your bitcoins being stolen by hackers or computer viruses.
 
 They should not be confused with [[paper_ECDSA_private_keys]], which are a bad practice.[[!template id=why]]
 
 ## Basics
 
-The private seed is used to prove your right to spend the bitcoins transferred to the paper wallet, and as such should be kept hidden and secret.
-If the private seed on a paper wallet is exposed (for example in a photograph) then the wallet may be used by anyone who sees it.
+The private key is used to prove your right to spend the bitcoins transferred to the paper wallet, and as such should be kept hidden and secret.
+If the private key on a paper wallet is exposed (for example in a photograph) then the wallet may be used by anyone who sees it.
 To guard against accidental revelation, the private key displayed on the paper wallet may be encrypted or split into several different parts ("Shamir's secret sharing scheme").
 At the very least, the private key should be well hidden e.g. by folding the wallet in half and sealing it shut.
 
-You can use the public seed to generate as many addresses as you need to receive bitcoins, and they will be inaccessible until the private seed is loaded.
+## Software for generating individual and bulk paper wallets
 
-## Software for using paper wallets
+[[!img "Paper_Wallets.jpeg" size=120x120 title="Paper wallets from bitcoinpaperwallet.com. Public key is visible, private key is hidden beneath folds and sealed with tamper-evident tape."]]
+
+Several tools exist for producing paper wallets, including [[BitAddress.org|BitAddress]] and [[BitcoinPaperWallet.com|BitcoinPaperWallet]].
+
+Care must be taken to securely generate paper wallets since an attacker can steal the present and future balance of a paper wallet if the private key is exposed, transmitted, or generated with insufficient entropy.
+
+Some services distribute free open-source client-side paper wallet generators written in JavaScript, which can be used offline. Using these generators is relatively safe when the source code hash can be checked against the author's signature. It's advisable to use those services from a live bootable CD, to ensure that private keys are not compromised by spyware.
+
+## Software for generating deterministic wallets
+
+Currently, at least [[Armory]] and [[Electrum]] support generating mnemonic codes for their wallets, which can be written down or printed to make a paper wallet.
+
+## Recommendations
+
+* Paper wallets should be produced on a computer not connected to the Internet.
+* Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your paper wallet. Also consider that antivirus software cannot completely rule out the possibility of malware. However, booting from a live disc prevents malware from running.
+* The private keys of paper wallets should never be saved to a computer hard drive. You should also never scan your paper wallet into your computer or type the private keys or save them in e-mail, except at the moment you are redeeming the balance.
+* If possible, the private key of a paper wallet should be kept hidden, for example by using BIP38 encryption, or by folding the paper to hide the private key so that a photograph or photocopy of the wallet will not reveal or replicate the private key.
+* A web-based paper wallet generator should be written such that that all of the generation happens on your computer, not the web server. Ideally, the HTML/JavaScript for the web generator should be downloaded to your computer, verified, and then run "locally" from an offline computer. Running a paper wallet generator directly from a live website is not recommended unless you can verify that the code has not been tampered with by computing the hash and comparing it with a signed hash by the author.
+* A paper wallet generator should use an appropriate source of random numbers (entropy). This means that the generated addresses aren't predictable. If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers [[1]], someone else who can predict the pattern can steal the balance. Ideally, randomness should to be human provided (i.e. using dice rolling or random mouse movements or key strokes.) When using a web-based generator it's important to ensure that both the web browser and the JavaScript code are taking advantage of the strongest cryptographic routines available.[[2]]
+
+## Software for generating deterministic wallets
 
 Currently, at least [[Armory]] and [[Electrum]] support generating mnemonic codes for their wallets, which can be written down or printed to make a paper wallet.
 
@@ -30,6 +52,24 @@ You may need to load an appropriate printer driver in order to print while boote
 
 * Verifying the integrity of the code (and the trustworthiness of the author) is important to make sure a hacker hasn't modified the download so that it generates predictable seeds instead of truly random ones.
 
-* Using a very basic printer is advisable since high-end office printers may have WiFi or internal storage that keeps a cache of printed documents.
-
 * Remember, spyware and viruses often attempt to monitor your computer activities so that their authors can steal from you. They are interested in passwords to online accounts, and anything of value. Bitcoin wallets are something of value that have already been targeted by malware. If your computer is infected with spyware or viruses - even if there are no symptoms, or your antivirus isn't reporting anything - then anything you type, view, or save on your computer, could potentially be stolen by someone remotely controlling your computer. Your private seed can then be intercepted while you enter it, so only enter a Bitcoin private seed into your computer when you are certain it is secure (such as a fresh boot of a LiveCD).
+
+### Operating System Cache Security
+
+The problem with printing out secure documents—even if your computer is 100% virus/trojan free—is that your printer driver and/or operating system may be keeping copies of the documents you print in a "spool" or print queue. If a hacker or virus gets into your computer and knows to look for these cache files, then they can get your private keys and sweep your paper wallets. Precautions to mitigate this type of attack include:
+
+* Enabling encryption of your entire filesystem so that cache files cannot be 'undeleted'.
+* Setting up a symbolic link from your OS spool directory (e.g. /private/var/spool/cups/cache/ on OS X) to a removable media volume (e.g. a SD card) and disconnecting it when not in use.
+* Using a live-boot CD instead of a regular hard drive OS install. This way when you reboot your computer, all cache files are deleted from memory and no jobs are ever written to disk.
+
+### Printer Security
+
+Using a very basic printer is advisable since high-end office printers may have WiFi or internal storage that keeps a cache of printed documents.
+
+This is a risk if someone gets access to your printer, or if you dispose of your printer. There is also the possibility that a smart enough printer can be hacked. (Consider StuxNet which was able to rewrite the firmware of non-computer devices indirectly connected to the Internet) If this concerns you, use a "dumb" printer, and never let your printer have access to the Internet or to an Internet-connected computer.
+
+### Redeeming Keys and Withdrawing Funds
+
+Paper wallets are very different from "live" wallets such as the Bitcoin-QT client in that it is not possible to transfer (withdraw) a portion of a paper wallet's bitcoin balance. The only way to withdraw funds from a paper wallet is to import or "sweep" the entire balance of the paper wallet to a new address, typically a live wallet or online exchange. Once the transfer has been confirmed, the paper wallet should no longer be used.[[4]]
+
+There are various methods for copying the private key data from a paper wallet to other wallets. bitcoind supports an "importprivkey" RPC method for this purpose. Bitcoin-Qt's debug console can also be used in a similar way (see also how to import private keys v7+). BlockChain.info and Armory can also import them directly into wallets.
