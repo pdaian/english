@@ -2,6 +2,16 @@
 
 An open-source and free wallet implementation for the Android runtime, based on [[bitcoinj|BitCoinJ]]. It requires either Android 2.3 (or newer) or Black Berry OS 10 (or newer). It was first released on March 7, 2011 (1.1). As of January 2014, it is being used by 400.000 people.
 
+##Key Derivation and Export
+
+Since version 4.0 Bitcoin Wallet supports HD Wallets (2.1) and derives keys from a master node in the BIP32 format.
+
+Since version 4.18 it provides a simple export functionality (2.2) for the key in the format:
+
+<code>xpub[key]?c=[birthday]&h=bip32</code>
+
+Where the parameter "c" gives the creation date of the key and "h" the hierarchie. The value "key" is the derivation m/0' from the master node according to the [BIP32 derivation scheme](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#Master_key_generation).
+
 ##External Links
 
 * [(1)](https://play.google.com/store/apps/details?id=de.schildbach.wallet) Bitcoin Wallet on Google Play.
@@ -13,7 +23,9 @@ An open-source and free wallet implementation for the Android runtime, based on 
 
 ##References
 
-1.1: [Release announcement to the BitCoinJ mailing list](http://groups.google.com/d/msg/bitcoinj/fqUw1AKsxWI/pl6rzUSmUH4J)
+1.1: [Release announcement to the BitCoinJ mailing list](http://groups.google.com/d/msg/bitcoinj/fqUw1AKsxWI/pl6rzUSmUH4J)  
+2.1: [Release notes v4.0](https://github.com/schildbach/bitcoin-wallet/releases/tag/v4.0)  
+2.2: [Release notes v4.18](https://github.com/schildbach/bitcoin-wallet/releases/tag/v4.18)
 
 
 [[!tag "Wallets"]]
