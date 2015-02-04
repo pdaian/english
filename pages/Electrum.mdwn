@@ -18,155 +18,27 @@ It was released on november 5, 2011.
 * Support for Bitcoin URIs, signed URIs and Bitcoin aliases
 
 __TOC__
-###Updates
-**Some contents can be outdated or deprecated. To see up to date documentation visit the [Documentation](http://electrum.org/documentation.html) page**
 
-###Graphical User Interfaces
-Electrum has two GUIs: one that is based on Gtk, and a newer one based on Qt. The Qt GUI is enabled by default. To use the gtk interface, type:
-<pre>
-$ ./electrum -g gtk
-</pre>
-In addition, Electrum has a rich set of commands for the command line interface.
+###Documentation
 
-###Brain Wallet
-
-Electrum uses a type 2 deterministic key generation algorithm.
-This means that all the keys are derived from a seed.
-
-Typical seeds have 128 bits of entropy. Electrum provides mnemonic code in order to represent the seed.
-
-Example:
-
-* hexadecimal: 431a62f1c86555d3c45e5c4d9e10c8c7 
-* mnemonic: "constant forest adore false green weave stop guy fur freeze giggle clock"
-
-You can display the seed with the command line interface. Example:
-<pre>
-$ ./electrum getseed
-Password:
-431a62f1c86555d3c45e5c4d9e10c8c7 "constant forest adore false green weave stop guy fur freeze giggle clock"
-</pre>
-
-###Wallet File
-The default wallet file is called default_wallet which is created when you first run the application and located under the /wallets folder.
-
-On Windows
-
-* Show hidden files
-* Go to \Users\YourUserName\AppData\Roaming\Local\Electrum
-
-On Mac
-
-* Open Finder
-* Go > Go to folder (shift+cmd+G) and type ~/.electrum
-
-On Linux
-
-* Home Folder
-* Go > Location and type ~/.electrum
-
-###Multiple wallets
-Electrum uses one single file per wallet. Your default wallet is located in your user account as listed above.
-If you want to use another wallet, use the -w option followed by the wallet path and name:
-<pre>
-$ ./electrum -w /path/to/my/wallet/wallet_name
-</pre>
-
-###Export and import addresses
-
-You can export your private keys using the 'dumpprivkeys' command:
-<pre>
-$ ./electrum dumpprivkeys
-Password:
-{
-"1LGoehbyeX4QBEPK1a6dhyaoMQZfqg5LKX": "5JBSttEGhjEcPidSovW66Rin2EZ6LEHZ2qx8Pu2RqqNaDTBVWaF"   
-"1KcsBJa2cCxVkGJfSsg5bUeXN7Y5uLa8mP": "5KiP4uiNT6KG8jnXbainCM8rDWRrgxt3PAyut4FFpDoCo1Rh6VM"   
-"1PXsn7LVXTccGhJPTUL8r2EGB4fF9kvex3": "5Kj8mvBJReyk8xEBMx5cTnciQCxto5JmudiTPkqwMcd61Kf1Jqc"   
-"1KteSFTAphyByLTtUfFiVQ9s7fMVmx7c2h": "5JeZ3FTbWcksLt3PKydd5U9p952UQRHwv3LoxzCA9LZ7V2bku5p"   
-"1GE5ZChAobeTEPLHDCDDKTSg3XvLkcQFjS": "5JwtGEygTwF2nouhRVzW3w5DWZd1sCgxLtnd1v51wjkbUrp5sqH"   
-"12YNehfAoYTiwjTXULwaZqTCauu2D61fq6": "5Jvcq19ePCXKcVun4n7US99CsrEByUK2kgxXBA3rBVBqYZjhfwD"  [change] 
-}
-</pre>
-
-You can also import addresses into an electrum wallet, with the 'importprivkey' command:
-<pre>
-$ ./electrum importprivkey 5JBSttEGhjEcPidSovW66Rin2EZ6LEHZ2qx8Pu2RqqNaDTBVWaF
-Keypair imported:  1LGoehbyeX4QBEPK1a6dhyaoMQZfqg5LKX
-</pre>
-Note that imported keys do not belong to the deterministic sequence of your wallet; if you import keys in a wallet, you must back it up!
-
-###Offline wallet
-
-It is possible to create a transaction on an offline computer,
-and to broadcast them from another computer, with a wallet that does not have the seed or private keys.
-
-see http://electrum.org/offline_wallets.html
-
-### List of commands
-
-
-
-|command |description |syntax |requires password |needs to be online
-|---|---|---|---|---
-|balance |shows the balance of your wallet or of an address |balance [[address]]|no |yes
-|contacts |print your list of contacts |contacts |no |no
-|create |create a new wallet |create |no |no
-|createmultisig |?? |createmultisig |?? |??
-|createrawtransaction|?? |createrawtransaction |?? |??
-|decoderawtransaction |?? |decoderawtransaction |?? |??
-|deseed |Create a seedless version of a wallet with the suffix .seedless  |deseed |no |no
-|dumpprivkey |?? |dumpprivkey |?? |??
-|dumpprivkeys |?? |dumpprivkeys |?? |??
-|eval |call python eval |eval <expression>|no |no
-|freeze |?? |freeze |?? |??
-|getaddresshistory |?? |getaddresshistory |?? |??
-|getbalance |?? |getbalance |?? |??
-|getconfig |?? |getconfig |?? |??
-|getseed |write the seed and its mnemonic to stdout |seed |yes |no
-|help |display the help for a command |help [[command]]|no |no
-|history |print the transaction history |history |no |yes
-|import |import a keypair |import <address:private_key> |yes |no
-|importprivkey |?? |importprivkey |?? |??
-|label |change the label of a transaction or address |label <label>|no |no
-|listaddresses |?? |listaddresses |?? |??
-|listunspent |?? |listunspent |?? |??
-|mktx |create a transaction and dump it |mktx [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |no
-|password |update your password |password |yes |no
-|payto |create and broadcast a transaction |payto [sourceaddr](-s)[changeaddr](-c)[fee](-f)<address><amount>|yes |yes
-|prioritize |?? |prioritize |?? |??
-|restore |restore a wallet from seed |restore |no |yes
-|sendrawtransaction |broadcast a transaction |sendrawtransaction <tx>|no |yes
-|setconfig |?? |setconfig |?? |??
-|setlabel |?? |setlabel |?? |??
-|signmessage |sign a message (as in bitcoind) |signmessage <address><message>|yes |no
-|signrawtransaction |?? |signrawtransaction |?? |??
-|unfreeze |?? |unfreeze |?? |??
-|unprioritize |?? |unprioritize |?? |??
-|validateaddress |check is the argument is a valid bitcoin address |validateaddress <address>|no |no
-|verifymessage |verify a message (as in bitcoind) |verifymessage <address><signature><message>|no |no
-
+Up to date documentation is now hosted on http://electrum.orain.org
 
 ##History
 
-Electrum was announced November 5, 2011 (10.1).
+Electrum was announced November 5, 2011 (3.1).
 
 ##See Also
 
-* [[Electrum/Documentation]] : General documentation of the Electrum client
-* [[Electrum/Translation]]
-* [[Electrum/TODO]]
 * [[Thin_Client_Security]]
-* [Electrum Bitcoin Wallet](http://www.expresscoin.com/wallets/bitcoin/electrum) : Walkthrough and setup guide.
 
 ##External Links
 
 * [Electrum](http://electrum.org/) project website
 * [Electrum](https://github.com/spesmilo/electrum/) project source
-* [Electrum Docs](https://github.com/spesmilo/electrum/blob/master/docs) updated documentation
 
 ##References
 
-10.1: [Electrum - a new thin client](http://bitcointalk.org/index.php?topic=50936.0)
+3.1: [Electrum - a new thin client](http://bitcointalk.org/index.php?topic=50936.0)
 
 
 [[!tag "Clients"]]
