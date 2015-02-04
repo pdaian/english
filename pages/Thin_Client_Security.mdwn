@@ -56,8 +56,10 @@ The library (libccoin) that picocoin is based on includes code for validating sc
 
 #### [[Electrum]]
 
-ThomasV [claims](https://en.bitcoin.it/w/index.php?title=Thin_Client_Security&action=historysubmit&diff=42844&oldid=36519) that "Electrum, it is doing SPV since 2012".
-
+Electrum fetches blockchain information from Electrum servers, bitcoin nodes that index the blockchain by address.
+Electrum performs Simple Payment Verification to check the transactions returned by servers.
+For this, it fetches blokchain headers from about 10 random servers.
+In addition, Electrum servers are authenticated by SSL, in order to protect users from MITM attacks.
 
 ### Unused Output Tree in the Block chain (UOT)
 
