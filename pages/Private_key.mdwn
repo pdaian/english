@@ -11,7 +11,7 @@ Just as with any other transaction, there is risk of swept transactions to be do
 
 In contrast, bitcoind provides a facility to import a private key without creating a sweep transaction.
 This is considered very dangerous, and not intended to be used even by power users or experts except in very specific cases.
-Bitcoins can be easily stolen at any time, from a wallet which has imported an untrusted or otherwise insecure private key - this can include private keys generated offline and never seen by someone else.
+Bitcoins can be easily stolen at any time, from a wallet which has imported an untrusted or otherwise insecure private key - this can include private keys generated offline and never seen by someone else (1.1) (1.2).
 
 ##An example private key
 In Bitcoin, a private key is usually a 256-bit number (some newer wallets may use between 128 and 512 bits), which can be represented one of several ways.
@@ -58,5 +58,11 @@ It is often possible, but inadvisable and insecure, to use the address implement
 * [[Paper_wallet]]
 * [[How_to_import_private_keys]]
 * [[How_to_import_private_keys_v7+]]
+
+##References
+
+1.1: [Bitcoin StackExchange - Why doc says importing private keys is so dangerous?](https://bitcoin.stackexchange.com/questions/29948/why-doc-says-importing-private-keys-is-so-dangerous)  
+1.2: [Bitcoin StackExchange - Why so many warnings about importing private keys?](https://bitcoin.stackexchange.com/questions/18619/why-so-many-warnings-about-importing-private-keys)
+
 
 [[es:Clave privada]]
