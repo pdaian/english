@@ -1,4 +1,4 @@
-Paper wallets are wallets that are contained entirely on paper.
+**Paper wallets** are wallets that are contained entirely on paper.
 This is preferably in the form of a mnemonic  [[HD wallet|Deterministic_wallet]] seed.
 They are generally used with the goal of storing bitcoins offline in non-digital format to prevent unauthorized access.
 Using securely generated paper wallets properly will nullify the chances of your bitcoins being stolen by hackers or computer viruses.
@@ -9,7 +9,7 @@ They should not be confused with [[paper_ECDSA_private_keys]], which are a bad p
 
 The private seed is used to prove your right to spend the bitcoins transferred to the paper wallet, and as such should be kept hidden and secret.
 If the private seed on a paper wallet is exposed (for example in a photograph) then the wallet may be used by anyone who sees it.
-To guard against accidental revelation, the private key displayed on the paper wallet may be encrypted or split into several different parts ("Shamir's secret sharing scheme").
+To guard against accidental revelation, the private key displayed on the paper wallet may be encrypted or split into several different parts (for example using [Shamir's secret sharing scheme](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing)).
 At the very least, the private key should be well hidden e.g. by folding the wallet in half and sealing it shut.
 
 You can use the public seed to generate as many addresses as you need to receive bitcoins, and they will be inaccessible until the private seed is loaded.
@@ -22,7 +22,7 @@ Currently, at least [[Armory]] and [[Electrum]] support generating mnemonic code
 
 For the most security, it is advisable to generate your wallet from a [live disc](https://en.wikipedia.org/wiki/Live_CD), to ensure that the private seed is not compromised by spyware.
 To generate a safer paper wallet in this way, first "clean-boot" your computer with a bootable CD (such as a Linux Live CD) while disconnected from the Internet.
-Download a verified version of your preferred wallet software, and disconnect the computer from the internet.
+Download a verified version of your preferred wallet software or generator software, and disconnect the computer from the internet.
 Print your paper wallets or store them on external media (do not save them on the computer), and then shut down the computer.
 You may need to load an appropriate printer driver in order to print while booted from the live CD.
 
