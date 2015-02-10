@@ -16,7 +16,7 @@ Today the Bitcoin network is restricted to a sustained rate of 7 tps due to the 
 
 The protocol has two parts. Nodes send "inv" messages to other nodes telling them they have a new transaction. If the receiving node doesn't have that transaction it requests it with a getdata.
 
-The big cost is the crypto and block chain lookups involved with verifying the transaction. Verifying a transaction means some hashing and some ECDSA signature verifications. RIPEMD-160 runs at 106 megabytes/sec (call it 100 for simplicity) and SHA256 is about the same. So hashing 1 megabyte should take around 10 milliseconds and hashing 1 kilobyte would take 0.01 milliseconds - fast enough that we can ignore it.
+The big cost is the crypto and block chain lookups involved with verifying the transaction. Verifying a transaction means some hashing and some [[ECDSA]] signature verifications. RIPEMD-160 runs at 106 megabytes/sec (call it 100 for simplicity) and SHA256 is about the same. So hashing 1 megabyte should take around 10 milliseconds and hashing 1 kilobyte would take 0.01 milliseconds - fast enough that we can ignore it.
 
 Bitcoin is currently able (with a couple of simple optimizations that are prototyped but not merged yet) to perform around 8000 signature verifications per second on an quad core [Intel Core i7-2670QM 2.2Ghz processor](http://ark.intel.com/products/53469). The average number of inputs per transaction is around 2, so we must halve the rate. This means 4000 tps is easily achievable CPU-wise with a single fairly mainstream CPU.
 
