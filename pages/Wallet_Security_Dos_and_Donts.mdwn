@@ -1,0 +1,18 @@
+This article should not be considered as a replacement for the more in-depth articles on best practices, however key points in wallet security:
+
+* DO encrypt your wallet
+* DO backup your wallet
+* DO use trusted software, i.e. https://bitcoin.org/en/choose-your-wallet
+* DO keep your OS up to date and run a virus scanner
+* DO use a paper/hardware wallet for storing significant amounts
+* DO NOT store your wallet on cloud storage (Dropbox, etc.)
+* DO NOT re-use addresses (this also applies to paper wallet addresses)
+* DO NOT generate cold store keys on Internet-connected machines. If it's for cold storage, it should never be Internet connected
+
+If for whatever reason you are developing your own software wallet, DO NOT implement cryptographic tools yourself. See Sony losing the master signing key from the PS3 as an illustrative lesson in what can go wrong: http://www.exophase.com/20540/hackers-describe-ps3-security-as-epic-fail-gain-unrestricted-access/
+
+For more detail, please see the main article at https://en.bitcoin.it/wiki/Securing_your_wallet or the related articles:
+
+* https://en.bitcoin.it/wiki/Paper_wallet
+* https://en.bitcoin.it/wiki/Paper_ECDSA_private_keys
+* https://en.bitcoin.it/wiki/Hardware_wallet
