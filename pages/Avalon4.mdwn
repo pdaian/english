@@ -220,6 +220,18 @@ Avalon USB2IIC converter, USB VID:PID **29f1:33f2**
 
 * **http://build.canaan-creative.com:8080/~mikeqin/build/**
 
+### [http://downloads.canaan-creative.com/software/avalon4/openwrt/20150213_0800/ 20150213]
+
+* Increase the voltage adjustment range for individual PMU
+* Display voltage refrence in CGMiner status when CGMiner run with debug
+* Add mining mode option for Avalon4
+* Fix cutoff for individual voltage adjustment
+* Fix hash counter when used a broken Avalon4 (DH almost 100%)
+* Change voltage adjust interval from 8m to 30s (Support all MM4.1 and MM4.0 >= 401501-4778d610)
+* Add freeze safe mode function
+* Update frequency table (Step:125)
+* Rewrite mm-tools, it will not compatile with the old one
+
 ### [http://downloads.canaan-creative.com/software/avalon4/openwrt/20150119_1609/ 20150119]
 
 * Support auto adjust voltage individually(Only support on MM-4.1, MM4.0(>401501-d17f4a10))
