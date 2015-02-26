@@ -26,7 +26,7 @@ This page looks very confused/wrong in many respects. I'm not sure how it can be
 Luke, thanks for your thoughts.  Regarding your points,
 
 * Good point, I have partitioned "full-chain" into two separate subtypes (those which do and those which don't retain blocks after validating)
-* SPV clients do not verify block height.  I can take the existing 345308-block bitcoin blockchain, append a single block that re-spends coins I sent two years ago, and use that 345309-block chain to fool an SPV client.  This attack costs as me wasted hashpower whose market value is as most one block reward.  I cannot fool the Satoshi client this way even with the hashpower of the entire network at my disposal.
+* SPV clients do not verify block height.  I can take the existing 345308-block bitcoin blockchain, append a single block that re-spends coins I sent two years ago, and use that 345309-block chain to fool an SPV client.  By wasting hashpower whose market value is as most one block reward I can fool an SPV client with it, since it will appear to be the difficultywise-longest chain by one block.  I cannot fool the Satoshi client this way even with the hashpower of the entire network at my disposal.
 * True.  I think you may have hastily misread "transaction validity" as "block validity".
 * True.  I think you may have hastily misread "transaction validity" as "block validity".
 
