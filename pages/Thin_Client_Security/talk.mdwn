@@ -13,3 +13,11 @@ You also wrote:
 No, full-chain clients such as the Satoshi client do not use SPV in any way, shape, or form.  A full-chain client is a client that implements the main algorithm outlined in Satoshi's whitepaper.
 
 [Eldentyrell](User:Eldentyrell) ([[talk|User_talk:Eldentyrell]]) 03:05, 26 February 2015 (UTC)
+
+This page looks very confused/wrong in many respects. I'm not sure how it can be fixed easily, since it is unclear what exactly it intends to say.
+
+* Generally "thin clients" do not include pruned full nodes, which have processed every block, but afterward discarded (and no longer store) them.
+* Even thin clients generally verify block heights as well as depth.
+* Thin clients never (neither for height nor depth) check blocks are valid ("well-formed"?). This is the fundamental difference between full nodes vs thin clients.
+* Transaction validity is independent of its inclusion in any blockchain.
+--[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 07:58, 26 February 2015 (UTC)
