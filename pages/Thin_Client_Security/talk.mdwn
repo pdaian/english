@@ -34,6 +34,10 @@ Thanks again!
 
 [Eldentyrell](User:Eldentyrell) ([[talk|User_talk:Eldentyrell]]) 23:14, 26 February 2015 (UTC)
 
+* Since this article deals with security, I do not think the distinction between pruned vs non-pruned is relevant - both nodes have equal security implications.
+* SPV nodes are aware that your invalid 345309th block has a height higher than any other chain, and thus verify the block height before considering that chain "best". They do not, as you mention, validate the contents of any of those blocks, and can be fooled this way, but that is unrelated to the block's height.
+* I was referring to the statement that "the validity of a transaction is determined by its height", which is simply not true. A transaction is valid before and even if it is never mined.
+--[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 01:42, 27 February 2015 (UTC)
 
 Full-chain is not well defined and isn't common terminology. If you are saying the Satoshi client is full-chain, then you probably mean full node. "full network node" or "full node" is common terminology and is used in the original Bitcoin whitepaper.
 
