@@ -1,16 +1,17 @@
-[[!img "FirstBitcoinBills.jpg" size=120x120 class="right" size=200x200 title="Casascius holding early paper wallets"]]
-A paper wallet is a mechanism for storing bitcoins offline as a physical document that can be secured like cash or anything else of real-world value.
+[[!img "FirstBitcoinBills.jpg" size=120x120 class="right" size=200x200 title="Casascius holding early paper ECDSA private keys"]]
+A **paper ECDSA private key** is a mechanism for storing bitcoins offline as a physical document that can be secured like cash or anything else of real-world value.
 They are generally created by printing a brand new public address and private key onto paper, and then sending bitcoins from a wallet to the printed key's public address for safekeeping.
+Storing bitcoins this way is generally considered a bad idea.[[!template id=why]]
 
 __TOC__
 
-##Producing safe paper wallets
+##Producing safe paper keys
 
 [[!img "BitcoinPaperWallet-sample.jpg" size=120x120 class="right" size=300x300 title="Paper keypair with private key secured beneath folds"]]
 [[!img "PaperWallets-offlineaddress-com.png" size=200x200 size=120x120 class="right" title="Paper keypair"]]
-The [[ECDSA]] [[private_key]] can be represented in several formats, but typically the Wallet Import Format (WIF) is used, since keys represented that way are very short (51 characters) and thus easy to re-enter when importing or "sweeping" it for withdrawal.
+An [[ECDSA]] [[private_key]] can be represented in several formats, but typically the Wallet Import Format (WIF) is used, since keys represented that way are very short (51 characters) and thus easy to re-enter when importing or "sweeping" it for withdrawal.
 
-Several tools exist for producing paper keypairs, including [[Bitcoin_Address_Utility]], [[BitcoinPaperWallet]],  [[vanitygen]], and [[Cwallet]]. 
+Several tools exist for producing paper keypairs, including [[Bitcoin_Address_Utility]], [[vanitygen]], and [[Cwallet]]. 
 
 Care must be taken to securely generate keys since an attacker can steal stored bitcoins if it is exposed, transmitted, or generated with insufficient entropy.
 
@@ -25,7 +26,7 @@ Using these is generally considered a bad idea and inherently insecure.
 * If possible, the private key should be kept hidden, for example by using BIP38 encryption, or by folding the paper to hide the private key so that a photograph or photocopy of it will not reveal or replicate the private key.
 * A web-based generator should not be used.
 * A generator should use an appropriate source of random numbers (entropy).  This means that the generated keys aren't predictable.  If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers  (2.1), someone else who can predict the pattern can steal the balance. Ideally, randomness should NOT be human generated.
-* Remember that unlike wallets, a single paper wallet is only good to receive a single payment, and must be redeemed in its entirety.
+* Remember that unlike wallets, a single ECDSA private key is only good to receive a single payment, and must be redeemed in its entirety.
 
 ###Printer Security
 
@@ -33,7 +34,7 @@ Some advanced printers have internal storage (even hard drives) that preserve co
 
 ##Redeeming Keys and Withdrawing Funds
 
-Paper wallets are very different from wallets such as Bitcoin Core in that it is not possible to transfer (withdraw) a *portion* of a key's bitcoins.
+ECDSA private keys are very different from wallets such as Bitcoin Core in that it is not possible to transfer (withdraw) a *portion* of a key's bitcoins.
 The only way to withdraw funds is to import or "sweep" the *entire* received amount to a new address, typically a wallet or online exchange.
 Once the transfer has been confirmed, *the key should not be reused*. (4.1)
 
