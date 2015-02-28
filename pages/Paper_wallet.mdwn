@@ -5,6 +5,32 @@ Storing bitcoins this way is generally considered a bad idea.[[!template id=why]
 
 __TOC__
 
+##Use cases
+
+###Tips and gifts
+
+By creating a keypair, one can store bitcoins on a physical medium to be left as a tip or a gift.
+The recipient then sweeps the private key to their own wallet.
+
+###Physical tokens
+
+A trusted provider can hide the private key inside a tamper-resistant token, and issue them as a form of bitcoins.
+This requires those who accept it as payment to trust that when the provider produced the tokens, they loaded them with the correct amount of bitcoins, and that they have not been tampered with since then.
+To redeem the bitcoin value, the token must be destroyed to access the private key.
+Often a bitcoin address is embedded on the outside visible, but there is no guarantee (without destroying the token) that this matches the private key inside, or, even if it does, that the private key is not replicated on multiple tokens or saved by the producer.
+
+###As a wallet
+
+Sometimes people try to use ECDSA private keys as a wallet.
+However, a single ECDSA keypair can only produce one bitcoin [[address]].
+Because of this, one is forced to choose between hazardous options:
+
+* **Use the key only once to receive, and only once to send the full amount.** This requires the user to know the full amount he wants to store in advance, and often leads to the next situation:
+* **Create multiple keys.** By using more than one key, the user can receive more than once using a different address each time, including using new addresses for change. This is very complicated, and makes it easy to accidentally reuse addresses, produce the wrong change/fee combination, lose some keys, spend hours searching for the right key, etc. Not even skilled bitcoin experts are comfortable managing their own keys manually like this.
+* **Address reuseReuse the address.** This has severe privacy and security implications. For more information, see the article on [[address_reuse]].
+
+Since there is no safe way to use these for a wallet, it is generally considered inadvisable.
+
 ##Key encoding/formatting
 
 [[!img "BitcoinPaperWallet-sample.jpg" size=120x120 class="right" size=300x300 title="Paper keypair with private key secured beneath folds"]]
@@ -33,7 +59,7 @@ Even with careful code auditing, browser plugins or other websites may compromis
 * The private keys should never be saved to a computer hard drive or sent via email or other network connections.  You should also never scan/type your key into your computer, except at the moment you are redeeming it.
 * If possible, the private key should be kept hidden, for example by using BIP38 encryption, and/or by folding the paper to hide the private key so that a photograph or photocopy of it will not reveal or replicate the private key.
 * A web-based generator should not be used.
-* A generator should use an appropriate source of random numbers (entropy).  This means that the generated keys aren't predictable.  If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers  (6.1), someone else who can predict the pattern can steal the balance. Randomness should NEVER be human generated, as the human brain is incapable of secure entropy.
+* A generator should use an appropriate source of random numbers (entropy).  This means that the generated keys aren't predictable.  If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers  (10.1), someone else who can predict the pattern can steal the balance. Randomness should NEVER be human generated, as the human brain is incapable of secure entropy.
 * Remember that unlike wallets, a single ECDSA private key is only good to receive a single payment, and must be redeemed in its entirety.
 
 ###Printer Security
@@ -44,7 +70,7 @@ Some advanced printers have internal storage (even hard drives) that preserve co
 
 ECDSA private keys are very different from wallets such as Bitcoin Core in that it is not possible to transfer (withdraw) a *portion* of a key's bitcoins.
 The only way to withdraw funds is to import or "sweep" the *entire* received amount to a new address, typically a wallet or online exchange.
-Once the transfer has been confirmed, *the key should not be reused*. (8.1)
+Once the transfer has been confirmed, *the key should not be reused*. (12.1)
 
 There are various methods for copying the private key data to other wallets.
 
@@ -57,8 +83,8 @@ For this reason, sweeping is generally recommended over importing.
 
 ##References
 
-6.1: [Pseudorandomness](https://en.wikipedia.org/wiki/Pseudorandomness#Cryptography)  '' is not enough for strong cryptography''  
-8.1: [reddit.com](http://www.reddit.com/r/Bitcoin/comments/1c9xr7/psa_using_paper_wallets_understanding_change/)  ''Using Paper Wallets and Understanding Change''
+10.1: [Pseudorandomness](https://en.wikipedia.org/wiki/Pseudorandomness#Cryptography)  '' is not enough for strong cryptography''  
+12.1: [reddit.com](http://www.reddit.com/r/Bitcoin/comments/1c9xr7/psa_using_paper_wallets_understanding_change/)  ''Using Paper Wallets and Understanding Change''
 
 
 ##See Also
