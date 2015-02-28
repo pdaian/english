@@ -6,7 +6,7 @@ It is important to distinguish between block height verification and block depth
 
 A full node client verifies that all preceding blocks are valid in order to guarantee that a transaction is valid.  Currently only the Satoshi client,  libbitcoin, and btcd do full node verification.  Full nodes are the fundamental anchor of trustless security in the Bitcoin system.
 
-A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV don't verify the preceding blocks, they use the number of confirmations (whether they are valid or not) as a measure of the likelihood of a [[block chain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction.
+A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV clients don't verify the preceding blocks, they use the number of confirmations (whether they are valid or not) as a measure of the likelihood of a [[block chain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction.
 
 See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
 
