@@ -6,7 +6,7 @@ It is important to distinguish between block height verification and block depth
 
 A client verifies the height H of a block by checking that there are H block **before** it, all of which are well-formed and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client,  libbitcoin, and btcd do block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
 
-A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV clients substitute block depth for block height as a transaction irreversibility check.  All clients use block depth as a measure of the liklihood of a [[block chain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction.
+A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV clients substitute block depth for block height as a transaction acceptance check.  All clients use block depth as a measure of the liklihood of a [[block chain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction.
 
 See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
 
@@ -14,9 +14,11 @@ See also [some comments on probabilistic verification of block height](https://b
 
 The "thick" bitcoin client downloads a copy of the entire chain, including all transactions (not just headers).  It will be used as the reference point for security comparisons below.
 
-### Block '''Height''' as a Transaction Irreversibility Check
+### Block '''Height''' as a Transaction Acceptance Check
 
-A full-chain client trusts the [[difficultywise-longest|Protocol_rules#Blocks_well-formed]] block chain it can find.  Any transaction on the difficultywise-longest well-formed chain is considered irreversible.  Therefore, the irreversibility of a transaction is determined by its height -- i.e. how many blocks come *before* it.  A transaction's *depth* (the number of blocks *after* it) is used to determine the likelihood of the transaction being undone due to the emergence of a longer fork.
+A full-chain client trusts the [[difficultywise-longest|Protocol_rules#Blocks_well-formed]] block chain it can find.  Any transaction on the difficultywise-longest well-formed chain is considered to have been accepted by the network.  Therefore, the acceptance of a transaction is determined by its height -- i.e. how many blocks come *before* it.
+
+A transaction's *depth* (the number of blocks *after* it) is used to determine *irreversibility* -- the likelihood of the transaction being undone due to the emergence of a longer fork.
 
 #### [[bitcoin-qt|bitcoind]]
 
@@ -37,13 +39,13 @@ These client downloads a complete copy of the headers for all blocks in the enti
 
 This scheme is described in section 8 of the [original bitcoin whitepaper](http://bitcoin.org/bitcoin.pdf).
 
-#### Block '''Depth''' as a Transaction Irreversibility Check
+#### Block '''Depth''' as a Transaction Acceptance Check
 
-As Satoshi writes, "[thin client](the) can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it."  If we take "X" to be the "number of blocks added after it", then SPV essentially trusts that a transaction X blocks deep in the chain does not have inputs which were already spent further back in the chain.  Therefore, the irreversibility of a transaction is determined by its depth -- i.e. how many blocks come *after* it.  Other thin client protocols also include this assumption.
+As Satoshi writes, "[thin client](the) can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it."  If we take "X" to be the "number of blocks added after it", then SPV essentially trusts that a transaction X blocks deep in the chain does not have inputs which were already spent further back in the chain.  Therefore, the acceptance of a transaction is determined by its depth -- i.e. how many blocks come *after* it.  Other thin client protocols also include this assumption.
 
-This is very different from the trust model in the "thick" client: the thick client verifies that a transaction's inputs are unspent by actually checking the whole chain up to that point -- there is no "X blocks deep" involved here.  The thick client uses "X blocks deep" (aka "confirmations") only once it has already decided that a transaction is irreversible (i.e. no [[double-spends|Double-spending]]).  At that point it uses "X blocks deep" to decide how likely it is that a longer fork in the chain will emerge which excludes that transaction.
+This is very different from the trust model in the "thick" client: the thick client verifies that a transaction's inputs are unspent by actually checking the whole chain up to that point -- there is no "X blocks deep" involved here.  The thick client uses "X blocks deep" (aka "confirmations") only *after* it has already decided that a transaction is accepted (i.e. no [[double-spends|Double-spending]]), as a gauge of *irreversibility* -- how likely it is that a longer fork in the chain will emerge which excludes that transaction.
 
-It is very important to understand how the same property ("X blocks deep") is used to verify two different properties in the thick client and SPV cases.  **The thick client never uses block depth as a measure of transaction irreversibility; the SPV client does**.
+It is very important to understand how the same property ("X blocks deep") is used to verify two different properties in the thick client and SPV cases.  **The thick client never uses block depth as a measure of transaction acceptance; the SPV client does**.
 
 This is a concern in a situation where an SPV client is subjected to a double-spend attack by somebody who controls its network connection.  For example, suppose you are at a wi-fi cafe and are paying for something using your smartphone -- the cafe owner controls your network connection.  Satoshi acknowledges this implicitly when he writes that "the verification is reliable as long as honest nodes control the network" -- to be completely pedantic, this means that the verification is reliable as long as honest nodes control **the part of the network that the SPV client is able to communicate with**.  In an attack-by-ISP scenario this may not be a sufficiently strong security property.  The attacker would not need to overpower "the rest of the network" because the client is unable to communicate with it.
 
