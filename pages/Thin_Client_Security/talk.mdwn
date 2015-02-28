@@ -14,58 +14,57 @@ No, full-chain clients such as the Satoshi client do not use SPV in any way, sha
 
 [Eldentyrell](User:Eldentyrell) ([[talk|User_talk:Eldentyrell]]) 03:05, 26 February 2015 (UTC)
 
-This page looks very confused/wrong in many respects. I'm not sure how it can be fixed easily, since it is unclear what exactly it intends to say.
-
-* Generally "thin clients" do not include pruned full nodes, which have processed every block, but afterward discarded (and no longer store) them.
-* Even thin clients generally verify block heights as well as depth.
-* Thin clients never (neither for height nor depth) check blocks are valid ("well-formed"?). This is the fundamental difference between full nodes vs thin clients.
-* Transaction validity is independent of its inclusion in any blockchain.
---[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 07:58, 26 February 2015 (UTC)
-
-
-Luke, thanks for your thoughts.  Regarding your points,
-
-* Good point, I have partitioned "full-chain" into two separate subtypes (those which do and those which don't retain blocks after validating)
-* SPV clients do not verify block height.  I can take the existing 345308-block bitcoin blockchain, append a single block that re-spends coins I sent two years ago, and use that 345309-block chain to fool an SPV client.  By wasting hashpower whose market value is as most one block reward I can fool an SPV client with it, since it will appear to be the difficultywise-longest chain by one block.  I cannot fool the Satoshi client this way even with the hashpower of the entire network at my disposal.
-* True.  I think you may have hastily misread "transaction validity" as "block validity".
-* True.  I think you may have hastily misread "transaction validity" as "block validity".
-
-Thanks again!
-
-[Eldentyrell](User:Eldentyrell) ([[talk|User_talk:Eldentyrell]]) 23:14, 26 February 2015 (UTC)
-
-* Since this article deals with security, I do not think the distinction between pruned vs non-pruned is relevant - both nodes have equal security implications.
-* SPV nodes are aware that your invalid 345309th block has a height higher than any other chain, and thus verify the block height before considering that chain "best". They do not, as you mention, validate the contents of any of those blocks, and can be fooled this way, but that is unrelated to the block's height.
-* I was referring to the statement that "the validity of a transaction is determined by its height", which is simply not true. A transaction is valid before and even if it is never mined.
---[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 01:42, 27 February 2015 (UTC)
+> This page looks very confused/wrong in many respects. I'm not sure how it can be fixed easily, since it is unclear what exactly it intends to say.
+> * Generally "thin clients" do not include pruned full nodes, which have processed every block, but afterward discarded (and no longer store) them.
+> * Even thin clients generally verify block heights as well as depth.
+> * Thin clients never (neither for height nor depth) check blocks are valid ("well-formed"?). This is the fundamental difference between full nodes vs thin clients.
+> * Transaction validity is independent of its inclusion in any blockchain.
+> --[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 07:58, 26 February 2015 (UTC)
 
 
-* Ok
-* Ah, now I see why we disagree: I don't consider the last block of an ill-formed chain of 345309 blocks to be "of height 345309".
+> Luke, thanks for your thoughts.  Regarding your points,
 
-Is there a term other than "height X" you would recommend in order to describe the property of being the Xth block of a completely well-formed blockchain that obeys all the block validation rules (particularly no double-spends)?  This is the property that SPV clients are not able to check.  If there is a better name for this property I'll rewrite that section to use it.
+> * Good point, I have partitioned "full-chain" into two separate subtypes (those which do and those which don't retain blocks after validating)
+> * SPV clients do not verify block height.  I can take the existing 345308-block bitcoin blockchain, append a single block that re-spends coins I sent two years ago, and use that 345309-block chain to fool an SPV client.  By wasting hashpower whose market value is as most one block reward I can fool an SPV client with it, since it will appear to be the difficultywise-longest chain by one block.  I cannot fool the Satoshi client this way even with the hashpower of the entire network at my disposal.
+> * True.  I think you may have hastily misread "transaction validity" as "block validity".
+> * True.  I think you may have hastily misread "transaction validity" as "block validity".
 
-I think the other issue here is my use of the term "valid transaction".  I've been using that to describe a transaction that has been accepted by the network and that clients can safely assume is irreversible.  I guess that term is sort of ambiguous; I can see how it could also be used to describe mempool transactions that aren't yet part of any block but could legitimately be included in the next one.  What is the generally-accepted adjective for in-the-chain-and-safe-to-assume-is-totally-irreversible?  I've substituted "accepted transaction" in the article where that was the intended meaning, but if there's a more widely-used phrase let me know.  I also made a second edit to separate out "acceptance" from "degree of irreversibility" since "degree of irreversibility" is always measured the same way by all kinds of clients (number of confirmations, i.e. depth).
+> Thanks again!
 
-[Eldentyrell](User:Eldentyrell) ([[talk|User_talk:Eldentyrell]]) 06:02, 28 February 2015 (UTC)
+> [Eldentyrell](User:Eldentyrell) ([[talk|User_talk:Eldentyrell]]) 23:14, 26 February 2015 (UTC)
 
-I've always considered "the Nth block of a blockchain" to be an independent property from the validity of the blockchain. I'm not aware of any common term for this, but "height N" isn't generally used in that sense (although in most cases it's implied that one is talking about a valid blockchain, regardless of the height property). As for contrasting with SPV, I would suggest "fully-validat{ed,ing}" or "full node".
+> * Since this article deals with security, I do not think the distinction between pruned vs non-pruned is relevant - both nodes have equal security implications.
+> * SPV nodes are aware that your invalid 345309th block has a height higher than any other chain, and thus verify the block height before considering that chain ::;"best". They do not, as you mention, validate the contents of any of those blocks, and can be fooled this way, but that is unrelated to the block's height.
+> * I was referring to the statement that "the validity of a transaction is determined by its height", which is simply not true. A transaction is valid before and even if it is never mined.
+> --[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 01:42, 27 February 2015 (UTC)
 
-When a user assumes a transaction is confirmed/irreversible is a subjective matter, and may be before the block is mined if they trust the sender or it's of low value, or long afterward if they don't trust the mining ecosystem's balance or the value is such that they need more security. So I think the term you want there is "confirmed", but it's not a universally objective attribute.
 
---[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 07:07, 28 February 2015 (UTC)
+> ;* Ok
+> ;* Ah, now I see why we disagree: I don't consider the last block of an ill-formed chain of 345309 blocks to be "of height 345309".
+
+> Is there a term other than "height X" you would recommend in order to describe the property of being the Xth block of a completely well-formed blockchain that obeys all the block validation rules (particularly no double-spends)?  This is the property that SPV clients are not able to check.  If there is a better name for this property I'll rewrite that section to use it.
+
+> I think the other issue here is my use of the term "valid transaction".  I've been using that to describe a transaction that has been accepted by the network and that clients can safely assume is irreversible.  I guess that term is sort of ambiguous; I can see how it could also be used to describe mempool transactions that aren't yet part of any block but could legitimately be included in the next one.  What is the generally-accepted adjective for in-the-chain-and-safe-to-assume-is-totally-irreversible?  I've substituted "accepted transaction" in the article where that was the intended meaning, but if there's a more widely-used phrase let me know.  I also made a second edit to separate out "acceptance" from "degree of irreversibility" since "degree of irreversibility" is always measured the same way by all kinds of clients (number of confirmations, i.e. depth).
+
+> [Eldentyrell](User:Eldentyrell) ([[talk|User_talk:Eldentyrell]]) 06:02, 28 February 2015 (UTC)
+
+> I've always considered "the Nth block of a blockchain" to be an independent property from the validity of the blockchain. I'm not aware of any common term for this, but "height N" isn't generally used in that sense (although in most cases it's implied that one is talking about a valid blockchain, regardless of the height property). As for contrasting with SPV, I would suggest "fully-validat{ed,ing}" or "full node".
+
+> When a user assumes a transaction is confirmed/irreversible is a subjective matter, and may be before the block is mined if they trust the sender or it's of low value, or long afterward if they don't trust the mining ecosystem's balance or the value is such that they need more security. So I think the term you want there is "confirmed", but it's not a universally objective attribute.
+
+> --[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 07:07, 28 February 2015 (UTC)
 
 
-Full-chain is not well defined and isn't common terminology. If you are saying the Satoshi client is full-chain, then you probably mean full node. "full network node" or "full node" is common terminology and is used in the original Bitcoin whitepaper.
+> Full-chain is not well defined and isn't common terminology. If you are saying the Satoshi client is full-chain, then you probably mean full node. "full network node" or "full node" is common terminology and is used in the original Bitcoin whitepaper.
 
-Your definition of transaction validity isn't common and is even incompatible with the Bitcoin whitepaper.
+> Your definition of transaction validity isn't common and is even incompatible with the Bitcoin whitepaper.
 
-You added "A full-chain client trusts the [[difficultywise-longest|Protocol_rules#Blocks_well-formed]] block chain it can find." which is only true for SPV clients, so you can see why I would be confused as to what this poorly defined "full-chain" client does.
+> You added "A full-chain client trusts the [[difficultywise-longest|Protocol_rules#Blocks_well-formed]] block chain it can find." which is only true for SPV clients, so you can see why I would be confused as to what this poorly defined "full-chain" client does.
 
-I don't think the bitcoin wiki is an appropriate place to redefine terminology.
+> I don't think the bitcoin wiki is an appropriate place to redefine terminology.
 
-Finally, I am not deleting your content, I am deleting the wikis content because it is wrong. Please stop blindly reverting my edits, you removing spelling corrections indicates that you don't care about the accuracy of the wiki as much as maximizing the amount of text written by you on the wiki.
---[Lapp0](User:Lapp0) ([[talk|User_talk:Lapp0]])
+> Finally, I am not deleting your content, I am deleting the wikis content because it is wrong. Please stop blindly reverting my edits, you removing spelling corrections indicates that you don't care about the accuracy of the wiki as much as maximizing the amount of text written by you on the wiki.
+> --[Lapp0](User:Lapp0) ([[talk|User_talk:Lapp0]])
 
 ## Major Restructuring
 
