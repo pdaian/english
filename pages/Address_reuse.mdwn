@@ -7,6 +7,16 @@ It is considered a bad practice, and not something that should be done.
 Address reuse harms the privacy of not only yourself, but also others - including many not related to the transaction.
 In some cases, these risks are serious enough that they are likely in violation of reasonable consumer protection laws.
 
+When addresses are re-used, they allow others to much more easily and reliably determine that the address being reused is yours. Every time the re-used address's private key signs a fresh transaction, whoever receives it can use the histories of that address to discover information about you, and everyone who is interested in discovering the identity of the address's owner has one more target they can try to contact to discover who you are.
+
+The relationship graph in a re-used address is powerfully-linked in that **all** of the inputs to that address are necessarily joined (via the spending authority of your private key) to all of its outputs.
+
+There has been significant research into the area of what researchers are calling 'identity collapse', which is what happens when more than one Bitcoin address is strongly-linked via the Bitcoin transaction graph to another. Re-using addresses makes their job trivial. There are publically-known databases that exist, right now, that have not only collapsed millions of Bitcoin addresses, but used publically-available information to **link** those collapsed identities to individuals, and these databases are being actively maintained.
+
+While you may be okay with some random European researcher bound by his ethics board to conceal your identity from the public at-large, it is very possible that people who accept money from you may not be aware of your decision: thus, via your privacy-decreasing action, people further on the address signing chain could thus be putting **you** at risk if they spend their Bitcoin on something that catches the attention of law enforcement.
+
+Additionally, in the event that you knowingly make this choice (which you are doing, now that you've read this,) the transaction histories that you are responsible for linking in the event you are a retailer of some sort could put the privacy of your customers at risk because now your well-known singular address(es) which can be strongly linked to your corporate identity can be assumed to be economic activity with your corporate identity.
+
 See also: [Innovations that Enhance Bitcoin Anonymity](http://www.bitcoinnotbombs.com/innovations-that-enhance-bitcoin-anonymity/)
 
 ### Security
