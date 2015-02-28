@@ -49,6 +49,12 @@ I think the other issue here is my use of the term "valid transaction".  I've be
 
 [Eldentyrell](User:Eldentyrell) ([[talk|User_talk:Eldentyrell]]) 06:02, 28 February 2015 (UTC)
 
+I've always considered "the Nth block of a blockchain" to be an independent property from the validity of the blockchain. I'm not aware of any common term for this, but "height N" isn't generally used in that sense (although in most cases it's implied that one is talking about a valid blockchain, regardless of the height property). As for contrasting with SPV, I would suggest "fully-validat{ed,ing}" or "full node".
+
+When a user assumes a transaction is confirmed/irreversible is a subjective matter, and may be before the block is mined if they trust the sender or it's of low value, or long afterward if they don't trust the mining ecosystem's balance or the value is such that they need more security. So I think the term you want there is "confirmed", but it's not a universally objective attribute.
+
+--[Luke-jr](User:Luke-jr) ([[talk|User_talk:Luke-jr]]) 07:07, 28 February 2015 (UTC)
+
 
 Full-chain is not well defined and isn't common terminology. If you are saying the Satoshi client is full-chain, then you probably mean full node. "full network node" or "full node" is common terminology and is used in the original Bitcoin whitepaper.
 
