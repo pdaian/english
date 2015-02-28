@@ -1,24 +1,20 @@
 Recently there have been a number of proposals for bitcoin clients which do not store a complete copy of every block in the entire block chain.  This page will refer to all such clients as "thin clients".  This page is meant to be a place to try to make sense of the security and trust implications of the various schemes.
 
-## Block Height vs. Depth
+## Full Node vs. SPV
 
 It is important to distinguish between block height verification and block depth verification.
 
-A client verifies the height H of a block by checking that there are H block **before** it, all of which are well-formed and obey the maximum-difficulty-adjustment-rate rule.  Currently only the Satoshi client,  libbitcoin, and btcd do block height verification.  Block height is the fundamental anchor of trustless security in the Bitcoin system.
+A full node client verifies that all preceding blocks are valid in order to guarantee that a transaction is valid.  Currently only the Satoshi client,  libbitcoin, and btcd do full node verification.  Full nodes are the fundamental anchor of trustless security in the Bitcoin system.
 
-A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV clients substitute block depth for block height as a transaction acceptance check.  All clients use block depth as a measure of the liklihood of a [[block chain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction.
+A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV don't verify the preceding blocks, they use the number of confirmations (whether they are valid or not) as a measure of the likelihood of a [[block chain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction.
 
 See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
 
-## Full-Chain Clients
+## Full Node Clients
 
 The "thick" bitcoin client downloads a copy of the entire chain, including all transactions (not just headers).  It will be used as the reference point for security comparisons below.
 
-### Block '''Height''' as a Transaction Acceptance Check
-
-A full-chain client trusts the [[difficultywise-longest|Protocol_rules#Blocks_well-formed]] block chain it can find.  Any transaction on the difficultywise-longest well-formed chain is considered to have been accepted by the network.  Therefore, the acceptance of a transaction is determined by its height -- i.e. how many blocks come *before* it.
-
-A transaction's *depth* (the number of blocks *after* it) is used to determine *irreversibility* -- the likelihood of the transaction being undone due to the emergence of a longer fork.
+A full-node client uses the [[difficultywise-longest|Protocol_rules#Blocks_well-formed]] valid block chain it can find. A transaction's *depth* (the number of blocks or confirmations *after* it) is used to determine the likelihood of the transaction being double-spent due to the emergence of a longer fork.
 
 #### [[bitcoin-qt|bitcoind]]
 
@@ -28,26 +24,20 @@ A transaction's *depth* (the number of blocks *after* it) is used to determine *
 
 Once a full-chain client has downloaded the entire chain, it typically retains it (as the Satoshi client did/does).
 
-Satoshi's original paper mentions the possibility of pruning individual transactions from the Merkle tree, which allows for pruned full-chain nodes, which verify the entire transaction history but do not retain it.
+Satoshi's original paper mentions the possibility of pruning individual transactions, which allows for full nodes which verify the entire transaction history but do not retain it. Because users are required to download and verify the block chain from some other node initially, this change isn't costless.
 
 
-## Header-Only Clients
+## Simplified Payment Verification (SPV) Clients
 
-These client downloads a complete copy of the headers for all blocks in the entire block chain.  This means that the download and storage requirements scale linearly with the amount of time since bitcoin was invented; it would be preferable to have the scaling be logarithmic or even constant.
-
-### Simplified Payment Verification (SPV)
+This client downloads a complete copy of the headers for all blocks in the entire block chain.  This means that the download and storage requirements scale linearly with the amount of time since Bitcoin was invented.
 
 This scheme is described in section 8 of the [original bitcoin whitepaper](http://bitcoin.org/bitcoin.pdf).
 
-#### Block '''Depth''' as a Transaction Acceptance Check
+#### Block Depth Check
 
-As Satoshi writes, "[thin client](the) can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it."  If we take "X" to be the "number of blocks added after it", then SPV essentially trusts that a transaction X blocks deep in the chain does not have inputs which were already spent further back in the chain.  Therefore, the acceptance of a transaction is determined by its depth -- i.e. how many blocks come *after* it.  Other thin client protocols also include this assumption.
+As Satoshi writes, "[thin client](the) can't check the transaction for himself, but by linking it to a place in the chain, he can see that a network node has accepted it, and blocks added after it further confirm the network has accepted it."  If we take "X" to be the "number of blocks added after it", then SPV essentially trusts that a transaction X blocks deep will be costly to forge.
 
-This is very different from the trust model in the "thick" client: the thick client verifies that a transaction's inputs are unspent by actually checking the whole chain up to that point -- there is no "X blocks deep" involved here.  The thick client uses "X blocks deep" (aka "confirmations") only *after* it has already decided that a transaction is accepted (i.e. no [[double-spends|Double-spending]]), as a gauge of *irreversibility* -- how likely it is that a longer fork in the chain will emerge which excludes that transaction.
-
-It is very important to understand how the same property ("X blocks deep") is used to verify two different properties in the thick client and SPV cases.  **The thick client never uses block depth as a measure of transaction acceptance; the SPV client does**.
-
-This is a concern in a situation where an SPV client is subjected to a double-spend attack by somebody who controls its network connection.  For example, suppose you are at a wi-fi cafe and are paying for something using your smartphone -- the cafe owner controls your network connection.  Satoshi acknowledges this implicitly when he writes that "the verification is reliable as long as honest nodes control the network" -- to be completely pedantic, this means that the verification is reliable as long as honest nodes control **the part of the network that the SPV client is able to communicate with**.  In an attack-by-ISP scenario this may not be a sufficiently strong security property.  The attacker would not need to overpower "the rest of the network" because the client is unable to communicate with it.
+This is very different from the trust model in the "thick" client: the thick client verifies that a transaction's inputs are unspent by actually checking the whole chain up to that point -- there is no "X blocks deep" involved here. At that point it uses "X blocks deep" to decide how likely it is that a longer fork in the chain will emerge which excludes that transaction.
 
 
 #### [[bitcoinj|BitCoinJ]]
@@ -78,21 +68,17 @@ There have been several proposals (the first appears to be [this one](https://bi
 
 If such UOT hashes were included in the block chain, a client which shipped with a [checkpoint](https://en.bitcoin.it/wiki/Vocabulary) block that had a UOT would only need to download blocks after the checkpoint.  Moreover, once the client had downloaded those blocks and confirmed their UOTs, it could discard all but the most recent block containing a UOT.
 
-This would also let a thin client reduce the question of "is this output unspent" to the question of "is this block super-well-formed" where "well-formed" means "well-formed according to the normal block chain rules and additionally has an Unused Output Tree which is accurate and truthful".  This is still a long way from the low level of trust involved in the thick client, but it is a major improvement over all existing proposals.
-
-It is unlikely that bitcoin would ever arrive at a state where every single block had a UOT, since this would require upgrading 100% of the miners on the network, or else convincing enough miners to reject blocks which do not contain a UOT.  The latter strategy risks creating block chain forks, which can be expensive (in reward terms) to miners.  Therefore, any UOT strategy would need to cope with the fact that not every block contains a UOT.
-
-Hostile miners may insert blocks into the chain which have what claims to be a UOT, but which is actually invalid.  It is unlikely that such blocks could be kept out of the chain because, again, this would require adding a new block well-formedness criterion, and miners implementing this new criterion would risk "mining on the wrong side" of a fork, which could cost them a lot of money.  Therefore, any UOT strategy would need to cope with the fact that not every block containing a UOT entry can be trusted.
+Hostile miners may insert blocks into the chain which have what claims to be a UOT, but which is actually invalid.  It is unlikely that such blocks could be kept out of the chain because, again, this would require adding a new block validity criterion, and miners implementing this new criterion would risk "mining on the wrong side" of a fork, which could cost them a lot of money.  Therefore, any UOT strategy would need to cope with the fact that not every block containing a UOT entry can be trusted.
 
 Note that at the present moment no standard format for such Unused Output Tree hashes has been agreed upon, nor do any of the blocks in the chain contain them.  The [ultraprune](https://bitcointalk.org/index.php?topic=91954) feature added to bitcoind-0.8 maintains a similar data structure on the client's disk.  It does not put this data structure or its hash anywhere in the block chain.
 
 ## Server-Trusting Clients
 
-These clients involve some (usually low) level of trust in the server they rely upon.  Mechanisms for authenticating the server, and for confirming that the server has not been compromised, are usually not explained.
+These clients involve a high level of trust in the server they rely upon.  Mechanisms for authenticating the server, and for confirming that the server has not been compromised, are usually not explained.
 
 All thin clients listed below currently connect to a single server, and are vulnerable to an attack similar to a double-spend. The attack can be run by that single server - the server can just lie to them that they received a Bitcoin transaction, and they, assuming the server does not lie, perform some service, transfer funds or send goods without actually receiving any Bitcoin in exchange. Therefore, they are implicitly trusting it.
 
-Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (15.1).  [This post](https://bitcointalk.org/index.php?topic=88208.msg975201#msg975201) on bitcointalk explains how some governments (notably Iran and China) already perform these sorts of attacks on their own citizens, with the coerced assistance of SSL certificate authorities.
+Future enhancements have been suggested that will have the client talk to multiple servers and broadcast transactions and query all of them.  Unfortunately it is well known to security researchers that this does not actually increase security; it simply makes the exploits more complicated and difficult to find.  Security researchers have a name for this phenomenon: it is called a "Sybil attack" (13.1).  [This post](https://bitcointalk.org/index.php?topic=88208.msg975201#msg975201) on bitcointalk explains how some governments (notably Iran and China) already perform these sorts of attacks on their own citizens, with the coerced assistance of SSL certificate authorities.
 
 Clients with a checkpoint (even a very old one) that download and validate the headers for the whole block chain are [not vulnerable](http://bitcoinmedia.com/the-irc-bootstrap-method-is-flawed/#comment-4243) to Sybil attacks in the following sense: they can always ensure that an attack would cost more than the amount being stolen.
 
@@ -111,4 +97,4 @@ Clients with a checkpoint (even a very old one) that download and validate the h
 [[!tag "Technical"]]
 [[!tag "Clients"]]
 [[!tag "Security"]]
-15.1: http://en.wikipedia.org/wiki/Sybil_attack
+13.1: http://en.wikipedia.org/wiki/Sybil_attack
