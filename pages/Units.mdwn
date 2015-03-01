@@ -1,13 +1,31 @@
-While units in Bitcoin follow the Standard Metric Notation system, this page lists the most commonly used units. These can be written/typed/expressed in any number of ways. From using some form of the prefix, to an abbreviation of both the prefix and adding bit/bitcoin. Bitcoin as a unit of account is commonly written without capitalization.
+While units in Bitcoin usually follow the Standard Metric Notation system, this page lists the most commonly-used units. These can be expressed in any number of ways, from using some form of the prefix to an abbreviation of both the prefix and adding Bitcoin. Bitcoin as a unit of account is commonly written without capitalization, but since it is not a genericized term yet and refers to one specific type of crypto-currency, capitalization is left as an exercise for the reader.
 
 
 
 |Unit |Abbreviation |Decimal (BTC) |Alternate names |Info
 |---|---|---|---|---
-|bitcoin |BTC |1 |coin |one bitcoin
-|millibitcoin |mBTC |0.001 |millibit, millicoin, and millie |thousandth of a bitcoin
-|microbitcoin |μBTC |0.000001 |bit |millionth of a bitcoin
-|satoshi |sat |0.00000001 |*none*|100 millionth of a bitcoin, the smallest unit currently possible to represent, named after the inventor
+|Algorithmic Max |- |20,999,999.9769 (1.1)|- |Current Max Possible: 20999839.77085749 (1.2)
+|megaBitcoin |MBTC |1,000,000 |- |-
+|kiloBitcoin |kBTC |1,000 |- |-
+|Original Block Reward |- |50 |- |Until block 210000
+|Current Block Reward |- |25 |- |As of Block 345747 (1.3)
+|decaBitcoin |daBTC |10 |- |-
+|Bitcoin |BTC |1 |coin |one bitcoin
+|deciBitcoin |dBTC |0.1 |- |one tenth of a Bitcoin
+|milliBitcoin |mBTC |0.001 |millibit, millicoin, and millie |thousandth of a Bitcoin
+|microBitcoin |μBTC |0.000001 |bit |millionth of a Bitcoin
+|Finney (1.4)|- |0.0000001 |Finney |10 millionth, 1e-7
+|Satoshi |- |0.00000001 |*none*|100 millionth, 1e-8, smallest possible unit
 
 
-Alternate systems for representing Bitcoin units exist, such as [[Tonal Bitcoin (TBC)|Tonal_Bitcoin]].
+For more information about Tonal Bitcoin, see its page, here: [[Tonal Bitcoin (TBC)|Tonal_Bitcoin]].
+
+##References
+
+1.1: [Wolfram Alpha Calculation](http://www.wolframalpha.com/input/?i=%28sum%28210000*floor%285000000000%2F2^i%29%29%2C+i%3D0+to+32%29%2F10000000)  
+1.2: Current actually possible must take into account duplicate coinbases, destroyed fees, and provably destroyed coin outputs including the unspendable Genesis block. Some of this can be derived from 'bitcoin-cli gettxoutsetinfo' and subtracting that value from the then-current theoretically-possible maximum. As of this writing, it is 160.20604251 of unspendable BTC.  
+1.3: Next halving will occur at Block 420000.  
+1.4: [After Hal Finney, Bitcoin Pioneer](http://www.reddit.com/r/Bitcoin/comments/2ewp3z/i_propose_we_rename_00000001_btc_as_the_finney/)
+
+
+[[de:Einheiten]]
