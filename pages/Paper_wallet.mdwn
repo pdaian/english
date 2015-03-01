@@ -1,12 +1,8 @@
 [[!img "FirstBitcoinBills.jpg" size=120x120 class="right" size=200x200 title="Casascius holding early paper wallets"]]
 
-A paper wallet is a mechanism for storing bitcoins offline as a physical document that can be secured like cash or anything else of real-world value. It is only a wallet in the sense that it can store value. However, since a paper wallet only makes use of a single key and address pair, it should not be confused with a true hardware or software bitcoin wallet, which can facilitate the full spectrum of bitcoin transactions and multiple addresses.
+In the most specific sense, a *paper wallet* contains all of the data necessary to generate any number of Bitcoin [[private_key]]s, forming a wallet of keys. However, people often use the term to mean *any* way of storing bitcoins offline as a physical document. This second definition also includes **paper keys** and **redeemable codes**. A paper key is a single key written on paper that is used multiple times like a wallet (this is strongly [[discouraged|address_reuse]]). A redeemable code is a single key intended to be funded and "redeemed" only once: these are commonly used for gifts and as part of physical Bitcoin coins/notes.
 
-In some cases, it may be preferable to produce [[Hierarchical_Deterministic_Wallet_Backups]], which can also be printed on paper and physically secured.
-
-Paper wallets are generally created by printing a brand new private key onto paper, usually along with a bitcoin [[address]] derived from the key, and then sending bitcoins from a wallet to that address for safekeeping.
-
-Storing bitcoins on paper wallets is not safe unless very strict security precautions are undertaken during their initial preparation. (See below.) Furthermore, paper wallets should not be reused for repeated deposits (as it reduces privacy) or for multiple withdrawals  (as this may reduce the underlying cryptographic security at some point in the future.) Ideally, they should be used as "deposit once, sweep once" tools. 
+Storing bitcoins on paper wallets is not safe unless very strict security precautions are undertaken during their initial preparation. (See below.)
 
 __TOC__
 
@@ -24,47 +20,54 @@ This requires those who accept it as payment to trust that when the provider pro
 To redeem the bitcoin value, the token must be destroyed to access the private key.
 Often a bitcoin address is embedded on the outside visible, but there is no guarantee (without destroying the token) that this matches the private key inside, or, even if it does, that the private key is not replicated on multiple tokens or saved by the producer.
 
-###As a wallet
+###Wallets
 
-Sometimes people try to use paper wallets as a true bitcoin wallet.
-However, a single paper wallet can only represent one bitcoin [[address]].
-Because of this, one is forced to choose between hazardous options:
+Proper paper wallets are often a very secure way of storing bitcoins, since they are not typically exposed to malware. They can also be easily stored securely in safes and safe deposit boxes. However, it may be more difficult to securely "backup" paper wallets, and due to the current sub-optimal software support, it may be easier to make a mistake that causes loss of bitcoins.
+
+Sometimes people try to use single keys as true bitcoin wallets. However [[address_reuse]] is very bad for privacy and security. Because of this, one is forced to choose between hazardous options:
 
 * **Use the key only once to receive, and only once to send the full amount.** This requires the user to know the full amount he wants to store in advance, and often leads to the next situation:
 * **Create multiple keys.** By using more than one key, the user can receive more than once using a different address each time, including using new addresses for change. This is very complicated, and makes it easy to accidentally reuse addresses, produce the wrong change/fee combination, lose some keys, spend hours searching for the right key, etc. Not even skilled bitcoin experts are comfortable managing their own keys manually like this.
-* **Reuse the address.** This has severe privacy and security implications. For more information, see the article on [[address_reuse]].
 
-Since there is no safe way to use these for a wallet, it is generally considered inadvisable.
+Therefore, it is highly recommended that you use proper paper wallets which allow you to generate an infinite number of addresses from a single seed.
 
-##Key encoding/formatting
+##Encoding/formatting
 
 [[!img "BitcoinPaperWallet-sample.jpg" size=120x120 class="right" size=300x300 title="Paper keypair with private key secured beneath folds"]]
 [[!img "PaperWallets-offlineaddress-com.png" size=200x200 size=120x120 class="right" title="Paper keypair"]]
-A paper wallet can be represented in several formats, but typically the Wallet Import Format (WIF) is used, since keys represented that way are very short (51 characters) and thus easy to re-enter when importing or "sweeping" it for withdrawal.
+Proper, multi-key paper wallets usually take the form of a multi-word  [[HD wallet|Deterministic_wallet]] seed mnemonic. The list of several words corresponds to some binary data that is used to generate all of the addresses. Words are used to make it easier to avoid and correct errors. Trying to memorize an entire seed mnemonic is very difficult and is generally not recommended.
+
+A single key (for use in insecure single-key paper wallets or redeemable codes) can be represented in several formats, but typically the Wallet Import Format (WIF) is used, since keys represented that way are very short (51 characters) and thus easy to re-enter when importing or "sweeping" it for withdrawal.
 
 ##Creation of a paper wallet
 
 ###Generation of secure keys
 
-Care must be taken to securely generate keys since an attacker can steal stored bitcoins if it is exposed, transmitted, or generated with insufficient entropy.
+The private seed is used to prove your right to spend the bitcoins transferred to the paper wallet, and as such should be kept hidden and secret.
+If the private seed on a paper wallet is exposed (for example in a photograph) then the wallet may be used by anyone who sees it.
+To guard against accidental revelation, the private key displayed on the paper wallet may be encrypted or split into several different parts (for example using [Shamir's secret sharing scheme](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing)).
+At the very least, the private key should be well hidden e.g. by folding the wallet in half and sealing it shut.
 
-Several tools exist for producing paper wallets, including [[Bitcoin_Address_Utility]], [[vanitygen]], and [[Cwallet]]. 
+Currently, at least [[Armory]] and [[Electrum]] support generating mnemonic codes for their wallets, which can be written down or printed to make a multi-key paper wallet.
+
+Several tools exist for producing single keys, including [[Bitcoin_Address_Utility]], [[vanitygen]], and [[Cwallet]]. Again, using single keys for anything except one-time *transfers* of bitcoins is strongly [[discouraged|address_reuse]].
 
 ###Web-based key generators
 
-Some websites feature free open-source client-side keypair generators written in JavaScript.
-Keypairs generated by JavaScript or using websites are generally considered inherently weak and insecure, and unless the code of the website is audited every time it is used, it may leak the keys to the server.
+Some websites feature free open-source client-side keypair/wallet generators written in JavaScript.
+Keypairs/wallets generated by JavaScript or using websites are generally considered inherently weak and insecure, and unless the code of the website is audited every time it is used, it may leak the keys to the server.
 Even with careful code auditing, browser plugins or other websites may compromise the environment.
 
 ###Recommendations
 
-* Keys should be produced on a computer not connected to the Internet.
-* Be aware that malware often allows a remote third party to view your screen and see your keystrokes, and these can compromise the integrity of your key.  Also consider that antivirus software cannot completely rule out the possibility of malware.  However, booting from a [live disc](https://en.wikipedia.org/wiki/Live_CD) prevents most malware from running.
-* The private keys should never be saved to a computer hard drive or sent via email or other network connections.  You should also never scan/type your key into your computer, except at the moment you are redeeming it.
-* If possible, the private key should be kept hidden, for example by using BIP38 encryption, and/or by folding the paper to hide the private key so that a photograph or photocopy of it will not reveal or replicate the private key.
+* Disconnecting from the Internet guarantees that that the paper wallet generator is truly self-contained and isn't transmitting your keys online. 
+* Verifying the integrity of the code (and the trustworthiness of the author) is important to make sure a hacker hasn't modified the download so that it generates predictable seeds instead of truly random ones.
+* Remember, spyware and viruses often attempt to monitor your computer activities so that their authors can steal from you. They are interested in passwords to online accounts, and anything of value. Bitcoin wallets are something of value that have already been targeted by malware. If your computer is infected with spyware or viruses - even if there are no symptoms, or your antivirus isn't reporting anything - then anything you type, view, or save on your computer, could potentially be stolen by someone remotely controlling your computer. Your private seed can then be intercepted while you enter it, so only enter a Bitcoin private seed into your computer when you are certain it is secure (such as a fresh boot of a LiveCD).
+* The wallet should never be saved to a computer hard drive or sent via email or other network connections.  You should also never scan/type your key into your computer, except at the moment you are using it.
+* If possible, the wallet should be kept hidden, for example by using BIP38 encryption (single keys only), and/or by folding the paper to hide the private key so that a photograph or photocopy of it will not reveal or replicate the private key.
 * A web-based generator should not be used.
 * A generator should use an appropriate source of random numbers (entropy).  This means that the generated keys aren't predictable.  If the addresses come from a predictable or partially-predictable patterns like pseudorandom numbers  (10.1), someone else who can predict the pattern can steal the balance. Randomness should NEVER be human generated, as the human brain is incapable of secure entropy.
-* Remember that unlike wallets, a single paper wallet is only good to receive a single payment, and must be redeemed in its entirety.
+* Remember that unlike wallets (paper or otherwise), a single paper key is only good to receive a single payment, and must be redeemed in its entirety.
 
 ###Printer Security
 
@@ -72,7 +75,9 @@ Some advanced printers have internal storage (even hard drives) that preserve co
 
 ##Redeeming Keys and Withdrawing Funds
 
-Paper wallets are very different from wallets such as Bitcoin Core in that it is not possible to transfer (withdraw) a *portion* of a key's bitcoins.
+This section applies only to single-key paper "wallets".
+
+Paper keys, when used as wallets, are very different from wallets such as Bitcoin Core in that it is not possible to transfer (withdraw) a *portion* of a key's bitcoins.
 The only way to withdraw funds is to import or "sweep" the *entire* received amount to a new address, typically a wallet or online exchange.
 Once the transfer has been confirmed, *the key should not be reused*. (12.1)
 
