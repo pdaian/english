@@ -110,7 +110,7 @@ See also [[BIP_0016]]
 
 #### Generation
 
-Generations have a single input, and this input has a "coinbase" parameter instead of a scriptSig. The data in "coinbase" can be anything; it isn't used. Bitcoin puts the current compact-format [[target]] and the arbitrary-precision "extraNonce" number there, which increments every time the Nonce field in the [[block header|block_hashing_algorithm]] overflows. Outputs can be anything, but Bitcoin creates one exactly like an IP address transaction.
+Generations have a single input, and this input has a "[[coinbase|Coinbase]]" parameter instead of a scriptSig. The data in "coinbase" can be anything; it isn't used. Bitcoin puts the current compact-format [[target]] and the arbitrary-precision "extraNonce" number there, which increments every time the Nonce field in the [[block header|block_hashing_algorithm]] overflows. Outputs can be anything, but Bitcoin creates one exactly like an IP address transaction.
 The extranonce contributes to enlarge the domain for the proof of work function. Miners can easily modify nonce (4byte), timestamp and extranonce (2 to 100bytes).
 
 ### general format (inside a block) of each input of a transaction - Txin
