@@ -1,0 +1,35 @@
+[[!template id=stub]]
+
+**Proof of Ownership** is a method that uses the Bitcoin's decentralized ledger (also called [blockchain](https://en.bitcoin.it/wiki/Block_chain)) or Bitcoin-related technologies to track the different owners of a certain information over the time.
+
+This technique can be used by artists or businesses to certify the integrity, date of publication and ownership of their creations or contracts.
+
+
+## Technology
+### Using the Bitcoin blockchain
+The Bitcoin Core protocol now accepts raw data transactions up to 40 bytes per output using the opcode **OP_RETURN**.
+Putting the hash of the signature of a file's hash in the blockchain makes the owner of the private key associated with the signature the owner of the file in the blockchain (as long as someone else doesn't show up with a proof certified before).
+
+### Using a new blockchain
+It's also possible to create a new blockchain for this purpose. This blockchain wouldn't only store coins but also notarized proofs. 
+
+## Content of a proof
+### Ownership
+Only people with the private key associated with the proof can prove they are the owner.
+
+### Existence
+A Proof of Ownership is always attached to a piece of data. Certifying the ownership of a certain information in the blockchain also proves that this information was known/existed at a certain time.
+
+### Integrity
+The Proof of Ownership is always attached to a piece of data using cryptographic functions. This makes it impossible to alter the data after certification. If one single bit is modified, then the whole certificate becomes invalid.
+
+### Authenticity
+Because proofs are logged in the blockchain, it makes it easy to make transfers of ownership and find the original issuer of a certificate. Certificates can’t be “double-spent”.
+
+## Usages
+
+* [bitproof.io](https://bitproof.io/) - Certify your files and ideas for free in the Bitcoin blockchain
+* [coinsecrets.org](http://coinsecrets.org/) - list of metadata recently embedded in the bitcoin blockchain using OP_RETURN outputs.
+* [github.com](https://github.com/bitcoinjs/bitcoinjs-lib/blob/master/test/integration/advanced.js#L24) Creating OP_RETURN transactions in the blockchain
+
+[[!tag "Proof-of-x"]]
