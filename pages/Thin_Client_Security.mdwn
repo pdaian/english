@@ -8,8 +8,6 @@ A full node client verifies that all preceding blocks are valid in order to guar
 
 A client verifies the depth D of a block by checking that there are D blocks **after** it (also called "confirmations"), all of which are well-formed.  SPV clients don't verify the preceding blocks, they use the number of confirmations (whether they are valid or not) as a measure of the likelihood of a [[block chain reorganization|Chain_Reorganization]] producing a new longer fork which excludes the transaction.
 
-See also [some comments on probabilistic verification of block height](https://bitcointalk.org/index.php?topic=88208.msg987429#msg987429).
-
 ## Full Node Clients
 
 The "thick" bitcoin client downloads a copy of the entire chain, including all transactions (not just headers).  It will be used as the reference point for security comparisons below.
