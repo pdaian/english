@@ -20,7 +20,7 @@ If you are shipping goods manually, you can use the Bitcoin software to check fo
 
 If you are delivering digital goods or services and want to be able to deliver instantly upon payment and/or confirmation, you can use a third-party service such as [[Bitcoin_Notify]] to tell your website when a payment has been received.  This sort of service requires no significant API implementation - they will simply make a POST to your website or send you an e-mail when a payment has been received on one of your addresses.
 
-If you keep Bitcoins off your web server, this ensures your wallet cannot be stolen if your web server experiences a security intrusion.  Your risk becomes limited to the possibility that a successful intruder could add his own addresses to your address pool and steal funds from a few incoming orders until you detect the problem, however, this is a relatively controllable risk.
+If you keep Bitcoins off your web server, this ensures your wallet cannot be stolen if your web server experiences a security intrusion.  Your risk becomes limited to the possibility that a successful intruder could add his own addresses to your address pool and steal funds from a few incoming orders until you detect the problem, however, this is a [[relatively controllable risk|Deterministic_wallet]].
 
 ###Using offchain payment networks
 
