@@ -24,10 +24,6 @@ The format of this file is Berkeley DB.  Tools that can manipulate wallet files 
 
 The [[Armory]] client uses a custom [binary wallet format](http://bitcoinarmory.com/developers/armory-wallet-files/).
 
-### [[Bitcoin_Wallet]]
-
-[[!img "bitcoin_wallet.png" size=192x192]] Bitcoin Wallet uses the bitcoinj [protobuf](http://code.google.com/p/protobuf/) format for its wallet file. However, due to Android isolation of applications, it is impossible to access the wallet file as a non-root user.
-
 ### Blockchain.info
 
 Blockchain.info use a plain text JSON wallet format documented [here](https://blockchain.info/wallet/wallet-format). Private keys Keys are stored in base58.
