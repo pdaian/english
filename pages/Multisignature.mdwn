@@ -1,10 +1,10 @@
 Multisigniture (multisig) refers to requiring more than one key to authorize a Bitcoin [[transaction]].
 
-Consider the following scenario: (1.1)<blockquote>Suppose I am working with a company that wants to accept Bitcoin for international trades.
+Consider the following scenario:<blockquote>Suppose I am working with a company that wants to accept Bitcoin for international trades.
 
 The company, for security reasons, would not want a single one of its employees to have access to the company BTC wallet's password. Any transaction would have to meet the approval of more than one employee.
 
-Is this possible already? If not, how could it be implemented with public-key cryptography?</blockquote>Multisig is the the solution to this.
+Is this possible already? If not, how could it be implemented with public-key cryptography? (1.1)</blockquote>Multisig is the the solution to this.
 
 ##Implementations
 Shamir's [Secret Sharing](https://en.wikipedia.org/wiki/Secret_sharing) Scheme (ssss) (2.1) is a general software implementation of multisig.
@@ -19,6 +19,9 @@ A 2of3 multisig address can be created by following these steps: (4.1)
 <blockquote><ol><li>Gather (or generate) 3 bitcoin addresses, on whichever machines will be participating, using getnewaddress or getaccountaddress RPC commands (or copy and paste from the GUI).</li>
 <li>Get their public keys using the <tt>validateaddress</tt> [[RPC|API_reference_%28JSON-RPC%29]] command 3 times.</li>
 <li>Then create a 2-of-3 multisig address using addmultisigaddress; e.g.<blockquote><code>bitcoind addmultisigaddress 2 '["044322868cb17d64dcc22185ae2d4493111d73244c3668f8ac79ecc79c0ba8d30a6756d0fa20157 709af3281cc721c7f53321a8cabda29b77900b7e4fe0174b114","..second pubkey..","..third pubkey.."]'</code></blockquote></li></ol><tt>addmultisigaddress</tt> returns the multisignature address. Be a little careful, the public keys are raw hexadecimal and don't contain checksums like bitcoin addresses do. You can then send funds into that 2-of-3 transaction using the normal sendtoaddress/sendmany RPC commands, or the GUI (or anything that's been updated to recognize multisig addresses). (4.2)</blockquote>
+
+##History of Multisigniture
+Multisigniture has been used for thousands of years to protect the security of crypts holding precious relics of saints. The superior of a monastery would give monks only partial "keys" for gaining access to the precious relics; the monks would not know they only held a partial key. Thus, no single monk could gain access to and possibly steal the precious relics.
 
 ##References
 
