@@ -1,35 +1,35 @@
-###[http://www.youtube.com/watch?v=mrlgw5KpkXM Steve Gibson's Explanation of Bitcoin]=
+**[Steve Gibson's Explanation of Bitcoin](http://www.youtube.com/watch?v=mrlgw5KpkXM)**
 
 ####Out-of-Date Information
 
-* Project is not on SourceForge anymore. It's on GitHub.  (3.1)
+* Project is not on SourceForge anymore. It's on GitHub.  (2.1)
 * We no longer go to an IRC chat room to find peers. We use DNS-based host seeding.
 * We have gone through a reward halving already. So his 50-bitcoin-reward is now out-of-date.
 * He references the EFF bitcoin donation page, which is no longer available.
 * He says coin creation rate is 300 coins per hour within the entire system. Since the block halving, this is no longer the case.
-* The network is no longer 186GH/s. It is as of this writing 36TH/s. (3.2)
+* The network is no longer 186GH/s. It is as of this writing 36TH/s. (2.2)
 * The UI no longer works in only two decimal digits of precision.
 * One can no longer use bitcoind to directly generate coins, nor is CPU mining of basically any worth.
 
 ####Factual Inaccuracies
 
 * Asserts Satoshi is Japanese. We don't know that.
-* He asserts that currencies are "synthetic", but people use objects with instrinsic value all the time as currency, so this is incorrect unless you accept the narrow definition of "currency" as a "modern money system issued by a government."  (4.1)
-* Humans didn't just choose gold just because it was scarce. We chose gold for a whole host of other properties. (4.2)
-* Satoshi's paper doesn't fully explain how bitcoin works, or else we'd all be able to just point to that paper and let newbies read it. (4.3)
+* He asserts that currencies are "synthetic", but people use objects with instrinsic value all the time as currency, so this is incorrect unless you accept the narrow definition of "currency" as a "modern money system issued by a government."  (3.1)
+* Humans didn't just choose gold just because it was scarce. We chose gold for a whole host of other properties. (3.2)
+* Satoshi's paper doesn't fully explain how bitcoin works, or else we'd all be able to just point to that paper and let newbies read it. (3.3)
 * It was incorrectly claimed that Adam Back invented the concept of proof of work.  Bitcoin does use Back's hashcash proof-of-work because bitcoin needs specific properties and hashcash is the simplest (and so far only) proof of work with these required properties (primecoin maybe the new exception).  But the PoW concept is older, and due to Dwork & Naor in their crypto 1992 paper.
 * Explanation of hashing is wrong: To get 20 bits of 0 at the beginning of a hash, you still don't get  a **guarantee** that after 2<sup>20</sup> hashes, you have all zeroes, and that half that number on average are what's necessary to find a 20-zero solution. Basically this whole explanation is just plain wrong.
 * Hashcash didn't fail because legitimate mailing lists are indistinguishable from spammers. He states that there are no measures that could be taken to allow legit mass-mailing lists while denying spamming. This is factually incorrect.
-* The public key of the signer of a transaction is NOT included in the transaction itself. (4.3)
+* The public key of the signer of a transaction is NOT included in the transaction itself. (3.3)
 * He says multiple times that all nodes on the network are busy mining. This is not the case at all, nor was it for months prior to the video's creation date, which was February, 2011.
 * The blockchain is not the chain "up to the most recent block that anyone has created." It is the chain of most-work-done. Counter-examples include the possibility of multiple competing sibling blocks, and stale blocks arriving too late.
 * He equates the **number of zeroes in front** of the difficulty target directly with the integer-sounding difficulty.
 * Gibson says multiple times it is completely anonymous currency. **False**.
 * He says when you first fire up bitcoin it creates "a keypair." It's actually a whole bunch of them.
 * Since bitcoin is not anonymous, when he says there's no way of knowing who is behind addresses, this is misleading.
-* There **are** ways in fact to track bitcoin users, even if you create all the pubkeys you want. Staying relatively anonymous doesn't require you to just create a bunch of pubkeys. It is quite a bit harder than that. (4.4) (4.5)
+* There **are** ways in fact to track bitcoin users, even if you create all the pubkeys you want. Staying relatively anonymous doesn't require you to just create a bunch of pubkeys. It is quite a bit harder than that. (3.4) (3.5)
 * CPU mining is basically no point anymore. Nor was there a point even back then.
-* 21,000,000 is not the real number. The real number of bitcoins ever created in the far future will be 20999839.77085750 - 0.00000001 bitcoins, assuming nobody ever again does what midnightmagic did (4.6) (4.7), and pays themselves less, **and** that there are no further bugs in the program which incidentally destroy more bitcoins.
+* 21,000,000 is not the real number. The real number of bitcoins ever created in the far future will be 20999839.77085750 - 0.00000001 bitcoins, assuming nobody ever again does what midnightmagic did (3.6) (3.7), and pays themselves less, **and** that there are no further bugs in the program which incidentally destroy more bitcoins.
 
 ####Imprecise Wording
 
@@ -41,13 +41,14 @@
 
 ###References
 
-3.1: [bitcoin on Github](http://github.com/bitcoin/bitcoin) , The primary Bitcoin project page on Github  
-3.2: [Excellent hashrate graphs](http://bitcoin.sipa.be) , sipa built a regularly-updated set of hashrate graphs  
-4.1: [Investopedia "Currency" Definition](http://www.investopedia.com/terms/c/currency.asp) , A definition of the term as per an online reference  
-4.2: [Why Gold for Currency](http://www.npr.org/blogs/money/2011/02/15/131430755/a-chemist-explains-why-gold-beat-out-lithium-osmium-einsteinium) , Reasons why gold was the best (and perhaps only) choice for currency on Earth  
-4.3: [Bitcoin: A Peer-to-Peer Electronic Cash System](http://bitcoin.org/bitcoin.pdf) , The seminal paper by Satoshi Nakamoto himself  
-4.4: [Bitcoin - An Analysis](http://www.youtube.com/watch?v=-FaQNPCqG58) , A 28c3 talk describing in depth some possible methods for de-anonymizing users, amongst quite a number of other topics studied  
-4.5: [Black OPs of TCP/IP](http://www.youtube.com/watch?v=gQoykhNoBbY) , Dan Kaminsky rambling about Bitcoin security  
-4.6: [(in his case, as a tribute)](https://bitcointalk.org/index.php?topic=7253.msg184414#msg184414) , midnightmagic claims to have underpaid himself by 1x10<sup>-8</sup>, but he accidentally threw away a bunch of fees too  
-4.7: [124724](http://blockexplorer.com/b/124724) , the full blockexplorer decode of the underpay block
+2.1: [bitcoin on Github](http://github.com/bitcoin/bitcoin) , The primary Bitcoin project page on Github  
+2.2: [Excellent hashrate graphs](http://bitcoin.sipa.be) , sipa built a regularly-updated set of hashrate graphs  
+3.1: [Investopedia "Currency" Definition](http://www.investopedia.com/terms/c/currency.asp) , A definition of the term as per an online reference  
+3.2: [Why Gold for Currency](http://www.npr.org/blogs/money/2011/02/15/131430755/a-chemist-explains-why-gold-beat-out-lithium-osmium-einsteinium) , Reasons why gold was the best (and perhaps only) choice for currency on Earth  
+3.3: [Bitcoin: A Peer-to-Peer Electronic Cash System](http://bitcoin.org/bitcoin.pdf) , The seminal paper by Satoshi Nakamoto himself  
+3.4: [Bitcoin - An Analysis](http://www.youtube.com/watch?v=-FaQNPCqG58) , A 28c3 talk describing in depth some possible methods for de-anonymizing users, amongst quite a number of other topics studied  
+3.5: [Black OPs of TCP/IP](http://www.youtube.com/watch?v=gQoykhNoBbY) , Dan Kaminsky rambling about Bitcoin security  
+3.6: [(in his case, as a tribute)](https://bitcointalk.org/index.php?topic=7253.msg184414#msg184414) , midnightmagic claims to have underpaid himself by 1x10<sup>-8</sup>, but he accidentally threw away a bunch of fees too  
+3.7: [124724](http://blockexplorer.com/b/124724) , the full blockexplorer decode of the underpay block
 
+[[!template id=italic]]
