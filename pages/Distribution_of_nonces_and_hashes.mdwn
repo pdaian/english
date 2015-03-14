@@ -1,17 +1,27 @@
-[[Nonce]] values vs. [[hashes|hash]] for all the valid blocks in the [[blockchain]]: (1.1)
+Here we analyze the [[nonce]] values and [[hashes|hash]] for all the valid blocks in the [[blockchain]]: (1.1)
 
-####Nonces vs Hashes (y-axis logarithmic, x-axis linear)
+##Time Evolution
+###Nonces vs Hashes (y-axis logarithmic, x-axis linear)
 This plot readily shows that the distribution of [[nonces|nonce]] that produce valid [[hashes|hash]] is uniform.<br>[[!img "Nonces_vs_Hashes.png" title="verba alia"]]
 
-####Nonces vs Hashes (log-log scale)
+###Nonces vs Hashes (log-log scale)
 [[!img "Nonces_vs_Hashes_(log-log_scale).png" title="Nonces vs Hashes (log-log scale)"]]
 
-In the animated version of this last plot, (3.1) you can really visualize the change in the [[difficulty]] and even see where the [[difficulty]] was decreased.
+In the animated version of this last plot, (4.1) you can really visualize the change in the [[difficulty]] and even see where the [[difficulty]] was decreased.
+
+##Histograms
+The nonces found are skewed toward 0 because this is a selection effect: most everyone starts searching for nonces starting at 0:<br>[[!img "Nonces_Histogram.png" title="histogram of nonces"]]
+
+Although the distribution of hashes is not uniform, this does not matter; all that matters is that the distribution of nonces is uniform (which they are, minus the selection effect of starting at 0):<br>[[!img "Hashes_Histogram.png" title="histogram of hashes"]]
+
+2-D histogram of hashes and nonces (logarithmic color scale):<br>[[!img "Density_Plot_(log_colorscale).png" title="Density Plot (log colorscale)"]]
+<br>
+This also illustrates very well that the distribution of nonces is uniform.
 
 ##References
 
 1.1: https://bitcoin.stackexchange.com/q/36414/4334  
-3.1: [animated version (cumulative)](https://i.imgur.com/3LkacLD.gif) cf.  or 
+4.1: [animated version (cumulative)](https://i.imgur.com/3LkacLD.gif) cf.  or 
 
 
 [[!template id=stub]]
