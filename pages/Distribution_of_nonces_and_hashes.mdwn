@@ -11,7 +11,7 @@ In the animated version of this last plot, (4.1) you can really visualize the ch
 
 ##Histograms
 ###Distribution of Nonces
-The nonces found are skewed toward 0 because this is a [selection effect](Wikipedia:Selection_bias): most everyone starts searching for nonces starting at 0:<br>[[!img "Nonces_Histogram.png" title="histogram of nonces"]]
+The nonces found are skewed toward 0 because this is a [selection effect](Wikipedia:Selection_bias): most everyone starts searching for nonces starting at 0, so the lower nonces are found first, even though there may be also higher nonces that could produce a winning block:<br>[[!img "Nonces_Histogram.png" title="histogram of nonces"]]
 
 ###Distribution of Hashes
 Although the distribution of hashes is not uniform, this does not matter; all that matters is that the distribution of nonces is uniform (which they are, minus the selection effect of starting at 0):<br>[[!img "Hashes_Histogram.png" title="histogram of hashes"]]
