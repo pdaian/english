@@ -1,10 +1,9 @@
-[[!template id=transaction hash=1d5e512a9723cbef373b970eb52f1e9598ad67e7408077a82fdac194b65333c9 in1=237fe8348fc77ace11049931058abb034c99698c7fe99b1cc022b1365a705d39-000 val1=0.5 out1=1Hk51V49a58fC2r471hScXopEQpioDEuqx pay1=92,233,720,368.54275808 out2=12vRJXnnA21YAaLacWXpNshy7MBAwrigtQ pay2=92,233,720,368.54275808 fee=0.51 time=? size=? special=a]]
-On August 15 2010, it was discovered that block 74638 contained a transaction that created 184,467,440,737.09551616 bitcoins for three different addresses. (1.1)
+On August 15 2010, it was discovered that block 74638 contained a transaction that created 184,467,440,737.09551616 bitcoins for three different addresses. (1.1) (1.2) (1.3)
 Two addresses received 92.2 billion bitcoins each, and whoever solved the block got an extra 0.01 BTC that did not exist prior to the transaction.
-This was possible because the code used for checking transactions before including them in a block didn't account for the case of outputs so large that they overflowed when summed. (1.2)
+This was possible because the code used for checking transactions before including them in a block didn't account for the case of outputs so large that they overflowed when summed. (1.4)
 A new version of the client was published within five hours of the discovery.
 The block chain was forked.
-Although many unpatched nodes continued to build on the "bad" block chain, the "good" block chain overtook it at a block height of 74691.
+Although many unpatched nodes continued to build on the "bad" block chain, the "good" block chain overtook it at a block height of 74691. (1.5)
 The bad transaction no longer exists for people using the longest chain.
 Therefore, the bitcoins created by it do not exist either.
 While the transaction does not exist anymore, the 0.5 BTC that was consumed by it does.
@@ -16,7 +15,10 @@ It appears to have come from a faucet and has not been used since.
 
 ## References
 
-1.1: https://bitcointalk.org/index.php?topic=822.0  
-1.2: http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-5139
+1.1: Day: 15 Hash: 0000000000790ab3f22ec756ad43b6ab569abf0bddeb97c67a6f7b1470a7ec1c Month: 08 Offchain: Value overflow incident bad chain Year: 2010  
+1.2: Hash: 1d5e512a9723cbef373b970eb52f1e9598ad67e7408077a82fdac194b65333c9  
+1.3: 2010-08-15 Id: 822  
+1.4: http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-5139  
+1.5: Day: 16 Hash: 00000000005c22d199706df1c38b38d76f8401920dcbe91edf3417f8847da707 Month: 08 Year: 2010
 
 [[!tag "Notable_transactions"]][[!tag "2010_events"]]
