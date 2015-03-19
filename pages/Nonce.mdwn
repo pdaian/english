@@ -2,5 +2,18 @@ The "nonce" in a bitcoin [[block]] is a 32-bit (4-byte) field whose value is set
 
 Any change to the block data (such as the nonce) will make the block hash completely different. Since it is [believed infeasible](wikipedia:Cryptographic hash function) to predict which combination of bits will result in the right hash, many different nonce values are tried, and the hash is recomputed for each value until a hash containing the required number of zero bits is found. As this iterative calculation requires time and resources, the presentation of the block with the correct nonce value constitutes [[proof_of_work]].
 
+## Golden Nonce
+A *golden nonce* in Bitcoin [[mining]] is a nonce which results in a [[hash|block_hashing_algorithm]] value lower than the target [[difficulty]].  
+In many practical mining applications, this is simplified to any nonce which has 32 leading zeroes (2.1), with a secondary test checking if the actual value is lower than the target difficulty.
+
+### Etymology
+The term *golden nonce* most likely evolved from the term *[golden ticket](http://en.wikipedia.org/wiki/Charlie_and_the_Chocolate_Factory#Plot)* as used to refer to a nonce satisfying the mining requirements as early as April 8th, 2011 (3.1)
+
+## References
+
+2.1: https://bitcointalk.org/index.php?topic=75609.msg837556#msg837556  
+3.1: https://github.com/progranism/Bitcoin-JavaScript-Miner/blob/master/miner.js#L5
+
+
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
