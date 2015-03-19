@@ -4,11 +4,11 @@
 * Open source clients for both desktop and mobile
 *  [[HD|Deterministic_wallet]]/BIP0032
 * Per-transaction 2FA via [[multisignature]], of 4 different kinds: email, sms, robot call, Google Authenticator
-* 2of3, [[multisig|multisignature]] accounts: Create accounts that allow you to access your funds at any time even without access to GreenAddress, using additional offline recovery key.
+* 2-of-2 [[multisig|multisignature]] accounts: Create accounts that can take advantage of GreenAddress' trusted-third-party instant confirmations. Account recovery without access to GreenAddress is achieved with pre-generated [[nLockTime]] transactions (which must be received, typically via email, from GreenAddress on a regular basis).
+* 2-of-3 [[multisig|multisignature]] accounts: Create accounts that allow you to access your funds at any time even without access to GreenAddress, using an additional offline recovery key (which only needs to be saved once).
 * Transaction information within 2FA message
 * BIP0039 mnemonics
-* Receive or Send/Tip passoword protected Bitcoins with BIP0038 (Facebook, Email, Reddit)
-* You can recover your funds even if GreenAddress disappears with a time locked transaction
+* Receive or Send/Tip password protected Bitcoins with BIP0038 (Facebook, Email, Reddit)
 * Never reuses the same address which improves both privacy and security
 * Easy to use, fast and convenient
 
