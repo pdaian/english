@@ -9,7 +9,7 @@ Is this possible already? If not, how could it be implemented with public-key cr
 ##Implementations
 Shamir's [Secret Sharing](https://en.wikipedia.org/wiki/Secret_sharing) Scheme (ssss) (2.1) is a general software implementation of multisig.
 
-Specific to Bitcoin, [[GreenAddress.it|GreenAddress]] has 2of3 accounts (requiring at least two of three keys to authorize a transaction). [[Coinbase|Coinbase_(business)]] also offers 2of3 and 3of5 multisig, which they call [Vault](https://support.coinbase.com/customer/portal/articles/1743782-what-is-the-multisig-vault-).
+Specific to Bitcoin, [[GreenAddress.it|GreenAddress]] has 2-of-2 and 2-of-3 accounts (requiring at least two keys to authorize a transaction). [[Coinbase|Coinbase_(business)]] also offers 2-of-3 and 3-of-5 multisig, which they call [Vault](https://support.coinbase.com/customer/portal/articles/1743782-what-is-the-multisig-vault-).
 
 ##Multisigniture Addresses
 <blockquote>A [[multi-signature address|Address#Multi-signature_addresses]] is an address that is associated with more than one ECDSA private key. The simplest type is an m-of-n address - it is associated with n private keys, and sending bitcoins from this address requires signatures from at least m keys. A multi-signature transaction is one that sends funds from a multi-signature address. (3.1)</blockquote>
