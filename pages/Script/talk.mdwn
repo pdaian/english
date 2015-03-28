@@ -17,3 +17,13 @@ If im not mistaken this kind of transaction would not result in donating the out
 
 > norill: Fixed wording for OP_RETURN; it is mining fee in the example because the output value is zero, not 0.125BTC as I think you thought. Sorry about that.
 > [Peter Todd](User:Petertodd) ([[talk|User_talk:Petertodd]]) 02:51, 23 July 2013 (GMT)
+
+## Common confusion on Turing-completeness.
+
+Script isn't turing-complete under the precise definition of the term because it executes with bounded time and memory.
+
+But by the precise definition a conventional desktop computer is also not "turing-complete": there are functions a universal turing machine can compute that a desktop cannot because the desktop computer runs out of memory first.
+
+The precise definition isn't terribly useful for most people, since it excludes most things we think of as computers. Many people read the "not Turing-complete" as a statement that Script is only as expressive as a regular language or some kind only capabile of expressing monotone functions or something like that. Not so, if you ignore the time/memory bounds script is technically universal for computation. Consider the fragment "2 OP_PICK OP_IF OP_SWAP OP_ENDIF": This implements a [[w:fredkin gate]] which is universal Q.E.D.
+
+It's absolutely important for the Bitcoin system that script's execution has an quickly checkable, bounded, and very short runtime. The relevance of turing completeness to any of that is easily and often overstated. The greater limits of script's expressiveness come from the computation bound, not the computational model. --[Gmaxwell](User:Gmaxwell) ([[talk|User_talk:Gmaxwell]]) 05:47, 28 March 2015 (UTC)
