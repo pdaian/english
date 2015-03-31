@@ -1,56 +1,62 @@
 [BitcoinTrezor.com](https://bitcointrezor.com)
 
 [[!img "Trezor-tx.jpg" size=300x300 size=120x120 class="right" title="Confirming transaction with TREZOR"]]
-**TREZOR is a hardware wallet providing the highest level of security and convenience for a common computer user.**
+**TREZOR is a hardware wallet providing security for your bitcoins by virtue of its design while retaining convenience of use. No matter whether you're a beginner or a security-paranoid geek.**
 
-Unlike a cold storage (offline storage or paper wallet), TREZOR is also able to sign transactions. That means spending bitcoins is secure without exposing your private keys to a potentially compromised computer.
+Unlike a cold storage (offline storage or paper wallet), TREZOR is also able to send bitcoins in a secure way. Without the need to expose your private keys to a potentially compromised computer. 
 
-## TREZOR Hardware Design
+More on the security principles here:
 
-TREZOR is a small USB device with a display and two buttons.
+* [Philosophy of Security](http://doc.satoshilabs.com/trezor-user/securityphilosophy.html)
 
-It connects to a computer via a USB via protocol that allows only to send a transaction template to the device and protects the wallet against malware.
 
-The display allows the user to visually verify the payment address and the amount to be sent. In order to proceed the transaction, a physical human interaction (pressing the button) is required.
+## How does it work?
 
-## TREZOR Software Design & Security
+TREZOR is basically a small computer. It is designed to protect your private keys from possible online and offline risks. In order to do this, TREZOR keeps the private keys away from the Internet and confirms the transactions in-device. That way you can always check the screen for the right address, amount and transaction fee before sending your bitcoins.
 
-### Backup
+In layman's terms you can connect TREZOR to an infected computer and still be able to have 100% control over the funds in your device.  
 
-TREZOR uses hierarchical deterministic wallet creation ([[BIP_0032]]) which makes regular backups of private keys unnecessary. 
+Read more on difference between TREZOR and other solutions:
 
-When first initialized, a mnemonic code of 24 words, the recovery seed, is created. In case the device gets lost or stolen, the user can recover the entire holdings including transaction history into a new device or other compatible wallet, using the recovery seed.
+* [How is TREZOR different from..](http://doc.satoshilabs.com/trezor-faq/differences.html)
 
-### PIN protection 
-
-A PIN is set by the user during the setup. It protects TREZOR against being used by unauthorized persons. The wallet creators have invented a secure way of entering the PIN that can't be logged and misused.
-
-### Passphrase encryption
-
-Another level of protection is the encryption passphrase which protects the device in case of seizure. Multiple passphrases can be used for plausible deniability.
 
 ## Using TREZOR
 
-TREZOR needs an online wallet or a desktop client as an interface that broadcasts the transactions signed by the device to the blockchain.
+TREZOR needs an online wallet or other client as a user interface. To ensure validity of communication between the device and the interface TREZOR uses pin scrambling matrix. See more here. 
 
-In order to send coins or change the basic settings, the device needs to be connected to a computer with a micro USB cable.
+* [Entering your PIN](http://doc.satoshilabs.com/trezor-user/enteringyourpin.htm)
 
-In order to receive coins there is no need to have the device plugged in.
+Have a look how easy and comfortable it is to send transactions:
 
-###Compatible software
+* [Making payments](http://doc.satoshilabs.com/trezor-user/makingpayments.html)
 
-In order to be compatible with TREZOR a software must implement the following standards: [[BIP_0032]], [[BIP_0039]] and [[BIP_0044]]
+Make sure that the receiving address you have provided to someone else has not been changed by infected computer. Feature "Show on TREZOR" has been developed exactly for this purpose:
 
-* [myTREZOR Web Wallet](https://mytrezor.com)
+* [Receiving payments](http://doc.satoshilabs.com/trezor-user/receivingpayments.html)
 
-* [Wallet32 for Android](https://play.google.com/store/apps/details?id=com.bonsai.wallet32)
+It is also possible to sign and verify messages using TREZOR:
+
+* [Sign & verify messages](http://doc.satoshilabs.com/trezor-user/messages.html)
+
+
+### Backup and recovery
+
+Upon first activation you are asked to write down the seed phrase.
+
+This means that in case your TREZOR is lost or stolen you can easily retrieve your coins to another TREZOR or any recovery seed compatible wallet.
+
+* [What if I lose my TREZOR?](http://doc.satoshilabs.com/trezor-faq/overview.html#what-if-i-lose-my-trezor)
+* [Recovery procedure](http://doc.satoshilabs.com/trezor-user/recovery.html)
 
 ## Resources
 
 * [TREZOR Manual](http://doc.satoshilabs.com/)
+* [TREZOR FAQ](http://doc.satoshilabs.com/trezor-faq/index.html)
 * [TREZOR Website](http://bitcointrezor.com)
 * [E-shop BuyTrezor.com](https://buytrezor.com)
 * [myTREZOR Web Wallet](https://mytrezor.com)
+* [Compatible wallets](http://doc.satoshilabs.com/trezor-faq/overview.html#which-wallets-are-compatible-with-trezor-hardware)
 
 [[!tag "Security"]]
 [[!tag "Wallets"]]
