@@ -24,10 +24,10 @@ Now run bitcoind:
 $ ./bitcoind
 
 1. wait a few seconds for it to start up
-$ ./bitcoind getinfo
+$ ./bitcoin-cli getinfo
 
 1. various information will be shown. If you get an error, try again until you see some useful output.
-$ ./bitcoind help
+$ ./bitcoin-cli help
 
 1. get help on commands, note no dash before help
 </source>
@@ -67,13 +67,13 @@ In Bitcoin, money is sent to addresses and many addresses can be held by one wal
 Bitcoin goes another step. You can have [[accounts|Accounts_explained]]. Each account holds multiple addresses and acts like a mini-bitcoind. 
 
 <source lang="bash">
-$ ./bitcoind listaccounts
+$ ./bitcoin-cli listaccounts
 
 1. show list of accounts and various info for each one
-$ ./bitcoind getaccountaddress user889
+$ ./bitcoin-cli getaccountaddress user889
 
 1. get an address to receive money to that is unique for the account user889
-$ ./bitcoind getbalance user889
+$ ./bitcoin-cli getbalance user889
 
 1. get the sum of all the money in the addresses owned by the account user889
 </source>
