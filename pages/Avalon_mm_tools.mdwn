@@ -1,25 +1,27 @@
-mm-tools is a program to upgrade Avalon4 mm firmware through Raspberry Pi and [AUC](https://en.bitcoin.it/wiki/Avalon4#AUC).
+## What does the Avalon mm tools do
+Avalon mm tools is a program to upgrade Avalon4 mm firmware through [AUC](https://en.bitcoin.it/wiki/Avalon4#AUC).
 
+## What Avalon4 firmware are supported by Avalon mm tools
 Support mm versions(MM-4.0: >= **401412-7ef4ab10**, MM-4.1: **Any one**)
 
-Ugrade file link: [For MM-4.0](http://downloads.canaan-creative.com/software/avalon4/mm/latest/mm.mcs) [For MM-4.1](http://downloads.canaan-creative.com/software/avalon4/mm41/latest/mm.mcs)
+Latest firmware link: [For MM-4.0](http://downloads.canaan-creative.com/software/avalon4/mm/latest/mm.mcs) [For MM-4.1](http://downloads.canaan-creative.com/software/avalon4/mm41/latest/mm.mcs)
 
-### Method 1:Upgrade it through CLI
-In order to use mm-tools, you should use [RASPBIAN](http://downloads.raspberrypi.org/NOOBS_latest) image on your Raspberry Pi.
-Keep AUC connect the same as mining before upgrade.
+## How to upgrade Avalon4 mm firmware through Raspberry Pi(Model B) or TL-WR703N
+Use the latest avalon firmware for Raspberry Pi(Model B):[openwrt-brcm2708-sdcard-vfat-ext4.img](http://downloads.canaan-creative.com/software/avalon4/openwrt/latest/openwrt-brcm2708-sdcard-vfat-ext4.img), for TL-WR703N:[openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin](http://downloads.canaan-creative.com/software/avalon4/openwrt/latest/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin)
 
-* How to use mm-tools
+Keep AUC connect the same as mining before upgrade
+
+Login the controller(Default IP: 192.168.0.100) , Then you can upgrade mm firmware through the page: Status->MM Upgrade
+
+## How to compile and run Avalon mm tools from source code (Under Debian GNU/Linux 7.4)
+**For example, Upgrade Avalon4 MM-4.0**
+
 	1. Install dependency
 	sudo su
 	apt-get install build-essential autoconf automake libtool pkg-config libudev-dev
-
+	
 	2. Clone & Compile & Run
 	git clone https://github.com/Canaan-Creative/Avalon-extras.git
 	cd ./Avalon-extras/mm-tools && ./autogen.sh && ./configure && make
 	sudo su
 	wget http://downloads.canaan-creative.com/software/avalon4/mm/latest/mm.mcs -O ./mm.mcs && ./mm_tools
-
-### Method 2:Upgrade it through LuCI
-Use the latest avalon firmware for Raspberry Pi(Model B) [openwrt-brcm2708-sdcard-vfat-ext4.img](http://downloads.canaan-creative.com/software/avalon4/openwrt/latest/openwrt-brcm2708-sdcard-vfat-ext4.img)
-
-You can upgrade mm firmware through the page: Status->MM Upgrade
