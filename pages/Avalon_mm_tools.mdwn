@@ -1,39 +1,43 @@
 ## What does the Avalon mm tools do
 Avalon mm tools is a program to upgrade Avalon4 mm firmware through [AUC](https://en.bitcoin.it/wiki/Avalon4#AUC).
 
-## What Avalon4 firmware are supported by Avalon mm tools
-Support mm versions(MM-4.0: >= **401412-7ef4ab10**, MM-4.1: **Any one**)
+It can be used to upgrade 13 Avalon4s maximum simultaneously under one AUC.
 
-Latest firmware link: [For MM-4.0](http://downloads.canaan-creative.com/software/avalon4/mm/latest/mm.mcs) [For MM-4.1](http://downloads.canaan-creative.com/software/avalon4/mm41/latest/mm.mcs)
+Take care: <pre style="color: red">'''You cann't upgrade Avalon4 MM-4.0 and Avalon4 MM-4.1 under the same AUC'''<pre>.
 
-## How can i get the Avalon4 firmware version
+== What Avalon4 firmware are supported by Avalon mm tools ==
+Support mm versions(MM-4.0: >= '''401412-7ef4ab10''', MM-4.1: '''Any one''')
+
+Latest firmware link: [http://downloads.canaan-creative.com/software/avalon4/mm/latest/mm.mcs For MM-4.0] [http://downloads.canaan-creative.com/software/avalon4/mm41/latest/mm.mcs For MM-4.1]
+
+== How can i get the Avalon4 firmware version ==
 Login the controller, Then find it under Cgminer Status->Avalon Devices Status->Device.
 
-## What does the meaning of firmware version
-For example **401412-7ef4ab10**
+== What does the meaning of firmware version ==
+For example '''401412-7ef4ab10'''
 
-	**40**: MM-4.0 firmware, 40: MM-4.0, 41:MM-4.1
-	**1412**: Release date 2014/12
-	**7ef4ab**: Git abbreviate.(git repo:https://github.com/Canaan-Creative/mm/tree/avalon4)
-	**1**: Bootloader flag, 1: enable bootloader, 0: disable bootloader
-	**0**: Release flag, 0: Release version, 1: Debug version
+      '''40''': MM-4.0 firmware, 40: MM-4.0, 41:MM-4.1
+    '''1412''': Release date 2014/12
+  '''7ef4ab''': Git abbreviate.(git repo:https://github.com/Canaan-Creative/mm/tree/avalon4)
+       '''1''': Bootloader flag, 1: enable bootloader, 0: disable bootloader
+       '''0''': Release flag, 0: Release version, 1: Debug version
 
-## How to upgrade Avalon4 mm firmware through Raspberry Pi(Model B) or TL-WR703N
-Use the latest avalon firmware for Raspberry Pi(Model B):[openwrt-brcm2708-sdcard-vfat-ext4.img](http://downloads.canaan-creative.com/software/avalon4/openwrt/latest/openwrt-brcm2708-sdcard-vfat-ext4.img), for TL-WR703N:[openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin](http://downloads.canaan-creative.com/software/avalon4/openwrt/latest/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin)
+== How to upgrade Avalon4 mm firmware through Raspberry Pi(Model B) or TL-WR703N ==
+Use the latest avalon firmware for Raspberry Pi(Model B):[http://downloads.canaan-creative.com/software/avalon4/openwrt/latest/openwrt-brcm2708-sdcard-vfat-ext4.img openwrt-brcm2708-sdcard-vfat-ext4.img], for TL-WR703N:[http://downloads.canaan-creative.com/software/avalon4/openwrt/latest/openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin openwrt-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin]
 
 Keep AUC connect the same as mining before upgrade
 
 Login the controller(Default IP: 192.168.0.100) , Then you can upgrade mm firmware through the page: Status->MM Upgrade
 
-## How to compile and run Avalon mm tools from source code (Under Debian GNU/Linux 7.4)
-**For example, Upgrade Avalon4 MM-4.0**
+== How to compile and run Avalon mm tools from source code (Under Debian GNU/Linux 7.4) ==
+'''For example, Upgrade Avalon4 MM-4.0'''
 
-	1. Install dependency
-	sudo su
-	apt-get install build-essential autoconf automake libtool pkg-config libudev-dev
-	
-	2. Clone & Compile & Run
-	git clone https://github.com/Canaan-Creative/Avalon-extras.git
-	cd ./Avalon-extras/mm-tools && ./autogen.sh && ./configure && make
-	sudo su
-	wget http://downloads.canaan-creative.com/software/avalon4/mm/latest/mm.mcs -O ./mm.mcs && ./mm_tools
+ 1. Install dependency
+    sudo su
+    apt-get install build-essential autoconf automake libtool pkg-config libudev-dev
+ 
+ 2. Clone & Compile & Run
+    git clone https://github.com/Canaan-Creative/Avalon-extras.git
+    cd ./Avalon-extras/mm-tools && ./autogen.sh && ./configure && make
+    sudo su
+    wget http://downloads.canaan-creative.com/software/avalon4/mm/latest/mm.mcs -O ./mm.mcs && ./mm_tools
