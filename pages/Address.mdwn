@@ -34,7 +34,7 @@ Since Bitcoin transactions do not have a "from" address, you cannot prove you ar
 Current standards for message signatures are only compatible with "version zero" bitcoin addresses (that begin with the number 1).
 
 ##Address validation
-If you would like to validate a Bitcoin address in an application, it is advisable to use a method from [this thread](https://bitcointalk.org/index.php?topic=1026.0) rather than to just check for string length, allowed characters, or that the address starts with a 1 or 3.
+If you would like to validate a Bitcoin address in an application, it is advisable to use a method from [this thread](https://bitcointalk.org/index.php?topic=1026.0) rather than to just check for string length, allowed characters, or that the address starts with a 1 or 3.  Validation may also be done using open source code available in [various languages](http://rosettacode.org/wiki/Bitcoin/address_validation) or with an [online validating tool](http://lenschulwitz.com/base58). 
 
 ##[[Multi-signature|Multisignature]] addresses
 Addresses can be created that require a combination of multiple private keys.
