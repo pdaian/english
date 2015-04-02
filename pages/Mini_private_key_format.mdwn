@@ -36,19 +36,11 @@ Mini private keys can be imported through the following clients/services:
 
 The current mainline ("Satoshi") client cannot currently be used to import minikeys.
 
-###Mobile
-
-* Mt. Gox Mobile can redeem a private key scanned from a QR Code or is entered using the keyboard.  Upon importing, Mt. Gox sweeps the funds to a secondary address, and then a user must wait for six confirmations before the funds will appear in the Mt. Gox account.
-
 ###Web
 
 * [[BlockChain.info]]
 	* Private keys can be imported into a Blockchain.info wallet and bitcoins can be sent to another address immediately upon import without needing to wait for any confirmations.  Even after import, funds remain associated with the private key until they are actually spent to a different address.
 * [[StrongCoin]]
-* [[Mt._Gox]]
-	* Importing minikeys is done through the deposit screen using the "Import Private Key" deposit method.  Upon importing, Mt. Gox sweeps the funds to a secondary address, and then a user must wait for six confirmations before the funds will appear in the Mt. Gox account.  Removing the imported bitcoins from the Mt. Gox account is treated as a bitcoin withdrawal and counts against daily/monthly limits.
-	* Mt. Gox also permanently remembers any imported private key and automatically sweeps any future funds sent to it into the user's Mt. Gox account.
-	* Mt. Gox's import screen doesn't properly detect or reject typos. If you make a mistake, Mt. Gox will treat it as a valid entry and report that a private key with a balance of 0.00 BTC from a bitcoin address you won't recognize was "successfully" imported.
 
 ##Decoding
 The private key encoding consists of 30 alphanumeric characters from the [[base58]] alphabet used in Bitcoin.  The first of the characters is always the uppercase letter S.
