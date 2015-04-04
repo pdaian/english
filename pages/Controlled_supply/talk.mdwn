@@ -10,7 +10,7 @@ The Projected Bitcoins Long Term table in the page uses [[Bitcoin|Units]] unit r
 
 Each of the values is based on the actual number of satoshi rewarded per block.  This reward halves every 210,000 blocks.[(1)](https://github.com/bitcoin/bitcoin/blob/master/src/main.cpp#L1179)  This halving presents a potential point of confusion; at some point the reward would be 610,351.5 satoshi - which at as of 2015 04 04 cannot exist in the satoshi client's fixed point arithmetic limit.<br />
 The value is, instead, truncated to 610,351 satoshi.  The total number of satoshi generated during that reward era is thus not <tt>210,000 * 610,351.5 = 128,173,815,000 (<span class="btc">BTC</span>1,281.73815000)</tt>, but <tt>210,000 * 610,351 = 128,173,710,000 (<span class="btc">BTC</span>1,281.73710000)</tt>.  The same problem presents itself with any subsequent reward eras .<br />
-An earlier version of the table in this page had a single satoshi error in some of the values, likely due to related floating point accuracy issues.
+An earlier version of the table in this page had a single satoshi error in some of the values, likely due to related floating point accuracy issues.[(2)](http://www.reddit.com/r/Bitcoin/comments/31g89l/rounding_error_in_the_wiki/)
 
 At the actual last round there should be a total of <tt><span class="btc">BTC</span>20,999,999.97690000</tt>.<br />
 If using floating point math throughout, depending on the accuracy and behavior of the floating point calculations, this could end up being calculated as <tt><span class="btc">BTC</span>20999999.99877760</tt>, or a difference of <tt><span class="btc">BTC</span>0.02187764</tt>.<br />
