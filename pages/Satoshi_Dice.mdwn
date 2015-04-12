@@ -7,7 +7,7 @@ As a result, the game spams the p2p network and blockchain with useless data.
 Satoshi Dice forces players to pay a transaction fee on each result so the spam will successfully flood both the p2p relay network and the blockchain.
 
 There has been the suggestion that the service might be also be used as a [[mixing_service]], as the composition of a wallet can be materially changed after running wagers through Satoshi Dice (1.1).
-Though this approach could change the makeup of the wallet, it does not sufficiently serve the mixing purpose as the coins returned in winning bets are tied to the coins from the wager transaction.
+Though this approach could change the makeup of the wallet, it does not sufficiently serve the mixing purpose as the coins returned in winning bets are tied to the coins from the wager transaction. The new session based game *may* send back a balance from unrelated addresses that are not tainted to the deposit address. However taint can still be applied at a later stage if change from the untainted withdrawal is later used together with the original deposit transaction.
 
 There is no reason to believe that [[Satoshi_Nakamoto]] has anything to do with this attack, other than the service choosing to include the noun Satoshi in the brand.
 
