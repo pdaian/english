@@ -2,7 +2,7 @@ While the Bitcoin technology [can support](http://www.bitcointalk.org/index.php?
 
 __TOC__
 
-The main problem is that every transaction is publicly logged. Anyone can see the flow of Bitcoins from address to address (see first image). Alone, this information can't identify anyone because the addresses are just random numbers. However, if *any* of the addresses in a transaction's past or future can be tied to an actual identity, it might be possible to work from that point and guess who may owns all of the other addresses. This identity information might come from network analysis, surveillance, or just Googling the address. The officially-encouraged practice of using a new address for every transaction is designed to make this attack more difficult.
+The main problem is that every transaction is publicly logged. Anyone can see the flow of Bitcoins from address to address (see first image). Alone, this information can't identify anyone because the addresses are just random numbers. However, if *any* of the addresses in a transaction's past or future can be tied to an actual identity, it might be possible to work from that point and guess who may own all of the other addresses. This identity information might come from network analysis, surveillance, or just Googling the address. The officially encouraged practice of using a new address for every transaction is designed to make this attack more difficult.
 [[!img "Unknownaddress.png" size=120x120 title="The flow of Bitcoins is highly public."]]
 
 The second image shows a simple example. Someone runs both a money exchanger and a site meant to trap people. When Mr. Doe buys from the exchanger and uses those same coins to buy something from the trap site, the attacker can **prove** that these two transactions were made by the same person. The block chain would show:
@@ -10,7 +10,7 @@ The second image shows a simple example. Someone runs both a money exchanger and
 
 * Import coins from address A. Send 100 to B. Authorized by (signature).
 * Import coins from address B. Send 100 to C. Authorized by (signature).
-Bitcoin transactions do not have a [["from" address|From_address]] but if the attacker believes that address B is controlled by Mr. Doe because the attacker received $5 from Mr. Doe's Paypal account and then sent 100 BTC to that address then they can infer the identity of the party sending to C. This assumption is not always correct because address B may have been an address held on behalf of Mr. Doe by a third party and the transaction to C may have been unrelated.
+Bitcoin transactions do not have a [["from" address|From_address]] but if the attacker believes that address B is controlled by Mr. Doe because the attacker received $5 from Mr. Doe's PayPal account and then sent 100 BTC to that address then they can infer the identity of the party sending to C. This assumption is not always correct because address B may have been an address held on behalf of Mr. Doe by a third party and the transaction to C may have been unrelated.
 
 Another example: someone is scammed and posts the address they were using on the Bitcoin forum. It is possible to see which address they sent coins to. When coins are sent which were previously send to this (the scammer's) address, the addresses that receive them can also be easily found and posted on the forum. In this way, all of these coins are marked as "dirty", potentially over an infinite number of future transactions. When some smart and honest person notices that his address is now listed, he can reveal who he received those coins from. The Bitcoin community can now ask some pointed questions, "Who did you receive these coins from? What did you create this address for?" Eventually the original scammer will be found. Clearly, this becomes more difficult the more addresses that exist between the "target" and the "identity point".
 
@@ -33,7 +33,7 @@ If your balance has been contaminated by both anonymous and non-anonymous coins,
 
 Recommended way of anonymizing your balance:
 
-* Send however many coins you want to anonymize to a new [[eWallet]] account as a lump sum. There are other [[eWallet]] services however the more widely used the greater the potential for anonymity. <font color="red">This is not an endorsement of trust in the use of [[eWallet]] services.  There are no guarantees that any eWallet service won't one day take all your bitcoins and disappear. Use at your own risk.</font> 
+* Send however many coins you want to anonymize to a new [[eWallet]] account as a lump sum. There are other eWallet services however the more widely used the greater the potential for anonymity. <font color="red">This is not an endorsement of trust in the use of eWallet services.  There are no guarantees that any eWallet service won't one day take all your bitcoins and disappear. Use at your own risk.</font> 
 
 With this method an attacker will have to gain access to the eWallet service's transaction logs to continue to follow you in the transaction history. 
 
@@ -41,7 +41,7 @@ The protection that this method offers is significantly reduced if you are tryin
 
 To further enhance your anonymity, you can:
 
-* Send Bitcoins from one EWallet sevice to another and *then* to yourself. Each transfer needs to be painstakingly investigated and many transfers will present insurmountable difficulty.
+* Send Bitcoins from one eWallet sevice to another and *then* to yourself. Each transfer needs to be painstakingly investigated and many transfers will present insurmountable difficulty.
 
 Once you have an anonymous balance set up, be sure to keep your anonymous and non-anonymous balances completely separate.
 
@@ -55,10 +55,10 @@ In the future, trusted relay servers operating on the [[friendly_addresses_with_
 * Even if you're not a programmer, you can make a slightly less secure version of an external mixing service (as a Tor hidden service, preferably):
 	* Set up two Bitcoin installations.
 	* Put some amount of BTC in installation B. This is the maximum amount of BTC you can deal with at once (for all customers).
-	* Customers send BTC to installation A. You send them an equal number of coins (or minus a fee) from installation B. Send as 10-50 BTC increments.
+	* Customers send BTC to installation A. You send them an equal number of coins (or minus a fee) from installation B. Send as 10 to 50 BTC increments.
 	* Send all coins from A to B when **all** orders are satisfied. You can't send coins from A to B if you have any orders that have not been satisfied from B.
 	* This can be automated, or you can do everything manually.
-* Put lots of Bitcoins in an eWallet service and keep it there. If anyone uses the anonymization method described in "staying anonymous" above, this will enhance it. Send in smaller increments if a large amount is transferred.
+* Put lots of bitcoins in an eWallet service and keep it there. If anyone uses the anonymization method described in "staying anonymous" above, this will enhance it. Send in smaller increments if a large amount is transferred.
 
 ##Legality
 Obviously, using Bitcoin anonymity techniques for the purposes of [money laundering](Wikipedia:money laundering) is illegal, but participating or running schemes which others use for money laundering may also be illegal or at least leave the participant vulnerable to accusations of aiding criminals and terrorists. Bitcoin anonymity techniques involving bitcoins worth large amounts of money (over some value between FJ$1,100 and US$58,000, depending on your jurisdiction) is illegal in most jurisdictions, being in violation of [anti-structuring laws](Wikipedia:Structuring).
