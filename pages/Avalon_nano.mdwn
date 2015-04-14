@@ -74,6 +74,18 @@
 	Hot alert:Red blinking.
 
 # ULINK 2
+## Configure ULINK2 for LPCXpresso
+
+* Change boot mode to CMSIS-DAP
+	Use the [Boot Mode Utility](http://www.keil.com/support/man/docs/ulink2/ulink2_boot_mode.htm) to change the mode like this: UL2_Configure B1.
+
+* Set jumper to ARM position
+	See [ Jumpers](http://www.keil.com/support/man/docs/ulink2/ulink2_hw_jumpers.htm)
+
+* Connect Avalon nano to ULINK2
+	Check [SWD Connector Pinout](http://support.code-red-tech.com/CodeRedWiki/HardwareDebugConnections), need connect SCLK,SWIO,GND only.
+
+## Miscs
 
 * [[Keil_IDE_for_avalon3_nano_development]]
 * OpenOCD is not support ULINK2 (See src/jtag/drivers/ulink.c)
