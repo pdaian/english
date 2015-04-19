@@ -134,11 +134,19 @@
 	5. semi_host debug
 	use newlib semihost
 
-* Gdb connect
-	1. gdb connect
-	arm-none-eabi-gdb nxp_lpcxpresso_11u14_periph_blinky.axf
-	target extended-remote  crt_emu_lpc11_13_nxp -pLPC11U14/201 -2 -wire=winusb
+* How to debug issues with gdb (Works on OSX)
+	1.Compile the program with debug options
+	Change Makefile under root directory, set SW_VERSION to DEBUG
+	
+	2.Recompile the program
+	make clean all
+	
+	3.Start gdb
+	arm-none-eabi-gdb avalon_nano.axf
+	target extended-remote  crt_emu_cm_redlink -g -2 -vendor=NXP -pLPC11U14/201 -flash-driver=LPC11_12_13_32K_4K.cfx
 	load
+	
+	Then you can use gdb as you want
 
 # Firmware
 ## Reflash
