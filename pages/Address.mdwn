@@ -28,9 +28,6 @@ This can be used to, for example, finalise a contract in a cryptographically pro
 Some services will also piggy-back on this capability by dedicating a specific address for authentication only, in which case the address should never be used for actual Bitcoin transactions.
 When you login to or use their service, you will provide a signature proving you are the same person with the pre-negotiated address.
 
-It is important to note that these signatures only prove one receives with an address.
-Since Bitcoin transactions do not have a "from" address, you cannot prove you are the *sender* of funds.
-
 Current standards for message signatures are only compatible with "version zero" bitcoin addresses (that begin with the number 1).
 
 ##Address validation
