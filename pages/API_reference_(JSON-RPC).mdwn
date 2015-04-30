@@ -229,7 +229,7 @@ import (
 func main() {
 	// create new client instance
 	client, err := btcrpcclient.New(&btcrpcclient.ConnConfig{
-	HttpPostMode: true,
+	HTTPPostMode: true,
 	DisableTLS:   true,
 	Host:         "127.0.0.1:8332",
 	User:         "rpcUsername",
