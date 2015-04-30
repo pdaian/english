@@ -42,7 +42,7 @@ To convert to a JSON value divide by 100,000,000.0, and make sure your JSON impl
 	}
 
 ## Go
-The [btcjson package](https://github.com/conformal/btcjson) provides a more complete version of this function (error checking and so on), but for illustrative purposes, this is useful.
+The [btcjson package](https://github.com/btcsuite/btcd/btcjson) provides a more complete version of this function (error checking and so on), but for illustrative purposes, this is useful.
 
 	func JSONToAmount(jsonAmount float64) (int64) {
 	var amount int64
