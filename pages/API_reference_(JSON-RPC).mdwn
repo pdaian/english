@@ -214,15 +214,15 @@ The JSON::RPC package from CPAN can be used to communicate with Bitcoin.  You mu
 
 ## Go
 
-The [btcrpcclient package](https://github.com/conformal/btcrpcclient) can be used to communicate with Bitcoin.  You must provide credentials to match the client you are communicating with.
+The [btcrpcclient package](https://github.com/btcsuite/btcrpcclient) can be used to communicate with Bitcoin.  You must provide credentials to match the client you are communicating with.
 
 <source lang="go">
 package main
 
 import (
-	"github.com/conformal/btcnet"
-	"github.com/conformal/btcrpcclient"
-	"github.com/conformal/btcutil"
+	"github.com/btcsuite/btcd/chaincfg"
+	"github.com/btcsuite/btcrpcclient"
+	"github.com/btcsuite/btcutil"
 	"log"
 )
 
@@ -250,11 +250,11 @@ func main() {
 	}
 
 	// prepare a sendMany transaction
-	receiver1, err := btcutil.DecodeAddress("1someAddressThatIsActuallyReal", &btcnet.MainNetParams)
+	receiver1, err := btcutil.DecodeAddress("1someAddressThatIsActuallyReal", &chaincfg.MainNetParams)
 	if err != nil {
 	log.Fatalf("address receiver1 seems to be invalid: %v", err)
 	}
-	receiver2, err := btcutil.DecodeAddress("1anotherAddressThatsPrettyReal", &btcnet.MainNetParams)
+	receiver2, err := btcutil.DecodeAddress("1anotherAddressThatsPrettyReal", &chaincfg.MainNetParams)
 	if err != nil {
 	log.Fatalf("address receiver2 seems to be invalid: %v", err)
 	}
