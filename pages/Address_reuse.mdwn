@@ -57,10 +57,6 @@ Once that payment is made, the receiving party has no reason to retain the data 
 Even if someone does not choose to discard that data, it may have since been lost in an accident or compromised.
 In any of these situations, any future payments to the same address would go in to a "black hole", and be forever lost through no fault of the recipient.
 
-### Confusion
-Users who see addresses reused may incorrectly be led to believe they function similarly to wallets or bank accounts.
-Often this is manifested in people talking about nonsense like "[[address balance|Address#Address_balances]]", "wallet address", "[[from address|From_address]]", and similar [[misconceptions|Address#Misconceptions]] that don't actually exist in Bitcoin.
-
 ### High Fees
 A single invoice payment using P2PKH can be redeemed and spent with a predictable fee because the transaction should have a predictable size. Software that determines payment and available funds based on "address balance" can cause loss through high fees. If you are paid to an address in many small increments, you will pay a much higher transaction fee when redeeming those payments. It is much more useful for a client to display transaction outputs spendable than address balances for this reason.
 
