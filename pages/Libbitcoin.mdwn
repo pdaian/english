@@ -2,8 +2,32 @@
 
 [Libbitcoin](http://libbitcoin.org) is a set of cross platform C++ libraries for building bitcoin applications. The toolkit consists of several libraries, example applications, test suites and end-user applications.
 
+##Status
+Libbitcoin is actively maintained. Since version 2.0 the original projects of [[Libbitcoin|Libbitcoin_Common]], [[Obelisk|Libbitcoin_Sever]] and [[SX|Libbitcoin_Explorer]] have been rationalized under a common repository, taxonomy and build system. 
+
+##Libbitcoin Libraries
+
+* [[libbitcoin|Libbitcoin_Common]]
+* [[libbitcoin-blockchain|Libbitcoin_Blockchain]]
+* [[libbitcoin-client|Libbitcoin_Client]]
+* [[libbitcoin-consensus|Libbitcoin_Consensus]]
+* [[libbitcoin-explorer|Libbitcoin_Explorer]]
+* [[libbitcoin-node|Libbitcoin_Node]]
+* [[libbitcoin-protocol|Libbitcoin_Protocol]]
+* [[libbitcoin-server|Libbitcoin_Server]]
+
 ##History
-Libbitcoin was announced on July 21, 2011. (2.1) It was created by [[Amir Taaki|Amir_Taaki]] and a community of open source developers. (2.2)
+Libbitcoin was created by a community of open source developers led by [[Amir Taaki|Amir_Taaki]] (genjix). (4.1)
+
+**Libbitcoin** was announced on July 21, 2011. (4.2)
+
+The related command line utility **SubvertX (SX)** was announced on November 2, 2011. (4.3)
+
+**Obelisk** was first released on January 6, 2014, with an update to SX and the second major release of Libbitcoin. (4.4)
+
+[[Eric Voskuil|Eric_Voskuil]] (evoskuil) redesigned SX in 2014 and released it as **[[Libbitcoin Explorer|Libbitcoin_Explorer]] (BX 2.0)** on December 13, 2014. (4.5)
+
+**[[Libbitcoin Server|Libbitcoin_Server]] (BS 2.0)** was released on On May 9th, 2015, replacing Obelisk. A blockchain redesign by genjix substantially improved query performance (4.6).
 
 ##Early Contributors
 
@@ -13,16 +37,12 @@ Libbitcoin was announced on July 21, 2011. (2.1) It was created by [[Amir Taaki|
 * Denis Roio (jaromil)
 *  [[Luke Dashjr|Luke_Dashjr]] (luke-jr)
 
-##Libbitcoin Libraries
+##Projects Using Libbitcoin
 
-* libbitcoin
-* libbitcoin-blockchain
-* libbitcoin-client
-* libbitcoin-consensus
-* libbitcoin-explorer
-* libbitcoin-node
-* libbitcoin-protocol
-* libbitcoin-server
+* [[Airbitz]]
+* [BitSwapr](http://bitswapr.com)
+* [Darkwallet](http://www.darkwallet.is)
+* [OpenBazaar](http://openbazaar.org)
 
 ##See Also
 
@@ -30,5 +50,14 @@ Libbitcoin was announced on July 21, 2011. (2.1) It was created by [[Amir Taaki|
 * [[!template id=freenode_irc darkwallet]]
 * https://mailinglists.dyne.org/cgi-bin/mailman/listinfo/libbitcoin
 * https://bitcoinmagazine.com/6234/what-libbitcoin-and-sx-are-and-why-they-matter
-2.1: [Bitcoin Talk Libbitcoin Announcement](https://bitcointalk.org/index.php?topic=30646.0)  
-2.2: [GitHub Libbitcoin Contributors](https://github.com/libbitcoin/libbitcoin/graphs/contributors)
+* http://blog.coinkite.com/post/97397052686/public-obelisk-server-for-the-community
+* http://www.slideshare.net/swansontec/libbitcoin-slides
+* https://github.com/aantonop/bitcoinbook/blob/develop/appdx-bx.asciidoc
+
+##References
+4.1: [GitHub Libbitcoin Contributors](https://github.com/libbitcoin/libbitcoin/graphs/contributors)  
+4.2: [Bitcoin Talk Libbitcoin Announcement](https://bitcointalk.org/index.php?topic=30646.0)  
+4.3: [Bitcoin Talk SubvertX (SX) Announcement](https://bitcointalk.org/index.php?topic=50721.0)  
+4.4: [Bitcoin Talk Libbitcoin, Obelisk and SX Release Announcement](https://bitcointalk.org/index.php?topic=30646.msg4341812#msg4341812)  
+4.5: [Bitcoin Explorer (BX) Release](https://github.com/libbitcoin/libbitcoin-explorer/releases/tag/v2.0.0)  
+4.6: [Reddit Post on Obelisk Performance](http://www.reddit.com/r/Bitcoin/comments/2go7qm/devs_be_sure_to_test_your_bitcoin_apidata)
