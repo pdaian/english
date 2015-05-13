@@ -3,7 +3,13 @@
 [Libbitcoin](http://libbitcoin.org) is a set of cross platform C++ libraries for building bitcoin applications. The toolkit consists of several libraries, example applications, test suites and end-user applications.
 
 ##Status
-Libbitcoin is actively maintained. Since version 2.0 the original projects of [[Libbitcoin|Libbitcoin_Common]], [[Obelisk|Libbitcoin_Sever]] and [[SX|Libbitcoin_Explorer]] have been rationalized under a common repository, taxonomy and build system. 
+Libbitcoin is actively maintained. Since version 2.0 the original projects of [[Libbitcoin|Libbitcoin_Common]], [[Obelisk|Libbitcoin_Sever]] and [[SX|Libbitcoin_Explorer]] have been rationalized under a common repository, taxonomy and build system.
+
+Libbitcoin includes the dedicated consensus library [[Libbitcoin Consensus|Libbitcoin_Consensus]]. This library provides a clean interface to the 14 source files (and related headers) from Bitcoin Core considered consensus critical. It also includes Python and Java SWIG (2.1) bindings. The use of this library is optional when building [[Libbitcoin Blockchain|Libbitcoin_Blockchain]].
+
+Signed single file binaries are available for Libbitcoin Explorer (2.2) and Libbitcoin Server (2.3) for **Linux**, **OSX** and **Windows** platforms. Extensive end-user and developer documentation is provided for Libbitcoin Explorer (2.4).
+
+Libbitcoin repositories include standard Autotools builds supporting **GCC** and **Clang** as well as robust **Visual Studio** solutions. Linux and OSX builds are regularly tested on Travis (2.5). The libraries can be built on ARM. Single file install scripts for Linux/OSX can download and build all dependencies and repositories (2.6).
 
 ##Libbitcoin Libraries
 
@@ -55,6 +61,12 @@ The related command line utility **SubvertX (SX)** was announced on November 2, 
 * https://github.com/aantonop/bitcoinbook/blob/develop/appdx-bx.asciidoc
 
 ##References
+2.1: [SWIG Website](http://www.swig.org)  
+2.2: [Download BX](https://github.com/libbitcoin/libbitcoin-explorer/wiki/Download-BX)  
+2.3: [Download BS](https://github.com/libbitcoin/libbitcoin-server/wiki/Download-BS)  
+2.4: [BX Documentation](https://github.com/libbitcoin/libbitcoin-explorer/wiki)  
+2.5: [Libbitcoin Travis Build Status](https://travis-ci.org/libbitcoin/)  
+2.6: [Libbitcoin Repository Build Instructions](https://github.com/libbitcoin/libbitcoin/blob/master/README.md)  
 4.1: [GitHub Libbitcoin Contributors](https://github.com/libbitcoin/libbitcoin/graphs/contributors)  
 4.2: [Bitcoin Talk Libbitcoin Announcement](https://bitcointalk.org/index.php?topic=30646.0)  
 4.3: [Bitcoin Talk SubvertX (SX) Announcement](https://bitcointalk.org/index.php?topic=50721.0)  
