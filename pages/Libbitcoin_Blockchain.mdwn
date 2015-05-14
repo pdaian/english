@@ -25,7 +25,7 @@ The [libbitcoin-blockchain](https://github.com/libbitcoin/libbitcoin-blockchain)
 	}
 
 ##Design
-The original implementation used [LevelDB](http://leveldb.org). Following a redesign in late 2014 by [[Amir Taaki|Amir_Taaki]] (genjix) the database was replaced by a memory-mapped I/O implementation. Logical queries are performed using a set of hash tables. The number of hash buckets is optimized to minimize hash collisions, though collisions are accommodated. These changes resulted in a substantial performance increase for queries against the blockchain. Insert performance is was not materially affected and queries are near constant time.
+The original implementation used [LevelDB](http://leveldb.org). Following a redesign in late 2014 by [[Amir Taaki|Amir_Taaki]] (genjix) the database was replaced by a memory-mapped I/O implementation. Logical queries are performed using a set of hash tables. The number of hash buckets is optimized to minimize hash collisions, though collisions are accommodated. These changes resulted in a substantial performance increase, near constant time, for queries against the blockchain. Insert performance was not materially affected.
 
 [[!img "Libbitcoin-blockchain-gets.png" size=500x500]] [[!img "Libbitcoin-blockchain-gets-normalised.png" size=500x500]]
 
@@ -40,6 +40,9 @@ The following files constitute the blockchain database non-volatile storage. As 
 * stealth_index
 * stealth_rows
 * txs
+
+##Consensus Validation
+By default the library depends on the [[libbitcoin-consensus|Libbitcoin_Consensus]] library. This ensures that consensus checks are identical to those implemented by [[bitcoind|Bitcoind]]. By building using the *--without-consensus* flag the dependency is avoided and [[libbitcoin|Libbitcoin]] native consensus checks are used instead.
 
 ##Considerations
 
