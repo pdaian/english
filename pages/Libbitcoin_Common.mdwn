@@ -1,5 +1,22 @@
 The common [libbitcoin](https://github.com/libbitcoin/libbitcoin) library is a dependency of all others with the exception of [[libbitcoin-consensus|Libbitcoin_Consensus]]. It was the first library created and originally contained the core functionality of all of the others.
 
+##Example
+	#include <iostream>
+	#include <bitcoin/bitcoin.hpp>
+	
+	int main()
+	{
+	const auto block = bc::genesis_block();
+	const auto& tx = block.transactions[[0]];
+	const auto& input = tx.inputs[[0]];
+	const auto script = save_script(input.script);
+	std::string message(script.begin(), script.end());
+	std::cout << message << std::endl;
+	return 0;
+	}
+
+	♦   ↔☺♦EThe Times 03/Jan/2009 Chancellor on brink of second bailout for banks
+
 ##Bitcoin Related Features
 
 * Key formats (raw, [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), WIF, compressed/uncompressed, minikey)
@@ -10,7 +27,7 @@ The common [libbitcoin](https://github.com/libbitcoin/libbitcoin) library is a d
 * All published [mnemonic dictionaries](https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md)
 * Curve math, deterministic ECDSA, verification and encryption functions (based on [libsecp256k1](https://github.com/bitcoin/secp256k1))
 * Address functions (P2PKH and P2SH/[BIP16](https://github.com/bitcoin/bips/blob/master/bip-0016.mediawiki)), 
-* Stealth addresses functions (2.1) for wallets and blockchain search
+* Stealth addresses functions (3.1) for wallets and blockchain search
 * Wire and text serializable type library (P2P protocol)
 * Bitcoin script engine (see [[libbitcoin-consensus|Libbitcoin_Consensus]] for more information)
 * Asynchronous P2P networking stack built on [ASIO](https://think-async.com)
@@ -41,6 +58,7 @@ The common [libbitcoin](https://github.com/libbitcoin/libbitcoin) library is a d
 ##See Also
 
 * [[Libbitcoin]]
+* [Libbitcoin](https://github.com/aantonop/bitcoinbook/blob/develop/appdx-bx.asciidoc)
 
 ##References
-2.1: [DarkWallet Stealth Design Document](https://wiki.unsystem.net/en/index.php/DarkWallet/Stealth)
+3.1: [DarkWallet Stealth Design Document](https://wiki.unsystem.net/en/index.php/DarkWallet/Stealth)
