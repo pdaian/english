@@ -1,1 +1,49 @@
-This page is a stub.
+The [libbitcoin-blockchain](https://github.com/libbitcoin/libbitcoin-blockchain) library is a dependency of [[libbitcoin-node|Libbitcoin_Node]] and [[libbitcoin-server|Libbitcoin_Server]]. It was originally contained within [[libbitcoin|Libbitcoin_Common]].
+
+##Example
+	#include <string>
+	#include <bitcoin/blockchain.hpp>
+	
+	// Initialize the blockchain
+	int main(int argc, char* argv[])
+	{
+	std::string prefix("blockchain");
+	
+	if (argc > 1)
+	prefix = argv[[1]];
+	
+	bc::chain::initialize_blockchain(prefix);
+	bc::chain::db_paths paths(prefix);
+	
+	constexpr size_t history_height = 0;
+	bc::chain::db_interface interface(paths, { history_height });
+	interface.start();
+	const auto genesis = bc::genesis_block();
+	interface.push(genesis);
+	
+	return 0;
+	}
+
+##Design
+The original implementation used [LevelDB](http://leveldb.org). Following a redesign in late 2014 by [[Amir Taaki|Amir_Taaki]] (genjix) the database was replaced by a memory-mapped I/O implementation. Logical queries are performed using a set of hash tables. The number of hash buckets is optimized to minimize hash collisions, though collisions are accommodated. These changes resulted in a substantial performance increase for queries against the blockchain. Insert performance is was not materially affected and queries are near constant time.
+
+[[!img "Libbitcoin-blockchain-gets.png" size=500x500]] [[!img "Libbitcoin-blockchain-gets-normalised.png" size=500x500]]
+
+##Considerations
+
+* There is no mechanical hard drive optimization. The implementation is intended for solid state drives ([SSD](http://en.wikipedia.org/wiki/Solid-state_drive)).
+* There is a possibility of index corruption during hard shutdown. There is no means of detecting corruption aside from catastrophic fault. However given that the entire blockchain is a cache this is not considered significant. Repair can be accomplished by re-synchronizing the blockchain.
+* Data files are append only, with logical deletions only. Therefore file size is not minimized following blockchain reorganization although the impact is typically small. Defragmentation can be accomplished by re-synchronizing the blockchain.
+* The database is effectively locked during write operations. As these operations are anticipated on a period of approximately ten minutes this is not typically significant. However during a period of catch-up synchronizing the server can become continuously unresponsive to requests.
+
+##Dependencies
+
+* [boost](http://www.boost.org)
+* [libsecp256k1](https://github.com/bitcoin/secp256k1)
+* [[libbitcoin-consensus|Libbitcoin_Consensus]] (optional)
+
+##See Also
+
+* [[Libbitcoin]]
+
+##References
