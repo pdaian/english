@@ -10,7 +10,7 @@ The common [libbitcoin](https://github.com/libbitcoin/libbitcoin) library is a d
 	const auto block = bc::genesis_block();
 	const auto& tx = block.transactions[[0]];
 	const auto& input = tx.inputs[[0]];
-	const auto script = save_script(input.script);
+	const auto script = bc::save_script(input.script);
 	std::string message(script.begin(), script.end());
 	std::cout << message << std::endl;
 	return 0;
