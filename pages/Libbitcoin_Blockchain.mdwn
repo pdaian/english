@@ -29,6 +29,18 @@ The original implementation used [LevelDB](http://leveldb.org). Following a rede
 
 [[!img "Libbitcoin-blockchain-gets.png" size=500x500]] [[!img "Libbitcoin-blockchain-gets-normalised.png" size=500x500]]
 
+##Database
+The following files constitute the blockchain database non-volatile storage. As of height 350,000 the database consumes approximately 105 GB of disk space.
+
+* blocks_lookup
+* blocks_rows
+* history_lookup
+* history_rows
+* spends
+* stealth_index
+* stealth_rows
+* txs
+
 ##Considerations
 
 * There is no mechanical hard drive optimization. The implementation is intended for solid state drives ([SSD](http://en.wikipedia.org/wiki/Solid-state_drive)).
@@ -45,5 +57,3 @@ The original implementation used [LevelDB](http://leveldb.org). Following a rede
 ##See Also
 
 * [[Libbitcoin]]
-
-##References
