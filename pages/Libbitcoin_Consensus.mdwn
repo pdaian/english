@@ -1,1 +1,59 @@
-This page is a stub.
+The [libbitcoin-consensus](https://github.com/libbitcoin/libbitcoin-consensus) library is an optional dependency of [[libbitcoin-blockchain|Libbitcoin_Blockchain]]. It is conceptually redundant with native functionality within [[libbitcoin|Libbitcoin_Common]].
+
+##Example
+	#include <cstdint>
+	#include <string>
+	#include <vector>
+	#include <bitcoin/consensus.hpp>
+	
+	// For bc::decode_base16 utility.
+	#include <bitcoin/bitcoin.hpp>
+	
+	#define VERIFY_TX \
+	"01000000017d01943c40b7f3d8a00a2d62fa1d560bf739a2368c180615b0a793" \
+	"7c0e883e7c000000006b4830450221008f66d188c664a8088893ea4ddd968902" \
+	"4ea5593877753ecc1e9051ed58c15168022037109f0d06e6068b7447966f751d" \
+	"e8474641ad2b15ec37f4a9d159b02af68174012103e208f5403383c77d5832a2" \
+	"68c9f71480f6e7bfbdfa44904becacfad66163ea31ffffffff01c8af00000000" \
+	"00001976a91458b7a60f11a904feef35a639b6048de8dd4d9f1c88ac00000000"
+	
+	#define PREVOUT_SCRIPT \
+	"76a914c564c740c6900b93afc9f1bdaef0a9d466adf6ee88ac"
+	
+	// Validate a transaction against a single previous output script.
+	int main()
+	{
+	using namespace libbitcoin::consensus;
+	
+	constexpr uint32_t tx_input_index = 0;
+	constexpr uint32_t flags = verify_flags_standard  verify_flags_mandatory;
+	
+	const std::string tx(VERIFY_TX);
+	const std::string ps(PREVOUT_SCRIPT);
+	
+	std::vector<uint8_t> tx_data, ps_data;
+	/* bool */ bc::decode_base16(tx_data, tx);
+	/* bool */ bc::decode_base16(ps_data, ps);
+	
+	const auto result = verify_script(&tx_data[[0]], tx_data.size(),
+	&ps_data[[0]], ps_data.size(), tx_input_index, flags);
+	
+	return result == verify_result_eval_true ? 0 : 1;
+	}
+
+##Bindings
+The library exposes a C++ interface and includes [SWIG](http://www.swig.org) generated bindings for other languages.
+
+* C++ (native)
+* Java
+* Python
+
+##Dependencies
+
+* [openssl](https://www.openssl.org) (optional, default)
+* [libsecp256k1](https://github.com/bitcoin/secp256k1) (optional, experimental)
+* [boost test](http://www.boost.org/doc/libs/1_55_0/libs/test/doc/html/index.html) (tests only)
+
+##See Also
+
+* [[Libbitcoin]]
