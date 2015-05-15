@@ -1,0 +1,28 @@
+## CGMiner Under Ubuntu 14.04
+###  Download
+	Inside your home directory, download CGMiner
+	git clone https://github.com/Canaan-Creative/cgminer
+
+### Compile
+	cd cgminer
+	git checkout origin/avalon-miner -b avalon-miner
+	./autogen.sh --enable-avalon-miner
+	make -j 4
+
+### Run
+	sudo ./cgminer --avalonm-freq 100 --avalonm-voltage 6250 -o http://stratum.pool:3333 -u  work -p pass 
+	or
+	sudo ./cgminer --avalonm-freq 275:250:200 --avalonm-voltage 6250 -o http://stratum.pool:3333 -u  work -p pass
+	or
+	sudo ./cgminer --avalonm-freq 100 --avalonm-voltage 6250 -o http://stratum.pool:3333 -u  work -p pass --api-allow W:127.0.0.1 --api-listen $@ 2>./log
+
+### Tweak
+
+* Voltage
+	Format: **ascsetASCN,voltage,value**
+	eg: cgminer-api "ascset0,voltage,7000"
+
+* Frequency
+	Format: **ascsetASCN,frequency,chip id-value**
+	eg: cgminer-api "ascset0,frequency,0-450:390:370"   /* set all chips work at 450:390:370, about 414 Mhz = (450 * 4 + 390 * 4 + 370) / 9 */
+	cgminer-api "ascset0,frequency,1-200"  /* set chip 1 works at 200 Mhz
