@@ -1,1 +1,206 @@
-This page is a stub.
+The [libbitcoin-build](https://github.com/libbitcoin/libbitcoin-build) repository is used by [[Libbitcoin]] maintainers to generate [Autotols](http://en.wikipedia.org/wiki/GNU_build_system) and other build artifacts from declarative sources. The purpose of the library is to maintain build quality and consistency across the libbitcoin repositories.
+
+##Generated Artifacts
+	.travis.yml
+	autogen.sh
+	configure.ac
+	install.sh
+	[[library]].pc.in
+	[[library]]_test_runner.sh
+	Makefile.am
+	include/bitcoin/[[library]].hpp
+	include/bitcoin/[[library]]/version.hpp
+
+##Design Overview
+The Libbitcoin build system uses [GSL](https://github.com/imatix/gsl) for generation of build artifacts from a declarative XML model of each repository. The build system also enumerates source files within each repository in order to generate a master [[library]].hpp and Makefile.am. Visual Studio projects and solutions are not currently generated (3.1). Source code for Java and Python bindings is generated using [SWIG](http://www.swig.org).
+
+##Change Control Process
+Maintainers generate and push resulting artifacts to each of the other repositories so that contributors have familiar context. Contributors can edit and pull the generated artifacts and maintainers determine whether to retain changes by incorporating them into the model. This allows less experienced contributors to introduce changes for review without introducing fragility into user-facing build, install and packaging processes.
+
+##Example Repository Model
+	<repository name="libbitcoin-consensus" version="1.1.0" email="eric@voskuil.org" >
+	
+	<package library="bitcoin-consensus" description="Libbitcoin Consensus Library" url="https://github.com/libbitcoin/libbitcoin-consensus" />
+	
+	<configure>
+	<option type="with" name="pkgconfigdir" default="${libdir}/pkgconfig" example="=DIR" unprefixed="true" substitute="true" description="Path to pkgconfig directory." />
+	<option type="with" name="tests" default="yes" conditional="true" description="Compile with unit tests." />
+	<option type="with" name="openssl" default="yes" description="Require OpenSSL dependency." />
+	<option type="with" name="secp256k1" default="no" define="USE_SECP256K1" conditional="true" description="Compile with secp256k1 instead of OpenSSL." />
+	<option type="with" name="java" default="no" conditional="true" description="Compile the Java bindings." />
+	<option type="with" name="python" default="no" conditional="true" description="Compile the Python bindings." />
+	<option type="enable" name="ndebug" default="yes" define="NDEBUG" description="Compile without debug assertions." />
+	<option type="enable" name="shared" default="yes" define="BOOST_TEST_DYN_LINK" inherited="true" description="Required for dynamically linking boost test." />
+	
+	<dependency name="boost" compiler="gcc" version="1.55.0" option="tests" />
+	<dependency name="boost" compiler="clang" version="1.54.0" option="tests" />
+	<dependency name="boost_unit_test_framework" option="tests" />
+	<dependency name="crypto" version="1.0.1" option="openssl" />
+	<dependency name="secp256k1" version="0.0.1" option="secp256k1" />
+	<dependency name="java" option="java" />
+	<dependency name="python" version="2.7" option="python" />
+	
+	<flag name="Wall" comment="Warn on all stuff." context="c" />
+	<flag name="Wextra" comment="Warn on extra stuff." context="c" />
+	<flag name="Wpedantic" alternate="pedantic" comment="Be really annoying." context="c" />
+	<flag name="Wno-missing-braces" comment="Conform to style." context="c++" />
+	<flag name="Wno-mismatched-tags" compiler="clang" comment="Conflict in stdlib under clang." context="c++" />
+	<flag name="Wno-deprecated-register" compiler="clang" comment="Clean up boost 1.54 headers." context="c++" />
+	<flag name="Wno-deprecated-declarations" comment="Clean up consensus warnings from boost 1.55 and OpenSSL headers." context="c++" />
+	<flag name="fstack-protector" comment="Protect stack." context="link" />
+	<flag name="fstack-protector-all" comment="Protect stack comprehensively." context="link" />
+	<flag name="fvisibility-hidden" compiler="gcc" comment="Hide internal functions from external libs." context="c++" />
+	<flag name="fvisibility-inlines-hidden" compiler="gcc" comment="Hide inlines from external libs." context="c++" />
+	</configure>
+	
+	<make>
+	<product prefix="pkgconfig" >
+	<file path="libbitcoin-consensus.pc" />
+	</product>
+	<product prefix="doc" >
+	<file path="AUTHORS" />
+	<file path="COPYING" />
+	<file path="ChangeLog" />
+	<file path="INSTALL" />
+	<file path="NEWS" />
+	<file path="README" />
+	</product>
+	<product prefix="lib" path="src" name="bitcoin-consensus" uuid="6c521d95-00ce-4120-97d1-430e2870d738" >
+	<library name="crypto" />
+	<library name="secp256k1" />
+	<headers path="include" />
+	<headers path="src" />
+	<sources path="src" />
+	</product>
+	<product prefix="bin" path="test" name="libbitcoin_consensus_test" test="true" option="tests" uuid="d282ef8c-6217-483c-ac47-864b2fba50fd" >
+	<runner random="true" />
+	<library name="bitcoin-consensus" />
+	<library name="boost" />
+	<library name="boost_unit_test_framework" />
+	<headers path="include" />
+	<headers path="src" />
+	<sources path="test" />
+	</product>
+	<product prefix="include" container="bitcoin" >
+	<files path="include/bitcoin" />
+	</product>
+	<product prefix="lib" path="bindings/java/wrap" name="bitcoin-consensus-jni" option="java" >
+	<library name="bitcoin-consensus" />
+	<library name="java" />
+	<headers path="include" />
+	<sources path="bindings/java/wrap" />
+	</product>
+	<product prefix="javaexec" distribute="true" install="false" option="java" >
+	<files path="bindings/java/proxy/org/libbitcoin/consensus" />
+	</product>
+	<product prefix="jarexec" distribute="false" install="true" option="java" >
+	<file path="org.libbitcoin.consensus-${VERSION}.jar" />
+	</product>
+	<product prefix="pkgpyexec" path="bindings/python/wrap" name="_bitcoin-consensus" unprefixed="true" option="python" >
+	<library name="bitcoin-consensus" />
+	<library name="python" />
+	<headers path="include" />
+	<sources path="bindings/python/wrap" />
+	</product>
+	<product prefix="pkgpython" option="python" >
+	<files path="bindings/python/proxy" />
+	</product>
+	</make>
+	
+	<install>
+	<!-- Boost.system is necessary for detection, which is only required for test. -->
+	<build name="boost" version="1.55.0" parallel="true" compiler="gcc" >
+	<option value="--with-system" />
+	<option value="--with-test" />
+	</build>
+	<build name="boost" version="1.54.0" parallel="true" compiler="clang" >
+	<option value="--with-system" />
+	<option value="--with-test" />
+	</build>
+	<build name="secp256k1" github="libbitcoin" repository="secp256k1" branch="version3" parallel="true" >
+	<option value="--disable-tests" />
+	<option value="--disable-bignum" />
+	</build>
+	<build name="bitcoin-consensus" github="libbitcoin" repository="libbitcoin-consensus" branch="version1" parallel="true" >
+	<option value="${with_boost}" />
+	<option value="${with_pkgconfigdir}" />
+	</build>
+	</install>
+	
+	<matrix>
+	<job system="osx" compiler="clang" link="static" >
+	<get name="swig" />
+	<option value="--without-openssl" />
+	<option value="--with-secp256k1" />
+	<option value="--with-java" />
+	<option value="--disable-shared" />
+	<option value="--build-boost" />
+	<option value="--prefix=$HOME/my-prefix" />
+	</job>
+	<job system="linux" compiler="clang" link="static" >
+	<get name="swig" />
+	<option value="--with-python" />
+	<option value="--disable-shared" />
+	<option value="--build-boost" />
+	<option value="--prefix=$HOME/my-prefix" />
+	<option value="CXXFLAGS='-Os -stdlib=libstdc++'" />
+	<option value="LDLIBS='-lstdc++'" />
+	</job>
+	<job system="linux" compiler="gcc" link="static" coverage="true" >
+	<option value="--build-boost" />
+	<option value="--disable-shared" />
+	<option value="--prefix=$HOME/my-prefix" />
+	<option value="--build-dir=my-build" />
+	<option value="CXXFLAGS='-g -O0 -static --coverage'" />      
+	</job>
+	<job system="linux" compiler="gcc" link="static" coverage="true" >
+	<get name="swig" />
+	<option value="--with-java" />
+	<option value="--without-openssl" />
+	<option value="--with-secp256k1" />
+	<option value="--disable-shared" />
+	<option value="--build-boost" />
+	<option value="--prefix=$HOME/my-prefix" />
+	<option value="--build-dir=my-build" />
+	<option value="CXXFLAGS='-g -O0 -static --coverage'" />   
+	</job>
+	<job system="osx" compiler="clang" link="dynamic" >
+	<!--<get name="boost" />-->
+	<get name="swig" />
+	<option value="--with-python" />
+	<option value="--without-openssl" />
+	<option value="--with-secp256k1" />
+	</job>
+	<job system="linux" compiler="clang" link="dynamic" sudo="true" >
+	<get name="boost1.54" />
+	<option value="--without-openssl" />
+	<option value="--with-secp256k1" />
+	<option value="--disable-ndebug" />
+	<option value="--disable-static" />
+	<option value="CXXFLAGS='-Os -stdlib=libstdc++'" />
+	<option value="LDLIBS='-lstdc++'" />
+	</job>
+	<job system="linux" compiler="gcc" link="dynamic" sudo="true" >
+	<get name="swig" />
+	<get name="libssl-dev" />
+	<option value="--with-java" />
+	<option value="--with-python" />
+	<option value="--disable-static" />
+	<option value="--build-boost" />
+	<option value="CXXFLAGS='-Os -s'" />
+	</job>
+	</matrix>
+	
+	</repository>
+
+##Dependencies
+
+* [GSL/4.1 - Universal Code Generator](https://github.com/imatix/gsl)
+* [SWIG - Simplified Wrapper and Interface Generator](http://www.swig.org)
+
+##See Also
+
+* [[Libbitcoin]]
+
+##References
+3.1: [Libbitcoin Build README.md](https://github.com/libbitcoin/libbitcoin-build/blob/master/README.md)
