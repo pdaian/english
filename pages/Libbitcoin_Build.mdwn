@@ -12,7 +12,7 @@ The [libbitcoin-build](https://github.com/libbitcoin/libbitcoin-build) repositor
 	include/bitcoin/[[library]]/version.hpp
 
 ##Design Overview
-The Libbitcoin build system uses [GSL](https://github.com/imatix/gsl) for generation of build artifacts from a declarative XML model of each repository. The build system also enumerates source files within each repository in order to generate a master [[library]].hpp and Makefile.am. Visual Studio projects and solutions are not currently generated (3.1). Source code for Java and Python bindings is generated using [SWIG](http://www.swig.org).
+The Libbitcoin build system uses [GSL](https://github.com/imatix/gsl) for generation of build artifacts from a declarative XML model of each repository (3.1). The build system also enumerates source files within each repository in order to generate a master [[library]].hpp and Makefile.am. Visual Studio projects and solutions are not currently generated (3.2). Scripts invoking [SWIG](http://www.swig.org) are used to generate source code for Java and Python bindings (3.3).
 
 ##Change Control Process
 Maintainers generate and push resulting artifacts to each of the other repositories so that contributors have familiar context. Contributors can edit and pull the generated artifacts and maintainers determine whether to retain changes by incorporating them into the model. This allows less experienced contributors to introduce changes for review without introducing fragility into user-facing build, install and packaging processes.
@@ -203,4 +203,6 @@ Maintainers generate and push resulting artifacts to each of the other repositor
 * [[Libbitcoin]]
 
 ##References
-3.1: [Libbitcoin Build README.md](https://github.com/libbitcoin/libbitcoin-build/blob/master/README.md)
+3.1: [Libbitcoin Declarative Build Model](https://github.com/libbitcoin/libbitcoin-build/blob/master/generate.xml)  
+3.2: [Libbitcoin Build README.md](https://github.com/libbitcoin/libbitcoin-build/blob/master/README.md)  
+3.3: [SWIG Binding Generation Script Generator](https://github.com/libbitcoin/libbitcoin-build/blob/master/templates/gsl.bindings.sh)
