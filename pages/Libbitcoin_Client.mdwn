@@ -1,4 +1,4 @@
-The [libbitcoin-client](https://github.com/libbitcoin/libbitcoin-client) library provides an abstraction over the low level networking calls required to communicate with [[libbitcoin-server (BS)|Libbitcoin_Server]]. The the server application is not currently divided into library and executable so there is no analog to libbitcoin-client on the server.
+The [libbitcoin-client](https://github.com/libbitcoin/libbitcoin-client) library provides an abstraction over the low level networking calls required to communicate with [[libbitcoin-server (BS)|Libbitcoin_Server]]. The server application is currently monolithic (not divided into library and executable) so there is no analog to the libbitcoin-client API for a server.
 
 ##Example
 	#include <iostream>
@@ -52,6 +52,30 @@ The [libbitcoin-client](https://github.com/libbitcoin/libbitcoin-client) library
 	return 0;
 	}
 
+##Messaging
+The client-server protocol is build on [ØMQ](http://zeromq.org) (aka ZMQ, ZeroMQ and Zero Message Queue), a "High-speed asynchronous I/O engine, in a tiny library." (3.1) ØMQ sits directly on sockets and, "Carries messages across inproc, IPC, TCP, TIPC, multicast." (3.2) The API supports the pub-sub pattern (3.3) (e.g. monitoring Bitcoin addresses) and the router-dealer pattern (3.4) (e.g. requesting stealth transactions).
+
+##Authentication and Encryption
+The API incorporates CurveZMQ, "An authentication and encryption protocol for ZeroMQ." (4.1) (4.2) CurveZMQ is based on [CurveCP](http://curvecp.org) and [NaCl](http://nacl.cr.yp.to), providing fast, secure elliptic-curve crypto. (4.3)
+
+Private key certificates are self-generated as ZPL encoded files (4.4) with public and secret key properties. The keys are Z85 encoded (4.5) elliptic curve points. Keys can be fabricated by Bitcoin Explorer (BX) (4.6) as follows.
+
+	$ bx cert-new citizen4.private
+
+	$ cat citizen4.private
+	#   ****  Generated on 2015-05-18 15:09:59 by CZMQ  ****
+	#   ZeroMQ CURVE **Secret** Certificate
+	#   DO NOT PROVIDE THIS FILE TO OTHER USERS nor change its permissions.
+	
+	metadata
+	curve
+	public-key = "Mu^Lc6Y(ebQAzQRGl^XkZKXMpb+<pnVDZcd:WSv"
+	secret-key = "dCSl9<(u#4L4$(6>CqJ@NX-kvo+I5^&WPHDX+"
+
+Client applications can be configured with the public key of one or more servers (4.7) and thereby securely authenticate the server that is configured with the corresponding private key certificate (4.8). A client with a server's public key may also create a secure channel with the server.
+
+Client applications may be configured with a self-generated private key (4.9) and thereby securely authenticate to a server that holds a copy of that that client's public key (4.10).
+
 ##History
 The libbitcoin client-server protocol (API) is sometimes referred to as the Obelisk protocol, as this was the name of the first version of the server. In the first version the client API was contained within the libbitcoin-server library, which led to a dependency between client applications such as [[Bitcoin Explorer (BX)|Libbitcoin_Explorer]], and the server library.
 
@@ -71,3 +95,17 @@ In the summer of 2014 William Swanson redesigned the client library as libbitcoi
 * [[Libbitcoin]]
 
 ##References
+3.1: [ØMQ - Code Connected](http://zeromq.org)  
+3.2: [ØMQ - Code Connected](http://zeromq.org)  
+3.3: [ØMQ - Getting the Message Out](http://zguide.zeromq.org/page:all#Getting-the-Message-Out)  
+3.4: [ØMQ - Advanced Request-Reply Patterns](http://zguide.zeromq.org/php:chapter3#The-DEALER-to-ROUTER-Combination)  
+4.1: [CurveZMQ - Security for ZeroMQ](http://curvezmq.org)  
+4.2: [CurveZMQ Authentication and Encryption Protoco](http://rfc.zeromq.org/spec:26)  
+4.3: ["The security impact of a new cryptographic library" - Daniel J. Bernstein et. al.](http://cr.yp.to/highspeed/coolnacl-20120725.pdf)  
+4.4: [ZPL - ZeroMQ Property Language](http://rfc.zeromq.org/spec:4)  
+4.5: [Z85 - ZeroMQ Base-85 Encoding Algorithm](http://rfc.zeromq.org/spec:32)  
+4.6: [Bitcoin Explorer cert-new command.](https://github.com/libbitcoin/libbitcoin-explorer/wiki/bx-cert-new)  
+4.7: [BX Configuration Settings](https://github.com/libbitcoin/libbitcoin-explorer/wiki/Configuration-Settings#default-configuration-settings)  
+4.8: [BS Configuration Settings](https://github.com/libbitcoin/libbitcoin-server/wiki/Configuration-Settings#configuration-settings)  
+4.9: [BX Configuration Settings](https://github.com/libbitcoin/libbitcoin-explorer/wiki/Configuration-Settings#default-configuration-settings)  
+4.10: [BS Configuration Settings](https://github.com/libbitcoin/libbitcoin-server/wiki/Configuration-Settings#configuration-settings)
