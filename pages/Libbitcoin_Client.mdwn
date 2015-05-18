@@ -53,7 +53,7 @@ The [libbitcoin-client](https://github.com/libbitcoin/libbitcoin-client) library
 	}
 
 ##Messaging
-The client-server protocol is build on [ØMQ](http://zeromq.org) (aka ZMQ, ZeroMQ and Zero Message Queue), a "High-speed asynchronous I/O engine, in a tiny library." (3.1) ØMQ sits directly on sockets and, "Carries messages across inproc, IPC, TCP, TIPC, multicast." (3.2) The API supports the pub-sub pattern (3.3) (e.g. monitoring Bitcoin addresses) and the router-dealer pattern (3.4) (e.g. requesting stealth transactions).
+The client-server protocol (API) is build on [ØMQ](http://zeromq.org) (aka ZMQ, ZeroMQ and Zero Message Queue), a "High-speed asynchronous I/O engine, in a tiny library." (3.1) ØMQ sits directly on sockets and, "Carries messages across inproc, IPC, TCP, TIPC, multicast." (3.2) The API supports the pub-sub pattern (3.3) (e.g. monitoring Bitcoin addresses) and the router-dealer pattern (3.4) (e.g. requesting stealth transactions).
 
 ##Authentication and Encryption
 The API incorporates CurveZMQ, "An authentication and encryption protocol for ZeroMQ." (4.1) (4.2) CurveZMQ is based on [CurveCP](http://curvecp.org) and [NaCl](http://nacl.cr.yp.to), providing fast, secure elliptic-curve crypto. (4.3)
