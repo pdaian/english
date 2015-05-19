@@ -44,7 +44,7 @@ The [libbitcoin-consensus](https://github.com/libbitcoin/libbitcoin-consensus) l
 ##Background
 The consensus library exists to provide consensus validation identical in outcome to [[bitcoind|Bitcoind]]. The integral [[libbitcoin|Libbitcoin_Common]] script engine provides the same checks. However given the complexity of the validation code it is effectively impossible to prove that two implementations are identical in outcome, even with extensive testing. This effectively makes the bitcoind *implementation* a standard (as opposed to an RFC or BIP).
 
-That has helped stifle the adoption of alternative full node implementations. While it has been argued that consensus risk from any particular implementation is a red herring (3.1) it was decided to give libbitcoin developers and users the option. Following much deliberation (3.2) and a recommendation by [[Peter Todd|Peter_Todd]] (3.3) it was decided to package this library independently in order to provide better consistency, a leaner dependency, and more formal isolation from bitcoind. The library is free of both libbitcoin and bitcoind dependencies. (3.4)
+That has helped stifle the adoption of alternative full node implementations. While it has been argued that consensus risk from any particular implementation is a red herring (3.1) it was decided to give libbitcoin developers and users the option. Following much deliberation (3.2) and a recommendation by [[Peter Todd|Peter_Todd]] (3.3) (3.4) it was decided to package this library independently in order to provide better consistency, a leaner dependency, and more formal isolation from bitcoind. The library is free of both libbitcoin and bitcoind dependencies. (3.5)
 
 ##Verification
 This library incorporates the files that have been identified as "consensus critical" in bitcoind. It is straightforward to verify the implementation against bitcoind by overlaying the bitcoind sources and performing a difference option. With each tagged release of bitcoind this library is updated with the files identified in the [libbitcoinconsensus](https://github.com/bitcoin/bitcoin/blob/master/src/Makefile.am) build.
@@ -70,4 +70,5 @@ The library exposes a C++ interface and includes [SWIG](http://www.swig.org) gen
 3.1: [The Bitcoin Consensus Red Herring](https://blog.conformal.com/the-bitcoin-consensus-red-herring)  
 3.2: [Libbitcoinconsensus Discussion on Libbitcoin Mailing List](https://lists.dyne.org/lurker/message/20150214.111556.61403f4c.en.html)  
 3.3: [Response to Peter Todd "Twinkle Fingers" Post on Bitcoin-Dev](https://lists.dyne.org/lurker/message/20150325.083041.77f52cd3.en.html)  
-3.4: [Instructions for Building libbitcoin-consensus](https://github.com/libbitcoin/libbitcoin-consensus/blob/master/README.md)
+3.4: ["Peter Todd takes the gloves off on this letter to Libbitcoin Devs"﻿ - AvatarX](https://plus.google.com/u/0/+AvatarEquis/posts/JjFnTf3iY1E)  
+3.5: [Instructions for Building libbitcoin-consensus](https://github.com/libbitcoin/libbitcoin-consensus/blob/master/README.md)
