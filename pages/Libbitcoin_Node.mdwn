@@ -1,1 +1,58 @@
-[[!template id=stub]]
+The [libbitcoin-node](https://github.com/libbitcoin/libbitcoin-node) library provides an abstraction over the low level networking calls required to implement a full node on the Bitcoin peer-to-peer network. It was originally contained within [[libbitcoin|Libbitcoin_Common]].
+
+##Example
+The initialize_logging and display_result functions are omitted for brevity. The example expects the blockchain to be initialized in "./blockchain/" (see libbitcoin-blockchain/tools/initchain).
+	int main()
+	{
+	std::string command;
+	bc::payment_address address;
+	initialize_logging("debug.log", "error.log");
+	
+	std::cout << "Starting up...";
+	bc::node::fullnode node("blockchain");
+	node.start();
+	
+	std::cout << "Type a bitcoin address or 'stop' to exit." << std::endl;
+	while (true)
+	{
+	std::getline(std::cin, command);
+	if (command == "stop")
+	break;
+	
+	if (!address.set_encoded(command))
+	{
+	std::cout << "Invalid address." << std::endl;
+	continue;
+	}
+	
+	const auto fetch_handler = [[&address]](const std::error_code& code,
+	const bc::chain::history_list& history)
+	{
+	display_result(code, history, address);
+	};
+	
+	fetch_history(node.chain(), node.indexer(), address, fetch_handler);
+	}
+	
+	std::cout << "Shutting down...";
+	node.stop();
+	
+	return 0;
+	}
+
+##Console Application
+The library is accompanied by the console application Bitcoin Node (bn). Bitcoin Node implements a full node on the Bitcoin P2P network. The initial (bn 2.0) release is an example, not intended for production use.
+
+##Dependencies
+
+* [boost](http://www.boost.org)
+* [secp256k1](https://github.com/bitcoin/secp256k1)
+* [[libbitcoin|Libbitcoin_Common]]
+* [[libbitcoin-consensus (optional)|Libbitcoin_Consensus]]
+* [[libbitcoin-blockchain|Libbitcoin_Blockchain]]
+
+##See Also
+
+* [[Libbitcoin]]
+
+##References
