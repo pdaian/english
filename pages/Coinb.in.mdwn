@@ -1,32 +1,41 @@
-**Coinb.in** is an [[eWallet]] and bitcoin payment gateway that was launched in July 2011. They also run a UK hosted bitcoin [[P2Pool]] node. It was designed for developers who had been looking to easily accept bitcoins via an unbranded interface at no fee.
+###Coinb.in
 
-##Features
-Coinb.in has a number of different features, some of which include;
+**Coinb.in** is a free and *open source project* released under the MIT license, originally by [OutCast3k](https://bitcointalk.org/index.php?action=profile;u=34834) in 2013. 
 
-* Automated registration and password reset.
-* Automated withdrawals upon payment.
-* Account transaction history.
-* An easily accessible API that can output the results in various formats including; JSON, XML and a serialized PHP array.
-* Supports the use of QRCodes.
-* Multi signature addresses generator
-* Broadcast a transaction via the website
+**Github**: https://github.com/OutCast3k/coinbin/
 
-##API
-Coinb.in's API includes several features, including:
+**TOR**: 4zpinp6gdkjfplhk.onion
 
-* Lookup account balance.
-* Lookup exchange rate.
-* Send bitcoins.
-* Transaction history.
-* URL Callback feature.
-* Address validation.
-* Address generation.
+###Features
+
+* Offline Compressed & uncompressed Address creation.
+* Offline [[Multisignature Address|Address#Multi-signature_addresses]] creation.
+* [[HD|Deterministic_wallet]] (bip32) support
+* "In browser" Key (re)generation.
+* Send and receive payments.
+* Ability to decode transactions, redeem scripts and more offline.
+* Build custom transactions offline.
+* Sign transactions offline.
+* Signatures are deterministic as per RFC 6979 (https://tools.ietf.org/html/rfc6979#section-3.2)
+* Broadcast transactions.
+* nLockTime support.
+* Add custom data to transactions with the use of OP_RETURN.
+* Support current Dark Wallet Stealth Address structure (as of version Alpha 7) for outputs.
+* [[Brain wallet|Brainwallet]] support.
+* Compatible with bitcoin-qt
+* An offical .onion address for tor users.
+* Offline qrcode creator and scanning tool
+
+###Privacy
+Coinb.in beleives strongly in privacy, not only do does it support the use of TOR, the site does not collect and store IP or transaction data via their servers.
 
 ##External links
 
 * [Coinb.in website](https://www.coinb.in)
-* [Coinbin Payment Gateway Documentation](http://coinb.in//paymentgateway-documentation.html)
 
 [[!tag "eWallets"]]
+[[!tag "Wallet"]]
+[[!tag "HD_Wallet"]]
+[[!tag "Multisig"]]
 [[!tag "Services"]]
 [[!tag "Shopping_Cart_Interfaces"]]
