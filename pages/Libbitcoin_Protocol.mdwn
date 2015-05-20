@@ -1,5 +1,11 @@
 The [libbitcoin-protocol](https://github.com/libbitcoin/libbitcoin-protocol) library is experimental and not currently used by any other [[Libbitcoin]] library. The library defines a privacy-centric blockchain query language based on a simple and formally-defined messaging interface for the purpose of communicating with a [[full chain or SPV|Thin_Client_Security#Full_Node_vs._SPV]] blockchain server. The design is independent of network topology and supports in-process as well as wide area messaging.
 
+##Status
+An [interface definition](https://github.com/libbitcoin/libbitcoin-protocol/tree/master/proto/bitcoin/protocol) based on [Protocol Buffers](https://developers.google.com/protocol-buffers/) has been published along with [C++](https://github.com/libbitcoin/libbitcoin-protocol/tree/master/include/bitcoin), [Java](https://github.com/libbitcoin/libbitcoin-protocol/tree/master/java/libbitcoin/protocol) and [Python](https://github.com/libbitcoin/libbitcoin-protocol/tree/master/python/bitcoin/protocol) marshalling libraries. The library is integrated with the [[Libbitcoin Build|Libbitcoin_Build]] system, with regular build and test execution, including a moderate level of unit test coverage (2.1).
+
+##Privacy First
+The focus of the protocol is not the wire encoding, but the messaging semantics (3.1). The central tenet of the library is that the level of privacy in making queries must be controllable by the caller over public networks. As such all queries are prefix filtered on a bit-wise basis with the depth of the filter controlled by the caller.
+
 ##Objectives
 
 * The server should not be required to maintain any session state.
@@ -10,16 +16,15 @@ The [libbitcoin-protocol](https://github.com/libbitcoin/libbitcoin-protocol) lib
 * The IDL should provide tooling for generation of client-server stubs in C/C++.
 * The IDL tooling should implement marshalling in C/C++.
 
-##Privacy First Design
-The focus of the protocol is not the wire encoding, but the messaging semantics (3.1). The central tenet of the library is that the level of privacy in making queries must be controllable by the caller over public networks. As such all queries are prefix filtered on a bit-wise basis with the depth of the filter controlled by the caller.
-
-##Status
-An [interface definition](https://github.com/libbitcoin/libbitcoin-protocol/tree/master/proto/bitcoin/protocol) based on [Protocol Buffers](https://developers.google.com/protocol-buffers/) has been published along with [C++](https://github.com/libbitcoin/libbitcoin-protocol/tree/master/include/bitcoin), [Java](https://github.com/libbitcoin/libbitcoin-protocol/tree/master/java/libbitcoin/protocol) and [Python](https://github.com/libbitcoin/libbitcoin-protocol/tree/master/python/bitcoin/protocol) marshalling libraries. The library is integrated with the [[Libbitcoin Build|Libbitcoin_Build]] system, with regular build and test execution, including a moderate level of unit test coverage (4.1).
-
 ##History
 The protocol design was the work product of a [[Libbitcoin]] team meeting in San Diego in August, 2014.
 
+##Dependencies
+[Protocol Buffers](https://developers.google.com/protocol-buffers/)
+
 ##See Also
 [[Libbitcoin]]
-3.1: [Libbitcoin Protocol Wire Encoding Statement](https://github.com/libbitcoin/libbitcoin-protocol#wire-encoding)  
-4.1: [Libbitcoin Protocol Coveralls Report](https://coveralls.io/r/libbitcoin/libbitcoin-protocol)
+
+##References
+2.1: [Libbitcoin Protocol Coveralls Report](https://coveralls.io/r/libbitcoin/libbitcoin-protocol)  
+3.1: [Libbitcoin Protocol Wire Encoding Statement](https://github.com/libbitcoin/libbitcoin-protocol#wire-encoding)
