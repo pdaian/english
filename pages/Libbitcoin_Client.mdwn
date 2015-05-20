@@ -1,4 +1,4 @@
-The [libbitcoin-client](https://github.com/libbitcoin/libbitcoin-client) library provides an abstraction over the low level networking calls required to communicate with [[libbitcoin-server (BS)|Libbitcoin_Server]]. The server application is currently monolithic (not divided into library and executable) so there is no analog to the libbitcoin-client API for a server.
+The [libbitcoin-client](https://github.com/libbitcoin/libbitcoin-client) library provides an abstraction over the low level networking calls required to communicate with [[Bitcoin Server (bs)|Libbitcoin_Server]] or other service implementing the Libbitcoin client-server protocol.
 
 ##Example
 	#include <iostream>
@@ -72,7 +72,7 @@ Private key certificates are self-generated as [ZPL (ZeroMQ Property Language)](
 	public-key = "Mu^Lc6Y(ebQAzQRGl^XkZKXMpb+<pnVDZcd:WSv"
 	secret-key = "dCSl9<(u#4L4$(6>CqJ@NX-kvo+I5^&WPHDX+"
 
-Client applications can be configured with the public key of one or more servers (4.5) and thereby securely authenticate the server that is configured with the corresponding private key certificate (4.6). A client with a server's public key may also create a secure channel with the server. Client applications may be configured with a self-generated private key (4.7) and thereby securely authenticate to a server that holds a copy of that that client's public key (4.8).
+Client applications can be configured with the public key of one or more servers (4.5) and thereby securely authenticate the server that is configured with the corresponding private key certificate (4.6). A client with a server's public key may also create a secure channel with the server. Client applications may be configured with a self-generated private key and thereby securely authenticate to a server that holds a copy of that that client's public key.
 
 ##History
 The libbitcoin client-server protocol (API) is sometimes referred to as the Obelisk protocol, as this was the name of the first version of the server. In the first version the client API was contained within the libbitcoin-server library, which led to a dependency between client applications such as [[Bitcoin Explorer (bx)|Libbitcoin_Explorer]], and the server library.
@@ -101,7 +101,5 @@ In the summer of 2014 William Swanson redesigned the client library as libbitcoi
 4.2: [CurveZMQ Authentication and Encryption Protoco](http://rfc.zeromq.org/spec:26)  
 4.3: ["The security impact of a new cryptographic library" - Daniel J. Bernstein et. al.](http://cr.yp.to/highspeed/coolnacl-20120725.pdf)  
 4.4: [Bitcoin Explorer cert-new command.](https://github.com/libbitcoin/libbitcoin-explorer/wiki/bx-cert-new)  
-4.5: [BX Configuration Settings](https://github.com/libbitcoin/libbitcoin-explorer/wiki/Configuration-Settings#default-configuration-settings)  
-4.6: [BS Configuration Settings](https://github.com/libbitcoin/libbitcoin-server/wiki/Configuration-Settings#configuration-settings)  
-4.7: [BX Configuration Settings](https://github.com/libbitcoin/libbitcoin-explorer/wiki/Configuration-Settings#default-configuration-settings)  
-4.8: [BS Configuration Settings](https://github.com/libbitcoin/libbitcoin-server/wiki/Configuration-Settings#configuration-settings)
+4.5: [Bitcoin Explorer Configuration Settings](https://github.com/libbitcoin/libbitcoin-explorer/wiki/Configuration-Settings#default-configuration-settings)  
+4.6: [Bitcoin Server Configuration Settings](https://github.com/libbitcoin/libbitcoin-server/wiki/Configuration-Settings#configuration-settings)
