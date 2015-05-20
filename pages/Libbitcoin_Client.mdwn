@@ -58,7 +58,7 @@ The client-server protocol (API) is build on [ØMQ (aka ZMQ, ZeroMQ and Zero Mes
 ##Authentication and Encryption
 The API incorporates [CurveZMQ](http://curvezmq.org), "An authentication and encryption protocol for ZeroMQ." (4.1) (4.2) CurveZMQ is based on [CurveCP](http://curvecp.org) and [NaCl](http://nacl.cr.yp.to), providing fast, secure elliptic-curve crypto. (4.3)
 
-Private key certificates are self-generated as [ZPL (ZeroMQ Property Language)](http://rfc.zeromq.org/spec:4) encoded files with public and secret key properties. The keys are [Z85 - (ZeroMQ Base-85 Encoding Algorithm)](http://rfc.zeromq.org/spec:32) encoded elliptic curve points. Keys can be fabricated by Bitcoin Explorer (BX) (4.4) as follows.
+Private key certificates are self-generated as [ZPL (ZeroMQ Property Language)](http://rfc.zeromq.org/spec:4) encoded files with public and secret key properties. The keys are [Z85 - (ZeroMQ Base-85 Encoding Algorithm)](http://rfc.zeromq.org/spec:32) encoded elliptic curve points. Keys can be fabricated by Bitcoin Explorer (bx) (4.4) as follows.
 
 	$ bx cert-new citizen4.private
 
