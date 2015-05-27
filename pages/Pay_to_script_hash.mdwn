@@ -6,7 +6,11 @@ Using P2SH, you can send bitcoins to an address that is secured in various unusu
 
 [[BIP 13|BIP_0013]] specifies the address format. Bitcoin P2SH addresses always start with 3.
 
+## Example
+
+Transaction 40eee3ae1760e3a8532263678cdf64569e6ad06abc133af64f735e52562bccc8 paid to P2SH address 3P14159f73E4gFr7JterCCQh9QjiTjiZrG.  You can see the redeem script in transaction 7edb32d4ffd7a385b763c7a8e56b6358bcd729e747290624e18acdbe6209fc45 which spends that output, using <code>OP_FALSE <sig> { OP_1 <pubkey> OP_1 OP_CHECKMULTISIG }</code>.
+
 ## History
 
 342ftSRCvFHfCeFFBuz4xwbeqnDw6BGUey is a Bitcoin [[address]] notable for being the first [[P2SH]]-compatible address receiving bitcoins on the production network.
-Its payment was mined in [[block]] 160720.
+Its payment was mined in [[block]] 160720; note that it was spent prior to the enforcement of [[BIP 16|BIP_0016]], so it's not a good example to understand P2SH.
