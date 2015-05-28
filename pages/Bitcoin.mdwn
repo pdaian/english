@@ -128,9 +128,9 @@ Node implementations include core software such as Bitcoind/Bitcoin-Qt, [[libbit
 Every node in the Bitcoin network collects all the unacknowledged transactions it knows of in a file called a *block*, which also contains a reference to the previous valid block known to that node. It then appends a [[nonce]] value to this previous block and computes the SHA-256 cryptographic hash of the block and the appended nonce value. The node repeats this process until it adds a nonce that allows for the generation of a hash with a value lower than a specified *target*. Because computers cannot practically reverse the hash function, finding such a nonce is hard and requires on average a predictable amount of repetitious trial and error. This is where the *[[proof-of-work]]* concept comes in to play.  When a node finds such a solution, it announces it to the rest of the network. Peers receiving the new solved block validate it by computing the hash and checking that it really starts with the given number of zero bits (i.e., that the hash is within the target). Then they accept it and add it to the chain.
 
 ###Mining rewards
-In addition to receiving the pending transactions confirmed in the block, a generating node adds a *generate* transaction, which awards new Bitcoins to the operator of the node that generated the block. The system sets the payout of this generated transaction according to its defined inflation schedule.  The miner that generates a block also receives the fees that users have paid as an incentive to give particular transactions priority for faster confirmation.
+In addition to receiving the pending transactions confirmed in the block, a generating node adds a *generate* transaction, which awards new Bitcoins to the operator of the node that generated the block. The system sets the payout of this generated transaction according to its defined inflation schedule.  The miner that generates a block also receives the fees that users have paid as an incentive to give particular transactions priority for faster confirmation. (18.1)
 
-The network never creates more than a 50&nbsp;BTC reward per block and this amount will decrease over time towards zero, such that no more than 21 million BTC will ever exist. (9.5) As this payout decreases, the incentive for users to run block-generating nodes is intended to change to earning [[transaction fees|#Transaction_fees]].
+The network never creates more than a 50 BTC reward per block and this amount will decrease over time towards zero, such that no more than 21 million BTC will ever exist. (9.5) As this payout decreases, the incentive for users to run block-generating nodes is intended to change to earning [[transaction fees|#Transaction_fees]].
 
 ###Mining pools
  *Main article: [[Pooled_mining]]*
@@ -249,6 +249,7 @@ Matthew Elias, founder of the [[Cryptocurrency_Legal_Advocacy_Group]] (CLAG) pub
 17.3: [cbitcoin](https://github.com/MatthewLM/cbitcoin)  
 17.4: [Google Engineer Releases Open Source Bitcoin Client](http://news.slashdot.org/story/11/03/23/0210207/Google-Engineer-Releases-Open-Source-Bitcoin-Client) angry tapir, timothy Slashdot 23 March 2011  
 17.5: [Bitcoin for beginners: The BitcoinJ API](http://www.javaworld.com/javaworld/jw-01-2012/120110-bitcoin-for-beginners-3.html?page=1) Dirk Merkel JavaWorld 10 January 2012  
+18.1: [Bitcoin Mining](http://www.bitcoinmining.com)  
 19.1: [About Bitcoin Mining](http://www.weusecoins.com/mining-guide.php) We Use Coins  
 21.1: [Bitpay Breaks Daily Volume Record with Butterfly ASIC mining release](http://bitcoinmagazine.net/bitpay-breaks-daily-volume-record-with-butterfly-asic-mining-release/) Bitcoin Magazine  
 23.1: [Bitcoin: An Innovative Alternative Digital Currency](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1817857) Grinberg, Reuben SSRN 9 December 2011  
