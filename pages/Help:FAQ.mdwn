@@ -287,7 +287,7 @@ Bitcoin finds peers primarily by forwarding peer announcements within its own ne
 
 ##Mining
 ###What is mining?
-[[Mining]] is the process of spending computation power to secure Bitcoin transactions against reversal and introducing new Bitcoins to the system.
+[[Mining]] is the process of spending computation power to secure Bitcoin transactions against reversal and introducing new Bitcoins to the system (39.1).
 
 Technically speaking, mining is the calculation of a [[hash]] of the a block header, which includes among other things a reference to the previous block, a hash of a set of transactions and a [[nonce]]. If the hash value is found to be less than the current [[target]] (which is inversely proportional to the [[difficulty]]), a new block is formed and the miner gets the newly generated Bitcoins (25 per block at current levels). If the hash is not less than the current target, a new nonce is tried, and a new hash is calculated. This is done millions of times per second by each miner.
 
@@ -389,6 +389,7 @@ The fact that such changes are so difficult to make testifies to the fully distr
 ##References
 <references>
 
+39.1: [Bitcoin Mining](https://www.bitcoinmining.com)
 
 [[!template id=reflist 2]]
 
