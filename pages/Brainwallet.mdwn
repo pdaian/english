@@ -1,10 +1,49 @@
 A **brainwallet** refers to the concept of storing Bitcoins in one's own mind by memorization of a passphrase.  As long as the passphrase is not recorded anywhere, the Bitcoins can be thought of as existing nowhere except in the mind of the holder.  If a brainwallet is forgotten or the person dies or is permanently incapacitated, the Bitcoins are lost forever.
 
-A brainwallet is created simply by starting with a unique phrase.  The phrase must be sufficiently long to prevent brute-force guessing - a short password, a simple phrase, or a phrase taken from published literature is likely to be stolen by hackers who use computers to quickly try combinations.  A suggestion is to take a memorable phrase and change it in a silly way that is difficult to predict.
+Early brainwallets were created simply by coming up with a passphrase. The phrase is turned into a 256-bit [[private_key]] with a hashing or key derivation algorithm (example: SHA256).  That private key is then used to compute a Bitcoin address, or a deterministic sequence of addresses. **WARNING - This method was found to be very insecure. Do not use it. Humans are not a good source of entropy.**
 
-The phrase is turned into a 256-bit [[private_key]] with a hashing or key derivation algorithm (example: SHA256).  That private key is then used to compute a Bitcoin address, or a deterministic sequence of addresses. This conversion can be done with a utility such as Casascius Bitcoin Utility or [[Electrum]].  
+##Creating a Brainwallet
 
-Bitcoins are sent to the address.  In order to recover the Bitcoins, one must recompute the private key with the same phrase.  The private key is imported into a wallet.
+A much safer way of storing money in your brain is to have software generate the cryptographic entropy and then memorize it. For example wallets like [[Electrum]] and [[Mycelium]] create backup mnemonic words seeds. Using techniques like memory pegging allow them to be memorized and recalled easily.
+
+###Worked Example
+
+1. On a computer with no malware, run [[Electrum]] and generate the 13-word recovery seed.
+1. Memorize the seed using http://en.wikipedia.org/wiki/Mnemonic_peg_system
+1. When spending or saving, restore the wallet from memory using the seed.
+1. (Optional) Use the master public key to create a watch-only wallet, where you can send to but not spend.
+
+##Possible Dangers
+
+###Low Entropy
+
+Practically everyone who knows about or cares about the BIP process loudly yells at people DO NOT USE BRAINWALLETS.  We've seen pretty concrete evidence that users are resistant to good advice in this space, and they are shocked when their favorite quotation is cracked and they lose their coins (But it was 60 characters long! I even added a special character! how is this possible?!),  the existing sites promoting this stuff won't use a KDF stronger than SHA256*1 because "users are stupid if they use weak passwords".
+
+*Brainwallets.
+
+FOR GODS SAKE. DON'T DO IT.  YOU MAY THINK YOU ARE SMART ENOUGH. SO DID EVERYONE ELSE WHO GOT ROBBED. HUMANS ARE NOT A GOOD SOURCE OF ENTROPY.
+
+YOU HAVE A SCHEME?  Pfft. THE SPACE OF ALL SCHEMES YOU'RE LIKELY TO HAVE PROBABLY ONLY HAS A FEW BITS OF ENTROPY. RANDOM PHRASE IN A BOOK? THERE ARE ONLY ABOUT 30 BITS OF SENTENCE SELECTION IN A LIBRARY.
+
+OH NO. YOU ARE NOT LISTENING TO ME, ARE YOU?
+
+OH CRAP. YOU THINK THAT "EIGHT CHARACTERS AND ONE FROM EACH CHARACTER CLASS" APPLIES HERE??  WEBSITE SECURITY MIGHT HAVE TO DEAL WITH 1000 ATTEMPTS PER SECOND, BUT SOME DUDE WITH A FPGA FARM IS PROBABLY PRECOMPUTING A BILLION BRAINWALLETS PER SECOND. JUST STOP.
+
+NOOOOOOOOOOOO.
+
+Well, now that you have no more Bitcoin I guess we don't have to worry about you using a brainwallet.
+
+Cheers.*  (5.1)
+
+###Falleable Memory
+Human memory is far more falleable than we normally expect. So if you're only storage is memory you may find that it just vanished one day.
+
+###Malicious Website Operators
+The operator of brainwallet.org seemingly created their service with the specific intention of getting more people to use keys they could crack. They were literally complaining in the main bitcoin IRC channel that they weren't finding many private keys by hashing dictionaries.
+
+IRC chatlog of the incident: https://people.xiph.org/~greg/brainwallet.txt
+
+The *Generate Secure Random Key* of brainwallet.org was also found to be incredibly inappropriate and could easily lead to money being lost. Around the time they added the really insecure random number generator to the site, they were asking for help in the IRC channel getting very fast bitcoin cryptography (secp256k1) key generation code working.
 
 ##Precaution
 It is very important when creating a brainwallet to use a passphrase that has a very high level of entropy.  If this is not done, theft of the brainwallet is an eventual certainty.
@@ -12,3 +51,8 @@ It is very important when creating a brainwallet to use a passphrase that has a 
 **This is not a simple suggestion.  This is a requirement.  Most people when asked to create a secure password, with everything they've heard about creating a password, will still create a password that if used for a brainwallet, will result in the eventual theft of their funds.  The simple fact of the matter is that hacking a brainwallet password is a mathematical exercise that requires no internet access, no communication, and leaves no trace, so hackers can collectively try multiple trillions of passwords every second in the privacy of their own homes with the very same equipment they use for mining bitcoins (in the usual sense).  Your bank might tell you that a 10 character password with uppercase, lowercase, numbers and symbols is a strong password, but it is not strong enough to secure a brainwallet.  A password that might be strong enough for traditional banking or a social website is typically unacceptable for a brainwallet.**
 
 A brainwallet passphrase, at a minimum, needs to be an entire original sentence that does not appear in any song or literature.  Security is enhanced simply by including some sort of memorable personal information, which doesn't necessarily even have to be secret (e.g. an e-mail address, or phone number).  A good brainwallet passphrase will have *dozens* of characters.
+
+##References
+<references>
+</references>
+5.1: [Re: hardening brain-wallets with a useful blind proof of work](https://bitcointalk.org/index.php?topic=311000.msg3345309#msg3345309)
