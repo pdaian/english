@@ -180,7 +180,7 @@ The easiest way to tell Java to use HTTP Basic authentication is to set a defaul
 
 Once that is done, [any JSON-RPC library for Java](http://json-rpc.org/wiki/implementations) (or ordinary URL POSTs) may be used to communicate with the Bitcoin server.
 
-Instead to write your wrapper you can use [[this implementation|Bitcoin-JSON-RPC-Client]] or [this one](https://github.com/johannbarbie/BitcoindClient4J) .
+Instead of writing your own implementation, consider using one of the existing wrappers like [BitcoindClient4J](https://github.com/johannbarbie/BitcoindClient4J), [btcd-cli4j](https://github.com/priiduneemre/btcd-cli4j) or [[Bitcoin-JSON-RPC-Client|Bitcoin-JSON-RPC-Client]] instead.
 
 ## Perl
 
@@ -274,11 +274,11 @@ func main() {
 
 ## .NET (C#)
 The communication with the RPC service can be achieved using the standard http request/response objects.
-A library for serialising and deserializing Json will make your life a lot easier:
+A library for serializing and deserializing Json will make your life a lot easier:
 
-Json.Net ( http://james.newtonking.com/json ) is a high performance JSON package for .Net.  It is also available via NuGet from the package manager console ( Install-Package Newtonsoft.Json ).
+Json.NET ( http://james.newtonking.com/json ) is a high performance JSON package for .NET.  It is also available via NuGet from the package manager console ( Install-Package Newtonsoft.Json ).
 
-The following example uses Json.Net:
+The following example uses Json.NET:
 
 <source lang="csharp">
 	HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://localhost.:8332");
