@@ -33,7 +33,7 @@ Bitcoin Core is often criticized for being slow in downloading and verifying the
 It has also been criticized for "hogging" upload bandwidth when peers connect to download the blockchain (possible only when run with port 8333 accessible to outside connections).
 This perceived "issue" has been [discussed extensively on GitHub](https://github.com/bitcoin/bitcoin/issues/273).
 Most modern routers support quality-of-service that can be configured to properly share the internet connection across all services, and even deprioritise Bitcoin traffic.
-Bitcoin Core includes a script for Linux to configure QoS on an individual host.[[!template id=citation_needed {{subst:DATE]]}}
+Bitcoin Core includes a script for Linux to configure QoS on an individual host. (7.1)
 Windows users can also use third-party software such as [Netbalancer](http://seriousbit.com/netbalancer/) to throttle the application's upload bandwidth and ensure that one has enough upload bandwidth available for regular computer and internet use to be unaffected.
 
 ###Lack of multiwallet support; node+wallet tied together
@@ -51,7 +51,8 @@ Wallet management is also cumbersome. Unlike clients such as [[Armory]], [[Multi
 1.2: http://gavintech.blogspot.co.uk/2012/03/full-disclosure-bitcoin-qt-on-windows.html, Full disclosure: Bitcoin-Qt on Windows vulnerability, 21st October 2012  
 1.3: http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-4682, Vulnerability Summary for CVE-2012-4682, 21st October 2012  
 1.4: [Bitcoin-Qt/Bitcoind Releases](http://bitcoin.org/news.html) Bitcoin.org  
-1.5: [Bitcoin Core version 0.9.0 released](https://bitcoin.org/en/release/v0.9.0) Bitcoin.org
+1.5: [Bitcoin Core version 0.9.0 released](https://bitcoin.org/en/release/v0.9.0) Bitcoin.org  
+7.1: https://github.com/bitcoin/bitcoin/tree/master/contrib/qos, Linux QoS bash script
 
 
 ##See also
