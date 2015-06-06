@@ -9,7 +9,7 @@ It is envisioned that over time the cumulative effect of collecting transaction 
 
 ##Reference Implementation
 
-The following sections describe the behavior of the [[reference implementation|Original_Bitcoin_client]] as of version 0.9.0. Earlier versions treated fees differently, as do other popular implementations (including possible later versions).
+The following sections describe the behavior of the [[reference implementation|Original_Bitcoin_client]] as of version 0.10.0. Earlier versions treated fees differently, as do other popular implementations (including possible later versions).
 
 ###Sending
 
@@ -36,7 +36,7 @@ The remaining transactions remain in the miner's "memory pool", and may be inclu
 
 ###Relaying
 
-The reference implementation's rules for relaying transactions across the peer-to-peer network are very similar to the rules for sending transactions, as a value of 0.0001 BTC is used to determine whether or not a transaction is considered "Free". However, the rule that all outputs must be 0.01 BTC or larger does not apply. To prevent "penny-flooding" denial-of-service attacks on the network, the reference implementation caps the number of free transactions it will relay to other nodes to (by default) 15 thousand bytes per minute.
+The reference implementation's rules for relaying transactions across the peer-to-peer network are very similar to the rules for sending transactions, as a value of 0.00001 BTC is used to determine whether or not a transaction is considered "Free". However, the rule that all outputs must be 0.01 BTC or larger does not apply. To prevent "penny-flooding" denial-of-service attacks on the network, the reference implementation caps the number of free transactions it will relay to other nodes to (by default) 15 thousand bytes per minute.
 
 ###Settings
 
@@ -45,8 +45,9 @@ The reference implementation's rules for relaying transactions across the peer-t
 |Setting |Default Value (units)
 |---|---
 |paytxfee |0.0000 (BTC)
-|limitfreerelay |15 (thousand bytes per minute)
 |mintxfee |0.0001 (BTC)
+|limitfreerelay |15 (thousand bytes per minute)
+|minrelaytxfee |0.00001 (BTC)
 |blockmaxsize |750000 (bytes)
 |blockminsize |0 (bytes)
 |blockprioritysize |50000 (bytes)
