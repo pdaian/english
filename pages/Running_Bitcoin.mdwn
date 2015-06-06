@@ -76,7 +76,7 @@ Options:
 Wallet options:
 	-disablewallet         Do not load the wallet and disable wallet RPC calls
 	-paytxfee=<amt>        Fee per kB to add to transactions you send
-	-mintxfee=<amt>        Fees smaller than this are considered zero fee on tx creation ( default: 10000)
+	-mintxfee=<amt>        Fees smaller than this are considered zero fee on tx creation (default: 10000)
 	-rescan                Rescan the block chain for missing wallet transactions
 	-zapwallettxes         Clear list of wallet transactions (diagnostic tool; implies -rescan)
 	-salvagewallet         Attempt to recover private keys from a corrupt wallet.dat
@@ -85,7 +85,7 @@ Wallet options:
 	-walletnotify=<cmd>    Execute command when a wallet transaction changes (all %s in cmd are replaced by TxID)
 	-spendzeroconfchange   Spend unconfirmed change when sending transactions (default: 1)
 
-Relay policy
+Relay options
 	-minrelaytxfee=<amt>   Fees smaller than this (in satoshi) are considered zero fee (relaying and mining) (default:1000)
 	-limitfreerelay=<n>    Rate-limit free transactions to <n>*1000 bytes per minute (default: 15)
 
