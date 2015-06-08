@@ -2,9 +2,9 @@ The core Bitcoin network can scale to much higher transaction rates than are see
 
 ##Scalability targets
 
-VISA handles on average around 2,000 transactions per second (tps), so call it a daily peak rate of 4,000 tps. It has a peak capacity of around 47,000 transactions per second, however they never actually use more than about a third of this even during peak shopping periods. [(1)](http://www.visa.com/blogarchives/us/2013/10/10/stress-test-prepares-visanet-for-the-most-wonderful-time-of-the-year/index.html)
+VISA handles on average around 2,000 transactions per second (tps), so call it a daily peak rate of 4,000 tps. It has a peak capacity of around 56,000 transactions per second, [(1)](http://usa.visa.com/about-visa/our-business/visa-transaction.js) however they never actually use more than about a third of this even during peak shopping periods. [(2)](http://www.visa.com/blogarchives/us/2013/10/10/stress-test-prepares-visanet-for-the-most-wonderful-time-of-the-year/index.html)
 
-PayPal, in contrast, handles around 10 million transactions per day for an average of 115 tps. [(2)](https://www.paypal-media.com/about)
+PayPal, in contrast, handles around 10 million transactions per day for an average of 115 tps. [(3)](https://www.paypal-media.com/about)
 
 Let's take 4,000 tps as starting goal. Obviously if we want Bitcoin to scale to all economic transactions worldwide, including cash, it'd be a lot higher than that, perhaps more in the region of a few hundred thousand tps. And the need to be able to withstand DoS attacks (which VISA does not have to deal with) implies we would want to scale far beyond the standard peak rates. Still, picking a target let us do some basic calculations even if it's a little arbitrary.
 
