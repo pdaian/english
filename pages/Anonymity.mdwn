@@ -60,6 +60,11 @@ In the future, trusted relay servers operating on the [[friendly_addresses_with_
 	* This can be automated, or you can do everything manually.
 * Put lots of bitcoins in an eWallet service and keep it there. If anyone uses the anonymization method described in "staying anonymous" above, this will enhance it. Send in smaller increments if a large amount is transferred.
 
+###CoinJoin
+While external mixers are useful and historically important, they have several problems. The mixer may also steal the customer's coins. Thus the mixer service will depend significantly on it's reputation to maintain customer's privacy and not steal their money, which allows them to charge a significant fee far above the marginal cost which takes advantage of this reputation.
+
+[[CoinJoin]] is a special kind of bitcoin transaction that solves these problems. It is a kind of smart contract which does not allow any party to steal the coins of any other party.
+
 ##Legality
 Obviously, using Bitcoin anonymity techniques for the purposes of [money laundering](Wikipedia:money laundering) is illegal, but participating or running schemes which others use for money laundering may also be illegal or at least leave the participant vulnerable to accusations of aiding criminals and terrorists. Bitcoin anonymity techniques involving bitcoins worth large amounts of money (over some value between FJ$1,100 and US$58,000, depending on your jurisdiction) is illegal in most jurisdictions, being in violation of [anti-structuring laws](Wikipedia:Structuring).
 
