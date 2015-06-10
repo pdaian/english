@@ -40,8 +40,9 @@ For example, this python code will calculate the hash of the block with the smal
 	>>> hash[[::-1]].encode('hex_codec')
 	'00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d'
 
-Note that the actual hash, which is a 256-bit number, has lots of leading zero bits. When stored or printed as a big-endian hexadecimal constant, but it has leading zero bytes and if stored or printed  as little-endian, these are the trailing zero bytes. E.g. if interpretation as a string -- lowest (or start of) string address keeps lowest significant byte, thus little-endian.
-The output of [blockexplorer](http://blockexplorer.com) displays the hash values as big-endians numbers as notation for numbers is usual -- leading digits are the most significant digits read from left to right.
+Note that the hash, which is a 256-bit number, has lots of leading zero bytes when stored or printed as a big-endian hexadecimal constant, but it has trailing zero bytes when stored or printed in little-endian. For example, if interpreted as a string and the lowest (or start of) the string address keeps lowest significant byte, it is little-endian.
+
+The output of [blockexplorer](http://blockexplorer.com) displays the hash values as big-endian numbers; notation for numbers is usual (leading digits are the most significant digits read from left to right).
 
 For another example, [here](http://pastebin.com/bW3fQA2a) is a version in plain C without any optimization, threading or error checking.
 
