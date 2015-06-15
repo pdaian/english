@@ -1,4 +1,6 @@
-The core Bitcoin network can scale to much higher transaction rates than are seen today, assuming that nodes in the network are primarily running on high end servers rather than desktops. Bitcoin was designed to support lightweight clients that only process small parts of the block chain (see *simplified payment verification* below for more details on this). A configuration in which the vast majority of users sync lightweight clients to more powerful backbone nodes is capable of scaling to millions of users and tens of thousands of transactions per second.
+The core Bitcoin network can scale to much higher transaction rates than are seen today, assuming that nodes in the network are primarily running on high end servers rather than desktops. Bitcoin was designed to support lightweight clients that only process small parts of the block chain (see *simplified payment verification* below for more details on this). A configuration in which the vast majority of users sync lightweight clients to full nodes.
+
+The requirement of expensive full nodes is controversial. While having a high-capacity set of full nodes increases the on-blockchain transaction rate, the requirement of full nodes to be high capacity has a centralizing effect. Scalability solutions that don't require high capacity full nodes include sidechains and the Lightning Network.
 
 ##Scalability targets
 
@@ -8,11 +10,13 @@ PayPal, in contrast, handles around 10 million transactions per day for an avera
 
 Let's take 4,000 tps as starting goal. Obviously if we want Bitcoin to scale to all economic transactions worldwide, including cash, it'd be a lot higher than that, perhaps more in the region of a few hundred thousand tps. And the need to be able to withstand DoS attacks (which VISA does not have to deal with) implies we would want to scale far beyond the standard peak rates. Still, picking a target let us do some basic calculations even if it's a little arbitrary.
 
-##Current bottlenecks
-
 Today the Bitcoin network is restricted to a sustained rate of 7 tps due to the bitcoin protocol restricting block sizes to 1MB.
 
-##CPU
+##Increasing Block Size
+
+Increasing the blocksize is the easiest solution to implement, as it only requires changing one line of code, and is possible today. However, increasing the power of full nodes increases the cost and increasing the cost of full nodes has a centralizing effect. While a miner can run a full node, they have less and less reason to as blocks become more and more expensive to process. As less miners run full nodes, power over the mining network and ability to reverse transactions increases. (3.1) (3.2) 
+
+###CPU
 
 The protocol has two parts. Nodes send "inv" messages to other nodes telling them they have a new transaction. If the receiving node doesn't have that transaction it requests it with a getdata.
 
@@ -24,7 +28,7 @@ As we can see, this means as long as Bitcoin nodes are allowed to max out at lea
 
 Of course Bitcoin does other things beyond signature checking, most obviously, managing the database. We use LevelDB which does the bulk of the heavy lifting on a separate thread, and is capable of very high read/write loads. Overall Bitcoin's CPU usage is dominated by ECDSA.
 
-##Network
+###Network
 
 Let's assume an average rate of 2000tps, so just VISA. Transactions vary in size from about 0.2 kilobytes to over 1 kilobyte, but it's averaging half a kilobyte today.
 
@@ -34,7 +38,7 @@ This sort of bandwidth is already common for even residential connections today,
 
 When blocks are solved, the current protocol will send the transactions again, even if a peer has already seen it at broadcast time. Fixing this to make blocks just list of hashes would resolve the issue and make the bandwidth needed for block broadcast negligable. So whilst this optimization isn't fully implemented today, we do not consider block transmission bandwidth here.
 
-##Storage
+###Storage
 
 At very high transaction rates each block can be over half a gigabyte in size.
 
@@ -43,6 +47,12 @@ It is not required for most fully validating nodes to store the entire chain. In
 Only a small number of archival nodes need to store the full chain going back to the genesis block. These nodes can be used to bootstrap new fully validating nodes from scratch but are otherwise unnecessary.
 
 The primary limiting factor in Bitcoin's performance is disk seeks once the unspent transaction output set stops fitting in memory. It is quite possible that the set will always fit in memory on dedicated server class machines, if hardware advances faster than Bitcoin usage does.
+
+##Lightning Network
+
+To account for 2 transactions per day for every human on earth, blocks would need to be 24GB, and would require the processing power of approximately 12000 Intel Core i7-2670QM 2.2Ghz processors. As block sizes increase, we cannot simply throw more resources at processing blocks unless said resources become cheaper at a rate faster than the need for these resources increases. Otherwise, our result is a few centralized parties that control the blockchain and are able to reverse or censor transactions.
+
+The Lightning Network can provide trustless off-chain transactions and scales better than O(N*M) (requiring every full node to have every unspent output). Similar to the blockchain, Lighting doesn't have a counterparty risk, no one can steal your bitcoin. Lightning, however, doesn't require everyone to process every copy of every trustless transaction in order to be secure. In addition, Lightning has instant confirmations. (7.1)
 
 ##Optimizations
 
@@ -82,3 +92,6 @@ There are a few proposals for optimizing Bitcoin's scalability. Some of these re
 * [The Finite Blockchain](http://www.bitfreak.info/files/pp2p-ccmbc-rev1.pdf) paper that describes splitting the blockchain into three data structures, each better suited for its purpose. The three data structures are a finite blockchain (keep N blocks into the past), an "account tree" which keeps account balance for every address with a non-zero balance, and a "proof chain" which is an (ever growing) slimmed down version of the blockchain.
 
 [[!tag "Technical"]]
+3.1: [Miner Attack Success Probability Calculator](https://people.xiph.org/~greg/attack_success.html)  
+3.2: [Bitcoin Whitepaper](bitcoin.org/bitcoin.pdf)  
+7.1: [Lighting Network](http://lightning.network/lightning-network.pdf)
