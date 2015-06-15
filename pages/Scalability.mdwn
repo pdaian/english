@@ -52,7 +52,7 @@ The primary limiting factor in Bitcoin's performance is disk seeks once the unsp
 
 To account for 2 transactions per day for every human on earth, blocks would need to be 24GB, and would require the processing power of approximately 12000 Intel Core i7-2670QM 2.2Ghz processors. As block sizes increase, we cannot simply throw more resources at processing blocks unless said resources become cheaper at a rate faster than the need for these resources increases. Otherwise, our result is a few centralized parties that control the blockchain and are able to reverse or censor transactions.
 
-The Lightning Network can provide trustless off-chain transactions and scales better than O(N*M) (requiring every full node to have every unspent output). Similar to the blockchain, Lighting doesn't have a counterparty risk, no one can steal your bitcoin. Lightning, however, doesn't require everyone to process every copy of every trustless transaction in order to be secure. In addition, Lightning has instant confirmations. (7.1)
+The Lightning Network can provide trustless off-chain transactions and scales better than O(N*M) (requiring every full node to have every unspent output). Other advantages include not having a counterparty risk, no one can steal your bitcoin. Despite Lightning transactions being trustless, the system doesn't require everyone to process a copy of transactions from everyone else in order to be secure. In addition, Lightning has instant confirmations and doesn't require a hardfork. (7.1)
 
 ##Optimizations
 
