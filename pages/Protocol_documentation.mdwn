@@ -138,7 +138,7 @@ Variable length string can be stored using a variable length integer followed by
 
 
 
-|? |length |[[var_int|Protocol_specification#Variable_length_integer]]|Length of the string
+|? |length |[[var_int|Protocol_documentation#Variable_length_integer]]|Length of the string
 |? |string |char[]|The string itself (can be empty)
 
 
@@ -203,7 +203,7 @@ Block headers are sent in a headers packet in response to a getheaders message.
 |4 |timestamp |uint32_t |A timestamp recording when this block was created (Will overflow in 2106 (14.1))
 |4 |bits |uint32_t |The calculated difficulty target being used for this block
 |4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
-|1 |txn_count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of transaction entries, this value is always 0
+|1 |txn_count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of transaction entries, this value is always 0
 
 
 ## Message types
@@ -321,7 +321,7 @@ Provide information on known nodes of the network. Non-advertised nodes should b
 Payload:
 
 
-|1+ |count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of address entries (max: 1000)
+|1+ |count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of address entries (max: 1000)
 |30x? |addr_list |(uint32_t + [[net_addr|#Network_address]])[]|Address of other nodes on the network. version < 209 will only read the first one. The uint32_t is a timestamp (see note below).
 
 
@@ -358,7 +358,7 @@ Payload (maximum 50,000 entries, which is just over 1.8 megabytes):
 
 
 
-|? |count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of inventory entries
+|? |count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of inventory entries
 |36x? |inventory |[[inv_vect|Protocol_specification#Inventory_Vectors]][]|Inventory vectors
 
 
@@ -370,7 +370,7 @@ Payload (maximum 50,000 entries, which is just over 1.8 megabytes):
 
 
 
-|? |count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of inventory entries
+|? |count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of inventory entries
 |36x? |inventory |[[inv_vect|Protocol_specification#Inventory_Vectors]][]|Inventory vectors
 
 
@@ -380,7 +380,7 @@ notfound is a response to a getdata, sent if any requested data items could not 
 
 
 
-|? |count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of inventory entries
+|? |count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of inventory entries
 |36x? |inventory |[[inv_vect|Protocol_specification#Inventory_Vectors]][]|Inventory vectors
 
 
@@ -397,7 +397,7 @@ Payload:
 
 
 |4 |version |uint32_t |the protocol version
-|1+ |hash count |[[var_int|Protocol_specification#Variable_length_integer]]|number of block locator hash entries
+|1+ |hash count |[[var_int|Protocol_documentation#Variable_length_integer]]|number of block locator hash entries
 |32+ |block locator hashes |char[[32]]|block locator object; newest back to genesis block (dense to start, but then sparse)
 |32 |hash_stop |char[[32]]|hash of the last desired block; set to zero to get as many blocks as possible (500)
 
@@ -434,12 +434,12 @@ Payload:
 
 
 |4 |version |uint32_t |the protocol version
-|1+ |hash count |[[var_int|Protocol_specification#Variable_length_integer]]|number of block locator hash entries
+|1+ |hash count |[[var_int|Protocol_documentation#Variable_length_integer]]|number of block locator hash entries
 |32+ |block locator hashes |char[[32]]|block locator object; newest back to genesis block (dense to start, but then sparse)
 |32 |hash_stop |char[[32]]|hash of the last desired block header; set to zero to get as many blocks as possible (2000)
 
 
-For the block locator object in this packet, the same rules apply as for the [[getblocks|Protocol_specification#getblocks]] packet.
+For the block locator object in this packet, the same rules apply as for the [[getblocks|Protocol_documentation#getblocks]] packet.
 
 ### tx
 
@@ -449,9 +449,9 @@ For the block locator object in this packet, the same rules apply as for the [[g
 
 
 |4 |version |uint32_t |Transaction data format version
-|1+ |tx_in count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of Transaction inputs
+|1+ |tx_in count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of Transaction inputs
 |41+ |tx_in |tx_in[]|A list of 1 or more transaction inputs or sources for coins
-|1+ |tx_out count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of Transaction outputs
+|1+ |tx_out count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of Transaction outputs
 |9+ |tx_out |tx_out[]|A list of 1 or more transaction outputs or destinations for coins
 |4 |lock_time |uint32_t |The block number or timestamp at which this transaction is locked:
 
@@ -468,7 +468,7 @@ TxIn consists of the following fields:
 
 
 |36 |previous_output |outpoint |The previous output transaction reference, as an OutPoint structure
-|1+ |script length |[[var_int|Protocol_specification#Variable_length_integer]]|The length of the signature script
+|1+ |script length |[[var_int|Protocol_documentation#Variable_length_integer]]|The length of the signature script
 |? |signature script |uchar[]|Computational Script for confirming transaction authorization
 |4 |[sequence](http://bitcoin.stackexchange.com/q/2025/323)|uint32_t |Transaction version as defined by the sender. Intended for "replacement" of transactions when information is updated before inclusion into a block.
 
@@ -490,7 +490,7 @@ The TxOut structure consists of the following fields:
 
 
 |8 |value |int64_t |Transaction Value
-|1+ |pk_script length |[[var_int|Protocol_specification#Variable_length_integer]]|Length of the pk_script
+|1+ |pk_script length |[[var_int|Protocol_documentation#Variable_length_integer]]|Length of the pk_script
 |? |pk_script |uchar[]|Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
 
 
@@ -580,7 +580,7 @@ The **block** message is sent in response to a getdata message which requests tr
 |4 |timestamp |uint32_t |A Unix timestamp recording when this block was created (Currently limited to dates before the year 2106!)
 |4 |bits |uint32_t |The calculated [[difficulty target|Difficulty]]being used for this block
 |4 |nonce |uint32_t |The nonce used to generate this block… to allow variations of the header and compute different hashes
-|? |txn_count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of transaction entries
+|? |txn_count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of transaction entries
 |? |txns |tx[]|Block transactions, in format of "tx" command
 
 
@@ -595,8 +595,8 @@ Payload:
 
 
 
-|? |count |[[var_int|Protocol_specification#Variable_length_integer]]|Number of block headers
-|81x? |headers |[[block_header|Protocol_specification#Block_Headers]][]|[[Block headers|Protocol_specification#Block_Headers]]
+|? |count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of block headers
+|81x? |headers |[[block_header|Protocol_documentation#Block_Headers]][]|[[Block headers|Protocol_documentation#Block_Headers]]
 
 
 Note that the block headers in this packet include a transaction count (a var_int, so there can be more than 81 bytes per header) as opposed to the block headers which are sent to miners.
@@ -613,7 +613,7 @@ The mempool message sends a request to a node asking for information about trans
 
 No additional data is transmitted with this message.
 
-It is specified in [BIP 35](https://github.com/bitcoin/bips/blob/master/bip-0035.mediawiki). Since [BIP 37](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki), if a [[bloom filter|Protocol_specification#filterload.2C_filteradd.2C_filterclear.2C_merkleblock]] is loaded, only transactions matching the filter are replied.
+It is specified in [BIP 35](https://github.com/bitcoin/bips/blob/master/bip-0035.mediawiki). Since [BIP 37](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki), if a [[bloom filter|Protocol_documentation#filterload.2C_filteradd.2C_filterclear.2C_merkleblock]] is loaded, only transactions matching the filter are replied.
 
 ### checkorder
 
