@@ -11,14 +11,22 @@ Hard forks require adoption by virtually all of the bitcoin participants.
 ## Arguments in favor of increasing the blocksize
 
 * More transactions per second
-* Increased space for extensibility like SNARKs, Mastercoin, Counterparty, etc.
+
+### Unclear Arguments
+
+* Increased blocksize will leave space for extensibility like Mastercoin, Counterparty, etc.
+	* Neutral: Bitcoin competitors will have lower fees
+	* Negative: Bitcoin full nodes are forced to use more resources that don't support Bitcoin
 * Faster confirmation times with lower fees required
+	* Positive: Bitcoin users pay lower fees
+	* Negative: It will continue to be cheap to spam as companies like Satoshi Dice are already doing
+	* Negative: Fees cannot be zero eventually in order to secure the mining ecosystem
 
 ## Arguments in opposition to increasing the blocksize
 
 * A hard fork requires waiting for sufficient consensus.
 * However an emergency hard fork can achieve consensus for deployment on a short time period if needed.
-* Risk of catastrophic consensus failure (4.1)
+* Risk of catastrophic consensus failure (5.1)
 * Orphan rate amplification, more reorgs and double-spends due to slower propagation speeds.
 * European/American pools at more of a disadvantage compared to the Chinese pools[[!template id=why]]
 * No amount of max block size would support all the world's future transactions on the main blockchain (various types of off-chain transactions are the only long-term solution)
@@ -29,7 +37,7 @@ Hard forks require adoption by virtually all of the bitcoin participants.
 * Bitcoin is only useful if it is decentralized because centralization requires trust. Bitcoins value proposition is trustlessness.
 * The larger the hash-rate a single miner controls, the more centralized Bitcoin becomes and the more trust using Bitcoin requires.
 * Running your own full node while mining rather than giving another entity the right to your hash-power decreases the hash-rate of large miners. Those who control hash-power are able to control their own hash power if and only if they run a full node.
-* Less individuals who control hash-power will run full nodes if running one becomes more expensive (5.1).
+* Less individuals who control hash-power will run full nodes if running one becomes more expensive (6.1).
 * Larger blocks leads to more expensive full nodes.
 * Therefore, larger blocks lead to less hashers running full nodes, which leads to centralized entities having more power, which makes Bitcoin require more trust, which weakens Bitcoins value proposition.
 
@@ -37,55 +45,55 @@ Hard forks require adoption by virtually all of the bitcoin participants.
 Positions below are based on a suggested fixed block size increase to 20MiB.  Positions against these larger blocks do not necessarily imply that they are against an increase in general, and may instead support a smaller and/or gradual increase.
 
 
-|Bitcoinpaygate|[[!template id=no No: "We do NOT support the blocksize increase"]] (6.1)|
-|Bitrated|[[!template id=no]]<br />"At this time, I oppose increasing the block size limit as per Gavin's proposal" - Nadav Ivgi (founder) (6.2)|
-|[[F2Pool]]|[[!template id=no No: "We do support bigger blocks and sooner rather than later. But we cannot handle 20 MB blocks right now. ... I think we can accept 5MB block at most."]] (6.3)|
-|[[GreenAddress]]|[[!template id=no No: "In our mind increasing the block size like this is just pushing the problem a little further at potentially unfixable costs."]] (6.4)|
-|[[MPEx]]|[[!template id=no]] (6.5)|
-|[[Paymium]]|[[!template id=no No: "<nowiki>[allow]</nowiki> a sane transaction fee market to emerge, by letting the blocks actually fill-up."]]- CTO David Francois (6.6)|
-|Ethereum<br />|[[!template id=neutral Neutral: "If <nowiki>[the niche of digital gold]</nowiki> is what Bitcoin users want, then they should keep the limit, and perhaps even decrease it. But if Bitcoin users want to be a payment system, then up it must go."]]- Vitalik Buterin (founder) (6.7)|
-|[[Armory]]|[[!template id=yes]]<br />"This *is* urgent and needs to be handled right now, and I believe Gavinhas the best approach to this." - CEO Alan Reiner (6.8)|
-|BitcoinReminder|[[!template id=yes Yes: "BitcoinReminder.com also supports 20MB blocks (or even more?"]] (6.9)|
-|BitHours|[[!template id=yes Yes: "We support @gavinandresen and his proposal for 20mb blocks"]] (6.10)|
-|[[BitPay]]|[[!template id=yes]]<br />"Agreed (but optimistic this will be the last and only time block size needs to increase)" - CEO Stephen Pair (6.11)|
-|Bittiraha.fi|[[!template id=yes Yes: "We are supporting increasing #Bitcoin max block size to 20MB."]] (6.12)<br />"I'm strongly in favor of the block size cap increase to 20MB." - CEO Henry Brade (6.13)|[[!template id=yes]]<br />"And I'm in favor of releasing a version with this change even with opposition." - CEO Henry Brade (6.14)
-|[[Blockchain.info]]|[[!template id=yes]]<br />"It is time to increase the block size. Agree with @gavinandresen" - CEO Peter Smith (6.15)<br />"Scaling #bitcoin is a big deal. Increase the block size." - Nic Cary (6.16)|
-|Breadwallet|[[!template id=yes]]<br />"[[...]]in support of the Gavin's 20Mb block proposal." - CEO Aaron Voisine (6.17)|
-|[[BTC_Guild]]|[[!template id=yes]]<br />"Needs to happen, but needs future expansion built in at a reasonable rate." - Eleuthria (6.18)|
-|BX.in.th|[[!template id=yes Yes: "<nowiki>http://BX.in.th</nowiki> will support the 20MB block size"]] (6.19)|
-|[[CoinBase|Coinbase_(business)]]|[[!template id=yes Yes: "Coinbase supports increasing the maximum block size"]] (6.20)<br />"Why we should increase the block size" - CEO Brian Armstrong (6.21)|
-|[[Dr. Adam Back|Dr._Adam_Back_(individual)]]|[[!template id=yes Yes: "For the record I am not aware of a single person who has said they do not agree with scaling Bitcoin.  Changing a constant is not the hard-part.  The hard part is validating a plan and the other factors that go into it.  It's not a free choice it is a security/scalability tradeoff.  No one will thank us if we "scale" bitcoin but break it in hard to recover ways at the same time."]] (6.22)|[[!template id=no]]<br />"I strongly urge that we return to the existing collaborative constructive review process that has been used for the last 4 years which is a consensus by design to prevent one rogue person from inserting a backdoor, or lobbying for a favoured change on behalf of a special interest group, or working for bad actor" - Dr. Adam Back (6.23)|
-|Kryptoradio|[[!template id=yes]]<br />"#Kryptoradio dev @zouppen supports 20MB block size in #bitcoin." - Joel Lehtonen (6.24)|
-|OKCoin|[[!template id=yes Yes: "OKCoin's tech team believes it's the right decision"]] (6.25)|
-|Third Key Solutions|[[!template id=yes]]<br />"Gavin is right.  The time to increase the block size limit is before transaction processing shows congestion problems." - CTO Andreas Antonopoulos (6.26)|
-|Xapo|[[!template id=yes Yes: "One meg is not enough: Xapo supports increasing the maximum block size"]]- CEO Wences Casares (6.27)|
+|Bitcoinpaygate|[[!template id=no No: "We do NOT support the blocksize increase"]] (7.1)|
+|Bitrated|[[!template id=no]]<br />"At this time, I oppose increasing the block size limit as per Gavin's proposal" - Nadav Ivgi (founder) (7.2)|
+|[[F2Pool]]|[[!template id=no No: "We do support bigger blocks and sooner rather than later. But we cannot handle 20 MB blocks right now. ... I think we can accept 5MB block at most."]] (7.3)|
+|[[GreenAddress]]|[[!template id=no No: "In our mind increasing the block size like this is just pushing the problem a little further at potentially unfixable costs."]] (7.4)|
+|[[MPEx]]|[[!template id=no]] (7.5)|
+|[[Paymium]]|[[!template id=no No: "<nowiki>[allow]</nowiki> a sane transaction fee market to emerge, by letting the blocks actually fill-up."]]- CTO David Francois (7.6)|
+|Ethereum<br />|[[!template id=neutral Neutral: "If <nowiki>[the niche of digital gold]</nowiki> is what Bitcoin users want, then they should keep the limit, and perhaps even decrease it. But if Bitcoin users want to be a payment system, then up it must go."]]- Vitalik Buterin (founder) (7.7)|
+|[[Armory]]|[[!template id=yes]]<br />"This *is* urgent and needs to be handled right now, and I believe Gavinhas the best approach to this." - CEO Alan Reiner (7.8)|
+|BitcoinReminder|[[!template id=yes Yes: "BitcoinReminder.com also supports 20MB blocks (or even more?"]] (7.9)|
+|BitHours|[[!template id=yes Yes: "We support @gavinandresen and his proposal for 20mb blocks"]] (7.10)|
+|[[BitPay]]|[[!template id=yes]]<br />"Agreed (but optimistic this will be the last and only time block size needs to increase)" - CEO Stephen Pair (7.11)|
+|Bittiraha.fi|[[!template id=yes Yes: "We are supporting increasing #Bitcoin max block size to 20MB."]] (7.12)<br />"I'm strongly in favor of the block size cap increase to 20MB." - CEO Henry Brade (7.13)|[[!template id=yes]]<br />"And I'm in favor of releasing a version with this change even with opposition." - CEO Henry Brade (7.14)
+|[[Blockchain.info]]|[[!template id=yes]]<br />"It is time to increase the block size. Agree with @gavinandresen" - CEO Peter Smith (7.15)<br />"Scaling #bitcoin is a big deal. Increase the block size." - Nic Cary (7.16)|
+|Breadwallet|[[!template id=yes]]<br />"[[...]]in support of the Gavin's 20Mb block proposal." - CEO Aaron Voisine (7.17)|
+|[[BTC_Guild]]|[[!template id=yes]]<br />"Needs to happen, but needs future expansion built in at a reasonable rate." - Eleuthria (7.18)|
+|BX.in.th|[[!template id=yes Yes: "<nowiki>http://BX.in.th</nowiki> will support the 20MB block size"]] (7.19)|
+|[[CoinBase|Coinbase_(business)]]|[[!template id=yes Yes: "Coinbase supports increasing the maximum block size"]] (7.20)<br />"Why we should increase the block size" - CEO Brian Armstrong (7.21)|
+|[[Dr. Adam Back|Dr._Adam_Back_(individual)]]|[[!template id=yes Yes: "For the record I am not aware of a single person who has said they do not agree with scaling Bitcoin.  Changing a constant is not the hard-part.  The hard part is validating a plan and the other factors that go into it.  It's not a free choice it is a security/scalability tradeoff.  No one will thank us if we "scale" bitcoin but break it in hard to recover ways at the same time."]] (7.22)|[[!template id=no]]<br />"I strongly urge that we return to the existing collaborative constructive review process that has been used for the last 4 years which is a consensus by design to prevent one rogue person from inserting a backdoor, or lobbying for a favoured change on behalf of a special interest group, or working for bad actor" - Dr. Adam Back (7.23)|
+|Kryptoradio|[[!template id=yes]]<br />"#Kryptoradio dev @zouppen supports 20MB block size in #bitcoin." - Joel Lehtonen (7.24)|
+|OKCoin|[[!template id=yes Yes: "OKCoin's tech team believes it's the right decision"]] (7.25)|
+|Third Key Solutions|[[!template id=yes]]<br />"Gavin is right.  The time to increase the block size limit is before transaction processing shows congestion problems." - CTO Andreas Antonopoulos (7.26)|
+|Xapo|[[!template id=yes Yes: "One meg is not enough: Xapo supports increasing the maximum block size"]]- CEO Wences Casares (7.27)|
 
-4.1: https://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg08276.html  
-5.1: https://www.weusecoins.com/why-blocksize-limit-keeps-bitcoin-free-decentralized/  
-6.1: http://www.reddit.com/r/Bitcoin/comments/37y8wm/list_of_bitcoin_services_that_supportoppose/crqsnqp  
-6.2: https://twitter.com/shesek/status/605005384026177537  
-6.3: http://sourceforge.net/p/bitcoin/mailman/message/34157036/,  
-6.4: http://www.reddit.com/r/Bitcoin/comments/35anax/list_of_bitcoin_services_that_support_increasing/cr2mq84  
-6.5: http://log.bitcoin-assets.com//?date=07-01-2015#967332  
-6.6: http://fr.anco.is/2015/gavineries/  
-6.7: http://www.reddit.com/r/ethereum/comments/380q61/i_know_this_may_not_directly_be_ethereum_related/crrofl6  
-6.8: http://sourceforge.net/p/bitcoin/mailman/message/34093337/  
-6.9: http://www.reddit.com/r/Bitcoin/comments/37y8wm/list_of_bitcoin_services_that_supportoppose/crs9ytd  
-6.10: https://twitter.com/bithours/status/605131647747358721  
-6.11: https://twitter.com/spair/status/595341090317799424  
-6.12: https://twitter.com/Bittirahafi/status/596682373028311040  
-6.13: https://twitter.com/Technom4ge/status/596334370803326978  
-6.14: https://twitter.com/Technom4ge/status/596334370803326978  
-6.15: https://twitter.com/OneMorePeter/status/595676380320407553  
-6.16: https://twitter.com/niccary/status/595707211994763264  
-6.17: http://sourceforge.net/p/bitcoin/mailman/message/34096857/  
-6.18: https://www.reddit.com/r/Bitcoin/comments/370rko/21_inc_engineer_everyone_assumes_humans_will_be/crjfnpg?context=3  
-6.19: https://twitter.com/BitcoinThai/status/605022509101023232  
-6.20: https://twitter.com/coinbase/status/595741967759335426  
-6.21: https://twitter.com/brian_armstrong/status/595453245884997634  
-6.22: https://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg08276.html  
-6.23: https://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg08276.html  
-6.24: https://twitter.com/koodilehto/status/596675967667568641  
-6.25: https://twitter.com/okcoinbtc/status/598412795240009728  
-6.26: https://twitter.com/aantonop/status/595601619581964289  
-6.27: https://twitter.com/wences/status/595768917907402752
+5.1: https://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg08276.html  
+6.1: https://www.weusecoins.com/why-blocksize-limit-keeps-bitcoin-free-decentralized/  
+7.1: http://www.reddit.com/r/Bitcoin/comments/37y8wm/list_of_bitcoin_services_that_supportoppose/crqsnqp  
+7.2: https://twitter.com/shesek/status/605005384026177537  
+7.3: http://sourceforge.net/p/bitcoin/mailman/message/34157036/,  
+7.4: http://www.reddit.com/r/Bitcoin/comments/35anax/list_of_bitcoin_services_that_support_increasing/cr2mq84  
+7.5: http://log.bitcoin-assets.com//?date=07-01-2015#967332  
+7.6: http://fr.anco.is/2015/gavineries/  
+7.7: http://www.reddit.com/r/ethereum/comments/380q61/i_know_this_may_not_directly_be_ethereum_related/crrofl6  
+7.8: http://sourceforge.net/p/bitcoin/mailman/message/34093337/  
+7.9: http://www.reddit.com/r/Bitcoin/comments/37y8wm/list_of_bitcoin_services_that_supportoppose/crs9ytd  
+7.10: https://twitter.com/bithours/status/605131647747358721  
+7.11: https://twitter.com/spair/status/595341090317799424  
+7.12: https://twitter.com/Bittirahafi/status/596682373028311040  
+7.13: https://twitter.com/Technom4ge/status/596334370803326978  
+7.14: https://twitter.com/Technom4ge/status/596334370803326978  
+7.15: https://twitter.com/OneMorePeter/status/595676380320407553  
+7.16: https://twitter.com/niccary/status/595707211994763264  
+7.17: http://sourceforge.net/p/bitcoin/mailman/message/34096857/  
+7.18: https://www.reddit.com/r/Bitcoin/comments/370rko/21_inc_engineer_everyone_assumes_humans_will_be/crjfnpg?context=3  
+7.19: https://twitter.com/BitcoinThai/status/605022509101023232  
+7.20: https://twitter.com/coinbase/status/595741967759335426  
+7.21: https://twitter.com/brian_armstrong/status/595453245884997634  
+7.22: https://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg08276.html  
+7.23: https://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg08276.html  
+7.24: https://twitter.com/koodilehto/status/596675967667568641  
+7.25: https://twitter.com/okcoinbtc/status/598412795240009728  
+7.26: https://twitter.com/aantonop/status/595601619581964289  
+7.27: https://twitter.com/wences/status/595768917907402752
