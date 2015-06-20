@@ -77,9 +77,7 @@ Some advanced printers have internal storage (even hard drives) that preserve co
 
 This section applies only to single-key paper "wallets".
 
-Paper keys, when used as wallets, are very different from wallets such as Bitcoin Core in that it is not possible to transfer (withdraw) a *portion* of a key's bitcoins.
-The only way to withdraw funds is to import or "sweep" the *entire* received amount to a new address, typically a wallet or online exchange.
-Once the transfer has been confirmed, *the key should not be reused*. (12.1)
+Paper keys, when used as wallets, are very different from wallets such as Bitcoin Core in that there is only one address in a paper key rather than a hundred or more online keys that are managed with full software assistance from Bitcoin Core.
 
 There are various methods for copying the private key data to other wallets.
 
@@ -88,13 +86,11 @@ There are various methods for copying the private key data to other wallets.
 * [[BlockChain.info]] and [[Armory]] can also import them directly into wallets.
 * [Mycelium](http://MyCelium.com/download) is a Android mobile wallet with an easy to use "cold storage" spending function. It is also available via Android and iTunes playstore. The iTunes version may not yet support cold storage spending.
 
-Note that importing a private key that may be compromised can result in the entire wallet becoming insecure.
-For this reason, sweeping is generally recommended over importing.
+Note that importing a private key that may be compromised can result in the entire wallet becoming insecure. For this reason, sweeping (or sending the entire amount to a fresh address) is generally recommended over plain importing.
 
 ##References
 
-10.1: [Pseudorandomness](https://en.wikipedia.org/wiki/Pseudorandomness#Cryptography)  '' is not enough for strong cryptography''  
-12.1: [reddit.com](http://www.reddit.com/r/Bitcoin/comments/1c9xr7/psa_using_paper_wallets_understanding_change/)  ''Using Paper Wallets and Understanding Change''
+10.1: [Pseudorandomness](https://en.wikipedia.org/wiki/Pseudorandomness#Cryptography)  '' is not enough for strong cryptography''
 
 
 ##See Also
