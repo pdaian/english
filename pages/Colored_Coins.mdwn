@@ -2,8 +2,11 @@ Colored Coins is a colored bitcoin minting and exchange protocol that works on t
 
 Colored coins allow you to store assets on the [[Bitcoin blockchain|Coinprism.info]]. There are many interesting applications to colored coin. You could have an IPO on the blockchain by issuing shares as a colored coins, and send them to your shareholders. The shares can then be traded almost instantaneously and for free through the Bitcoin blockchain. You could have smart properties represented by colored coins. You could store your house on the blockchain by issuing a single coin, then the ownership of the house can be transferred with a simple Bitcoin transaction.
 
-##Block Explorer
+##Open Assets Block Explorer
 [[Coinprism]] offers a colored coin [[Bitcoin blockchain|Coinprism.info]] explorer.
+
+##ColoredCoins.org Block Explorer
+[ColoredCoins.org](http://coloredcoins.org/) offers a public search engine for digital assets, all open source. 
 
 ##Open Assets
 [Open Assets](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki) is a Colored Coin implementation based on the [[OP_RETURN|Script#Provably_Unspendable.2FPrunable_Outputs]] operator. Metadata is linked from the Blockchain and stored on the web.
@@ -42,6 +45,30 @@ This example illustrates how a marker output is decoded. Assuming the marker out
 ##CoinSpark
 
 [CoinSpark](http://coinspark.org/) is a Colored Coin implementation that uses a lightweight (SPV) desktop wallet for Windows, Mac or Linux. In CoinSpark, contracts are hosted on the issuer's website and notarized on the blockchain. Like Open Assets, it uses [[OP_RETURNs|Script#Provably_Unspendable.2FPrunable_Outputs]] to store metadata, with a highly efficient encoding scheme that allows multiple transfers of different assets to be encoded in a single transaction. CoinSpark [software libraries](http://coinspark.org/developers/source-libraries/) are available for C/C++, Java, Javascript, PHP and Python, and there's a detailed [developers guide](http://coinspark.org/developers/) with examples.
+
+##Colu Colored Coins Implementation
+
+A new Colored Coins implementation developed by [Colu](http://colu.co/), based on attaching value to transactions using the OP_RETURN field on the Blockchain. Colu's coloring scheme enables to compress massive amount of data into a limited space and new functionalities with the Rule Engine tool. 
+The Metadata is attached to the digital assets using Torrent technology so every asset is published publicly.
+
+###Main Features
+
+* Smarts Contracts Compatible 
+	[Rule Engine](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Rules/) for issuing digital assets with various   
+	capabilities: time limitations - expiry date, access abilities to authorized holders, additional fees on specific address and limited permission to 
+	issue more of the same asset. 
+
+* Maximum Decentralization Using Torrents
+	Automatically storing [metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Metadata/) that can be freely accessed  
+	and verified  in torrent files. The metadata size is unlimited and can contain information like: track record, history, description, validity or any 
+	information the issuer finds relevant. 
+
+* Data Storage Flexibility
+	Adding [endless amount of metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Data%20Storage%20Methods/) on every  
+	transaction is available not only during issuance, but also in future transactions after the asset was issued. 
+
+
+
 
 [[!tag "Financial"]]
 [[!tag "Colored_Coins"]]
