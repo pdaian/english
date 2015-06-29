@@ -56,7 +56,7 @@ This example illustrates how a marker output is decoded. Assuming the marker out
 
 ##Colu Colored Coins Implementation
 
-A new Colored Coins implementation developed by [Colu](http://colu.co/), based on attaching value to transactions using the OP_RETURN field on the Blockchain. Colu's [coloring scheme](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring-Scheme/) enables to compress massive amount of data into a limited space and new functionalities with the Rule Engine tool. 
+A new Colored Coins implementation developed by [Colu](http://colu.co/) (June 2015), based on attaching value to transactions using the OP_RETURN field on the Blockchain. Colu's [coloring scheme](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring-Scheme/) enables to compress massive amount of data into a limited space and new functionalities with the Rule Engine tool. 
 The Metadata is attached to the digital assets using Torrent technology so every asset is published publicly.
 
 ###Open Source
@@ -72,14 +72,15 @@ The new Colored Coins protocol specification for issuing and transacting digital
 
 * Issuance Policy - enforcing a coherent issuance policy by supporting two types of assets, [locked and unlocked](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits/). Locked Assets - assets who contain a fixed amount that is defined during the issuance, no one can issue more units of it, not even the issuer himself. Unlocked Assets - issuer can keep issuing more units of their asset.
 
-* Support thin wallets - the protocol verifies colored transactions without running a full Bitcoin node.
+* Support thin wallets (SPV compatible) - the protocol verifies colored transactions without running a full Bitcoin node.
 
 * [Send Multiple Assets in Single Transaction](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring-Scheme#issuance-transaction-encoding/) 
 
-* Support Zero Confirmation Transactions - the architecture allows to support asset issuance transfer it in zero confirmations (and with the same transaction)- the [Asset ID](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Asset%20ID/) references only to the first UTXO in the transaction and makes no reference to a block.
+* Zero Confirmation Support - the architecture allows to support asset issuance transfer it in zero confirmations (and with the same transaction)- the [Asset ID](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Asset%20ID/) references only to the first UTXO in the transaction and makes no reference to a block.
 
 * Low Prices and minimal bloat - high level of data compression using the same encoding of[asset transfer](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Transfer%20Encoding/) and [issuance amounts](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Number%20Encoding/)
 
+###Resources
 
 [[!tag "Financial"]]
 [[!tag "Colored_Coins"]]
