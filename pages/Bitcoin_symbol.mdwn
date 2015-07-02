@@ -1,18 +1,21 @@
-[[!template id=outdated]]
-## Currency code
-The [currency code](https://secure.wikimedia.org/wikipedia/en/wiki/ISO_4217) for Bitcoin is **XBT**. However, at the moment it is an [unofficial code](https://secure.wikimedia.org/wikipedia/en/wiki/ISO_4217#Without_currency_code) according to the ISO 4217 standard. The unit name **BTC** was intended to also be a currency code for Bitcoin, but cannot be used as per the ISO standards. The Bitcoin community is likely to continue using **BTC** as a unit name and currency code, since **XBT** has not yet defined which unit it represents (just that it represents *some* unit of bitcoin).
+By far the most commonly used symbol for Bitcoin is [[!template id=ns:file]][[x16px|:Btc-sans.png]] (webfont version: [[!template id=btc]]), a capital letter **B** with two vertical lines "going through" the **B**, though the lines are only visible at the top and bottom. This symbol was created by [[Satoshi_Nakamoto]] for the icon of an early version of the [[original Bitcoin client|reference_client]], though the very first versions of the Bitcoin client used "BC" instead of any special symbol. Presumably the symbol was intended to look similar to other currency symbols. The symbol represents the currency [[unit|Units]] "bitcoin" (100 million [[satoshi|Satoshi_(unit)]]), as well as the Bitcoin network and currency itself. The bitcoin currency unit is also commonly given the informal currency code **BTC**.
 
-A [formal application](http://www.coindesk.com/bitcoin-foundation-standardise-bitcoin-symbol-code-next-year/) by the Financial Standards Working Group of the [[Bitcoin_Foundation]] is nearing completion. This application would request ISO 4217 standard to support XBT.
+## Currency code
+The [ISO 4217 currency code](https://secure.wikimedia.org/wikipedia/en/wiki/ISO_4217) for Bitcoin is **XBT**. However, at the moment it is an [unofficial code](https://secure.wikimedia.org/wikipedia/en/wiki/ISO_4217#Without_currency_code) according to the ISO 4217 standard. The unit name **BTC** is also commonly used to represent one bitcoin, but it violates ISO 4217 because it begins with "BT", the country code of Bhutan. Bhutan does not actually use the code BTC for any currency, and XBT has not yet defined which unit it represents (just that it represents *some* unit of bitcoin), so the Bitcoin community is likely to continue using mainly BTC as a unit name and currency code for some time.
+
+A [formal application](http://www.coindesk.com/bitcoin-foundation-standardise-bitcoin-symbol-code-next-year/) by the Financial Standards Working Group of the [[Bitcoin_Foundation]] is nearing completion <sup>[true?](still)</sup>. This application would request ISO 4217 standard to support XBT.
 
 ## Currency Sign
 
-B⃦ has been the standard currency sign for BTC for a long time. Some existing Unicode symbols have been proposed but also serious work is being done on creating a custom Bitcoin sign with its own official [Unicode](https://secure.wikimedia.org/wikipedia/en/wiki/Unicode) that is recognized by the [Unicode Consortium](https://secure.wikimedia.org/wikipedia/en/wiki/Unicode_Consortium). Note that creating an official currency sign is more complex than creating a logo as will be explained below.
+[[!template id=btc]] <sup>(here rendered using a webfont -- you will see "BTC" if your browser does not support webfonts)</sup> has been the standard currency sign for BTC for a long time. This symbol can *sort of* be represented using existing Unicode features as (B⃦), but this symbol is completely broken on many devices/browsers, and *at best* it looks quite off. Some existing Unicode symbols have been proposed as alternatives, but also serious work is being done on creating a custom Bitcoin sign with its own official [Unicode](https://secure.wikimedia.org/wikipedia/en/wiki/Unicode) that is recognized by the [Unicode Consortium](https://secure.wikimedia.org/wikipedia/en/wiki/Unicode_Consortium). Note that creating an official currency sign is more complex than creating a logo as will be explained below.
 
 [[!img "Example-unicode-reference-currency-signs.png" size=256x256 size=120x120 class="right" title="Examples of Unicode currency sign reference glyphs"]]
 
 ### New Unicode symbol
 
-In some discussions [41](https://bitcointalk.org/index.php?topic=41.0), [369](https://bitcointalk.org/index.php?topic=369.0) and [7215](https://bitcointalk.org/index.php?topic=7215.0) on the Bitcoin forum several designs of an official Bitcoin sign have been proposed. This section on the Wiki is intended to streamline the process of arriving at an official Bitcoin currency sign with its own Unicode character code.
+[[!template id=outdated section]]
+
+In some discussions on topics [41](https://bitcointalk.org/index.php?topic=41.0), [369](https://bitcointalk.org/index.php?topic=369.0) and [7215](https://bitcointalk.org/index.php?topic=7215.0) on the Bitcoin Forum several designs of an official Bitcoin sign have been proposed. This section on the Wiki is intended to streamline the process of arriving at an official Bitcoin currency sign with its own Unicode character code.
 
 #### Goal
 Having a unique Bitcoin currency sign will allow typographers to add their currency sign design in their fonts. This is similar as implementing support for the euro sign. Each font has its own version of the euro sign that fits with the style observed in the characters in the rest of the fonts of their typefaces. Note that the Unicode Consortium does not endorse Bitcoin in any way by assigning a Unicode character code, however, by having an official Unicode Bitcoin's perception of legitimacy will increase. 
@@ -34,13 +37,13 @@ Note that a reference Bitcoin sign will only be used as a reference by the Unico
 
 #### Submissions
 
-It is possible to submit proposals for a **reference implementation** below until (community must determine date). They will be judged by (community must form committee for this). If you have problems submitting your design, ask someone with knowledge on editing Wikipedia for help.
+It is possible to submit proposals for a **reference implementation** below.
 
 
 
 |Preview |Handwritten |Associations |Compose sequence(s) |Designer |Link to SVG file |Notes
 |---|---|---|---|---|---|---
-|[[!img "Bitcoin-sign-20110719.png" size=128x128]]|[[!img "Img075.jpg" size=128x128]]|double barred dollar sign ($), capital b (B)|B, B, B=, =B|Pander|[bitcoin-sign-20110719.svg](http://pastebin.com/raw.php?i=XYsc9DeS)|example submission based on [[F33980a445.png]]
+|[[!img "Bitcoin-sign-20110719.png" size=128x128]]|[[!img "Img075.jpg" size=128x128]]|double barred dollar sign ($), capital b (B)|B, B, B=, =B|Pander|[bitcoin-sign-20110719.svg](http://pastebin.com/raw.php?i=XYsc9DeS)|example submission based on [[!template id=btc]]
 |[[!img "Bitcoin-proposal-1.png" size=128x128]]|[[!img "Hashbtc.jpg" size=128x128]]|hash (#), numeral three (3)|B#, #B, 3#, #3|Wareen|[Bitcoin-proposal-1.svg](http://pastebin.com/raw.php?i=MRfcm0Cn)|proposal based on original design idea from [RylandAlmanza](https://bitcointalk.org/index.php?topic=41.msg348274#msg348274)and [netrin](https://bitcointalk.org/index.php?topic=25102.msg325489#msg325489)
 
 
