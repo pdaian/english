@@ -8,7 +8,7 @@ This is how [[P2SH]] was added to Bitcoin.
 
 ##Mechanism
 
-Given a set of valid blocks, you can take any subset of those blocks and that subset will also, of course, all be valid. A softfork changes the rules such that only a subset of blocks that were previously valid remain so. Generally softforks make certain transactions invalid, for example a softfork could make any transaction that is more than 1KB invalid (not that that would necessarily be desirable).
+Given a set of valid blocks, you can take any subset of those blocks and that subset will also, of course, all be valid. A softfork changes the rules such that only a subset of blocks that were previously valid remain so. Often softforks make certain transactions invalid, for example a softfork could make any transaction that is more than 1KB invalid (not that that would necessarily be desirable).
 
 Generally softforks accomplish something more useful, for example Pay-to-Script-Hash ([[P2SH]]) was a softfork. Originally the script "OP_HASH160 [[20-byte-hash-value]] OP_EQUAL" could be redeemed by simply pushing the preimage of the hashed value onto the stack. Now the value you push must be a script that evaluates to true. All new transactions with the script "OP_HASH160 [[20-byte-hash-value]] OP_EQUAL" weren't valid if they merely had a preimage of the hash pushed onto the stack, the preimage had to be a valid script. The requirement for the preimage being a valid script shrunk the set of valid transactions and added a feature at the same time.
 
