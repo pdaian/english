@@ -31,6 +31,23 @@ The following Electrum servers have a safe Bitcoin Core version in their banner:
 
 During a fork, it is possible to use the Get Block Header custom plugin (3.2) to authoratatively determine which side of the fork an Electrum server is on.  Bitcoin Core 0.10.x servers should always be on the valid side of the fork.
 
+## Invalid Block Hashes
+
+From the July 4th fork:
+
+1. 0000000000000000009cc829aa25b40b2cd4eb83dd498c12ad0d26d90c439d99 mined by BTC Nuggets (98 non-coinbase transactions)
+1. 0000000000000000155f2519d35cd5d2869900bcc5093594b27763a0315390b4 mined by F2Pool (0 non-coinbase transactions)
+1. 00000000000000000cb7a20ee4e199e347ad7369936abae53a1518efa531ec61 mined by F2Pool (0 non-coinbase transactions)
+1. 00000000000000000966d65e0fd87d1d5a8f154a2c955816c28e2006e381aa18 mined by AntPool (0 non-coinbase transactions)
+1. 00000000000000001301bfd6f566a421c7eeba103d09b312032ca065cb185de7 mined by F2Pool (0 non-coinbase transactions)
+1. 000000000000000013fe26675faa8f7dccd55ce5485bb6d0373fa66345901436 mined by F2Pool (0 non-coinbase transactions)
+
+From the July 5th fork:
+
+1. 000000000000000003ae1223f4926ec86100885cfe1484dc52fd67e042a19b12 mined by MegaBigPower (255 non-coinbase transactions)
+1. 00000000000000000063f97f292fb559773437fb3558c474efec6053a7b0d5a2 mined by an unknown miner (0 non-coinbase transactions)
+1. 000000000000000012dbd422d7bf1c4b55982c37b390d4613dcee00d31741c6a mined by an unknown miner (1,597 non-coinbase transactions)
+
 ## References
 
 
