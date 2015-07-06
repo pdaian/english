@@ -73,6 +73,10 @@ Even with careful code auditing, browser plugins or other websites may compromis
 
 Some advanced printers have internal storage (even hard drives) that preserve copies of printouts. This is a risk if someone gets access to your printer, or if you dispose of your printer. There is also the possibility that a smart enough printer can be hacked. (Consider [StuxNet](http://en.wikipedia.org/wiki/Stuxnet) which was able to rewrite the firmware of non-computer devices indirectly connected to the Internet) If this concerns you, use a "dumb" printer, and never let your printer have access to the Internet or to an Internet-connected computer.
 
+####Handwriting
+
+An alternative using a printer for paper wallets is to write the private key and address with your own hand. [[Base58Check]] encoding used for Bitcoin addresses and private keys specifically excludes characters that look similar like 0OIl. The mnemonic recovery seeds used by wallets like [[Armory]] and [[Electrum]] are also suitable to be written by hand.
+
 ##Redeeming Keys and Withdrawing Funds
 
 This section applies only to single-key paper "wallets".
