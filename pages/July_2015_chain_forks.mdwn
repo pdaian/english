@@ -1,0 +1,39 @@
+The July 2015 forks were two (so far) block chain forks with two or more invalid blocks.  They were caused by miners who didn't properly validate blocks before mining on top of them. (1.1)
+
+## Wallet Advice
+
+* If you use Bitcoin Core, [upgrade to 0.10.2](https://bitcoin.org/en/download) to ensure you don't see invalid confirmations.
+
+* If you use a peer-to-peer lightweight wallet (also called a P2P SPV wallet), you must wait for additional confirmations.  See the [Bitcoin.org alert](https://bitcoin.org/spv-mining) for the currently recommended number of additional confirmations.
+
+* If you use Electrum, see the Electrum section below.
+
+* If you use web wallet or an exchange, you should wait for additional confirmations.  See the [Bitcoin.org alert](https://bitcoin.org/spv-mining) for the currently recommended number of additional confirmations.
+
+### Electrum
+
+Electrum gets data from a Bitcoin Core-backed server. If the server is running a recent version of Bitcoin Core, it may be safe---but you must check to be sure. (3.1)
+
+1. Go to the console tab
+1. It should display a message (called a banner) from the server operator.
+1. If the message includes a line that says &quot;Bitcoin Core 0.10.2&quot; or &quot;bitcoind 0.10.2&quot;, then confirmations reported by the server are likely to be accurate. The only other safe versions are 0.9.5, 0.10.0, and 0.10.1.
+1. If the message does not indicate that the server is running Bitcoin Core 0.10.2, you can change servers by going to Tools → Network, unclicking *Auto-connect*, and choosing a server from the list. After connecting, a new message will be displayed; use the instructions in step #3 again.
+
+Please note that this information is provided voluntarily by the server administrators.  It is not validated.
+
+The following Electrum servers have a safe Bitcoin Core version in their banner:
+
+* electrum.no-ip.org (version 0.10.0)
+* electrum.jdubya.info (version 0.10.2)
+* vps.hsmiths.com (version 0.10.2)
+* erbium1.sytes.net (version 0.10.0)
+
+During a fork, it is possible to use the Get Block Header custom plugin (3.2) to authoratatively determine which side of the fork an Electrum server is on.  Bitcoin Core 0.10.x servers should always be on the valid side of the fork.
+
+## References
+
+
+1.1: [Some miners creating invalid blocks](http://bitcoin.org/spv-mining) , Bitcoin.org, 4 July 2015  
+3.1: [Electrum servers run Bitcoin Core](https://www.reddit.com/r/Bitcoin/comments/3c305f/if_you_are_using_any_wallet_other_than_bitcoin/cssqykx) , /u/etmetm, 5 July 2015  
+3.2: [Get block header electrum plugin](https://bitcointalk.org/index.php?topic=1110912.msg11800126) , Belcher, 6 July 2015
+
