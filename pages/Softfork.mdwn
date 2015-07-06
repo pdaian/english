@@ -20,6 +20,12 @@ In order for a softfork to work, a majority of the mining power needs to be runn
 
 These attacks can be avoided by upgrading your client, however if the vast majority of miners (>95%) accept the new rules, the odds of an attacker being able to create many fake confirmations is low. Because miners want to make money, and without upgrading their blocks may be reorged out, there is an incentive for miners to upgrade and 100% acceptance of a fork should be achieved by miners quickly.
 
+###2015 BIP66 Blockchain Fork
+
+After the deployment of the BIP66 softfork in 2015 95% of hash power stated that they accepted BIP66 by setting their block version to 3. In theory setting your block version to 3 is an agreement with the network to consider version 2 blocks invalid and only mine on valid forks. Being part of the 5% that hadn't updated and weren't creating version 3 blocks, BTCNuggets created a version 2 block which was invalid to all new clients (>=0.9.5) but valid to old clients. Antminer and F2Pool, comprising ~40% of the network at the time, were creating version 3 blocks, however neither miner validated previous blocks. This caused both Antminer and F2Pool to mine on top of BTCNuggets version 2 block and create an invalid fork. Over 40% of the hashpower was mining on this version 2 fork despite 95% having "agreed" to not do so. This led to a 6 block fork that was resolved after contacting the F2Pool and Antminer pool owners.
+
+Any SPV clients or out of date clients were vulnerable to these fake confirmations and in theory there could have been a reversed 6 confirmation transaction. Fortunately there were zero reversed confirmations and the only money lost was mining revenue that these pools lost. F2Pool has continued mining without validating beforehand and SPV client as well as outdated full node clients are at risk as long as they do so.
+
 ##Implications
 
 Softforks don't require any nodes to upgrade to maintain consensus since all blocks with the new softforked in rules also follow the old rules, therefore old clients accept them. Softforks cannot be reversed without a hardfork since a softfork by definition only allows the set of valid blocks to be a proper subset of what was valid pre-fork.
