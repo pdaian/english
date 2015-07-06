@@ -12,8 +12,9 @@ The July 2015 forks were two (so far) block chain forks with two or more invalid
 
 ### Electrum
 
-Electrum gets data from a Bitcoin Core-backed server. If the server is running a recent version of Bitcoin Core, it may be safe---but you must check to be sure. (3.1)
+Electrum gets data from a Bitcoin Core-backed server. If the server is running a recent version of Bitcoin Core, it may be safe---but you must take action to be sure. (3.1)
 
+1. Go to Tools → Network and unclick *Auto-connect*.  This prevents Electrum from automatically changing to servers that have the longest block chain (which, during these invalid chain forks, may be the wrong chain).  Note that Electrum will warn you when you're not on the longest chain—you must ignore these warnings until this fork event is over or use the plugin mentioned at the bottom of this section to determine whether you're on the valid chain.
 1. Go to the console tab
 1. It should display a message (called a banner) from the server operator.
 1. If the message includes a line that says &quot;Bitcoin Core 0.10.2&quot; or &quot;bitcoind 0.10.2&quot;, then confirmations reported by the server are likely to be accurate. The only other safe versions are 0.9.5, 0.10.0, and 0.10.1.
