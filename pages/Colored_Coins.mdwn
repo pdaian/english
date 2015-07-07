@@ -6,10 +6,7 @@ Real world **Value** is attached to those units (or "digital tokens") by the ass
 
 The advantage of using Bitcoin's blockchain as the backbone leverages Bitcoin's strengths, such as immutability, non-counterfeitability, ease of transfer, robustness and transparency thus allowing asset manipulation with unprecedented security and ease.
 
-In principle one can represent asset manipulation data on other blockchains (e.g. [Litecoin](https://litecoin.org)), however, the term "Colored Coins" is usually associated with implementations that
-
-* Run on top of the Bitcoin blockchain
-* Do not issue an auxiliary coin (e.g. [Mastercoin](https://en.wikipedia.org/wiki/Mastercoin))
+In principle one can represent asset manipulation data on other blockchains (e.g. [Litecoin](https://litecoin.org)), however, the term "Colored Coins" is usually associated with implementations that use the Bitcoin blockchain and do not issue an auxiliary coin (e.g. [Mastercoin](https://en.wikipedia.org/wiki/Mastercoin)).
 
 Note that the term *Colored Coins* stuck from older implementations where an asset was actually associated with satoshis (thus "coloring" them). Modern implementations use more efficient ways to encode assets on the blockchain, mostly using the [OP_RETURN](http://bitcoin.stackexchange.com/questions/29554/explanation-of-what-an-op-return-transaction-looks-like) scripting code and it is [no longer the case](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Faq#coloring-satoshis) that individual satoshis are "colored".
 
