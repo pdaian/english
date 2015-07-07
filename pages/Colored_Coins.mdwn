@@ -71,23 +71,22 @@ This example illustrates how a marker output is decoded. Assuming the marker out
 
 ##Colu Colored Coins Implementation
 
-A new Colored Coins implementation developed by [Colu](http://colu.co/) (June 2015), based on attaching value to transactions using the OP_RETURN field on the Blockchain. Colu's [coloring scheme](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring-Scheme/) enables to compress massive amount of data into a limited space and new functionalities with the Rule Engine tool. 
-The Metadata is attached to the digital assets using Torrent technology so every asset is published publicly.
-
-###Open Source
-The new Colored Coins protocol specification for issuing and transacting digital assets on top of the Bitcoin Blockchain is all [open source](https://github.com/Colored-Coins/). 
+A new Colored Coins implementation was developed by [Colu](http://colu.co/) and fully [open sourced](https://github.com/Colored-Coins/) on June 2015. The new implementation is based on attaching data to transactions using the OP_RETURN field. Colu's [coloring scheme](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring-Scheme/) uses high data compression, can associate unlimited amounts of metadata with bitcoin transactions through the use of publicly available torrent files and supports smart contract functionalities. 
 
 ###Main Features
 
-* Smarts Contracts Compatible - [Rule Engine](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Rules/) for issuing digital assets with various capabilities: time limitations - expiry date, access abilities to authorized holders, additional fees on specific address and limited permission to issue more of the same asset. 
+* **Smarts Contracts capabilities** - A [Rule Engine](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Rules/) for issuing digital assets with various capabilities: expiration dates, restricted access, additional fees (supporting [affiliate marketing](https://en.wikipedia.org/wiki/Affiliate_marketing)), limitations on further issuance, etc. 
 
-* Maximum Decentralization Using Torrents - automatically storing [metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Metadata/) that can be freely accessed and verified  in torrent files. The metadata size is unlimited and can contain information like: track record, history, description, validity or any information the issuer finds relevant. 
+* **Using Torrents for Metadata storage** - [Metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Metadata/) is stored in publicly available [torrent files](https://en.wikipedia.org/wiki/BitTorrent), only a reference is stored directly on the blockchain. This allows for
+	* **Maximal Decentralization**  
+	* **Unlimited Size** - Since metadata is not stored directly on the blockchain it's size is unlimited and can contain information like: track record, history, description, validity or any information the issuer finds relevant. 
 
-* Data Storage Flexibility - adding [endless amount of metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Data%20Storage%20Methods/) on every transaction is available not only during issuance, but also in future transactions after the asset was issued. 
+* **Flexible metadata handling** - Adding [metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#metadata-on-every-colored-transaction) on every transaction, supporting the addition of relevant metadata that was not yet available during issuance (e.g. mentioning a specific seat number on a movie theater token). 
 
-* Issuance Policy - enforcing a coherent issuance policy by supporting two types of assets, [locked and unlocked](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits/). Locked Assets - assets who contain a fixed amount that is defined during the issuance, no one can issue more units of it, not even the issuer himself. Unlocked Assets - issuer can keep issuing more units of their asset.
-
-* Support thin wallets (SPV compatible) - the protocol verifies colored transactions without running a full Bitcoin node.
+* **Coherent Issuance Policy** - enforcing a coherent issuance policy by supporting two types of assets, [locked and unlocked](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits/). 
+	* **Locked** Assets - A fixed amount is defined during issuance. No one can issue more units of the asset, not even the issuer.
+	* **Unlocked** Assets - The issuer can keep issuing more units.
+* **Support for thin wallets** (SPV compatible) - [(SPV compatible)](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#support-for-thin-wallets) - nodes that can verify colored transactions without running a [[full Bitcoin node|full-node]]
 
 * [Send Multiple Assets in Single Transaction](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring-Scheme#issuance-transaction-encoding/) 
 
