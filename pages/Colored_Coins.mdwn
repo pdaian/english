@@ -1,6 +1,15 @@
 The term "Colored Coins" loosely describes ways to represent and manage **real world assets** on top of the [[Bitcoin Blockchain|Bitcoin#The_block_chain]], Bitcoin's open transaction ledger.
 
-While originally designed to be a currency, [[Bitcoin|Bitcoin]] supports a [[scripting language|Script]] that can be used to store small amounts of metadata on the blockchain, representing asset manipulation instructions. Using Bitcoin's blockchain as the backbone ensures transparency, immutability, ease of transfer and non-counterfeitability of those instructions, in turn allowing the issuance and trading of assets with unprecedented security and ease.
+While originally designed to be a currency, [[Bitcoin's|Bitcoin]] [[scripting language|Script]] allows to store small amounts of metadata on the blockchain, which can be used to **represent** asset manipulation instructions. For example, we can encode in a Bitcoin transaction that a 100 units of a new asset were issued and are now credited to a given [[bitcoin address|Address]]. A *colored coins wallet* can then create a new Bitcoin transaction that now encodes sending 50 units (sometimes called "digital tokens") of that asset to a new address, and so on.
+
+**Value** is attached to such digital tokens by a real world promise to **redeem them for some goods or services** in the real world. For example, a movie theater can promise to redeem each of the 100 units of the above mentioned tokens for a right to enter a certain screening of a movie.
+
+Using Bitcoin's blockchain as the backbone allows for issuance and trading of assets with unprecedented security and ease due to automatically inheriting Bitcoin's strengths, such as
+
+* Immutability and non-counterfeitability
+* Ease of transfer 
+* Robustness
+* Transparency
 
 ##Use Cases
 Colored coins allow you to store assets on the [[Bitcoin blockchain|Coinprism.info]]. There are many interesting applications to colored coin. You could have an IPO on the blockchain by issuing shares as a colored coins, and send them to your shareholders. The shares can then be traded almost instantaneously and for free through the Bitcoin blockchain. You could have smart properties represented by colored coins. You could store your house on the blockchain by issuing a single coin, then the ownership of the house can be transferred with a simple Bitcoin transaction.
