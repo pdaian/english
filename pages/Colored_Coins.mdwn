@@ -14,7 +14,29 @@ In principle one can represent asset manipulation data on other blockchains (e.g
 Note that the term *Colored Coins* stuck from older implementations where an asset was actually associated with [[satoshis|Satoshi_(unit)]] (thus "coloring" them). Modern implementations use more [efficient](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring%20Scheme) ways to encode assets on the blockchain, mostly using the [OP_RETURN](http://bitcoin.stackexchange.com/questions/29554/explanation-of-what-an-op-return-transaction-looks-like) scripting code, so it is [no longer the case](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Faq#coloring-satoshis) that individual satoshis are "colored".
 
 ##Use Cases
-Colored coins allow you to store assets on the [[Bitcoin blockchain|Coinprism.info]]. There are many interesting applications to colored coin. You could have an IPO on the blockchain by issuing shares as a colored coins, and send them to your shareholders. The shares can then be traded almost instantaneously and for free through the Bitcoin blockchain. You could have smart properties represented by colored coins. You could store your house on the blockchain by issuing a single coin, then the ownership of the house can be transferred with a simple Bitcoin transaction.
+There are many interesting applications to colored coin.
+###Issuing shares
+A company can issue shares using colored coins, taking advantage of the Bitcoin infrastructure for activities such as
+
+* Trading
+* Voting
+* Paying dividends 
+
+###Smart property
+Suppose there is a car rental company. The company can release one colored coin to represent each car, and then configure the car to turn on only if it receives a message signed with the private key that currently owns the colored coin. It can then release a smartphone app that anyone can use to broadcast a message signed with their private key, and put up the colored coins on a trading platform. Anyone will be able to then purchase a colored coin, use the car for whatever period of time using the smartphone app as a "car key", and sell the coin again at their leisure.
+
+###Coupon
+A company may wish to issue coupons, such as Air Miles rewards points
+
+###Community Money
+A community. e.g. a town, can issue it's own Currency.
+
+###Digital collectibles
+Decentralized management of digital assets. Just like art collectors buy and sell original copies of famous paintings for millions of dollars today, colored coins allow us to do the same with purely digital objects, such as songs, movies, e-books and software, as well, by storing the current ownership of the work as a colored coin on the blockchain.
+
+###Access and Subscription
+Using colored coins to trade and manage access and subscription services. For example, a museum, a subway or an online service like Netflix may issue passes as colored coins and release a smartphone app that can be used to make a signature proving ownership of a pass in person, allowing these passes to be simultaneously transferable, fully digital and securely uncopyable.
+
 ##Bitcoin 2.0
 ###Using the power of Bitcoin Blockchain technology for new use-cases other than currency
 
