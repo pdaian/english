@@ -6,6 +6,10 @@ Real world **Value** is attached to those units (or "digital tokens") by the ass
 
 The advantage of using Bitcoin's blockchain as the backbone leverages Bitcoin's strengths, such as immutability, non-counterfeitability, ease of transfer, robustness and transparency thus allowing asset manipulation in unprecedented security and ease.
 
+Note that the name *Colored Coins* was stuck from older implementations where an asset was actually associated with satoshis (thus "coloring" them). However, today we have more efficient ways to encode assets on the blockchain, mostly using the [OP_RETURN](http://bitcoin.stackexchange.com/questions/29554/explanation-of-what-an-op-return-transaction-looks-like) scripting code and it is [no longer the case](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Faq#coloring-satoshis) that individual satoshis are "colored".
+
+
+
 ##Use Cases
 Colored coins allow you to store assets on the [[Bitcoin blockchain|Coinprism.info]]. There are many interesting applications to colored coin. You could have an IPO on the blockchain by issuing shares as a colored coins, and send them to your shareholders. The shares can then be traded almost instantaneously and for free through the Bitcoin blockchain. You could have smart properties represented by colored coins. You could store your house on the blockchain by issuing a single coin, then the ownership of the house can be transferred with a simple Bitcoin transaction.
 ##Bitcoin 2.0
