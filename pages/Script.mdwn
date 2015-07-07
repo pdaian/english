@@ -50,7 +50,7 @@ When talking about scripts, these value-pushing words are usually omitted.
 |OP_ELSE|103|0x67|colspan="2"<expression>if [[statements]][[statements]]* endif|If the preceding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. 
 |OP_ENDIF|104|0x68|colspan="2"<expression>if [[statements]][[statements]]* endif|Ends an if/else block. All blocks must end, or the transaction is **invalid**. An OP_ENDIF without OP_IF earlier is also **invalid**.
 |OP_VERIFY|105|0x69|True / false|Nothing / False|**Marks transaction as invalid**if top stack value is not true.
-|OP_RETURN|106|0x6a|Nothing|Nothing|**Marks transaction as invalid**. 
+|OP_RETURN|106|0x6a|Nothing|Nothing|**Marks transaction as invalid**. This can be optionally followed with data up to 80 bytes pushed to the stack via OP_PUSHDATA. (4.1)
 
 
 ### Stack
@@ -293,6 +293,8 @@ This transaction was successfully spent by 09f691b2263260e71f363d1db51ff3100d285
 * [[Transactions]]
 * [[Contracts]]
 
+##References
 
 [[!tag "Technical"]]
 [[!tag "Vocabulary"]]
+4.1: ["Source Code commit for OP_RETURN data."](https://github.com/bitcoin/bitcoin/commit/a79342479f577013f2fd2573fb32585d6f4981b3)
