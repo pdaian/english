@@ -75,18 +75,25 @@ A new Colored Coins implementation was developed by [Colu](http://colu.co/) and 
 
 ###Main Features
 
-* **Smarts Contracts capabilities** - A [Rule Engine](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Rules/) for issuing digital assets with various capabilities: expiration dates, restricted access, additional fees (supporting [affiliate marketing](https://en.wikipedia.org/wiki/Affiliate_marketing)), limitations on further issuance, etc. 
+####Smarts Contracts capabilities
+A [Rule Engine](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Rules/) for issuing digital assets with various capabilities: expiration dates, restricted access, additional fees (supporting [affiliate marketing](https://en.wikipedia.org/wiki/Affiliate_marketing)), limitations on further issuance, etc. 
 
-* **Using Torrents for Metadata storage** - [Metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Metadata/) is stored in publicly available [torrent files](https://en.wikipedia.org/wiki/BitTorrent), only a reference is stored directly on the blockchain. This allows for
-	* **Maximal Decentralization**  
-	* **Unlimited Size** - Since metadata is not stored directly on the blockchain it's size is unlimited and can contain information like: track record, history, description, validity or any information the issuer finds relevant. 
+####Using Torrents for Metadata storage
+[Metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Metadata/) is stored in publicly available [torrent files](https://en.wikipedia.org/wiki/BitTorrent), only a reference is stored directly on the blockchain. This allows for
 
-* **Flexible metadata handling** - Adding [metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#metadata-on-every-colored-transaction) on every transaction, supporting the addition of relevant metadata that was not yet available during issuance (e.g. mentioning a specific seat number on a movie theater token). 
+* **Maximal Decentralization**  
+* **Unlimited Size** - Since metadata is not stored directly on the blockchain it's size is unlimited and can contain information like: track record, history, description, validity or any information the issuer finds relevant. 
 
-* **Coherent Issuance Policy** - enforcing a coherent issuance policy by supporting two types of assets, [locked and unlocked](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits/). 
-	* **Locked** Assets - A fixed amount is defined during issuance. No one can issue more units of the asset, not even the issuer.
-	* **Unlocked** Assets - The issuer can keep issuing more units.
-* **Support for thin wallets** (SPV compatible) - [(SPV compatible)](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#support-for-thin-wallets) - nodes that can verify colored transactions without running a [full Bitcoin node](https://bitcoin.org/en/full-node#what-is-a-full-node).
+####Flexible metadata handling
+Adding [metadata](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#metadata-on-every-colored-transaction) on every transaction, supporting the addition of relevant metadata that was not yet available during issuance (e.g. mentioning a specific seat number on a movie theater token). 
+
+####Coherent Issuance Policy
+Enforcing a coherent issuance policy by supporting two types of assets, [locked and unlocked](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits/). 
+
+* **Locked** Assets - A fixed amount is defined during issuance. No one can issue more units of the asset, not even the issuer.
+* **Unlocked** Assets - The issuer can keep issuing more units.
+####Support for thin (SPV) wallets 
+The new implementation supports [SPV clients](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#support-for-thin-wallets) - nodes that can ***verify colored transactions*** without running a [full Bitcoin node](https://bitcoin.org/en/full-node#what-is-a-full-node).
 
 * **Efficiency and Low Cost**: 
 	* **Minimal Blockchain Bloat**
