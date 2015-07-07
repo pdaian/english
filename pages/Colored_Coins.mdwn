@@ -96,12 +96,14 @@ Enforcing a coherent issuance policy by supporting two types of assets, [locked 
 ####Support for thin (SPV) wallets 
 The new implementation supports [SPV clients](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#support-for-thin-wallets) - nodes that can ***verify colored transactions*** without running a [full Bitcoin node](https://bitcoin.org/en/full-node#what-is-a-full-node).
 
-* **Efficiency and Low Cost**: 
-	* **Minimal Blockchain Bloat**
-	* *Data compression* - high level of data compression using a [ precision encoding scheme](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Number%20Encoding) for encoding asset issuance and transfer amounts.
-	* Sending [Multiple Assets in Single Transaction](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring-Scheme#issuance-transaction-encoding/) 
+####Efficiency and Low Cost
 
-* [Zero Confirmation Support](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#support-for-zero-confirmation-transactions)- The new architecture supports asset issuance and transfer in zero confirmations (even  within the same transaction) - the Asset ID references only the first UTXO in the transaction and makes no reference to a block.
+* *Data compression* - high level of data compression using a [ precision encoding scheme](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Number%20Encoding) for encoding asset issuance and transfer amounts.
+* Sending [Multiple Assets in Single Transaction](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring-Scheme#issuance-transaction-encoding/) 
+* **Minimal Blockchain Bloat**
+
+####Support for Zero Confirmations
+The new architecture supports asset [issuance and transfer in zero confirmations](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#support-for-zero-confirmation-transactions) (even  within the same transaction) - the Asset ID references only the first UTXO in the transaction and makes no reference to a block.
 
 ###Resources
 
