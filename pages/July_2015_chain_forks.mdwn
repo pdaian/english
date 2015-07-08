@@ -12,13 +12,17 @@ The July 2015 forks were two (so far) block chain forks with two or more invalid
 
 ### Electrum
 
-Electrum gets data from a Bitcoin Core-backed server. If the server is running a recent version of Bitcoin Core, it may be safe---but you must take action to be sure. (3.1)
+Electrum is a SPV client that uses a non-standard protocol to communicate with a single node. As with all SPV clients, if that node is trustworthy, you can rely on it to perform the proper validation for you.
+
+Electrum allows you to specify a specific server that your client uses.
+If a server is running a recent version of Bitcoin Core, and you are okay trusting it with your security, you can take action to use it exclusively. (3.1)
 
 1. Go to Tools → Network and unclick *Auto-connect*.  This prevents Electrum from automatically changing to servers that have the longest block chain (which, during these invalid chain forks, may be the wrong chain).  Note that Electrum will warn you when you're not on the longest chain—you must ignore these warnings until this fork event is over or use the plugin mentioned at the bottom of this section to determine whether you're on the valid chain.
 1. Go to the console tab
 1. It should display a message (called a banner) from the server operator.
 1. If the message includes a line that says &quot;Bitcoin Core 0.10.2&quot; or &quot;bitcoind 0.10.2&quot;, then confirmations reported by the server are likely to be accurate. The only other safe versions are 0.9.5, 0.10.0, and 0.10.1.
 1. If the message does not indicate that the server is running Bitcoin Core 0.10.2, you can change servers by going to Tools → Network, unclicking *Auto-connect*, and choosing a server from the list. After connecting, a new message will be displayed; use the instructions in step #3 again.
+1. You should also ensure you are using TLS encryption, and with a known certificate of your trusted server.
 
 Please note that this information is provided voluntarily by the server administrators.  It is not validated.
 
@@ -34,6 +38,7 @@ The following Electrum servers have a safe Bitcoin Core version in their banner:
 * ecdsa.net (version 0.10.99, changeset 3c60937ce6a251e565e169715ebb2f3dd76825c4)
 
 During a fork, it is possible to use the Get Block Header custom plugin (3.2) to authoratatively determine which side of the fork an Electrum server is on.  Bitcoin Core 0.10.x servers should always be on the valid side of the fork.
+Note that this, too, relies on trusting the server you are using.
 
 ## Invalid Block Hashes
 
