@@ -14,97 +14,112 @@ To run with the standard GUI interface:
 
 ##Command-line arguments
 
-Give Bitcoin (or bitcoind) the -? or –-help argument and it will print out a list of the most commonly used command-line arguments and then exit:
+Give bitcoind the -? or –-help argument and it will print out a list of the most commonly used command-line arguments and then exit:
 
-Usage:
-	bitcoin-qt [options](command-line)                     
-
+Bitcoin Core Daemon version v0.10.2
+	
+Usage:         
+	bitcoind [[options]]                     Start Bitcoin Core Daemon
+	
 Options:
 	-?                     This help message
+	-alertnotify=<cmd>     Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)
+	-blocknotify=<cmd>     Execute command when the best block changes (%s in cmd is replaced by block hash)
+	-checkblocks=<n>       How many blocks to check at startup (default: 288, 0 = all)
+	-checklevel=<n>        How thorough the block verification of -checkblocks is (0-4, default: 3)
 	-conf=<file>           Specify configuration file (default: bitcoin.conf)
+	-daemon                Run in the background as a daemon and accept commands
 	-datadir=<dir>         Specify data directory
-	-testnet               Use the test network
+	-dbcache=<n>           Set database cache size in megabytes (4 to 1024, default: 100)
+	-loadblock=<file>      Imports blocks from external blk000??.dat file on startup
+	-maxorphantx=<n>       Keep at most <n> unconnectable transactions in memory (default: 100)
+	-par=<n>               Set the number of script verification threads (-32 to 16, 0 = auto, <0 = leave that many cores free, default: 0)
 	-pid=<file>            Specify pid file (default: bitcoind.pid)
-	-gen                   Generate coins (default: 0)
-	-dbcache=<n>           Set database cache size in megabytes (4 to 4096, default: 100)
-	-timeout=<n>           Specify connection timeout in milliseconds (default: 5000)
-	-proxy=<ip:port>       Connect through SOCKS proxy
-	-socks=<n>             Select SOCKS version for -proxy (4 or 5, default: 5)
-	-onion=<ip:port>       Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: -proxy)
-	-dns                   Allow DNS lookups for -addnode, -seednode and -connect
-	-port=<port>           Listen for connections on <port> (default: 8333 or testnet: 18333)
-	-maxconnections=<n>    Maintain at most <n> connections to peers (default: 125)
+	-reindex               Rebuild block chain index from current blk000??.dat files on startup
+	-sysperms              Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)
+	-txindex               Maintain a full transaction index, used by the getrawtransaction rpc call (default: 0)
+
+Connection options:
 	-addnode=<ip>          Add a node to connect to and attempt to keep the connection open
-	-connect=<ip>          Connect only to the specified node(s)
-	-seednode=<ip>         Connect to a node to retrieve peer addresses, and disconnect
-	-externalip=<ip>       Specify your own public address
-	-onlynet=<net>         Only connect to nodes in network <net> (IPv4, IPv6 or Tor)
-	-discover              Discover own IP address (default: 1 when listening and no -externalip)
-	-checkpoints           Only accept block chain matching built-in checkpoints (default: 1)
-	-listen                Accept connections from outside (default: 1 if no -proxy or -connect)
-	-bind=<addr>           Bind to given address and always listen on it. Use [[host]]:port notation for IPv6
-	-dnsseed               Find peers using DNS lookup (default: 1 unless -connect)
 	-banscore=<n>          Threshold for disconnecting misbehaving peers (default: 100)
 	-bantime=<n>           Number of seconds to keep misbehaving peers from reconnecting (default: 86400)
+	-bind=<addr>           Bind to given address and always listen on it. Use [[host]]:port notation for IPv6
+	-connect=<ip>          Connect only to the specified node(s)
+	-discover              Discover own IP address (default: 1 when listening and no -externalip)
+	-dns                   Allow DNS lookups for -addnode, -seednode and -connect (default: 1)
+	-dnsseed               Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect)
+	-externalip=<ip>       Specify your own public address
+	-forcednsseed          Always query for peer addresses via DNS lookup (default: 0)
+	-listen                Accept connections from outside (default: 1 if no -proxy or -connect)
+	-maxconnections=<n>    Maintain at most <n> connections to peers (default: 125)
 	-maxreceivebuffer=<n>  Maximum per-connection receive buffer, <n>*1000 bytes (default: 5000)
 	-maxsendbuffer=<n>     Maximum per-connection send buffer, <n>*1000 bytes (default: 1000)
-	-upnp                  Use UPnP to map the listening port (default: 1 when listening)
-	-debug=<category>      Output debugging information (default: 0, supplying <category> is optional)
-	If <category> is not supplied, output all debugging information.
-	<category> can be: addrman, alert, coindb, db, lock, rand, rpc, selectcoins, mempool, net, qt.
-	-logtimestamps         Prepend debug output with timestamp (default: 1)
-	-shrinkdebugfile       Shrink debug.log file on client startup (default: 1 when no -debug)
-	-printtoconsole        Send trace/debug info to console instead of debug.log file
-	-regtest               Enter regression test mode, which uses a special chain in which blocks can be solved instantly.
-	This is intended for regression testing tools and app development.
+	-onion=<ip:port>       Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: -proxy)
+	-onlynet=<net>         Only connect to nodes in network <net> (ipv4, ipv6 or onion)
+	-permitbaremultisig    Relay non-P2SH multisig (default: 1)
+	-port=<port>           Listen for connections on <port> (default: 8333 or testnet: 18333)
+	-proxy=<ip:port>       Connect through SOCKS5 proxy
+	-seednode=<ip>         Connect to a node to retrieve peer addresses, and disconnect
+	-timeout=<n>           Specify connection timeout in milliseconds (minimum: 1, default: 5000)
+	-whitebind=<addr>      Bind to given address and whitelist peers connecting to it. Use [[host]]:port notation for IPv6
+	-whitelist=<netmask>   Whitelist peers connecting from the given netmask or IP address. Can be specified multiple times.
+	Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway  
+	
+Wallet options:  
+	-disablewallet         Do not load the wallet and disable wallet RPC calls  
+	-keypool=<n>           Set key pool size to <n> (default: 100)  
+	-paytxfee=<amt>        Fee (in BTC/kB) to add to transactions you send (default: 0.00)  
+	-rescan                Rescan the block chain for missing wallet transactions on startup  
+	-salvagewallet         Attempt to recover private keys from a corrupt wallet.dat on startup  
+	-sendfreetransactions  Send transactions as zero-fee transactions if possible (default: 0)  
+	-spendzeroconfchange   Spend unconfirmed change when sending transactions (default: 1)  
+	-txconfirmtarget=<n>   If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: 1)  
+	-maxtxfee=<amt>        Maximum total fees to use in a single wallet transaction, setting too low may abort large transactions (default: 0.10)  
+	-upgradewallet         Upgrade wallet to latest format on startup  
+	-wallet=<file>         Specify wallet file (within data directory) (default: wallet.dat)  
+	-walletnotify=<cmd>    Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)  
+	-zapwallettxes=<mode>  Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup  
+	(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)  
+	
+Debugging/Testing options:  
+	-debug=<category>      Output debugging information (default: 0, supplying <category> is optional)  
+	If <category> is not supplied, output all debugging information.  
+	<category> can be: addrman, alert, bench, coindb, db, lock, rand, rpc, selectcoins, mempool, net.  
+	-gen                   Generate coins (default: 0)  
+	-genproclimit=<n>      Set the number of threads for coin generation if enabled (-1 = all cores, default: 1)  
+	-help-debug            Show all debugging options (usage: --help -help-debug)  
+	-logips                Include IP addresses in debug output (default: 0)  
+	-logtimestamps         Prepend debug output with timestamp (default: 1)  
+	-minrelaytxfee=<amt>   Fees (in BTC/Kb) smaller than this are considered zero fee for relaying (default: 0.00001)  
+	-printtoconsole        Send trace/debug info to console instead of debug.log file  
+	-shrinkdebugfile       Shrink debug.log file on client startup (default: 1 when no -debug)  
+	-testnet               Use the test network  
+	
+Node relay options:  
+	-datacarrier           Relay and mine data carrier transactions (default: 1)  
+	-datacarriersize       Maximum size of data in data carrier transactions we relay and mine (default: 40)  
+	
+Block creation options:  
+	-blockminsize=<n>      Set minimum block size in bytes (default: 0)  
+	-blockmaxsize=<n>      Set maximum block size in bytes (default: 750000)  
+	-blockprioritysize=<n> Set maximum size of high-priority/low-fee transactions in bytes (default: 50000)  
+	
+RPC server options:
 	-server                Accept command line and JSON-RPC commands
+	-rest                  Accept public REST requests (default: 0)
+	-rpcbind=<addr>        Bind to given address to listen for JSON-RPC connections. Use [[host]]:port notation for IPv6. This option can be specified multiple times (default: bind to all interfaces)
 	-rpcuser=<user>        Username for JSON-RPC connections
 	-rpcpassword=<pw>      Password for JSON-RPC connections
 	-rpcport=<port>        Listen for JSON-RPC connections on <port> (default: 8332 or testnet: 18332)
-	-rpcallowip=<ip>       Allow JSON-RPC connections from specified IP address
+	-rpcallowip=<ip>       Allow JSON-RPC connections from specified source. Valid for <ip> are a single IP (e.g. 1.2.3.4), a network/netmask (e.g. 1.2.3.4/255.255.255.0) or a network/CIDR (e.g. 1.2.3.4/24). This option can be specified multiple times
 	-rpcthreads=<n>        Set the number of threads to service RPC calls (default: 4)
-	-blocknotify=<cmd>     Execute command when the best block changes (all %s in cmd are replaced by block hash)
-	-alertnotify=<cmd>     Execute command when a relevant alert is received or we see a really long fork (all %s in cmd are replaced by message)
-	-keypool=<n>           Set key pool size to <n> (default: 100)
-	-checkblocks=<n>       How many blocks to check at startup (default: 288, 0 = all)
-	-checklevel=<n>        How thorough the block verification is (0-4, default: 3)
-	-txindex               Maintain a full transaction index (default: 0)
-	-loadblock=<file>      Imports blocks from external blk000??.dat file
-	-reindex               Rebuild block chain index from current blk000??.dat files
-	-par=<n>               Set the number of script verification threads (up to 16, 0 = auto, <0 = leave that many cores free, default: 0)
+	-rpckeepalive          RPC support for HTTP persistent connections (default: 1)
 
-Wallet options:
-	-disablewallet         Do not load the wallet and disable wallet RPC calls
-	-paytxfee=<amt>        Fee per kB to add to transactions you send
-	-mintxfee=<amt>        Fees smaller than this are considered zero fee on tx creation (default: 10000)
-	-rescan                Rescan the block chain for missing wallet transactions
-	-zapwallettxes         Clear list of wallet transactions (diagnostic tool; implies -rescan)
-	-salvagewallet         Attempt to recover private keys from a corrupt wallet.dat
-	-upgradewallet         Upgrade wallet to latest format
-	-wallet=<file>         Specify wallet file (within data directory)
-	-walletnotify=<cmd>    Execute command when a wallet transaction changes (all %s in cmd are replaced by TxID)
-	-spendzeroconfchange   Spend unconfirmed change when sending transactions (default: 1)
-
-Relay options
-	-minrelaytxfee=<amt>   Fees smaller than this (in satoshi) are considered zero fee (relaying and mining) (default:1000)
-	-limitfreerelay=<n>    Rate-limit free transactions to <n>*1000 bytes per minute (default: 15)
-
-Block creation options:
-	-blockminsize=<n>      Set minimum block size in bytes (default: 0)
-	-blockmaxsize=<n>      Set maximum block size in bytes (default: 750000)
-	-blockprioritysize=<n> Set maximum size of high-priority/low-fee transactions in bytes (default: 50000)
-
-SSL options: (see the  [[Bitcoin Wiki for SSL setup instructions|Enabling_SSL_on_original_client_daemon]])
+RPC SSL options: (see the Bitcoin Wiki for SSL setup instructions)
 	-rpcssl                                  Use OpenSSL (https) for JSON-RPC connections
 	-rpcsslcertificatechainfile=<file.cert>  Server certificate file (default: server.cert)
 	-rpcsslprivatekeyfile=<file.pem>         Server private key (default: server.pem)
 	-rpcsslciphers=<ciphers>                 Acceptable ciphers (default: TLSv1.2+HIGH:TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!3DES:@STRENGTH)
-
-UI options:
-	-lang=<lang>           Set language, for example "de_DE" (default: system locale)
-	-min                   Start minimized
-	-splash                Show splash screen on startup (default: 1)
-	-choosedatadir         Choose data directory on startup (default: 0)
 
 Many of the boolean options can also be set to off by specifying them with a "no" prefix: e.g. -nodnseed.
 
