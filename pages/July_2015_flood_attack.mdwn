@@ -1,3 +1,5 @@
 [[!template id=current]]
-The **July 2015 [[flood_attack]]** is an ongoing "stress test" of the Bitcoin network.
+The **July 2015 [[flood_attack]]** is an ongoing "stress test" of the Bitcoin network. The distributed attack has provoked hundreds of thousands of transactions, leaving over 80,000 in the mempool at one time.
+
+Some single-word brainwallets ("password", "cat", etc.) have been the recipients of thousands of transactions, leaving 0.00001 BTC outputs. [[F2Pool]] has been concatenating these outputs in huge 1MB transactions. These transactions fill up an entire block on their own, and are far too large to be relayed by nodes; they have only been confirmed because F2Pool dedicated blocks to them. Some nodes report having spent over 20 seconds on one of these transactions, and may have temporarily disabled sites including [[Blockchain.info]] and [[TradeBlock]].
 [[!tag "2015_events"]]
