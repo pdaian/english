@@ -1,0 +1,398 @@
+Answers to commonly-asked questions and concerns about scaling Bitcoin, including “level 1” solutions such as increasing the block size and “level 2” solutions such as the proposed Lightning network.
+
+## Background
+
+Questions about how Bitcoin currently works (related to scaling) as well as questions about the technical terminology related to the scaling discussion.
+
+### What is the short history of the block size limit?
+
+*Note: the software now called Bitcoin Core was previously simply called “Bitcoin”. (3.1) To avoid confusion with the Bitcoin system, we’ll use the Bitcoin Core name.*
+
+Bitcoin Core was initially released without an explicit block size limit. However, the code did limit network messages to a maximum of 32 MiB, setting an effective upper bound on block size. (3.2)
+
+Around 15 July 2010, Satoshi Nakamoto changed Bitcoin Core’s mining code so that it wouldn’t create any blocks larger than 990,000 bytes. (3.3)
+
+Two months later on 7 September 2010, Nakamoto changed Bitcoin Core’s consensus rules to reject blocks larger than 1,000,000 bytes (1 megabyte) if their block height was higher than 79,400. (3.4) (Block 79,400 was later produced on 12 September 2010. (3.5))
+
+Neither the July nor the September commit message explains the reason for the limit, although the careful attempt to prevent a fork may indicate Nakamoto didn’t consider it an emergency.
+
+Nakamoto’s subsequent statements supported raising the block size at a later time (3.6), but he never publicly specified a date or set of conditions for the raise.
+
+### What is this Transactions Per Second (TPS) limit?
+
+The current block size limit is 1,000,000 bytes (1 megabyte) (4.1), although a small amount of that space (such as the block header) is not available to store transactions. (4.2)
+
+Bitcoin transactions vary in size depending on multiple factors, such as whether they’re spending single-signature inputs or a multiple signature inputs, and how many inputs and outputs they have.
+
+The simple way to calculate the number of Transactions Per Second (TPS) Bitcoin can handle is to divide the block size limit by the expected average size of transactions, divided by the average number of seconds between blocks (600). For example, if you assume average transactions are 250 bytes,
+
+<pre>6.6 TPS = 1,000,000 / 250 / 600</pre>
+
+There seems to be general agreement that Bitcoin in 2015 can handle about 3 TPS with the current average size of transactions. (4.3) (4.4)
+
+Both old estimates (4.5) and new estimates place the
+theoretical maximum at 7 TPS with current Bitcoin consensus rules
+(including the 1MB block size limit).
+
+### What do devs mean by the scaling expressions O(1), O(n), O(n<sup>2</sup>), etc…?
+
+[Big O notation](https://en.wikipedia.org/wiki/Big_O_notation) is a shorthand used by computer scientists to describe how well a system scales. Such descriptions are rough approximations meant to help predict potential problems and evaluate potential solutions; they are not usually expected to fully capture all variables.
+
+* **O(1)** means a system has roughly the same properties no matter how big it gets.
+* **O(n)** means that a system scales linearly: doubling the number of things (users, transactions, etc.) doubles the amount of work.
+* **O(n<sup>2</sup>)** means that a system scales  quadratically : doubling (2x) the number of things quadruples (4x) the amount of work.  Often written O(n^2) is places without convenient superscripts.
+* Additional examples may be found in the [Wikipedia article](https://en.wikipedia.org/wiki/Big_O_notation#Orders_of_common_functions)
+
+The following subsections show cases where big O notation has been applied to the scaling Bitcoin transaction volume.
+
+#### O(1) block propagation
+
+Bitcoin Core currently relays unconfirmed transactions and then later relays blocks containing many of the same transactions. This redundant relay can be eliminated to allow miners to propagate large blocks very quickly to active network nodes, and would also significantly reduce miner need for peak bandwidth. Currently most miners use a network (6.1) that is about 25x more efficient than stock Bitcoin Core (6.2) and almost equally as effective as O(1) block propagation for current block sizes.
+
+#### O(n<sup>2</sup>) network total validation resource requirements
+
+Each on-chain Bitcoin transaction needs to be processed by each full node. If we assume that a certain percentage of users run full nodes (*n*) and that each user creates a certain number of transactions on average (*n* again), then the network’s total resource requirements are <code>n<sup>2</sup> = n * n</code>.  In short, this means that the aggregate cost of keeping all transactions on-chain quadruples each time the number of users doubles. (7.1) For example,
+
+* Imagine a network starts with 100 users and 2 total nodes (a 2% ratio).
+* The network doubles in users to 200.  The number of nodes also doubles to 4 (maintaining a 2% ratio of decentralized low-trust security).  However, double the number of users means double the number of transactions, and each node needs to process *every* transaction---so each node now does double work with its bandwidth and its CPU.  With double the number of nodes and double the amount of work per node, total work increases by four times.
+* The network doubles again: 400 users, 8 nodes (still 2% of total), and 4 times the original workload per node for a total of 16 times as much aggregate work as the original.
+* Another doubling: 800 users, 16 nodes (still 2%), and 8 times the original workload per node for a total of 64 times aggregate work as the original.
+* Another doubling: 1,600 users—sixteen times the original---with 32 nodes (still 2%), and 16 times the original workload per node.  The aggregate total work done by nodes is 256 times higher than it was originally.
+
+### What’s the difference between on-chain and off-chain transactions?
+
+On-chain Bitcoin transactions are those that appear in the Bitcoin block chain. Off-chain transactions are those that transfer ownership of bitcoins without putting a transaction on the block chain.
+
+Common and proposed off-chain transactions include:
+
+* **Exchange transactions:** when you buy or sell bitcoins, the exchange tracks ownership in a database without putting data in the block chain. Only when you deposit or withdraw bitcoins does the transaction appear on the block chain.
+* **Web wallet internal payments:** many web wallets allow users of the service to pay other users of the same service using off-chain payments. For example, when one Coinbase user pays another Coinbase user.
+* **Tipping services:** most tipping services today, such as ChangeTip, use off-chain transactions for everything except deposits and withdrawals. (8.1)
+* **Payment channels:** channels are started using one on-chain transaction and ended using a second on-chain transaction. (8.2) In between can be an essentially unlimited number of off-chain transactions as small as a single satoshi (1/100,000,000th of a bitcoin). Payment channels include those that [exist today](https://bitcoinj.github.io/working-with-micropayments) as well as proposed hub-and-spoke channels and the more advanced [Lightning network](http://lightning.network/).
+
+Approximately 90% to 99% of all bitcoin-denominated payments today are made off-chain. (8.3)
+
+### What is a fee market?
+
+When you create a Bitcoin transaction, you have the option to pay a [[transaction_fee]]. If your software is flexible, you can pay anything from zero fees (a free transaction) to 100% of the value of the transaction (spend-to-fees).
+
+Miners who have more transactions available to them than they have room in the blocks they choose to make, typically choose to maximize their revenue by including the transactions that pay the most fees per kilobyte of data. (9.1) This confirms higher-fee transactions before lower-fee transactions.
+
+If blocks become full on a regular basis, users who pay the minimum fee will have to wait a longer and longer time for their transactions to confirm. At this point, a fee market may arise where transactions that pay higher fees get confirmed significantly faster than transactions that pay low fees. (9.2)
+
+### What is the most efficient way to scale Bitcoin?
+
+Remove its decentralization properties, specifically decentralized mining and decentralized full nodes. Mining wastes enormous amounts of electricity to provide a decentralized ledger and full nodes waste an enormous amount of bandwidth and CPU time keeping miners honest.
+
+If users instead decided to hand authority over to someone they trusted, mining and keeping miners honest wouldn’t be needed. This is how Visa, MasterCard, PayPal, and the rest of the centralized payment systems works—users trust them, and they have no special difficulty scaling to [[millions of transactions an hour|scalability]]. It’s very efficient; it isn’t decentralized.
+
+### What is a hard fork, and how does it differ from other types of forks?
+
+The word fork is badly overloaded in Bitcoin development.
+
+* **[[Hard fork|hardfork]]:** a change to the system which is not backwards compatible. Everyone needs to upgrade or things can go wrong.
+* **[[Soft fork|softfork]]:** a change to the system which is backwards compatible as long as a majority of miners enforce it. Full nodes that don’t upgrade have their security reduced.
+* **Chain fork:** when there are two are more blocks at the same height on a block chain.  This typically happens a few times a week by accident, but it can also indicate more severe problems.
+* **[Software fork](https://en.wikipedia.org/wiki/Fork_%28software_development%29):** using the code from an open source project to create a different project.
+* **[Git/GitHub fork](https://help.github.com/articles/fork-a-repo/):** a way for developers to write and test new features before contributing them to a project.
+
+(There are other types of software-related forks, but they don’t tend to cause as much confusion.)
+
+### What are the block size soft limits?
+
+Bitcoin Core has historically come pre-configured to limit blocks it mines to certain sizes. (9.1) These “limits” aren’t restrictions placed on miners by other miners or nodes, but rather configuration options that help miners produce reasonably-sized blocks.
+
+Miners can change their soft limit size (up to 1 MB) using <code>-blockmaxsize=&lt;size&gt;</code>
+
+Default soft limits at various times:
+
+* **July 2012:** <code>-blockmaxsize</code> option created and set to default 250 KB soft limit (12.1)
+* **November 2013:** Raised to 750KB (12.2)
+* **June 2015:** Raise to 1 MB suggested (12.3)
+
+## General Block Size Increase Theory
+
+Questions about increasing the block size in general, not related to any
+specific proposal.
+
+#### Why are some people in favor of keeping the block size at 1 MB forever?
+
+It is commonly claimed (14.1) that there are people opposed to ever raising the maximum block size limit, but no Bitcoin developers have suggested keeping the maximum block size at one megabyte forever. (4.4)
+
+All developers support raising the maximum size at some point (14.2) (14.3)—they just disagree about whether now is the correct time.
+
+#### Should miners be allowed to decide the block size?
+
+A block may include as little as a single transaction, so miners can always restrict block size. Letting miners choose the maximum block size is more problematic for several reasons:
+
+1. **Miners profit, others pay the cost:** bigger blocks earn miners more fees, but miners don’t need to store those blocks for more than a few days. (15.1) Other users who want full validation security, or who provide services to lightweight wallets, pay the costs of downloading and storing those larger blocks.
+1. **Bigger miners can afford more bandwidth:** each miner needs to download every transaction that will be included in block, which means that they all need to pay for high-speed connections. However, a miner with 8.3% of total hash rate can take that cost out of the about 300 BTC they make a day, while a miner with only 0.7% of total hash rate has to take that cost out of only 25 BTC a day. This means bigger miners may logically choose to make bigger blocks even though it may further centralize mining.
+1. **Centralized hardware production:** only a few companies in the world produce efficient mining equipment, and many of them have chosen to stop selling to the public. (15.2) This prevents ordinary Bitcoin users from participating in the process even if they were willing to pay for mining equipment.
+1. **Voting by hash rate favors larger miners:** voting based on hash rate allows the current hash rate majority (or super-majority) to enforce conditions on the minority.  This is similar to a lobby of large businesses being able to get laws passed that may hurt smaller businesses. (15.3)
+1. **Miners may not care about users:** this was demonstrated during the [[July_2015_Forks]] where even after miners lost over $50,000 USD in income from mining invalid chains, and even after they were told that long forks harm users, they continued to mine inproperly. (15.4)
+
+However, there are also possible justifications for letting miners choose the block size:
+
+1. **Authenticated participants:** miners are active participants in Bitcoin, and they can prove it by adding data to the blocks they create. (15.5) It is much harder to prove people on Reddit, BitcoinTalk, and elsewhere are real people with an active stake in Bitcoin.
+1. **Bigger blocks may cost miners:** small miners and poorly-connected miners are at a disadvantage if larger blocks are produced, and even large and well-connected miners may find that large blocks reduce their profit percentage if the cost of bandwidth rises too high or their stale rate increases. (15.6)
+
+#### How could a block size increase affect user security?
+
+Bitcoin’s security is highly dependent on the number of active users who protect their bitcoins with a full node like Bitcoin Core. The more active users of full nodes, the harder it is for miners to trick users into accepting fake bitcoins or other frauds. (16.1)
+
+Full nodes need to download and verify every block, and most nodes also store blocks plus relay transactions, full blocks, and filtered blocks to other users on the network. The bigger blocks become, the more difficult it becomes to do all this, so it is expected that bigger blocks will both reduce the number of users who currently run full nodes and suppress the number of users who decide to start running a full node later. (16.2)
+
+In addition, full blocks may increase mining centralization at a time when mining is already so centralized that it makes it easy to reverse transactions which have been confirmed multiple times. (16.3)
+
+#### How could larger blocks affect proof-of-work (POW) security?
+
+Proof of work security is dependent on how much money miners spend on mining equipment. However, to effectively mine blocks, miners also need to spend money on bandwidth to receive new transactions and blocks created by other miners; CPUs to validate received transactions and blocks; and bandwidth to upload new blocks. These additional costs don’t directly contribute to POW security. (17.1)
+
+As block sizes increase, the amount of bandwidth and CPU required also increases. If block sizes increase faster than the costs of bandwidth and CPU decrease, miners will have less money for POW security relative to the gross income they earn.
+
+In addition, larger blocks have a higher risk of becoming stale (orphaned), which directly correlates to lost POW security. For example, if the network average stale rate is 10%, then 10% of POW performed isn't protecting transactions on the block chain.
+
+### What happens if blocks aren't big enough to include all pending transactions?
+
+This is already the case more often than not (18.1), so we know that miners will simply queue transactions. The transactions eligible for block inclusion that pay the highest fee per kilobyte will be confirmed earlier than transactions that pay comparatively lower fees. (9.1)
+
+What happens from there is debated:
+
+* BitcoinJ lead developer Mike Hearn believes there would be “crashing nodes, a swelling transaction backlog, a sudden spike in double spending, [[and]] skyrocketing fees.” (18.2)
+* Bitcoin Foundation chief scientist Gavin Andresen believes that the “average transaction fee paid will rise, people or applications unwilling or unable to pay the rising fees will stop submitting transactions, [[and]] people and businesses will shelve plans to use Bitcoin, stunting growth and adoption.”  (18.3)
+* Bitcoin Core developer Pieter Wuille replies to Andresen’s comment above: “Is it fair to summarize this as ‘Some use cases won’t fit any more, people will decide to no longer use the blockchain for these purposes, and the fees will adapt.’? I think that is already happening [[…]] I don’t think we should be afraid of this change or try to stop it.”  (18.4)
+* Bitcoin Core developer Jeff Garzik writes, "as blocks get full and the bidding war ensues, the bitcoin user experience rapidly degrades to poor.  In part due to bitcoin wallet software’s relative immaturity, and in part due to bitcoin’s settlement based design, the end user experience of their transaction competing for block size results in erratic, and unpredictably extended validation times."
+
+## Specific Scaling Proposals
+
+### Andresen-Hearn Block Size Increase Proposals
+
+Questions about the series of related proposals by Gavin Andresen and Mike Hearn to use a hard fork to raise the maximum block size, thereby allowing miners to include more on-chain transactions. As of July 2015, the current focus is [BIP101](https://github.com/bitcoin/bips/pull/163).
+
+#### What is the major advantage of this proposal?
+
+*Bitcoin can support many more users.* Assuming earliest possible adoption, 250 bytes per on-chain transaction, 144 blocks per day, and 2 transaction a day per user, Bitcoin can support about,
+
+* 288,000 users in 2015
+* 2,304,000 users in 2016 (800% increase)
+* 4,608,000 in 2018 (1,600%)
+* 9,216,000 in 2020 (3,200%)
+* 18,432,000 in 2022 (6,400%)
+* 36,864,000 in 2024 (12,800%)
+* 73,728,000 in 2026 (25,600%)
+* 147,456,000 in 2028 (51,200%)
+* 294,912,000 in 2030 (102,400%)
+* 589,824,000 in 2032 (204,800%)
+* 1,179,648,000 in 2034 (409,600%
+* 2,359,296,000 in 2036 (819,200%)
+
+#### What is the major disadvantage of this proposal?
+
+*The total cost of remaining decentralized will be high.* Assuming earliest possible adoption and that the ratio of total users to full node operators remains the same as today, the total estimated amount of work necessary to maintain the decentralized system under the <sup></sup>[[O(|#O.28n2.29_network_total_validation_resource_requirements]] will be,
+
+* 100% of today’s work in 2015
+* 6,400% in 2016
+* 25,600% in 2018
+* 102,400% in 2020
+* 409,600% in 2022
+* 1,638,400% in 2024
+* 6,553,600% in 2026
+* 26,214,400% in 2028
+* 104,857,600% in 2030
+* 419,430,400% in 2032
+* 1,677,721,600% in 2034
+* 6,710,886,400% in 2036
+
+For example, if the total amount spent on running full nodes today (not counting mining) is $100 thousand per year, the estimated cost for the same level of decentralization in 2036 will be $6.7 trillion per year if validation costs stay the same. (They'll certainly go down, but algorithmic and hardware improvements probably won't eliminate an approximate 6,710,886,400% cost increase.)
+
+#### What are the dangers of the proposed hard fork?
+
+Under the current proposal, 75% of miners must indicate that they agree to accept blocks up to 8 MB in size. (23.1) After the change goes into effect, if any miner creates a block larger than 1 MB, all nodes which have not upgraded yet will reject the block. (23.2)
+
+If all full nodes have upgraded, or very close to all nodes, there should be no practical effect. If a significant number of full nodes have not upgraded, they will continue using a different block chain than the upgraded users, with the following consequences:
+
+* Bitcoins received from before the fork can be spent twice, once on both sides of the fork. This creates a high double spend risk.
+* Bitcoins received after the fork are only guaranteed to be spendable on the side of the fork they were received on. This means some users will have to lose money to restore Bitcoin to a single chain.
+
+Users of hosted wallets (Coinbase, BlockChain.info, etc.) will use whatever block chain their host chooses. Users of lightweight P2P SPV wallets will use the [[longest chain they know of|Thin_Client_Security]], which may not be the actual longest chain if they only connect to nodes on the shorter chain. Users of non-P2P SPV wallets, like Electrum, will use whatever chain is used by the server they connect to.
+
+If a bad hard fork like this happens, it will likely cause large-scale confusion and make Bitcoin very hard to use until the situation is resolved.
+
+#### What is the deployment schedule for BIP 101?
+
+* The patch needs to be accepted into Bitcoin Core, Bitcoin XT, or both.
+* If accepted into Bitcoin Core, miners using that software will need to upgrade (this probably requires a new released version of Bitcoin Core). If accepted only into Bitcoin XT, miners will need to switch to using XT.
+* After 75% of miners have upgraded, 8MB blocks will become allowed at the the latest of (1) 11 January 2016 or (2) two weeks after the 75% upgrade threshold. (23.1)
+* After the effective date has passed, any miner may create a block larger than 8MB. When a miner does this, upgraded full nodes will accept that block and non-upgraded full nodes will reject it, forking the network. (23.1) See [[hard fork dangers|#What_are_the_dangers_of_the_proposed_hard_fork.3F]] for what his might mean.
+
+#### Will miners go straight from 1 MB blocks to 8 MB blocks?
+
+That would be highly unlikely. Uploading an 8 MB block currently takes significantly more time than uploading a 1 MB block (25.1), even with the roughly 25x reduction in size available from use of Matt Corallo’s block relay network. (6.1)
+
+The longer it takes to upload a block, the higher the risk it will become a stale block—meaning the miner who created it will not receive the block subsidy or transaction fees (currently about 25 BTC per block).
+
+However, if technology like Invertible Bloom Lookup Tables (IBLTs) is deployed and found to work as expected (25.2), or if mining [[centralizes further|#What_is_the_most_efficient_way_to_scale_Bitcoin.3F]], adding additional transactions may not have a significant enough cost to discourage miners from creating full blocks. In that case, blocks will be filled as soon as there are enough people wanting to make transactions paying the default relay fee (25.3) of 0.00001000 BTC/kilobyte.
+
+#### What tests have been performed related to this proposal?
+
+* **20MB block processing** (Gavin Andresen) “if we increased the maximum block size to 20 megabytes tomorrow, and every single miner decided to start creating 20MB blocks and there was a sudden increase in the number of transactions on the network to fill up those blocks… the 0.10.0 version of [Core](Bitcoin) would run just fine.” (26.1) (ellipses in original)
+* **Mining &amp; relay simulation** (Gavin Andresen) “if blocks take 20 seconds to propagate, a network with a miner that has 30% of the hashing power will get 30.3% of the blocks.” (26.2)
+* **Mining on a home DSL connection** (Rusty Russell) “Using the rough formula of 1-exp(-t/600), I would expect orphan rates of 10.5% generating 1MB blocks, and 56.6% with 8MB blocks; that’s a huge cut in expected profits.” (25.1)
+* **Mining centralization pressure** (Pieter Wuille) “[[This]] does very clearly show the effects of larger blocks on centralization pressure of the system.” (26.3)
+
+
+### Garzik Miner Block Size Voting Proposal (AKA BIP100)
+
+*Note, BIP 100 is the marketing name for this proposal.  No BIP number
+has yet been publicly requested, and the number assigned is unlikely to
+be 100. (27.1)*
+
+Questions related to Jeff Garzik's proposal (27.2) to allow miners to vote on raising and lowering the maximum block size.
+
+#### What does this proposal do?
+
+1. It creates a one-time hard fork that does not automatically change the maximum block size.
+
+1. It allows miners to vote to increase or decrease the maximum block size within the range of 1MB to 32MB. These changes are neither hard forks nor soft forks, but simply rules that all nodes should know about after the initial hard fork.
+
+#### Does it reduce the risk of a hard fork?
+
+Hard forks are most dangerous when they're done without strong
+consensus. (27.2) (29.1)
+
+If Garzik's proposal gains strong consensus, it will as safe as possible
+for a hard fork and it will allow increasing the block size up to 32 MB
+without any additional risk of a fork.
+
+#### Why is it limited to 32 megabytes?
+
+According to the draft BIP, "the 32 MB hard fork is largely coincidental -- a whole network upgrade at 32 MB was likely needed anyway."
+
+### Lightning Network
+
+Questions related to using the proposed [Lightning network](http://lightning.network/) as a way to scale the number of users Bitcoin can support.
+
+#### How does transaction security differ from that of Bitcoin?
+
+Transactions on the proposed Lightning network use Bitcoin transactions exclusively to transfer bitcoins (32.1), and so the same security as regular Bitcoin transactions is provided when both a Lightning hub and client are cooperating.
+
+When a Lightning hub or client refuses to cooperate with the other (maybe because they accidentally went offline), the other party can still receive their full 100% bitcoin balance by closing the payment channel—but they must first wait for a defined amount of time mutually chosen by both the hub and client. (32.2)
+
+If one party waits too long to close the payment channel, the other party may be able to steal bitcoins. However, it is possible to delegate the task of closing the channel in an emergency to an unlimited number of hubs around the Internet, so closing the channel on time should be easy. (32.3)
+
+In summary, provided that payment channels are closed on time, the worst that can happen to users is that they may have to wait a few weeks for a channel to fully close before spending the bitcoins they received from it. Their security is otherwise the same as with regular Bitcoin.
+
+For Lightning hubs, security is slightly worse in the sense that they need to keep a potentially-large amount of funds in a hot wallet (32.4), so they can’t take advantage of the anti-hacking protection offered by cold wallets. Otherwise, Lightning hubs have the same security as clients.
+
+#### When will Lightning be ready for use?
+
+Lightning requires a basic test implementation (work underway (33.1)), several soft-fork changes to the Bitcoin protocol (work underway (33.2) (33.3), and wallets need to be updated to support the Lightning network protocol. (32.3)
+
+Dr. Adam Back has said, "I expect we can get something running inside a year." (33.4)
+
+#### Doesn’t Lightning require bigger blocks anyway?
+
+Lightning is block-size neutral. It requires one on-chain transaction to open a channel between a hub and a client, and one on-chain transaction to close a channel. (32.1) In between it can support an unlimited number of transactions between anyone on the Lightning network. (32.4)
+
+Using the numbers from the Lightning presentation (34.1), if people open and close a plausible two channels a year, Lightning can support about 52 million users with the current one-megabyte limit—and each user can make an unlimited number of transactions. Currently, assuming people make an average of only two Bitcoin transactions a day, basic Bitcoin can support only 288,000 users.
+
+Under these assumptions, Lightning is 180 times (180,000%) more efficient than basic Bitcoin.
+
+Presumably, if around 30 million people are using Bitcoin via Lightning so that capacity is called into question, it will not be difficult to find consensus to double the block size to two megabytes and bring user capacity up to 105 million. The same goes for later increases to 200 million (4MB), 400 million (8MB), 800 million (16MB), 1.6 billion (32 MB), 3.2 billion (64MB), and all 7 billion living humans (133MB). In each case, all Lightning network participants get unlimited transactions to the other participants.
+
+For basic Bitcoin to scale to just 2 transactions a day for 7 billion people would require 24-gigabyte blocks. (34.1)
+
+### Sidechains
+
+#### Real quick, what are sidechains?
+
+Block chains that are separate from Bitcoin’s block chain, but which allow you to receive and spend bitcoins using a two-way peg (2WP). (36.1)  (Although a sidechain can never be more secure than the Bitcoin block chain. (36.2))
+
+#### Are sidechains a scaling option?
+
+No. Sidechains have the same fundamental scaling problems as Bitcoin does. Moving some transactions to sidechains simply moves some problems elsewhere on the network—the total difficulty of the problem remains the same. (37.1)
+
+#### But couldn’t I create a sidechain that had 100 GB blocks?
+
+Certainly, sidechain code is open source (38.1)—so you can create your own sidechain. But you’d still have the difficulty of finding people who are willing to validate 100 GB blocks with their own full nodes.
+
+#### Do sidechains require a hard fork?
+
+No. Federated sidechains, such as have already been implemented (39.1), don’t require any changes to the Bitcoin consensus rules. Merged-mined sidechains, which have not been implemented yet, do require a backwards-compatible soft fork in order to transfer funds between Bitcoin and the sidechain. (36.1)
+
+## References
+
+3.1: [Bitcoin Core 0.9.0 release notes](https://bitcoin.org/en/release/v0.9.0#rebranding-to-bitcoin-core) , Bitcoin.org, 19 March 2014  
+3.2: [Earliest known Bitcoin code](https://bitcointalk.org/index.php?topic=68121) , <code>src/main.h:17</code>  
+3.3: [Bitcoin Core commit a30b56e](https://github.com/bitcoin/bitcoin/commit/a30b56ebe76ffff9f9cc8a6667186179413c6349) , Satoshi Nakamoto, 15 July 2010  
+3.4: [Bitcoin Core commit 8c9479c](https://github.com/bitcoin/bitcoin/commit/8c9479c6bbbc38b897dc97de9d04e4d5a5a36730) , Satoshi Nakamoto, 7 September 2010  
+3.5: [Block height 79400](https://www.biteasy.com/blockchain/blocks/000000000021d821ec06be7173f413690bc5c4bc648dfa70b3b6763236f055b7) , dated 12 September 2010  
+3.6: [Increasing the block size when needed](https://bitcointalk.org/index.php?topic=1347.msg15139#msg15139) , Satoshi Nakamoto, 3 October 2010  
+4.1: [[<code>MAX_BLOCK_SIZE]] </code>, retrieved 2 July 2015  
+4.2: [Block serialization description](https://bitcoin.org/en/developer-reference#serialized-blocks) , Bitcoin.org Developer Reference  
+4.3: [Max TPS based on current average transaction size](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-May/007986.html) , Mike Hearn, 8 May 2015  
+4.4: ["No one proposing 3 TPS forever"](https://www.reddit.com/r/Bitcoin/comments/39yaod/bitcoinorg_position_on_hard_forks/cs7qz5c) , Gregory Maxwell, 15 June 2015  
+<span class="ref-label">4.5:
+<span class="ref-column">
+ [[Scalability]], Bitcoin Wiki, retrieved 7 July
+2015</span>  
+6.1: [Matt Corallo's block relay network](http://bitcoinrelaynetwork.org/)  
+6.2: [IBLT design document](https://gist.github.com/gavinandresen/e20c3b5a1d4b97f79ac2#i-know-that-you-know) , Gavin Andresen, 11 August 2014  
+7.1: [Total system cost](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-June/009199.html) , Dr. Adam Back, 28 June 2015  
+8.1: [ChangeTip fees](https://www.changetip.com/fees) , retrieved 3 July 2015  
+8.2: [Micropayment channels](https://bitcoin.org/en/developer-guide#micropayment-channel) , Bitcoin.org Developer Guide  
+8.3: [Pure off-chain is a weak form of layer 2](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-June/008844.html) , Dr. Adam Back, 19 June 2015  
+9.1: [Fee prioritization patch](https://bitcointalk.org/index.php?topic=95837.0) , Gavin Andresen, 26 July 2012  
+9.2: [Comments on the CoinWallet.eu tx-flood stress-test](https://gist.github.com/petertodd/8e87c782bdf342ef18fb) , Peter Todd, 22 June 2015  
+12.1: [Bitcoin Core commit c555400](https://github.com/bitcoin/bitcoin/commit/c555400ca134991e39d5e3a565fcd2215abe56f6) , Gavin Andresen, 12 July 2012  
+12.2: [Bitcoin Core commit ad898b40](https://github.com/bitcoin/bitcoin/commit/ad898b40aaf06c1cc7ac12e953805720fc9217c0) , Gavin Andresen, 27 November 2013  
+12.3: [Bitcoin Core pull #6231](https://github.com/bitcoin/bitcoin/pull/6231) , Chris Wheeler, 4 June 2015  
+14.1: [Epicenter Bitcoin podcast #82](https://epicenterbitcoin.com/podcast/082/) , Mike Hearn (interviewed), 8 June 2015  
+14.2: [Nothing magic about 1MB](https://www.reddit.com/r/Bitcoin/comments/39kqzs/how_about_a_softfork_optin_blocksize_increase/cs5hj8l) , Dr. Adam Back, 13 June 2015  
+14.3: [Regarding size-independent new block propagation](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-May/008328.html) , Pieter Wuille, 28 May 2015  
+15.1: [Bitcoin Core pull #5863 adding pruning functionality](https://github.com/bitcoin/bitcoin/pull/5863) , Suhas Daftuar et al., 6 March 2015  
+15.2: [KnCMiner to stop selling to home miners](http://blogs.wsj.com/venturecapital/2014/09/05/for-kncminer-time-to-forget-selling-bitcoin-machines-to-at-home-miners/) , Wall Street Journal, Yuliya Chernova, 5 September 2014  
+15.3: [Miners choosing the block size limit is ill-advised](https://www.reddit.com/r/Bitcoin/comments/39kzyt/draft_bip_100_soft_fork_block_size_increase/cs5gvak) , Meni Rosenfeld, 13 June 2015  
+15.4: [Intention to continue SPV mining](https://bitcointalk.org/index.php?topic=700411.msg11790734#msg11790734) , Wang Chun, 4 July 2015  
+15.5: [Coinbase field](https://bitcoin.org/en/developer-reference#term-coinbase-field) , Bitcoin.org Developer Reference  
+15.6: [F2Pool block size concerns](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-May/008355.html) , Chun Wang, 29 May 2015  
+16.1: [Bitcoin nodes: how many is enough?](https://medium.com/@lopp/bitcoin-nodes-how-many-is-enough-9b8e8f6fd2cf) , Jameson Lopp, 7 June 2015  
+16.2: [Block size increases-only will create problems](https://www.reddit.com/r/Bitcoin/comments/3bae2d/amir_taaki_on_raising_the_block_size_a_lot_of/cslcgmw) , Dr. Adam Back, 28 June 2015  
+16.3: [When to worry about one-confirmation payments](http://bitcoin.stackexchange.com/questions/32562/when-to-worry-about-1-confirmation-payments/32564#32564) , David A. Harding, 17 November 2014  
+17.1: [Correcting wrong assumptions about mining](https://www.reddit.com/r/Bitcoin/comments/39tgno/letting_miners_vote_on_the_maximum_block_size_is/cs6rek5) , Gregory Maxwell, 15 June 2015  
+18.1: [Statoshi.info mempool queue June to July 2015](http://statoshi.info/dashboard/db/transactions?from=1433297061121&to=1435889061123)  
+18.2: [Crash Landing](https://medium.com/@octskyward/crash-landing-f5cc19908e32) , Mike Hearn, 7 May 2015  
+18.3: [Bitcoin Core pull #6341](https://github.com/bitcoin/bitcoin/pull/6341) , Gavin Andresen, 26 June 2015  
+18.4: [The need for larger blocks](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-June/009098.html) , Pieter Wuille, 26 June 2015  
+23.1: [BIP101](https://github.com/bitcoin/bips/pull/163) , Gavin Andresen, 24 June 2016  
+23.2: [Consensus rule changes](https://bitcoin.org/en/developer-guide#consensus-rule-changes) , Bitcoin.org Developer Guide  
+25.1: [Mining on a home DSL connection test results](http://rusty.ozlabs.org/?p=509) , Rusty Russell, 19 June 2015  
+25.2: [O(1) block propagation](https://gist.github.com/gavinandresen/e20c3b5a1d4b97f79ac2) , Gavin Andresen, 8 August 2014  
+25.3: [Bitcoin Core pull #3305 dropping default fees](https://github.com/bitcoin/bitcoin/pull/3305) , Mike Hearn, 22 November 2013  
+26.1: [Twenty megabyte block testing](http://gavintech.blogspot.com/2015/01/twenty-megabytes-testing-results.html) , Gavin Andresen, 20 January 2015  
+26.2: [Are bigger blocks better for bigger miners?](http://gavinandresen.ninja/are-bigger-blocks-better-for-bigger-miners) , Gavin Andresen, 22 May 2015  
+26.3: [Mining centralization pressure from non-uniform propagation speed](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-June/008581.html) , Pieter Wuille, 12 June 2015  
+<span class="ref-label">27.1:
+<span class="ref-column">
+ [BIP naming](Prenumbered) 
+, Gregory Maxwell, 12 May 2014</span>  
+27.2: [Draft BIP: decentralized economic policy](http://gtf.org/garzik/bitcoin/BIP100-blocksizechangeproposal.pdf) , Jeff Garzik, 12 June 2015 (revised 15 June 2015)  
+<span class="ref-label">29.1:
+<span class="ref-column">
+ [Consensus changes are not about making a change to the software](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-June/008779.html) ,
+Pieter Wuille, 18 June 2015</span>  
+32.1: [Lightning Networks: Part I](http://rusty.ozlabs.org/?p=450) , Rusty Russell, 30 March 2015  
+32.2: [Lightning Networks: Part II](http://rusty.ozlabs.org/?p=462) , Rusty Russell, 1 April 2015  
+32.3: [Lightning Networks: Part IV](http://rusty.ozlabs.org/?p=477) , Rusty Russell, 8 April 2015  
+32.4: [Lightning Network (Draft 0.5)](http://lightning.network/lightning-network-paper-DRAFT-0.5.pdf) , Section 6.3: Coin Theft via Hacking, Joseph Poon and Thaddeus Dryja  
+33.1: [Lightning first steps](https://lists.blockstream.com/pipermail/lightning-dev/2015-June/000018.html) , Rusty Russell, 13 June 2015  
+33.2: [BIP65: CheckLockTimeVerify](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki) , Peter Todd, 1 October 2014  
+33.3: [BIP68: Consensus-enforced transaction replacement](https://github.com/bitcoin/bips/blob/master/bip-0068.mediawiki) , Mark Friedenbach, 28 May 2015  
+33.4: [Reply to Andresen regarding Lightning](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-June/009242.html) , Dr. Adam Back, 28 June 2015  
+34.1: [Lightning presentation](http://lightning.network/lightning-network.pdf) , Joseph Poon, 23 February 2015  
+36.1: [Sidechains paper](https://www.blockstream.com/sidechains.pdf) , Adam Back et al., 22 October 2014  
+36.2: [Security limitations of pegged chains](https://www.reddit.com/r/Bitcoin/comments/39r85g/sidechain_hate/cs5spbg) , Gregory Maxwell, 14 June 2015  
+37.1: [Sidechains not a direct means for solving any of the scaling problems Bitcoin has](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-June/008617.html) , Pieter Wuille, 13 June 2015  
+38.1: [Elements Project](https://github.com/ElementsProject/elements)  
+39.1: [Elements Alpha](https://github.com/ElementsProject/elements/tree/alpha)
+
