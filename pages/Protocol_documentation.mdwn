@@ -197,7 +197,7 @@ Block headers are sent in a headers packet in response to a getheaders message.
 
 
 
-|4 |version |uint32_t |Block version information, based upon the software version creating this block
+|4 |version |int32_t |Block version information (note, this is signed)
 |32 |prev_block |char[[32]]|The hash value of the previous block this particular block references
 |32 |merkle_root |char[[32]]|The reference to a Merkle tree collection which is a hash of all transactions related to this block
 |4 |timestamp |uint32_t |A timestamp recording when this block was created (Will overflow in 2106 (14.1))
