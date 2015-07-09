@@ -51,6 +51,8 @@ Bitcoin Core currently relays unconfirmed transactions and then later relays blo
 
 #### O(n<sup>2</sup>) network total validation resource requirements
 
+<sup></sup>[[!img "On2_scaling_illustrated.png" size=120x120 class="right" title="visualization of O(n" title="2" title=") scaling"]]
+
 Each on-chain Bitcoin transaction needs to be processed by each full node. If we assume that a certain percentage of users run full nodes (*n*) and that each user creates a certain number of transactions on average (*n* again), then the network’s total resource requirements are <code>n<sup>2</sup> = n * n</code>.  In short, this means that the aggregate cost of keeping all transactions on-chain quadruples each time the number of users doubles. (7.1) For example,
 
 * Imagine a network starts with 100 users and 2 total nodes (a 2% ratio).
