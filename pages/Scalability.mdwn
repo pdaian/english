@@ -50,9 +50,9 @@ The primary limiting factor in Bitcoin's performance is disk seeks once the unsp
 
 ##Lightning Network
 
-To account for 2 transactions per day for every human on earth, blocks would need to be 24GB, and would require the processing power of approximately 40 Intel Core i7-2670QM 2.2Ghz processors. Some argue that as block sizes increase, we cannot simply throw more resources at processing blocks unless said resources become cheaper at a rate faster than the need for these resources increases, claiming it will result in a few centralized parties that control the blockchain and are able to reverse or censor transactions. Others argue that under any realistic maximum usage scenario, like in the case of 24 GB blocks, full node requirements will not be so great that they lead to a dangerous level of centralization, and that the situation will only get better with time as processor cost performance improves.
+To account for 2 transactions per day for every human on earth, blocks would need to be 24GB, and would require the processing power of approximately 40 Intel Core i7-2670QM 2.2Ghz processors. Some argue that as block sizes increase, we cannot simply throw more resources at processing blocks unless said resources become cheaper at a rate faster than the need for these resources increases. Otherwise our result is a few, or just one, centralized parties that control the blockchain and are able to reverse or censor transactions, evidenced by the network previously beginning to converge to centralization to under much much smaller load. Others argue that under any realistic maximum usage scenario, like in the case of 24 GB blocks, full node requirements would not be so great. This is argued in spite of the fact that the processor requirements are 40 i7s (7.1) costing $6000, one petabyte worth of disk space per year costing $30,000 (7.2), and $50,000 yearly for 2PB of bandwidth (that is with the generous assumption that upload costs are the same as download costs) (7.3) (7.4).
 
-The Lightning Network can provide trustless off-chain transactions and scales better than O(N*M) (requiring every full node to have every unspent output). Other advantages include not having a counterparty risk, no one can steal your bitcoin. Despite Lightning transactions being trustless, the system doesn't require everyone to process a copy of transactions from everyone else in order to be secure. In addition, Lightning has instant confirmations and doesn't require a hardfork. (7.1) Due to these assumed qualities of the Lightning Network, those wary of the potential centralizing effects of large blocks believe this technology can almost totally replace increases in block size as the means to scale Bitcoin usage.
+The Lightning Network can provide trustless off-chain transactions and scales better than O(N*M) (requiring every full node to have every unspent output). Other advantages include not having a counterparty risk, no one can steal your bitcoin. Despite Lightning transactions being trustless, the system doesn't require everyone to process a copy of transactions from everyone else in order to be secure. In addition, Lightning has instant confirmations and doesn't require a hardfork. (7.5) Due to these assumed qualities of the Lightning Network, those wary of the potential centralizing effects of large blocks believe this technology can replace increases in block size as the means to scale Bitcoin usage.
 
 ##Optimizations
 
@@ -94,4 +94,8 @@ There are a few proposals for optimizing Bitcoin's scalability. Some of these re
 [[!tag "Technical"]]
 3.1: [Miner Attack Success Probability Calculator](https://people.xiph.org/~greg/attack_success.html)  
 3.2: [Bitcoin Whitepaper](https://bitcoin.org/bitcoin.pdf)  
-7.1: [Lighting Network](http://lightning.network/lightning-network.pdf)
+7.1: http://ark.intel.com/products/53469  
+7.2: http://www.amazon.com/Seagate-Desktop-3-5-Inch-Internal-ST4000DM000/dp/B00B99JU4S  
+7.3: http://business.financialpost.com/fp-tech-desk/how-much-does-bandwidth-actually-cost  
+7.4: https://businessonlybroadband.wordpress.com/2014/09/11/nielsens-law-of-internet-bandwidth-and-what-it-means-for-utilization/  
+7.5: [Lighting Network](http://lightning.network/lightning-network.pdf)
