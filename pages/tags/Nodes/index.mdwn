@@ -1,6 +1,10 @@
-A Bitcoin node maintains connections with the Bitcoin network, and relays traffic based on policies.
+A full node connects to the Bitcoin network, maintains the blockchain, and relays memory pool transactions traffic based on policies.
 
-Any alternate implementation that hasn't been **extremely** thoroughly tested over several months should carry the warning "under construction, alpha quality, do not trust with money" because they risk splitting the network if they do not follow the reference client 100% (bug-for-bug) yet.
+##Consensus
+
+Nodes other than the [[original client|Original_Bitcoin_client]] risk creating a hard fork if widely deployed and not following the consensus code as implemented in the original client 100% (bug-for-bug). There is no documented standard for Bitcoin consensus, so presently the implementation is considered the de facto standard.
+
+The original client consensus code is maintained as a sub-library called libbitcoinconsensus within the client's source code. (2.1) A clone of the original client consensus code is maintained as a standalone library called [[libbitcoin-consensus|Libbitcoin_Consensus]] as part of the [[Libbitcoin]] development toolkit.
 
 ##See Also
 
@@ -9,6 +13,9 @@ Any alternate implementation that hasn't been **extremely** thoroughly tested ov
 * [[Developer|tags/Developer]]
 * [[Software|tags/Software]]
 
+##References
+
 [[!tag "Software"]]
+2.1: [libbitcoinconsensus](https://github.com/bitcoin/bitcoin/blob/master/libbitcoinconsensus.pc.in)
 
 [[!inline pages="tagged(Nodes)" actions=no archive=yes sort=title]]
