@@ -1,0 +1,58 @@
+[[!template id=source These are emails between [[Dustin Trammel]] (aka Druid) and [[Satoshi Nakamoto]], released by Druid in November 2013. When Satoshi opened [[BitcoinTalk]] in late 2009, it made an older forum obsolete; its contents are now lost. These emails are some of the very limited context of Satoshi's conversations and the [[block chain]] from that year.]]
+##From dtrammell@dustintrammell.com Sun Jan 11 23:14:04 2009
+On Fri, 2009-01-09 at 03:27 +0800, Satoshi Nakamoto wrote:<br/>
+> Announcing the first release of Bitcoin, a new electronic cash<br/>
+> system that uses a peer-to-peer network to prevent double-spending.<br/>
+> It's completely decentralized with no server or central authority.
+
+I'm currently reading through your paper.  At the timestamp server<br/>
+section you mention newspapers and usenet, so I thought you might be<br/>
+interested in this if you have not seen it already:
+
+http://www.publictimestamp.org/
+
+By the way, I'm also currently running the alpha code on one of my<br/>
+workstations.  So far it has two "Generated" messages, however the<br/>
+"Credit" field for those is 0.00 and the balance hasn't changed.  Is<br/>
+this due to the age/maturity requirement for a coin to be valid?
+
+Cheers,
+
+Dustin D. Trammell<br/>
+dtrammell@dustintrammell.com<br/>
+http://www.dustintrammell.com
+
+##From satoshi@vistomail.com Mon Jan 12 18:52:45 2009
+> I'm currently reading through your paper.  At the timestamp server<br/>
+> section you mention newspapers and usenet, so I thought you might be<br/>
+> interested in this if you have not seen it already:<br/>
+><br/>
+> http://www.publictimestamp.org/
+
+Thanks, I hadn't seen that yet.  It looks very well presented.<br/>
+There was an older one that's been running for a long time that<br/>
+publishes its hashes to Usenet.  I'm surprised this one isn't<br/>
+using Usenet, although it is kind of difficult to get access to<br/>
+post to Usenet in an automated way these days.  If they can get a<br/>
+magazine or newspaper to publish their hashes, it would work a lot<br/>
+easier in court for their purposes.  Bitcoin and all timestamp<br/>
+servers share the basic functionality of periodically collecting<br/>
+things into blocks and hashing them into a chain.
+
+
+> By the way, I'm also currently running the alpha code on one of my<br/>
+> workstations.  So far it has two "Generated" messages, however the<br/>
+> "Credit" field for those is 0.00 and the balance hasn't changed.  Is<br/>
+> this due to the age/maturity requirement for a coin to be valid?<br/>
+
+Right, the credit field stays 0.00 until it matures, then it'll be<br/>
+50.00.  Do you think it would be clearer if I left the credit<br/>
+field blank until it matures?  I should put some text in the<br/>
+transaction details (when you double click on it) explaining how<br/>
+it works.  (was it obvious you can doubleclick on a line for<br/>
+details?)
+
+Be sure to upgrade to v0.1.3 if you haven't already.  This version<br/>
+has really stabilized things.
+
+Satoshi
