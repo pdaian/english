@@ -1,5 +1,7 @@
 /* CSS placed here will be applied to all skins */
-body.page-Main_Page h1.firstHeading { display:none; }
+body.page-Main_Page h1.firstHeading,
+body.page-Bitcoin_Wiki_Essay_main_page h1.firstHeading
+{ display:none; }
 body.page-Bitcoin-Watch h1.firstHeading::before,
 body.page-Bitcoin-dev h1.firstHeading::before
 { content:"#"; }
@@ -16,9 +18,6 @@ body.page-Bitcoin-dev h1.firstHeading::before
 .toclimit-6 .toclevel-5 ul,
 .toclimit-7 .toclevel-6 ul {
 	display: none;
-}
-.ns-help div#mw-panel div#p-logo {
-background-image:none;
 }
 @font-face {
 font-family: "BTC";
