@@ -75,7 +75,7 @@ It can support CGMiner, BFGMiner and AvalonMiner(Based on BFGMiner) for now.
 * MHS Cur calculation
 	MHS Cur = Diff1 Work * (Difficulty Accepted / (Difficulty Accepted + Difficulty Rejected + Difficulty Stale)) * 60/ Elapsed * 71582788 / 1000000
 	Note：
-	1.if Difficulty Accepted + Difficulty Rejected + Difficulty Stale = 0，then Difficulty Accepted / (Difficulty Accepted + Difficulty Rejected + Difficulty Stale) = 1。
+	1.if Difficulty Accepted + Difficulty Rejected + Difficulty Stale = 0, then Difficulty Accepted / (Difficulty Accepted + Difficulty Rejected + Difficulty Stale) = 1.
 	2.Get all the infomation through ./bfgminer-rpc -o summary
 
 * BFGMiner release from luck.dashjr
