@@ -1,41 +1,47 @@
-# Review
+It's a usb dongle, using only one A3233.
 
-* https://bitcointalk.org/index.php?topic=1022764.0
+## Hardware version 1.0
+### Features
 
-# Configrations
+* VID/PID: 0x1FC9/0x0083
+* Icarus protocol support
+* It use USB CDC, without need driver installation under Linux
+* Smart [[LED|#LED]] indicator
+* Overheating protection. (>= 65℃)
+* Adjust the hashrate automatically by temperature
 
-* LPC11u14 
-	**Clock Crystals**        48.000 MHz 
+### Software
+It can support CGMiner, BFGMiner and AvalonMiner(Based on BFGMiner) for now.
+#### CGMiner Under Ubuntu 14.04
 
-* A3233
-	**Clock Crystals**        24.000 MHz
-
-# USB: 29F1:33F1
-
-# Schematics
-
-* [Avalon-usb schematics](http://downloads.canaan-creative.com/software/avalon_nano/doc/Avalon_usb_sch.pdf)
-
-#CGMiner for Avalon nano
-## CGMiner Under Ubuntu 14.04
-###  Download
+* Download / Compile / Run
+	**Download**
 	Inside your home directory, download CGMiner
 	git clone https://github.com/Canaan-Creative/cgminer
-	
-### Compile
+
+	**Compile**
 	cd cgminer
 	git checkout origin/avalon-usb -b avalon-usb
 	./autogen.sh --enable-icarus
 	make -j 4
 
-### Run
+	**Run**
 	sudo ./cgminer --icarus-options 115200:1:1 --icarus-timing 0.22 -o http://stratum.pool:3333 -u  work -p pass 
 	or
 	sudo ./cgminer --icarus-options 115200:1:1 --icarus-timing 0.22 -o http://stratum.pool:3333 -u  work -p pass --api-allow W:192.168.2,W:192.168.2.1 --api-listen $@ 2>./log
 
-# BFGMiner
+* Patches
+	Patch for Canaan Creative's CGMiner: [001-avalon3-nano.patch](http://downloads.canaan-creative.com/software/avalon_nano/patches/001-avalon3-nano.patch)
+	For what: CGMiner patch.
+	From where: Based c5ec1171@https://github.com/Canaan-Creative/cgminer/tree/avalon2
+	Comments: 
+	Support avalon3 nano in cgminer.
+	Support Icarus protocol.
 
-* Run under Linux
+#### BFGMiner
+
+* Run
+	**Run under Linux**
 	./bfgminer \
 	-S ICA:/dev/ttyACMx \
 	-o stratum+tcp://stratum.ozco.in:80 -O mikeqin.avalon:1234 \
@@ -48,7 +54,7 @@
 	--api-listen \
 	2>log
 
-* Run under Windows
+	**Run under Windows**
 	bfgminer.exe ^
 	-S ICA:\\.\COMn ^
 	-o stratum+tcp://stratum.ozco.in:80 -O mikeqin.avalon:1234 ^
@@ -60,65 +66,89 @@
 	--set-device ICA:timing=0.22 ^
 	--api-listen ^
 	2>log
+	
+	Note: See the details about the timing in README. It works ~4GH/s(400 * 11.8) at 400MHz.
+	timing = (1 / (4 * 10 ** 9)) * 10 ** 9 (python format)
 
-	备注：timing详见bfgminer的README，如果当前配置的频率是400MHz,则Hashrate=400*11.8=~4Gh/s
-	<math>\mbox{timing} = \frac{1}{4\times 10^9}\times 10^9</math>
-
-* BFGMiner MHS Cur
-	MHS Cur = Diff1 Work * (Difficulty Accepted/(Difficulty Accepted+Difficulty Rejected+Difficulty Stale)*60/(Elapsed)*71582788/(1000000)
-	所有的信息可以通过./bfgminer-rpc -o summary获取。
-	注：如果Difficulty Accepted+Difficulty Rejected+Difficulty Stale = 0，则Difficulty Accepted/(Difficulty Accepted+Difficulty Rejected+Difficulty Stale) 取1。
+* MHS Cur calculation
+	MHS Cur = Diff1 Work * (Difficulty Accepted / (Difficulty Accepted + Difficulty Rejected + Difficulty Stale)) * 60/ Elapsed * 71582788 / 1000000
+	Note：
+	1.if Difficulty Accepted + Difficulty Rejected + Difficulty Stale = 0，then Difficulty Accepted / (Difficulty Accepted + Difficulty Rejected + Difficulty Stale) = 1。
+	2.Get all the infomation through ./bfgminer-rpc -o summary
 
 * BFGMiner release from luck.dashjr
 	http://luke.dashjr.org/programs/bitcoin/files/bfgminer/
 
-# LED
-	Idle:Green.
-	Working:From red to blue( frequency high to low).
-	Hot alert:Red blinking.
+#### AvalonMiner
+It is developed under Windows with Chinese UI only, You can import the solution and crack it by yourself. It is distributed under UNLICENSE.Source code can be download here: 
 
-# ULINK 2
-## Configure ULINK2 for LPCXpresso
+##### Release
+[20140911](http://downloads.canaan-creative.com/software/avalon_nano/software/20140911/)
 
-* Change boot mode to CMSIS-DAP
-	Use the [Boot Mode Utility](http://www.keil.com/support/man/docs/ulink2/ulink2_boot_mode.htm) to change the mode like this: UL2_Configure B1.
+* Avalon3 nano windows miner(20140911)
+* Beautifull GUI 
+* Auto detect Avalon nano
 
-* Set jumper to 3.3V position
-	See [ Jumpers](http://www.keil.com/support/man/docs/ulink2/ulink2_hw_jumpers.htm)
+[20140803](http://downloads.canaan-creative.com/software/avalon_nano/software/20140803/)
 
-* Connect Avalon nano to ULINK2
-	Check [SWD Connector Pinout](http://support.code-red-tech.com/CodeRedWiki/HardwareDebugConnections), need connect SCLK,SWIO,GND only.
+* Avalon3 nano windows miner(20140803) first version
+* Support bfgminer only
+* Support icarus protocal
 
-## Miscs
+##### Run or Debug with CLI
 
-* [[Keil_IDE_for_avalon3_nano_development]]
-* OpenOCD is not support ULINK2 (See src/jtag/drivers/ulink.c)
-* [Target Connectors](http://www.keil.com/support/man/docs/ulink2/ulink2_hw_connectors.htm)
+1. Copy BfgMiner to a safe place.
+1. Uninstall Avalon GUI Miner
+1. Modify the icadbg.cmd(under BfgMiner folder) with your correct com port.
+1. Double click icadbg.cmd.
+Note: BFGMiner location: (C:\Program Files (x86)\Avalon Nano\BfgMiner)
 
-# SmartPro 5000U-Plus
+### Hardware
+#### Schematics
 
-* 技术支持联系电话：020-28872449
-* [[Avalon_nano离线工程制作]]
-* [SmartPRO系列通用编程器软件(SmartPRO 2008)](http://www.embedtools.com/download/downs.asp?ID=2994)
-* [SmartPRO 5000U 脱机编程产量控制功能应用笔记](http://www.embedtools.com/download/downs.asp?ID=2239)
-* [编程器FAQ](http://www.zlgmcu.com/tools/bianchengqi/EasyPRO/programmerFAQ.pdf)
+* [Avalon-usb schematics](http://downloads.canaan-creative.com/software/avalon_nano/doc/Avalon_usb_sch.pdf)
 
-# LPC11u14
-## LPC11U14 LPCXpresso Board Spec
-	**Processor**             NXP's Cortex-M0 LPC11U14 microcontroller in LQFP48 package
-	**Flash**                 32 kB
-	**Data Memory**           6 kB
-	**Clock Crystals**        12.000 MHz crystal for CPU
-	**Dimensions**            35 x 140 mm
-	**Power**                 3.15V-3.3V external powering, or from USB via JTAG probe (LPC-LINK)
-	**Connectors**            
-	• mini-B USB connector for LPC11U14 USB interface
-	• All LPC11U14 pins available on expansion connector (2x27 pin rows, 100 mil pitch, 900 mil between rows)
-	**Other**                  
-	• Embedded JTAG (LPC-LINK) functionality via LPCXpresso toolchain
-	• LPC-LINK can be connected to external target processor after modifications to the LPCXpresso board
-	• LED on PIO0_7
-## LPC-Link diagnostics
+#### LPC11U14 Spec
+
+
+|Type |Infomation
+|Processor |NXP's Cortex-M0 LPC11U14 microcontroller
+|Flash |32 kB
+|Data Memory |6 kB
+|Clock Crystals |12.000 MHz crystal for CPU
+
+
+#### Clock
+
+
+|Type  |Value
+|LPC11U14 (External)    |48.000 MHz 
+|A3233 XCLK (From LPC11U14)  |24.000 MHz
+
+
+#### LED
+
+
+|Color |Memo
+|Green |Idle status
+|Red/Blue |Working (Frequency high -> low,led red -> blue)
+|Red blinking |Overheating
+
+
+#### Programmer
+
+* SmartPro 5000U-Plus
+
+#### SWD Debuger
+LPC11U14 only support swd debug.
+The debugger can also be used to program the LPC11U14 chip.
+##### LPCXpresso
+
+* Installation and Activation
+	LPCXpresso download link  (17.1)
+	Free Edition is enough. Then activate it.  (17.2)
+
+* LPC-Link diagnostics
 	Diagnostics when connecting to LPC-Link
 	
 	1.  lpc-link info
@@ -136,85 +166,69 @@
 	5. semi_host debug
 	use newlib semihost
 
-## How to debug issues with gdb (Works on OSX)
-	1.Compile the program with debug options
-	Change Makefile under root directory, set SW_VERSION to DEBUG
-	
-	2.Recompile the program
-	make clean all
-	
-	3.Start gdb
-	arm-none-eabi-gdb avalon_nano.axf
-	target extended-remote  crt_emu_cm_redlink -g -2 -vendor=NXP -pLPC11U14/201 -flash-driver=LPC11_12_13_32K_4K.cfx
-	load
+* How to debug issues with gdb (Works on OSX)
+	Compile the souce with debug, then run gdb with the following commands:
+	1.arm-none-eabi-gdb avalon_nano.axf
+	2.target extended-remote  crt_emu_cm_redlink -g -2 -vendor=NXP -pLPC11U14/201 -flash-driver=LPC11_12_13_32K_4K.cfx
+	3.load
 	
 	Then you can use gdb as you want
 
-# Firmware
-## Reflash
+##### ULINK 2
 
-* [[Avalon3_nano_firmware_burner]]
+* Configure ULINK2 for LPCXpresso
+	1.Change boot mode to CMSIS-DAP
+	Use the [Boot Mode Utility](http://www.keil.com/support/man/docs/ulink2/ulink2_boot_mode.htm) to change the mode like this: UL2_Configure B1.
+	
+	2.Set jumper to 3.3V position
+	See [ Jumpers](http://www.keil.com/support/man/docs/ulink2/ulink2_hw_jumpers.htm)
+	
+	3.Connect Avalon nano to ULINK2
+	Check [SWD Connector Pinout](http://support.code-red-tech.com/CodeRedWiki/HardwareDebugConnections), need connect SCLK,SWIO,GND only.
 
-## Patches
+### Firmware
+#### Reflash
 
-* [001-avalon3-nano](http://downloads.canaan-creative.com/software/avalon_nano/patches/001-avalon3-nano.patch)
-	For what: Cgminer patch.
-	From where: Based c5ec1171@https://github.com/BitSyncom/cgminer/tree/avalon2
-	Comments: Support avalon3 nano in cgminer.
-	Support Icarus protocol.
+* Avalon3 nano firmware burner  (20.1)
 
-##[http://downloads.canaan-creative.com/software/avalon_nano/firmware/20140523/ 20140523]
+#### Release
+[20140523](http://downloads.canaan-creative.com/software/avalon_nano/firmware/20140523/)
 
 * Avalon3 nano firmware(20140523-dd84b993)
 * Support nonce receive timeout check
 * Support adjust freq for 100Mhz to 360Mhz,freq value after reset is 360Mhz
 
-##[http://downloads.canaan-creative.com/software/avalon_nano/firmware/20140519/ 20140519]
+[20140519](http://downloads.canaan-creative.com/software/avalon_nano/firmware/20140519/)
 
 * Avalon3 nano firmware(20140519-8c38877c):first version
 * Avalon3 nano test scripts found here:[a3233_avalon_usb_testbench.sh](https://github.com/BitSyncom/avalon-extras/tree/master/scripts)
 * Support adjust freq for 360Mhz to 400Mhz,value after reset is 400Mhz
 * Include avalon3 nano module test(avalon_bsp_testben)
 * bfgminer(0676fa314a9cc1491ad2e5f5c6a5e97f38fa67e3),how to run:http://wiki.0xf8.com/index.php/Bfgminer
-##[http://downloads.canaan-creative.com/software/avalon_nano/firmware/nexttesting/ NEXT-TESTING]
+
+[NEXT-TESTING](http://downloads.canaan-creative.com/software/avalon_nano/firmware/nexttesting/)
 
 * NOTICE: Only for testing
 * Adjust LED color according to the temperature
-# AvalonMiner
-## [https://github.com/Canaan-Creative/Avalon-nano/tree/master/gui_1.0 Sourcecode]
-It is developed under Windows with Chinese UI only, You can import the solution and crack it by yourself. It is distributed under UNLICENSE.
 
-## [http://downloads.canaan-creative.com/software/avalon_nano/software/20140911/ 20140911] 
+### Review
 
-* Avalon3 nano windows miner(20140911)
-* Beautifull GUI 
-* Auto detect Avalon nano
+* https://bitcointalk.org/index.php?topic=1022764.0
 
-##[http://downloads.canaan-creative.com/software/avalon_nano/software/20140803/ 20140803]
+### Issues
 
-* Avalon3 nano windows miner(20140803) first version
-* Support bfgminer only
-* Support icarus protocal
+* OpenOCD is not support ULINK2 (See src/jtag/drivers/ulink.c)
 
-# Windows GUI
+### References
 
-## CLI 
+17.1: [[https://www.lpcware.com/lpcxpresso/download]]    
+17.2: [[http://www.lpcware.com/lpcxpresso/activate]]     
+20.1: http://downloads.canaan-creative.com/software/avalon_nano/burner
 
-* BFGMiner (C:\Program Files (x86)\Avalon Nano\BfgMiner)
-	1. Copy BfgMiner to a safe place.
-	2. Uninstall Avalon GUI Miner
-	3. Modify the icadbg.cmd(under BfgMiner folder) with your correct com port.
-	4. Double click icadbg.cmd.
 
-# Links
+### Links
 
-* www.nxp.com/documents/user_manual/UM10462.pdf
-* LPC11u1x User Manual: 11.4.3 SoftConnect
-* LPC11u1x Datasheet : 11.1 Suggested USB interface solutions
-* http://www.lpcware.com/content/forum/disconnect-usb-by-software-in-lpc1343
-* http://www.lpcware.com/content/forum/softconnect-not-working-sometimes
-* http://www.lpcware.com/content/forum/nvicsystemreset-can-not-reset-mcu
-* [LPCXpresso Active URL](http://www.lpcware.com/lpcxpresso/activate)
+* [LPC11U1X User Manual](http://www.nxp.com/documents/user_manual/UM10462.pdf)
 * [LPCOpen sourcecode](http://www.lpcware.com/content/nxpfile/lpcopen-software-development-platform-lpc11xx-packages-0)
 * [LPCOpen docs](http://docs.lpcware.com/lpcopen/v1.03/)
 * [LPC11U14 Rev A Schematic](http://www.lpcware.com/system/files/LPCXpressoLPC11U14revA_0.pdf)
@@ -236,5 +250,6 @@ It is developed under Windows with Chinese UI only, You can import the solution 
 * [Porting the CMSIS-DAP debugger to the Cortex-M0 platform](http://www.lpcware.com/content/nxpfile/an11321-porting-cmsis-dap-debugger-cortex-m0-platform)
 * [LPC11U14 ARM Cortex-M0 Board](http://microcontrollershop.com/product_info.php?products_id=4838)
 * [In-Application Programming (IAP) Code Example](http://www.lpcware.com/content/blog/application-programming-iap-code-example)
-* software for flashing / upgrading firmware
+* Software for flashing / upgrading firmware
 	* [LPCXpresso](http://www.lpcware.com/lpcxpresso/download) (SWD method)
+* [Target Connectors](http://www.keil.com/support/man/docs/ulink2/ulink2_hw_connectors.htm)
