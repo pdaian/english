@@ -1,12 +1,13 @@
-[[!template id=current]]
-The **July 2015 [[flood_attack]]** is an ongoing "stress test" of the Bitcoin network. The possibly distributed attack has provoked hundreds of thousands of [[transaction]]s, leaving over 80,000 in the [[mempool]] at one time. (1.1) (1.2) The attack is subsequent to stress tests executed in June.
+The **July 2015 [[flood_attack]]** was a large "stress test" of the Bitcoin network. The possibly distributed attack has provoked hundreds of thousands of [[transaction]]s, leaving over 80,000 in the [[mempool]] at one time. (1.1) (1.2) The attack is subsequent to stress tests executed in June.
 
-Some charities and organizations, including WikiLeaks and Voat, have received thousands of dust outputs. (1.3) (1.4) Additionally, some single-word [[brainwallet]]s ("password", "cat" (1.5), etc.) have been the recipients of thousands of transactions, leaving 0.00001 BTC outputs. [[F2Pool]] has been concatenating these outputs in huge 1MB transactions. (1.6) (1.7) These transactions fill up an entire block on their own, and are far too large to be relayed by nodes; they have only been confirmed because F2Pool dedicated blocks to them. (1.8) (1.9) Some nodes report having spent over 20 seconds on one of these transactions, (1.10) explaining momentary but extreme latency and downtime on block chain explorers. (1.11) (1.12)
+Some charities and organizations, including WikiLeaks and Voat, have received thousands of dust outputs. (1.3) (1.4) Additionally, some single-word [[brainwallet]]s ("password", "cat" (1.5), etc.) have been the recipients of thousands of transactions, leaving 0.00001 BTC outputs. [[F2Pool]] has been concatenating these outputs in huge 1MB transactions. (1.6) (1.7) These transactions fill up an entire block on their own, and are far too large to be relayed by nodes; they have only been confirmed because F2Pool dedicated blocks to them. (1.8) (1.9) Some nodes reported having spent over 20 seconds on one of these transactions, (1.10) explaining momentary but extreme latency and downtime on block chain explorers. (1.11) (1.12)
 
 [[Gregory_Maxwell]] later contacted F2Pool, advising them to use the same signature for each input in the large transactions. (1.13) (1.14) This made the transactions highly compressible and far easier to verify. (1.15)
 
+The attack seems to have concluded by July 15. (1.16)
+
 ##Motivation
-The attackers may have an agenda related to the [[blocksize_debate]], attempting to demonstrate the infeasibility of 1MB blocks including transactions of hundreds of thousands of users. (1.9) Specifically, the Chinese [[mining_pool]]s ([[AntPool]], [[BW_Mining]], [[F2Pool]], [[BTC_China]], & [[Huobi]]) have expressed distaste towards [[Gavin_Andresen]]'s proposals to increase the blocksize limit, citing concerns of relatively low bandwidth compared to that available in the United States and Europe. (1.9) (2.1) The flood attack may be attempting to discredit the pools, and subsequently force them off the network after the raised blocksize limit is in effect. (1.9) (2.2)
+The attackers may have had an agenda related to the [[blocksize_debate]], attempting to demonstrate the infeasibility of 1MB blocks including transactions of hundreds of thousands of users. (1.9) Specifically, the Chinese [[mining_pool]]s ([[AntPool]], [[BW_Mining]], [[F2Pool]], [[BTC_China]], & [[Huobi]]) have expressed distaste towards [[Gavin_Andresen]]'s proposals to increase the blocksize limit, citing concerns of relatively low bandwidth compared to that available in the United States and Europe. (1.9) (2.1) The flood attack may have been attempting to discredit the pools, and subsequently force them off the network after the raised blocksize limit is in effect. (1.9) (2.2)
 
 It is unlikely that the attack was used in an attempt to damage or shut down Bitcoin, as it appears to have been controlled and benevolent. (1.9) (2.3) It has also resulted in the donation of over 30 BTC to various sites. (1.4)
 
@@ -35,6 +36,7 @@ Redditor /u/TheGiv3r has published the private keys to hundreds of addresses whi
 1.13: 11 July 2015 Id: 3cvw52 Post: https://www.reddit.com/r/Bitcoin/comments/3cvw52/is_this_a_selfinterested_or_altruistically/cszhxqa R: Bitcoin  
 1.14: Id: 9fdbcf0ef9d8d00f66e47917f67cc5d78aec1ac786e2abb8d2facb4e4790aad6  
 1.15: 11 July 2015 Id: 3cvw52 Post: https://www.reddit.com/r/Bitcoin/comments/3cvw52/is_this_a_selfinterested_or_altruistically/cszic86 R: Bitcoin  
+1.16: 15 July 2015 Id: 3dbu73 R: Bitcoin  
 2.1: [China's Powerful Bitcoin Miners Say Their Bandwidth Sucks](http://motherboard.vice.com/read/chinas-powerful-bitcoin-miners-say-their-bandwidth-sucks) Vice Media LLC 16 June 2015 Jordan Pearson Journal: Motherboard  
 2.2: 13 June 2015 Id: 1089283  
 2.3: 8 July 2015 Id: 3ci9av Post: https://www.reddit.com/r/Bitcoin/comments/3ci9av/could_the_recent_attack_on_bitcoin_be_the_product/csvtpxk R: Bitcoin  
