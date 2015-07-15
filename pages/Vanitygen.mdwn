@@ -29,20 +29,21 @@ The latest source doesn't work properly for high-end AMD cards (7XXX and greater
 Windows x86+x64 binaries that solve this problem plus provide support for compressed keys [here](https://lifeboat.com/oclvanitygen). PGP signature [here](https://lifeboat.com/oclvanitygen.zip.sig). If you have any problems with the binaries, join the relevant [BitCoinTalk discussion](https://bitcointalk.org/index.php?topic=301068.0).
 
 ## Expected keysearch rate
-Main article: [[Vanitygen_keysearch_rate]]
-
 What key search rate can I expect from hardware X?
 
-Detailed list forthcoming.  Some ballpark estimates are listed below.
+## Keysearch Rates
 
-	Dual-core desktop CPUs, 32-bit mode: 100-250 Kkey/s.
-	Dual-core desktop CPUs, 64-bit mode: 150-450 Kkey/s.
-	Quad-core desktop CPUs, 32-bit mode: 200-400 Kkey/s.
-	Quad-core desktop CPUs, 64-bit mode: 300-750 Kkey/s.
-	NVIDIA GT200 GPUs: up to 6.5 Mkey/s.
-	NVIDIA GTX 770 GPUs: around 29.5 Mkey/s.
-	AMD Radeon 58XX, 68XX GPUs: up to 23.5 Mkey/s.
-	AMD Radeon 69XX GPUs: up to 19.5 Mkey/s.
+
+|CPU |GPU |keys/s |Comment
+|---|---|---|---
+|Core i5 750 @2.67 GHz |nVidia GTS 250 |1.54 Mkey/s |110% CPU [(1)](https://bitcointalk.org/index.php?topic=25804.msg378820#msg378820)
+|Core2 Duo 6600 |nVidia GTX 285 |3.5 Mkey/s |100% CPU / 90% GPU [(2)](https://bitcointalk.org/index.php?topic=25804.msg378114#msg378114)
+|Sempron 140 |AMD 5830 |5.5 Mkey/s |100% CPU / 60% GPU [(3)](https://bitcointalk.org/index.php?topic=25804.msg378114#msg378114)
+||AMD Radeon r7 240 |4 Mkey/s |[(4)](https://bitcointalk.org/index.php?topic=25804.msg11872747#msg11872747)
+|Core i7 |AMD 6500M |4.5 Mkey/s |98% GPU
+||nVidia GeForce GTX 680M |14-16 Mkey/s |[(5)](https://bitcointalk.org/index.php?topic=25804.msg11882134#msg11882134)
+||nVidia GeForce GTX 970 |38 Mkey/s |[(6)](https://bitcointalk.org/index.php?topic=25804.msg11851273#msg11851273)
+
 
 As vanitygen performs a lot of large integer arithmetic, running it in 64-bit mode makes a huge difference in key search rate, easily a 50% improvement over 32-bit mode.  If you are using a 64-bit edition of Windows, and not using a GPU, be sure to use vanitygen64.exe.
 
