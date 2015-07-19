@@ -29,7 +29,7 @@ The coinbase parameter (seen above in hex) contains, along with the normal data,
 
 This was probably intended as proof that the block was created on or after January 3rd, 2009, as well as a comment on the instability caused by fractional-reserve banking.
 
-The first 50BTC block reward went to [[address]] [1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa](http://blockexplorer.com/address/1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa), though this reward can't be spent due to a quirk in the way that the genesis block is expressed in the code (this may have been intentional).
+The first 50BTC block reward went to [[address]] [1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa](http://blockexplorer.com/address/1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa), though this reward can't be spent due to a quirk in the way that the genesis block is expressed in the code (this may have been intentional). (2.3) (2.4) (2.5)
 
 ##Raw block data
 
@@ -77,7 +77,10 @@ Broken down it looks like this:
 ##Notes
 
 2.1: [Reuters' reference on The Financial Times article](http://uk.reuters.com/article/idUKPTIP32510920090103)  
-2.2: [Front page of the London Times, 03 Jan 2009](http://i.imgur.com/tWCACH5.jpg)
+2.2: [Front page of the London Times, 03 Jan 2009](http://i.imgur.com/tWCACH5.jpg)  
+2.3: http://bitcoin.stackexchange.com/questions/10009/why-can-t-the-genesis-block-coinbase-be-spent  
+2.4: https://www.reddit.com/r/Bitcoin/comments/1nc13r/the_first_50btc_block_reward_cant_be_spend_why/  
+2.5: https://github.com/bitcoin/bitcoin/blob/9546a977d354b2ec6cd8455538e68fe4ba343a44/src/main.cpp#L1668 - Genesis block transaction treated as a special case in the reference code
 
 
 [[zh-cn:创世block]]
