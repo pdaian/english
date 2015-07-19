@@ -53,6 +53,44 @@ Radeon 58XX outperforms Radeon 69XX by a very comfortable margin.  Oclvanitygen 
 
 In custom builds, CPU performance will be less than expected if the OpenSSL library is an older version (<1.0.0d) or is not built with the appropriate optimizations enabled.
 
+## Difficulty of finding a vanity
+The difficult of finding a vanity address depends on its exact structure (leading letters and numbers) and how likely such an output is given the algorithms involved, which can consist of several pivots where the difficulty suddenly changes.
+
+
+|vanity |difficulty |Comment
+|---|---|---
+|1AAAAA |259,627,881 |
+|1QLbz6 |259,627,881 |This vanity is alphabetically before a major pivot, the [[RIPEMD160]]hash value of 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF (address: 1QLbz7JHiBTspS962RLKV8GndWFwi5j6Qr)
+|1QLbz7JHiBTspS962RLKV8GndWE |2.9597E+45 |
+|1QLbz7 |837,596,142 |This vanity is partially after a pivot and difficulty increases
+|1QLbz7JHiBTspS962RLKV8GndWG |1.6489E+47 |After a major pivot and 59 times as difficult as the 'E' vanity.
+|1QLbz8 |837,596,142 |
+|1aaaaa |15,318,045,009 |Well after various pivots and subsequently more difficult.
+|1zzzzz |15,318,045,009 |
+|111111 |1,099,511,627,776 |A special case, leading numbers 1 (one) is especially difficult.
+
+
+## Use of vanitygen to try to attack addresses
+Using vanitygen you might think that you would be able to find the private key for a given address.  In practice, this is considered impossible.  Given that the difficulty increases exponentially the longer your vanity is, so does the average time required to find that vanity.  The example table below shows how an increasingly complex vanity affects the difficulty and average time required to find a match only for that vanity, let alone the full address, for a machine capable of looking through 1 million keys per second.
+
+
+|vanity |difficulty |average time
+|---|---|---
+|1B |22 |< 1s
+|1Bi |1,330 |< 1s
+|1Bit |77,178 |< 1s
+|1Bitc |4,476,342 (4.48E+6)|< 10s
+|1Bitco |259,627,881 (2.6E+8)|3 minutes
+|1Bitcoi |15,058,417,127 (1.506E+10) |3 hours
+|1Bitcoin |8.7339E+11 |1 week
+|1BitcoinE |5.0657E+13 |1 year
+|1BitcoinEa |2.9381E+15 |60 years
+|1BitcoinEat |1.7041E+17 |3,500 years
+|1BitcoinEate |9.8837E+18 |200,000 years
+|1BitcoinEater |5.7325E+20 |11,700,000 years
+|1BitcoinEaterAddressDontSend |1.6209E+47 |3.3E+33 or 3.3 decillion years.
+
+
 ## See also
 
 * [[Bitcoin_Vanity_Generation_Website]]
