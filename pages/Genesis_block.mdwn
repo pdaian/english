@@ -1,9 +1,7 @@
 A **genesis block** is the first block of a [[block_chain]]. Modern versions of Bitcoin assign it block number 0, though older versions gave it number 1. The genesis block is almost always hardcoded into the software. It is a special case in that it does not reference a previous block, and for [[Bitcoin]] and almost all of its derivatives, it produces an unspendable subsidy.
 
 ## Main network genesis block
-[The block on Bitcoin Block Explorer](http://blockexplorer.com/block/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f)
-
-Here is a representation of the genesis block as it appeared in a comment in an old version of Bitcoin ([line 1613](http://sourceforge.net/p/bitcoin/code/133/tree/trunk/main.cpp#l1613)). The first section defines exactly all of the variables necessary to recreate the block. The second section is the block in standard printblock format, which contains shortened versions of the data in the first section.
+Here is a representation of the genesis block (2.1) as it appeared in a comment in an old version of Bitcoin ([line 1613](http://sourceforge.net/p/bitcoin/code/133/tree/trunk/main.cpp#l1613)). The first section defines exactly all of the variables necessary to recreate the block. The second section is the block in standard printblock format, which contains shortened versions of the data in the first section.
 
 	GetHash()      = 0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
 	hashMerkleRoot = 0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b
@@ -21,9 +19,9 @@ Here is a representation of the genesis block as it appeared in a comment in an 
 	CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
 	vMerkleTree: 4a5e1e
 
-The coinbase parameter (seen above in hex) contains, along with the normal data, the following text (2.1):
+The [[coinbase parameter|coinbase]] (seen above in hex) contains, along with the normal data, the following text: (2.2)
 
-	The Times 03/Jan/2009 Chancellor on brink of second bailout for banks (2.2)
+<blockquote>The Times 03/Jan/2009 Chancellor on brink of second bailout for banks</blockquote>
 
 This was probably intended as proof that the block was created on or after January 3rd, 2009, as well as a comment on the instability caused by fractional-reserve banking.
 
@@ -72,10 +70,10 @@ Broken down it looks like this:
 	4104678AFDB0FE5548271967F1A67130B7105CD6A828E03909A67962E0EA1F61DEB649F6BC3F4CEF38C4F35504E51EC112DE5C384DF7BA0B8D578A4C702B6BF11D5FAC - pk_script
 	00000000 - lock time
 
-##Notes
+##References
 
-2.1: [Reuters' reference on The Financial Times article](http://uk.reuters.com/article/idUKPTIP32510920090103)  
-2.2: [Front page of the London Times, 03 Jan 2009](http://i.imgur.com/tWCACH5.jpg)  
+2.1: Day: 03 Hash: 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f Month: 01 Year: 2009  
+2.2: [Reuters' reference on The Financial Times article](http://uk.reuters.com/article/idUKPTIP32510920090103)  
 2.3: http://bitcoin.stackexchange.com/questions/10009/why-can-t-the-genesis-block-coinbase-be-spent  
 2.4: https://www.reddit.com/r/Bitcoin/comments/1nc13r/the_first_50btc_block_reward_cant_be_spend_why/  
 2.5: https://github.com/bitcoin/bitcoin/blob/9546a977d354b2ec6cd8455538e68fe4ba343a44/src/main.cpp#L1668 - Genesis block transaction treated as a special case in the reference code
