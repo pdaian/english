@@ -6,7 +6,7 @@ In Bitcoin, a block is produced every 10 minutes on average. (This is called Bit
 
 Say that some colonists go to Mars, bringing with them mining hardware equal to 20% of Bitcoin's mining power. But when they start mining there, they find that their rate of stales (blocks that end up getting rejected) is very huge, probably nearly 100%. What's going on?
 
-This happens because there is a communications delay of around 20 minutes between Earth and Mars, so by the time the Mars-mined blocks reach Earth, Earth will usually have already solved a block at that height long ago. The longest chain wins, so the Mars chain is rejected on both Earth and (eventually) Mars. In fact, Mars could even generate three or more blocks before they learn that Earth has produced 4+ conflicting blocks, wiping out tons of Mars mining effort and bringing Mars transactions with three or fewer confirmations back down to zero.
+This happens because there is a communications delay of up to 20 minutes between Earth and Mars, so by the time the Mars-mined blocks reach Earth, Earth will usually have already solved a block at that height long ago. The longest chain wins, so the Mars chain is rejected on both Earth and (eventually) Mars. In fact, Mars could even generate three or more blocks before they learn that Earth has produced 4+ conflicting blocks, wiping out tons of Martian mining effort and bringing Martian transactions with three or fewer confirmations back down to zero.
 
 If the colonists instead bring mining hardware equal to 80% of Bitcoin's mining power, then the same situation will happen, but in reverse: Earth miners will start mining almost all stales.
 
@@ -20,7 +20,7 @@ To avoid the above problems, the block interval needs to be set such that it mak
 
 ### Transactions
 
-If someone on Mars sends a Bitcoin transaction to someone on Earth, then it will take around 20 minutes to reach Earth due to speed-of-light delay, at which point the recipient will see it as having 0 confirmations. Then it will take the usual amount of time for it to get into a block and get several confirmations, though the sender will not learn of these confirmations until around 20 minutes after they occur. Usually it is only the recipient who cares about confirmations, so in practice the additional latency is usually just the speed-of-light communications delay: around 20 extra minutes in the case of Mars.
+If someone on Mars sends a Bitcoin transaction to someone on Earth, then it will take around 20 minutes to reach Earth due to speed-of-light delay, depending on the distance between the planets, at which point the recipient will see it as having 0 confirmations. Then it will take the usual amount of time for it to get into a block and get several confirmations, though the sender will not learn of these confirmations until around 20 minutes after they occur. Usually it is only the recipient who cares about confirmations, so in practice the additional latency is usually just the speed-of-light communications delay: around 20 extra minutes in the case of Mars.
 
 If someone on Earth sends a Bitcoin transaction to someone on Mars, then there's the usual 20 minutes of latency to see the 0-confirmation transaction. But because mining is centralized on Earth, a recipient on Mars also has to wait an extra 20 minutes for each confirmation due to latency.
 
