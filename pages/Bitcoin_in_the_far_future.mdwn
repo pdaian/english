@@ -1,20 +1,41 @@
-[[!template id=pfd I only made this because someone on reddit said it didn't exist, and it's pretty useless speculation]]
-The **extraterrestrial mining** problem is the prospect of Bitcoin [[mining]] occurring on bodies other than the Earth.
+Bitcoin as it exists today can be used for transactions at any distance and therefore can be used in space or on other planets. However, some effects of latency are amplified due to the way mining and the [[block_chain]] work, and mining will need to be centralized to the neighborhood of one planet. For improved latency, each planet should have its own currency or [[sidechain]].
 
-##Lunar mining
-Mining bitcoins on the moon is feasible, as transactions and blocks between it and the Earth would only be delayed by a few seconds. The worst that this would cause is the occasional orphaned block when a block is solved on both the Earth and the Moon within this several-second timeframe. Transactions could occur when broadcast from either body and nodes would be able to communicate with other nodes on either body.
+### Mining
 
-This also applies to satellites within the Moon's orbit.
+In Bitcoin, a block is produced every 10 minutes on average. (This is called Bitcoin's *block interval*.) This value is just fine for mining on Earth, but it is too low for mining on more than one planet at the same time.
 
-##Martian mining
-Mining on Mars is a bigger problem, because it would take several minutes for communication from the Earth to reach Mars, depending on their distance at the time of broadcast. As such, it is uncertain that a block solved on Mars would reach the Terrestrial block chain in time for a block to be solved on Earth instead.
+Say that some colonists go to Mars, bringing with them mining hardware equal to 20% of Bitcoin's mining power. But when they start mining there, they find that their rate of stales (blocks that end up getting rejected) is very huge, probably nearly 100%. What's going on?
 
-There would be windows of low latency when Earth and Mars become close enough for a block to be transmitted from one to the other in less than five minutes, but they would only ever be temporary.
+This happens because there is a communications delay of around 20 minutes between Earth and Mars, so by the time the Mars-mined blocks reach Earth, Earth will usually have already solved a block at that height long ago. The longest chain wins, so the Mars chain is rejected on both Earth and (eventually) Mars. In fact, Mars could even generate three or more blocks before they learn that Earth has produced 4+ conflicting blocks, wiping out tons of Mars mining effort and bringing Mars transactions with three or fewer confirmations back down to zero.
 
-###Proposed solutions
-One or many sidechains could be located on Mars for use by Martian nodes, miners and transacting parties. This means that a block solved on a Martian sidechain would be able to propagate completely without ever needing to wait to travel to Earth. With a two-way peg to the main Terrestrial chain, bitcoins could be transferred from Earth to Mars in a manner of days (which would probably be faster than shipping people and goods from Earth to Mars anyways) and bitcoins transferred between people on the same planet would be instant as usual (still of course requiring confirmations, which, depending on the sidechain's rules, would usually take ten minutes). In this situation a block solved on Mars would not produce new bitcoins, but only collect Martian transaction fees. However, by the time mining on Mars becomes feasible, the block reward would probably be very low anyway and transaction fees would comprise most of miner's revenue in the first place. As Martian population would probably be much lower than Earth's, Martian difficulty would be as well.
+If the colonists instead bring mining hardware equal to 80% of Bitcoin's mining power, then the same situation will happen, but in reverse: Earth miners will start mining almost all stales.
 
-If faster-than-light data transfer can be utilized for transmitting  across interplanetary scales, the window of low-latency would be expanded without need for an alternative chain. This window could potentially be expanded to the point of bring reliable 24/7, eliminating any further disadvantages to extraterrestrial Bitcoin at the protocol level.
+If the two planets have roughly the same mining power, then both sides will experience a lot of stales. In some cases the two sides might have chains that differ by many blocks. When one side finally pulls ahead of the other by a few blocks, the other side loses all of their blocks since the fork. This also makes confirmations less reliable: you might have to wait 30 or more confirmations to get the same security as 2 confirmations today.
 
-##Extrasolar mining
-Where faster-than-light technology is required to reach somewhere in a reasonable amount of time, faster-than-light technology would be required to communicate with anyone there in the first place without significant delay. Whether bitcoin will be able to function under these conditions depends on what kind of technology will exist when they will be reproducible.
+In practice, no one would actually try mining on Mars because they'd just lose money. Mining will stay on Earth unless someone is pretty sure that they'll be able to single-handedly set up a mining operation worth around 60% of the network. This is pretty unlikely to happen even if Mars becomes quite well-developed.
+
+Incidentally, the same problem as above can exist on Earth. If Bitcoin's block interval was 10 seconds, for example, then mining would probably only be reasonably possible in the geographical area with the most mining (as of this writing, China).
+
+To avoid the above problems, the block interval needs to be set such that it makes the latency between all possible miners *entirely insignificant*. So if you wanted to allow mining by anyone in our galaxy, which is about 100,000 light years across, then you'd need a block interval of something like 1 million years.
+
+### Transactions
+
+If someone on Mars sends a Bitcoin transaction to someone on Earth, then it will take around 20 minutes to reach Earth due to speed-of-light delay, at which point the recipient will see it as having 0 confirmations. Then it will take the usual amount of time for it to get into a block and get several confirmations, though the sender will not learn of these confirmations until around 20 minutes after they occur. Usually it is only the recipient who cares about confirmations, so in practice the additional latency is usually just the speed-of-light communications delay: around 20 extra minutes in the case of Mars.
+
+If someone on Earth sends a Bitcoin transaction to someone on Mars, then there's the usual 20 minutes of latency to see the 0-confirmation transaction. But because mining is centralized on Earth, a recipient on Mars also has to wait an extra 20 minutes for each confirmation due to latency.
+
+### Improved ET mining/transactions
+
+#### Separate currencies
+
+Mars might create its own cryptocurrency with similar parameters as Bitcoin, but with a different proof-of-work algorithm to discourage Bitcoin miners on Earth from mining "MarsCoin". Using [[Bitcoin smart contracts|Contracts]], it is possible to do a cryptocurrency-to-cryptocurrency trade without any risk on either side, so this might work pretty well in general.
+
+Normally the currency that is used the most is the most useful and tends to win on the market and push out all competitors, but due to the previously-mentioned latency-related issues, it might be the case that Bitcoin is the most useful currency on Earth and MarsCoin is the  most useful on Mars. This would lead to a stable situation where each planet uses its own currency internally, but trades and uses the other planet's currency for trade between planets.
+
+The exchange rate between the two currencies would float on the market and probably depend on the export strength of its planet. For example, if Mars only ever imported things and never exported anything of value (not even information, etc.), then its currency would be nearly useless to people on Earth, and you'd have to pay tons of MarsCoins for any bitcoins.
+
+#### Sidechains
+
+Mars could use Bitcoin, but on a [[sidechain]]. This is roughly the same as creating a separate MarsCoin currency, but enforcing as a protocol rule in both Bitcoin and MarsCoin that you can always get 1 Bitcoin by burning 1 MarsCoin, you can always get 1 MarsCoin by burning 1 Bitcoin, and there are no other ways of getting MarsCoins.
+
+While it might be more convenient to have just one currency, it may be the case that there are economic advantages to having more than one currency in this situation, since it embodies the import/export imbalance. This requires further study.
