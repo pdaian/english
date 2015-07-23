@@ -64,7 +64,7 @@ libblkmaker currently only supports the Jansson JSON library, but was designed s
 [Luke Dashjr](User:Luke-jr) is willing to do this porting to other JSON libraries free of charge on request.
 
 #####Using python-blkmaker
-If your miner is written in Python, you can harness [python-blkmaker](http://gitorious.org/bitcoin/python-blkmaker), a native Python port of libblkmaker, to do all the GBT interpretation for you:
+If your miner is written in Python, you can harness [python-blkmaker](https://gitlab.com/bitcoin/python-blkmaker), a native Python port of libblkmaker, to do all the GBT interpretation for you:
 all your miner needs to do then is handle the networking (python-blkmaker can prepare the JSON for you) and ask the blkmaker module for data (block headers to search).
 A short example Python script is included that finds a prepared share using CPU mining.
 
