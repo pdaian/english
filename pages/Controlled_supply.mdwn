@@ -109,7 +109,9 @@ A lesser known method is to send bitcoin to an address based on private key that
 ###Technical peculiarities preventing spending of bitcoin
 There are also technical peculiarities that prevent the spending of some bitcoin.
 
-The first 50 bitcoin, included in the [[genesis_block]], cannot be spent as its transaction is not in the global database.
+The first [[!template id=btc]]50, included in the [[genesis_block]], cannot be spent as its transaction is not in the global database.
+
+In older versions of the bitcoin reference code, a miner could make their coinbase transaction (block reward) have the exact same ID as used in a previous block (8.1).  This effectively caused the previous block reward to become unspendable.  Two known such cases are left as special cases in the code (8.2) as part of [[BIP_0030]] changes that fixed this issue.  These transactions were [[!template id=btc]]50 each.
 
 ##Money Supply
 While the number of bitcoins in existence will never exceed 21 million, the [money supply](wikipedia:money supply) of bitcoins can exceed 21 million due to [Fractional-reserve Banking](wikipedia:Fractional-reserve Banking).
@@ -127,7 +129,9 @@ Keynesian economists argue that [[deflation|Deflationary_spiral]] is bad for an 
 ##References
 
 1.1: [to Order](Return) <i></i>  by  (1903-1960); cf. John Horvat II <i></i> ch. 37 "The Backing of Money"  
-2.1: [21 million cap](http://www.bitcointalk.org/index.php?topic=3366.msg47522#msg47522)
+2.1: [21 million cap](http://www.bitcointalk.org/index.php?topic=3366.msg47522#msg47522)  
+8.1: https://github.com/bitcoin/bitcoin/issues/612  
+8.2: https://github.com/bitcoin/bitcoin/commit/ab91bf39b7c11e9c86bb2043c24f0f377f1cf514
 
 
 [[!tag "Economics"]]
