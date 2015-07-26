@@ -1,0 +1,103 @@
+[[!template id=infobox_company name=Coinfloor image=[[File:logo_coinfloor.png 256px]] industry=[[Exchange Bitcoin exchange]] foundation=2013 location="1 Quality Court, WC2A 1HR London, United Kingdom" founder="Mark Lamb<br />Amadeo Pellicce<br />Obi Nwosu<br />James McCarthy " pairs=XBT/GBP<br/>XBT/EUR<br/>XBT/PLN<br/>XBT/USD website=https://coinfloor.co.uk/ twitter=Coinfloor]]
+
+**Coinfloor** is a London-based Bitcoin exchange (1.1) Established in early 2013 with the aim of creating the world's most reputable and trustworthy digital currency exchange. The company is focused on security and is known for being the first exchange to store all bitcoins in 100% multi-signature cold storage (1.2) and employing procedures to deter money laundering amidst the lack of government regulation. (1.3) <br />
+
+##The People
+Coinfloor is a tight team of developers and business partners with experience in Bitcoin, security, analytics and financial services. Most of the team is based in London, England.
+
+One of its founders was James McCarthy (aka Nefario) who was previously the founder of Global Bitcoin Stock Exchange, which controversially shut down in October 2012. (2.1) McCarthy stepped down as CTO of the company in December 2013 (2.2) (2.3) and Obi Nwosu, (2.4) previously CTO at QXL, ebookers.com and WeeWorld was appointed as the new CTO. In May 2014 James McCarty left the business entirely.
+
+**CEO, Mark Lamb** is an ex-bitcoin broker, at one point personally handling over 10% of the UK bitcoin market. He has a noticeable presence in the media (2.5) (2.6) (2.7) (2.8) as well as major finance conferences (Keynote Speaker at Capital Creation 2014, guest presentation at Trade Tech 2014: All you need to know about investing in Bitcoins (2.9) (2.10)) and Bitcoin conferences. (2.11)
+
+**Adam Knight, Coinfloor's Chairman**, was previously a Managing Director of the team responsible for building and managing the Credit Suisse – Glencore Global Commodities Alliance, a global commodity derivatives trading business. He was a managing director in the fixed-income department of the investment banking division of Credit Suisse and earlier ran the global metals trading business at Goldman Sachs. He has been an angel investor in London since leaving Credit Suisse in 2011 and believes "that Mark Lamb and his team are building a Bitcoin exchange and storage company that will become a leader in the sector". (2.12)
+
+**Obi Nwosu, Coinfloor's CTO**, has over 20 years of experience building ecommerce sites including WeeWorld, an online game where tens of millions of users bought virtual items using a virtual currency.
+
+##Regulation
+
+Coinfloor is not an FCA-regulated entity but has received formal communication from the regulatory body deeming regulation not necessary at this point in time. (3.1) Bitcoin is currently not classified by the FCA as money and as such is not representative of monetary value. Coinfloor has been working closely with the HMRC on the classification of bitcoin. (3.2)
+
+##Provable Solvency Reports
+
+Coinfloor has the longest standing track record among bitcoin exchanges in regards to auditing. Since its launch in 2014 (4.1)
+ (4.2) the company publishes monthly solvency reports that contain an obfuscated list of client balances. 
+
+**Coinfloor's Provable Solvency Report logic:**
+
+> Coinfloor creates an obfuscated report of all current client balances (the Solvency Report) and then generates a SHA-256 hash of this report.
+
+> They then create a bitcoin transaction to themselves, that includes all currently held client bitcoins and include in the output script the OP_RETURN of the SHA-256 hash of the report, proving that at the time of making the solvency report, Coinfloor held all of its clients’ XBT funds. You can verify the amount and details of the transaction in the block chain following instructions provided by the Company with each report. It includes calculating a SHA-1 digest of a message consisting of the timestamp shown at the top of the Solvency Report and your Coinfloor API authentication cookie.
+
+This audit solution is not seen as perfect but Coinfloor received a good response from the community to this step towards greater transparency. (4.3)
+
+##Bitcoin Security
+
+Coinfloor was the first bitcoin exchange to implement **100% [[multisignature]] [[cold_storage]]** for storing client bitcoins. When you deposit, withdraw or purchase bitcoins at Coinfloor, your bitcoins are always held on offline devices within underground vaults which are said to maintain the same security standards as the Bank of England. (5.1)
+
+Coinfloor’s cold storage is decentralised and secured with Multsignature Pay to Script Hash transactions. Each withdrawal from Coinfloor’s cold storage must be signed by multiple designated keyholders within isolated vaults. This policy prevents any unintended withdrawals from happening and insures against loss of client funds.
+
+Coinfloor is providing company-owned bitcoins to fund the **Advance Withdrawals** service, allowing users to withdraw up to 2 bitcoins without waiting for a cold storage withdrawal.
+
+##Coinfloor Advance Withdrawals
+
+In June 2015, in response to users' complains about waiting for cold storage withdrawals and not being able to access bitcoind outside business hours, Coinfloor introduced Advance Withdrawals as a way for customers to quickly withdraw small amounts of bitcoins from a **Coinfloor-owned online fund**, without waiting for cold storage withdrawals. (6.1)
+
+In order to offer quicker withdrawals without compromising on their cold storage policy, Coinfloor is using company-owned bitcoins to fund our Advance Withdrawal service which enables users to withdraw up to 2 bitcoins without waiting for Coinfloor’s twice per day withdrawals from the cold storage held in underground vaults.
+The 2XBT limit is refreshed every time a cold storage withdrawal is processed and Coinfloor Advance Withdrawals are settled. Withdrawal requests that take you over 2.0000 XBT are queued for processing from the vault in the next batch. 
+
+Coinfloor continues to operate a 100% cold storage policy with **no client funds held in a hot or warm wallet**.
+
+##Maker Taker Trading Fees Schedule
+
+Coinfloor uses a maker-taker fee model. This means that fees are charged after trades are matched and a different fee is charged to the "maker" and to the "taker" of liquidity.
+
+Maker fees are paid when you add liquidity to the order book, by placing a limit order below the lowest sell price for a buy and above the highest buy price for a sell. Taker fees are paid when you remove liquidity from the order book, by placing any order that is executed against a limit order already on the order book.
+
+The fees are charged after an order is matched and not for placing an order. This fee model is used in order to incentivise the most liquidity so that any orders made get fulfilled quickly and at the best possible rate.
+
+Trading fees are charged in corresponding fiat currencies and are subtracted from the total fiat amount reserved by the order in the total balance.
+
+
+
+|Maker fee|Taker fee|Trailing 30 day trading volume in GBP|Trailing 30 day trading volume in EUR|Trailing 30 day trading volume in PLN|Trailing 30 day trading volume in USD
+|---|---
+|0.15%|0.38%|< 4,500|< 5,800|< 24,000|< 7,000
+|0.12%|0.36%|< 20,000|< 25,000|< 105,000|< 30,000
+|0.10%|0.34%|< 50,000|< 65,000|< 270,000|< 75,000
+|0.06%|0.32%|< 100,000|< 130,000|< 550,000|< 150,000
+|0.00%|0.30%|> = 100,000|> = 130,000|> = 550,000|> = 150,000
+
+
+In order to ensure fairness, Coinfloor uses an approach called "**weighted stochastic rounding**" to calculate the fees charged to its users when trading. Weighted stochastic rounding over time minimises the effects of rounding errors. To understand why this rounding method is preferable to traditional "round-to-nearest" rounding methods, consider the case of one hundred occurrences of a 4.71 fee, each rounded according to the nearest whole number. Using the weighted stochastic rounding method, the expected value of the sum of these rounded figures is 471, which is exactly equal to the ideal sum of the unrounded figures. Using the traditional method, the expected value of the sum of the rounded figures would be 500, which is far from ideal as it results in a much higher fee charged.
+
+##External Links
+
+* [coinfloor.co.uk](https://coinfloor.co.uk/)
+
+##References
+
+1.1: [London-based Bitcoin exchange Coinfloor opens for business](http://www.wired.co.uk/news/archive/2013-10/29/coinfloor-launch) Wired  
+1.2: [Bitcoin Security](http://blog.coinfloor.co.uk/post/78226840526/coinfloors-bitcoin-security) Coinfloor Blog  
+1.3: [London-based Bitcoin exchange Coinfloor opens for business](http://www.wired.co.uk/news/archive/2013-10/29/coinfloor-launch) Wired  
+2.1: [Coinfloor Is A New UK-Based Bitcoin Exchange Backed By Passion Capital And Transferwise Founder Taavet Hinrikus](http://techcrunch.com/2013/10/29/coinfloor/) October 29, 2013 Steve O'Hear Work: TechCrunch  
+2.2: [2014 is going to be a big one - Launch Updates](http://blog.coinfloor.co.uk/post/73413414782/2014-is-going-to-be-a-big-one-launch-updates) Coinfloor Blog  
+2.3: [Mark Lamb on McCarthy's involvement](http://www.reddit.com/r/Bitcoin/comments/29gplx/coinfloor_integrates_uk_faster_payments/ciksp87) Reddit  
+2.4: [Obi Nwosu](http://uk.linkedin.com/in/obinwosu) LinkedIn Profile  
+2.5: [Coinfloor would welcome bitcoin regulation: CEO](http://video.cnbc.com/gallery/?video=3000267959) CNBC  
+2.6: [Citi: Miners and Merchants Are Keeping Bitcoin Prices Low](http://www.coindesk.com/citi-miners-merchants-keeping-bitcoin-prices-check/) CoinDesk  
+2.7: [Bitcoin Price Drops Below $600 After Relative Stability](http://www.coindesk.com/market-monthly-stable-bitcoin/) CoinDesk  
+2.8: [How Bitcoin Brokers Trade Millions Without an Exchange](http://www.coindesk.com/bitcoin-brokers-trade-millions-without-exchange/) CoinDesk  
+2.9: [Mark Lamb, Coinfloor Interview](http://www.youtube.com/watch?v=mYl0m5VPoMg) TradeTechTV  
+2.10: [Bitcoin - The Internet of Finance](http://www.youtube.com/watch?v=2PmYRoiDkMU) TradeTechTV  
+2.11: [CoinSummit London 2014 - The Challenges of Operating a Bitcoin Business in Europe](https://www.youtube.com/watch?v=kHGWrAAADio) CoinSummit  
+2.12: [Adam Knight appointed as Coinfloor’s executive chairman](http://blog.coinfloor.co.uk/post/91342935476/adam-knight-appointed-as-coinfloors-executive-chairman) Coinfloor Blog  
+3.1: [London-based Bitcoin exchange Coinfloor opens for business](http://www.wired.co.uk/news/archive/2013-10/29/coinfloor-launch) Wired  
+3.2: [Coinfloor applauds HMRC’s position on the classification of Bitcoin](http://blog.coinfloor.co.uk/post/78467560258/coinfloor-applauds-hmrcs-position-on-the) Coinfloor Blog  
+4.1: [Coinfloor to Become First 'Publicly Auditable' Bitcoin Exchange](http://www.coindesk.com/coinfloor-become-first-publicly-auditable-bitcoin-exchange/) Coindesk  
+4.2: [Coinfloor’s Quest to Invent Post-Gox Exchange Security](http://cointelegraph.com/news/111329/coinfloor_s_quest_to_invent_post_gox_exchange_security/) CoinTelegraph  
+4.3: [Coinfloor published a 14th Solvency Report on schedule. Impressive commitment among bitcoin exchanges.](http://www.reddit.com/r/Bitcoin/comments/37gdlm/coinfloor_published_a_14th_solvency_report_on/) Reddit  
+5.1: [Bitcoin security - We are paranoid about security](https://coinfloor.co.uk/security) Coinfloor  
+6.1: [Coinfloor introduces Advance Withdrawals for quicker access to your bitcoins](http://blog.coinfloor.co.uk/post/122846925071) Coinfloor
+
+
+[[!tag "Exchanges"]]
