@@ -89,13 +89,14 @@ Debugging/Testing options:
 	-genproclimit=<n>      Set the number of threads for coin generation if enabled (-1 = all cores, default: 1)  
 	-help-debug            Show all debugging options (usage: --help -help-debug)  
 	-logips                Include IP addresses in debug output (default: 0)  
-	-logtimestamps         Prepend debug output with timestamp (default: 1)  
-	-minrelaytxfee=<amt>   Fees (in BTC/Kb) smaller than this are considered zero fee for relaying (default: 0.00001)  
+	-logtimestamps         Prepend debug output with timestamp (default: 1)   
 	-printtoconsole        Send trace/debug info to console instead of debug.log file  
 	-shrinkdebugfile       Shrink debug.log file on client startup (default: 1 when no -debug)  
 	-testnet               Use the test network  
 	
 Node relay options:  
+	-minrelaytxfee=<amt>   Fees smaller than this (in satoshi) are considered zero fee (relaying and mining) (default: 1000)
+	-limitfreerelay=<n>    Rate-limit free transactions to <n>*1000 bytes per minute (default: 15)
 	-datacarrier           Relay and mine data carrier transactions (default: 1)  
 	-datacarriersize       Maximum size of data in data carrier transactions we relay and mine (default: 40)  
 	
