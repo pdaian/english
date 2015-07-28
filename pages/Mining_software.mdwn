@@ -1,4 +1,4 @@
-There are many different types of Bitcoin mining software (1.1) available. These tables should help you find what will work best for your mining.
+There are many different types of Bitcoin mining software available. These tables should help you find what will work best for your mining.
 
 
 
@@ -20,7 +20,7 @@ OS               BFG         BitMinter  BTCMiner    cgminer Diablo  EasyMiner gM
 |Raspbian         |[[!template id=yes pkg]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=patch bin]]|[[!template id=no]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=no]]|[[!template id=patch py]]||[[!template id=patch py]]|[[!template id=patch py]]||[[!template id=yes Java]]
 |Ubuntu           |[[!template id=yes pkg]]|[[!template id=yes Java]]|[[!template id=patch jar]]|[[!template id=yes pkg]]|[[!template id=patch jar]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=no]]|[[!template id=patch py]]|[[!template id=patch ?]]|[[!template id=patch py]]|[[!template id=patch py]]|[[!template id=patch src]]|[[!template id=yes Java]]
 |Windows (32-bit) |[[!template id=yes zip]]|[[!template id=yes Java]]|[[!template id=yes jar]]|[[!template id=yes zip]]|[[!template id=yes jar]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|||[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes Java]]
-|Windows (64-bit) (1.2)	[[!template id=yes zip]]|[[!template id=yes Java]]|[[!template id=yes jar]]|[[!template id=patch W32<ref name="win64"/>]]	[[!template id=yes jar]]|||[[!template id=yes]]||||||[[!template id=yes Java]]
+|Windows (64-bit) (1.1)	[[!template id=yes zip]]|[[!template id=yes Java]]|[[!template id=yes jar]]|[[!template id=patch W32<ref name="win64"/>]]	[[!template id=yes jar]]|||[[!template id=yes]]||||||[[!template id=yes Java]]
 |Windows RT        |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 colspan='15' mining devices (virtual)
 Virtual device    BFG         BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  GroupFabricMPBM  OSFPGABMPhoenix poclbm  Ufasoft ScalaMiner
@@ -123,13 +123,13 @@ Protocol              BFG        BitMinterBTCMinercgminer Diablo  EasyMiner gMin
 colspan='15' getwork extensions
 Extension     BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  GroupFabricMPBM  OSFPGABMPhoenix poclbm  Ufasoft ScalaMiner
 |hostlist      |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]||[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]
-|longpoll      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=notadv]]|[[!template id=no]] (1.3)|[[!template id=notadv]]|[[!template id=yes]]|[[!template id=no]]
+|longpoll      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=notadv]]|[[!template id=no]] (1.2)|[[!template id=notadv]]|[[!template id=yes]]|[[!template id=no]]
 |midstate      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=notadv]]|[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=no]]|[[!template id=notadv]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]
 |noncerange    |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|||[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]
 |reject-reason |[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=no]]|[[!template id=yes]]|[[!template id=yes 0.0]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=patch]]|[[!template id=yes]]|[[!template id=no]]
 |rollntime     |[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]
 |expire=N      |[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes]]|[[!template id=yes 0.1]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|submitold     |[[!template id=yes]]|[[!template id=notadv]] (1.4)	[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|[[!template id=notadv]]	[[!template id=notadv 0.0]]	[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|submitold     |[[!template id=yes]]|[[!template id=notadv]] (1.3)	[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]||[[!template id=no]]|[[!template id=notadv]]	[[!template id=notadv 0.0]]	[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |switchto      |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]||[[!template id=yes]]|[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=no]]|[[!template id=yes]]|[[!template id=no]]
 colspan='15' getblocktemplate/BlkPrep functionality
 Function   BFG     BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  GroupFabricMPBM  OSFPGABMPhoenix poclbm  Ufasoft ScalaMiner
@@ -141,7 +141,7 @@ colspan='15' getblocktemplate/BlkPrep variations
 Variation       BFG         BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  GroupFabricMPBM  OSFPGABMPhoenix poclbm  Ufasoft ScalaMiner
 |(fixed coinbase)|[[!template id=yes 2.9.0]]|n/a     |n/a     |[[!template id=no]]|n/a     ||n/a   |n/a       |n/a    |n/a     |n/a     |||n/a
 |coinbase/append |[[!template id=yes 2.9.0]]|n/a     |n/a |[[!template id=yes 2.8.7]]|n/a     ||n/a   |n/a       |n/a    |n/a     |n/a     ||[[!template id=yes Required]]|n/a
-|coinbase (set)  |[[!template id=yes 2.10.4]] (1.5)|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a       |n/a    |n/a     |n/a     |||n/a
+|coinbase (set)  |[[!template id=yes 2.10.4]] (1.4)|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a       |n/a    |n/a     |n/a     |||n/a
 |generation      |[[!template id=yes 2.9.0]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a       |n/a    |n/a     |n/a     |||n/a
 |(full submit)   |[[!template id=yes 2.9.0]]|n/a     |n/a     |[[!template id=no]]|n/a   ||n/a   |n/a       |n/a    |n/a     |n/a     |||n/a
 |share/coinbase  |[[!template id=yes 2.9.0]]|n/a     |n/a  |[[!template id=yes 2.8.7]]|n/a   ||n/a   |n/a       |n/a    |n/a     |n/a     |||n/a
@@ -159,8 +159,8 @@ Function      BFG         BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  Gro
 |reconnect     |[[!template id=yes 2.9.0]]|[[!template id=yes]]|n/a |[[!template id=yes 2.8.2]]|n/a    |n/a       |n/a     |[[!template id=yes]]||n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
 |add peers     |[[!template id=no]]|[[!template id=no]]|n/a    |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |set diff      |[[!template id=yes 2.9.0]]|[[!template id=yes]]|n/a |[[!template id=yes 2.8.0]]|n/a    |n/a       |n/a     |[[!template id=yes]]|[[!template id=patch testing]]|n/a |n/a  |[[!template id=yes 20121020]]|[[!template id=yes]]|[[!template id=no]]
-|suggest target|[[!template id=yes 3.2.0]] (1.6)|[[!template id=no]]|n/a    |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
-|suggest difficulty|[[!template id=no]]|[[!template id=no]]|n/a    |[[!template id=yes]] (1.7)|n/a     |n/a       |n/a     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|suggest target|[[!template id=yes 3.2.0]] (1.5)|[[!template id=no]]|n/a    |[[!template id=no]]|n/a     |n/a       |n/a     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
+|suggest difficulty|[[!template id=no]]|[[!template id=no]]|n/a    |[[!template id=yes]] (1.6)|n/a     |n/a       |n/a     |[[!template id=no]]|[[!template id=no]]|n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |transparency  |[[!template id=patch partial]]|[[!template id=no]]|n/a    |[[!template id=no]]|n/a    |n/a       |n/a     |[[!template id=no]]||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
 |get ver       |[[!template id=yes 2.9.0]]|[[!template id=yes]]|n/a    |[[!template id=yes 2.8.2]]|n/a |n/a       |n/a     |[[!template id=yes]]||n/a     |n/a     |[[!template id=yes]]|[[!template id=no]]|[[!template id=no]]
 |show msg      |[[!template id=yes 3.0.0]]|[[!template id=yes]]|n/a   |[[!template id=yes 2.11.1]]|n/a |n/a       |n/a     |[[!template id=no]]||n/a     |n/a     |[[!template id=no]]|[[!template id=no]]|[[!template id=no]]
@@ -174,11 +174,10 @@ Function      BFG         BitMinterBTCMinercgminer Diablo  EasyMiner gMinor  Gro
 
 
 
-1.1: [Bitcoin Mining Software](https://www.bitcoinmining.com/bitcoin-mining-software/)  
-1.2: [WoW64 subsystem](http://en.wikipedia.org/wiki/WoW64) Windows includes (usually installed by default) the  which enables running 32-bit Windows applications, with low performance impact.  
-1.3: Supported, but has bugs.  
-1.4: Not advertised, but generally doesn't discard shares.  
-1.5: Older versions have serious bugs.  
-1.6: [commit 4a12eae](https://github.com/luke-jr/bfgminer/commit/4a12eaebe60e4a085e5707ce4b4a3c67edb494dd) Uses precise string target, implemented Aug 12, 2013   
-1.7: [stratum designers suggested implementation](https://bitcointalk.org/index.php?topic=108533.msg1543341#msg1543341) Uses difficulty integer, implemented Oct 20, 2014  as per the  Feb 20, 2013
+1.1: [WoW64 subsystem](http://en.wikipedia.org/wiki/WoW64) Windows includes (usually installed by default) the  which enables running 32-bit Windows applications, with low performance impact.  
+1.2: Supported, but has bugs.  
+1.3: Not advertised, but generally doesn't discard shares.  
+1.4: Older versions have serious bugs.  
+1.5: [commit 4a12eae](https://github.com/luke-jr/bfgminer/commit/4a12eaebe60e4a085e5707ce4b4a3c67edb494dd) Uses precise string target, implemented Aug 12, 2013   
+1.6: [stratum designers suggested implementation](https://bitcointalk.org/index.php?topic=108533.msg1543341#msg1543341) Uses difficulty integer, implemented Oct 20, 2014  as per the  Feb 20, 2013
 
