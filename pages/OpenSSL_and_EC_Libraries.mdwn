@@ -4,7 +4,5 @@ Some algorithms in OpenSSL library may be restricted by patent law. Due to stron
 
 ## Fixes / Workarounds
 
-Some fixes are
 
-* Compile your own OpenSSL and use this rather than the distribution package manager's library.
-* Use the RPMs provided by gmaxwell [(1)](https://people.xiph.org/~greg/openssl/) rather than the distribution package manager's library. (Warning: as of May 2014, these libraries are still vulnerable to the Heartbleed exploit, which affects Bitcoin through the RPC interface and payment protocol; it may also expose other applications on your system which use OpenSSL).
+One workaround is to compile your own OpenSSL and use this rather than the distribution package manager's library.
