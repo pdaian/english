@@ -35,18 +35,18 @@ See also: [Innovations that Enhance Bitcoin Anonymity](http://www.bitcoinnotbomb
 
 ### Security
 Bitcoin does not, at a low level, have any concept of addresses, only individual coins.
-Address reuse, at this layer, requires producing multiple digital signatures when you spend bitcoins.
-Multiple situations have been found where more than one digital signature can be used to calculate the private key needed to spend bitcoins.
-Even if you spend all the bitcoins claimed by this private key at once, it is still possible to double-spend them in theft before they confirm.
+Address reuse, at this layer, requires producing multiple digital signatures when you spend Bitcoins.
+Multiple situations have been found where more than one digital signature can be used to calculate the private key needed to spend Bitcoins.
+Even if you spend all the Bitcoins claimed by this private key at once, it is still possible to double-spend them in theft before they confirm.
 While the known situations for finding the private key from signatures have been fixed, it is not prudent to assume there aren't more such situations yet unknown.
 
-In the case of spending all the TXOs in a single transaction, there is an additional risk if someone is actively monitoring the network for vulnerable transactions:
-upon receiving such a transaction, they can split up their double spends such that there is only one ECDSA verification per transaction (making a single transaction for each TXO);
-this will cause the attacker's transactions to relay across the rest of the nodes *faster* than the legitimate one, increasing success of a double spend.
+In the case of spending all the TXOs in a single transaction, there is an additional risk if someone is actively monitoring the network for vulnerable transactions.
+Upon receiving such a transaction, they can split up their double spends such that there is only one ECDSA verification per transaction (making a single transaction for each TXO).
+This will cause the attacker's transactions to relay across the rest of the nodes *faster* than the legitimate one, increasing success of a double spend.
 
 #### Known attacks
 
-* Same K in multiple signatures, see [Recovering Bitcoin private keys using weak signatures from the blockchain](http://www.nilsschneider.net/2013/01/28/recovering-bitcoin-private-keys.html).
+* Same K in multiple signatures, see; [Recovering Bitcoin private keys using weak signatures from the blockchain](http://www.nilsschneider.net/2013/01/28/recovering-bitcoin-private-keys.html).
 * [Timing sidechannel](https://eprint.iacr.org/2014/140.pdf)
 
 ### Accidental loss
