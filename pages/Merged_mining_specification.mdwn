@@ -61,10 +61,10 @@ That is the overall premise, and specifically for the AuxPOW protocol, it's been
 
 |? |branch_length |[[var_int|Protocol_specification#Variable_length_integer]]|The number of hashes making up the branch
 |? |branch_hash[]|char[[32]]|Individual hash in the branch; repeated <tt>branch_length</tt>number of times
-|4 |branch_side_mask |int32_t |Bitmask of which side of the merkle hash function the <tt>branch_hash</tt>element should go on. Zero means it goes on the right, One means on the left.
+|4 |branch_side_mask |int32_t |Bitmask of which side of the merkle hash function the <tt>branch_hash</tt>element should go on. Zero means it goes on the right, One means on the left. It is equal to the index of the starting hash within the widest level of the merkle tree for this merkle branch.
 
 
-The first <tt>branch_hash</tt> is used first, and the least-significant bit of the <tt>branch_side_mask</tt> determines its hash position. Then the second <tt>branch_hash</tt> is applied with the second-least-significant bit of the <tt>branch_side_mask</tt>, etc. So for Alice's example, <tt>branch_length</tt> would be 3, the hashes would be given in the order #9, #3, then #2, and the <tt>branch_side_mask</tt> would be <tt>0b011</tt> = 3.
+The first <tt>branch_hash</tt> is used first, and the least-significant bit of the <tt>branch_side_mask</tt> determines its hash position. Then the second <tt>branch_hash</tt> is applied with the second-least-significant bit of the <tt>branch_side_mask</tt>, etc. So for Alice's example, <tt>branch_length</tt> would be 3, the hashes would be given in the order #9, #3, then #2, and the <tt>branch_side_mask</tt> would be <tt>0b011</tt> = 3 (equal to the index of #10 in the widest level of the merkle tree).
 
 ## Merged mining coinbase
 Insert exactly one of these headers into the <tt>scriptSig</tt> of the coinbase transaction in the parent block.
@@ -72,7 +72,7 @@ Insert exactly one of these headers into the <tt>scriptSig</tt> of the coinbase 
 
 
 |4 |magic |char[[4]]|<tt>0xfa</tt>, <tt>0xbe</tt>, 'm', 'm' **(only required if over 20 bytes past the start of the script; optional otherwise)**
-|32 |block_hash |char[[32]]|Hash of the AuxPOW block header
+|32 |block_hash |char[[32]]|Hash of the AuxPOW block header / root of the chain merkle branch
 |4 |merkle_size |int32_t |Number of entries in aux work merkle tree. **(Must be a power of 2)**
 |4 |merkle_nonce |int32_t |Nonce used to calculate indexes into aux work merkle tree; you may as well leave this at zero
 
