@@ -39,13 +39,6 @@ Cheers.*  (5.1)
 ###Falleable Memory
 Human memory is far more falleable than we normally expect. So if you're only storage is memory you may find that it just vanished one day.
 
-###Malicious Website Operators
-The operator of brainwallet.org seemingly created their service with the specific intention of getting more people to use keys they could crack. They were literally complaining in the main bitcoin IRC channel that they weren't finding many private keys by hashing dictionaries.
-
-IRC chatlog of the incident: https://people.xiph.org/~greg/brainwallet.txt
-
-The Generate Secure Random Key of brainwallet.org was also found to be incredibly inappropriate and could easily lead to money being lost. Around the time they added the really insecure random number generator to the site, they were asking for help in the IRC channel getting very fast bitcoin cryptography (secp256k1) key generation code working.
-
 ##Precaution
 It is very important when creating a brainwallet to use a passphrase that has a very high level of entropy.  If this is not done, theft of the brainwallet is an eventual certainty.
 
