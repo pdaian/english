@@ -4,7 +4,7 @@ Early brainwallets were created simply by coming up with a passphrase. The phras
 
 ##Creating a Brainwallet
 
-A much safer way of storing money in your brain is to have software generate the cryptographic entropy and then memorize it. For example wallets like [[Electrum]], [[Armory]] and [[Mycelium]] create backup mnemonic words seeds. Using techniques like memory pegging allow them to be memorized and recalled easily.
+A much safer way of storing money in your brain is to have software generate the cryptographic entropy and then memorize it. For example wallets like [[Electrum]], [[Armory]] and [[Mycelium]] create backup mnemonic words seeds. Using techniques like memory pegging allow them to be memorized and recalled easily. Using a deterministic wallet with multiple addresses also stops the problems associated with [[address_reuse]].
 
 ###Worked Example
 
@@ -13,6 +13,24 @@ A much safer way of storing money in your brain is to have software generate the
 1. When spending or saving, restore the wallet from memory using the seed.
 1. Use the master public key to create an online watch-only wallet, where you can send to but not spend.
 1. Spend from the wallet in the manner of [[deep cold storage|Cold_storage]]. Transferring the unsigned transaction to the cold storage computer, signing it and broadcasting to the network.
+
+####Example Mnemonic Peg
+To memorize a mnemonic seed with this method you must invent a story which hits the words as "keynotes". Try to make it like a fairy tale story, use imagery. Make it somehow striking and emotionally resonant. When remembering you just remember the key words, not all the other words - the other can be remembered more as images and thoughts (which are hard to write down)
+
+Let's say we have this seed:
+
+	witch collapse practice feed shame open despair creek road again ice least
+
+You'd imagine walking through a building familiar to you, maybe your own home or workplace or school.
+
+* You imagine looking in the first room and seeing your mother dressed as a **witch**, playing the jenga boardgame until the tower **collapses**.
+* You walk to the next room and see your father **practising** with a longbow, he shoots a chicken to **feeds** himself.
+* In the next room you see your brother naked in **shame** attempting to cover himself, he's looking through a window thats **open** and flapping in the wind.
+* Now you reach the kitchen, girlfriend is looking at Picasso's [Guernica](https://en.wikipedia.org/wiki/Guernica_%28Picasso%29) on the wall. She is in **despair** from it. Next to it is a television playing the show Dawson's **Creek**.
+* Next you're in the garage, your childhood friend is working on his car. He plans to go on a **road** trip for the 5th time this month, he's going **again**.
+* Finally to go outside to the garden. It's early spring and the ground is covered in melting **ice**. Two of your other friends are there, one friend has a huge basket of apples, the other has a smaller basket but you're holding only some apples. You've got the **least** apples.
+
+Repeat this story in your head several times over a short period - the first few days. It will sink in, deep, after that. You'll only have to revisit it very occasionally. After a while you can ignore it for months and it'll still come back, not that I'd recommend relying on that.
 
 ##Possible Dangers
 
@@ -34,10 +52,10 @@ NOOOOOOOOOOOO.
 
 Well, now that you have no more Bitcoin I guess we don't have to worry about you using a brainwallet.
 
-Cheers.*  (5.1)
+Cheers.*  (6.1)
 
 ###Falleable Memory
-Human memory is far more falleable than we normally expect. So if you're only storage is memory you may find that it just vanished one day.
+Human memory can be far more falleable than we normally expect. So if you're only storage is memory you may find that it just vanished one day.
 
 ##Precaution
 It is very important when creating a brainwallet to use a passphrase that has a very high level of entropy.  If this is not done, theft of the brainwallet is an eventual certainty.
@@ -49,4 +67,4 @@ A brainwallet passphrase, at a minimum, needs to be an entire original sentence 
 ##References
 <references>
 </references>
-5.1: [Re: hardening brain-wallets with a useful blind proof of work](https://bitcointalk.org/index.php?topic=311000.msg3345309#msg3345309)
+6.1: [Re: hardening brain-wallets with a useful blind proof of work](https://bitcointalk.org/index.php?topic=311000.msg3345309#msg3345309)
