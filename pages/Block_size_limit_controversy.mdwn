@@ -1,5 +1,5 @@
 [[!template id=current]][[!template id=see_also Scalability FAQ]]
-[[Block]]s are limited to 1MB in size. Miners can mine blocks upto the 1MB fixed limit, but any block larger than 1MB is invalid. The **blocksize limit** has the dual purpose of discouraging economically frivolous transactions from flooding the [[block_chain]] and encouraging transactions fees to incentivize miners. This limit cannot be modified without a hard fork. Hard forks require adoption by virtually all of the bitcoin participants.
+[[Block]]s are limited to 1MB in size. Miners can mine blocks upto the 1MB fixed limit, but any block larger than 1MB is invalid. The **blocksize limit** was introduced as an anti-DDoS measure and its main purpose is to discourage economically frivolous transactions from flooding the [[block_chain]].[[!template id=citation_needed reason="The official commit with the block size limit does not contain an explanation." date="August 2015"]] This limit cannot be modified without a hard fork. Hard forks require adoption by a majority of all of the bitcoin participants, especially miners.
 
 ## Arguments in favor of increasing the blocksize
 
@@ -25,6 +25,7 @@
 * "Congestion" concerns can be solved with mempool improvements including transaction eviction.
 * No amount of max block size would support all the world's future transactions on the main blockchain (various types of off-chain transactions are the only long-term solution)
 * Fast block propagation is either not clearly viable, or (eg, IBLT) creates centralised controls.
+* A low blocksize limit encourages higher transactions fees to incentivize miners ("let a fee market develop")
 
 ### Damage to decentralization
 
