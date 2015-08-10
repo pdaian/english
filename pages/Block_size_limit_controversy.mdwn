@@ -1,5 +1,5 @@
 [[!template id=current]][[!template id=see_also Scalability FAQ]]
-[[Block]]s are limited to 1MB in size. Miners can mine blocks upto the 1MB fixed limit, but any block larger than 1MB is invalid. The **blocksize limit** was introduced as an anti-DDoS measure and its main purpose is to discourage economically frivolous transactions from flooding the [[block_chain]].[[!template id=citation_needed reason="The official commit with the block size limit does not contain an explanation." date="August 2015"]] This limit cannot be modified without a hard fork. Hard forks require adoption by a majority of all of the bitcoin participants, especially miners.
+[[Block]]s are limited to 1MB in size. Miners can mine blocks up to the 1MB fixed limit, but any block larger than 1MB is invalid. This limit cannot be modified without a hard fork. To prevent Bitcoin from temporarily or permanently splitting into separate payment networks ("altcoins"), hard forks require adoption by nearly all [[economically active|Full_node#Economic_strength]] full nodes.
 
 ## Arguments in favor of increasing the blocksize
 
@@ -7,7 +7,6 @@
 
 ## Unclear Arguments
 
-* An emergency hard fork can achieve consensus for deployment on a short time period if needed. [[!template id=clarification_needed]]
 * Increased blocksize will leave space for extensions like Mastercoin, Counterparty, etc.
 	* Neutral: Bitcoin competitors will have lower fees
 	* Negative: Bitcoin full nodes are forced to use more resources that don't support Bitcoin
@@ -18,7 +17,9 @@
 
 ## Arguments in opposition to increasing the blocksize
 
+* A hard fork requires waiting for sufficient consensus.
 * Risk of catastrophic consensus failure (4.1)[[!template id=clarification_needed]]
+* An emergency hard fork that can achieve consensus can be deployed on a short time period if needed. (4.2)
 * Orphan rate amplification, more reorgs and double-spends due to slower propagation speeds.
 * European/American pools at more of a disadvantage compared to the Chinese pools[[!template id=why]]
 * "Congestion" concerns can be solved with mempool improvements including transaction eviction.
@@ -64,6 +65,7 @@ Positions below are based on a suggested fixed block size increase to 20MiB.  Po
 
 [[!tag "2015_events"]]
 4.1: https://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg08276.html  
+4.2: [How to raise block size in a short time](https://www.reddit.com/r/Bitcoin/comments/392m43/mike_hearn_blocksize_debate_at_the_breaking_point/cs00wdd) , Peter Todd, Reddit /r/Bitcoin, 9 June 2015  
 5.1: https://www.weusecoins.com/why-blocksize-limit-keeps-bitcoin-free-decentralized/  
 6.1: http://www.reddit.com/r/Bitcoin/comments/37y8wm/list_of_bitcoin_services_that_supportoppose/crqsnqp  
 6.2: https://twitter.com/shesek/status/605005384026177537  
