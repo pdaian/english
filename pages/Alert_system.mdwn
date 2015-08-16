@@ -1,5 +1,5 @@
 [[!template id=multiple_image align=vertical width=300 image1=alert.png image2=bitcoin-alert-cli.png footer="An alert appearing on bitcoin clients"]]
-Bitcoin versions 0.3.10 and later have an alert system which allows messages about critical network problems to be broadcast to all clients. When an alert is in effect, the message it contains will appear in the status bar of all clients, in the "errors" field of RPC *getinfo*, and will notify any script registered with Bitcoin-Qt/bitcoind -alertnotify command-line option.
+Bitcoin versions 0.3.10 and later have an **alert system** which allows messages about critical network problems to be broadcast to all clients. When an alert is in effect, the message it contains will appear in the status bar of all clients and in the "errors" field of RPC *getinfo*. Any script registered with the <code>-alertnotify</code> command-line option will be notified.
 
 ###Alert message
 Alerts are broadcast using the same [[TCP relay system|network]] as *block* and *tx* messages. They are not encoded in a special transaction. Unlike block and tx relaying, alerts are sent at the start of every new connection for as long as the alert is in effect. This ensures that everyone receives the alert.
@@ -22,6 +22,9 @@ Until version 0.3.20, Bitcoin went into safe mode when a valid alert was receive
 Even though Bitcoin no longer automatically disables RPC when an alert is live, it is wise for Bitcoin sites to shut down when an alert has been issued. To detect an active alert, poll the "errors" field of *getinfo*.
 
 To test safe mode, run Bitcoin with the -testsafemode switch. To override a real safe mode event, run Bitcoin with the -disablesafemode switch.
+
+##History
+The alert system was hastily implemented by [[Satoshi_Nakamoto]] after the [[value_overflow_incident]] on August 15, 2010. Satoshi never actually used this system; it remained dormant until the [[February_20,_2012_protocol_change]], for which an alert was issued on February 18. (4.1)
 
 ###Past alerts
 
@@ -49,7 +52,8 @@ To test safe mode, run Bitcoin with the -testsafemode switch. To override a real
 
 ##References
 
-2.1: http://www.reddit.com/r/Bitcoin/comments/2dz9ri/why_in_the_world_does_theymos_have_the_private/cjuu360
+2.1: http://www.reddit.com/r/Bitcoin/comments/2dz9ri/why_in_the_world_does_theymos_have_the_private/cjuu360  
+4.1: [February 20, 2012 Protocol Changes](https://bitcoin.org/en/alert/2012-02-18-protocol-change)  at bitcoin.org
 
 
 ##External links
