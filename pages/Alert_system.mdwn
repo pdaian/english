@@ -1,8 +1,5 @@
-[[!img "alert.png" size=120x120 size=300x300 class="right"]]
-
+[[!template id=multiple_image align=vertical width=300 image1=alert.png image2=bitcoin-alert-cli.png footer="An alert appearing on bitcoin clients"]]
 Bitcoin versions 0.3.10 and later have an alert system which allows messages about critical network problems to be broadcast to all clients. When an alert is in effect, the message it contains will appear in the status bar of all clients, in the "errors" field of RPC *getinfo*, and will notify any script registered with Bitcoin-Qt/bitcoind -alertnotify command-line option.
-
-[[!img "Bitcoin-alert-cli.png" size=120x120 size=300x300 class="right"]]
 
 ###Alert message
 Alerts are broadcast using the same [[TCP relay system|network]] as *block* and *tx* messages. They are not encoded in a special transaction. Unlike block and tx relaying, alerts are sent at the start of every new connection for as long as the alert is in effect. This ensures that everyone receives the alert.
