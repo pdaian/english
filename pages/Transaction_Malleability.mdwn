@@ -4,7 +4,9 @@ While [[transaction]]s are signed, the signature does not currently cover all th
 
 The first form of malleability is in the signatures themselves. Each signature has exactly one DER-encoded ASN.1 octet representation, but OpenSSL does not enforce this, and as long as a signature isn't horribly malformed, it will be accepted. (2.1) In addition for every ECDSA signature (r,s), the signature (r, -s (mod N)) is a valid signature of the same message. (2.2)
 
-Efforts are underway to first make Bitcoin nodes not relay non-standard signatures, and eventually disallow them from being included in new blocks entirely.
+As of block 363724 (2.3), the [BIP66 soft fork](https://github.com/bitcoin/bips/blob/master/bip-0066.mediawiki) has made it mandatory for all new transactions in the block chain to strictly follow the DER-encoded ASN.1 standard.
+
+Signatures can still be changed by anyone who has access to the corresponding private keys.
 
 ## scriptSig Malleability
 
@@ -15,7 +17,8 @@ Preventing scriptSig malleability is being considered as well. Currently transac
 ##References
 
 2.1: https://bitcointalk.org/index.php?topic=8392.msg122410#msg122410  
-2.2: https://bitcointalk.org/index.php?topic=8392.msg1245898#msg1245898
+2.2: https://bitcointalk.org/index.php?topic=8392.msg1245898#msg1245898  
+2.3: [When did BIP66 switch from activation to enforcement?](http://bitcoin.stackexchange.com/a/38438/21052) , answer by StephenM347, 6 July 2015, Bitcoin.StackExchange
 
 
 [[!tag "Technical"]]
