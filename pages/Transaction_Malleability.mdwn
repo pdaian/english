@@ -5,6 +5,7 @@ While [[transaction]]s are signed, the signature does not currently cover all th
 The first form of malleability is in the signatures themselves. Each signature has exactly one DER-encoded ASN.1 octet representation, but OpenSSL does not enforce this, and as long as a signature isn't horribly malformed, it will be accepted. (2.1) In addition for every ECDSA signature (r,s), the signature (r, -s (mod N)) is a valid signature of the same message. (2.2)
 
 As of block 363724 (2.3), the [BIP66 soft fork](https://github.com/bitcoin/bips/blob/master/bip-0066.mediawiki) has made it mandatory for all new transactions in the block chain to strictly follow the DER-encoded ASN.1 standard.
+Further efforts are still under way to close other possible malleability within DER signatures.
 
 Signatures can still be changed by anyone who has access to the corresponding private keys.
 
