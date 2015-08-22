@@ -141,7 +141,7 @@ Python example:
 ======How to build block header======
 Assemble the block header as laid out in the Bitcoin [[block_hashing_algorithm]], using the data provided in the block template along with your very own merkle root.
 Note that miners are expected to check the "version" number, and should not create blocks with versions they do not understand unless the server instructs them to do so with the "version/force" or "version/reduce" mutations - you don't need to support those, but if you don't support the version the server has provided, understand that the server may reject submissions if they don't meet some unknown future rules.
-As of this time, the current Bitcoin block version is 2, so it is safe to build blocks with version 1 or 2.
+As of this time, the current Bitcoin block version is 3.
 
 Python example:
 	import struct
