@@ -66,6 +66,8 @@ By default Bitcoin will put its data here:
 	* Storage for ip addresses to make a reconnect easier
 * peers.dat [v0.7.0 and later](Versions)
 	* Storage for peer information to make a reconnect easier.  This file uses a bitcoin-specific file format, unrelated to any database system (7.1).
+* fee_estimates.dat [v0.10.0 and later](Versions)
+	* Statistics used to estimate fees and priorities. Saved just before program shutdown, and read in at startup.
 The data, index and log files are used by Oracle [Berkeley DB](http://en.wikipedia.org/wiki/Berkeley_DB), the embedded key/value data store that Bitcoin uses.
 
 ###database subdirectory
