@@ -6,7 +6,7 @@ Hashcash proofs of work are used in Bitcoin for block generation. Proofs of work
 
 For a block to be valid it must hash to a value less than the current [[target]]; this means that each block indicates that work has been done generating it. Each block contains the hash of the preceding block, thus each block has a [[chain|block_chain]] of blocks that together contain a large amount of work. Changing a block (which can only be done by making a new block containing the same predecessor) requires regenerating all successors and redoing the work they contain. This protects the block chain from tampering.
 
-The most widely used proof-of-work scheme is SHA-256, which was introduced by [[Bitcoin]]. Some other hashing algorithms that are used for proof-of-work include scrypt, Blake-256, CryptoNight, (1.1) HEFTY1, Quark, SHA-3, scrypt-jane, scrypt-n, and combinations.
+The most widely used proof-of-work scheme is SHA-256, which was introduced by [[Bitcoin]]. Some other hashing algorithms that are used for proof-of-work include scrypt, Blake-256, CryptoNight, (1.1) HEFTY1, Quark, SHA-3, scrypt-jane, scrypt-n, and combinations thereof. 
 
 ## Example
 
@@ -20,7 +20,7 @@ Let's say the base string that we are going to do work on is "Hello, world!". Ou
 	"Hello, world!4249" => c004190b822f1669cac8dc37e761cb73652e7832fb814565702245cf26ebb9e6
 	"Hello, world!4250" => 0000c3af42fc31103f1fdc0151fa747ff87349a4714df7cc52ea464e12dcd4e9
 
-4251 hashes on a modern computer is not very much work (most computers can achieve at least 4 million hashes per second). Bitcoin automatically varies the [[difficulty]] (and thus the amount of work required to generate a block) to keep a roughly constant rate of block generation. The probability of a single hash succeeding can be found [here](http://blockexplorer.com/q/probability).
+4251 hashes on a modern computer is not very much work (most computers can achieve at least 4 million hashes per second). Bitcoin automatically varies the [[difficulty]] (and thus the amount of work required to generate a block) to keep a roughly constant rate of block generation. 
 
 In Bitcoin things are a bit more complex, especially since the header contains the [Merkle tree](http://en.wikipedia.org/wiki/Merkle_tree) which depends on the included [[transactions]]. This includes the generation transaction, a transaction "out of nowhere" to our own address, which in addition to providing the miner with incentive to do the work, also ensures that every miner hashes a unique data set.
 
