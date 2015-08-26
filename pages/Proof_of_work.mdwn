@@ -6,7 +6,7 @@ Hashcash proofs of work are used in Bitcoin for block generation. In order for a
 
 For a block to be valid it must hash to a value less than the current [[target]]; this means that each block indicates that work has been done generating it. Each block contains the hash of the preceding block, thus each block has a [[chain|block_chain]] of blocks that together contain a large amount of work. Changing a block (which can only be done by making a new block containing the same predecessor) requires regenerating all successors and redoing the work they contain. This protects the block chain from tampering.
 
-The most widely used proof-of-work scheme is SHA-256, which was introduced by [[Bitcoin]]. Some other hashing algorithms that are used for proof-of-work include scrypt, Blake-256, CryptoNight, (1.1) HEFTY1, Quark, SHA-3, scrypt-jane, scrypt-n, and combinations thereof. 
+The most widely used proof-of-work scheme is based on [SHA-256](https://en.wikipedia.org/wiki/SHA-2) and was introduced as a part of [[Bitcoin]]. Some other hashing algorithms that are used for proof-of-work include scrypt, Blake-256, CryptoNight, (1.1) HEFTY1, Quark, SHA-3, scrypt-jane, scrypt-n, and combinations thereof. 
 
 ## Example
 
