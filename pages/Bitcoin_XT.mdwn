@@ -1,8 +1,47 @@
-[[!template id=infobox_software logo=[[File:xt.png 256px]] image=[[File:bitcoinxt.png 256px]] caption="The identifying marks of an XT client" bg=orange author="[[Gavin Andresen]]<br/>[[Mike Hearn]]" website="[http://bitcoinxt.software bitcoinxt.software]"]]**Bitcoin XT** is a fork of [[Bitcoin_Core]] intended to perform a [[hard_fork]] after it is implemented by 75% of miners. Among other changes, it plans to implement [[BIP_0101]].
+[[!template id=infobox_software logo=[[File:xt.png 256px]] image=[[File:bitcoinxt.png 256px]] caption="The identifying marks of an XT client" bg=orange author="[[Gavin Andresen]]<br/>[[Mike Hearn]]" website="[http://bitcoinxt.software bitcoinxt.software]"]]**Bitcoin XT** is an implementation of a Bitcoin full node that embraces Bitcoin's original vision of simple, reliable, low-cost transactions for everyone in the world. It is based upon the source code of [[Bitcoin_Core]], and is built by taking the latest stable Core release, applying a series of patches, and then doing deterministic builds so anyone can check the downloads correspond to the source code. 
+
+##Mission statement
+
+The XT mission statement defines what the project believes is important: commitment to these principles are what differentiates us from Bitcoin Core. We try to follow Satoshi's original vision, as it is that vision which brought the Bitcoin community together.
+
+* **Scaling the network up to handle user demand is important**, even if that means the network changes along the way. It's what Satoshi wanted (2.1) and the idea of a global system used by ordinary people is what motivated many of us to join him.
+* **XT provides people with information they need**, even if using it requires them to make risk based decisions. For example:
+	* We believe **unconfirmed transactions are important**. Many merchants want or need to accept payments within seconds rather than minutes or hours. XT accepts this fact and does what it can to minimise the risk, then help sellers judge what remains. It is committed to the first seen rule (2.2). We will not adopt changes that make unconfirmed transactions riskier.
+	* **Lightweight wallets are important**. Most users cannot or will not run a fully verifying node. Most of the world population does not even own a computer: they will experience the internet exclusively via smartphones. These users must sacrifice some security in order to participate, so XT supports whatever technical tradeoffs wallet developers wish to explore.
+* **Decision making is quick and clear**. Decisions are made according to a leadership hierarchy. The XT software encodes decisions that follow the above principles: people who disagree are welcome to use different software, or patch ours. We do not consider writing principled software to be centralising and do not refuse to select reasonable defaults.
+* The Bitcoin XT community is friendly, pragmatic, cares about app developers and considers the user experience in everything we do. We value professionalism in technical approach and communication. We run a moderated mailing list and do not tolerate troublemakers.
+
+You can [read more about the code changes in Bitcoin XT](https://bitcoinxt.software/patches.html). 
+
+##Block size hard fork
+
+Many years ago, a capacity limit was introduced into Bitcoin by [[Satoshi]]. He intended it to be removed once lightweight wallets were developed, however, this was never done. It is expected that soon Bitcoin will be out of capacity and experiencing reliability problems as a result. The Bitcoin Core developers are currently unwilling to increase the block chain's capacity, so miners and users who disagree with them must either switch to Bitcoin XT, or apply the bigblocks patches (3.1) manually.
+
+There has been much community [[debate|Block_size_limit_controversy]] on this topic. You can read analysis and explanations for why we think raising the block size limit is important here: 
+
+* [A series of essays](http://gavinandresen.ninja/) by [[Gavin_Andresen]]
+* [Why the block size limit must be raised](https://medium.com/@octskyward/crash-landing-f5cc19908e32) and [why the proposed alternative schemes will not work](https://medium.com/@octskyward/the-capacity-cliff-586d1bf7715e), by [[Mike_Hearn]].
+
+##Miners
+
+By mining with Bitcoin XT you will produce blocks with a new version number. This indicates to the rest of the network that you support larger blocks. When 75% of the blocks are new-version blocks, a decision has been reached to start building larger blocks that will be rejected by Bitcoin Core nodes. At that point a waiting period of two weeks begins to allow news of the new consensus to spread and allow anyone who hasn't upgraded yet to do so. During this time, existing Bitcoin Core nodes will be printing a message notifying the operators about the availability of an upgraded version.
+
+If the hard fork occurs and you are still mining with Bitcoin Core, your node will reject the first new block that is larger than one megabyte in size. At that point there is a risk your newly mined coins will not be accepted at major exchanges or merchants.
+
+**Soft limit*: Like Core, Bitcoin XT supports configuring the maximum size of blocks to mine. When set your node will not create blocks larger than the limit, although it will still accept them. By default the soft limit is not used, but it can be configured if you feel your blocks are being orphaned too frequently due to propagation delays. 
+
+##Users and merchants
+
+If insufficient mining hash power runs XT to reach supermajority then nothing will happen. If enough does, you will follow the new chain and things will continue as normal.
+
+Additionally, XT has a useful feature: double spend monitoring and relaying. By running XT you help propagate information about double spends across the network, making it harder for payment fraudsters to steal from sellers by broadcasting two conflicting transactions simultaneously.
+
 ##References
 
+2.1: [Re: Bitcoin P2P e-cash paper](http://satoshi.nakamotoinstitute.org/emails/cryptography/2/)  
+2.2: [Re: Bitcoin P2P e-cash paper](http://satoshi.nakamotoinstitute.org/emails/cryptography/8/)  
+3.1: [Big blocks patches on GitHub](https://github.com/bitcoinxt/bitcoinxt/tree/only-bigblocks)
 
-[[!template id=stub]]
+
 [[!tag "Block_size_limit_controversy"]]
-[[!tag "Derivative_altcoins"]]
 [[!tag "Direct_code_forks_of_Bitcoin_Core"]]
