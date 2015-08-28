@@ -1,6 +1,6 @@
-[[!template id=infobox_software logo=[[File:xt.png 256px]] image=[[File:bitcoinxt.png 256px]] caption="The identifying marks of an XT client" bg=orange author="[[Gavin Andresen]]<br/>[[Mike Hearn]]" website="[https://bitcoinxt.software bitcoinxt.software]"]]**Bitcoin XT** is a fork of [[Bitcoin_Core]] that aims to make transactions reliable, inexpensive, and accessible. It achieved significant support after adopting [[BIP_0101]], making it an important proponent of the [[block_size_limit_controversy]].
+[[!template id=infobox_software logo=[[File:xt.png 256px]] image=[[File:bitcoinxt.png 256px]] caption="The identifying marks of an XT client" bg=orange author="[[Gavin Andresen]]<br/>[[Mike Hearn]]" website="[https://bitcoinxt.software bitcoinxt.software]"]]**Bitcoin XT** is a fork of [[Bitcoin_Core]] that aims to make transactions reliable, inexpensive, and accessible. It achieved significant support after adopting [[BIP_0101]], making it an important proponent of the [[block_size_limit_controversy]]. (1.1)
 
-After the inauguration of [[Wladimir_van_der_Laan]] to the position of [[Core_maintainer]], Bitcoin XT was organized[[!template id=when]] by [[Gavin_Andresen]] and [[Mike_Hearn]] to address controversial ideas lacking the consensus required to be implemented in Bitcoin Core. (1.1)
+After the inauguration of [[Wladimir_van_der_Laan]] to the position of [[Core_maintainer]], Bitcoin XT was organized[[!template id=when]] by [[Gavin_Andresen]] and [[Mike_Hearn]] to address controversial ideas lacking the consensus required by Laan to be implemented in Bitcoin Core. (1.2)
 
 Once 75% of the last 1000 blocks are observed to be in support of XT, a [[hardfork]] will occur and XT nodes will separate from the rest of the network, implementing several changes, most notably an increase in block size.
 
@@ -18,7 +18,7 @@ The XT mission statement defines what the project believes is important: commitm
 You can [read more about the code changes in Bitcoin XT](https://bitcoinxt.software/patches.html). 
 
 ##Block size hard fork
-Many years ago, a capacity limit was introduced into Bitcoin by [[Satoshi]]. He intended it to be removed once lightweight wallets were developed, however, this was never done. It is expected that soon Bitcoin will be out of capacity and experiencing reliability problems as a result. The Bitcoin Core developers are currently unwilling to increase the block chain's capacity, so miners and users who disagree with them must either switch to Bitcoin XT, or apply the bigblocks patches (3.1) manually.
+In 2010, a block size limit was introduced into Bitcoin by [[Satoshi_Nakamoto]]. He added it as a safety measure and meant for it to be removed once lightweight wallets were developed; however, this was never done. It is expected that soon Bitcoin will be out of capacity and experiencing reliability problems as a result. Bitcoin Core has not yet implemented a measure to increase the block size limit, so miners and users who disagree with them must either switch to Bitcoin XT, or apply the bigblocks patches (3.1) manually.<!--mention bip 100-->
 
 There has been much community [[debate|Block_size_limit_controversy]] on this topic. You can read analysis and explanations for why we think raising the block size limit is important here: 
 
@@ -26,7 +26,7 @@ There has been much community [[debate|Block_size_limit_controversy]] on this to
 * [Why the block size limit must be raised](https://medium.com/@octskyward/crash-landing-f5cc19908e32) and [why the proposed alternative schemes will not work](https://medium.com/@octskyward/the-capacity-cliff-586d1bf7715e), by [[Mike_Hearn]].
 
 ##Miners
-Miners that side with Bitcoin XT will produce blocks with a new version number. This indicates to the rest of the network that they support XT. When 75% of the last 1000 blocks are new-version blocks, a decision will have been reached to start building larger blocks that will be rejected by Bitcoin Core nodes. This will begin after a waiting period of two weeks to allow news of the new consensus to spread and allow anyone who hasn't upgraded yet to do so. During this time, existing Bitcoin Core nodes will be [[printing a message|alert_system]] notifying the operators about the availability of an upgraded version.
+Miners that side with Bitcoin XT will produce blocks with a new version number. (4.1) This indicates to the rest of the network that they support XT. (4.1) When 75% of the last 1000 blocks are new-version blocks, a decision will have been reached to start building larger blocks that will be rejected by Bitcoin Core nodes. (4.1) This will begin after a waiting period of two weeks to allow news of the new consensus to spread and allow anyone who hasn't upgraded yet to do so. (4.1) During this time, existing Bitcoin Core nodes will be [[printing a message|alert_system]] notifying the operators about the availability of an upgraded version. (4.1)
 
 If the hard fork occurs and you are still mining with Bitcoin Core, your node will reject the first new block that is larger than one megabyte in size. At that point there is a risk your newly mined coins will not be accepted at major exchanges or merchants. 
 
@@ -42,10 +42,12 @@ Additionally, XT has a useful feature: double spend monitoring and relaying. By 
 
 ##References
 
-1.1: [An XT FAQ](https://medium.com/@octskyward/an-xt-faq-38e78aa32ff0) [[Mike Hearn 27 August 2015 Work: Medium  
+1.1: [BIP101 implementation flaws](http://organofcorti.blogspot.com/2015/08/bip101-implementation-flaws.html) [[organofcorti]] 27 August 2015 Work: [[The Neighbourhood Pool Watch]]  
+1.2: [An XT FAQ](https://medium.com/@octskyward/an-xt-faq-38e78aa32ff0) [[Mike Hearn 27 August 2015 Work: Medium  
 2.1: [Re: Bitcoin P2P e-cash paper](http://satoshi.nakamotoinstitute.org/emails/cryptography/2/)  
 2.2: [Re: Bitcoin P2P e-cash paper](http://satoshi.nakamotoinstitute.org/emails/cryptography/8/)  
-3.1: [Big blocks patches on GitHub](https://github.com/bitcoinxt/bitcoinxt/tree/only-bigblocks)
+3.1: [Big blocks patches on GitHub](https://github.com/bitcoinxt/bitcoinxt/tree/only-bigblocks)  
+4.1: [The Bitcoin XT Fork](http://avc.com/2015/08/the-bitcoin-xt-fork/) Wilson, Fred 17 August 2015 Work: AVC
 
 
 [[!tag "Block_size_limit_controversy"]]
