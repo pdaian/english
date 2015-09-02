@@ -30,7 +30,7 @@ It can support CGMiner, BFGMiner and AvalonMiner(Based on BFGMiner) for now.
 	**Run**
 	sudo ./cgminer --icarus-options 115200:1:1 --icarus-timing 0.22 -o http://stratum.pool:3333 -u  work -p pass 
 	or
-	sudo ./cgminer --icarus-options 115200:1:1 --icarus-timing 0.22 -o http://stratum.pool:3333 -u  work -p pass --api-allow W:192.168.2,W:192.168.2.1 --api-listen $@ 2>./log
+	sudo ./cgminer --icarus-options 115200:1:1 --icarus-timing 0.22 -o http://stratum.pool:3333 -u  work -p pass --api-allow W:192.168.2.1 --api-listen $@ 2>./log
 
 * Patches
 	Patch for Canaan Creative's CGMiner: [001-avalon3-nano.patch](http://downloads.canaan-creative.com/software/avalon_nano/patches/001-avalon3-nano.patch)
@@ -220,6 +220,48 @@ The debugger can also be used to program the LPC11U14 chip.
 ### Issues
 
 * OpenOCD is not support ULINK2 (See src/jtag/drivers/ulink.c)
+
+## Hardware version 2.0
+### Features
+
+* VID/PID: 0x29F1/0x33F3
+* [MM protocol](https://github.com/Canaan-Creative/MM/blob/avalon4/firmware/doc/protocol.md) support
+* It use HID CDC, without need driver installation.
+* Smart [[LED|#LED]] indicator
+* Overheating protection. (>= 65℃)
+* Adjust the hashrate automatically by temperature (~1.0GH/s -  ~3.6GH/s)
+
+### Software
+It can support Avalon miner, CGMiner for now.
+#### Avalon miner
+The easiest way to mining.
+
+1. [Install from chrome web store](https://chrome.google.com/webstore/detail/avalon-miner/odlgkocclgbbahkiajhldmlbmefpcjnc?hl=en-US)
+1. [Install from local crx](http://downloads.canaan-creative.com/software/avalon_nano2/app/Avalon_miner_latest.crx)
+
+#### CGMiner Under Ubuntu 14.04
+
+* Download / Compile / Run
+	**Download**
+	Inside your home directory, download CGMiner
+	git clone https://github.com/Canaan-Creative/cgminer
+
+	**Compile**
+	cd cgminer
+	git checkout origin/avalon-miner -b avalon-miner
+	./autogen.sh --enable-avalon-miner
+	make -j 4
+
+	**Run**
+	sudo ./cgminer -o http://stratum.pool:3333 -u work -p pass
+	or
+	sudo ./cgminer -o http://stratum.pool:3333 -u work -p pass --api-allow W:192.168.2.1 --api-listen $@ 2>./log
+
+### Firmware
+#### Release
+[2015-08-25](http://downloads.canaan-creative.com/software/avalon_nano2/firmware/2015-08-25/)
+
+* Avalon nano 2.0 firmware (3U1505-4481b7e0): first version
 
 ## References
 
