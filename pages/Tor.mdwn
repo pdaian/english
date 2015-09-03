@@ -11,7 +11,11 @@ Down the page you can find examples how to configure applications to use Tor to 
 [[!template id=ns:file]][[:20110109-tor-running.png]] On the taskbar of your compute you'll see a small green onion when Tor is running.
 [[!template id=ns:file]][[:20110109-bitcoin-mirc-vidalia.png]]
 
-#GUI
+# Bitcoin Core
+
+*See also [Bitcoin Core instructions for Tor](https://github.com/bitcoin/bitcoin/blob/master/doc/tor.md)*
+
+##GUI
 Once you have your Tor client up & running, you can configure your Bitcoin client to use it.<br />
 Select in menu Settings -> Options<br />
 [[!template id=ns:file]][[:20110108-btc-options.png]]<br />
@@ -24,7 +28,7 @@ Configuring an application to use Tor is also called to torify it.
 *the note about bitcoin-otc promote on a more appropriate place in this page? reference to trading and IRC*
 Conducting business using [[bitcoin-otc]] can be done more anonymously when directly connected to a Freenode IRC hidden service.
 
-#bitcoind
+##bitcoind
 
 Run bitcoind with -proxy=127.0.0.1:9050 (or whatever your SocksPort is).
 
