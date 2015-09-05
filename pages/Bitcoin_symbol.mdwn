@@ -18,7 +18,7 @@ A [formal application](http://www.coindesk.com/bitcoin-foundation-standardise-bi
 In some discussions on topics [41](https://bitcointalk.org/index.php?topic=41.0), [369](https://bitcointalk.org/index.php?topic=369.0) and [7215](https://bitcointalk.org/index.php?topic=7215.0) on the Bitcoin Forum several designs of an official Bitcoin sign have been proposed. This section on the Wiki is intended to streamline the process of arriving at an official Bitcoin currency sign with its own Unicode character code.
 
 #### Goal
-Having a unique Bitcoin currency sign will allow typographers to add their currency sign design in their fonts. This is similar as implementing support for the euro sign. Each font has its own version of the euro sign that fits with the style observed in the characters in the rest of the fonts of their typefaces. Note that the Unicode Consortium does not endorse Bitcoin in any way by assigning a Unicode character code, however, by having an official Unicode Bitcoin's perception of legitimacy will increase. 
+Having a unique Bitcoin currency sign will allow typographers to add their currency sign design in their fonts. This is similar to implementing support for the euro sign. Each font has its own version of the euro sign that fits with the style observed in the characters in the rest of the fonts of their typefaces. Note that the Unicode Consortium does not endorse Bitcoin in any way by assigning a Unicode character code, however, by having an official Unicode Bitcoin's perception of legitimacy will increase. 
 
 #### Requirements and criteria
 
@@ -92,8 +92,44 @@ It has led to the following options:
 |<center>B-T-C monogram [[http://hosting11.imagecross.com/image-hosting-61/2381unicode1s.png]][[http://hosting11.imagecross.com/image-hosting-61/162bitcoin_uni_s.png]]</center>|* Cons: Does not exist in the Unicode standard	|n/a ||
 
 
+### Inserting the symbol
+In lieu of the Bitcoin symbol being included in the Unicode standard and its adoption into typographic fonts, [[!template id=btc]] can be included in many documents by other means.  This section focuses on online publications but the basic concepts apply to all publishing forms.
+
+A package including a high resolution raster image with transparency (PNG), vector image (SVG) and TrueType font (TTF) is available (9.1)
+
+#### Image
+The Bitcoin symbol can be inserted as an image, as is done in the opening sentence of this page.  The benefit of this method is that any client that can display images in line with text will be able to display the symbol.  The down side to this method is that as an image, it does not always degrade as nicely as a font.  If using raster image, scaling the image up/down (to fit with surrounding text) may result in pixelation, inappropriate filtering, and other issues typical of raster images.  If using a vector image, scaling concerns do not apply but the display would still not benefit from font-specific rendering features such as [hinting](wikipedia:hinting).  Both forms also suffer from client-specific considerations such as whether or not a box will be drawn around the image and the general inability to easily style its display; applying color requires specific CSS, and italicizing would require a CSS skew transform, for example.
+
+When using an image in running text on a webpage it's generally a good idea to set the *alt* property to an appropriate value.  For example, when depicting amounts you might use *alt="BTC"*.  Text including the symbol copied and pasted will then remain syntactically correct, replacing the symbol with BTC.
+
+Sample HTML code:
+	<nowiki>
+ .btc { height:1em; position:relative; top:0.17em; cursor:text; }
+  ...
+  Please send <img src="btc-sans.png" alt="BTC" class="btc" />0.01 to ...
+  Please send <img src="btc-sans.svg" alt="BTC" class="btc" />0.01 to ...</nowiki>
+
+#### Font Awesome icon
+The Font Awesome collection of icons and symbols also includes the Bitcoin symbol. (11.1)
+
+Sample HTML code:
+	<nowiki> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+ ...
+ Please send <i class="fa fa-btc"></i>0.01 to ...</nowiki>
+
+#### Font
+As few fonts include the Bitcoin symbol, a special font was created by [[User:Theymos]], originally for the [[BitcoinTalk]] forum (12.1).  The font consists of *only* the Bitcoin symbol used in the glyph for the capital letter B.  The text "BTC" can be entered and styled with this font, causing it to be replaced entirely with just the symbol on those systems that support this font, while on other systems the text "BTC" is retained.  Similarly, copying and pasting text will still retain "BTC".  This method is used on BitcoinTalk and this Bitcoin Wiki.
+
+Sample HTML code:
+	<nowiki> @font-face { font-family: BTC; src: url(BTC.ttf); }
+ ...
+ Please send <span style="font-family:BTC, sans-serif">BTC</span>0.01 to ...</nowiki>
+
 ##See Also
 
 * [[Promotional_graphics]]
 
 [[!tag "Introduction"]]
+9.1: http://www.filedropper.com/bitcoinsymbol  
+11.1: http://fortawesome.github.io/Font-Awesome/icon/btc/  
+12.1: https://bitcointalk.org/index.php?topic=88647
