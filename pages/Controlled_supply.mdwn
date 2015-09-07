@@ -94,6 +94,7 @@ The total number of bitcoins, as mentioned earlier, will tend toward 21 million.
 ##Spendable Supply
 The theoretical total number of bitcoins, 21 million, should not be confused with the total spendable supply.  The total spendable supply is always lower than the theoretical total supply, and is subject to accidental loss, willful destruction, and technical peculiarities.
 
+One way to see a part of the destruction of coin is by collecting a sum of all unspent transaction outputs, using a [[Bitcoin RPC|API_reference_(JSON-RPC)]] command <code>gettxoutsetinfo</code>.  The *total_amount* value returned is the sum of all outputs that the client deems technically spendable but not currently spent.  Note however that this does not take into account outputs that are exceedingly unlikely to be spent as is the case in loss and destruction via constructed addresses, for example.
 ###Loss of bitcoin
 Bitcoins may be lost if the conditions required to spend them are no longer known.  For example, if you made a transaction to an [[address]] that requires a private key in order to spend those bitcoins further, had written that private key down on a piece of paper, but that piece of paper was lost.  In this case, that bitcoin may also be considered lost, as the odds of randomly finding a matching private key are such that it is generally considered impossible.
 
