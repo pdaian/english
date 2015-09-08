@@ -681,3 +681,12 @@ Check performed from a datacenter server with linkchecker software.
 |
 |http://www.bitmit.net/en |https://en.bitcoin.it/wiki/Trade ||ConnectionError: ('Connection aborted.', gaierror(8, 'hostname nor servname provided, or not known')) |||False |http://www.bitmit.net/en |1425 |6 |Bitmit |-1 |-1 |70.6703021526 |0 |1 |
 
+
+## How test for links has been performed
+
+Here's the linkchecker command:
+
+1. linkchecker --no-warnings --no-status -t 100 -o csv --check-extern --ignore-url=en.bitcoin.it/wiki -r 2 https://en.bitcoin.it/wiki/Trade
+
+Then we grep out InsecureRequestWarning, SSLError, 503 errors, Origin errors (mostly cloud services) and malign reads (when http server works but gives bad beginning, linkchecker does not like it).
+Works like a charm
