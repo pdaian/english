@@ -6,7 +6,7 @@
 * More transactions per second
 * Off-chain solutions are not yet ready to take off the load from the main blockchain.
 
-## Unclear Arguments
+## Contentions
 
 * Increased blocksize will leave space for extensions like Mastercoin, Counterparty, etc.
 	* Neutral: Bitcoin competitors will have lower fees
@@ -17,6 +17,9 @@
 	* Negative: Bitcoin may look unattractive to new users with high fees
 	* Negative: High fees may stop or reverse global adoption, investment, development, support and centralization[[!template id=clarification_needed]]
 	* Negative: Bitcoin users pay higher fees
+* A low blocksize limit encourages higher transactions fees to incentivize miners ("let a fee market develop"). 
+	* A fee market naturally develops due to miner latency regardless (3.1)
+		* The relay network can be optimized so that miners don't have a stale rate increasing with latency. This should cause the fee market to once again require a block size limit to exist.
 
 ## Arguments in opposition to increasing the blocksize
 
@@ -28,7 +31,6 @@
 * "Congestion" concerns can be solved with mempool improvements including transaction eviction.
 * No amount of max block size would support all the world's future transactions on the main blockchain (various types of off-chain transactions are the only long-term solution)
 * Fast block propagation is either not clearly viable, or (eg, IBLT) creates centralised controls.
-* A low blocksize limit encourages higher transactions fees to incentivize miners ("let a fee market develop"). Counter-argument: [A Transaction Fee Market Exists Without a Block Size Limit](https://dl.dropboxusercontent.com/u/43331625/feemarket.pdf)
 
 ### Damage to decentralization
 
@@ -81,6 +83,7 @@ Positions below are based on a suggested fixed block size increase to 20MiB.  Po
 
 ##References
 
+3.1: https://dl.dropboxusercontent.com/u/43331625/feemarket.pdf A Transaction Fee Market Exists Without a Block Size Limit  
 4.1: https://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg08276.html  
 4.2: [How to raise block size in a short time](https://www.reddit.com/r/Bitcoin/comments/392m43/mike_hearn_blocksize_debate_at_the_breaking_point/cs00wdd) , Peter Todd, Reddit /r/Bitcoin, 9 June 2015  
 5.1: https://www.weusecoins.com/why-blocksize-limit-keeps-bitcoin-free-decentralized/  
