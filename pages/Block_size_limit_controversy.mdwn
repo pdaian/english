@@ -41,10 +41,10 @@
 
 ##Proposals
 ###BIP 100
-Periodically change the limit based on observed block size, but never go larger than 32MB.
+Change block size limit based on miner votes, but don't leave the range (1MB, 32MB) without a softfork or hardfork respectively.
 ###BIP 101
 [[!template id=seealso Bitcoin XT]]
-Increase to 8 MB on January 11, 2016, and double the limit every two years.
+Increase to 8 MB after both January 11, 2016 has passed and 75% of miners are supporting. Double the limit every two years with the size increasing linearly within those two year intervals.
 ###BIP 102
 Increase to 2 MB on November 11, 2015.
 ###BIP 103
