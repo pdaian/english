@@ -1,6 +1,6 @@
-The core Bitcoin network can scale to much higher transaction rates than are seen today, assuming that nodes in the network are primarily running on high end servers rather than desktops. Bitcoin was designed to support lightweight clients that only process small parts of the block chain (see *simplified payment verification* below for more details on this). A configuration in which the vast majority of users sync lightweight clients to full nodes.
+The core Bitcoin network can scale to much higher transaction rates than are seen today, assuming that nodes in the network are primarily running on high end servers rather than desktops. Bitcoin was designed to support lightweight clients that only process small parts of the block chain (see *simplified payment verification* below for more details on this).
 
-The requirement of expensive full nodes is controversial. While having a high-capacity set of full nodes increases the on-blockchain transaction rate, the requirement of full nodes to be high capacity has a centralizing effect. Scalability solutions that don't require high capacity full nodes include sidechains and the Lightning Network.
+_Please note that this page exists to give calculations about the scalability of the Bitcoin protocol and transactions on the block chain. It is not intended to discuss the scalability of alternative protocols or try and summarise philosophical debates. Create alternative pages if you want to do that._
 
 ##Scalability targets
 
@@ -12,10 +12,6 @@ Let's take 4,000 tps as starting goal. Obviously if we want Bitcoin to scale to 
 
 Today the Bitcoin network is restricted to a sustained rate of 7 tps due to the bitcoin protocol restricting block sizes to 1MB.
 
-##Increasing Block Size
-
-Increasing the blocksize is the easiest solution to implement, as it only requires changing one line of code, and is possible today. However, increasing the power of full nodes increases the cost and increasing the cost of full nodes has a centralizing effect. While a miner can run a full node, they have less and less reason to as blocks become more and more expensive to process. As less miners run full nodes, power over the mining network and ability to reverse transactions increases. (3.1) (3.2) 
-
 ###CPU
 
 The protocol has two parts. Nodes send "inv" messages to other nodes telling them they have a new transaction. If the receiving node doesn't have that transaction it requests it with a getdata.
@@ -24,7 +20,7 @@ The big cost is the crypto and block chain lookups involved with verifying the t
 
 Bitcoin is currently able (with a couple of simple optimizations that are prototyped but not merged yet) to perform around 8000 signature verifications per second on an quad core [Intel Core i7-2670QM 2.2Ghz processor](http://ark.intel.com/products/53469). The average number of inputs per transaction is around 2, so we must halve the rate. This means 4000 tps is easily achievable CPU-wise with a single fairly mainstream CPU.
 
-As we can see, this means as long as Bitcoin nodes are allowed to max out at least 4 cores of the machines they run on, we will not run out of CPU capacity for signature checking unless Bitcoin is handling 100 times as much traffic as PayPal. As of late 2012 the network is handling 0.5 transactions/second, so even assuming enormous growth in popularity we will not reach this level for a long time.
+As we can see, this means as long as Bitcoin nodes are allowed to max out at least 4 cores of the machines they run on, we will not run out of CPU capacity for signature checking unless Bitcoin is handling 100 times as much traffic as PayPal. As of late 2015 the network is handling 1.5 transactions/second, so even assuming enormous growth in popularity we will not reach this level for a long time.
 
 Of course Bitcoin does other things beyond signature checking, most obviously, managing the database. We use LevelDB which does the bulk of the heavy lifting on a separate thread, and is capable of very high read/write loads. Overall Bitcoin's CPU usage is dominated by ECDSA.
 
@@ -46,13 +42,7 @@ It is not required for most fully validating nodes to store the entire chain. In
 
 Only a small number of archival nodes need to store the full chain going back to the genesis block. These nodes can be used to bootstrap new fully validating nodes from scratch but are otherwise unnecessary.
 
-The primary limiting factor in Bitcoin's performance is disk seeks once the unspent transaction output set stops fitting in memory. It is quite possible that the set will always fit in memory on dedicated server class machines, if hardware advances faster than Bitcoin usage does.
-
-##Lightning Network
-
-To account for 2 transactions per day for every human on earth, blocks would need to be 24GB, and would require the processing power of approximately 40 Intel Core i7-2670QM 2.2Ghz processors. Some argue that as block sizes increase, we cannot simply throw more resources at processing blocks unless said resources become cheaper at a rate faster than the need for these resources increases. Otherwise our result is a few, or just one, centralized parties that control the blockchain and are able to reverse or censor transactions, evidenced by the network previously beginning to converge to centralization to under much much smaller load. Others argue that under any realistic maximum usage scenario, like in the case of 24 GB blocks, full node requirements would not be so great. This is argued in spite of the fact that the processor requirements are 40 i7s (7.1) costing $6000, one petabyte worth of disk space per year costing $30,000 (7.2), and $50,000 yearly for 2PB of bandwidth (that is with the generous assumption that upload costs are the same as download costs) (7.3) (7.4).
-
-The Lightning Network can provide trustless off-chain transactions and scales better than O(N*M) (requiring every full node to have every unspent output). Other advantages include not having a counterparty risk, no one can steal your bitcoin. Despite Lightning transactions being trustless, the system doesn't require everyone to process a copy of transactions from everyone else in order to be secure. In addition, Lightning has instant confirmations and doesn't require a hardfork. (7.5) Due to these assumed qualities of the Lightning Network, those wary of the potential centralizing effects of large blocks believe this technology can replace increases in block size as the means to scale Bitcoin usage.
+The primary limiting factor in Bitcoin's performance is disk seeks once the unspent transaction output set stops fitting in memory. Once hard disks are phased out in favour of SSDs, it is quite possible that access to the UTXO set never becomes a serious bottleneck.
 
 ##Optimizations
 
@@ -90,12 +80,6 @@ There are a few proposals for optimizing Bitcoin's scalability. Some of these re
 
 * [Ultimate blockchain compression](https://bitcointalk.org/index.php?topic=88208.0) - the idea that the blockchain can be compressed to achieve "trust-free lite nodes"
 * [The Finite Blockchain](http://www.bitfreak.info/files/pp2p-ccmbc-rev1.pdf) paper that describes splitting the blockchain into three data structures, each better suited for its purpose. The three data structures are a finite blockchain (keep N blocks into the past), an "account tree" which keeps account balance for every address with a non-zero balance, and a "proof chain" which is an (ever growing) slimmed down version of the blockchain.
+* [Lightning Network](https://lightning.network/), an alternative protocol for transaction clearance in which payment hubs set up micropayment channels between each other and settle up on the block chain occasionally. Ordinary users interact primarily or only with hubs.
 
 [[!tag "Technical"]]
-3.1: [Miner Attack Success Probability Calculator](https://people.xiph.org/~greg/attack_success.html)  
-3.2: [Bitcoin Whitepaper](https://bitcoin.org/bitcoin.pdf)  
-7.1: http://ark.intel.com/products/53469  
-7.2: http://www.amazon.com/Seagate-Desktop-3-5-Inch-Internal-ST4000DM000/dp/B00B99JU4S  
-7.3: http://business.financialpost.com/fp-tech-desk/how-much-does-bandwidth-actually-cost  
-7.4: https://businessonlybroadband.wordpress.com/2014/09/11/nielsens-law-of-internet-bandwidth-and-what-it-means-for-utilization/  
-7.5: [Lighting Network](http://lightning.network/lightning-network.pdf)
