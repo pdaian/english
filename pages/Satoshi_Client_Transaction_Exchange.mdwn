@@ -6,7 +6,6 @@ that deal with this exchange of transactions.
 
 Transactions are exchanged only if they are [[standard|IsStandard]] and [[valid|Invalid_block]].
 
-
 ## Wallet Send
 
 The client periodically calls SendMessages() (in main.cpp) which calls
@@ -18,76 +17,70 @@ This is done only about every 30 minutes.
 
 Transactions are only rebroadcast if they have a timestamp at least
 5 minutes older than the last block was received. They are sorted
-and sent oldest first.[[1]]
+and sent oldest first. (3.1)
 
 ## Periodic Advertisement
 
 The client periodically calls SendMessages() (in main.cpp) which
 determines if a message should be sent to a remote node.
 For each message processing iteration, one node is chosen as the
-"trickle node".[[2]]  This node is the only one chosen to receive
-an "addr" message, if appropriate.[[3]]
+"trickle node". (4.1)  This node is the only one chosen to receive
+an "addr" message, if appropriate. (4.2)
 
 In the section for inventory, the client sends 1/4 of the transaction
-inventory, determined randomly [[4]], UNLESS they are the trickle node,
-in which case they receive ALL transactions.[[5]] Yes that seems reversed,
+inventory, determined randomly (4.3), UNLESS they are the trickle node,
+in which case they receive ALL transactions. (4.4) Yes, that seems reversed,
 but it is what it is. If the node is to receive 1/4 (not all), then the
 code also avoids sending any transactions that came from the local
-wallet.[[6]]  The comments indicate this is intended to increase privacy.
-
-
+wallet. (4.5)  The comments indicate this is intended to increase privacy.
 
 ## Relay
 
 When the client receives a transaction via a "tx" messages,
 it calls RelayMessage, which calls RelayInventory, which queues the
-inventory to be sent to all other nodes.[[7]]
-
-
-
-##Footnotes
-
-1. See CWallet::ResendWalletTransactions in wallet.cpp.
-
-2. See:
-	pnodeTrickle = vNodesCopy[(1)](GetRand(vNodesCopy.size()));
-and
-	SendMessages(pnode, pnode == pnodeTrickle);
-in ThreadMessageHandler2() in net.cpp.
-
-3. See:
-	//
-	// Message: addr
-	//
-	if (fSendTrickle)
-	{  
-in SendMessages() in main.cpp.
-
-4. See:
-	bool fTrickleWait = ((hashRand & 3) != 0);
-in SendMessages() in main.cpp.
-
-5. See:
-	// trickle out tx inv to protect privacy
-	if (inv.type == MSG_TX && !fSendTrickle)
-	{   
-in SendMessages() in main.cpp.
-
-6. See:
-	// always trickle our own transactions
-	if (!fTrickleWait)
-	{   
-	CWalletTx wtx;
-	if (GetTransaction(inv.hash, wtx))
-	if (wtx.fFromMe)
-	fTrickleWait = true;
-	}
-in SendMessages() in main.cpp.
-
-7. Both RelayMessage and RelayInventory in net.h.
+inventory to be sent to all other nodes. (5.1)
 
 ##See Also
  [[Transaction broadcasting|Transaction_broadcasting]]
 
+##Footnotes
 [[!tag "Developer"]]
 [[!tag "Technical"]]
+3.1: See: <code>CWallet::ResendWalletTransactions</code> in wallet.cpp.  
+<span class="ref-label">4.1:
+<span class="ref-column">
+ See: <br><code>pnodeTrickle = vNodesCopy[GetRand(vNodesCopy.size())];</code><br>
+and <br><code>SendMessages(pnode, pnode == pnodeTrickle);</code><br> in ThreadMessageHandler2() in net.cpp.</span>  
+<span class="ref-label">4.2:
+<span class="ref-column">
+ See:<br><code>
+        //<br>
+        // Message: addr<br>
+        //<br>
+        if (fSendTrickle)<br>
+        {  </code><br>
+in SendMessages() in main.cpp.</span>  
+<span class="ref-label">4.3:
+<span class="ref-column">
+ See: <br><code>bool fTrickleWait = ((hashRand & 3) != 0);</code><br>
+in SendMessages() in main.cpp.</span>  
+<span class="ref-label">4.4:
+<span class="ref-column">
+ See:<br><code>
+        // trickle out tx inv to protect privacy<br>
+        if (inv.type == MSG_TX && !fSendTrickle)<br>
+        {   </code><br>
+in SendMessages() in main.cpp.</span>  
+<span class="ref-label">4.5:
+<span class="ref-column">
+ See:<br><code>
+        // always trickle our own transactions<br>
+        if (!fTrickleWait)<br>
+        {   <br>
+            CWalletTx wtx;<br>
+            if (GetTransaction(inv.hash, wtx))<br>
+               if (wtx.fFromMe)<br>
+                  fTrickleWait = true;<br>
+        }</code><br>
+in SendMessages() in main.cpp.</span>  
+5.1: Both RelayMessage and RelayInventory in net.h.
