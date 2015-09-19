@@ -38,6 +38,7 @@ Options:
 	-reindex               Rebuild block chain index from current blk000??.dat files on startup
 	-sysperms              Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)
 	-txindex               Maintain a full transaction index, used by the getrawtransaction rpc call (default: 0)
+	-prune=<n>             Run node in pruned mode, <n> number of MB to allot for raw block & undo data (default: disabled)
 
 Connection options:
 	-addnode=<ip>          Add a node to connect to and attempt to keep the connection open
@@ -73,9 +74,10 @@ Wallet options:
 	-salvagewallet         Attempt to recover private keys from a corrupt wallet.dat on startup  
 	-sendfreetransactions  Send transactions as zero-fee transactions if possible (default: 0)  
 	-spendzeroconfchange   Spend unconfirmed change when sending transactions (default: 1)  
-	-txconfirmtarget=<n>   If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: 1)  
+	-txconfirmtarget=<n>   If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: 2)  
 	-maxtxfee=<amt>        Maximum total fees to use in a single wallet transaction, setting too low may abort large transactions (default: 0.10)  
 	-upgradewallet         Upgrade wallet to latest format on startup  
+	-walletbroadcast=<n>   Automatic transaction broadcast and rebroadcast (default=1)
 	-wallet=<file>         Specify wallet file (within data directory) (default: wallet.dat)  
 	-walletnotify=<cmd>    Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)  
 	-zapwallettxes=<mode>  Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup  
@@ -116,7 +118,7 @@ RPC server options:
 	-rpcthreads=<n>        Set the number of threads to service RPC calls (default: 4)
 	-rpckeepalive          RPC support for HTTP persistent connections (default: 1)
 
-RPC SSL options: (see the Bitcoin Wiki for SSL setup instructions)
+RPC SSL options: (has been removed as of upcoming v0.12)
 	-rpcssl                                  Use OpenSSL (https) for JSON-RPC connections
 	-rpcsslcertificatechainfile=<file.cert>  Server certificate file (default: server.cert)
 	-rpcsslprivatekeyfile=<file.pem>         Server private key (default: server.pem)
