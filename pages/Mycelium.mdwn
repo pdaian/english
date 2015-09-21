@@ -1,38 +1,59 @@
-Mycelium makes a number of products including the Bitcoincard, Entropy, Gateway/ATMs, Bitcoin Wallet, Local Trader, and Tabtrader.
+The **Mycelium** project by Megion Research & Development GmbH makes a number of products including the Mycelium Bitcoin Wallet, Entropy, Bitcoincard, Mycelium Gear (a  [[payment gateway|tags/Shopping_Cart_Interfaces]]), ATMs, Local Trader, and Tabtrader. It is located in Vienna, Austria.
 
-The Mycelium Bitcoin Wallet is available for Android and for iOS. The source is available for review on [GitHub](https://github.com/mycelium-com/wallet). It has been awarded the prestigious "Best Mobile App" award by Blockchain.info in 2014. It is available in 12 languages.
+The Mycelium Bitcoin Wallet is available for Android and for iOS. The source is available for review on [GitHub](https://github.com/mycelium-com/wallet). It has been awarded the prestigious "Best Mobile App" award by Blockchain.info in 2014. (1.1) It is available in 12 languages, translated by volunteers. (1.2)
 
 ##Bitcoin Wallet Features
 
 * 100% control over your private keys, they never leave your device unless you export them
 * No block chain download, install and run in seconds
-* Ultra fast connection to the Bitcoin network through our super nodes located in different datacenters
+* Ultra fast connection to the Bitcoin network through our super nodes located in different data centers
 * Watch-only addresses & private key import for secure cold-storage integration
-* Encrypted PDF backup and restore
+* Encrypted PDF backup and restore of single key accounts
 * Send and receive by specifying an amount in Fiat and switch between fiat and BTC while entering the amount
 * Address book for commonly used addresses
 * Transaction history with full transaction details
-* Import private keys using SIPA and mini private key format (Casascius private keys) from QR-codes or clipboard
+* Import private keys using SIPA, mini private key format (Casascius private keys) or xPriv from QR-codes or clipboard
 * Export private keys as QR-codes, on clipboard, or as encrypted PDFs
 * Secure your wallet with a PIN
 * Compatible with other bitcoin services through bitcoin: uri handling
 * Compatible with Orbot (socks setting) so you may connect via Tor even without rooting
-* Support for Bip38 Keys
+* Support for BIP38 Keys
 * View your balance in 164 fiat currencies
 * Integrated QR-code scanner
 * Find other people to trade Bitcoins with the integrated Local Trader
+* Directly spend from paper wallets (single key, xPriv or master seed)
+* Trezor enabled - directly spend from trezor-secured accounts.
+* Mycelium Entropy compatible Shamir-Secret-Shared 2-out-of-3 keys spending
+* Compatible with other bitcoin services through bitcoin: uri handling
+* Share your bitcoin address using NFC, Twitter, Facebook, email and more.
+* BIP70 payment request compatible
+* Integration with service [[Cashila]] to send money via SEPA
+* Support for BitID Authentication
+* Deterministic signatures for Bitcoin transactions (RFC6979)
 
 See the project repository for more details in [GitHub](https://github.com/mycelium-com/wallet).
 
 In case the phone is lost and no replacement readily available, the wallet can be recovered using [these instructions](https://bitcointalk.org/index.php?topic=909238.msg10003275#msg10003275).
 
+##Local Trader
+
+Mycelium Local Trader is a decentralized in-person exchange that is built right into the Mycelium bitcoin wallet. Because the coins are stored locally in your wallet, the Local Trader exchange never needs to hold any of your bitcoins or fiat. Local Trader servers only help arrange the trade between buyers and sellers, manage the transaction, and calculate reputation ratings based on the trades.
+
+##Bitcoincard
+
+Bitcoincard is a stand-alone device that acts as an electronic wallet. It can be used to secure the wallet in a safe place (outside the computer, making it inaccessible to hackers). The goal is to create an infrastructure-independent, self-powered, ad-hoc network that could dynamically form wherever a sufficient number of nodes came together to support it. A prototype was presented in Q1 2015. (4.1)
+
 ##Mycelium Entropy
 
-Mycelium Entropy is a small USB device that uses hardware based entropy to generate directly printable Bitcoin paper wallets, without the need for a PC. The project was successfully funded on Indiegogo (3.1).
+Mycelium Entropy is a small USB device that uses hardware based entropy to generate directly printable Bitcoin paper wallets, without the need for a PC.  The project was successfully funded on Indiegogo (5.1).
+
+##Mycelium Gear
+
+Mycelium Gear is designed to allow you to receive BTC from customers directly into your wallet controlled by you only. Mycelium Gear eliminates the notion of payouts - you get your BTC instantly. It's easy to integrate with your online store or website, with no special skills required. Optionally you can convert your BTC to fiat using the [[Cashila]] service. 
 
 ##History
 
-The Mycelium project was announced 13. September 2013 (4.1). The project was formerly called [[BitcoinSpinner]]. Since 7. October 2014 the wallet supports the  [[hierarchical deterministic (HD)|Deterministic_wallet]] (4.2) system. On 18. December 2014 the iOS version was announced (4.3).
+The Mycelium project was announced 13. September 2013 (7.1). The project was formerly called [[BitcoinSpinner]]. Since 7. October 2014 the wallet supports the  [[hierarchical deterministic (HD)|Deterministic_wallet]] (7.2) system. On 18. December 2014 the iOS version was announced (7.3).
 
 ##See Also
 
@@ -44,14 +65,20 @@ The Mycelium project was announced 13. September 2013 (4.1). The project was for
 * [Mycelium Bitcoin Wallet thread on bitcointalk.org](https://bitcointalk.org/index.php?topic=293472.0)
 * [Download the wallet from website](https://mycelium.com/bitcoinwallet)
 * [Download from Google Play](https://play.google.com/store/apps/details?id=com.mycelium.wallet)
+* [Mycelium Beta Testers - Community on Google+](https://plus.google.com/u/0/communities/102264813364583686576?cfem=1)
+* [Mycelium Gear](https://gear.mycelium.com)
 
 ##References
 
-3.1: [Indiegogo campaign site for Mycelium Entropy](https://www.indiegogo.com/projects/mycelium-entropy)  
-4.1: [Mycelium Bitcoin Wallet](https://bitcointalk.org/index.php?topic=293472.0)  
-4.2: [HD announcement](https://bitcointalk.org/index.php?topic=814907.0)  
-4.3: [iOS announcement](https://bitcointalk.org/index.php?topic=293472.msg9876871#msg9876871)
+1.1: http://www.coindesk.com/marc-andreessen-satoshi-nakamoto-take-top-honors-inaugural-blockchain-awards/  
+1.2: [crowdin.com link; you need to be registered at Crowdin](https://crowdin.com/project/mycelium-bitcoin-wallet)  
+4.1: https://bitcointalk.org/index.php?topic=78171.msg11080384#msg11080384  
+5.1: [Indiegogo campaign site for Mycelium Entropy](https://www.indiegogo.com/projects/mycelium-entropy)  
+7.1: [Mycelium Bitcoin Wallet thread on bitcointalk.org](https://bitcointalk.org/index.php?topic=293472.0)  
+7.2: [HD announcement](https://bitcointalk.org/index.php?topic=814907.0)  
+7.3: [iOS announcement](https://bitcointalk.org/index.php?topic=293472.msg9876871#msg9876871)
 
 
 [[!tag "Clients"]]
 [[!tag "Wallets"]]
+[[!tag "Shopping_Cart_Interfaces"]]
