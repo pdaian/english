@@ -17,9 +17,13 @@ Positive 0 is represented by a null-length vector.
 Byte vectors are interpreted as Booleans where False is represented by any representation of zero, and True is represented by any representation of non-zero.
 
 ## Words
-This is a list of all Script words (commands/functions). Some of the more complicated opcodes are disabled out of concern that the client might have a bug in their implementation; if a transaction using such an opcode were to be included in the chain any fix would risk forking the chain. 
+This is a list of all Script words, also known as opcodes, commands, or functions.
 
-True=1 and False=0.
+There are some words which existed in very early versions of Bitcoin but were removed out of a concern that the client might have a bug in their implementation. This fear was motivated by a bug found in OP_LSHIFT which could crash any Bitcoin node if exploited, and by other bugs in how Script worked which allowed anyone to spend anyone's bitcoins. The removed opcodes are sometimes said to be "disabled" opcodes, but this is something of a misnomer because there is *absolutely no way* for anyone using Bitcoin to use these opcodes (they simply *do not exist anymore* in the protocol), and there are also no solid plans to ever re-enable all of these opcodes. They are listed here only for historical interest.
+
+New opcodes can be added by means of a carefully designed and executed [[softfork]] using OP_NOP1-OP_NOP10.
+
+False is zero or negative zero and True is anything else.
 
 ### Constants
 When talking about scripts, these value-pushing words are usually omitted.
