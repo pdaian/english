@@ -23,7 +23,7 @@ There are some words which existed in very early versions of Bitcoin but were re
 
 New opcodes can be added by means of a carefully designed and executed [[softfork]] using OP_NOP1-OP_NOP10.
 
-False is zero or negative zero and True is anything else.
+False is zero or negative zero (using any number of bytes) or an empty array, and True is anything else.
 
 ### Constants
 When talking about scripts, these value-pushing words are usually omitted.
