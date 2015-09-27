@@ -7,7 +7,7 @@ Bitcoin Core has transitioned from what was essentially a one-person software en
 1. Developers work in their own source code trees, sharing and testing patches with each other.  Git, using github, is the preferred source control system for development.
 1. When a developer thinks a patch is ready, they submit a pull request for the [bitcoin github repository](https://github.com/bitcoin/bitcoin) and post a message on the [Development and Technical Forum](https://bitcointalk.org/index.php?board=6.0).
 1. Pull requests are discussed on the forums and if there is consensus they're safe, tested, useful, well written, match coding style, etc. then they're merged into the 'master' branch.
-1. The master github branch is regularly built and tested, and periodically pushed to the [subversion repository](http://sourceforge.net/projects/bitcoin/develop) to become a "release candidate" and then the official, stable, released bitcoin.
+1. The master github branch is regularly built and tested, and periodically given a "release candidate" tag followed by a version tag which is then an official, stable Bitcoin Core release.
 1. After being accepted into the mainline master branch, bugfixes are merged or backported into the current stable branch, which periodically releases stable older versions.
 
 Please read and follow [coding.txt](https://raw.github.com/gavinandresen/bitcoin-git/master/doc/coding.txt) for a description of the bitcoin coding style.
