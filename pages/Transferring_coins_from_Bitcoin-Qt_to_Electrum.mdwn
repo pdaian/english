@@ -1,0 +1,29 @@
+This guide is intended for users of [[Bitcoin_Core]] who do not want to wait for their wallet to be synchronized with the network, which may take many hours or days depending on the hardware spec.
+
+It's a somewhat common situation that users don't open their wallet for months, after they come back it they find it will take them hours to have be able to use Bitcoin Core. Another example is where the block files on hard disk have become corrupted requiring parts of the [[blockchain]] to be downloaded and verified again.
+
+**WARNING**
+
+Before reading this page, users should note that directly manipulating ECDSA [[private_keys]] is dangerous and can result in losing bitcoins (1.1) (1.2). This guide is for the impatient or time-stressed, it is recommended that users of [[Bitcoin_Core]] simply wait out the [[blockchain synchronization|block_chain_download]].
+
+## Obtain new Electrum wallet
+Download [[Electrum]], verify the signature to prove it was not modified in transit. Create a new empty wallet. Write down the mnemonic recovery seed on paper.
+
+## Obtain private key(s) from Bitcoin-Qt
+
+Click Help -> Debug. Click the Console tab. Use the [[dumpprivkey|Original_Bitcoin_client/API_calls_list]] command to get the private key. Repeat for as many bitcoin addresses as have money in them.
+
+	dumpprivkey <your bitcoin address>
+
+## Sweep private keys with Electrum
+
+In the Electrum window, click Wallet -> Private Keys -> Sweep. Paste the private keys from Bitcoin-Qt here. Check the resulting transaction is okay and click Broadcast. Your funds will be swept from the addresses in Bitcoin Core and put in an Electrum wallet address.
+
+
+##References
+
+1.1: [Bitcoin StackExchange - Why doc says importing private keys is so dangerous?](https://bitcoin.stackexchange.com/questions/29948/why-doc-says-importing-private-keys-is-so-dangerous)  
+1.2: [Bitcoin StackExchange - Why so many warnings about importing private keys?](https://bitcoin.stackexchange.com/questions/18619/why-so-many-warnings-about-importing-private-keys)
+
+
+[[!tag "Instructional"]]
