@@ -15,6 +15,12 @@ Click Help -> Debug. Click the Console tab. Use the [[dumpprivkey|Original_Bitco
 
 	dumpprivkey <your bitcoin address>
 
+If your wallet is encrypted, use this command to decrypt it for 5 minutes:
+
+	walletpassphrase your-wallet-passphrase 300
+
+After that try *dumpprivkey* again.
+
 ## Sweep private keys with Electrum
 
 In the Electrum window, click Wallet -> Private Keys -> Sweep. Paste the private keys from Bitcoin-Qt here. Check the resulting transaction is okay and click Broadcast. Your funds will be swept from the addresses in Bitcoin Core and put in an Electrum wallet address.
