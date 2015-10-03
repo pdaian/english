@@ -9,9 +9,13 @@
 
 **[Blockonomics.co](https://www.blockonomics.co)** provides ability to search bitcoin addresses on the fly. Aggregated balance/transaction history of multiple addresses can be viewed. A maximum of 1000 addresses can be lookedup in one go.
 
+### Vanity address search
+
+Bitcoin addresses can search using their prefixes. Prefixes of length 4 - 10 characters are supported. Suggestions of addresses having latest five transactions are shown
+
 ### Address/Wallet Watcher
 
-**[Wallet Watcher](https://www.blockonomics.co/blockonomics)** can be used by user to monitor all addresses in his/her wallet. User can add public bitcoin [[addresses|Address]] and also label them using tags. Dashboard shows a quick overview of balances classified by each tag. Balance is shown in BTC as well as currency of users' choice
+**[Wallet Watcher](https://www.blockonomics.co/blockonomics)** can be used by user to monitor all addresses in his/her wallet. User can add public bitcoin [[addresses|Address]] and also label them using tags. Dashboard shows a quick overview of balances classified by each tag. Balance is shown in BTC as well as currency of users' choice. Address watcher supports monitoring [[HD wallet|Deterministic_wallet]] using its extended public key. Account discovery follows [[BIP 32|BIP_0032]] guidelines.
 
 ### Transaction History
 Graph of balance is shown for various time periods. History of [[transactions|Transactions]] involved is shown along with the graph. Pending transactions tab shows [[transactions|Transactions]] happening on user [[addresses|Address]] that are unconfirmed or partially confirmed (one confirmation)
@@ -19,6 +23,10 @@ Graph of balance is shown for various time periods. History of [[transactions|Tr
 ### Notifications
 
 User can subscribe to email notifications, showing summary of [[transactions|Transactions]] that happened in the last block. Email is sent only after 2 confirmations. 
+
+### API
+
+**[API](https://www.blockonomics.co/views/api.html)** for searching addresses, automatically updating addresses to monitor in address watcher and to get websocket transaction notifications is provided.
 
 
 ##External Links
