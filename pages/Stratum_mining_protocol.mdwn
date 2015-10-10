@@ -55,8 +55,9 @@ Server response is result: true for accepted, false for rejected (or you may get
 ####mining.subscribe
 	mining.subscribe("user agent/version", "extranonce1")
 
-The optional second parameter specifies an extranonce1 the client wishes to resume working with (possibly due to a dropped connection).
+The optional second parameter specifies a mining.notify subscription id the client wishes to resume working with (possibly due to a dropped connection).
 If provided, a server MAY (at its option) issue the connection the same extranonce1.
+Note that the extranonce1 may be the same (allowing a resumed connection) even if the subscription id is changed!
 
 The client receives a result:
 	["subscription id 1"]("mining.set_difficulty",), [[mining.notify,_subscription_id_2]], "extranonce1", extranonce2_size
