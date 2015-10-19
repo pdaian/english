@@ -1,25 +1,9 @@
-[[!template id=infobox_software logo=[[File:xt.png 256px]] image=[[File:bitcoinxt.png 256px]] caption="The identifying marks of an XT client" bg=orange author="[[Gavin Andresen]]<br/>[[Mike Hearn]]" website="[https://bitcoinxt.software bitcoinxt.software]"]]**Bitcoin XT** is a fork of [[Bitcoin_Core]] that aims to make transactions reliable, inexpensive, and accessible. It achieved significant notoriety and support after prematurely adopting [[BIP 101|BIP_0101]], making it an important proponent of the [[block_size_limit_controversy]]. (1.1)
+[[!template id=infobox_software logo=[[File:xt.png 256px]] image=[[File:bitcoinxt.png 256px]] caption="The identifying marks of an XT client" bg=orange author="[[Gavin Andresen]]<br/>[[Mike Hearn]]" website="[https://bitcoinxt.software bitcoinxt.software]"]]**Bitcoin XT** is a fork of [[Bitcoin_Core]] that aims to make transactions reliable, inexpensive, and accessible. It achieved significant support after prematurely adopting [[BIP 101|BIP_0101]], making it an important proponent of the [[block_size_limit_controversy]]. (1.1)
 
-After [[Gavin_Andresen]]'s resignation from the position of [[Bitcoin_Core]] maintainer, he and [[Mike_Hearn]] organized[[!template id=when]] Bitcoin XT to address controversial ideas lacking the consensus required to be implemented in Bitcoin Core. (1.2)
-
-Due to implementing BIP 0101 in version 0.11.0A, it is now incompatible with the Bitcoin consensus protocol, and when 75% of the last 1000 blocks are observed to have particular version bits set, it ceases enforcing the 1 MB block size limit and also adds a few new rules.
-Since it is incompatible with the Bitcoin protocol, it is technically an [[altcoin]], but due to an unusually large economic acceptance it may potentially become a "new Bitcoin" some day.
-
-##Mission statement
-<!--this needs to be summarized or removed-->
-The XT mission statement defines what the project believes is important: commitment to these principles are what differentiates it from Bitcoin Core.
-
-* **Scaling the network up to handle user demand and spam is important**, even if that means the network becomes centralised along the way. The idea of a global system used by ordinary people is what motivated many people to support this.
-* XT proponents believe **unconfirmed transactions are important**. Many merchants want or need to accept payments within seconds rather than minutes or hours. XT accepts this fact and does what it can to minimise the risk, then "helps" sellers judge what remains. It is committed to support only "first seen" policies, and will not adopt changes that make unconfirmed transactions riskier.
-<!-- This doesn't seem different from Core: ** '''Lightweight wallets are important'''. Most users cannot or will not run a fully verifying node. Most of the world population does not even own a computer: they will experience the internet exclusively via smartphones. These users must sacrifice some security in order to participate, so XT supports whatever technical tradeoffs wallet developers wish to explore. -->
-* **Decision making is quick and clear**. Decisions are made according to a leadership hierarchy. The XT software encodes decisions that follow the above principles: people who disagree are welcome to use different software, or patch ours. We do not consider writing principled software to be centralising and do not refuse to select reasonable defaults.
-<!-- Also no difference: * The Bitcoin XT community is friendly, pragmatic, cares about app developers and considers the user experience in everything we do. We value professionalism in technical approach and communication. We run a moderated mailing list and do not tolerate troublemakers. -->
-
-You can [read more about the code changes in Bitcoin XT](https://bitcoinxt.software/patches.html). 
+After [[Gavin_Andresen]]'s resignation from the position of [[Bitcoin_Core]] maintainer, he and [[Mike_Hearn]] organized[[!template id=when]] Bitcoin XT. (1.2)
 
 ##Block size hard fork
-In 2010, a block size limit was introduced into Bitcoin by [[Satoshi_Nakamoto]]. He added it as a safety measure to prevent miners from spamming large blocks and meant for it to be removed once secure lightweight wallets were developed;
-however, the spam problem has only gotten worse, and secure lightweight wallets never implemented.
+In 2010, a block size limit was introduced into Bitcoin by [[Satoshi_Nakamoto]]. He added it as a safety measure to prevent miners from spamming large blocks and meant for it to be removed once secure lightweight wallets were developed.
 
 There has been much community [[debate|Block_size_limit_controversy]] on this topic. You can read analysis and explanations for why we think raising the block size limit is important here: 
 
@@ -27,12 +11,7 @@ There has been much community [[debate|Block_size_limit_controversy]] on this to
 * [Why the block size limit must be raised](https://medium.com/@octskyward/crash-landing-f5cc19908e32) and [why the proposed alternative schemes will not work](https://medium.com/@octskyward/the-capacity-cliff-586d1bf7715e), by [[Mike_Hearn]].
 
 ##Miners
-Miners that side with Bitcoin XT will produce blocks with a new version number. (4.1) This indicates to the rest of the network that they support XT. (4.1) When 75% of the last 1000 blocks are new-version blocks, these miners will automatically abandon Bitcoin and begin mining on a new Bitcoin XT blockchain. (4.1) This will begin after a waiting period of two weeks in hopes the economy in this time may force anyone who hasn't switched yet to do so. (4.1)
-
-Users and miners running full Bitcoin nodes will reject the XT blockchain starting with the first block that is larger than one megabyte in size, and thus be unaffected provided it fails to achieve economic consensus.
-
-##Users and merchants
-If insufficient mining hash power runs XT to reach supermajority then nothing will happen. If enough does, XT users will follow a new blockchain and cease to be using and trading bitcoins.
+Miners that side with Bitcoin XT will produce blocks with a new version number. (3.1) This indicates to the rest of the network that they support XT. (3.1) When 75% of the last 1000 blocks are new-version blocks, these miners will automatically abandon Bitcoin and begin mining on a new Bitcoin XT blockchain. (3.1) This will begin after a waiting period of two weeks in hopes the economy in this time may force anyone who hasn't switched yet to do so. (3.1)
 
 ##See Also
 
@@ -43,7 +22,7 @@ If insufficient mining hash power runs XT to reach supermajority then nothing wi
 
 1.1: [BIP101 implementation flaws](http://organofcorti.blogspot.com/2015/08/bip101-implementation-flaws.html) [[organofcorti]] 27 August 2015 Work: [[The Neighbourhood Pool Watch]]  
 1.2: [An XT FAQ](https://medium.com/@octskyward/an-xt-faq-38e78aa32ff0) [[Mike Hearn 27 August 2015 Work: Medium  
-4.1: [The Bitcoin XT Fork](http://avc.com/2015/08/the-bitcoin-xt-fork/) Wilson, Fred 17 August 2015 Work: AVC
+3.1: [The Bitcoin XT Fork](http://avc.com/2015/08/the-bitcoin-xt-fork/) Wilson, Fred 17 August 2015 Work: AVC
 
 
 [[!tag "Block_size_limit_controversy"]]
