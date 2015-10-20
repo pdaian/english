@@ -1,0 +1,86 @@
+# Basic Information
+## LED
+	开机：白色
+	正常：蓝色
+	IDLE：黄闪烁
+	回环，电源，温度异常：红色闪烁
+	频率变化： 蓝色->红色。
+	CGMiner点亮LED：白色闪烁。
+
+## Dim
+	354*130*150
+	4.2KG
+
+# Software Development
+## CGMiner Under Ubuntu 14.04
+	#Inside your home directory, download Cgminer
+	git clone https://github.com/Canaan-Creative/cgminer
+	cd cgminer
+	git checkout origin/avalon4 -b avalon4
+	./autogen.sh --enable-avalon4
+	make -j 4
+
+### Run
+	sudo ./cgminer --avalon4-freq 200 --avalon4-voltage 7125 -o http://stratum.pool:3333 -u  work -p pass 
+	or
+	sudo ./cgminer --avalon4-freq 200 --avalon4-voltage 7125 -o http://stratum.pool:3333 -u  work -p pass --api-allow W:192.168.2,W:192.168.2.1 --api-listen $@ 2>./log
+
+## MM
+	* Avalon6 TB2 ===
+	$ make -C firmware PLATFORM=MM60_TB2
+	* Avalon6.0 S ===
+	$ make -C firmware
+
+## RPi Firmware
+### Daily Building
+
+* **http://build.canaan-creative.com:8080/~mikeqin/avalon6/**
+
+### [http://downloads.canaan-creative.com/software/avalon6/openwrt/20151001/ 20151001]
+
+* First version of Avalon6 firmware
+
+## MM Firmware
+### Daily Building
+
+* **http://build.canaan-creative.com:8080/~mikeqin/mm60/**
+
+### [http://downloads.canaan-creative.com/software/avalon6/mm/2015-09-30/ 2015-09-30]
+
+* Version **601509-a2613610**
+* First MM firmware for Avalon6.0 S 
+* Support 2 miners
+* Detect asic counts when start
+* Support target filter
+
+### [http://downloads.canaan-creative.com/software/avalon6/mm/nexttesting/ NEXT-TESTING]
+
+* NOTICE: Only for testing
+* Version **601509-9dd0f8a0**
+* Fix upgrade failed
+
+## TODO
+### OpenWrt
+
+1. Support Raspberry Pi 2B
+1. Update with the master branch
+1. Support Avalon6 in LuCI (Advanced version)
+1. Keep more coding on LuCI (Avalon theme)
+
+### CGMiner
+
+1. Add auto speed option
+1. Merge the Avalon6 code to CK's master
+
+### MM
+
+1. New board Avalon 6.2 support
+1. POST
+1. Temperature support
+1. LPC11U14 program/update
+1. Change stratum code to libstratum.a
+1. Support diff = 1
+
+## Known Issues
+
+1. MM Firmware upgrade failed
