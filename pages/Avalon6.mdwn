@@ -1,14 +1,61 @@
 # Basic Information
+	Hashrate:
+	**3.65T (+-10%)**
+	
+	Power consumption:
+	990W (measure on 12V port of the device)
+	1100W (on the wall, with assumption of 90% power conversion ratio)
+	
+	Power per hash:
+	270J/THash (device only)
+	295J/THash (on the wall, with assumption of 90% power conversion
+	ratio)
+	
+	Overclocking:
+	Support automatically optimize frequency, no need to overclock manually.
+	
+	PSU ouput pin:
+	4x6PIN PCIe power connector. *All must be connected.*
+	
+	PSU requirements:
+	Minimum 1100W output, recommend to use high quality PSU for server
+	with more than 1200W output and high quality power cable.
+	Input voltage no lower than 11.7V and no higher than 12.2V (numbers
+	take from the controller)
+	Lower voltage leads to lower hashrate and higher voltage leads to
+	possible device burning down.
+	NOTICE: Poor quality cable may result in low voltage.
+	
+	Fan:
+	Specs: 12038
+	Current: between 1.6A and 2.8A.
+	Minimum RPM: 3800.
+	*NOTICE* If the fan is broken or the fan's RPM cannot be measure,
+	the device will not start.
+	
+	Controller:
+	Raspberry Pi (version B or B+)
+	Raspberrt Pi 2 is not supported yet.
+	Each RPi can control approximate 60 devices.
+	
+	AUC:
+	Each AUC can connect up to 6 devices.
+	
+	Dimensions:
+	354x136x150mm
+	
+	Net weight:
+	~4.2kg
+	
+	Protection Degree:
+	IP20
+
 ## LED
 	Power on: White
 	Hashing: Blue
 	Idle: Yellow blinking
 	Error(Software, Power, Temperature): Red blinking
 	Manually turn on LED: While blinking
-
-## Dim
-	354*130*150
-	4.2KG
 
 # Firmware
 ## RPi Firmware
