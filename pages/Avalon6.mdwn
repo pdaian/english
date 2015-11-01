@@ -79,6 +79,25 @@
 * First version of Avalon6 firmware
 
 ## MM Firmware
+### [http://downloads.canaan-creative.com/software/avalon6/mm/2015-10-31/ 2015-10-31]
+
+* Version **601510-afa837a0**
+* Update IIC and UART communication
+* Support core test by AVA4_P_TEST
+* Update ASIC_FREQMIN to 100MHz
+* Detect ASIC counts by LOOPBACK
+* Fix upgrade failed caused by i2c FIFO overflow
+* Update timer function
+* Use GPIO led as address indicator
+* Always disable the invalid miner when PG or LOOPBACK failed
+* Add PLL status in P_STATUS_M
+* Add err code
+* Support ADC capture
+* Keep free run if MCU can't be detected
+* Update led status
+* Rewrite boot loader with c code
+
+
 ### [http://downloads.canaan-creative.com/software/avalon6/mm/2015-09-30/ 2015-09-30]
 
 * Version **601509-a2613610**
