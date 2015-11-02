@@ -11,7 +11,7 @@ In principle one can represent asset manipulation data on other blockchains (e.g
 * Use the **Bitcoin** blockchain (as opposed to e.g. [NXT](http://nxt.org/)) 
 * Do not issue an auxiliary coin (e.g. [Mastercoin's MSC](https://en.wikipedia.org/wiki/Mastercoin) or [counterpary's XCP](http://counterparty.io/))
 
-Note that the term *Colored Coins* stuck from older implementations such as the EPOBC protocol where an asset was actually associated with [[satoshis|Satoshi_(unit)]] (thus "coloring" them). Other implementations use more [efficient](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring%20Scheme) ways to encode assets on the blockchain, mostly using the [OP_RETURN](http://bitcoin.stackexchange.com/questions/29554/explanation-of-what-an-op-return-transaction-looks-like) scripting code, so it is [no longer the case](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Faq#coloring-satoshis) that individual satoshis are "colored".
+Note that the term *Colored Coins* stuck from older implementations such as the [EPOBC](https://github.com/chromaway/ngcccbase/wiki/EPOBC_simple) protocol where an asset was actually associated with [[satoshis|Satoshi_(unit)]] (thus "coloring" them). Other implementations use  [efficient](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring%20Scheme) other ways to encode assets on the blockchain, mostly using the [OP_RETURN](http://bitcoin.stackexchange.com/questions/29554/explanation-of-what-an-op-return-transaction-looks-like) scripting code, so it is [no longer the case](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Faq#coloring-satoshis) that individual satoshis are "colored".
 
 ##Use Cases
 There are many interesting applications to colored coin.
@@ -55,7 +55,7 @@ Using colored coins to trade and manage access and subscription services. For ex
 
 ##The EPOBC protocol
 
-[(1)](https://github.com/chromaway/ngcccbase/wiki/EPOBC_simple)  EPOBC is the first Coloredcoins  implementation which was created By [ChromaWay.com](http://www.).  EPOBC  doesn't use op_return to store metadata on the blockchain
+[EPOBC](https://github.com/chromaway/ngcccbase/wiki/EPOBC_simple) is the first Coloredcoins  implementation which was created By [ChromaWay.com](http://www.).  EPOBC  doesn't use op_return to store metadata on the blockchain
 EPOBC introduces two types of transactions:
 •	genesis transactions create new colored coins (of a new color); they are used for issuance
 •	transfer transactions transfers existing colored coins
