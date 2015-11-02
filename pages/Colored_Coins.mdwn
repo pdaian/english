@@ -56,10 +56,12 @@ Using colored coins to trade and manage access and subscription services. For ex
 ##The EPOBC protocol
 
 [EPOBC](https://github.com/chromaway/ngcccbase/wiki/EPOBC_simple) is the [first Coloredcoins implementation](http://chromaway.com/history/) which was created By [ChromaWay](http://www.ChromaWay.com). EPOBC  doesn't use op_return to store metadata on the blockchain
+###Types of transactions
 EPOBC introduces two types of transactions:
 •	genesis transactions create new colored coins (of a new color); they are used for issuance
 •	transfer transactions transfers existing colored coins
 If colored coins are used as inputs in a transaction which isn't a transfer transaction, their value is lost, it is not transferred to outputs of this or other transaction. Also the value of colored coins might be lost in a malformed transaction.
+###Transaction tags
 EPOBC-encoded colored coin transactions are marked in a special way to distinguish them from normal Bitcoin transactions. This is done by putting a certain tag value into a nSequence field of transaction's first input. nSequence is always present, but is otherwise unused, which means that this way of marking has zero overhead (unlike OP_RETURN-based which increases the size of the transaction).
 nSequence is a 32-bit integer, and 6 of its least-significant bits encode the tag. Transfer transactions and genesis transactions have different tags:
 •	bit sequence 110011 is a tag of a transfer transaction. Its hexadecimal value is 0x33.
