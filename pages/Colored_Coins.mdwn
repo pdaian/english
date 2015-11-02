@@ -50,8 +50,43 @@ Using colored coins to trade and manage access and subscription services. For ex
 ##Open Assets Block Explorer
 [[Coinprism]] offers a colored coin [[Bitcoin blockchain|Coinprism.info]] explorer.
 
-##ColoredCoins.org Block Explorer
-[ColoredCoins.org](http://coloredcoins.org/) offers a public [search engine](http://coloredcoins.org/#/) for digital assets, all open source.
+##Colu's ColoredCoins.org Block Explorer
+[ColoredCoins.org](http://coloredcoins.org/) offers a public [search engine](http://coloredcoins.org/#/) for digital assets, all open source based on the Colu Coloredcoins implementation
+
+##The EPOBC protocol
+
+[(1)](https://github.com/chromaway/ngcccbase/wiki/EPOBC_simple)  EPOBC is the first Coloredcoins  implementation which was created By [ChromaWay.com](http://www.).  EPOBC  doesn't use op_return to store metadata on the blockchain
+EPOBC introduces two types of transactions:
+•	genesis transactions create new colored coins (of a new color); they are used for issuance
+•	transfer transactions transfers existing colored coins
+If colored coins are used as inputs in a transaction which isn't a transfer transaction, their value is lost, it is not transferred to outputs of this or other transaction. Also the value of colored coins might be lost in a malformed transaction.
+EPOBC-encoded colored coin transactions are marked in a special way to distinguish them from normal Bitcoin transactions. This is done by putting a certain tag value into a nSequence field of transaction's first input. nSequence is always present, but is otherwise unused, which means that this way of marking has zero overhead (unlike OP_RETURN-based which increases the size of the transaction).
+nSequence is a 32-bit integer, and 6 of its least-significant bits encode the tag. Transfer transactions and genesis transactions have different tags:
+•	bit sequence 110011 is a tag of a transfer transaction. Its hexadecimal value is 0x33.
+•	bit sequence 100101 is a tag of a genesis transaction. Its hexadecimal value is 0x25.
+Code which distinguishes transfer and genesis transaction:
+
+1. get nSequence of the first input
+tag_nSequence = transaction.inputs[[0]].nSequence
+
+1. extract its lowest 6 bits
+tag = tag_nSequence & 0x3F
+if tag == 0x25:
+	transaction_type = 'genesis'
+elif tag == 0x33:
+	transaction_type = 'transfer'
+else:
+	transaction_type = 'none'
+Further treatment depends on transaction type. However, both transfer and genesis transactions have padding.
+EPOBC is the first Coloredcoins protocol to have support for thin SPV clients.
+
+##Current projects/companies which are leveraging EPOBC
+
+[(1)](http://www.chromwawallet.com) Desktop Coloredcoins wallet
+[[http://www.cuber.ee]] Mobile and Android wallets backed by LHV bank in Estonia
+[[lhv.ee]] Issued 100 000 EUR worth of cryptographically protected claims against bank into bitcoin blockchain
+[[Funderbeam.com]] [(2)](http://www.ibtimes.co.uk/bitcoin-innovators-launch-syndicated-startup-investment-market-using-coloured-coins-1516854)
+
 
 ##Open Assets
 [Open Assets](https://github.com/OpenAssets/open-assets-protocol/blob/master/specification.mediawiki) is a Colored Coin implementation based on the [[OP_RETURN|Script#Provably_Unspendable.2FPrunable_Outputs]] operator. Metadata is linked from the Blockchain and stored on the web.
@@ -95,6 +130,8 @@ This example illustrates how a marker output is decoded. Assuming the marker out
 
 A new Colored Coins implementation was developed by [Colu](http://colu.co/) and fully [open sourced](https://github.com/Colored-Coins/) on June 2015. The new implementation is based on attaching data to transactions using the OP_RETURN field. Colu's [coloring scheme](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Coloring-Scheme/) uses high data compression, can associate unlimited amounts of metadata with bitcoin transactions through the use of publicly available torrent files and supports smart contract functionalities. 
 
+
+
 ###Main Features
 
 ####Smarts Contracts capabilities
@@ -116,7 +153,7 @@ Enforcing a coherent issuance policy by supporting two types of assets, [locked 
 * [Unlocked Assets](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#unlocked-assets) - The issuer can keep issuing more units.
 
 ####Support for thin (SPV) wallets 
-The new implementation supports [SPV clients](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#support-for-thin-wallets) - nodes that can ***verify colored transactions*** without running a [full Bitcoin node](https://bitcoin.org/en/full-node#what-is-a-full-node).
+The new colu implementation supports [SPV clients](https://github.com/Colored-Coins/Colored-Coins-Protocol-Specification/wiki/Benefits#support-for-thin-wallets) - nodes that can ***verify colored transactions*** without running a [full Bitcoin node](https://bitcoin.org/en/full-node#what-is-a-full-node).
 
 ####Efficiency and Low Cost
 
