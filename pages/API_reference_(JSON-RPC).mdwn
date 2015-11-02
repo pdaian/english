@@ -415,6 +415,11 @@ user=> (btc/getinfo)
 	"walletversion" 60000}
 </source>
 
+## C
+The C API for processing JSON is [Jansson](https://jansson.readthedocs.org/en/latest/). C applications like [libblkmaker](https://github.com/bitcoin/libblkmaker) use [[cURL|API_reference_(JSON-RPC)#Command_line_.28cURL.29]] for making the calls and Jansson for interpreting the JSON that cURL fetches.
+
+For example basic usage (which can be easily modified for Bitcoin RPC), see the Jansson example [github_commits.c](https://jansson.readthedocs.org/en/latest/_downloads/github_commits.c) and [the associated tutorial](https://jansson.readthedocs.org/en/latest/tutorial.html#the-github-repo-commits-api).
+
 ## Qt/C++
 
 [QJsonRpc](https://bitbucket.org/devonit/qjsonrpc/overview) is a Qt/C++ implementation of the JSON-RPC protocol. It integrates nicely with Qt, leveraging Qt's meta object system in order to provide services over the JSON-RPC protocol. QJsonRpc is licensed under the LGPLv2.1.
