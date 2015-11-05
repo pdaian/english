@@ -18,17 +18,20 @@ Here is a representation of the genesis block (2.1) as it appeared in a comment 
 	CTxIn(COutPoint(000000, -1), coinbase 04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73)
 	CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
 	vMerkleTree: 4a5e1e
+###Hash
+The hash of the genesis block, **000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f**, (2.1) has two more leading zeroes than were required for an early block.
+
 ###Coinbase
 [[!img "jonny1000thetimes.png" size=120x120 size=256x256 title="The Times 03/Jan/2009"]]
-The [[coinbase parameter|coinbase]] (seen above in hex) contains, along with the normal data, the following text: (3.1)
+The [[coinbase parameter|coinbase]] (seen above in hex) contains, along with the normal data, the following text: (4.1)
 
-<blockquote>The Times 03/Jan/2009 Chancellor on brink of second bailout for banks</blockquote>
+<blockquote>The Times 03/Jan/2009 Chancellor on brink of second bailout for banks (2.1)</blockquote>
 
 This was probably intended as proof that the block was created on or after January 3, 2009, as well as a comment on the instability caused by fractional-reserve banking. Additionally, it suggests that [[Satoshi_Nakamoto]] may have lived in the United Kingdom.
 
 The original newspaper from which this title was taken has become a collector's item, and very few copies have been identified.
 
-The first 50 BTC block reward went to [[address]] *1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa*, though this reward can't be spent due to a quirk in the way that the genesis block is expressed in the code; it is not known if this was intentional. (3.2) (3.3) (3.4)
+The first 50 BTC block reward went to [[address]] *1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa*, (2.1) though this reward can't be spent due to a quirk in the way that the genesis block is expressed in the code. It is not known if this was intentional or an accident. (4.2) (4.3) (4.4)
 
 ###Raw block data
 
@@ -72,14 +75,18 @@ Broken down it looks like this:
 	43 - pk_script length
 	4104678AFDB0FE5548271967F1A67130B7105CD6A828E03909A67962E0EA1F61DEB649F6BC3F4CEF38C4F35504E51EC112DE5C384DF7BA0B8D578A4C702B6BF11D5FAC - pk_script
 	00000000 - lock time
-
+<!--
+==Other genesis blocks==
+===Testnet===
+===Pre-release===
+-->
 ##References
 
 2.1: Day: 03 Hash: 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f Month: 01 Year: 2009  
-3.1: [Reuters' reference on The Financial Times article (archive.org cached copy)](http://web.archive.org/web/20140309004338/http://uk.reuters.com/article/2009/01/03/idUKPTIP32510920090103)  
-3.2: http://bitcoin.stackexchange.com/questions/10009/why-can-t-the-genesis-block-coinbase-be-spent  
-3.3: https://www.reddit.com/r/Bitcoin/comments/1nc13r/the_first_50btc_block_reward_cant_be_spend_why/  
-3.4: https://github.com/bitcoin/bitcoin/blob/9546a977d354b2ec6cd8455538e68fe4ba343a44/src/main.cpp#L1668 - Genesis block transaction treated as a special case in the reference code
+4.1: [Reuters' reference on The Financial Times article (archive.org cached copy)](http://web.archive.org/web/20140309004338/http://uk.reuters.com/article/2009/01/03/idUKPTIP32510920090103)  
+4.2: http://bitcoin.stackexchange.com/questions/10009/why-can-t-the-genesis-block-coinbase-be-spent  
+4.3: https://www.reddit.com/r/Bitcoin/comments/1nc13r/the_first_50btc_block_reward_cant_be_spend_why/  
+4.4: https://github.com/bitcoin/bitcoin/blob/9546a977d354b2ec6cd8455538e68fe4ba343a44/src/main.cpp#L1668 - Genesis block transaction treated as a special case in the reference code
 
 
 [[zh-cn:创世block]]
