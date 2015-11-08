@@ -1,4 +1,6 @@
-**Proof of burn** is method for bootstrapping one cryptocurrency off of another.  The idea is that miners should show proof that they *burned* some coins - that is, sent them to a verifiably unspendable address. This is expensive from their individual point of view, just like proof of work; but it consumes no resources other than the burned underlying asset.  To date, all proof of burn cryptocurrencies work by burning proof-of-work-mined cryptocurrencies, so the ultimate source of scarcity remains the proof-of-work-mined "fuel".
+**Proof of burn** is a method for distributed consensus and an alternative to [[Proof_of_Work]] and [[Proof_of_Stake]]. It can also be used for bootstrapping one cryptocurrency off of another.  
+
+The idea is that miners should show proof that they *burned* some coins - that is, sent them to a verifiably unspendable address. This is expensive from their individual point of view, just like proof of work; but it consumes no resources other than the burned underlying asset.  To date, all proof of burn cryptocurrencies work by burning proof-of-work-mined cryptocurrencies, so the ultimate source of scarcity remains the proof-of-work-mined "fuel".
 
 There are likely many possible variants of proof of burn. This page currently describes [Iain Stewart](User:Ids)'s version. Other people can add variant versions that still belong to the broad proof of burn idea.
 
@@ -99,6 +101,22 @@ This has the nice consequence that, if people throughout the broader economy are
 ## Earlier work suggesting a role for the burning of coins
 
 [Forum member ripper234 points out](https://bitcointalk.org/index.php?topic=131139.msg1404195#msg1404195) an earlier work by forum member [dacoinminster](https://bitcointalk.org/index.php?action=profile;u=3313) suggesting coins could be burnt as one component of a broader protocol. [The earlier work](https://bitcointalk.org/index.php?topic=56901.0) is [discussed on StackExchange](http://bitcoin.stackexchange.com/questions/2458/is-dacoinminsters-second-bitcoin-whitepaper-logically-economically-consistent). It revolves around a centralised "trusted entity" system, and so is not directly comparable to decentralised proof-of-burn mining; but it may be of interest to some readers.
+
+## Implementations
+### Slimcoin
+
+[[Slimcoin]] ([Presentation on Bitcointalk](https://bitcointalk.org/index.php?topic=1141676.0)), an alternative cryptocurrency based on [[Peercoin]], uses Proof of burn as part of its consensus algorithm and alternative mining/minting method. 
+
+Participants with full Slimcoin nodes can earn coins finding *Proof of Burn blocks*. The probability of a participant (identified by its address or public key) to find a block is being determined by a score called *Effective Burnt Coins* based on the amount of coins burnt from its address. Burnt coins *decay* over time: the *Effective Burnt Coins* score is reduced every block, dropping to zero after about a year.
+
+### Other implementations
+
+Another cryptocurrency using Proof of burn was TGCoin or *Third Generation Coin* ([see Bitcointalk](https://bitcointalk.org/index.php?topic=643300.0)), an *altcoin* actually not maintained or traded.
+
+### Use for bootstrapping
+
+* The auxiliary currency for [[Counterparty]] was distributed via a proof of burn process. Participants had to send Bitcoins to an unspendable Bitcoin address and received *Counterparty* tokens in exchange.
+* [[Levelcoin]] ([Bitcointalk source](https://bitcointalk.org/index.php?topic=422309.0)) is another cryptocurrency that used Proof of burn for bootstrapping.
 
 ## See also
 
