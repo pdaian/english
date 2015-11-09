@@ -420,6 +420,38 @@ The C API for processing JSON is [Jansson](https://jansson.readthedocs.org/en/la
 
 For example basic usage (which can be easily modified for Bitcoin RPC), see the Jansson example [github_commits.c](https://jansson.readthedocs.org/en/latest/_downloads/github_commits.c) and [the associated tutorial](https://jansson.readthedocs.org/en/latest/tutorial.html#the-github-repo-commits-api).
 
+The following does with libcurl what the [[cURL example above|API_reference_(JSON-RPC)#Command_line_.28cURL.29]] does:<source lang="c">#include <stdlib.h>
+
+1. include <curl/curl.h>
+
+int main()
+{
+	CURL *curl = curl_easy_init();
+	struct curl_slist *headers = NULL;
+
+	if (curl) {
+	const char *data =
+	"{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", \"method\": \"getinfo\", \"params\": [] }";
+
+	headers = curl_slist_append(headers, "content-type: text/plain;");
+	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+	curl_easy_setopt(curl, CURLOPT_URL, "http://127.0.0.1:8332/");
+
+	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long) strlen(data));
+	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data);
+
+	curl_easy_setopt(curl, CURLOPT_USERPWD,
+	"bitcoinrpcUSERNAME:bitcoinrpcPASSWORD");
+
+	curl_easy_setopt(curl, CURLOPT_USE_SSL, CURLUSESSL_TRY);
+
+	curl_easy_perform(curl);
+	}
+	return 0;
+}
+</source>This output can be parsed with Jansson, *à la* the Jansson tutorial linked to above.
+
 (source: [Bitcoin StackExchange](https://bitcoin.stackexchange.com/a/41158/4334))
 
 ## Qt/C++
