@@ -51,12 +51,17 @@
 	IP20
 
 ## LED
-	Power on: White
-	Hashing: Blue
-	Idle: Yellow blinking
-	Detect fan: Green blinking
-	Error(Software, Power, Temperature): Red blinking
-	Manually turn on LED: While blinking
+
+
+|LED Status|MEMO
+|---|---
+valign="top"|White|Power on
+valign="top"|Blue|Working normally
+valign="top"|Yellow blinking|Idle normally
+valign="top"|Green blinking|Detect fan and mcu
+valign="top"|White blinking|Turn on LED manually
+valign="top"|Red blinking|Toohot/Loopback failed/PG failed/Coretest failed/Voltage error/Temperature sensor error/No fan
+
 
 # Firmware
 ## RPi Firmware
