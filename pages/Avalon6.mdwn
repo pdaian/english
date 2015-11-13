@@ -63,6 +63,33 @@ valign="top"|White blinking|Turn on LED manually
 valign="top"|Red blinking|Toohot/Loopback failed/PG failed/Coretest failed/Voltage error/Temperature sensor error/No fan
 
 
+## MM Error Codes
+Find error here: http://downloads.canaan-creative.com/querystatus.html
+
+
+|CODE|NAME|TYPE|MEMO
+|---|---|---|---
+valign="top"|1|CODE_IDLE|WARN|Idle
+valign="top"|2|CODE_TOOHOT|FATAL|Too hot
+valign="top"|4|CODE_LOOP0FAILED|FATAL|Channel 0 loopback failed
+valign="top"|8|CODE_LOOP1FAILED|FATAL|Channel 1 loopback failed
+valign="top"|16|CODE_INVALIDMCU|FATAL|MCU cann't be detected
+valign="top"|32|CODE_NOSTRATUM|WARN|No stratum
+valign="top"|64|CODE_RBOVERFLOW|WARN|Nonce ringbuffer overflow
+valign="top"|128|CODE_MMCRCFAILED|WARN|Find iic rx crc mismatch
+valign="top"|256|CODE_MCUCRCFAILED|WARN|Find mcu rx crc mismatch
+valign="top"|512|CODE_NOFAN|FATAL|Fan cann't be found
+valign="top"|1024|CODE_PG0FAILED|FATAL|Channel 0 power good failed
+valign="top"|2048|CODE_PG1FAILED|FATAL|Channel 1 power good failed
+valign="top"|4096|CODE_CORETESTFAILED|FATAL|Find bad chip on channel 0 or channel 1
+valign="top"|8192|CODE_ADC0_ERR|FATAL|Temperature sensor cann't be detected on channel 0
+valign="top"|16384|CODE_ADC1_ERR|FATAL|Temperature sensor cann't be detected on channel 1
+valign="top"|32768|CODE_VOL_ERR|FATAL|MM is not permit to run at the voltage for safty
+
+TYPE meaning:
+	**WARN**-It designates potentially harmful situations, but you can ignore it.
+	**FATAL**-It designates very severe error events that will presumably lead the Avalon6 to crash.
+
 # Firmware
 ## RPi Firmware
 ### [http://downloads.canaan-creative.com/software/avalon6/openwrt/20151111/ 20151111]
