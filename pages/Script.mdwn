@@ -53,8 +53,8 @@ When talking about scripts, these value-pushing words are usually omitted.
 |OP_NOTIF|100|0x64|colspan="2"<expression>if [[statements]][[statements]]* endif|If the top stack value is 0, the statements are executed. The top stack value is removed.
 |OP_ELSE|103|0x67|colspan="2"<expression>if [[statements]][[statements]]* endif|If the preceding OP_IF or OP_NOTIF or OP_ELSE was not executed then these statements are and if the preceding OP_IF or OP_NOTIF or OP_ELSE was executed then these statements are not. 
 |OP_ENDIF|104|0x68|colspan="2"<expression>if [[statements]][[statements]]* endif|Ends an if/else block. All blocks must end, or the transaction is **invalid**. An OP_ENDIF without OP_IF earlier is also **invalid**.
-|OP_VERIFY|105|0x69|True / false|Nothing / False|**Marks transaction as invalid**if top stack value is not true.
-|OP_RETURN|106|0x6a|Nothing|Nothing|**Marks transaction as invalid**. A standard way of attaching extra data to transactions is to add a zero-value output with a scriptPubKey consisting of OP_RETURN followed by exactly one pushdata op. Such outputs are provably unspendable, reducing their cost to the network. Currently it is usually considered non-standard (though valid) for a transaction to have more than one OP_RETURN output or an OP_RETURN output with more than one pushdata op.
+|OP_VERIFY|105|0x69|True / false|Nothing / *fail*|**Marks transaction as invalid**if top stack value is not true.
+|OP_RETURN|106|0x6a|Nothing|*fail*|**Marks transaction as invalid**. A standard way of attaching extra data to transactions is to add a zero-value output with a scriptPubKey consisting of OP_RETURN followed by exactly one pushdata op. Such outputs are provably unspendable, reducing their cost to the network. Currently it is usually considered non-standard (though valid) for a transaction to have more than one OP_RETURN output or an OP_RETURN output with more than one pushdata op.
 
 
 ### Stack
@@ -112,7 +112,7 @@ If any opcode marked as disabled is present in a script, it must abort and fail.
 |OP_OR|133|0x85|x1 x2|out|style="background:#D97171;"Boolean *or*between each bit in the inputs. *disabled.*
 |OP_XOR|134|0x86|x1 x2|out|style="background:#D97171;"Boolean *exclusive or*between each bit in the inputs. *disabled.*
 |OP_EQUAL|135|0x87|x1 x2|True / false|Returns 1 if the inputs are exactly equal, 0 otherwise.
-|OP_EQUALVERIFY|136|0x88|x1 x2|True / false|Same as OP_EQUAL, but runs OP_VERIFY afterward.
+|OP_EQUALVERIFY|136|0x88|x1 x2|Nothing / *fail*|Same as OP_EQUAL, but runs OP_VERIFY afterward.
 
 
 ### Arithmetic
@@ -144,7 +144,7 @@ If any opcode marked as *disabled* is present in a script - it must also abort a
 |OP_BOOLAND|154|0x9a|a b|out|If both a and b are not 0, the output is 1. Otherwise 0.
 |OP_BOOLOR|155|0x9b|a b|out|If a or b is not 0, the output is 1. Otherwise 0.
 |OP_NUMEQUAL|156|0x9c|a b|out|Returns 1 if the numbers are equal, 0 otherwise.
-|OP_NUMEQUALVERIFY|157|0x9d|a b|out|Same as OP_NUMEQUAL, but runs OP_VERIFY afterward.
+|OP_NUMEQUALVERIFY|157|0x9d|a b|Nothing / *fail*|Same as OP_NUMEQUAL, but runs OP_VERIFY afterward.
 |OP_NUMNOTEQUAL|158|0x9e|a b|out|Returns 1 if the numbers are not equal, 0 otherwise.
 |OP_LESSTHAN|159|0x9f|a b|out|Returns 1 if a is less than b, 0 otherwise.
 |OP_GREATERTHAN|160|0xa0|a b|out|Returns 1 if a is greater than b, 0 otherwise.
@@ -168,9 +168,9 @@ If any opcode marked as *disabled* is present in a script - it must also abort a
 |OP_HASH256|170|0xaa|in|hash|The input is hashed two times with SHA-256.
 |OP_CODESEPARATOR|171|0xab|Nothing|Nothing|All of the signature checking words will only match signatures to the data after the most recently-executed OP_CODESEPARATOR.
 |[[OP_CHECKSIG]]|172|0xac|sig pubkey|True / false|The entire transaction's outputs, inputs, and script (from the most recently-executed OP_CODESEPARATOR to the end) are hashed. The signature used by OP_CHECKSIG must be a valid signature for this hash and public key. If it is, 1 is returned, 0 otherwise.
-|OP_CHECKSIGVERIFY|173|0xad|sig pubkey|True / false|Same as OP_CHECKSIG, but OP_VERIFY is executed afterward.
+|OP_CHECKSIGVERIFY|173|0xad|sig pubkey|Nothing / *fail*|Same as OP_CHECKSIG, but OP_VERIFY is executed afterward.
 |OP_CHECKMULTISIG|174|0xae|x sig1 sig2 ... <number of signatures>pub1 pub2 <number of public keys>|True / False|Compares the first signature against each public key until it finds an ECDSA match. Starting with the subsequent public key, it compares the second signature against each remaining public key until it finds an ECDSA match. The process is repeated until all signatures have been checked or not enough public keys remain to produce a successful result.  All signatures need to match a public key. Because public keys are not checked again if they fail any signature comparison, signatures must be placed in the scriptSig using the same order as their corresponding public keys were placed in the scriptPubKey or redeemScript.  If all signatures are valid, 1 is returned, 0 otherwise. Due to a bug, one extra unused value is removed from the stack.
-|OP_CHECKMULTISIGVERIFY|175|0xaf|x sig1 sig2 ... <number of signatures>pub1 pub2 ... <number of public keys>|True / False|Same as OP_CHECKMULTISIG, but OP_VERIFY is executed afterward.
+|OP_CHECKMULTISIGVERIFY|175|0xaf|x sig1 sig2 ... <number of signatures>pub1 pub2 ... <number of public keys>|Nothing / *fail*|Same as OP_CHECKMULTISIG, but OP_VERIFY is executed afterward.
 
 
 ### Locktime
@@ -178,7 +178,7 @@ If any opcode marked as *disabled* is present in a script - it must also abort a
 
 |Word|Opcode|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_CHECKLOCKTIMEVERIFY|177|0xb1|Nothing|Nothing <strike>/ False</strike>|This word is ignored and does nothing until BIP65 is enforced. <strike>**Marks transaction as invalid**if the top stack item is greater than the transaction's nLockTime field, otherwise script evaluation continues as though an OP_NOP was executed. Transaction is also invalid if 1. the top stack item is negative; or 2. the top stack item is greater than or equal to 500000000 while the transaction's nLockTime field is less than 500000000, or vice versa; or 3. the input's nSequence field is equal to 0xffffffff. The precise semantics are described in [[BIP_0065]]</strike>
+|OP_CHECKLOCKTIMEVERIFY|177|0xb1|Nothing|Nothing <strike>/ *fail*</strike>|This word is ignored and does nothing until BIP65 is enforced. <strike>**Marks transaction as invalid**if the top stack item is greater than the transaction's nLockTime field, otherwise script evaluation continues as though an OP_NOP was executed. Transaction is also invalid if 1. the top stack item is negative; or 2. the top stack item is greater than or equal to 500000000 while the transaction's nLockTime field is less than 500000000, or vice versa; or 3. the input's nSequence field is equal to 0xffffffff. The precise semantics are described in [[BIP_0065]]</strike>
 
 ###Pseudo-words
 These words are used internally for assisting with transaction matching. They are invalid if used in actual scripts.
