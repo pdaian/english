@@ -19,6 +19,18 @@ At minimum, a full node must download every transaction that has ever taken plac
 
 Full nodes form the backbone of the network. If everyone used lightweight nodes, Bitcoin could not exist.
 
+### Economic strength
+
+This is by far the most important reason for running a full node, though it is a little difficult to understand.
+
+As explained previously, full nodes enforce the consensus rules no matter what. However, lightweight nodes do not do this. Lightweight nodes do whatever the majority of mining power says. Therefore, if most of the miners got together to increase their block reward, for example, lightweight nodes would blindly go along with it. If this ever happened, the network would split such that lightweight nodes and full nodes would end up on separate networks, using separate currencies. People using lightweight nodes would be unable to transact with people using full nodes. If all businesses and many users are using full nodes, then this network split is not a *critical* problem because users of lightweight clients will quickly notice that they can't send or receive bitcoins to/from most of the people who they usually do business with, and so they'll stop using Bitcoin until the evil miners are overcome, which is the appropriate response. *However*, if almost everyone on the network is using lightweight nodes in this situation, then everyone would continue being able to transact with each other, and so Bitcoin could very well end up "hijacked" by evil miners.
+
+In practice, miners are unlikely to attempt anything like the above scenario as long as full nodes are prevalent because the miners would lose a lot of money. But the incentives completely change if everyone uses lightweight nodes. In that case, miners definitely *do* have an incentive to change Bitcoin's rules in their favor. It is only reasonably secure to use a lightweight node *because* most of the Bitcoin economy uses full nodes.
+
+Therefore, it is critical for Bitcoin's survival that the great majority of the Bitcoin economy be backed by full nodes, not lightweight nodes. This is especially important for Bitcoin businesses, which have more economic weight. To contribute to Bitcoin's economic strength, you must actually use a full node for your real transactions (or use a lightweight node connected to a full node that you personally control). Just running a full node on a server somewhere does not contribute to Bitcoin's economic strength.
+
+More details https://www.reddit.com/r/BitcoinBeginners/comments/3eq3y7/full_node_question/ctk4lnd
+
 ### Network services
 
 Full nodes provide various services to other network participants. This is especially important for lightweight nodes.
@@ -31,18 +43,6 @@ These services include:
 * Broadcasting new blocks from miners to other nodes.
 
 For the most part, these services are only usefully performed by full nodes that are listening on port 8333. Other full nodes and all lightweight nodes are actually a slight drain on the network's resources. The more full nodes that accept incoming connections there are, the more users the Bitcoin network can support.
-
-### Economic strength
-
-This is by far the most important reason for running a full node, though it is a little difficult to understand.
-
-As explained previously, full nodes enforce the consensus rules no matter what. However, lightweight nodes do not do this. Lightweight nodes do whatever the majority of mining power says. Therefore, if most of the miners got together to increase their block reward, for example, lightweight nodes would blindly go along with it. If this ever happened, the network would split such that lightweight nodes and full nodes would end up on separate networks, using separate currencies. People using lightweight nodes would be unable to transact with people using full nodes. If all businesses and many users are using full nodes, then this network split is not a *critical* problem because users of lightweight clients will quickly notice that they can't send or receive bitcoins to/from most of the people who they usually do business with, and so they'll stop using Bitcoin until the evil miners are overcome, which is the appropriate response. *However*, if almost everyone on the network is using lightweight nodes in this situation, then everyone would continue being able to transact with each other, and so Bitcoin could very well end up "hijacked" by evil miners.
-
-In practice, miners are unlikely to attempt anything like the above scenario as long as full nodes are prevalent because the miners would lose a lot of money. But the incentives completely change if everyone uses lightweight nodes. In that case, miners definitely *do* have an incentive to change Bitcoin's rules in their favor. It is only reasonably secure to use a lightweight node *because* most of the Bitcoin economy uses full nodes.
-
-Therefore, it is critical for Bitcoin's survival that the great majority of the Bitcoin economy be backed by full nodes, not lightweight nodes. This is especially important for Bitcoin businesses, which have more economic weight. To contribute to Bitcoin's economic strength, you must actually use a full node for your real transactions (or use a lightweight node connected to a full node that you personally control). Just running a full node on a server somewhere does not contribute to Bitcoin's economic strength.
-
-More details https://www.reddit.com/r/BitcoinBeginners/comments/3eq3y7/full_node_question/ctk4lnd
 
 ### Security
 
