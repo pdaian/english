@@ -46,7 +46,7 @@ For the most part, these services are only usefully performed by full nodes that
 
 ### Privacy
 
-Having the blockchain stored on your hard drive is the most private way to have a wallet. All other lightweight solutions leak information about which addresses are yours because they must query third-party servers. The Electrum servers will know which addresses belong to you and can link them together. Despite bloom filtering, SPV nodes based on BitcoinJ do not provide much privacy at all  (6.1).
+Having the blockchain stored on your hard drive is the most private way to have a wallet. All other lightweight solutions leak information about which addresses are yours because they must query third-party servers. The Electrum servers will know which addresses belong to you and can link them together. Despite bloom filtering, SPV nodes based on BitcoinJ do not provide much privacy against nodes who connected directly to the wallet  (6.1).
 
 For many use cases, such privacy may not be required. But an important reason to run a full node and use it as a wallet is to get the full privacy benefits.
 
