@@ -44,12 +44,18 @@ These services include:
 
 For the most part, these services are only usefully performed by full nodes that are listening on port 8333. Other full nodes and all lightweight nodes are actually a slight drain on the network's resources. The more full nodes that accept incoming connections there are, the more users the Bitcoin network can support.
 
+### Privacy
+
+Having the blockchain stored on your hard drive is the most private way to have a wallet. All other lightweight solutions leak information about which addresses are yours because they must query third-party servers. The Electrum servers will know which addresses belong to you and can link them together. Despite bloom filtering, SPV nodes based on BitcoinJ do not provide much privacy at all  (6.1).
+
+For many use cases, such privacy may not be required. But an important reason to run a full node and use it as a wallet is to get the full privacy benefits.
+
 ### Security
 
 Lightweight nodes are sometimes able to be temporarily tricked into accepting transactions or blocks that are not actually valid. This could cause serious financial damage, especially for websites that automatically process Bitcoin transactions. Full nodes provide the maximum security possible, and so they should be used by all businesses, and also by regular users whenever doing so is convenient.
 
 ### Some are incentivizing it.
-Bitnodes is incentivizing full node operators "until the end of 2015 or until 10,000 nodes are running." (7.1) For rules and how to join the incentives program, visit [Bitnodes Incentive Program](https://getaddr.bitnodes.io/nodes/incentive/).
+Bitnodes is incentivizing full node operators "until the end of 2015 or until 10,000 nodes are running." (8.1) For rules and how to join the incentives program, visit [Bitnodes Incentive Program](https://getaddr.bitnodes.io/nodes/incentive/).
 
 ## How to run a full node
 
@@ -59,7 +65,8 @@ There are a few alternate full node implementations, but they are not recommende
 
 ##References
 
-7.1: [Magazine](Bitcoin)  of <i></i>; cf. https://blog.bitcoinfoundation.org/bitnodes-project-2015-q1-report-peer-index-and-incentivized-full-nodes/
+6.1: [Privacy in BitcoinJ](https://jonasnick.github.io/blog/2015/02/12/privacy-in-bitcoinj/)  
+8.1: [Magazine](Bitcoin)  of <i></i>; cf. https://blog.bitcoinfoundation.org/bitnodes-project-2015-q1-report-peer-index-and-incentivized-full-nodes/
 
 
 [[!tag "Technical"]]
