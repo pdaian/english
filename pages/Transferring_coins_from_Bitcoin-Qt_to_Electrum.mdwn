@@ -1,10 +1,10 @@
 This guide is intended for users of [[Bitcoin_Core]] who do not want to wait for their wallet to be synchronized with the network, which may take many hours or days depending on the hardware spec.
 
-It's a somewhat common situation that users don't open their wallet for months, after they come back it they find it will take them hours to have be able to use Bitcoin Core. Another example is where the block files on hard disk have become corrupted requiring parts of the [[blockchain]] to be downloaded and verified again.
+It's a somewhat common situation that users don't open their wallet for months or years, after which they come back to find it will take them hours to have be able to use Bitcoin Core. Another example is where the block files on hard disk have become corrupted requiring parts of the [[blockchain]] to be downloaded and verified again.
 
 **WARNING**
 
-Before reading this page, users should note that directly manipulating ECDSA [[private_keys]] is dangerous and can result in losing bitcoins (1.1) (1.2). This guide is for the impatient or time-stressed, it is recommended that users of [[Bitcoin_Core]] simply wait out the [[blockchain synchronization|block_chain_download]].
+Before reading this page, users should note that directly manipulating ECDSA [[private_keys]] is dangerous and can result in losing bitcoins (1.1) (1.2). This guide is for the impatient or time-stressed, it is recommended that users of [[Bitcoin_Core]] simply wait out the [[blockchain synchronization|block_chain_download]]. There are many benefits to running a [[Full_node]] including trustlessness, security and privacy which lightweight wallets cannot yet match.
 
 ## Obtain new Electrum wallet
 Download [[Electrum]], verify the signature to prove it was not modified in transit. Create a new empty wallet. Write down the mnemonic recovery seed on paper.
