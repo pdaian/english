@@ -1,0 +1,85 @@
+**This is a draft.  When it is finished, it will be moved to the main hierarchy**
+
+**Transaction replaceability** occurs when a full node allows one or
+more of the transactions in its memory pool (mempool) to be replaced
+with a different transaction that spends some or all of the same inputs.
+Transaction replaceability was enabled in the first version of
+Bitcoin (1.1) but was disabled in the 0.3.12 release with the comment,
+"Disable replacement feature for now". (1.2)  Since then, there have been various attempts to make
+transaction replaceability widely available again. (1.3)
+
+Beginning with Bitcoin Core 0.12.0 (not released yet), it is expected
+that transaction replacability will become widely available. This page
+attempts to document the current state of transaction replacability for
+wallet authors who want to use that feature.
+
+## Node policies
+
+Transaction replacement is optional (it is not, and cannot be,
+a consensus rule), but widespread adherence to the same basic policy
+among nodes will help maintain a consistent network-wide mempool policy
+with the following expected benefits:
+
+* Consistent policy makes it easy for wallet authors to write code that uses transaction replacement to provide usability-enhancing features.
+
+* Consistent policy helps ensure long-running mempools contain mostly the same transactions (mempool consistency), which makes it easier for wallets and nodes to make guesses about how long it will take a transaction to confirm.
+
+* Consistent mempools may help nodes more quickly validate newly-received blocks as well as reduce the bandwidth used to announce new blocks in the future.
+
+### Bitcoin Core 0.3.12 to 0.11.x
+
+Transaction replacability is disallowed in a running node.
+
+### Bitcoin Core 0.12.0
+
+*Bitcoin Core 0.12.0 has not been released yet.  It is expected in Jan/Feb 2016.*
+
+Bitcoin Core 0.12.0 uses the initial implementation of opt-in full-RBF
+described in FIXME:bip-harding-opt-in-replace-by-fee.
+
+The initial implementation of opt-in full-RBF may be seen in 
+[Bitcoin Core PR#6871](https://github.com/bitcoin/bitcoin/pull/6871)
+and specifically the master branch commits from
+5891f870d68d90408aa5ce5b597fb574f2d2cbca to
+16a2f93629f75d182871f288f0396afe6cdc8504 (inclusive).
+
+### Peter Todd's full-RBF patchset
+
+Peter Todd has historically maintained patchsets against Bitcoin Core
+0.8.x and later that implement full-RBF for all transactions in the
+mempool. (Later versions also provide an option to enable RBF First-Seen-Safe (RBF-FSS) only.)
+A rebased version of the most recent patch is also available for
+contemporary [Bitcoin LJR](http://luke.dashjr.org/programs/bitcoin-ljr/) releases.
+
+Notably, the patchset also implements preferential peering that allows
+nodes implementing full-RBF to connect to each other so that replacments 
+can circulate even if full-RBF nodes represent a small minority of the
+network.
+
+As of 2015-12-08, there are no known large miners or mining pools that
+implement full-RBF.
+
+* [Replace by fee patches for Bitcoin Core 0.10.x](https://github.com/petertodd/bitcoin/branches/all?utf8=%E2%9C%93&query=replace-by-fee-v0.10)
+* [Replace by fee patches for Bitcoin Core 0.11.x](https://github.com/petertodd/bitcoin/branches/all?utf8=%E2%9C%93&query=replace-by-fee-v0.11)
+
+Policy (5.1): one or more transactions currently in the mempool (original
+transactions) will be replaced by a new transaction (replacement
+transaction) that spends one or more of the same inputs if,
+
+1. The replacement transaction pays an absolute higher fee than the original transactions.
+1. The replacement transaction must pay for its own bandwidth in addition to the amount paid by the original transactions at least by the rate set by the node's minimum relay fee setting.  For example, if the minimum relay fee is 1 satoshi/byte and the replacement transaction is 500 bytes total, then the replacement must pay a fee at least 500 satoshis higher than the originals.
+1. No more than 100 original transactions are replaced by the replacement transaction
+
+## See Also
+
+* [bip-harding-opt-in-replace-by-fee: Opt-in full-RBF signalling](http://FIXME.com)
+* [Reddit: Questions about opt-in RBF](https://www.reddit.com/r/Bitcoin/comments/3urm8o/optin_rbf_is_misunderstood_ask_questions_about_it/)
+
+## References
+
+
+1.1: [Replacement in original Bitcoin source code](https://github.com/trottier/original-bitcoin/blob/master/src/main.cpp#L434) , Satoshi Nakamoto, GitHub, ''Retrieved 2015-12-08''  
+1.2: [Commit disabling replacement "for now"](https://github.com/bitcoin/bitcoin/commit/05454818dc7ed92f577a1a1ef6798049f17a52e7#diff-118fcbaaba162ba17933c7893247df3aR522) , Satoshi Nakamoto, GitHub, ''Retrieved 2015-12-08''  
+1.3: [Initial replace-by-fee implementation available for testnet](https://bitcointalk.org/index.php?topic=199947.0) , BitcoinTalk forum, posted 2013-05-09, ''retrieved 2015-12-09''  
+5.1: [RBF patchset for 0.11.2](https://github.com/bitcoin/bitcoin/compare/0.11...petertodd:replace-by-fee-v0.11.0) , Peter Todd, GitHub, ''Retrieved 2015-12-08''
+
