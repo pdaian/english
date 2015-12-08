@@ -9,8 +9,8 @@ Bitcoin (1.1) but was disabled in the 0.3.12 release with the comment,
 transaction replaceability widely available again. (1.3)
 
 Beginning with Bitcoin Core 0.12.0 (not released yet), it is expected
-that transaction replacability will become widely available. This page
-attempts to document the current state of transaction replacability for
+that transaction replaceability will become widely available. This page
+attempts to document the current state of transaction replaceability for
 wallet authors who want to use that feature.
 
 ## Node policies
@@ -28,7 +28,7 @@ with the following expected benefits:
 
 ### Bitcoin Core 0.3.12 to 0.11.x
 
-Transaction replacability is disallowed in a running node.
+Transaction replaceability is disallowed in a running node.
 
 ### Bitcoin Core 0.12.0
 
@@ -52,7 +52,7 @@ A rebased version of the most recent patch is also available for
 contemporary [Bitcoin LJR](http://luke.dashjr.org/programs/bitcoin-ljr/) releases.
 
 Notably, the patchset also implements preferential peering that allows
-nodes implementing full-RBF to connect to each other so that replacments 
+nodes implementing full-RBF to connect to each other so that replacements 
 can circulate even if full-RBF nodes represent a small minority of the
 network.
 
