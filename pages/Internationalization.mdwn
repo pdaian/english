@@ -1,5 +1,5 @@
 ## Bitcoin and '''internationalization''' (i18n)
-Bitcoin is a global currency.  Support for [internationalization and localization](http://en.wikipedia.org/wiki/Internationalization_and_localization) follows:
+Bitcoin is a global currency.  Support for [internationalization and localization](wikipedia:Internationalization_and_localization) follows:
 
 ###Bitcoin.org
 The [homepage](http://www.bitcoin.org) the Bitcoin project website has many [[translations|Bitcoin.org_translations]].  
@@ -10,22 +10,12 @@ The multi-lingual scheme for this Wiki is described on [[Bitcoin.it_Wiki]].
 ###Bitcoin client
 The [[original bitcoin client|Original_Bitcoin_client]] software supports ten languages, as-of version 0.3.20 (5.1)
 
-####Windows
-When the program runs, it looks in the directory of the EXE for the file:
-	locale\<langcode>\LC_MESSAGES\bitcoin.mo
+Changes can be made on [Transifex](https://www.transifex.com/bitcoin/bitcoin/) and generated source files are stored in src/qt/locale/ and compiled into Qt executable.
 
-<langcode> is the two letter code of the language your OS is set to, like "de" or "nl".
-
-####Linux
-The software looks for:
-
-* /usr/share/locale/<langcode>/LC_MESSAGES/bitcoin.mo
-* /usr/local/share/locale/<langcode>/LC_MESSAGES/bitcoin.mo
-
-####Mac
-?
+###Bitcoin forum - bitcointalk
+Local subforums are available on [[BitcoinTalk]]: https://bitcointalk.org/index.php#5
 
 ##References
 
-5.1: [Bitcoin Translation Room](http://www.bitcoin.org/smf/index.php?topic=3773.msg53445#msg53445)
+5.1: [Bitcoin Translation Room](https://bitcointalk.org/index.php?topic=3773.0;all)
 
