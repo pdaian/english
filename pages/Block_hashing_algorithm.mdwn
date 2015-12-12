@@ -25,21 +25,23 @@ Moreover, it is extremely unlikely for two people to have the same Merkle root b
 Bitcoin uses: SHA256(SHA256(Block_Header)) but you have to be careful about byte-order.
 
 For example, this python code will calculate the hash of the block with the smallest hash as of June 2011, [Block 125552](http://blockexplorer.com/block/00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d).  The header is built from the six fields described above, concatenated together as little-endian values in hex notation:
-
-	>>> import hashlib
-	>>> header_hex = ("01000000" +
+<source lang="python">
+>>> import hashlib
+>>> header_hex = ("01000000" +
 	"81cd02ab7e569e8bcd9317e2fe99f2de44d49ab2b8851ba4a308000000000000" +
 	"e320b6c2fffc8d750423db8b1eb942ae710e951ed797f7affc8892b0f1fc122b" +
 	"c7f5d74d" +
 	"f2b9441a" +
 	"42a14695")
-	>>> header_bin = header_hex.decode('hex')
-	>>> hash = hashlib.sha256(hashlib.sha256(header_bin).digest()).digest()
-	>>> hash.encode('hex_codec')
-	'1dbd981fe6985776b644b173a4d0385ddc1aa2a829688d1e0000000000000000'
-	>>> hash[[::-1]].encode('hex_codec')
-	'00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d'
+>>> header_bin = header_hex.decode('hex')
+>>> hash = hashlib.sha256(hashlib.sha256(header_bin).digest()).digest()
+>>> hash.encode('hex_codec')
+'1dbd981fe6985776b644b173a4d0385ddc1aa2a829688d1e0000000000000000'
+>>> hash[[::-1]].encode('hex_codec')
+'00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d'
+</source>
 
+##Endianess
 Note that the hash, which is a 256-bit number, has lots of leading zero bytes when stored or printed as a big-endian hexadecimal constant, but it has trailing zero bytes when stored or printed in little-endian. For example, if interpreted as a string and the lowest (or start of) the string address keeps lowest significant byte, it is little-endian.
 
 The output of [blockexplorer](http://blockexplorer.com) displays the hash values as big-endian numbers; notation for numbers is usual (leading digits are the most significant digits read from left to right).
@@ -47,8 +49,8 @@ The output of [blockexplorer](http://blockexplorer.com) displays the hash values
 For another example, [here](http://pastebin.com/bW3fQA2a) is a version in plain C without any optimization, threading or error checking.
 
 Here is the same example in plain PHP without any optimization.
-
-	<?
+<source lang="php">
+<?
 	//This reverses and then swaps every other char
 	function SwapOrder($in){
 	$Split = str_split(strrev($in));
@@ -68,7 +70,7 @@ Here is the same example in plain PHP without any optimization.
 	$prevBlockHash = SwapOrder('00000000000008a3a41b85b8b29ad444def299fee21793cd8b9e567eab02cd81');
 	$rootHash = SwapOrder('2b12fcf1b09288fcaff797d71e950e71ae42b91e8bdb2304758dfcffc2b620e3');
 	$time = littleEndian(1305998791);
-	$bits =littleEndian( 440711666); 
+	$bits = littleEndian(440711666); 
 	$nonce = littleEndian(2504433986); 
 	
 	//concat it all
@@ -84,7 +86,7 @@ Here is the same example in plain PHP without any optimization.
 	$FinalHash = SwapOrder($pass2);
 	
 	echo   $FinalHash;
-	?>
-	
+?>
+</source>
 
 [[!tag "Technical"]]
