@@ -451,7 +451,7 @@ For the block locator object in this packet, the same rules apply as for the [[g
 
 
 
-|4 |version |uint32_t |Transaction data format version
+|4 |version |int32_t |Transaction data format version (note, this is signed)
 |1+ |tx_in count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of Transaction inputs
 |41+ |tx_in |tx_in[]|A list of 1 or more transaction inputs or sources for coins
 |1+ |tx_out count |[[var_int|Protocol_documentation#Variable_length_integer]]|Number of Transaction outputs
