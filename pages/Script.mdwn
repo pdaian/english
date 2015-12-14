@@ -178,7 +178,8 @@ If any opcode marked as *disabled* is present in a script - it must also abort a
 
 |Word|Opcode|Hex|Input|Output|Description
 |---|---|---|---|---|---
-|OP_CHECKLOCKTIMEVERIFY|177|0xb1|Nothing|Nothing <strike>/ *fail*</strike>|This word is ignored and does nothing until BIP65 is enforced. <strike>**Marks transaction as invalid**if the top stack item is greater than the transaction's nLockTime field, otherwise script evaluation continues as though an OP_NOP was executed. Transaction is also invalid if 1. the top stack item is negative; or 2. the top stack item is greater than or equal to 500000000 while the transaction's nLockTime field is less than 500000000, or vice versa; or 3. the input's nSequence field is equal to 0xffffffff. The precise semantics are described in [[BIP_0065]]</strike>
+|OP_CHECKLOCKTIMEVERIFY|177|0xb1|Nothing|Nothing / *fail*|**Marks transaction as invalid**if the top stack item is greater than the transaction's nLockTime field, otherwise script evaluation continues as though an OP_NOP was executed. Transaction is also invalid if 1. the stack is empty; or 2. the top stack item is negative; or 3. the top stack item is greater than or equal to 500000000 while the transaction's nLockTime field is less than 500000000, or vice versa; or 4. the input's nSequence field is equal to 0xffffffff. The precise semantics are described in [[BIP_0065]]
+
 
 ###Pseudo-words
 These words are used internally for assisting with transaction matching. They are invalid if used in actual scripts.
