@@ -411,7 +411,7 @@ To create the block locator hashes, keep pushing hashes until you go back to the
 // From libbitcoin which is under AGPL
 std::vector<size_t> block_locator_indexes(int top_height)
 {
-    std::vector<size_t> indices;
+    std::vector<size_t> indexes;
 
     // Start at the top of the chain.
     int32_t start = 0;
