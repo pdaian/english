@@ -413,16 +413,17 @@ std::vector<size_t> block_locator_indexes(int top_height)
 {
     std::vector<size_t> indexes;
 
-    // Start at the top of the chain.
-    int32_t start = 0;
+    // Count the number of iterations.
+    int32_t count = 0;
 
     // Modify the step in the iteration.
     int32_t step = 1;
 
-    for (auto index = top_height; index > 0; index -= step, ++start)
+    // Start at the top of the chain.
+    for (auto index = top_height; index > 0; index -= step, ++count)
     {
         // Push top 10 indexes first, then back off exponentially.
-        if (start >= 10)
+        if (count >= 10)
             step *= 2;
 
         indexes.push_back(static_cast<size_t>(index));
