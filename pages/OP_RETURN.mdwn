@@ -1,0 +1,30 @@
+OP_RETURN is a [[script]] opcode used to mark a transaction output as invalid. Since the data after OP_RETURN are irrelevant to Bitcoin payments, arbitrary data can be added into the transaction by following the OP_RETURN with an OP_PUSHDATA. Since any outputs with OP_RETURN are provably unspendable, OP_RETURN outputs can be used to [[burn|Proof_of_burn]] bitcoins.
+
+Currently, the default Bitcoin client relays OP_RETURN transactions up to 40 bytes, but does not provide a way to create OP_RETURN transactions.
+
+## Philosophy
+Some members of the Bitcoin community believe that use of OP_RETURN violates the contract of Bitcoin, because Bitcoin was intended to provide a record for financial transactions, not a record for arbitrary data. Despite this, use of OP_RETURN may continue unabated because there is no easy way to stop people from embedding arbitrary data in the blockchain, and OP_RETURN is an efficient way to do it. [[https://bitcointalk.org/index.php?topic=471928.0 bitcointalk discussion]]
+
+## Resources on OP_RETURN
+
+* [coinsecrets.org](http://coinsecrets.org/): An OP_RETURN transaction explorer
+* [python-OP_RETURN](https://github.com/coinspark/python-OP_RETURN)
+* [StackExchange: Explanation of what an OP_RETURN transaction looks like](http://bitcoin.stackexchange.com/questions/29554/explanation-of-what-an-op-return-transaction-looks-like)
+* [Metadata in the Blockchain: The OP_RETURN Explosion](http://www.slideshare.net/coinspark/bitcoin-2-and-opreturns-the-blockchain-as-tcpip)
+* [How to Put Custom Messages Into Bitcoin Blockchain - OP_RETURN](http://wlangiewicz.com/blog/2014/10/24/how-to-put-custom-messages-into-bitcoin-blockchain-op-return/)
+
+## OP_RETURN prefixes
+Often, OP_RETURN transactions include a prefix to identify which protocol they belong to. There is no standardized method of claiming OP_RETURN prefixes, and not all OP_RETURN transactions use prefixes. At the time of writing, this wiki page is probably the most complete registry of OP_RETURN prefixes.
+
+
+
+|Prefix (Ascii-Encoded) |Protocol/Owner |Brief description
+|---|---|---
+|Fa |Factom |?
+|CC |Colu |?
+|? |[Open Assets](https://github.com/OpenAssets/open-assets-protocol)|Issuance and transfer of user-created assets
+|MG |[Monegraph](https://monegraph.com)|Digital work licensing
+|id |Blockstore |?
+|ASCRIBE |[ASCRIBE](https://ascribe.io)|Digital work licensing
+|? |Counterparty |?
+
