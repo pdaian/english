@@ -34,7 +34,7 @@ More details https://www.reddit.com/r/BitcoinBeginners/comments/3eq3y7/full_node
 
 ### Network services
 
-Full nodes provide various services to other network participants. This is especially important for lightweight nodes.
+Full nodes may provide various services to other network participants (if the software is run with -listen=1 as is default). This is especially important for lightweight nodes.
 
 These services include:
 
@@ -43,7 +43,7 @@ These services include:
 * Transmitting new transactions from users to miners.
 * Broadcasting new blocks from miners to other nodes.
 
-For the most part, these services are only usefully performed by full nodes that are listening on port 8333. Other full nodes and all lightweight nodes are actually a slight drain on the network's resources. The more full nodes that accept incoming connections there are, the more users the Bitcoin network can support.
+For the most part, these services are only usefully performed by full nodes that are listening on port 8333. Other full nodes and all lightweight nodes are actually a slight drain on the network's resources in this respect. The more full nodes that accept incoming connections there are, the more users the Bitcoin network can support.
 
 ### Privacy
 
