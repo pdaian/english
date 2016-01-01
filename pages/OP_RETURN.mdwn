@@ -5,6 +5,13 @@ Currently, the default Bitcoin client relays OP_RETURN transactions up to 80 byt
 ## Philosophy
 Some members of the Bitcoin community believe that use of OP_RETURN violates the contract of Bitcoin, because Bitcoin was intended to provide a record for financial transactions, not a record for arbitrary data. Despite this, use of OP_RETURN may continue unabated because there is no easy way to stop people from embedding arbitrary data in the blockchain if they want to, and OP_RETURN is reasonably efficient in terms of [data bytes stored as a fraction of blockchain space consumed](http://i.imgur.com/VAGZWBK.png). Compared to some other ways of storing data in the blockchain, OP_RETURN has the advantage of not creating bogus UTXO entries. [Discussion on GitHub pull request](https://github.com/bitcoin/bitcoin/pull/5286)
 
+From [Bitcoin Core release 0.9.0](https://bitcoin.org/en/release/v0.9.0#opreturn-and-data-in-the-block-chain):
+<blockquote>
+This change is not an endorsement of storing data in the blockchain. The OP_RETURN change creates a provably-prunable output, to avoid data storage schemes – some of which were already deployed – that were storing arbitrary data such as images as forever-unspendable TX outputs, bloating bitcoin's UTXO database.
+
+Storing arbitrary data in the blockchain is still a bad idea; it is less costly and far more efficient to store non-currency data elsewhere.
+</blockquote>
+
 ## Resources on OP_RETURN
 
 * [coinsecrets.org](http://coinsecrets.org/): An OP_RETURN transaction explorer
