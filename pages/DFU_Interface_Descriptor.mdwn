@@ -1,0 +1,11 @@
+|+DFU Interface DescriptorOffset Field Size Value Descripton
+|0 |bLength |1 |09h |Size of this descriptor,in bytes.
+|1 |bDescriptorType |1 |04h |INTERFACE descriptor type.
+|2 |bInterfaceNumber |1 |Number |Number of this interface.
+|3 |bAlternateSetting |1 |00h |Alternate setting. Must be zero.
+|4 |bNumEndpoints |1 |00h |Only the control pipe is used.
+|5 |bInterfaceClass |1 |FEh |Application Specific Class Code.
+|6 |bInterfaceSubClass |1 |01h |Device Firmware Upgrade Code.
+|7 |bInterfaceProtocol |1 |01h |Runtime protocol.
+|8 |iInterface |1 |index |Index of string descriptor for this interface.
+
