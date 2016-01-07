@@ -253,6 +253,16 @@ TYPE meaning:
 	1. [[DFU_Mode_Interface_Descriptor]]
 1. [Detail USB-DUF Product's USB Descriptor](https://en.bitcoin.it/wiki/File:USB-DFU_Descriptor.png)
 1. [DFU Updata Process Diagram](https://en.bitcoin.it/wiki/File:USB-DFU_Descriptor.png)
+1. Modify dfu-util for Ubuntu 14.04
+	#Inside your home directory, download dfu-util<br />
+	git clone git://git.openezx.org/dfu-util.git<br />
+	open dfu-util/src/dfu_load.c<br />
+	insert this sentence "[milli_sleep(200);](https://en.bitcoin.it/wiki/File:Milli_sleep%28200%29.png)" at line 135<br />
+	cd dfu-util<br />
+	./autogen.sh<br />
+	./configure<br />
+	make<br />
+	The resulting binary is dfu-util/src/dfu-util.
 
 ## TODO
 ### OpenWrt
