@@ -1,0 +1,16 @@
+|+DFU Device DescriptorOffsetFieldSizeValueDescripton
+|0 |bLength |1 |12h |Size of this descriptor,in bytes.
+|1 |bDescriptorType |1 |01h |DEVICE descriptor type.
+|2 |bcdUSB |2 |0100h |USB specification release number in binary coded decimal.
+|4 |bDeviceClass |1 |00h |See interface.
+|5 |bDeviceSubClass |1 |00h |See interface
+|6 |bDeviceProtocol |1 |00h |See interface.
+|7 |bMaxPacketSize0 |1 |8,16,32,64 |Maximum packet size for endpoint.
+|8 |idVendor |2 |ID |Vendor ID. Assigned by the USB-IF.
+|10 |idProduct |2 |ID |Product ID. Assigned by manufacturer.
+|12 |bcdDevice |2 |BCD |Device release number in binary coded decimal.
+|14 |iManufacturer |1 |index |index of string descriptor.
+|15 |iProduct |1 |index |index of string descriptor.
+|16 |iSerialNumber |1 |index |index of string descriptor.
+|17 |bNumConfigurations |1 |01h |One configuration only for DFU. 
+
