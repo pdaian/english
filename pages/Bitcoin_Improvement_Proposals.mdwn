@@ -17,7 +17,7 @@ As described in [[BIP_0001]] the workflow of a BIP is as follows:
 # List of BIPs
 [[!template id=bipmoved README.mediawiki README]]
 
-People wishing to submit BIPs, first should propose their idea or document to [the mailing list](https://lists.linuxfoundation.org/mailman/listinfo/bitcoin-dev). After discussion they should email Greg Maxwell <gmaxwell@gmail.com>. After copy-editing and acceptance, it will be published here.
+People wishing to submit BIPs, first should propose their idea or document to [the mailing list](https://lists.linuxfoundation.org/mailman/listinfo/bitcoin-dev). After discussion they should email Luke Dashjr <luke_bipeditor@dashjr.org>. After copy-editing and acceptance, it will be published here.
 
 We are fairly liberal with approving BIPs, and try not to be too involved in decision making on behalf of the community. The exception is in very rare cases of dispute resolution when a decision is contentious and cannot be agreed upon. In those cases, the conservative option will always be preferred.
 
@@ -30,7 +30,8 @@ perl -e 'while(<>){ s/bip-(\d+)\.mediawiki/BIP $1/; if (m/^\\-\s*(style=".*")?$/
 -->
 
 
-style="background-color: #cfffcf"|[[1|BIP_0001]]|BIP Purpose and Guidelines|Amir Taaki|Standard|Active
+style="background-color: #cfffcf"|[[1|BIP_0001]]|BIP Purpose and Guidelines|Amir Taaki|Process|Active
+|[[9|BIP_0009]]|Version bits with timeout and delay|Pieter Wuille, Peter Todd, Greg Maxwell, Rusty Russell|Informational|Draft
 style="background-color: #ffcfcf"|[[10|BIP_0010]]|Multi-Sig Transaction Distribution|Alan Reiner|Informational|Withdrawn
 style="background-color: #cfffcf"|[[11|BIP_0011]]|M-of-N Standard Transactions|Gavin Andresen|Standard|Accepted
 style="background-color: #ffcfcf"|[[12|BIP_0012]]|OP_EVAL|Gavin Andresen|Standard|Withdrawn
@@ -52,7 +53,7 @@ style="background-color: #cfffcf"|[[32|BIP_0032]]|Hierarchical Deterministic Wal
 style="background-color: #cfffcf"|[[34|BIP_0034]]|Block v2, Height in coinbase|Gavin Andresen|Standard|Accepted
 style="background-color: #cfffcf"|[[35|BIP_0035]]|mempool message|Jeff Garzik|Standard|Accepted
 |[[36|BIP_0036]]|Custom Services|Stefan Thomas|Standard|Draft
-style="background-color: #cfffcf"|[[37|BIP_0037]]|Bloom filtering|Mike Hearn and Matt Corallo|Standard|Accepted
+style="background-color: #cfffcf"|[[37|BIP_0037]]|Bloom filtering|Mike Hearn, Matt Corallo|Standard|Accepted
 |[[38|BIP_0038]]|Passphrase-protected private key|Mike Caldwell|Standard|Draft
 |[[39|BIP_0039]]|Mnemonic code for generating deterministic keys|Slush|Standard|Draft
 |40|Stratum wire protocol|Slush|Standard|BIP number allocated
@@ -65,32 +66,40 @@ style="background-color: #cfffcf"|[[37|BIP_0037]]|Bloom filtering|Mike Hearn and
 |[[50|BIP_0050]]|March 2013 Chain Fork Post-Mortem|Gavin Andresen|Informational|Draft<!-- 50 series reserved for a group of post-mortems -->
 |[[60|BIP_0060]]|Fixed Length "version" Message (Relay-Transactions Field)|Amir Taaki|Standard|Draft
 style="background-color: #cfffcf"|[[61|BIP_0061]]|"reject" P2P message|Gavin Andresen|Standard|Final
-|[[62|BIP_0062]]|Dealing with malleability|Pieter Wuille|Standard|Draft
+style="background-color: #ffcfcf"|[[62|BIP_0062]]|Dealing with malleability|Pieter Wuille|Standard|Withdrawn
 |63|Stealth Addresses|Peter Todd|Standard|BIP number allocated
 |[[64|BIP_0064]]|getutxos message|Mike Hearn|Standard|Draft
 |[[65|BIP_0065]]|OP_CHECKLOCKTIMEVERIFY|Peter Todd|Standard|Draft
 |[[66|BIP_0066]]|Strict DER signatures|Pieter Wuille|Standard|Draft
 |[[67|BIP_0067]]|Deterministic P2SH multi-signature addresses|Thomas Kerin|Standard|Draft
-|[[68|BIP_0068]]|Consensus-enforced transaction replacement signalled via sequence numbers|Mark Friedenbach|Standard|Draft
+|[[68|BIP_0068]]|Relative lock-time through consensus-enforced sequence numbers|Mark Friedenbach, BtcDrak, Nicolas Dorier|Standard|Draft
 |[[69|BIP_0069]]|Lexicographical Indexing of Transaction Inputs and Outputs|Kristov Atlas|Standard|Draft
 style="background-color: #cfffcf"|[[70|BIP_0070]]|Payment protocol|Gavin Andresen|Standard|Final
 style="background-color: #cfffcf"|[[71|BIP_0071]]|Payment protocol MIME types|Gavin Andresen|Standard|Final
 style="background-color: #cfffcf"|[[72|BIP_0072]]|Payment protocol URIs|Gavin Andresen|Standard|Final
 |[[73|BIP_0073]]|Use "Accept" header with Payment Request URLs|Stephen Pair|Standard|Draft
-|[[99|BIP_0099]]|Motivation and deployment of consensus rule changes ([[soft/hard]]forks)|Jorge Timón|Process|Draft
-|[[100|BIP_0100]]|Floating block size hard limit|Jeff Garzik|Standard|Draft
+|[[99|BIP_0099]]|Motivation and deployment of consensus rule changes ([[soft/hard]]forks)|Jorge Timón|Informational / Process|Draft
+|[[100|BIP_0100]]|Floating block size hard limit|Jeff Garzik|Standard
 |[[101|BIP_0101]]|Increase maximum block size|Gavin Andresen|Standard|Draft
 |[[102|BIP_0102]]|Block size increase to 2MB|Jeff Garzik|Standard|Draft
 |[[103|BIP_0103]]|Block size following technological growth|Pieter Wuille|Standard|Draft
 |[[105|BIP_0105]]|Consensus based block size retargeting algorithm|BtcDrak|Standard|Draft
 |[[106|BIP_0106]]|Dynamically Controlled Bitcoin Block Size Max Cap|Upal Chakraborty|Standard|Draft
-|[[111|BIP_0111]]|NODE_BLOOM service bit|Matt Corallo and Peter Todd|Standard|Draft
-|[[112|BIP_0112]]|CHECKSEQUENCEVERIFY|BtcDrak and Mark Friedenbach|Standard|Draft
-|[[113|BIP_0113]]|Median time-past as endpoint for lock-time calculations|Thomas Kerin and Mark Friedenbach|Standard|Draft
+|[[107|BIP_0107]]|Dynamic limit on the block size|Washington Y. Sanchez|Standard|Draft
+|[[111|BIP_0111]]|NODE_BLOOM service bit|Matt Corallo, Peter Todd|Standard|Draft
+|[[112|BIP_0112]]|CHECKSEQUENCEVERIFY|BtcDrak, Mark Friedenbach|Standard|Draft
+|[[113|BIP_0113]]|Median time-past as endpoint for lock-time calculations|Thomas Kerin, Mark Friedenbach|Standard|Draft
 |[[120|BIP_0120]]|Proof of Payment|Kalle Rosenbaum|Standard|Draft
 |[[121|BIP_0121]]|Proof of Payment URI scheme|Kalle Rosenbaum|Standard|Draft
+|[[122|BIP_0122]]|URI scheme for Blockchain references / exploration|Marco Pontello|Standard|Draft
 |[[123|BIP_0123]]|BIP Classification|Eric Lombrozo|Informational|Draft
+|[[125|BIP_0125]]|Opt-in Full Replace-by-Fee Signaling|David Harding, Peter Todd|Standard|Draft
 |[[130|BIP_0130]]|sendheaders message|Suhas Daftuar|Standard|Draft
+|[[140|BIP_0140]]|Normalized TXID|Christian Decker|Standard|Draft
+|[[141|BIP_0141]]|Segregated Witness (Consensus layer)|Eric Lombrozo, Johnson Lau, Pieter Wuille|Standard|Draft
+|[[142|BIP_0142]]|Address Formats for Witness Program|Johnson Lau|Standard|Draft
+|[[143|BIP_0143]]|Transaction signature verification for version 0 and version 1 witness program|Johnson Lau, Pieter Wuille|Standard|Draft
+|[[144|BIP_0144]]|Segregated Witness (Peer Services)|Eric Lombrozo, Pieter Wuille|Standard|Draft
 
 
 <!-- IMPORTANT!  See the instructions at the top of this page, do NOT JUST add BIPs here! -->
