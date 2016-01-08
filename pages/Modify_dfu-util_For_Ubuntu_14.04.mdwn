@@ -1,0 +1,17 @@
+ #Inside your home directory, download dfu-util
+
+	git clone git://git.openezx.org/dfu-util.git
+
+	open dfu-util/src/dfu_load.c
+
+	add this instruction "[milli_sleep(200);](https://en.bitcoin.it/wiki/File:Milli_sleep%28200%29.png)" under line 134
+
+	cd dfu-util
+
+	./autogen.sh
+
+	./configure
+
+	make
+
+	The resulting binary is dfu-util/src/dfu-util.
