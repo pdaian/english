@@ -362,6 +362,18 @@ TYPE meaning:
 
 	The resulting binary is dfu-util/src/dfu-util.
 ### Issues
+<big>1. About Bootloader USB Descriptor:</big>
+	Note the DFU Functional Descriptor' wTransferSize size, It must equal the USBD_DFU_INIT_PARAM_T's wTransferSize.
+<big>2. About IAP Transmission Data Size </big>
+	The data size should be 256 or 512 or 1024 or 4096 Bytes.
+<big>3. About IAP Transmission Data Address </big>
+	The data address should be a 256 byte boundary.
+<big>3. Why sometimes updata failed ?</big>
+	Now, I didn't find the real reason. But, I think the reason is the time of communication is not correct. 
+<big>3. Why sometimes updata finished, but the program don't run normally ?</big>
+	I think that I didn't check the flash address and the data address are right.<br />
+	I will add the check in the program later.
+
 ### References And Links
 
 * [LPCXpress IDE Download](https://www.lpcware.com/lpcxpresso/download)
