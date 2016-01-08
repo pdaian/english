@@ -321,15 +321,12 @@ TYPE meaning:
 [[UpdataProcess.png]]
 
 #### How To Judge The Bootloader Program Is Updating Or Jump To Application Program
-<big><big>I used a updata flag which is a four bytes word and 
-is writed at fixd flash address (0x8000 - 4)
+	I used a updata flag which is a four bytes word and is writed at fixd flash address (0x8000 - 4)
 
-The flag's value is 0xAABBCCDD
+	The flag's value is 0xAABBCCDD
 
-When the bootloader program run, first it judge the updata flag,
-if the updata falg is not equal 0xAABBCCDD,<br />
-it will jump to application program.
-otherwise it will run to updata program.</big></big>
+	When the bootloader program run, first it judge the updata flag, if the updata falg is not equal 0xAABBCCDD, it will jump to application program.
+	Otherwise it will run to updata program.
 
 #### How To Jump To Application Program
 <big><big>When we don't want to updata application program,</big></big> <br />
