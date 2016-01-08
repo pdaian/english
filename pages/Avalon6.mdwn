@@ -266,16 +266,8 @@ TYPE meaning:
 1. [DFU Updata Process Diagram](https://en.bitcoin.it/wiki/File:UpdataProcess.png)
 1. [[How_To_Judge_The_Bootloader_Program_Is_Updating_Or_Jump_To_Application_Program]]
 1. [[How_To_Jump_To_Application_Program]]
-1. Modify dfu-util For Ubuntu 14.04
-	#Inside your home directory, download dfu-util<br />
-	git clone git://git.openezx.org/dfu-util.git<br />
-	open dfu-util/src/dfu_load.c<br />
-	add this instruction "[milli_sleep(200);](https://en.bitcoin.it/wiki/File:Milli_sleep%28200%29.png)" under line 134<br />
-	cd dfu-util<br />
-	./autogen.sh<br />
-	./configure<br />
-	make<br />
-	The resulting binary is dfu-util/src/dfu-util.
+1. [[Modify_dfu-util_For_Ubuntu_14.04]]
+1. See also
 
 ## TODO
 ### OpenWrt
