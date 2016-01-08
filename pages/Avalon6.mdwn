@@ -363,11 +363,11 @@ TYPE meaning:
 	The resulting binary is dfu-util/src/dfu-util.
 
 ### Add DFU In AUC2 Firmware
-#### Modify The AUC2 Firmware Start Address
-	1. We modify the start address at 0x4000,because the bootloader's size is 0x4000.
-
-	2. We modify the *.ld file. And my *.ld file is avalon-usb-converter.ld, you can find your *.ld file.
-
+#### Modify The AUC2 Firmware Flash And RAM Address
+	1. We modify the Flash start address at 0x4000, because the bootloader's size is 0x4000.<br />
+	2. We modify the RAM start address at 0x10000200, because we remap the NVIC table at the RAM 0x10000000,
+	and the NVIC table size is 0x200 bytes.<br />
+	3. We modify the *.ld file. And my *.ld file is avalon-usb-converter.ld, you can find your *.ld file.
 > 
 
 |<big>Before Modification</big>|<big>After  Modification</big>
@@ -375,8 +375,27 @@ TYPE meaning:
 |MEMORY{	/* Define each memory region */	MFlash32 (rx) : ORIGIN = 0x0, LENGTH = 0x8000 	/* 32K bytes */	RamLoc4 (rwx) : ORIGIN = 0x10000000, LENGTH = 0x1000 /* 4K bytes */	RamUsb2 (rwx) : ORIGIN = 0x20004000, LENGTH = 0x800 /* 2K bytes */}	/* Define a symbol for the top of each memory region */	__top_MFlash32 = 0x0 + 0x8000;	__top_RamLoc4 = 0x1000000 + 0x1000;	__top_RamUsb2 = 0x20004000 + 0x800;|MEMORY{	/* Define each memory region */	MFlash32 (rx) : ORIGIN = 0x4000, LENGTH = 0x4000 	/* 16K bytes */	RamLoc4 (rwx) : ORIGIN = 0x10000200, LENGTH = 0xe00 /* 3.5K bytes */	RamUsb2 (rwx) : ORIGIN = 0x20004000, LENGTH = 0x800 /* 2K bytes */}	/* Define a symbol for the top of each memory region */	__top_MFlash32 = 0x4000 + 0x4000;	__top_RamLoc4 = 0x10000200 + 0xe00;	__top_RamUsb2 = 0x20004000 + 0x800;
 
 
-#### Modify The LPC11U14 RAM Start Address
 #### Remap The NVIC Table
+	1. Add Under Function Code In Your Program.
+
+	/* copy the nvic table to ram */
+	static void copy_nvic_to_ram(void)
+	{
+	volatile uint32_t *dst, size;
+	volatile const uint32_t *src;<br />
+	src = (volatile uint32_t *)APP_START_ADDR;//APP_START_ADDR Is The Application Program's Start Address. 
+	dst = (volatile uint32_t *)RAM_START_ADDR;//RAM_START_ADDR Is The RAM Start Address.
+	size = NVIC_TABLE_LEN >> 2;//NVIC_TABLE_LEN Is The NVIC Table's Size.
+	do {
+	*dst++ = *src++;
+	} while (--size);<br />
+	/* NVIC remap to RAM */
+	Chip_SYSCTL_Map(0x01);<br />
+	}
+
+	2. Config The Register To Remap NVIC Table To RAM
+> [[LPC11u14 NVIC Table Remap1.png]]
+	<big><big>More See UM10462 LPC11U3x/2x/1x User manual,At The Page 22.</big></big>
 
 ### Issues
 <big>1. About Bootloader USB Descriptor:</big>
