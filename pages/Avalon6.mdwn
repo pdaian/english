@@ -314,6 +314,37 @@ TYPE meaning:
 |8 |iInterface |1 |index |Index of string descriptor for this interface.
 
 
+#### USB-DFU Product's USB Descriptor
+[[USB-DFU Descriptor.png]]
+
+#### DFU Updata Process Diagram
+[[UpdataProcess.png]]
+
+#### How To Judge The Bootloader Program Is Updating Or Jump To Application Program
+<big><big>I used a updata flag which is a four bytes word and 
+is writed at fixd flash address (0x8000 - 4)
+
+The flag's value is 0xAABBCCDD
+
+When the bootloader program run, first it judge the updata flag,
+if the updata falg is not equal 0xAABBCCDD,<br />
+it will jump to application program.
+otherwise it will run to updata program.</big></big>
+
+#### How To Jump To Application Program
+<big><big>When we don't want to updata application program,</big></big> <br />
+<big><big>the bootloader program should run to application program.</big></big><br />
+<big><big>In order to achieve this goal, we can add under code in your bootloader program.</big></big><br />
+
+<font color="red" size="4">asm volatile("ldr r0, =0x4000");</font> <font color="blue">//"the 0x4000 is my application program's MSP point, you must change it adapt to your"</font>   <br />
+<font color="red" size="4">asm volatile("ldr r0, [[r0]]");</font><br />
+<font color="red" size="4">asm volatile("mov sp, r0");</font><br />
+	
+<font color="red" size="4">asm volatile("ldr r0, =0x4004");</font> <font color="blue">//"the 0x4004 is my application program reset-function entry address, you must change it adapt to your"</font><br />
+<font color="red" size="4">asm volatile("ldr r0, [[r0]]");</font><br />
+<font color="red" size="4">asm volatile("mov pc, r0");</font><br />
+
+#### Modify dfu-util For Ubuntu 14.04
 
 1. [USB-DFU Product's USB Descriptor](https://en.bitcoin.it/wiki/File:USB-DFU_Descriptor.png)
 1. [DFU Updata Process Diagram](https://en.bitcoin.it/wiki/File:UpdataProcess.png)
