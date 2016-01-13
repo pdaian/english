@@ -1,0 +1,133 @@
+
+This page describes the Bitcoin Core code that manages startup and initialization. 
+
+##Program entry point 
+
+The program's entry point can be found in <u>bitcoind.cpp</u>.
+
+main() is three lines of code:
+
+* SetupEnvironment() (all this does is set the program's locale)
+* Connect signal handlers
+* AppInit() (this function loops for the life of the program)
+
+
+AppInit:  this is located nearby in <u>bitcoind.cpp</u>: 
+
+* Parses the command line
+* Opens the data directory
+* Reads the config file
+* Forks a process (if running as a daemon)
+* Passes control to AppInit2(), found in <u>init.cpp</u>.
+
+
+##Initialization steps (<u>init.cpp</u>)
+
+AppInit2() initializes the bitcoin system.  
+
+It contains about 800 lines of code, which are broken into 12 steps.  
+
+Where each step begins is documented in the code. <u>Init.cpp</u> has a few functions at the top of the file, but for the most part it consists of AppInit2(). 
+
+The following table summarizes the steps: 
+
+
+
+|Initialization<br>Step |Short Description |Longer Description
+|---|---|---
+|1 |OS-specific setup tasks |These tasks are not particularly interesting.<br>For more info, see the code.  
+|2 |Parameter Interactions |Certain command-line options require other options to be set in a certain way.<br>For example, -zapwallettxes implies a -rescan, thus the code will set the -rescan flag=true if it isn't already.  
+|3 |Internal flags / <br>Parameter sanity-check |Sets global variables for certain parameters.<br>For the wallet, it sanity-checks transaction fee levels (makes sure your fee is high enough to qualify for relay [[error]]; but not absurdly high [[warning]]).  
+|4 |Application init. / RPC Server |Locks the data directory.  (If unable, print error and quit.)<br>Spawn X threads for the Script-checking engine. (Default=0, meaning use all available processors; boost::thread::hardware_concurrency).<br>Start RPC server in "warmup" mode. 
+|5 |Verify wallet database integrity |If wallet is enabled, try to open it.<br>If the user knows that the wallet has been corrupted (-salvagewallet), try to recover the private keys.  
+|6 |Network Initialization |The node registers for certain signals.<br>Checks whether the user wants to interact only with peers on a certain network (ip4, ip6, tor).<br>Checks whether to use onion routing (tor).<br>Checks whether the user wants to whitelist any specific peers.<br>Attempts to listen on the bitcoin port (exits on failure).<br>If user specified a certain peer to seed connections, attempt to connect.  
+|7 |Load the block chain. |Load the blockchain into memory and initialize the UTXO caches.<br><br><u>Calculate cache sizes.</u><br>There is a total cache size, which is divided amongst three specific caches.<br>Default total cache size = 100MB (Max: 4 GB, min: 4 MB).<br>1) Blockchain cache:  1/8 of the total cache, but shouldn't be larger than 2MB.<br>2) UTXO database cache : 25-50% of the remaining cache space.  This is the LevelDB cache.<br>This stores uncompressed blocks of LevelDB data and is managed by LevelDB, as described in [the LevelDB documentation.](http://leveldb.googlecode.com/git-history/1.17/doc/index.html)<br>3) UTXO in-memory cache: Half of the remaining cache space.<br>This cache size defines the size of the cacheCoins object (a protected member of CoinsViewCache).<br>TODO: verify that this statement is correct... <br><br><u>Load the blockchain into mapBlockIndex.</u><br>By "blockchain" this means the entire block tree (all known blocks, not just those in the active chain.)<br>What is loaded into memory are the CBlockIndex objects, which contain metadata about the block. <br>Verifies the last 288 blocks (VerifyDB).<br>Note: The program takes less than 1 second from startup until this point;  this step takes about 10-20 seconds.<br><br><u>The UTXO set.</u><br>The UTXO set is not loaded into memory; instead, the cache will be filled as coins are accessed from the database.<br>Note that as of May 2015, storing the entire UTXO set in memory would require about 3.6 GB.<br>As of Jan. 2016, the compressed data on disk is about 1.2 GB. 
+|8 |Load the wallet.  |If this is the first time the program has been run, it creates a wallet and gives you an initial key (address).
+|9 |Datadir maintenance |If the user is block-pruning, unset NODE_NETWORK and call the pruning function.
+|10 |Import blocks |Scan for better chains in the block chain database, that are not yet connected as the active best chain.
+|11 |Start node /<br>RPC server |Calls StartNode in net.cpp.<br>This starts up the networking thread group, including ThreadProcessMessage, which is the program's main thread (see below). <br>Transition RPC server from "warmup" mode to normal mode.
+|12 |Finished
+
+
+
+When AppInit2 finishes, control returns to AppInit() in <u>bitcoind.cpp</u>.
+
+There, the code's top-level thread loops indefinitely in a function called WaitForShutdown().  It sleeps for 2 seconds and checks to see if the user pressed ctrl-C.  If so, it calls Shutdown() back in <u>init.cpp</u>.
+
+Shutdown() shuts down the RPC server, stops the node, unregisters the signal handlers, etc., and then the program completes.
+
+##Cache Sizes
+
+Step 7 initialized the cache sizes.  There are 3 caches contemplated in step 7.  Two are LevelDB database caches and the other is the coins cache, whose size is managed by the flushing code in <u>main.cpp</u>. 
+
+The user can allocate a total cache size with -dbcache.  The user cannot pick and choose how much space to allocate to each specific cache. The default total cache size = 100MB (Max: 4 GB, min: 4 MB).  
+
+**1) Block index cache**
+
+This cache stores uncompressed chunks of the /blocks/index LevelDB data and is managed by LevelDB, as described in [the LevelDB documentation.](http://leveldb.googlecode.com/git-history/1.17/doc/index.html)<br>
+
+If the user enables a full transaction index (-txindex=1) it can be up to 1/8 of the total cache size.  If -txindex is not enabled then only 2 MiB is needed. 
+
+
+**2) UTXO database cache**
+
+This is the LevelDB cache for the /chainstate database. 
+
+This cache is allocated 25-50% of the remaining cache space, depending on the total cache size. 
+
+
+**3)  UTXO in-memory cache**
+
+This is the coins cache that is managed by the <u>main.cpp</u> code. (see FlushStateToDisk and related functions) 
+
+The variable (nCoinsCache) is declared as extern in <u>main.h</u>.  In <u>main.cpp</u>, it is hard-coded to 5000 * 300 (in-memory coins are about 300 bytes, so this means 5000 coins), however it should be re-initialized in Step 7. 
+
+This cache is given all of the remaining cache space. 
+
+This cache is not loaded during initialization, rather it is filled as coins are accessed.  (This can be verified by the CCoinsViewCache constructor, which sets cachedCoinsUsage=0.)
+
+##Thread Startup
+
+The code uses boost::thread_groups to manage the various threads.
+
+It should be noted that although Bitcoin Core is a multi-threaded program, "the reference Satoshi client is largely single-threaded." [Comment by Mike Hearn in BIP 31 (2012)](https://github.com/bitcoin/bips/blob/master/bip-0031.mediawiki)
+
+What is meant is that the vast majority of the program's activity takes place in the messaging thread (ThreadMessageHandler - see below.)  
+
+Almost all of the threads are part of a single, master thread group that is created on the stack at program startup (see <u>bitcoind.cpp</u>).  This thread group is passed to <u>init.cpp</u> which creates a few child threads (including a number of script-checking threads, but these are all part of the master thread group, not a separate group.)
+
+The thread group is passed to <u>net.cpp</u>, which creates the networking threads, including the message-processing thread. 
+
+The two other thread groups are task-specific: 
+
+* rpc server thread group (see <u>rpcserver.h/cpp</u>)
+* miner thread group
+
+Naturally, the node will only create the RPC server thread group if the RPC server is activated, and will only create the miner thread group if it is mining.  If both are disabled, then Bitcoin Core only has a single thread group. 
+
+**Child Threads**
+
+The parent thread (meaning the thread in which the program begins operating) delegates almost all of the program's work to child threads.  After spawning threads in <u>init.cpp</u> and <u>net.cpp</u>, the parent thread simply listens for a shutdown command, at which time the parent thread needs only to interrupt the threads in its thread group and proceed with shutdown. 
+
+The child threads are summarized in this table, listed in the order in which they are created: 
+
+
+
+
+|Thread |When / Where Created |Description
+|---|---|---
+|Script-checking |Step 4<br>init.cpp |This is a set of threads - 4 by default.<br>Script-checking (including signature checking) is expensive so is handled in separate threads.
+|Scheduler |Step 4<br>init.cpp |Scheduler thread.<br>(TODO: describe)
+|RPC Threads |Step 4<br>rpcserver.cpp |If RPC server enabled, start a group of threads to handle RPC calls. 
+|Import |Step 10<br>init.cpp |Imports blocks. Three scenarios:<br>1) Reindex (rescan all known blocks from blk???.dat files).<br>2) Bootstrap (use bootstrap.dat as an alternative to full IBD from the network.)<br>3) -loadblock (scan a specific blk???.dat file)<br>If none of those apply, this thread does nothing.
+|DNSAddressSeed |Step 11<br>net.cpp |Attempts to build a vector of IP addresses based on the dns seeds, stores the vector and the thread exits.<br>In a test in June 2014, this took about 4 seconds and found 158 addresses. 
+|Plug & Play |Step 11<br>net.cpp |UPNP (Universal Plug & Play) <br>Deals with port mapping for UPNP.
+|SocketHandler |Step 11<br>net.cpp |<u>This thread services the sockets:</u><br>Waits for I/O on all the relevant sockets with a 50ms timeout.<br>Processes new incoming connections on listening socket and creates a CNode for the new peer.<br>Receives and sends data streams.<br>Sets sockets that have not done anything to a disconnected state.
+|OpenAddedConnections |Step 11<br>net.cpp |Initiates outbound connections specified by the user with the –addnode parameter.<br>If can't connect, sleeps for 2 minutes each cycle.
+|OpenConnections |Step 11<br>net.cpp |Initiates other outbound connections from DNS seeds (if that fails, find nodes based on fixed seeds)<br>If can't connect, sleeps for 500 milliseconds each cycle.
+|MessageHandler |Step 11<br>net.cpp |<u>This is the program's main thread.</u><br>This thread runs a while(true) loop, receiving and sending messages.  (See <u>net.cpp</u>:1049) <br>The code uses boost::signals2 to call the ProcessMessages and SendMessages functions in main.cpp.<br>(The code introducing signals is in PR 2154 - see the next-to-last commit in that pull.)<br>ProcessMessage and SendMessage run in this thread.<br>So, most of the code in <u>main.cpp</u>runs in this thread.
+|Wallet Flusher |Step 12<br>init.cpp |If wallet is enabled, this thread flushes the wallet periodically.
+
+
+[[!tag "Technical"]]
+[[!tag "Developer"]]
