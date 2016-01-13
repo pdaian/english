@@ -334,3 +334,6 @@ Greg Maxwell stated the following in [the same thread referenced above (in respo
 >  ...[[D]]atabases sometimes have errors which cause them to fail to return records, or to return stale data. And if those exist consistency must be maintained; and "fixing" the bug can cause a divergence in consensus state that could open users up to theft.
 
 >  Case in point, prior to leveldb's use in Bitcoin Core it had a bug that, under rare conditions, could cause it to consistently return not found on records that were really there. . . Leveldb fixed this serious bug in a minor update.  But deploying a fix like this in an uncontrolled manner in the bitcoin network would potentially cause a fork in the consensus state; so any such fix would need to be rolled out in an orderly manner.
+
+[[!tag "Technical"]]
+[[!tag "Developer"]]
