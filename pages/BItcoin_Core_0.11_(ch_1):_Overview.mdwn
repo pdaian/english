@@ -1,0 +1,201 @@
+##Organization & Maintenance of these Pages
+
+The purpose of this set of Wiki pages is to document the Bitcoin Core C++ source code, in a way that is helpful to the programmer who wants to learn how the program is designed and what the code does. 
+
+Ideally, the accuracy of the information on these pages would be checked by developers who are getting up to speed on the Bitcoin Core code base.  Additionally, each new release of Bitcoin Core (0.12, 0.13, etc) could have a new set of pages that are modified to match that version.
+
+These pages are loosely based on the set of pages called "Satoshi Client: xxx" (on this Wiki) which were written in 2011 and based on version 0.3. 
+
+This set of Wiki pages includes: 
+
+* Ch 1: Intro & Overview (this page) 
+* Ch 2: Data Storage
+* Ch 3: Initialization & Startup
+* Ch 4: P2P Network
+* Ch 5: Initial Block Download (IBD)
+* Ch 6: Blockchain
+* Ch 7: Transactions & the Memory Pool
+* Ch 8: RPC Server
+
+These pages document the "relay node" aspect of Bitcoin Core, meaning a node which validates blocks and transactions and relays them to other nodes. The node has fully validated the blockchain, although it may not necessarily maintain a full copy of it on disk. 
+
+These pages do NOT cover: 
+
+* Wallet
+* GUI (Qt)
+* Mining
+
+##Definitions
+
+A few definitions at the outset:  
+
+**Consensus code** 
+
+Code that validates blocks and transactions.  
+
+Consensus code must have bug-for-bug compatibility across versions and implementations (meaning, 0.12 must have the same consensus behaviour as 0.11, even if it is buggy;  otherwise, a network fork may result.) 
+
+**Policy code**
+
+Code that implements a particular node's policy (as opposed to consensus).  A node's algorithm for which transactions to store in its transaction pool is an example of policy.  For example, a node could refuse to relay or store any transaction that is larger than 200KB.  What is important is that if such a transaction is transmitted to the node as part of a newly mined block, the node does not reject the block.   
+
+**P2P code**
+
+Code relating to communications with other nodes (peers) over the P2P network.  Communication includes discovering and connecting to other nodes; exchanging various P2P messages (e.g., messages containing blocks and transactions); occasionally, banning misbehaving peers. The bitcoin network uses a custom set of P2P messages.  Most of the P2P code can be found in <u>net.h/net.cpp</u>.
+
+**Mempool ("memory pool" or "transaction pool")**
+
+A set of transactions which the node knows about and chooses to store in memory and relay to other nodes, and which have not yet been included in a block.  In many cases, this may be the full set of transactions that the node has received and validated.  If the node has received transactions that violate its policy, however, the mempool will be a subset.  In any event, when the node receives and validates a block, it deletes any transactions in the block from its mempool.  
+
+**Full Node**
+
+A full node is one that validates blocks and transactions and relays them to other nodes.  A full node has validated the blockchain from scratch (although with block file pruning, it may have discarded older parts of the chain to clear up disk space.) The key characteristic of a full node is that it has validated the blockchain and continues to fully validate and relay incoming blocks and transactions.  A full node can be differentiated from an SPV node, which trusts another node (or set of nodes) to validate. 
+
+**"Basic Full Node"**
+
+A "basic full node" is what is documented in these pages.  By "basic full node," what is meant is a node that validates and relays blocks and transactions, but does not mine new blocks or perform other optional tasks (RPC server, wallet).  Extending these pages to include documentation of these optional aspects of a node is a future project.
+
+##Architecture of a Bitcoin Node
+
+One developer described the architecture of a basic full node as follows: 
+
+	The basic architecture of a bitcoin node is as follows:<br><br>At the core there exist fundamental bitcoin message structures, along with the code necessary for serialization/deserialization. These structures belong in their own source files with minimal dependencies so they can be reused for applications that needn't perform verification and relay - for instance, filtering and notification agents. Unfortunately, these core structures currently reside for the most part in main.h/main.cpp. . . <br><br>On top of these core structures sits a network component that manages sockets, does peer discovery, and handles queueing and dispatching of messages. This component is clearly dependent on the core message structures but does not depend on the specific logic used to verify blocks and transactions nor to identify misbehaving peers nor sign transactions nor maintain a block chain database.<br><br>Then we have a scripting engine, signature verification component, and a signing component. Historical database applications do not need signature verification/signing functionality at all. Filtering messages and sending alerts generally does not even require a scripting engine and does fine with basic pattern matching.<br><br>The most critical high-level operations needed by a verification/relay node such as the satoshi client are transaction verification; block chain and memory pool management; and detection/management of misbehaving peers. These things are currently primarily implemented in main.h/main.cpp. These are indeed the main operations of the satoshi client - but the core low-level structures should not depend at all on this logic.
+
+See here: [PR 2154](https://github.com/bitcoin/bitcoin/pull/2154)
+
+
+In the form of a (crude) picture: 
+	
+	Validating transactions; Managing blockchain, mempool, and peers.
+	 
+	Scripting engine / Signatures
+	 
+	Network layer
+	 
+	P2P Messages
+
+
+And here is the same picture, augmented with the definitions above: 
+	
+	Validating transactions; Managing blockchain, mempool, peers  (Consensus and Policy code)
+	 
+	Scripting engine / Signatures (Consensus code)
+	 
+	Network layer  (P2P code) 
+	 
+	P2P Messages
+
+##Code Modularization / Organization
+
+As of 0.11, modularization of the Bitcoin Core code is somewhat limited.   
+
+Ideally, Bitcoin Core would be modularized so that the consensus code would be separated and made into a library which could be distributed to other implementations.  In this way, fears of accidentally forking the network would be mitigated.  As of 2016, this is work in progress (see, e.g., various "libconsensus" pull requests on GitHub.) 
+
+In December 2013, a proposal was made for modularizing the code base:  [Post-0.9 modularization of Bitcoin Core](https://github.com/bitcoin/bitcoin/issues/3440)
+
+Examples of optional modules would be: 
+
+* Miner
+* Wallet
+* Notifications
+
+As of 0.11, the steps taken toward modularization were primarily separating certain classes into subdirectories, described below.
+
+##Source Code Files
+
+The C++ code is in the src/ directory of the repository.  
+
+Most of the code resides in the top-level directory, although there has been some effort to modularize the code base with subdirectories (wallet, consensus, primitives, etc.)  Also, certain components (QT, LevelDB, etc) live in subdirectories.
+
+Key files in the src/ directory include:  (file.* means the header file [[file.h]] and the source file [[file.cpp]])
+
+
+
+|File |Description / Purpose
+|---|---
+|net.* |Manages the network (peer connections, etc.).<br>The while(true) loop in ThreadMessageHandler controls the program's flow, signalling <u>main.cpp</u>when there is work to do. <br>Key dependencies:  None. 
+|init.cpp |Initializes the node, calling functions in <u>main.cpp</u>as necessary.<br>Key dependencies: main.h
+|main.* |main.h declares some key global variables (mapBlockIndex, chainActive, mempool, etc), constants, and functions. <br><u>main.cpp</u>is the program's longest source file (5,237 lines).<br>main.cpp has most of the key functions for managing the blockchain, such as connecting, disconnecting, validating and storing blocks; identifying a certain block as the tip of the longest chain; and so forth.<br>The "entry point" for most of the code is ProcessMessages (which listens for a signal from the message-handling thread.).<br>Some of the code is run during initialization, called directly from init.cpp. <br>Key dependencies: net.h
+|chain.* |The header file (chain.h) is the more notable of the two, as it declares the type definitions for the metadata about the block (CBlockIndex) and the longest blockchain (CChain). <br>chain.cpp contains a few handy functions for managing the blockchain (e.g., locating blocks and finding a fork point between two chains.)
+|coins.* |The header file declares a CCoin, which is, conceptually, "a bitcoin."<br>The source file contains methods for manipulating coins (retrieving, spending, etc.)
+|miner.* |Contains the mining code, including block creation and generating new bitcoins. 
+
+
+
+**Subdirectories:**
+
+The subdirectories fall into three categories: 
+
+* Well-defined components (in some cases third-party) 
+* Modularization of code
+* Other (unit tests, build files, etc.)
+
+*Subdirectories - Components:*
+
+
+
+|Directory |Description / Purpose
+|---|---
+|leveldb |C++ source code, docs, etc. for the LevelDB build.
+|qt |The GUI code (QT).<br>QT is a C++ open-source project for GUI code, first released in 1995.
+|secp256k1 |Library implementing ECDSA cryptography.<br>Purpose: This proprietary C library eliminates reliance on SSL for signature checking.<br>This is important because SSL was susceptible to introducing consensus bugs, because newly released versions do not guarantee bug-for-bug compatibility.<br>This library was written/released in early 2015. 
+|zmq |From the ZMQ wiki:<br>ZMQ (or ZeroMQ or 0MQ) is a high-performance asynchronous messaging library.<br>It provides a message queue, but unlike message-oriented middleware, a ZMQ system can run without a dedicated message broker. <br>The library is designed to have a familiar socket-style API.
+
+
+
+*Subdirectories - Modularization:*
+
+
+
+|Directory |Key Files |Description / Purpose
+|---|---|---
+|consensus |consensus.*<br>merkle.*<br>params.*<br>validation.*  |Code implementing (or defining, as the case may be) the block & transaction validation rules.<br>Purpose: Moving this code into a subdirectory is a step towards modularizing the consensus code.  The idea is that in a future version of bitcoin, the consensus code should be packaged as a library, so that alternative implementations of the protocol could simply include this library and guarantee validation compatibility.  "...[[T]]he goal is not reimplementing the consensus rules but rather extract them from Bitcoin Core so that nobody needs to re-implement them again. It is not only exposing it but also separating it from Bitcoin Core so that they can be changed without having to also change/take into account non-consensus Bitcoin Core specific things." -- Jorge Timon, on bitcoin-development mailing list, 20 Aug 2015.<br>Discussion on github: [PR6714](https://github.com/bitcoin/bitcoin/issues/6714)
+|crypto |ripemd.*<br>sha256.*  |Cryptographic hash functions.<br>Both RIPEMD and SHA-256 are used in transforming a bitcoin address to Base-58 encoding.
+|policy |policy.*<br>fees.* |Move validation code that is a matter of *policy*(as opposed to consensus) into a separate directory.
+|primitives  |block.*<br>transaction.*  |Definitions of certain basic data types (blocks, transactions, etc.)
+|script |interpreter.*<br>script.*<br>standard.* |The script engine.<br>Defines the op_codes (script.h).<br>Parses and evaluates the validation script. (interpreter.cpp:EvalScript())<br>Defines what is a "standard" transaction (standard.h).<br>Purpose: the Script engine validates basic transactions but also makes contracts possible.  It could be said that in large part, what a platform like Ethereum does is provide a more robust script engine (and language in which to express script) - so in a sense, deploying such as system consists of replacing this sub-directory with something more powerful. 
+|wallet |wallet.*  |Wallet code. 
+
+
+
+*Subdirectories - Other:*
+
+
+
+|Directory |Description / Purpose
+|---|---
+|compat |A few minor, low-level files dealing with compatibility details. 
+|config<br>obj<br>obj-test |These directories relate to the build process.
+|test |Unit tests.<br>Uses the Boost unit test framework.<br>A good introduction to the Boost user test framework is here:  [(1)](http://www.alittlemadness.com/2009/03/31/c-unit-testing-with-boosttest/)
+|univalue |Per the README:<br>"A universal value object, with JSON encoding (output) and decoding (input).<br>Built as a single dynamic RAII C++ object class, and no templates."
+
+
+##Design Patterns
+
+**Object-Oriented Design**
+
+Naturally, being a C++ program, the code employs object-oriented design.
+
+However, the code's use of object-oriented design is by not universal.  In 0.11, objects are used mainly for defining the data structures which main.cpp uses to manage the blockchain and the UTXO set (the bitcoins). Main.h declares many functions and global variables but almost no classes; <u>main.cpp</u> is over 5000 lines but does not include any class methods.  
+
+The code has a relatively flat class structure, with most classes being "stand-alone".  
+
+Where inheritance is used, it often is a linear hierarchy (i.e.:  A <-- B <--C <-- D)
+
+For example: 
+ CBlockHeader <-- CBlock
+ CTransaction <-- CMerkleTx <-- CWalletTx
+
+There are only a few examples of base classes that have more than one descendant class, and multiple inheritance is only used once in the code (CWallet inherits from 2 classes.) 
+
+The program's best example of an elegant class hierarchy relates to the coins caches.  It uses an abstract class that is inherited by a few subclasses that demonstrate encapsulation and polymorphism.  Chapter 3 has a class diagram as well as a diagram and explanation of how the classes are instantiated and relate to one another.  
+
+
+'''Multithreading'''
+
+The code uses Boost thread groups to implement multithreading.  The vast majority of the action takes place in the message-processing thread, and to a lesser extent the socket thread. 
+
+
+'''Observer (Signals and slots)'''
+
+The "observer" pattern uses "signals and slots" to decouple two or more areas of code. Bitcoin Core 0.11 uses the observer pattern in a limited way.  Namely, it uses signals to decouple the message-gathering loop from the <u>main.cpp</u> code.  In 0.10 and earlier a normal function call was used.
