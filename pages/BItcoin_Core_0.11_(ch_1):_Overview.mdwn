@@ -59,8 +59,15 @@ A "basic full node" is what is documented in these pages.  By "basic full node,"
 
 One developer described the architecture of a basic full node as follows: 
 
-	The basic architecture of a bitcoin node is as follows:<br><br>At the core there exist fundamental bitcoin message structures, along with the code necessary for serialization/deserialization. These structures belong in their own source files with minimal dependencies so they can be reused for applications that needn't perform verification and relay - for instance, filtering and notification agents. Unfortunately, these core structures currently reside for the most part in main.h/main.cpp. . . 
-	On top of these core structures sits a network component that manages sockets, does peer discovery, and handles queueing and dispatching of messages. This component is clearly dependent on the core message structures but does not depend on the specific logic used to verify blocks and transactions nor to identify misbehaving peers nor sign transactions nor maintain a block chain database.<br><br>Then we have a scripting engine, signature verification component, and a signing component. Historical database applications do not need signature verification/signing functionality at all. Filtering messages and sending alerts generally does not even require a scripting engine and does fine with basic pattern matching.<br><br>The most critical high-level operations needed by a verification/relay node such as the satoshi client are transaction verification; block chain and memory pool management; and detection/management of misbehaving peers. These things are currently primarily implemented in main.h/main.cpp. These are indeed the main operations of the satoshi client - but the core low-level structures should not depend at all on this logic.
+"The basic architecture of a bitcoin node is as follows:
+
+"At the core there exist fundamental bitcoin message structures, along with the code necessary for serialization/deserialization. These structures belong in their own source files with minimal dependencies so they can be reused for applications that needn't perform verification and relay - for instance, filtering and notification agents. Unfortunately, these core structures currently reside for the most part in main.h/main.cpp. . . 
+
+"On top of these core structures sits a network component that manages sockets, does peer discovery, and handles queueing and dispatching of messages. This component is clearly dependent on the core message structures but does not depend on the specific logic used to verify blocks and transactions nor to identify misbehaving peers nor sign transactions nor maintain a block chain database.
+
+"Then we have a scripting engine, signature verification component, and a signing component. Historical database applications do not need signature verification/signing functionality at all. Filtering messages and sending alerts generally does not even require a scripting engine and does fine with basic pattern matching.
+
+"The most critical high-level operations needed by a verification/relay node such as the satoshi client are transaction verification; block chain and memory pool management; and detection/management of misbehaving peers. These things are currently primarily implemented in main.h/main.cpp. These are indeed the main operations of the satoshi client - but the core low-level structures should not depend at all on this logic."
 
 See here: [PR 2154](https://github.com/bitcoin/bitcoin/pull/2154)
 
@@ -150,7 +157,7 @@ The subdirectories fall into three categories:
 
 |Directory |Key Files |Description / Purpose
 |---|---|---
-|consensus |consensus.*<br>merkle.*<br>params.*<br>validation.*  |Code implementing (or defining, as the case may be) the block & transaction validation rules.<br>Purpose: Moving this code into a subdirectory is a step towards modularizing the consensus code.  The idea is that in a future version of bitcoin, the consensus code should be packaged as a library, so that alternative implementations of the protocol could simply include this library and guarantee validation compatibility.  "...[[T]]he goal is not reimplementing the consensus rules but rather extract them from Bitcoin Core so that nobody needs to re-implement them again. It is not only exposing it but also separating it from Bitcoin Core so that they can be changed without having to also change/take into account non-consensus Bitcoin Core specific things." -- Jorge Timon, on bitcoin-development mailing list, 20 Aug 2015.<br>Discussion on github: [PR6714](https://github.com/bitcoin/bitcoin/issues/6714)
+|consensus |consensus.*<br>merkle.*<br>params.*<br>validation.*  |Code implementing (or defining, as the case may be) the block & transaction validation rules.<br>Purpose: Moving this code into a subdirectory is a step towards modularizing the consensus code.<br>The idea is that in a future version of bitcoin, the consensus code should be packaged as a library, so that alternative implementations of the protocol could simply include this library and guarantee validation compatibility.  "...[[T]]he goal is not reimplementing the consensus rules but rather extract them from Bitcoin Core so that nobody needs to re-implement them again. It is not only exposing it but also separating it from Bitcoin Core so that they can be changed without having to also change/take into account non-consensus Bitcoin Core specific things." -- Jorge Timon, on bitcoin-development mailing list, 20 Aug 2015.<br>Discussion on github: [PR6714](https://github.com/bitcoin/bitcoin/issues/6714)
 |crypto |ripemd.*<br>sha256.*  |Cryptographic hash functions.<br>Both RIPEMD and SHA-256 are used in transforming a bitcoin address to Base-58 encoding.
 |policy |policy.*<br>fees.* |Move validation code that is a matter of *policy*(as opposed to consensus) into a separate directory.
 |primitives  |block.*<br>transaction.*  |Definitions of certain basic data types (blocks, transactions, etc.)
@@ -200,3 +207,7 @@ The code uses Boost thread groups to implement multithreading.  The vast majorit
 '''Observer (Signals and slots)'''
 
 The "observer" pattern uses "signals and slots" to decouple two or more areas of code. Bitcoin Core 0.11 uses the observer pattern in a limited way.  Namely, it uses signals to decouple the message-gathering loop from the <u>main.cpp</u> code.  In 0.10 and earlier a normal function call was used.
+
+
+[[!tag "Technical"]]
+[[!tag "Developer"]]
