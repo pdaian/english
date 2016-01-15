@@ -1,20 +1,22 @@
-An escrow service that allows safe trading by securely holding buyer's funds in escrow until the terms of the sale are met. 
-
+An escrow service that allows safe trading by securely holding buyer's funds in escrow until the terms of the sale or services are met. Users can also select a judge, or allow Escrow my Bits to act as the judge. In the case of any dispute the judge can rule in favor of the buyer, seller, 50/50 split, or a custom split.
 ##Fees
 
 The service charges a 1% escrow fee which includes potential dispute resolution.
 
 ##Types of Escrow
 
-Escrow my Bits offers 3 differnt types of escrow transactions:
+Escrow my Bits offers 4 different types of escrow transactions:
 
 1. Regular escrow
-1. * Funds are held by Escrow my Bits until the buyer releases the funds or a dispute is filed. If a dispute is filed the winner of the dispute receives the funds
+1. * Funds are securely by Escrow my Bits
 1. Regular escrow with a pegged exchange rate
-1. * Funds are held in a Bitreserve card that Escrow my Bits controls
-1. * Can choose from over 5 fiat currencies and assets
+1. * Funds are held in a Coinapult multi-signature address in an account that Escrow my Bits controls
+1. * Can choose from any currency Coinapult supports
 1. Multi-signature escrow
-1. * Funds are not held by Escrow my Bits but by a 2 of 3 multi-signature address
+1. * Funds are held in a 2 of 3 multi-signature address where each party controls one key(Buyer, seller, Escrow my Bits)
+1. Multi-signature pegged escrow
+1. * Funds are held in a 2 of 3 multi-signature address where each party controls one key(Buyer, seller, Escrow my Bits)
+1. * Funds can be pegged to fiat values using Nubits
 ##History
 
 The site was launched on Septemeber 17th, 2014 (4.1).
