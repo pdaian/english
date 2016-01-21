@@ -1,0 +1,192 @@
+
+
+This page describes the code that manages the blockchain. 
+
+
+
+##Block Index and Block Status
+
+The block index database gets loaded into memory when the node starts.  This means the entire block tree, not just the active chain.  See LoadBlockIndexGuts() in <u>src/txdb.cpp</u>.
+
+The block index (block metadata) is well commented in the code:  see <u>src/chain.h</u>.
+
+One of the key traits of a block is its "verification status." 
+
+Verification status captures the degree to which the code has validated this block, as well as its ancestor blocks. 
+
+The block's status is one of the following: 
+
+* VALID_HEADER = 1
+* VALID_TREE = 2
+* VALID_TRANSACTIONS = 3
+* VALID_CHAIN = 4
+* VALID_SCRIPTS = 5
+
+The precise meaning of each status code is documented in <u>chain.h</u>.
+
+Also stored in the block index are two variables worth mentioning: 
+
+>  **nTx:**  Number of transactions in this block.  
+>  nTx > 0 means that the block has a status of at least VALID_TRANSACTIONS.  
+
+>  **nChainTx:**  Number of transactions in this block's chain, up to and including this block.  
+>  This value will be set if and only if transactions for this block *and all its parents* are available.  
+>  Thus, nChainTx > 0 is shorthand for a chain that is VALID_TRANSACTIONS.  This is notable because this information is not available via the block-status enum.  Namely, VALID_TRANSACTIONS only implies that its parents are TREE, while VALID_CHAIN implies that its parents are also CHAIN.  In a sense, then, the expression (nChainTx !=0) is shorthand for a status that might be said to be "VALID_nChainTx = 3.5" - because it's more than VALID_TRANSACTIONS but less than VALID_CHAIN. 
+>  Note: nChainTx is only stored in memory;  there is no corresponding entry in the database.
+
+##Key Variables
+
+First, a quick C++ reminder: 
+
+* map:  an unordered <key,value> container (think of it as a hashtable) 
+* set:  an ordered <key> container (think of it as a sorted linked list) 
+* multimap:  an ordered map <key,value> where duplicate keys are allowed (thus, can hold elements <a,1>,<b,2>,<b,3>)
+
+
+**mapBlockIndex (map<block_hash, CBlockIndex*>)**
+
+This map contains all known blocks (where "block" means "block index").  Since a block index is created and stored in the LevelDB when a header is received, it's possible to have block indexes in the block map without having received the full block yet, let alone having stored it to disk.
+
+mapBlockIndex is not sorted.  Just think of it as your blocks/ LevelDB in memory, with the key being the block hash. 
+
+It is technically of type BlockMap, which is for readability.  BlockMap is an unordered_map<block hash, block index*, comparator_function>. 
+
+mapBlockIndex is initialized from the database in LoadBlockIndexGuts, which is run at Step 7 of startup.  Thereafter, it's updated whenever new blocks are received over the network. 
+
+mapBlockIndex only grows, it never shrinks.  (Try searching main.cpp for mapBlockIndex.erase.)  Observe also that the block index's LevelDB wrapper does not contain functionality for erasing blocks from the database - it's writing function (WriteBatchSync) only writes to the database. By comparison, the chainstate wrapper's writing function (BatchWrite) both writes and erases.  (see <u>txdb.cpp</u>).  
+
+
+**mapBlocksUnlinked**
+
+Multimap containing "all pairs A->B, where A (or one if its ancestors) misses transactions, but B has transactions." (comment at <u>main.cpp:125</u>).
+
+The purpose of mapBlocksUnlinked is to quickly attach blocks we've already received to the blockchain when we receive a missing, intermediate block. 
+
+The alternative would be to search the entire mapBlockIndex;  however, it is more efficient to keep track of unlinked blocks in a separate data structure.  
+
+	Example 1: 
+	Let A be our tip.
+	We receive block *headers* for B, C.
+	We receive the full block for C.
+	mapBlocksUnlinked = <B,C>
+
+
+Upon receiving block B, we can connect C.   
+
+	Example 2: 
+	Let A be our tip.
+	We receive block *headers* for B, C, D.
+	We receive the full block for D.
+	mapBlocksUnlinked = <B,C>, <B,D>, <C,D>
+
+Upon receiving block B, we can connect B as our tip and delete its entries in mapBlocksUnlinked, which would now consist of only one item: <C,D>. 
+
+**setBlockIndexCandidates**
+
+Set of block indexes that have more total work than our current tip.  (In the normal case where the block extends our current tip, it is easy enough to see that it has more total work than our tip.)  Thus, they are "candidates" for extending our current blockchain (or re-organizing from our current chain to the chain that the candidate is on.)  We call them "candidates" because we verify the block's proof-of-work when we receive the header, but before we receive the block.  Thus, the *header* is a candidate for extending our chain, but we can't say for sure until we receive the full block (and if the candidate is more than one block away from our current tip, we also need to receive and verify any intermediate blocks.)
+
+	Example 1: Let A be our tip; we then receive, in order, B, C, D, such that: 
+	A -- B
+	\
+	C -- D
+
+We verify headers for B, C, D and they all look good. At this point setBlockIndexCandidates contains <B,C,D>.  Assume B has more work than C but less work than D. 
+
+Now we receive the full block for B and it checks out.  At this point, we extend chainActive with B as the new tip, and remove B from setBlockIndexCandidates.  We also remove C because it has less work than B.  But D still is. 
+
+Now we receive C and D.  C is valid, but D has a bad transaction (double-spend, invalid signature, etc.): 
+
+* Store C to disk and keep it in mapBlocksIndex - it's a known block
+* Discard D (do not store to disk) and delete it from mapBlocksIndex - it's a bad block
+* Remove D from setBlockIndexCandidates
+
+Now our chainActive is Genesis - - - - - - - A--B, and setBlockIndexCandidates is <empty>.
+
+
+
+**pindexBestHeader**
+
+This variable holds the best (most work) header that your node has validated. 
+
+It's set initially when loading the block index, and updated when adding a header to the mapBlockIndex which has more work than the current pIndexBestHeader. 
+
+A header is added to mapBlockIndex once it has passed the context-dependent and context-indendent checks.  
+
+
+
+**chainActive (vector<CBlockIndex*>**
+
+chainActive is the holy blockchain.  It is a linear set of blocks, consisting only of those blocks that comprise the longest chain, beginning with the Genesis block and culminating with the tip. 
+
+chainActive is a CChain, which is a vector of block indexes bundled with a few useful methods (see <u>chain.h</u>). 
+
+On startup, the chain is initialized in Step 10 (<u>init.cpp</u>), which calls ActivateBestChain (<u>main.cpp</u>).
+
+
+**Difference between pindexBestHeader and chainActive.Tip**
+
+It's important to note that pindexBestHeader and chainActive.Tip are NOT necessarily the same thing.  
+
+pindexBestHeader is a pointer to the most-work header our node has received, before having received its transactions.  By comparison, chainActive.Tip is only set after we've received and validated the entire block.
+
+##Connecting a block
+
+When the node receives and accepts a block that has more proof-of-work than the tip of its active blockchain, the node will attempt to make this block the new tip.
+
+In "steady-state", where our node's active chain tip is a block B1, the typical course of events is that every 10 minutes or so, the node receives and accepts a new block B2 which was built on top of B1 (meaning B2's "prev_block" is B1's hash), notices that B2 has more work than B1, and connects B2 to B1, thereby extending the active chain.
+
+ConnectBlock() is the key moment when a "double-spend" would be discovered.  The block's transactions are validated against the current UTXO set (the coins database).  Specifically, the code in ConnectBlock loops through each transaction, ensuring that all of the transaction's inputs can indeed be found in the coins database.  (If a coin had been spent in a prior block, it would not be in the current UTXO set; it would have been in a different, earlier view of the UTXO set, but no longer.)  The ConnectBlock code also contains some DoS protection code:  for example, it ensures that the transactions do not contain an excessive number of signature operations (which are expensive). 
+
+ConnectBlock() is the last step in ProcessNewBlock.  Thus, it takes place only after the block has been accepted and stored to disk.  The idea is that a block can be valid in the abstract but whether its transactions are valid is dependent upon the UTXO set at the particular point where the block is being added to the chain.  This may not be known until a later point in time, even in steady-state.  Presume that our current tip is B1, which is then extended by B2 and B3 in rapid succession. For whatever reason, we receive B3 before B2 (perhaps B2 was created by a miner across the globe to whom we are poorly connected, whereas B3 was mined by our next-door neighbor who has a better link to the miner who created B2).  At the moment we receive B3, it may (and probably does) contain transactions whose inputs do not exist in our coin database, because they are only created in B2.  In any event, no effort is made to validate B3 beyond the basic checks.  Later, when we receive B2, we connect it and update the UTXO set, then notice that B3 extends B2.  Now B3's transactions can be validated and assuming it checks out, it becomes the new tip of the active chain. 
+
+If the entire block checks out, then the block is connected, and the undo data is created and stored to disk.
+
+If there's a problem with one of the block's transactions, the block is not connected, and the code punishes the peer that sent us the bad block. (See InvalidBlockFound.)
+
+##Disconnecting a block (reorganizations)
+
+A reorganization (re-org) occurs when your node realizes there is a longer chain that does not derive from chainActive.Tip.  
+
+Most reorganizations are only one-block reorganizations.  This is likely to happen whenever competing miners find new blocks (call them A and B) at about the same time.  Some of the network will receive A first, others B.  Eventually a new block C will be mined on top of either A or B; which one depends on whether the miner who produced C worked on the A or B chain.  Assuming C is mined on top of A, then any node which accepted B as the tip of their blockchain will need to detach B and instead attach A and C. 
+
+Here is how a reorg happens in the code: 
+
+* When we receive a new block, if it has more work than our chain's tip, we add it to the setBlockIndexCandidates (see main.cpp:ReceivedBlockTransactions)
+* After the block is processed, ActivateBestChain checks to see if there's a block (such as the one we just processed) that has more work than the current chain's tip.
+* ActivateBestChainStep disconnects blocks as necessary to reach the new tip.  Obviously, in the usual case it is not necessary to disconnect any blocks.
+
+
+**DisconnectTip() does the following:**
+
+* Returns the utxo's that were consumed by this block back to the utxo set (DisconnectBlock).
+* Returns the block's transactions to the mempool.  (Now they need to be mined by some other block; quite likely in one of the blocks we are about to connect, in which case we'll remove them again!) 
+* Moves chainActive.Tip back one block. 
+* Updates the wallet. 
+
+Once the code has disconnected blocks back to the fork point, it connects blocks from the fork point to the new tip.
+
+
+**DisconnectBlock (returning utxo's to the utxo set)**
+
+This code uses the undo.dat file to "un-spend" the coins that were spent in the block now being disconnected: 
+
+* Reads the undo file from disk.
+* Processes transactions in reverse order (must be reverse order because CreateNewBlock creates zero-conf transactions "in order", meaning that if a block contains T1 and T2 and T2 spends a T1 coin, then T1 must come before T2 in its transaction vector;  therefore, when un-spending the coins, T2 must be un-spent before T1). 
+* Looks up the spent coins
+* Un-spends the coins in a helper function, ApplyTxInUndo:  coins->vout[[out.n]] = undo.txout;
+
+
+##See also
+[Bitcoin Core 0.11 (Ch 1): Overview](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_1):_Overview)
+<br>
+[Bitcoin Core 0.11 (Ch 2): Data Storage](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_2):_Data_Storage)
+<br>
+[Bitcoin Core 0.11 (Ch 3): Initialization and Startup](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_3):_Initialization_and_Startup)
+<br>
+[Bitcoin Core 0.11 (Ch 4): P2P Network](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_4):_P2P_Network)
+<br>
+[Bitcoin Core 0.11 (Ch 5): Initial Block Download](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_5):_Initial_Block_Download)
+
+
+[[!tag "Technical"]]
+[[!tag "Developer"]]
