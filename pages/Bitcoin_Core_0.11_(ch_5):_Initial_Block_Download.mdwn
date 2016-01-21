@@ -1,0 +1,277 @@
+
+This page explains how Bitcoin Core downloads the blockchain when your node first joins the network.  
+
+##Background
+
+Once a new node joins the network, its first order of business is to download and validate the entire blockchain.   This is an integral step to the distributed nature of bitcoin because only by doing this can a node claim that it has independently validated all transactions.  
+
+As the blockchain grows in size, the time required for IBD increases unless optimizations are made to the code.  Various optimizations have been made since Satoshi's original client was released, but as of 2014, with increasing transaction volume, initial download on laptop hardware with an average connection could still take up to 24 hours.  Developers agreed that this was unacceptable and a new approach was developed called "headers first" mode.  This approach resulted in a substantial speedup.
+
+##"Headers First" mode
+
+With "headers-first" mode, a new node downloads all of the block headers first, which are very small (about 80 bytes, whereas a block can be up to 1MB).  Once the node has all of the headers, from the genesis block up to the current tip of the blockchain (380,000 as of October 2015), only then does it begins downloading the full blocks.
+
+Now that it has the headers, the node downloads blocks in parallel from multiple peers.  (It downloads headers from only one peer, but that's no big deal since headers are small.)  The node will download from up to 8 peers at once and will disconnect any peer that stalls for more 2 seconds, attempting to connect to a faster peer. 
+
+Headers-first IBD was merged in 2014 in:  [Pull Request 4468](https://github.com/bitcoin/bitcoin/pull/4468).
+
+As summarized in the PR comment, some of its main features are [is edited slightly here](comment):
+
+* Do not use 'getblocks', but 'getheaders', and use it to build a headers tree.
+* Blocks are fetched in parallel from all available outbound peers, using a limited moving window. When one peer stalls the movement of the window, it is disconnected.
+* No more orphan blocks. At all. We only ever request a block for which we have verified the headers, and store it to disk immediately. This means that a disk-fill attack would require Proof of Work.
+* We sync from everyone we can, though limited to 1 during initial headers sync.
+
+
+##Checkpoints
+
+The Bitcoin Core initial block download code makes sure that the block headers you are downloading (from a single peer) passes certain, hard-coded "checkpoints." 
+
+Checkpoints are block hashes corresponding to a long-ago block that everyone (where "everyone" means the network participants as recognized by the Bitcoin Core commit-access developers) recognizes as being on the longest chain.  The checkpoints are set far enough in the so as to be non-controversial. 
+
+The IBD checkpoints check is at <u>main.cpp:2784</u> (version 0.11).
+
+The hardcoded figures are in <u>chainparams.cpp</u>.  (As of 0.11, there were 13 checkpoints, the first at block 11,111, the last at block 295,000.)
+
+From chainparams.cpp: 
+
+>  /**
+>  * What makes a good checkpoint block?
+>  *   Is surrounded by blocks with reasonable timestamps (no blocks before with a timestamp after, none after with timestamp before)
+>  *   Contains no strange transactions
+>  */
+
+**Purpose of Checkpoints**
+
+The purpose of checkpoints is primarily DoS protection. As Greg Maxwell explained on [bitcointalk in 2013](https://bitcointalk.org/index.php?topic=194078.0): 
+
+>  User: They [[checkpoints]] are there so some quantum computing farm (doesn't exist, but...) can't come out of nowhere and roll back blocks by mining a long chain from far in the past.
+
+>  gmaxwell: That's not really what they're for— though they have that effect too. Most of their usefulness is that they prevent a dos attacker from filling up bitcoin node's disk space with long runs of low difficulty blocks forked off low in the chain.  e.g. you start off with difficulty 1 blocks at block 0, now mine-able by the millions by a single asic— _MAYBE_ a chain that starts off that way could eventually turn out to be the longest so absent the checkpoints a node would happily follow an endlessly long chain of them.  They also make is so that an attacker who has complete control of your network (and thus can prevent you from hearing the longest chain from the honest bitcoin network) from putting you on a fake (low difficulty) isolated chain unless they can also trick you into running replaced software. With the checkpoints such an attacker hast to have a ton of mining power in order to continue the chain.
+
+**Origin of Checkpoints**
+
+According to Gavin Andresen, checkpoints were originally introduced in response to the "overflow" bug which would permit anyone to spend anyone's bitcoins. [see here, page 3](https://bitcointalk.org/index.php?topic=1647.40)
+
+**More info on Checkpoints:**
+
+>  First checkpoint introduced by Satoshi in July 2010 (v0.3.2): [here](https://bitcointalk.org/index.php?topic=437)
+>  Bitcoin talk thread on checkpoints (Nov 2010):  [here](https://bitcointalk.org/index.php?topic=1647) 
+>  Bitcoin talk thread (2013): [here](https://bitcointalk.org/index.php?topic=194078.0)
+
+##Bitcoin Core code implementing IBD
+
+Most of the code is in <u>main.h/cpp</u>.
+
+**Block Status**
+
+The concept of block status is important (see chapter 2 and/or <u>chain.cpp</u>).  Your node assigns a newly received block a status and updates that status as it learns more about the block.  (The block status could also change in the future, for example if there is a re-organization and the block is no longer on the longest blockchain.)  
+
+**Downloading Block Headers**
+
+The code starts by downloading headers from a single peer.  
+
+The download begins in SendMessages (<u>main.cpp</u>), which is called periodically by the message-handling thread.  
+
+If the code sees that we  are not caught up and we haven't started syncing from anyone:
+
+* We send: "getheaders"
+* Peer replies: "headers" (a chunk of 2000 headers)
+* We send: "getheaders"
+* Peer replies: "headers" (a chunk of 2000 headers)
+* <continue...>
+* Peer replies: "headers" (a chunk of LESS THAN 2000 headers)
+
+When the peer sends less than 2000 headers, we conclude that we reached the tip of the peer's blockchain.
+
+**Block Locators**
+
+A Block Locator is used to find a fork point between two nodes, which is where the nodes should start exchanging block headers. 
+
+Here is the definition (in <u>primitives/block.h</u>): 
+
+	/* Describes a place in the block chain to another node such that if the
+	* other node doesn't have the same branch, it can find a recent common trunk.
+	* The further back it is, the further before the fork it may be.
+	*/
+	struct CBlockLocator
+	{
+	std::vector<uint256> vHave;
+	...
+	(a few basic constructor & serialization methods)
+	...
+	};
+
+So, a Locator is basically a vector of block hashes.  The vector is populated with 32 hashes which are chosen to maximize the likelihood of quickly finding a common block with a peer.  
+
+In normal operation, we would generally expect to be within a few blocks of our peers.  Thus, the vector starts with the 10 last block hashes before "jumping back" exponentially.  Thus the comment "the futher back it is, the futher before the fork it might be:"  what is meant is that firstly, if you and your peer are within 10 blocks of one another, the fork point will be included in the list of hashes.  If you and your peer are 15 blocks away from one another, you'll surely find a common block that's within a few blocks of the fork point and only one further iteration of Locator will be reuqired to find the fork point.  However, if you and your peer diverge by 10,000 blocks, the Locator may only find a common trunk that's a few hundred (or more) blocks before the fork point, so another two or three Locator objects will need to be exchanged to zero in on the fork point.  
+
+See CChain::GetLocator and CBlockIndex::GetAncestor <u></u>[[chain.cpp]].
+
+**Block Skiplist Pointer**
+
+Every block index contains the following attribute: 
+
+	// pointer to the index of some further predecessor of this block
+	CBlockIndex* pskip;
+
+The algorithm for choosing a given block's "skip pointer" is in <u>chain.cpp</u>:
+
+	// Determine which height to jump back to. Any number strictly lower than height is acceptable,
+	// but the following expression seems to perform well in simulations (max 110 steps to go back
+	// up to 2**18 blocks).
+	return (height & 1) ? InvertLowestOne(InvertLowestOne(height - 1)) + 1 : InvertLowestOne(height)
+	InvertLowestOne(int n) { return n & (n - 1); }
+
+
+The skip pointer is used to move through the blockchain in O(log n) rather than walking the chain in O(n).
+
+The idea behind a "skip list" is described here: [Wikipedia page for skiplist](https://en.wikipedia.org/wiki/Skip_list)
+
+**Processing the Block Headers**
+
+Code path: 
+ProcessMessage (entry point) 
+AcceptBlockHeader
+CheckBlockHeader (non-contextual validation checks)
+ContextualCheckBlockHeader  (blockchain-aware validation checks) 
+
+
+<u>Non-Contextual Checks</u>
+
+These checks are "non-contextual" because they do not require any knowledge of the state of our blockchain. 
+
+1) Proof-of-Work Meets Claimed Requirement:  Here, the code checks that the block has the POW that the miner claims was necessary when constructing the block.  Later, we'll re-check it against our blockchain.  An honest miner should always pass both checks.  Only a miner who lies about the required POW (block.nBits) would pass this check but fail the contextual check. 
+
+2) Timestamp not-too-late:  The code checks that the timestamp is less than 2 days in the future.  This is context-independent because the code just compares the block's timestamp against the system time. 
+
+
+<u> Contextual Checks </u>
+
+These checks require some knowledge of our node's blockchain. 
+
+1) Re-check Proof of Work:  Here, we re-check the POW based on our own knowledge of the difficulty target (rather than trusting the difficulty the miner placed in the block's nBits). 
+
+2) Checkpoints (if enabled):  If this block's height is a checkpoint, the block hash matches the hash stored in the checkpoint map.  (see checkpoint.cpp).
+
+3) Timestamp not-too-early:  Here, we check that the block's timestamp is not prior to the previous block's median time (of the previous 11 blocks).  This guarantees that the median time continues to advance from block to block.  Obviously, this check is context-dependent because it requires knowledge of prior blocks in the active chain, which is obtained by retrieving the block from mapBlockIndex.  For more info, see [113](BIP).
+
+4) Version number
+
+
+<u>Add the Block</u>
+
+Finally, add the block to mapBlockIndex and update pIndexBestHeader (see AddToBlockIndex()).  
+
+At this point, the block indexes are VALID_TREE, since we know they are on the main chain, but we haven't yet received the transactions.
+
+**Downloading Blocks**
+
+Your node will start downloading blocks from the peer that it is downloading headers from right away.  
+
+This is so because: 
+
+* The headers-peer is surely a preferred-download peer, set when you received its "version" message (<u>main.cpp:4056</u>).
+* Thus, your node will call FindNextBlocksToDownload for your headers-peer (<u>main.cpp:5143</u>). 
+* Your headers-peer will have a valid pIndexBestKnownBlock (<u>main.cpp:421</u>), since that was set in UpdateBlockAvailability() when you received the peer's headers (<u>main.cpp:4532</u>).
+* FindNextBlocksToDownload will return a vector of block hashes, which you'll then request (see <u>main.cpp:5145</u> [block to the request vector](add) and <u>main.cpp:5178</u> [getdata msg to your headers-peer](send)).
+
+However, you will not start downloading blocks from the other peers until IBD is complete.  
+
+This is so because: 
+
+* Your other peers are probably also preferred-download peers, so you'll call FindNextBlockToDownload just like with your headers-peer. 
+* However, that function call will return immediately because it won't be able to find any available blocks. 
+* When IBD concludes (see discussion below), you'll start exchanging headers with the other peers. 
+* Once you've exchanged headers with your other peers, you'll start requesting blocks. 
+
+Blocks are downloaded in chunks of 16 blocks at a time from each peer.  With a block size of 1MB, if blocks are full we are talking about 16MB chunks.  (See main.h - "MAX_BLOCKS_IN_TRANSIT_PER_PEER".)  
+
+
+*Moving Window*
+
+The download code uses a "moving window" of 1024 blocks.  The idea is that although you are downloading different chunks from multiple peers, at any given time the blocks you are downloading are fairly close together.  The main purpose of this is so that blocks that are near one another on the blockchain are most likely contained in the same .dat file (where the raw block data is stored on disk).  One advantage of having a correlation between blockchain location and block file location is that if the node chooses to "prune" block data at a later date, it's easier to delete older block files.
+
+
+*Disconnecting a peer*
+
+The code disconnects slow peers in order to keep the download moving.  The peer can be disconnect under two scenarios.  
+
+First, any block requested from the peer must be delivered within a certain timeframe. 
+
+Usually, this timeframe is 20 minutes.
+
+The following code is in <u>main.cpp</u>: 
+	GetBlockTimeout(...) { return nTime + 500000 * consensusParams.nPowTargetSpacing * (4 + nValidatedQueuedBefore);}
+
+nValidatedQueuedBefore are the number of blocks that are in flight to us and which we have validated.  Let's call that N. 
+
+If N = 0, this code evaluates as: 
+>  = 500,000 microseconds (1/2 second) * 600 seconds (the target block interval) * 4 
+>  = 0.5 seconds * 600 seconds * 4 
+>  = 1,200 seconds
+>  = 20 minutes
+
+The formula can be simplified as: 
+>  = 0.5 * (4 + N) * block_interval
+>  = (2 + 0.5 * N) * block_interval
+
+Thus: 
+>  N=0, timeout = 2 * block_interval = 20 minutes.
+>  N=10, timeout = 7 * block_interval = 70 minutes. 
+>  N=30, timeout = 17 * block_interval = 170 minutes.
+
+
+The second circumstance where we will disconnect a peer is where the peer manages to stall your entire download by preventing the moving window from progressing.  Imagine your moving window is blocks 1000 to 2024 and you've downloaded everything from 1016 to 2024, but are waiting for Alice to serve up 1000 to 1016, which you may have requsted a few minutes earlier.  In this siutation, if Alice continues to stall the moving window for 2 seconds, you will drop Alice and replace her with a more reliable peer. In the mantime, your node will request blocks 1000 to 1016 from one of your other peers so your moving window can start moving again.
+
+**Requesting Blocks**
+
+Requesting blocks is handled by sending out a "getdata" message (see main.cpp:5137 in v0.11).  A "getdata" message is used to pack a vector of "inv" messages and send as a group.  Thus, we can request 16 blocks from the peer with one network message, as opposed to sending 16 separate "inv" messages.
+
+What blocks do we request?  The code to figure that out is in FindNextBlocksToDownload; it uses a **block locator** to figure out the last block we have in common with this peer, and starts from there.  A block locator is a homemade algorithm that efficiently finds the fork point between our node and a given peer.  The locator will pack a list of 32 blocks, starting with the last 10 (since in steady-state we are usually within 10 blocks of our peers), and then jumping back exponentially.  (<u>chain.cpp:25</u>). 
+
+This algorithm has proven to be effective at locating the fork point. 
+	
+Once we've prepared the "getdata" message, we mark the blocks that we've requested as being "in flight" - with MarkBlocksAsInFlight (main.cpp).
+
+**Receiving Blocks**
+
+The entry point for receiving blocks is in ProcessMessage, when our node receives a "block" message from a peer.  
+
+The block is processed with ProcessNewBlock (main.cpp):
+
+>  1) Checks on the block
+>  a)  Basic, context-independent checks on the block (merkle root, block size, etc)
+>  b)  Basic, context-independent on transactions within the block  (transaction size, etc.)
+>  c)  Check that we requested this block (if unrequested, this may be a DOS attack - though not necessarily) 
+>  d)  Context-dependent checks on the block
+
+>  2)  Store the block to disk 
+
+>  3)  General check on the integrity of our blockchain (this may sound expensive, but is very fast)
+
+>  4)  Connect the block to the blockchain - if appropriate (see ActivateBestChain)
+
+Note that the block's transactions are not validated (checked for a double-spend, etc.) until the last step, when the block is connected as the new tip of the blockchain.  For more info, see below "Connecting a Block".
+
+##Monitoring the Download
+
+You can monitor the download with the RPC call getpeerinfo, which shows (for each peer that you're connected to):
+
+* "synced_headers": The last header we have in common with this peer
+* "synced blocks": The last block in commen with this peer
+* "inflight": The heights of blocks we're currently requesting from this peer
+
+
+##See also
+[Bitcoin Core 0.11 (Ch 1): Overview](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_1):_Overview)
+<br>
+[Bitcoin Core 0.11 (Ch 2): Data Storage](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_2):_Data_Storage)
+<br>
+[Bitcoin Core 0.11 (Ch 3): Initialization and Startup](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_3):_Initialization_and_Startup)
+<br>
+[Bitcoin Core 0.11 (Ch 4): P2P Network](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_4):_P2P_Network)
+
+
+[[!tag "Technical"]]
+[[!tag "Developer"]]
