@@ -1,72 +1,110 @@
-**Bitcoin** *(abbreviated BTC)*
->  The name of a decentralized p2p crypto-currency application.
-**[[Bitcoins]]**
->  The currency used and generated within the Bitcoin system.
-**[[Block]]**
->  Blocks are links in a chain of transaction verifications. Outstanding transactions get bundled into a block and are verified roughly every ten minutes on average. Each subsequent block strengthens the verification of previous blocks. Each block contains one or more transactions.
-**[[Block_Chain]]**
->  Each block includes the difficult-to-produce verification hash of the previous block. This allows each subsequent block to be linked to all previous blocks. These blocks which are linked together for the purpose of verifying transactions within blocks is called the block chain.
-**[[Block Reward|Mining#Reward]]**
->  When a Bitcoin miner finds a block, it receives newly minted bitcoins known as the "Block Reward". The reward (aka subsidy) is halved every four years and is responsible for bitcoin's [[controlled_supply]].
-**Branching Point**
->  The block at which the block chain diverges into multiple chain branches
-**BTC**
->  The common decimal [[unit|Units]] of Bitcoins, equal to 100,000,000 satoshis.
-**Chain Branching**
-**[[Checkpoint_Lockin]]**
->  Every once in a while, an old block hash is hardcoded into Bitcoin software. Different implementations choose different checkpoint locations. Checkpoints prevent various DOS attacks from nodes flooding unusable chains and attacks involving isolating nodes and giving them fake chains. Satoshi announced the feature [here](https://bitcointalk.org/index.php?topic=437) and it was discussed to death [here](https://bitcointalk.org/index.php?topic=1647).
-**Coinbase**
->  "Coinbase" is another name for a generation transaction. The input of such a transaction contains some arbitrary data where the scriptSig would go in normal transactions -- this data is sometimes called the "coinbase", as well.
-**[[Confirmation]]**
->  To protect against double spending, a transaction should not be considered as "confirmed" until a certain number of blocks in the block chain confirm, or verify that the transaction.  The classic bitcoin client will show a transaction as "n/unconfirmed" until 6 blocks confirm the transaction.
-**[[Difficulty]]**
->  Every 2016 blocks, Bitcoin adjusts the difficulty of verifying blocks based on the time it took to verify the previous 2016 blocks. The difficulty is adjusted so that given the average estimated computing power of the whole bitcoin network, only one block will verified on average every ten minutes for the next 2016 blocks. The difficulty is usually expressed as a number, optionally accurate to many decimal places (eg. in [block 100,000](http://blockexplorer.com/b/100000) it was 14,484.162361.  The difficulty is inversely proportional to the hash target, which is expressed as a hex number with around 50 digits, and is the number under which a block's generated hash must be to qualify as an officially verified block. The hash target is equal to ((65535 << 208) / difficulty).  Difficulty is also often called block difficulty, hash difficulty, verification difficulty or the difficulty of generating bitcoins.
-**[[Double-Spending|Double-spending]]**
->  Attempting to spend coins that have already been spent in another transaction
-**Generate Bitcoins**
->  The process by which new bitcoins (aka the "Block Reward") are distributed via [[Mining]].
-**[[Hash]]**
->  The output of a hash function.
-**Hash function**
->  A computer algorithm which takes an arbitrary amount of input data and deterministically produces fixed length output, known as the data's "hash", that can be used to easily verify that data has not been altered. If you change any single bit of the original data and run the hash algorithm, the hash will completely change. Because the hash is seemingly random, it is prohibitively difficult to try to produce a specific hash by changing the data which is being hashed.
-**Low Priority**
->  See Priority.
-**Main Chain**
->  The longest [[Block_Chain]].
-**Memory pool**
->  Generators store [[transactions]] waiting to get into a block in their memory pool after receiving them. Received transactions are stored even if they are invalid to prevent nodes from constantly requesting transactions that they've already seen. The memory pool is cleared when Bitcoin is shut down, causing the [[network]] to gradually forget about transactions that haven't been included in a [[block]].
-**Merkle root**
->  Every [[transaction|transactions]] has a [[hash]] associated with it. In a [[block]], all of the transaction hashes in the block are themselves hashed (sometimes several times -- the exact process is complex), and the result is the Merkle root. In other words, the Merkle root is the hash of all the hashes of all the transactions in the block. The Merkle root is included in the [[block header|block_hashing_algorithm]]. With this scheme, it is possible to securely verify that a transaction has been accepted by the network (and get the number of confirmations) by downloading just the tiny block headers and [Merkle tree](Wikipedia:Merkle tree) -- downloading the entire block chain is unnecessary. This feature is currently not used in Bitcoin, but it will be in the future.
-** Miner**
->  Computer software which is designed to repeatedly calculate hashes with the intention to create a successful block and earn coins from transaction fees and new coins created with the block itself.  The term references an analogy of gold miners who dig gold out of the ground and thus "discover" new gold that can be used to create new coins with a similar kind of discovery occurring with a successful hash to create new Bitcoins.
-**Node**
->  Each Bitcoin client currently running within the network is referred to as a Node of the system.
-**Nonce**
->  A nonce is an otherwise meaningless number which is used to alter the outcome of a hash. Each time Bitcoin hashes a block, it increments a nonce within the block which it is trying verify. If the numeric value of the effectively random hash is below a certain amount determined by the block generation difficulty, then the block is accepted by other clients and gets added to the chain.
-**[[Orphan_Block]]**
->  An orphan block is a block that is not in the currently-longest [[block_chain]].
-**Orphan root**
->  The root (first) block in an [[orphan|Orphan_Block]] block chain.
-**Priority**
->  A scoring mechanism to help ensure that expensive data storage isn't consumed by lower quality and spam. Low priority transactions will not get included by a miner if the limited space is already filled by higher priority transactions.  A [[transaction fee|Transaction_Fee]] will affect priority.
-**[[Proof_of_work]]**
->  A result that can only be obtained through the use of computational resources. Changing the data in the proof of work requires redoing the work.
-**Reorganize**
->  A block chain reorganize (or **reorg**) happens when one chain becomes longer than the one you are currently working on. All of the blocks in the old chain that are not in the new one become orphan blocks, and their generations are invalidated. Transactions that use the newly-invalid generated coins also become invalid, though this is only possible in large chain splits because generations can't be spent for 100 blocks. The number of confirmations for transactions may change after a reorg, and transactions that are not in the new chain will become "0/unconfirmed" again. If a transaction in the old chain conflicts with one in the new chain (as a result of double-spending), the old one becomes invalid.
-**Satoshi**
->  The base unit of Bitcoin (0.00000001 BTC) is sometimes called a Satoshi, after Bitcoin's creator [[Satoshi_Nakamoto]].
-**Seed Nodes**
->  Nodes whose IP addresses are included in the [[Bitcoin client|Original_Bitcoin_client]] for use during a new installation when the normal bootstrapping process through IRC wasn't possible.
-**Subsidy**
->  See "Block Reward" above.
-**Super Nodes**
->  A participant in a p2p network which connects to as many other nodes as possible.
-**[[Tonal_Bitcoin]]** *(abbreviated TBC)*
->  Adaptation of Bitcoin to the [Tonal System](http://en.wikipedia.org/wiki/John_W._Nystrom#Tonal_System_.28Hexadecimal.29). 1 TBC is defined as 1,0000 (65,536 decimal) base bitcoin units. Not widely used.
-**[[Transaction_Fee]]**
->  A voluntary fee which can be added to a transaction which is used as an incentive to add the bitcoin transaction to a block.  The fee determines the likelihood of inclusion in any given block, where a high fee included with a transaction has a priority over transactions with a lower fee included or no fee at all.
-**Virgin bitcoin**
->  The reward for generating a [[block|Block]] that has not yet been spent, a state which might increase the ability to transact [[anonymously|anonymity]].
+ 
+		
+
+
+#####Bitcoin
+The name of a decentralized p2p crypto-currency application.
+
+#####[[Bitcoins]]
+The currency used and generated within the Bitcoin system.
+
+#####[[Block]]
+Blocks are links in a chain of transaction verifications. Outstanding transactions get bundled into a block and are verified roughly every ten minutes on average. Each subsequent block strengthens the verification of previous blocks. Each block contains one or more transactions.
+
+#####[[Block_Chain]]
+Each block includes the difficult-to-produce verification hash of the previous block. This allows each subsequent block to be linked to all previous blocks. These blocks which are linked together for the purpose of verifying transactions within blocks is called the block chain.
+
+#####[[Block Reward|Mining#Reward]]
+When a Bitcoin miner finds a block, it receives newly minted bitcoins known as the "Block Reward". The reward (aka subsidy) is halved every four years and is responsible for bitcoin's [[controlled_supply]].
+
+#####Branching Point
+The block at which the block chain diverges into multiple chain branches
+
+#####BTC
+The common decimal [[unit|Units]] of Bitcoins, equal to 100,000,000 satoshis.
+
+#####Chain Branching
+
+#####[[Checkpoint_Lockin]]
+Every once in a while, an old block hash is hardcoded into Bitcoin software. Different implementations choose different checkpoint locations. Checkpoints prevent various DOS attacks from nodes flooding unusable chains and attacks involving isolating nodes and giving them fake chains. Satoshi announced the feature [here](https://bitcointalk.org/index.php?topic=437) and it was discussed to death [here](https://bitcointalk.org/index.php?topic=1647).
+
+#####Coinbase
+"Coinbase" is another name for a generation transaction. The input of such a transaction contains some arbitrary data where the scriptSig would go in normal transactions -- this data is sometimes called the "coinbase", as well.
+
+#####[[Confirmation]]
+To protect against double spending, a transaction should not be considered as "confirmed" until a certain number of blocks in the block chain confirm, or verify that the transaction.  The classic bitcoin client will show a transaction as "n/unconfirmed" until 6 blocks confirm the transaction.
+
+#####[[Difficulty]]
+Every 2016 blocks, Bitcoin adjusts the difficulty of verifying blocks based on the time it took to verify the previous 2016 blocks. The difficulty is adjusted so that given the average estimated computing power of the whole bitcoin network, only one block will verified on average every ten minutes for the next 2016 blocks. The difficulty is usually expressed as a number, optionally accurate to many decimal places (eg. in [block 100,000](http://blockexplorer.com/b/100000) it was 14,484.162361.  The difficulty is inversely proportional to the hash target, which is expressed as a hex number with around 50 digits, and is the number under which a block's generated hash must be to qualify as an officially verified block. The hash target is equal to ((65535 << 208) / difficulty).  Difficulty is also often called block difficulty, hash difficulty, verification difficulty or the difficulty of generating bitcoins.
+
+#####[[Double-Spending|Double-spending]]
+Attempting to spend coins that have already been spent in another transaction
+
+#####Generate Bitcoins
+The process by which new bitcoins (aka the "Block Reward") are distributed via [[Mining]].
+
+#####[[Hash]]
+The output of a hash function.
+
+#####Hash function
+A computer algorithm which takes an arbitrary amount of input data and deterministically produces fixed length output, known as the data's "hash", that can be used to easily verify that data has not been altered. If you change any single bit of the original data and run the hash algorithm, the hash will completely change. Because the hash is seemingly random, it is prohibitively difficult to try to produce a specific hash by changing the data which is being hashed.
+
+#####Low Priority
+See Priority.
+
+#####Main Chain
+The longest [[Block_Chain]].
+
+#####Memory pool
+Generators store [[transactions]] waiting to get into a block in their memory pool after receiving them. Received transactions are stored even if they are invalid to prevent nodes from constantly requesting transactions that they've already seen. The memory pool is cleared when Bitcoin is shut down, causing the [[network]] to gradually forget about transactions that haven't been included in a [[block]].
+
+#####Merkle root
+Every [[transaction|transactions]] has a [[hash]] associated with it. In a [[block]], all of the transaction hashes in the block are themselves hashed (sometimes several times -- the exact process is complex), and the result is the Merkle root. In other words, the Merkle root is the hash of all the hashes of all the transactions in the block. The Merkle root is included in the [[block header|block_hashing_algorithm]]. With this scheme, it is possible to securely verify that a transaction has been accepted by the network (and get the number of confirmations) by downloading just the tiny block headers and [Merkle tree](Wikipedia:Merkle tree) -- downloading the entire block chain is unnecessary. This feature is currently not used in Bitcoin, but it will be in the future.
+
+##### Miner
+Computer software which is designed to repeatedly calculate hashes with the intention to create a successful block and earn coins from transaction fees and new coins created with the block itself.  The term references an analogy of gold miners who dig gold out of the ground and thus "discover" new gold that can be used to create new coins with a similar kind of discovery occurring with a successful hash to create new Bitcoins.
+
+#####Node
+Each Bitcoin client currently running within the network is referred to as a Node of the system.
+
+#####Nonce
+A nonce is an otherwise meaningless number which is used to alter the outcome of a hash. Each time Bitcoin hashes a block, it increments a nonce within the block which it is trying verify. If the numeric value of the effectively random hash is below a certain amount determined by the block generation difficulty, then the block is accepted by other clients and gets added to the chain.
+
+#####[[Orphan_Block]]
+An orphan block is a block that is not in the currently-longest [[block_chain]].
+
+#####Orphan root
+The root (first) block in an [[orphan|Orphan_Block]] block chain.
+
+#####Priority
+A scoring mechanism to help ensure that expensive data storage isn't consumed by lower quality and spam. Low priority transactions will not get included by a miner if the limited space is already filled by higher priority transactions.  A [[transaction fee|Transaction_Fee]] will affect priority.
+
+#####[[Proof_of_work]]
+A result that can only be obtained through the use of computational resources. Changing the data in the proof of work requires redoing the work.
+
+#####Reorganize
+A block chain reorganize (or **reorg**) happens when one chain becomes longer than the one you are currently working on. All of the blocks in the old chain that are not in the new one become orphan blocks, and their generations are invalidated. Transactions that use the newly-invalid generated coins also become invalid, though this is only possible in large chain splits because generations can't be spent for 100 blocks. The number of confirmations for transactions may change after a reorg, and transactions that are not in the new chain will become "0/unconfirmed" again. If a transaction in the old chain conflicts with one in the new chain (as a result of double-spending), the old one becomes invalid.
+
+#####Satoshi
+The base unit of Bitcoin (0.00000001 BTC) is sometimes called a Satoshi, after Bitcoin's creator [[Satoshi_Nakamoto]].
+
+#####Seed Nodes
+Nodes whose IP addresses are included in the [[Bitcoin client|Original_Bitcoin_client]] for use during a new installation when the normal bootstrapping process through IRC wasn't possible.
+
+#####Subsidy
+See "Block Reward" above.
+
+#####Super Nodes
+A participant in a p2p network which connects to as many other nodes as possible.
+
+#####[[Tonal_Bitcoin]]
+Adaptation of Bitcoin to the [Tonal System](http://en.wikipedia.org/wiki/John_W._Nystrom#Tonal_System_.28Hexadecimal.29). 1 TBC is defined as 1,0000 (65,536 decimal) base bitcoin units. Not widely used.
+
+#####[[Transaction_Fee]]
+A voluntary fee which can be added to a transaction which is used as an incentive to add the bitcoin transaction to a block.  The fee determines the likelihood of inclusion in any given block, where a high fee included with a transaction has a priority over transactions with a lower fee included or no fee at all.
+
+#####Virgin bitcoin
+The reward for generating a [[block|Block]] that has not yet been spent, a state which might increase the ability to transact [[anonymously|anonymity]].
 
 [[!tag "Technical"]]
  [[!tag "Vocabulary"]]
