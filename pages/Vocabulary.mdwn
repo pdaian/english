@@ -3,10 +3,10 @@
 
 
 #####Bitcoin
-The name of a decentralized p2p crypto-currency application.
+The name of a decentralized p2p crypto-currency network.
 
 #####[[Bitcoins]]
-The currency used and generated within the Bitcoin system.
+Digital currency units generated and used within the Bitcoin system.  Common abbreviations include BTC, XBT or lowercase *bitcoin* when referring to units of the currency.
 
 #####[[Block]]
 Blocks are links in a chain of transaction verifications. Outstanding transactions get bundled into a block and are verified roughly every ten minutes on average. Each subsequent block strengthens the verification of previous blocks. Each block contains one or more transactions.
@@ -21,9 +21,7 @@ When a Bitcoin miner finds a block, it receives newly minted bitcoins known as t
 The block at which the block chain diverges into multiple chain branches
 
 #####BTC
-The common decimal [[unit|Units]] of Bitcoins, equal to 100,000,000 satoshis.
-
-#####Chain Branching
+The common decimal [[unit|Units]] of a single bitcoin. Equal to 100,000,000 satoshis.
 
 #####[[Checkpoint_Lockin]]
 Every once in a while, an old block hash is hardcoded into Bitcoin software. Different implementations choose different checkpoint locations. Checkpoints prevent various DOS attacks from nodes flooding unusable chains and attacks involving isolating nodes and giving them fake chains. Satoshi announced the feature [here](https://bitcointalk.org/index.php?topic=437) and it was discussed to death [here](https://bitcointalk.org/index.php?topic=1647).
@@ -44,7 +42,7 @@ Attempting to spend coins that have already been spent in another transaction
 The process by which new bitcoins (aka the "Block Reward") are distributed via [[Mining]].
 
 #####[[Hash]]
-The output of a hash function.
+The output of a cryptographic [[hash function|#Hash_function]].
 
 #####Hash function
 A computer algorithm which takes an arbitrary amount of input data and deterministically produces fixed length output, known as the data's "hash", that can be used to easily verify that data has not been altered. If you change any single bit of the original data and run the hash algorithm, the hash will completely change. Because the hash is seemingly random, it is prohibitively difficult to try to produce a specific hash by changing the data which is being hashed.
@@ -71,7 +69,7 @@ Each Bitcoin client currently running within the network is referred to as a Nod
 A nonce is an otherwise meaningless number which is used to alter the outcome of a hash. Each time Bitcoin hashes a block, it increments a nonce within the block which it is trying verify. If the numeric value of the effectively random hash is below a certain amount determined by the block generation difficulty, then the block is accepted by other clients and gets added to the chain.
 
 #####[[Orphan_Block]]
-An orphan block is a block that is not in the currently-longest [[block_chain]].
+An orphan block is a block which has no known parent in the currently-longest [[block_chain]]. Not to be confused with a [[Stale Block|#Stale_Block]] (which has a known parent, but is no longer part of the longest chain).
 
 #####Orphan root
 The root (first) block in an [[orphan|Orphan_Block]] block chain.
@@ -91,8 +89,11 @@ The base unit of Bitcoin (0.00000001 BTC) is sometimes called a Satoshi, after B
 #####Seed Nodes
 Nodes whose IP addresses are included in the [[Bitcoin client|Original_Bitcoin_client]] for use during a new installation when the normal bootstrapping process through IRC wasn't possible.
 
+#####Stale Block
+A well-formed block which is no longer part of the difficultywise-longest and well-formed blockchain.  Not to be confused with an [[Orphan Block|#Orphan_Block]] (which has no known parent in the longest [[block_chain]]).
+
 #####Subsidy
-See "Block Reward" above.
+See "[[Block Reward|#Block_Reward]]" above.
 
 #####Super Nodes
 A participant in a p2p network which connects to as many other nodes as possible.
