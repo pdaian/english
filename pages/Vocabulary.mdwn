@@ -29,6 +29,8 @@
 >  A computer algorithm which takes an arbitrary amount of input data and deterministically produces fixed length output, known as the data's "hash", that can be used to easily verify that data has not been altered. If you change any single bit of the original data and run the hash algorithm, the hash will completely change. Because the hash is seemingly random, it is prohibitively difficult to try to produce a specific hash by changing the data which is being hashed.
 **Low Priority**
 >  See Priority.
+**Main Chain**
+>  The longest [[Block_Chain]].
 **Memory pool**
 >  Generators store [[transactions]] waiting to get into a block in their memory pool after receiving them. Received transactions are stored even if they are invalid to prevent nodes from constantly requesting transactions that they've already seen. The memory pool is cleared when Bitcoin is shut down, causing the [[network]] to gradually forget about transactions that haven't been included in a [[block]].
 **Merkle root**
