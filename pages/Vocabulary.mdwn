@@ -41,8 +41,10 @@
 >  Each Bitcoin client currently running within the network is referred to as a Node of the system.
 **Nonce**
 >  A nonce is an otherwise meaningless number which is used to alter the outcome of a hash. Each time Bitcoin hashes a block, it increments a nonce within the block which it is trying verify. If the numeric value of the effectively random hash is below a certain amount determined by the block generation difficulty, then the block is accepted by other clients and gets added to the chain.
-**Orphan block**
+**[[Orphan_Block]]**
 >  An orphan block is a block that is not in the currently-longest [[block_chain]].
+**Orphan root**
+>  The root (first) block in an [[orphan|Orphan_Block]] block chain.
 **Priority**
 >  A scoring mechanism to help ensure that expensive data storage isn't consumed by lower quality and spam. Low priority transactions will not get included by a miner if the limited space is already filled by higher priority transactions.  A [[transaction fee|Transaction_Fee]] will affect priority.
 **[[Proof_of_work]]**
