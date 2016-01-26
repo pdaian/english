@@ -61,6 +61,8 @@ Each on-chain Bitcoin transaction needs to be processed by each full node. If we
 * Another doubling: 800 users, 16 nodes (still 2%), and 8 times the original workload per node for a total of 64 times aggregate work as the original.
 * Another doubling: 1,600 users—sixteen times the original---with 32 nodes (still 2%), and 16 times the original workload per node.  The aggregate total work done by nodes is 256 times higher than it was originally.
 
+Note that the validation effort required per full node simply grows in O(n). For a single node, it takes twice as many resources to process twice as many transactions.
+
 ### What’s the difference between on-chain and off-chain transactions?
 
 On-chain Bitcoin transactions are those that appear in the Bitcoin block chain. Off-chain transactions are those that transfer ownership of bitcoins without putting a transaction on the block chain.
@@ -76,11 +78,11 @@ Approximately 90% to 99% of all bitcoin-denominated payments today are made off-
 
 ### What is a fee market?
 
-When you create a Bitcoin transaction, you have the option to pay a [[transaction_fee]]. If your software is flexible, you can pay anything from zero fees (a free transaction) to 100% of the value of the transaction (spend-to-fees).
+When you create a Bitcoin transaction, you have the option to pay a [[transaction_fee]]. If your software is flexible, you can pay anything from zero fees (a free transaction) to 100% of the value of the transaction (spend-to-fees). This fee is comparable to a tip. The higher it is, the bigger the incentive of the miners to incorporate your transaction into the next block.
 
-Miners who have more transactions available to them than they have room in the blocks they choose to make, typically choose to maximize their revenue by including the transactions that pay the most fees per kilobyte of data. (9.1) This confirms higher-fee transactions before lower-fee transactions.
+When miners assemble a block, they are free to include whatever transactions they wish. They usually include as many as possible up to the maximum block size and then prioritize the transactions that pay the most fees per kilobyte of data. (9.1) This confirms higher-fee transactions before lower-fee transactions. If blocks become full on a regular basis, users who pay a fee that's too small will have to wait a longer and longer time for their transactions to confirm. At this point, a demand-driven fee market may arise where transactions that pay higher fees get confirmed significantly faster than transactions that pay low fees. (9.2)
 
-If blocks become full on a regular basis, users who pay the minimum fee will have to wait a longer and longer time for their transactions to confirm. At this point, a fee market may arise where transactions that pay higher fees get confirmed significantly faster than transactions that pay low fees. (9.2)
+In a competitive market, prices are driven by supply and demand and the emerging equilibrium price asymptotically approaches marginal costs over time. However, the current version of Bitcoin limits the supply to 1 MB per block, only allowing demand to adjust. To establish a free market, one would need to come up with a mechanism that allows the number of included transactions per block to adjust dynamically as well. The design of such a mechanism, however, is not trivial. Simply allowing individual miners to include as many transactions as they want is problematic due to the externalities (9.3) of including additional blocks and explained further in section [['should miners be allowed to decide the block size?'|#Should_miners_be_allowed_to_decide_the_block_size?]] .
 
 ### What is the most efficient way to scale Bitcoin?
 
@@ -346,6 +348,7 @@ No. Federated sidechains, such as have already been implemented (39.1), don’t 
 8.3: [Pure off-chain is a weak form of layer 2](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-June/008844.html) , Dr. Adam Back, 19 June 2015  
 9.1: [Fee prioritization patch](https://bitcointalk.org/index.php?topic=95837.0) , Gavin Andresen, 26 July 2012  
 9.2: [Comments on the CoinWallet.eu tx-flood stress-test](https://gist.github.com/petertodd/8e87c782bdf342ef18fb) , Peter Todd, 22 June 2015  
+9.3: [Definition of externality](https://en.wikipedia.org/wiki/Externality) , Wikipedia, 26 January 2016  
 12.1: [Bitcoin Core commit c555400](https://github.com/bitcoin/bitcoin/commit/c555400ca134991e39d5e3a565fcd2215abe56f6) , Gavin Andresen, 12 July 2012  
 12.2: [Bitcoin Core commit ad898b40](https://github.com/bitcoin/bitcoin/commit/ad898b40aaf06c1cc7ac12e953805720fc9217c0) , Gavin Andresen, 27 November 2013  
 12.3: [Bitcoin Core pull #6231](https://github.com/bitcoin/bitcoin/pull/6231) , Chris Wheeler, 4 June 2015  
