@@ -4,17 +4,17 @@ See also [[Satoshi_Client_Block_Exchange]] for an overview.
 
 ### Downloader Behavior
 
-* When receiving an inv
-	* For each block
-		* If already have as orphan, send getblocks(locator(chainHead), orphanRoot(block))
+* When receiving an [[inv (Inventory Message)|Satoshi_Client_Block_Exchange#Inventory_Messages]]
+	* For each [[block]]
+		* If already have as [[orphan|Orphan_Block]], send [[getblocks|Protocol_documentation#getblocks]](locator(chainHead), [[orphanRoot|Vocabulary#Orphan_root]](block))
 		* If not already have
-			* send getdata(block)
-		* If already have and this is last block in message NOTE: this triggers specific behavior in peer getdata
+			* send [[getdata|Protocol_documentation#getdata]](block)
+		* If already have and this is last block in message (NOTE: this triggers specific behavior in peer getdata)
 			* send getdata(block)
 
 * When receiving a block
 	* If already have, ignore
-	* Else if have parent not in main chain
+	* Else if have parent not in [[main chain|Vocabulary#Main_Chain]]
 		* store as orphan
 		* getblocks(locator(chainHead), orphanRoot(block))
 	* Else
@@ -23,7 +23,6 @@ See also [[Satoshi_Client_Block_Exchange]] for an overview.
 
 * When starting download from a peer
 	* getblocks(locator(chainHead), 0)
-
 
 ### Responder Behavior
 
