@@ -28,9 +28,9 @@ It is more likely that the Earth is destroyed in the next 5 seconds, than that a
 	18E14A7B6A307F426A94F8114701E7C8E774E7F9A47E2C2035DB29A206321725
 1 - Take the corresponding public key generated with it (65 bytes, 1 byte 0x04, 32 bytes corresponding to X coordinate, 32 bytes corresponding to Y coordinate)
 	0450863AD64A87AE8A2FE83C1AF1A8403CB53F53E486D8511DAD8A04887E5B23522CD470243453A299FA9E77237716103ABC11A1DF38855ED6F2EE187E9C582BA6
-2 - Perform SHA-256 hashing on the public key
+2 - Perform [[SHA-256]] hashing on the public key
 	600FFE422B4E00731A59557A5CCA46CC183944191006324A447BDB2D98D4B408
-3 - Perform RIPEMD-160 hashing on the result of SHA-256
+3 - Perform [[RIPEMD-160]] hashing on the result of SHA-256
 	010966776006953D5567439E5E39F86A0D273BEE
 4 - Add version byte in front of RIPEMD-160 hash (0x00 for Main Network)
 	00010966776006953D5567439E5E39F86A0D273BEE
