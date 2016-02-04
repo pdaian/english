@@ -23,6 +23,7 @@ The [libbitcoin-network](https://github.com/libbitcoin/libbitcoin-network) libra
 	settings.host_pool_capacity = 0;
 	settings.outbound_connections = 0;
 	settings.relay_transactions = false;
+	settings.manual_retry_limit = 3;
 	
 	// Start a network session.
 	network::p2p network(settings);
@@ -43,6 +44,9 @@ The [libbitcoin-network](https://github.com/libbitcoin/libbitcoin-network) libra
 	else
 	node->send(tx, send_handler);
 	};
+	
+	// Connect to the one specified host with retry.
+	network.connect("localhost", 8333, connect_handler);
 	
 	// Wait for completion and return result.
 	return complete.get_future().get() ? -1 : 0;
