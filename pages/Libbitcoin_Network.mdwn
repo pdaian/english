@@ -31,13 +31,13 @@ The [libbitcoin-network](https://github.com/libbitcoin/libbitcoin-network) libra
 	// Declare completion signal.
 	std::promise<nowiki><code></nowiki> complete;
 	
-	const auto send_handler = [[&complete]](const code& ec)
+	const auto send_handler = [[&complete]](code ec)
 	{
 	complete.set_value(ec);
 	};
 	
 	const auto connect_handler = [&tx , &send_handler](&complete,)(
-	const code& ec, network::channel::ptr node)
+	code ec, network::channel::ptr node)
 	{
 	if (ec)
 	complete.set_value(ec);
