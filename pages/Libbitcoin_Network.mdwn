@@ -26,10 +26,10 @@ The [libbitcoin-network](https://github.com/libbitcoin/libbitcoin-network) libra
 	
 	// Start a network session.
 	network::p2p network(settings);
-
+	
 	// Declare completion signal.
 	std::promise<nowiki><code></nowiki> complete;
-
+	
 	const auto send_handler = [[&complete]](const code& ec)
 	{
 	complete.set_value(ec);
