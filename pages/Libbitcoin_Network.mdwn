@@ -1,1 +1,29 @@
-Placeholder
+The [libbitcoin-network](https://github.com/libbitcoin/libbitcoin-network) library is a partial implementation of the [[Bitcoin P2P network protocol|Protocol_documentation]]. Excluded are all sub-protocols that require access to a blockchain. The [[libbitcoin-node|Libbitcoin_Node]] library extends this P2P networking capability and incorporates [[libbitcoin-blockchain|Libbitcoin_Blockchain]] in order to implement a [[full node|Full_node]]. The [[libbitcoin-explorer|Libbitcoin_Explorer]] library uses the P2P networking capability to post transactions to the P2P network.
+
+##Example
+	TODO
+	
+##History
+
+* The P2P protocol was originally contained within the [[libbitcoin|Libbitcoin_Common]] library.
+
+* In the winter of 2014 William Swanson reorganized libbitcoin sources (3.1) in accordance with the roadmap (3.2) agreed in Toronto earlier that year.
+
+* Later sources were moved into the libbitcoin::network namespace, and by early 2016 the namespace was forked into its own repository and integrated with dependent repositories as of version 3.
+
+##Dependencies
+
+* [boost](http://www.boost.org)
+* [[libbitcoin|Libbitcoin_Common]]
+
+##See Also
+
+* [[Libbitcoin]]
+
+##References
+
+[[!tag "Clients"]]
+[[!tag "Open_Source"]]
+[[!tag "Software‏‎"]]
+3.1: [Libbitcoin network refactoring](https://lists.dyne.org/lurker/message/20141201.054416.c146b7bc.en.html)  
+3.2: [Libbitcoin roadmap summary](https://lists.dyne.org/lurker/message/20140924.201619.e3930350.en.html)
