@@ -1,29 +1,60 @@
 The [libbitcoin-network](https://github.com/libbitcoin/libbitcoin-network) library is a partial implementation of the [[Bitcoin P2P network protocol|Protocol_documentation]]. Excluded are all sub-protocols that require access to a blockchain. The [[libbitcoin-node|Libbitcoin_Node]] library extends this P2P networking capability and incorporates [[libbitcoin-blockchain|Libbitcoin_Blockchain]] in order to implement a [[full node|Full_node]]. The [[libbitcoin-explorer|Libbitcoin_Explorer]] library uses the P2P networking capability to post transactions to the P2P network.
 
 ##Example
-	TODO
+	#include <future>
+	#include <bitcoin/network.hpp>
 	
-##History
+	// Send a transaction to a single P2P node.
+	int main(int argc, char* argv[])
+	{
+	using namespace bc;
 
-* The P2P protocol was originally contained within the [[libbitcoin|Libbitcoin_Common]] library.
+	data_chunk decoded;
+	if (argc < 1  !decode_base16(decoded, argv[[0]]))
+	return -1;
 
-* In the winter of 2014 William Swanson reorganized libbitcoin sources (3.1) in accordance with the roadmap (3.2) agreed in Toronto earlier that year.
+	const auto tx = chain::transaction::factory_from_data(decoded);
+
+	auto settings = network::settings::mainnet;
+	settings.inbound_port = 0;
+	settings.host_pool_capacity = 0;
+	settings.outbound_connections = 0;
+	settings.relay_transactions = false;
+
+	network::p2p network(settings);
+	std::promise<code> complete;
+
+     const auto send_handler = [&complete](const code& ec)
+     {
+         complete.set_value(ec);
+     };
+
+     const auto connect_handler = [&tx , &send_handler](const code& ec,
+         network::channel::ptr node)
+     {
+         if (!ec)
+             node->send(tx, send_handler);
+     };
+
+     return complete.get_future().get() ? -1 : 0;
+ }
+
+==History==
+* The P2P protocol was originally contained within the [[Libbitcoin_Common|libbitcoin]] library.
+
+* In the winter of 2014 William Swanson reorganized libbitcoin sources<ref>[https://lists.dyne.org/lurker/message/20141201.054416.c146b7bc.en.html Libbitcoin network refactoring]</ref> in accordance with the roadmap<ref>[https://lists.dyne.org/lurker/message/20140924.201619.e3930350.en.html Libbitcoin roadmap summary]</ref> agreed in Toronto earlier that year.
 
 * Later sources were moved into the libbitcoin::network namespace, and by early 2016 the namespace was forked into its own repository and integrated with dependent repositories as of version 3.
 
-##Dependencies
+==Dependencies==
+* [http://www.boost.org boost]
+* [[Libbitcoin_Common|libbitcoin]]
 
-* [boost](http://www.boost.org)
-* [[libbitcoin|Libbitcoin_Common]]
-
-##See Also
-
+==See Also==
 * [[Libbitcoin]]
 
-##References
+==References==
 
-[[!tag "Clients"]]
-[[!tag "Open_Source"]]
-[[!tag "Software‏‎"]]
-3.1: [Libbitcoin network refactoring](https://lists.dyne.org/lurker/message/20141201.054416.c146b7bc.en.html)  
-3.2: [Libbitcoin roadmap summary](https://lists.dyne.org/lurker/message/20140924.201619.e3930350.en.html)
+[[Category:Clients]]
+[[Category:Open Source]]
+[[Category:Software‏‎]]
