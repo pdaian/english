@@ -8,34 +8,34 @@ The [libbitcoin-network](https://github.com/libbitcoin/libbitcoin-network) libra
 	int main(int argc, char* argv[])
 	{
 	using namespace bc;
-
+	
 	data_chunk decoded;
 	if (argc < 1  !decode_base16(decoded, argv[[0]]))
 	return -1;
-
+	
 	const auto tx = chain::transaction::factory_from_data(decoded);
-
+	
 	auto settings = network::settings::mainnet;
 	settings.inbound_port = 0;
 	settings.host_pool_capacity = 0;
 	settings.outbound_connections = 0;
 	settings.relay_transactions = false;
-
+	
 	network::p2p network(settings);
 	std::promise<code> complete;
-
+ 
      const auto send_handler = [&complete](const code& ec)
      {
          complete.set_value(ec);
      };
-
+ 
      const auto connect_handler = [&tx , &send_handler](const code& ec,
          network::channel::ptr node)
      {
          if (!ec)
              node->send(tx, send_handler);
      };
-
+ 
      return complete.get_future().get() ? -1 : 0;
  }
 
