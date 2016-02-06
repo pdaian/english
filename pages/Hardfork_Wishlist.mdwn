@@ -36,6 +36,7 @@ This page is also not for changes that can be accomplished by a [[Softfork]].  S
 * Byte order consistency (big endian)
 * Eliminate redundancies in the variable length integer encodings, possibly switch to a standard.
 * Avoiding hashes covering malleable fields
+* Mask out the must-be-zero bits in the previous-block-hash (block header) so miners can reuse them for nonce space.
 
 ## Bug fixes
 
