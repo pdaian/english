@@ -1,4 +1,4 @@
-OP_RETURN is a [[script]] opcode used to mark a transaction output as invalid. Since the data after OP_RETURN are irrelevant to Bitcoin payments, arbitrary data can be added into the transaction by following the OP_RETURN with an OP_PUSHDATA. Since any outputs with OP_RETURN are provably unspendable, OP_RETURN outputs can be used to [[burn|Proof_of_burn]] bitcoins.
+OP_RETURN is a [[script]] opcode used to mark a transaction output as invalid. Since the data after OP_RETURN are irrelevant to Bitcoin payments, arbitrary data can be added into the output after an OP_RETURN. Since any outputs with OP_RETURN are provably unspendable, OP_RETURN outputs can be used to [[burn|Proof_of_burn]] bitcoins.
 
 Currently, the default Bitcoin client relays OP_RETURN transactions up to 80 bytes [(1)](https://github.com/bitcoin/bitcoin/search?utf8=%E2%9C%93&q=MAX_OP_RETURN_RELAYa), but does not provide a way for users to create OP_RETURN transactions.
 
