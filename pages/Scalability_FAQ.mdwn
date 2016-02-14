@@ -146,6 +146,12 @@ As block sizes increase, the amount of bandwidth and CPU required also increases
 
 In addition, larger blocks have a higher risk of becoming stale (orphaned), which directly correlates to lost POW security. For example, if the network average stale rate is 10%, then 10% of POW performed isn't protecting transactions on the block chain.
 
+Conversely, larger blocks that result in a lower per transaction fee can increase the demand for on-chain transactions, and result in total transaction fees earned by miners increasing despite a lower average transaction fee. This would increase network security by increasing the revenue that supports Proof of Work generation. 
+
+Without an increase in the block size from 1 megabyte, Bitcoin needs $1.50 worth of BTC paid in fees per transaction once block subsidies disappear to maintain current mining revenue and economic expenditure on network security. The required fee per transaction for maintaining current economic expenditure levels once the subsidy disappears decreases as the block size, and with it the maximum on-chain transaction throughput, increases. 
+
+As a result of the sensitivity of demand to price increases, growth in the Bitcoin economy, and thus growth in the fees paid to secure the Bitcoin network, could be stunted if the block size is not allowed to increase sufficiently.
+
 ### What happens if blocks aren't big enough to include all pending transactions?
 
 This is already the case more often than not (17.1), so we know that miners will simply queue transactions. The transactions eligible for block inclusion that pay the highest fee per kilobyte will be confirmed earlier than transactions that pay comparatively lower fees. (8.1)
