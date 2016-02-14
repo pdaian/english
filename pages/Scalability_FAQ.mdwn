@@ -18,6 +18,10 @@ Neither the July nor the September commit message explains the reason for the li
 
 Nakamoto’s subsequent statements supported raising the block size at a later time (3.6), but he never publicly specified a date or set of conditions for the raise.
 
+Statements by Nakamoto in the summer of 2010 indicate he believed Bitcoin could scale to block sizes far larger 1 megabyte. For example, on 5 August 2010, he wrote that "[[W]]hatever size micropayments you need will eventually be practical.  I think in 5 or 10 years, the bandwidth and storage will seem trivial" and "[on the blockchain](microtransactions) can become more practical ... if I implement client-only mode and the number of network nodes consolidates into a smaller number of professional server farms"  (3.7). 
+
+These statements suggest that the intended purpose of the 1 megabyte limit was not to keep bandwidth and storage requirements for running a Bitcoin node low enough to be practical for personal computers and consumer-grade internet connections, and that the limit would be lifted to accommodate greater demand for transactional capacity.
+
 ### What is this Transactions Per Second (TPS) limit?
 
 The current block size limit is 1,000,000 bytes (1 megabyte) (4.1), although a small amount of that space (such as the block header) is not available to store transactions. (4.2)
@@ -332,6 +336,7 @@ No. Federated sidechains, such as have already been implemented (39.1), don’t 
 3.4: [Bitcoin Core commit 8c9479c](https://github.com/bitcoin/bitcoin/commit/8c9479c6bbbc38b897dc97de9d04e4d5a5a36730) , Satoshi Nakamoto, 7 September 2010  
 3.5: [Block height 79400](https://www.biteasy.com/blockchain/blocks/000000000021d821ec06be7173f413690bc5c4bc648dfa70b3b6763236f055b7) , dated 12 September 2010  
 3.6: [Increasing the block size when needed](https://bitcointalk.org/index.php?topic=1347.msg15139#msg15139) , Satoshi Nakamoto, 3 October 2010  
+3.7: [the number of network nodes consolidates into a smaller number of professional server farms](https://bitcointalk.org/index.php?topic=532.msg6306#msg6306)  
 4.1: [[<code>MAX_BLOCK_SIZE]] </code>, retrieved 2 July 2015  
 4.2: [Block serialization description](https://bitcoin.org/en/developer-reference#serialized-blocks) , Bitcoin.org Developer Reference  
 4.3: [Max TPS based on current average transaction size](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2015-May/007986.html) , Mike Hearn, 8 May 2015  
