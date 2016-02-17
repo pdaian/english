@@ -342,8 +342,8 @@ Querying the daemon with [BitcoinLib](https://github.com/GeorgeKimionis/BitcoinL
 <source lang="csharp">
 	IBitcoinService bitcoinService = new BitcoinService();
 
-	double networkDifficulty = bitcoinService.GetDifficulty();
-	decimal myBalance = bitcoinService.GetBalance();
+	var networkDifficulty = bitcoinService.GetDifficulty();
+	var myBalance = bitcoinService.GetBalance();
 </source>
 
 ## Node.js
