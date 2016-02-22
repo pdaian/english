@@ -13,7 +13,7 @@ The [libbitcoin-database](https://github.com/libbitcoin/libbitcoin-database) lib
 	prefix = argv[[1]];
 	
 	const auto& genesis = bc::chain::block::genesis_mainnet();
-
+	
 	if (!bc::database::data_base::initialize(prefix, genesis)
 	return -1;
 	
