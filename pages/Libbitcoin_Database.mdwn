@@ -1,0 +1,61 @@
+The [libbitcoin-database](https://github.com/libbitcoin/libbitcoin-database) library is a dependency of [[libbitcoin-blockchain|Libbitcoin_Blockchain]], [[libbitcoin-node|Libbitcoin_Node]] and [[libbitcoin-server|Libbitcoin_Server]]. It was originally contained within [[libbitcoin-blockchain|Libbitcoin_Blockchain]].
+
+##Example
+	#include <string>
+	#include <bitcoin/blockchain.hpp>
+	
+	// Create a new mainnet blockchain store.
+	int main(int argc, char* argv[])
+	{
+	std::string prefix("blockchain");
+	
+	if (argc > 1)
+	prefix = argv[[1]];
+	
+	const auto& genesis = bc::chain::block::genesis_mainnet();
+
+	if (!bc::database::data_base::initialize(prefix, genesis)
+	return -1;
+	
+	return 0;
+	}
+
+##Design
+The original implementation used [LevelDB](http://leveldb.org). Following a redesign in late 2014 by [[Amir Taaki|Amir_Taaki]] (genjix) the database was replaced by a [memory-mapped file](https://en.wikipedia.org/wiki/Memory-mapped_file) implementation. Logical queries are performed using a set of hash tables. The number of hash buckets is optimized to minimize hash collisions, though collisions are accommodated. These changes resulted in a substantial performance increase, near constant time, for queries against the blockchain. Insert performance was not materially affected. The database uses sequence locking to avoid writer starvation while never blocking the reader. This is ideal for a high performance blockchain server as reads are significantly more frequent than writes and yet writes must proceed wtihout delay.
+
+[[!img "Libbitcoin-blockchain-gets.png" size=500x500]] [[!img "Libbitcoin-blockchain-gets-normalised.png" size=500x500]]
+
+##Database
+The following files constitute the blockchain database non-volatile storage. As of height 350,000 the database consumes approximately 105 GB of disk space.
+
+* blocks_lookup
+* blocks_rows
+* history_lookup
+* history_rows
+* spends
+* stealth_index
+* stealth_rows
+* txs
+
+##Considerations
+
+* There is no mechanical hard drive optimization. The implementation is intended for solid state drives ([SSD](http://en.wikipedia.org/wiki/Solid-state_drive)).
+* There is a possibility of index corruption during hard shutdown. There is no means of detecting corruption aside from catastrophic fault. However given that the entire blockchain is a cache this is not considered significant. Repair can be accomplished by re-synchronizing the blockchain.
+* Data files are append only, with logical deletions only. Therefore file size is not minimized following blockchain reorganization although the impact is typically small. Defragmentation can be accomplished by re-synchronizing the blockchain.
+* The database is effectively locked during write operations. As these operations are anticipated on a period of approximately ten minutes this is not typically significant. However during a period of catch-up synchronizing the server can become continuously unresponsive to requests.
+
+##Dependencies
+
+* [boost](http://www.boost.org)
+* [secp256k1](https://github.com/bitcoin/secp256k1)
+* [[libbitcoin|Libbitcoin_Common]]
+
+##See Also
+
+* [[Libbitcoin]]
+* [Libbitcoin blockchain design (Unsystem)](https://wiki.unsystem.net/en/index.php/Libbitcoin/Blockchain)
+
+##References
+
+[[!tag "Open_Source"]]
+[[!tag "Software‏‎"]]
