@@ -8,7 +8,7 @@ The [libbitcoin-database](https://github.com/libbitcoin/libbitcoin-database) lib
 	int main(int argc, char* argv[])
 	{
 	std::string prefix("blockchain");
-	const auto& genesis = bc::chain::block::genesis_mainnet();
+	const auto genesis = bc::chain::block::genesis_mainnet();
 	
 	if (argc > 1)
 	prefix = argv[[1]];
