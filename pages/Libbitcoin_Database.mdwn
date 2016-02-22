@@ -1,4 +1,4 @@
-The [libbitcoin-database](https://github.com/libbitcoin/libbitcoin-database) library is a dependency of [[libbitcoin-blockchain|Libbitcoin_Blockchain]], [[libbitcoin-node|Libbitcoin_Node]] and [[libbitcoin-server|Libbitcoin_Server]]. It was originally contained within [[libbitcoin-blockchain|Libbitcoin_Blockchain]].
+The [libbitcoin-database](https://github.com/libbitcoin/libbitcoin-database) library is a dependency of [[libbitcoin-blockchain|Libbitcoin_Blockchain]], [[libbitcoin-node|Libbitcoin_Node]] and [[libbitcoin-server|Libbitcoin_Server]].
 
 ##Example
 	#include <string>
@@ -20,7 +20,7 @@ The [libbitcoin-database](https://github.com/libbitcoin/libbitcoin-database) lib
 	}
 
 ##Design
-The original implementation used [LevelDB](http://leveldb.org). Following a redesign in late 2014 by [[Amir Taaki|Amir_Taaki]] (genjix) the database was replaced by a [memory-mapped file](https://en.wikipedia.org/wiki/Memory-mapped_file) implementation. Logical queries are performed using a set of hash tables. The number of hash buckets is optimized to minimize hash collisions, though collisions are accommodated. These changes resulted in a substantial performance increase, near constant time, for queries against the blockchain. Insert performance was not materially affected. The database uses sequence locking to avoid writer starvation while never blocking the reader. This is ideal for a high performance blockchain server as reads are significantly more frequent than writes and yet writes must proceed wtihout delay.
+The database is built directly on the operating system's [memory-mapped file](https://en.wikipedia.org/wiki/Memory-mapped_file) system. Logical queries are performed using a set of hash tables. The number of hash buckets is optimized to minimize hash collisions, though collisions are accommodated. These changes resulted in a substantial performance increase, near constant time, for queries against the blockchain. Insert performance was not materially affected. The database uses sequence locking to avoid writer starvation while never blocking the reader. This is ideal for a high performance blockchain server as reads are significantly more frequent than writes and yet writes must proceed wtihout delay.
 
 [[!img "Libbitcoin-blockchain-gets.png" size=500x500]] [[!img "Libbitcoin-blockchain-gets-normalised.png" size=500x500]]
 
@@ -42,6 +42,12 @@ The following files constitute the blockchain database non-volatile storage. As 
 * There is a possibility of index corruption during hard shutdown. There is no means of detecting corruption aside from catastrophic fault. However given that the entire blockchain is a cache this is not considered significant. Repair can be accomplished by re-synchronizing the blockchain.
 * Data files are append only, with logical deletions only. Therefore file size is not minimized following blockchain reorganization although the impact is typically small. Defragmentation can be accomplished by re-synchronizing the blockchain.
 * The database is effectively locked during write operations. As these operations are anticipated on a period of approximately ten minutes this is not typically significant. However during a period of catch-up synchronizing the server can become continuously unresponsive to requests.
+
+##History
+
+* The original implementation used [LevelDB](http://leveldb.org).
+* In late 2014 by [[Amir Taaki|Amir_Taaki]] (genjix) replaced LevelDB with memory-mapped hash table storage and indexing. 
+* In early 2016 [[Eric Voskuil|Eric_Voskuil]] separated the database from [[libbitcoin-blockchain|Libbitcoin_Blockchain]] into an independent library.
 
 ##Dependencies
 
