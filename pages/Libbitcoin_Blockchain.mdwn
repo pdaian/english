@@ -1,4 +1,4 @@
-The [libbitcoin-blockchain](https://github.com/libbitcoin/libbitcoin-blockchain) library is a dependency of [[libbitcoin-node|Libbitcoin_Node]] and [[libbitcoin-server|Libbitcoin_Server]]. The library provides transaction and block validation as well as transaction and block (orphan) pools.
+The [libbitcoin-blockchain](https://github.com/libbitcoin/libbitcoin-blockchain) library is a dependency of [[libbitcoin-node|Libbitcoin_Node]] and [[libbitcoin-server|Libbitcoin_Server]]. The library provides transaction and block validation as well as transaction (memory) and block (orphan) pools.
 
 ##Consensus Validation
 By default the library depends on the [[libbitcoin-consensus|Libbitcoin_Consensus]] library. This ensures that consensus checks are identical to those implemented by [[bitcoind|Bitcoind]]. By building using the *--without-consensus* flag the dependency is avoided and [[libbitcoin|Libbitcoin]] native consensus checks are used instead.
