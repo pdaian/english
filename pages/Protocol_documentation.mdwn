@@ -791,6 +791,14 @@ Sample alert (no message header):
 	StatusBar: "See bitcoin.org/feb20 if you have trouble connecting after 20 February"
 	Reserved: <empty>
 
+### sendheaders
+
+Request for Direct headers announcement. See [BIP 130](https://github.com/bitcoin/bips/blob/master/bip-0130.mediawiki) for more information.
+
+No additional data is transmitted with this message.
+
+This message is supported by the protocol version >= 70012 or Bitcoin Core version >= 0.12.0
+
 ## Scripting
 
 See [[script]].
