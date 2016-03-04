@@ -8,7 +8,7 @@ Mining (block generation) rules are not yet presented.
 
 ## Data structures
 
-The main data structures are [[transactions]] and [[blocks]]. Blocks are composed of the *block header* followed by transactions in the block. Transactions are identified by their hash; blocks by the hash of their header. Blocks have prev pointers that link them into a graph.
+The main data structures are [[transaction]]s and [[block]]s. Blocks are composed of the *block header* followed by transactions in the block. Transactions are identified by their hash; blocks by the hash of their header. Blocks have prev pointers that link them into a graph.
 
 Conceptually, the client has the following data structures:
 
@@ -66,7 +66,7 @@ The block creation fee of all coinbase transactions will sum up to  209999999769
 
 ## [["tx"|Protocol_specification#tx]] messages
 
-These messages hold a single transaction.
+These messages hold a single [[transaction]].
 
 1. Check syntactic correctness
 1. Make sure neither in or out lists are empty
@@ -94,7 +94,7 @@ Most rules are self-explanatory. This section explains why some of the less obvi
 
 ## [["block"|Protocol_specification#block]] messages
 
-These messages hold a single block.
+These messages hold a single [[block]].
 
 1. Check syntactic correctness
 1. Reject if duplicate of block we have in any of the three categories
