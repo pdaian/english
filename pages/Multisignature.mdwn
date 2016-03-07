@@ -1,4 +1,4 @@
-Multisigniture (multisig) refers to requiring more than one key to authorize a Bitcoin [[transaction]].
+Multisignature (multisig) refers to requiring more than one key to authorize a Bitcoin [[transaction]].
 
 Consider the following scenario:<blockquote>Suppose I am working with a company that wants to accept Bitcoin for international trades.
 
@@ -26,9 +26,9 @@ Specific to Bitcoin, [[GreenAddress.it|GreenAddress]], for example, has 2-of-2 a
 
 2-of-3: Buyer-seller escrow: buyer commits money into a 2-of-3 transaction with the seller and a third-party arbitrator. If transaction goes smoothly, then both buyer and seller sign the transaction to forward the money to the seller. If something goes wrong, they can sign a transaction to refund the buyer. If they cannot agree, they both appeal to the third-party who will arbitrate and provide a second signature to the party that it deems deserves it.</blockquote>
 
-##Multisigniture Addresses
+##Multisignature Addresses
 <blockquote>A [[multi-signature address|Address#Multi-signature_addresses]] is an address that is associated with more than one ECDSA private key. The simplest type is an m-of-n address - it is associated with n private keys, and sending bitcoins from this address requires signatures from at least m keys. A multi-signature transaction is one that sends funds from a multi-signature address. (4.1)</blockquote>
-###Creating a Multisigniture Address
+###Creating a Multisignature Address
 A 2of3 multisig address can be created by following these steps: (5.1)
 
 <blockquote><ol><li>Gather (or generate) 3 bitcoin addresses, on whichever machines will be participating, using getnewaddress or getaccountaddress RPC commands (or copy and paste from the GUI).</li>
