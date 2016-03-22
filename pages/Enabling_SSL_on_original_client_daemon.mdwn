@@ -1,4 +1,4 @@
-JSON-RPC over SSL is strongly discouraged[[1]]
+JSON-RPC over [[SSL]] is strongly discouraged
 
 "The RPC interface isn't designed to be used in any scenario which would require SSL, which would be access over the internet or other untrusted networks. It doesn't have the necessary denial of service protections or review to make it safe for use this way, and so letting potentially malicious clients connect to it would be incredibly unwise. If you need to talk to a remote bitcoind instance you are better off tunneling with SSH or stunnel which will provide a secure, authenticated path without exposing the socket any further than localhost."
 
