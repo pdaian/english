@@ -57,7 +57,9 @@ The reference implementation's rules for relaying transactions across the peer-t
 |blockprioritysize |50000 (bytes)
 
 
-##Technical info
+##Priority transactions
+
+Historically it was not required to include a fee for every transaction. A large portion of miners would mine transactions with no fee given that they had enough "priority". Today, low priority is mostly used as an indicator for spam transactions and almost all miners expect every transaction to include a fee.
 
 Transaction priority is calculated as a value-weighted sum of input age, divided by transaction size in bytes:
 	priority = sum(input_value_in_base_units * input_age)/size_in_bytes
