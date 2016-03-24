@@ -17,20 +17,38 @@ The following sections describe the behavior of the [[reference implementation|O
 
 ###Sending
 
-Otherwise, the reference implementation will round up the transaction size to the next thousand bytes and add a fee of 0.1 mBTC (0.0001 BTC) per thousand bytes (4.1). As an example, a fee of 0.1 mBTC (0.0001 BTC) would be added to a 746 byte transaction, and a fee of 0.2 mBTC (0.0002 BTC) would be added to a 1001 byte transaction.
-Users may increase the default 0.0001 BTC/kB fee setting, but cannot control transaction fees for each transaction. Bitcoin-Qt does prompt the user to accept the fee before the transaction is sent (they may cancel the transaction if they are not willing to pay the fee).
+Users can decide to pay a predefined fee rate by setting `-paytxfee=<n>`
+(or `settxfee <n>` rpc during runtime). A value of `n=0` signals Bitcoin
+Core to use floating fees. By default, Bitcoin Core will use floating
+fees.
 
-Note that a typical transaction is 500 bytes, so the typical transaction fee for low-priority transactions is 0.1 mBTC (0.0001 BTC), regardless of the number of bitcoins sent.
+Based on past transaction data, floating fees approximate the fees
+required to get into the `m`th block from now. This is configurable
+with `-txconfirmtarget=<m>` (default: `2`).
+
+Sometimes, it is not possible to give good estimates, or an estimate
+at all. Therefore, a fallback value can be set with `-fallbackfee=<f>`
+(default: `0.0002` BTC/kB).
+
+At all times, Bitcoin Core will cap fees at `-maxtxfee=<x>` (default:
+0.10) BTC.
+Furthermore, Bitcoin Core will never create transactions smaller than
+the current minimum relay fee.
+Finally, a user can set the minimum fee rate for all transactions with
+`-mintxfee=<i>`, which defaults to 1000 satoshis per kB.
+
+
+Note that a typical transaction is 500 bytes.
 
 ###Including in Blocks
 
 This section describes how the reference implementation selects which transactions to put into new blocks, with default settings. All of the settings may be changed if a miner wants to create larger or smaller blocks containing more or fewer free transactions.
 
-50,000 bytes in the block are set aside for the highest-priority transactions, regardless of transaction fee. Transactions are added highest-priority-first to this section of the block.
-
 Then transactions that pay a fee of at least 0.00001 BTC/kb are added to the block, highest-fee-per-kilobyte transactions first, until the block is not more than 750,000 bytes big.
 
 The remaining transactions remain in the miner's "memory pool", and may be included in later blocks if their priority or fee is large enough.
+
+For Bitcoin Core 0.12.0 zero bytes (5.1) in the block are set aside for the highest-[[#Priority_transactions|priority_transactions]]. Transactions are added highest-priority-first to this section of the block.
 
 ###Relaying
 
@@ -48,7 +66,7 @@ The reference implementation's rules for relaying transactions across the peer-t
 |minrelaytxfee |0.00001 (BTC/kB)
 |blockmaxsize |750000 (bytes)
 |blockminsize |0 (bytes)
-|blockprioritysize |50000 (bytes)
+|blockprioritysize |0 (bytes)
 
 
 ##Priority transactions
@@ -76,7 +94,7 @@ A transaction was safe to send without fees if these conditions were met:
 
 ##References
 
-4.1: [Default fee dropped in v0.8.2](http://bitcointalk.org/index.php?topic=219504.0)
+5.1: https://github.com/bitcoin/bitcoin/blob/v0.12.0/doc/release-notes.md#relay-and-mining-priority-transactions
 
 
 [[!tag "Technical"]]
