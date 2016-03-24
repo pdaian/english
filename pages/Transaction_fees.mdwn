@@ -13,15 +13,9 @@ It is envisioned that over time the cumulative effect of collecting transaction 
 
 ##Reference Implementation
 
-The following sections describe the behavior of the [[reference implementation|Original_Bitcoin_client]] as of version 0.10.0. Earlier versions treated fees differently, as do other popular implementations (including possible later versions).
+The following sections describe the behavior of the [[reference implementation|Original_Bitcoin_client]] as of version 0.12.0. Earlier versions treated fees differently, as do other popular implementations (including possible later versions).
 
 ###Sending
-
-A transaction may be safely sent without fees if these conditions are met:
-
-* It is smaller than 1,000 bytes.
-* All outputs are 0.01 BTC or larger.
-* Its priority is large enough (see the Technical Info section below)
 
 Otherwise, the reference implementation will round up the transaction size to the next thousand bytes and add a fee of 0.1 mBTC (0.0001 BTC) per thousand bytes (4.1). As an example, a fee of 0.1 mBTC (0.0001 BTC) would be added to a 746 byte transaction, and a fee of 0.2 mBTC (0.0002 BTC) would be added to a 1001 byte transaction.
 Users may increase the default 0.0001 BTC/kB fee setting, but cannot control transaction fees for each transaction. Bitcoin-Qt does prompt the user to accept the fee before the transaction is sent (they may cancel the transaction if they are not willing to pay the fee).
@@ -67,6 +61,13 @@ Transactions need to have a priority above 57,600,000 to avoid the enforced limi
 
 So, for example, a transaction that has 2 inputs, one of 5 btc with 10 confirmations, and one of 2 btc with 3 confirmations, and has a size of 500bytes, will have a priority of
 	(500000000 * 10 + 200000000 * 3) / 500 = 11,200,000
+
+###Historic rules for free transactions
+A transaction was safe to send without fees if these conditions were met:
+
+* It is smaller than 1,000 bytes.
+* All outputs are 0.01 BTC or larger.
+* Its priority is large enough (see above)
 
 ##See Also
 
