@@ -1,5 +1,9 @@
+
+**Transaction fees** may be included with any transfer of bitcoins from one address to another.
+
+##Background
+
 [[!img "fee.png" size=120x120 title="Receiving the fees from hundreds of transactions (0.44 BTC)"]]
-**Transaction fees** may be included with any transfer of bitcoins from one address to another.  At the moment, many [[transactions]] are typically processed in a way where no fee is expected at all, but for transactions which draw coins from many bitcoin addresses and therefore have a large data size, a small transaction fee is usually expected.
 
 The transaction fee is processed by and received by the bitcoin miner.  When a new bitcoin block is generated with a successful hash, the information for all of the transactions is included with the block and all transaction fees are collected by that user creating the block, who is free to assign those fees to himself.
 
@@ -19,7 +23,7 @@ A transaction may be safely sent without fees if these conditions are met:
 * All outputs are 0.01 BTC or larger.
 * Its priority is large enough (see the Technical Info section below)
 
-Otherwise, the reference implementation will round up the transaction size to the next thousand bytes and add a fee of 0.1 mBTC (0.0001 BTC) per thousand bytes (3.1). As an example, a fee of 0.1 mBTC (0.0001 BTC) would be added to a 746 byte transaction, and a fee of 0.2 mBTC (0.0002 BTC) would be added to a 1001 byte transaction.
+Otherwise, the reference implementation will round up the transaction size to the next thousand bytes and add a fee of 0.1 mBTC (0.0001 BTC) per thousand bytes (4.1). As an example, a fee of 0.1 mBTC (0.0001 BTC) would be added to a 746 byte transaction, and a fee of 0.2 mBTC (0.0002 BTC) would be added to a 1001 byte transaction.
 Users may increase the default 0.0001 BTC/kB fee setting, but cannot control transaction fees for each transaction. Bitcoin-Qt does prompt the user to accept the fee before the transaction is sent (they may cancel the transaction if they are not willing to pay the fee).
 
 Note that a typical transaction is 500 bytes, so the typical transaction fee for low-priority transactions is 0.1 mBTC (0.0001 BTC), regardless of the number of bitcoins sent.
@@ -69,7 +73,7 @@ So, for example, a transaction that has 2 inputs, one of 5 btc with 10 confirmat
 
 ##References
 
-3.1: [Default fee dropped in v0.8.2](http://bitcointalk.org/index.php?topic=219504.0)
+4.1: [Default fee dropped in v0.8.2](http://bitcointalk.org/index.php?topic=219504.0)
 
 
 [[!tag "Technical"]]
