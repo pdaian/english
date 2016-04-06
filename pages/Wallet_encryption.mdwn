@@ -1,10 +1,9 @@
-This is the wiki page describing the algorithm used for encrypting of the wallet.dat used in the original [[Bitcoin_client]].
+This page describes the algorithm used for encrypting the **[[wallet.dat|Wallet#Bitcoin_Qt]]** file used in the original [[Bitcoin_client]].
 
-Wallet encryption uses AES-256-CBC to encrypt only the private keys
-that are held in a wallet.  The keys are encrypted with a master key
+Wallet encryption uses <span title="Advanced Encryption Standard with 256 bit key and Cipher Block Chaining"></span>[[AES-256-CBC]] to encrypt only the private keys that are held in a wallet.  The keys are encrypted with a master key
 which is entirely random.  This master key is then encrypted with
-AES-256-CBC with a key derived from the passphrase using SHA512 and
-OpenSSL's EVP_BytesToKey and a dynamic number of rounds determined by
+AES-256-CBC with a key derived from the passphrase using [SHA-512](https://en.wikipedia.org/wiki/SHA-512) and
+OpenSSL's <code>EVP_BytesToKey</code> and a dynamic number of rounds determined by
 the speed of the machine which does the initial encryption (and is
 updated based on the speed of a computer which does a subsequent
 passphrase change).  Although the underlying code supports multiple
@@ -14,29 +13,27 @@ the client does not yet have a method to add additional passphrases.
 At runtime, the client loads the wallet as it normally would, however
 the keystore stores the keys in encrypted form.  When the passphrase
 is required (to top up keypool or send coins) it will either be queried
-by a GUI prompt, or must first be entered with the walletpassphrase
-RPC command.  This will change the wallet to "unlocked" state where the
+by a GUI prompt, or must first be entered with the <code>walletpassphrase</code>
+[[RPC command|Original_Bitcoin_client/API_calls_list#Full_list]].  This will change the wallet to "unlocked" state where the
 unencrypted master key is stored in memory (in the case of GUI, only for
 long enough to complete the requested operation, in RPC, for as long as
-is specified by the second parameter to walletpassphrase).  The wallet is
-then locked (or can be manually locked using the walletlock RPC command)
+is specified by the second parameter to <code>walletpassphrase</code>).  The wallet is
+then locked (or can be manually locked using the <code>walletlock</code> RPC command)
 and the unencrypted master key is removed from memory.
 
 ## Implementation details of wallet encryption
 
-When the wallet is locked, calls to sendtoaddress, sendfrom, sendmany,
-and keypoolrefill will return Error -13: "Error: Please enter the wallet 
-passphrase with walletpassphrase first."
+When the wallet is locked, calls to <code>sendtoaddress</code>, <code>sendfrom</code>, <code>sendmany</code>, and <code>keypoolrefill</code> will return *Error -13: "Error: Please enter the wallet passphrase with walletpassphrase first."*
 
-When the wallet is unlocked, calls to walletpassphrase will fail.
+When the wallet is unlocked, calls to <code>walletpassphrase</code> will fail.
 
 When a wallet is encrypted, the passphrase is required to top up the
 keypool, thus, if the passphrase is rarely entered, it is possible that
 keypool might run out.  In this case, the default key will be used as the
-target for payouts for mining, and calls to getnewaddress and getaccount
+target for payouts for mining, and calls to <code>getnewaddress</code> and <code>getaccount</code>
 address will return an error.  In order to prevent such cases, the keypool
-is automatically refilled when walletpassphrase is called with a correct
-passphrase and when topupkeypool is called (while the wallet is unlocked).
+is automatically refilled when <code>walletpassphrase</code> is called with a correct
+passphrase and when <code>topupkeypool</code> is called (while the wallet is unlocked).
 Note that the keypool continues to be topped up on various occasions when
 a new key from pool is used and the wallet is unlocked (or unencrypted).
 
