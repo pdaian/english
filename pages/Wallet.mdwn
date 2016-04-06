@@ -1,8 +1,8 @@
 A Bitcoin **wallet** is a piece of software used to manage private keys and to make transactions on the Bitcoin network.  Wallets may offer additional features such as address labels, contacts, signing messages, etc.
 
-### Bitcoin Qt
+### [[Bitcoin_Core]]
 
-The original Bitcoin [[client|Clients]] stores private key information in a file named **wallet.dat** acording to the so called  (2.1):
+The original Bitcoin [[client|Clients]] stores private key information in a file named **wallet.dat** following the so called ["bitkeys"](https://bitcointalk.org/index.php?topic=4448.0) format:
 
 * keypairs for each of your [[addresses|address]]
 * transactions done from/to your addresses
@@ -14,9 +14,9 @@ The original Bitcoin [[client|Clients]] stores private key information in a file
 * [[Key_pool]]
 * Since 0.3.21: information about the current best chain, to be able to rescan automatically when restoring from a backup.
 
-The data file for the wallet is wallet.dat and is located in the [[Bitcoin data directory|data_directory]].
+The wallet.dat file is located in the [[Bitcoin data directory|data_directory]].
 
-It is intended that a wallet be used on only one installation of Bitcoin at a time.  Attempting to clone a wallet for use on multiple computers will result in "weird behavior" (2.2).
+It is intended that a wallet file be used on only one installation of Bitcoin at a time.  Attempting to clone a wallet file for use on multiple computers will result in "weird behavior" (2.1).
 
 The format of this file is Berkeley DB.  Tools that can manipulate wallet files include [[pywallet]].
 
@@ -47,7 +47,6 @@ Multibit uses the bitcoinj [protobuf](http://code.google.com/p/protobuf/) wallet
 
 ##References
 
-2.1: [Wallet import/export: "bitkeys" format](https://bitcointalk.org/index.php?topic=4448.0)  
-2.2: [Multiple instance of bitcoin with the same wallet](http://forum.bitcoin.org/index.php?topic=5324.msg77896#msg77896)  
+2.1: [Multiple instance of bitcoin with the same wallet](http://forum.bitcoin.org/index.php?topic=5324.msg77896#msg77896)  
 3.1: [Armory Bitcoin Wallet](https://www.bitcoinarmory.com)
 
