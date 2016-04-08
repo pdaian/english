@@ -1,8 +1,12 @@
-A Bitcoin **wallet** is a piece of software used to manage private keys and to make transactions on the Bitcoin network.  Wallets may offer additional features such as address labels, contacts, signing messages, etc.
+A Bitcoin **wallet** is a collection of private keys but may also refer to [[client software|Clients]] used to manage those keys and to make transactions on the Bitcoin network.
+
+This page covers various wallet formats in use.
 
 ### [[Bitcoin_Core]]
 
-The original Bitcoin [[client|Clients]] stores private key information in a file named **wallet.dat** following the so called ["bitkeys"](https://bitcointalk.org/index.php?topic=4448.0) format:
+The original Bitcoin client stores private key information in a file named **wallet.dat** following the so called ["bitkeys"](https://bitcointalk.org/index.php?topic=4448.0) format.  
+
+It contains:
 
 * keypairs for each of your [[addresses|address]]
 * transactions done from/to your addresses
@@ -22,31 +26,24 @@ The format of this file is Berkeley DB.  Tools that can manipulate wallet files 
 
 ### [[Armory]]
 
-The [[Armory]] client uses a custom [binary wallet format](http://bitcoinarmory.com/developers/armory-wallet-files/) and runs on top of Bitcoin-Core (3.1).
+The Armory client uses a custom [[Deterministic_wallet]] format [described here](https://www.bitcoinarmory.com/wallet-format/) and runs on top of [[Bitcoin_Core]].
 
-### Blockchain.info
+### [[Blockchain.info|Blockchain.info#Wallet]]
 
-Blockchain.info use a plain text JSON wallet format documented [here](https://blockchain.info/wallet/wallet-format). Private keys Keys are stored in base58.
+Blockchain.info offers a [[hybrid eWallet|Browser-based_wallet#Hybrid_e-wallets]] called "My Wallet".  It use a plain text [JSON wallet format](https://blockchain.info/wallet/wallet-format). Private keys Keys are stored in base58.
 
+### [[Multibit]]
 
-### [[Cubits]]
-
-Cubits.com has both cold and hot wallet, with all user's funds stored securely in the cold wallet.
-
-### Multibit
-
-Multibit uses the bitcoinj [protobuf](http://code.google.com/p/protobuf/) wallet file.
-
+Multibit HD (the current version) uses a [[BIP_0032]] (type 2) [[Deterministic_wallet]] with the [format described here](https://www.multibit.org/en/help/hd0.1/files.html).  The "Classic" version used the bitcoinj [protobuf](https://github.com/google/protobuf) wallet file.
 
 ##See Also
 
 * [[Securing_your_wallet]]
 * [[EWallet]]
 * [[Deterministic_Wallet]]
-* [Finding a Wallet](http://bitcoinx.io/wallets)
+* [Choose your wallet](https://bitcoin.org/en/choose-your-wallet)
 
 ##References
 
-2.1: [Multiple instance of bitcoin with the same wallet](http://forum.bitcoin.org/index.php?topic=5324.msg77896#msg77896)  
-3.1: [Armory Bitcoin Wallet](https://www.bitcoinarmory.com)
+2.1: [Multiple instance of bitcoin with the same wallet](http://forum.bitcoin.org/index.php?topic=5324.msg77896#msg77896)
 
