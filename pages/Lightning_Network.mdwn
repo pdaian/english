@@ -1,0 +1,15 @@
+**Lightning Network** is a proposed implementation of Hash Time Locked Contracts (HTLCs) with bi-directional [[payment_channels]] which allows payments to be securely routed across multiple peer-to-peer payment channels. (1.1)  This allows the formation of a network where any peer on the network can pay any other peer even if they don't directly have a channel open between each other.
+
+Key features include:
+
+* **Rapid payments:** payments within an established channel can be made almost as fast as data can travel over the Internet between the two peers.
+* **No third-party trust:** the two peers in a channel pay each other directly using regular Bitcoin transactions (of which only one is broadcast) so at no point does any third party control their funds.
+* **Reduced blockchain load:** only channel open transactions, channel close transactions, and (hopefully infrequent) anti-fraud respends need to be committed to the blockchain, allowing all other payments within Lightning Network channels to remain uncommitted.  This allows Lightning Network users to make frequent payments secured by Bitcoin without placing excessive load on full nodes which must process every transaction on the blockchain.
+
+## References
+
+
+<span class="ref-label">1.1:
+<span class="ref-column">
+ [Lightning Network paper, v0.5.9.1](https://lightning.network/lightning-network-paper.pdf) <br>Joseph Poon & Thaddeus Dryja<br>''Retrieved 2016-04-10''</span>
+
