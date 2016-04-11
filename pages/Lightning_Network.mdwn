@@ -5,11 +5,20 @@ Key features include:
 * **Rapid payments:** payments within an established channel can be made almost as fast as data can travel over the Internet between the two peers.
 * **No third-party trust:** the two peers in a channel pay each other directly using regular Bitcoin transactions (of which only one is broadcast) so at no point does any third party control their funds.
 * **Reduced blockchain load:** only channel open transactions, channel close transactions, and (hopefully infrequent) anti-fraud respends need to be committed to the blockchain, allowing all other payments within Lightning Network channels to remain uncommitted.  This allows Lightning Network users to make frequent payments secured by Bitcoin without placing excessive load on full nodes which must process every transaction on the blockchain.
+* **Channels can stay open indefinitely:** as long as the two parties in the channel continue to cooperate with each other, the channel can stay open indefinitely -- there is no mandatory timeout period.  This can further reduce the load on the blockchain as well as allow the fees for opening and closing the channel to be amortized over a longer period of time.
+* **Rapid cooperative closes:** if both parties cooperate, a channel can be closed immediately (with the parties likely wanting to wait for one or more confirmations to ensure the channel closed in the correct state). Non-cooperative closes (such as when one party disappears) are also possible but they take longer.
+* **Outsourcable enforcement:** if one party closes a channel in an old state in an attempt to steal money, the other party has to act within a defined period of time to block the attempted theft.  This function can be outsourced to a third-party without giving them control over any funds, allowing wallets to safely go offline for periods longer than the defined period.
+* **Onion-style routing:** payment routing information can be encrypted in a nested fashion so that intermediary nodes only know who they received a routable payment from and who to send it to next, preventing those intermediary nodes from knowing who the originator or destination is (provided the intermediaries didn't compare records).
+* **Multisignature capable:** each party can require that their payments into the channel be signed by multiple keys (1.2), giving them access to additional security techniques.
+
 
 ## References
 
 
 <span class="ref-label">1.1:
 <span class="ref-column">
- [Lightning Network paper, v0.5.9.1](https://lightning.network/lightning-network-paper.pdf) <br>Joseph Poon & Thaddeus Dryja<br>''Retrieved 2016-04-10''</span>
+ [Lightning Network paper, v0.5.9.1](https://lightning.network/lightning-network-paper.pdf) <br>Joseph Poon & Thaddeus Dryja<br>''Retrieved 2016-04-10''</span>  
+<span class="ref-label">1.2:
+<span class="ref-column">
+ [2-of-3 Instant Escrow, or How to Do "2-of-3 Multisig Contract" Equivilant on Lightning](https://lists.linuxfoundation.org/pipermail/lightning-dev/2016-January/000403.html) <br>Joseph Poon<br>''Retrieved 2016-04-11''</span>
 
