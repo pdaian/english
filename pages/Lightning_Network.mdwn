@@ -1,6 +1,7 @@
 **Lightning Network** is a proposed implementation of Hash Time Locked Contracts (HTLCs) with bi-directional [[payment_channels]] which allows payments to be securely routed across multiple peer-to-peer payment channels. (1.1)  This allows the formation of a network where any peer on the network can pay any other peer even if they don't directly have a channel open between each other.
 
-Key features include:
+## Key features 
+Key features of the Lightning Network proposal include,
 
 * **Rapid payments:** payments within an established channel can be made almost as fast as data can travel over the Internet between the two peers.
 * **No third-party trust:** the two peers in a channel pay each other directly using regular Bitcoin transactions (of which only one is broadcast) so at no point does any third party control their funds.
@@ -9,8 +10,48 @@ Key features include:
 * **Rapid cooperative closes:** if both parties cooperate, a channel can be closed immediately (with the parties likely wanting to wait for one or more confirmations to ensure the channel closed in the correct state). Non-cooperative closes (such as when one party disappears) are also possible but they take longer.
 * **Outsourcable enforcement:** if one party closes a channel in an old state in an attempt to steal money, the other party has to act within a defined period of time to block the attempted theft.  This function can be outsourced to a third-party without giving them control over any funds, allowing wallets to safely go offline for periods longer than the defined period.
 * **Onion-style routing:** payment routing information can be encrypted in a nested fashion so that intermediary nodes only know who they received a routable payment from and who to send it to next, preventing those intermediary nodes from knowing who the originator or destination is (provided the intermediaries didn't compare records).
-* **Multisignature capable:** each party can require that their payments into the channel be signed by multiple keys (1.2), giving them access to additional security techniques.
+* **Multisignature capable:** each party can require that their payments into the channel be signed by multiple keys (2.1), giving them access to additional security techniques.
 
+## Technologies & Techniques
+
+The Lightning Network design makes use of a number of different technologies and techniques, many of which were either developed separately from Lightning or which can be useful in constructing other types of advanced payment channels (such as Duplex Payment Channels (3.1)) as well as other smart contracts.
+
+### Hash locks
+
+Bitcoin's Script language currently provides five opcodes that hash data contained within a transaction.  The [[Script]] page describes a transaction that uses one of these hash functions to create a "[[transaction puzzle|Script#Transaction_puzzle]]", a transaction output which can only be spent by someone who can satisfy this encumbrance:
+
+	OP_HASH256 6fe28c0ab6f1b372c1a6a246ae63f74f931e8365e15a089c68d6190000000000 OP_EQUAL
+
+The encumbrance above will take the data on the top of the stack (not shown), hash it with the sha256d function (creating a computed hash), and compare it to the string 6fe2...0000 above (the provided hash).  If the computed hash equals the provided hash, then the encumbrance is satisfied and the output can be spent.
+
+The Script page tells us that provided hash is the hash of the Genesis Block header, so the data necessary to satisfy this encumbrance is the header of the Genesis Block.  Someone has already done that, so if we look up the transaction on the blockchain that spent this output, we would see that Genesis Block header in one of that transaction's scriptSigs.
+
+Had the provided hash above been the hash of some high-entropy (random) data, the encumbrance wouldn't be a puzzle---it'd be a lock that could only be opened by revealing the randomly-generated data used to create the hash.  By revealing that data (called a pre-image), the hash lock is rendered unusable for further security since everyone now has the key (the pre-image) and can do whatever they want to the funds encumbered by the hash lock.  For this reason, outputs protected by hash locks should also be protected by signatures so that both a correct pre-image and an appropriate signature are required to spend the funds.
+
+However, hash locks have the very useful property that multiple outputs can all be encumbered by the same hash lock, so that if the person who has the pre-image reveals it in order to spend their encumbered funds, everyone else who has an output encumbered by the same hash lock can get the pre-image they need from the first person's transaction on the blockchain.
+
+This property allows payments to be routed through third parties without any risk that the third-parties will take the payment for themselves.  For example,
+
+* Dan creates a pre-image with 256 bits of entropy (randomness) and hashes it with the sha256d function, creating a hash.
+* Dan gives the hash to Alice.
+* Alice pays an output encumbered to Bob's public key plus the hash generated by Dan.
+* Bob spends one of his previously-received outputs to Charlie, setting the amount to the same amount Alice paid him (minus fees) and setting the encumbrance to Charlie's public key plus the hash generated by Dan
+* Charlie does the same as Bob, setting the encumbrance to Dan's public key plus the hash Dan generated
+
+Now whenever Dan spends the output Charlie gave him, he's required to reveal the pre-image.  Charlie can now use this to spend the output Bob gave him and Bob can use it to spend the output he received from Alice.  In essence, Alice has paid Dan through the two intermediaries without giving Bob or Charlie the ability to steal the money for themselves.
+
+This simple example is meant only to illustrate how hash locks enable the routability required by the Lightning Network.  The example uses direct Bitcoin transactions even though it makes no sense to pay through intermediaries with direct transactions, and the construction above is insecure because it relies on unconfirmed transactions and because it allows Bob and Charlie to hold Alice's funds hostage.  The other techniques used in Lightning mitigate these problems.
+
+#### Other uses
+
+Other described uses of hash locks include,
+
+* [Cross-chain atomic swaps](https://bitcointalk.org/index.php?topic=193281.msg2224949#msg2224949): trading bitcoins for coins on a compatible altcoin chain or sidechain without either party needing to trust each other or any third-party.
+* [On-chain betting](http://lists.linuxfoundation.org/pipermail/bitcoin-dev/2014-April/005554.html): someone (called an oracle) generates multiple pre-images and their corresponding hashes; the players create outputs protected by a combination of signatures and hash locks, and then provide all the necessary signatures to each other.  Then the oracle reveals a single pre-image and deletes the rest; the players who won insert that preimage into the transaction along with the signatures they already have and collect their winnings.  Note, this scheme does still require the oracle to be honest.  Peter Todd believes that this scheme is inferior to one in which the oracle uses simple signatures. (5.1)
+
+#### Compatibility
+
+The hash functions in [[Script]] that are necessary to create hash locks were part of the original Bitcoin 0.1 release. (6.1)  In December 2010, after several problems were found with Bitcoin's opcodes, Gavin Andresen introduced the IsStandard() function (6.2) which prevented relay and mining by default of transactions using those hash functions and other rarely-used opcodes.  After the opcodes received more auditing and had been enabled for years on testnet without issue, Bitcoin Core 0.10.0 (February 2015) removed most IsStandard() restrictions on P2SH transactions (6.3), re-allowing the use of hash locks in transactions that are relayed and mined by default.
 
 ## References
 
@@ -18,7 +59,22 @@ Key features include:
 <span class="ref-label">1.1:
 <span class="ref-column">
  [Lightning Network paper, v0.5.9.1](https://lightning.network/lightning-network-paper.pdf) <br>Joseph Poon & Thaddeus Dryja<br>''Retrieved 2016-04-10''</span>  
-<span class="ref-label">1.2:
+<span class="ref-label">2.1:
 <span class="ref-column">
- [2-of-3 Instant Escrow, or How to Do "2-of-3 Multisig Contract" Equivilant on Lightning](https://lists.linuxfoundation.org/pipermail/lightning-dev/2016-January/000403.html) <br>Joseph Poon<br>''Retrieved 2016-04-11''</span>
+ [2-of-3 Instant Escrow, or How to Do "2-of-3 Multisig Contract" Equivilant on Lightning](https://lists.linuxfoundation.org/pipermail/lightning-dev/2016-January/000403.html) <br>Joseph Poon<br>''Retrieved 2016-04-11''</span>  
+<span class="ref-label">3.1:
+<span class="ref-column">
+ [A Fast and Scalable Payment Network with Bitcoin Duplex Micropayment Channels](http://www.tik.ee.ethz.ch/file/716b955c130e6c703fac336ea17b1670/duplex-micropayment-channels.pdf) <br>Christian Decker & Roger Wattenhofer<br>Retrieved 2016-04-11</span>  
+<span class="ref-label">5.1:
+<span class="ref-column">
+ [- Hash Locked Transaction](BIP) <nowiki></nowiki> <br>Peter Todd<br>Retrieved 2016-04-11</span>  
+<span class="ref-label">6.1:
+<span class="ref-column">
+ [Bitcoin 0.1 code](http://satoshi.nakamotoinstitute.org/code/) <br>Satoshi Nakamoto<br>Retrieved 2016-04-11</span>  
+<span class="ref-label">6.2:
+<span class="ref-column">
+ [IsStandard() check for CScripts: only relay/include in blocks CScripts we can understand](https://github.com/bitcoin/bitcoin/commit/a206a23980c15cacf39d267c509bd70c23c94bfa) <br>Gavin Andresen (attributed)<br>Retrieved 2016-04-11</span>  
+<span class="ref-label">6.3:
+<span class="ref-column">
+ [Standard Script Rules Relaxed for P2SH Addresses](https://bitcoin.org/en/release/v0.10.0#standard-script-rules-relaxed-for-p2sh-addresses) <br>Bitcoin Core developers<br>Retrieved 2016-04-11</span>
 
