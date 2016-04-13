@@ -53,6 +53,20 @@ Other described uses of hash locks include,
 
 The hash functions in [[Script]] that are necessary to create hash locks were part of the original Bitcoin 0.1 release. (6.1)  In December 2010, after several problems were found with Bitcoin's opcodes, Gavin Andresen introduced the IsStandard() function (6.2) which prevented relay and mining by default of transactions using those hash functions and other rarely-used opcodes.  After the opcodes received more auditing and had been enabled for years on testnet without issue, Bitcoin Core 0.10.0 (February 2015) removed most IsStandard() restrictions on P2SH transactions (6.3), re-allowing the use of hash locks in transactions that are relayed and mined by default.
 
+### Time locks
+
+Bitcoin currently provides two different mechanisms for creating time locks (nLockTime and CheckLockTimeVerify (7.1)) and after the BIP9/68/112/113 soft fork, it will provide two more mechanisms (nSequence relative time (7.2) and CheckSequenceVerify (7.3)).
+
+Lightning will use CheckSequenceVerify (CSV).  CSV allows an output to specify how many blocks or seconds must elapse after it is added to the blockchain before an input spending that output can be added to the blockchain.
+
+For example, Alice pays Bob 1 BTC using an output encumbrance that requires both Bob's signature (using the CheckSig opcode) and 10 blocks to elapse (using CSV).  If Alice's transaction is added to block 500,000, then a transaction created by Bbo that spends that output can't be added until block 500,010.  But if Alice's transaction was added to block 500,001, then Bob's spend of that output couldn't be added until block 500.011.
+
+The CSV opcode can be used with conditional logic to allow an output to be spent earlier than the time lock if some conditions are met.  For example, if we extend the earlier scenario, Alice may allow Bob to spend the previously-described output sooner than 10 blocks provided that Alice also adds her signature to the spend.
+
+Lightning uses a condition similar to this to allow either party to close a channel on the blockchain immediately but prevents them from further spending the money they withdrew from the channel for the period of time specified by parameter given to CSV (1,000 blocks in the original paper (1.1)).
+
+The other party to the channel can use this time to inspect the withdrawal and see if it contains an old version of the channel state.  If it does, they can use the other conditions of the withdrawal output to spend that output before the CSV time lock expires, allowing them to claim all funds the withdrawing party paid into the channel as a penalty for the withdrawing party closing the channel in an old state.
+
 ## References
 
 
@@ -76,5 +90,14 @@ The hash functions in [[Script]] that are necessary to create hash locks were pa
  [IsStandard() check for CScripts: only relay/include in blocks CScripts we can understand](https://github.com/bitcoin/bitcoin/commit/a206a23980c15cacf39d267c509bd70c23c94bfa) <br>Gavin Andresen (attributed)<br>Retrieved 2016-04-11</span>  
 <span class="ref-label">6.3:
 <span class="ref-column">
- [Standard Script Rules Relaxed for P2SH Addresses](https://bitcoin.org/en/release/v0.10.0#standard-script-rules-relaxed-for-p2sh-addresses) <br>Bitcoin Core developers<br>Retrieved 2016-04-11</span>
+ [Standard Script Rules Relaxed for P2SH Addresses](https://bitcoin.org/en/release/v0.10.0#standard-script-rules-relaxed-for-p2sh-addresses) <br>Bitcoin Core developers<br>Retrieved 2016-04-11</span>  
+<span class="ref-label">7.1:
+<span class="ref-column">
+ [BIP65: OP_CHECKLOCKTIMEVERIFY](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki) <br>Peter Todd<br>Retrieved 2016-04-12</span>  
+<span class="ref-label">7.2:
+<span class="ref-column">
+ [BIP68: Relative lock-time using consensus-enforced sequence numbers](https://github.com/bitcoin/bips/blob/master/bip-0068.mediawiki) <br>Mark Friedenbach, BtcDrak, Nicolas Dorier, and kinoshitajona<br>Retrieved 2016-04-12</span>  
+<span class="ref-label">7.3:
+<span class="ref-column">
+ [BIP112: CHECKSEQUENCEVERIFY](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki) <br>BtcDrak, Mark Friedenbach, Eric Lombrozo<br>Retrieved 2016-04-12</span>
 
