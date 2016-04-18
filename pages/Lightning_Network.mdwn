@@ -11,6 +11,9 @@ Key features of the Lightning Network proposal include,
 * **Outsourcable enforcement:** if one party closes a channel in an old state in an attempt to steal money, the other party has to act within a defined period of time to block the attempted theft.  This function can be outsourced to a third-party without giving them control over any funds, allowing wallets to safely go offline for periods longer than the defined period.
 * **Onion-style routing:** payment routing information can be encrypted in a nested fashion so that intermediary nodes only know who they received a routable payment from and who to send it to next, preventing those intermediary nodes from knowing who the originator or destination is (provided the intermediaries didn't compare records).
 * **Multisignature capable:** each party can require that their payments into the channel be signed by multiple keys (2.1), giving them access to additional security techniques.
+* **Securely cross blockchains:** payments can be routed across more than one blockchain (including altcoins and sidechains) as long as all the chains support the same hash function to use for the hash lock, as well as the ability the ability to create time locks.
+* **Sub-satoshi payments:** payments can be made conditional upon the outcome of a random event, allowing probabilistic payments.  For example, Alice can pay Bob 0.1 satoshi by creating a 1-satoshi payment with 10-to-1 odds so that 90% of the time she does this she pays him 0 satoshis and 10% of the time she pays him 1 satoshi for an average payment of 0.1 satoshis.
+* **Single-funded channels:** when Alice needs to send a payment to Bob and doesn't currently have a way to pay him through the Lightning Network (whether because she can't reach him or because she doesn't have enough money in an existing channel), she can make a regular on-chain payment that establishes a channel without Bob needing to add any of his funds to the channel. Alice only uses 12 bytes more than she would for a non-Lightning direct payment and Bob would only need about 25 more segwit virtual bytes to close the channel than he would had he received a non-Lightning direct payment.
 
 ## Technologies & Techniques
 
@@ -153,7 +156,7 @@ The list below should be in alphabetical order. Any commonly-used synonyms or an
  [Time, Bitcoin, and the Lightning Network](https://lightning.network/lightning-network-presentation-time-2015-07-06.pdf) <br>Joseph Poon<br>Retrieved 2016-04-17</span>  
 <span class="ref-label">8.4:
 <span class="ref-column">
- [LN as a Direct Graph: Single-Funded Channel Topology](https://docs.google.com/presentation/d/1G4xchDGcO37DJ2lPC_XYyZIUkJc2khnLrCaZXgvDN0U/edit?pref=2&pli=1#slide=id.g85f425098_0_2) <br>Thaddeus Dryja<br>Retrieved 2016-04-17</span>  
+ [LN as a Directed Graph: Single-Funded Channel Topology](https://docs.google.com/presentation/d/1G4xchDGcO37DJ2lPC_XYyZIUkJc2khnLrCaZXgvDN0U/edit?pref=2&pli=1#slide=id.g85f425098_0_2) <br>Thaddeus Dryja<br>Retrieved 2016-04-17</span>  
 <span class="ref-label">8.5:
 <span class="ref-column">
  [Mastering Bitcoin, Chapter 2: How Bitcoin Works](http://chimera.labs.oreilly.com/books/1234000001802/ch02.html) <br>Andreas Antonopoulos<br>Retrieved 2016-04-17</span>  
