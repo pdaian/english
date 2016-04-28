@@ -67,6 +67,9 @@ valign="top"|4096|CODE_CORETESTFAILED|FATAL|Find bad chip on channel 0 or channe
 valign="top"|8192|CODE_ADC0_ERR|FATAL|Temperature sensor cann't be detected on channel 0|Replace a new hash unit  for channel 0
 valign="top"|16384|CODE_ADC1_ERR|FATAL|Temperature sensor cann't be detected on channel 1|Replace a new hash unit  for channel 1
 valign="top"|32768|CODE_VOL_ERR|FATAL|MM is not permit to run at the voltage for safety|Change another PSU for the machine
+valign="top"|65536|CODE_LOCK|FATAL|MM is not permit to run without decrypt|Ask service for help
+valign="top"|131072|CODE_HOTBEFORE|WARN|Toohot is found on MM|It's just a note on toohot
+valign="top"|262144|CODE_APIFIFOOVERFLOW|WARN|API fifo overflow flag|It's just a note on api fifo
 
 TYPE meaning:
 	**WARN**-It designates potentially harmful situations, but you can ignore it.
