@@ -142,13 +142,15 @@ Bitcoind's current user interface is the command line while it used to be based 
 
 ###I get "Error loading blkindex.dat" when I try to run the client
 
-blkindex.dat is part of the database that stores the local copy of the blockchain which may have become corrupted. Open the Bitcoin data dir:
+<code>blkindex.dat</code> is part of the database that stores the local copy of the blockchain which may have become corrupted. 
 
-Windows: %APPDATA%\Bitcoin
-Linux: ~/.bitcoin
-Mac: ~/Library/Application Support/Bitcoin/
+Open the Bitcoin [[data_directory]]:
 
-Make a backup of that entire folder, then delete everything EXCEPT wallet.dat. Start bitcoind again and it will download a fresh copy of the blockchain.
+* Windows: <code>%APPDATA%\Bitcoin</code>
+* Linux: <code>~/.bitcoin</code>
+* Mac: <code>~/Library/Application Support/Bitcoin/</code>
+
+Make a backup of that entire folder, then delete everything EXCEPT <code>[[Wallet|wallet.dat]]</code>. [[Start bitcoin|Running_Bitcoin]] again and it will download a fresh copy of the [[blockchain]] (WARNING: This will take a long time).
 
 ##See Also
 
