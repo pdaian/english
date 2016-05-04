@@ -79,7 +79,7 @@ See also: [[Thin_Client_Security]].
 There are a few proposals for optimizing Bitcoin's scalability. Some of these require an alt-chain / hard fork.
 
 * [Ultimate blockchain compression](https://bitcointalk.org/index.php?topic=88208.0) - the idea that the blockchain can be compressed to achieve "trust-free lite nodes"
-* [The Finite Blockchain](http://www.bitfreak.info/files/pp2p-ccmbc-rev1.pdf) paper that describes splitting the blockchain into three data structures, each better suited for its purpose. The three data structures are a finite blockchain (keep N blocks into the past), an "account tree" which keeps account balance for every address with a non-zero balance, and a "proof chain" which is an (ever growing) slimmed down version of the blockchain.
+* [The Finite Blockchain](http://cryptonite.info/files/mbc-scheme-rev2.pdf) paper that describes splitting the blockchain into three data structures, each better suited for its purpose. The three data structures are a finite blockchain (keep N blocks into the past), an "account tree" which keeps account balance for every address with a non-zero balance, and a "proof chain" which is an (ever growing) slimmed down version of the blockchain.
 * [Lightning Network](https://lightning.network/), an alternative protocol for transaction clearance in which payment hubs set up micropayment channels between each other and settle up on the block chain occasionally. Ordinary users interact primarily or only with hubs.
 
 [[!tag "Technical"]]
