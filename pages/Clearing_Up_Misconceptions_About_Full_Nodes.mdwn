@@ -1,0 +1,81 @@
+This article was written in March 2016 to clear up misconceptions common in the bitcoin community at the time.
+
+It's time to clear up some misconceptions floating around about full nodes.
+
+#Myth: There are only about 5500 [[full nodes|Full_node]] worldwide
+
+This number comes from [sites like this](https://bitnodes.21.co/) and it measured by trying to connect to every nodes on their open ports.
+
+Problem is, not all nodes actually have open ports that can be probed. Either because they are behind firewalls or because their users have configured them to not listen for connections.
+
+Nobody knows how many [[full nodes|full_node]] there are, since many people don't know how to forward ports behind a firewall, and bandwidth can be costly, its quite likely that the number of nodes with closed ports is at least another several thousand.
+
+Nodes with open ports are able to upload blocks to new full nodes. In all other ways they are the same as nodes with closed ports. But because open-port-nodes can be measured and closed-port-nodes cannot, some members of the [[bitcoin]] community have been mistaken into believing that open-port-nodes are that matters.
+
+#Myth: This number of nodes matters and/or is too low.
+
+Nodes with open ports are useful to the [[bitcoin network|Network]] because they help [[bootstrap new nodes|Network#Initial_block_download]] by uploading historical blocks, they are a measure of bandwidth capacity. Right now there is no shortage of bandwidth capacity, and if there was it could be easily added by renting cloud servers.
+
+The problem is not bandwidth or connections, but trust, security and privacy. Let me explain.
+
+[[Full nodes|full_node]] are able to check that all of bitcoin's rules are being followed. Rules like following the [[inflation schedule|Controlled_supply]], [[no double spending|Double-spending]], no spending of coins that don't belong to the holder of the private key and all the other rules required to make [[bitcoin]] work (e.g. difficulty)
+
+Full nodes are what make [[bitcoin]] trustless. No longer do you have to trust a financial institution like a bank or paypal, you can simply run software on your own computer. *To put simply, the only node that matters is the one you use*
+
+#Myth: There is no incentive to run nodes, the network relies on altruism
+
+It is very much in the individual bitcoin's users rational self interest to run a [[full_node]] and use it as their [[wallet]].
+
+Using a full node as your [[wallet]] is the only way to know for sure that none of bitcoin's rules have been broken. Rules like no coins were spent not belonging to the owner, that no coins were spent twice, that no inflation happens outside of the schedule and that all the rules needed to make the system work are followed  (e.g. [[Difficulty]].) All other kinds of wallet involve trusting a third party server.
+
+All these checks done by full nodes also increase the security. There are many attacks possible against lightweight wallets that do not affect full node wallets.
+
+This is not just mindless paranoia, there have been real world examples where full node users were unaffected by turmoil in the rest of the bitcoin ecosystem. The 4th July 2015 accidental chain fork effected many kinds of wallets. Here is the wiki page on this event [[July_2015_chain_forks#Wallet_Advice]]
+
+Notice how node software updated months ago was completely unaffected by the fork. All other wallets required either extra [[confirmations]] or checking that the third-party institution was running the correct version. For example a bitcoin business, like an exchange, marketplace or online store should always use a full node for security.
+
+Full nodes wallets are also currently the most private way to use Bitcoin, with nobody else learning which bitcoin [[addresses|address]] belong to you. All other [[lightweight wallets|Thin_Client_Security]] leak information about which [[addresses|address]] are yours because they must query third-party servers. The Electrum servers will know which [[addresses|address]] belong to you and can link them together. Despite [[bloom filtering|BIP_0037]], lightweight wallets based on [[BitcoinJ]] do not provide much privacy against nodes who connected directly to the wallet or wiretappers. (4.1)
+
+For some use cases, such privacy may not be required. But an important reason to run a full node and use it as a wallet is to get the full privacy benefits.
+
+#Myth: I can just set up a node on a cloud server instance and leave it
+
+To get the benefits of running a full node, you must use it as your wallet, preferably on hardware you control.
+
+Most people who do this do not use a full node as their wallet. Unfortunately because Bitcoin has a similar name to Bittorrent, some people believe that upload capacity is the most important thing for a healthy network. As I've explained above: bandwidth and connections are not a problem today, trust, security and privacy are.
+
+#Myth: Running a full node is not recommended, most people should use a lightweight client
+
+This was common advice in 2012, but since then the full node software has vastly improved in terms of user experience.
+
+If you cannot spare the disk space to store the [[blockchain]], you can [enable pruning](https://bitcoin.org/en/release/v0.11.0#block-file-pruning). In Bitcoin Core 0.12, pruning being enabled will leave the wallet enabled. Altogether this should require less than 900MB of hard disk space.
+
+If you cannot spare the bandwidth to upload blocks to other nodes, [there are number of options to reduce or eliminate the bandwidth requirement](https://bitcoin.org/en/full-node#reduce-traffic). These include limiting connections, bandwidth targeting and disabling listening. Bitcoin Core 0.12 has the new option [-blocksonly](https://bitcointalk.org/index.php?topic=1377345.0), where the node will not download unconfirmed transaction and only download new blocks. This more than halves the bandwidth usage at the expense of not seeing unconfirmed transactions.
+
+[[Synchronizing the blockchain|Network#Initial_block_download]] for a new node has improved since 2012 too. Features like [headers-first](https://bitcoin.org/en/release/v0.10.0#faster-synchronization) and libsecp256k1 have greatly improved the initial synchronization time.
+
+It can be further improved by setting -dbcache=3000 which keeps more of the [[UTXO set|Data_directory#chainstate_subdirectory]] in memory. It reduces the amount of time reading from disk and therefore speeds up synchronization. Tests showed that the entire [[blockchain]] can now be synchronized in [less than **3 and a half hours**](https://github.com/bitcoin/bitcoin/pull/6954#issuecomment-154993958) (Note that you'll need Bitcoin Core 0.12 or later to get all these efficiency improvements) [Another example with 2h 25m](https://www.botbot.me/freenode/bitcoin-core-dev/2016-04-13/?msg=64033258&page=1)
+
+#How to run a full node as your wallet
+
+I think every moderate user of bitcoin would benefit by running a full node and using it as their wallet. There are several ways to do this.
+
+* Run a [bitcoin-qt full node](https://bitcoin.org/en/download).
+
+* Use wallet software that is backed by a full node (e.g. [[Armory]], [JoinMarket](https://github.com/AdamISZ/JMBinary/#jmbinary))
+
+* Use a lightweight wallet that connects only to your full node (e.g. [[Multibit]] connecting only to your node running at home, [[Electrum]] connecting only to your own Electrum server)
+
+So what are you waiting for? The benefits are many, the downsides are not that bad. The more people do this, the more robust and healthy the bitcoin ecosystem is.
+
+#Further Reading
+[Measuring Decentralization - Truthcoin](http://www.truthcoin.info/blog/measuring-decentralization/)
+
+[Pieter Wuille's explaination of full node trustlessness](https://www.reddit.com/r/BitcoinBeginners/comments/3eq3y7/full_node_question/ctk4lnd)
+
+#References
+
+4.1: http://jonasnick.github.io/blog/2015/02/12/privacy-in-bitcoinj/ Privacy in BitcoinJ
+
+
+[[!tag "Technical"]]
