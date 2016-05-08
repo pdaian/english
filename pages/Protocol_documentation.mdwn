@@ -723,7 +723,7 @@ After a filter has been set, nodes don't merely stop announcing non-matching tra
 
 
 
-|4 |version |uint32_t |Block version information, based upon the software version creating this block
+|4 |version |int32_t |Block version information, based upon the software version creating this block (note, this is signed)
 |32 |prev_block |char[[32]]|The hash value of the previous block this particular block references
 |32 |merkle_root |char[[32]]|The reference to a Merkle tree collection which is a hash of all transactions related to this block
 |4 |timestamp |uint32_t |A timestamp recording when this block was created (Limited to 2106!)
