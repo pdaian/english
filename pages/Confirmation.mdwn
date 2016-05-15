@@ -16,6 +16,20 @@ Coins generated aren't considered valid by the Bitcoin protocol for 100 blocks.
 It is advisable to wait some additional time for a better chance that the transaction will be propogated by all nodes.
 Some older bitcoin clients won't show generated coins as confirmed until they are 120 blocks deep.
 
+##Confirmation Times
+
+Each additional confirmation is a new [[block]] being found and added to the end of the [[blockchain]].
+
+Miners create blocks by solving the [[proof_of_work]] for their proposed block. The block interval has an average of 10 minutes but not every block interval is exactly 10 minutes. In statistics it's called a [poisson process](https://en.wikipedia.org/wiki/Poisson_point_process), where random events happen with the same probability in each time interval. Another way of expressing this is that the mining process has no memory, so at every second a block has the same chance of being found.
+
+[[!img "Block-interval.png" size=600x600 title="center" title="alt text"]]
+
+There are lots of block intervals with a time less than 10 minutes but then a few block intervals much longer which bump up the average to 10 minutes. So the bitcoin network can get unlucky and a block won't be found for a whole hour.
+
+[[!img "Block-cumulative-interval.png" size=600x600 title="center" title="alt text"]]
+
+In a 10 minute interval, the probability of a block being found is about 63% (or 1 - e^(-1)). So approximately two-thirds of the time a block will be found in 10 minutes or less. In 30 minutes a block has a 95% chance of being found, which rises to 99.7% if the time interval is 60 minutes.
+
 ##See Also
 
 * [[Blocks]]
