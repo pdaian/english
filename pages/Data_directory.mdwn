@@ -120,7 +120,7 @@ The database files in the "blocks" and "chainstate" directories are cross-platfo
 
 Each node has a unique block database, and all of the files are highly connected. So if you copy just a few files from one installation's "blocks" or "chainstate" directories into another installation, this will almost certainly cause the second node to crash or get stuck at some random point in the future. If you want to copy a block database from one installation to another, you have to delete the old database and copy *all* of the files at once. Both nodes have to be shut down while copying.
 
-Only the file with the highest number in the "blocks" directory is ever written to. The earlier files will never change. Also, when these blk*.dat files are accessed, they are usually accessed in a highly sequential manner. Therefore, it's possible to symlink the "blocks" directory onto a magnetic storage drive without much loss in performance, and if two installations start out with identical block databases (due to the copying described previously), subsequent runs of rsync will be very efficient.
+Only the file with the highest number in the "blocks" directory is ever written to. The earlier files will never change. Also, when these blk*.dat files are accessed, they are usually accessed in a highly sequential manner. Therefore, it's possible to symlink the "blocks" directory or some subset of the blk*.dat files individually onto a magnetic storage drive without much loss in performance, and if two installations start out with identical block databases (due to the copying described previously), subsequent runs of rsync will be very efficient.
 
 ##See Also
 
