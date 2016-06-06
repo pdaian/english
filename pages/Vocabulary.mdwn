@@ -69,7 +69,7 @@ Each Bitcoin client currently running within the network is referred to as a Nod
 A nonce is an otherwise meaningless number which is used to alter the outcome of a hash. Each time Bitcoin hashes a block, it increments a nonce within the block which it is trying verify. If the numeric value of the effectively random hash is below a certain amount determined by the block generation difficulty, then the block is accepted by other clients and gets added to the chain.
 
 #####[[Orphan_Block]]
-An orphan block is a block which has no known parent in the currently-longest [[block_chain]]. Not to be confused with a [[Stale Block|#Stale_Block]] (which has a known parent, but is no longer part of the longest chain).
+An orphan block is a block which has no known parent in the currently-longest [[block_chain]]. Not to be confused with a [[Stale Block|Vocabulary#Stale_Block]] (which has a known parent, but is no longer part of the longest chain).
 
 #####Orphan root
 The root (first) block in an [[orphan|Orphan_Block]] block chain.
