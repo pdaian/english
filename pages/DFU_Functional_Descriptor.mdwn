@@ -1,8 +1,0 @@
-|+DFU Functional DescriptorOffset Field Size Value Descripton
-|0 |bLength |1 |09h |Size of this descriptor,in bytes.
-|1 |bDescriptorType |1 |21h |DFU FUNCTIONAL descriptor type.
-|2 |bmAttributes |1 |Bit mask |DFU attributes<br />Bit 7……4: reserved<br />Bit 3: device will perform a bus detach-attach sequence when it receives a DFU_DETACH request. The host must not issue a USB Reset. (bitWillDetach)<br />0 = no<br />1 = yes<br />Bit 2: device is able to communicate via USB afeter Manifestation phase.(bitManifestationTolerant)<br />0 = no, must see bus reset<br />1 = yes<br />Bit1: upload capable(bitCanUpload)<br />0 = no<br />1 = yes<br />Bit0: download capable(bitCanDnload)<br />0 = no<br />1 = yes<br />
-|3 |wDetachTimeOut |2 |Number |Time,in milliseconds, that the device will wait after receipt of the DFU_DETACH request. if this time elapses without a USB reaset, then the device will terminate the Reconfiguration phase and revert back to normal operation . This repreents the maximum time that the device can wait(depending on its timers, etc.).The host may specify a shorter timeout in the DFU_DETACH request.
-|5 |wTransferSize |2 |Number |Maximum number of bytes that the device can accept per control-write transaction.
-|7 |bcdDFUVersion |2 |BCD |Numeric expression identifying the version of the DFU Specification release.
-
