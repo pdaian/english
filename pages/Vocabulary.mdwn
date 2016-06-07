@@ -42,7 +42,7 @@ Attempting to spend coins that have already been spent in another transaction
 The process by which new bitcoins (aka the "Block Reward") are distributed via [[Mining]].
 
 #####[[Hash]]
-The output of a cryptographic [[hash function|#Hash_function]].
+The output of a cryptographic [[hash function|Vocabulary#Hash_function]].
 
 #####Hash function
 A computer algorithm which takes an arbitrary amount of input data and deterministically produces fixed length output, known as the data's "hash", that can be used to easily verify that data has not been altered. If you change any single bit of the original data and run the hash algorithm, the hash will completely change. Because the hash is seemingly random, it is prohibitively difficult to try to produce a specific hash by changing the data which is being hashed.
@@ -90,16 +90,13 @@ The base unit of Bitcoin (0.00000001 BTC) is sometimes called a Satoshi, after B
 Nodes whose IP addresses are included in the [[Bitcoin client|Original_Bitcoin_client]] for use during a new installation when the normal bootstrapping process through IRC wasn't possible.
 
 #####Stale Block
-A well-formed block which is no longer part of the difficultywise-longest and well-formed blockchain.  Not to be confused with an [[Orphan Block|#Orphan_Block]] (which has no known parent in the longest [[block_chain]]).
+A well-formed block which is no longer part of the difficultywise-longest and well-formed blockchain.  Not to be confused with an [[Orphan Block|Vocabulary#Orphan_Block]] (which has no known parent in the longest [[block_chain]]).
 
 #####Subsidy
-See "[[Block Reward|#Block_Reward]]" above.
+See "[[Block Reward|Vocabulary#Block_Reward]]" above.
 
 #####Super Nodes
 A participant in a p2p network which connects to as many other nodes as possible.
-
-#####[[Tonal_Bitcoin]]
-Adaptation of Bitcoin to the [Tonal System](http://en.wikipedia.org/wiki/John_W._Nystrom#Tonal_System_.28Hexadecimal.29). 1 TBC is defined as 1,0000 (65,536 decimal) base bitcoin units. Not widely used.
 
 #####[[Transaction_Fee]]
 A voluntary fee which can be added to a transaction which is used as an incentive to add the bitcoin transaction to a block.  The fee determines the likelihood of inclusion in any given block, where a high fee included with a transaction has a priority over transactions with a lower fee included or no fee at all.
