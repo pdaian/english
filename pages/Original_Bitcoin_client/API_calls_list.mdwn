@@ -12,76 +12,78 @@ Listing the bitcoin [[addresses|address]] in your wallet is easily done via *lis
 
 ## Full list
 
-Required arguments are denoted inside &lt; and &gt; Optional arguments are inside  [[and]].
+Required arguments are denoted inside &lt; and &gt; Optional arguments are inside  [ and ].
 
 
 
-|<code>addmultisigaddress</code>|<nrequired><'[["key","key"]]'> [[account]]|Add a nrequired-to-sign multisignature address to the wallet. Each key is a bitcoin address or hex-encoded public key. If [[account]]is specified, assign address to [[account]]. Returns a string containing the address. |N
-|<code>addnode</code>|<node><add/remove/onetry> |**version 0.8**Attempts add or remove <node>from the addnode list or try a connection to <node>once. |N
-|<code>backupwallet</code>|<destination>|Safely copies wallet.dat to destination, which can be a directory or a path with filename. |N
-|<code>createmultisig</code>|<nrequired><'[["key,"key"]]'> |Creates a multi-signature address and returns a json object |
-|<code>createrawtransaction</code>|{}[[,...]]{address:amount,...}|**version 0.7**Creates a [[raw transaction|Raw_Transactions]]spending given inputs. |N
-|<code>decoderawtransaction</code>|<hex string>|**version 0.7**Produces a human-readable JSON object for a [[raw transaction|Raw_Transactions]]. |N
-|<code>dumpprivkey</code>|<bitcoinaddress>|Reveals the private key corresponding to <bitcoinaddress>|Y
-|<code>encryptwallet</code>|<passphrase>|Encrypts the wallet with <passphrase>. |N
-|<code>getaccount</code>|<bitcoinaddress>|Returns the account associated with the given address. |N
-|<code>getaccountaddress</code>|<account>|Returns the current bitcoin address for receiving payments to this account. If <account>does not exist, it will be created along with an associated new address that will be returned. |N
-|<code>getaddednodeinfo</code>|<dns>[[node]]|**version 0.8**Returns information about the given added node, or all added nodes(note that onetry addnodes are not listed here)If dns is false, only a list of added nodes will be provided,otherwise connected information will also be available.
-|<code>getaddressesbyaccount</code>|<account>|Returns the list of addresses for the given account. |N
-|<code>getbalance</code>|[[account]][[minconf=1]]|If [[account]]is not specified, returns the server's total available balance.<br/>If [[account]]is specified, returns the balance in the account. |N
+|Command | Parameter| Description| Requires unlocked wallet|
+| --- | --- | --- | --- |
+|<code>addmultisigaddress</code>|&lt;nrequired><'\["key","key"\]'> \[account\]|Add a nrequired-to-sign multisignature address to the wallet. Each key is a bitcoin address or hex-encoded public key. If \[account\]is specified, assign address to \[account\]. Returns a string containing the address. |N
+|<code>addnode</code>|&lt;node>&lt;add/remove/onetry> |**version 0.8**Attempts add or remove <node>from the addnode list or try a connection to <node>once. |N
+|<code>backupwallet</code>|&lt;destination>|Safely copies wallet.dat to destination, which can be a directory or a path with filename. |N
+|<code>createmultisig</code>|&lt;nrequired><'\["key,"key"\]'> |Creates a multi-signature address and returns a json object |
+|<code>createrawtransaction</code>|{}\[,...\]{address:amount,...}|**version 0.7**Creates a [[raw transaction|Raw_Transactions]]spending given inputs. |N
+|<code>decoderawtransaction</code>|&lt;hex string>|**version 0.7**Produces a human-readable JSON object for a [[raw transaction|Raw_Transactions]]. |N
+|<code>dumpprivkey</code>|&lt;bitcoinaddress>|Reveals the private key corresponding to &lt;bitcoinaddress>|Y
+|<code>encryptwallet</code>|&lt;passphrase>|Encrypts the wallet with &lt;passphrase>. |N
+|<code>getaccount</code>|&lt;bitcoinaddress>|Returns the account associated with the given address. |N
+|<code>getaccountaddress</code>|&lt;account>|Returns the current bitcoin address for receiving payments to this account. If <account>does not exist, it will be created along with an associated new address that will be returned. |N
+|<code>getaddednodeinfo</code>|&lt;dns>\[node\]|**version 0.8**Returns information about the given added node, or all added nodes(note that onetry addnodes are not listed here)If dns is false, only a list of added nodes will be provided,otherwise connected information will also be available.
+|<code>getaddressesbyaccount</code>|&lt;account>|Returns the list of addresses for the given account. |N
+|<code>getbalance</code>|\[account\]\[minconf=1\]|If \[account\]is not specified, returns the server's total available balance.<br/>If \[account\]is specified, returns the balance in the account. |N
 |<code>getbestblockhash</code>||**version 0.9**Returns the hash of the best (tip) block in the longest block chain. |N
-|<code>getblock</code>|<hash>|Returns information about the block with the given hash. |N
+|<code>getblock</code>|&lt;hash>|Returns information about the block with the given hash. |N
 |<code>getblockcount</code>||Returns the number of blocks in the longest block chain. |N
-|<code>getblockhash</code>|<index>|Returns hash of block in best-block-chain at <index>; index 0 is the [[genesis_block]]|N
+|<code>getblockhash</code>|&lt;index>|Returns hash of block in best-block-chain at &lt;index>; index 0 is the [[genesis_block]]|N
 |<code>getblocknumber</code>||**Deprecated**. **Removed in version 0.7**. Use getblockcount. |N
-|<code>getblocktemplate</code>|[[params]]|Returns data needed to construct a block to work on.  See [[BIP_0022]]for more info on params.|N
+|<code>getblocktemplate</code>|\[params\]|Returns data needed to construct a block to work on.  See [[BIP_0022]]for more info on params.|N
 |<code>getconnectioncount</code>||Returns the number of connections to other nodes. |N
 |<code>getdifficulty</code>||Returns the proof-of-work difficulty as a multiple of the minimum difficulty. |N
 |<code>getgenerate</code>||Returns true or false whether bitcoind is currently generating hashes |N
 |<code>gethashespersec</code>||Returns a recent hashes per second performance measurement while generating. |N
 |<code>getinfo</code>||Returns an object containing various state info. |N
-|<code>getmemorypool</code>|[[data]]|**Replaced in v0.7.0 with getblocktemplate, submitblock, getrawmempool**|N
+|<code>getmemorypool</code>|\[data\]|**Replaced in v0.7.0 with getblocktemplate, submitblock, getrawmempool**|N
 |<code>getmininginfo</code>||Returns an object containing mining-related information:* blocks* currentblocksize* currentblocktx* difficulty* errors* generate* genproclimit* hashespersec* pooledtx* testnet|N
-|<code>getnewaddress</code>|[[account]]|Returns a new bitcoin address for receiving payments.  If [[account]]is specified payments received with the address will be credited to [[account]]. |N
+|<code>getnewaddress</code>|\[account\]|Returns a new bitcoin address for receiving payments.  If \[account\]is specified payments received with the address will be credited to \[account\]. |N
 |<code>getpeerinfo</code>||**version 0.7**Returns data about each connected node. |N
-|<code>getrawchangeaddress</code>|[[account]]|**version 0.9**Returns a new Bitcoin address, for receiving change.  This is for use with raw transactions, NOT normal use. |N
+|<code>getrawchangeaddress</code>|\[account\]|**version 0.9**Returns a new Bitcoin address, for receiving change.  This is for use with raw transactions, NOT normal use. |N
 |<code>getrawmempool</code>||**version 0.7**Returns all transaction ids in memory pool |N
-|<code>getrawtransaction</code>|<txid>[[verbose=0]]|**version 0.7**Returns [[raw transaction|Raw_Transactions]]representation for given transaction id. |N
-|<code>getreceivedbyaccount</code>|[[account]][[minconf=1]]|Returns the total amount received by addresses with [[account]]in transactions with at least [[minconf]]confirmations. If [[account]]not provided return will include all transactions to all accounts. (version 0.3.24) |N
-|<code>getreceivedbyaddress</code>|<bitcoinaddress>[[minconf=1]]|Returns the amount received by <bitcoinaddress>in transactions with at least [[minconf]]confirmations. It correctly handles the case where someone has sent to the address in multiple transactions. Keep in mind that addresses are only ever used for receiving transactions. Works only for addresses in the local wallet, external addresses will always show 0. |N
-|<code>gettransaction</code>|<txid>|Returns an object about the given transaction containing:* "amount" : total amount of the transaction* "confirmations" :  number of confirmations of the transaction* "txid" : the transaction ID* "time" : time associated with the transaction (4.1).* "details" - An array of objects containing:	* "account"	* "address"	* "category"	* "amount"	* "fee"|N
-|<code>gettxout</code>|<txid><n>[[includemempool=true]]|Returns details about an unspent transaction output (UTXO) |N
+|<code>getrawtransaction</code>|&lt;txid>\[verbose=0\]|**version 0.7**Returns [[raw transaction|Raw_Transactions]]representation for given transaction id. |N
+|<code>getreceivedbyaccount</code>|\[account\]\[minconf=1\]|Returns the total amount received by addresses with \[account\]in transactions with at least \[minconf\]confirmations. If \[account\]not provided return will include all transactions to all accounts. (version 0.3.24) |N
+|<code>getreceivedbyaddress</code>|&lt;bitcoinaddress>\[minconf=1\]|Returns the amount received by <bitcoinaddress>in transactions with at least \[minconf\]confirmations. It correctly handles the case where someone has sent to the address in multiple transactions. Keep in mind that addresses are only ever used for receiving transactions. Works only for addresses in the local wallet, external addresses will always show 0. |N
+|<code>gettransaction</code>|&lt;txid>|Returns an object about the given transaction containing:* "amount" : total amount of the transaction* "confirmations" :  number of confirmations of the transaction* "txid" : the transaction ID* "time" : time associated with the transaction (4.1).* "details" - An array of objects containing:	* "account"	* "address"	* "category"	* "amount"	* "fee"|N
+|<code>gettxout</code>|&lt;txid><n>\[includemempool=true\]|Returns details about an unspent transaction output (UTXO) |N
 |<code>gettxoutsetinfo</code>||Returns statistics about the unspent transaction output (UTXO) set |N
-|<code>[[getwork]]</code>|[[data]]|If [[data]]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf [[data]]is specified, tries to solve the block and returns true if it was successful. |N
-|<code>help</code>|[[command]]|List commands, or get help for a command. |N
-|<code>importprivkey</code>|<bitcoinprivkey>[[label]][[rescan=true]]|Adds a private key (as returned by dumpprivkey) to your wallet. This may take a while, as a [[rescan|How_to_import_private_keys#Import_Private_key.28s.29]]is done, looking for existing transactions. **Optional [[rescan]]parameter added in 0.8.0.**Note: There's no need to import public key, as in [[ECDSA|Elliptic_Curve_Digital_Signature_Algorithm]](unlike RSA) this can be computed from private key. |Y
+|<code>\[getwork\]</code>|\[data\]|If \[data\]is not specified, returns formatted hash data to work on:* "midstate" : precomputed hash state after hashing the first half of the data* "data" : block data* "hash1" : formatted hash buffer for second hash* "target" : little endian hash targetIf \[data\]is specified, tries to solve the block and returns true if it was successful. |N
+|<code>help</code>|\[command\]|List commands, or get help for a command. |N
+|<code>importprivkey</code>|&lt;bitcoinprivkey>\[label\]\[rescan=true\]|Adds a private key (as returned by dumpprivkey) to your wallet. This may take a while, as a [[rescan|How_to_import_private_keys#Import_Private_key.28s.29]]is done, looking for existing transactions. **Optional \[rescan\]parameter added in 0.8.0.**Note: There's no need to import public key, as in [[ECDSA|Elliptic_Curve_Digital_Signature_Algorithm]](unlike RSA) this can be computed from private key. |Y
 |<code>keypoolrefill</code>||Fills the keypool, requires wallet passphrase to be set. |Y
-|<code>listaccounts</code>|[[minconf=1]]|Returns Object that has account names as keys, account balances as values. |N
+|<code>listaccounts</code>|\[minconf=1\]|Returns Object that has account names as keys, account balances as values. |N
 |<code>listaddressgroupings</code>||**version 0.7**Returns all addresses in the wallet and info used for coincontrol. |N
-|<code>listreceivedbyaccount</code>|[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "account" : the account of the receiving addresses* "amount" : total amount received by addresses with this account* "confirmations" : number of confirmations of the most recent transaction included|N
-|<code>listreceivedbyaddress</code>|[[minconf=1]][[includeempty=false]]|Returns an array of objects containing:* "address" : receiving address* "account" : the account of the receiving address* "amount" : total amount received by the address* "confirmations" : number of confirmations of the most recent transaction includedTo get a list of accounts on the system, execute bitcoind listreceivedbyaddress 0 true|N
-|<code>listsinceblock</code>|[[blockhash]][[target-confirmations]]|Get all transactions in blocks since block [[blockhash]], or all transactions if omitted. [[target-confirmations]]intentionally **does not**affect the list of returned transactions, but only affects the returned "lastblock" value.[(2)](https://github.com/bitcoin/bitcoin/pull/199#issuecomment-1514952)|N
-|<code>listtransactions</code>|[[account]][[count=10]][[from=0]]|Returns up to [[count]]most recent transactions skipping the first [[from]]transactions for account [[account]]. If [[account]]not provided it'll return recent transactions from all accounts.|N
-|<code>listunspent</code>|[[minconf=1]][[maxconf=999999]]|**version 0.7**Returns array of unspent transaction inputs in the wallet. |N
+|<code>listreceivedbyaccount</code>|\[minconf=1\]\[includeempty=false\]|Returns an array of objects containing:* "account" : the account of the receiving addresses* "amount" : total amount received by addresses with this account* "confirmations" : number of confirmations of the most recent transaction included|N
+|<code>listreceivedbyaddress</code>|\[minconf=1\]\[includeempty=false\]|Returns an array of objects containing:* "address" : receiving address* "account" : the account of the receiving address* "amount" : total amount received by the address* "confirmations" : number of confirmations of the most recent transaction includedTo get a list of accounts on the system, execute bitcoind listreceivedbyaddress 0 true|N
+|<code>listsinceblock</code>|\[blockhash\]\[target-confirmations\]|Get all transactions in blocks since block \[blockhash\], or all transactions if omitted. \[target-confirmations\]intentionally **does not**affect the list of returned transactions, but only affects the returned "lastblock" value.[(2)](https://github.com/bitcoin/bitcoin/pull/199#issuecomment-1514952)|N
+|<code>listtransactions</code>|\[account\]\[count=10\]\[from=0\]|Returns up to \[count\]most recent transactions skipping the first \[from\]transactions for account \[account\]. If \[account\]not provided it'll return recent transactions from all accounts.|N
+|<code>listunspent</code>|\[minconf=1\]\[maxconf=999999\]|**version 0.7**Returns array of unspent transaction inputs in the wallet. |N
 |<code>listlockunspent</code>||**version 0.8**Returns list of temporarily unspendable outputs
-|<code>lockunspent</code>|<unlock?> [[array-of-objects]]|**version 0.8**Updates list of temporarily unspendable outputs
-|<code>move</code>|<fromaccount><toaccount><amount>[[minconf=1]][[comment]]|Move from one account in your wallet to another |N
-|<code>sendfrom</code>|<fromaccount><tobitcoinaddress><amount>[[minconf=1]][[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Will send the given amount to the given address, ensuring the account has a valid balance using [[minconf]]confirmations. Returns the transaction ID if successful (not in JSON object). |Y
-|<code>sendmany</code>|<fromaccount>{address:amount,...}[[minconf=1]][[comment]]|amounts are double-precision floating point numbers |Y
-|<code>sendrawtransaction</code>|<hexstring>|**version 0.7**Submits [[raw transaction|Raw_Transactions]](serialized, hex-encoded) to local node and network. |N
-|<code>sendtoaddress</code>|<bitcoinaddress><amount>[[comment]][[comment-to]]|<amount>is a real and is rounded to 8 decimal places. Returns the transaction ID <txid>if successful. |Y
-|<code>setaccount</code>|<bitcoinaddress><account>|Sets the account associated with the given address. Assigning address that is already assigned to the same account will create a new address associated with that account. |N
-|<code>setgenerate</code>|<generate>[[genproclimit]]|<generate>is true or false to turn generation on or off.<br/>Generation is limited to [[genproclimit]]processors, -1 is unlimited. |N
-|<code>settxfee</code>|<amount>|<amount>is a real and is rounded to the nearest 0.00000001 |N
-|<code>signmessage</code>|<bitcoinaddress><message>|Sign a message with the private key of an address. |Y
-|<code>signrawtransaction</code>|<hexstring>{}[[,...]][[<privatekey1>,...]]|**version 0.7**Adds signatures to a [[raw transaction|Raw_Transactions]]and returns the resulting raw transaction. |Y/N
+|<code>lockunspent</code>|&lt;unlock?> \[array-of-objects\]|**version 0.8**Updates list of temporarily unspendable outputs
+|<code>move</code>|<fromaccount>&lt;toaccount>&lt;amount>\[minconf=1\]\[comment\]|Move from one account in your wallet to another |N
+|<code>sendfrom</code>|&lt;fromaccount>&lt;tobitcoinaddress>&lt;amount>\[minconf=1\]\[comment\]\[comment-to\]|&lt;amount>is a real and is rounded to 8 decimal places. Will send the given amount to the given address, ensuring the account has a valid balance using \[minconf\]confirmations. Returns the transaction ID if successful (not in JSON object). |Y
+|<code>sendmany</code>|&lt;fromaccount>{address:amount,...}\[minconf=1\]\[comment\]|amounts are double-precision floating point numbers |Y
+|<code>sendrawtransaction</code>|&lt;hexstring>|**version 0.7**Submits [[raw transaction|Raw_Transactions]](serialized, hex-encoded) to local node and network. |N
+|<code>sendtoaddress</code>|&lt;bitcoinaddress>&lt;amount>\[comment\]\[comment-to\]|&lt;amount>is a real and is rounded to 8 decimal places. Returns the transaction ID &lt;txid>if successful. |Y
+|<code>setaccount</code>|&lt;bitcoinaddress>&lt;account>|Sets the account associated with the given address. Assigning address that is already assigned to the same account will create a new address associated with that account. |N
+|<code>setgenerate</code>|&lt;generate>\[genproclimit\]|&lt;generate>is true or false to turn generation on or off.<br/>Generation is limited to \[genproclimit\]processors, -1 is unlimited. |N
+|<code>settxfee</code>|&lt;amount>|&lt;amount>is a real and is rounded to the nearest 0.00000001 |N
+|<code>signmessage</code>|&lt;bitcoinaddress>&lt;message>|Sign a message with the private key of an address. |Y
+|<code>signrawtransaction</code>|&lt;hexstring>{}\[,...\]\[&lt;privatekey1>,...\]|**version 0.7**Adds signatures to a [[raw transaction|Raw_Transactions]]and returns the resulting raw transaction. |Y/N
 |<code>stop</code>||Stop bitcoin server. |N
-|<code>submitblock</code>|<hex data>[[optional-params-obj]]|Attempts to submit new block to network. |N
-|<code>validateaddress</code>|<bitcoinaddress>|Return information about <bitcoinaddress>. |N
-|<code>verifymessage</code>|<bitcoinaddress><signature><message>|Verify a signed message. |N
+|<code>submitblock</code>|&lt;hex data>\[optional-params-obj\]|Attempts to submit new block to network. |N
+|<code>validateaddress</code>|&lt;bitcoinaddress>|Return information about &lt;bitcoinaddress>. |N
+|<code>verifymessage</code>|&lt;bitcoinaddress>&lt;signature>&lt;message>|Verify a signed message. |N
 |<code>walletlock</code>||Removes the wallet encryption key from memory, locking the wallet. After calling this method,  you will need to call walletpassphrase again before being able to call any methods which require the wallet to be unlocked. |N
-|<code>walletpassphrase</code>|<passphrase><timeout>|Stores the wallet decryption key in memory for <timeout>seconds. |N
-|<code>walletpassphrasechange</code>|<oldpassphrase><newpassphrase>|Changes the wallet passphrase from <oldpassphrase>to <newpassphrase>. |N
+|<code>walletpassphrase</code>|&lt;passphrase>&lt;timeout>|Stores the wallet decryption key in memory for &lt;timeout>seconds. |N
+|<code>walletpassphrasechange</code>|&lt;oldpassphrase>&lt;newpassphrase>|Changes the wallet passphrase from &lt;oldpassphrase>to &lt;newpassphrase>. |N
 
 
 ##Error Codes
@@ -105,5 +107,3 @@ See [rpcprotocol.h](https://github.com/bitcoin/bitcoin/blob/62f2d769e45043c1f262
 
 [[!tag "Technical"]]
 [[!tag "Developer"]]
-
-[[!template id=bitcoin_core_documentation]]
