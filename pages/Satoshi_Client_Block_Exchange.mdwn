@@ -2,10 +2,10 @@
 This article describes how blocks are exchanged between nodes.
 See [[Protocol_rules]] for more information on how blocks are [[validated|Invalid_block]].
 
-Upon initial connection, if the connection was not inbound[[1]],
+Upon initial connection, if the connection was not inbound[1],
 or in other words, if the connection was initiated by the local node,
 the version message is queued for sending immediately. When the remote node
-receives the version message it replies with its own version message.[[2]]
+receives the version message it replies with its own version message.[2]
 
 When a node receives a "version" message, it may send a "getblocks" request
 to the remote node if EITHER:
@@ -17,7 +17,7 @@ The getblocks message contains multiple block hashes that the requesting
 node already possesses, in order to help the remote note find the latest
 common block between the nodes.  The list of hashes starts with the latest
 block and goes back ten and then doubles in an exponential progression
-until the genesis block is reached.[[3]]  Since both nodes are hard coded
+until the genesis block is reached.[3]  Since both nodes are hard coded
 with the genesis block, they are guaranteed to a least start there.
 If that block does not match for some reason, no blocks are exchanged.
 
@@ -39,7 +39,7 @@ represents the node that requested the blocks (the local node in this
 walkthrough), and PushInventory adds the block hash to the vInventoryToSend
 variable of the CNode. The SendMessages function in [main.cpp](https://github.com/bitcoin/bitcoin/blob/master/src/main.cpp) will take the
 inv items out of vInventoryToSend and add it to a vInv variable which
-means they are really ready for sending.[[4]]
+means they are really ready for sending.[4]
 The reason for the seperate variable is that some inventory items
 (transactions only right now) may be "trickled" to the remote node,
 which means they may kept from from being sent right away.
@@ -51,54 +51,54 @@ When the local node receives the "inv" message, it will request the actual
 block with a "getdata" message. To be precise, the node calls pfrom->AskFor
 to request the block, and that method queues the request for the blocks in
 mapAskFor, and the multipurpose SendMessage() sends the "getdata" requests
-in batches of 1000 entries from the map.[[5]]
+in batches of 1000 entries from the map.[5]
 
 The code attempts to limit redundant requests to every 2 minutes for the
 same block by using a map called mapAlreadyAskedFor to delay the message
-if necessary.[[6]]
+if necessary.[6]
 
 ## Block Batching
 
 The responding node to a "getblocks" request attempts to limit the response
-to the requestor to 500 blocks.[[7]]
+to the requestor to 500 blocks.[7]
 
 However, in a peculiar twist, if the requestor appears to have diverged
 from the main branch, the node will send as many blocks as necessary to
 replace the entire bad chain of the requestor, from the lastest common block
 between the nodes, up to the last block the requestor has (on their bad main
 branch). That is in addition to the 500 "catch up" blocks for main branch
-updates that will also be sent.[[8]]
+updates that will also be sent.[8]
 
 Note that in addition to a flat limit on the number of blocks queued for
 sending, bitcoind also limits the total size of the blocks that are being
-queued. This is currently limited to half the send buffer size[[9]], which is
-10MB, for a limit of 5MB of queued blocks for send.[[10]]
+queued. This is currently limited to half the send buffer size[9], which is
+10MB, for a limit of 5MB of queued blocks for send.[10]
 
 ## Batch Continue Mechanism
 
 When a node is finished sending a batch of block inventory, it records the
-hash of the last block in the batch.[[11]]  When the node receives a request
+hash of the last block in the batch.[11]  When the node receives a request
 for that full block, it realizes the remove node is done with the current
 batch and directly queues a special "inv" message (bypassing the normal
 SendMessage mechanism) with one block hash entry containing the
-latest block hash.[[12]] When the remote node receives that "inv" message,
+latest block hash.[12] When the remote node receives that "inv" message,
 it will see that it does not have that block and it it will ask for that
 block as described above. However, this time when it receives the block
 and processes it, it will notice that it does not have the previous block,
 so it will record the latest block as an "orphan" block, and will request a
 block update starting with the latest block it has up to the block before
-the orphan [[13]], in order to fill in the gap. That goes out as a "getblocks"
+the orphan [13], in order to fill in the gap. That goes out as a "getblocks"
 request and the whole batch process repeats itself.
 
 However, there is a twist. When the next batch finishes, the remote node
 sending the blocks will send the "inv" with latest block hash as usual, and
 the local node will notice it already has this block in the orphan block
 map this time and so it will skip requesting the block and directly ask
-for a block update.[[14]] This process will continue until the last
+for a block update.[14] This process will continue until the last
 block prior to the latest block is received. At the end of processing 
 that block, it will notice there is an orphan that pointed to this block
 and will process the orphan block, (and any other orphans, recursively)
-thus completing the entire process.[[15]]
+thus completing the entire process.[15]
 
 
 ## Stall Recovery
@@ -106,7 +106,7 @@ thus completing the entire process.[[15]]
 If the batching processes is interrupted for some reason, such as the
 remote node failing to honor the "Batch Continue Mechanism" or if a 
 disconnection occurs, there is a way for the process to restart. When
-a new block is solved and advertised around[[16]], any nodes that are
+a new block is solved and advertised around[16], any nodes that are
 behind will notice the new block in the "inv" and that will trigger it
 to request a "getblocks" update from the node that sent it the message.
 That will cause blocks to be sent starting from wherever in the block
@@ -123,11 +123,11 @@ connections, it is fairly likely that a new node will connect to
 another node that is also catching up.
 
 Nodes that are catching up will advertise the blocks they are processing,
-as they accept blocks into their main chain, to every other node.[[16]]
+as they accept blocks into their main chain, to every other node.[16]
 While there is code to prevent advertising old blocks before a certain
 checkpoint, that code also has a clause that does advertise blocks to
 remote nodes if the block height is over the remote node's current best
-height minus 2000 blocks.[[17]] This appears to allow nodes to "help" other
+height minus 2000 blocks.[17] This appears to allow nodes to "help" other
 nodes catch up, even if they are both processing old blocks.
 
 These advertisements cause the local node to request those blocks
@@ -154,7 +154,7 @@ that occur that result in the remote node overflowing the local receive
 buffer while blocks are being exchanged.
 
 For example, if a remote node is "catching up", it will advertise each block
-it processes to the local node in certain circumstances (see above [[17]]).
+it processes to the local node in certain circumstances (see above [17]).
 The local node will request each of those blocks right away. There is no
 protection against the local node requesting too many of these blocks.
 The remote node will send all blocks requested. There is no protection
@@ -162,8 +162,8 @@ against the remote node sending too many blocks before the local node has
 time to process them, in this circumstance.
 
 The local receive buffer can fill up. When the local node notices a receive
-buffer is full, it disconnects that node connection.[[18]]
-If sets the fDisconnect flag, and once the buffers are empty[[19]], the
+buffer is full, it disconnects that node connection.[18]
+If sets the fDisconnect flag, and once the buffers are empty[19], the
 socket is closed.
 
 
@@ -176,7 +176,7 @@ the bottleneck is early in the download process, it is clear from
 the processing of recent blocks that the network is not the bottleneck
 for all but the slowest internet connections.
 
-Blocks are taking over a second, on average, to process once downloaded.[[20]]
+Blocks are taking over a second, on average, to process once downloaded.[20]
 However, the average size of a block is only around 24 kilobytes
 in August 2011. It certainly does not take 1 second to download 24K.
 Also, testing reveals very large queues of blocks being processed per
@@ -214,7 +214,7 @@ and that is a more frustrating user experience than a constant download rate.
 
 
 ##Footnotes
-1. See pfrom->fInbound where pfrom is a CNode.
+1. See <code>pfrom->fInbound</code> where pfrom is a CNode.
 
 2. See ProcessMessage() in main.cpp where strCommand == "version".
 
@@ -228,56 +228,57 @@ and that is a more frustrating user experience than a constant download rate.
 
 7. See ProcessMessage() in main.cpp where strCommand =="getblocks".
 
-8. See
-	int nLimit = 500 + locator.GetDistanceBack();
-in ProcessMessage in main.cpp where strCommand =="getblocks".
+8. See  
+		int nLimit = 500 + locator.GetDistanceBack();  
+	in ProcessMessage in main.cpp where strCommand =="getblocks".
 
-9. See
-	if (--nLimit <= 0  nBytes >= SendBufferSize()/2)
-in ProcessMessage() in main.cpp where strCommand =="getblocks".
+9. See  
+		if (--nLimit <= 0  nBytes >= SendBufferSize()/2)  
+	in ProcessMessage() in main.cpp where strCommand =="getblocks".
 
-10. See
-	inline unsigned int SendBufferSize() {
-	return 1000*GetArg("-maxsendbuffer", 10*1000); }
-in net.h.
+10. See  
+		inline unsigned int SendBufferSize() {  
+		return 1000*GetArg("-maxsendbuffer", 10*1000); }  
+	in net.h.
 
 11. See pfrom->hashContinue = pindex->GetBlockHash();
-	in ProcessMessage() in main.cpp where strCommand =="getblocks".
+		in ProcessMessage() in main.cpp where strCommand =="getblocks".
+
 12. See: if (inv.hash == pfrom->hashContinue)
-	in ProcessMessage() in main.cpp where strCommand =="getdata".
+		in ProcessMessage() in main.cpp where strCommand =="getdata".
 
-13. See:
-	// Ask this guy to fill in what we're missing
-	if (pfrom)
-	pfrom->PushGetBlocks(pindexBest, GetOrphanRoot(pblock2));
-in ProcessBlock() in main.cpp.
+13. See:  
+		// Ask this guy to fill in what we're missing
+		if (pfrom)
+		pfrom->PushGetBlocks(pindexBest, GetOrphanRoot(pblock2));
+	in ProcessBlock() in main.cpp.
 
-14. See:
-	else if (inv.type == MSG_BLOCK && mapOrphanBlocks.count(inv.hash))
-	pfrom->PushGetBlocks(pindexBest, GetOrphanRoot(mapOrphanBlocks[[inv.hash]]));
-in ProcessMessage() in main.cpp where strCommand =="inv".
+14. See:  
+		else if (inv.type == MSG_BLOCK && mapOrphanBlocks.count(inv.hash))
+		pfrom->PushGetBlocks(pindexBest, GetOrphanRoot(mapOrphanBlocks[[inv.hash]]));
+	in ProcessMessage() in main.cpp where strCommand =="inv".
 
-15. See:
-	// Recursively process any orphan blocks that depended on this one
-in ProcessBlock() in main.cpp.
+15. See:  
+		// Recursively process any orphan blocks that depended on this one
+	in ProcessBlock() in main.cpp.
 
 16. See the last block of code in AcceptBlock in main.cpp.
 
-17. See:
-	if (nBestHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 134444))
-	in AcceptBlock() in main.cpp.
+17. See:  
+		if (nBestHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 134444))
+		in AcceptBlock() in main.cpp.
 
-18. See:
-	if (nPos > ReceiveBufferSize()) {
-in ThreadSocketHandler2() in net.cpp.
+18. See:  
+		if (nPos > ReceiveBufferSize()) {
+	in ThreadSocketHandler2() in net.cpp.
 
-19. See:
-	if (pnode->fDisconnect 
-	(pnode->GetRefCount() <= 0 && pnode->vRecv.empty() && pnode->vSend.empty()))
-in ThreadSocketHandler2() in net.cpp.
+19. See:  
+		if (pnode->fDisconnect 
+		(pnode->GetRefCount() <= 0 && pnode->vRecv.empty() && pnode->vSend.empty()))
+	in ThreadSocketHandler2() in net.cpp.
 
-20. This is from the authors experience and also
-	see https://bitcointalk.org/index.php?topic=31376.0.
+20. This is from the authors experience and also  
+		see https://bitcointalk.org/index.php?topic=31376.0.
 
 
 [[!tag "Developer"]]

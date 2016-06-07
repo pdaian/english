@@ -2,22 +2,8 @@ Bitcoin uses a simple broadcast network to propagate transactions and blocks. Al
 
 ## Messages
 
-* *version* - Information about program version and block count. Exchanged when first connecting.
-* *verack* - Sent in response to a version message to acknowledge that we are willing to connect.
-* *addr* - List of one or more IP addresses and ports.
-* *inv* - "I have these blocks/transactions: ..." Normally sent only when a *new* block or transaction is being relayed. This is only a list, not the actual data.
-* *getdata* - Request a single block or transaction by hash.
-* *getblocks* - Request an *inv* of all blocks in a range.
-* *getheaders* - Request a *headers* message containing all block headers in a range.
-* *tx* - Send a transaction. This is sent only in response to a *getdata* request.
-* *block* - Send a block. This is sent only in response to a *getdata* request.
-* *headers* - Send up to 2,000 block headers. Non-generators can download the headers of blocks instead of entire blocks.
-* *getaddr* - Request an *addr* message containing a bunch of known-active peers (for bootstrapping).
-* *submitorder*, *checkorder*, and *reply* - Used when performing an [[IP transaction|IP_address]].
-* *alert* - Send a network alert.
-* *ping* - Does nothing. Used to check that the connection is still online. A TCP error will occur if the connection has died.
-
-More information and in-depth technical information is in the [[Protocol_Specification]].
+<!-- lets keep it in one place. Its hard enough to keep that up to date -->
+Detailed in the [[Protocol_documentation]].
 
 ## Connection
 
@@ -81,14 +67,9 @@ If ninety minutes has passed since a peer node has communicated any messages, th
 
 ## See Also
 
-* [[Protocol_Specification]]
+* [[Protocol_documentation]]
 * [[Satoshi_Client_Node_Discovery]]
 * [Historical Network Status (no longer updated)](http://bitcoinstatus.rowit.co.uk/)
 * [Bitnodes.io's network size estimate](http://getaddr.bitnodes.io/)
-* [How to run your own cheap full bitcoin node](http://fullnode.info/howto.html)
-* [Bitcoin Mining](https://www.bitcoinmining.com/)
-* [Video: What is Bitcoin Mining](https://www.youtube.com/watch?v=GmOzih6I1zs)
 
 [[!tag "Technical"]]
-
-[[pl:Sieć]]

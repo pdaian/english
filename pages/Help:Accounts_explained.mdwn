@@ -54,19 +54,19 @@ The *sendtoaddress* method works like *sendfrom*, but always debits the default 
 
 The send will fail if the account has insufficient funds, with two exceptions:
 
-	- 'sendtoaddress' always succeeds if there are sufficient funds in the
-	server's wallet.  For example, if your wallet account balances were 100 BTC in account
-	'foo' and 0 BTC in the default account, then the balances after *sendtoaddress
-	1PC9aZC4hNX2rmmrt7uHTfYAS3hRbph4UN 10.00* would be 100 in account 'foo' and -10.00 in
-	the default account (and the overall server balance would go from 100 to 90 BTC).  On
-	the other hand, using 'sendfrom' to send from the default account with a zero balance
-	will fail with message "Account has insufficient funds".
+* 'sendtoaddress' always succeeds if there are sufficient funds in the
+server's wallet.  For example, if your wallet account balances were 100 BTC in account
+'foo' and 0 BTC in the default account, then the balances after *sendtoaddress
+1PC9aZC4hNX2rmmrt7uHTfYAS3hRbph4UN 10.00* would be 100 in account 'foo' and -10.00 in
+the default account (and the overall server balance would go from 100 to 90 BTC).  On
+the other hand, using 'sendfrom' to send from the default account with a zero balance
+will fail with message "Account has insufficient funds".
 
-	- The check for sufficient funds is done before paying transaction fees (if any); if a
-	[[transaction_fee]] is needed, and there are sufficient funds in the wallet, then the
-	transaction fee will be paid and debited from the account.  For example, if account
-	'foo' contains 10 bitcoins, you *sendfrom foo 15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC 10*,
-	and the transaction costs 0.01, 'foo's balance will be -0.01 bitcoins.
+* The check for sufficient funds is done before paying transaction fees (if any); if a
+[[transaction_fee]] is needed, and there are sufficient funds in the wallet, then the
+transaction fee will be paid and debited from the account.  For example, if account
+'foo' contains 10 bitcoins, you *sendfrom foo 15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC 10*,
+and the transaction costs 0.01, 'foo's balance will be -0.01 bitcoins.
 
 ## Account -> Account Transfers
 
@@ -76,7 +76,7 @@ Use the *move* method to transfer balances from one account to another. Moves ar
 
 The *getbalance* method returns the bitcoin balance for either the entire wallet (if no argument is given) or for a particular account.
 
-The *listtransactions <account> [[N]]* method returns the last N (default 10) transactions that affected the account's balance.  "listtransactions '*' [[N]]" will return the last N transactions for all accounts.
+The *listtransactions &lt;account> [N]* method returns the last N (default 10) transactions that affected the account's balance.  "listtransactions '*' [N]" will return the last N transactions for all accounts.
 
 ## Typical Uses
 

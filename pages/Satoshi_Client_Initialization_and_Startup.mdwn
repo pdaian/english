@@ -112,9 +112,11 @@ HTTP(S)+JSONRPC server using boost classes that are probably going
 to be unfamiliar to most developers.
 
 You will see lines like this:
+
 	acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
 
 and this:
+
 	boost::thread api_caller(ReadHTTP, boost::ref(stream), boost::ref(mapHeaders), boost::ref(strRequest));
 	if (!api_caller.timed_join(boost::posix_time::seconds(GetArg("-rpctimeout", 30))))
 

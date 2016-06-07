@@ -11,7 +11,7 @@ Digital currency units generated and used within the Bitcoin system.  Common abb
 #####[[Block]]
 Blocks are links in a chain of transaction verifications. Outstanding transactions get bundled into a block and are verified roughly every ten minutes on average. Each subsequent block strengthens the verification of previous blocks. Each block contains one or more transactions.
 
-#####[[Block_Chain]]
+#####[[Block_chain]]
 Each block includes the difficult-to-produce verification hash of the previous block. This allows each subsequent block to be linked to all previous blocks. These blocks which are linked together for the purpose of verifying transactions within blocks is called the block chain.
 
 #####[[Block Reward|Mining#Reward]]
@@ -51,7 +51,7 @@ A computer algorithm which takes an arbitrary amount of input data and determini
 See Priority.
 
 #####Main Chain
-The longest [[Block_Chain]].
+The longest [[Block_chain]].
 
 #####Memory pool
 Generators store [[transactions]] waiting to get into a block in their memory pool after receiving them. Received transactions are stored even if they are invalid to prevent nodes from constantly requesting transactions that they've already seen. The memory pool is cleared when Bitcoin is shut down, causing the [[network]] to gradually forget about transactions that haven't been included in a [[block]].

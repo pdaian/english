@@ -10,40 +10,51 @@ The original bitcoin client does proper, full-precision rounding for all values 
 The rest of this page gives sample code for various JSON libraries and programming languages.
 
 ## BASH
-<source lang="bash">
+[[!format bash """
 	function JSONtoAmount() {
 	printf '%.8f' "$1"  tr -d '.'
 	}
-</source>
+"""]]
 
 ## C/C++
 C/C++ JSON libraries return the JavaScript Number type as type 'double'.  To convert, without loss of precision, from a double to a 64-bit integer multiply by 100,000,000 and round to the nearest integer:
+[[!format cpp """
 	int64_t JSONtoAmount(double value) {
 	return (int64_t)(value * 1e8 + (value < 0.0 ? -.5 : .5));
 	}
+"""]]
 
 To convert to a JSON value divide by 100,000,000.0, and make sure your JSON implementation outputs doubles with 8 or more digits after the decimal point:
+[[!format cpp """
 	double forJSON = (double)amount / 1e8;
+"""]]
 
 ## ECMAScript
 
+[[!format java """
 	function JSONtoAmount(value) {
 	return Math.round(1e8 * value);
 	}
+"""]]
 ## Java
 
+[[!format java """
 	public long JSONtoAmount(double value){
 	return (long)(value*100000000L);
 	}
+"""]]
 
 ## Perl
+[[!format perl """
 	sub JSONtoAmount {
 	return sprintf '%.0f', 1e8 * shift;
 	}
+"""]]
 
 ## Go
 The [btcjson package](https://github.com/btcsuite/btcd/btcjson) provides a more complete version of this function (error checking and so on), but for illustrative purposes, this is useful.
 
+[[!format go """
 	func JSONToAmount(jsonAmount float64) (int64) {
 	var amount int64
 	tempVal := 1e8 * jsonAmount
@@ -57,21 +68,28 @@ The [btcjson package](https://github.com/btcsuite/btcd/btcjson) provides a more 
 	amount = int64(tempVal)
 	return amount
 	}
+"""]]
 
 ## PHP
+[[!format php """
 	function JSONtoAmount($value) {
 	return round($value * 1e8);
 	}
+"""]]
 
 ## Python
+[[!format python """
 	def JSONtoAmount(value):
 	return long(round(value * 1e8))
 	def AmountToJSON(amount):
 	return float(amount / 1e8)
+"""]]
 
 ## Common Lisp
+[[!format lisp """
 	(defun json-to-amount (n)
 	(coerce (round (* n 1e8)) 'integer))
+"""]]
 
 **CAUTION**: The CL-JSON library parses numbers as *single* precision floating-point by
 default. The default parsing behavior can be overridden as follows:
@@ -80,5 +98,3 @@ default. The default parsing behavior can be overridden as follows:
 	(json::parse-number (concatenate 'string n "d0"))))
 [[!tag "Technical"]]
 [[!tag "Developer"]]
-
-[[de:Korrektes_Handling_von_Geldbeträgen_(JSON-RPC)]]

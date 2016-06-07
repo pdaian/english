@@ -4,6 +4,6 @@ A timestamp is accepted as valid if it is greater than the median timestamp of p
 
 Whenever a node connects to another node, it gets a UTC timestamp from it, and stores its offset from node-local UTC. The network-adjusted time is then the node-local UTC plus the median offset from all connected nodes. Network time is never adjusted more than 70 minutes from local system time, however.
 
-Bitcoin uses an unsigned integer for the timestamp, so the [[year 2038 problem|:Wikipedia:Year_2038_problem]] is delayed for another 68 years.
+Bitcoin uses an unsigned integer for the timestamp, so the [[year 2038 problem](https://Wikipedia.org/en/Year_2038_problem) is delayed for another 68 years.
 
 [[!tag "Technical"]]
