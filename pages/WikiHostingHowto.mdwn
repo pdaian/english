@@ -1,0 +1,59 @@
+This HOWTO is about hosting the wiki itself on a web-server under your control.
+
+Preparation;
+
+install ikiwiki;
+	apt-get install ikiwiki libhighlight-perl libimage-magick-perl
+
+
+
+Ikiwiki checks the upstream git repo while building (after every single
+edit), to see if its up to date. For that reason you likely want to have a
+double git setup so as to avoid any slowness due to a remote site not
+giving answers fast.
+
+Easy setup to avoid this is to have a local bare wiki that you manually
+keep up-to-date with 'upstream'.
+
+    # keep this one up-to-date manually
+    git clone --mirror  https://github.com/BitcoinFactsWiki/english.git bitcoinfactswiki.git
+    #this one you actually use for your website
+    git clone bitcoinfactswiki.git
+
+cp bitcoinfactswiki/bitcoin.setup mysite.setup
+
+You want to edit your setup file.
+Please consider changing these fields. I'm providing example values too;
+
+
+* adminemail: tomz@freedommail.ch
+* srcdir: /home/wiki/bitcoinfactswiki/pages/
+* destdir: /var/www/btcwiki/html/
+* cgi_wrapper: /var/www/btcwiki/html/ikiwiki.cgi
+* url: http://hbdcxlms37r732tu.onion
+* cgiurl: http://hbdcxlms37r732tu.onion/ikiwiki.cgi
+* \# - editpage
+
+The last one is a line to comment out or delete, in the default config the
+<code>editpage</code> plugin is disabled. You may want to allow editing, if
+so you should remove the line 'editpage' in the list if disabled plugins.
+
+After that is done, be sure to actually generate your wiki the first time.
+
+>  <code> ikiwiki --setup mysite.setup</code>
+
+
+### webserver.
+
+In NGINX make sure you have this in your site-settings (the file in
+sites-available) to enable the cgi processing. This you need when allowing
+users to edit;
+
+	location ~ ^/ikiwiki.cgi {
+	  fastcgi_split_path_info ^(ikiwiki.cgi)(/.+)$;
+	  include fastcgi_params;
+	  # Intercepting errors will cause CGI errors to appear in Nginx logs
+	  fastcgi_intercept_errors on;
+	  fastcgi_pass unix:/var/run/fcgiwrap.socket;
+	}
+
